@@ -1,0 +1,36 @@
+patchable record Test {
+  <id> key: string
+  <rev> version: string
+  test: string
+  <ro> test: string
+}
+
+mixin Base {
+  <id> key: string
+  <rev> version: string
+}
+
+mixin MTest {
+  test: string
+  <ro> test: string
+}
+
+record Test2 {
+  include Base
+  include MTest
+  customProp: string
+}
+
+union USample = 
+  Test, 
+  Test2;
+
+error NO_ACCESS = 1;
+
+service Sample {
+  operation test(): string 
+    fails-with
+      CUSTOM_ERROR = 100,
+      NO_ACCESS;
+  operation bla(test: USample);
+}

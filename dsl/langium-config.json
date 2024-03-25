@@ -1,0 +1,15 @@
+{
+    "projectName": "RemoteServiceDescription",
+    "languages": [{
+        "id": "remote-service-description",
+        "grammar": "src/language/remote-service-description.langium",
+        "fileExtensions": [".rsd"],
+        "textMate": {
+            "out": "syntaxes/remote-service-description.tmLanguage.json"
+        },
+        "monarch": {
+            "out": "syntaxes/remote-service-description.monarch.ts"
+        }
+    }],
+    "out": "src/language/generated"
+}
