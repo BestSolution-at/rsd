@@ -125,23 +125,39 @@ function mapProperty(property: Property) {
         optional: property.namedType.optional,
         nullable: property.namedType.nullable,
         variant: computeVariant(property),
-        type: property.namedType.typeRef.builtin ?
-            property.namedType.typeRef.builtin : (property.namedType.typeRef.refType?.ref?.name ?? '**fail**')
+        type: computeType(property)
     };
     return rv;
 }
 
+function computeType(property: Property) {
+    if( property.namedType.inlineEnum ) {
+        throw new Error('Not implemented');
+    } else if( property.namedType.typeRef ) {
+        if( property.namedType.typeRef.builtin ) {
+            return property.namedType.typeRef.builtin;
+        } else {
+            return property.namedType.typeRef.refType?.ref?.name ?? '**fail**';
+        }
+    }
+    throw new Error();
+}
+
 function computeVariant(property: Property) {
-    if( property.namedType.typeRef.builtin ) {
+    if( property.namedType.inlineEnum ) {
         return 'builtin';
-    } else if( isEnumType(property.namedType.typeRef.refType?.ref) ) {
-        return 'enum'
-    } else if( isUnionType(property.namedType.typeRef.refType?.ref) ) {
-        return 'union'
-    } else if( isRecordType(property.namedType.typeRef.refType?.ref) ) {
-        return 'record'
-    } else if( isScalarType(property.namedType.typeRef.refType?.ref) ) {
-        return 'scalar'
+    } else if( property.namedType.typeRef ) {
+        if( property.namedType.typeRef.builtin ) {
+            return 'builtin';
+        } else if( isEnumType(property.namedType.typeRef.refType?.ref) ) {
+            return 'enum'
+        } else if( isUnionType(property.namedType.typeRef.refType?.ref) ) {
+            return 'union'
+        } else if( isRecordType(property.namedType.typeRef.refType?.ref) ) {
+            return 'record'
+        } else if( isScalarType(property.namedType.typeRef.refType?.ref) ) {
+            return 'scalar'
+        }
     }
     throw new Error();
 }
@@ -170,7 +186,6 @@ function mapEnumType(enumType: EnumType) {
         '@type': 'EnumType',
         name: enumType.name,
         entries: enumType.entries.map(mapEnumEntry),
-        default: enumType.entries.find( e => e.default )?.name
     };
     
     return rv;

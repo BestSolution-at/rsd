@@ -10,19 +10,23 @@ UserType:
     EnumType | RecordType | MixinType | UnionType | ScalarType;
 
 ScalarType:
-    'scalar' name=ID;
+    'scalar' name=ID ';';
 
 BuiltinType returns string:
     'boolean'|'short'|'int'|'string'|'float'|'double'|'long'|'local-date'|'local-date-time'|'zoned-date-time';
 
 EnumType:
     docs += SL_DOC_COMMENT*
-    'enum' name=ID '{'
-        entries += EnumEntry+
-    '}';
+    'enum' name=ID '='
+        entries += EnumEntry ( '|' entries += EnumEntry )*
+    ';';
+
+InlineEnumType:
+    'enum' entries += EnumEntry ( '|' entries += EnumEntry )*
+;
 
 EnumEntry:
-    default?='default'? name=ID ('=' (value=INT|STRING))?
+    name=ID ('=' (value=INT|STRING))?
 ;
 
 RecordType:
@@ -43,7 +47,7 @@ UnionRecord:
 
 UnionType:
     patchable?='patchable'? 'union' name=ID '='
-        records += UnionRecord (',' records+=UnionRecord )+
+        records += UnionRecord ('|' records+=UnionRecord )+
     ('descriminated-with' descProp=ID)? ';'
 ;
 
@@ -58,17 +62,17 @@ MixinType:
 ;
 
 KeyProperty:
-    '<id>' name=ID ':' typeRef=BuiltinType doc=SL_DOC_COMMENT?;
+    '@id' name=ID ':' typeRef=BuiltinType doc=SL_DOC_COMMENT?;
 
 RevisionProperty:
-    '<rev>' name=ID ':' typeRef=BuiltinType doc=SL_DOC_COMMENT?;
+    '@rev' name=ID ':' typeRef=BuiltinType doc=SL_DOC_COMMENT?;
 
 NamedType:
-    name=ID optional?='?'? ':' typeRef=TypeRef (array?='[' maxLength=INT? ']')? nullable?='?'?
+    name=ID optional?='?'? ':' (typeRef=TypeRef | inlineEnum=InlineEnumType) (array?='[' maxLength=INT? ']')? nullable?='?'?
 ;
 
 Property:
-    readonly?='<ro>'? namedType=NamedType doc=SL_DOC_COMMENT?;
+    readonly?='@readonly'? namedType=NamedType doc=SL_DOC_COMMENT?;
 
 TypeRef:
     (builtin=BuiltinType | refType=[UserType:ID])
@@ -85,7 +89,7 @@ Service:
 ;
 
 Parameter:
-    patch?='patch'? namedType=NamedType
+    patch?='@patch'? namedType=NamedType
 ;
 
 ReturnType:

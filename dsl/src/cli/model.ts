@@ -157,7 +157,6 @@ export type MEnumType = {
     '@type': 'EnumType'
     name: string
     entries: readonly MEnumEntry[]
-    default?: string
 }
 
 export type MResolvedEnumType = MEnumType;
