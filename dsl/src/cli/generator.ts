@@ -3,7 +3,7 @@ import { UserType, type RSDModel, isEnumType, EnumType, EnumEntry, MixinType, is
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { extractDestinationAndName } from './cli-util.js';
-import { MEnumEntry, MEnumType, MKeyProperty, MMixinType, MProperty, MRSDModel, MRecordType, MRevisionProperty, MScalarType, MUnionType, MUserType } from './model.js';
+import { MEnumEntry, MEnumType, MInlineEnumType, MKeyProperty, MMixinType, MProperty, MRSDModel, MRecordType, MRevisionProperty, MScalarType, MUnionType, MUserType } from './model.js';
 import { isDefined } from './util.js';
 
 export function generateJavaScript(model: RSDModel, filePath: string, destination: string | undefined): string {
@@ -132,7 +132,11 @@ function mapProperty(property: Property) {
 
 function computeType(property: Property) {
     if( property.namedType.inlineEnum ) {
-        throw new Error('Not implemented');
+        const rv : MInlineEnumType = {
+            '@type': 'InlineEnumType',
+            entries: property.namedType.inlineEnum.entries.map(mapEnumEntry)
+        }
+        return rv;
     } else if( property.namedType.typeRef ) {
         if( property.namedType.typeRef.builtin ) {
             return property.namedType.typeRef.builtin;
@@ -145,7 +149,7 @@ function computeType(property: Property) {
 
 function computeVariant(property: Property) {
     if( property.namedType.inlineEnum ) {
-        return 'builtin';
+        return 'inline-enum';
     } else if( property.namedType.typeRef ) {
         if( property.namedType.typeRef.builtin ) {
             return 'builtin';

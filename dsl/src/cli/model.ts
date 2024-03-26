@@ -143,8 +143,8 @@ export type MProperty = {
     readonly: boolean
     optional: boolean
     nullable: boolean
-    variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record'
-    type: string
+    variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'inline-enum'
+    type: string | MInlineEnumType
 }
 
 export function isMProperty(value: unknown): value is MProperty {
@@ -165,6 +165,17 @@ export function isMEnumType(value: unknown): value is MEnumType {
     return isObject(value) 
         && '@type' in value
         && value['@type'] === 'EnumType';
+}
+
+export type MInlineEnumType = {
+    '@type': 'InlineEnumType'
+    entries: readonly MEnumEntry[]
+}
+
+export function isMInlineEnumType(value: unknown): value is MInlineEnumType {
+    return isObject(value) 
+        && '@type' in value
+        && value['@type'] === 'InlineEnumType';
 }
 
 export type MEnumEntry = {

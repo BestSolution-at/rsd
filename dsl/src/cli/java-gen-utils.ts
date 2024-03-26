@@ -15,9 +15,33 @@ export function builtinToJavaType(type: MBuiltinType): string {
     }
 }
 
-export function reolveType(type: string, nativeSubstitutes: Record<string,string> | undefined) {
+export function builtinToJavaObjectType(type: MBuiltinType): string {
+    switch(type) {
+        case 'boolean': return 'Boolean';
+        case 'double': return 'Double';
+        case 'float': return 'Float';
+        case 'int': return 'Integer';
+        case 'local-date': return 'java.time.LocalDate';
+        case 'local-date-time': return 'java.time.LocalDateTime';
+        case 'long': return 'Long';
+        case 'short': return 'Short';
+        case 'string': return 'String';
+        case 'zoned-date-time': return 'java.time.ZonedDateTime';
+    }
+}
+
+export function resolveType(type: string, nativeSubstitutes: Record<string,string> | undefined) {
     if( isMBuiltinType(type) ) {
         return builtinToJavaType(type);
+    } else if( nativeSubstitutes !== undefined && type in nativeSubstitutes ) {
+        return nativeSubstitutes[type];
+    }
+    return type;
+}
+
+export function resolveObjectType(type: string, nativeSubstitutes: Record<string,string> | undefined) {
+    if( isMBuiltinType(type) ) {
+        return builtinToJavaObjectType(type);
     } else if( nativeSubstitutes !== undefined && type in nativeSubstitutes ) {
         return nativeSubstitutes[type];
     }
