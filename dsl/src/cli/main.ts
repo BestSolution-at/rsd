@@ -68,7 +68,7 @@ export const generateArtifact = async (fileName: string, opts: ArtifactsGenerate
                 const outFile = path.resolve(outFolder, a.name);
                 await fs.mkdir(outFolder, { recursive: true })
                 fs.writeFile(outFile, a.content)
-                    .then( () => console.log(`  Created ${a.name}`) );
+                    .then( () => console.log(chalk.blue('  Created'),`${a.name}`) );
             })
         }
     }    
