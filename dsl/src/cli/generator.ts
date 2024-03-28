@@ -1,9 +1,9 @@
-import { UserType, type RSDModel, isEnumType, EnumType, EnumEntry, MixinType, isMixinType, KeyProperty, RevisionProperty, Property, RecordType, isRecordType, UnionType, isUnionType, ScalarType, isScalarType } from '../language/generated/ast.js';
+import { UserType, type RSDModel, isEnumType, EnumType, EnumEntry, MixinType, isMixinType, KeyProperty, RevisionProperty, Property, RecordType, isRecordType, UnionType, isUnionType, ScalarType, isScalarType, Service, Operation, Parameter, NamedType, ReturnType } from '../language/generated/ast.js';
 // import { expandToNode, joinToNode, toString } from 'langium/generate';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { extractDestinationAndName } from './cli-util.js';
-import { MEnumEntry, MEnumType, MInlineEnumType, MKeyProperty, MMixinType, MProperty, MRSDModel, MRecordType, MRevisionProperty, MScalarType, MUnionType, MUserType } from './model.js';
+import { MEnumEntry, MEnumType, MInlineEnumType, MKeyProperty, MMixinType, MOperation, MParameter, MProperty, MRSDModel, MRecordType, MReturnType, MRevisionProperty, MScalarType, MService, MUnionType, MUserType } from './model.js';
 import { isDefined } from './util.js';
 
 export function generateJavaScript(model: RSDModel, filePath: string, destination: string | undefined): string {
@@ -22,8 +22,50 @@ export function generateJavaScript(model: RSDModel, filePath: string, destinatio
 export function generateModel(model: RSDModel): MRSDModel {
     return {
         '@type': 'RSDModel',
-        elements: model.elements.map(mapUserType)
+        elements: model.elements.map(mapUserType),
+        services: model.services.map(mapService)
     };
+}
+
+function mapService(service: Service): MService {
+    return {
+        '@type': 'Service',
+        name: service.name,
+        operations: service.operations.map(mapOperation)
+    }
+}
+
+function mapOperation(operation: Operation): MOperation {
+    return {
+        "@type": 'Operation',
+        name: operation.name,
+        parameters: operation.parameters.map(mapParameter),
+        resultType: operation.returnType ? mapReturnType(operation.returnType) : undefined
+    }
+}
+
+function mapParameter(parameter: Parameter): MParameter {
+    return {
+        "@type": 'Parameter',
+        name: parameter.namedType.name,
+        array: parameter.namedType.array,
+        arrayMaxLength: parameter.namedType.maxLength,
+        nullable: parameter.namedType.nullable,
+        optional: parameter.namedType.optional,
+        patch: parameter.patch,
+        variant: computeVariant(parameter.namedType),
+        type: computeType(parameter.namedType)
+    }
+}
+
+function mapReturnType(returnType: ReturnType): MReturnType {
+    return {
+        "@type": 'ReturnType',
+        array: returnType.array,
+        arrayMaxLength: returnType.maxLength,
+        variant: computeVariant(returnType),
+        type: computeType(returnType)
+    }
 }
 
 function mapUserType(userType: UserType): MUserType {
@@ -124,42 +166,42 @@ function mapProperty(property: Property) {
         readonly: property.readonly,
         optional: property.namedType.optional,
         nullable: property.namedType.nullable,
-        variant: computeVariant(property),
-        type: computeType(property)
+        variant: computeVariant(property.namedType),
+        type: computeType(property.namedType)
     };
     return rv;
 }
 
-function computeType(property: Property) {
-    if( property.namedType.inlineEnum ) {
+function computeType(namedType: Pick<NamedType, 'inlineEnum' | 'typeRef'>) {
+    if( namedType.inlineEnum ) {
         const rv : MInlineEnumType = {
             '@type': 'InlineEnumType',
-            entries: property.namedType.inlineEnum.entries.map(mapEnumEntry)
+            entries: namedType.inlineEnum.entries.map(mapEnumEntry)
         }
         return rv;
-    } else if( property.namedType.typeRef ) {
-        if( property.namedType.typeRef.builtin ) {
-            return property.namedType.typeRef.builtin;
+    } else if( namedType.typeRef ) {
+        if( namedType.typeRef.builtin ) {
+            return namedType.typeRef.builtin;
         } else {
-            return property.namedType.typeRef.refType?.ref?.name ?? '**fail**';
+            return namedType.typeRef.refType?.ref?.name ?? '**fail**';
         }
     }
     throw new Error();
 }
 
-function computeVariant(property: Property) {
-    if( property.namedType.inlineEnum ) {
+function computeVariant(namedType: Pick<NamedType, 'inlineEnum' | 'typeRef'>) {
+    if( namedType.inlineEnum ) {
         return 'inline-enum';
-    } else if( property.namedType.typeRef ) {
-        if( property.namedType.typeRef.builtin ) {
+    } else if( namedType.typeRef ) {
+        if( namedType.typeRef.builtin ) {
             return 'builtin';
-        } else if( isEnumType(property.namedType.typeRef.refType?.ref) ) {
+        } else if( isEnumType(namedType.typeRef.refType?.ref) ) {
             return 'enum'
-        } else if( isUnionType(property.namedType.typeRef.refType?.ref) ) {
+        } else if( isUnionType(namedType.typeRef.refType?.ref) ) {
             return 'union'
-        } else if( isRecordType(property.namedType.typeRef.refType?.ref) ) {
+        } else if( isRecordType(namedType.typeRef.refType?.ref) ) {
             return 'record'
-        } else if( isScalarType(property.namedType.typeRef.refType?.ref) ) {
+        } else if( isScalarType(namedType.typeRef.refType?.ref) ) {
             return 'scalar'
         }
     }

@@ -93,7 +93,7 @@ Parameter:
 ;
 
 ReturnType:
-    typeRef=TypeRef (array?='[' maxLength=INT? ']')?
+    (typeRef=TypeRef | inlineEnum=InlineEnumType) (array?='[' maxLength=INT? ']')?
 ;
 
 ErrorCode:

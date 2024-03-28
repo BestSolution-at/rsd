@@ -19,6 +19,7 @@ export function isMBuiltinType(value: string): value is MBuiltinType {
 export type MRSDModel<T extends MUserType = MUserType> = {
     '@type': 'RSDModel'
     elements: readonly T[]
+    services: readonly MService[]
 }
 
 export type MResolvedRSDModel = MRSDModel<MResolvedUserType>;
@@ -190,6 +191,38 @@ export function isMEnumEntry(value: unknown): value is MEnumEntry {
         && value['@type'] === 'EnumEntry';
 }
 
+export type MService = {
+    '@type': 'Service'
+    name: string
+    operations: readonly MOperation[]
+}
+
+export type MOperation = {
+    '@type': 'Operation'
+    name: string
+    parameters: readonly MParameter[]
+    resultType?: MReturnType
+}
+
+export type MParameter = {
+    '@type': 'Parameter'
+    name: string
+    patch: boolean
+    array: boolean
+    arrayMaxLength?: number
+    optional: boolean
+    nullable: boolean
+    variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'inline-enum'
+    type: string | MInlineEnumType
+}
+
+export type MReturnType = {
+    '@type': 'ReturnType'
+    variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'inline-enum'
+    type: string | MInlineEnumType
+    array: boolean
+    arrayMaxLength?: number
+}
 
 
 export function resolve(model: MRSDModel): MResolvedRSDModel {
