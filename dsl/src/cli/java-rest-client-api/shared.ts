@@ -53,3 +53,21 @@ export function generateProperty(node: IndentNode, property: MKeyProperty | MRev
         
     }
 }
+
+export function toType(typeOwner: Pick<MProperty, 'variant'|'array'|'type'|'name'>, artifactConfig: JavaRestClientAPIGeneratorConfig) {
+    if( typeOwner.variant === 'union' || typeOwner.variant === 'record' ) {
+        const pkg = `${artifactConfig.rootPackageName}.dto`
+        if( typeOwner.array ) {
+            return `java.util.List<${pkg}.${typeOwner.type}DTO>`;
+        } else {
+            return `${pkg}.${typeOwner.type}DTO`
+        }
+    } else if( typeof typeOwner.type === 'string' ) {
+        if( typeOwner.array ) {
+            return `java.util.List<${resolveObjectType(typeOwner.type, artifactConfig.nativeTypeSubstitues)}>`;
+        } else {
+            return `${resolveType(typeOwner.type, artifactConfig.nativeTypeSubstitues)}`;
+        }
+    }
+    return `${toFirstUpper(typeOwner.name)}`
+}

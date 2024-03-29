@@ -12,6 +12,7 @@ import { generateFactory } from "./client-factory.js";
 import { generateEnum } from "./enum.js";
 import { generateRecord } from "./record.js";
 import { generateUnion } from "./union.js";
+import { generateService } from "./service.js";
 
 
 function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGenerationConfig, artifactConfig: ArtifactGeneratorConfig): readonly Artifact [] {
@@ -26,8 +27,9 @@ function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGenerationC
     result.push(generateBaseDTO(artifactConfig))
     result.push(generateBaseService(artifactConfig))
     result.push(generateClient(generatorConfig, artifactConfig))
-
     result.push(generateFactory(generatorConfig, artifactConfig))
+
+    result.push(...model.services.map( s => generateService(s, artifactConfig)).filter(isDefined))
 
     return result;
 }
