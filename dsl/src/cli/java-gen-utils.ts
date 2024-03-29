@@ -1,3 +1,4 @@
+import { ArtifactGenerationConfig, ArtifactGeneratorConfig } from "./artifact-generator.js";
 import { MBuiltinType, isMBuiltinType } from "./model.js";
 
 export function builtinToJavaType(type: MBuiltinType): string {
@@ -46,4 +47,19 @@ export function resolveObjectType(type: string, nativeSubstitutes: Record<string
         return nativeSubstitutes[type];
     }
     return type;
+}
+
+export function toPath(targetFolder: string, packageName: string) {
+    return `${targetFolder}/${packageName.replaceAll('.','/')}`; 
+}
+
+export type JavaRestClientAPIGeneratorConfig = ArtifactGenerationConfig & {
+    targetFolder: string
+    rootPackageName: string
+    nativeTypeSubstitues?: Record<string, string>
+}
+
+export function isJavaRestClientAPIGeneratorConfig(config: ArtifactGeneratorConfig): config is JavaRestClientAPIGeneratorConfig {
+    return 'targetFolder' in config && typeof config.targetFolder === 'string'
+        && 'rootPackageName' in config && typeof config.rootPackageName === 'string';
 }
