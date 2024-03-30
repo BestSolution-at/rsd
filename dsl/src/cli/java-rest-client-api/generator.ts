@@ -50,6 +50,6 @@ function generateType(t: MResolvedUserType, artifactConfig: JavaRestClientAPIGen
 }
 
 export default {
-    name: 'java-rest-client-api',
+    name: 'java-client-api',
     generate
 }
