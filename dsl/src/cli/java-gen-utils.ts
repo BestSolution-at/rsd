@@ -1,3 +1,4 @@
+import { CompositeGeneratorNode, NL } from "langium/generate";
 import { ArtifactGenerationConfig, ArtifactGeneratorConfig } from "./artifact-generator.js";
 import { MBuiltinType, isMBuiltinType } from "./model.js";
 
@@ -62,4 +63,92 @@ export type JavaRestClientAPIGeneratorConfig = ArtifactGenerationConfig & {
 export function isJavaRestClientAPIGeneratorConfig(config: ArtifactGeneratorConfig): config is JavaRestClientAPIGeneratorConfig {
     return 'targetFolder' in config && typeof config.targetFolder === 'string'
         && 'rootPackageName' in config && typeof config.rootPackageName === 'string';
+}
+
+export class JavaImportsCollector {
+    private importedTypes = new Map<string,string>();
+    private importedPackages = new Map<string, Set<string>>();
+
+    constructor(private sourcePackage: string) {}
+
+    public appendImportGroups(node: CompositeGeneratorNode) {
+        this.importGroups().forEach( (g,idx) => {
+            g.imports.forEach( i => {
+                node.append(`import ${i};`, NL);
+            })
+            node.appendNewLine();
+        } )
+    }
+
+    public importGroups(): ImportGroup[] {
+        const result: ImportGroup[] = [];
+        
+        const allImports = [...this.importedPackages.entries()];
+
+        const javaFilter = (e: [ string, Set<string> ]) => e[0].startsWith('java.') || e[0].startsWith('javax.');
+        const jakartaFilter = (e: [ string, Set<string> ]) => e[0].startsWith('jakarta.');
+        const otherFilter = (e: [ string, Set<string> ]) => !javaFilter(e) && !jakartaFilter(e);
+
+        const typeFlatMap = (e: [ string, Set<string> ]) => [...e[1].values()]
+
+        const javaGroup : ImportGroup = {
+            imports: allImports
+                .filter(javaFilter)
+                .flatMap(typeFlatMap)
+                .sort((a,b) => a.localeCompare(b))
+        }
+        const jakartaGroup: ImportGroup = {
+            imports: allImports
+                .filter(jakartaFilter)
+                .flatMap(typeFlatMap)
+                .sort((a,b) => a.localeCompare(b))
+        }
+        const other: ImportGroup = {
+            imports: allImports
+                .filter(otherFilter)
+                .flatMap(typeFlatMap)
+                .sort((a,b) => a.localeCompare(b))
+        }
+        if(javaGroup.imports.length > 0) {
+            result.push(javaGroup)
+        }
+        if(jakartaGroup.imports.length > 0) {
+            result.push(jakartaGroup)
+        }
+        if(other.imports.length > 0) {
+            result.push(other);
+        }
+        return result;
+    }
+
+    public importType(fqnType: string) {
+        const lastIdx = fqnType.lastIndexOf('.');
+        const pkg = fqnType.substring(0,lastIdx)
+        const type = fqnType.substring(lastIdx+1);
+        
+        if(! this.importedTypes.has(type) ) {
+            // Not yet imported good - remember
+            this.importedTypes.set(type, pkg)
+        } else if( pkg !== this.importedTypes.get(type) ) {
+            // Another type of the same name has been imported need to stay fqnType
+            return fqnType;
+        }
+
+        // Same package no import needed
+        if( pkg === this.sourcePackage ) {
+            return type;
+        }
+
+        let imports = this.importedPackages.get(pkg);
+        if( imports === undefined ) {
+            imports = new Set()
+            this.importedPackages.set(pkg, imports);
+        }
+        imports.add(fqnType);
+        return type;
+    }
+}
+
+export type ImportGroup = {
+    readonly imports: readonly string[]
 }
