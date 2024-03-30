@@ -30,6 +30,7 @@ EnumEntry:
 ;
 
 RecordType:
+    docs += SL_DOC_COMMENT*
     patchable?='patchable'? 'record' name=ID
     '{'
         (
@@ -46,6 +47,7 @@ UnionRecord:
 ;
 
 UnionType:
+    docs += SL_DOC_COMMENT*
     patchable?='patchable'? 'union' name=ID '='
         records += UnionRecord ('|' records+=UnionRecord )+
     ('descriminated-with' descProp=ID)? ';'
