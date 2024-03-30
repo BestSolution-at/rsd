@@ -167,7 +167,8 @@ function mapProperty(property: Property) {
         optional: property.namedType.optional,
         nullable: property.namedType.nullable,
         variant: computeVariant(property.namedType),
-        type: computeType(property.namedType)
+        type: computeType(property.namedType),
+        doc: property.doc ? property.doc.substring(2).trim() : ''
     };
     return rv;
 }
@@ -212,7 +213,8 @@ function mapKeyProperty(keyProperty: KeyProperty) {
     const rv : MKeyProperty = {
         '@type': 'KeyProperty',
         name: keyProperty.name,
-        type: keyProperty.typeRef
+        type: keyProperty.typeRef,
+        doc: keyProperty.doc ? keyProperty.doc.substring(2).trim() : ''
     };
     return rv;
 }
@@ -221,7 +223,8 @@ function mapRevisionProperty(revisionProperty: RevisionProperty) {
     const rv : MRevisionProperty = {
         '@type': 'RevisionProperty',
         name: revisionProperty.name,
-        type: revisionProperty.typeRef
+        type: revisionProperty.typeRef,
+        doc: revisionProperty.doc ? revisionProperty.doc.substring(2).trim() : ''
     };
     return rv;
 }

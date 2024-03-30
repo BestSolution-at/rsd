@@ -116,6 +116,7 @@ export type MKeyProperty = {
     '@type': 'KeyProperty'
     name: string
     type: MBuiltinType
+    doc: string
 }
 
 export function isMKeyProperty(value: unknown): value is MKeyProperty {
@@ -128,6 +129,7 @@ export type MRevisionProperty = {
     '@type': 'RevisionProperty'
     name: string
     type: MBuiltinType
+    doc: string
 }
 
 export function isMRevisionProperty(value: unknown): value is MRevisionProperty {
@@ -146,6 +148,7 @@ export type MProperty = {
     nullable: boolean
     variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'inline-enum'
     type: string | MInlineEnumType
+    doc: string
 }
 
 export function isMProperty(value: unknown): value is MProperty {

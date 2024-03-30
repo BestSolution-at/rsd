@@ -30,6 +30,11 @@ export function generateBuilderProperty(node: IndentNode, property: MKeyProperty
 }
 
 export function generateProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaRestClientAPIGeneratorConfig, fqn: (type: string) => string) {
+    if( property.doc ) {
+        node.append('/**', NL)
+        node.append(' * ', property.doc, NL)
+        node.append(' */', NL)
+    }
     if( isMKeyProperty(property) ) {
         node.append(`public ${builtinToJavaType(property.type, fqn)} ${property.name}();`,NL)
     } else if( isMRevisionProperty(property) ) {
