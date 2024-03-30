@@ -2,50 +2,50 @@ import { CompositeGeneratorNode, NL } from "langium/generate";
 import { ArtifactGenerationConfig, ArtifactGeneratorConfig } from "./artifact-generator.js";
 import { MBuiltinType, isMBuiltinType } from "./model.js";
 
-export function builtinToJavaType(type: MBuiltinType): string {
+export function builtinToJavaType(type: MBuiltinType, fqn: (type: string) => string): string {
     switch(type) {
         case 'boolean': return 'boolean';
         case 'double': return 'double';
         case 'float': return 'float';
         case 'int': return 'int';
-        case 'local-date': return 'java.time.LocalDate';
-        case 'local-date-time': return 'java.time.LocalDateTime';
+        case 'local-date': return fqn('java.time.LocalDate');
+        case 'local-date-time': return fqn('java.time.LocalDateTime');
         case 'long': return 'long';
         case 'short': return 'short';
         case 'string': return 'String';
-        case 'zoned-date-time': return 'java.time.ZonedDateTime';
+        case 'zoned-date-time': return fqn('java.time.ZonedDateTime');
     }
 }
 
-export function builtinToJavaObjectType(type: MBuiltinType): string {
+export function builtinToJavaObjectType(type: MBuiltinType, fqn: (type: string) => string): string {
     switch(type) {
         case 'boolean': return 'Boolean';
         case 'double': return 'Double';
         case 'float': return 'Float';
         case 'int': return 'Integer';
-        case 'local-date': return 'java.time.LocalDate';
-        case 'local-date-time': return 'java.time.LocalDateTime';
+        case 'local-date': return fqn('java.time.LocalDate');
+        case 'local-date-time': return fqn('java.time.LocalDateTime');
         case 'long': return 'Long';
         case 'short': return 'Short';
         case 'string': return 'String';
-        case 'zoned-date-time': return 'java.time.ZonedDateTime';
+        case 'zoned-date-time': return fqn('java.time.ZonedDateTime');
     }
 }
 
-export function resolveType(type: string, nativeSubstitutes: Record<string,string> | undefined) {
+export function resolveType(type: string, nativeSubstitutes: Record<string,string> | undefined, fqn: (type: string) => string) {
     if( isMBuiltinType(type) ) {
-        return builtinToJavaType(type);
+        return builtinToJavaType(type, fqn);
     } else if( nativeSubstitutes !== undefined && type in nativeSubstitutes ) {
-        return nativeSubstitutes[type];
+        return fqn(nativeSubstitutes[type]);
     }
     return type;
 }
 
-export function resolveObjectType(type: string, nativeSubstitutes: Record<string,string> | undefined) {
+export function resolveObjectType(type: string, nativeSubstitutes: Record<string,string> | undefined, fqn: (type: string) => string) {
     if( isMBuiltinType(type) ) {
-        return builtinToJavaObjectType(type);
+        return builtinToJavaObjectType(type, fqn);
     } else if( nativeSubstitutes !== undefined && type in nativeSubstitutes ) {
-        return nativeSubstitutes[type];
+        return fqn(nativeSubstitutes[type]);
     }
     return type;
 }

@@ -46,14 +46,14 @@ export function generateRecordContent(t: MResolvedRecordType, artifactConfig: Ja
         });
     
     node.indent( child => {
-        allProps.filter(p => !sharedProps.includes(p)).forEach( p => generateProperty(child, p, artifactConfig))
+        allProps.filter(p => !sharedProps.includes(p)).forEach( p => generateProperty(child, p, artifactConfig, fqn))
     })
     node.appendNewLine();
 
     node.indent(child => {
         child.append(`public interface Builder extends ${superTypes.map(s => `${s}.Builder`).join(', ')} {`, NL)
         child.indent( builderChild => {
-            allProps.forEach(p => generateBuilderProperty(builderChild, p, artifactConfig))
+            allProps.forEach(p => generateBuilderProperty(builderChild, p, artifactConfig, fqn))
             allProps
                 .filter(isMProperty)
                 .filter(p => p.variant === 'union' || p.variant === 'record')

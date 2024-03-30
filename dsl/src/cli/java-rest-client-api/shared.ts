@@ -4,23 +4,23 @@ import { MKeyProperty, MProperty, MRevisionProperty, isMKeyProperty, isMRevision
 import { JavaRestClientAPIGeneratorConfig, builtinToJavaType, resolveObjectType, resolveType } from "../java-gen-utils.js"
 import { toFirstUpper } from "../util.js"
 
-export function generateBuilderProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaRestClientAPIGeneratorConfig) {
+export function generateBuilderProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaRestClientAPIGeneratorConfig, fqn: (type: string) => string) {
     if( isMKeyProperty(property) ) {
-        node.append(`public Builder ${property.name}(${builtinToJavaType(property.type)} ${property.name});`,NL)
+        node.append(`public Builder ${property.name}(${builtinToJavaType(property.type, fqn)} ${property.name});`,NL)
     } else if( isMRevisionProperty(property) ) {
-        node.append(`public Builder ${property.name}(${builtinToJavaType(property.type)} ${property.name});`,NL)
+        node.append(`public Builder ${property.name}(${builtinToJavaType(property.type, fqn)} ${property.name});`,NL)
     } else {
         if( property.variant === 'union' || property.variant === 'record' ) {
             if( property.array ) {
-                node.append(`public Builder ${property.name}(java.util.List<${property.type}DTO> ${property.name});`,NL)
+                node.append(`public Builder ${property.name}(${fqn('java.util.List')}<${property.type}DTO> ${property.name});`,NL)
             } else {
                 node.append(`public Builder ${property.name}(${property.type}DTO ${property.name});`,NL)
             }
         } else if( typeof property.type === 'string' ) {
             if( property.array ) {
-                node.append(`public Builder ${property.name}(java.util.List<${resolveObjectType(property.type, artifactConfig.nativeTypeSubstitues)}> ${property.name});`,NL)
+                node.append(`public Builder ${property.name}(${fqn('java.util.List')}<${resolveObjectType(property.type, artifactConfig.nativeTypeSubstitues, fqn)}> ${property.name});`,NL)
             } else {
-                node.append(`public Builder ${property.name}(${resolveType(property.type, artifactConfig.nativeTypeSubstitues)} ${property.name});`,NL)
+                node.append(`public Builder ${property.name}(${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn)} ${property.name});`,NL)
             }
         } else {
             node.append(`public Builder ${property.name}(${toFirstUpper(property.name)} ${property.name});`,NL)
@@ -29,23 +29,23 @@ export function generateBuilderProperty(node: IndentNode, property: MKeyProperty
     }
 }
 
-export function generateProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaRestClientAPIGeneratorConfig) {
+export function generateProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaRestClientAPIGeneratorConfig, fqn: (type: string) => string) {
     if( isMKeyProperty(property) ) {
-        node.append(`public ${builtinToJavaType(property.type)} ${property.name}();`,NL)
+        node.append(`public ${builtinToJavaType(property.type, fqn)} ${property.name}();`,NL)
     } else if( isMRevisionProperty(property) ) {
-        node.append(`public ${builtinToJavaType(property.type)} ${property.name}();`,NL)
+        node.append(`public ${builtinToJavaType(property.type, fqn)} ${property.name}();`,NL)
     } else {
         if( property.variant === 'union' || property.variant === 'record' ) {
             if( property.array ) {
-                node.append(`public java.util.List<${property.type}DTO> ${property.name}();`,NL)
+                node.append(`public ${fqn('java.util.List')}<${property.type}DTO> ${property.name}();`,NL)
             } else {
                 node.append(`public ${property.type}DTO ${property.name}();`,NL)
             }
         } else if( typeof property.type === 'string' ) {
             if( property.array ) {
-                node.append(`public java.util.List<${resolveObjectType(property.type, artifactConfig.nativeTypeSubstitues)}> ${property.name}();`,NL)
+                node.append(`public ${fqn('java.util.List')}<${resolveObjectType(property.type, artifactConfig.nativeTypeSubstitues, fqn)}> ${property.name}();`,NL)
             } else {
-                node.append(`public ${resolveType(property.type, artifactConfig.nativeTypeSubstitues)} ${property.name}();`,NL)
+                node.append(`public ${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn)} ${property.name}();`,NL)
             }
         } else {
             node.append(`public ${toFirstUpper(property.name)} ${property.name}();`,NL)
@@ -54,19 +54,19 @@ export function generateProperty(node: IndentNode, property: MKeyProperty | MRev
     }
 }
 
-export function toType(typeOwner: Pick<MProperty, 'variant'|'array'|'type'|'name'>, artifactConfig: JavaRestClientAPIGeneratorConfig) {
+export function toType(typeOwner: Pick<MProperty, 'variant'|'array'|'type'|'name'>, artifactConfig: JavaRestClientAPIGeneratorConfig, fqn: (type: string) => string) {
     if( typeOwner.variant === 'union' || typeOwner.variant === 'record' ) {
-        const pkg = `${artifactConfig.rootPackageName}.dto`
+        const dtoType = fqn(`${artifactConfig.rootPackageName}.dto.${typeOwner.type}DTO`)
         if( typeOwner.array ) {
-            return `java.util.List<${pkg}.${typeOwner.type}DTO>`;
+            return `${fqn('java.util.List')}<${dtoType}>`;
         } else {
-            return `${pkg}.${typeOwner.type}DTO`
+            return dtoType
         }
     } else if( typeof typeOwner.type === 'string' ) {
         if( typeOwner.array ) {
-            return `java.util.List<${resolveObjectType(typeOwner.type, artifactConfig.nativeTypeSubstitues)}>`;
+            return `${fqn('java.util.List')}<${resolveObjectType(typeOwner.type, artifactConfig.nativeTypeSubstitues, fqn)}>`;
         } else {
-            return `${resolveType(typeOwner.type, artifactConfig.nativeTypeSubstitues)}`;
+            return `${resolveType(typeOwner.type, artifactConfig.nativeTypeSubstitues, fqn)}`;
         }
     }
     return `${toFirstUpper(typeOwner.name)}`

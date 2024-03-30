@@ -49,13 +49,13 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaRestCli
     
     if( t.resolved.sharedProps.length > 0 ) {
         node.indent( child => {
-            t.resolved.sharedProps.forEach( p => generateProperty(child, p, artifactConfig) )
+            t.resolved.sharedProps.forEach( p => generateProperty(child, p, artifactConfig, fqn) )
         })
         node.appendNewLine()
         node.indent( child => {
             child.append(`public interface Builder extends BaseDTO.Builder {`, NL)
             child.indent( child => {
-                t.resolved.sharedProps.forEach( p => generateBuilderProperty(child, p, artifactConfig) )
+                t.resolved.sharedProps.forEach( p => generateBuilderProperty(child, p, artifactConfig, fqn) )
                 child.append(`public ${t.name}DTO build();`, NL)
             })
             child.append('}',NL)
