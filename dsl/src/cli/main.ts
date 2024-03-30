@@ -12,7 +12,7 @@ import * as path from 'node:path';
 import { MRSDModel, resolve } from './model.js';
 import { Artifact, ArtifactGenerator, isArtifactGenerationConfig } from './artifact-generator.js';
 
-import JavaRestClientAPI from './java-rest-client-api/generator.js';
+import JavaClientAPI from './java-client-api/generator.js';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -20,7 +20,7 @@ const packagePath = path.resolve(__dirname, '..', '..', 'package.json');
 const packageContent = await fs.readFile(packagePath, 'utf-8');
 
 const generatorRegistry = new Map<string, ArtifactGenerator>();
-generatorRegistry.set(JavaRestClientAPI.name, JavaRestClientAPI);
+generatorRegistry.set(JavaClientAPI.name, JavaClientAPI);
 
 export const generateAction = async (fileName: string, opts: ModelGenerateOptions): Promise<void> => {
     const services = createRemoteServiceDescriptionServices(NodeFileSystem).RemoteServiceDescription;
