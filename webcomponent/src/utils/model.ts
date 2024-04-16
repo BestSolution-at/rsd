@@ -3,13 +3,13 @@ import { isObject } from "./util.js";
 export type MBuiltinType = 'boolean' | 'double' | 'float' | 'int' | 'local-date' | 'local-date-time' | 'long' | 'short' | 'string' | 'zoned-date-time';
 
 export function isMBuiltinType(value: string): value is MBuiltinType {
-    return value === 'boolean' || 
+    return value === 'boolean' ||
         value === 'double' ||
         value === 'float' ||
-        value === 'int' || 
-        value === 'local-date' || 
+        value === 'int' ||
+        value === 'local-date' ||
         value === 'local-date-time' ||
-        value === 'long' || 
+        value === 'long' ||
         value === 'short' ||
         value === 'string' ||
         value === 'zoned-date-time';
@@ -24,7 +24,7 @@ export type MRSDModel<T extends MUserType = MUserType> = {
 export type MResolvedRSDModel = MRSDModel<MResolvedUserType>;
 
 export function isMRSDModel(value: unknown): value is MRSDModel {
-    return isObject(value) 
+    return isObject(value)
         && '@type' in value
         && value['@type'] === 'RSDModel';
 }
@@ -63,7 +63,7 @@ export type MResolvedUnionType = MUnionType & {
 }
 
 export function isMUnionType(value: unknown): value is MUnionType {
-    return isObject(value) 
+    return isObject(value)
         && '@type' in value
         && value['@type'] === 'UnionType';
 }
@@ -81,7 +81,7 @@ export type MResolvedMixinType = MMixinType & {
 }
 
 export function isMMixinType(value: unknown): value is MMixinType {
-    return isObject(value) 
+    return isObject(value)
         && '@type' in value
         && value['@type'] === 'MixinType';
 }
@@ -102,7 +102,7 @@ export type MResolvedRecordType = MRecordType & {
 }
 
 export function isMRecordType(value: unknown): value is MRecordType {
-    return isObject(value) 
+    return isObject(value)
         && '@type' in value
         && value['@type'] === 'RecordType';
 }
@@ -119,7 +119,7 @@ export type MKeyProperty = {
 }
 
 export function isMKeyProperty(value: unknown): value is MKeyProperty {
-    return isObject(value) 
+    return isObject(value)
         && '@type' in value
         && value['@type'] === 'KeyProperty';
 }
@@ -132,7 +132,7 @@ export type MRevisionProperty = {
 }
 
 export function isMRevisionProperty(value: unknown): value is MRevisionProperty {
-    return isObject(value) 
+    return isObject(value)
         && '@type' in value
         && value['@type'] === 'RevisionProperty';
 }
@@ -151,7 +151,7 @@ export type MProperty = {
 }
 
 export function isMProperty(value: unknown): value is MProperty {
-    return isObject(value) 
+    return isObject(value)
         && '@type' in value
         && value['@type'] === 'Property';
 }
@@ -166,7 +166,7 @@ export type MEnumType = {
 export type MResolvedEnumType = MEnumType;
 
 export function isMEnumType(value: unknown): value is MEnumType {
-    return isObject(value) 
+    return isObject(value)
         && '@type' in value
         && value['@type'] === 'EnumType';
 }
@@ -177,7 +177,7 @@ export type MInlineEnumType = {
 }
 
 export function isMInlineEnumType(value: unknown): value is MInlineEnumType {
-    return isObject(value) 
+    return isObject(value)
         && '@type' in value
         && value['@type'] === 'InlineEnumType';
 }
@@ -189,7 +189,7 @@ export type MEnumEntry = {
 }
 
 export function isMEnumEntry(value: unknown): value is MEnumEntry {
-    return isObject(value) 
+    return isObject(value)
         && '@type' in value
         && value['@type'] === 'EnumEntry';
 }
@@ -241,12 +241,12 @@ export function resolve(model: MRSDModel): MResolvedRSDModel {
     };
 }
 
-function mapToResolved(t: MUserType, model: MRSDModel, 
+function mapToResolved(t: MUserType, model: MRSDModel,
     solvedMixins: Map<string, MResolvedMixinType>,
     solvedRecords: Map<string, MResolvedRecordType>,
     solvedUnions: Map<string, MResolvedUnionType>
     ): MResolvedUserType {
-    
+
     if( isMMixinType(t) ) {
         return mapToResolvedMixinType(t, model, solvedMixins, solvedRecords, solvedUnions)
     } else if( isMRecordType(t) ) {
@@ -274,7 +274,7 @@ function mapToResolvedMixinType(t: MMixinType, model: MRSDModel,
     const rv : MResolvedMixinType = {
         ...t,
         resolved: {
-            records 
+            records
         }
     }
     solvedMixins.set(t.name, rv)
@@ -285,7 +285,7 @@ function mapToResolvedMixinType(t: MMixinType, model: MRSDModel,
         .map( r => mapToResolvedRecordType(r, model, solvedMixins, solvedRecords, solvedUnions));
 
     records.push(...resolvedRecords)
-    
+
     return rv;
 }
 
@@ -321,7 +321,7 @@ function mapToResolvedRecordType(t: MRecordType, model: MRSDModel,
         .filter(isMUnionType)
         .filter( u => u.types.includes(t.name))
         .map( u => mapToResolvedUnionType(u, model, solvedMixins, solvedRecords, solvedUnions))
-    
+
     unions.push(...resolvedUnions)
 
     return rv;

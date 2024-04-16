@@ -31,20 +31,35 @@ function mapService(service: Service): MService {
     return {
         '@type': 'Service',
         name: service.name,
+        doc: service.docs.map( d => d.substring(3)).join(' '),
         operations: service.operations.map(mapOperation)
     }
 }
 
 function mapOperation(operation: Operation): MOperation {
+    const clearDocLines = operation.docs.map( d => d.substring(3).trim());
+    const params = clearDocLines
+        .filter( d => d.startsWith('@param ') )
+        .map( d => d.substring(7))
+        .map( d => {
+            const parts = d.split('-', 2).map(d => d.trim());
+            return [ parts[0], parts[1] ] as const;
+        });
+    console.log(params)
+    const paramDocMap = new Map(params);
+    const returnDoc = clearDocLines
+        .find(d => d.startsWith('@returns'));
+
     return {
         "@type": 'Operation',
         name: operation.name,
-        parameters: operation.parameters.map(mapParameter),
-        resultType: operation.returnType ? mapReturnType(operation.returnType) : undefined
+        doc: clearDocLines.filter( d => !d.startsWith('@')).join('\n'),
+        parameters: operation.parameters.map(p => mapParameter(p, paramDocMap)),
+        resultType: operation.returnType ? mapReturnType(operation.returnType, returnDoc ?? '') : undefined
     }
 }
 
-function mapParameter(parameter: Parameter): MParameter {
+function mapParameter(parameter: Parameter, docMap: Map<string,string>): MParameter {
     return {
         "@type": 'Parameter',
         name: parameter.namedType.name,
@@ -54,17 +69,19 @@ function mapParameter(parameter: Parameter): MParameter {
         optional: parameter.namedType.optional,
         patch: parameter.patch,
         variant: computeVariant(parameter.namedType),
-        type: computeType(parameter.namedType)
+        type: computeType(parameter.namedType),
+        doc: docMap.get(parameter.namedType.name) ?? ''
     }
 }
 
-function mapReturnType(returnType: ReturnType): MReturnType {
+function mapReturnType(returnType: ReturnType, doc: string): MReturnType {
     return {
         "@type": 'ReturnType',
         array: returnType.array,
         arrayMaxLength: returnType.maxLength,
         variant: computeVariant(returnType),
-        type: computeType(returnType)
+        type: computeType(returnType),
+        doc
     }
 }
 
@@ -235,6 +252,7 @@ function mapEnumType(enumType: EnumType) {
         '@type': 'EnumType',
         name: enumType.name,
         entries: enumType.entries.map(mapEnumEntry),
+        doc: enumType.docs.map(d => d.substring(3)).join('\n')
     };
     
     return rv;

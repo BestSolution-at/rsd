@@ -16,7 +16,7 @@ import { generateService } from "./service.js";
 
 
 function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGenerationConfig, artifactConfig: ArtifactGeneratorConfig): readonly Artifact [] {
-    console.log(chalk.cyan('Generating Java-Client-API!'));
+    console.log(chalk.cyan('Generating Java-Client-API'));
     
     if( ! isJavaRestClientAPIGeneratorConfig(artifactConfig) ) {
         console.log(chalk.red('  Invalid configuration passed aborted artifact generation'));

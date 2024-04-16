@@ -5,57 +5,39 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { MRSDModel } from "./utils/model";
+export { MRSDModel } from "./utils/model";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface RsdPreview {
+        "model": string | MRSDModel;
+        "projectname": string;
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLRsdPreviewElement extends Components.RsdPreview, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLRsdPreviewElement: {
+        prototype: HTMLRsdPreviewElement;
+        new (): HTMLRsdPreviewElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "rsd-preview": HTMLRsdPreviewElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface RsdPreview {
+        "model"?: string | MRSDModel;
+        "projectname"?: string;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "rsd-preview": RsdPreview;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "rsd-preview": LocalJSX.RsdPreview & JSXBase.HTMLAttributes<HTMLRsdPreviewElement>;
         }
     }
 }

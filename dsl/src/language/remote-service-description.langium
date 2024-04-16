@@ -10,6 +10,7 @@ UserType:
     EnumType | RecordType | MixinType | UnionType | ScalarType;
 
 ScalarType:
+    docs += SL_DOC_COMMENT*
     'scalar' name=ID ';';
 
 BuiltinType returns string:
@@ -54,6 +55,7 @@ UnionType:
 ;
 
 MixinType:
+    docs += SL_DOC_COMMENT*
     'mixin' name=ID '{'
         (
             keyProperty = KeyProperty
@@ -85,6 +87,7 @@ DefaultParameter:
 ;
 
 Service:
+    docs += SL_DOC_COMMENT*
     'service' name=ID ('(' (defaultParameters += DefaultParameter) (',' defaultParameters += DefaultParameter)* ')')? '{'
         operations += Operation*
     '}'
@@ -107,6 +110,7 @@ ErrorRefOrDef:
 ;
 
 Operation:
+    docs += SL_DOC_COMMENT*
     'operation' name=ID '(' (parameters += Parameter ( ',' parameters += Parameter )*)? ')' 
     (':' returnType = ReturnType)?
     ('fails-with' errorCodes += ErrorRefOrDef (',' errorCodes += ErrorRefOrDef)* )? 
