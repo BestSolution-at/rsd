@@ -1,5 +1,5 @@
 import { Component, Element, Fragment, Prop, State, Watch, getAssetPath, h } from '@stencil/core';
-import { MOperation, MParameter, MRSDModel, MResolvedRSDModel, MResolvedUserType, MService, isMEnumType, isMMixinType, isMRSDModel, isMRecordType, isMScalarType, isMUnionType, resolve } from '../../utils/model';
+import { MBaseProperty, MKeyProperty, MOperation, MParameter, MProperty, MRSDModel, MResolvedEnumType, MResolvedMixinType, MResolvedRSDModel, MResolvedRecordType, MResolvedUserType, MService, isMEnumType, isMKeyProperty, isMMixinType, isMProperty, isMRSDModel, isMRecordType, isMScalarType, isMUnionType, resolve } from '../../utils/model';
 
 function userTypeToAsset(type: MResolvedUserType) {
   if( isMUnionType(type) ) {
@@ -20,12 +20,12 @@ function userTypeToImg(type: MResolvedUserType) {
   return path ? <img src={path} /> : <div></div>
 }
 
-function typeValue(type: MResolvedUserType) {
+/*function typeValue(type: MResolvedUserType) {
   const typeName = type['@type'].replace('Type', '')
   const classes = { 'type': true };
   classes[`type-${typeName.toLowerCase()}`] = true;
   return <span class={classes}>{typeName.toLowerCase()}</span>
-}
+}*/
 
 function serviceToImg() {
   const path = getAssetPath('./assets/remoteSwiftPackageDependency/remoteSwiftPackageDependency.svg')
@@ -43,7 +43,7 @@ function typeGroupImg() {
 }
 
 function serviceMethods(service: MService) {
-  return <ul>{ service.operations.map( o => <li><a href={`#/services/${service.name}/${o.name}`}>{operationToImg()}{o.name}</a></li>) }</ul>
+  return <ul>{ service.operations.map( o => <li><a href={`#services_${service.name}_${o.name}`}>{operationToImg()}{o.name}</a></li>) }</ul>
 }
 
 function groupByType(types: readonly MResolvedUserType[]) {
@@ -82,7 +82,7 @@ function sortTypes(v1: [string, MResolvedUserType[]], v2: [string, MResolvedUser
 
 function typesList(types: readonly MResolvedUserType[]) {
   return <ul>
-    { types.map( t => <li><a href={`#/types/${t.name}`}>{userTypeToImg(t)}{t.name}</a></li>) }
+    { types.map( t => <li><a href={`#types_${t.name}`}>{userTypeToImg(t)}{t.name}</a></li>) }
   </ul>
 }
 
@@ -90,13 +90,13 @@ function serviceContent(service: MService) {
   return <div class={{'services': true}} id={`services_${service.name}`}>
     <h2>{serviceToImg()}{service.name}</h2>
     <div class={{'operations': true}}>
-      { service.operations.map(operationContent) }
+      { service.operations.map(o => operationContent(o,service)) }
     </div>
   </div>
 }
 
-function operationContent(operation: MOperation) {
-  return <div class={{'operation': true}}>
+function operationContent(operation: MOperation, service: MService) {
+  return <div id={`services_${service.name}_${operation.name}`} class={{'operation': true}}>
     <h3>{operationToImg()}{operation.name}</h3>
     <p class={{'operation-doc': true}}>{ operation.doc || 'No Documentation' }</p>
     <div class={{'operation-content': true}}>
@@ -115,11 +115,107 @@ function parameterContent(parameter: MParameter) {
       <span style={{'font-weight': 'bold'}}>{parameter.name}</span>
     </span>
     <span>
+      { parameter.variant === 'builtin' && <span style={{'font-weight': '300'}}>{parameter.type} - </span> }
+      { parameter.variant !== 'builtin' && <span style={{'font-weight': '300'}}><a href={`#types_${parameter.type}`}>{parameter.type}</a> - </span> }
       <span style={{ 'color': 'darkorange', 'font-weight': '300' }}>{parameter.variant} </span>
-      { parameter.variant === 'builtin' && <span style={{'font-weight': '300'}}>{parameter.type}</span> }
-      { parameter.variant !== 'builtin' && <span style={{'font-weight': '300'}}><a href={`#types_${parameter.type}`}>{parameter.type}</a></span> }
     </span>
-    <div style={{'grid-column': '1/3', 'margin-bottom': '1rem' }}>{parameter.doc}</div>
+    <div class={{'doc': true}} style={{'grid-column': '1/3', 'margin-bottom': '1rem' }}>{parameter.doc}</div>
+  </Fragment>
+}
+
+
+function typeTypeContent(type: string, types: MResolvedUserType[]) {
+  return <div class={{'type-group': true}}>
+    <h2>{type.replace('Type','')}</h2>
+    <div class={{'types': true}}>
+      { types.map(typeContent) }
+    </div>
+  </div>;
+}
+
+function typeContent(type: MResolvedUserType) {
+  return <div id={`types_${type.name}`} class={{'type': true}}>
+    <h3>{userTypeToImg(type)}{type.name}</h3>
+    <p class={{'type-doc': true}}>{type.doc}</p>
+    { isMEnumType(type) && enumTypeContent(type) }
+    { isMMixinType(type) && mixinTypeContent(type) }
+    { isMRecordType(type) && recordTypeContent(type) }
+  </div>
+}
+
+function enumTypeContent(type: MResolvedEnumType) {
+  return <div class={{'type-content': true}}>
+    <div style={{'font-weight': 'bold', 'margin-bottom': '0.5rem'}}>Values</div>
+    <ul>
+      { type.entries.map( e => <li>{e.name}</li>) }
+    </ul>
+  </div>
+}
+
+function mixinTypeContent(type: MResolvedMixinType) {
+  return <div class={{'type-content': true}}>
+    <div style={{'font-weight': 'bold', 'margin-bottom': '0.5rem'}}>Properties</div>
+    <div class={{'type-properties': true}}>
+      { type.properties.map(basePropertyContent) }
+    </div>
+  </div>
+}
+
+function recordTypeContent(type: MResolvedRecordType) {
+  return <div class={{'type-content': true}}>
+    { type.resolved.mixins.length > 0 &&
+      <Fragment>
+        <div style={{'font-weight': 'bold', 'margin-bottom': '0.5rem'}}>Included Mixins</div>
+        <div style={{ 'margin-bottom': '1rem', 'margin-left': '1rem' }}>
+          { type.resolved.mixins.map( m => <span><a href={`#types_${m.name}`}>{m.name}</a> </span>) }
+        </div>
+      </Fragment>
+    }
+
+    <div style={{'font-weight': 'bold', 'margin-bottom': '0.5rem'}}>Properties</div>
+    <div class={{'type-properties': true}}>
+      { type.properties.map(basePropertyContent) }
+      { type.resolved.mixins.flatMap( m => m.properties).map(basePropertyContent) }
+    </div>
+  </div>
+}
+
+function basePropertyContent(property: MBaseProperty) {
+  if( isMProperty(property) ) {
+    return propertyContent(property)
+  } else if( isMKeyProperty(property) ) {
+    return keyPropertyContent(property)
+  }
+  return <Fragment><span>{property.name}</span><span>NOT YET {property['@type']}</span></Fragment>
+}
+
+function keyPropertyContent(property: MKeyProperty) {
+  return <Fragment>
+    <span>
+      <span style={{'font-weight': 'bold'}}>{property.name}</span>
+    </span>
+    <span>
+      <span style={{'font-weight': '300'}}>{property.type} - </span>
+      <span style={{ 'color': 'darkred', 'font-weight': '300' }}>key </span>
+      <span style={{ 'color': 'darkorange', 'font-weight': '300' }}>builtin</span>
+    </span>
+    <div class={{'doc': true}} style={{'grid-column': '1/3', 'margin-bottom': '1rem' }}>{property.doc}</div>
+  </Fragment>
+}
+
+function propertyContent(property: MProperty) {
+  return <Fragment>
+    <span>
+      <span style={{'font-weight': 'bold'}}>{property.name}</span>
+      { property.optional && <span style={{ 'color': 'darkred', 'font-weight': '300' }}> optional</span> }
+    </span>
+    <span>
+      { property.nullable && <span style={{ 'color': 'darkred', 'font-weight': '300' }}>nullable </span> }
+      { property.variant === 'builtin' && <span style={{'font-weight': '300'}}>{property.type} - </span> }
+      { property.variant !== 'builtin' && <span style={{'font-weight': '300'}}><a href={`#types_${property.type}`}>{property.type}</a> - </span> }
+      <span style={{ 'color': 'darkorange', 'font-weight': '300' }}>{property.variant} </span>
+    </span>
+    <div class={{'doc': true}} style={{'grid-column': '1/3', 'margin-bottom': '1rem' }}>{property.doc}</div>
   </Fragment>
 }
 
@@ -170,9 +266,9 @@ export class RSDPreview {
           </div>
         </div>
         <div>
-          <div>Types</div>
+          <h1>Types</h1>
           <div class={{'main-section': true}}>
-
+            { [...groupByType(this.resolvedModel.elements).entries()].sort(sortTypes).map( e => typeTypeContent(e[0], e[1])) }
           </div>
         </div>
       </main>
