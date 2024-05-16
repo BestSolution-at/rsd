@@ -1,4 +1,4 @@
-grammar RemoteServiceDescription
+grammar RemoteServiceDefinition
 
 entry RSDModel:
     elements += UserType*

@@ -63,10 +63,10 @@
     "contributes": {
         "languages": [
             {
-                "id": "remote-service-description",
+                "id": "remote-service-definition",
                 "aliases": [
-                    "Remote Service Description",
-                    "remote-service-description"
+                    "Remote Service Definition",
+                    "remote-service-definition"
                 ],
                 "extensions": [".rsd"],
                 "configuration": "./language-configuration.json"
@@ -74,9 +74,9 @@
         ],
         "grammars": [
             {
-                "language": "remote-service-description",
-                "scopeName": "source.remote-service-description",
-                "path": "syntaxes/remote-service-description.tmLanguage.json"
+                "language": "remote-service-definition",
+                "scopeName": "source.remote-service-definition",
+                "path": "syntaxes/remote-service-definition.tmLanguage.json"
             }
         ]
     },

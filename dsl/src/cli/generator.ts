@@ -45,7 +45,7 @@ function mapOperation(operation: Operation): MOperation {
             const parts = d.split('-', 2).map(d => d.trim());
             return [ parts[0], parts[1] ] as const;
         });
-    console.log(params)
+    
     const paramDocMap = new Map(params);
     const returnDoc = clearDocLines
         .find(d => d.startsWith('@returns'));

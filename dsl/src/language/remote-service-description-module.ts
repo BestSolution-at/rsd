@@ -1,7 +1,21 @@
 import { type Module, inject } from 'langium';
-import { createDefaultModule, createDefaultSharedModule, type DefaultSharedModuleContext, type LangiumServices, type LangiumSharedServices, type PartialLangiumServices } from 'langium/lsp';
-import { RemoteServiceDescriptionGeneratedModule, RemoteServiceDescriptionGeneratedSharedModule } from './generated/module.js';
-import { RemoteServiceDescriptionValidator, registerValidationChecks } from './remote-service-description-validator.js';
+import { 
+    createDefaultModule, 
+    createDefaultSharedModule, 
+    type DefaultSharedModuleContext, 
+    type LangiumServices, 
+    type LangiumSharedServices, 
+    type PartialLangiumServices 
+} from 'langium/lsp';
+
+import { 
+    RemoteServiceDefinitionGeneratedModule, 
+    RemoteServiceDescriptionGeneratedSharedModule,
+} from './generated/module.js';
+import { 
+    RemoteServiceDescriptionValidator, 
+    registerValidationChecks 
+} from './remote-service-description-validator.js';
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -46,18 +60,19 @@ export const RemoteServiceDescriptionModule: Module<RemoteServiceDescriptionServ
  */
 export function createRemoteServiceDescriptionServices(context: DefaultSharedModuleContext): {
     shared: LangiumSharedServices,
-    RemoteServiceDescription: RemoteServiceDescriptionServices
+    RemoteServiceDefinition: RemoteServiceDescriptionServices
 } {
     const shared = inject(
         createDefaultSharedModule(context),
         RemoteServiceDescriptionGeneratedSharedModule
     );
-    const RemoteServiceDescription = inject(
+    const RemoteServiceDefinition = inject(
         createDefaultModule({ shared }),
-        RemoteServiceDescriptionGeneratedModule,
+        RemoteServiceDefinitionGeneratedModule,
         RemoteServiceDescriptionModule
     );
-    shared.ServiceRegistry.register(RemoteServiceDescription);
-    registerValidationChecks(RemoteServiceDescription);
-    return { shared, RemoteServiceDescription };
+    shared.ServiceRegistry.register(RemoteServiceDefinition);
+    registerValidationChecks(RemoteServiceDefinition);
+
+    return { shared, RemoteServiceDefinition };
 }

@@ -1,7 +1,7 @@
 import type { RSDModel } from '../language/generated/ast.js';
 import chalk from 'chalk';
 import { Command } from 'commander';
-import { RemoteServiceDescriptionLanguageMetaData } from '../language/generated/module.js';
+import { RemoteServiceDefinitionLanguageMetaData } from '../language/generated/module.js';
 import { createRemoteServiceDescriptionServices } from '../language/remote-service-description-module.js';
 import { extractAstNode } from './cli-util.js';
 import { generateJavaScript, generateModel } from './generator.js';
@@ -23,7 +23,7 @@ const generatorRegistry = new Map<string, ArtifactGenerator>();
 generatorRegistry.set(JavaClientAPI.name, JavaClientAPI);
 
 export const generateAction = async (fileName: string, opts: ModelGenerateOptions): Promise<void> => {
-    const services = createRemoteServiceDescriptionServices(NodeFileSystem).RemoteServiceDescription;
+    const services = createRemoteServiceDescriptionServices(NodeFileSystem).RemoteServiceDefinition;
     const model = await extractAstNode<RSDModel>(fileName, services);
     const generatedFilePath = generateJavaScript(model, fileName, opts.destination);
     console.log(chalk.green(`JSON generated successfully: ${generatedFilePath}`));
@@ -34,7 +34,7 @@ export type ModelGenerateOptions = {
 }
 
 export const generateArtifact = async (fileName: string, opts: ArtifactsGenerateOptions): Promise<void> => {
-    const services = createRemoteServiceDescriptionServices(NodeFileSystem).RemoteServiceDescription;
+    const services = createRemoteServiceDescriptionServices(NodeFileSystem).RemoteServiceDefinition;
     let model : MRSDModel;
 
     if( fileName.endsWith('.rsd') ) {
@@ -84,7 +84,7 @@ export default function(): void {
 
     program.version(JSON.parse(packageContent).version);
 
-    const fileExtensions = RemoteServiceDescriptionLanguageMetaData.fileExtensions.join(', ');
+    const fileExtensions = RemoteServiceDefinitionLanguageMetaData.fileExtensions.join(', ');
     program
         .command('model')
         .argument('<file>', `source file (possible file extensions: ${fileExtensions})`)
