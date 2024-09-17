@@ -35,7 +35,8 @@ function startLanguageClient(context: vscode.ExtensionContext): LanguageClient {
     // Options to control the language client
     const clientOptions: LanguageClientOptions = {
         documentSelector: [
-            { scheme: 'file', language: 'remote-service-definition' }
+            { scheme: 'file', language: 'remote-service-definition' },
+            { scheme: 'file', language: 'remote-service-rest' }
         ]
     };
 

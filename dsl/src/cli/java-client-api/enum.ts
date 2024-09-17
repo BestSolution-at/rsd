@@ -1,10 +1,10 @@
 import { CompositeGeneratorNode, NL, toString } from "langium/generate";
 
 import { Artifact } from "../artifact-generator.js";
-import { JavaRestClientAPIGeneratorConfig, toPath } from "../java-gen-utils.js";
+import { JavaClientAPIGeneratorConfig, toPath } from "../java-gen-utils.js";
 import { MEnumType, MInlineEnumType } from "../model.js";
 
-export function generateEnum(t: MEnumType, artifactConfig: JavaRestClientAPIGeneratorConfig): Artifact {
+export function generateEnum(t: MEnumType, artifactConfig: JavaClientAPIGeneratorConfig): Artifact {
     const packageName = `${artifactConfig.rootPackageName}.dto`;
 
     const node = new CompositeGeneratorNode()

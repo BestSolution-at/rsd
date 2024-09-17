@@ -10,7 +10,7 @@ import {
 } from "../artifact-generator.js";
 import { 
     JavaImportsCollector,
-    JavaRestClientAPIGeneratorConfig, 
+    JavaClientAPIGeneratorConfig, 
     generateCompilationUnit, 
     toPath 
 } from "../java-gen-utils.js";
@@ -18,7 +18,7 @@ import {
     toFirstUpper 
 } from "../util.js";
 
-export function generateFactory(generatorConfig: ArtifactGenerationConfig, artifactConfig: JavaRestClientAPIGeneratorConfig): Artifact {
+export function generateFactory(generatorConfig: ArtifactGenerationConfig, artifactConfig: JavaClientAPIGeneratorConfig): Artifact {
     const packageName = `${artifactConfig.rootPackageName}.spi`;
 
     const importCollector = new JavaImportsCollector(packageName);

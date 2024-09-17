@@ -1,10 +1,10 @@
 import { IndentNode, NL } from "langium/generate"
 
 import { MKeyProperty, MProperty, MRevisionProperty, isMKeyProperty, isMRevisionProperty } from "../model.js"
-import { JavaRestClientAPIGeneratorConfig, builtinToJavaType, resolveObjectType, resolveType } from "../java-gen-utils.js"
+import { JavaClientAPIGeneratorConfig, builtinToJavaType, resolveObjectType, resolveType } from "../java-gen-utils.js"
 import { toFirstUpper } from "../util.js"
 
-export function generateBuilderProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaRestClientAPIGeneratorConfig, fqn: (type: string) => string) {
+export function generateBuilderProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaClientAPIGeneratorConfig, fqn: (type: string) => string) {
     if( isMKeyProperty(property) ) {
         node.append(`public Builder ${property.name}(${builtinToJavaType(property.type, fqn)} ${property.name});`,NL)
     } else if( isMRevisionProperty(property) ) {
@@ -29,7 +29,7 @@ export function generateBuilderProperty(node: IndentNode, property: MKeyProperty
     }
 }
 
-export function generateProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaRestClientAPIGeneratorConfig, fqn: (type: string) => string) {
+export function generateProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaClientAPIGeneratorConfig, fqn: (type: string) => string) {
     if( property.doc ) {
         node.append('/**', NL)
         node.append(' * ', property.doc, NL)
@@ -59,7 +59,7 @@ export function generateProperty(node: IndentNode, property: MKeyProperty | MRev
     }
 }
 
-export function toType(typeOwner: Pick<MProperty, 'variant'|'array'|'type'|'name'>, artifactConfig: JavaRestClientAPIGeneratorConfig, fqn: (type: string) => string) {
+export function toType(typeOwner: Pick<MProperty, 'variant'|'array'|'type'|'name'>, artifactConfig: Pick<JavaClientAPIGeneratorConfig, 'rootPackageName'|'nativeTypeSubstitues'>, fqn: (type: string) => string) {
     if( typeOwner.variant === 'union' || typeOwner.variant === 'record' ) {
         const dtoType = fqn(`${artifactConfig.rootPackageName}.dto.${typeOwner.type}DTO`)
         if( typeOwner.array ) {

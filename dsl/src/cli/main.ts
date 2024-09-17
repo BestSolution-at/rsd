@@ -1,18 +1,22 @@
-import type { RSDModel } from '../language/generated/ast.js';
+import type { RSDModel, RSDRestModel } from '../language/generated/ast.js';
 import chalk from 'chalk';
 import { Command } from 'commander';
 import { RemoteServiceDefinitionLanguageMetaData } from '../language/generated/module.js';
 import { createRemoteServiceDescriptionServices } from '../language/remote-service-description-module.js';
 import { extractAstNode } from './cli-util.js';
-import { generateJavaScript, generateModel } from './generator.js';
+import { generateJSON, generateModel } from './generator.js';
 import { NodeFileSystem } from 'langium/node';
 import * as url from 'node:url';
 import * as fs from 'node:fs/promises';
+import * as fsync from 'node:fs';
 import * as path from 'node:path';
 import { MRSDModel, resolve } from './model.js';
 import { Artifact, ArtifactGenerator, isArtifactGenerationConfig } from './artifact-generator.js';
 
 import JavaClientAPI from './java-client-api/generator.js';
+import JavaRestClientJDK from './java-rest-client-jdk/generator.js';
+
+import { existsSync } from 'node:fs';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -21,11 +25,20 @@ const packageContent = await fs.readFile(packagePath, 'utf-8');
 
 const generatorRegistry = new Map<string, ArtifactGenerator>();
 generatorRegistry.set(JavaClientAPI.name, JavaClientAPI);
+generatorRegistry.set(JavaRestClientJDK.name, JavaRestClientJDK);
 
 export const generateAction = async (fileName: string, opts: ModelGenerateOptions): Promise<void> => {
-    const services = createRemoteServiceDescriptionServices(NodeFileSystem).RemoteServiceDefinition;
-    const model = await extractAstNode<RSDModel>(fileName, services);
-    const generatedFilePath = generateJavaScript(model, fileName, opts.destination);
+    const services = createRemoteServiceDescriptionServices(NodeFileSystem);
+    const typeService = services.RemoteServiceDefinition;
+    const restService = services.RemoteServiceREST;
+
+    const model = await extractAstNode<RSDModel>(fileName, typeService);
+
+    const rsdIdx = fileName.lastIndexOf('.rsd');
+    const rrsdFile = rsdIdx === -1 ? fileName + '.rrsd' : fileName.substring(0, rsdIdx)+'.rrsd';
+    const restModel = existsSync(rrsdFile) ? await extractAstNode<RSDRestModel>(rrsdFile, restService) : undefined;
+
+    const generatedFilePath = generateJSON({ model, restModel}, fileName, opts.destination);
     console.log(chalk.green(`JSON generated successfully: ${generatedFilePath}`));
 };
 
@@ -34,11 +47,12 @@ export type ModelGenerateOptions = {
 }
 
 export const generateArtifact = async (fileName: string, opts: ArtifactsGenerateOptions): Promise<void> => {
-    const services = createRemoteServiceDescriptionServices(NodeFileSystem).RemoteServiceDefinition;
+    const services = createRemoteServiceDescriptionServices(NodeFileSystem);
+    const typeService = services.RemoteServiceDefinition;
     let model : MRSDModel;
 
     if( fileName.endsWith('.rsd') ) {
-        model = generateModel(await extractAstNode<RSDModel>(fileName, services));
+        model = generateModel({ model: await extractAstNode<RSDModel>(fileName, typeService) });
     } else {
         const content = await fs.readFile(fileName);
         model = JSON.parse(content.toString());
@@ -50,26 +64,26 @@ export const generateArtifact = async (fileName: string, opts: ArtifactsGenerate
         const content = await fs.readFile(configuration)
         const config = JSON.parse(content.toString());
 
-        const artifacts: Artifact[] = [];
-
         if( isArtifactGenerationConfig(config) ) {
             config.generators.forEach( e => {
+                const artifacts: Artifact[] = [];
+
                 const artifactGen = generatorRegistry.get(e.name);
                 if( artifactGen ) {
                     artifacts.push(...artifactGen.generate(resolve(model), config, e));
                 } else {
                     chalk.blue(`Unable to find generator for ${e.name}`)
                 }
+                
+                const configDir = path.parse(configuration).dir;
+                artifacts.forEach( a => {
+                    const outFolder = path.resolve(configDir,a.path)
+                    const outFile = path.resolve(outFolder, a.name);
+                    fsync.mkdirSync(outFolder, { recursive: true });
+                    fsync.writeFileSync(outFile, a.content);
+                    console.log(chalk.blue('  Created'),`${a.name}`)
+                })
             } );
-
-            const configDir = path.parse(configuration).dir;
-            artifacts.forEach( async a => {
-                const outFolder = path.resolve(configDir,a.path)
-                const outFile = path.resolve(outFolder, a.name);
-                await fs.mkdir(outFolder, { recursive: true })
-                fs.writeFile(outFile, a.content)
-                    .then( () => console.log(chalk.blue('  Created'),`${a.name}`) );
-            })
         }
     }    
 }

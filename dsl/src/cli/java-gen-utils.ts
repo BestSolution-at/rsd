@@ -54,13 +54,25 @@ export function toPath(targetFolder: string, packageName: string) {
     return `${targetFolder}/${packageName.replaceAll('.','/')}`; 
 }
 
-export type JavaRestClientAPIGeneratorConfig = ArtifactGenerationConfig & {
+export type JavaClientAPIGeneratorConfig = ArtifactGenerationConfig & {
     targetFolder: string
     rootPackageName: string
     nativeTypeSubstitues?: Record<string, string>
 }
 
-export function isJavaRestClientAPIGeneratorConfig(config: ArtifactGeneratorConfig): config is JavaRestClientAPIGeneratorConfig {
+export type JavaRestClientJDKGeneratorConfig = ArtifactGenerationConfig & {
+    targetFolder: string
+    rootPackageName: string
+    nativeTypeSubstitues?: Record<string, string>
+}
+
+
+export function isJavaClientAPIGeneratorConfig(config: ArtifactGeneratorConfig): config is JavaClientAPIGeneratorConfig {
+    return 'targetFolder' in config && typeof config.targetFolder === 'string'
+        && 'rootPackageName' in config && typeof config.rootPackageName === 'string';
+}
+
+export function isJavaRestClientJDKGeneratorConfig(config: ArtifactGeneratorConfig): config is JavaRestClientJDKGeneratorConfig {
     return 'targetFolder' in config && typeof config.targetFolder === 'string'
         && 'rootPackageName' in config && typeof config.rootPackageName === 'string';
 }

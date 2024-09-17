@@ -1,4 +1,4 @@
-import { UserType, type RSDModel, isEnumType, EnumType, EnumEntry, MixinType, isMixinType, KeyProperty, RevisionProperty, Property, RecordType, isRecordType, UnionType, isUnionType, ScalarType, isScalarType, Service, Operation, Parameter, NamedType, ReturnType } from '../language/generated/ast.js';
+import { UserType, type RSDModel, isEnumType, EnumType, EnumEntry, MixinType, isMixinType, KeyProperty, RevisionProperty, Property, RecordType, isRecordType, UnionType, isUnionType, ScalarType, isScalarType, Service, Operation, Parameter, NamedType, ReturnType, RSDRestModel, RSDResource, EnpointPoint } from '../language/generated/ast.js';
 // import { expandToNode, joinToNode, toString } from 'langium/generate';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
@@ -6,11 +6,16 @@ import { extractDestinationAndName } from './cli-util.js';
 import { MEnumEntry, MEnumType, MInlineEnumType, MKeyProperty, MMixinType, MOperation, MParameter, MProperty, MRSDModel, MRecordType, MReturnType, MRevisionProperty, MScalarType, MService, MUnionType, MUserType } from './model.js';
 import { isDefined } from './util.js';
 
-export function generateJavaScript(model: RSDModel, filePath: string, destination: string | undefined): string {
+export type Models = {
+    model: RSDModel
+    restModel?: RSDRestModel
+}
+
+export function generateJSON(models: Models, filePath: string, destination: string | undefined): string {
     const data = extractDestinationAndName(filePath, destination);
     const generatedFilePath = `${path.join(data.destination, data.name)}.json`;
 
-    const result = generateModel(model);
+    const result = generateModel(models);
 
     if (!fs.existsSync(data.destination)) {
         fs.mkdirSync(data.destination, { recursive: true });
@@ -19,25 +24,166 @@ export function generateJavaScript(model: RSDModel, filePath: string, destinatio
     return generatedFilePath;
 }
 
-export function generateModel(model: RSDModel): MRSDModel {
-    return {
+export function generateModel(models: Models): MRSDModel {
+    let result : MRSDModel = {
         '@type': 'RSDModel',
-        elements: model.elements.map(mapUserType),
-        services: model.services.map(mapService)
+        elements: models.model.elements.map(mapUserType),
+        services: models.model.services.map(mapService)
     };
+
+    if( models.restModel ) {
+        result = mergeRest(result, models.restModel);
+    }
+
+    return result;
+}
+
+function mergeRest(model: MRSDModel, restModel: RSDRestModel) {
+    restModel.resources.forEach( r => {
+        const name = r.service.ref?.name;
+        const service = model.services.find( s => s.name === name);
+        if( service ) {
+            mergeRestService(service, r);
+        }
+    });
+    return model;
+}
+
+function mergeRestService(service: MService, resource: RSDResource) {
+    service.meta = { 
+        ...service.meta, 
+        rest: { path: resource.basePath } 
+    };
+    resource.endpoints.forEach( e => {
+        const name = e.operation.ref?.name
+        const operation = service.operations.find( o => o.name === name );
+        if( operation ) {
+            mergeRestOperation(operation, e, resource.basePath);
+        }
+    });
+}
+
+function mergeRestOperation(operation: MOperation, endpoint: EnpointPoint, basePath: string) {
+    operation.meta = { 
+        ...operation.meta, 
+        rest: {
+            method: endpoint.method,
+            path: endpoint.path
+        } 
+    }
+
+    const fullPath = `${basePath}/${endpoint.path}`;
+    const pathParams = /\${(\w+)}/g;
+    let result;
+    while((result = pathParams.exec(fullPath)) !== null ) {
+        const name = result[1];
+        const param = operation.parameters.find( p => p.name === name );
+        if( param ) {
+            param.meta = { 
+                ...param.meta, 
+                rest: {
+                    name: name,
+                    source: 'path'
+                }   
+            }
+        }
+    }
+
+    endpoint.specialParameters.forEach( sp => {
+        const name = sp.parameter.ref?.namedType.name;
+        if( name === undefined ) {
+            return;
+        }
+        const param = operation.parameters.find( p => p.name === name);
+        if( param ) {
+            param.meta = {
+                ...param.meta,
+                rest: {
+                    name: sp.parameterName ?? name,
+                    source: restTransportTypeToSource(sp.transportType)
+                }
+            }
+        }
+    })
+}
+
+function restTransportTypeToSource(transportType: 'cookie-param' | 'header-param' | 'query-param'): 'header' | 'query' | 'cookie' {
+    switch(transportType) {
+    case 'cookie-param': return 'cookie';
+    case 'header-param': return 'header';
+    case 'query-param': return 'query';
+    }
+}
+
+const COMMENT_PREFIX = /^[^\w@]+/;
+
+function removeCommentPrefix(value: string | undefined) {
+    if( value === undefined ) {
+        return '';
+    }
+    
+    return value.replace(COMMENT_PREFIX,'').trim()
 }
 
 function mapService(service: Service): MService {
     return {
         '@type': 'Service',
         name: service.name,
-        doc: service.docs.map( d => d.substring(3)).join(' '),
+        doc: buildDocContentString(service.doc),
         operations: service.operations.map(mapOperation)
     }
 }
 
+function buildDocContentString(doc: string | undefined) {
+    if( doc === undefined ) {
+        return '';
+    }
+    const docs = doc.split(/\r?\n/).map(removeCommentPrefix);
+    const contentDocs: string[] = [];
+
+    // Search for the first line with @
+    for( let i = 0; i < docs.length; i++ ) {
+        const v = docs[i]
+        if( ! v.startsWith('@') ) {
+            contentDocs.push(docs[i])
+        }
+    }
+    
+    // remove empty lines at the start
+    while( contentDocs.length ) {
+        if( contentDocs[0] ) {
+            break;
+        }
+        contentDocs.shift()
+    }
+
+    // remove empty lines at the end
+    while( contentDocs.length ) {
+        if( contentDocs[contentDocs.length - 1] ) {
+            break;
+        }
+        contentDocs.pop();
+    }
+
+    let result = '';
+    for( let i = 0; i < contentDocs.length; i++ ) {
+        if( contentDocs[i] ) {
+            result = !result.endsWith('\n') ? `${result} ${contentDocs[i]}` : `${result}${contentDocs[i]}`;
+        } else {
+            // Remove multiple empty lines
+            while( contentDocs[i] === '' ) {
+                i += 1;
+            }
+            i -= 1;
+            result += '\n\n'
+        }
+    }
+    return result;
+}
+
 function mapOperation(operation: Operation): MOperation {
-    const clearDocLines = operation.docs.map( d => d.substring(3).trim());
+    const clearDocLines = (operation.doc ?? '').split(/\r?\n/).map(removeCommentPrefix);
+    console.log(clearDocLines)
     const params = clearDocLines
         .filter( d => d.startsWith('@param ') )
         .map( d => d.substring(7))
@@ -48,12 +194,13 @@ function mapOperation(operation: Operation): MOperation {
     
     const paramDocMap = new Map(params);
     const returnDoc = clearDocLines
-        .find(d => d.startsWith('@returns'));
+        .find(d => d.startsWith('@returns '))
+        ?.substring(9);
 
     return {
         "@type": 'Operation',
         name: operation.name,
-        doc: clearDocLines.filter( d => !d.startsWith('@')).join('\n'),
+        doc: buildDocContentString(operation.doc),
         parameters: operation.parameters.map(p => mapParameter(p, paramDocMap)),
         resultType: operation.returnType ? mapReturnType(operation.returnType, returnDoc ?? '') : undefined
     }
@@ -185,7 +332,7 @@ function mapProperty(property: Property) {
         nullable: property.namedType.nullable,
         variant: computeVariant(property.namedType),
         type: computeType(property.namedType),
-        doc: property.doc ? property.doc.substring(2).trim() : ''
+        doc: removeCommentPrefix(property.doc)
     };
     return rv;
 }
@@ -231,7 +378,7 @@ function mapKeyProperty(keyProperty: KeyProperty) {
         '@type': 'KeyProperty',
         name: keyProperty.name,
         type: keyProperty.typeRef,
-        doc: keyProperty.doc ? keyProperty.doc.substring(2).trim() : ''
+        doc: removeCommentPrefix(keyProperty.doc)
     };
     return rv;
 }
@@ -241,7 +388,7 @@ function mapRevisionProperty(revisionProperty: RevisionProperty) {
         '@type': 'RevisionProperty',
         name: revisionProperty.name,
         type: revisionProperty.typeRef,
-        doc: revisionProperty.doc ? revisionProperty.doc.substring(2).trim() : ''
+        doc: removeCommentPrefix(revisionProperty.doc)
     };
     return rv;
 }
@@ -252,7 +399,7 @@ function mapEnumType(enumType: EnumType) {
         '@type': 'EnumType',
         name: enumType.name,
         entries: enumType.entries.map(mapEnumEntry),
-        doc: enumType.docs.map(d => d.substring(3)).join('\n')
+        doc: buildDocContentString(enumType.doc)
     };
     
     return rv;

@@ -1,11 +1,11 @@
 import { CompositeGeneratorNode, NL, toString } from "langium/generate";
 
 import { Artifact } from "../artifact-generator.js";
-import { JavaImportsCollector, JavaRestClientAPIGeneratorConfig, generateCompilationUnit, resolveObjectType, resolveType, toPath } from "../java-gen-utils.js";
+import { JavaImportsCollector, JavaClientAPIGeneratorConfig, generateCompilationUnit, resolveObjectType, resolveType, toPath } from "../java-gen-utils.js";
 import { MParameter, MReturnType, MService } from "../model.js";
 import { toType } from "./shared.js";
 
-export function generateService(s: MService, artifactConfig: JavaRestClientAPIGeneratorConfig): Artifact {
+export function generateService(s: MService, artifactConfig: JavaClientAPIGeneratorConfig): Artifact {
     const packageName = `${artifactConfig.rootPackageName}`;
 
     const importCollector = new JavaImportsCollector(packageName);
@@ -28,11 +28,11 @@ export function generateService(s: MService, artifactConfig: JavaRestClientAPIGe
     }
 }
 
-function toParameter(parameter: MParameter, artifactConfig: JavaRestClientAPIGeneratorConfig, fqn: (type: string) => string) {
+function toParameter(parameter: MParameter, artifactConfig: JavaClientAPIGeneratorConfig, fqn: (type: string) => string) {
     return `${toType(parameter, artifactConfig, fqn)} ${parameter.name}`;
 }
 
-function toResultType(type: MReturnType | undefined, artifactConfig: JavaRestClientAPIGeneratorConfig, fqn: (type: string) => string) {
+function toResultType(type: MReturnType | undefined, artifactConfig: JavaClientAPIGeneratorConfig, fqn: (type: string) => string) {
     const dtoPkg = `${artifactConfig.rootPackageName}.dto`;
     if( type === undefined ) {
         return 'void'

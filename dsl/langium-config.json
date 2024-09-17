@@ -1,15 +1,28 @@
 {
     "projectName": "RemoteServiceDescription",
-    "languages": [{
-        "id": "remote-service-definition",
-        "grammar": "src/language/remote-service-definition.langium",
-        "fileExtensions": [".rsd"],
-        "textMate": {
-            "out": "syntaxes/remote-service-definition.tmLanguage.json"
+    "languages": [
+        {
+            "id": "remote-service-definition",
+            "grammar": "src/language/remote-service-definition.langium",
+            "fileExtensions": [".rsd"],
+            "textMate": {
+                "out": "syntaxes/remote-service-definition.tmLanguage.json"
+            },
+            "monarch": {
+                "out": "syntaxes/remote-service-definition.monarch.ts"
+            }
         },
-        "monarch": {
-            "out": "syntaxes/remote-service-definition.monarch.ts"
+        {
+            "id": "remote-service-rest",
+            "grammar": "src/language/remote-service-rest.langium",
+            "fileExtensions": [".rrsd"],
+            "textMate": {
+                "out": "syntaxes/remote-service-rest.tmLanguage.json"
+            },
+            "monarch": {
+                "out": "syntaxes/remote-service-rest.monarch.ts"
+            }
         }
-    }],
+    ],
     "out": "src/language/generated"
 }

@@ -6,7 +6,7 @@ import {
 
 import { 
     JavaImportsCollector,
-    JavaRestClientAPIGeneratorConfig, generateCompilationUnit, toPath 
+    JavaClientAPIGeneratorConfig, generateCompilationUnit, toPath 
 } from "../java-gen-utils.js";
 import { 
     MResolvedUnionType, 
@@ -28,7 +28,7 @@ import {
 } from "./shared.js";
 import { generateRecordContent } from "./record.js";
 
-export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaRestClientAPIGeneratorConfig): Artifact {
+export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaClientAPIGeneratorConfig): Artifact {
     const packageName = `${artifactConfig.rootPackageName}.dto`;
 
     const importCollector = new JavaImportsCollector(packageName);

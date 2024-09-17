@@ -1,10 +1,10 @@
 import { CompositeGeneratorNode, NL, toString } from "langium/generate";
 
 import { Artifact, ArtifactGenerationConfig } from "../artifact-generator.js";
-import { JavaImportsCollector, JavaRestClientAPIGeneratorConfig, generateCompilationUnit, toPath } from "../java-gen-utils.js";
+import { JavaImportsCollector, JavaClientAPIGeneratorConfig, generateCompilationUnit, toPath } from "../java-gen-utils.js";
 import { toFirstUpper } from "../util.js";
 
-export function generateClient(generatorConfig: ArtifactGenerationConfig, artifactConfig: JavaRestClientAPIGeneratorConfig): Artifact {
+export function generateClient(generatorConfig: ArtifactGenerationConfig, artifactConfig: JavaClientAPIGeneratorConfig): Artifact {
     const packageName = `${artifactConfig.rootPackageName}`;
 
     const importCollector = new JavaImportsCollector(packageName);

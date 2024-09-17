@@ -14,7 +14,8 @@
         "forceConsistentCasingInFileNames": true
     },
     "include": [
-        "syntaxes/remote-service-description.monarch.ts"
+        "syntaxes/remote-service-definition.monarch.ts",
+        "syntaxes/remote-service-rest.monarch.ts"
     ],
     "exclude": ["out", "node_modules"]
 }

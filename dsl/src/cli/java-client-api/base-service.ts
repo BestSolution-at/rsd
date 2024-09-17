@@ -8,11 +8,11 @@ import {
     Artifact 
 } from "../artifact-generator.js";
 import { 
-    JavaRestClientAPIGeneratorConfig, 
+    JavaClientAPIGeneratorConfig, 
     toPath 
 } from "../java-gen-utils.js";
 
-export function generateBaseService(artifactConfig: JavaRestClientAPIGeneratorConfig): Artifact {
+export function generateBaseService(artifactConfig: JavaClientAPIGeneratorConfig): Artifact {
     const packageName = `${artifactConfig.rootPackageName}`;
 
     const node = new CompositeGeneratorNode()

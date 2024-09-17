@@ -70,6 +70,15 @@
                 ],
                 "extensions": [".rsd"],
                 "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "remote-service-rest",
+                "aliases": [
+                    "Remote Service REST",
+                    "remote-service-rest"
+                ],
+                "extensions": [".rrsd"],
+                "configuration": "./language-configuration.json"
             }
         ],
         "grammars": [
@@ -77,6 +86,11 @@
                 "language": "remote-service-definition",
                 "scopeName": "source.remote-service-definition",
                 "path": "syntaxes/remote-service-definition.tmLanguage.json"
+            },
+            {
+                "language": "remote-service-rest",
+                "scopeName": "source.remote-service-rest",
+                "path": "syntaxes/remote-service-rest.tmLanguage.json"
             }
         ]
     },

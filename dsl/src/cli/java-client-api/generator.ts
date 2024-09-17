@@ -3,7 +3,7 @@ import chalk from "chalk";
 import { Artifact, ArtifactGenerationConfig, ArtifactGeneratorConfig } from "../artifact-generator.js";
 import { MResolvedRSDModel, MResolvedUserType, isMEnumType, isMRecordType, isMUnionType } from "../model.js";
 import { isDefined, } from "../util.js";
-import { JavaRestClientAPIGeneratorConfig,  isJavaRestClientAPIGeneratorConfig, } from "../java-gen-utils.js";
+import { JavaClientAPIGeneratorConfig,  isJavaClientAPIGeneratorConfig, } from "../java-gen-utils.js";
 
 import { generateBaseDTO } from "./base-dto.js";
 import { generateClient } from "./client.js";
@@ -18,7 +18,7 @@ import { generateService } from "./service.js";
 function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGenerationConfig, artifactConfig: ArtifactGeneratorConfig): readonly Artifact [] {
     console.log(chalk.cyan('Generating Java-Client-API'));
     
-    if( ! isJavaRestClientAPIGeneratorConfig(artifactConfig) ) {
+    if( ! isJavaClientAPIGeneratorConfig(artifactConfig) ) {
         console.log(chalk.red('  Invalid configuration passed aborted artifact generation'));
         return [];
     }
@@ -34,7 +34,7 @@ function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGenerationC
     return result;
 }
 
-function generateType(t: MResolvedUserType, artifactConfig: JavaRestClientAPIGeneratorConfig): Artifact | undefined {
+function generateType(t: MResolvedUserType, artifactConfig: JavaClientAPIGeneratorConfig): Artifact | undefined {
     if( isMEnumType(t) ) {
         if( artifactConfig.nativeTypeSubstitues && t.name in artifactConfig.nativeTypeSubstitues ) {
             console.log(chalk.magenta(`  Skipped ${t.name}:`), `Using native ${artifactConfig.nativeTypeSubstitues[t.name]}`);

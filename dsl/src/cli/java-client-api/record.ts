@@ -1,12 +1,12 @@
 import { CompositeGeneratorNode, NL, toString } from "langium/generate";
 import { Artifact } from "../artifact-generator.js";
-import { JavaImportsCollector, JavaRestClientAPIGeneratorConfig, generateCompilationUnit, toPath } from "../java-gen-utils.js";
+import { JavaImportsCollector, JavaClientAPIGeneratorConfig, generateCompilationUnit, toPath } from "../java-gen-utils.js";
 import { MResolvedRecordType, allRecordProperties, isMInlineEnumType, isMProperty } from "../model.js";
 import { generateInlineEnum } from "./enum.js";
 import { toFirstUpper } from "../util.js";
 import { generateBuilderProperty, generateProperty } from "./shared.js";
 
-export function generateRecord(t: MResolvedRecordType, artifactConfig: JavaRestClientAPIGeneratorConfig): Artifact | undefined {
+export function generateRecord(t: MResolvedRecordType, artifactConfig: JavaClientAPIGeneratorConfig): Artifact | undefined {
     if( t.resolved.unions.length === 1 ) {
         return undefined;
     }
@@ -22,7 +22,7 @@ export function generateRecord(t: MResolvedRecordType, artifactConfig: JavaRestC
     };
 }
 
-export function generateRecordContent(t: MResolvedRecordType, artifactConfig: JavaRestClientAPIGeneratorConfig, fqn: (type: string) => string): CompositeGeneratorNode {
+export function generateRecordContent(t: MResolvedRecordType, artifactConfig: JavaClientAPIGeneratorConfig, fqn: (type: string) => string): CompositeGeneratorNode {
     const node = new CompositeGeneratorNode();
 
     const superTypes = t.resolved.unions.length > 0 ? [

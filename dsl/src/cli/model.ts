@@ -2,7 +2,7 @@ import { isObject } from "./util.js";
 
 export type MBuiltinType = 'boolean' | 'double' | 'float' | 'int' | 'local-date' | 'local-date-time' | 'long' | 'short' | 'string' | 'zoned-date-time';
 
-export function isMBuiltinType(value: string): value is MBuiltinType {
+export function isMBuiltinType(value: unknown): value is MBuiltinType {
     return value === 'boolean' || 
         value === 'double' ||
         value === 'float' ||
@@ -199,6 +199,11 @@ export type MService = {
     name: string
     doc: string
     operations: readonly MOperation[]
+    meta?: {
+        rest?: {
+            path: string
+        }
+    }
 }
 
 export type MOperation = {
@@ -206,7 +211,13 @@ export type MOperation = {
     name: string
     doc: string
     parameters: readonly MParameter[]
-    resultType?: MReturnType
+    resultType?: MReturnType,
+    meta?: {
+        rest?: {
+            path: string
+            method: 'GET' | 'POST' | 'DELETE' | 'PUT' | 'PATCH'
+        }
+    }
 }
 
 export type MParameter = {
@@ -219,7 +230,13 @@ export type MParameter = {
     nullable: boolean
     variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'inline-enum'
     type: string | MInlineEnumType
-    doc: string
+    doc: string,
+    meta?: {
+        rest?: {
+            source: 'path' | 'header' | 'query' | 'cookie'
+            name: string
+        }
+    }
 }
 
 export type MReturnType = {
@@ -354,8 +371,6 @@ function mapToResolvedUnionType(t: MUnionType, model: MRSDModel,
         .filter( r => t.types.includes(r.name))
         .map( r => mapToResolvedRecordType(r, model, solvedMixins, solvedRecords, solvedUnions))
     records.push(...resolvedRecords)
-
-    resolvedRecords.forEach(e => console.log(e))
 
     const allProperties = resolvedRecords.flatMap( r => {
         const result = allRecordProperties(r);
