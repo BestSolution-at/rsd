@@ -1,0 +1,31 @@
+        {
+          "name": "comment.docblock.remote-service-definition",
+          "begin": "<\\*",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.remote-service-definition"
+            }
+          },
+          "end": "\\*>",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.remote-service-definition"
+            }
+          },
+          "patterns": [
+            {
+              "name": "keyword.other.documentation.doctag.remote-service-definition",
+              "match": "\\@\\w+"
+            }
+          ]
+        },
+        {
+          "begin": "<<",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.whitespace.comment.leading.remote-service-definition"
+            }
+          },
+          "end": "(?=$)",
+          "name": "comment.docline.remote-service-definition"
+        }

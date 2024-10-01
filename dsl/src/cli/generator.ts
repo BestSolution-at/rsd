@@ -183,7 +183,6 @@ function buildDocContentString(doc: string | undefined) {
 
 function mapOperation(operation: Operation): MOperation {
     const clearDocLines = (operation.doc ?? '').split(/\r?\n/).map(removeCommentPrefix);
-    console.log(clearDocLines)
     const params = clearDocLines
         .filter( d => d.startsWith('@param ') )
         .map( d => d.substring(7))

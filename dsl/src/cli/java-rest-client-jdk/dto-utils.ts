@@ -12,9 +12,17 @@ export function generateDTOUtils(artifactConfig: JavaRestClientJDKGeneratorConfi
         import java.time.LocalDate;
         import java.time.LocalDateTime;
         import java.time.ZonedDateTime;
+        import java.util.List;
         import java.util.function.Function;
+        import java.util.stream.Collector;
 
+        import jakarta.json.Json;
+        import jakarta.json.JsonArray;
+        import jakarta.json.JsonArrayBuilder;
+        import jakarta.json.JsonNumber;
         import jakarta.json.JsonObject;
+        import jakarta.json.JsonString;
+        import jakarta.json.JsonValue;
 
         class DTOUtils {
             public static boolean hasValue(JsonObject object, String property) {
@@ -107,6 +115,197 @@ export function generateDTOUtils(artifactConfig: JavaRestClientJDKGeneratorConfi
 
             public static ZonedDateTime mapZonedDateTime(JsonObject object, String property, ZonedDateTime defaultValue) {
                 return mapLiteral(object, property, ZonedDateTime::parse, defaultValue);
+            }
+
+            public static <T> T mapObject(JsonObject object, String property, Function<JsonObject, T> converter) {
+                return converter.apply(object.getJsonObject(property));
+            }
+
+            public static <T> T mapObject(JsonObject object, String property, Function<JsonObject, T> converter, T defaultValue) {
+                return hasValue(object, property) ? mapObject(object, property, converter) : defaultValue;
+            }
+
+            public static List<Boolean> mapBooleans(JsonObject object, String property) {
+                if( object.containsKey(property) ) {
+                    return object.getJsonArray(property)
+                        .getValuesAs( v -> v == JsonValue.TRUE)
+                        .stream()
+                        .toList();
+                }
+                return List.of();
+            }
+
+            public static List<Short> mapShorts(JsonObject object, String property) {
+                if( object.containsKey(property) ) {
+                    return object.getJsonArray(property)
+                        .getValuesAs(JsonNumber.class)
+                        .stream()
+                        .map( v -> v.numberValue().shortValue())
+                        .toList();
+                }
+                return List.of();
+            }
+
+            public static List<Integer> mapInts(JsonObject object, String property) {
+                if( object.containsKey(property) ) {
+                    return object.getJsonArray(property)
+                        .getValuesAs(JsonNumber.class)
+                        .stream()
+                        .map(JsonNumber::intValue)
+                        .toList();
+                }
+                return List.of();
+            }
+
+            public static List<Long> mapLongs(JsonObject object, String property) {
+                if( object.containsKey(property) ) {
+                    return object.getJsonArray(property)
+                        .getValuesAs(JsonNumber.class)
+                        .stream()
+                        .map( v -> v.numberValue().longValue())
+                        .toList();
+                }
+                return List.of();
+            }
+
+            public static List<Double> mapDoubles(JsonObject object, String property) {
+                if( object.containsKey(property) ) {
+                    return object.getJsonArray(property)
+                        .getValuesAs(JsonNumber.class)
+                        .stream()
+                        .map(JsonNumber::doubleValue)
+                        .toList();
+                }
+                return List.of();
+            }
+
+            public static List<Float> mapFloats(JsonObject object, String property) {
+                if( object.containsKey(property) ) {
+                    return object.getJsonArray(property)
+                        .getValuesAs(JsonNumber.class)
+                        .stream()
+                        .map( v -> v.numberValue().floatValue())
+                        .toList();
+                }
+                return List.of();
+            }
+
+            public static <T> List<T> mapObjects(JsonObject object, String property, Function<JsonObject, T> converter) {
+                if( object.containsKey(property) ) {
+                    return object.getJsonArray(property)
+                            .getValuesAs(JsonObject.class)
+                            .stream()
+                            .map(converter)
+                            .toList();
+                }
+                return List.of();
+            }
+
+            public static <T> List<T> mapLiterals(JsonObject object, String property, Function<String, T> mapper) {
+                if (object.containsKey(property)) {
+                    return object.getJsonArray(property)
+                            .getValuesAs(JsonString.class)
+                            .stream()
+                            .map(JsonString::getString)
+                            .map(mapper)
+                            .toList();
+                }
+                return List.of();
+            }
+
+            public static List<String> mapStrings(JsonObject object, String property) {
+                if (object.containsKey(property)) {
+                    return object.getJsonArray(property)
+                            .getValuesAs(JsonString.class)
+                            .stream()
+                            .map(JsonString::getString)
+                            .toList();
+                }
+                return List.of();
+            }
+
+            public static <T> JsonArray toJsonLiteralArray(List<T> value, Function<T, String> converter) {
+                return value.stream().map(converter).collect(toStringArray());
+            }
+            public static <T> JsonArray toJsonLiteralArray(List<T> value) {
+                return value.stream().map(Object::toString).collect(toStringArray());
+            }
+
+            public static JsonArray toJsonStringArray(List<String> value) {
+                return value.stream().collect(toStringArray());
+            }
+
+            public static <T> JsonArray toJsonObjectArray(List<T> value) {
+                return value.stream().map( v -> ((BaseDTOImpl)v).data).collect(toArray());
+            }
+
+            public static JsonArray toJsonIntArray(List<Integer> value) {
+                return value.stream().collect(toIntArray());
+            }
+
+            public static JsonArray toJsonShortArray(List<Short> value) {
+                return value.stream().collect(toShortArray());
+            }
+
+            public static JsonArray toJsonLongArray(List<Long> value) {
+                return value.stream().collect(toLongArray());
+            }
+
+            public static JsonArray toJsonDoubleArray(List<Double> value) {
+                return value.stream().collect(toDoubleArray());
+            }
+
+            public static JsonArray toJsonFloatArray(List<Float> value) {
+                return value.stream().collect(toFloatArray());
+            }
+
+            public static JsonArray toJsonBooleanArray(List<Boolean> value) {
+                return value.stream().collect(toBooleanArray());
+            }
+
+            public static Collector<Boolean, ?, JsonArray> toBooleanArray() {
+                return Collector.of(Json::createArrayBuilder, JsonArrayBuilder::add, JsonArrayBuilder::add,
+                        JsonArrayBuilder::build);
+            }
+
+            public static Collector<Short, ?, JsonArray> toShortArray() {
+                return Collector.of(Json::createArrayBuilder, JsonArrayBuilder::add, JsonArrayBuilder::add,
+                        JsonArrayBuilder::build);
+            }
+
+            public static Collector<Integer, ?, JsonArray> toIntArray() {
+                return Collector.of(Json::createArrayBuilder, JsonArrayBuilder::add, JsonArrayBuilder::add,
+                        JsonArrayBuilder::build);
+            }
+
+            public static Collector<Long, ?, JsonArray> toLongArray() {
+                return Collector.of(Json::createArrayBuilder, JsonArrayBuilder::add, JsonArrayBuilder::add,
+                        JsonArrayBuilder::build);
+            }
+
+            public static Collector<Double, ?, JsonArray> toDoubleArray() {
+                return Collector.of(Json::createArrayBuilder, JsonArrayBuilder::add, JsonArrayBuilder::add,
+                        JsonArrayBuilder::build);
+            }
+
+            public static Collector<Float, ?, JsonArray> toFloatArray() {
+                return Collector.of(Json::createArrayBuilder, JsonArrayBuilder::add, JsonArrayBuilder::add,
+                        JsonArrayBuilder::build);
+            }
+
+            public static Collector<String, ?, JsonArray> toStringArray() {
+                return Collector.of(Json::createArrayBuilder, JsonArrayBuilder::add, JsonArrayBuilder::add,
+                        JsonArrayBuilder::build);
+            }
+
+            public static Collector<JsonValue, ?, JsonArray> toArray() {
+                return Collector.of(Json::createArrayBuilder, JsonArrayBuilder::add, JsonArrayBuilder::add,
+                        JsonArrayBuilder::build);
+            }
+
+            public static <T> Collector<T, ?, JsonArray> toArray(Function<T, JsonValue> jsonValueConverter) {
+                return Collector.of(Json::createArrayBuilder, (b, v) -> jsonValueConverter.apply(v), JsonArrayBuilder::add,
+                        JsonArrayBuilder::build);
             }
         }
     `;

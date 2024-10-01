@@ -20,14 +20,14 @@ export function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGene
     result.push(generateClient(model, generatorConfig, artifactConfig));
     result.push(generateBaseDTO(artifactConfig));
     result.push(generateDTOUtils(artifactConfig));
-    result.push(...model.elements.map( e => generateType(e, artifactConfig)).filter(isDefined))
+    result.push(...model.elements.map( e => generateType(e, model, artifactConfig)).filter(isDefined))
 
     return result;
 }
 
-function generateType(t: MResolvedUserType, artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact | undefined {
+function generateType(t: MResolvedUserType, model: MResolvedRSDModel, artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact | undefined {
     if( isMRecordType(t) ) {
-        return generateRecord(t, artifactConfig);
+        return generateRecord(t, model, artifactConfig);
     }
     return undefined;
 }
