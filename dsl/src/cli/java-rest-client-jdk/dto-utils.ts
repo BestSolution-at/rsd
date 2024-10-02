@@ -201,6 +201,14 @@ export function generateDTOUtils(artifactConfig: JavaRestClientJDKGeneratorConfi
                 return List.of();
             }
 
+            public static <T> List<T> mapObjects(JsonArray array, Function<JsonObject, T> converter) {
+                return array
+                        .getValuesAs(JsonObject.class)
+                        .stream()
+                        .map(converter)
+                        .toList();
+            }
+
             public static <T> List<T> mapLiterals(JsonObject object, String property, Function<String, T> mapper) {
                 if (object.containsKey(property)) {
                     return object.getJsonArray(property)

@@ -1,7 +1,7 @@
 import { CompositeGeneratorNode, NL, toString } from "langium/generate";
 import { Artifact, ArtifactGenerationConfig } from "../artifact-generator.js";
 import { JavaImportsCollector, JavaRestClientJDKGeneratorConfig, generateCompilationUnit, toPath } from "../java-gen-utils.js";
-import { isMResolvedRecordType, MResolvedRSDModel } from "../model.js";
+import { isMResolvedRecordType, isMResolvedUnionType, MResolvedRSDModel } from "../model.js";
 
 export function generateClient(m: MResolvedRSDModel, generatorConfig: ArtifactGenerationConfig, artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact {
     const packageName = `${artifactConfig.rootPackageName}.jdkhttp`;
@@ -32,9 +32,18 @@ export function generateClient(m: MResolvedRSDModel, generatorConfig: ArtifactGe
                 .filter(isMResolvedRecordType)
                 .filter( e => e.resolved.unions.length === 0)
                 .forEach( e => {
-                const type = fqn(`${basePackage}.dto.${e.name}DTO`);
-                const implType = fqn(`${packageName}.impl.dto.${e.name}DTOImpl`);
-                staticBody.append(`registerBuilderCreator(${type}.Builder.class, ${implType}.BuilderImpl::new);`, NL)
+                    const type = fqn(`${basePackage}.dto.${e.name}DTO`);
+                    const implType = fqn(`${packageName}.impl.dto.${e.name}DTOImpl`);
+                    staticBody.append(`registerBuilderCreator(${type}.Builder.class, ${implType}.BuilderImpl::new);`, NL)
+            } )
+            m.elements
+                .filter(isMResolvedUnionType)
+                .forEach( u => {
+                    const type = fqn(`${basePackage}.dto.${u.name}DTO`);
+                    const implType = fqn(`${packageName}.impl.dto.${u.name}DTOImpl`);
+                    u.resolved.records.forEach( e => {
+                        staticBody.append(`registerBuilderCreator(${type}.${e.name}DTO.Builder.class, ${implType}.${e.name}DTOImpl.BuilderImpl::new);`, NL)    
+                    } );
             } )
             if( m.services.length > 0 ) {
                 staticBody.appendNewLine();

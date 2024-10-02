@@ -68,6 +68,10 @@ export function isMUnionType(value: unknown): value is MUnionType {
         && value['@type'] === 'UnionType';
 }
 
+export function isMResolvedUnionType(value: unknown): value is MResolvedUnionType {
+    return isMUnionType(value) && 'resolved' in value && isObject(value.resolved);
+}
+
 export type MMixinType = {
     '@type': 'MixinType'
     name: string
