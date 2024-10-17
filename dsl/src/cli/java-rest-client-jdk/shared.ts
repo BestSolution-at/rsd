@@ -129,17 +129,17 @@ export function generateBuilderProperty(node: IndentNode, property: MKeyProperty
                 if( property.variant === 'builtin' && isMBuiltinType(property.type) ) {
                     methodBody.append(`${builtinBuilderArrayJSONAccess({ type: property.type, name: property.name })});`, NL)
                 } else if( property.variant === 'enum' || property.variant === 'inline-enum' || property.variant === 'scalar' ) {
-                    methodBody.append(`builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name}));`, NL);
+                    methodBody.append(`$builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name}));`, NL);
                 } else {
-                    methodBody.append(`builder.add("${property.name}", DTOUtils.toJsonObjectArray(${property.name}));`, NL);
+                    methodBody.append(`$builder.add("${property.name}", DTOUtils.toJsonObjectArray(${property.name}));`, NL);
                 }
             } else {
                 if( property.variant === 'builtin' && isMBuiltinType(property.type) ) {
                     methodBody.append(`${builtinBuilderAccess({ type: property.type, name: property.name })};`, NL)
                 } else if( property.variant === 'enum' || property.variant === 'inline-enum' || property.variant === 'scalar' ) {
-                    methodBody.append(`builder.add("${property.name}", ${property.name}.toString());`, NL);
+                    methodBody.append(`$builder.add("${property.name}", ${property.name}.toString());`, NL);
                 } else {
-                    methodBody.append(`builder.add("${property.name}", ((BaseDTOImpl)${property.name}).data);`, NL);
+                    methodBody.append(`$builder.add("${property.name}", ((BaseDTOImpl)${property.name}).data);`, NL);
                 }
             
             }
@@ -149,22 +149,22 @@ export function generateBuilderProperty(node: IndentNode, property: MKeyProperty
     }
 }
 
-function builtinBuilderArrayJSONAccess(property: { type: MBuiltinType, name: string }): string {
+export function builtinBuilderArrayJSONAccess(property: { type: MBuiltinType, name: string }): string {
     switch(property.type) {
-        case 'boolean': return `builder.add("${property.name}", DTOUtils.toJsonBooleanArray(${property.name})`;
-        case 'double': return `builder.add("${property.name}", DTOUtils.toJsonDoubleArray(${property.name})`;
-        case 'float': return `builder.add("${property.name}", DTOUtils.toJsonFloatArray(${property.name})`;
-        case 'int': return `builder.add("${property.name}", DTOUtils.toJsonIntArray(${property.name})`;
-        case 'local-date': return `builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name})`;
-        case 'local-date-time': return `builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name})::toString)`;
-        case 'long': return `builder.add("${property.name}", DTOUtils.toJsonLongArray(${property.name})`;
-        case 'short': return `builder.add("${property.name}", DTOUtils.toJsonShortArray(${property.name})`;
-        case 'string': return `builder.add("${property.name}", DTOUtils.toJsonStringArray(${property.name})`;
-        case 'zoned-date-time': return `builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name})`;
+        case 'boolean': return `$builder.add("${property.name}", DTOUtils.toJsonBooleanArray(${property.name})`;
+        case 'double': return `$builder.add("${property.name}", DTOUtils.toJsonDoubleArray(${property.name})`;
+        case 'float': return `$builder.add("${property.name}", DTOUtils.toJsonFloatArray(${property.name})`;
+        case 'int': return `$builder.add("${property.name}", DTOUtils.toJsonIntArray(${property.name})`;
+        case 'local-date': return `$builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name})`;
+        case 'local-date-time': return `$builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name})::toString)`;
+        case 'long': return `$builder.add("${property.name}", DTOUtils.toJsonLongArray(${property.name})`;
+        case 'short': return `$builder.add("${property.name}", DTOUtils.toJsonShortArray(${property.name})`;
+        case 'string': return `$builder.add("${property.name}", DTOUtils.toJsonStringArray(${property.name})`;
+        case 'zoned-date-time': return `$builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name})`;
     }
 }
 
-function builtinBuilderAccess(property: { type: MBuiltinType, name: string }): string {
+export function builtinBuilderAccess(property: { type: MBuiltinType, name: string }): string {
     switch(property.type) {
         case 'boolean': 
         case 'double':
@@ -173,10 +173,10 @@ function builtinBuilderAccess(property: { type: MBuiltinType, name: string }): s
         case 'long':
         case 'short':
         case 'string':
-            return `builder.add("${property.name}", ${property.name})`;
+            return `$builder.add("${property.name}", ${property.name})`;
         case 'local-date':
         case 'local-date-time':
         case 'zoned-date-time':
-            return `builder.add("${property.name}", ${property.name}.toString())`;
+            return `$builder.add("${property.name}", ${property.name}.toString())`;
     }
 }

@@ -93,7 +93,7 @@ export function generateRecordContent(t: MResolvedRecordType, model: MResolvedRS
         classBody.appendNewLine()
         classBody.append('public static class BuilderImpl implements Builder {', NL)
         classBody.indent( builderBody => {
-            builderBody.append(`private ${JsonObjectBuilder} builder = ${Json}.createObjectBuilder();`, NL)
+            builderBody.append(`private ${JsonObjectBuilder} $builder = ${Json}.createObjectBuilder();`, NL)
             allProps.forEach( p => {
                 builderBody.appendNewLine()
                 generateBuilderProperty(builderBody, p, artifactConfig, fqn);
@@ -108,7 +108,7 @@ export function generateRecordContent(t: MResolvedRecordType, model: MResolvedRS
             builderBody.appendNewLine();
             builderBody.append(`public ${DTOInterface} build() {`, NL)
             builderBody.indent( methodBody => {
-                methodBody.append(`return new ${t.name}DTOImpl(builder.build());`, NL);
+                methodBody.append(`return new ${t.name}DTOImpl($builder.build());`, NL);
             });
             builderBody.append('}', NL)
         })
@@ -145,7 +145,7 @@ function generateBuilderWith(node: IndentNode, property: MProperty, model: MReso
                     block.append('throw new IllegalArgumentException();', NL);
                 });
                 methodBody.append('}',NL)
-                methodBody.append(`builder.add("${property.name}", ((${property.type}DTOImpl)block.apply((T) b)).data);`, NL)
+                methodBody.append(`$builder.add("${property.name}", ((${property.type}DTOImpl)block.apply((T) b)).data);`, NL)
             } else {
                 methodBody.append(`// Could not find union-type "${property.type}"`, NL)
             }

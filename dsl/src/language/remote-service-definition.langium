@@ -2,7 +2,7 @@ grammar RemoteServiceDefinition
 
 entry RSDModel:
     elements += UserType*
-    errorCodes += ErrorCode*
+    errors += ErrorType*
     services += Service*
 ;
 
@@ -101,7 +101,7 @@ ReturnType:
     (typeRef=TypeRef | inlineEnum=InlineEnumType) (array?='[' maxLength=INT? ']')?
 ;
 
-ErrorCode:
+ErrorType:
     doc = (SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'error' name=ID ('=' value=TypeRef)? ';'
 ;
@@ -115,7 +115,7 @@ Operation:
 ;
 
 OperationFail:
-    code = [ErrorCode:ID] doc=SL_DOC_COMMENT?
+    error = [ErrorType:ID] doc=SL_DOC_COMMENT?
 ;
 
 hidden terminal WS: /\s+/;

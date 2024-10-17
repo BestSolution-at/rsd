@@ -8,6 +8,8 @@ import { isDefined } from "../util.js";
 import { generateRecord } from "./record.js";
 import { generateDTOUtils } from "./dto-utils.js";
 import { generateUnion } from "./union.js";
+import { generateService } from "./service.js";
+import { generateServiceUtils } from "./service-utils.js";
 
 export function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGenerationConfig, artifactConfig: ArtifactGeneratorConfig): readonly Artifact [] {
     console.log(chalk.cyan('Generating Java-JDK-REST-Client'));
@@ -21,7 +23,9 @@ export function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGene
     result.push(generateClient(model, generatorConfig, artifactConfig));
     result.push(generateBaseDTO(artifactConfig));
     result.push(generateDTOUtils(artifactConfig));
+    result.push(generateServiceUtils(artifactConfig));
     result.push(...model.elements.map( e => generateType(e, model, artifactConfig)).filter(isDefined))
+    result.push(...model.services.map( e => generateService(e, artifactConfig)))
 
     return result;
 }

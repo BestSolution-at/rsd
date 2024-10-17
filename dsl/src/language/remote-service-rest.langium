@@ -16,8 +16,12 @@ EnpointPoint:
         'at' path=STRING
         specialParameters += SpecialParameter*
         ('=>' '{'
-            (statusCode=INT (':' error=[ErrorCode:ID])?)+
+            results += EnpointResults+
         '}' )?
+;
+
+EnpointResults:
+    statusCode=INT (':' error=[ErrorType:ID])?
 ;
 
 SpecialParameter:

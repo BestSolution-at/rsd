@@ -76,7 +76,7 @@ function generateUnionContent(t: MResolvedUnionType, artifactConfig: JavaRestCli
         classBody.appendNewLine()
         classBody.append(`public static abstract class BuilderImpl<T extends ${t.name}DTO> implements ${t.name}DTO.Builder {`, NL)
         classBody.indent( builderBody => {
-            builderBody.append(`protected final ${JsonObjectBuilder} builder = ${Json}.createObjectBuilder();`, NL)
+            builderBody.append(`protected final ${JsonObjectBuilder} $builder = ${Json}.createObjectBuilder();`, NL)
             t.resolved.sharedProps.forEach( p => {
                 builderBody.appendNewLine();
                 generateBuilderProperty(builderBody, p, artifactConfig, fqn);
@@ -100,6 +100,11 @@ function generateUnionContent(t: MResolvedUnionType, artifactConfig: JavaRestCli
 
                 subtypeBody.append(`public static class BuilderImpl extends ${t.name}DTOImpl.BuilderImpl<${subtype.name}DTO> implements ${subtype.name}DTO.Builder {`, NL)
                 subtypeBody.indent( subtypeBuilderBody => {
+                    subtypeBuilderBody.append(`public BuilderImpl() {`,NL) // builder.add("@type", "daily");
+                    subtypeBuilderBody.indent( initBody => {
+                        initBody.append(`$builder.add("@type","${ (t.descriminatorAliases ?? {})[subtype.name] ?? subtype.name}");`,NL)
+                    } )
+                    subtypeBuilderBody.append('}',NL)
                     t.resolved.sharedProps.forEach( property => {
                         subtypeBuilderBody.appendNewLine();
                         if( isMKeyProperty(property) || isMRevisionProperty(property) ) {
@@ -125,7 +130,7 @@ function generateUnionContent(t: MResolvedUnionType, artifactConfig: JavaRestCli
                     subtypeBuilderBody.appendNewLine();
                     subtypeBuilderBody.append(`public ${subtype.name}DTO build() {`, NL)
                     subtypeBuilderBody.indent( methodBody => {
-                        methodBody.append(`return new ${subtype.name}DTOImpl(builder.build());`,NL);
+                        methodBody.append(`return new ${subtype.name}DTOImpl($builder.build());`,NL);
                     })
                     subtypeBuilderBody.append('}', NL)
                 } )

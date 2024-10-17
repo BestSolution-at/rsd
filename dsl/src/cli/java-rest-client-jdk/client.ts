@@ -71,7 +71,7 @@ export function generateClient(m: MResolvedRSDModel, generatorConfig: ArtifactGe
         clBody.append(`private final ${URI} baseURI;`,NL)
         clBody.append(`private final ${HttpClient} httpClient;`, NL)
         clBody.appendNewLine();
-        clBody.append(`JDK${generatorConfig.name}Client(${URI} baseURI) {`);
+        clBody.append(`JDK${generatorConfig.name}Client(${URI} baseURI) {`,NL);
         clBody.indent(initBlock => {
             initBlock.append('this.baseURI = baseURI;', NL);
             initBlock.append('this.httpClient = HttpClient.newHttpClient();', NL);

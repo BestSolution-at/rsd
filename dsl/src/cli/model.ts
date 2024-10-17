@@ -1,4 +1,4 @@
-import { isObject } from "./util.js";
+import { isDefined, isObject } from "./util.js";
 
 export type MBuiltinType = 'boolean' | 'double' | 'float' | 'int' | 'local-date' | 'local-date-time' | 'long' | 'short' | 'string' | 'zoned-date-time';
 
@@ -15,13 +15,14 @@ export function isMBuiltinType(value: unknown): value is MBuiltinType {
         value === 'zoned-date-time';
 }
 
-export type MRSDModel<T extends MUserType = MUserType> = {
+export type MRSDModel<T extends MUserType = MUserType, S extends MService = MService> = {
     '@type': 'RSDModel'
     elements: readonly T[]
-    services: readonly MService[]
+    services: readonly S[]
+    errors: readonly MError[]
 }
 
-export type MResolvedRSDModel = MRSDModel<MResolvedUserType>;
+export type MResolvedRSDModel = MRSDModel<MResolvedUserType, MResolvedService>;
 
 export function isMRSDModel(value: unknown): value is MRSDModel {
     return isObject(value) 
@@ -198,11 +199,11 @@ export function isMEnumEntry(value: unknown): value is MEnumEntry {
         && value['@type'] === 'EnumEntry';
 }
 
-export type MService = {
+export type MService<O extends MOperation = MOperation> = {
     '@type': 'Service'
     name: string
     doc: string
-    operations: readonly MOperation[]
+    operations: readonly O[]
     meta?: {
         rest?: {
             path: string
@@ -210,17 +211,30 @@ export type MService = {
     }
 }
 
+export type MResolvedService = MService<MResolvedOperation>;
+
 export type MOperation = {
     '@type': 'Operation'
     name: string
     doc: string
     parameters: readonly MParameter[]
     resultType?: MReturnType,
+    errors: string[]
     meta?: {
         rest?: {
             path: string
-            method: 'GET' | 'POST' | 'DELETE' | 'PUT' | 'PATCH'
+            method: 'GET' | 'POST' | 'DELETE' | 'PUT' | 'PATCH',
+            results: {
+                statusCode: number
+                error?: string
+            }[]
         }
+    }
+}
+
+export type MResolvedOperation = MOperation & {
+    resolved: {
+        errors: MError[]
     }
 }
 
@@ -252,13 +266,19 @@ export type MReturnType = {
     doc: string
 }
 
+export type MError = {
+    '@type': 'Error'
+    name: string
+}
+
 export function resolve(model: MRSDModel): MResolvedRSDModel {
     const solvedMixins = new Map<string, MResolvedMixinType>()
     const solvedRecords = new Map<string, MResolvedRecordType>();
     const solvedUnions = new Map<string, MResolvedUnionType>();
     return {
         ...model,
-        elements: model.elements.map( t => mapToResolved(t, model, solvedMixins, solvedRecords, solvedUnions) )
+        elements: model.elements.map( t => mapToResolved(t, model, solvedMixins, solvedRecords, solvedUnions) ),
+        services: model.services.map( s => mapToResolvedService(s, model) )
     };
 }
 
@@ -399,6 +419,22 @@ function mapToResolvedUnionType(t: MUnionType, model: MRSDModel,
     } )
 
     return rv;
+}
+
+function mapToResolvedService(m: MService, model: MRSDModel): MResolvedService {
+    return {
+        ...m,
+        operations: m.operations.map(o => mapToResolvedOperation(o, model))
+    }
+}
+
+function mapToResolvedOperation(o: MOperation, model: MRSDModel): MResolvedOperation {
+    return {
+        ...o,
+        resolved: {
+            errors: o.errors.map( e => model.errors.find( err => err.name === e )).filter(isDefined)
+        }
+    }
 }
 
 export function allRecordProperties(record: MResolvedRecordType) {

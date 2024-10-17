@@ -1,9 +1,16 @@
-import { UserType, type RSDModel, isEnumType, EnumType, EnumEntry, MixinType, isMixinType, KeyProperty, RevisionProperty, Property, RecordType, isRecordType, UnionType, isUnionType, ScalarType, isScalarType, Service, Operation, Parameter, NamedType, ReturnType, RSDRestModel, RSDResource, EnpointPoint } from '../language/generated/ast.js';
-// import { expandToNode, joinToNode, toString } from 'langium/generate';
+import { 
+    UserType, 
+    type RSDModel, 
+    isEnumType, 
+    EnumType, 
+    EnumEntry, 
+    MixinType, 
+    isMixinType, KeyProperty, RevisionProperty, Property, RecordType, isRecordType, UnionType, isUnionType, ScalarType, isScalarType, Service, Operation, Parameter, NamedType, ReturnType, RSDRestModel, RSDResource, EnpointPoint, ErrorType } from '../language/generated/ast.js';
+
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { extractDestinationAndName } from './cli-util.js';
-import { MEnumEntry, MEnumType, MInlineEnumType, MKeyProperty, MMixinType, MOperation, MParameter, MProperty, MRSDModel, MRecordType, MReturnType, MRevisionProperty, MScalarType, MService, MUnionType, MUserType } from './model.js';
+import { MEnumEntry, MEnumType, MError, MInlineEnumType, MKeyProperty, MMixinType, MOperation, MParameter, MProperty, MRSDModel, MRecordType, MReturnType, MRevisionProperty, MScalarType, MService, MUnionType, MUserType } from './model.js';
 import { isDefined } from './util.js';
 
 export type Models = {
@@ -28,7 +35,8 @@ export function generateModel(models: Models): MRSDModel {
     let result : MRSDModel = {
         '@type': 'RSDModel',
         elements: models.model.elements.map(mapUserType),
-        services: models.model.services.map(mapService)
+        services: models.model.services.map(mapService),
+        errors: models.model.errors.map(mapError)
     };
 
     if( models.restModel ) {
@@ -64,11 +72,15 @@ function mergeRestService(service: MService, resource: RSDResource) {
 }
 
 function mergeRestOperation(operation: MOperation, endpoint: EnpointPoint, basePath: string) {
+    const results = endpoint.results
+        .map( r => ( { statusCode: r.statusCode, error: r.error?.ref?.name }));
+    
     operation.meta = { 
         ...operation.meta, 
         rest: {
             method: endpoint.method,
-            path: endpoint.path
+            path: endpoint.path,
+            results
         } 
     }
 
@@ -181,6 +193,13 @@ function buildDocContentString(doc: string | undefined) {
     return result;
 }
 
+function mapError(error: ErrorType): MError {
+    return {
+        "@type": 'Error',
+        name: error.name
+    };
+}
+
 function mapOperation(operation: Operation): MOperation {
     const clearDocLines = (operation.doc ?? '').split(/\r?\n/).map(removeCommentPrefix);
     const params = clearDocLines
@@ -195,13 +214,17 @@ function mapOperation(operation: Operation): MOperation {
     const returnDoc = clearDocLines
         .find(d => d.startsWith('@returns '))
         ?.substring(9);
+    const errors = operation.failures
+        .map( f => f.error.ref?.name)
+        .filter(isDefined);
 
     return {
         "@type": 'Operation',
         name: operation.name,
         doc: buildDocContentString(operation.doc),
         parameters: operation.parameters.map(p => mapParameter(p, paramDocMap)),
-        resultType: operation.returnType ? mapReturnType(operation.returnType, returnDoc ?? '') : undefined
+        resultType: operation.returnType ? mapReturnType(operation.returnType, returnDoc ?? '') : undefined,
+        errors
     }
 }
 

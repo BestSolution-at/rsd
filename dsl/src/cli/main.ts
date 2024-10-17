@@ -49,10 +49,20 @@ export type ModelGenerateOptions = {
 export const generateArtifact = async (fileName: string, opts: ArtifactsGenerateOptions): Promise<void> => {
     const services = createRemoteServiceDescriptionServices(NodeFileSystem);
     const typeService = services.RemoteServiceDefinition;
+    const restService = services.RemoteServiceREST;
+
     let model : MRSDModel;
 
     if( fileName.endsWith('.rsd') ) {
-        model = generateModel({ model: await extractAstNode<RSDModel>(fileName, typeService) });
+        const typeModel = await extractAstNode<RSDModel>(fileName, typeService);
+        const rsdIdx = fileName.lastIndexOf('.rsd');
+        const rrsdFile = rsdIdx === -1 ? fileName + '.rrsd' : fileName.substring(0, rsdIdx)+'.rrsd';
+        const restModel = existsSync(rrsdFile) ? await extractAstNode<RSDRestModel>(rrsdFile, restService) : undefined;
+
+        model = generateModel({ 
+            model: typeModel,
+            restModel
+        });
     } else {
         const content = await fs.readFile(fileName);
         model = JSON.parse(content.toString());
