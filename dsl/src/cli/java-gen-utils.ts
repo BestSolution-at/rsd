@@ -66,6 +66,11 @@ export type JavaRestClientJDKGeneratorConfig = ArtifactGenerationConfig & {
     nativeTypeSubstitues?: Record<string, string>
 }
 
+export type JavaServerJakartaWSConfig = ArtifactGenerationConfig & {
+    targetFolder: string
+    rootPackageName: string
+    nativeTypeSubstitues?: Record<string, string>
+}
 
 export function isJavaClientAPIGeneratorConfig(config: ArtifactGeneratorConfig): config is JavaClientAPIGeneratorConfig {
     return 'targetFolder' in config && typeof config.targetFolder === 'string'
@@ -76,6 +81,12 @@ export function isJavaRestClientJDKGeneratorConfig(config: ArtifactGeneratorConf
     return 'targetFolder' in config && typeof config.targetFolder === 'string'
         && 'rootPackageName' in config && typeof config.rootPackageName === 'string';
 }
+
+export function isJavaServerJakartaWSConfig(config: ArtifactGeneratorConfig): config is JavaServerJakartaWSConfig {
+    return 'targetFolder' in config && typeof config.targetFolder === 'string'
+        && 'rootPackageName' in config && typeof config.rootPackageName === 'string';
+}
+
 
 export function generateCompilationUnit(packageName: string, importCollector: JavaImportsCollector, content: CompositeGeneratorNode) {
     const node = new CompositeGeneratorNode()
