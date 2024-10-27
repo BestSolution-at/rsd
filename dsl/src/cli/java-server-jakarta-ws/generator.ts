@@ -5,6 +5,7 @@ import { isJavaServerJakartaWSConfig, JavaServerJakartaWSConfig } from "../java-
 import { isDefined } from "../util.js";
 import { generateRecord } from "./record.js";
 import { generateUnion } from "./union.js";
+import { generateService } from "./service.js";
 
 export function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGenerationConfig, artifactConfig: ArtifactGeneratorConfig): readonly Artifact [] {
     console.log(chalk.cyan('Generating Java-Server-Jakarta-WS'));
@@ -15,6 +16,7 @@ export function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGene
     }
 
     const result = model.elements.map( e => generateType(e, artifactConfig) ).filter(isDefined)
+    result.push(...model.services.flatMap( e => generateService(e, artifactConfig)))
 
     return result;
 }
