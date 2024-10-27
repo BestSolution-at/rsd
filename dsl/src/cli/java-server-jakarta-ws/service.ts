@@ -16,7 +16,7 @@ export function generateService(s: MResolvedService, artifactConfig: JavaRestCli
 }
 
 function generateServiceDTO(s: MResolvedService, o: MResolvedOperation, artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact {
-    const packageName = `${artifactConfig.rootPackageName}.dto`;
+    const packageName = `${artifactConfig.rootPackageName}.rest.dto`;
 
     const importCollector = new JavaImportsCollector(packageName);
     const fqn = importCollector.importType.bind(importCollector);

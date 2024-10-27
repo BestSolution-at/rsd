@@ -6,7 +6,7 @@ import { generateInlineEnum } from "./enum.js";
 import { toFirstUpper } from "../util.js";
 
 export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJakartaWSConfig): Artifact {
-    const packageName = `${artifactConfig.rootPackageName}.dto`;
+    const packageName = `${artifactConfig.rootPackageName}.rest.dto!`;
 
     const importCollector = new JavaImportsCollector(packageName);
     const fqn = importCollector.importType.bind(importCollector);

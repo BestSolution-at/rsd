@@ -9,7 +9,7 @@ export function generateRecord(t: MResolvedRecordType, artifactConfig: JavaServe
     if( t.resolved.unions.length === 1 ) {
         return undefined;
     }
-    const packageName = `${artifactConfig.rootPackageName}.dto`;
+    const packageName = `${artifactConfig.rootPackageName}.rest.dto`;
 
     const importCollector = new JavaImportsCollector(packageName);
     const fqn = importCollector.importType.bind(importCollector);
