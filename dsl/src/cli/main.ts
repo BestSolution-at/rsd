@@ -16,6 +16,7 @@ import { Artifact, ArtifactGenerator, isArtifactGenerationConfig } from './artif
 import JavaClientAPI from './java-client-api/generator.js';
 import JavaRestClientJDK from './java-rest-client-jdk/generator.js';
 import JavaServerJakartaWS from './java-server-jakarta-ws/generator.js';
+import JavaServer from './java-server/generator.js';
 
 import { existsSync } from 'node:fs';
 
@@ -28,6 +29,7 @@ const generatorRegistry = new Map<string, ArtifactGenerator>();
 generatorRegistry.set(JavaClientAPI.name, JavaClientAPI);
 generatorRegistry.set(JavaRestClientJDK.name, JavaRestClientJDK);
 generatorRegistry.set(JavaServerJakartaWS.name, JavaServerJakartaWS);
+generatorRegistry.set(JavaServer.name, JavaServer);
 
 export const generateAction = async (fileName: string, opts: ModelGenerateOptions): Promise<void> => {
     const services = createRemoteServiceDescriptionServices(NodeFileSystem);

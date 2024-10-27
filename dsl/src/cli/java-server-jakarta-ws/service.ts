@@ -1,11 +1,11 @@
 import { CompositeGeneratorNode, NL, toString } from "langium/generate";
 import { Artifact } from "../artifact-generator.js";
-import { generateCompilationUnit, JavaImportsCollector, JavaRestClientJDKGeneratorConfig, toPath } from "../java-gen-utils.js";
+import { generateCompilationUnit, JavaImportsCollector, JavaServerJakartaWSGeneratorConfig, toPath } from "../java-gen-utils.js";
 import { MResolvedOperation, MResolvedService } from "../model.js";
 import { toFirstUpper } from "../util.js";
 import { toType } from "../java-client-api/shared.js";
 
-export function generateService(s: MResolvedService, artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact[] {
+export function generateService(s: MResolvedService, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact[] {
     const result : Artifact[] = []; 
     const serviceDTOs = s.operations
         .filter( o => o.parameters.filter( p => p.meta?.rest?.source === undefined).length > 1 )
@@ -15,7 +15,7 @@ export function generateService(s: MResolvedService, artifactConfig: JavaRestCli
     return result;
 }
 
-function generateServiceDTO(s: MResolvedService, o: MResolvedOperation, artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact {
+function generateServiceDTO(s: MResolvedService, o: MResolvedOperation, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact {
     const packageName = `${artifactConfig.rootPackageName}.rest.dto`;
 
     const importCollector = new JavaImportsCollector(packageName);

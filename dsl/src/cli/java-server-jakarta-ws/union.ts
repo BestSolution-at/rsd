@@ -1,12 +1,11 @@
 import { CompositeGeneratorNode, IndentNode, NL, toString } from "langium/generate";
 import { Artifact } from "../artifact-generator.js";
-import { builtinToJavaType, generateCompilationUnit, JavaImportsCollector, JavaServerJakartaWSConfig, resolveObjectType, resolveType, toPath } from "../java-gen-utils.js";
-import { allRecordProperties, isMInlineEnumType, isMKeyProperty, isMProperty, isMRevisionProperty, MKeyProperty, MProperty, MResolvedRecordType, MResolvedUnionType, MRevisionProperty } from "../model.js";
-import { generateInlineEnum } from "./enum.js";
+import { builtinToJavaType, generateCompilationUnit, JavaImportsCollector, JavaServerJakartaWSGeneratorConfig, resolveObjectType, resolveType, toPath } from "../java-gen-utils.js";
+import { allRecordProperties, isMKeyProperty, isMRevisionProperty, MKeyProperty, MProperty, MResolvedRecordType, MResolvedUnionType, MRevisionProperty } from "../model.js";
 import { toFirstUpper } from "../util.js";
 
-export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJakartaWSConfig): Artifact {
-    const packageName = `${artifactConfig.rootPackageName}.rest.dto!`;
+export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact {
+    const packageName = `${artifactConfig.rootPackageName}.rest.dto`;
 
     const importCollector = new JavaImportsCollector(packageName);
     const fqn = importCollector.importType.bind(importCollector);
@@ -25,20 +24,14 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJ
     } );
     
     node.append('})',NL)
-    node.append(`public abstract class ${t.name}DTO {`,NL)
-    t.resolved.sharedProps
-        .filter(isMProperty)
-        .filter(p => p.variant === 'inline-enum')
-        .forEach( p => {
-            const inlineEnum = p.type;
-            if( isMInlineEnumType(inlineEnum) ) {
-                generateInlineEnum(inlineEnum, toFirstUpper(p.name), node)
-            }
-        });
-
+    node.append(`public abstract class ${t.name}DTO implements ${artifactConfig.rootPackageName}.service.dto.${t.name}DTO {`,NL)
     
     node.indent( child => {
         t.resolved.sharedProps.forEach( p => generateProperty(child, p, artifactConfig, fqn) )
+    })
+
+    node.indent( child => {
+        t.resolved.sharedProps.forEach( p => generatePropertyAccess(child, p, artifactConfig, fqn) )
     })
 
     
@@ -59,31 +52,24 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJ
     };
 }
 
-function generateUnionRecordContent(node: IndentNode, t: MResolvedRecordType, p: MResolvedUnionType, artifactConfig: JavaServerJakartaWSConfig, fqn: (type: string) => string) {
-    node.append(`public static class ${t.name}DTO extends ${p.name}DTO {`,NL)
+function generateUnionRecordContent(node: IndentNode, t: MResolvedRecordType, p: MResolvedUnionType, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {
+    node.append(`public static class ${t.name}DTO extends ${p.name}DTO implements ${artifactConfig.rootPackageName}.service.dto.${p.name}DTO.${t.name}DTO {`,NL)
 
     const sharedProps = t.resolved.unions.flatMap(u => u.resolved.sharedProps);
 
     const allProps = allRecordProperties(t);
-    allProps
-        .filter(isMProperty)
-        .filter(p => p.variant === 'inline-enum')
-        .filter(p => !sharedProps.includes(p))
-        .forEach( p => {
-            const inlineEnum = p.type;
-            if( isMInlineEnumType(inlineEnum) ) {
-                generateInlineEnum(inlineEnum, toFirstUpper(p.name), node)
-            }
-        });
-
+    
     node.indent( child => {
         allProps.filter(p => !sharedProps.includes(p)).forEach( p => generateProperty(child, p, artifactConfig, fqn))
+    })
+    node.indent( child => {
+        allProps.filter(p => !sharedProps.includes(p)).forEach( p => generatePropertyAccess(child, p, artifactConfig, fqn))
     })
     
     node.append('}',NL)
 }
 
-function generateProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaServerJakartaWSConfig, fqn: (type: string) => string) {
+function generateProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {
     if( isMKeyProperty(property) ) {
         node.append(`public ${builtinToJavaType(property.type, fqn)} ${property.name};`,NL)
     } else if( isMRevisionProperty(property) ) {
@@ -103,6 +89,59 @@ function generateProperty(node: IndentNode, property: MKeyProperty | MRevisionPr
             }
         } else {
             node.append(`public ${toFirstUpper(property.name)} ${property.name};`,NL)
+        }
+    }
+}
+
+function generatePropertyAccess(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {
+    node.appendNewLine();
+    if( isMKeyProperty(property) ) {
+        node.append(`public ${builtinToJavaType(property.type, fqn)} ${property.name}() {`,NL)
+        node.indent( body => {
+            body.append(`return this.${property.name};`,NL);
+        } )
+        node.append('}',NL);
+    } else if( isMRevisionProperty(property) ) {
+        node.append(`public ${builtinToJavaType(property.type, fqn)} ${property.name}() {`,NL)
+        node.indent( body => {
+            body.append(`return this.${property.name};`,NL);
+        } )
+        node.append('}', NL)
+    } else {
+        if( property.variant === 'union' || property.variant === 'record' ) {
+            if( property.array ) {
+                node.append(`public ${fqn('java.util.List')}<${property.type}DTO> ${property.name}() {`,NL)
+                node.indent( body => {
+                    body.append(`return this.${property.name};`,NL);
+                } )
+                node.append('}', NL)
+            } else {
+                node.append(`public ${property.type}DTO ${property.name}() {`,NL)
+                node.indent( body => {
+                    body.append(`return this.${property.name};`,NL);
+                } )
+                node.append('}', NL)
+            }
+        } else if( typeof property.type === 'string' ) {
+            if( property.array ) {
+                node.append(`public ${fqn('java.util.List')}<${resolveObjectType(property.type, artifactConfig.nativeTypeSubstitues, fqn)}> ${property.name}() {`,NL)
+                node.indent( body => {
+                    body.append(`return this.${property.name};`,NL);
+                } )
+                node.append('}', NL)
+            } else {
+                node.append(`public ${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn)} ${property.name}() {`,NL)
+                node.indent( body => {
+                    body.append(`return this.${property.name};`,NL);
+                } )
+                node.append('}', NL)
+            }
+        } else {
+            node.append(`public ${toFirstUpper(property.name)} ${property.name}() {`,NL)
+            node.indent( body => {
+                body.append(`return this.${property.name};`,NL);
+            } )
+            node.append('}', NL);
         }
     }
 }

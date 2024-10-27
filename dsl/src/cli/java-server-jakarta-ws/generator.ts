@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { isMEnumType, isMRecordType, isMUnionType, MResolvedRSDModel, MResolvedUserType } from "../model.js";
 import { Artifact, ArtifactGenerationConfig, ArtifactGeneratorConfig } from "../artifact-generator.js";
-import { isJavaServerJakartaWSConfig, JavaServerJakartaWSConfig } from "../java-gen-utils.js";
+import { isJavaServerJakartaWSConfig, JavaServerJakartaWSGeneratorConfig } from "../java-gen-utils.js";
 import { isDefined } from "../util.js";
 import { generateRecord } from "./record.js";
 import { generateUnion } from "./union.js";
@@ -21,7 +21,7 @@ export function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGene
     return result;
 }
 
-function generateType(t: MResolvedUserType, artifactConfig: JavaServerJakartaWSConfig): Artifact | undefined {
+function generateType(t: MResolvedUserType, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact | undefined {
     if( isMEnumType(t) ) {
 
     } else if( isMRecordType(t) ) {

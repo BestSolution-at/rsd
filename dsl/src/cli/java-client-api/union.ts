@@ -34,6 +34,15 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaClientA
     const importCollector = new JavaImportsCollector(packageName);
     const fqn = importCollector.importType.bind(importCollector);
 
+    
+    return {
+        name: `${t.name}DTO.java`,
+        content: toString(generateCompilationUnit(packageName, importCollector, generateUnionContent(t, artifactConfig, fqn))),
+        path: toPath(artifactConfig.targetFolder, packageName)
+    };
+}
+
+export function generateUnionContent(t: MResolvedUnionType, artifactConfig: JavaClientAPIGeneratorConfig, fqn: (type: string) => string) {
     const node = new CompositeGeneratorNode();
     node.append(`public interface ${t.name}DTO extends BaseDTO {`,NL)
 
@@ -73,10 +82,5 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaClientA
     }
 
     node.append('}',NL)
-
-    return {
-        name: `${t.name}DTO.java`,
-        content: toString(generateCompilationUnit(packageName, importCollector, node)),
-        path: toPath(artifactConfig.targetFolder, packageName)
-    };
+    return node;
 }

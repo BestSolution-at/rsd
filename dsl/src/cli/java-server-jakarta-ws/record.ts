@@ -1,11 +1,11 @@
 import { CompositeGeneratorNode, NL, toString } from "langium/generate";
 import { Artifact } from "../artifact-generator.js";
-import { builtinToJavaType, generateCompilationUnit, JavaImportsCollector, JavaServerJakartaWSConfig, resolveObjectType, resolveType, toPath } from "../java-gen-utils.js";
+import { builtinToJavaType, generateCompilationUnit, JavaImportsCollector, JavaServerJakartaWSGeneratorConfig, resolveObjectType, resolveType, toPath } from "../java-gen-utils.js";
 import { allRecordProperties, isMInlineEnumType, isMKeyProperty, isMProperty, isMRevisionProperty, MResolvedRecordType } from "../model.js";
 import { toFirstUpper } from "../util.js";
 import { generateInlineEnum } from "./enum.js";
 
-export function generateRecord(t: MResolvedRecordType, artifactConfig: JavaServerJakartaWSConfig): Artifact | undefined {
+export function generateRecord(t: MResolvedRecordType, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact | undefined {
     if( t.resolved.unions.length === 1 ) {
         return undefined;
     }
@@ -21,7 +21,7 @@ export function generateRecord(t: MResolvedRecordType, artifactConfig: JavaServe
     };
 }
 
-export function generateRecordContent(t: MResolvedRecordType, artifactConfig: JavaServerJakartaWSConfig, fqn: (type: string) => string): CompositeGeneratorNode {
+export function generateRecordContent(t: MResolvedRecordType, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string): CompositeGeneratorNode {
     const node = new CompositeGeneratorNode();
 
     const allProps = allRecordProperties(t);
@@ -29,7 +29,7 @@ export function generateRecordContent(t: MResolvedRecordType, artifactConfig: Ja
     node.append(`public record ${t.name}DTO(`,NL)
     node.indent( param => {
         allProps.forEach( (property, idx, arr) => {
-            const end = idx + 1 < arr.length ? ',' : ') {'
+            const end = idx + 1 < arr.length ? ',' : `) implements ${artifactConfig.rootPackageName}.service.dto.${t.name}DTO {`
             if( isMKeyProperty(property) ) {
                 param.append(`${builtinToJavaType(property.type, fqn)} ${property.name}`, end, NL)
             } else if( isMRevisionProperty(property) ) {
