@@ -125,9 +125,17 @@ export function generateBuilderProperty(node: IndentNode, property: MKeyProperty
         node.append('@Override', NL)
         node.append(`public ${typePrefix ? `${typePrefix}.`: ''}Builder ${property.name}(${toType(property, artifactConfig, fqn)} ${property.name}) {`, NL)
         node.indent( methodBody => {
-            if( property.optional && ! property.nullable && ( isMBuiltinType(property.type) && ! isJavaPrimitive(property.type) ) ) {
+            if( property.optional && ! property.nullable && !( isMBuiltinType(property.type) && isJavaPrimitive(property.type) ) ) {
                 methodBody.append(`if( ${property.name} == null ) {`, NL);
                 methodBody.indent( block => block.append('return this;', NL))
+                methodBody.append('}',NL);
+            }
+            if( property.nullable && !( isMBuiltinType(property.type) && isJavaPrimitive(property.type) ) ) {
+                methodBody.append(`if( ${property.name} == null ) {`, NL);
+                methodBody.indent( block => {
+                    block.append(`$builder.addNull("${property.name}");`);
+                    block.append('return this;', NL);
+                })
                 methodBody.append('}',NL);
             }
             if( property.array ) {
