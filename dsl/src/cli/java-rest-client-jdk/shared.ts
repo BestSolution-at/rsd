@@ -125,6 +125,11 @@ export function generateBuilderProperty(node: IndentNode, property: MKeyProperty
         node.append('@Override', NL)
         node.append(`public ${typePrefix ? `${typePrefix}.`: ''}Builder ${property.name}(${toType(property, artifactConfig, fqn)} ${property.name}) {`, NL)
         node.indent( methodBody => {
+            if( property.optional && ! property.nullable && ( isMBuiltinType(property.type) && ! isJavaPrimitive(property.type) ) ) {
+                methodBody.append(`if( ${property.name} == null ) {`, NL);
+                methodBody.indent( block => block.append('return this;', NL))
+                methodBody.append('}',NL);
+            }
             if( property.array ) {
                 if( property.variant === 'builtin' && isMBuiltinType(property.type) ) {
                     methodBody.append(`${builtinBuilderArrayJSONAccess({ type: property.type, name: property.name })});`, NL)
@@ -179,4 +184,17 @@ export function builtinBuilderAccess(property: { type: MBuiltinType, name: strin
         case 'zoned-date-time':
             return `$builder.add("${property.name}", ${property.name}.toString())`;
     }
+}
+
+function isJavaPrimitive(type: MBuiltinType) {
+    switch(type) {
+        case 'boolean': 
+        case 'double':
+        case 'float':
+        case 'int':
+        case 'long':
+        case 'short':
+            return true;
+    }
+    return false;
 }
