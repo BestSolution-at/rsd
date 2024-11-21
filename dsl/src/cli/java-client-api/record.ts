@@ -59,7 +59,11 @@ export function generateRecordContent(t: MResolvedRecordType, artifactConfig: Ja
                 .filter(p => p.variant === 'union' || p.variant === 'record')
                 .forEach(p => {
                     const functionType = fqn('java.util.function.Function');
-                    builderChild.append(`public <T extends ${p.type}DTO.Builder> Builder with${toFirstUpper(p.name)}(Class<T> clazz, ${functionType}<T, ${p.type}DTO> block);`,NL)
+                    if( p.variant === 'record' ) {
+                        builderChild.append(`public Builder with${toFirstUpper(p.name)}(${functionType}<${p.type}DTO.Builder, ${p.type}DTO> block);`,NL)
+                    } else {
+                        builderChild.append(`public <T extends ${p.type}DTO.Builder> Builder with${toFirstUpper(p.name)}(Class<T> clazz, ${functionType}<T, ${p.type}DTO> block);`,NL)
+                    }
                 });
             builderChild.append(`public ${t.name}DTO build();`, NL)
         } )

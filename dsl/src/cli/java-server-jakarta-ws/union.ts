@@ -3,6 +3,8 @@ import { Artifact } from "../artifact-generator.js";
 import { builtinToJavaType, generateCompilationUnit, JavaImportsCollector, JavaServerJakartaWSGeneratorConfig, resolveObjectType, resolveType, toPath } from "../java-gen-utils.js";
 import { allRecordProperties, isMKeyProperty, isMRevisionProperty, MKeyProperty, MProperty, MResolvedRecordType, MResolvedUnionType, MRevisionProperty } from "../model.js";
 import { toFirstUpper } from "../util.js";
+import { addBuilderMethod } from "./record.js";
+import { toType } from "../java-client-api/shared.js";
 
 export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact {
     const packageName = `${artifactConfig.rootPackageName}.rest.dto`;
@@ -63,6 +65,14 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJ
             mBody.append('throw new IllegalStateException();',NL);
         } )
         body.append('}',NL)
+        body.appendNewLine();
+        body.append(`public static abstract class BuilderImpl implements Builder {`, NL)
+        body.indent( mBody => {
+            t.resolved.sharedProps.forEach( p => generateConstructorProperty(mBody, p, ';', artifactConfig, fqn) )
+            mBody.appendNewLine();
+            t.resolved.sharedProps.forEach( p => addBuilderMethod(mBody, p, artifactConfig, fqn))
+        })
+        body.append('}',NL)
     })
     
     node.indent( child => {
@@ -83,7 +93,8 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJ
 }
 
 function generateUnionRecordContent(node: IndentNode, t: MResolvedRecordType, p: MResolvedUnionType, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {
-    node.append(`public static class ${t.name}DTOImpl extends ${p.name}DTOImpl implements ${artifactConfig.rootPackageName}.service.dto.${p.name}DTO.${t.name}DTO {`,NL)
+    const iType = fqn(`${artifactConfig.rootPackageName}.service.dto.${p.name}DTO`);
+    node.append(`public static class ${t.name}DTOImpl extends ${p.name}DTOImpl implements ${iType}.${t.name}DTO {`,NL)
 
     const sharedProps = t.resolved.unions.flatMap(u => u.resolved.sharedProps);
 
@@ -140,6 +151,42 @@ function generateUnionRecordContent(node: IndentNode, t: MResolvedRecordType, p:
             })
             
             mbody.append(');',NL)
+        })
+        body.append('}',NL)
+        body.appendNewLine();
+        body.append(`public static class BuilderImpl extends ${p.name}DTOImpl.BuilderImpl implements ${iType}.${t.name}DTO.Builder {`, NL)
+        body.indent( mBody => {
+            allProps.filter(p => !sharedProps.includes(p)).forEach( p => generateConstructorProperty(mBody, p, ';', artifactConfig, fqn) )
+            sharedProps.forEach( property => {
+                if( isMKeyProperty(property) || isMRevisionProperty(property) ) {
+                    mBody.append('@Override', NL)
+                    mBody.append(`public ${t.name}DTO.Builder ${property.name}(${builtinToJavaType(property.type, fqn)} ${property.name}) {`, NL)
+                    mBody.indent( methodBody => {
+                        methodBody.append(`return (${t.name}DTO.Builder) super.${property.name}(${property.name});`, NL)
+                    })
+                    mBody.append('}', NL)
+                } else {
+                    mBody.append('@Override', NL)
+                    mBody.append(`public ${t.name}DTO.Builder ${property.name}(${toType(property, artifactConfig, fqn)} ${property.name}) {`, NL)
+                    mBody.indent( methodBody => {
+                        methodBody.append(`return (${t.name}DTO.Builder) super.${property.name}(${property.name});`, NL)
+                    })
+                    mBody.append('}', NL);
+                }
+            })
+            allProps.filter(p => !sharedProps.includes(p)).forEach( property => {
+                addBuilderMethod(mBody, property, artifactConfig, fqn, `${t.name}DTO.`)
+            })
+            mBody.append(`public ${t.name}DTO build() {`, NL)
+            mBody.indent( methodBody => {
+                methodBody.append(`return new ${t.name}DTOImpl(`, NL)
+                const props = [ ...sharedProps, ...allProps.filter(p => !sharedProps.includes(p))]
+                methodBody.indent( inner => {
+                    props.forEach( (p, idx, arr) => inner.append(`this.${p.name}${idx + 1 < arr.length ? ',' : ''}`, NL) )
+                })
+                methodBody.append(');', NL)
+            })
+            mBody.append('}', NL)
         })
         body.append('}',NL)
     })
