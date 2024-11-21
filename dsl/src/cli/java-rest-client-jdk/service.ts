@@ -131,7 +131,7 @@ function generateOpertationMethod(
                     const DTOUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.dto.DTOUtils`)
                     methodBody.append(`var $body = ${BodyPublishers}.ofString(${DTOUtils}.toJsonString(${bodyParams[0].name}, false));`,NL)
                 } else {
-                    methodBody.append(`var $body = ${BodyPublishers}.ofString(${bodyParams[0].name}.toString());`,NL)
+                    methodBody.append(`var $body = ${BodyPublishers}.ofString(String.format("\\"%s\\"",${bodyParams[0].name}));`,NL)
                 }                
             } else {
                 const Json = fqn('jakarta.json.Json')

@@ -22,7 +22,7 @@ function generateServiceDTO(s: MResolvedService, o: MResolvedOperation, artifact
     const fqn = importCollector.importType.bind(importCollector);
 
     const node = new CompositeGeneratorNode();
-    node.append(`public record ${s.name}${toFirstUpper(o.name)}DTO(`,NL);
+    node.append(`public record ${s.name}${toFirstUpper(o.name)}DTOImpl(`,NL);
     node.indent( argNode => {
         o.parameters
         .filter( p => p.meta?.rest?.source === undefined )
@@ -39,7 +39,7 @@ function generateServiceDTO(s: MResolvedService, o: MResolvedOperation, artifact
     node.append('}')
 
     return {
-        name: `${s.name}${toFirstUpper(o.name)}DTO.java`,
+        name: `${s.name}${toFirstUpper(o.name)}DTOImpl.java`,
         content: toString(generateCompilationUnit(packageName, importCollector, node)),
         path: toPath(artifactConfig.targetFolder, packageName)
     };

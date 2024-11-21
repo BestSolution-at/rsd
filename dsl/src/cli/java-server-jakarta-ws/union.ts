@@ -19,21 +19,51 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJ
     node.indent( child => {
         childRecords.forEach( r => {
             const desc = (t.descriminatorAliases ?? {})[r.name] ?? r.name;
-            child.append(`@${JsonbSubtype}(alias = "${desc}", type = ${t.name}DTO.${r.name}DTO.class),`,NL);
+            child.append(`@${JsonbSubtype}(alias = "${desc}", type = ${t.name}DTOImpl.${r.name}DTOImpl.class),`,NL);
         } )
     } );
     
     node.append('})',NL)
-    node.append(`public abstract class ${t.name}DTO implements ${artifactConfig.rootPackageName}.service.dto.${t.name}DTO {`,NL)
+    node.append(`public abstract class ${t.name}DTOImpl implements ${artifactConfig.rootPackageName}.service.dto.${t.name}DTO {`,NL)
     
     node.indent( child => {
         t.resolved.sharedProps.forEach( p => generateProperty(child, p, artifactConfig, fqn) )
     })
 
+    node.appendNewLine();
+    node.indent( body => {
+        body.append(`public ${t.name}DTOImpl() {}`, NL)
+        body.append(`public ${t.name}DTOImpl(`, NL)
+        body.indent( mBody => {
+            t.resolved.sharedProps.forEach( (p, idx, arr) => generateConstructorProperty(mBody, p, idx + 1 < arr.length ? ',' : ') {', artifactConfig, fqn) )
+            t.resolved.sharedProps.forEach( p => mBody.append(`this.${p.name} = ${p.name};`, NL) )
+        } )
+        body.append('}',NL);
+    })
+    
     node.indent( child => {
         t.resolved.sharedProps.forEach( p => generatePropertyAccess(child, p, artifactConfig, fqn) )
     })
-
+    node.appendNewLine();
+    node.indent( body => {
+        body.append(`public static ${t.name}DTOImpl of(${artifactConfig.rootPackageName}.service.dto.${t.name}DTO source) {`, NL)
+        body.indent( mBody => {
+            mBody.append(`if(source instanceof ${t.name}DTOImpl) {`,NL)
+            mBody.indent(inner => {
+                inner.append(`return (${t.name}DTOImpl)source;`,NL)
+            })
+            mBody.append('}',NL)
+            childRecords.forEach( r => {
+                mBody.append(`if(source instanceof ${r.name}DTO t) {`, NL)
+                mBody.indent( inner => {
+                    inner.append(`return ${r.name}DTOImpl.of(t);`,NL);
+                })
+                mBody.append('}',NL)
+            })
+            mBody.append('throw new IllegalStateException();',NL);
+        } )
+        body.append('}',NL)
+    })
     
     node.indent( child => {
         childRecords.forEach( r => {
@@ -46,14 +76,14 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJ
     node.append('}');
 
     return {
-        name: `${t.name}DTO.java`,
+        name: `${t.name}DTOImpl.java`,
         content: toString(generateCompilationUnit(packageName, importCollector, node)),
         path: toPath(artifactConfig.targetFolder, packageName)
     };
 }
 
 function generateUnionRecordContent(node: IndentNode, t: MResolvedRecordType, p: MResolvedUnionType, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {
-    node.append(`public static class ${t.name}DTO extends ${p.name}DTO implements ${artifactConfig.rootPackageName}.service.dto.${p.name}DTO.${t.name}DTO {`,NL)
+    node.append(`public static class ${t.name}DTOImpl extends ${p.name}DTOImpl implements ${artifactConfig.rootPackageName}.service.dto.${p.name}DTO.${t.name}DTO {`,NL)
 
     const sharedProps = t.resolved.unions.flatMap(u => u.resolved.sharedProps);
 
@@ -62,11 +92,83 @@ function generateUnionRecordContent(node: IndentNode, t: MResolvedRecordType, p:
     node.indent( child => {
         allProps.filter(p => !sharedProps.includes(p)).forEach( p => generateProperty(child, p, artifactConfig, fqn))
     })
+
+    node.appendNewLine();
+    node.indent( body => {
+        body.append(`public ${t.name}DTOImpl() {}`, NL)
+        body.append(`public ${t.name}DTOImpl(`, NL)
+        body.indent( mBody => {
+            const props = [ ...sharedProps, ...allProps.filter(p => !sharedProps.includes(p))]
+            props.forEach( (p, idx, arr) => generateConstructorProperty(mBody, p, idx + 1 < arr.length ? ',' : ') {', artifactConfig, fqn) )
+            mBody.append(`super(${sharedProps.map(s => s.name).join(', ')});`, NL)
+            allProps.filter(p => !sharedProps.includes(p)).forEach( p => mBody.append(`this.${p.name} = ${p.name};`, NL) )
+        } )
+        body.append('}',NL);
+    })
+    
     node.indent( child => {
         allProps.filter(p => !sharedProps.includes(p)).forEach( p => generatePropertyAccess(child, p, artifactConfig, fqn))
     })
-    
+    node.appendNewLine();
+    node.indent(body => {
+        body.append(`public static ${t.name}DTOImpl of(${t.name}DTO source) {`,NL)
+        body.indent( mbody => {
+            mbody.append(`if(source instanceof ${t.name}DTOImpl) {`,NL)
+            mbody.indent(inner => {
+                inner.append(`return (${t.name}DTOImpl)source;`,NL)
+            })
+            mbody.append('}')
+            mbody.appendNewLine();
+            mbody.append(`return new ${t.name}DTOImpl(`,NL);
+            mbody.indent( inner => {
+                const props = [ ...sharedProps, ...allProps.filter(p => !sharedProps.includes(p))]
+                props.forEach( (p, idx, arr) => {
+                    if( isMKeyProperty(p) || isMRevisionProperty(p) || (p.variant !== 'union' && p.variant !== 'record') ) {
+                        inner.append(`source.${p.name}()`)
+                    } else {
+                        if( p.array ) {
+                            inner.append(`source.${p.name}().stream().map(${p.type}DTOImpl::of).toList()`)
+                        } else {
+                            inner.append(`${p.type}DTOImpl.of(source.${p.name}())`)
+                        }
+                    }
+                    if( idx + 1 < arr.length ) {
+                        inner.append(',')
+                    }
+                    inner.appendNewLine()
+                });
+            })
+            
+            mbody.append(');',NL)
+        })
+        body.append('}',NL)
+    })
+
     node.append('}',NL)
+}
+
+function generateConstructorProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, end: string, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {
+    if( isMKeyProperty(property) ) {
+        node.append(`${builtinToJavaType(property.type, fqn)} ${property.name}`, end ,NL)
+    } else if( isMRevisionProperty(property) ) {
+        node.append(`${builtinToJavaType(property.type, fqn)} ${property.name}`, end,NL)
+    } else {
+        if( property.variant === 'union' || property.variant === 'record' ) {
+            if( property.array ) {
+                node.append(`${fqn('java.util.List')}<${property.type}DTOImpl> ${property.name}`, end ,NL)
+            } else {
+                node.append(`${property.type}DTOImpl ${property.name}`, end, NL)
+            }
+        } else if( typeof property.type === 'string' ) {
+            if( property.array ) {
+                node.append(`${fqn('java.util.List')}<${resolveObjectType(property.type, artifactConfig.nativeTypeSubstitues, fqn)}> ${property.name}`, end, NL)
+            } else {
+                node.append(`${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn)} ${property.name}`, end,NL)
+            }
+        } else {
+            node.append(`${toFirstUpper(property.name)} ${property.name}`, end, NL)
+        }
+    }
 }
 
 function generateProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {
@@ -77,9 +179,9 @@ function generateProperty(node: IndentNode, property: MKeyProperty | MRevisionPr
     } else {
         if( property.variant === 'union' || property.variant === 'record' ) {
             if( property.array ) {
-                node.append(`public ${fqn('java.util.List')}<${property.type}DTO> ${property.name};`,NL)
+                node.append(`public ${fqn('java.util.List')}<${property.type}DTOImpl> ${property.name};`,NL)
             } else {
-                node.append(`public ${property.type}DTO ${property.name};`,NL)
+                node.append(`public ${property.type}DTOImpl ${property.name};`,NL)
             }
         } else if( typeof property.type === 'string' ) {
             if( property.array ) {
