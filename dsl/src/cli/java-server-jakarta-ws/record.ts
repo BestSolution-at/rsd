@@ -1,10 +1,10 @@
 import { CompositeGeneratorNode, IndentNode, NL, toString } from "langium/generate";
 import { Artifact } from "../artifact-generator.js";
 import { builtinToJavaType, generateCompilationUnit, JavaImportsCollector, JavaServerJakartaWSGeneratorConfig, resolveObjectType, resolveType, toPath } from "../java-gen-utils.js";
-import { allRecordProperties, isMKeyProperty, isMProperty, isMRevisionProperty, MBaseProperty, MResolvedRecordType } from "../model.js";
+import { allRecordProperties, isMKeyProperty, isMProperty, isMRevisionProperty, isMUnionType, MBaseProperty, MResolvedRecordType, MResolvedRSDModel } from "../model.js";
 import { toFirstUpper } from "../util.js";
 
-export function generateRecord(t: MResolvedRecordType, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact | undefined {
+export function generateRecord(t: MResolvedRecordType, model: MResolvedRSDModel, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact | undefined {
     if( t.resolved.unions.length === 1 ) {
         return undefined;
     }
@@ -15,12 +15,12 @@ export function generateRecord(t: MResolvedRecordType, artifactConfig: JavaServe
 
     return {
         name: `${t.name}DTOImpl.java`,
-        content: toString(generateCompilationUnit(packageName, importCollector, generateRecordContent(t, artifactConfig, fqn))),
+        content: toString(generateCompilationUnit(packageName, importCollector, generateRecordContent(t, artifactConfig, fqn, model))),
         path: toPath(artifactConfig.targetFolder, packageName)
     };
 }
 
-export function generateRecordContent(t: MResolvedRecordType, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string): CompositeGeneratorNode {
+export function generateRecordContent(t: MResolvedRecordType, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string, model: MResolvedRSDModel): CompositeGeneratorNode {
     const node = new CompositeGeneratorNode();
 
     const allProps = allRecordProperties(t);
@@ -89,12 +89,30 @@ export function generateRecordContent(t: MResolvedRecordType, artifactConfig: Ja
                     if( p.variant === 'record' ) {
                         param.append(`public Builder with${toFirstUpper(p.name)}(${functionType}<${iType}.Builder, ${iType}> block) {`,NL)
                         param.indent( methodBody => {
+                            methodBody.append(`this.${p.name} = (${p.type}DTOImpl)block.apply(${p.type}DTOImpl.builder());`)
                             methodBody.append('return this;',NL)
                         })
                         param.append('}', NL)
                     } else {
                         param.append(`public <T extends ${iType}.Builder> Builder with${toFirstUpper(p.name)}(Class<T> clazz, ${functionType}<T, ${iType}> block) {`,NL)
                         param.indent( methodBody => {
+                            const t = model.elements.find( m => m.name === p.type )
+                            if( isMUnionType(t) ) {
+                                methodBody.append(`${p.type}DTOImpl.Builder b;`, NL)
+                                t.resolved.records.forEach( (r, idx) => {
+                                    methodBody.append(`${idx > 0 ? ' else ' : ''}if( clazz == ${p.type}DTO.${r.name}DTO.Builder.class ) {`, NL);
+                                    methodBody.indent( block => {
+                                        block.append(`b = new ${p.type}DTOImpl.${r.name}DTOImpl.BuilderImpl();`, NL)
+                                    });
+                                    methodBody.append('}')
+                                });
+                                methodBody.append(' else {', NL);
+                                methodBody.indent( block => {
+                                    block.append('throw new IllegalArgumentException();', NL);
+                                });
+                                methodBody.append('}',NL)
+                                methodBody.append(`this.${p.name} = (${p.type}DTOImpl)block.apply(clazz.cast(b));`, NL)
+                            }
                             methodBody.append('return this;',NL)
                         })
                         param.append('}', NL)

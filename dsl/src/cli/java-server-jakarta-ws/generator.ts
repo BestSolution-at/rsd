@@ -15,17 +15,17 @@ export function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGene
         return [];
     }
 
-    const result = model.elements.map( e => generateType(e, artifactConfig) ).filter(isDefined)
+    const result = model.elements.map( e => generateType(e, model, artifactConfig) ).filter(isDefined)
     result.push(...model.services.flatMap( e => generateService(e, artifactConfig)))
 
     return result;
 }
 
-function generateType(t: MResolvedUserType, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact | undefined {
+function generateType(t: MResolvedUserType, model: MResolvedRSDModel, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact | undefined {
     if( isMEnumType(t) ) {
 
     } else if( isMRecordType(t) ) {
-        return generateRecord(t, artifactConfig);
+        return generateRecord(t, model, artifactConfig);
     } else if( isMUnionType(t) ) {
         return generateUnion(t, artifactConfig)
     }

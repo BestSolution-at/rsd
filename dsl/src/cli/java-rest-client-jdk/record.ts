@@ -145,7 +145,7 @@ function generateBuilderWith(node: IndentNode, property: MProperty, model: MReso
                     block.append('throw new IllegalArgumentException();', NL);
                 });
                 methodBody.append('}',NL)
-                methodBody.append(`$builder.add("${property.name}", ((${property.type}DTOImpl)block.apply((T) b)).data);`, NL)
+                methodBody.append(`$builder.add("${property.name}", ((${property.type}DTOImpl)block.apply(clazz.cast(b))).data);`, NL)
             } else {
                 methodBody.append(`// Could not find union-type "${property.type}"`, NL)
             }
