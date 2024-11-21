@@ -34,36 +34,39 @@ export function generateRecordContent(t: MResolvedRecordType, artifactConfig: Ja
     })
 
     node.appendNewLine();
-    node.append(`public static ${t.name}DTOImpl of(${artifactConfig.rootPackageName}.service.dto.${t.name}DTO source) {`,NL)
     node.indent( body => {
-        body.append(`if(source instanceof ${t.name}DTOImpl) {`,NL)
-        body.indent(inner => {
-            inner.append(`return (${t.name}DTOImpl)source;`,NL)
+        body.append(`public static ${t.name}DTOImpl of(${artifactConfig.rootPackageName}.service.dto.${t.name}DTO source) {`,NL)
+        body.indent( mBody => {
+            mBody.append(`if(source instanceof ${t.name}DTOImpl) {`,NL)
+            mBody.indent(inner => {
+                inner.append(`return (${t.name}DTOImpl)source;`,NL)
+            })
+            mBody.append('}')
+            mBody.appendNewLine();
+            mBody.append(`return new ${t.name}DTOImpl(`,NL);
+            mBody.indent( inner => {
+                allProps.forEach( (p, idx, arr) => {
+                    if( isMKeyProperty(p) || isMRevisionProperty(p) || (p.variant !== 'union' && p.variant !== 'record') ) {
+                        inner.append(`source.${p.name}()`)
+                    } else {
+                        if( p.array ) {
+                            inner.append(`source.${p.name}().stream().map(${p.type}DTOImpl::of).toList()`)
+                        } else {
+                            inner.append(`${p.type}DTOImpl.of(source.${p.name}())`)
+                        }
+                    }
+                    if( idx + 1 < arr.length ) {
+                        inner.append(',')
+                    }
+                    inner.appendNewLine()
+                });
+            })
+            
+            mBody.append(');',NL)
         })
         body.append('}')
-        body.appendNewLine();
-        body.append(`return new ${t.name}DTOImpl(`,NL);
-        body.indent( inner => {
-            allProps.forEach( (p, idx, arr) => {
-                if( isMKeyProperty(p) || isMRevisionProperty(p) || (p.variant !== 'union' && p.variant !== 'record') ) {
-                    inner.append(`source.${p.name}()`)
-                } else {
-                    if( p.array ) {
-                        inner.append(`source.${p.name}().stream().map(${p.type}DTOImpl::of).toList()`)
-                    } else {
-                        inner.append(`${p.type}DTOImpl.of(source.${p.name}())`)
-                    }
-                }
-                if( idx + 1 < arr.length ) {
-                    inner.append(',')
-                }
-                inner.appendNewLine()
-            });
-        })
-        
-        body.append(');',NL)
-    })
-    node.append('}')
+    } )
+
     /*node.appendNewLine();
     node.indent( body => {
         body.append(`public static class BuilderImpl implements Builder {`, NL);
