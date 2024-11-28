@@ -188,6 +188,11 @@ function generateUnionRecordContent(node: IndentNode, t: MResolvedRecordType, p:
             })
             mBody.append('}', NL)
         })
+        body.append('}',NL, NL)
+        body.append(`public static ${iType}.${t.name}DTO.Builder builder() {`,NL)
+        body.indent( mBody => {
+            mBody.append('return new BuilderImpl();',NL);
+        } )
         body.append('}',NL)
     })
 
