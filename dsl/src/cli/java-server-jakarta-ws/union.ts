@@ -50,7 +50,12 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJ
     node.indent( body => {
         body.append(`public static ${t.name}DTOImpl of(${artifactConfig.rootPackageName}.service.dto.${t.name}DTO source) {`, NL)
         body.indent( mBody => {
-            mBody.append(`if(source instanceof ${t.name}DTOImpl) {`,NL)
+            mBody.append('if(source == null) {', NL)
+            mBody.indent( inner => {
+                inner.append('return null;', NL)
+            } )
+            mBody.append('}',NL)
+            mBody.append(`else if(source instanceof ${t.name}DTOImpl) {`,NL)
             mBody.indent(inner => {
                 inner.append(`return (${t.name}DTOImpl)source;`,NL)
             })
@@ -62,7 +67,7 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJ
                 })
                 mBody.append('}',NL)
             })
-            mBody.append('throw new IllegalStateException();',NL);
+            mBody.append('throw new IllegalStateException("Unsupported type \'%s\'".formatted(source));',NL);
         } )
         body.append('}',NL)
         body.appendNewLine();
@@ -124,7 +129,12 @@ function generateUnionRecordContent(node: IndentNode, t: MResolvedRecordType, p:
     node.indent(body => {
         body.append(`public static ${t.name}DTOImpl of(${t.name}DTO source) {`,NL)
         body.indent( mbody => {
-            mbody.append(`if(source instanceof ${t.name}DTOImpl) {`,NL)
+            mbody.append('if(source == null) {', NL)
+            mbody.indent( inner => {
+                inner.append('return null;', NL)
+            } )
+            mbody.append('}',NL)
+            mbody.append(`else if(source instanceof ${t.name}DTOImpl) {`,NL)
             mbody.indent(inner => {
                 inner.append(`return (${t.name}DTOImpl)source;`,NL)
             })

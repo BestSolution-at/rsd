@@ -39,7 +39,12 @@ export function generateRecordContent(t: MResolvedRecordType, artifactConfig: Ja
     node.indent( body => {
         body.append(`public static ${t.name}DTOImpl of(${dtoInterface} source) {`,NL)
         body.indent( mBody => {
-            mBody.append(`if(source instanceof ${t.name}DTOImpl) {`,NL)
+            mBody.append('if(source == null) {', NL)
+            mBody.indent( inner => {
+                inner.append('return null;', NL)
+            } )
+            mBody.append('}',NL)
+            mBody.append(`else if(source instanceof ${t.name}DTOImpl) {`,NL)
             mBody.indent(inner => {
                 inner.append(`return (${t.name}DTOImpl)source;`,NL)
             })
