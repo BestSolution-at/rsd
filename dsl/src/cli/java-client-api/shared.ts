@@ -20,7 +20,7 @@ export function generateBuilderProperty(node: IndentNode, property: MKeyProperty
             if( property.array ) {
                 node.append(`public Builder ${property.name}(${fqn('java.util.List')}<${resolveObjectType(property.type, artifactConfig.nativeTypeSubstitues, fqn)}> ${property.name});`,NL)
             } else {
-                node.append(`public Builder ${property.name}(${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn)} ${property.name});`,NL)
+                node.append(`public Builder ${property.name}(${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn, property.nullable)} ${property.name});`,NL)
             }
         } else {
             node.append(`public Builder ${property.name}(${toFirstUpper(property.name)} ${property.name});`,NL)
@@ -29,7 +29,12 @@ export function generateBuilderProperty(node: IndentNode, property: MKeyProperty
     }
 }
 
-export function generateProperty(node: IndentNode, property: MKeyProperty | MRevisionProperty | MProperty, artifactConfig: JavaClientAPIGeneratorConfig, fqn: (type: string) => string) {
+export function generateProperty(
+    node: IndentNode, 
+    property: MKeyProperty | MRevisionProperty | MProperty, 
+    artifactConfig: JavaClientAPIGeneratorConfig, 
+    fqn: (type: string) => string
+) {
     if( property.doc ) {
         node.append('/**', NL)
         node.append(' * ', property.doc, NL)
@@ -50,7 +55,7 @@ export function generateProperty(node: IndentNode, property: MKeyProperty | MRev
             if( property.array ) {
                 node.append(`public ${fqn('java.util.List')}<${resolveObjectType(property.type, artifactConfig.nativeTypeSubstitues, fqn)}> ${property.name}();`,NL)
             } else {
-                node.append(`public ${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn)} ${property.name}();`,NL)
+                node.append(`public ${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn, property.nullable)} ${property.name}();`,NL)
             }
         } else {
             node.append(`public ${toFirstUpper(property.name)} ${property.name}();`,NL)
@@ -59,7 +64,11 @@ export function generateProperty(node: IndentNode, property: MKeyProperty | MRev
     }
 }
 
-export function toType(typeOwner: Pick<MProperty, 'variant'|'array'|'type'|'name'>, artifactConfig: Pick<JavaClientAPIGeneratorConfig, 'rootPackageName'|'nativeTypeSubstitues'>, fqn: (type: string) => string) {
+export function toType(
+    typeOwner: Pick<MProperty, 'variant'|'array'|'type'|'name'>, 
+    artifactConfig: Pick<JavaClientAPIGeneratorConfig, 'rootPackageName'|'nativeTypeSubstitues'>,
+    fqn: (type: string) => string, 
+    useBuiltinObject: boolean) {
     if( typeOwner.variant === 'union' || typeOwner.variant === 'record' ) {
         const dtoType = fqn(`${artifactConfig.rootPackageName}.dto.${typeOwner.type}DTO`)
         if( typeOwner.array ) {
@@ -71,7 +80,7 @@ export function toType(typeOwner: Pick<MProperty, 'variant'|'array'|'type'|'name
         if( typeOwner.array ) {
             return `${fqn('java.util.List')}<${resolveObjectType(typeOwner.type, artifactConfig.nativeTypeSubstitues, fqn)}>`;
         } else {
-            return `${resolveType(typeOwner.type, artifactConfig.nativeTypeSubstitues, fqn)}`;
+            return `${resolveType(typeOwner.type, artifactConfig.nativeTypeSubstitues, fqn, useBuiltinObject)}`;
         }
     }
     return `${toFirstUpper(typeOwner.name)}`

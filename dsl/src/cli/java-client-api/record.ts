@@ -1,7 +1,7 @@
 import { CompositeGeneratorNode, NL, toString } from "langium/generate";
 import { Artifact } from "../artifact-generator.js";
-import { JavaImportsCollector, JavaClientAPIGeneratorConfig, generateCompilationUnit, toPath } from "../java-gen-utils.js";
-import { MResolvedRecordType, allRecordProperties, isMInlineEnumType, isMProperty } from "../model.js";
+import { JavaImportsCollector, JavaClientAPIGeneratorConfig, generateCompilationUnit, toPath, resolveObjectType } from "../java-gen-utils.js";
+import { MResolvedRecordType, allRecordProperties, isMInlineEnumType, isMKeyProperty, isMProperty, isMRevisionProperty } from "../model.js";
 import { generateInlineEnum } from "./enum.js";
 import { toFirstUpper } from "../util.js";
 import { generateBuilderProperty, generateProperty } from "./shared.js";
@@ -68,6 +68,50 @@ export function generateRecordContent(t: MResolvedRecordType, artifactConfig: Ja
             builderChild.append(`public ${t.name}DTO build();`, NL)
         } )
         child.append('}', NL)
+        if( t.patchable ) {
+            child.append('public interface Patch {',NL)
+            child.indent( patchBody => {
+                if( allProps.find( p => !isMKeyProperty(p) && !isMRevisionProperty(p) ) ) {
+                    patchBody.append('public enum Props {',NL)
+                    patchBody.indent(enumBody => {
+                        allProps.filter( p => !isMKeyProperty(p) && !isMRevisionProperty(p) ).forEach( (p, idx) => {
+                            enumBody.append(`${p.name.toUpperCase()},`,NL)
+                        })
+                    })
+                    
+                    patchBody.append('}',NL,NL)
+
+                    patchBody.append('public boolean isSet(Props prop);', NL,NL)
+                }
+                
+                allProps.forEach( p => {
+                    if( isMKeyProperty(p) || isMRevisionProperty(p) ) {
+                        generateProperty(patchBody, p, artifactConfig, fqn)
+                    } else if( p.nullable === false && p.array === false ) {
+                        generateProperty(patchBody, p, artifactConfig, fqn)
+                    }
+                } )
+                allProps.forEach( p => {
+                    if( ! isMKeyProperty(p) && ! isMRevisionProperty(p) && p.nullable === false && p.array === false ) {
+                        const Consumer = fqn('java.util.function.Consumer');
+                        if( p.variant === 'union' || p.variant === 'record' ) {
+
+                        } else if( typeof p.type === 'string' ) {
+                            patchBody.append(`public static void if${toFirstUpper(p.name)}(Patch dto, ${Consumer}<${resolveObjectType(p.type, artifactConfig.nativeTypeSubstitues, fqn)}> consumer) {`,NL)
+                            patchBody.indent( mBody => {
+                                mBody.append(`if( dto.isSet(Props.${p.name.toUpperCase()}) ) {`,NL)
+                                mBody.indent( block => {
+                                    block.append(`consumer.accept(dto.${p.name}());`,NL)
+                                })
+                                mBody.append('}',NL)
+                            } )
+                            patchBody.append('}',NL)
+                        }
+                    }
+                })
+            })
+            child.append('}',NL)
+        }
     });
     node.append('}',NL)
     return node

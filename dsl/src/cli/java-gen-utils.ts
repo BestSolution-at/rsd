@@ -32,8 +32,11 @@ export function builtinToJavaObjectType(type: MBuiltinType, fqn: (type: string) 
     }
 }
 
-export function resolveType(type: string, nativeSubstitutes: Record<string,string> | undefined, fqn: (type: string) => string) {
+export function resolveType(type: string, nativeSubstitutes: Record<string,string> | undefined, fqn: (type: string) => string, useBuiltinObject: boolean) {
     if( isMBuiltinType(type) ) {
+        if( useBuiltinObject ) {
+            return builtinToJavaObjectType(type, fqn);    
+        }
         return builtinToJavaType(type, fqn);
     } else if( nativeSubstitutes !== undefined && type in nativeSubstitutes ) {
         return fqn(nativeSubstitutes[type]);

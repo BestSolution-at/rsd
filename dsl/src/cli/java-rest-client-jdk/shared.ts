@@ -14,7 +14,7 @@ export function generateProperty(node: IndentNode, property: MKeyProperty | MRev
         node.append('}', NL)
     } else {
         node.append('@Override', NL)
-        node.append(`public ${toType(property, artifactConfig, fqn)} ${property.name}() {`, NL)
+        node.append(`public ${toType(property, artifactConfig, fqn, property.nullable)} ${property.name}() {`, NL)
         node.indent( methodBody => {
             if( property.array ) {
                 if( property.variant === 'builtin' && isMBuiltinType(property.type) ) {
@@ -22,12 +22,12 @@ export function generateProperty(node: IndentNode, property: MKeyProperty | MRev
                 } else if( property.variant === 'enum' || property.variant === 'inline-enum' || property.variant === 'scalar' ) {
                     if( property.variant === 'enum' || property.variant === 'inline-enum') {
                         const type = typeof property.type === 'string' ? property.type : toFirstUpper(property.name);
-                        methodBody.append(`return DTOUtils.mapLiterals(data, "${property.name}", ${resolveType(type, artifactConfig.nativeTypeSubstitues, fqn)}::valueOf);`, NL);
+                        methodBody.append(`return DTOUtils.mapLiterals(data, "${property.name}", ${resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, property.nullable)}::valueOf);`, NL);
                     } else if( typeof property.type === 'string' ) {
-                        methodBody.append(`return DTOUtils.mapLiterals(data, "${property.name}", ${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn)}::of);`, NL);
+                        methodBody.append(`return DTOUtils.mapLiterals(data, "${property.name}", ${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn, property.nullable)}::of);`, NL);
                     }
                 } else {
-                    methodBody.append(`DTOUtils.mapObjects(data, "${property.name}", ${toType(property, artifactConfig, fqn)}::of)`, NL);
+                    methodBody.append(`DTOUtils.mapObjects(data, "${property.name}", ${toType(property, artifactConfig, fqn, property.nullable)}::of)`, NL);
                 }
             
             } else {
@@ -41,9 +41,9 @@ export function generateProperty(node: IndentNode, property: MKeyProperty | MRev
                     if( property.nullable || property.optional ) {
                         if( property.variant === 'enum' || property.variant === 'inline-enum' || property.variant === 'scalar' ) {
                             if( property.variant === 'enum' || property.variant === 'inline-enum') {
-                                methodBody.append(`return DTOUtils.mapLiteral(data, "${property.name}", ${toType(property, artifactConfig, fqn)}::valueOf, ${toType(property, artifactConfig, fqn)}.values()[0]);`, NL);
+                                methodBody.append(`return DTOUtils.mapLiteral(data, "${property.name}", ${toType(property, artifactConfig, fqn, property.nullable)}::valueOf, ${toType(property, artifactConfig, fqn, property.nullable)}.values()[0]);`, NL);
                             } else {
-                                methodBody.append(`return DTOUtils.mapLiteral(data, "${property.name}", ${toType(property, artifactConfig, fqn)}::of, null);`, NL);
+                                methodBody.append(`return DTOUtils.mapLiteral(data, "${property.name}", ${toType(property, artifactConfig, fqn, property.nullable)}::of, null);`, NL);
                             }
                         } else {
                             methodBody.append(`return DTOUtils.mapObject(data, "${property.name}", ${property.type}DTOImpl::of, null);`, NL);
@@ -51,9 +51,9 @@ export function generateProperty(node: IndentNode, property: MKeyProperty | MRev
                     } else {
                         if( property.variant === 'enum' || property.variant === 'inline-enum' || property.variant === 'scalar' ) {
                             if( property.variant === 'enum' || property.variant === 'inline-enum') {
-                                methodBody.append(`return DTOUtils.mapLiteral(data, "${property.name}", ${toType(property, artifactConfig, fqn)}::valueOf);`, NL);
+                                methodBody.append(`return DTOUtils.mapLiteral(data, "${property.name}", ${toType(property, artifactConfig, fqn, property.nullable)}::valueOf);`, NL);
                             } else {
-                                methodBody.append(`return DTOUtils.mapLiteral(data, "${property.name}", ${toType(property, artifactConfig, fqn)}::of);`, NL);
+                                methodBody.append(`return DTOUtils.mapLiteral(data, "${property.name}", ${toType(property, artifactConfig, fqn, property.nullable)}::of);`, NL);
                             }
                         } else {
                             methodBody.append(`return DTOUtils.mapObject(data, "${property.name}", ${property.type}DTOImpl::of);`, NL);
@@ -123,7 +123,7 @@ export function generateBuilderProperty(node: IndentNode, property: MKeyProperty
         node.append('}', NL)
     } else {
         node.append('@Override', NL)
-        node.append(`public ${typePrefix ? `${typePrefix}.`: ''}Builder ${property.name}(${toType(property, artifactConfig, fqn)} ${property.name}) {`, NL)
+        node.append(`public ${typePrefix ? `${typePrefix}.`: ''}Builder ${property.name}(${toType(property, artifactConfig, fqn, property.nullable)} ${property.name}) {`, NL)
         node.indent( methodBody => {
             if( property.optional && ! property.nullable && !( isMBuiltinType(property.type) && isJavaPrimitive(property.type) ) ) {
                 methodBody.append(`if( ${property.name} == null ) {`, NL);
@@ -133,7 +133,7 @@ export function generateBuilderProperty(node: IndentNode, property: MKeyProperty
             if( property.nullable && !( isMBuiltinType(property.type) && isJavaPrimitive(property.type) ) ) {
                 methodBody.append(`if( ${property.name} == null ) {`, NL);
                 methodBody.indent( block => {
-                    block.append(`$builder.addNull("${property.name}");`);
+                    block.append(`$builder.addNull("${property.name}");`,NL);
                     block.append('return this;', NL);
                 })
                 methodBody.append('}',NL);

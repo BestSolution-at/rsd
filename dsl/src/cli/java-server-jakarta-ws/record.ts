@@ -186,7 +186,7 @@ export function addBuilderMethod(param: IndentNode, property: MBaseProperty, art
                 })
                 param.append('}', NL)                        
             } else {
-                param.append(`public ${typePrefix}Builder ${property.name}(${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn)} ${property.name}) {`, NL)
+                param.append(`public ${typePrefix}Builder ${property.name}(${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn, property.nullable)} ${property.name}) {`, NL)
                 param.indent( body => {
                     body.append(`this.${property.name} = ${property.name};`,NL)
                     body.append('return this;',NL)
@@ -220,7 +220,7 @@ function addProperty(param: IndentNode, property: MBaseProperty, end: string, ar
             if( property.array ) {
                 param.append(`${fqn('java.util.List')}<${resolveObjectType(property.type, artifactConfig.nativeTypeSubstitues, fqn)}> ${property.name}`, end, NL)
             } else {
-                param.append(`${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn)} ${property.name}`, end, NL)
+                param.append(`${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn, property.nullable)} ${property.name}`, end, NL)
             }
         } else {
             param.append(`${toFirstUpper(property.name)} ${property.name}`, end, NL)

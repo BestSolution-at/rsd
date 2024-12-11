@@ -361,7 +361,7 @@ function computePath(orignalPath: string): { path: string, variables: string[] }
 }
 
 function toParameter(parameter: MParameter, artifactConfig: JavaRestClientJDKGeneratorConfig, fqn: (type: string) => string) {
-    return `${toType(parameter, artifactConfig, fqn)} ${parameter.name}`;
+    return `${toType(parameter, artifactConfig, fqn, parameter.nullable)} ${parameter.name}`;
 }
 
 function toResultType(type: MReturnType | undefined, artifactConfig: JavaRestClientJDKGeneratorConfig, fqn: (type: string) => string) {
@@ -381,7 +381,7 @@ function toResultType(type: MReturnType | undefined, artifactConfig: JavaRestCli
         if( type.array ) {
             return `${fqn('java.util.List')}<${resolveObjectType(type.type, artifactConfig.nativeTypeSubstitues, fqn)}>`
         } else {
-            return `${resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn)}`;
+            return `${resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false)}`;
         }
     }
     return type.type;

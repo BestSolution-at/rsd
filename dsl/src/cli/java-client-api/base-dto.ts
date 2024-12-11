@@ -17,6 +17,7 @@ export function generateBaseDTOContent() {
     const node = new CompositeGeneratorNode()
     node.append(`public interface BaseDTO {`,NL)
     node.indent( child => {
+        child.append('public static record Nillable<T>(T value) {}',NL,NL)
         child.append(`public interface Builder {`, NL)
         child.indent( body => {
             body.append('public BaseDTO build();',NL)

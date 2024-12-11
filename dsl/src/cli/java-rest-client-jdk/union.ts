@@ -116,7 +116,7 @@ function generateUnionContent(t: MResolvedUnionType, artifactConfig: JavaRestCli
                             subtypeBuilderBody.append('}', NL)
                         } else {
                             subtypeBuilderBody.append('@Override', NL)
-                            subtypeBuilderBody.append(`public ${subtype.name}DTO.Builder ${property.name}(${toType(property, artifactConfig, fqn)} ${property.name}) {`, NL)
+                            subtypeBuilderBody.append(`public ${subtype.name}DTO.Builder ${property.name}(${toType(property, artifactConfig, fqn, property.nullable)} ${property.name}) {`, NL)
                             subtypeBuilderBody.indent( methodBody => {
                                 methodBody.append(`return (${subtype.name}DTO.Builder) super.${property.name}(${property.name});`, NL)
                             })

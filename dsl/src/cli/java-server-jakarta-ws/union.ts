@@ -177,7 +177,7 @@ function generateUnionRecordContent(node: IndentNode, t: MResolvedRecordType, p:
                     mBody.append('}', NL)
                 } else {
                     mBody.append('@Override', NL)
-                    mBody.append(`public ${t.name}DTO.Builder ${property.name}(${toType(property, artifactConfig, fqn)} ${property.name}) {`, NL)
+                    mBody.append(`public ${t.name}DTO.Builder ${property.name}(${toType(property, artifactConfig, fqn, property.nullable)} ${property.name}) {`, NL)
                     mBody.indent( methodBody => {
                         methodBody.append(`return (${t.name}DTO.Builder) super.${property.name}(${property.name});`, NL)
                     })
@@ -225,7 +225,7 @@ function generateConstructorProperty(node: IndentNode, property: MKeyProperty | 
             if( property.array ) {
                 node.append(`${fqn('java.util.List')}<${resolveObjectType(property.type, artifactConfig.nativeTypeSubstitues, fqn)}> ${property.name}`, end, NL)
             } else {
-                node.append(`${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn)} ${property.name}`, end,NL)
+                node.append(`${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn, property.nullable)} ${property.name}`, end,NL)
             }
         } else {
             node.append(`${toFirstUpper(property.name)} ${property.name}`, end, NL)
@@ -249,7 +249,7 @@ function generateProperty(node: IndentNode, property: MKeyProperty | MRevisionPr
             if( property.array ) {
                 node.append(`public ${fqn('java.util.List')}<${resolveObjectType(property.type, artifactConfig.nativeTypeSubstitues, fqn)}> ${property.name};`,NL)
             } else {
-                node.append(`public ${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn)} ${property.name};`,NL)
+                node.append(`public ${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn, property.nullable)} ${property.name};`,NL)
             }
         } else {
             node.append(`public ${toFirstUpper(property.name)} ${property.name};`,NL)
@@ -294,7 +294,7 @@ function generatePropertyAccess(node: IndentNode, property: MKeyProperty | MRevi
                 } )
                 node.append('}', NL)
             } else {
-                node.append(`public ${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn)} ${property.name}() {`,NL)
+                node.append(`public ${resolveType(property.type, artifactConfig.nativeTypeSubstitues, fqn, property.nullable)} ${property.name}() {`,NL)
                 node.indent( body => {
                     body.append(`return this.${property.name};`,NL);
                 } )

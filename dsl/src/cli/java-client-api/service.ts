@@ -68,7 +68,7 @@ function toMethod(
 }
 
 function toParameter(parameter: MParameter, artifactConfig: JavaClientAPIGeneratorConfig, fqn: (type: string) => string) {
-    return `${toType(parameter, artifactConfig, fqn)} ${parameter.name}`;
+    return `${toType(parameter, artifactConfig, fqn, parameter.nullable)} ${parameter.name}`;
 }
 
 function toResultType(type: MReturnType | undefined, artifactConfig: JavaClientAPIGeneratorConfig, fqn: (type: string) => string) {
@@ -88,7 +88,7 @@ function toResultType(type: MReturnType | undefined, artifactConfig: JavaClientA
         if( type.array ) {
             return `${fqn('java.util.List')}<${resolveObjectType(type.type, artifactConfig.nativeTypeSubstitues, fqn)}>`
         } else {
-            return `${resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn)}`;
+            return `${resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false)}`;
         }
     }
     return type.type;
