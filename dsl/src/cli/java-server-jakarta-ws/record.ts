@@ -3,6 +3,7 @@ import { Artifact } from "../artifact-generator.js";
 import { builtinToJavaType, generateCompilationUnit, JavaImportsCollector, JavaServerJakartaWSGeneratorConfig, resolveObjectType, resolveType, toPath } from "../java-gen-utils.js";
 import { allRecordProperties, isMKeyProperty, isMProperty, isMRevisionProperty, isMUnionType, MBaseProperty, MResolvedRecordType, MResolvedRSDModel } from "../model.js";
 import { toFirstUpper } from "../util.js";
+import { generateProperty, generatePropertyAccess } from "./shared.js";
 
 export function generateRecord(t: MResolvedRecordType, model: MResolvedRSDModel, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact | undefined {
     if( t.resolved.unions.length === 1 ) {
@@ -27,11 +28,13 @@ export function generateRecordContent(t: MResolvedRecordType, artifactConfig: Ja
     
     const dtoInterface = fqn(`${artifactConfig.rootPackageName}.service.dto.${t.name}DTO`);
 
-    node.append(`public record ${t.name}DTOImpl(`,NL)
+    node.append(`public class ${t.name}DTOImpl implements ${dtoInterface} {`,NL)
     node.indent( param => {
-        allProps.forEach( (property, idx, arr) => {
-            const end = idx + 1 < arr.length ? ',' : `) implements ${dtoInterface} {`
-            addProperty(param, property, end, artifactConfig, fqn);
+        allProps.forEach( property => {
+            generateProperty(param, property, artifactConfig, fqn);
+        });
+        allProps.forEach( property => {
+            generatePropertyAccess(param, property, artifactConfig, fqn);
         });
     })
 
@@ -50,26 +53,20 @@ export function generateRecordContent(t: MResolvedRecordType, artifactConfig: Ja
             })
             mBody.append('}')
             mBody.appendNewLine();
-            mBody.append(`return new ${t.name}DTOImpl(`,NL);
-            mBody.indent( inner => {
-                allProps.forEach( (p, idx, arr) => {
-                    if( isMKeyProperty(p) || isMRevisionProperty(p) || (p.variant !== 'union' && p.variant !== 'record') ) {
-                        inner.append(`source.${p.name}()`)
+            mBody.append(`var rv = new ${t.name}DTOImpl();`,NL)
+            allProps.forEach( (p, idx, arr) => {
+                if( isMKeyProperty(p) || isMRevisionProperty(p) || (p.variant !== 'union' && p.variant !== 'record') ) {
+                    mBody.append(`rv.${p.name} = source.${p.name}();`)
+                } else {
+                    if( p.array ) {
+                        mBody.append(`rv.${p.name} = source.${p.name}().stream().map(${p.type}DTOImpl::of).toList();`)
                     } else {
-                        if( p.array ) {
-                            inner.append(`source.${p.name}().stream().map(${p.type}DTOImpl::of).toList()`)
-                        } else {
-                            inner.append(`${p.type}DTOImpl.of(source.${p.name}())`)
-                        }
+                        mBody.append(`rv.${p.name} = ${p.type}DTOImpl.of(source.${p.name}());`)
                     }
-                    if( idx + 1 < arr.length ) {
-                        inner.append(',')
-                    }
-                    inner.appendNewLine()
-                });
-            })
-            
-            mBody.append(');',NL)
+                }
+                mBody.appendNewLine()
+            });
+            mBody.append('return rv;',NL);
         })
         body.append('}')
     } )
@@ -79,7 +76,7 @@ export function generateRecordContent(t: MResolvedRecordType, artifactConfig: Ja
         body.append(`public static class BuilderImpl implements Builder {`, NL);
         body.indent( param => {
             allProps.forEach( (property) => {
-                addProperty(param, property, ";", artifactConfig, fqn);
+                generateProperty(param, property, artifactConfig, fqn);
             });
             param.appendNewLine();
             allProps.forEach( (property) => {
@@ -127,8 +124,12 @@ export function generateRecordContent(t: MResolvedRecordType, artifactConfig: Ja
             param.appendNewLine();
             param.append(`public ${artifactConfig.rootPackageName}.service.dto.${t.name}DTO build() {`,NL)
             param.indent( methodBody => {
-                methodBody.append(`return new ${t.name}DTOImpl(${allProps.map(p => p.name).join(', ')});`,NL)
-            })
+                methodBody.append(`var rv = new ${t.name}DTOImpl();`,NL)
+                allProps.forEach(p => {
+                    methodBody.append(`rv.${p.name} = ${p.name};`, NL)
+                })
+                methodBody.append(`return rv;`,NL)
+            });
             param.append('}', NL)
         });
         body.append('}',NL)
@@ -204,7 +205,7 @@ export function addBuilderMethod(param: IndentNode, property: MBaseProperty, art
     }
 }
 
-function addProperty(param: IndentNode, property: MBaseProperty, end: string, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {
+/*function addProperty(param: IndentNode, property: MBaseProperty, end: string, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {
     if( isMKeyProperty(property) ) {
         param.append(`${builtinToJavaType(property.type, fqn)} ${property.name}`, end, NL)
     } else if( isMRevisionProperty(property) ) {
@@ -226,4 +227,4 @@ function addProperty(param: IndentNode, property: MBaseProperty, end: string, ar
             param.append(`${toFirstUpper(property.name)} ${property.name}`, end, NL)
         }
     }
-}
+}*/

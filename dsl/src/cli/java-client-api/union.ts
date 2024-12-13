@@ -26,7 +26,7 @@ import {
     generateBuilderProperty, 
     generateProperty 
 } from "./shared.js";
-import { generateRecordContent } from "./record.js";
+import { generateRecordContent, generateRecordPatch } from "./record.js";
 
 export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaClientAPIGeneratorConfig): Artifact {
     const packageName = `${artifactConfig.rootPackageName}.dto`;
@@ -56,6 +56,12 @@ export function generateUnionContent(t: MResolvedUnionType, artifactConfig: Java
             }
         });
     
+    if( t.resolved.records.find( r => r.patchable ) ) {
+        node.indent( child => {
+            generateRecordPatch(child, t.resolved.sharedProps, artifactConfig, fqn, []);
+        });
+    }
+
     if( t.resolved.sharedProps.length > 0 ) {
         node.indent( child => {
             t.resolved.sharedProps.forEach( p => generateProperty(child, p, artifactConfig, fqn) )

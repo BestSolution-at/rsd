@@ -33,7 +33,8 @@ export function generateProperty(
     node: IndentNode, 
     property: MKeyProperty | MRevisionProperty | MProperty, 
     artifactConfig: JavaClientAPIGeneratorConfig, 
-    fqn: (type: string) => string
+    fqn: (type: string) => string,
+    isPatch?: boolean
 ) {
     if( property.doc ) {
         node.append('/**', NL)
@@ -46,10 +47,11 @@ export function generateProperty(
         node.append(`public ${builtinToJavaType(property.type, fqn)} ${property.name}();`,NL)
     } else {
         if( property.variant === 'union' || property.variant === 'record' ) {
+            const type = isPatch ? `${property.type}DTO.Patch` : `${property.type}DTO`;
             if( property.array ) {
-                node.append(`public ${fqn('java.util.List')}<${property.type}DTO> ${property.name}();`,NL)
+                node.append(`public ${fqn('java.util.List')}<${type}> ${property.name}();`,NL)
             } else {
-                node.append(`public ${property.type}DTO ${property.name}();`,NL)
+                node.append(`public ${type} ${property.name}();`,NL)
             }
         } else if( typeof property.type === 'string' ) {
             if( property.array ) {
