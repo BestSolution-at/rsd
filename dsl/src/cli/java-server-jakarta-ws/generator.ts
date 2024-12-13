@@ -16,14 +16,14 @@ export function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGene
         return [];
     }
 
-    const result = model.elements.map( e => generateType(e, model, artifactConfig) ).filter(isDefined)
+    const result = model.elements.flatMap( e => generateType(e, model, artifactConfig) )
     result.push(...model.services.flatMap( e => generateService(e, artifactConfig)))
     result.push(generateDTOBuilderFactory(model, artifactConfig));
 
     return result;
 }
 
-function generateType(t: MResolvedUserType, model: MResolvedRSDModel, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact | undefined {
+function generateType(t: MResolvedUserType, model: MResolvedRSDModel, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact[] {
     if( isMEnumType(t) ) {
 
     } else if( isMRecordType(t) ) {
@@ -31,7 +31,7 @@ function generateType(t: MResolvedUserType, model: MResolvedRSDModel, artifactCo
     } else if( isMUnionType(t) ) {
         return generateUnion(t, artifactConfig)
     }
-    return undefined;
+    return [];
 }
 
 export default {

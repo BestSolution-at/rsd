@@ -7,7 +7,7 @@ import { addBuilderMethod } from "./record.js";
 import { toType } from "../java-client-api/shared.js";
 import { generateConstructorProperty, generateProperty, generatePropertyAccess } from "./shared.js";
 
-export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact {
+export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact[] {
     const packageName = `${artifactConfig.rootPackageName}.rest.dto`;
 
     const importCollector = new JavaImportsCollector(packageName);
@@ -91,11 +91,13 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJ
 
     node.append('}');
 
-    return {
-        name: `${t.name}DTOImpl.java`,
-        content: toString(generateCompilationUnit(packageName, importCollector, node)),
-        path: toPath(artifactConfig.targetFolder, packageName)
-    };
+    return [
+        {
+            name: `${t.name}DTOImpl.java`,
+            content: toString(generateCompilationUnit(packageName, importCollector, node)),
+            path: toPath(artifactConfig.targetFolder, packageName)
+        }
+    ];
 }
 
 function generateUnionRecordContent(node: IndentNode, t: MResolvedRecordType, p: MResolvedUnionType, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {

@@ -5,20 +5,29 @@ import { allRecordProperties, isMKeyProperty, isMProperty, isMRevisionProperty, 
 import { toFirstUpper } from "../util.js";
 import { generateProperty, generatePropertyAccess } from "./shared.js";
 
-export function generateRecord(t: MResolvedRecordType, model: MResolvedRSDModel, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact | undefined {
+export function generateRecord(
+    t: MResolvedRecordType, 
+    model: MResolvedRSDModel, 
+    artifactConfig: JavaServerJakartaWSGeneratorConfig
+): Artifact[] {
     if( t.resolved.unions.length === 1 ) {
-        return undefined;
+        return [];
     }
     const packageName = `${artifactConfig.rootPackageName}.rest.dto`;
 
     const importCollector = new JavaImportsCollector(packageName);
     const fqn = importCollector.importType.bind(importCollector);
 
-    return {
-        name: `${t.name}DTOImpl.java`,
-        content: toString(generateCompilationUnit(packageName, importCollector, generateRecordContent(t, artifactConfig, fqn, model))),
-        path: toPath(artifactConfig.targetFolder, packageName)
-    };
+    const result : Artifact[] = [];
+    result.push(
+        {
+            name: `${t.name}DTOImpl.java`,
+            content: toString(generateCompilationUnit(packageName, importCollector, generateRecordContent(t, artifactConfig, fqn, model))),
+            path: toPath(artifactConfig.targetFolder, packageName)
+        }
+    );
+
+    return result;
 }
 
 export function generateRecordContent(t: MResolvedRecordType, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string, model: MResolvedRSDModel): CompositeGeneratorNode {
