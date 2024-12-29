@@ -3,15 +3,15 @@ import {
   IndentNode,
   NL,
   toString,
-} from "langium/generate";
-import { Artifact } from "../artifact-generator.js";
+} from 'langium/generate';
+import { Artifact } from '../artifact-generator.js';
 import {
   JavaImportsCollector,
   JavaClientAPIGeneratorConfig,
   generateCompilationUnit,
   toPath,
   resolveObjectType,
-} from "../java-gen-utils.js";
+} from '../java-gen-utils.js';
 import {
   MBaseProperty,
   MResolvedRecordType,
@@ -20,18 +20,15 @@ import {
   isMKeyProperty,
   isMProperty,
   isMRevisionProperty,
-} from "../model.js";
-import { generateInlineEnum } from "./enum.js";
-import { toFirstUpper } from "../util.js";
-import { generateBuilderProperty, generateProperty } from "./shared.js";
+} from '../model.js';
+import { generateInlineEnum } from './enum.js';
+import { toFirstUpper } from '../util.js';
+import { generateBuilderProperty, generateProperty } from './shared.js';
 
 export function generateRecord(
   t: MResolvedRecordType,
   artifactConfig: JavaClientAPIGeneratorConfig
 ): Artifact | undefined {
-  if (t.resolved.unions.length === 1) {
-    return undefined;
-  }
   const packageName = `${artifactConfig.rootPackageName}.dto`;
 
   const importCollector = new JavaImportsCollector(packageName);
@@ -61,16 +58,16 @@ export function generateRecordPatch(
     child.append(
       `public interface Patch extends ${superPatchTypes
         .map((t) => `${t}.Patch`)
-        .join(", ")} {`,
+        .join(', ')} {`,
       NL
     );
   } else {
-    child.append("public interface Patch {", NL);
+    child.append('public interface Patch {', NL);
   }
 
   child.indent((patchBody) => {
     if (allProps.find((p) => !isMKeyProperty(p) && !isMRevisionProperty(p))) {
-      patchBody.append("public enum Props {", NL);
+      patchBody.append('public enum Props {', NL);
       patchBody.indent((enumBody) => {
         allProps
           .filter((p) => !isMKeyProperty(p) && !isMRevisionProperty(p))
@@ -79,9 +76,9 @@ export function generateRecordPatch(
           });
       });
 
-      patchBody.append("}", NL, NL);
+      patchBody.append('}', NL, NL);
 
-      patchBody.append("public boolean isSet(Props prop);", NL, NL);
+      patchBody.append('public boolean isSet(Props prop);', NL, NL);
     }
 
     allProps.forEach((p) => {
@@ -98,10 +95,10 @@ export function generateRecordPatch(
         p.nullable === false &&
         p.array === false
       ) {
-        const Consumer = fqn("java.util.function.Consumer");
-        const Function = fqn("java.util.function.Function");
-        if (p.variant === "union" || p.variant === "record") {
-        } else if (typeof p.type === "string") {
+        const Consumer = fqn('java.util.function.Consumer');
+        const Function = fqn('java.util.function.Function');
+        if (p.variant === 'union' || p.variant === 'record') {
+        } else if (typeof p.type === 'string') {
           patchBody.append(
             `public static void if${toFirstUpper(
               p.name
@@ -120,9 +117,9 @@ export function generateRecordPatch(
             mBody.indent((block) => {
               block.append(`consumer.accept(dto.${p.name}());`, NL);
             });
-            mBody.append("}", NL);
+            mBody.append('}', NL);
           });
-          patchBody.append("}", NL);
+          patchBody.append('}', NL);
 
           patchBody.append(
             `public static <T> T if${toFirstUpper(
@@ -142,17 +139,17 @@ export function generateRecordPatch(
             mBody.indent((block) => {
               block.append(`return consumer.apply(dto.${p.name}());`, NL);
             });
-            mBody.append("}", NL);
+            mBody.append('}', NL);
 
-            mBody.append("return defaultValue;", NL);
+            mBody.append('return defaultValue;', NL);
           });
 
-          patchBody.append("}", NL);
+          patchBody.append('}', NL);
         }
       }
     });
   });
-  child.append("}", NL);
+  child.append('}', NL);
 }
 
 export function generateRecordContent(
@@ -168,7 +165,7 @@ export function generateRecordContent(
           ...t.resolved.unions.map((u) => `${u.name}DTO`),
           ...t.mixins.map((m) => `Mixin${m}DTO`),
         ]
-      : ["BaseDTO", ...t.mixins.map((m) => `Mixin${m}DTO`)];
+      : ['BaseDTO', ...t.mixins.map((m) => `Mixin${m}DTO`)];
 
   const superPatchTypes =
     t.resolved.unions.length > 0
@@ -176,7 +173,7 @@ export function generateRecordContent(
       : [];
 
   node.append(
-    `public interface ${t.name}DTO extends ${superTypes.join(", ")} {`,
+    `public interface ${t.name}DTO extends ${superTypes.join(', ')} {`,
     NL
   );
 
@@ -185,7 +182,7 @@ export function generateRecordContent(
   const allProps = allRecordProperties(t);
   allProps
     .filter(isMProperty)
-    .filter((p) => p.variant === "inline-enum")
+    .filter((p) => p.variant === 'inline-enum')
     .filter((p) => !sharedProps.includes(p))
     .forEach((p) => {
       const inlineEnum = p.type;
@@ -205,7 +202,7 @@ export function generateRecordContent(
     child.append(
       `public interface Builder extends ${superTypes
         .map((s) => `${s}.Builder`)
-        .join(", ")} {`,
+        .join(', ')} {`,
       NL
     );
     child.indent((builderChild) => {
@@ -214,10 +211,10 @@ export function generateRecordContent(
       );
       allProps
         .filter(isMProperty)
-        .filter((p) => p.variant === "union" || p.variant === "record")
+        .filter((p) => p.variant === 'union' || p.variant === 'record')
         .forEach((p) => {
-          const functionType = fqn("java.util.function.Function");
-          if (p.variant === "record") {
+          const functionType = fqn('java.util.function.Function');
+          if (p.variant === 'record') {
             builderChild.append(
               `public Builder with${toFirstUpper(p.name)}(${functionType}<${
                 p.type
@@ -237,7 +234,7 @@ export function generateRecordContent(
         });
       builderChild.append(`public ${t.name}DTO build();`, NL);
     });
-    child.append("}", NL);
+    child.append('}', NL);
     if (t.patchable) {
       generateRecordPatch(
         child,
@@ -248,6 +245,6 @@ export function generateRecordContent(
       );
     }
   });
-  node.append("}", NL);
+  node.append('}', NL);
   return node;
 }

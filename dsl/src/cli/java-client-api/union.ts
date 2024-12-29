@@ -1,16 +1,16 @@
-import { CompositeGeneratorNode, NL, toString } from "langium/generate";
+import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 
 import {
   JavaImportsCollector,
   JavaClientAPIGeneratorConfig,
   generateCompilationUnit,
   toPath,
-} from "../java-gen-utils.js";
-import { isMProperty, MResolvedUnionType } from "../model.js";
-import { Artifact } from "../artifact-generator.js";
-import { generateBuilderProperty, generateProperty } from "./shared.js";
-import { generateRecordContent, generateRecordPatch } from "./record.js";
-import { toFirstUpper } from "../util.js";
+} from '../java-gen-utils.js';
+import { isMProperty, MResolvedUnionType } from '../model.js';
+import { Artifact } from '../artifact-generator.js';
+import { generateBuilderProperty, generateProperty } from './shared.js';
+import { generateRecordPatch } from './record.js';
+import { toFirstUpper } from '../util.js';
 
 export function generateUnion(
   t: MResolvedUnionType,
@@ -43,7 +43,7 @@ export function generateUnionContent(
   const node = new CompositeGeneratorNode();
   t.resolved.sharedProps
     .filter(isMProperty)
-    .filter((p) => p.variant === "inline-enum")
+    .filter((p) => p.variant === 'inline-enum')
     .forEach((p) => {
       const m = t.resolved.records
         .flatMap((r) => r.resolved.mixins)
@@ -82,22 +82,10 @@ export function generateUnionContent(
         );
         child.append(`public ${t.name}DTO build();`, NL);
       });
-      child.append("}", NL);
+      child.append('}', NL);
     });
   }
 
-  const childRecords = t.resolved.records.filter(
-    (r) => r.resolved.unions.length === 1
-  );
-  if (childRecords.length > 0) {
-    node.indent((child) => {
-      childRecords.forEach((r) => {
-        child.appendNewLine();
-        child.append(generateRecordContent(r, artifactConfig, fqn));
-      });
-    });
-  }
-
-  node.append("}", NL);
+  node.append('}', NL);
   return node;
 }
