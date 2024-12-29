@@ -1,18 +1,17 @@
 import { toString } from "langium/generate";
-
+import { Artifact } from "../artifact-generator.js";
 import {
-  JavaImportsCollector,
-  JavaClientAPIGeneratorConfig,
   generateCompilationUnit,
+  JavaImportsCollector,
+  JavaServerGeneratorConfig,
   toPath,
 } from "../java-gen-utils.js";
-import { MResolvedUnionType } from "../model.js";
-import { Artifact } from "../artifact-generator.js";
-import { generateUnionContent } from "../java-client-api/union.js";
+import { MResolvedMixinType } from "../model.js";
+import { generateMixinContent } from "../java-client-api/mixin.js";
 
-export function generateUnion(
-  t: MResolvedUnionType,
-  artifactConfig: JavaClientAPIGeneratorConfig
+export function generateMixin(
+  t: MResolvedMixinType,
+  artifactConfig: JavaServerGeneratorConfig
 ): Artifact {
   const packageName = `${artifactConfig.rootPackageName}.service.dto`;
 
@@ -20,12 +19,12 @@ export function generateUnion(
   const fqn = importCollector.importType.bind(importCollector);
 
   return {
-    name: `${t.name}DTO.java`,
+    name: `Mixin${t.name}DTO.java`,
     content: toString(
       generateCompilationUnit(
         packageName,
         importCollector,
-        generateUnionContent(t, artifactConfig, fqn, packageName)
+        generateMixinContent(t, artifactConfig, fqn)
       )
     ),
     path: toPath(artifactConfig.targetFolder, packageName),

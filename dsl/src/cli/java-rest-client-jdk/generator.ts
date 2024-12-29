@@ -1,8 +1,20 @@
 import chalk from "chalk";
-import { Artifact, ArtifactGenerationConfig, ArtifactGeneratorConfig } from "../artifact-generator.js";
-import { isMRecordType, isMUnionType, MResolvedRSDModel, MResolvedUserType } from "../model.js";
+import {
+  Artifact,
+  ArtifactGenerationConfig,
+  ArtifactGeneratorConfig,
+} from "../artifact-generator.js";
+import {
+  isMRecordType,
+  isMUnionType,
+  MResolvedRSDModel,
+  MResolvedUserType,
+} from "../model.js";
 import { generateClient } from "./client.js";
-import { isJavaRestClientJDKGeneratorConfig, JavaRestClientJDKGeneratorConfig } from "../java-gen-utils.js";
+import {
+  isJavaRestClientJDKGeneratorConfig,
+  JavaRestClientJDKGeneratorConfig,
+} from "../java-gen-utils.js";
 import { generateBaseDTO } from "./base-dto.js";
 import { isDefined } from "../util.js";
 import { generateRecord } from "./record.js";
@@ -11,35 +23,49 @@ import { generateUnion } from "./union.js";
 import { generateService } from "./service.js";
 import { generateServiceUtils } from "./service-utils.js";
 
-export function generate(model: MResolvedRSDModel, generatorConfig: ArtifactGenerationConfig, artifactConfig: ArtifactGeneratorConfig): readonly Artifact [] {
-    console.log(chalk.cyan('Generating Java-JDK-REST-Client'));
+export function generate(
+  model: MResolvedRSDModel,
+  generatorConfig: ArtifactGenerationConfig,
+  artifactConfig: ArtifactGeneratorConfig
+): readonly Artifact[] {
+  console.log(chalk.cyan("Generating Java-JDK-REST-Client"));
 
-    if( ! isJavaRestClientJDKGeneratorConfig(artifactConfig) ) {
-        console.log(chalk.red('  Invalid configuration passed aborted artifact generation'));
-        return [];
-    }
-    
-    const result: Artifact[] = [];
-    result.push(generateClient(model, generatorConfig, artifactConfig));
-    result.push(generateBaseDTO(artifactConfig));
-    result.push(generateDTOUtils(artifactConfig));
-    result.push(generateServiceUtils(artifactConfig));
-    result.push(...model.elements.map( e => generateType(e, model, artifactConfig)).filter(isDefined))
-    result.push(...model.services.map( e => generateService(e, artifactConfig)))
+  if (!isJavaRestClientJDKGeneratorConfig(artifactConfig)) {
+    console.log(
+      chalk.red("  Invalid configuration passed aborted artifact generation")
+    );
+    return [];
+  }
 
-    return result;
+  const result: Artifact[] = [];
+  result.push(generateClient(model, generatorConfig, artifactConfig));
+  result.push(generateBaseDTO(artifactConfig));
+  result.push(generateDTOUtils(artifactConfig));
+  result.push(generateServiceUtils(artifactConfig));
+  result.push(
+    ...model.elements
+      .map((e) => generateType(e, model, artifactConfig))
+      .filter(isDefined)
+  );
+  result.push(...model.services.map((e) => generateService(e, artifactConfig)));
+
+  return result;
 }
 
-function generateType(t: MResolvedUserType, model: MResolvedRSDModel, artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact | undefined {
-    if( isMRecordType(t) ) {
-        return generateRecord(t, model, artifactConfig);
-    } else if( isMUnionType(t) ) {
-        return generateUnion(t, artifactConfig);
-    }
-    return undefined;
+function generateType(
+  t: MResolvedUserType,
+  model: MResolvedRSDModel,
+  artifactConfig: JavaRestClientJDKGeneratorConfig
+): Artifact | undefined {
+  if (isMRecordType(t)) {
+    return generateRecord(t, model, artifactConfig);
+  } else if (isMUnionType(t)) {
+    return generateUnion(t, artifactConfig);
+  }
+  return undefined;
 }
 
 export default {
-    name: 'java-rest-client-jdk',
-    generate
-}
+  name: "java-rest-client-jdk",
+  generate,
+};
