@@ -34,23 +34,215 @@ export function generateRecord(
 ): Artifact[] {
   const packageName = `${artifactConfig.rootPackageName}.rest.dto`;
 
-  const importCollector = new JavaImportsCollector(packageName);
-  const fqn = importCollector.importType.bind(importCollector);
-
   const result: Artifact[] = [];
-  result.push({
-    name: `${t.name}DTOImpl.java`,
-    content: toString(
-      generateCompilationUnit(
-        packageName,
-        importCollector,
-        generateRecordContent(t, artifactConfig, fqn, model)
-      )
-    ),
-    path: toPath(artifactConfig.targetFolder, packageName),
-  });
+  {
+    const importCollector = new JavaImportsCollector(packageName);
+    const fqn = importCollector.importType.bind(importCollector);
+
+    result.push({
+      name: `${t.name}DTOImpl.java`,
+      content: toString(
+        generateCompilationUnit(
+          packageName,
+          importCollector,
+          generateRecordContent(t, artifactConfig, fqn, model)
+        )
+      ),
+      path: toPath(artifactConfig.targetFolder, packageName),
+    });
+  }
+
+  if (t.patchable) {
+    const importCollector = new JavaImportsCollector(packageName);
+    const fqn = importCollector.importType.bind(importCollector);
+
+    result.push({
+      name: `${t.name}PatchDTOImpl.java`,
+      content: toString(
+        generateCompilationUnit(
+          packageName,
+          importCollector,
+          generateRecordPatch(t, artifactConfig, fqn)
+        )
+      ),
+      path: toPath(artifactConfig.targetFolder, packageName),
+    });
+  }
 
   return result;
+}
+
+function generateRecordPatch(
+  t: MResolvedRecordType,
+  artifactConfig: JavaServerJakartaWSGeneratorConfig,
+  fqn: (type: string) => string
+) {
+  const dtoInterface = fqn(
+    `${artifactConfig.rootPackageName}.service.dto.${t.name}DTO`
+  );
+  const allProps = allRecordProperties(t);
+
+  const node = new CompositeGeneratorNode();
+
+  node.append(
+    `public class ${t.name}PatchDTOImpl implements ${dtoInterface}.Patch {`,
+    NL
+  );
+  node.indent((classBody) => {
+    classBody.append(generateFields(allProps, artifactConfig, fqn));
+    classBody.appendNewLine();
+    classBody.append(`public ${t.name}PatchDTOImpl() {}`, NL);
+    classBody.appendNewLine();
+    classBody.append('@Override', NL);
+    classBody.append('public boolean isSet(Props prop) {', NL);
+    classBody.indent((mBody) => {
+      mBody.append('return dataSet.contains(prop);', NL);
+    });
+    classBody.append('}', NL);
+    classBody.appendNewLine();
+    classBody.append(generateAccessors(allProps, artifactConfig, fqn));
+  });
+  node.append('}', NL);
+
+  return node;
+}
+
+function generateFields(
+  allProps: MBaseProperty[],
+  artifactConfig: JavaServerJakartaWSGeneratorConfig,
+  fqn: (type: string) => string
+) {
+  const node = new CompositeGeneratorNode();
+  allProps.forEach((property) => {
+    if (isMKeyProperty(property)) {
+      node.append(
+        `private ${builtinToJavaType(property.type, fqn)} ${property.name};`,
+        NL
+      );
+    } else if (isMRevisionProperty(property)) {
+      node.append(
+        `private ${builtinToJavaType(property.type, fqn)} ${property.name};`,
+        NL
+      );
+    } else {
+      if (property.variant === 'union' || property.variant === 'record') {
+        const type = fqn(
+          `${artifactConfig.rootPackageName}.service.dto.${property.type}DTO`
+        );
+        if (property.array) {
+          // TODO
+        } else {
+          node.append(`private ${type}.Patch ${property.name};`, NL);
+        }
+      } else if (typeof property.type === 'string') {
+        if (property.array) {
+          // TODO
+        } else {
+          node.append(
+            `private ${resolveType(
+              property.type,
+              artifactConfig.nativeTypeSubstitues,
+              fqn,
+              property.nullable || property.optional
+            )} ${property.name};`,
+            NL
+          );
+        }
+      } else {
+        // Inline enum
+        node.append(
+          `private ${toFirstUpper(property.name)} ${property.name};`,
+          NL
+        );
+      }
+    }
+  });
+
+  const EnumSet = fqn('java.util.EnumSet');
+  node.appendNewLine();
+  node.append(
+    `private final ${EnumSet}<Props> dataSet = ${EnumSet}.noneOf(Props.class);`,
+    NL
+  );
+
+  return node;
+}
+
+function generateAccessors(
+  allProps: MBaseProperty[],
+  artifactConfig: JavaServerJakartaWSGeneratorConfig,
+  fqn: (type: string) => string
+) {
+  const node = new CompositeGeneratorNode();
+  allProps.forEach((property) => {
+    if (isMKeyProperty(property) || isMRevisionProperty(property)) {
+      node.append(
+        `public void set${toFirstUpper(property.name)}(${builtinToJavaType(
+          property.type,
+          fqn
+        )} ${property.name}) {`,
+        NL
+      );
+      node.indent((mBody) => {
+        mBody.append(`this.${property.name} = ${property.name};`, NL);
+      });
+      node.append('}', NL);
+      node.appendNewLine();
+      node.append('@Override', NL);
+      node.append(
+        `public ${builtinToJavaType(property.type, fqn)} ${property.name}() {`,
+        NL
+      );
+      node.indent((mBody) => {
+        mBody.append(`return this.${property.name};`, NL);
+      });
+      node.append('}', NL);
+    } else {
+      let type: string = '';
+      if (property.variant === 'union' || property.variant === 'record') {
+        type =
+          fqn(
+            `${artifactConfig.rootPackageName}.service.dto.${property.type}DTO`
+          ) + '.Patch';
+      } else if (typeof property.type === 'string') {
+        type = resolveType(
+          property.type,
+          artifactConfig.nativeTypeSubstitues,
+          fqn,
+          property.nullable || property.optional
+        );
+      } else {
+        type = toFirstUpper(property.name);
+      }
+
+      if (property.array) {
+      } else {
+        node.append(
+          `public void set${toFirstUpper(property.name)}(${type} ${
+            property.name
+          }) {`,
+          NL
+        );
+        node.indent((mBody) => {
+          mBody.append(`this.${property.name} = ${property.name};`, NL);
+          mBody.append(
+            `this.dataSet.add(Props.${property.name.toUpperCase()});`,
+            NL
+          );
+        });
+        node.append('}', NL);
+        node.appendNewLine();
+        node.append('@Override', NL);
+        node.append(`public ${type} ${property.name}() {`, NL);
+        node.indent((mBody) => {
+          mBody.append(`return this.${property.name};`, NL);
+        });
+        node.append('}', NL);
+        node.appendNewLine();
+      }
+    }
+  });
+  return node;
 }
 
 export function generateRecordContent(
