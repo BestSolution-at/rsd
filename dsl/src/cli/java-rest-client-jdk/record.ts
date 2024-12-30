@@ -127,6 +127,15 @@ export function generateRecordContent(
         `private ${JsonObjectBuilder} $builder = ${Json}.createObjectBuilder();`,
         NL
       );
+      if (t.resolved.unions.length === 1) {
+        builderBody.append('public BuilderImpl() {', NL);
+        builderBody.indent((methodBody) => {
+          const desc =
+            (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+          methodBody.append(`$builder.add("@type", "${desc}");`, NL);
+        });
+        builderBody.append('}');
+      }
       allProps.forEach((p) => {
         builderBody.appendNewLine();
         generateBuilderProperty(builderBody, p, artifactConfig, fqn);
@@ -195,7 +204,7 @@ function generateBuilderWith(
         });
         methodBody.append('}', NL);
         methodBody.append(
-          `$builder.add("${property.name}", ((${property.type}DTOImpl)block.apply(clazz.cast(b))).data);`,
+          `$builder.add("${property.name}", ((BaseDTOImpl)block.apply(clazz.cast(b))).data);`,
           NL
         );
       } else {
