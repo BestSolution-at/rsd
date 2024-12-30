@@ -80,21 +80,32 @@ function generateRecordPatch(
   const dtoInterface = fqn(
     `${artifactConfig.rootPackageName}.service.dto.${t.name}DTO`
   );
+
   const allProps = allRecordProperties(t);
 
   const node = new CompositeGeneratorNode();
 
-  node.append(
-    `public class ${t.name}PatchDTOImpl implements ${dtoInterface}.Patch {`,
-    NL
-  );
+  if (t.resolved.unions.length == 1) {
+    node.append(
+      `public class ${t.name}PatchDTOImpl extends ${t.resolved.unions[0].name}PatchDTOImpl implements ${dtoInterface}.Patch {`,
+      NL
+    );
+  } else {
+    node.append(
+      `public class ${t.name}PatchDTOImpl implements ${dtoInterface}.Patch {`,
+      NL
+    );
+  }
   node.indent((classBody) => {
     classBody.append(generateFields(allProps, artifactConfig, fqn));
     classBody.appendNewLine();
     classBody.append(`public ${t.name}PatchDTOImpl() {}`, NL);
     classBody.appendNewLine();
     classBody.append('@Override', NL);
-    classBody.append('public boolean isSet(Props prop) {', NL);
+    classBody.append(
+      `public boolean isSet(${dtoInterface}.Patch.Props prop) {`,
+      NL
+    );
     classBody.indent((mBody) => {
       mBody.append('return dataSet.contains(prop);', NL);
     });
@@ -126,13 +137,13 @@ function generateFields(
       );
     } else {
       if (property.variant === 'union' || property.variant === 'record') {
-        const type = fqn(
-          `${artifactConfig.rootPackageName}.service.dto.${property.type}DTO`
-        );
         if (property.array) {
           // TODO
         } else {
-          node.append(`private ${type}.Patch ${property.name};`, NL);
+          node.append(
+            `private ${property.type}PatchDTOImpl ${property.name};`,
+            NL
+          );
         }
       } else if (typeof property.type === 'string') {
         if (property.array) {
@@ -200,10 +211,7 @@ function generateAccessors(
     } else {
       let type: string = '';
       if (property.variant === 'union' || property.variant === 'record') {
-        type =
-          fqn(
-            `${artifactConfig.rootPackageName}.service.dto.${property.type}DTO`
-          ) + '.Patch';
+        type = `${property.type}PatchDTOImpl`;
       } else if (typeof property.type === 'string') {
         type = resolveType(
           property.type,

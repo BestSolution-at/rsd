@@ -9,7 +9,6 @@ import {
 import { isMProperty, MResolvedUnionType } from '../model.js';
 import { Artifact } from '../artifact-generator.js';
 import { generateBuilderProperty, generateProperty } from './shared.js';
-import { generateRecordPatch } from './record.js';
 import { toFirstUpper } from '../util.js';
 
 export function generateUnion(
@@ -57,13 +56,7 @@ export function generateUnionContent(
 
   if (t.resolved.records.find((r) => r.patchable)) {
     node.indent((child) => {
-      generateRecordPatch(
-        child,
-        t.resolved.sharedProps,
-        artifactConfig,
-        fqn,
-        []
-      );
+      child.append('public interface Patch {}', NL);
     });
   }
 
