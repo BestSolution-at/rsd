@@ -1,21 +1,14 @@
-import { CompositeGeneratorNode, NL, toString } from "langium/generate";
-import { Artifact } from "../artifact-generator.js";
+import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
+import { Artifact } from '../artifact-generator.js';
 import {
-  builtinToJavaType,
   generateCompilationUnit,
   JavaImportsCollector,
   JavaRestClientJDKGeneratorConfig,
   toPath,
-} from "../java-gen-utils.js";
-import {
-  isMKeyProperty,
-  isMProperty,
-  isMRevisionProperty,
-  MResolvedUnionType,
-} from "../model.js";
-import { generateBuilderProperty, generateProperty } from "./shared.js";
-import { toType } from "../java-client-api/shared.js";
-import { toFirstUpper } from "../util.js";
+} from '../java-gen-utils.js';
+import { isMProperty, MResolvedUnionType } from '../model.js';
+import { generateBuilderProperty, generateProperty } from './shared.js';
+import { toFirstUpper } from '../util.js';
 
 export function generateUnion(
   t: MResolvedUnionType,
@@ -49,10 +42,10 @@ function generateUnionContent(
   const DTOInterface = fqn(
     `${artifactConfig.rootPackageName}.dto.${t.name}DTO`
   );
-  const JsonObject = fqn("jakarta.json.JsonObject");
-  const JsonArray = fqn("jakarta.json.JsonArray");
-  const Json = fqn("jakarta.json.Json");
-  const JsonObjectBuilder = fqn("jakarta.json.JsonObjectBuilder");
+  const JsonObject = fqn('jakarta.json.JsonObject');
+  const JsonArray = fqn('jakarta.json.JsonArray');
+  const Json = fqn('jakarta.json.Json');
+  const JsonObjectBuilder = fqn('jakarta.json.JsonObjectBuilder');
   node.append(
     `public abstract class ${t.name}DTOImpl extends BaseDTOImpl implements ${DTOInterface} {`,
     NL
@@ -60,7 +53,7 @@ function generateUnionContent(
 
   t.resolved.sharedProps
     .filter(isMProperty)
-    .filter((p) => p.variant === "inline-enum")
+    .filter((p) => p.variant === 'inline-enum')
     .forEach((p) => {
       const m = t.resolved.records
         .flatMap((r) => r.resolved.mixins)
@@ -77,9 +70,9 @@ function generateUnionContent(
   node.indent((classBody) => {
     classBody.append(`${t.name}DTOImpl(${JsonObject} data) {`, NL);
     classBody.indent((initBody) => {
-      initBody.append("super(data);", NL);
+      initBody.append('super(data);', NL);
     });
-    classBody.append("}", NL);
+    classBody.append('}', NL);
 
     if (t.resolved.sharedProps.length > 0) {
       t.resolved.sharedProps.forEach((p) => {
@@ -109,12 +102,12 @@ function generateUnionContent(
           NL
         );
       });
-      methodBody.append("};", NL);
+      methodBody.append('};', NL);
     });
-    classBody.append("}", NL);
+    classBody.append('}', NL);
     classBody.appendNewLine();
     classBody.append(
-      `public static ${fqn("java.util.List")}<${
+      `public static ${fqn('java.util.List')}<${
         t.name
       }DTO> of(${JsonArray} data) {`,
       NL
@@ -125,21 +118,21 @@ function generateUnionContent(
         NL
       );
     });
-    classBody.append("}", NL);
+    classBody.append('}', NL);
     const keyProp = t.resolved.sharedProps.find(
-      (e) => e["@type"] === "KeyProperty"
+      (e) => e['@type'] === 'KeyProperty'
     );
     if (keyProp) {
       classBody.appendNewLine();
-      classBody.append("@Override", NL);
-      classBody.append("public String toString() {", NL);
+      classBody.append('@Override', NL);
+      classBody.append('public String toString() {', NL);
       classBody.indent((methodBody) => {
         methodBody.append(
           `return "%s[%s=%s]".formatted(getClass().getSimpleName(), "${keyProp.name}", ${keyProp.name}());`,
           NL
         );
       });
-      classBody.append("}", NL);
+      classBody.append('}', NL);
     }
     classBody.appendNewLine();
     classBody.append(
@@ -156,105 +149,10 @@ function generateUnionContent(
         generateBuilderProperty(builderBody, p, artifactConfig, fqn);
       });
     });
-    classBody.append("}", NL);
-    t.resolved.records.forEach((subtype) => {
-      classBody.appendNewLine();
-      classBody.append(
-        `public static class ${subtype.name}DTOImpl extends ${t.name}DTOImpl implements ${subtype.name}DTO {`,
-        NL
-      );
-      classBody.indent((subtypeBody) => {
-        subtypeBody.append(`${subtype.name}DTOImpl(${JsonObject} data) {`, NL);
-        subtypeBody.indent((initBody) => {
-          initBody.append("super(data);", NL);
-        });
-        subtypeBody.append("}", NL);
-
-        subtype.properties.forEach((prop) => {
-          subtypeBody.appendNewLine();
-          generateProperty(subtypeBody, prop, artifactConfig, fqn);
-        });
-
-        subtypeBody.append(
-          `public static class BuilderImpl extends ${t.name}DTOImpl.BuilderImpl<${subtype.name}DTO> implements ${subtype.name}DTO.Builder {`,
-          NL
-        );
-        subtypeBody.indent((subtypeBuilderBody) => {
-          subtypeBuilderBody.append(`public BuilderImpl() {`, NL); // builder.add("@type", "daily");
-          subtypeBuilderBody.indent((initBody) => {
-            initBody.append(
-              `$builder.add("@type","${
-                (t.descriminatorAliases ?? {})[subtype.name] ?? subtype.name
-              }");`,
-              NL
-            );
-          });
-          subtypeBuilderBody.append("}", NL);
-          t.resolved.sharedProps.forEach((property) => {
-            subtypeBuilderBody.appendNewLine();
-            if (isMKeyProperty(property) || isMRevisionProperty(property)) {
-              subtypeBuilderBody.append("@Override", NL);
-              subtypeBuilderBody.append(
-                `public ${subtype.name}DTO.Builder ${
-                  property.name
-                }(${builtinToJavaType(property.type, fqn)} ${property.name}) {`,
-                NL
-              );
-              subtypeBuilderBody.indent((methodBody) => {
-                methodBody.append(
-                  `return (${subtype.name}DTO.Builder) super.${property.name}(${property.name});`,
-                  NL
-                );
-              });
-              subtypeBuilderBody.append("}", NL);
-            } else {
-              subtypeBuilderBody.append("@Override", NL);
-              subtypeBuilderBody.append(
-                `public ${subtype.name}DTO.Builder ${property.name}(${toType(
-                  property,
-                  artifactConfig,
-                  fqn,
-                  property.nullable
-                )} ${property.name}) {`,
-                NL
-              );
-              subtypeBuilderBody.indent((methodBody) => {
-                methodBody.append(
-                  `return (${subtype.name}DTO.Builder) super.${property.name}(${property.name});`,
-                  NL
-                );
-              });
-              subtypeBuilderBody.append("}", NL);
-            }
-          });
-          subtype.properties.forEach((prop) => {
-            subtypeBuilderBody.appendNewLine();
-            generateBuilderProperty(
-              subtypeBuilderBody,
-              prop,
-              artifactConfig,
-              fqn,
-              `${subtype.name}DTO`
-            );
-          });
-          subtypeBuilderBody.appendNewLine();
-          subtypeBuilderBody.append(`public ${subtype.name}DTO build() {`, NL);
-          subtypeBuilderBody.indent((methodBody) => {
-            methodBody.append(
-              `return new ${subtype.name}DTOImpl($builder.build());`,
-              NL
-            );
-          });
-          subtypeBuilderBody.append("}", NL);
-        });
-
-        subtypeBody.append("}", NL);
-      });
-      classBody.append("}", NL);
-    });
+    classBody.append('}', NL);
   });
 
-  node.append("}", NL);
+  node.append('}', NL);
 
   return node;
 }

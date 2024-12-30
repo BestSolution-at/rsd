@@ -3,14 +3,14 @@ import {
   IndentNode,
   NL,
   toString,
-} from "langium/generate";
-import { Artifact } from "../artifact-generator.js";
+} from 'langium/generate';
+import { Artifact } from '../artifact-generator.js';
 import {
   JavaImportsCollector,
   JavaRestClientJDKGeneratorConfig,
   generateCompilationUnit,
   toPath,
-} from "../java-gen-utils.js";
+} from '../java-gen-utils.js';
 import {
   allRecordProperties,
   isMProperty,
@@ -18,19 +18,15 @@ import {
   MProperty,
   MResolvedRecordType,
   MResolvedRSDModel,
-} from "../model.js";
-import { toFirstUpper } from "../util.js";
-import { generateBuilderProperty, generateProperty } from "./shared.js";
+} from '../model.js';
+import { toFirstUpper } from '../util.js';
+import { generateBuilderProperty, generateProperty } from './shared.js';
 
 export function generateRecord(
   t: MResolvedRecordType,
   model: MResolvedRSDModel,
   artifactConfig: JavaRestClientJDKGeneratorConfig
 ): Artifact | undefined {
-  if (t.resolved.unions.length === 1) {
-    return undefined;
-  }
-
   const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.dto`;
 
   const importCollector = new JavaImportsCollector(packageName);
@@ -65,10 +61,10 @@ export function generateRecordContent(
   const DTOInterface = fqn(
     `${artifactConfig.rootPackageName}.dto.${t.name}DTO`
   );
-  const JsonObject = fqn("jakarta.json.JsonObject");
-  const JsonArray = fqn("jakarta.json.JsonArray");
-  const Json = fqn("jakarta.json.Json");
-  const JsonObjectBuilder = fqn("jakarta.json.JsonObjectBuilder");
+  const JsonObject = fqn('jakarta.json.JsonObject');
+  const JsonArray = fqn('jakarta.json.JsonArray');
+  const Json = fqn('jakarta.json.Json');
+  const JsonObjectBuilder = fqn('jakarta.json.JsonObjectBuilder');
 
   const allProps = allRecordProperties(t);
 
@@ -80,9 +76,9 @@ export function generateRecordContent(
   node.indent((classBody) => {
     classBody.append(`${t.name}DTOImpl(${JsonObject} data) {`, NL);
     classBody.indent((initBody) => {
-      initBody.append("super(data);", NL);
+      initBody.append('super(data);', NL);
     });
-    classBody.append("}", NL);
+    classBody.append('}', NL);
 
     allProps.forEach((p) => {
       classBody.appendNewLine();
@@ -93,10 +89,10 @@ export function generateRecordContent(
     classBody.indent((methodBody) => {
       methodBody.append(`return new ${t.name}DTOImpl(data);`, NL);
     });
-    classBody.append("}", NL);
+    classBody.append('}', NL);
     classBody.appendNewLine();
     classBody.append(
-      `public static ${fqn("java.util.List")}<${
+      `public static ${fqn('java.util.List')}<${
         t.name
       }DTO> of(${JsonArray} data) {`,
       NL
@@ -107,23 +103,23 @@ export function generateRecordContent(
         NL
       );
     });
-    classBody.append("}", NL);
-    const keyProp = t.properties.find((e) => e["@type"] === "KeyProperty");
+    classBody.append('}', NL);
+    const keyProp = t.properties.find((e) => e['@type'] === 'KeyProperty');
     if (keyProp) {
       classBody.appendNewLine();
-      classBody.append("@Override", NL);
-      classBody.append("public String toString() {", NL);
+      classBody.append('@Override', NL);
+      classBody.append('public String toString() {', NL);
       classBody.indent((methodBody) => {
         methodBody.append(
           `return "%s[%s=%s]".formatted(getClass().getSimpleName(), "${keyProp.name}", ${keyProp.name}());`,
           NL
         );
       });
-      classBody.append("}", NL);
+      classBody.append('}', NL);
     }
     classBody.appendNewLine();
     classBody.append(
-      "public static class BuilderImpl implements Builder {",
+      'public static class BuilderImpl implements Builder {',
       NL
     );
     classBody.indent((builderBody) => {
@@ -138,7 +134,7 @@ export function generateRecordContent(
 
       allProps
         .filter(isMProperty)
-        .filter((p) => p.variant === "union" || p.variant === "record")
+        .filter((p) => p.variant === 'union' || p.variant === 'record')
         .forEach((p) => {
           builderBody.appendNewLine();
           generateBuilderWith(builderBody, p, model, artifactConfig, fqn);
@@ -148,13 +144,13 @@ export function generateRecordContent(
       builderBody.indent((methodBody) => {
         methodBody.append(`return new ${t.name}DTOImpl($builder.build());`, NL);
       });
-      builderBody.append("}", NL);
+      builderBody.append('}', NL);
     });
 
-    classBody.append("}", NL);
+    classBody.append('}', NL);
   });
 
-  node.append("}", NL);
+  node.append('}', NL);
 
   return node;
 }
@@ -166,7 +162,7 @@ function generateBuilderWith(
   artifactConfig: JavaRestClientJDKGeneratorConfig,
   fqn: (type: string) => string
 ) {
-  const functionType = fqn("java.util.function.Function");
+  const functionType = fqn('java.util.function.Function');
   node.append(
     `public <T extends ${property.type}DTO.Builder> Builder with${toFirstUpper(
       property.name
@@ -174,32 +170,30 @@ function generateBuilderWith(
     NL
   );
   node.indent((methodBody) => {
-    if (property.variant === "record") {
-      methodBody.append("// Record", NL);
+    if (property.variant === 'record') {
+      methodBody.append('// Record', NL);
     } else {
       methodBody.append(`${property.type}DTOImpl.Builder b = null;`, NL);
       const t = model.elements.find((m) => m.name === property.type);
       if (isMUnionType(t)) {
         t.resolved.records.forEach((r, idx) => {
+          const iFace = fqn(
+            `${artifactConfig.rootPackageName}.dto.${r.name}DTO`
+          );
           methodBody.append(
-            `${idx > 0 ? " else " : ""}if( clazz == ${property.type}DTO.${
-              r.name
-            }DTO.Builder.class ) {`,
+            `${idx > 0 ? ' else ' : ''}if( clazz == ${iFace}.Builder.class ) {`,
             NL
           );
           methodBody.indent((block) => {
-            block.append(
-              `b = new ${property.type}DTOImpl.${r.name}DTOImpl.BuilderImpl();`,
-              NL
-            );
+            block.append(`b = new ${r.name}DTOImpl.BuilderImpl();`, NL);
           });
-          methodBody.append("}");
+          methodBody.append('}');
         });
-        methodBody.append(" else {", NL);
+        methodBody.append(' else {', NL);
         methodBody.indent((block) => {
-          block.append("throw new IllegalArgumentException();", NL);
+          block.append('throw new IllegalArgumentException();', NL);
         });
-        methodBody.append("}", NL);
+        methodBody.append('}', NL);
         methodBody.append(
           `$builder.add("${property.name}", ((${property.type}DTOImpl)block.apply(clazz.cast(b))).data);`,
           NL
@@ -211,7 +205,7 @@ function generateBuilderWith(
         );
       }
     }
-    methodBody.append("return this;", NL);
+    methodBody.append('return this;', NL);
   });
-  node.append("}", NL);
+  node.append('}', NL);
 }

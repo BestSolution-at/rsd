@@ -3,8 +3,8 @@ import {
   IndentNode,
   NL,
   toString,
-} from "langium/generate";
-import { Artifact } from "../artifact-generator.js";
+} from 'langium/generate';
+import { Artifact } from '../artifact-generator.js';
 import {
   builtinToJavaType,
   generateCompilationUnit,
@@ -13,7 +13,7 @@ import {
   resolveObjectType,
   resolveType,
   toPath,
-} from "../java-gen-utils.js";
+} from '../java-gen-utils.js';
 import {
   allRecordProperties,
   isMKeyProperty,
@@ -23,18 +23,15 @@ import {
   MBaseProperty,
   MResolvedRecordType,
   MResolvedRSDModel,
-} from "../model.js";
-import { toFirstUpper } from "../util.js";
-import { generateProperty, generatePropertyAccess } from "./shared.js";
+} from '../model.js';
+import { toFirstUpper } from '../util.js';
+import { generateProperty, generatePropertyAccess } from './shared.js';
 
 export function generateRecord(
   t: MResolvedRecordType,
   model: MResolvedRSDModel,
   artifactConfig: JavaServerJakartaWSGeneratorConfig
 ): Artifact[] {
-  if (t.resolved.unions.length === 1) {
-    return [];
-  }
   const packageName = `${artifactConfig.rootPackageName}.rest.dto`;
 
   const importCollector = new JavaImportsCollector(packageName);
@@ -70,15 +67,36 @@ export function generateRecordContent(
     `${artifactConfig.rootPackageName}.service.dto.${t.name}DTO`
   );
 
-  node.append(`public class ${t.name}DTOImpl implements ${dtoInterface} {`, NL);
-  node.indent((param) => {
-    allProps.forEach((property) => {
-      generateProperty(param, property, artifactConfig, fqn);
+  if (t.resolved.unions.length === 1) {
+    const shared = t.resolved.unions[0].resolved.sharedProps.map((s) => s.name);
+
+    node.append(
+      `public class ${t.name}DTOImpl extends ${t.resolved.unions[0].name}DTOImpl implements ${dtoInterface} {`,
+      NL
+    );
+    node.indent((param) => {
+      const uProps = allProps.filter((p) => !shared.includes(p.name));
+      uProps.forEach((property) => {
+        generateProperty(param, property, artifactConfig, fqn);
+      });
+      uProps.forEach((property) => {
+        generatePropertyAccess(param, property, artifactConfig, fqn);
+      });
     });
-    allProps.forEach((property) => {
-      generatePropertyAccess(param, property, artifactConfig, fqn);
+  } else {
+    node.append(
+      `public class ${t.name}DTOImpl implements ${dtoInterface} {`,
+      NL
+    );
+    node.indent((param) => {
+      allProps.forEach((property) => {
+        generateProperty(param, property, artifactConfig, fqn);
+      });
+      allProps.forEach((property) => {
+        generatePropertyAccess(param, property, artifactConfig, fqn);
+      });
     });
-  });
+  }
 
   node.appendNewLine();
   node.indent((body) => {
@@ -87,23 +105,23 @@ export function generateRecordContent(
       NL
     );
     body.indent((mBody) => {
-      mBody.append("if(source == null) {", NL);
+      mBody.append('if(source == null) {', NL);
       mBody.indent((inner) => {
-        inner.append("return null;", NL);
+        inner.append('return null;', NL);
       });
-      mBody.append("}", NL);
+      mBody.append('}', NL);
       mBody.append(`else if(source instanceof ${t.name}DTOImpl) {`, NL);
       mBody.indent((inner) => {
         inner.append(`return (${t.name}DTOImpl)source;`, NL);
       });
-      mBody.append("}");
+      mBody.append('}');
       mBody.appendNewLine();
       mBody.append(`var rv = new ${t.name}DTOImpl();`, NL);
       allProps.forEach((p, idx, arr) => {
         if (
           isMKeyProperty(p) ||
           isMRevisionProperty(p) ||
-          (p.variant !== "union" && p.variant !== "record")
+          (p.variant !== 'union' && p.variant !== 'record')
         ) {
           mBody.append(`rv.${p.name} = source.${p.name}();`);
         } else {
@@ -119,33 +137,50 @@ export function generateRecordContent(
         }
         mBody.appendNewLine();
       });
-      mBody.append("return rv;", NL);
+      mBody.append('return rv;', NL);
     });
-    body.append("}");
+    body.append('}');
   });
 
   node.appendNewLine();
   node.indent((body) => {
-    body.append(`public static class BuilderImpl implements Builder {`, NL);
+    if (t.resolved.unions.length === 1) {
+      body.append(
+        `public static class BuilderImpl extends ${t.resolved.unions[0].name}DTOImpl.BuilderImpl implements ${dtoInterface}.Builder {`,
+        NL
+      );
+    } else {
+      body.append(
+        `public static class BuilderImpl implements ${dtoInterface}.Builder {`,
+        NL
+      );
+    }
+
     body.indent((param) => {
       allProps.forEach((property) => {
         generateProperty(param, property, artifactConfig, fqn);
       });
       param.appendNewLine();
       allProps.forEach((property) => {
-        addBuilderMethod(param, property, artifactConfig, fqn);
+        addBuilderMethod(
+          param,
+          property,
+          artifactConfig,
+          fqn,
+          dtoInterface + '.'
+        );
       });
       allProps
         .filter(isMProperty)
-        .filter((p) => p.variant === "union" || p.variant === "record")
+        .filter((p) => p.variant === 'union' || p.variant === 'record')
         .forEach((p) => {
-          const functionType = fqn("java.util.function.Function");
+          const functionType = fqn('java.util.function.Function');
           const iType = fqn(
             `${artifactConfig.rootPackageName}.service.dto.${p.type}DTO`
           );
-          if (p.variant === "record") {
+          if (p.variant === 'record') {
             param.append(
-              `public Builder with${toFirstUpper(
+              `public ${dtoInterface}.Builder with${toFirstUpper(
                 p.name
               )}(${functionType}<${iType}.Builder, ${iType}> block) {`,
               NL
@@ -154,9 +189,9 @@ export function generateRecordContent(
               methodBody.append(
                 `this.${p.name} = (${p.type}DTOImpl)block.apply(${p.type}DTOImpl.builder());`
               );
-              methodBody.append("return this;", NL);
+              methodBody.append('return this;', NL);
             });
-            param.append("}", NL);
+            param.append('}', NL);
           } else {
             param.append(
               `public <T extends ${iType}.Builder> Builder with${toFirstUpper(
@@ -169,33 +204,33 @@ export function generateRecordContent(
               if (isMUnionType(t)) {
                 methodBody.append(`${p.type}DTOImpl.Builder b;`, NL);
                 t.resolved.records.forEach((r, idx) => {
+                  const iFace = fqn(
+                    `${artifactConfig.rootPackageName}.service.dto.${r.name}DTO`
+                  );
                   methodBody.append(
-                    `${idx > 0 ? " else " : ""}if( clazz == ${p.type}DTO.${
-                      r.name
-                    }DTO.Builder.class ) {`,
+                    `${
+                      idx > 0 ? ' else ' : ''
+                    }if( clazz == ${iFace}.Builder.class ) {`,
                     NL
                   );
                   methodBody.indent((block) => {
-                    block.append(
-                      `b = new ${p.type}DTOImpl.${r.name}DTOImpl.BuilderImpl();`,
-                      NL
-                    );
+                    block.append(`b = new ${r.name}DTOImpl.BuilderImpl();`, NL);
                   });
-                  methodBody.append("}");
+                  methodBody.append('}');
                 });
-                methodBody.append(" else {", NL);
+                methodBody.append(' else {', NL);
                 methodBody.indent((block) => {
-                  block.append("throw new IllegalArgumentException();", NL);
+                  block.append('throw new IllegalArgumentException();', NL);
                 });
-                methodBody.append("}", NL);
+                methodBody.append('}', NL);
                 methodBody.append(
                   `this.${p.name} = (${p.type}DTOImpl)block.apply(clazz.cast(b));`,
                   NL
                 );
               }
-              methodBody.append("return this;", NL);
+              methodBody.append('return this;', NL);
             });
-            param.append("}", NL);
+            param.append('}', NL);
           }
         });
 
@@ -211,18 +246,18 @@ export function generateRecordContent(
         });
         methodBody.append(`return rv;`, NL);
       });
-      param.append("}", NL);
+      param.append('}', NL);
     });
-    body.append("}", NL);
+    body.append('}', NL);
     body.appendNewLine();
-    body.append("public static Builder builder() {", NL);
+    body.append(`public static ${dtoInterface}.Builder builder() {`, NL);
     body.indent((mBody) => {
-      mBody.append("return new BuilderImpl();", NL);
+      mBody.append('return new BuilderImpl();', NL);
     });
-    body.append("}", NL);
+    body.append('}', NL);
   });
 
-  node.append("}");
+  node.append('}');
 
   return node;
 }
@@ -232,7 +267,7 @@ export function addBuilderMethod(
   property: MBaseProperty,
   artifactConfig: JavaServerJakartaWSGeneratorConfig,
   fqn: (type: string) => string,
-  typePrefix = ""
+  typePrefix = ''
 ) {
   if (isMKeyProperty(property)) {
     param.append(
@@ -244,9 +279,9 @@ export function addBuilderMethod(
     );
     param.indent((body) => {
       body.append(`this.${property.name} = ${property.name};`, NL);
-      body.append("return this;", NL);
+      body.append('return this;', NL);
     });
-    param.append("}", NL);
+    param.append('}', NL);
   } else if (isMRevisionProperty(property)) {
     param.append(
       `public ${typePrefix}Builder ${property.name}(${builtinToJavaType(
@@ -257,15 +292,15 @@ export function addBuilderMethod(
     );
     param.indent((body) => {
       body.append(`this.${property.name} = ${property.name};`, NL);
-      body.append("return this;", NL);
+      body.append('return this;', NL);
     });
-    param.append("}", NL);
+    param.append('}', NL);
   } else {
-    if (property.variant === "union" || property.variant === "record") {
+    if (property.variant === 'union' || property.variant === 'record') {
       if (property.array) {
         param.append(
           `public ${typePrefix}Builder ${property.name}(${fqn(
-            "java.util.List"
+            'java.util.List'
           )}<${artifactConfig.rootPackageName}.service.dto.${
             property.type
           }DTO> ${property.name}) {`,
@@ -276,9 +311,9 @@ export function addBuilderMethod(
             `this.${property.name} = ${property.name}.stream().map(${property.type}DTOImpl::of).toList();`,
             NL
           );
-          body.append("return this;", NL);
+          body.append('return this;', NL);
         });
-        param.append("}", NL);
+        param.append('}', NL);
       } else {
         param.append(
           `public ${typePrefix}Builder ${property.name}(${artifactConfig.rootPackageName}.service.dto.${property.type}DTO ${property.name}) {`,
@@ -289,15 +324,15 @@ export function addBuilderMethod(
             `this.${property.name} = ${property.type}DTOImpl.of(${property.name});`,
             NL
           );
-          body.append("return this;", NL);
+          body.append('return this;', NL);
         });
-        param.append("}", NL);
+        param.append('}', NL);
       }
-    } else if (typeof property.type === "string") {
+    } else if (typeof property.type === 'string') {
       if (property.array) {
         param.append(
           `public ${typePrefix}Builder ${property.name}(${fqn(
-            "java.util.List"
+            'java.util.List'
           )}<${resolveObjectType(
             property.type,
             artifactConfig.nativeTypeSubstitues,
@@ -307,9 +342,9 @@ export function addBuilderMethod(
         );
         param.indent((body) => {
           body.append(`this.${property.name} = ${property.name};`, NL);
-          body.append("return this;", NL);
+          body.append('return this;', NL);
         });
-        param.append("}", NL);
+        param.append('}', NL);
       } else {
         param.append(
           `public ${typePrefix}Builder ${property.name}(${resolveType(
@@ -322,9 +357,9 @@ export function addBuilderMethod(
         );
         param.indent((body) => {
           body.append(`this.${property.name} = ${property.name};`, NL);
-          body.append("return this;", NL);
+          body.append('return this;', NL);
         });
-        param.append("}", NL);
+        param.append('}', NL);
       }
     } else {
       param.append(
@@ -335,9 +370,9 @@ export function addBuilderMethod(
       );
       param.indent((body) => {
         body.append(`this.${property.name} = ${property.name};`, NL);
-        body.append("return this;", NL);
+        body.append('return this;', NL);
       });
-      param.append("}", NL);
+      param.append('}', NL);
     }
   }
 }
