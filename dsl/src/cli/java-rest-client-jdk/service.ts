@@ -3,8 +3,8 @@ import {
   IndentNode,
   NL,
   toString,
-} from "langium/generate";
-import { Artifact } from "../artifact-generator.js";
+} from 'langium/generate';
+import { Artifact } from '../artifact-generator.js';
 import {
   generateCompilationUnit,
   JavaImportsCollector,
@@ -12,7 +12,7 @@ import {
   resolveObjectType,
   resolveType,
   toPath,
-} from "../java-gen-utils.js";
+} from '../java-gen-utils.js';
 import {
   MBuiltinType,
   MOperation,
@@ -20,13 +20,13 @@ import {
   MResolvedOperation,
   MResolvedService,
   MReturnType,
-} from "../model.js";
-import { toType } from "../java-client-api/shared.js";
+} from '../model.js';
+import { toType } from '../java-client-api/shared.js';
 import {
   builtinBuilderAccess,
   builtinBuilderArrayJSONAccess,
-} from "./shared.js";
-import { isBuiltinType } from "../../language/generated/ast.js";
+} from '../java-model-json/shared.js';
+import { isBuiltinType } from '../../language/generated/ast.js';
 
 export function generateService(
   s: MResolvedService,
@@ -40,7 +40,7 @@ export function generateService(
   const ServiceInterface = fqn(
     `${artifactConfig.rootPackageName}.${s.name}Service`
   );
-  const HttpClient = fqn("java.net.http.HttpClient");
+  const HttpClient = fqn('java.net.http.HttpClient');
 
   const node = new CompositeGeneratorNode();
   node.append(
@@ -48,7 +48,7 @@ export function generateService(
     NL
   );
   node.indent((classBody) => {
-    classBody.append("private final String baseURI;", NL);
+    classBody.append('private final String baseURI;', NL);
     classBody.append(`private final ${HttpClient} client;`, NL);
     classBody.appendNewLine();
     classBody.append(
@@ -56,10 +56,10 @@ export function generateService(
       NL
     );
     classBody.indent((initBody) => {
-      initBody.append("this.baseURI = baseURI;", NL);
-      initBody.append("this.client = client;", NL);
+      initBody.append('this.baseURI = baseURI;', NL);
+      initBody.append('this.client = client;', NL);
     });
-    classBody.append("}", NL);
+    classBody.append('}', NL);
     s.operations.forEach((o) => {
       classBody.appendNewLine();
       generateOperation(
@@ -71,7 +71,7 @@ export function generateService(
       );
     });
   });
-  node.append("}", NL);
+  node.append('}', NL);
 
   return {
     name: `${s.name}ServiceImpl.java`,
@@ -90,8 +90,8 @@ function generateOpertationMethod(
   fqn: (type: string) => string,
   path: string
 ) {
-  const URI = fqn("java.net.URI");
-  const HttpRequest = fqn("java.net.http.HttpRequest");
+  const URI = fqn('java.net.URI');
+  const HttpRequest = fqn('java.net.http.HttpRequest');
 
   const parameters = allParameters.map((p) =>
     toParameter(p, artifactConfig, fqn)
@@ -99,15 +99,15 @@ function generateOpertationMethod(
   node.append(
     `public ${toResultType(o.resultType, artifactConfig, fqn)} ${
       o.name
-    }(${parameters.join(", ")})`
+    }(${parameters.join(', ')})`
   );
   if (o.errors.length > 0) {
     node.appendNewLine();
     node.indent((throwBody) => {
       throwBody.append(
-        "throws ",
+        'throws ',
         fqn(`${artifactConfig.rootPackageName}.${o.errors[0]}Exception`),
-        o.errors.length > 1 ? "," : ""
+        o.errors.length > 1 ? ',' : ''
       );
       if (o.errors.length > 1) {
         throwBody.appendNewLine();
@@ -116,7 +116,7 @@ function generateOpertationMethod(
         o.errors.slice(1).forEach((e, idx, arr) => {
           other.append(
             fqn(`${artifactConfig.rootPackageName}.${e}Exception`),
-            arr.length !== idx + 1 ? "," : ""
+            arr.length !== idx + 1 ? ',' : ''
           );
           if (arr.length !== idx + 1) {
             other.appendNewLine();
@@ -125,17 +125,17 @@ function generateOpertationMethod(
       });
     });
   }
-  node.append(" {", NL);
+  node.append(' {', NL);
   node.indent((methodBody) => {
     const processedPath = computePath(
-      `${path.replace(/^\//, "")}/${o.meta?.rest?.path ?? ""}`
+      `${path.replace(/^\//, '')}/${o.meta?.rest?.path ?? ''}`
     );
-    const endpoint = processedPath.path ? `%s/${processedPath.path}` : "%s";
-    const variables = ["this.baseURI", ...processedPath.variables];
+    const endpoint = processedPath.path ? `%s/${processedPath.path}` : '%s';
+    const variables = ['this.baseURI', ...processedPath.variables];
     allParameters
       .filter((p) => !p.nullable)
       .forEach((p, idx, arr) => {
-        const Objects = fqn("java.util.Objects");
+        const Objects = fqn('java.util.Objects');
         methodBody.append(
           `${Objects}.requireNonNull(${p.name}, "${p.name} must not be null");`,
           NL
@@ -147,75 +147,75 @@ function generateOpertationMethod(
     methodBody.append(`var $path = "${endpoint}".formatted(`, NL);
     methodBody.indent((formatted) => {
       variables.forEach((v, idx) =>
-        formatted.append(`${v}${idx + 1 < variables.length ? "," : ""}`, NL)
+        formatted.append(`${v}${idx + 1 < variables.length ? ',' : ''}`, NL)
       );
     });
-    methodBody.append(");", NL);
+    methodBody.append(');', NL);
     methodBody.appendNewLine();
     const hasQueryParams = allParameters.find(
-      (p) => p.meta?.rest?.source === "query"
+      (p) => p.meta?.rest?.source === 'query'
     );
     if (hasQueryParams) {
-      const Map = fqn("java.util.Map");
+      const Map = fqn('java.util.Map');
       methodBody.append(`var $queryParams = ${Map}.of(`, NL);
       allParameters
-        .filter((p) => p.meta?.rest?.source === "query")
+        .filter((p) => p.meta?.rest?.source === 'query')
         .forEach((p, idx, arr) => {
           const last = idx + 1 === arr.length;
           methodBody.indent((map) => {
             map.append(
               `"${
                 p.meta?.rest?.name ?? p.name.toLowerCase()
-              }",ServiceUtils.toQueryString(${p.name})${last ? "" : ","}`,
+              }",ServiceUtils.toQueryString(${p.name})${last ? '' : ','}`,
               NL
             );
           });
         });
-      methodBody.append(");", NL);
+      methodBody.append(');', NL);
       methodBody.append(
-        "var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);",
+        'var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);',
         NL
       );
       methodBody.appendNewLine();
     }
     const hasHeaderParams = allParameters.find(
-      (p) => p.meta?.rest?.source === "header"
+      (p) => p.meta?.rest?.source === 'header'
     );
     if (hasHeaderParams) {
-      const Map = fqn("java.util.Map");
+      const Map = fqn('java.util.Map');
       methodBody.append(`var $headerParams = ${Map}.of(`, NL);
       allParameters
-        .filter((p) => p.meta?.rest?.source === "header")
+        .filter((p) => p.meta?.rest?.source === 'header')
         .forEach((p, idx, arr) => {
           const last = idx + 1 === arr.length;
-          const Objects = fqn("java.util.Objects");
+          const Objects = fqn('java.util.Objects');
           methodBody.indent((map) => {
             map.append(
               `"${
                 p.meta?.rest?.name ?? p.name.toLowerCase()
-              }",${Objects}.toString(${p.name})${last ? "" : ","}`,
+              }",${Objects}.toString(${p.name})${last ? '' : ','}`,
               NL
             );
           });
         });
-      methodBody.append(");", NL);
+      methodBody.append(');', NL);
       methodBody.append(
-        "var $headers = ServiceUtils.toHeaders($headerParams);",
+        'var $headers = ServiceUtils.toHeaders($headerParams);',
         NL
       );
       methodBody.appendNewLine();
     }
 
     const method = o.meta?.rest?.method;
-    if (method === "PUT" || method === "POST") {
-      const BodyPublishers = fqn("java.net.http.HttpRequest.BodyPublishers");
+    if (method === 'PUT' || method === 'POST') {
+      const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
       const bodyParams = allParameters.filter(
         (p) => p.meta?.rest?.source === undefined
       );
       if (bodyParams.length === 0) {
         methodBody.append(`var $body = ${BodyPublishers}.ofString("");`, NL);
       } else if (bodyParams.length === 1) {
-        if (bodyParams[0].variant === "record") {
+        if (bodyParams[0].variant === 'record') {
           const DTOUtils = fqn(
             `${artifactConfig.rootPackageName}.jdkhttp.impl.dto.DTOUtils`
           );
@@ -230,13 +230,13 @@ function generateOpertationMethod(
           );
         }
       } else {
-        const Json = fqn("jakarta.json.Json");
+        const Json = fqn('jakarta.json.Json');
         methodBody.append(`var $builder = ${Json}.createObjectBuilder();`, NL);
         bodyParams.forEach((p) => {
-          if (p.variant === "record" || p.variant === "union") {
+          if (p.variant === 'record' || p.variant === 'union') {
             if (p.array) {
               methodBody.append(
-                "throw new UnsupportedOperationException();",
+                'throw new UnsupportedOperationException();',
                 NL
               );
             } else {
@@ -248,15 +248,15 @@ function generateOpertationMethod(
                 NL
               );
             }
-          } else if (p.variant === "builtin" && isBuiltinType(p.type)) {
+          } else if (p.variant === 'builtin' && isBuiltinType(p.type)) {
             if (p.array) {
               methodBody.append(
-                "$builder = " +
+                '$builder = ' +
                   builtinBuilderArrayJSONAccess({
                     name: p.name,
                     type: p.type,
                   }) +
-                  ";",
+                  ';',
                 NL
               );
             } else {
@@ -264,20 +264,20 @@ function generateOpertationMethod(
                 methodBody.append(
                   `$builder = ${p.name} == null ? $builder.addNull('${p.name}') : ` +
                     builtinBuilderAccess({ name: p.name, type: p.type }) +
-                    ";",
+                    ';',
                   NL
                 );
               } else {
                 methodBody.append(
-                  "$builder = " +
+                  '$builder = ' +
                     builtinBuilderAccess({ name: p.name, type: p.type }) +
-                    ";",
+                    ';',
                   NL
                 );
               }
             }
           } else {
-            methodBody.append("throw new UnsupportedOperationException();", NL);
+            methodBody.append('throw new UnsupportedOperationException();', NL);
           }
         });
         const DTOUtils = fqn(
@@ -306,30 +306,30 @@ function generateOpertationMethod(
       tmp.indent((l) => {
         l.append(`.uri($uri)`, NL);
         if (hasHeaderParams) {
-          l.append(".headers($headers)", NL);
+          l.append('.headers($headers)', NL);
         }
 
-        if (method === "GET") {
-          l.append(".GET()", NL);
-        } else if (method === "DELETE") {
-          l.append(".DELETE()", NL);
-        } else if (method === "PUT" || method === "POST") {
+        if (method === 'GET') {
+          l.append('.GET()', NL);
+        } else if (method === 'DELETE') {
+          l.append('.DELETE()', NL);
+        } else if (method === 'PUT' || method === 'POST') {
           l.append('.header("Content-Type", "application/json")', NL);
-          if (method === "PUT") {
-            l.append(".PUT($body)", NL);
+          if (method === 'PUT') {
+            l.append('.PUT($body)', NL);
           } else {
-            l.append(".POST($body)", NL);
+            l.append('.POST($body)', NL);
           }
-        } else if (method === "PATCH") {
+        } else if (method === 'PATCH') {
           l.append('.method("PATCH")', NL);
         }
-        l.append(".build();", NL);
+        l.append('.build();', NL);
       });
     });
     methodBody.appendNewLine();
 
-    const IOException = fqn("java.io.IOException");
-    const BodyHandlers = fqn("java.net.http.HttpResponse.BodyHandlers");
+    const IOException = fqn('java.io.IOException');
+    const BodyHandlers = fqn('java.net.http.HttpResponse.BodyHandlers');
     methodBody.append(`try {`, NL);
     methodBody.indent((tryBlock) => {
       tryBlock.append(
@@ -339,7 +339,7 @@ function generateOpertationMethod(
       if (o.meta?.rest?.results.length) {
         o.meta.rest.results.forEach((r, idx) => {
           tryBlock.append(
-            `${idx === 0 ? "" : " else "}if ($response.statusCode() == ${
+            `${idx === 0 ? '' : ' else '}if ($response.statusCode() == ${
               r.statusCode
             } ) {`,
             NL
@@ -351,20 +351,20 @@ function generateOpertationMethod(
               handleErroResult(resBlock, o, r.error, artifactConfig, fqn);
             }
           });
-          tryBlock.append("}");
+          tryBlock.append('}');
         });
         tryBlock.appendNewLine();
       } else {
-        const code = o.resultType ? "200" : "204";
+        const code = o.resultType ? '200' : '204';
         tryBlock.append(`if ($response.statusCode() == ${code}) {`, NL);
         tryBlock.indent((resBlock) => {
           handleOkResult(resBlock, o, artifactConfig, fqn);
         });
-        tryBlock.append("}", NL);
+        tryBlock.append('}', NL);
       }
 
       tryBlock.append(
-        "throw new IllegalStateException(String.format(\"Unsupported Http-Status '%s':\\n%s\", $response.statusCode(), $response.body()));",
+        'throw new IllegalStateException(String.format("Unsupported Http-Status \'%s\':\\n%s", $response.statusCode(), $response.body()));',
         NL
       );
 
@@ -375,11 +375,11 @@ function generateOpertationMethod(
       NL
     );
     methodBody.indent((catchBlock) => {
-      catchBlock.append("throw new IllegalStateException(e);", NL);
+      catchBlock.append('throw new IllegalStateException(e);', NL);
     });
-    methodBody.append("}", NL);
+    methodBody.append('}', NL);
   });
-  node.append("}", NL);
+  node.append('}', NL);
 }
 
 function generateOperation(
@@ -410,10 +410,10 @@ function handleOkResult(
   fqn: (type: string) => string
 ) {
   if (o.resultType === undefined) {
-    node.append("return;", NL);
+    node.append('return;', NL);
     return;
   }
-  if (o.resultType.variant === "record" || o.resultType.variant === "union") {
+  if (o.resultType.variant === 'record' || o.resultType.variant === 'union') {
     const dtoPkg = `${artifactConfig.rootPackageName}.jdkhttp.impl.dto`;
     const dtoType = fqn(`${dtoPkg}.${o.resultType.type}DTOImpl`);
     if (o.resultType.array) {
@@ -427,7 +427,7 @@ function handleOkResult(
         NL
       );
     }
-  } else if (o.resultType.variant === "builtin") {
+  } else if (o.resultType.variant === 'builtin') {
     if (isBuiltinType(o.resultType.type)) {
       if (o.resultType.array) {
         node.append(`return ${builtinArrayMap(o.resultType.type)};`, NL);
@@ -435,58 +435,58 @@ function handleOkResult(
         node.append(`return ${builtinMap(o.resultType.type)};`, NL);
       }
     }
-  } else if (o.resultType.variant === "scalar") {
+  } else if (o.resultType.variant === 'scalar') {
   } else {
   }
 }
 
 function builtinArrayMap(type: MBuiltinType): string {
   switch (type) {
-    case "boolean":
-      return "ServiceUtils.mapBooleans($response)";
-    case "double":
-      return "ServiceUtils.mapDoubles($response)";
-    case "float":
-      return "ServiceUtils.mapFloats($response)";
-    case "int":
-      return "ServiceUtils.mapInts($response)";
-    case "local-date":
-      return "ServiceUtils.mapLocalDates($response)";
-    case "local-date-time":
-      return "ServiceUtils.mapLocalDateTimes($response)";
-    case "long":
-      return "ServiceUtils.mapLongs($response)";
-    case "short":
-      return "ServiceUtils.mapShorts($response)";
-    case "string":
-      return "ServiceUtils.mapStrings($response)";
-    case "zoned-date-time":
-      return "ServiceUtils.mapZonedDateTimes($response)";
+    case 'boolean':
+      return 'ServiceUtils.mapBooleans($response)';
+    case 'double':
+      return 'ServiceUtils.mapDoubles($response)';
+    case 'float':
+      return 'ServiceUtils.mapFloats($response)';
+    case 'int':
+      return 'ServiceUtils.mapInts($response)';
+    case 'local-date':
+      return 'ServiceUtils.mapLocalDates($response)';
+    case 'local-date-time':
+      return 'ServiceUtils.mapLocalDateTimes($response)';
+    case 'long':
+      return 'ServiceUtils.mapLongs($response)';
+    case 'short':
+      return 'ServiceUtils.mapShorts($response)';
+    case 'string':
+      return 'ServiceUtils.mapStrings($response)';
+    case 'zoned-date-time':
+      return 'ServiceUtils.mapZonedDateTimes($response)';
   }
 }
 
 function builtinMap(type: MBuiltinType): string {
   switch (type) {
-    case "boolean":
-      return "ServiceUtils.mapBoolean($response)";
-    case "double":
-      return "ServiceUtils.mapDouble($response)";
-    case "float":
-      return "ServiceUtils.mapFloat($response)";
-    case "int":
-      return "ServiceUtils.mapInt($response)";
-    case "local-date":
-      return "ServiceUtils.mapLocalDate($response)";
-    case "local-date-time":
-      return "ServiceUtils.mapLocalDateTime($response)";
-    case "long":
-      return "ServiceUtils.mapLong($response)";
-    case "short":
-      return "ServiceUtils.mapShort($response)";
-    case "string":
-      return "ServiceUtils.mapString($response)";
-    case "zoned-date-time":
-      return "ServiceUtils.mapZonedDateTime($response)";
+    case 'boolean':
+      return 'ServiceUtils.mapBoolean($response)';
+    case 'double':
+      return 'ServiceUtils.mapDouble($response)';
+    case 'float':
+      return 'ServiceUtils.mapFloat($response)';
+    case 'int':
+      return 'ServiceUtils.mapInt($response)';
+    case 'local-date':
+      return 'ServiceUtils.mapLocalDate($response)';
+    case 'local-date-time':
+      return 'ServiceUtils.mapLocalDateTime($response)';
+    case 'long':
+      return 'ServiceUtils.mapLong($response)';
+    case 'short':
+      return 'ServiceUtils.mapShort($response)';
+    case 'string':
+      return 'ServiceUtils.mapString($response)';
+    case 'zoned-date-time':
+      return 'ServiceUtils.mapZonedDateTime($response)';
   }
 }
 
@@ -514,7 +514,7 @@ function computePath(orignalPath: string): {
   const regex = /(\$\{\w+\})/g;
 
   let lastMatchEnd = 0;
-  let path = "";
+  let path = '';
   const variables: string[] = [];
   for (const match of orignalPath.matchAll(regex)) {
     if (match === undefined || match.index === undefined) {
@@ -524,7 +524,7 @@ function computePath(orignalPath: string): {
       path += orignalPath.substring(lastMatchEnd, match.index);
     }
     if (match[0].length > 0) {
-      path += "%s";
+      path += '%s';
       variables.push(match[0].substring(2, match[0].length - 1));
     }
     lastMatchEnd = match.index + match[0].length;
@@ -553,19 +553,19 @@ function toResultType(
 ) {
   const dtoPkg = `${artifactConfig.rootPackageName}.dto`;
   if (type === undefined) {
-    return "void";
+    return 'void';
   }
 
-  if (type.variant === "union" || type.variant === "record") {
+  if (type.variant === 'union' || type.variant === 'record') {
     const dtoType = fqn(`${dtoPkg}.${type.type}DTO`);
     if (type.array) {
-      return `${fqn("java.util.List")}<${dtoType}>`;
+      return `${fqn('java.util.List')}<${dtoType}>`;
     } else {
       return dtoType;
     }
-  } else if (typeof type.type === "string") {
+  } else if (typeof type.type === 'string') {
     if (type.array) {
-      return `${fqn("java.util.List")}<${resolveObjectType(
+      return `${fqn('java.util.List')}<${resolveObjectType(
         type.type,
         artifactConfig.nativeTypeSubstitues,
         fqn

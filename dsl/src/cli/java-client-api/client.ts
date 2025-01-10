@@ -1,13 +1,13 @@
-import { CompositeGeneratorNode, NL, toString } from "langium/generate";
+import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 
-import { Artifact, ArtifactGenerationConfig } from "../artifact-generator.js";
+import { Artifact, ArtifactGenerationConfig } from '../artifact-generator.js';
 import {
   JavaImportsCollector,
   JavaClientAPIGeneratorConfig,
   generateCompilationUnit,
   toPath,
-} from "../java-gen-utils.js";
-import { toFirstUpper } from "../util.js";
+} from '../java-gen-utils.js';
+import { toFirstUpper } from '../util.js';
 
 export function generateClient(
   generatorConfig: ArtifactGenerationConfig,
@@ -18,8 +18,8 @@ export function generateClient(
   const importCollector = new JavaImportsCollector(packageName);
   const fqn = importCollector.importType.bind(importCollector);
 
-  const uriType = fqn("java.net.URI");
-  const slType = fqn("java.util.ServiceLoader");
+  const uriType = fqn('java.net.URI');
+  const slType = fqn('java.util.ServiceLoader');
   const clFactoryType = fqn(
     `${artifactConfig.rootPackageName}.spi.${toFirstUpper(
       generatorConfig.name
@@ -46,23 +46,24 @@ export function generateClient(
         NL
       );
     });
-    client.append("}", NL);
+    client.append('}', NL);
     client.append(
       `public <T extends ${baseDTOType}.Builder> T builder(Class<T> clazz);`,
       NL
     );
     client.append(
-      "public <T extends BaseService> T service(Class<T> clazz);",
+      'public <T extends BaseService> T service(Class<T> clazz);',
       NL
     );
   });
 
-  content.append("}", NL);
+  content.append('}', NL);
 
   return {
     name: `${toFirstUpper(generatorConfig.name)}Client.java`,
     content: toString(
-      generateCompilationUnit(packageName, importCollector, content)
+      generateCompilationUnit(packageName, importCollector, content),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };

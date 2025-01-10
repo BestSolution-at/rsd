@@ -1,13 +1,13 @@
-import { CompositeGeneratorNode, NL, toString } from "langium/generate";
+import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 
-import { Artifact, ArtifactGenerationConfig } from "../artifact-generator.js";
+import { Artifact, ArtifactGenerationConfig } from '../artifact-generator.js';
 import {
   JavaImportsCollector,
   JavaClientAPIGeneratorConfig,
   generateCompilationUnit,
   toPath,
-} from "../java-gen-utils.js";
-import { toFirstUpper } from "../util.js";
+} from '../java-gen-utils.js';
+import { toFirstUpper } from '../util.js';
 
 export function generateFactory(
   generatorConfig: ArtifactGenerationConfig,
@@ -29,16 +29,17 @@ export function generateFactory(
         generatorConfig.name
       )}Client`
     );
-    const uriType = fqn("java.net.URI");
+    const uriType = fqn('java.net.URI');
 
     child.append(`public ${clientType} create(${uriType} uri);`, NL);
   });
-  content.append("}", NL);
+  content.append('}', NL);
 
   return {
     name: `${toFirstUpper(generatorConfig.name)}ClientFactory.java`,
     content: toString(
-      generateCompilationUnit(packageName, importCollector, content)
+      generateCompilationUnit(packageName, importCollector, content),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };

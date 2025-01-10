@@ -3,9 +3,9 @@ import {
   IndentNode,
   NL,
   toString,
-} from "langium/generate";
+} from 'langium/generate';
 
-import { Artifact } from "../artifact-generator.js";
+import { Artifact } from '../artifact-generator.js';
 import {
   JavaImportsCollector,
   JavaClientAPIGeneratorConfig,
@@ -13,9 +13,9 @@ import {
   resolveObjectType,
   resolveType,
   toPath,
-} from "../java-gen-utils.js";
-import { MOperation, MParameter, MReturnType, MService } from "../model.js";
-import { toType } from "./shared.js";
+} from '../java-gen-utils.js';
+import { MOperation, MParameter, MReturnType, MService } from '../model.js';
+import { toType } from './shared.js';
 
 export function generateService(
   s: MService,
@@ -42,12 +42,13 @@ export function generateService(
       }
     });
   });
-  node.append("}");
+  node.append('}');
 
   return {
     name: `${s.name}Service.java`,
     content: toString(
-      generateCompilationUnit(packageName, importCollector, node)
+      generateCompilationUnit(packageName, importCollector, node),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };
@@ -66,15 +67,15 @@ function toMethod(
   child.append(
     `public ${toResultType(o.resultType, artifactConfig, fqn)} ${
       o.name
-    }(${parameters.join(",")})`
+    }(${parameters.join(',')})`
   );
   if (o.errors.length > 0) {
     child.appendNewLine();
     child.indent((throwBody) => {
       throwBody.append(
-        "throws ",
+        'throws ',
         fqn(`${artifactConfig.rootPackageName}.${o.errors[0]}Exception`),
-        o.errors.length > 1 ? "," : ""
+        o.errors.length > 1 ? ',' : ''
       );
       if (o.errors.length > 1) {
         throwBody.appendNewLine();
@@ -83,7 +84,7 @@ function toMethod(
         o.errors.slice(1).forEach((e, idx, arr) => {
           other.append(
             fqn(`${artifactConfig.rootPackageName}.${e}Exception`),
-            arr.length !== idx + 1 ? "," : ""
+            arr.length !== idx + 1 ? ',' : ''
           );
           if (arr.length !== idx + 1) {
             other.appendNewLine();
@@ -92,7 +93,7 @@ function toMethod(
       });
     });
   }
-  child.append(";", NL);
+  child.append(';', NL);
   child.appendNewLine();
 }
 
@@ -113,19 +114,19 @@ function toResultType(
 ) {
   const dtoPkg = `${artifactConfig.rootPackageName}.dto`;
   if (type === undefined) {
-    return "void";
+    return 'void';
   }
 
-  if (type.variant === "union" || type.variant === "record") {
+  if (type.variant === 'union' || type.variant === 'record') {
     const dtoType = fqn(`${dtoPkg}.${type.type}DTO`);
     if (type.array) {
-      return `${fqn("java.util.List")}<${dtoType}>`;
+      return `${fqn('java.util.List')}<${dtoType}>`;
     } else {
       return dtoType;
     }
-  } else if (typeof type.type === "string") {
+  } else if (typeof type.type === 'string') {
     if (type.array) {
-      return `${fqn("java.util.List")}<${resolveObjectType(
+      return `${fqn('java.util.List')}<${resolveObjectType(
         type.type,
         artifactConfig.nativeTypeSubstitues,
         fqn

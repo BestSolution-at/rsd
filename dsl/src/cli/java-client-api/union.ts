@@ -27,7 +27,8 @@ export function generateUnion(
         packageName,
         importCollector,
         generateUnionContent(t, artifactConfig, fqn, packageName)
-      )
+      ),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };

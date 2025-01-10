@@ -41,7 +41,8 @@ export function generateRecord(
         packageName,
         importCollector,
         generateRecordContent(t, artifactConfig, fqn)
-      )
+      ),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };
@@ -84,19 +85,147 @@ export function generateRecordPatch(
     allProps.forEach((p) => {
       if (isMKeyProperty(p) || isMRevisionProperty(p)) {
         generateProperty(patchBody, p, artifactConfig, fqn);
-      } else if (p.nullable === false && p.array === false) {
-        generateProperty(patchBody, p, artifactConfig, fqn, true);
+      } else {
+        if (p.array === false) {
+          generateProperty(patchBody, p, artifactConfig, fqn, true);
+        } else {
+          if (
+            p.variant === 'inline-enum' ||
+            p.variant === 'enum' ||
+            p.variant === 'builtin'
+          ) {
+            generateProperty(patchBody, p, artifactConfig, fqn, true);
+          }
+        }
       }
     });
+
     allProps.forEach((p) => {
-      if (
-        !isMKeyProperty(p) &&
-        !isMRevisionProperty(p) &&
-        p.nullable === false &&
-        p.array === false
-      ) {
+      if (!isMKeyProperty(p) && !isMRevisionProperty(p)) {
+        let singleType = '';
+        if (isMInlineEnumType(p.type)) {
+          singleType = toFirstUpper(p.name);
+        } else if (p.variant === 'record' || p.variant === 'union') {
+          singleType = `Either<${p.type}DTO.Patch, ${p.type}DTO>`;
+        } else {
+          singleType = resolveObjectType(
+            p.type,
+            artifactConfig.nativeTypeSubstitues,
+            fqn
+          );
+        }
+
+        const type = p.array
+          ? `${fqn('java.util.List')}<${singleType}>`
+          : singleType;
         const Consumer = fqn('java.util.function.Consumer');
         const Function = fqn('java.util.function.Function');
+
+        patchBody.append(
+          `public static void if${toFirstUpper(
+            p.name
+          )}(Patch dto, ${Consumer}<${type}> consumer) {`,
+          NL
+        );
+        patchBody.indent((mBody) => {
+          mBody.append(`if( dto.isSet(Props.${p.name.toUpperCase()}) ) {`, NL);
+          mBody.indent((block) => {
+            block.append(`consumer.accept(dto.${p.name}());`, NL);
+          });
+          mBody.append('}', NL);
+        });
+        patchBody.append('}', NL);
+
+        patchBody.append(
+          `public static <T> T if${toFirstUpper(
+            p.name
+          )}(Patch dto, ${Function}<${type}, T> consumer, T defaultValue) {`,
+          NL
+        );
+        patchBody.indent((mBody) => {
+          mBody.append(`if( dto.isSet(Props.${p.name.toUpperCase()}) ) {`, NL);
+          mBody.indent((block) => {
+            block.append(`return consumer.apply(dto.${p.name}());`, NL);
+          });
+          mBody.append('}', NL);
+
+          mBody.append('return defaultValue;', NL);
+        });
+
+        patchBody.append('}', NL);
+      }
+    });
+    /*allProps.forEach((p) => {
+      if (!isMKeyProperty(p) && !isMRevisionProperty(p)) {
+        if (p.array) {
+          if (p.variant === 'inline-enum' || p.variant === 'enum') {
+            let type: string = '';
+            if (typeof p.type === 'string') {
+              type = resolveType(
+                p.type,
+                artifactConfig.nativeTypeSubstitues,
+                fqn,
+                p.nullable || p.optional || p.array
+              );
+            } else {
+              type = toFirstUpper(p.name);
+            }
+
+            const Consumer = fqn('java.util.function.Consumer');
+            const Function = fqn('java.util.function.Function');
+            const List = fqn('java.util.List');
+
+            patchBody.append(
+              `public static void if${toFirstUpper(
+                p.name
+              )}(Patch dto, ${Consumer}<${List}<${type}>> consumer) {`,
+              NL
+            );
+            patchBody.indent((mBody) => {
+              mBody.append(
+                `if( dto.isSet(Props.${p.name.toUpperCase()}) ) {`,
+                NL
+              );
+              mBody.indent((block) => {
+                block.append(`consumer.accept(dto.${p.name}());`, NL);
+              });
+              mBody.append('}', NL);
+            });
+            patchBody.append('}', NL);
+            patchBody.append(
+              `public static <T> T if${toFirstUpper(
+                p.name
+              )}(Patch dto, ${Function}<${List}<${resolveObjectType(
+                type,
+                artifactConfig.nativeTypeSubstitues,
+                fqn
+              )}>, T> consumer, T defaultValue) {`,
+              NL
+            );
+            patchBody.indent((mBody) => {
+              mBody.append(
+                `if( dto.isSet(Props.${p.name.toUpperCase()}) ) {`,
+                NL
+              );
+              mBody.indent((block) => {
+                block.append(`return consumer.apply(dto.${p.name}());`, NL);
+              });
+              mBody.append('}', NL);
+
+              mBody.append('return defaultValue;', NL);
+            });
+
+            patchBody.append('}', NL);
+            return;
+          } else {
+            // TODO handle correctly
+            return;
+          }
+        }
+
+        const Consumer = fqn('java.util.function.Consumer');
+        const Function = fqn('java.util.function.Function');
+
         if (p.variant === 'union' || p.variant === 'record') {
         } else if (typeof p.type === 'string') {
           patchBody.append(
@@ -147,7 +276,7 @@ export function generateRecordPatch(
           patchBody.append('}', NL);
         }
       }
-    });
+    });*/
   });
   child.append('}', NL);
 }

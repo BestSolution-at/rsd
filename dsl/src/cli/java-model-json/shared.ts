@@ -1,4 +1,4 @@
-/*import { IndentNode, NL } from "langium/generate";
+import { IndentNode, NL } from 'langium/generate';
 import {
   isMBuiltinType,
   isMKeyProperty,
@@ -7,14 +7,14 @@ import {
   MKeyProperty,
   MProperty,
   MRevisionProperty,
-} from "../model.js";
+} from '../model.js';
 import {
   builtinToJavaType,
   JavaRestClientJDKGeneratorConfig,
   resolveType,
-} from "../java-gen-utils.js";
-import { toType } from "../java-client-api/shared.js";
-import { toFirstUpper } from "../util.js";
+} from '../java-gen-utils.js';
+import { toType } from '../java-client-api/shared.js';
+import { toFirstUpper } from '../util.js';
 
 export function generateProperty(
   node: IndentNode,
@@ -23,7 +23,7 @@ export function generateProperty(
   fqn: (type: string) => string
 ) {
   if (isMKeyProperty(property) || isMRevisionProperty(property)) {
-    node.append("@Override", NL);
+    node.append('@Override', NL);
     node.append(
       `public ${builtinToJavaType(property.type, fqn)} ${property.name}() {`,
       NL
@@ -31,9 +31,9 @@ export function generateProperty(
     node.indent((methodBody) => {
       methodBody.append(`return ${builtinSimpleJSONAccess(property)};`, NL);
     });
-    node.append("}", NL);
+    node.append('}', NL);
   } else {
-    node.append("@Override", NL);
+    node.append('@Override', NL);
     node.append(
       `public ${toType(property, artifactConfig, fqn, property.nullable)} ${
         property.name
@@ -42,7 +42,7 @@ export function generateProperty(
     );
     node.indent((methodBody) => {
       if (property.array) {
-        if (property.variant === "builtin" && isMBuiltinType(property.type)) {
+        if (property.variant === 'builtin' && isMBuiltinType(property.type)) {
           methodBody.append(
             `return ${builtinArrayJSONAccess(
               { type: property.type, name: property.name },
@@ -51,16 +51,16 @@ export function generateProperty(
             NL
           );
         } else if (
-          property.variant === "enum" ||
-          property.variant === "inline-enum" ||
-          property.variant === "scalar"
+          property.variant === 'enum' ||
+          property.variant === 'inline-enum' ||
+          property.variant === 'scalar'
         ) {
           if (
-            property.variant === "enum" ||
-            property.variant === "inline-enum"
+            property.variant === 'enum' ||
+            property.variant === 'inline-enum'
           ) {
             const type =
-              typeof property.type === "string"
+              typeof property.type === 'string'
                 ? property.type
                 : toFirstUpper(property.name);
             methodBody.append(
@@ -74,7 +74,7 @@ export function generateProperty(
               )}::valueOf);`,
               NL
             );
-          } else if (typeof property.type === "string") {
+          } else if (typeof property.type === 'string') {
             methodBody.append(
               `return DTOUtils.mapLiterals(data, "${
                 property.name
@@ -99,7 +99,7 @@ export function generateProperty(
           );
         }
       } else {
-        if (property.variant === "builtin" && isMBuiltinType(property.type)) {
+        if (property.variant === 'builtin' && isMBuiltinType(property.type)) {
           if (property.nullable || property.optional) {
             methodBody.append(
               `return ${builtinOptionalJSONAccess({
@@ -120,13 +120,13 @@ export function generateProperty(
         } else {
           if (property.nullable || property.optional) {
             if (
-              property.variant === "enum" ||
-              property.variant === "inline-enum" ||
-              property.variant === "scalar"
+              property.variant === 'enum' ||
+              property.variant === 'inline-enum' ||
+              property.variant === 'scalar'
             ) {
               if (
-                property.variant === "enum" ||
-                property.variant === "inline-enum"
+                property.variant === 'enum' ||
+                property.variant === 'inline-enum'
               ) {
                 methodBody.append(
                   `return DTOUtils.mapLiteral(data, "${
@@ -165,13 +165,13 @@ export function generateProperty(
             }
           } else {
             if (
-              property.variant === "enum" ||
-              property.variant === "inline-enum" ||
-              property.variant === "scalar"
+              property.variant === 'enum' ||
+              property.variant === 'inline-enum' ||
+              property.variant === 'scalar'
             ) {
               if (
-                property.variant === "enum" ||
-                property.variant === "inline-enum"
+                property.variant === 'enum' ||
+                property.variant === 'inline-enum'
               ) {
                 methodBody.append(
                   `return DTOUtils.mapLiteral(data, "${
@@ -207,7 +207,7 @@ export function generateProperty(
         }
       }
     });
-    node.append("}", NL);
+    node.append('}', NL);
   }
 }
 
@@ -216,31 +216,31 @@ function builtinArrayJSONAccess(
   fqn: (type: string) => string
 ): string {
   switch (property.type) {
-    case "boolean":
+    case 'boolean':
       return `DTOUtils.mapBooleans(data, "${property.name}")`;
-    case "double":
+    case 'double':
       return `DTOUtils.mapDoubles(data, "${property.name}")`;
-    case "float":
+    case 'float':
       return `DTOUtils.mapFloats(data, "${property.name}")`;
-    case "int":
+    case 'int':
       return `DTOUtils.mapInts(data, "${property.name}")`;
-    case "local-date":
+    case 'local-date':
       return `DTOUtils.mapLiterals(data, "${property.name}", ${fqn(
-        "java.time.LocalDate"
+        'java.time.LocalDate'
       )}::parse)`;
-    case "local-date-time":
+    case 'local-date-time':
       return `DTOUtils.mapLiterals(data, "${property.name}, ${fqn(
-        "java.time.LocalDateTime"
+        'java.time.LocalDateTime'
       )}::parse)`;
-    case "long":
+    case 'long':
       return `DTOUtils.mapLongs(data, "${property.name}")`;
-    case "short":
+    case 'short':
       return `DTOUtils.mapShorts(data, "${property.name}")`;
-    case "string":
+    case 'string':
       return `DTOUtils.mapStrings(data, "${property.name}")`;
-    case "zoned-date-time":
+    case 'zoned-date-time':
       return `DTOUtils.mapLiterals(data, "${property.name}, ${fqn(
-        "java.time.ZonedDateTime"
+        'java.time.ZonedDateTime'
       )}::parse)`;
   }
 }
@@ -250,25 +250,25 @@ function builtinSimpleJSONAccess(property: {
   name: string;
 }): string {
   switch (property.type) {
-    case "boolean":
+    case 'boolean':
       return `DTOUtils.mapBoolean(data, "${property.name}")`;
-    case "double":
+    case 'double':
       return `DTOUtils.mapDouble(data, "${property.name}")`;
-    case "float":
+    case 'float':
       return `DTOUtils.mapFloat(data, "${property.name}")`;
-    case "int":
+    case 'int':
       return `DTOUtils.mapInt(data, "${property.name}")`;
-    case "local-date":
+    case 'local-date':
       return `DTOUtils.mapLocalDate(data, "${property.name}")`;
-    case "local-date-time":
+    case 'local-date-time':
       return `DTOUtils.mapLocalDateTime(data, "${property.name}")`;
-    case "long":
+    case 'long':
       return `DTOUtils.mapLong(data, "${property.name}")`;
-    case "short":
+    case 'short':
       return `DTOUtils.mapShort(data, "${property.name}")`;
-    case "string":
+    case 'string':
       return `DTOUtils.mapString(data, "${property.name}")`;
-    case "zoned-date-time":
+    case 'zoned-date-time':
       return `DTOUtils.mapZonedDateTime(data, "${property.name}")`;
   }
 }
@@ -278,25 +278,25 @@ function builtinOptionalJSONAccess(property: {
   name: string;
 }): string {
   switch (property.type) {
-    case "boolean":
+    case 'boolean':
       return `DTOUtils.mapBoolean(data, "${property.name}", false)`;
-    case "double":
+    case 'double':
       return `DTOUtils.mapDouble(data, "${property.name}", 0)`;
-    case "float":
+    case 'float':
       return `DTOUtils.mapFloat(data, "${property.name}", 0)`;
-    case "int":
+    case 'int':
       return `DTOUtils.mapInt(data, "${property.name}", 0)`;
-    case "local-date":
+    case 'local-date':
       return `DTOUtils.mapLocalDate(data, "${property.name}", null)`;
-    case "local-date-time":
+    case 'local-date-time':
       return `DTOUtils.mapLocalDateTime(data, "${property.name}", null)`;
-    case "long":
+    case 'long':
       return `DTOUtils.mapLong(data, "${property.name}", 0)`;
-    case "short":
+    case 'short':
       return `DTOUtils.mapShort(data, "${property.name}", (short) 0)`;
-    case "string":
+    case 'string':
       return `DTOUtils.mapString(data, "${property.name}", null)`;
-    case "zoned-date-time":
+    case 'zoned-date-time':
       return `DTOUtils.mapZonedDateTime(data, "${property.name}", null)`;
   }
 }
@@ -309,22 +309,22 @@ export function generateBuilderProperty(
   typePrefix?: string
 ) {
   if (isMKeyProperty(property) || isMRevisionProperty(property)) {
-    node.append("@Override", NL);
+    node.append('@Override', NL);
     node.append(
-      `public ${typePrefix ? `${typePrefix}.` : ""}Builder ${
+      `public ${typePrefix ? `${typePrefix}.` : ''}Builder ${
         property.name
       }(${builtinToJavaType(property.type, fqn)} ${property.name}) {`,
       NL
     );
     node.indent((methodBody) => {
       methodBody.append(`${builtinBuilderAccess(property)};`, NL);
-      methodBody.append("return this;", NL);
+      methodBody.append('return this;', NL);
     });
-    node.append("}", NL);
+    node.append('}', NL);
   } else {
-    node.append("@Override", NL);
+    node.append('@Override', NL);
     node.append(
-      `public ${typePrefix ? `${typePrefix}.` : ""}Builder ${
+      `public ${typePrefix ? `${typePrefix}.` : ''}Builder ${
         property.name
       }(${toType(property, artifactConfig, fqn, property.nullable)} ${
         property.name
@@ -338,8 +338,8 @@ export function generateBuilderProperty(
         !(isMBuiltinType(property.type) && isJavaPrimitive(property.type))
       ) {
         methodBody.append(`if( ${property.name} == null ) {`, NL);
-        methodBody.indent((block) => block.append("return this;", NL));
-        methodBody.append("}", NL);
+        methodBody.indent((block) => block.append('return this;', NL));
+        methodBody.append('}', NL);
       }
       if (
         property.nullable &&
@@ -348,12 +348,12 @@ export function generateBuilderProperty(
         methodBody.append(`if( ${property.name} == null ) {`, NL);
         methodBody.indent((block) => {
           block.append(`$builder.addNull("${property.name}");`, NL);
-          block.append("return this;", NL);
+          block.append('return this;', NL);
         });
-        methodBody.append("}", NL);
+        methodBody.append('}', NL);
       }
       if (property.array) {
-        if (property.variant === "builtin" && isMBuiltinType(property.type)) {
+        if (property.variant === 'builtin' && isMBuiltinType(property.type)) {
           methodBody.append(
             `${builtinBuilderArrayJSONAccess({
               type: property.type,
@@ -362,9 +362,9 @@ export function generateBuilderProperty(
             NL
           );
         } else if (
-          property.variant === "enum" ||
-          property.variant === "inline-enum" ||
-          property.variant === "scalar"
+          property.variant === 'enum' ||
+          property.variant === 'inline-enum' ||
+          property.variant === 'scalar'
         ) {
           methodBody.append(
             `$builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name}));`,
@@ -377,7 +377,7 @@ export function generateBuilderProperty(
           );
         }
       } else {
-        if (property.variant === "builtin" && isMBuiltinType(property.type)) {
+        if (property.variant === 'builtin' && isMBuiltinType(property.type)) {
           methodBody.append(
             `${builtinBuilderAccess({
               type: property.type,
@@ -386,9 +386,9 @@ export function generateBuilderProperty(
             NL
           );
         } else if (
-          property.variant === "enum" ||
-          property.variant === "inline-enum" ||
-          property.variant === "scalar"
+          property.variant === 'enum' ||
+          property.variant === 'inline-enum' ||
+          property.variant === 'scalar'
         ) {
           methodBody.append(
             `$builder.add("${property.name}", ${property.name}.toString());`,
@@ -401,9 +401,9 @@ export function generateBuilderProperty(
           );
         }
       }
-      methodBody.append("return this;", NL);
+      methodBody.append('return this;', NL);
     });
-    node.append("}", NL);
+    node.append('}', NL);
   }
 }
 
@@ -412,25 +412,25 @@ export function builtinBuilderArrayJSONAccess(property: {
   name: string;
 }): string {
   switch (property.type) {
-    case "boolean":
+    case 'boolean':
       return `$builder.add("${property.name}", DTOUtils.toJsonBooleanArray(${property.name})`;
-    case "double":
+    case 'double':
       return `$builder.add("${property.name}", DTOUtils.toJsonDoubleArray(${property.name})`;
-    case "float":
+    case 'float':
       return `$builder.add("${property.name}", DTOUtils.toJsonFloatArray(${property.name})`;
-    case "int":
+    case 'int':
       return `$builder.add("${property.name}", DTOUtils.toJsonIntArray(${property.name})`;
-    case "local-date":
+    case 'local-date':
       return `$builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name})`;
-    case "local-date-time":
+    case 'local-date-time':
       return `$builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name})::toString)`;
-    case "long":
+    case 'long':
       return `$builder.add("${property.name}", DTOUtils.toJsonLongArray(${property.name})`;
-    case "short":
+    case 'short':
       return `$builder.add("${property.name}", DTOUtils.toJsonShortArray(${property.name})`;
-    case "string":
+    case 'string':
       return `$builder.add("${property.name}", DTOUtils.toJsonStringArray(${property.name})`;
-    case "zoned-date-time":
+    case 'zoned-date-time':
       return `$builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name})`;
   }
 }
@@ -440,31 +440,30 @@ export function builtinBuilderAccess(property: {
   name: string;
 }): string {
   switch (property.type) {
-    case "boolean":
-    case "double":
-    case "float":
-    case "int":
-    case "long":
-    case "short":
-    case "string":
+    case 'boolean':
+    case 'double':
+    case 'float':
+    case 'int':
+    case 'long':
+    case 'short':
+    case 'string':
       return `$builder.add("${property.name}", ${property.name})`;
-    case "local-date":
-    case "local-date-time":
-    case "zoned-date-time":
+    case 'local-date':
+    case 'local-date-time':
+    case 'zoned-date-time':
       return `$builder.add("${property.name}", ${property.name}.toString())`;
   }
 }
 
 function isJavaPrimitive(type: MBuiltinType) {
   switch (type) {
-    case "boolean":
-    case "double":
-    case "float":
-    case "int":
-    case "long":
-    case "short":
+    case 'boolean':
+    case 'double':
+    case 'float':
+    case 'int':
+    case 'long':
+    case 'short':
       return true;
   }
   return false;
 }
-*/

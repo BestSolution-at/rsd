@@ -1,13 +1,13 @@
-import { toString } from "langium/generate";
+import { toString } from 'langium/generate';
 
-import { Artifact } from "../artifact-generator.js";
+import { Artifact } from '../artifact-generator.js';
 import {
   generateCompilationUnit,
   JavaClientAPIGeneratorConfig,
   JavaImportsCollector,
   toPath,
-} from "../java-gen-utils.js";
-import { generateBaseDTOContent } from "../java-client-api/base-dto.js";
+} from '../java-gen-utils.js';
+import { generateBaseDTOContent } from '../java-client-api/base-dto.js';
 
 export function generateBaseDTO(
   artifactConfig: JavaClientAPIGeneratorConfig
@@ -15,13 +15,14 @@ export function generateBaseDTO(
   const packageName = `${artifactConfig.rootPackageName}.service.dto`;
 
   return {
-    name: "BaseDTO.java",
+    name: 'BaseDTO.java',
     content: toString(
       generateCompilationUnit(
         packageName,
         new JavaImportsCollector(packageName),
         generateBaseDTOContent()
-      )
+      ),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };

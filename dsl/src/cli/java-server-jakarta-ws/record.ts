@@ -46,13 +46,14 @@ export function generateRecord(
           packageName,
           importCollector,
           generateRecordContent(t, artifactConfig, fqn, model)
-        )
+        ),
+        '\t'
       ),
       path: toPath(artifactConfig.targetFolder, packageName),
     });
   }
 
-  if (t.patchable) {
+  /*if (t.patchable) {
     const importCollector = new JavaImportsCollector(packageName);
     const fqn = importCollector.importType.bind(importCollector);
 
@@ -63,16 +64,17 @@ export function generateRecord(
           packageName,
           importCollector,
           generateRecordPatch(t, artifactConfig, fqn)
-        )
+        ),
+        '\t'
       ),
       path: toPath(artifactConfig.targetFolder, packageName),
     });
-  }
+  }*/
 
   return result;
 }
 
-function generateRecordPatch(
+/*function generateRecordPatch(
   t: MResolvedRecordType,
   artifactConfig: JavaServerJakartaWSGeneratorConfig,
   fqn: (type: string) => string
@@ -147,7 +149,23 @@ function generateFields(
         }
       } else if (typeof property.type === 'string') {
         if (property.array) {
-          // TODO
+          if (
+            property.variant === 'inline-enum' ||
+            property.variant === 'enum'
+          ) {
+            const list = fqn('java.util.List');
+            const type =
+              property.variant === 'inline-enum'
+                ? toFirstUpper(property.name)
+                : resolveObjectType(
+                    property.type,
+                    artifactConfig.nativeTypeSubstitues,
+                    fqn
+                  );
+            node.append(`private ${list}<${type}> ${property.name};`, NL);
+          } else {
+            // TODO
+          }
         } else {
           node.append(
             `private ${resolveType(
@@ -217,13 +235,40 @@ function generateAccessors(
           property.type,
           artifactConfig.nativeTypeSubstitues,
           fqn,
-          property.nullable || property.optional
+          property.nullable || property.optional || property.array
         );
       } else {
         type = toFirstUpper(property.name);
       }
 
       if (property.array) {
+        if (property.variant === 'inline-enum' || property.variant === 'enum') {
+          const List = fqn('java.util.List');
+          node.append(
+            `public void set${toFirstUpper(property.name)}(${List}<${type}> ${
+              property.name
+            }) {`,
+            NL
+          );
+          node.indent((mBody) => {
+            mBody.append(`this.${property.name} = ${property.name};`, NL);
+            mBody.append(
+              `this.dataSet.add(Props.${property.name.toUpperCase()});`,
+              NL
+            );
+          });
+          node.append('}', NL);
+          node.appendNewLine();
+          node.append('@Override', NL);
+          node.append(`public ${List}<${type}> ${property.name}() {`, NL);
+          node.indent((mBody) => {
+            mBody.append(`return this.${property.name};`, NL);
+          });
+          node.append('}', NL);
+          node.appendNewLine();
+        } else {
+          // TODO
+        }
       } else {
         node.append(
           `public void set${toFirstUpper(property.name)}(${type} ${
@@ -251,7 +296,7 @@ function generateAccessors(
     }
   });
   return node;
-}
+}*/
 
 export function generateRecordContent(
   t: MResolvedRecordType,
@@ -305,16 +350,15 @@ export function generateRecordContent(
       NL
     );
     body.indent((mBody) => {
-      mBody.append('if(source == null) {', NL);
+      mBody.append('if (source == null) {', NL);
       mBody.indent((inner) => {
         inner.append('return null;', NL);
       });
-      mBody.append('}', NL);
-      mBody.append(`else if(source instanceof ${t.name}DTOImpl) {`, NL);
+      mBody.append(`} else if (source instanceof ${t.name}DTOImpl) {`, NL);
       mBody.indent((inner) => {
-        inner.append(`return (${t.name}DTOImpl)source;`, NL);
+        inner.append(`return (${t.name}DTOImpl) source;`, NL);
       });
-      mBody.append('}');
+      mBody.append('}', NL);
       mBody.appendNewLine();
       mBody.append(`var rv = new ${t.name}DTOImpl();`, NL);
       allProps.forEach((p, idx, arr) => {
@@ -339,7 +383,7 @@ export function generateRecordContent(
       });
       mBody.append('return rv;', NL);
     });
-    body.append('}');
+    body.append('}', NL);
   });
 
   node.appendNewLine();
@@ -383,6 +427,7 @@ export function generateRecordContent(
               `public ${dtoInterface}.Builder with${toFirstUpper(
                 p.name
               )}(${functionType}<${iType}.Builder, ${iType}> block) {`,
+              NL,
               NL
             );
             param.indent((methodBody) => {
@@ -391,12 +436,13 @@ export function generateRecordContent(
               );
               methodBody.append('return this;', NL);
             });
-            param.append('}', NL);
+            param.append('}', NL, NL);
           } else {
             param.append(
               `public <T extends ${iType}.Builder> Builder with${toFirstUpper(
                 p.name
               )}(Class<T> clazz, ${functionType}<T, ${iType}> block) {`,
+              NL,
               NL
             );
             param.indent((methodBody) => {
@@ -430,7 +476,7 @@ export function generateRecordContent(
               }
               methodBody.append('return this;', NL);
             });
-            param.append('}', NL);
+            param.append('}', NL, NL);
           }
         });
 

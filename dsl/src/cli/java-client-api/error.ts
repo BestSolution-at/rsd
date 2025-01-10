@@ -1,12 +1,12 @@
-import { CompositeGeneratorNode, NL, toString } from "langium/generate";
-import { Artifact } from "../artifact-generator.js";
+import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
+import { Artifact } from '../artifact-generator.js';
 import {
   generateCompilationUnit,
   JavaClientAPIGeneratorConfig,
   JavaImportsCollector,
   toPath,
-} from "../java-gen-utils.js";
-import { MError } from "../model.js";
+} from '../java-gen-utils.js';
+import { MError } from '../model.js';
 
 export function generateError(
   t: MError,
@@ -24,7 +24,8 @@ export function generateError(
         packageName,
         importCollector,
         generateSource(t, artifactConfig, fqn)
-      )
+      ),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };
@@ -41,11 +42,11 @@ function generateSource(
   node.indent((body) => {
     body.append(`public ${t.name}Exception(String message, Throwable t) {`, NL);
     body.indent((method) => {
-      method.append("super(message, t);", NL);
+      method.append('super(message, t);', NL);
     });
-    body.append("}", NL);
+    body.append('}', NL);
   });
-  node.append("}", NL);
+  node.append('}', NL);
 
   return node;
 }

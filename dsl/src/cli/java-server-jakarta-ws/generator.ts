@@ -1,36 +1,34 @@
-import chalk from "chalk";
+import chalk from 'chalk';
 import {
   isMEnumType,
   isMRecordType,
   isMUnionType,
   MResolvedRSDModel,
   MResolvedUserType,
-} from "../model.js";
+} from '../model.js';
 import {
   Artifact,
   ArtifactGenerationConfig,
   ArtifactGeneratorConfig,
-} from "../artifact-generator.js";
+} from '../artifact-generator.js';
 import {
   isJavaServerJakartaWSConfig,
   JavaServerJakartaWSGeneratorConfig,
-} from "../java-gen-utils.js";
+} from '../java-gen-utils.js';
 
-import { generateRecord } from "./record.js";
-import { generateUnion } from "./union.js";
-import { generateService } from "./service.js";
-import { generateDTOBuilderFactory } from "./builder-factory.js";
+import { generateService } from './service.js';
+import { generateDTOBuilderFactory } from './builder-factory.js';
 
 export function generate(
   model: MResolvedRSDModel,
   generatorConfig: ArtifactGenerationConfig,
   artifactConfig: ArtifactGeneratorConfig
 ): readonly Artifact[] {
-  console.log(chalk.cyan("Generating Java-Server-Jakarta-WS"));
+  console.log(chalk.cyan('Generating Java-Server-Jakarta-WS'));
 
   if (!isJavaServerJakartaWSConfig(artifactConfig)) {
     console.log(
-      chalk.red("  Invalid configuration passed aborted artifact generation")
+      chalk.red('  Invalid configuration passed aborted artifact generation')
     );
     return [];
   }
@@ -51,16 +49,24 @@ function generateType(
   model: MResolvedRSDModel,
   artifactConfig: JavaServerJakartaWSGeneratorConfig
 ): Artifact[] {
-  if (isMEnumType(t)) {
+  /*if (isMEnumType(t)) {
   } else if (isMRecordType(t)) {
     return generateRecord(t, model, artifactConfig);
   } else if (isMUnionType(t)) {
     return generateUnion(t, artifactConfig);
+  }*/
+
+  if (isMEnumType(t)) {
+  } else if (isMRecordType(t)) {
+    return []; // generateRecord(t, model, artifactConfig);
+  } else if (isMUnionType(t)) {
+    return []; //generateUnion(t, artifactConfig);
   }
+
   return [];
 }
 
 export default {
-  name: "java-server-jakarta-ws",
+  name: 'java-server-jakarta-ws',
   generate,
 };

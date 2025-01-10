@@ -111,7 +111,7 @@ export function generateProperty(
   } else {
     if (property.variant === 'union' || property.variant === 'record') {
       const type = isPatch
-        ? `${property.type}DTO.Patch`
+        ? `Either<${property.type}DTO.Patch, ${property.type}DTO>`
         : `${property.type}DTO`;
       if (property.array) {
         node.append(
