@@ -8,18 +8,20 @@ import {
   toPath,
 } from '../java-gen-utils.js';
 
-export function generateBaseDTO(
+import { generateBaseContent } from '../java-model-api/base.js';
+
+export function generateBase(
   artifactConfig: JavaClientAPIGeneratorConfig
 ): Artifact {
-  const packageName = `${artifactConfig.rootPackageName}.dto`;
+  const packageName = `${artifactConfig.rootPackageName}.model`;
 
   return {
-    name: 'BaseDTO.java',
+    name: '_Base.java',
     content: toString(
       generateCompilationUnit(
         packageName,
         new JavaImportsCollector(packageName),
-        generateBaseDTOContent()
+        generateBaseContent()
       ),
       '\t'
     ),

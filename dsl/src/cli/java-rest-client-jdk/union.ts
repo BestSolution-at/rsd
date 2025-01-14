@@ -13,18 +13,23 @@ export function generateUnion(
   t: MResolvedUnionType,
   artifactConfig: JavaRestClientJDKGeneratorConfig
 ): Artifact {
-  const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.dto`;
+  const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
 
   const importCollector = new JavaImportsCollector(packageName);
   const fqn = importCollector.importType.bind(importCollector);
 
   return {
-    name: `${t.name}DTOImpl.java`,
+    name: `${t.name}DataImpl.java`,
     content: toString(
       generateCompilationUnit(
         packageName,
         importCollector,
-        generateUnionContent(t, artifactConfig, fqn)
+        generateUnionContent(
+          t,
+          artifactConfig.nativeTypeSubstitues,
+          `${artifactConfig.rootPackageName}.model`,
+          fqn
+        )
       )
     ),
     path: toPath(artifactConfig.targetFolder, packageName),

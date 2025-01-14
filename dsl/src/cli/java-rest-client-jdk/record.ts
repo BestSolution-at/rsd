@@ -14,19 +14,26 @@ export function generateRecord(
   model: MResolvedRSDModel,
   artifactConfig: JavaRestClientJDKGeneratorConfig
 ): Artifact | undefined {
-  const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.dto`;
+  const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
 
   const importCollector = new JavaImportsCollector(packageName);
   const fqn = importCollector.importType.bind(importCollector);
 
   return {
-    name: `${t.name}DTOImpl.java`,
+    name: `${t.name}DataImpl.java`,
     content: toString(
       generateCompilationUnit(
         packageName,
         importCollector,
-        generateRecordContent(t, model, artifactConfig, fqn)
-      )
+        generateRecordContent(
+          t,
+          model,
+          artifactConfig.nativeTypeSubstitues,
+          `${artifactConfig.rootPackageName}.model`,
+          fqn
+        )
+      ),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };

@@ -6,18 +6,20 @@ import {
   JavaRestClientJDKGeneratorConfig,
   toPath,
 } from '../java-gen-utils.js';
-import { generateBaseDTOContent } from '../java-model-json/base-dto.js';
+import { generateJsonUtilsContent } from '../java-model-json/json-utils.js';
 
-export function generateBaseDTO(
+export function generateJsonUtils(
   artifactConfig: JavaRestClientJDKGeneratorConfig
 ): Artifact {
-  const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.dto`;
+  const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
 
   const importCollector = new JavaImportsCollector(packageName);
   const fqn = importCollector.importType.bind(importCollector);
-  const node = generateBaseDTOContent(fqn);
+
+  const node = generateJsonUtilsContent(fqn);
+
   return {
-    name: 'BaseDTOImpl.java',
+    name: '_JsonUtils.java',
     content: toString(
       generateCompilationUnit(packageName, importCollector, node),
       '\t'

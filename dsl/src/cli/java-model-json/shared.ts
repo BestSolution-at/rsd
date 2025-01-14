@@ -1,20 +1,243 @@
-import { IndentNode, NL } from 'langium/generate';
+import { CompositeGeneratorNode, IndentNode, NL } from 'langium/generate';
 import {
   isMBuiltinType,
+  isMInlineEnumType,
   isMKeyProperty,
   isMRevisionProperty,
   MBuiltinType,
   MKeyProperty,
   MProperty,
+  MResolvedBaseProperty,
+  MResolvedRecordType,
   MRevisionProperty,
 } from '../model.js';
 import {
   builtinToJavaType,
+  computeAPIType,
   JavaRestClientJDKGeneratorConfig,
   resolveType,
 } from '../java-gen-utils.js';
 import { toType } from '../java-client-api/shared.js';
 import { toFirstUpper } from '../util.js';
+
+export function generatePropertyNG(
+  owner: MResolvedRecordType,
+  prop: MResolvedBaseProperty,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  interfaceBasePackage: string,
+  fqn: (type: string) => string
+) {
+  const type = computeAPIType(
+    owner,
+    prop,
+    nativeTypeSubstitues,
+    interfaceBasePackage,
+    fqn
+  );
+
+  const node = new CompositeGeneratorNode();
+  node.append(`public ${type} ${prop.name}() {`, NL);
+
+  node.indent((methodBody) => {
+    methodBody.append(
+      generatePropertyContent(
+        owner,
+        prop,
+        nativeTypeSubstitues,
+        interfaceBasePackage,
+        fqn
+      )
+    );
+  });
+
+  node.append('}', NL);
+  return node;
+}
+
+function generatePropertyContent(
+  owner: MResolvedRecordType,
+  prop: MResolvedBaseProperty,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  interfaceBasePackage: string,
+  fqn: (type: string) => string
+) {
+  let mapper: string;
+  const array =
+    !isMKeyProperty(prop) && !isMRevisionProperty(prop) && prop.array;
+
+  if (isMBuiltinType(prop.type)) {
+    if (array) {
+      mapper = builtinSimpleJSONArrayAccess({
+        type: prop.type,
+        name: prop.name,
+      });
+    } else {
+      if (
+        isMKeyProperty(prop) ||
+        isMRevisionProperty(prop) ||
+        (!prop.optional && !prop.nullable)
+      ) {
+        mapper = builtinSimpleJSONAccessNG({
+          name: prop.name,
+          type: prop.type,
+        });
+      } else {
+        mapper = builtinOptionalJSONAccessNG({
+          name: prop.name,
+          type: prop.type,
+        });
+      }
+    }
+  } else if (isMInlineEnumType(prop.type)) {
+    const Type = computeAPIType(
+      owner,
+      prop,
+      nativeTypeSubstitues,
+      interfaceBasePackage,
+      fqn,
+      true
+    );
+    if (array) {
+      mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+    } else {
+      mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+    }
+  } else {
+    if (!isMKeyProperty(prop) && !isMRevisionProperty(prop)) {
+      if (prop.variant === 'enum') {
+        if (array) {
+          mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+        } else {
+          mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+        }
+      } else if (prop.variant === 'scalar') {
+        const Type = computeAPIType(
+          owner,
+          prop,
+          nativeTypeSubstitues,
+          interfaceBasePackage,
+          fqn,
+          true
+        );
+        if (array) {
+          mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::of)`;
+        } else {
+          mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::of)`;
+        }
+      } else {
+        /*const Type = computeAPIType(
+          owner,
+          prop,
+          nativeTypeSubstitues,
+          interfaceBasePackage,
+          fqn,
+          true
+        );*/
+        if (array) {
+          mapper = `_JsonUtils.mapObjects(data, "${prop.name}", ${prop.type}DataImpl::of)`;
+        } else {
+          if (prop.optional) {
+            mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${prop.type}DataImpl::of, null)`;
+          } else {
+            mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${prop.type}DataImpl::of)`;
+          }
+        }
+      }
+    } else {
+      mapper = 'Foo';
+    }
+  }
+
+  const node = new CompositeGeneratorNode();
+  node.append(`return ${mapper};`, NL);
+  return node;
+}
+
+function builtinSimpleJSONAccessNG(property: {
+  type: MBuiltinType;
+  name: string;
+}): string {
+  switch (property.type) {
+    case 'boolean':
+      return `_JsonUtils.mapBoolean(data, "${property.name}")`;
+    case 'double':
+      return `_JsonUtils.mapDouble(data, "${property.name}")`;
+    case 'float':
+      return `_JsonUtils.mapFloat(data, "${property.name}")`;
+    case 'int':
+      return `_JsonUtils.mapInt(data, "${property.name}")`;
+    case 'local-date':
+      return `_JsonUtils.mapLocalDate(data, "${property.name}")`;
+    case 'local-date-time':
+      return `_JsonUtils.mapLocalDateTime(data, "${property.name}")`;
+    case 'long':
+      return `_JsonUtils.mapLong(data, "${property.name}")`;
+    case 'short':
+      return `_JsonUtils.mapShort(data, "${property.name}")`;
+    case 'string':
+      return `_JsonUtils.mapString(data, "${property.name}")`;
+    case 'zoned-date-time':
+      return `_JsonUtils.mapZonedDateTime(data, "${property.name}")`;
+  }
+}
+
+function builtinSimpleJSONArrayAccess(property: {
+  type: MBuiltinType;
+  name: string;
+}): string {
+  switch (property.type) {
+    case 'boolean':
+      return `_JsonUtils.mapBooleans(data, "${property.name}")`;
+    case 'double':
+      return `_JsonUtils.mapDoubles(data, "${property.name}")`;
+    case 'float':
+      return `_JsonUtils.mapFloats(data, "${property.name}")`;
+    case 'int':
+      return `_JsonUtils.mapInts(data, "${property.name}")`;
+    case 'local-date':
+      return `_JsonUtils.mapLocalDates(data, "${property.name}")`;
+    case 'local-date-time':
+      return `_JsonUtils.mapLocalDateTimes(data, "${property.name}")`;
+    case 'long':
+      return `_JsonUtils.mapLongs(data, "${property.name}")`;
+    case 'short':
+      return `_JsonUtils.mapShorts(data, "${property.name}")`;
+    case 'string':
+      return `_JsonUtils.mapStrings(data, "${property.name}")`;
+    case 'zoned-date-time':
+      return `_JsonUtils.mapZonedDateTimes(data, "${property.name}")`;
+  }
+}
+
+function builtinOptionalJSONAccessNG(property: {
+  type: MBuiltinType;
+  name: string;
+}): string {
+  switch (property.type) {
+    case 'boolean':
+      return `_JsonUtils.mapBoolean(data, "${property.name}", false)`;
+    case 'double':
+      return `_JsonUtils.mapDouble(data, "${property.name}", 0)`;
+    case 'float':
+      return `_JsonUtils.mapFloat(data, "${property.name}", 0)`;
+    case 'int':
+      return `_JsonUtils.mapInt(data, "${property.name}", 0)`;
+    case 'local-date':
+      return `_JsonUtils.mapLocalDate(data, "${property.name}", null)`;
+    case 'local-date-time':
+      return `_JsonUtils.mapLocalDateTime(data, "${property.name}", null)`;
+    case 'long':
+      return `_JsonUtils.mapLong(data, "${property.name}", 0)`;
+    case 'short':
+      return `_JsonUtils.mapShort(data, "${property.name}", (short) 0)`;
+    case 'string':
+      return `_JsonUtils.mapString(data, "${property.name}", null)`;
+    case 'zoned-date-time':
+      return `_JsonUtils.mapZonedDateTime(data, "${property.name}", null)`;
+  }
+}
+
+// CLEANUP
 
 export function generateProperty(
   node: IndentNode,

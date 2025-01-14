@@ -1,6 +1,6 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
 
-export function generateDTOUtilsContent(
+export function generateJsonUtilsContent(
   fqn: (type: string) => string
 ): CompositeGeneratorNode {
   fqn('java.io.StringWriter');
@@ -22,7 +22,7 @@ export function generateDTOUtilsContent(
   fqn('jakarta.json.stream.JsonGenerator');
 
   const node = new CompositeGeneratorNode();
-  node.append('public class DTOUtils {', NL);
+  node.append('public class _JsonUtils {', NL);
   node.indent((classBody) => {
     classBody.append(
       generateSingleLineMethod(
@@ -329,7 +329,7 @@ export function generateDTOUtilsContent(
       NL
     );
     classBody.indent((methodBody) => {
-      methodBody.append('return Collector.of(');
+      methodBody.append('return Collector.of(', NL);
       methodBody.indent((i) =>
         i.indent((chain) => {
           chain.append('Json::createArrayBuilder,', NL);
@@ -345,17 +345,17 @@ export function generateDTOUtilsContent(
       NL
     );
     classBody.indent((methodBody) => {
-      methodBody.append('if (o instanceof BaseDTOImpl) {', NL);
+      methodBody.append('if (o instanceof _BaseDataImpl) {', NL);
       methodBody.indent((block) => {
         block.append(
-          'return toJsonString(((BaseDTOImpl) o).data, pretty);',
+          'return toJsonString(((_BaseDataImpl) o).data, pretty);',
           NL
         );
       });
-      methodBody.append('}');
+      methodBody.append('}', NL);
       methodBody.append('return o.toString();', NL);
     });
-    classBody.append('}', NL);
+    classBody.append('}', NL, NL);
     classBody.append(
       'public static String toJsonString(JsonObject object, boolean pretty) {',
       NL

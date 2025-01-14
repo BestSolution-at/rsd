@@ -5,11 +5,11 @@ export function generateBaseDTOContent(
 ): CompositeGeneratorNode {
   fqn('jakarta.json.JsonObject');
   const rv = new CompositeGeneratorNode();
-  rv.append('public abstract class BaseDTOImpl {', NL);
+  rv.append('public abstract class _BaseDataImpl {', NL);
   rv.indent((classBody) => {
     classBody.append('public final JsonObject data;', NL);
     classBody.appendNewLine();
-    classBody.append('public BaseDTOImpl(JsonObject data) {', NL);
+    classBody.append('public _BaseDataImpl(JsonObject data) {', NL);
     classBody.indent((methodBody) => {
       methodBody.append('this.data = data;', NL);
     });

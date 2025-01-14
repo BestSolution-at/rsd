@@ -1,38 +1,45 @@
-import { CompositeGeneratorNode, NL, toString } from "langium/generate";
-import { Artifact } from "../artifact-generator.js";
+import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
+import { Artifact } from '../artifact-generator.js';
 import {
   generateCompilationUnit,
   JavaClientAPIGeneratorConfig,
   JavaImportsCollector,
   toPath,
-} from "../java-gen-utils.js";
+} from '../java-gen-utils.js';
 import {
   isMInlineEnumType,
   isMProperty,
   MResolvedMixinType,
-} from "../model.js";
-import { generateInlineEnum } from "./enum.js";
-import { toFirstUpper } from "../util.js";
-import { generateProperty } from "./shared.js";
+} from '../model.js';
+import { generateInlineEnum } from './enum.js';
+import { toFirstUpper } from '../util.js';
+import { generateProperty } from './shared.js';
+import { generateMixinContent as generateMixinContent_ } from '../java-model-api/mixin.js';
 
 export function generateMixin(
   t: MResolvedMixinType,
   artifactConfig: JavaClientAPIGeneratorConfig
 ): Artifact | undefined {
-  const packageName = `${artifactConfig.rootPackageName}.dto`;
+  const basePackageName = `${artifactConfig.rootPackageName}.model`;
+  const packageName = `${basePackageName}.mixins`;
 
   const importCollector = new JavaImportsCollector(packageName);
   const fqn = importCollector.importType.bind(importCollector);
 
   return {
-    name: `Mixin${t.name}DTO.java`,
+    name: `${t.name}Mixin.java`,
     content: toString(
       generateCompilationUnit(
         packageName,
         importCollector,
-        generateMixinContent(t, artifactConfig, fqn)
+        generateMixinContent_(
+          t,
+          artifactConfig.nativeTypeSubstitues,
+          basePackageName,
+          fqn
+        )
       ),
-      "\t"
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };
@@ -50,7 +57,7 @@ export function generateMixinContent(
     classBody.append(generateBuilder(t));
     classBody.append(generatePropertyAccessors(t, artifactConfig, fqn));
   });
-  node.append("}");
+  node.append('}');
 
   return node;
 }
@@ -60,7 +67,7 @@ function generateInlineEnums(t: MResolvedMixinType) {
 
   t.properties
     .filter(isMProperty)
-    .filter((p) => p.variant === "inline-enum")
+    .filter((p) => p.variant === 'inline-enum')
     .forEach((p) => {
       const inlineEnum = p.type;
       if (isMInlineEnumType(inlineEnum)) {
@@ -84,6 +91,6 @@ function generatePropertyAccessors(
 
 function generateBuilder(t: MResolvedMixinType) {
   const node = new CompositeGeneratorNode();
-  node.append("public interface Builder {}", NL);
+  node.append('public interface Builder {}', NL);
   return node;
 }

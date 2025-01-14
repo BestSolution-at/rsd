@@ -1,10 +1,10 @@
-import chalk from "chalk";
+import chalk from 'chalk';
 
 import {
   Artifact,
   ArtifactGenerationConfig,
   ArtifactGeneratorConfig,
-} from "../artifact-generator.js";
+} from '../artifact-generator.js';
 import {
   MResolvedRSDModel,
   MResolvedUserType,
@@ -12,34 +12,34 @@ import {
   isMMixinType,
   isMRecordType,
   isMUnionType,
-} from "../model.js";
-import { isDefined } from "../util.js";
+} from '../model.js';
+import { isDefined } from '../util.js';
 import {
   JavaClientAPIGeneratorConfig,
   isJavaClientAPIGeneratorConfig,
-} from "../java-gen-utils.js";
+} from '../java-gen-utils.js';
 
-import { generateBaseDTO } from "./base-dto.js";
-import { generateClient } from "./client.js";
-import { generateBaseService } from "./base-service.js";
-import { generateFactory } from "./client-factory.js";
-import { generateEnum } from "./enum.js";
-import { generateRecord } from "./record.js";
-import { generateUnion } from "./union.js";
-import { generateService } from "./service.js";
-import { generateError } from "./error.js";
-import { generateMixin } from "./mixin.js";
+import { generateBase } from './base.js';
+import { generateClient } from './client.js';
+import { generateBaseService } from './base-service.js';
+import { generateFactory } from './client-factory.js';
+import { generateEnum } from './enum.js';
+import { generateRecord } from './record.js';
+import { generateUnion } from './union.js';
+import { generateService } from './service.js';
+import { generateError } from './error.js';
+import { generateMixin } from './mixin.js';
 
 function generate(
   model: MResolvedRSDModel,
   generatorConfig: ArtifactGenerationConfig,
   artifactConfig: ArtifactGeneratorConfig
 ): readonly Artifact[] {
-  console.log(chalk.cyan("Generating Java-Client-API"));
+  console.log(chalk.cyan('Generating Java-Client-API'));
 
   if (!isJavaClientAPIGeneratorConfig(artifactConfig)) {
     console.log(
-      chalk.red("  Invalid configuration passed aborted artifact generation")
+      chalk.red('  Invalid configuration passed aborted artifact generation')
     );
     return [];
   }
@@ -48,7 +48,7 @@ function generate(
     .map((e) => generateType(e, artifactConfig))
     .filter(isDefined);
   result.push(...model.errors.map((e) => generateError(e, artifactConfig)));
-  result.push(generateBaseDTO(artifactConfig));
+  result.push(generateBase(artifactConfig));
   result.push(generateBaseService(artifactConfig));
   result.push(generateClient(generatorConfig, artifactConfig));
   result.push(generateFactory(generatorConfig, artifactConfig));
@@ -89,6 +89,6 @@ function generateType(
 }
 
 export default {
-  name: "java-client-api",
+  name: 'java-client-api',
   generate,
 };

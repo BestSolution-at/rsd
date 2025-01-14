@@ -10,23 +10,24 @@ import { isMProperty, MResolvedUnionType } from '../model.js';
 import { Artifact } from '../artifact-generator.js';
 import { generateBuilderProperty, generateProperty } from './shared.js';
 import { toFirstUpper } from '../util.js';
+import { generateUnionContent as generateUnionContent_ } from '../java-model-api/union.js';
 
 export function generateUnion(
   t: MResolvedUnionType,
   artifactConfig: JavaClientAPIGeneratorConfig
 ): Artifact {
-  const packageName = `${artifactConfig.rootPackageName}.dto`;
+  const packageName = `${artifactConfig.rootPackageName}.model`;
 
   const importCollector = new JavaImportsCollector(packageName);
   const fqn = importCollector.importType.bind(importCollector);
 
   return {
-    name: `${t.name}DTO.java`,
+    name: `${t.name}.java`,
     content: toString(
       generateCompilationUnit(
         packageName,
         importCollector,
-        generateUnionContent(t, artifactConfig, fqn, packageName)
+        generateUnionContent_(t, artifactConfig.nativeTypeSubstitues, fqn)
       ),
       '\t'
     ),

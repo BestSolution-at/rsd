@@ -1,35 +1,46 @@
-import { CompositeGeneratorNode, NL } from "langium/generate";
+import { CompositeGeneratorNode, NL } from 'langium/generate';
 import {
   ArtifactGenerationConfig,
   ArtifactGeneratorConfig,
-} from "./artifact-generator.js";
-import { MBuiltinType, isMBuiltinType } from "./model.js";
+} from './artifact-generator.js';
+import {
+  MBuiltinType,
+  MResolvedBaseProperty,
+  MResolvedMixinType,
+  MResolvedRecordType,
+  isMBuiltinType,
+  isMInlineEnumType,
+  isMKeyProperty,
+  isMMixinType,
+  isMRevisionProperty,
+} from './model.js';
+import { toFirstUpper } from './util.js';
 
 export function builtinToJavaType(
   type: MBuiltinType,
   fqn: (type: string) => string
 ): string {
   switch (type) {
-    case "boolean":
-      return "boolean";
-    case "double":
-      return "double";
-    case "float":
-      return "float";
-    case "int":
-      return "int";
-    case "local-date":
-      return fqn("java.time.LocalDate");
-    case "local-date-time":
-      return fqn("java.time.LocalDateTime");
-    case "long":
-      return "long";
-    case "short":
-      return "short";
-    case "string":
-      return "String";
-    case "zoned-date-time":
-      return fqn("java.time.ZonedDateTime");
+    case 'boolean':
+      return 'boolean';
+    case 'double':
+      return 'double';
+    case 'float':
+      return 'float';
+    case 'int':
+      return 'int';
+    case 'local-date':
+      return fqn('java.time.LocalDate');
+    case 'local-date-time':
+      return fqn('java.time.LocalDateTime');
+    case 'long':
+      return 'long';
+    case 'short':
+      return 'short';
+    case 'string':
+      return 'String';
+    case 'zoned-date-time':
+      return fqn('java.time.ZonedDateTime');
   }
 }
 
@@ -38,26 +49,26 @@ export function builtinToJavaObjectType(
   fqn: (type: string) => string
 ): string {
   switch (type) {
-    case "boolean":
-      return "Boolean";
-    case "double":
-      return "Double";
-    case "float":
-      return "Float";
-    case "int":
-      return "Integer";
-    case "local-date":
-      return fqn("java.time.LocalDate");
-    case "local-date-time":
-      return fqn("java.time.LocalDateTime");
-    case "long":
-      return "Long";
-    case "short":
-      return "Short";
-    case "string":
-      return "String";
-    case "zoned-date-time":
-      return fqn("java.time.ZonedDateTime");
+    case 'boolean':
+      return 'Boolean';
+    case 'double':
+      return 'Double';
+    case 'float':
+      return 'Float';
+    case 'int':
+      return 'Integer';
+    case 'local-date':
+      return fqn('java.time.LocalDate');
+    case 'local-date-time':
+      return fqn('java.time.LocalDateTime');
+    case 'long':
+      return 'Long';
+    case 'short':
+      return 'Short';
+    case 'string':
+      return 'String';
+    case 'zoned-date-time':
+      return fqn('java.time.ZonedDateTime');
   }
 }
 
@@ -91,8 +102,66 @@ export function resolveObjectType(
   return type;
 }
 
+export function computeAPIType(
+  owner: MResolvedMixinType | MResolvedRecordType,
+  property: MResolvedBaseProperty,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string,
+  noArray = false
+) {
+  if (isMKeyProperty(property)) {
+    return builtinToJavaType(property.type, fqn);
+  }
+  if (isMRevisionProperty(property)) {
+    return builtinToJavaType(property.type, fqn);
+  }
+
+  let type: string;
+
+  if (isMBuiltinType(property.type)) {
+    if (property.array || property.optional) {
+      type = builtinToJavaObjectType(property.type, fqn);
+    } else {
+      type = builtinToJavaType(property.type, fqn);
+    }
+  } else if (isMInlineEnumType(property.type)) {
+    if (isMMixinType(property.resolved.owner)) {
+      type =
+        fqn(`${basePackageName}.mixins.${property.resolved.owner.name}Mixin`) +
+        '.' +
+        toFirstUpper(property.name);
+    } else {
+      type =
+        fqn(`${basePackageName}.${property.resolved.owner.name}`) +
+        +'.' +
+        toFirstUpper(property.name);
+    }
+  } else {
+    if (property.variant === 'enum' || property.variant === 'scalar') {
+      if (
+        nativeTypeSubstitues !== undefined &&
+        property.type in nativeTypeSubstitues
+      ) {
+        type = fqn(nativeTypeSubstitues[property.type]);
+      } else {
+        type = fqn(`${basePackageName}.${property.type}`);
+      }
+    } else if (property.variant === 'record' || property.variant === 'union') {
+      type = fqn(`${basePackageName}.${property.type}`) + '.Data';
+    } else {
+      throw new Error('Should not get here');
+    }
+  }
+
+  if (property.array && !noArray) {
+    return `${fqn('java.util.List')}<${type}>`;
+  }
+  return type;
+}
+
 export function toPath(targetFolder: string, packageName: string) {
-  return `${targetFolder}/${packageName.replaceAll(".", "/")}`;
+  return `${targetFolder}/${packageName.replaceAll('.', '/')}`;
 }
 
 export type JavaClientAPIGeneratorConfig = ArtifactGenerationConfig & {
@@ -123,10 +192,10 @@ export function isJavaClientAPIGeneratorConfig(
   config: ArtifactGeneratorConfig
 ): config is JavaClientAPIGeneratorConfig {
   return (
-    "targetFolder" in config &&
-    typeof config.targetFolder === "string" &&
-    "rootPackageName" in config &&
-    typeof config.rootPackageName === "string"
+    'targetFolder' in config &&
+    typeof config.targetFolder === 'string' &&
+    'rootPackageName' in config &&
+    typeof config.rootPackageName === 'string'
   );
 }
 
@@ -134,10 +203,10 @@ export function isJavaRestClientJDKGeneratorConfig(
   config: ArtifactGeneratorConfig
 ): config is JavaRestClientJDKGeneratorConfig {
   return (
-    "targetFolder" in config &&
-    typeof config.targetFolder === "string" &&
-    "rootPackageName" in config &&
-    typeof config.rootPackageName === "string"
+    'targetFolder' in config &&
+    typeof config.targetFolder === 'string' &&
+    'rootPackageName' in config &&
+    typeof config.rootPackageName === 'string'
   );
 }
 
@@ -145,10 +214,10 @@ export function isJavaServerJakartaWSConfig(
   config: ArtifactGeneratorConfig
 ): config is JavaServerJakartaWSGeneratorConfig {
   return (
-    "targetFolder" in config &&
-    typeof config.targetFolder === "string" &&
-    "rootPackageName" in config &&
-    typeof config.rootPackageName === "string"
+    'targetFolder' in config &&
+    typeof config.targetFolder === 'string' &&
+    'rootPackageName' in config &&
+    typeof config.rootPackageName === 'string'
   );
 }
 
@@ -156,10 +225,10 @@ export function isJavaServerConfig(
   config: ArtifactGeneratorConfig
 ): config is JavaServerGeneratorConfig {
   return (
-    "targetFolder" in config &&
-    typeof config.targetFolder === "string" &&
-    "rootPackageName" in config &&
-    typeof config.rootPackageName === "string"
+    'targetFolder' in config &&
+    typeof config.targetFolder === 'string' &&
+    'rootPackageName' in config &&
+    typeof config.rootPackageName === 'string'
   );
 }
 
@@ -169,7 +238,7 @@ export function generateCompilationUnit(
   content: CompositeGeneratorNode
 ) {
   const node = new CompositeGeneratorNode();
-  node.append("// Generated by RSD - Do not modify", NL);
+  node.append('// Generated by RSD - Do not modify', NL);
   node.append(`package ${packageName};`, NL, NL);
   importCollector.appendImportGroups(node);
   node.append(content);
@@ -197,9 +266,9 @@ export class JavaImportsCollector {
     const allImports = [...this.importedPackages.entries()];
 
     const javaFilter = (e: [string, Set<string>]) =>
-      e[0].startsWith("java.") || e[0].startsWith("javax.");
+      e[0].startsWith('java.') || e[0].startsWith('javax.');
     const jakartaFilter = (e: [string, Set<string>]) =>
-      e[0].startsWith("jakarta.");
+      e[0].startsWith('jakarta.');
     const otherFilter = (e: [string, Set<string>]) =>
       !javaFilter(e) && !jakartaFilter(e);
 
@@ -236,7 +305,7 @@ export class JavaImportsCollector {
   }
 
   public importType(fqnType: string) {
-    const lastIdx = fqnType.lastIndexOf(".");
+    const lastIdx = fqnType.lastIndexOf('.');
     const pkg = fqnType.substring(0, lastIdx);
     const type = fqnType.substring(lastIdx + 1);
 

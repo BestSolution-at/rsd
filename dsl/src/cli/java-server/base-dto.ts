@@ -7,7 +7,7 @@ import {
   JavaImportsCollector,
   toPath,
 } from '../java-gen-utils.js';
-import { generateBaseDTOContent } from '../java-client-api/base-dto.js';
+import { generateBaseDTOContent } from '../java-client-api/base.js';
 
 export function generateBaseDTO(
   artifactConfig: JavaClientAPIGeneratorConfig

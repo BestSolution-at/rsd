@@ -1,29 +1,29 @@
-import { isDefined, isObject } from "./util.js";
+import { isDefined, isObject } from './util.js';
 
 export type MBuiltinType =
-  | "boolean"
-  | "double"
-  | "float"
-  | "int"
-  | "local-date"
-  | "local-date-time"
-  | "long"
-  | "short"
-  | "string"
-  | "zoned-date-time";
+  | 'boolean'
+  | 'double'
+  | 'float'
+  | 'int'
+  | 'local-date'
+  | 'local-date-time'
+  | 'long'
+  | 'short'
+  | 'string'
+  | 'zoned-date-time';
 
 export function isMBuiltinType(value: unknown): value is MBuiltinType {
   return (
-    value === "boolean" ||
-    value === "double" ||
-    value === "float" ||
-    value === "int" ||
-    value === "local-date" ||
-    value === "local-date-time" ||
-    value === "long" ||
-    value === "short" ||
-    value === "string" ||
-    value === "zoned-date-time"
+    value === 'boolean' ||
+    value === 'double' ||
+    value === 'float' ||
+    value === 'int' ||
+    value === 'local-date' ||
+    value === 'local-date-time' ||
+    value === 'long' ||
+    value === 'short' ||
+    value === 'string' ||
+    value === 'zoned-date-time'
   );
 }
 
@@ -31,7 +31,7 @@ export type MRSDModel<
   T extends MUserType = MUserType,
   S extends MService = MService
 > = {
-  "@type": "RSDModel";
+  '@type': 'RSDModel';
   elements: readonly T[];
   services: readonly S[];
   errors: readonly MError[];
@@ -40,7 +40,7 @@ export type MRSDModel<
 export type MResolvedRSDModel = MRSDModel<MResolvedUserType, MResolvedService>;
 
 export function isMRSDModel(value: unknown): value is MRSDModel {
-  return isObject(value) && "@type" in value && value["@type"] === "RSDModel";
+  return isObject(value) && '@type' in value && value['@type'] === 'RSDModel';
 }
 
 export type MBaseProperty = MKeyProperty | MRevisionProperty | MProperty;
@@ -58,18 +58,18 @@ export type MResolvedUserType =
   | MResolvedScalarType;
 
 export type MScalarType = {
-  "@type": "ScalarType";
+  '@type': 'ScalarType';
   name: string;
 };
 
 export type MResolvedScalarType = MScalarType;
 
 export function isMScalarType(value: unknown): value is MScalarType {
-  return isObject(value) && "@type" in value && value["@type"] === "ScalarType";
+  return isObject(value) && '@type' in value && value['@type'] === 'ScalarType';
 }
 
 export type MUnionType = {
-  "@type": "UnionType";
+  '@type': 'UnionType';
   name: string;
   patchable: boolean;
   types: readonly string[];
@@ -91,17 +91,17 @@ export type MResolvedBaseProperty = MBaseProperty & {
 };
 
 export function isMUnionType(value: unknown): value is MUnionType {
-  return isObject(value) && "@type" in value && value["@type"] === "UnionType";
+  return isObject(value) && '@type' in value && value['@type'] === 'UnionType';
 }
 
 export function isMResolvedUnionType(
   value: unknown
 ): value is MResolvedUnionType {
-  return isMUnionType(value) && "resolved" in value && isObject(value.resolved);
+  return isMUnionType(value) && 'resolved' in value && isObject(value.resolved);
 }
 
 export type MMixinType = {
-  "@type": "MixinType";
+  '@type': 'MixinType';
   name: string;
   properties: readonly MBaseProperty[];
 };
@@ -114,11 +114,11 @@ export type MResolvedMixinType = MMixinType & {
 };
 
 export function isMMixinType(value: unknown): value is MMixinType {
-  return isObject(value) && "@type" in value && value["@type"] === "MixinType";
+  return isObject(value) && '@type' in value && value['@type'] === 'MixinType';
 }
 
 export type MRecordType = {
-  "@type": "RecordType";
+  '@type': 'RecordType';
   name: string;
   patchable: boolean;
   mixins: readonly string[];
@@ -134,19 +134,19 @@ export type MResolvedRecordType = MRecordType & {
 };
 
 export function isMRecordType(value: unknown): value is MRecordType {
-  return isObject(value) && "@type" in value && value["@type"] === "RecordType";
+  return isObject(value) && '@type' in value && value['@type'] === 'RecordType';
 }
 
 export function isMResolvedRecordType(
   value: unknown
 ): value is MResolvedRecordType {
   return (
-    isMRecordType(value) && "resolved" in value && isObject(value.resolved)
+    isMRecordType(value) && 'resolved' in value && isObject(value.resolved)
   );
 }
 
 export type MKeyProperty = {
-  "@type": "KeyProperty";
+  '@type': 'KeyProperty';
   name: string;
   type: MBuiltinType;
   doc: string;
@@ -154,12 +154,12 @@ export type MKeyProperty = {
 
 export function isMKeyProperty(value: unknown): value is MKeyProperty {
   return (
-    isObject(value) && "@type" in value && value["@type"] === "KeyProperty"
+    isObject(value) && '@type' in value && value['@type'] === 'KeyProperty'
   );
 }
 
 export type MRevisionProperty = {
-  "@type": "RevisionProperty";
+  '@type': 'RevisionProperty';
   name: string;
   type: MBuiltinType;
   doc: string;
@@ -169,29 +169,29 @@ export function isMRevisionProperty(
   value: unknown
 ): value is MRevisionProperty {
   return (
-    isObject(value) && "@type" in value && value["@type"] === "RevisionProperty"
+    isObject(value) && '@type' in value && value['@type'] === 'RevisionProperty'
   );
 }
 
 export type MProperty = {
-  "@type": "Property";
+  '@type': 'Property';
   name: string;
   array: boolean;
   arrayMaxLength?: number;
   readonly: boolean;
   optional: boolean;
   nullable: boolean;
-  variant: "enum" | "builtin" | "scalar" | "union" | "record" | "inline-enum";
+  variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'inline-enum';
   type: string | MInlineEnumType;
   doc: string;
 };
 
 export function isMProperty(value: unknown): value is MProperty {
-  return isObject(value) && "@type" in value && value["@type"] === "Property";
+  return isObject(value) && '@type' in value && value['@type'] === 'Property';
 }
 
 export type MEnumType = {
-  "@type": "EnumType";
+  '@type': 'EnumType';
   name: string;
   entries: readonly MEnumEntry[];
   doc: string;
@@ -200,32 +200,32 @@ export type MEnumType = {
 export type MResolvedEnumType = MEnumType;
 
 export function isMEnumType(value: unknown): value is MEnumType {
-  return isObject(value) && "@type" in value && value["@type"] === "EnumType";
+  return isObject(value) && '@type' in value && value['@type'] === 'EnumType';
 }
 
 export type MInlineEnumType = {
-  "@type": "InlineEnumType";
+  '@type': 'InlineEnumType';
   entries: readonly MEnumEntry[];
 };
 
 export function isMInlineEnumType(value: unknown): value is MInlineEnumType {
   return (
-    isObject(value) && "@type" in value && value["@type"] === "InlineEnumType"
+    isObject(value) && '@type' in value && value['@type'] === 'InlineEnumType'
   );
 }
 
 export type MEnumEntry = {
-  "@type": "EnumEntry";
+  '@type': 'EnumEntry';
   name: string;
   value?: number;
 };
 
 export function isMEnumEntry(value: unknown): value is MEnumEntry {
-  return isObject(value) && "@type" in value && value["@type"] === "EnumEntry";
+  return isObject(value) && '@type' in value && value['@type'] === 'EnumEntry';
 }
 
 export type MService<O extends MOperation = MOperation> = {
-  "@type": "Service";
+  '@type': 'Service';
   name: string;
   doc: string;
   operations: readonly O[];
@@ -239,7 +239,7 @@ export type MService<O extends MOperation = MOperation> = {
 export type MResolvedService = MService<MResolvedOperation>;
 
 export type MOperation = {
-  "@type": "Operation";
+  '@type': 'Operation';
   name: string;
   doc: string;
   parameters: readonly MParameter[];
@@ -248,7 +248,7 @@ export type MOperation = {
   meta?: {
     rest?: {
       path: string;
-      method: "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
+      method: 'GET' | 'POST' | 'DELETE' | 'PUT' | 'PATCH';
       results: {
         statusCode: number;
         error?: string;
@@ -264,27 +264,27 @@ export type MResolvedOperation = MOperation & {
 };
 
 export type MParameter = {
-  "@type": "Parameter";
+  '@type': 'Parameter';
   name: string;
   patch: boolean;
   array: boolean;
   arrayMaxLength?: number;
   optional: boolean;
   nullable: boolean;
-  variant: "enum" | "builtin" | "scalar" | "union" | "record" | "inline-enum";
+  variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'inline-enum';
   type: string | MInlineEnumType;
   doc: string;
   meta?: {
     rest?: {
-      source: "path" | "header" | "query" | "cookie";
+      source: 'path' | 'header' | 'query' | 'cookie';
       name: string;
     };
   };
 };
 
 export type MReturnType = {
-  "@type": "ReturnType";
-  variant: "enum" | "builtin" | "scalar" | "union" | "record" | "inline-enum";
+  '@type': 'ReturnType';
+  variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'inline-enum';
   type: string | MInlineEnumType;
   array: boolean;
   arrayMaxLength?: number;
@@ -292,7 +292,7 @@ export type MReturnType = {
 };
 
 export type MError = {
-  "@type": "Error";
+  '@type': 'Error';
   name: string;
 };
 
@@ -345,7 +345,7 @@ function mapToResolved(
   } else if (isMScalarType(t)) {
     return t;
   }
-  throw new Error(String(t["@type"]));
+  throw new Error(String(t['@type']));
 }
 
 function mapToResolvedMixinType(
@@ -369,7 +369,11 @@ function mapToResolvedMixinType(
     },
   };
 
-  rv.properties = t.properties.map((p) => ({ ...p, resolved: { owner: rv } }));
+  rv.resolved.properties = t.properties.map((p) => ({
+    ...p,
+    resolved: { owner: rv },
+  }));
+  rv.properties = rv.resolved.properties; // This is bogus and looks like a bug
 
   solvedMixins.set(t.name, rv);
 
@@ -415,7 +419,14 @@ function mapToResolvedRecordType(
     },
   };
 
-  rv.properties = t.properties.map((p) => ({ ...p, resolved: { owner: rv } }));
+  if (t.name === 'Calendar') {
+  }
+
+  rv.resolved.properties = t.properties.map((p) => ({
+    ...p,
+    resolved: { owner: rv },
+  }));
+  rv.properties = rv.resolved.properties;
 
   solvedRecords.set(t.name, rv);
 
@@ -539,6 +550,15 @@ export function allRecordProperties(record: MResolvedRecordType) {
   const properties = [
     ...record.properties,
     ...record.resolved.mixins.flatMap((m) => m.properties),
+  ];
+
+  return properties;
+}
+
+export function allResolvedRecordProperties(record: MResolvedRecordType) {
+  const properties = [
+    ...record.resolved.properties,
+    ...record.resolved.mixins.flatMap((m) => m.resolved.properties),
   ];
 
   return properties;
