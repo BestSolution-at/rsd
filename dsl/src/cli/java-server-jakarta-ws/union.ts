@@ -29,8 +29,7 @@ export function generateUnion(
   const JsonbSubtype = fqn('jakarta.json.bind.annotation.JsonbSubtype');
 
   t.resolved.sharedProps
-    .filter(isMProperty)
-    .filter((p) => p.variant === 'inline-enum')
+    .filter((p) => isMProperty(p) && p.variant === 'inline-enum')
     .forEach((p) => {
       const m = t.resolved.records
         .flatMap((r) => r.resolved.mixins)

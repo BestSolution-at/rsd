@@ -79,13 +79,7 @@ function generateData(
   node.indent((classBody) => {
     classBody.append(
       ...props.flatMap((p) => [
-        generatePropertyAccessor(
-          t,
-          p,
-          nativeTypeSubstitues,
-          basePackageName,
-          fqn
-        ),
+        generatePropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn),
         NL,
       ])
     );
@@ -118,7 +112,6 @@ function generateDataBuilder(
     classBody.append(
       ...props.flatMap((p) => [
         generateBuilderPropertyAccessor(
-          t,
           p,
           nativeTypeSubstitues,
           basePackageName,

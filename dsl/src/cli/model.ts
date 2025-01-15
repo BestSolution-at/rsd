@@ -80,7 +80,7 @@ export type MUnionType = {
 export type MResolvedUnionType = MUnionType & {
   resolved: {
     records: readonly MResolvedRecordType[];
-    sharedProps: readonly MBaseProperty[];
+    sharedProps: readonly MResolvedBaseProperty[];
   };
 };
 
@@ -187,8 +187,19 @@ export type MProperty = {
   doc: string;
 };
 
+export type MResolvedPropery = MProperty & MResolvedBaseProperty;
+
 export function isMProperty(value: unknown): value is MProperty {
   return isObject(value) && '@type' in value && value['@type'] === 'Property';
+}
+
+export function isMResolvedProperty(value: unknown): value is MResolvedPropery {
+  return (
+    isObject(value) &&
+    '@type' in value &&
+    value['@type'] === 'Property' &&
+    'resolved' in value
+  );
 }
 
 export type MEnumType = {
@@ -484,7 +495,7 @@ function mapToResolvedUnionType(
   }
 
   const records: MResolvedRecordType[] = [];
-  const sharedProps: MBaseProperty[] = [];
+  const sharedProps: MResolvedBaseProperty[] = [];
 
   const rv: MResolvedUnionType = {
     ...t,
@@ -511,9 +522,9 @@ function mapToResolvedUnionType(
   records.push(...resolvedRecords);
 
   const allProperties = resolvedRecords.flatMap((r) => {
-    return allRecordProperties(r);
+    return allResolvedRecordProperties(r);
   });
-  const groupCount = new Map<string, MBaseProperty[]>();
+  const groupCount = new Map<string, MResolvedBaseProperty[]>();
 
   allProperties.forEach((p) => {
     const key = `${p.name}#${p.type}`;

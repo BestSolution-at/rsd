@@ -53,7 +53,7 @@ function generatePropertyAccessors(
   const node = new CompositeGeneratorNode();
   t.resolved.properties.forEach((p) => {
     node.append(
-      generatePropertyAccessor(t, p, nativeTypeSubstitues, basePackageName, fqn)
+      generatePropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn)
     );
     node.append(NL);
   });

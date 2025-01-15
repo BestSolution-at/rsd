@@ -15,10 +15,10 @@ import {
 import {
   MBaseProperty,
   MResolvedRecordType,
-  allRecordProperties,
+  allResolvedRecordProperties,
   isMInlineEnumType,
   isMKeyProperty,
-  isMProperty,
+  isMResolvedProperty,
   isMRevisionProperty,
 } from '../model.js';
 import { generateInlineEnum } from './enum.js';
@@ -314,9 +314,9 @@ export function generateRecordContent(
 
   const sharedProps = t.resolved.unions.flatMap((u) => u.resolved.sharedProps);
 
-  const allProps = allRecordProperties(t);
+  const allProps = allResolvedRecordProperties(t);
   allProps
-    .filter(isMProperty)
+    .filter(isMResolvedProperty)
     .filter((p) => p.variant === 'inline-enum')
     .filter((p) => !sharedProps.includes(p))
     .forEach((p) => {
@@ -345,7 +345,7 @@ export function generateRecordContent(
         generateBuilderProperty(builderChild, p, artifactConfig, fqn)
       );
       allProps
-        .filter(isMProperty)
+        .filter(isMResolvedProperty)
         .filter((p) => p.variant === 'union' || p.variant === 'record')
         .forEach((p) => {
           const functionType = fqn('java.util.function.Function');

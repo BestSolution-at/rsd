@@ -1,15 +1,9 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
-import {
-  isMProperty,
-  MResolvedBaseProperty,
-  MResolvedMixinType,
-  MResolvedRecordType,
-} from '../model.js';
+import { isMProperty, MResolvedBaseProperty } from '../model.js';
 import { computeAPIType } from '../java-gen-utils.js';
 import { toFirstUpper } from '../util.js';
 
 export function generatePropertyAccessor(
-  owner: MResolvedMixinType | MResolvedRecordType,
   property: MResolvedBaseProperty,
   nativeTypeSubstitues: Record<string, string> | undefined,
   basePackageName: string,
@@ -29,7 +23,6 @@ export function generatePropertyAccessor(
 }
 
 export function generateBuilderPropertyAccessor(
-  owner: MResolvedMixinType | MResolvedRecordType,
   property: MResolvedBaseProperty,
   nativeTypeSubstitues: Record<string, string> | undefined,
   basePackageName: string,

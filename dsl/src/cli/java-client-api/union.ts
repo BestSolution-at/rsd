@@ -6,7 +6,7 @@ import {
   generateCompilationUnit,
   toPath,
 } from '../java-gen-utils.js';
-import { isMProperty, MResolvedUnionType } from '../model.js';
+import { isMResolvedProperty, MResolvedUnionType } from '../model.js';
 import { Artifact } from '../artifact-generator.js';
 import { generateBuilderProperty, generateProperty } from './shared.js';
 import { toFirstUpper } from '../util.js';
@@ -27,7 +27,12 @@ export function generateUnion(
       generateCompilationUnit(
         packageName,
         importCollector,
-        generateUnionContent_(t, artifactConfig.nativeTypeSubstitues, fqn)
+        generateUnionContent_(
+          t,
+          artifactConfig.nativeTypeSubstitues,
+          packageName,
+          fqn
+        )
       ),
       '\t'
     ),
@@ -43,7 +48,7 @@ export function generateUnionContent(
 ) {
   const node = new CompositeGeneratorNode();
   t.resolved.sharedProps
-    .filter(isMProperty)
+    .filter(isMResolvedProperty)
     .filter((p) => p.variant === 'inline-enum')
     .forEach((p) => {
       const m = t.resolved.records
