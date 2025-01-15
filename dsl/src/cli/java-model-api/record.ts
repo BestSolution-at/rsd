@@ -101,9 +101,17 @@ function generateDataBuilder(
   basePackageName: string,
   fqn: (type: string) => string
 ) {
+  const unions =
+    t.resolved.unions.length > 0
+      ? ', ' +
+        t.resolved.unions
+          .map((u) => fqn(`${basePackageName}.${u.name}`) + '.DataBuilder')
+          .join(', ')
+      : '';
+
   const node = new CompositeGeneratorNode();
   node.append(
-    `public interface DataBuilder extends _Base.BaseDataBuilder<${t.name}.Data> {`,
+    `public interface DataBuilder extends _Base.BaseDataBuilder<${t.name}.Data>${unions} {`,
     NL
   );
   node.indent((classBody) => {

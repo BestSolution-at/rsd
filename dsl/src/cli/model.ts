@@ -87,6 +87,7 @@ export type MResolvedUnionType = MUnionType & {
 export type MResolvedBaseProperty = MBaseProperty & {
   resolved: {
     owner: MResolvedMixinType | MResolvedRecordType;
+    resolvedObjectType: MResolvedUnionType | MResolvedRecordType | undefined;
   };
 };
 
@@ -371,7 +372,11 @@ function mapToResolvedMixinType(
 
   rv.resolved.properties = t.properties.map((p) => ({
     ...p,
-    resolved: { owner: rv },
+    resolved: {
+      owner: rv,
+      resolvedObjectType:
+        solvedUnions.get(String(p.type)) ?? solvedRecords.get(String(p.type)),
+    },
   }));
   rv.properties = rv.resolved.properties; // This is bogus and looks like a bug
 
@@ -424,7 +429,11 @@ function mapToResolvedRecordType(
 
   rv.resolved.properties = t.properties.map((p) => ({
     ...p,
-    resolved: { owner: rv },
+    resolved: {
+      owner: rv,
+      resolvedObjectType:
+        solvedUnions.get(String(p.type)) ?? solvedRecords.get(String(p.type)),
+    },
   }));
   rv.properties = rv.resolved.properties;
 

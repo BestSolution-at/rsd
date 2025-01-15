@@ -3,6 +3,8 @@ import {
   allResolvedRecordProperties,
   isMBuiltinType,
   isMKeyProperty,
+  isMProperty,
+  isMResolvedUnionType,
   isMRevisionProperty,
   MBuiltinType,
   MResolvedBaseProperty,
@@ -11,6 +13,7 @@ import {
 } from '../model.js';
 import { generatePropertyNG } from './shared.js';
 import { computeAPIType } from '../java-gen-utils.js';
+import { toFirstUpper } from '../util.js';
 
 export function generateRecordContent(
   t: MResolvedRecordType,
@@ -59,6 +62,11 @@ export function generateRecordContent(
       ),
       NL
     );
+    classBody.append(`public static ${t.name}.DataBuilder builder() {`, NL);
+    classBody.indent((methodBody) => {
+      methodBody.append('return new DataBuilderImpl();', NL);
+    });
+    classBody.append('}', NL);
   });
 
   node.append('}', NL);
@@ -126,7 +134,7 @@ function generateBuilderPropertyMethods(
       NL
     );
     node.indent((methodBody) => {
-      if (!isMKeyProperty(prop) && !isMRevisionProperty(prop)) {
+      if (isMProperty(prop)) {
         if (isNullableType(type)) {
           methodBody.append(`if (${prop.name} == null) {`, NL);
           methodBody.indent((block) => {
@@ -143,6 +151,64 @@ function generateBuilderPropertyMethods(
       methodBody.append('return this;', NL);
     });
     node.append('}', NL, NL);
+    if (
+      isMProperty(prop) &&
+      !prop.array &&
+      (prop.variant === 'record' || prop.variant === 'union')
+    ) {
+      const Function = fqn('java.util.function.Function');
+      node.append(
+        NL,
+        `public <T extends ${
+          prop.type
+        }.DataBuilder> DataBuilder with${toFirstUpper(
+          prop.name
+        )}(Class<T> clazz, ${Function}<T, ${prop.type}.Data> block) {`,
+        NL
+      );
+      node.indent((methodBody) => {
+        if (prop.variant === 'union') {
+          if (isMResolvedUnionType(prop.resolved.resolvedObjectType)) {
+            methodBody.append(
+              `${fqn(interfaceBasePackage + '.' + prop.type)}.DataBuilder b;`,
+              NL
+            );
+            prop.resolved.resolvedObjectType.types.forEach((t, idx) => {
+              const Type = fqn(`${interfaceBasePackage}.${t}`);
+              if (idx === 0) {
+                methodBody.append(
+                  `if (clazz == ${Type}.DataBuilder.class) {`,
+                  NL
+                );
+              } else {
+                methodBody.append(
+                  `} else if (clazz == ${Type}.DataBuilder.class) {`,
+                  NL
+                );
+              }
+              methodBody.indent((block) => {
+                block.append(`b = ${t}DataImpl.builder();`, NL);
+              });
+            });
+            methodBody.append('} else {', NL);
+            methodBody.indent((block) => {
+              block.append('throw new IllegalArgumentException();', NL);
+            });
+            methodBody.append('}', NL);
+          } else {
+            methodBody.append('RESOLVE FAILURE');
+          }
+        } else {
+          methodBody.append(`var b = ${prop.type}DataImpl.builder();`, NL);
+        }
+        methodBody.append(
+          `return ${prop.name}(block.apply(clazz.cast(b)));`,
+          NL
+        );
+      });
+
+      node.append('}', NL, NL);
+    }
   });
 
   return node;
