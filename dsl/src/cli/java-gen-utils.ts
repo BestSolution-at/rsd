@@ -5,9 +5,8 @@ import {
 } from './artifact-generator.js';
 import {
   MBuiltinType,
+  MParameter,
   MResolvedBaseProperty,
-  MResolvedMixinType,
-  MResolvedRecordType,
   isMBuiltinType,
   isMInlineEnumType,
   isMKeyProperty,
@@ -102,14 +101,54 @@ export function resolveObjectType(
   return type;
 }
 
-export function computeAPIType(
-  owner: MResolvedMixinType | MResolvedRecordType,
-  property: MResolvedBaseProperty,
+export function computeParameterAPIType(
+  parameter: MParameter,
   nativeTypeSubstitues: Record<string, string> | undefined,
   basePackageName: string,
   fqn: (type: string) => string,
   noArray = false
 ) {
+  let type: string;
+  if (isMBuiltinType(parameter.type)) {
+    if (parameter.array || parameter.optional) {
+      type = builtinToJavaObjectType(parameter.type, fqn);
+    } else {
+      type = builtinToJavaType(parameter.type, fqn);
+    }
+  } else if (isMInlineEnumType(parameter.type)) {
+    throw new Error('Should not get here');
+  } else {
+    if (parameter.variant === 'enum' || parameter.variant === 'scalar') {
+      if (
+        nativeTypeSubstitues !== undefined &&
+        parameter.type in nativeTypeSubstitues
+      ) {
+        type = fqn(nativeTypeSubstitues[parameter.type]);
+      } else {
+        type = fqn(`${basePackageName}.${parameter.type}`);
+      }
+    } else if (
+      parameter.variant === 'record' ||
+      parameter.variant === 'union'
+    ) {
+      type = fqn(`${basePackageName}.${parameter.type}`) + '.Data';
+    } else {
+      throw new Error('Should not get here');
+    }
+  }
+  if (parameter.array && !noArray) {
+    return `${fqn('java.util.List')}<${type}>`;
+  }
+  return type;
+}
+
+export function computeAPIType(
+  property: MResolvedBaseProperty,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string,
+  noArray = false
+): string {
   if (isMKeyProperty(property)) {
     return builtinToJavaType(property.type, fqn);
   }

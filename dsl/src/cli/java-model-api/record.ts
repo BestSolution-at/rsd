@@ -103,7 +103,7 @@ function generateDataBuilder(
 ) {
   const node = new CompositeGeneratorNode();
   node.append(
-    `public interface DataBuilder extends _Base.BaseDataBuilder<${t.name}> {`,
+    `public interface DataBuilder extends _Base.BaseDataBuilder<${t.name}.Data> {`,
     NL
   );
   node.indent((classBody) => {

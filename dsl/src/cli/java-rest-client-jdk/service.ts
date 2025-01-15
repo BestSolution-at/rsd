@@ -6,6 +6,7 @@ import {
 } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
 import {
+  computeParameterAPIType,
   generateCompilationUnit,
   JavaImportsCollector,
   JavaRestClientJDKGeneratorConfig,
@@ -21,7 +22,6 @@ import {
   MResolvedService,
   MReturnType,
 } from '../model.js';
-import { toType } from '../java-client-api/shared.js';
 import {
   builtinBuilderAccess,
   builtinBuilderArrayJSONAccess,
@@ -216,11 +216,11 @@ function generateOpertationMethod(
         methodBody.append(`var $body = ${BodyPublishers}.ofString("");`, NL);
       } else if (bodyParams.length === 1) {
         if (bodyParams[0].variant === 'record') {
-          const DTOUtils = fqn(
-            `${artifactConfig.rootPackageName}.jdkhttp.impl.dto.DTOUtils`
+          const _JsonUtils = fqn(
+            `${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`
           );
           methodBody.append(
-            `var $body = ${BodyPublishers}.ofString(${DTOUtils}.toJsonString(${bodyParams[0].name}, false));`,
+            `var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString(${bodyParams[0].name}, false));`,
             NL
           );
         } else {
@@ -240,11 +240,11 @@ function generateOpertationMethod(
                 NL
               );
             } else {
-              const BaseDTOImpl = fqn(
-                `${artifactConfig.rootPackageName}.jdkhttp.impl.dto.BaseDTOImpl`
+              const _BaseDataImpl = fqn(
+                `${artifactConfig.rootPackageName}.jdkhttp.impl.model._BaseDataImpl`
               );
               methodBody.append(
-                `.add("${p.name}", ((${BaseDTOImpl})${p.name}).data)`,
+                `.add("${p.name}", ((${_BaseDataImpl})${p.name}).data)`,
                 NL
               );
             }
@@ -280,11 +280,11 @@ function generateOpertationMethod(
             methodBody.append('throw new UnsupportedOperationException();', NL);
           }
         });
-        const DTOUtils = fqn(
-          `${artifactConfig.rootPackageName}.jdkhttp.impl.dto.DTOUtils`
+        const _JsonUtils = fqn(
+          `${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`
         );
         methodBody.append(
-          `var $body = ${BodyPublishers}.ofString(${DTOUtils}.toJsonString($builder.build(),false));`,
+          `var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString($builder.build(),false));`,
           NL
         );
       }
@@ -414,16 +414,16 @@ function handleOkResult(
     return;
   }
   if (o.resultType.variant === 'record' || o.resultType.variant === 'union') {
-    const dtoPkg = `${artifactConfig.rootPackageName}.jdkhttp.impl.dto`;
-    const dtoType = fqn(`${dtoPkg}.${o.resultType.type}DTOImpl`);
+    const modelPkg = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
+    const modelType = fqn(`${modelPkg}.${o.resultType.type}DataImpl`);
     if (o.resultType.array) {
       node.append(
-        `return ServiceUtils.mapObjects($response, ${dtoType}::of);`,
+        `return ServiceUtils.mapObjects($response, ${modelType}::of);`,
         NL
       );
     } else {
       node.append(
-        `return ServiceUtils.mapObject($response, ${dtoType}::of);`,
+        `return ServiceUtils.mapObject($response, ${modelType}::of);`,
         NL
       );
     }
@@ -541,9 +541,13 @@ function toParameter(
   artifactConfig: JavaRestClientJDKGeneratorConfig,
   fqn: (type: string) => string
 ) {
-  return `${toType(parameter, artifactConfig, fqn, parameter.nullable)} ${
-    parameter.name
-  }`;
+  const type = computeParameterAPIType(
+    parameter,
+    artifactConfig.nativeTypeSubstitues,
+    `${artifactConfig.rootPackageName}.model`,
+    fqn
+  );
+  return `${type} ${parameter.name}`;
 }
 
 function toResultType(
@@ -551,17 +555,17 @@ function toResultType(
   artifactConfig: JavaRestClientJDKGeneratorConfig,
   fqn: (type: string) => string
 ) {
-  const dtoPkg = `${artifactConfig.rootPackageName}.dto`;
+  const modelPkg = `${artifactConfig.rootPackageName}.model`;
   if (type === undefined) {
     return 'void';
   }
 
   if (type.variant === 'union' || type.variant === 'record') {
-    const dtoType = fqn(`${dtoPkg}.${type.type}DTO`);
+    const modelType = fqn(`${modelPkg}.${type.type}`) + '.Data';
     if (type.array) {
-      return `${fqn('java.util.List')}<${dtoType}>`;
+      return `${fqn('java.util.List')}<${modelType}>`;
     } else {
-      return dtoType;
+      return modelType;
     }
   } else if (typeof type.type === 'string') {
     if (type.array) {

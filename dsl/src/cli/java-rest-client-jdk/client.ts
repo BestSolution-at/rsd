@@ -6,11 +6,7 @@ import {
   generateCompilationUnit,
   toPath,
 } from '../java-gen-utils.js';
-import {
-  isMResolvedRecordType,
-  isMResolvedUnionType,
-  MResolvedRSDModel,
-} from '../model.js';
+import { isMResolvedRecordType, MResolvedRSDModel } from '../model.js';
 
 export function generateClient(
   m: MResolvedRSDModel,
@@ -30,7 +26,7 @@ export function generateClient(
   const Supplier = fqn('java.util.function.Supplier');
   const BiFunction = fqn('java.util.function.BiFunction');
   const HttpClient = fqn('java.net.http.HttpClient');
-  const BaseDTO = fqn(`${basePackage}.dto.BaseDTO`);
+  const Base = fqn(`${basePackage}.model._Base`);
   const BaseService = fqn(`${basePackage}.BaseService`);
 
   const content = new CompositeGeneratorNode();
@@ -52,16 +48,16 @@ export function generateClient(
     clBody.indent((staticBody) => {
       m.elements
         .filter(isMResolvedRecordType)
-        .filter((e) => e.resolved.unions.length === 0)
+        // .filter((e) => e.resolved.unions.length === 0)
         .forEach((e) => {
-          const type = fqn(`${basePackage}.dto.${e.name}DTO`);
-          const implType = fqn(`${packageName}.impl.dto.${e.name}DTOImpl`);
+          const type = fqn(`${basePackage}.model.${e.name}`);
+          const implType = fqn(`${packageName}.impl.model.${e.name}DataImpl`);
           staticBody.append(
-            `registerBuilderCreator(${type}.Builder.class, ${implType}.BuilderImpl::new);`,
+            `registerBuilderCreator(${type}.DataBuilder.class, ${implType}.DataBuilderImpl::new);`,
             NL
           );
         });
-      m.elements.filter(isMResolvedUnionType).forEach((u) => {
+      /*m.elements.filter(isMResolvedUnionType).forEach((u) => {
         u.resolved.records.forEach((e) => {
           const type = fqn(`${basePackage}.dto.${e.name}DTO`);
           const implType = fqn(`${packageName}.impl.dto.${e.name}DTOImpl`);
@@ -71,7 +67,7 @@ export function generateClient(
             NL
           );
         });
-      });
+      });*/
       if (m.services.length > 0) {
         staticBody.appendNewLine();
       }
@@ -126,7 +122,7 @@ export function generateClient(
     clBody.append('@SuppressWarnings("unchecked")', NL);
     clBody.append('@Override', NL);
     clBody.append(
-      `public <T extends ${BaseDTO}.Builder> T builder(Class<T> clazz) {`,
+      `public <T extends ${Base}.BaseDataBuilder<?>> T builder(Class<T> clazz) {`,
       NL
     );
     clBody.indent((mBody) => {

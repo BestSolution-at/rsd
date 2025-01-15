@@ -25,7 +25,7 @@ export function generateClient(
       generatorConfig.name
     )}ClientFactory`
   );
-  const baseDTOType = fqn(`${artifactConfig.rootPackageName}.dto.BaseDTO`);
+  const baseDTOType = fqn(`${artifactConfig.rootPackageName}.model._Base`);
 
   const content = new CompositeGeneratorNode();
 
@@ -48,7 +48,7 @@ export function generateClient(
     });
     client.append('}', NL);
     client.append(
-      `public <T extends ${baseDTOType}.Builder> T builder(Class<T> clazz);`,
+      `public <T extends ${baseDTOType}.BaseDataBuilder<?>> T builder(Class<T> clazz);`,
       NL
     );
     client.append(

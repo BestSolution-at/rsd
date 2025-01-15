@@ -28,7 +28,6 @@ export function generatePropertyNG(
   fqn: (type: string) => string
 ) {
   const type = computeAPIType(
-    owner,
     prop,
     nativeTypeSubstitues,
     interfaceBasePackage,
@@ -90,7 +89,6 @@ function generatePropertyContent(
     }
   } else if (isMInlineEnumType(prop.type)) {
     const Type = computeAPIType(
-      owner,
       prop,
       nativeTypeSubstitues,
       interfaceBasePackage,
@@ -112,7 +110,6 @@ function generatePropertyContent(
         }
       } else if (prop.variant === 'scalar') {
         const Type = computeAPIType(
-          owner,
           prop,
           nativeTypeSubstitues,
           interfaceBasePackage,

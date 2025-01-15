@@ -1,6 +1,6 @@
-import { expandToString } from "langium/generate";
-import { Artifact } from "../artifact-generator.js";
-import { JavaRestClientJDKGeneratorConfig, toPath } from "../java-gen-utils.js";
+import { expandToString } from 'langium/generate';
+import { Artifact } from '../artifact-generator.js';
+import { JavaRestClientJDKGeneratorConfig, toPath } from '../java-gen-utils.js';
 
 export function generateServiceUtils(
   artifactConfig: JavaRestClientJDKGeneratorConfig
@@ -24,7 +24,7 @@ export function generateServiceUtils(
         import java.util.stream.Collectors;
         import java.util.stream.Stream;
 
-        import at.bestsolution.quti.client.jdkhttp.impl.dto.DTOUtils;
+        import at.bestsolution.quti.client.jdkhttp.impl.model._JsonUtils;
         import jakarta.json.Json;
         import jakarta.json.JsonNumber;
         import jakarta.json.JsonObject;
@@ -36,7 +36,7 @@ export function generateServiceUtils(
                 if( value == null ) {
                     return null;
                 }
-                var text = DTOUtils.toJsonString(value, false);
+                var text = _JsonUtils.toJsonString(value, false);
                 return URLEncoder.encode(text, StandardCharsets.UTF_8);
             }
 
@@ -211,7 +211,7 @@ export function generateServiceUtils(
         }
     `;
   return {
-    name: "ServiceUtils.java",
+    name: 'ServiceUtils.java',
     content,
     path: toPath(artifactConfig.targetFolder, packageName),
   };

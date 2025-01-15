@@ -13,9 +13,9 @@ import {
   resolveObjectType,
   resolveType,
   toPath,
+  computeParameterAPIType,
 } from '../java-gen-utils.js';
 import { MOperation, MParameter, MReturnType, MService } from '../model.js';
-import { toType } from './shared.js';
 
 export function generateService(
   s: MService,
@@ -71,23 +71,23 @@ function toMethod(
   );
   if (o.errors.length > 0) {
     child.appendNewLine();
-    child.indent((throwBody) => {
-      throwBody.append(
-        'throws ',
-        fqn(`${artifactConfig.rootPackageName}.${o.errors[0]}Exception`),
-        o.errors.length > 1 ? ',' : ''
-      );
-      if (o.errors.length > 1) {
-        throwBody.appendNewLine();
-      }
-      throwBody.indent((other) => {
+    child.indent((outer) => {
+      outer.indent((throwBody) => {
+        throwBody.append(
+          'throws ',
+          fqn(`${artifactConfig.rootPackageName}.${o.errors[0]}Exception`),
+          o.errors.length > 1 ? ',' : ''
+        );
+        if (o.errors.length > 1) {
+          throwBody.appendNewLine();
+        }
         o.errors.slice(1).forEach((e, idx, arr) => {
-          other.append(
+          throwBody.append(
             fqn(`${artifactConfig.rootPackageName}.${e}Exception`),
             arr.length !== idx + 1 ? ',' : ''
           );
           if (arr.length !== idx + 1) {
-            other.appendNewLine();
+            throwBody.appendNewLine();
           }
         });
       });
@@ -102,9 +102,13 @@ function toParameter(
   artifactConfig: JavaClientAPIGeneratorConfig,
   fqn: (type: string) => string
 ) {
-  return `${toType(parameter, artifactConfig, fqn, parameter.nullable)} ${
-    parameter.name
-  }`;
+  const type = computeParameterAPIType(
+    parameter,
+    artifactConfig.nativeTypeSubstitues,
+    `${artifactConfig.rootPackageName}.model`,
+    fqn
+  );
+  return `${type} ${parameter.name}`;
 }
 
 function toResultType(
@@ -112,13 +116,13 @@ function toResultType(
   artifactConfig: JavaClientAPIGeneratorConfig,
   fqn: (type: string) => string
 ) {
-  const dtoPkg = `${artifactConfig.rootPackageName}.dto`;
+  const dtoPkg = `${artifactConfig.rootPackageName}.model`;
   if (type === undefined) {
     return 'void';
   }
 
   if (type.variant === 'union' || type.variant === 'record') {
-    const dtoType = fqn(`${dtoPkg}.${type.type}DTO`);
+    const dtoType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
     if (type.array) {
       return `${fqn('java.util.List')}<${dtoType}>`;
     } else {

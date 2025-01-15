@@ -16,7 +16,6 @@ export function generatePropertyAccessor(
   const node = new CompositeGeneratorNode();
   node.append(
     `public ${computeAPIType(
-      owner,
       property,
       nativeTypeSubstitues,
       basePackageName,
@@ -37,7 +36,6 @@ export function generateBuilderPropertyAccessor(
   const node = new CompositeGeneratorNode();
   node.append(
     `public DataBuilder ${property.name}(${computeAPIType(
-      owner,
       property,
       nativeTypeSubstitues,
       basePackageName,
