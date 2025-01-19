@@ -17,7 +17,7 @@ export function generateDTOBuilderFactory(
   const fqn = importCollector.importType.bind(importCollector);
 
   return {
-    name: 'DataBuilderFactory.java',
+    name: 'BuilderFactory.java',
     content: toString(
       generateCompilationUnit(
         packageName,
@@ -35,7 +35,7 @@ function generateDTOBuilderFactoryContent(
   fqn: (type: string) => string
 ) {
   const node = new CompositeGeneratorNode();
-  node.append('public interface DataBuilderFactory {', NL);
+  node.append('public interface BuilderFactory {', NL);
   node.indent((classBody) => {
     const Base = fqn(`${packageName}.model._Base`);
     classBody.append(

@@ -24,7 +24,7 @@ export function generateDTOBuilderFactory(
   const fqn = importCollector.importType.bind(importCollector);
 
   return {
-    name: 'RestDTOBuilderFactory.java',
+    name: 'RestBuilderFactory.java',
     content: toString(
       generateCompilationUnit(
         packageName,
@@ -46,13 +46,13 @@ function generateDTOBuilderFactoryContent(
 
   const Singleton = fqn('jakarta.inject.Singleton');
   const DTOBuilderFactory = fqn(
-    `${artifactConfig.rootPackageName}.service.DataBuilderFactory`
+    `${artifactConfig.rootPackageName}.service.BuilderFactory`
   );
   const Base = fqn(`${artifactConfig.rootPackageName}.service.model._Base`);
 
   node.append(`@${Singleton}`, NL);
   node.append(
-    `public class RestDTOBuilderFactory implements ${DTOBuilderFactory} {`,
+    `public class RestBuilderFactory implements ${DTOBuilderFactory} {`,
     NL
   );
   node.indent((body) => {
