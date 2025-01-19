@@ -1,4 +1,4 @@
-import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
+import { toString } from 'langium/generate';
 
 import {
   JavaImportsCollector,
@@ -6,11 +6,9 @@ import {
   generateCompilationUnit,
   toPath,
 } from '../java-gen-utils.js';
-import { isMResolvedProperty, MResolvedUnionType } from '../model.js';
+import { MResolvedUnionType } from '../model.js';
 import { Artifact } from '../artifact-generator.js';
-import { generateBuilderProperty, generateProperty } from './shared.js';
-import { toFirstUpper } from '../util.js';
-import { generateUnionContent as generateUnionContent_ } from '../java-model-api/union.js';
+import { generateUnionContent } from '../java-model-api/union.js';
 
 export function generateUnion(
   t: MResolvedUnionType,
@@ -27,7 +25,7 @@ export function generateUnion(
       generateCompilationUnit(
         packageName,
         importCollector,
-        generateUnionContent_(
+        generateUnionContent(
           t,
           artifactConfig.nativeTypeSubstitues,
           packageName,
@@ -38,54 +36,4 @@ export function generateUnion(
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };
-}
-
-export function generateUnionContent(
-  t: MResolvedUnionType,
-  artifactConfig: JavaClientAPIGeneratorConfig,
-  fqn: (type: string) => string,
-  packageName: string
-) {
-  const node = new CompositeGeneratorNode();
-  t.resolved.sharedProps
-    .filter(isMResolvedProperty)
-    .filter((p) => p.variant === 'inline-enum')
-    .forEach((p) => {
-      const m = t.resolved.records
-        .flatMap((r) => r.resolved.mixins)
-        .find((m) => m.properties.includes(p));
-      if (m) {
-        fqn(`${packageName}.Mixin${m.name}DTO.${toFirstUpper(p.name)}`);
-      }
-    });
-
-  node.append(`public interface ${t.name}DTO extends BaseDTO {`, NL);
-
-  if (t.resolved.records.find((r) => r.patchable)) {
-    node.indent((child) => {
-      child.append('public interface Patch {}', NL);
-    });
-  }
-
-  if (t.resolved.sharedProps.length > 0) {
-    node.indent((child) => {
-      t.resolved.sharedProps.forEach((p) =>
-        generateProperty(child, p, artifactConfig, fqn)
-      );
-    });
-    node.appendNewLine();
-    node.indent((child) => {
-      child.append(`public interface Builder extends BaseDTO.Builder {`, NL);
-      child.indent((child) => {
-        t.resolved.sharedProps.forEach((p) =>
-          generateBuilderProperty(child, p, artifactConfig, fqn)
-        );
-        child.append(`public ${t.name}DTO build();`, NL);
-      });
-      child.append('}', NL);
-    });
-  }
-
-  node.append('}', NL);
-  return node;
 }
