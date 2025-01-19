@@ -1,16 +1,27 @@
-import { CompositeGeneratorNode, NL, toString } from "langium/generate";
-import { Artifact } from "../artifact-generator.js";
+import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
+import { Artifact } from '../artifact-generator.js';
 import {
+  computeParameterAPIType,
   generateCompilationUnit,
   JavaImportsCollector,
   JavaServerJakartaWSGeneratorConfig,
   resolveObjectType,
   resolveType,
   toPath,
-} from "../java-gen-utils.js";
-import { MParameter, MResolvedOperation, MResolvedService } from "../model.js";
-import { toFirstUpper } from "../util.js";
-import { toType } from "../java-client-api/shared.js";
+} from '../java-gen-utils.js';
+import {
+  isMBuiltinType,
+  isMInlineEnumType,
+  MParameter,
+  MResolvedOperation,
+  MResolvedService,
+} from '../model.js';
+import { toFirstUpper } from '../util.js';
+import {
+  builtinOptionalJSONAccessNG,
+  builtinSimpleJSONAccessNG,
+  builtinSimpleJSONArrayAccess,
+} from '../java-model-json/shared.js';
 
 export function generateService(
   s: MResolvedService,
@@ -23,7 +34,7 @@ export function generateService(
         o.parameters.filter((p) => p.meta?.rest?.source === undefined).length >
         1
     )
-    .map((o) => generateServiceDTO(s, o, artifactConfig));
+    .map((o) => generateServiceData(s, o, artifactConfig));
   result.push(...serviceDTOs);
 
   const resourceArtifact = generateResource(s, artifactConfig);
@@ -47,19 +58,19 @@ function generateResource(
   const importCollector = new JavaImportsCollector(packageName);
   const fqn = importCollector.importType.bind(importCollector);
 
-  const ApplicationScoped = fqn("jakarta.enterprise.context.ApplicationScoped");
-  const Path = fqn("jakarta.ws.rs.Path");
-  const Produces = fqn("jakarta.ws.rs.Produces");
-  const MediaType = fqn("jakarta.ws.rs.core.MediaType");
+  const ApplicationScoped = fqn('jakarta.enterprise.context.ApplicationScoped');
+  const Path = fqn('jakarta.ws.rs.Path');
+  const Produces = fqn('jakarta.ws.rs.Produces');
+  const MediaType = fqn('jakarta.ws.rs.core.MediaType');
   const Service = fqn(
     `${artifactConfig.rootPackageName}.service.${s.name}Service`
   );
-  const Inject = fqn("jakarta.inject.Inject");
-  const Response = fqn("jakarta.ws.rs.core.Response");
+  const Inject = fqn('jakarta.inject.Inject');
+  const Response = fqn('jakarta.ws.rs.core.Response');
 
   const node = new CompositeGeneratorNode();
   node.append(`@${ApplicationScoped}`, NL);
-  node.append(`@${Path}("${s.meta.rest.path.replace("$", "")}")`, NL);
+  node.append(`@${Path}("${s.meta.rest.path.replace('$', '')}")`, NL);
   node.append(`@${Produces}(${MediaType}.APPLICATION_JSON)`, NL);
   node.append(`public class ${s.name}Resource_ {`, NL);
   node.indent((cBody) => {
@@ -75,10 +86,10 @@ function generateResource(
       NL
     );
     cBody.indent((mBody) => {
-      mBody.append("this.service = service;", NL);
-      mBody.append("this.responseBuilder = responseBuilder;", NL);
+      mBody.append('this.service = service;', NL);
+      mBody.append('this.responseBuilder = responseBuilder;', NL);
     });
-    cBody.append("}", NL);
+    cBody.append('}', NL);
     cBody.appendNewLine();
 
     s.operations.forEach((o) => {
@@ -88,7 +99,7 @@ function generateResource(
 
       cBody.append(`@${fqn(`jakarta.ws.rs.${o.meta.rest.method}`)}`, NL);
       if (o.meta.rest.path) {
-        cBody.append(`@${Path}("${o.meta.rest.path.replace("$", "")}")`, NL);
+        cBody.append(`@${Path}("${o.meta.rest.path.replace('$', '')}")`, NL);
       }
 
       const multiBody =
@@ -132,9 +143,9 @@ function generateResource(
             params.forEach((p, idx, arr) => {
               paramIndent.append(`${p}`);
               if (idx + 1 < arr.length) {
-                paramIndent.append(",", NL);
+                paramIndent.append(',', NL);
               } else {
-                paramIndent.append(") {", NL);
+                paramIndent.append(') {', NL);
               }
             });
           });
@@ -147,11 +158,11 @@ function generateResource(
 
       cBody.indent((mBody) => {
         mBody.append(
-          `var result = service.${o.name}(${serviceParams.join(", ")});`,
+          `var result = service.${o.name}(${serviceParams.join(', ')});`,
           NL
         );
         mBody.appendNewLine();
-        mBody.append("if (result.isOk()) {", NL);
+        mBody.append('if (result.isOk()) {', NL);
         mBody.indent((inner) => {
           if (o.resultType) {
             if (serviceParams.length === 0) {
@@ -163,28 +174,28 @@ function generateResource(
               inner.append(
                 `return responseBuilder.${
                   o.name
-                }(result.value(),${serviceParams.join(", ")}).build();`,
+                }(result.value(),${serviceParams.join(', ')}).build();`,
                 NL
               );
             }
           } else {
             inner.append(
               `return responseBuilder.${o.name}(${serviceParams.join(
-                ", "
+                ', '
               )}).build();`,
               NL
             );
           }
         });
-        mBody.append("}", NL);
-        mBody.append("return RestUtils.toResponse(result);", NL);
+        mBody.append('}', NL);
+        mBody.append('return RestUtils.toResponse(result);', NL);
       });
-      cBody.append("}", NL);
+      cBody.append('}', NL);
       cBody.appendNewLine();
     });
   });
 
-  node.append("}", NL);
+  node.append('}', NL);
 
   return {
     name: `${toFirstUpper(s.name)}Resource_.java`,
@@ -212,31 +223,31 @@ function computeParameterType(
   fqn: (type: string) => string
 ): string {
   if (
-    (p.variant === "record" || p.variant === "union") &&
-    typeof p.type === "string"
+    (p.variant === 'record' || p.variant === 'union') &&
+    typeof p.type === 'string'
   ) {
     const Type = fqn(
       `${artifactConfig.rootPackageName}.rest.dto.${p.type}DTOImpl`
     );
     if (p.array) {
-      const List = fqn("java.util.List");
+      const List = fqn('java.util.List');
       return `${List}<${Type}>`;
     } else {
       return Type;
     }
-  } else if (p.variant === "enum") {
-    return "DummyEnum";
-  } else if (p.variant === "inline-enum") {
-    return "InlineDummyEnum";
+  } else if (p.variant === 'enum') {
+    return 'DummyEnum';
+  } else if (p.variant === 'inline-enum') {
+    return 'InlineDummyEnum';
   } else {
-    if (typeof p.type === "string") {
+    if (typeof p.type === 'string') {
       if (p.array) {
         const Type = resolveObjectType(
           p.type,
           artifactConfig.nativeTypeSubstitues,
           fqn
         );
-        const List = fqn("java.util.List");
+        const List = fqn('java.util.List');
         return `${List}<${Type}>`;
       } else {
         return resolveType(
@@ -247,7 +258,7 @@ function computeParameterType(
         );
       }
     }
-    return "String";
+    return 'String';
   }
 }
 
@@ -255,52 +266,165 @@ function computeParameterAnnotation(
   p: MParameter,
   fqn: (type: string) => string
 ): string {
-  if (p.meta?.rest?.source === "path") {
-    return `@${fqn("jakarta.ws.rs.PathParam")}("${p.meta.rest.name}") `;
-  } else if (p.meta?.rest?.source === "header") {
-    return `@${fqn("jakarta.ws.rs.HeaderParam")}("${p.meta.rest.name}") `;
-  } else if (p.meta?.rest?.source === "cookie") {
-    return `@${fqn("jakarta.ws.rs.CookieParam")}("${p.meta.rest.name}") `;
-  } else if (p.meta?.rest?.source === "query") {
-    return `@${fqn("jakarta.ws.rs.QueryParam")}("${p.meta.rest.name}") `;
+  if (p.meta?.rest?.source === 'path') {
+    return `@${fqn('jakarta.ws.rs.PathParam')}("${p.meta.rest.name}") `;
+  } else if (p.meta?.rest?.source === 'header') {
+    return `@${fqn('jakarta.ws.rs.HeaderParam')}("${p.meta.rest.name}") `;
+  } else if (p.meta?.rest?.source === 'cookie') {
+    return `@${fqn('jakarta.ws.rs.CookieParam')}("${p.meta.rest.name}") `;
+  } else if (p.meta?.rest?.source === 'query') {
+    return `@${fqn('jakarta.ws.rs.QueryParam')}("${p.meta.rest.name}") `;
   }
-  return "";
+  return '';
 }
 
-function generateServiceDTO(
+function generateServiceData(
   s: MResolvedService,
   o: MResolvedOperation,
   artifactConfig: JavaServerJakartaWSGeneratorConfig
 ): Artifact {
-  const packageName = `${artifactConfig.rootPackageName}.rest.dto`;
+  const packageName = `${artifactConfig.rootPackageName}.rest.model`;
 
   const importCollector = new JavaImportsCollector(packageName);
   const fqn = importCollector.importType.bind(importCollector);
 
+  const JsonObject = fqn('jakarta.json.JsonObject');
+
   const node = new CompositeGeneratorNode();
-  node.append(`public record ${s.name}${toFirstUpper(o.name)}DTOImpl(`, NL);
-  node.indent((argNode) => {
+  node.append(
+    `public class ${s.name}${toFirstUpper(
+      o.name
+    )}DataImpl extends _BaseDataImpl {`,
+    NL
+  );
+  node.indent((classBody) => {
+    classBody.append(
+      `public ${s.name}${toFirstUpper(o.name)}DataImpl(${JsonObject} data) {`,
+      NL
+    );
+    classBody.indent((methodBody) => {
+      methodBody.append('super(data);', NL);
+    });
+    classBody.append('}', NL, NL);
     o.parameters
       .filter((p) => p.meta?.rest?.source === undefined)
-      .forEach((p, idx, arr) => {
-        argNode.append(
-          `${toType(p, artifactConfig, fqn, p.nullable)} ${p.name}`
+      .forEach((p) => {
+        const type = computeParameterAPIType(
+          p,
+          artifactConfig.nativeTypeSubstitues,
+          `${artifactConfig.rootPackageName}.service.model`,
+          fqn
         );
-        if (idx + 1 < arr.length) {
-          argNode.append(",", NL);
-        } else {
-          argNode.append(") {", NL);
-        }
+        classBody.append(`public ${type} ${p.name}() {`, NL);
+        classBody.indent((methodBody) => {
+          methodBody.append(
+            generateParameterContent(
+              p,
+              artifactConfig.nativeTypeSubstitues,
+              `${artifactConfig.rootPackageName}.service.model`,
+              fqn
+            )
+          );
+        });
+        classBody.append('}', NL, NL);
       });
   });
 
-  node.append("}");
+  node.append('}');
 
   return {
-    name: `${s.name}${toFirstUpper(o.name)}DTOImpl.java`,
+    name: `${s.name}${toFirstUpper(o.name)}DataImpl.java`,
     content: toString(
-      generateCompilationUnit(packageName, importCollector, node)
+      generateCompilationUnit(packageName, importCollector, node),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };
+}
+
+function generateParameterContent(
+  prop: MParameter,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  interfaceBasePackage: string,
+  fqn: (type: string) => string
+) {
+  let mapper: string;
+  const array = prop.array;
+
+  if (isMBuiltinType(prop.type)) {
+    if (array) {
+      mapper = builtinSimpleJSONArrayAccess({
+        type: prop.type,
+        name: prop.name,
+      });
+    } else {
+      if (!prop.optional && !prop.nullable) {
+        mapper = builtinSimpleJSONAccessNG({
+          name: prop.name,
+          type: prop.type,
+        });
+      } else {
+        mapper = builtinOptionalJSONAccessNG({
+          name: prop.name,
+          type: prop.type,
+        });
+      }
+    }
+  } else if (isMInlineEnumType(prop.type)) {
+    const Type = computeParameterAPIType(
+      prop,
+      nativeTypeSubstitues,
+      interfaceBasePackage,
+      fqn,
+      true
+    );
+    if (array) {
+      mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+    } else {
+      mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+    }
+  } else {
+    if (prop.variant === 'enum') {
+      if (array) {
+        mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+      } else {
+        mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+      }
+    } else if (prop.variant === 'scalar') {
+      const Type = computeParameterAPIType(
+        prop,
+        nativeTypeSubstitues,
+        interfaceBasePackage,
+        fqn,
+        true
+      );
+      if (array) {
+        mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::of)`;
+      } else {
+        mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::of)`;
+      }
+    } else {
+      /*const Type = computeAPIType(
+          owner,
+          prop,
+          nativeTypeSubstitues,
+          interfaceBasePackage,
+          fqn,
+          true
+        );*/
+      if (array) {
+        mapper = `_JsonUtils.mapObjects(data, "${prop.name}", ${prop.type}DataImpl::of)`;
+      } else {
+        if (prop.optional) {
+          mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${prop.type}DataImpl::of, null)`;
+        } else {
+          mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${prop.type}DataImpl::of)`;
+        }
+      }
+    }
+  }
+
+  const node = new CompositeGeneratorNode();
+  node.append(`return ${mapper};`, NL);
+  return node;
 }

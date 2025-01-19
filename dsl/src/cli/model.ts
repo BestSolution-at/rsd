@@ -435,9 +435,6 @@ function mapToResolvedRecordType(
     },
   };
 
-  if (t.name === 'Calendar') {
-  }
-
   rv.resolved.properties = t.properties.map((p) => ({
     ...p,
     resolved: {
@@ -524,6 +521,7 @@ function mapToResolvedUnionType(
   const allProperties = resolvedRecords.flatMap((r) => {
     return allResolvedRecordProperties(r);
   });
+
   const groupCount = new Map<string, MResolvedBaseProperty[]>();
 
   allProperties.forEach((p) => {

@@ -1,5 +1,5 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
-import { isMProperty, MResolvedUnionType } from '../model.js';
+import { MResolvedUnionType } from '../model.js';
 import { generatePropertyAccessor } from './shared.js';
 
 export function generateUnionContent(
@@ -31,17 +31,10 @@ function generateData(
   node.append(`public interface Data extends ${t.name} {`, NL);
   node.indent((classBody) => {
     classBody.append(
-      ...t.resolved.sharedProps
-        .filter(isMProperty)
-        .flatMap((p) => [
-          generatePropertyAccessor(
-            p,
-            nativeTypeSubstitues,
-            basePackageName,
-            fqn
-          ),
-          NL,
-        ])
+      ...t.resolved.sharedProps.flatMap((p) => [
+        generatePropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn),
+        NL,
+      ])
     );
   });
   node.append('}', NL);

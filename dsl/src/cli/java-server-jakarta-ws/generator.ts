@@ -18,6 +18,10 @@ import {
 
 import { generateService } from './service.js';
 import { generateDTOBuilderFactory } from './builder-factory.js';
+import { generateRecord } from './record.js';
+import { generateBase } from './base.js';
+import { generateJsonUtils } from './json-utils.js';
+import { generateUnion } from './union.js';
 
 export function generate(
   model: MResolvedRSDModel,
@@ -36,6 +40,8 @@ export function generate(
   const result = model.elements.flatMap((e) =>
     generateType(e, model, artifactConfig)
   );
+  result.push(generateBase(artifactConfig));
+  result.push(generateJsonUtils(artifactConfig));
   result.push(
     ...model.services.flatMap((e) => generateService(e, artifactConfig))
   );
@@ -49,18 +55,11 @@ function generateType(
   model: MResolvedRSDModel,
   artifactConfig: JavaServerJakartaWSGeneratorConfig
 ): Artifact[] {
-  /*if (isMEnumType(t)) {
+  if (isMEnumType(t)) {
   } else if (isMRecordType(t)) {
     return generateRecord(t, model, artifactConfig);
   } else if (isMUnionType(t)) {
     return generateUnion(t, artifactConfig);
-  }*/
-
-  if (isMEnumType(t)) {
-  } else if (isMRecordType(t)) {
-    return []; // generateRecord(t, model, artifactConfig);
-  } else if (isMUnionType(t)) {
-    return []; //generateUnion(t, artifactConfig);
   }
 
   return [];

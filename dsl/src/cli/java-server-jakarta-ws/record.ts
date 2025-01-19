@@ -26,52 +26,38 @@ import {
 } from '../model.js';
 import { toFirstUpper } from '../util.js';
 import { generateProperty, generatePropertyAccess } from './shared.js';
+import { generateRecordContent as generateRecordContent_ } from '../java-model-json/record.js';
 
 export function generateRecord(
   t: MResolvedRecordType,
   model: MResolvedRSDModel,
   artifactConfig: JavaServerJakartaWSGeneratorConfig
 ): Artifact[] {
-  const packageName = `${artifactConfig.rootPackageName}.rest.dto`;
+  const packageName = `${artifactConfig.rootPackageName}.rest.model`;
 
-  const result: Artifact[] = [];
-  {
-    const importCollector = new JavaImportsCollector(packageName);
-    const fqn = importCollector.importType.bind(importCollector);
+  const importCollector = new JavaImportsCollector(packageName);
+  const fqn = importCollector.importType.bind(importCollector);
 
-    result.push({
-      name: `${t.name}DTOImpl.java`,
+  return [
+    {
+      name: `${t.name}DataImpl.java`,
       content: toString(
         generateCompilationUnit(
           packageName,
           importCollector,
-          generateRecordContent(t, artifactConfig, fqn, model)
+          generateRecordContent_(
+            t,
+            model,
+            artifactConfig.nativeTypeSubstitues,
+            `${artifactConfig.rootPackageName}.service.model`,
+            fqn
+          )
         ),
         '\t'
       ),
       path: toPath(artifactConfig.targetFolder, packageName),
-    });
-  }
-
-  /*if (t.patchable) {
-    const importCollector = new JavaImportsCollector(packageName);
-    const fqn = importCollector.importType.bind(importCollector);
-
-    result.push({
-      name: `${t.name}PatchDTOImpl.java`,
-      content: toString(
-        generateCompilationUnit(
-          packageName,
-          importCollector,
-          generateRecordPatch(t, artifactConfig, fqn)
-        ),
-        '\t'
-      ),
-      path: toPath(artifactConfig.targetFolder, packageName),
-    });
-  }*/
-
-  return result;
+    },
+  ];
 }
 
 /*function generateRecordPatch(

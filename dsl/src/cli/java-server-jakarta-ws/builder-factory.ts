@@ -30,7 +30,8 @@ export function generateDTOBuilderFactory(
         packageName,
         importCollector,
         generateDTOBuilderFactoryContent(model, artifactConfig, fqn)
-      )
+      ),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };
@@ -45,9 +46,9 @@ function generateDTOBuilderFactoryContent(
 
   const Singleton = fqn('jakarta.inject.Singleton');
   const DTOBuilderFactory = fqn(
-    `${artifactConfig.rootPackageName}.service.DTOBuilderFactory`
+    `${artifactConfig.rootPackageName}.service.DataBuilderFactory`
   );
-  const BaseDTO = fqn(`${artifactConfig.rootPackageName}.service.dto.BaseDTO`);
+  const Base = fqn(`${artifactConfig.rootPackageName}.service.model._Base`);
 
   node.append(`@${Singleton}`, NL);
   node.append(
@@ -57,49 +58,120 @@ function generateDTOBuilderFactoryContent(
   node.indent((body) => {
     body.append('@Override', NL);
     body.append(
-      `public <T extends ${BaseDTO}.Builder> T builder(Class<T> type) {`,
+      `public <T extends ${Base}.BaseDataBuilder<?>> T builder(Class<T> type) {`,
       NL
     );
     body.indent((mBody) => {
-      model.elements
-        .filter(isMRecordType)
-        .filter((t) => (t as MResolvedRecordType).resolved.unions.length !== 1)
-        .forEach((t) => {
-          const InterfaceType = fqn(
-            `${artifactConfig.rootPackageName}.service.dto.${t.name}DTO`
-          );
-          const ImplType = fqn(
-            `${artifactConfig.rootPackageName}.rest.dto.${t.name}DTOImpl`
-          );
-          mBody.append(`if( type == ${InterfaceType}.Builder.class) {`, NL);
-          mBody.indent((block) => {
-            block.append(`return type.cast(${ImplType}.builder());`, NL);
-          });
-          mBody.append('}', NL);
-        });
-      model.elements.filter(isMUnionType).forEach((u) => {
-        (u as MResolvedUnionType).types.forEach((t) => {
-          const InterfaceType = fqn(
-            `${artifactConfig.rootPackageName}.service.dto.${t}DTO`
-          );
-          const ImplType = fqn(
-            `${artifactConfig.rootPackageName}.rest.dto.${t}DTOImpl`
-          );
-          mBody.append(`if( type == ${InterfaceType}.Builder.class) {`, NL);
-          mBody.indent((block) => {
-            block.append(`return type.cast(${ImplType}.builder());`, NL);
-          });
-          mBody.append('}', NL);
-        });
-      });
-      mBody.append(
-        'throw new IllegalArgumentException("Unsupported Builder \'%s\'".formatted(type));',
-        NL
-      );
+      mBody.append(generateBuilderMethodBody(model, artifactConfig, fqn));
+    });
+    body.append('}', NL, NL);
+    body.append(
+      'public <T extends _Base.BaseData> T of(Class<T> type, String data) {',
+      NL
+    );
+    body.indent((mBody) => {
+      mBody.append(generateOfMethodBody(model, artifactConfig, fqn));
     });
     body.append('}', NL);
   });
   node.append('}', NL);
 
   return node;
+}
+
+function generateBuilderMethodBody(
+  model: MResolvedRSDModel,
+  artifactConfig: JavaServerJakartaWSGeneratorConfig,
+  fqn: (type: string) => string
+) {
+  const mBody = new CompositeGeneratorNode();
+  model.elements
+    .filter(isMRecordType)
+    .filter((t) => (t as MResolvedRecordType).resolved.unions.length !== 1)
+    .forEach((t) => {
+      const InterfaceType = fqn(
+        `${artifactConfig.rootPackageName}.service.model.${t.name}`
+      );
+      const ImplType = fqn(
+        `${artifactConfig.rootPackageName}.rest.model.${t.name}DataImpl`
+      );
+      mBody.append(`if (type == ${InterfaceType}.DataBuilder.class) {`, NL);
+      mBody.indent((block) => {
+        block.append(`return type.cast(${ImplType}.builder());`, NL);
+      });
+      mBody.append('}', NL);
+    });
+  model.elements.filter(isMUnionType).forEach((u) => {
+    (u as MResolvedUnionType).types.forEach((t) => {
+      const InterfaceType = fqn(
+        `${artifactConfig.rootPackageName}.service.model.${t}`
+      );
+      const ImplType = fqn(
+        `${artifactConfig.rootPackageName}.rest.model.${t}DataImpl`
+      );
+      mBody.append(`if (type == ${InterfaceType}.DataBuilder.class) {`, NL);
+      mBody.indent((block) => {
+        block.append(`return type.cast(${ImplType}.builder());`, NL);
+      });
+      mBody.append('}', NL);
+    });
+  });
+  mBody.append(
+    'throw new IllegalArgumentException("Unsupported Builder \'%s\'".formatted(type));',
+    NL
+  );
+  return mBody;
+}
+
+function generateOfMethodBody(
+  model: MResolvedRSDModel,
+  artifactConfig: JavaServerJakartaWSGeneratorConfig,
+  fqn: (type: string) => string
+) {
+  const _JsonUtils = fqn(
+    `${artifactConfig.rootPackageName}.rest.model._JsonUtils`
+  );
+  const mBody = new CompositeGeneratorNode();
+  model.elements
+    .filter(isMRecordType)
+    .filter((t) => (t as MResolvedRecordType).resolved.unions.length !== 1)
+    .forEach((t) => {
+      const InterfaceType = fqn(
+        `${artifactConfig.rootPackageName}.service.model.${t.name}`
+      );
+      const ImplType = fqn(
+        `${artifactConfig.rootPackageName}.rest.model.${t.name}DataImpl`
+      );
+      mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
+      mBody.indent((block) => {
+        block.append(
+          `return type.cast(${_JsonUtils}.fromString(data, ${ImplType}::of));`,
+          NL
+        );
+      });
+      mBody.append('}', NL);
+    });
+  model.elements.filter(isMUnionType).forEach((u) => {
+    (u as MResolvedUnionType).types.forEach((t) => {
+      const InterfaceType = fqn(
+        `${artifactConfig.rootPackageName}.service.model.${t}`
+      );
+      const ImplType = fqn(
+        `${artifactConfig.rootPackageName}.rest.model.${t}DataImpl`
+      );
+      mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
+      mBody.indent((block) => {
+        block.append(
+          `return type.cast(${_JsonUtils}.fromString(data, ${ImplType}::of));`,
+          NL
+        );
+      });
+      mBody.append('}', NL);
+    });
+  });
+  mBody.append(
+    'throw new IllegalArgumentException("Unsupported Builder \'%s\'".formatted(type));',
+    NL
+  );
+  return mBody;
 }

@@ -40,7 +40,6 @@ export function generatePropertyNG(
   node.indent((methodBody) => {
     methodBody.append(
       generatePropertyContent(
-        owner,
         prop,
         nativeTypeSubstitues,
         interfaceBasePackage,
@@ -54,7 +53,6 @@ export function generatePropertyNG(
 }
 
 function generatePropertyContent(
-  owner: MResolvedRecordType,
   prop: MResolvedBaseProperty,
   nativeTypeSubstitues: Record<string, string> | undefined,
   interfaceBasePackage: string,
@@ -150,7 +148,7 @@ function generatePropertyContent(
   return node;
 }
 
-function builtinSimpleJSONAccessNG(property: {
+export function builtinSimpleJSONAccessNG(property: {
   type: MBuiltinType;
   name: string;
 }): string {
@@ -178,7 +176,7 @@ function builtinSimpleJSONAccessNG(property: {
   }
 }
 
-function builtinSimpleJSONArrayAccess(property: {
+export function builtinSimpleJSONArrayAccess(property: {
   type: MBuiltinType;
   name: string;
 }): string {
@@ -206,7 +204,7 @@ function builtinSimpleJSONArrayAccess(property: {
   }
 }
 
-function builtinOptionalJSONAccessNG(property: {
+export function builtinOptionalJSONAccessNG(property: {
   type: MBuiltinType;
   name: string;
 }): string {

@@ -3,6 +3,7 @@ import { CompositeGeneratorNode, NL } from 'langium/generate';
 export function generateJsonUtilsContent(
   fqn: (type: string) => string
 ): CompositeGeneratorNode {
+  fqn('java.io.StringReader');
   fqn('java.io.StringWriter');
   fqn('java.time.LocalDate');
   fqn('java.time.LocalDateTime');
@@ -27,7 +28,7 @@ export function generateJsonUtilsContent(
     classBody.append(
       generateSingleLineMethod(
         'public static boolean hasValue(JsonObject object, String property)',
-        'return object.containsKey(property) && ! object.isNull(property)'
+        'return object.containsKey(property) && !object.isNull(property)'
       )
     );
     classBody.append(
@@ -188,22 +189,24 @@ export function generateJsonUtilsContent(
         );
       });
       methoBody.append('}', NL);
-      methoBody.append('return Stream.empty();');
+      methoBody.append('return Stream.empty();', NL);
     });
-    classBody.append('}', NL);
+    classBody.append('}', NL, NL);
     classBody.append(
       'public static <J extends JsonValue, T> Stream<T> mapToStream(JsonArray array, Class<J> clazz, Function<J, T> mapper) {',
       NL
     );
     classBody.indent((methoBody) => {
       methoBody.append('return array', NL);
-      methoBody.indent((chain) => {
-        chain.append('.getValuesAs(clazz)', NL);
-        chain.append('.stream()', NL);
-        chain.append('.map(mapper);', NL);
+      methoBody.indent((tmp) => {
+        tmp.indent((chain) => {
+          chain.append('.getValuesAs(clazz)', NL);
+          chain.append('.stream()', NL);
+          chain.append('.map(mapper);', NL);
+        });
       });
     });
-    classBody.append('}', NL);
+    classBody.append('}', NL, NL);
 
     classBody.append(
       generateListMappers(
@@ -311,7 +314,7 @@ export function generateJsonUtilsContent(
         })
       );
     });
-    classBody.append('}', NL);
+    classBody.append('}', NL, NL);
     classBody.append(
       generateSingleLineMethod(
         'public static <T> JsonArray toJsonLiteralArray(List<T> value, Function<T, String> converter)',
@@ -339,12 +342,45 @@ export function generateJsonUtilsContent(
         })
       );
     });
-    classBody.append('}', NL);
+    classBody.append('}', NL, NL);
     classBody.append(
       'public static String toJsonString(Object o, boolean pretty) {',
       NL
     );
     classBody.indent((methodBody) => {
+      methodBody.append('if (o instanceof List<?> list) {', NL);
+      methodBody.indent((block) => {
+        block.append('var writer = new StringWriter();', NL);
+        block.append(
+          'var config = Map.of(JsonGenerator.PRETTY_PRINTING, pretty);',
+          NL
+        );
+        block.append('var generator = Json', NL);
+        block.indent((tmp) => {
+          tmp.indent((chain) => {
+            chain.append('.createGeneratorFactory(config)', NL);
+            chain.append('.createGenerator(writer);', NL);
+          });
+        });
+        block.append('generator.writeStartArray();', NL);
+        block.append('list.forEach(e -> {', NL);
+        block.indent((forBlock) => {
+          forBlock.append('if (e instanceof _BaseDataImpl b) {', NL);
+          forBlock.indent((ifBlock) => {
+            ifBlock.append('generator.write(b.data);', NL);
+          });
+          forBlock.append('} else {', NL);
+          forBlock.indent((ifBlock) => {
+            ifBlock.append('throw new IllegalStateException();', NL);
+          });
+          forBlock.append('}', NL);
+        });
+        block.append('});', NL);
+        block.append('generator.writeEnd();', NL);
+        block.append('generator.close();', NL);
+        block.append('return writer.toString();', NL);
+      });
+      methodBody.append('}', NL);
       methodBody.append('if (o instanceof _BaseDataImpl) {', NL);
       methodBody.indent((block) => {
         block.append(
@@ -377,11 +413,30 @@ export function generateJsonUtilsContent(
       methodBody.append('generator.close();', NL);
       methodBody.append('return writer.toString();', NL);
     });
+    classBody.append('}', NL, NL);
+    classBody.append('public static JsonObject fromString(String data) {', NL);
+    classBody.indent((methodBody) => {
+      methodBody.append(
+        'try (var reader = Json.createReader(new StringReader(data))) {',
+        NL
+      );
+      methodBody.indent((block) => {
+        block.append('return reader.readObject();', NL);
+      });
+      methodBody.append('}', NL);
+    });
+    classBody.append('}', NL, NL);
+    classBody.append(
+      'public static <T> T fromString(String data, Function<JsonObject, T> constructor) {',
+      NL
+    );
+    classBody.indent((methodBody) => {
+      methodBody.append('return constructor.apply(fromString(data));', NL);
+    });
     classBody.append('}', NL);
   });
 
-  node.appendNewLine();
-  node.append('}');
+  node.append('}', NL);
   return node;
 }
 
@@ -434,38 +489,6 @@ function generateToJsonArray(name: string, type: string) {
   );
   return rv;
 }
-
-/*
-
-
-            public static <T> Collector<T, ?, JsonArray> toArray(Function<T, JsonValue> jsonValueConverter) {
-                return Collector.of(Json::createArrayBuilder, (b, v) -> jsonValueConverter.apply(v), JsonArrayBuilder::add,
-                        JsonArrayBuilder::build);
-            }
-
-            public static String toJsonString(Object o, boolean pretty) {
-                if( o instanceof BaseDTOImpl ) {
-                    return toJsonString(((BaseDTOImpl)o).data, pretty);
-                }
-                return o.toString();
-            }
-
-            public static String toJsonString(JsonObject object, boolean pretty) {
-                var writer = new StringWriter();
-                var generator = Json.createGeneratorFactory(Map.of(JsonGenerator.PRETTY_PRINTING, pretty))
-                        .createGenerator(writer);
-                generator.write(object);
-                generator.close();
-                return writer.toString();
-            }
-
-        }
-    `;
-  return {
-    name: 'DTOUtils.java',
-    content,
-    path: toPath(artifactConfig.targetFolder, packageName),
-  };*/
 
 function generateSingleLineMethod(signature: string, ...content: string[]) {
   const node = new CompositeGeneratorNode();

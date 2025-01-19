@@ -7,20 +7,20 @@ import {
   JavaImportsCollector,
   toPath,
 } from '../java-gen-utils.js';
-import { generateBaseDTOContent } from '../java-client-api/base.js';
+import { generateBaseContent } from '../java-model-api/base.js';
 
 export function generateBaseDTO(
   artifactConfig: JavaClientAPIGeneratorConfig
 ): Artifact {
-  const packageName = `${artifactConfig.rootPackageName}.service.dto`;
+  const packageName = `${artifactConfig.rootPackageName}.service.model`;
 
   return {
-    name: 'BaseDTO.java',
+    name: '_Base.java',
     content: toString(
       generateCompilationUnit(
         packageName,
         new JavaImportsCollector(packageName),
-        generateBaseDTOContent()
+        generateBaseContent()
       ),
       '\t'
     ),
