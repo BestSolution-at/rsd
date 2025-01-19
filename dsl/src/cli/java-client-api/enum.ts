@@ -1,4 +1,4 @@
-import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
+import { toString } from 'langium/generate';
 
 import { Artifact } from '../artifact-generator.js';
 import {
@@ -7,7 +7,7 @@ import {
   JavaImportsCollector,
   toPath,
 } from '../java-gen-utils.js';
-import { MEnumType, MInlineEnumType } from '../model.js';
+import { MEnumType } from '../model.js';
 import { generateEnumContent } from '../java-model-api/enum.js';
 
 export function generateEnum(
@@ -30,20 +30,4 @@ export function generateEnum(
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };
-}
-
-export function generateInlineEnum(
-  t: MInlineEnumType,
-  name: string,
-  node: CompositeGeneratorNode
-) {
-  node.indent((child) => {
-    child.append(`public enum ${name} {`, NL);
-    child.indent((enumBody) => {
-      t.entries.forEach((e) => {
-        enumBody.append(`${e.name},`, NL);
-      });
-    });
-    child.append('}', NL, NL);
-  });
 }

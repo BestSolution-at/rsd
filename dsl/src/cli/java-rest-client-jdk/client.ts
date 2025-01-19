@@ -46,28 +46,14 @@ export function generateClient(
     clBody.appendNewLine();
     clBody.append('static {', NL);
     clBody.indent((staticBody) => {
-      m.elements
-        .filter(isMResolvedRecordType)
-        // .filter((e) => e.resolved.unions.length === 0)
-        .forEach((e) => {
-          const type = fqn(`${basePackage}.model.${e.name}`);
-          const implType = fqn(`${packageName}.impl.model.${e.name}DataImpl`);
-          staticBody.append(
-            `registerBuilderCreator(${type}.DataBuilder.class, ${implType}.DataBuilderImpl::new);`,
-            NL
-          );
-        });
-      /*m.elements.filter(isMResolvedUnionType).forEach((u) => {
-        u.resolved.records.forEach((e) => {
-          const type = fqn(`${basePackage}.dto.${e.name}DTO`);
-          const implType = fqn(`${packageName}.impl.dto.${e.name}DTOImpl`);
-
-          staticBody.append(
-            `registerBuilderCreator(${type}.Builder.class, ${implType}.BuilderImpl::new);`,
-            NL
-          );
-        });
-      });*/
+      m.elements.filter(isMResolvedRecordType).forEach((e) => {
+        const type = fqn(`${basePackage}.model.${e.name}`);
+        const implType = fqn(`${packageName}.impl.model.${e.name}DataImpl`);
+        staticBody.append(
+          `registerBuilderCreator(${type}.DataBuilder.class, ${implType}.DataBuilderImpl::new);`,
+          NL
+        );
+      });
       if (m.services.length > 0) {
         staticBody.appendNewLine();
       }
