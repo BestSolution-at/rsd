@@ -14,14 +14,15 @@ export function generateBase(
   artifactConfig: JavaClientAPIGeneratorConfig
 ): Artifact {
   const packageName = `${artifactConfig.rootPackageName}.model`;
-
+  const importCollector = new JavaImportsCollector(packageName);
+  const fqn = importCollector.importType.bind(importCollector);
   return {
     name: '_Base.java',
     content: toString(
       generateCompilationUnit(
         packageName,
-        new JavaImportsCollector(packageName),
-        generateBaseContent()
+        importCollector,
+        generateBaseContent(fqn)
       ),
       '\t'
     ),

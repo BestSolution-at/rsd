@@ -3,6 +3,7 @@ import {
   allResolvedRecordProperties,
   isMInlineEnumType,
   isMProperty,
+  isMResolvedProperty,
   MResolvedBaseProperty,
   MResolvedRecordType,
 } from '../model.js';
@@ -10,6 +11,8 @@ import { generateInlineEnum } from './enum.js';
 import { toFirstUpper } from '../util.js';
 import {
   generateBuilderPropertyAccessor,
+  generatePatchBuilderPropertyAccessor,
+  generatePatchPropertyAccessor,
   generatePropertyAccessor,
 } from './shared.js';
 
@@ -41,9 +44,19 @@ export function generateRecordContent(
     );
     if (t.patchable) {
       classBody.appendNewLine();
-      classBody.append(generatePatch(t));
+      classBody.append(
+        generatePatch(t, allProps, nativeTypeSubstitues, basePackageName, fqn)
+      );
       classBody.appendNewLine();
-      classBody.append(generatePatchBuilder(t));
+      classBody.append(
+        generatePatchBuilder(
+          t,
+          allProps,
+          nativeTypeSubstitues,
+          basePackageName,
+          fqn
+        )
+      );
     }
   });
   node.append('}');
@@ -125,16 +138,61 @@ function generateDataBuilder(
   return node;
 }
 
-function generatePatch(t: MResolvedRecordType) {
+function generatePatch(
+  t: MResolvedRecordType,
+  props: MResolvedBaseProperty[],
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
   const node = new CompositeGeneratorNode();
   node.append(`public interface Patch extends ${t.name} {`, NL);
+  node.indent((classBody) => {
+    classBody.append(
+      ...props
+        .filter(isMResolvedProperty)
+        .flatMap((p) => [
+          generatePatchPropertyAccessor(
+            p,
+            nativeTypeSubstitues,
+            basePackageName,
+            fqn
+          ),
+          NL,
+        ])
+    );
+  });
   node.append('}', NL);
   return node;
 }
 
-function generatePatchBuilder(t: MResolvedRecordType) {
+function generatePatchBuilder(
+  t: MResolvedRecordType,
+  props: MResolvedBaseProperty[],
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
   const node = new CompositeGeneratorNode();
-  node.append(`public interface PatchBuilder {`, NL);
+  node.append(
+    `public interface PatchBuilder extends _Base.BaseDataBuilder<${t.name}.Patch> {`,
+    NL
+  );
+  node.indent((classBody) => {
+    classBody.append(
+      ...props
+        .filter(isMResolvedProperty)
+        .flatMap((p) => [
+          generatePatchBuilderPropertyAccessor(
+            p,
+            nativeTypeSubstitues,
+            basePackageName,
+            fqn
+          ),
+          NL,
+        ])
+    );
+  });
   node.append('}', NL);
   return node;
 }

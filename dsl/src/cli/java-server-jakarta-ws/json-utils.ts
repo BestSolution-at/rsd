@@ -16,7 +16,10 @@ export function generateJsonUtils(
   const importCollector = new JavaImportsCollector(packageName);
   const fqn = importCollector.importType.bind(importCollector);
 
-  const node = generateJsonUtilsContent(fqn);
+  const node = generateJsonUtilsContent(
+    fqn,
+    `${artifactConfig.rootPackageName}.service.model`
+  );
 
   return {
     name: '_JsonUtils.java',

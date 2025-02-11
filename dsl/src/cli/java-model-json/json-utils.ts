@@ -1,7 +1,8 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
 
 export function generateJsonUtilsContent(
-  fqn: (type: string) => string
+  fqn: (type: string) => string,
+  modelApiPackage: string
 ): CompositeGeneratorNode {
   fqn('java.io.StringReader');
   fqn('java.io.StringWriter');
@@ -21,6 +22,11 @@ export function generateJsonUtilsContent(
   fqn('jakarta.json.JsonString');
   fqn('jakarta.json.JsonValue');
   fqn('jakarta.json.stream.JsonGenerator');
+  fqn('java.util.Optional');
+  fqn('java.util.OptionalDouble');
+  fqn('java.util.OptionalInt');
+  fqn('java.util.OptionalLong');
+  fqn(`${modelApiPackage}._Base`);
 
   const node = new CompositeGeneratorNode();
   node.append('public class _JsonUtils {', NL);
@@ -44,6 +50,20 @@ export function generateJsonUtilsContent(
       )
     );
     classBody.append(
+      generateOptionalLineMethod(
+        'public static Optional<String> mapOptString(JsonObject object, String property)',
+        'Optional',
+        'mapString(object, property)'
+      )
+    );
+    classBody.append(
+      generateNillableLineMethod(
+        'public static _Base.Nillable<String> mapNilString(JsonObject object, String property)',
+        'mapString(object, property)'
+      )
+    );
+
+    classBody.append(
       generateSingleLineMethod(
         'public static boolean mapBoolean(JsonObject object, String property)',
         'return object.getBoolean(property)'
@@ -55,6 +75,64 @@ export function generateJsonUtilsContent(
         'return object.getBoolean(property, defaultValue)'
       )
     );
+
+    classBody.append(
+      'private static final Optional<Boolean> OPTIONAL_FALSE = Optional.of(Boolean.FALSE);',
+      NL
+    );
+    classBody.append(
+      'private static final Optional<Boolean> OPTIONAL_TRUE = Optional.of(Boolean.TRUE);',
+      NL
+    );
+    classBody.append(
+      'private static final _Base.Nillable<Boolean> NILLABLE_FALSE = _NillableImpl.of(Boolean.FALSE);',
+      NL
+    );
+    classBody.append(
+      'private static final _Base.Nillable<Boolean> NILLABLE_TRUE = _NillableImpl.of(Boolean.TRUE);',
+      NL,
+      NL
+    );
+
+    classBody.append(
+      'public static Optional<Boolean> mapOptBoolean(JsonObject object, String property) {',
+      NL
+    );
+    classBody.indent((methodBody) => {
+      methodBody.append('if (object.containsKey(property)) {', NL);
+      methodBody.indent((block) => {
+        block.append(
+          'return object.getBoolean(property) ? OPTIONAL_TRUE : OPTIONAL_FALSE;',
+          NL
+        );
+      });
+      methodBody.append('}', NL);
+      methodBody.append('return Optional.empty();', NL);
+    });
+    classBody.append('}', NL, NL);
+
+    classBody.append(
+      'public static _Base.Nillable<Boolean> mapNilBoolean(JsonObject object, String property) {',
+      NL
+    );
+    classBody.indent((methodBody) => {
+      methodBody.append('if (object.containsKey(property)) {', NL);
+      methodBody.indent((block) => {
+        block.append('if (object.isNull(property)) {', NL);
+        block.indent((innerBlock) => {
+          innerBlock.append('return _NillableImpl.nill();', NL);
+        });
+        block.append('}', NL);
+        block.append(
+          'return object.getBoolean(property) ? NILLABLE_TRUE : NILLABLE_FALSE;',
+          NL
+        );
+      });
+      methodBody.append('}', NL);
+      methodBody.append('return _NillableImpl.undefined();', NL);
+    });
+    classBody.append('}', NL, NL);
+
     classBody.append(
       generateSingleLineMethod(
         'public static short mapShort(JsonObject object, String property)',
@@ -68,6 +146,20 @@ export function generateJsonUtilsContent(
       )
     );
     classBody.append(
+      generateOptionalLineMethod(
+        'public static Optional<Short> mapOptShort(JsonObject object, String property)',
+        'Optional',
+        'mapShort(object, property)'
+      )
+    );
+    classBody.append(
+      generateNillableLineMethod(
+        'public static _Base.Nillable<Short> mapNilShort(JsonObject object, String property)',
+        'mapShort(object, property)'
+      )
+    );
+
+    classBody.append(
       generateSingleLineMethod(
         'public static int mapInt(JsonObject object, String property)',
         'return object.getInt(property)'
@@ -79,6 +171,20 @@ export function generateJsonUtilsContent(
         'return object.getInt(property, defaultValue)'
       )
     );
+    classBody.append(
+      generateOptionalLineMethod(
+        'public static OptionalInt mapOptInt(JsonObject object, String property)',
+        'OptionalInt',
+        'mapInt(object, property)'
+      )
+    );
+    classBody.append(
+      generateNillableLineMethod(
+        'public static _Base.Nillable<Integer> mapNilInt(JsonObject object, String property)',
+        'mapInt(object, property)'
+      )
+    );
+
     classBody.append(
       generateSingleLineMethod(
         'public static long mapLong(JsonObject object, String property)',
@@ -92,6 +198,20 @@ export function generateJsonUtilsContent(
       )
     );
     classBody.append(
+      generateOptionalLineMethod(
+        'public static OptionalLong mapOptLong(JsonObject object, String property)',
+        'OptionalLong',
+        'mapLong(object, property)'
+      )
+    );
+    classBody.append(
+      generateNillableLineMethod(
+        'public static _Base.Nillable<Long> mapNilLong(JsonObject object, String property)',
+        'mapLong(object, property)'
+      )
+    );
+
+    classBody.append(
       generateSingleLineMethod(
         'public static double mapDouble(JsonObject object, String property)',
         'return object.getJsonNumber(property).doubleValue()'
@@ -103,6 +223,20 @@ export function generateJsonUtilsContent(
         'return hasValue(object, property) ? mapDouble(object, property) : defaultValue'
       )
     );
+    classBody.append(
+      generateOptionalLineMethod(
+        'public static OptionalDouble mapOptDouble(JsonObject object, String property)',
+        'OptionalDouble',
+        'mapDouble(object, property)'
+      )
+    );
+    classBody.append(
+      generateNillableLineMethod(
+        'public static _Base.Nillable<Double> mapNilDouble(JsonObject object, String property)',
+        'mapDouble(object, property)'
+      )
+    );
+
     classBody.append(
       generateSingleLineMethod(
         'public static float mapFloat(JsonObject object, String property)',
@@ -116,6 +250,20 @@ export function generateJsonUtilsContent(
       )
     );
     classBody.append(
+      generateOptionalLineMethod(
+        'public static Optional<Float> mapOptFloat(JsonObject object, String property)',
+        'Optional',
+        'mapFloat(object, property)'
+      )
+    );
+    classBody.append(
+      generateNillableLineMethod(
+        'public static _Base.Nillable<Float> mapNilFloat(JsonObject object, String property)',
+        'mapFloat(object, property)'
+      )
+    );
+
+    classBody.append(
       generateSingleLineMethod(
         'public static <T> T mapLiteral(JsonObject object, String property, Function<String, T> converter)',
         'return converter.apply(object.getString(property))'
@@ -127,6 +275,20 @@ export function generateJsonUtilsContent(
         'return hasValue(object, property) ? mapLiteral(object, property, converter) : defaultValue'
       )
     );
+    classBody.append(
+      generateOptionalLineMethod(
+        'public static <T> Optional<T> mapOptLiteral(JsonObject object, String property, Function<String, T> converter)',
+        'Optional',
+        'mapLiteral(object, property, converter)'
+      )
+    );
+    classBody.append(
+      generateNillableLineMethod(
+        'public static <T> _Base.Nillable<T> mapNilLiteral(JsonObject object, String property, Function<String, T> converter)',
+        'mapLiteral(object, property, converter)'
+      )
+    );
+
     classBody.append(
       generateSingleLineMethod(
         'public static LocalDate mapLocalDate(JsonObject object, String property)',
@@ -140,6 +302,20 @@ export function generateJsonUtilsContent(
       )
     );
     classBody.append(
+      generateOptionalLineMethod(
+        'public static Optional<LocalDate> mapOptLocalDate(JsonObject object, String property)',
+        'Optional',
+        'mapLocalDate(object, property)'
+      )
+    );
+    classBody.append(
+      generateNillableLineMethod(
+        'public static _Base.Nillable<LocalDate> mapNilLocalDate(JsonObject object, String property)',
+        'mapLocalDate(object, property)'
+      )
+    );
+
+    classBody.append(
       generateSingleLineMethod(
         'public static LocalDateTime mapLocalDateTime(JsonObject object, String property)',
         'return mapLiteral(object, property, LocalDateTime::parse)'
@@ -151,6 +327,20 @@ export function generateJsonUtilsContent(
         'return mapLiteral(object, property, LocalDateTime::parse, defaultValue)'
       )
     );
+    classBody.append(
+      generateOptionalLineMethod(
+        'public static Optional<LocalDateTime> mapOptLocalDateTime(JsonObject object, String property)',
+        'Optional',
+        'mapLocalDateTime(object, property)'
+      )
+    );
+    classBody.append(
+      generateNillableLineMethod(
+        'public static _Base.Nillable<LocalDateTime> mapNilLocalDateTime(JsonObject object, String property)',
+        'mapLocalDateTime(object, property)'
+      )
+    );
+
     classBody.append(
       generateSingleLineMethod(
         'public static ZonedDateTime mapZonedDateTime(JsonObject object, String property)',
@@ -164,6 +354,20 @@ export function generateJsonUtilsContent(
       )
     );
     classBody.append(
+      generateOptionalLineMethod(
+        'public static Optional<ZonedDateTime> mapOptZonedDateTime(JsonObject object, String property)',
+        'Optional',
+        'mapZonedDateTime(object, property)'
+      )
+    );
+    classBody.append(
+      generateNillableLineMethod(
+        'public static _Base.Nillable<ZonedDateTime> mapNilZonedDateTime(JsonObject object, String property)',
+        'mapZonedDateTime(object, property)'
+      )
+    );
+
+    classBody.append(
       generateSingleLineMethod(
         'public static <T> T mapObject(JsonObject object, String property, Function<JsonObject, T> converter)',
         'return converter.apply(object.getJsonObject(property))'
@@ -173,6 +377,19 @@ export function generateJsonUtilsContent(
       generateSingleLineMethod(
         'public static <T> T mapObject(JsonObject object, String property, Function<JsonObject, T> converter, T defaultValue)',
         'return hasValue(object, property) ? mapObject(object, property, converter) : defaultValue'
+      )
+    );
+    classBody.append(
+      generateOptionalLineMethod(
+        'public static <T> Optional<T> mapOptObject(JsonObject object, String property, Function<JsonObject, T> converter)',
+        'Optional',
+        'mapObject(object, property, converter)'
+      )
+    );
+    classBody.append(
+      generateNillableLineMethod(
+        'public static <T> _Base.Nillable<T> mapNilObject(JsonObject object, String property, Function<JsonObject, T> converter)',
+        'mapObject(object, property, converter)'
       )
     );
 
@@ -209,9 +426,32 @@ export function generateJsonUtilsContent(
     classBody.append('}', NL, NL);
 
     classBody.append(
+      generateOptionalLineMethod(
+        '	public static <J extends JsonValue, T> Optional<Stream<T>> mapToOptStream(JsonObject object, String property, Class<J> clazz, Function<J, T> mapper)',
+        'Optional',
+        'mapToStream(object, property, clazz, mapper)'
+      )
+    );
+    classBody.append(
+      generateNillableLineMethod(
+        '	public static <J extends JsonValue, T> _Base.Nillable<Stream<T>> mapToNilStream(JsonObject object, String property, Class<J> clazz, Function<J, T> mapper)',
+        'mapToStream(object, property, clazz, mapper)'
+      )
+    );
+
+    classBody.append(
       generateListMappers(
         'Boolean',
         'mapBooleans',
+        'JsonValue',
+        'v -> v == JsonValue.TRUE'
+      )
+    );
+
+    classBody.append(
+      generateOptNilListMappers(
+        'Boolean',
+        'mapOptBooleans',
         'JsonValue',
         'v -> v == JsonValue.TRUE'
       )
@@ -225,6 +465,16 @@ export function generateJsonUtilsContent(
         'v -> v.numberValue().shortValue()'
       )
     );
+
+    classBody.append(
+      generateOptNilListMappers(
+        'Short',
+        'mapOptShorts',
+        'JsonNumber',
+        'v -> v.numberValue().shortValue()'
+      )
+    );
+
     classBody.append(
       generateListMappers(
         'Integer',
@@ -233,6 +483,16 @@ export function generateJsonUtilsContent(
         'JsonNumber::intValue'
       )
     );
+
+    classBody.append(
+      generateOptNilListMappers(
+        'Integer',
+        'mapOptInts',
+        'JsonNumber',
+        'JsonNumber::intValue'
+      )
+    );
+
     classBody.append(
       generateListMappers(
         'Long',
@@ -242,6 +502,15 @@ export function generateJsonUtilsContent(
       )
     );
     classBody.append(
+      generateOptNilListMappers(
+        'Long',
+        'mapOptLongs',
+        'JsonNumber',
+        'v -> v.numberValue().longValue()'
+      )
+    );
+
+    classBody.append(
       generateListMappers(
         'Double',
         'mapDoubles',
@@ -249,6 +518,15 @@ export function generateJsonUtilsContent(
         'JsonNumber::doubleValue'
       )
     );
+    classBody.append(
+      generateOptNilListMappers(
+        'Double',
+        'mapOptDoubles',
+        'JsonNumber',
+        'JsonNumber::doubleValue'
+      )
+    );
+
     classBody.append(
       generateListMappers(
         'Float',
@@ -258,9 +536,26 @@ export function generateJsonUtilsContent(
       )
     );
     classBody.append(
+      generateOptNilListMappers(
+        'Float',
+        'mapOptFloats',
+        'JsonNumber',
+        'v -> v.numberValue().floatValue()'
+      )
+    );
+
+    classBody.append(
       generateListMappers(
         'String',
         'mapStrings',
+        'JsonString',
+        'JsonString::getString'
+      )
+    );
+    classBody.append(
+      generateOptNilListMappers(
+        'String',
+        'mapOptStrings',
         'JsonString',
         'JsonString::getString'
       )
@@ -278,6 +573,18 @@ export function generateJsonUtilsContent(
         'return mapToStream(array, JsonObject.class, converter).toList()'
       )
     );
+    classBody.append(
+      generateSingleLineMethod(
+        'public static <T> Optional<List<T>> mapOptObjects(JsonObject object, String property, Function<JsonObject, T> converter)',
+        'return mapToOptStream(object, property, JsonObject.class, converter).map(Stream::toList)'
+      )
+    );
+    classBody.append(
+      generateSingleLineMethod(
+        'public static <T> _Base.Nillable<List<T>> mapNilObjects(JsonObject object, String property, Function<JsonObject, T> converter)',
+        'return mapToNilStream(object, property, JsonObject.class, converter).map(Stream::toList)'
+      )
+    );
 
     classBody.append(
       generateSingleLineMethod(
@@ -289,6 +596,20 @@ export function generateJsonUtilsContent(
       generateSingleLineMethod(
         'public static <T> List<T> mapLiterals(JsonArray array, Function<String, T> mapper)',
         'return mapToStream(array, JsonString.class, JsonString::getString).map(mapper).toList()'
+      )
+    );
+
+    classBody.append(
+      generateSingleLineMethod(
+        'public static <T> Optional<List<T>> mapOptLiterals(JsonObject object, String property, Function<String, T> mapper)',
+        'return mapToOptStream(object, property, JsonString.class, JsonString::getString).map(s -> s.map(mapper)).map(Stream::toList)'
+      )
+    );
+
+    classBody.append(
+      generateSingleLineMethod(
+        'public static <T> _Base.Nillable<List<T>> mapNilLiterals(JsonObject object, String property, Function<String, T> mapper)',
+        'return mapToNilStream(object, property, JsonString.class, JsonString::getString).map(s -> s.map(mapper)).map(Stream::toList)'
       )
     );
 
@@ -462,6 +783,31 @@ function generateListMappers(
   return rv;
 }
 
+function generateOptNilListMappers(
+  result: string,
+  methodName: string,
+  jsonValueType: string,
+  converter: string
+) {
+  const rv = new CompositeGeneratorNode();
+  rv.append(
+    generateSingleLineMethod(
+      `public static Optional<List<${result}>> ${methodName}(JsonObject object, String property)`,
+      `return mapToOptStream(object, property, ${jsonValueType}.class, ${converter}).map(Stream::toList)`
+    )
+  );
+  rv.append(
+    generateSingleLineMethod(
+      `public static _Base.Nillable<List<${result}>> ${methodName.replace(
+        'Opt',
+        'Nil'
+      )}(JsonObject object, String property)`,
+      `return mapToNilStream(object, property, ${jsonValueType}.class, ${converter}).map(Stream::toList)`
+    )
+  );
+  return rv;
+}
+
 function generateToJsonArray(name: string, type: string) {
   const rv = new CompositeGeneratorNode();
   rv.append(
@@ -495,6 +841,45 @@ function generateSingleLineMethod(signature: string, ...content: string[]) {
   node.append(signature, ' {', NL);
   node.indent((mehodBody) => {
     content.forEach((c) => mehodBody.append(c, ';', NL));
+  });
+  node.append('}', NL, NL);
+  return node;
+}
+
+function generateOptionalLineMethod(
+  signature: string,
+  optionalType: string,
+  mapMethod: string
+) {
+  const node = new CompositeGeneratorNode();
+  node.append(signature, ' {', NL);
+  node.indent((methodBody) => {
+    methodBody.append('if (object.containsKey(property)) {', NL);
+    methodBody.indent((block) => {
+      block.append(`return ${optionalType}.of(${mapMethod});`, NL);
+    });
+    methodBody.append('}', NL);
+    methodBody.append(`return ${optionalType}.empty();`, NL);
+  });
+  node.append('}', NL, NL);
+  return node;
+}
+
+function generateNillableLineMethod(signature: string, mapMethod: string) {
+  const node = new CompositeGeneratorNode();
+  node.append(signature, ' {', NL);
+  node.indent((methodBody) => {
+    methodBody.append('if (object.containsKey(property)) {', NL);
+    methodBody.indent((block) => {
+      block.append('if (object.isNull(property)) {', NL);
+      block.indent((innerBlock) => {
+        innerBlock.append('return _NillableImpl.nill();', NL);
+      });
+      block.append('}', NL);
+      block.append(`return _NillableImpl.of(${mapMethod});`, NL);
+    });
+    methodBody.append('}', NL);
+    methodBody.append('return _NillableImpl.undefined();', NL);
   });
   node.append('}', NL, NL);
   return node;

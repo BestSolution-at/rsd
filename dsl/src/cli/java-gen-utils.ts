@@ -371,6 +371,24 @@ export class JavaImportsCollector {
   }
 }
 
+export function primitiveToObject(type: string) {
+  switch (type) {
+    case 'boolean':
+      return 'Boolean';
+    case 'double':
+      return 'Double';
+    case 'float':
+      return 'Float';
+    case 'int':
+      return 'Integer';
+    case 'long':
+      return 'Long';
+    case 'short':
+      return 'Short';
+  }
+  return type;
+}
+
 export type ImportGroup = {
   readonly imports: readonly string[];
 };

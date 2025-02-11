@@ -8,6 +8,7 @@ import {
 } from '../java-gen-utils.js';
 import {
   isMRecordType,
+  isMResolvedRecordType,
   isMUnionType,
   MResolvedRecordType,
   MResolvedRSDModel,
@@ -86,7 +87,7 @@ function generateBuilderMethodBody(
 ) {
   const mBody = new CompositeGeneratorNode();
   model.elements
-    .filter(isMRecordType)
+    .filter(isMResolvedRecordType)
     .filter((t) => (t as MResolvedRecordType).resolved.unions.length !== 1)
     .forEach((t) => {
       const InterfaceType = fqn(
@@ -100,6 +101,16 @@ function generateBuilderMethodBody(
         block.append(`return type.cast(${ImplType}.builder());`, NL);
       });
       mBody.append('}', NL);
+      if (t.patchable) {
+        const PatchImplType = fqn(
+          `${artifactConfig.rootPackageName}.rest.model.${t.name}DataPatchImpl`
+        );
+        mBody.append(`if (type == ${InterfaceType}.PatchBuilder.class) {`, NL);
+        mBody.indent((block) => {
+          block.append(`return type.cast(${PatchImplType}.builder());`, NL);
+        });
+        mBody.append('}', NL);
+      }
     });
   model.elements.filter(isMUnionType).forEach((u) => {
     (u as MResolvedUnionType).types.forEach((t) => {
