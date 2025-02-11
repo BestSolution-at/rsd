@@ -8,6 +8,7 @@ import {
   MKeyProperty,
   MProperty,
   MResolvedBaseProperty,
+  MResolvedPropery,
   MResolvedRecordType,
   MRevisionProperty,
 } from '../model.js';
@@ -15,6 +16,7 @@ import {
   builtinToJavaType,
   computeAPIType,
   JavaRestClientJDKGeneratorConfig,
+  primitiveToObject,
   resolveType,
 } from '../java-gen-utils.js';
 import { toType } from '../java-client-api/shared.js';
@@ -684,4 +686,317 @@ function isJavaPrimitive(type: MBuiltinType) {
       return true;
   }
   return false;
+}
+
+export function generatePatchPropertyAccessor(
+  property: MResolvedPropery,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  const node = new CompositeGeneratorNode();
+  if (
+    property.variant === 'builtin' ||
+    property.variant === 'enum' ||
+    property.variant === 'inline-enum' ||
+    property.variant === 'scalar'
+  ) {
+    const type = primitiveToObject(
+      computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn)
+    );
+    if (property.optional || property.nullable) {
+      const _Base = fqn(basePackageName + '._Base');
+      node.append(`public ${_Base}.Nillable<${type}> ${property.name}() {`, NL);
+      if (typeof property.type === 'string') {
+        const type = property.type;
+        if (isMBuiltinType(type)) {
+          node.indent((methodBody) => {
+            methodBody.append(
+              'return ',
+              property.array
+                ? builtinNilArrayJSONAccess({ type, name: property.name })
+                : builtinNilJSONAccess({ type, name: property.name }),
+              ';',
+              NL
+            );
+          });
+        } else if (property.variant === 'scalar') {
+          const Type = computeAPIType(
+            property,
+            nativeTypeSubstitues,
+            basePackageName,
+            fqn,
+            true
+          );
+          node.indent((methodBody) => {
+            if (property.array) {
+              methodBody.append(
+                `return _JsonUtils.mapNilLiterals(data, "${property.name}", ${Type}::of );`,
+                NL
+              );
+            } else {
+              methodBody.append(
+                `return _JsonUtils.mapNilLiteral(data, "${property.name}", ${Type}::of );`,
+                NL
+              );
+            }
+          });
+        } else if (property.variant === 'enum') {
+          node.indent((methodBody) => {
+            if (property.array) {
+              methodBody.append(
+                `return _JsonUtils.mapNilLiterals(data, "${property.name}", ${property.type}::valueOf );`,
+                NL
+              );
+            } else {
+              methodBody.append(
+                `return _JsonUtils.mapNilLiteral(data, "${property.name}", ${property.type}::valueOf );`,
+                NL
+              );
+            }
+          });
+        }
+      } else {
+        const Type = computeAPIType(
+          property,
+          nativeTypeSubstitues,
+          basePackageName,
+          fqn,
+          true
+        );
+        node.indent((methodBody) => {
+          if (property.array) {
+            methodBody.append(
+              `return _JsonUtils.mapNilLiterals(data, "${property.name}", ${Type}::valueOf )`,
+              NL
+            );
+          } else {
+            methodBody.append(
+              `return _JsonUtils.mapNilLiteral(data, "${property.name}", ${Type}::valueOf )`,
+              NL
+            );
+          }
+        });
+      }
+      node.append('}', NL);
+    } else {
+      const Optional = fqn('java.util.Optional');
+      node.append(`public ${Optional}<${type}> ${property.name}() {`, NL);
+      if (typeof property.type === 'string') {
+        const type = property.type;
+        if (isMBuiltinType(type)) {
+          node.indent((methodBody) => {
+            methodBody.append(
+              'return ',
+              property.array
+                ? builtinOptArrayJSONAccess({ type, name: property.name })
+                : builtinOptJSONAccess({ type, name: property.name }),
+              ';',
+              NL
+            );
+          });
+        } else if (property.variant === 'scalar') {
+          const Type = computeAPIType(
+            property,
+            nativeTypeSubstitues,
+            basePackageName,
+            fqn,
+            true
+          );
+          node.indent((methodBody) => {
+            if (property.array) {
+              methodBody.append(
+                `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${Type}::of );`,
+                NL
+              );
+            } else {
+              methodBody.append(
+                `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${Type}::of );`,
+                NL
+              );
+            }
+          });
+        } else if (property.variant === 'enum') {
+          node.indent((methodBody) => {
+            if (property.array) {
+              methodBody.append(
+                `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${property.type}::valueOf );`,
+                NL
+              );
+            } else {
+              methodBody.append(
+                `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${property.type}::valueOf );`,
+                NL
+              );
+            }
+          });
+        }
+      } else {
+        const Type = computeAPIType(
+          property,
+          nativeTypeSubstitues,
+          basePackageName,
+          fqn,
+          true
+        );
+        node.indent((methodBody) => {
+          if (property.array) {
+            methodBody.append(
+              `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${Type}::valueOf );`,
+              NL
+            );
+          } else {
+            methodBody.append(
+              `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${Type}::valueOf );`,
+              NL
+            );
+          }
+        });
+      }
+
+      node.append('}', NL);
+    }
+  } else {
+    const type = computeAPIType(
+      property,
+      nativeTypeSubstitues,
+      basePackageName,
+      fqn
+    );
+    if (property.optional || property.nullable) {
+      const _Base = fqn(basePackageName + '._Base');
+      node.append(`public ${_Base}.Nillable<${type}> ${property.name}() {`, NL);
+      node.indent((methodBody) => {
+        methodBody.append(
+          `return _JsonUtils.mapNilObject(data, "${property.name}", ${property.type}DataImpl::of);`,
+          NL
+        );
+      });
+      node.append('}', NL);
+    } else {
+      const Optional = fqn('java.util.Optional');
+      node.append(`public ${Optional}<${type}> ${property.name}() {`, NL);
+      node.indent((methodBody) => {
+        methodBody.append(
+          `return _JsonUtils.mapOptObject(data, "${property.name}", ${property.type}DataImpl::of);`,
+          NL
+        );
+      });
+      node.append('}', NL);
+    }
+  }
+
+  return node;
+}
+
+export function builtinOptJSONAccess(property: {
+  type: MBuiltinType;
+  name: string;
+}): string {
+  switch (property.type) {
+    case 'boolean':
+      return `_JsonUtils.mapOptBoolean(data, "${property.name}")`;
+    case 'double':
+      return `_JsonUtils.mapOptDouble(data, "${property.name}")`;
+    case 'float':
+      return `_JsonUtils.mapOptFloat(data, "${property.name}")`;
+    case 'int':
+      return `_JsonUtils.mapOptInt(data, "${property.name}")`;
+    case 'local-date':
+      return `_JsonUtils.mapOptLocalDate(data, "${property.name}")`;
+    case 'local-date-time':
+      return `_JsonUtils.mapOptLocalDateTime(data, "${property.name}")`;
+    case 'long':
+      return `_JsonUtils.mapOptLong(data, "${property.name}")`;
+    case 'short':
+      return `_JsonUtils.mapOptShort(data, "${property.name}")`;
+    case 'string':
+      return `_JsonUtils.mapOptString(data, "${property.name}")`;
+    case 'zoned-date-time':
+      return `_JsonUtils.mapOptZonedDateTime(data, "${property.name}")`;
+  }
+}
+
+export function builtinOptArrayJSONAccess(property: {
+  type: MBuiltinType;
+  name: string;
+}): string {
+  switch (property.type) {
+    case 'boolean':
+      return `_JsonUtils.mapOptBooleans(data, "${property.name}")`;
+    case 'double':
+      return `_JsonUtils.mapOptDoubles(data, "${property.name}")`;
+    case 'float':
+      return `_JsonUtils.mapOptFloats(data, "${property.name}")`;
+    case 'int':
+      return `_JsonUtils.mapOptInts(data, "${property.name}")`;
+    case 'local-date':
+      return `_JsonUtils.mapOptLocalDates(data, "${property.name}")`;
+    case 'local-date-time':
+      return `_JsonUtils.mapOptLocalDateTimes(data, "${property.name}")`;
+    case 'long':
+      return `_JsonUtils.mapOptLongs(data, "${property.name}")`;
+    case 'short':
+      return `_JsonUtils.mapOptShorts(data, "${property.name}")`;
+    case 'string':
+      return `_JsonUtils.mapOptStrings(data, "${property.name}")`;
+    case 'zoned-date-time':
+      return `_JsonUtils.mapOptZonedDateTimes(data, "${property.name}")`;
+  }
+}
+
+export function builtinNilJSONAccess(property: {
+  type: MBuiltinType;
+  name: string;
+}): string {
+  switch (property.type) {
+    case 'boolean':
+      return `_JsonUtils.mapNilBoolean(data, "${property.name}")`;
+    case 'double':
+      return `_JsonUtils.mapNilDouble(data, "${property.name}")`;
+    case 'float':
+      return `_JsonUtils.mapNilFloat(data, "${property.name}")`;
+    case 'int':
+      return `_JsonUtils.mapNilInt(data, "${property.name}")`;
+    case 'local-date':
+      return `_JsonUtils.mapNilLocalDate(data, "${property.name}")`;
+    case 'local-date-time':
+      return `_JsonUtils.mapNilLocalDateTime(data, "${property.name}")`;
+    case 'long':
+      return `_JsonUtils.mapNilLong(data, "${property.name}")`;
+    case 'short':
+      return `_JsonUtils.mapNilShort(data, "${property.name}")`;
+    case 'string':
+      return `_JsonUtils.mapNilString(data, "${property.name}")`;
+    case 'zoned-date-time':
+      return `_JsonUtils.mapNilZonedDateTime(data, "${property.name}")`;
+  }
+}
+
+export function builtinNilArrayJSONAccess(property: {
+  type: MBuiltinType;
+  name: string;
+}): string {
+  switch (property.type) {
+    case 'boolean':
+      return `_JsonUtils.mapNilBooleans(data, "${property.name}")`;
+    case 'double':
+      return `_JsonUtils.mapNilDoubles(data, "${property.name}")`;
+    case 'float':
+      return `_JsonUtils.mapNilFloats(data, "${property.name}")`;
+    case 'int':
+      return `_JsonUtils.mapNilInts(data, "${property.name}")`;
+    case 'local-date':
+      return `_JsonUtils.mapNilLocalDates(data, "${property.name}")`;
+    case 'local-date-time':
+      return `_JsonUtils.mapNilLocalDateTimes(data, "${property.name}")`;
+    case 'long':
+      return `_JsonUtils.mapNilLongs(data, "${property.name}")`;
+    case 'short':
+      return `_JsonUtils.mapNilShorts(data, "${property.name}")`;
+    case 'string':
+      return `_JsonUtils.mapNilStrings(data, "${property.name}")`;
+    case 'zoned-date-time':
+      return `_JsonUtils.mapNilZonedDateTimes(data, "${property.name}")`;
+  }
 }
