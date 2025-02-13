@@ -16,12 +16,12 @@ import {
   JavaServerJakartaWSGeneratorConfig,
 } from '../java-gen-utils.js';
 
-import { generateService } from './service.js';
 import { generateDTOBuilderFactory } from './builder-factory.js';
 import { generateRecord } from './record.js';
 import { generateBase } from './base.js';
 import { generateJsonUtils } from './json-utils.js';
 import { generateUnion } from './union.js';
+import { generateResource } from './resource.js';
 
 export function generate(
   model: MResolvedRSDModel,
@@ -43,7 +43,7 @@ export function generate(
   result.push(generateBase(artifactConfig));
   result.push(generateJsonUtils(artifactConfig));
   result.push(
-    ...model.services.flatMap((e) => generateService(e, artifactConfig))
+    ...model.services.flatMap((e) => generateResource(e, artifactConfig))
   );
   result.push(generateDTOBuilderFactory(model, artifactConfig));
 

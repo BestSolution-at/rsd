@@ -1,11 +1,12 @@
 import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
 import {
+  builtinToJavaObjectType,
+  builtinToJavaType,
   computeParameterAPIType,
   generateCompilationUnit,
   JavaImportsCollector,
   JavaServerJakartaWSGeneratorConfig,
-  resolveObjectType,
   resolveType,
   toPath,
 } from '../java-gen-utils.js';
@@ -23,7 +24,7 @@ import {
   builtinSimpleJSONArrayAccess,
 } from '../java-model-json/shared.js';
 
-export function generateService(
+export function generateResource(
   s: MResolvedService,
   artifactConfig: JavaServerJakartaWSGeneratorConfig
 ): Artifact[] {
@@ -37,15 +38,15 @@ export function generateService(
     .map((o) => generateServiceData(s, o, artifactConfig));
   result.push(...serviceDTOs);
 
-  const resourceArtifact = generateResource(s, artifactConfig);
+  const resourceArtifact = _generateResource(s, artifactConfig);
   if (resourceArtifact) {
-    // result.push(resourceArtifact);
+    result.push(resourceArtifact);
   }
 
   return result;
 }
 
-function generateResource(
+function _generateResource(
   s: MResolvedService,
   artifactConfig: JavaServerJakartaWSGeneratorConfig
 ): Artifact | undefined {
@@ -72,8 +73,9 @@ function generateResource(
   node.append(`@${ApplicationScoped}`, NL);
   node.append(`@${Path}("${s.meta.rest.path.replace('$', '')}")`, NL);
   node.append(`@${Produces}(${MediaType}.APPLICATION_JSON)`, NL);
-  node.append(`public class ${s.name}Resource_ {`, NL);
+  node.append(`public class ${s.name}Resource {`, NL);
   node.indent((cBody) => {
+    cBody.append('private final RestBuilderFactory builderFactory;', NL);
     cBody.append(`private final ${Service} service;`, NL);
     cBody.append(
       `private final ${s.name}ResourceResponseBuilder responseBuilder;`,
@@ -82,10 +84,11 @@ function generateResource(
     cBody.appendNewLine();
     cBody.append(`@${Inject}`, NL);
     cBody.append(
-      `public ${s.name}Resource_(${Service} service, ${s.name}ResourceResponseBuilder responseBuilder) {`,
+      `public ${s.name}Resource(${Service} service, ${s.name}ResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {`,
       NL
     );
     cBody.indent((mBody) => {
+      mBody.append('this.builderFactory = builderFactory;', NL);
       mBody.append('this.service = service;', NL);
       mBody.append('this.responseBuilder = responseBuilder;', NL);
     });
@@ -115,12 +118,8 @@ function generateResource(
             .filter((p) => p.meta?.rest?.source !== undefined)
             .map((p) => toParameter(p, artifactConfig, fqn))
         );
-        const DtoType = fqn(
-          `${artifactConfig.rootPackageName}.rest.dto.${s.name}${toFirstUpper(
-            o.name
-          )}DTOImpl`
-        );
-        params.push(`${DtoType} dto`);
+
+        params.push(`String data`);
         serviceParams.push(
           ...o.parameters.map((p) => {
             if (p.meta?.rest?.source === undefined) {
@@ -155,10 +154,54 @@ function generateResource(
       } else {
         cBody.append(`public ${Response} ${o.name}() {`, NL);
       }
-
       cBody.indent((mBody) => {
+        o.parameters.forEach((p) => {
+          if (multiBody && p.meta?.rest?.source === undefined) {
+            return;
+          }
+          if (p.variant === 'record' || p.variant === 'union') {
+            const type = computeParameterAPIType(
+              p,
+              artifactConfig.nativeTypeSubstitues,
+              `${artifactConfig.rootPackageName}.service.model`,
+              fqn
+            );
+            mBody.append(
+              `var ${p.name} = builderFactory.of(${type}.class, _${p.name});`,
+              NL
+            );
+          } else if (p.variant === 'builtin') {
+            mBody.append(`var ${p.name} = _${p.name};`, NL);
+          } else if (p.variant === 'scalar') {
+            const type = p.type;
+            if (typeof type === 'string') {
+              const t = resolveType(
+                type,
+                artifactConfig.nativeTypeSubstitues,
+                fqn,
+                false
+              );
+              mBody.append(
+                `var ${p.name} = _${p.name} == null ? null : ${t}.of(_${p.name});`,
+                NL
+              );
+            }
+          }
+        });
+        if (multiBody) {
+          const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
+          const Type = fqn(
+            `${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`
+          );
+          mBody.append(
+            `var dto = ${_JsonUtils}.fromString(data, ${Type}::new);`,
+            NL
+          );
+        }
         mBody.append(
-          `var result = service.${o.name}(${serviceParams.join(', ')});`,
+          `var result = service.${o.name}(builderFactory, ${serviceParams.join(
+            ', '
+          )});`,
           NL
         );
         mBody.appendNewLine();
@@ -198,7 +241,7 @@ function generateResource(
   node.append('}', NL);
 
   return {
-    name: `${toFirstUpper(s.name)}Resource_.java`,
+    name: `${toFirstUpper(s.name)}Resource.java`,
     content: toString(
       generateCompilationUnit(packageName, importCollector, node)
     ),
@@ -214,7 +257,7 @@ function toParameter(
   const annotation = computeParameterAnnotation(p, fqn);
   const type = computeParameterType(p, artifactConfig, fqn);
 
-  return `${annotation}${type} ${p.name}`;
+  return `${annotation}${type} _${p.name}`;
 }
 
 function computeParameterType(
@@ -223,39 +266,26 @@ function computeParameterType(
   fqn: (type: string) => string
 ): string {
   if (
-    (p.variant === 'record' || p.variant === 'union') &&
-    typeof p.type === 'string'
+    p.variant === 'record' ||
+    p.variant === 'union' ||
+    p.variant === 'scalar'
   ) {
-    const Type = fqn(
-      `${artifactConfig.rootPackageName}.rest.dto.${p.type}DTOImpl`
-    );
-    if (p.array) {
-      const List = fqn('java.util.List');
-      return `${List}<${Type}>`;
-    } else {
-      return Type;
-    }
+    return 'String';
   } else if (p.variant === 'enum') {
     return 'DummyEnum';
   } else if (p.variant === 'inline-enum') {
     return 'InlineDummyEnum';
   } else {
-    if (typeof p.type === 'string') {
+    const type = p.type;
+    if (isMBuiltinType(type)) {
       if (p.array) {
-        const Type = resolveObjectType(
-          p.type,
-          artifactConfig.nativeTypeSubstitues,
-          fqn
-        );
+        const t = builtinToJavaObjectType(type, fqn);
         const List = fqn('java.util.List');
-        return `${List}<${Type}>`;
+        return `${List}<${t}>`;
+      } else if (p.optional || p.nullable) {
+        return builtinToJavaObjectType(type, fqn);
       } else {
-        return resolveType(
-          p.type,
-          artifactConfig.nativeTypeSubstitues,
-          fqn,
-          p.nullable
-        );
+        return builtinToJavaType(type, fqn);
       }
     }
     return 'String';
