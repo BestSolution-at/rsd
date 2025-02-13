@@ -67,7 +67,7 @@ function toMethod(
   child.append(
     `public ${toResultType(o.resultType, artifactConfig, fqn)} ${
       o.name
-    }(${parameters.join(',')})`
+    }(${parameters.join(', ')})`
   );
   if (o.errors.length > 0) {
     child.appendNewLine();

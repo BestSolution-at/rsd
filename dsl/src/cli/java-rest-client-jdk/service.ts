@@ -207,7 +207,7 @@ function generateOpertationMethod(
     }
 
     const method = o.meta?.rest?.method;
-    if (method === 'PUT' || method === 'POST') {
+    if (method === 'PUT' || method === 'POST' || method === 'PATCH') {
       const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
       const bodyParams = allParameters.filter(
         (p) => p.meta?.rest?.source === undefined
@@ -321,7 +321,7 @@ function generateOpertationMethod(
             l.append('.POST($body)', NL);
           }
         } else if (method === 'PATCH') {
-          l.append('.method("PATCH")', NL);
+          l.append('.method("PATCH", $body)', NL);
         }
         l.append('.build();', NL);
       });

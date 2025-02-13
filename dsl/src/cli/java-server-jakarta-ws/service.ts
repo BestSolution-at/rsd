@@ -412,13 +412,16 @@ function generateParameterContent(
           fqn,
           true
         );*/
+      const type = prop.patch
+        ? `${prop.type}DataPatchImpl`
+        : `${prop.type}DataImpl`;
       if (array) {
-        mapper = `_JsonUtils.mapObjects(data, "${prop.name}", ${prop.type}DataImpl::of)`;
+        mapper = `_JsonUtils.mapObjects(data, "${prop.name}", ${type}::of)`;
       } else {
         if (prop.optional) {
-          mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${prop.type}DataImpl::of, null)`;
+          mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${type}::of, null)`;
         } else {
-          mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${prop.type}DataImpl::of)`;
+          mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${type}::of)`;
         }
       }
     }

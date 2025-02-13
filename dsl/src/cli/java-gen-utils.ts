@@ -131,7 +131,9 @@ export function computeParameterAPIType(
       parameter.variant === 'record' ||
       parameter.variant === 'union'
     ) {
-      type = fqn(`${basePackageName}.${parameter.type}`) + '.Data';
+      type =
+        fqn(`${basePackageName}.${parameter.type}`) +
+        (parameter.patch ? '.Patch' : '.Data');
     } else {
       throw new Error('Should not get here');
     }
