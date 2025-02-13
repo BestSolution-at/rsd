@@ -146,7 +146,7 @@ function generatePatch(
   fqn: (type: string) => string
 ) {
   const node = new CompositeGeneratorNode();
-  node.append(`public interface Patch extends ${t.name} {`, NL);
+  node.append(`public interface Patch extends _Base.BaseData, ${t.name} {`, NL);
   node.indent((classBody) => {
     classBody.append(
       ...props

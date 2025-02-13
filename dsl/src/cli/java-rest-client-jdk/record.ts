@@ -8,33 +8,63 @@ import {
 } from '../java-gen-utils.js';
 import { MResolvedRecordType, MResolvedRSDModel } from '../model.js';
 import { generateRecordContent } from '../java-model-json/record.js';
+import { generateRecordPatchContent } from '../java-model-json/record-patch.js';
 
 export function generateRecord(
   t: MResolvedRecordType,
   model: MResolvedRSDModel,
   artifactConfig: JavaRestClientJDKGeneratorConfig
-): Artifact | undefined {
+): Artifact[] {
   const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
 
-  const importCollector = new JavaImportsCollector(packageName);
-  const fqn = importCollector.importType.bind(importCollector);
+  const result: Artifact[] = [];
 
-  return {
-    name: `${t.name}DataImpl.java`,
-    content: toString(
-      generateCompilationUnit(
-        packageName,
-        importCollector,
-        generateRecordContent(
-          t,
-          model,
-          artifactConfig.nativeTypeSubstitues,
-          `${artifactConfig.rootPackageName}.model`,
-          fqn
-        )
+  {
+    const importCollector = new JavaImportsCollector(packageName);
+    const fqn = importCollector.importType.bind(importCollector);
+
+    result.push({
+      name: `${t.name}DataImpl.java`,
+      content: toString(
+        generateCompilationUnit(
+          packageName,
+          importCollector,
+          generateRecordContent(
+            t,
+            model,
+            artifactConfig.nativeTypeSubstitues,
+            `${artifactConfig.rootPackageName}.model`,
+            fqn
+          )
+        ),
+        '\t'
       ),
-      '\t'
-    ),
-    path: toPath(artifactConfig.targetFolder, packageName),
-  };
+      path: toPath(artifactConfig.targetFolder, packageName),
+    });
+  }
+
+  if (t.patchable) {
+    const importCollector = new JavaImportsCollector(packageName);
+    const fqn = importCollector.importType.bind(importCollector);
+    result.push({
+      name: `${t.name}DataPatchImpl.java`,
+      content: toString(
+        generateCompilationUnit(
+          packageName,
+          importCollector,
+          generateRecordPatchContent(
+            t,
+            model,
+            artifactConfig.nativeTypeSubstitues,
+            `${artifactConfig.rootPackageName}.model`,
+            fqn
+          )
+        ),
+        '\t'
+      ),
+      path: toPath(artifactConfig.targetFolder, packageName),
+    });
+  }
+
+  return result;
 }

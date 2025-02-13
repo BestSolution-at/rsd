@@ -44,7 +44,7 @@ export function generate(
   result.push(generateServiceUtils(artifactConfig));
   result.push(
     ...model.elements
-      .map((e) => generateType(e, model, artifactConfig))
+      .flatMap((e) => generateType(e, model, artifactConfig))
       .filter(isDefined)
   );
   result.push(...model.services.map((e) => generateService(e, artifactConfig)));
@@ -56,13 +56,13 @@ function generateType(
   t: MResolvedUserType,
   model: MResolvedRSDModel,
   artifactConfig: JavaRestClientJDKGeneratorConfig
-): Artifact | undefined {
+): Artifact[] {
   if (isMRecordType(t)) {
     return generateRecord(t, model, artifactConfig);
   } else if (isMUnionType(t)) {
-    return generateUnion(t, artifactConfig);
+    return [generateUnion(t, artifactConfig)];
   }
-  return undefined;
+  return [];
 }
 
 export default {

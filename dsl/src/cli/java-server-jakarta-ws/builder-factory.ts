@@ -7,7 +7,6 @@ import {
   toPath,
 } from '../java-gen-utils.js';
 import {
-  isMRecordType,
   isMResolvedRecordType,
   isMUnionType,
   MResolvedRecordType,
@@ -144,7 +143,7 @@ function generateOfMethodBody(
   );
   const mBody = new CompositeGeneratorNode();
   model.elements
-    .filter(isMRecordType)
+    .filter(isMResolvedRecordType)
     .filter((t) => (t as MResolvedRecordType).resolved.unions.length !== 1)
     .forEach((t) => {
       const InterfaceType = fqn(
@@ -161,6 +160,22 @@ function generateOfMethodBody(
         );
       });
       mBody.append('}', NL);
+      if (t.patchable) {
+        const InterfaceType = fqn(
+          `${artifactConfig.rootPackageName}.service.model.${t.name}`
+        );
+        const ImplType = fqn(
+          `${artifactConfig.rootPackageName}.rest.model.${t.name}DataPatchImpl`
+        );
+        mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
+        mBody.indent((block) => {
+          block.append(
+            `return type.cast(${_JsonUtils}.fromString(data, ${ImplType}::of));`,
+            NL
+          );
+        });
+        mBody.append('}', NL);
+      }
     });
   model.elements.filter(isMUnionType).forEach((u) => {
     (u as MResolvedUnionType).types.forEach((t) => {

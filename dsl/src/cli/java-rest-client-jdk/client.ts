@@ -54,6 +54,23 @@ export function generateClient(
           NL
         );
       });
+
+      m.elements
+        .filter(isMResolvedRecordType)
+        .filter((t) => t.patchable)
+        .forEach((e, idx) => {
+          const type = fqn(`${basePackage}.model.${e.name}`);
+          const implType = fqn(
+            `${packageName}.impl.model.${e.name}DataPatchImpl`
+          );
+          if (idx === 0) {
+            staticBody.append(NL);
+          }
+          staticBody.append(
+            `registerBuilderCreator(${type}.PatchBuilder.class, ${implType}.PatchBuilderImpl::new);`,
+            NL
+          );
+        });
       if (m.services.length > 0) {
         staticBody.appendNewLine();
       }

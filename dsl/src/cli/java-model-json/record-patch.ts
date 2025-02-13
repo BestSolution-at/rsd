@@ -55,6 +55,15 @@ export function generateRecordPatchContent(
         fqn
       )
     );
+    classBody.append(
+      NL,
+      `public static ${t.name}.Patch of(JsonObject obj) {`,
+      NL
+    );
+    classBody.indent((methodBody) => {
+      methodBody.append(`return new ${t.name}DataPatchImpl(obj);`, NL);
+    });
+    classBody.append('}', NL);
     classBody.append(NL, 'public static PatchBuilderImpl builder() {', NL);
     classBody.indent((methodBody) => {
       methodBody.append('return new PatchBuilderImpl();', NL);
@@ -103,7 +112,10 @@ function generatePatchBuilderImpl(
     classBody.append('@Override', NL);
     classBody.append('public Patch build() {', NL);
     classBody.indent((methodBody) => {
-      methodBody.append(`return new ${t.name}DataPatchImpl($builder.build());`);
+      methodBody.append(
+        `return new ${t.name}DataPatchImpl($builder.build());`,
+        NL
+      );
     });
     classBody.append('}', NL);
   });
