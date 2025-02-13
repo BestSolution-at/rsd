@@ -3,6 +3,7 @@ import {
   isMBuiltinType,
   isMInlineEnumType,
   isMKeyProperty,
+  isMResolvedUnionType,
   isMRevisionProperty,
   MBuiltinType,
   MKeyProperty,
@@ -21,6 +22,7 @@ import {
 } from '../java-gen-utils.js';
 import { toType } from '../java-client-api/shared.js';
 import { toFirstUpper } from '../util.js';
+import { BuiltinType } from '../../language/generated/ast.js';
 
 export function generatePropertyNG(
   owner: MResolvedRecordType,
@@ -633,25 +635,25 @@ export function builtinBuilderArrayJSONAccess(property: {
 }): string {
   switch (property.type) {
     case 'boolean':
-      return `$builder.add("${property.name}", DTOUtils.toJsonBooleanArray(${property.name})`;
+      return `$builder.add("${property.name}", _JsonUtils.toJsonBooleanArray(${property.name}))`;
     case 'double':
-      return `$builder.add("${property.name}", DTOUtils.toJsonDoubleArray(${property.name})`;
+      return `$builder.add("${property.name}", _JsonUtils.toJsonDoubleArray(${property.name}))`;
     case 'float':
-      return `$builder.add("${property.name}", DTOUtils.toJsonFloatArray(${property.name})`;
+      return `$builder.add("${property.name}", _JsonUtils.toJsonFloatArray(${property.name}))`;
     case 'int':
-      return `$builder.add("${property.name}", DTOUtils.toJsonIntArray(${property.name})`;
+      return `$builder.add("${property.name}", _JsonUtils.toJsonIntArray(${property.name}))`;
     case 'local-date':
-      return `$builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name})`;
+      return `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
     case 'local-date-time':
-      return `$builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name})::toString)`;
+      return `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name})::toString))`;
     case 'long':
-      return `$builder.add("${property.name}", DTOUtils.toJsonLongArray(${property.name})`;
+      return `$builder.add("${property.name}", _JsonUtils.toJsonLongArray(${property.name}))`;
     case 'short':
-      return `$builder.add("${property.name}", DTOUtils.toJsonShortArray(${property.name})`;
+      return `$builder.add("${property.name}", _JsonUtils.toJsonShortArray(${property.name}))`;
     case 'string':
-      return `$builder.add("${property.name}", DTOUtils.toJsonStringArray(${property.name})`;
+      return `$builder.add("${property.name}", _JsonUtils.toJsonStringArray(${property.name}))`;
     case 'zoned-date-time':
-      return `$builder.add("${property.name}", DTOUtils.toJsonLiteralArray(${property.name})`;
+      return `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
   }
 }
 
@@ -688,6 +690,206 @@ function isJavaPrimitive(type: MBuiltinType) {
   return false;
 }
 
+function generatePatchPropertyAccessorContent_Builtin(property: {
+  type: BuiltinType;
+  name: string;
+  array: boolean;
+}) {
+  const type = property.type;
+  const methodBody = new CompositeGeneratorNode();
+  methodBody.append(
+    'return ',
+    property.array
+      ? builtinNilArrayJSONAccess({ type, name: property.name })
+      : builtinNilJSONAccess({ type, name: property.name }),
+    ';',
+    NL
+  );
+  return methodBody;
+}
+
+function generatePatchPropertyAccessorContent_Scalar(
+  property: MResolvedPropery,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  const Type = computeAPIType(
+    property,
+    nativeTypeSubstitues,
+    basePackageName,
+    fqn,
+    true
+  );
+  const methodBody = new CompositeGeneratorNode();
+  if (property.array) {
+    methodBody.append(
+      `return _JsonUtils.mapNilLiterals(data, "${property.name}", ${Type}::of );`,
+      NL
+    );
+  } else {
+    methodBody.append(
+      `return _JsonUtils.mapNilLiteral(data, "${property.name}", ${Type}::of );`,
+      NL
+    );
+  }
+  return methodBody;
+}
+
+function generatePatchPropertyAccessor_NoRecord(
+  property: MResolvedPropery,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  const node = new CompositeGeneratorNode();
+  const type = primitiveToObject(
+    computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn)
+  );
+  if (property.optional || property.nullable) {
+    const _Base = fqn(basePackageName + '._Base');
+    node.append(`public ${_Base}.Nillable<${type}> ${property.name}() {`, NL);
+    if (typeof property.type === 'string') {
+      const type = property.type;
+      if (isMBuiltinType(type)) {
+        node.indent((methodBody) => {
+          methodBody.append(
+            generatePatchPropertyAccessorContent_Builtin({
+              array: property.array,
+              type: type,
+              name: property.name,
+            })
+          );
+        });
+      } else if (property.variant === 'scalar') {
+        node.indent((methodBody) => {
+          methodBody.append(
+            generatePatchPropertyAccessorContent_Scalar(
+              property,
+              nativeTypeSubstitues,
+              basePackageName,
+              fqn
+            )
+          );
+        });
+      } else if (property.variant === 'enum') {
+        node.indent((methodBody) => {
+          if (property.array) {
+            methodBody.append(
+              `return _JsonUtils.mapNilLiterals(data, "${property.name}", ${property.type}::valueOf );`,
+              NL
+            );
+          } else {
+            methodBody.append(
+              `return _JsonUtils.mapNilLiteral(data, "${property.name}", ${property.type}::valueOf );`,
+              NL
+            );
+          }
+        });
+      }
+    } else {
+      const Type = computeAPIType(
+        property,
+        nativeTypeSubstitues,
+        basePackageName,
+        fqn,
+        true
+      );
+      node.indent((methodBody) => {
+        if (property.array) {
+          methodBody.append(
+            `return _JsonUtils.mapNilLiterals(data, "${property.name}", ${Type}::valueOf )`,
+            NL
+          );
+        } else {
+          methodBody.append(
+            `return _JsonUtils.mapNilLiteral(data, "${property.name}", ${Type}::valueOf )`,
+            NL
+          );
+        }
+      });
+    }
+    node.append('}', NL);
+  } else {
+    const Optional = fqn('java.util.Optional');
+    node.append(`public ${Optional}<${type}> ${property.name}() {`, NL);
+    if (typeof property.type === 'string') {
+      const type = property.type;
+      if (isMBuiltinType(type)) {
+        node.indent((methodBody) => {
+          methodBody.append(
+            'return ',
+            property.array
+              ? builtinOptArrayJSONAccess({ type, name: property.name })
+              : builtinOptJSONAccess({ type, name: property.name }),
+            ';',
+            NL
+          );
+        });
+      } else if (property.variant === 'scalar') {
+        const Type = computeAPIType(
+          property,
+          nativeTypeSubstitues,
+          basePackageName,
+          fqn,
+          true
+        );
+        node.indent((methodBody) => {
+          if (property.array) {
+            methodBody.append(
+              `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${Type}::of );`,
+              NL
+            );
+          } else {
+            methodBody.append(
+              `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${Type}::of );`,
+              NL
+            );
+          }
+        });
+      } else if (property.variant === 'enum') {
+        node.indent((methodBody) => {
+          if (property.array) {
+            methodBody.append(
+              `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${property.type}::valueOf );`,
+              NL
+            );
+          } else {
+            methodBody.append(
+              `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${property.type}::valueOf );`,
+              NL
+            );
+          }
+        });
+      }
+    } else {
+      const Type = computeAPIType(
+        property,
+        nativeTypeSubstitues,
+        basePackageName,
+        fqn,
+        true
+      );
+      node.indent((methodBody) => {
+        if (property.array) {
+          methodBody.append(
+            `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${Type}::valueOf );`,
+            NL
+          );
+        } else {
+          methodBody.append(
+            `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${Type}::valueOf );`,
+            NL
+          );
+        }
+      });
+    }
+
+    node.append('}', NL);
+  }
+  return node;
+}
+
 export function generatePatchPropertyAccessor(
   property: MResolvedPropery,
   nativeTypeSubstitues: Record<string, string> | undefined,
@@ -701,161 +903,14 @@ export function generatePatchPropertyAccessor(
     property.variant === 'inline-enum' ||
     property.variant === 'scalar'
   ) {
-    const type = primitiveToObject(
-      computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn)
+    node.append(
+      generatePatchPropertyAccessor_NoRecord(
+        property,
+        nativeTypeSubstitues,
+        basePackageName,
+        fqn
+      )
     );
-    if (property.optional || property.nullable) {
-      const _Base = fqn(basePackageName + '._Base');
-      node.append(`public ${_Base}.Nillable<${type}> ${property.name}() {`, NL);
-      if (typeof property.type === 'string') {
-        const type = property.type;
-        if (isMBuiltinType(type)) {
-          node.indent((methodBody) => {
-            methodBody.append(
-              'return ',
-              property.array
-                ? builtinNilArrayJSONAccess({ type, name: property.name })
-                : builtinNilJSONAccess({ type, name: property.name }),
-              ';',
-              NL
-            );
-          });
-        } else if (property.variant === 'scalar') {
-          const Type = computeAPIType(
-            property,
-            nativeTypeSubstitues,
-            basePackageName,
-            fqn,
-            true
-          );
-          node.indent((methodBody) => {
-            if (property.array) {
-              methodBody.append(
-                `return _JsonUtils.mapNilLiterals(data, "${property.name}", ${Type}::of );`,
-                NL
-              );
-            } else {
-              methodBody.append(
-                `return _JsonUtils.mapNilLiteral(data, "${property.name}", ${Type}::of );`,
-                NL
-              );
-            }
-          });
-        } else if (property.variant === 'enum') {
-          node.indent((methodBody) => {
-            if (property.array) {
-              methodBody.append(
-                `return _JsonUtils.mapNilLiterals(data, "${property.name}", ${property.type}::valueOf );`,
-                NL
-              );
-            } else {
-              methodBody.append(
-                `return _JsonUtils.mapNilLiteral(data, "${property.name}", ${property.type}::valueOf );`,
-                NL
-              );
-            }
-          });
-        }
-      } else {
-        const Type = computeAPIType(
-          property,
-          nativeTypeSubstitues,
-          basePackageName,
-          fqn,
-          true
-        );
-        node.indent((methodBody) => {
-          if (property.array) {
-            methodBody.append(
-              `return _JsonUtils.mapNilLiterals(data, "${property.name}", ${Type}::valueOf )`,
-              NL
-            );
-          } else {
-            methodBody.append(
-              `return _JsonUtils.mapNilLiteral(data, "${property.name}", ${Type}::valueOf )`,
-              NL
-            );
-          }
-        });
-      }
-      node.append('}', NL);
-    } else {
-      const Optional = fqn('java.util.Optional');
-      node.append(`public ${Optional}<${type}> ${property.name}() {`, NL);
-      if (typeof property.type === 'string') {
-        const type = property.type;
-        if (isMBuiltinType(type)) {
-          node.indent((methodBody) => {
-            methodBody.append(
-              'return ',
-              property.array
-                ? builtinOptArrayJSONAccess({ type, name: property.name })
-                : builtinOptJSONAccess({ type, name: property.name }),
-              ';',
-              NL
-            );
-          });
-        } else if (property.variant === 'scalar') {
-          const Type = computeAPIType(
-            property,
-            nativeTypeSubstitues,
-            basePackageName,
-            fqn,
-            true
-          );
-          node.indent((methodBody) => {
-            if (property.array) {
-              methodBody.append(
-                `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${Type}::of );`,
-                NL
-              );
-            } else {
-              methodBody.append(
-                `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${Type}::of );`,
-                NL
-              );
-            }
-          });
-        } else if (property.variant === 'enum') {
-          node.indent((methodBody) => {
-            if (property.array) {
-              methodBody.append(
-                `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${property.type}::valueOf );`,
-                NL
-              );
-            } else {
-              methodBody.append(
-                `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${property.type}::valueOf );`,
-                NL
-              );
-            }
-          });
-        }
-      } else {
-        const Type = computeAPIType(
-          property,
-          nativeTypeSubstitues,
-          basePackageName,
-          fqn,
-          true
-        );
-        node.indent((methodBody) => {
-          if (property.array) {
-            methodBody.append(
-              `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${Type}::valueOf );`,
-              NL
-            );
-          } else {
-            methodBody.append(
-              `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${Type}::valueOf );`,
-              NL
-            );
-          }
-        });
-      }
-
-      node.append('}', NL);
-    }
   } else {
     const type = computeAPIType(
       property,
@@ -886,6 +941,173 @@ export function generatePatchPropertyAccessor(
     }
   }
 
+  return node;
+}
+
+function generatePatchBuilderPropertyAccessor_NoRecord(
+  property: MResolvedPropery,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  let type = computeAPIType(
+    property,
+    nativeTypeSubstitues,
+    basePackageName,
+    fqn
+  );
+
+  if (property.optional || property.nullable) {
+    type = primitiveToObject(type);
+  }
+
+  const node = new CompositeGeneratorNode();
+  node.append('@Override', NL);
+  node.append(
+    `public PatchBuilder ${property.name}(${type} ${property.name}) {`,
+    NL
+  );
+
+  if (property.optional || property.nullable) {
+    node.indent((methodBody) => {
+      methodBody.append(`if (${property.name} == null) {`, NL);
+      methodBody.indent((block) => {
+        block.append(`$builder.addNull("${property.name}");`, NL);
+        block.append('return this;', NL);
+      });
+      methodBody.append('}', NL);
+    });
+  }
+
+  let content: string;
+  if (property.variant === 'builtin' && isMBuiltinType(property.type)) {
+    if (property.array) {
+      content = builtinBuilderArrayJSONAccess({
+        type: property.type,
+        name: property.name,
+      });
+    } else {
+      content = builtinBuilderAccess({
+        type: property.type,
+        name: property.name,
+      });
+    }
+  } else if (property.variant === 'scalar') {
+    if (property.array) {
+      content = `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
+    } else {
+      content = `$builder.add("${property.name}", ${property.name}.toString())`;
+    }
+  }
+  node.indent((methodBody) => {
+    methodBody.append(content, ';', NL);
+    methodBody.append('return this;', NL);
+  });
+
+  node.append('}', NL);
+
+  return node;
+}
+
+export function generatePatchBuilderPropertyAccessor(
+  property: MResolvedPropery,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  const node = new CompositeGeneratorNode();
+  if (
+    property.variant === 'builtin' ||
+    property.variant === 'enum' ||
+    property.variant === 'inline-enum' ||
+    property.variant === 'scalar'
+  ) {
+    node.append(
+      generatePatchBuilderPropertyAccessor_NoRecord(
+        property,
+        nativeTypeSubstitues,
+        basePackageName,
+        fqn
+      )
+    );
+  } else {
+    let type = computeAPIType(
+      property,
+      nativeTypeSubstitues,
+      basePackageName,
+      fqn
+    );
+    node.append('@Override', NL);
+    node.append(
+      `public PatchBuilder ${property.name}(${type} ${property.name}) {`,
+      NL
+    );
+
+    if (property.optional || property.nullable) {
+      node.indent((methodBody) => {
+        methodBody.append(`if (${property.name} == null) {`, NL);
+        methodBody.indent((block) => {
+          block.append(`$builder.addNull("${property.name}");`, NL);
+          block.append('return this;', NL);
+        });
+        methodBody.append('}', NL);
+      });
+    }
+
+    let content: string;
+    if (property.array) {
+      content = `$builder.add("${property.name}", _JSONUtils.toJsonObjectArray(${property.name}))`;
+    } else {
+      content = `$builder.add("${property.name}", ((_BaseDataImpl)${property.name}).data)`;
+    }
+
+    node.indent((methodBody) => {
+      methodBody.append(content, ';', NL);
+      methodBody.append('return this;', NL);
+    });
+
+    node.append('}', NL);
+    if (!property.array) {
+      const Function = fqn('java.util.function.Function');
+      node.append(
+        NL,
+        `public <T extends ${property.type}.DataBuilder> PatchBuilder withRepeat(Class<T> clazz, ${Function}<T, ${type}> block) {`,
+        NL
+      );
+      node.indent((methodBody) => {
+        if (isMResolvedUnionType(property.resolved.resolvedObjectType)) {
+          methodBody.append(`${property.type}.DataBuilder b;`, NL);
+          property.resolved.resolvedObjectType.types.forEach((e, idx) => {
+            if (idx > 0) {
+              methodBody.append(' else ');
+            }
+            const Type = fqn(`${basePackageName}.${e}`);
+            methodBody.append(`if (clazz == ${Type}.DataBuilder.class) {`, NL);
+            methodBody.indent((block) => {
+              block.append(`b = ${e}DataImpl.builder();`, NL);
+            });
+            methodBody.append('}');
+          });
+          methodBody.append(' else {', NL);
+          methodBody.indent((block) => {
+            block.append(
+              'throw new IllegalArgumentException("Unknown builder type %s".formatted(clazz));',
+              NL
+            );
+          });
+          methodBody.append('}', NL);
+        } else {
+          methodBody.append(
+            `${property.type}.DataBuilder b = ${property.type}.DataBuilder.builder();`,
+            NL
+          );
+        }
+
+        methodBody.append(`return repeat(block.apply(clazz.cast(b)));`, NL);
+      });
+      node.append('}', NL);
+    }
+  }
   return node;
 }
 

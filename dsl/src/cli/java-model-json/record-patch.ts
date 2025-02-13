@@ -6,7 +6,10 @@ import {
   MResolvedRecordType,
   MResolvedRSDModel,
 } from '../model.js';
-import { generatePatchPropertyAccessor } from './shared.js';
+import {
+  generatePatchBuilderPropertyAccessor,
+  generatePatchPropertyAccessor,
+} from './shared.js';
 
 export function generateRecordPatchContent(
   t: MResolvedRecordType,
@@ -24,11 +27,11 @@ export function generateRecordPatchContent(
   const revProp = allProps.find(isMRevisionProperty);*/
 
   node.append(
-    `public class ${t.name}DataPatchImpl_ extends _BaseDataImpl implements ${Interface}.Patch {`,
+    `public class ${t.name}DataPatchImpl extends _BaseDataImpl implements ${Interface}.Patch {`,
     NL
   );
   node.indent((classBody) => {
-    classBody.append(`${t.name}DataPatchImpl_(${JsonObject} data) {`, NL);
+    classBody.append(`${t.name}DataPatchImpl(${JsonObject} data) {`, NL);
     classBody.indent((initBody) => {
       initBody.append('super(data);', NL);
     });
@@ -42,9 +45,70 @@ export function generateRecordPatchContent(
         fqn
       )
     );
+    classBody.append(
+      generatePatchBuilderImpl(
+        t,
+        model,
+        allProps,
+        nativeTypeSubstitues,
+        interfaceBasePackage,
+        fqn
+      )
+    );
+    classBody.append(NL, 'public static PatchBuilderImpl builder() {', NL);
+    classBody.indent((methodBody) => {
+      methodBody.append('return new PatchBuilderImpl();', NL);
+    });
+    classBody.append('}', NL);
   });
   node.append('}', NL);
 
+  return node;
+}
+
+function generatePatchBuilderImpl(
+  t: MResolvedRecordType,
+  model: MResolvedRSDModel,
+  props: MResolvedBaseProperty[],
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  interfaceBasePackage: string,
+  fqn: (type: string) => string
+) {
+  const Json = fqn('jakarta.json.Json');
+  const JsonObjectBuilder = fqn('jakarta.json.JsonObjectBuilder');
+  const node = new CompositeGeneratorNode();
+  node.append(
+    `public static class PatchBuilderImpl implements ${t.name}.PatchBuilder {`,
+    NL
+  );
+  node.indent((classBody) => {
+    classBody.append(
+      `private ${JsonObjectBuilder} $builder = ${Json}.createObjectBuilder();`,
+      NL,
+      NL
+    );
+    classBody.append(
+      ...props.filter(isMResolvedProperty).flatMap((p) => {
+        return [
+          generatePatchBuilderPropertyAccessor(
+            p,
+            nativeTypeSubstitues,
+            interfaceBasePackage,
+            fqn
+          ),
+          NL,
+        ];
+      })
+    );
+    classBody.append('@Override', NL);
+    classBody.append('public Patch build() {', NL);
+    classBody.indent((methodBody) => {
+      methodBody.append(`return new ${t.name}DataPatchImpl($builder.build());`);
+    });
+    classBody.append('}', NL);
+  });
+
+  node.append('}', NL);
   return node;
 }
 
