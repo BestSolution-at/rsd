@@ -22,6 +22,7 @@ import { generateBase } from './base.js';
 import { generateJsonUtils } from './json-utils.js';
 import { generateUnion } from './union.js';
 import { generateResource } from './resource.js';
+import { generateResponseBuilder } from './response-builder.js';
 
 export function generate(
   model: MResolvedRSDModel,
@@ -46,6 +47,11 @@ export function generate(
     ...model.services.flatMap((e) => generateResource(e, artifactConfig))
   );
   result.push(generateDTOBuilderFactory(model, artifactConfig));
+  result.push(
+    ...model.services.map((s) =>
+      generateResponseBuilder(s, model, artifactConfig)
+    )
+  );
 
   return result;
 }
