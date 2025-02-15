@@ -13,6 +13,7 @@ import {
 import {
   isMBuiltinType,
   isMInlineEnumType,
+  MOperation,
   MParameter,
   MResolvedOperation,
   MResolvedService,
@@ -198,40 +199,29 @@ function _generateResource(
             NL
           );
         }
-        mBody.append(
-          `var result = service.${o.name}(builderFactory, ${serviceParams.join(
-            ', '
-          )});`,
-          NL
-        );
-        mBody.appendNewLine();
-        mBody.append('if (result.isOk()) {', NL);
-        mBody.indent((inner) => {
-          if (o.resultType) {
-            if (serviceParams.length === 0) {
-              inner.append(
-                `return responseBuilder.${o.name}(result.value()).build();`,
-                NL
-              );
-            } else {
-              inner.append(
-                `return responseBuilder.${
-                  o.name
-                }(result.value(),${serviceParams.join(', ')}).build();`,
-                NL
-              );
-            }
-          } else {
-            inner.append(
-              `return responseBuilder.${o.name}(${serviceParams.join(
-                ', '
-              )}).build();`,
-              NL
+
+        const errors = o.meta?.rest?.results.filter((e) => e.error);
+        if (errors && errors.length > 0) {
+          mBody.append('try {', NL);
+          mBody.indent((inner) => {
+            inner.append(okResultContent(o, serviceParams));
+          });
+          errors.forEach((e) => {
+            const Type = fqn(
+              `${artifactConfig.rootPackageName}.service.${e.error}Exception`
             );
-          }
-        });
-        mBody.append('}', NL);
-        mBody.append('return RestUtils.toResponse(result);', NL);
+            mBody.append(`} catch(${Type} e) {`, NL);
+            mBody.indent((inner) => {
+              inner.append(
+                `return RestUtils.toResponse(${e.statusCode}, e);`,
+                NL
+              );
+            });
+          });
+          mBody.append('}', NL);
+        } else {
+          mBody.append(okResultContent(o, serviceParams));
+        }
       });
       cBody.append('}', NL);
       cBody.appendNewLine();
@@ -247,6 +237,42 @@ function _generateResource(
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };
+}
+
+function okResultContent(o: MOperation, serviceParams: string[]) {
+  const node = new CompositeGeneratorNode();
+
+  if (o.resultType) {
+    node.append(
+      `var result = service.${o.name}(builderFactory, ${serviceParams.join(
+        ', '
+      )});`,
+      NL
+    );
+  } else {
+    node.append(
+      `service.${o.name}(builderFactory, ${serviceParams.join(', ')});`,
+      NL
+    );
+  }
+  if (o.resultType) {
+    if (serviceParams.length === 0) {
+      node.append(`return responseBuilder.${o.name}(result).build();`, NL);
+    } else {
+      node.append(
+        `return responseBuilder.${o.name}(result,${serviceParams.join(
+          ', '
+        )}).build();`,
+        NL
+      );
+    }
+  } else {
+    node.append(
+      `return responseBuilder.${o.name}(${serviceParams.join(', ')}).build();`,
+      NL
+    );
+  }
+  return node;
 }
 
 function toParameter(
