@@ -755,8 +755,121 @@ export function generateJsonUtilsContent(
       methodBody.append('return constructor.apply(fromString(data));', NL);
     });
     classBody.append('}', NL);
+
+    classBody.append(encodeAsJsonString());
   });
 
+  node.append('}', NL);
+  return node;
+}
+
+function encodeAsJsonString() {
+  const node = new CompositeGeneratorNode();
+  node.append('public static String encodeAsJsonString(String text) {', NL);
+  node.indent((methodBody) => {
+    methodBody.append(
+      'StringBuilder b = new StringBuilder(text.length() + 2);',
+      NL
+    );
+    methodBody.append("b.append('\"');", NL);
+    methodBody.append('int l = text.length();', NL);
+    methodBody.append('for (int i = 0; i < l; i++) {', NL);
+    methodBody.indent((forBlock) => {
+      forBlock.append('int begin = i;', NL);
+      forBlock.append('int end = i;', NL);
+      forBlock.append('char c = text.charAt(i);', NL, NL);
+      forBlock.append(
+        '// https://datatracker.ietf.org/doc/html/rfc8259#section-7',
+        NL
+      );
+      forBlock.append('// unescaped = %x20-21 / %x23-5B / %x5D-10FFFF', NL);
+      forBlock.append('// - everything beyond 32 (SPACE)', NL);
+      forBlock.append('// - except 34 (")', NL);
+      forBlock.append('// - except 92 (\\)', NL);
+      forBlock.append(
+        `while (c >= ' ' && c <= 0x10ffff && c != '"' && c != '\\\\') {`,
+        NL
+      );
+      forBlock.indent((whileBlock) => {
+        whileBlock.append('i += 1;', NL);
+        whileBlock.append('end = i;', NL);
+        whileBlock.append('if (i == l) {', NL);
+        whileBlock.indent((ifBlock) => {
+          ifBlock.append('break;', NL);
+        });
+        whileBlock.append('}', NL);
+        whileBlock.append('c = text.charAt(i);', NL);
+      });
+      forBlock.append('}', NL);
+      forBlock.append('if (begin < end) {', NL);
+      forBlock.indent((ifBlock) => {
+        ifBlock.append('b.append(text, begin, end);', NL);
+        ifBlock.append('if (end == l) {', NL);
+        ifBlock.indent((innerIfBlock) => {
+          innerIfBlock.append('break;', NL);
+        });
+        ifBlock.append('}', NL);
+      });
+      forBlock.append('}', NL, NL);
+      forBlock.append('switch (c) {', NL);
+      forBlock.indent((switchBlock) => {
+        switchBlock.append(`case '"':`, NL);
+        switchBlock.append(`case '\\\\':`, NL);
+        switchBlock.indent((caseBlock) => {
+          caseBlock.append(`b.append('\\\\');`, NL);
+          caseBlock.append(`b.append(c);`, NL);
+          caseBlock.append(`break;`, NL);
+        });
+        switchBlock.append(`case '\\b':`, NL);
+        switchBlock.indent((caseBlock) => {
+          caseBlock.append(`b.append('\\\\');`, NL);
+          caseBlock.append(`b.append('b');`, NL);
+          caseBlock.append(`break;`, NL);
+        });
+        switchBlock.append(`case '\\f':`, NL);
+        switchBlock.indent((caseBlock) => {
+          caseBlock.append(`b.append('\\\\');`, NL);
+          caseBlock.append(`b.append('f');`, NL);
+          caseBlock.append(`break;`, NL);
+        });
+        switchBlock.append(`case '\\n':`, NL);
+        switchBlock.indent((caseBlock) => {
+          caseBlock.append(`b.append('\\\\');`, NL);
+          caseBlock.append(`b.append('n');`, NL);
+          caseBlock.append(`break;`, NL);
+        });
+        switchBlock.append(`case '\\r':`, NL);
+        switchBlock.indent((caseBlock) => {
+          caseBlock.append(`b.append('\\\\');`, NL);
+          caseBlock.append(`b.append('r');`, NL);
+          caseBlock.append(`break;`, NL);
+        });
+        switchBlock.append(`case '\\t':`, NL);
+        switchBlock.indent((caseBlock) => {
+          caseBlock.append(`b.append('\\\\');`, NL);
+          caseBlock.append(`b.append('t');`, NL);
+          caseBlock.append(`break;`, NL);
+        });
+        switchBlock.append(`default:`, NL);
+        switchBlock.indent((caseBlock) => {
+          caseBlock.append(`b.append("\\\\u");`, NL);
+          caseBlock.append(`var hex = Integer.toHexString(c);`, NL);
+          caseBlock.append(`var u = hex.length();`, NL);
+          caseBlock.append(`while (u < 4) {`, NL);
+          caseBlock.indent((whileBlock) => {
+            whileBlock.append(`b.append('0');`, NL);
+            whileBlock.append('u += 1;', NL);
+          });
+          caseBlock.append(`}`, NL);
+          caseBlock.append(`b.append(hex);`, NL);
+        });
+      });
+      forBlock.append('}', NL);
+    });
+    methodBody.append('}', NL);
+    methodBody.append("b.append('\"');", NL);
+    methodBody.append('return b.toString();', NL);
+  });
   node.append('}', NL);
   return node;
 }
