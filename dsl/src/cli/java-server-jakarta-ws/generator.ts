@@ -23,6 +23,7 @@ import { generateJsonUtils } from './json-utils.js';
 import { generateUnion } from './union.js';
 import { generateResource } from './resource.js';
 import { generateResponseBuilder } from './response-builder.js';
+import { generateRestUtils } from './rest-utils.js';
 
 export function generate(
   model: MResolvedRSDModel,
@@ -52,6 +53,7 @@ export function generate(
       generateResponseBuilder(s, model, artifactConfig)
     )
   );
+  result.push(generateRestUtils(artifactConfig));
 
   return result;
 }

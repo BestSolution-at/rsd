@@ -213,7 +213,7 @@ function _generateResource(
             mBody.append(`} catch(${Type} e) {`, NL);
             mBody.indent((inner) => {
               inner.append(
-                `return RestUtils.toResponse(${e.statusCode}, e);`,
+                `return _RestUtils.toResponse(${e.statusCode}, e);`,
                 NL
               );
             });

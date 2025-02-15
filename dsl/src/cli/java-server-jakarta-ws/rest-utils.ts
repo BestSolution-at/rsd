@@ -10,7 +10,7 @@ import {
 export function generateRestUtils(
   artifactConfig: JavaServerJakartaWSGeneratorConfig
 ): Artifact {
-  const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
+  const packageName = `${artifactConfig.rootPackageName}.rest`;
 
   const importCollector = new JavaImportsCollector(packageName);
   const fqn = importCollector.importType.bind(importCollector);
@@ -33,7 +33,7 @@ function generateRestUtilsContent(
   fqn: (type: string) => string
 ) {
   fqn(`${packageName}.model._JsonUtils`);
-  fqn(`${artifactConfig.rootPackageName}.service._RSDException`);
+  fqn(`${artifactConfig.rootPackageName}.service.RSDException`);
   fqn('jakarta.ws.rs.core.Response');
   const node = new CompositeGeneratorNode();
   node.append('public class _RestUtils {', NL);
@@ -47,34 +47,38 @@ function generateRestUtilsContent(
 function toResponse() {
   const node = new CompositeGeneratorNode();
   node.append(
-    'public static Response toResponse(int status, _RSDException e) {',
+    'public static Response toResponse(int status, RSDException e) {',
     NL
   );
   node.indent((methodBody) => {
     methodBody.append(
-      'if (e instanceof _RSDException.RSDMessageException m) {',
+      'if (e instanceof RSDException.RSDMessageException m) {',
       NL
     );
     methodBody.indent((block) => {
       block.append(
-        'return Response.status(status).entity(m.message).build();',
+        'return Response.status(status).header("X-RSD-Error-Type", e.type).entity(_JsonUtils.encodeAsJsonString(m.message)).build();',
         NL
       );
     });
     methodBody.append(
-      '} else if (e instanceof _RSDException.RSDStructuredDataException s) {',
+      '} else if (e instanceof RSDException.RSDStructuredDataException s) {',
       NL
     );
     methodBody.indent((block) => {
       block.append(
-        'return Response.status(status).entity(_JsonUtils.toJsonString(s.data, false)).build();',
+        'return Response.status(status).header("X-RSD-Error-Type", e.type).entity(_JsonUtils.toJsonString(s.data, false)).build();',
         NL
       );
     });
     methodBody.append('}', NL);
+    methodBody.append(
+      'return Response.serverError().entity("Unknown error \'%\'".formatted(e.getClass().getName())).build();',
+      NL
+    );
   });
-  node.append('return Response.serverError().build();', NL);
-  node.append('}');
+
+  node.append('}', NL);
 
   return node;
 }
