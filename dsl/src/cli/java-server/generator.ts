@@ -1,9 +1,9 @@
-import chalk from "chalk";
+import chalk from 'chalk';
 import {
   Artifact,
   ArtifactGenerationConfig,
   ArtifactGeneratorConfig,
-} from "../artifact-generator.js";
+} from '../artifact-generator.js';
 import {
   isMEnumType,
   isMMixinType,
@@ -11,28 +11,30 @@ import {
   isMUnionType,
   MResolvedRSDModel,
   MResolvedUserType,
-} from "../model.js";
+} from '../model.js';
 import {
   isJavaServerConfig,
   JavaServerGeneratorConfig,
-} from "../java-gen-utils.js";
-import { isDefined } from "../util.js";
-import { generateRecord } from "./record.js";
-import { generateBaseDTO } from "./base-dto.js";
-import { generateUnion } from "./union.js";
-import { generateDTOBuilderFactory } from "./builder-factory.js";
-import { generateMixin } from "./mixin.js";
+} from '../java-gen-utils.js';
+import { isDefined } from '../util.js';
+import { generateRecord } from './record.js';
+import { generateBaseDTO } from './base-dto.js';
+import { generateUnion } from './union.js';
+import { generateDTOBuilderFactory } from './builder-factory.js';
+import { generateMixin } from './mixin.js';
+import { generateRSDException } from '../java-client-api/rsd-exception.js';
+import { generateError } from '../java-client-api/error.js';
 
 export function generate(
   model: MResolvedRSDModel,
   generatorConfig: ArtifactGenerationConfig,
   artifactConfig: ArtifactGeneratorConfig
 ): readonly Artifact[] {
-  console.log(chalk.cyan("Generating Java-Server"));
+  console.log(chalk.cyan('Generating Java-Server'));
 
   if (!isJavaServerConfig(artifactConfig)) {
     console.log(
-      chalk.red("  Invalid configuration passed aborted artifact generation")
+      chalk.red('  Invalid configuration passed aborted artifact generation')
     );
     return [];
   }
@@ -43,6 +45,22 @@ export function generate(
   result.push(generateBaseDTO(artifactConfig));
   result.push(generateDTOBuilderFactory(artifactConfig));
   // result.push(...model.services.flatMap( e => generateService(e, artifactConfig)))
+  result.push(
+    ...generateRSDException(
+      model.errors,
+      artifactConfig,
+      `${artifactConfig.rootPackageName}.service`
+    )
+  );
+  result.push(
+    ...model.errors.map((e) =>
+      generateError(
+        e,
+        artifactConfig,
+        `${artifactConfig.rootPackageName}.service`
+      )
+    )
+  );
 
   return result;
 }
@@ -75,6 +93,6 @@ function generateType(
 }
 
 export default {
-  name: "java-server-base",
+  name: 'java-server-base',
   generate,
 };

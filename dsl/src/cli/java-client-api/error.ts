@@ -10,10 +10,9 @@ import { MError } from '../model.js';
 
 export function generateError(
   t: MError,
-  artifactConfig: JavaClientAPIGeneratorConfig
+  artifactConfig: JavaClientAPIGeneratorConfig,
+  packageName: string
 ): Artifact {
-  const packageName = `${artifactConfig.rootPackageName}`;
-
   const importCollector = new JavaImportsCollector(packageName);
   const fqn = importCollector.importType.bind(importCollector);
 

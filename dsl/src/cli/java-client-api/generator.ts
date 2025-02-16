@@ -55,7 +55,11 @@ function generate(
       artifactConfig.rootPackageName
     )
   );
-  result.push(...model.errors.map((e) => generateError(e, artifactConfig)));
+  result.push(
+    ...model.errors.map((e) =>
+      generateError(e, artifactConfig, artifactConfig.rootPackageName)
+    )
+  );
   result.push(generateBase(artifactConfig));
   result.push(generateBaseService(artifactConfig));
   result.push(generateClient(generatorConfig, artifactConfig));

@@ -52,29 +52,34 @@ function toResponse() {
   );
   node.indent((methodBody) => {
     methodBody.append(
-      'if (e instanceof RSDException.RSDMessageException m) {',
+      'if (e instanceof RSDException.RSDStructuredDataException s) {',
       NL
     );
     methodBody.indent((block) => {
-      block.append(
-        'return Response.status(status).header("X-RSD-Error-Type", e.type).entity(_JsonUtils.encodeAsJsonString(m.message)).build();',
-        NL
-      );
-    });
-    methodBody.append(
-      '} else if (e instanceof RSDException.RSDStructuredDataException s) {',
-      NL
-    );
-    methodBody.indent((block) => {
-      block.append(
-        'return Response.status(status).header("X-RSD-Error-Type", e.type).entity(_JsonUtils.toJsonString(s.data, false)).build();',
-        NL
+      block.append('return Response.status(status)', NL);
+      block.indent((t) =>
+        t.indent((chain) => {
+          chain.append('.header("X-RSD-Error-Type", e.type)', NL);
+          chain.append('.header("X-RSD-Error-Message", e.getMessage())', NL);
+          chain.append(
+            '.entity(_JsonUtils.toJsonString(s.data, false)).build();',
+            NL
+          );
+        })
       );
     });
     methodBody.append('}', NL);
-    methodBody.append(
-      'return Response.serverError().entity("Unknown error \'%\'".formatted(e.getClass().getName())).build();',
-      NL
+    methodBody.append('return Response.status(status)', NL);
+    methodBody.indent((t) =>
+      t.indent((chain) => {
+        chain.append('.header("X-RSD-Error-Type", e.type)', NL);
+        chain.append('.header("X-RSD-Error-Message", e.getMessage())', NL);
+        chain.append(
+          '.entity(_JsonUtils.encodeAsJsonString(e.getMessage())).build();',
+          NL
+        );
+        chain.append();
+      })
     );
   });
 
@@ -82,10 +87,3 @@ function toResponse() {
 
   return node;
 }
-
-// if (e instanceof _RSDException.RSDMessageException m) {
-//   return Response.status(status).entity(m.message).build();
-// } else if (e instanceof _RSDException.RSDStructuredDataException s) {
-//   return Response.status(status).entity(_JsonUtils.toJsonString(s.data, false)).build();
-// }
-// return Response.serverError().build();
