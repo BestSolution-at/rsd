@@ -38,11 +38,11 @@ function generateSource(
 ): CompositeGeneratorNode {
   const node = new CompositeGeneratorNode();
 
-  node.append(`public class ${t.name}Exception extends RuntimeException {`, NL);
+  node.append(`public class ${t.name}Exception extends RSDException {`, NL);
   node.indent((body) => {
-    body.append(`public ${t.name}Exception(String message, Throwable t) {`, NL);
+    body.append(`public ${t.name}Exception(String message) {`, NL);
     body.indent((method) => {
-      method.append('super(message, t);', NL);
+      method.append(`super(Type.${t.name}, message);`, NL);
     });
     body.append('}', NL);
   });

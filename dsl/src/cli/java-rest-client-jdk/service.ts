@@ -502,7 +502,7 @@ function handleErroResult(
   node.append(
     `throw new ${fqn(
       `${artifactConfig.rootPackageName}.${error}Exception`
-    )}(ServiceUtils.mapString($response), null);`,
+    )}(ServiceUtils.mapString($response));`,
     NL
   );
 }

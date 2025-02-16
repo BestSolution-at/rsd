@@ -29,6 +29,7 @@ import { generateUnion } from './union.js';
 import { generateService } from './service.js';
 import { generateError } from './error.js';
 import { generateMixin } from './mixin.js';
+import { generateRSDException } from './rsd-exception.js';
 
 function generate(
   model: MResolvedRSDModel,
@@ -47,6 +48,13 @@ function generate(
   const result = model.elements
     .map((e) => generateType(e, artifactConfig))
     .filter(isDefined);
+  result.push(
+    ...generateRSDException(
+      model.errors,
+      artifactConfig,
+      artifactConfig.rootPackageName
+    )
+  );
   result.push(...model.errors.map((e) => generateError(e, artifactConfig)));
   result.push(generateBase(artifactConfig));
   result.push(generateBaseService(artifactConfig));
