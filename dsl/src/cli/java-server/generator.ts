@@ -24,6 +24,7 @@ import { generateDTOBuilderFactory } from './builder-factory.js';
 import { generateMixin } from './mixin.js';
 import { generateRSDException } from '../java-client-api/rsd-exception.js';
 import { generateError } from '../java-client-api/error.js';
+import { generateService } from './service.js';
 
 export function generate(
   model: MResolvedRSDModel,
@@ -44,7 +45,7 @@ export function generate(
     .filter(isDefined);
   result.push(generateBaseDTO(artifactConfig));
   result.push(generateDTOBuilderFactory(artifactConfig));
-  // result.push(...model.services.flatMap( e => generateService(e, artifactConfig)))
+  result.push(...model.services.map((e) => generateService(e, artifactConfig)));
   result.push(
     ...generateRSDException(
       model.errors,
