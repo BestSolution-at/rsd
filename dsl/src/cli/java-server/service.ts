@@ -62,6 +62,18 @@ function toMethod(
   artifactConfig: JavaServerGeneratorConfig,
   fqn: (type: string) => string
 ) {
+  child.append(generateServiceSignature(o, allParameters, artifactConfig, fqn));
+  child.append(';', NL);
+  child.appendNewLine();
+}
+
+export function generateServiceSignature(
+  o: MOperation,
+  allParameters: readonly MParameter[],
+  artifactConfig: JavaServerGeneratorConfig,
+  fqn: (type: string) => string
+) {
+  const child = new CompositeGeneratorNode();
   const parameters = [
     'BuilderFactory _factory',
     ...allParameters.map((p) => toParameter(p, artifactConfig, fqn)),
@@ -97,8 +109,7 @@ function toMethod(
       });
     });
   }
-  child.append(';', NL);
-  child.appendNewLine();
+  return child;
 }
 
 function toParameter(
