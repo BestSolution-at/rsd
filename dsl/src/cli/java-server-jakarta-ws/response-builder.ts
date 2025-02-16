@@ -10,6 +10,7 @@ import {
   toPath,
 } from '../java-gen-utils.js';
 import {
+  isMBuiltinType,
   MParameter,
   MResolvedRSDModel,
   MResolvedService,
@@ -88,10 +89,23 @@ function generateContent(
               NL
             );
           } else {
-            methodBody.append(
-              `return ${Response}.status(${code}).entity(result);`,
-              NL
-            );
+            if (
+              isMBuiltinType(o.resultType.type) &&
+              o.resultType.type === 'string'
+            ) {
+              const JsonUtils = fqn(
+                'at.bestsolution.quti.rest.model._JsonUtils'
+              );
+              methodBody.append(
+                `return ${Response}.status(${code}).entity(${JsonUtils}.encodeAsJsonString(result));`,
+                NL
+              );
+            } else {
+              methodBody.append(
+                `return ${Response}.status(${code}).entity(result);`,
+                NL
+              );
+            }
           }
         } else {
           methodBody.append(`return ${Response}.status(${code});`, NL);
