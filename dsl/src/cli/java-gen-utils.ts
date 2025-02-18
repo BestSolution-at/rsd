@@ -1,8 +1,5 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
-import {
-  ArtifactGenerationConfig,
-  ArtifactGeneratorConfig,
-} from './artifact-generator.js';
+import { ArtifactGeneratorConfig } from './artifact-generator.js';
 import {
   MBuiltinType,
   MParameter,
@@ -205,25 +202,25 @@ export function toPath(targetFolder: string, packageName: string) {
   return `${targetFolder}/${packageName.replaceAll('.', '/')}`;
 }
 
-export type JavaClientAPIGeneratorConfig = ArtifactGenerationConfig & {
+export type JavaClientAPIGeneratorConfig = ArtifactGeneratorConfig & {
   targetFolder: string;
   rootPackageName: string;
   nativeTypeSubstitues?: Record<string, string>;
 };
 
-export type JavaRestClientJDKGeneratorConfig = ArtifactGenerationConfig & {
+export type JavaRestClientJDKGeneratorConfig = ArtifactGeneratorConfig & {
   targetFolder: string;
   rootPackageName: string;
   nativeTypeSubstitues?: Record<string, string>;
 };
 
-export type JavaServerJakartaWSGeneratorConfig = ArtifactGenerationConfig & {
+export type JavaServerJakartaWSGeneratorConfig = ArtifactGeneratorConfig & {
   targetFolder: string;
   rootPackageName: string;
   nativeTypeSubstitues?: Record<string, string>;
 };
 
-export type JavaServerGeneratorConfig = ArtifactGenerationConfig & {
+export type JavaServerGeneratorConfig = ArtifactGeneratorConfig & {
   targetFolder: string;
   rootPackageName: string;
   nativeTypeSubstitues?: Record<string, string>;
