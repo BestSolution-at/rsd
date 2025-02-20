@@ -3,9 +3,11 @@ import {
   isMBuiltinType,
   isMInlineEnumType,
   isMKeyProperty,
+  isMResolvedProperty,
   isMRevisionProperty,
   MBuiltinType,
   MResolvedBaseProperty,
+  MResolvedPropery,
   MResolvedRecordType,
 } from '../model.js';
 
@@ -13,25 +15,51 @@ export function generateRecordContent(t: MResolvedRecordType) {
   const rv: Record<string, unknown> = {};
   const allProps = allResolvedRecordProperties(t);
 
-  const properties: Record<string, unknown> = {};
-  allProps.forEach((p) => {
-    properties[p.name] = generateProperty(p);
-  });
+  {
+    const properties: Record<string, unknown> = {};
+    allProps.forEach((p) => {
+      properties[p.name] = generateProperty(p);
+    });
 
-  if (t.resolved.unions.length > 0) {
-    properties['@type'] = {
-      type: 'string',
+    if (t.resolved.unions.length > 0) {
+      properties['@type'] = {
+        type: 'string',
+      };
+    }
+
+    const required = allProps
+      .filter((p) => !isMResolvedProperty(p) || p.optional)
+      .map((p) => p.name);
+
+    rv[t.name] = {
+      type: 'object',
+      properties,
+      required,
     };
   }
 
-  rv[t.name] = {
-    type: 'object',
-    properties,
-  };
+  if (t.patchable) {
+    const properties: Record<string, unknown> = {};
+    allProps.filter(isMResolvedProperty).forEach((p) => {
+      properties[p.name] = generatePatchProperty(p);
+    });
+    rv[`${t.name}Patch`] = {
+      type: 'object',
+      properties,
+    };
+  }
   return rv;
 }
 
-function generateProperty(p: MResolvedBaseProperty) {
+function generatePatchProperty(p: MResolvedPropery) {
+  const rv = generateProperty(p);
+  if (p.optional) {
+    rv['nullable'] = true;
+  }
+  return rv;
+}
+
+function generateProperty(p: MResolvedBaseProperty): Record<string, unknown> {
   if (isMKeyProperty(p) || isMRevisionProperty(p)) {
     return generateBuilinProperty(p.type);
   } else if (isMBuiltinType(p.type)) {
