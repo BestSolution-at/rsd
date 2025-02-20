@@ -157,15 +157,16 @@ function toType(param: MParameter) {
     param.variant === 'union' ||
     param.variant === 'enum'
   ) {
+    const type = param.patch ? `${param.type}Patch` : param.type;
     if (param.array) {
       schema = {
         type: 'array',
         items: {
-          $ref: `#/components/schemas/${param.type}`,
+          $ref: `#/components/schemas/${type}`,
         },
       };
     } else {
-      schema['$ref'] = `#/components/schemas/${param.type}`;
+      schema['$ref'] = `#/components/schemas/${type}`;
     }
   } else if (param.variant === 'inline-enum') {
   } else if (param.variant === 'scalar') {
