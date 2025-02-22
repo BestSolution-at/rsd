@@ -22,6 +22,7 @@ import JavaRestClientJDK from './java-rest-client-jdk/generator.js';
 import JavaServerJakartaWS from './java-server-jakarta-ws/generator.js';
 import JavaServer from './java-server/generator.js';
 import OpenAPI from './open-api/generator.js';
+import TypescriptClientAPI from './typescript-client-api/generator.js';
 
 import { existsSync } from 'node:fs';
 
@@ -36,6 +37,7 @@ generatorRegistry.set(JavaRestClientJDK.name, JavaRestClientJDK);
 generatorRegistry.set(JavaServerJakartaWS.name, JavaServerJakartaWS);
 generatorRegistry.set(JavaServer.name, JavaServer);
 generatorRegistry.set(OpenAPI.name, OpenAPI);
+generatorRegistry.set(TypescriptClientAPI.name, TypescriptClientAPI);
 
 export const generateAction = async (
   fileName: string,
