@@ -168,9 +168,9 @@ function parameterContent(parameter: MParameter) {
   return (
     <Fragment>
       <span>
-        {parameter.optional && <span style={{ 'color': 'darkred', 'font-weight': '300' }}>optional </span>}
-        {parameter.nullable && <span style={{ 'color': 'darkred', 'font-weight': '300' }}>nullable </span>}
         <span style={{ 'font-weight': 'bold' }}>{parameter.name}</span>
+        {parameter.optional && <span style={{ 'color': 'darkred', 'font-weight': '300' }}> optional</span>}
+        {parameter.nullable && <span style={{ 'color': 'darkred', 'font-weight': '300' }}> nullable</span>}
       </span>
       <span>
         {parameter.variant === 'builtin' && <span style={{ 'font-weight': '300' }}>{parameter.type} – </span>}
