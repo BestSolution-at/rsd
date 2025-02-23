@@ -35,6 +35,7 @@ export function generateRecordContent(
   if (t.patchable) {
     node.appendNewLine();
     node.append(generateRecordPatch(t, allProps, fqn));
+    node.append(generatePatchTypeguard(t, allProps, fqn));
   }
 
   return node;
@@ -303,7 +304,7 @@ function generateTypeguard(
           NL
         );
       }
-      props.forEach((p, idx) => {
+      props.forEach((p, idx, arr) => {
         if (idx > 0) {
           andBlock.append(' &&', NL);
         }
@@ -327,7 +328,7 @@ function generateTypeguard(
 
           if (p.nullable) {
             const nullGuard = fqn('isNull:../_type-utils.ts');
-            andBlock.append('(', `${nullGuard}(value['${p.name}']) || `);
+            andBlock.append('(', `${nullGuard}(value.${p.name}) || `);
           }
 
           const check = p.optional
@@ -346,6 +347,9 @@ function generateTypeguard(
 
           if (p.nullable) {
             andBlock.append(')');
+          }
+          if (idx + 1 === arr.length) {
+            andBlock.append(';');
           }
         }
       });
@@ -368,6 +372,79 @@ function generateRecordPatch(
     });
   });
   node.append('};', NL);
+  return node;
+}
+
+function generatePatchTypeguard(
+  t: MResolvedRecordType,
+  props: MResolvedBaseProperty[],
+  fqn: (t: string) => string
+) {
+  const node = new CompositeGeneratorNode();
+  node.append(
+    `export function is${t.name}Patch(value: unknown): value is ${t.name}Patch {`,
+    NL
+  );
+  node.indent((mBody) => {
+    const isRecord = fqn('isRecord:../_type-utils.ts');
+    mBody.append(`return ${isRecord}(value) &&`, NL);
+    mBody.indent((andBlock) => {
+      if (t.resolved.unions.length > 0) {
+        const checkProp = fqn('checkProp:../_type-utils.ts');
+        const createIsStringTypeGuard = fqn(
+          'createIsStringTypeGuard:../_type-utils.ts'
+        );
+        const alias =
+          (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+        andBlock.append(
+          `${checkProp}(value, '${t.resolved.unions[0].descriminator}', ${createIsStringTypeGuard}('${alias}')) &&`,
+          NL
+        );
+      }
+      props.filter(isMResolvedProperty).forEach((p, idx, arr) => {
+        if (idx > 0) {
+          andBlock.append(' &&', NL);
+        }
+
+        let guard: string;
+
+        if (isMBuiltinType(p.type)) {
+          guard = builtinTypeGuard(p.type, fqn);
+        } else if (isMInlineEnumType(p.type)) {
+          guard = `is${t.name}_${toFirstUpper(p.name)}`;
+        } else if (p.variant === 'scalar') {
+          guard = fqn('isString:../_type-utils.ts');
+        } else {
+          guard = fqn(`is${p.type}:./${p.type}.ts`);
+        }
+
+        if (p.nullable || p.optional) {
+          const nullGuard = fqn('isNull:../_type-utils.ts');
+          andBlock.append('(', `${nullGuard}(value.${p.name}) || `);
+        }
+
+        const check = fqn('checkOptProp:../_type-utils.ts');
+        if (p.array) {
+          const createTypedArrayGuard = fqn(
+            'createTypedArrayGuard:../_type-utils.ts'
+          );
+          andBlock.append(
+            `${check}(value, '${p.name}', ${createTypedArrayGuard}(${guard}))`
+          );
+        } else {
+          andBlock.append(`${check}(value, '${p.name}', ${guard})`);
+        }
+
+        if (p.nullable || p.optional) {
+          andBlock.append(')');
+        }
+        if (idx + 1 === arr.length) {
+          andBlock.append(';');
+        }
+      });
+    });
+  });
+  node.append(NL, '}', NL);
   return node;
 }
 
