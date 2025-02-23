@@ -34,8 +34,10 @@ export function generateRecordContent(
 
   if (t.patchable) {
     node.appendNewLine();
-    node.append(generateRecordPatch(t, allProps, fqn));
-    node.append(generatePatchTypeguard(t, allProps, fqn));
+    node.append(generateRecordPatch(t, allProps, fqn), NL);
+    node.append(generatePatchTypeguard(t, allProps, fqn), NL);
+    node.append(generatePatchFromJSON(t, allProps, fqn), NL);
+    node.append(generatePatchToJSON(t, allProps, fqn), NL);
   }
 
   return node;
@@ -367,6 +369,15 @@ function generateRecordPatch(
   const node = new CompositeGeneratorNode();
   node.append(`export type ${t.name}Patch = {`, NL);
   node.indent((classBody) => {
+    if (t.resolved.unions.length === 1) {
+      const alias =
+        (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+      classBody.append(
+        `'${t.resolved.unions[0].descriminator}': '${alias}-patch',`,
+        NL
+      );
+    }
+
     props.filter(isMResolvedProperty).forEach((p) => {
       classBody.append(generatePatchProperty(p, fqn), NL);
     });
@@ -445,6 +456,172 @@ function generatePatchTypeguard(
     });
   });
   node.append(NL, '}', NL);
+  return node;
+}
+
+function generatePatchFromJSON(
+  t: MResolvedRecordType,
+  props: MResolvedBaseProperty[],
+  fqn: (t: string) => string
+) {
+  const node = new CompositeGeneratorNode();
+  node.append(
+    `export function ${t.name}PatchFromJSON(value: Record<string, unknown>): ${t.name}Patch {`,
+    NL
+  );
+  node.indent((fBody) => {
+    props.filter(isMResolvedProperty).forEach((p) => {
+      if (
+        p.variant === 'inline-enum' ||
+        p.variant === 'builtin' ||
+        p.variant === 'enum' ||
+        p.variant === 'scalar'
+      ) {
+        let guard: string;
+
+        if (isMBuiltinType(p.type)) {
+          guard = builtinTypeGuard(p.type, fqn);
+        } else if (isMInlineEnumType(p.type)) {
+          guard = `is${t.name}_${toFirstUpper(p.name)}`;
+        } else if (p.variant === 'enum') {
+          guard = fqn(`is${p.type}:./${p.type}.ts`);
+        } else if (p.variant === 'scalar') {
+          guard = fqn('isString:../_type-utils.ts');
+        } else {
+          guard = 'err';
+        }
+
+        let allow = ", 'optional'";
+        if (p.nullable || p.optional) {
+          allow = ", 'optional_null'";
+        }
+
+        if (p.array) {
+          const propListValue = fqn('propListValue:../_type-utils.ts');
+          fBody.append(
+            `const ${p.name} = ${propListValue}('${p.name}', value, ${guard}`,
+            allow,
+            ');',
+            NL
+          );
+        } else {
+          const propValue = fqn('propValue:../_type-utils.ts');
+          fBody.append(
+            `const ${p.name} = ${propValue}('${p.name}', value, ${guard}`,
+            allow,
+            ');',
+            NL
+          );
+        }
+      } else {
+        let allow = ", 'optional'";
+        if (p.optional || p.nullable) {
+          allow = ", 'optional_null'";
+        }
+
+        const guard = fqn('isRecord:../_type-utils.ts');
+        const map = fqn(`${p.type}FromJSON:./${p.type}.ts`);
+
+        if (p.array) {
+          const propMappedListValue = fqn(
+            'propMappedListValue:../_type-utils.ts'
+          );
+          fBody.append(
+            `const ${p.name} = ${propMappedListValue}('${p.name}', value, ${guard}, ${map}`,
+            allow,
+            ');',
+            NL
+          );
+        } else {
+          const propMappedValue = fqn('propMappedValue:../_type-utils.ts');
+          fBody.append(
+            `const ${p.name} = ${propMappedValue}('${p.name}', value, ${guard}, ${map}`,
+            allow,
+            ');',
+            NL
+          );
+        }
+      }
+    });
+
+    fBody.append('return {', NL);
+    fBody.indent((pBody) => {
+      if (t.resolved.unions.length === 1) {
+        const alias =
+          (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+        pBody.append(
+          `'${t.resolved.unions[0].descriminator}': '${alias}-patch',`,
+          NL
+        );
+      }
+      props.filter(isMResolvedProperty).forEach((p) => {
+        pBody.append(`${p.name},`, NL);
+      });
+    });
+    fBody.append('};', NL);
+  });
+  node.append('}', NL);
+  return node;
+}
+
+function generatePatchToJSON(
+  t: MResolvedRecordType,
+  props: MResolvedBaseProperty[],
+  fqn: (t: string) => string
+) {
+  const node = new CompositeGeneratorNode();
+  node.append(
+    `export function ${t.name}PatchToJSON(value: ${t.name}Patch): Record<string, unknown> {`,
+    NL
+  );
+  node.indent((mBody) => {
+    props.filter(isMResolvedProperty).forEach((p) => {
+      if (
+        p.variant === 'inline-enum' ||
+        p.variant === 'builtin' ||
+        p.variant === 'enum' ||
+        p.variant === 'scalar'
+      ) {
+        mBody.append(`const ${p.name} = value.${p.name};`, NL);
+      } else {
+        const ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`);
+        mBody.append(`const ${p.name} = `);
+
+        if (p.optional || p.nullable) {
+          const isUndefined = fqn('isUndefined:../_type-utils.ts');
+          const isNull = fqn('isNull:../_type-utils.ts');
+          mBody.append(
+            `${isUndefined}(value.${p.name}) || ${isNull}(value.${p.name}) ? value.${p.name} : `
+          );
+        } else {
+          const isUndefined = fqn('isUndefined:../_type-utils.ts');
+          mBody.append(`${isUndefined}(value.${p.name}) ? undefined : `);
+        }
+
+        if (p.array) {
+          mBody.append(`value.${p.name}.map(${ToJSON});`, NL);
+        } else {
+          mBody.append(`${ToJSON}(value.${p.name});`, NL);
+        }
+      }
+    });
+    mBody.append(NL, 'return {', NL);
+    mBody.indent((propBody) => {
+      if (t.resolved.unions.length > 0) {
+        const alias =
+          (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+        propBody.append(
+          `'${t.resolved.unions[0].descriminator}': '${alias}-patch',`,
+          NL
+        );
+      }
+      props.filter(isMResolvedProperty).forEach((p) => {
+        propBody.append(`${p.name},`, NL);
+      });
+    });
+    mBody.append('};', NL);
+  });
+  node.append('}', NL);
   return node;
 }
 
