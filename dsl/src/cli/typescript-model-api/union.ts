@@ -19,6 +19,18 @@ export function generateUnionContent(
   node.append(generateFromJSON(u, fqn));
   node.append(generateToJSON(u, fqn));
 
+  if (u.patchable) {
+    node.append(
+      `export type ${u.name}Patch = ${u.resolved.records
+        .map((r) => {
+          return fqn(`${r.name}:./${r.name}.ts`);
+        })
+        .join(' | ')};`,
+      NL,
+      NL
+    );
+  }
+
   return node;
 }
 

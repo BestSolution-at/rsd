@@ -19,6 +19,7 @@ import { isDefined } from '../util.js';
 import { generateRecord } from './record.js';
 import { generateEnum } from './enum.js';
 import { generateUnion } from './union.js';
+import { generateErrors } from './error.js';
 
 function generate(
   model: MResolvedRSDModel,
@@ -37,6 +38,9 @@ function generate(
   const result = model.elements
     .map((e) => generateType(e, artifactConfig))
     .filter(isDefined);
+  if (model.errors.length > 0) {
+    result.push(generateErrors(model.errors, artifactConfig));
+  }
   return result;
 }
 
