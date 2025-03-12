@@ -20,6 +20,7 @@ import { generateRecord } from './record.js';
 import { generateEnum } from './enum.js';
 import { generateUnion } from './union.js';
 import { generateErrors } from './error.js';
+import { generateService } from './service.js';
 
 function generate(
   model: MResolvedRSDModel,
@@ -41,6 +42,7 @@ function generate(
   if (model.errors.length > 0) {
     result.push(generateErrors(model.errors, artifactConfig));
   }
+  result.push(...model.services.map((s) => generateService(s, artifactConfig)));
   return result;
 }
 

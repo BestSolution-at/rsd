@@ -1,5 +1,6 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
 import { ArtifactGeneratorConfig } from './artifact-generator.js';
+import { MBuiltinType } from './model.js';
 
 export type TypescriptClientAPIGeneratorConfig = ArtifactGeneratorConfig & {
   targetFolder: string;
@@ -61,4 +62,20 @@ export function generateCompilationUnit(
   importCollector.appendImportGroups(node);
   node.append(content);
   return node;
+}
+
+export function builtinToJSType(type: MBuiltinType) {
+  if (type === 'boolean') {
+    return 'boolean';
+  } else if (
+    type === 'double' ||
+    type === 'float' ||
+    type === 'int' ||
+    type === 'long' ||
+    type === 'short'
+  ) {
+    return 'number';
+  } else {
+    return 'string';
+  }
 }

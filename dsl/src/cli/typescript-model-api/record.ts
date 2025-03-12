@@ -14,6 +14,7 @@ import {
   MResolvedRecordType,
 } from '../model.js';
 import { toFirstUpper } from '../util.js';
+import { builtinToJSType } from '../typescript-gen-utils.js';
 
 export function generateRecordContent(
   t: MResolvedRecordType,
@@ -705,21 +706,5 @@ function builtinTypeGuard(type: MBuiltinType, fqn: (v: string) => string) {
     return fqn('isNumber:../_type-utils.ts');
   } else {
     return fqn('isString:../_type-utils.ts');
-  }
-}
-
-function builtinToJSType(type: MBuiltinType) {
-  if (type === 'boolean') {
-    return 'boolean';
-  } else if (
-    type === 'double' ||
-    type === 'float' ||
-    type === 'int' ||
-    type === 'long' ||
-    type === 'short'
-  ) {
-    return 'number';
-  } else {
-    return 'string';
   }
 }
