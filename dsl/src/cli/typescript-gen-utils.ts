@@ -12,6 +12,17 @@ export function isTypescriptClientAPIGeneratorConfig(
   return 'targetFolder' in config && typeof config.targetFolder === 'string';
 }
 
+export type TypescriptFetchClientGeneratorConfig = ArtifactGeneratorConfig & {
+  targetFolder: string;
+  apiNamespacePath: string;
+};
+
+export function isTypescriptFetchClientGeneratorConfig(
+  config: ArtifactGeneratorConfig
+): config is TypescriptFetchClientGeneratorConfig {
+  return 'targetFolder' in config && typeof config.targetFolder === 'string';
+}
+
 export class TypescriptImportCollector {
   private aliasCount = 0;
   private readonly fqnTypes = new Map<string, string>();

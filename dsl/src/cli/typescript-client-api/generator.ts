@@ -21,6 +21,8 @@ import { generateEnum } from './enum.js';
 import { generateUnion } from './union.js';
 import { generateErrors } from './error.js';
 import { generateService } from './service.js';
+import { generateModelIndex } from './model-index.js';
+import { generateServiceIndex } from './service-index.js';
 
 function generate(
   model: MResolvedRSDModel,
@@ -43,6 +45,8 @@ function generate(
     result.push(generateErrors(model.errors, artifactConfig));
   }
   result.push(...model.services.map((s) => generateService(s, artifactConfig)));
+  result.push(generateModelIndex(model, artifactConfig));
+  result.push(generateServiceIndex(model, artifactConfig));
   return result;
 }
 
