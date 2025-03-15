@@ -47,12 +47,6 @@ function generateServiceContent(
   const Service = `${fqn(`api:${config.apiNamespacePath}`)}.service.${
     s.name
   }Service`;
-  node.append('function handle<T>(value: T, block: () => void): T {', NL);
-  node.indent((fnBody) => {
-    fnBody.append('block();', NL);
-    fnBody.append('return value;', NL);
-  });
-  node.append('}', NL);
   node.append(
     `export function create${s.name}Service(props: ${ServiceProps}<${ErrorType}>): ${Service} {`,
     NL
@@ -113,7 +107,6 @@ function generateServiceContent(
           finallyBlock.append(`final?.('${o.name}');`, NL);
         });
         code.append('}', NL);
-        code.append(`throw 'e';`, NL);
       });
       fnBody.append('};', NL);
     });
@@ -315,6 +308,11 @@ function generateRemoteInvoke(
     node.append('}');
   }
 
+  node.append(
+    NL,
+    'throw new Error(`Unsupported return status: ${$response.status}. The status text was: ${$response.statusText}`);'
+  );
+
   return node;
 }
 
@@ -331,9 +329,10 @@ function handleErrorResult(
     struct.append('message: await $response.text(),', NL);
   });
   node.append('} as const;', NL);
-  const ERR = fqn('ERR:../_type-utils');
+  const ERR = `${fqn(`api:${config.apiNamespacePath}`)}.utils.ERR`;
+  const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts');
   node.append(
-    `return handle(${ERR}(err), () => onError?.('${o.name}', err));`,
+    `return ${safeExecute}(${ERR}(err), () => onError?.('${o.name}', err));`,
     NL
   );
   return node;
@@ -346,10 +345,12 @@ function handleOkResult(
 ) {
   const node = new CompositeGeneratorNode();
 
-  const OK = fqn('OK:../_type-utils');
+  const OK = `${fqn(`api:${config.apiNamespacePath}`)}.utils.OK`;
   if (o.resultType === undefined) {
+    const Void = `${fqn(`api:${config.apiNamespacePath}`)}.utils.Void`;
+    const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts');
     node.append(
-      `return handle(${OK}(null), () => onSuccess?.('${o.name}', null));`,
+      `return ${safeExecute}(${OK}(${Void}), () => onSuccess?.('${o.name}', ${Void}));`,
       NL
     );
   } else {
@@ -360,17 +361,31 @@ function handleOkResult(
       o.resultType.variant === 'enum' ||
       isMInlineEnumType(o.resultType.type)
     ) {
+      const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts');
       node.append(
-        `return handle(${OK}($data), () => onSuccess?.('${o.name}', $data));`,
+        `return ${safeExecute}(${OK}($data), () => onSuccess?.('${o.name}', $data));`,
         NL
       );
     } else {
-      const toJSON = `${fqn(`api:${config.apiNamespacePath}`)}.model.${
+      const fromJSON = `${fqn(`api:${config.apiNamespacePath}`)}.model.${
         o.resultType.type
-      }ToJSON`;
-      node.append(`const $result = ${toJSON}($data);`, NL);
+      }FromJSON`;
+      if (o.resultType.array) {
+        const isArray = `${fqn(
+          `api:${config.apiNamespacePath}`
+        )}.utils.isArray`;
+        node.append(`if(!${isArray}) {`, NL);
+        node.indent((block) => {
+          block.append(`throw new Error('Invalid result');`, NL);
+        });
+        node.append('}', NL);
+        node.append(`const $result = $data.map(${fromJSON});`, NL);
+      } else {
+        node.append(`const $result = ${fromJSON}($data);`, NL);
+      }
+      const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts');
       node.append(
-        `return handle(${OK}($result), () => onSuccess?.('${o.name}', $result));`,
+        `return ${safeExecute}(${OK}($result), () => onSuccess?.('${o.name}', $result));`,
         NL
       );
     }

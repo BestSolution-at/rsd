@@ -71,7 +71,7 @@ function toResultType(
   fqn: (type: string) => string
 ) {
   if (result === undefined) {
-    return 'void';
+    return fqn('VoidType:./_type-utils.ts');
   }
 
   let type: string;
