@@ -249,7 +249,7 @@ function generateRemoteInvoke(
         bodyParams[0].variant === 'union'
       ) {
         const toJSON = `${fqn(`api:${config.apiNamespacePath}`)}.model.${
-          bodyParams[0].type
+          bodyParams[0].type + (bodyParams[0].patch ? 'Patch' : '')
         }ToJSON`;
         node.append(
           `const $body = JSON.stringify(${toJSON}(${bodyParams[0].name}));`,
@@ -264,7 +264,7 @@ function generateRemoteInvoke(
         bodyParams.forEach((p) => {
           if (p.variant === 'record' || p.variant === 'union') {
             const toJSON = `${fqn(`api:${config.apiNamespacePath}`)}.model.${
-              p.type
+              p.type + (p.patch ? 'Patch' : '')
             }ToJSON`;
             struct.append(`${p.name}: ${toJSON}(${p.name}),`, NL);
           } else {

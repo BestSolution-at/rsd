@@ -109,7 +109,11 @@ function toParameter(
   } else if (parameter.variant === 'enum') {
     type = fqn(`${parameter.type}:./model/${parameter.type}.ts`);
   } else if (parameter.variant === 'record' || parameter.variant === 'union') {
-    type = fqn(`${parameter.type}:./model/${parameter.type}.ts`);
+    if (parameter.patch) {
+      type = fqn(`${parameter.type}Patch:./model/${parameter.type}.ts`);
+    } else {
+      type = fqn(`${parameter.type}:./model/${parameter.type}.ts`);
+    }
   } else {
     type = 'any';
   }
