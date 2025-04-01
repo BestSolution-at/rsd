@@ -149,7 +149,7 @@ function serviceContent(service: MService) {
 
 function operationContent(operation: MOperation, service: MService) {
   return (
-    <div id={`services_${service.name}_${operation.name}`} class={{ operation: true }}>
+    <div id={`services_${service.name}_${operation.name}`} class="card operation">
       <h3>
         {operationToImg()}
         {operation.name}
@@ -169,8 +169,8 @@ function parameterContent(parameter: MParameter) {
     <Fragment>
       <span>
         <span style={{ 'font-weight': 'bold' }}>{parameter.name}</span>
-        {parameter.optional && <span style={{ 'color': 'darkred', 'font-weight': '300' }}> optional</span>}
-        {parameter.nullable && <span style={{ 'color': 'darkred', 'font-weight': '300' }}> nullable</span>}
+        {parameter.optional && <span class="optional-nullable"> optional</span>}
+        {parameter.nullable && <span class="optional-nullable"> nullable</span>}
       </span>
       <span>
         {parameter.variant === 'builtin' && <span style={{ 'font-weight': '300' }}>{parameter.type} – </span>}
@@ -179,7 +179,7 @@ function parameterContent(parameter: MParameter) {
             <a href={`#types_${parameter.type}`}>{parameter.type}</a> –{' '}
           </span>
         )}
-        <span style={{ 'color': 'darkorange', 'font-weight': '300' }}>{parameter.variant} </span>
+        <span class="builtin">{parameter.variant} </span>
       </span>
       <div class={{ doc: true }} style={{ 'grid-column': '1/3', 'margin-bottom': '1rem' }}>
         {parameter.doc}
@@ -202,7 +202,7 @@ function typeTypeContent(type: string, types: MResolvedUserType[]) {
 
 function typeContent(type: MResolvedUserType) {
   return (
-    <div id={`types_${type.name}`} class={{ type: true }}>
+    <div id={`types_${type.name}`} class="card type">
       <h3>
         {userTypeToImg(type)}
         {type.name}
@@ -284,8 +284,8 @@ function keyPropertyContent(property: MKeyProperty) {
       </span>
       <span>
         <span style={{ 'font-weight': '300' }}>{property.type} – </span>
-        <span style={{ 'color': 'darkred', 'font-weight': '300' }}>key </span>
-        <span style={{ 'color': 'darkorange', 'font-weight': '300' }}>builtin</span>
+        <span class="key">key </span>
+        <span class="builtin">builtin</span>
       </span>
       <div class={{ doc: true }} style={{ 'grid-column': '1/3', 'margin-bottom': '1rem' }}>
         {property.doc}
@@ -299,10 +299,10 @@ function propertyContent(property: MProperty) {
     <Fragment>
       <span>
         <span style={{ 'font-weight': 'bold' }}>{property.name}</span>
-        {property.optional && <span style={{ 'color': 'darkred', 'font-weight': '300' }}> optional</span>}
+        {property.optional && <span class="optional-nullable"> optional</span>}
       </span>
       <span>
-        {property.nullable && <span style={{ 'color': 'darkred', 'font-weight': '300' }}>nullable </span>}
+        {property.nullable && <span class="optional-nullable">nullable </span>}
         {property.variant === 'builtin' && <span style={{ 'font-weight': '300' }}>{property.type} – </span>}
         {property.variant !== 'builtin' && (
           <span style={{ 'font-weight': '300' }}>
@@ -379,11 +379,9 @@ export class RSDPreview {
         </nav>
         <main>
           <div>
-            <h1>Services</h1>
             <div class={{ 'main-section': true }}>{this.resolvedModel.services.map(s => serviceContent(s))}</div>
           </div>
           <div>
-            <h1>Types</h1>
             <div class={{ 'main-section': true }}>{[...groupByType(this.resolvedModel.elements).entries()].sort(sortTypes).map(e => typeTypeContent(e[0], e[1]))}</div>
           </div>
         </main>
