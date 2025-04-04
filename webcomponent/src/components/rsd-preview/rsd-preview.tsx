@@ -339,7 +339,7 @@ export class RSDPreview {
   model: string | MRSDModel;
 
   @State()
-  resolvedModel: MResolvedRSDModel = { '@type': 'RSDModel', 'elements': [], 'services': [] };
+  resolvedModel: MResolvedRSDModel = { '@type': 'RSDModel', 'elements': [], 'services': [], 'errors': [] };
 
   constructor() {}
 

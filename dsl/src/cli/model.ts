@@ -60,6 +60,7 @@ export type MResolvedUserType =
 export type MScalarType = {
   '@type': 'ScalarType';
   name: string;
+  doc: string;
 };
 
 export type MResolvedScalarType = MScalarType;
@@ -75,6 +76,7 @@ export type MUnionType = {
   types: readonly string[];
   descriminator: string;
   descriminatorAliases?: Record<string, string>;
+  doc: string;
 };
 
 export type MResolvedUnionType = MUnionType & {
@@ -105,6 +107,7 @@ export type MMixinType = {
   '@type': 'MixinType';
   name: string;
   properties: readonly MBaseProperty[];
+  doc: string;
 };
 
 export type MResolvedMixinType = MMixinType & {
@@ -124,6 +127,7 @@ export type MRecordType = {
   patchable: boolean;
   mixins: readonly string[];
   properties: readonly MBaseProperty[];
+  doc: string;
 };
 
 export type MResolvedRecordType = MRecordType & {

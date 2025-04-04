@@ -12,6 +12,10 @@ export namespace Components {
         "model": string | MRSDModel;
         "projectname": string;
     }
+    interface RsdPreviewAlt {
+        "model": string | MRSDModel;
+        "projectname": string;
+    }
 }
 declare global {
     interface HTMLRsdPreviewElement extends Components.RsdPreview, HTMLStencilElement {
@@ -20,8 +24,15 @@ declare global {
         prototype: HTMLRsdPreviewElement;
         new (): HTMLRsdPreviewElement;
     };
+    interface HTMLRsdPreviewAltElement extends Components.RsdPreviewAlt, HTMLStencilElement {
+    }
+    var HTMLRsdPreviewAltElement: {
+        prototype: HTMLRsdPreviewAltElement;
+        new (): HTMLRsdPreviewAltElement;
+    };
     interface HTMLElementTagNameMap {
         "rsd-preview": HTMLRsdPreviewElement;
+        "rsd-preview-alt": HTMLRsdPreviewAltElement;
     }
 }
 declare namespace LocalJSX {
@@ -29,8 +40,13 @@ declare namespace LocalJSX {
         "model"?: string | MRSDModel;
         "projectname"?: string;
     }
+    interface RsdPreviewAlt {
+        "model"?: string | MRSDModel;
+        "projectname"?: string;
+    }
     interface IntrinsicElements {
         "rsd-preview": RsdPreview;
+        "rsd-preview-alt": RsdPreviewAlt;
     }
 }
 export { LocalJSX as JSX };
@@ -38,6 +54,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "rsd-preview": LocalJSX.RsdPreview & JSXBase.HTMLAttributes<HTMLRsdPreviewElement>;
+            "rsd-preview-alt": LocalJSX.RsdPreviewAlt & JSXBase.HTMLAttributes<HTMLRsdPreviewAltElement>;
         }
     }
 }
