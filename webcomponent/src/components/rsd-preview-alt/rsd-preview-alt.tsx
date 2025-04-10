@@ -360,36 +360,43 @@ export class RSDPreviewAlt {
     }
     return (
       <Fragment>
-        {/* contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pt-4 lg:pb-8 xl:w-80 lg:dark:border-white/10 */}
-        <nav class="prose h-full overflow-y-auto bg-gray-50 px-6 pt-4 pb-8 border-r border-zinc-900/10 w-80">
-          <ul class="list-none p-0">
-            <li>
-              <h2 class="text-sm font-semibold text-zinc-900 dark:text-white">Services</h2>
-              <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/5 p-0">
-                {this.resolvedModel.services.map(e => (
+        <div class="flex flex-grow lg:ml-72 xl:ml-80">
+          <header class="contents lg:fixed lg:inset-0 lg:flex lg:pointer-events-none">
+            <div class="contents lg:block lg:w-72 xl:w-80 border-zinc-900/10 lg:border-r lg:overflow-y-auto bg-gray-50 lg:pointer-events-auto lg:px-6 lg:pt-4 lg:pb-8">
+              <nav class="prose hidden lg:block">
+                <ul class="list-none p-0">
                   <li>
-                    <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href={`#services_${e.name}`}>
-                      <span>{e.name}</span>
-                    </a>
+                    <h2 class="text-sm font-semibold text-zinc-900 dark:text-white">Services</h2>
+                    <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/5 p-0">
+                      {this.resolvedModel.services.map(e => (
+                        <li>
+                          <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href={`#services_${e.name}`}>
+                            <span>{e.name}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
                   </li>
-                ))}
-              </ul>
-            </li>
-            <li class="mt-6">
-              <h2 class="text-sm font-semibold text-zinc-900 dark:text-white">Types</h2>
-              <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/5 p-0">
-                {scalars(this.resolvedModel)}
-                {enums(this.resolvedModel)}
-                {mixins(this.resolvedModel)}
-                {records(this.resolvedModel)}
-                {unions(this.resolvedModel)}
-              </ul>
-            </li>
-          </ul>
-        </nav>
-        <main class="prose">
-          <div>{content}</div>
-        </main>
+                  <li class="mt-6">
+                    <h2 class="text-sm font-semibold text-zinc-900 dark:text-white">Types</h2>
+                    <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/5 p-0">
+                      {scalars(this.resolvedModel)}
+                      {enums(this.resolvedModel)}
+                      {mixins(this.resolvedModel)}
+                      {records(this.resolvedModel)}
+                      {unions(this.resolvedModel)}
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </header>
+          {/* contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pt-4 lg:pb-8 xl:w-80 lg:dark:border-white/10 */}
+          {/**/}
+          <main class="flex prose">
+            <div>{content}</div>
+          </main>
+        </div>
       </Fragment>
     );
   }
