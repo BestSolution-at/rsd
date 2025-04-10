@@ -1,5 +1,21 @@
 import { Component, Fragment, h, Prop, State, Watch } from '@stencil/core';
-import { isMInlineEnumType, isMRSDModel, MInlineEnumType, MOperation, MParameter, MResolvedRSDModel, MReturnType, MRSDModel, MService, resolve } from '../../utils/model';
+import {
+  isMEnumType,
+  isMInlineEnumType,
+  isMMixinType,
+  isMRecordType,
+  isMRSDModel,
+  isMScalarType,
+  isMUnionType,
+  MInlineEnumType,
+  MOperation,
+  MParameter,
+  MResolvedRSDModel,
+  MReturnType,
+  MRSDModel,
+  MService,
+  resolve,
+} from '../../utils/model';
 
 function serviceContent(model: MService) {
   return (
@@ -16,8 +32,8 @@ function serviceContent(model: MService) {
                 <button>REST</button>
               </div>*/}
             </div>
-            <div>
-              <pre class="p-4 text-xs text-white overflow-x-auto">
+            <div class="p-4">
+              <pre class="text-xs text-white overflow-x-auto">
                 <code>
                   <span>
                     <span class="keyword">service</span> <span class="type">{model.name}</span> <span>{'{'}</span>
@@ -67,7 +83,7 @@ function serviceMethod(model: MOperation) {
               </div>*/}
             </div>
             <div class="p-4 text-xs text-white">
-              <pre>
+              <pre class="overflow-x-auto">
                 <code>{operation(model, '')}</code>
               </pre>
             </div>
@@ -197,6 +213,121 @@ function parameter(p: MParameter) {
   );
 }
 
+function scalars(resolvedModel: MResolvedRSDModel) {
+  const scalars = resolvedModel.elements.filter(isMScalarType);
+  if (scalars.length === 0) {
+    return <Fragment></Fragment>;
+  }
+  return (
+    <li>
+      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_scalars">
+        Scalars
+      </a>
+      <ul class="list-none p-0">
+        {scalars.map(s => (
+          <li>
+            <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${s.name}`}>
+              {s.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </li>
+  );
+}
+
+function enums(resolvedModel: MResolvedRSDModel) {
+  const enums = resolvedModel.elements.filter(isMEnumType);
+  if (enums.length === 0) {
+    return <Fragment></Fragment>;
+  }
+  return (
+    <li>
+      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_enums">
+        Enums
+      </a>
+      <ul class="list-none p-0">
+        {enums.map(e => (
+          <li>
+            <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${e.name}`}>
+              {e.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </li>
+  );
+}
+
+function mixins(resolvedModel: MResolvedRSDModel) {
+  const mixins = resolvedModel.elements.filter(isMMixinType);
+  if (mixins.length === 0) {
+    return <Fragment></Fragment>;
+  }
+  return (
+    <li>
+      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_mixins">
+        Mixins
+      </a>
+      <ul class="list-none pl-0">
+        {mixins.map(m => (
+          <li>
+            <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${m.name}`}>
+              {m.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </li>
+  );
+}
+
+function records(resolvedModel: MResolvedRSDModel) {
+  const records = resolvedModel.elements.filter(isMRecordType);
+  if (records.length === 0) {
+    return <Fragment></Fragment>;
+  }
+  return (
+    <li>
+      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_records">
+        Records
+      </a>
+      <ul class="list-none pl-0">
+        {records.map(r => (
+          <li>
+            <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${r.name}`}>
+              {r.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </li>
+  );
+}
+
+function unions(resolvedModel: MResolvedRSDModel) {
+  const unions = resolvedModel.elements.filter(isMUnionType);
+  if (unions.length === 0) {
+    return <Fragment></Fragment>;
+  }
+  return (
+    <li>
+      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_unions">
+        Unions
+      </a>
+      <ul class="list-none pl-0">
+        {unions.map(u => (
+          <li>
+            <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${u.name}`}>
+              {u.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </li>
+  );
+}
+
 @Component({
   tag: 'rsd-preview-alt',
   styleUrl: 'rsd-preview-alt.css',
@@ -230,14 +361,14 @@ export class RSDPreviewAlt {
     return (
       <Fragment>
         {/* contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pt-4 lg:pb-8 xl:w-80 lg:dark:border-white/10 */}
-        <nav class="h-full overflow-y-auto bg-gray-50 px-6 pt-4 pb-8 border-r border-zinc-900/10 w-80">
-          <ul>
+        <nav class="prose h-full overflow-y-auto bg-gray-50 px-6 pt-4 pb-8 border-r border-zinc-900/10 w-80">
+          <ul class="list-none p-0">
             <li>
-              <h2 class="text-xs font-semibold text-zinc-900 dark:text-white">Services</h2>
-              <ul class="border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/5">
+              <h2 class="text-sm font-semibold text-zinc-900 dark:text-white">Services</h2>
+              <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/5 p-0">
                 {this.resolvedModel.services.map(e => (
                   <li>
-                    <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-900 dark:text-white" href={`#services_${e.name}`}>
+                    <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href={`#services_${e.name}`}>
                       <span>{e.name}</span>
                     </a>
                   </li>
@@ -245,39 +376,19 @@ export class RSDPreviewAlt {
               </ul>
             </li>
             <li class="mt-6">
-              <h2 class="text-xs font-semibold text-zinc-900 dark:text-white">Types</h2>
-              <ul class="border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/5">
-                <li>
-                  <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-900 dark:text-white" href="#types_scalars">
-                    Scalars
-                  </a>
-                </li>
-                <li>
-                  <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-900 dark:text-white" href="#types_enums">
-                    Enums
-                  </a>
-                </li>
-                <li>
-                  <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-900 dark:text-white" href="#types_mixins">
-                    Mixins
-                  </a>
-                </li>
-                <li>
-                  <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-900 dark:text-white" href="#types_records">
-                    Records
-                  </a>
-                </li>
-                <li>
-                  <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-900 dark:text-white" href="#types_unions">
-                    Unions
-                  </a>
-                </li>
+              <h2 class="text-sm font-semibold text-zinc-900 dark:text-white">Types</h2>
+              <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/5 p-0">
+                {scalars(this.resolvedModel)}
+                {enums(this.resolvedModel)}
+                {mixins(this.resolvedModel)}
+                {records(this.resolvedModel)}
+                {unions(this.resolvedModel)}
               </ul>
             </li>
           </ul>
         </nav>
-        <main class="flex prose">
-          <article class="flex w-full overflow-x-hidden">{content}</article>
+        <main class="prose">
+          <div>{content}</div>
         </main>
       </Fragment>
     );
