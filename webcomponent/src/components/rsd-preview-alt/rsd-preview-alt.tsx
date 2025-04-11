@@ -24,15 +24,11 @@ function serviceContent(model: MService) {
       <div class="mb-14 inner-content">
         <p>{model.doc}</p>
         <div class="not-prose">
-          <div class="bg-zinc-900 rounded-2xl dark:ring-1 dark:ring-white/10 m-1">
-            <div class="p-4 rounded-t-2xl border-b border-zinc-700 bg-zinc-800">
-              <h3 class="text-xs text-white font-semibold">Definition</h3>
-              {/*<div>
-                <button>rsd</button>
-                <button>REST</button>
-              </div>*/}
-            </div>
-            <div class="p-4">
+          <div class="bg-slate-800 dark:bg-zinc-800 rounded-2xl dark:ring-1 dark:ring-white/10 m-1">
+            {/*<div class="px-4 py-3 rounded-t-2xl border-b border-zinc-700 bg-slate-900 dark:bg-zinc-900">
+              <h3 class="text-sm text-white font-semibold">Definition</h3>
+            </div>*/}
+            <div class="p-4 rounded-b-2xl">
               <pre class="text-xs text-white overflow-x-auto">
                 <code>
                   <span>
@@ -74,14 +70,10 @@ function serviceMethod(model: MOperation) {
           {model.resultType !== undefined && result(model.resultType)}
         </div>
         <div class="code-column not-prose">
-          <div class="bg-zinc-900 rounded-2xl dark:ring-1 dark:ring-white/10 m-1">
-            <div class="p-4 rounded-t-2xl border-b border-zinc-700 bg-zinc-800">
+          <div class="bg-slate-800 dark:bg-zinc-800 rounded-2xl dark:ring-1 dark:ring-white/10 m-1">
+            {/*<div class="p-4 rounded-t-2xl border-b border-zinc-700 bg-zinc-800">
               <h3 class="text-xs text-white font-semibold">Definition</h3>
-              {/*<div>
-                <button>rsd</button>
-                <button>REST</button>
-              </div>*/}
-            </div>
+            </div>*/}
             <div class="p-4 text-xs text-white">
               <pre class="overflow-x-auto">
                 <code>{operation(model, '')}</code>
@@ -219,7 +211,7 @@ function scalars(resolvedModel: MResolvedRSDModel) {
     return <Fragment></Fragment>;
   }
   return (
-    <li>
+    <li class="py-[2px]">
       <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_scalars">
         Scalars
       </a>
@@ -242,13 +234,13 @@ function enums(resolvedModel: MResolvedRSDModel) {
     return <Fragment></Fragment>;
   }
   return (
-    <li>
+    <li class="py-[2px]">
       <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_enums">
         Enums
       </a>
       <ul class="list-none p-0">
         {enums.map(e => (
-          <li>
+          <li class="py-[2px]">
             <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${e.name}`}>
               {e.name}
             </a>
@@ -265,13 +257,13 @@ function mixins(resolvedModel: MResolvedRSDModel) {
     return <Fragment></Fragment>;
   }
   return (
-    <li>
+    <li class="py-[2px]">
       <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_mixins">
         Mixins
       </a>
       <ul class="list-none pl-0">
         {mixins.map(m => (
-          <li>
+          <li class="py-[2px]">
             <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${m.name}`}>
               {m.name}
             </a>
@@ -288,13 +280,13 @@ function records(resolvedModel: MResolvedRSDModel) {
     return <Fragment></Fragment>;
   }
   return (
-    <li>
+    <li class="py-[2px]">
       <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_records">
         Records
       </a>
       <ul class="list-none pl-0">
         {records.map(r => (
-          <li>
+          <li class="py-[2px]">
             <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${r.name}`}>
               {r.name}
             </a>
@@ -311,13 +303,13 @@ function unions(resolvedModel: MResolvedRSDModel) {
     return <Fragment></Fragment>;
   }
   return (
-    <li>
+    <li class="py-[2px]">
       <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_unions">
         Unions
       </a>
       <ul class="list-none pl-0">
         {unions.map(u => (
-          <li>
+          <li class="py-[2px]">
             <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${u.name}`}>
               {u.name}
             </a>
@@ -371,14 +363,14 @@ export class RSDPreviewAlt {
       <Fragment>
         <div class={`bg-white dark:bg-zinc-900 flex flex-grow lg:ml-72 xl:ml-80 ${this.theme ?? ''}`}>
           <header class="contents lg:fixed lg:inset-0 lg:flex lg:pointer-events-none">
-            <div class="bg-gray-50 dark:bg-zinc-800 border-zinc-900/10 lg:dark:border-white/10 contents lg:block lg:w-72 xl:w-80 lg:border-r lg:overflow-y-auto lg:pointer-events-auto lg:px-6 lg:pt-4 lg:pb-8">
+            <div class="bg-gray-50 dark:bg-neutral-900 border-zinc-900/10 lg:dark:border-white/10 contents lg:block lg:w-72 xl:w-80 lg:border-r lg:overflow-y-auto lg:pointer-events-auto lg:px-6 lg:pt-4 lg:pb-8">
               <div class="hidden lg:block">
                 <a class="text-xl font-bold" href="#home">
                   {this.projectname}
                 </a>
               </div>
               <div class="bg-white/60 dark:bg-zinc-900/60 border-zinc-900/10 dark:border-white/10 items-center gap-12 justify-between px-4 sm:px-6 lg:px-8 fixed inset-0 h-14 lg:left-72 xl:left-80 backdrop-blur-xs border-b flex">
-                <div class="lg:hidden">
+                <div class="lg:hidden pt-1">
                   <a class="text-xl font-bold" href="#home">
                     {this.projectname}
                   </a>
@@ -408,13 +400,13 @@ export class RSDPreviewAlt {
                   </div>
                 }
               </div>
-              <nav class="prose dark:prose-invert hidden lg:block">
+              <nav class="hidden lg:block mt-10">
                 <ul class="list-none p-0">
                   <li>
                     <h2 class="text-sm font-semibold text-zinc-900 dark:text-white">Services</h2>
-                    <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/5 p-0">
+                    <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/20 p-0">
                       {this.resolvedModel.services.map(e => (
-                        <li>
+                        <li class="py-[2px]">
                           <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href={`#services_${e.name}`}>
                             <span>{e.name}</span>
                           </a>
@@ -424,7 +416,7 @@ export class RSDPreviewAlt {
                   </li>
                   <li class="mt-6">
                     <h2 class="text-sm font-semibold text-zinc-900 dark:text-white">Types</h2>
-                    <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/5 p-0">
+                    <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/20 p-0">
                       {scalars(this.resolvedModel)}
                       {enums(this.resolvedModel)}
                       {mixins(this.resolvedModel)}
