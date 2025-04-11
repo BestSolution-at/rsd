@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
+@custom-variant dark (&:where(.dark, .dark *));
 
 :host {
   display: flex;
@@ -36,8 +37,6 @@ p {
 }
 
 hr {
-  border-color: oklch(92.8% 0.006 264.531);
-  border-top-width: 1;
   margin-top: 3em;
   margin-bottom: 3em;
 }
