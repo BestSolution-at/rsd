@@ -8,7 +8,7 @@ This library contains webcomponents to integrate RSD into Websites, Web-Applicat
 <html>
   <head>
     ...
-    <script type="module" src='https://cdn.jsdelivr.net/npm/my-name@0.0.1/dist/myname.js'></script>
+    <script type="module" src='https://cdn.jsdelivr.net/npm/@bestsolution/rsd-webcomponents@0.0.1/dist/index.js'></script>
   </head>
   <body>
     <!-- Use RSD-Webcomponents -->
