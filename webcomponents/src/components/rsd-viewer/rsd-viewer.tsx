@@ -674,7 +674,7 @@ function sideNav(resolvedModel: MResolvedRSDModel) {
   assetsDirs: ['assets'],
   shadow: true,
 })
-export class RSDPreviewAlt {
+export class RsdViewer {
   @Prop()
   projectname: string;
 
