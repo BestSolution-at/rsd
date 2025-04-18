@@ -264,7 +264,7 @@ export type MOperation = {
    * @deprecated use operationErrors
    */
   errors: string[];
-  operationErrors: OperationError[];
+  operationErrors: MOperationError[];
   meta?: {
     rest?: {
       path: string;
@@ -277,7 +277,7 @@ export type MOperation = {
   };
 };
 
-export type OperationError = {
+export type MOperationError = {
   '@type': 'OperationError';
   error: string;
   doc: string;
