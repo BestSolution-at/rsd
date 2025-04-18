@@ -70,7 +70,7 @@ function serviceMethod(model: MOperation) {
           <p>{model.doc}</p>
           {reqParameters.length > 0 && parameters('Required Parameters', reqParameters)}
           {optParameters.length > 0 && parameters('Optional Parameters', optParameters)}
-          {(model.resultType !== undefined || model.operationErrors.length > 0) && result(model.resultType, model.operationErrors)}
+          {result(model.resultType, model.operationErrors)}
         </div>
         <div class="code-column">{code(operation(model, ''))}</div>
       </div>
@@ -164,12 +164,13 @@ function parameters(title: string, parameters: MParameter[]) {
 }
 
 function result(resultType: MReturnType | undefined, errors: MOperationError[]) {
-  const result = resultType ? (isMInlineEnumType(resultType.type) ? resultType.type.entries.join(' | ') : resultType.type) : '';
+  const result = resultType ? (isMInlineEnumType(resultType.type) ? resultType.type.entries.join(' | ') : resultType.type) : 'void';
   return (
     <Fragment>
       <h3 class="text-sm">Result</h3>
       <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">
         {resultType && <li class="not-prose py-4 first:pt-0 last:pb-0">{dlResult('Success', resultType.array ? `Array<${result}>` : result, resultType.doc)}</li>}
+        {resultType === undefined && <li class="not-prose py-4 first:pt-0 last:pb-0">{dlResult('Success', 'void', '')}</li>}
         {errors.map(e => (
           <li class="not-prose py-4 first:pt-0 last:pb-0">{dlError('Error', e.error, e.doc)}</li>
         ))}
@@ -182,7 +183,7 @@ function dlResult(code: string, typeString: string, doc: string) {
   return (
     <dl class="parameter">
       <dd>
-        <code class="ring-cyan-300 dark:ring-cyan-400/30 bg-cyan-400/10 text-cyan-500 dark:text-cyan-400 text-xs p-1 rounded-lg border">{code}</code>
+        <code class="text-cyan-500 dark:text-cyan-400 text-xs p-1">{code}</code>
       </dd>
       <dd class="font-mono text-xs text-zinc-400">{typeString}</dd>
       <dd class="doc">{doc}</dd>
@@ -194,7 +195,7 @@ function dlError(code: string, typeString: string, doc: string) {
   return (
     <dl class="parameter">
       <dd>
-        <code class="ring-orange-200 bg-orange-50 text-orange-500 dark:ring-orange-500/20 dark:bg-orange-400/10 dark:text-orange-400 text-xs p-1 rounded-lg border">{code}</code>
+        <code class="text-orange-500 dark:text-orange-400 text-xs p-1">{code}</code>
       </dd>
       <dd class="font-mono text-xs text-zinc-400">{typeString}</dd>
       <dd class="doc">{doc}</dd>
@@ -638,6 +639,35 @@ function dl(code: string, typeString: string, doc: string) {
   );
 }
 
+function sideNav(resolvedModel: MResolvedRSDModel) {
+  return (
+    <ul class="list-none p-0">
+      <li>
+        <h2 class="text-sm font-semibold text-zinc-900 dark:text-white">Services</h2>
+        <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/20 p-0">
+          {resolvedModel.services.map(e => (
+            <li class="py-[2px]">
+              <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href={`#services_${e.name}`}>
+                <span>{e.name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </li>
+      <li class="mt-6">
+        <h2 class="text-sm font-semibold text-zinc-900 dark:text-white">Types</h2>
+        <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/20 p-0">
+          {scalars(resolvedModel)}
+          {enums(resolvedModel)}
+          {mixins(resolvedModel)}
+          {records(resolvedModel)}
+          {unions(resolvedModel)}
+        </ul>
+      </li>
+    </ul>
+  );
+}
+
 @Component({
   tag: 'rsd-preview-alt',
   styleUrl: 'rsd-preview-alt.css',
@@ -659,6 +689,9 @@ export class RSDPreviewAlt {
 
   @State()
   theme: string = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+  @State()
+  navigationOpen = false;
 
   render() {
     let content = 'Nothing';
@@ -686,6 +719,10 @@ export class RSDPreviewAlt {
       document.documentElement.style.colorScheme = this.theme;
     };
 
+    const flipNavigationOverlay = () => {
+      this.navigationOpen = !this.navigationOpen;
+    };
+
     return (
       <Fragment>
         <div class={`bg-white dark:bg-zinc-900 flex flex-grow lg:ml-72 xl:ml-80 ${this.theme ?? ''}`}>
@@ -697,7 +734,21 @@ export class RSDPreviewAlt {
                 </a>
               </div>
               <div class="bg-white/60 dark:bg-zinc-900/60 border-zinc-900/10 dark:border-white/10 items-center gap-12 justify-between px-4 sm:px-6 lg:px-8 fixed inset-0 h-14 lg:left-72 xl:left-80 backdrop-blur-xs border-b flex">
-                <div class="lg:hidden pt-1">
+                <div class="lg:hidden pt-1 flex gap-5 items-center">
+                  <button onClick={flipNavigationOverlay}>
+                    {!this.navigationOpen && (
+                      <svg class="h-3 w-3 text-zinc-400 dark:text-white fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        {/*<!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->*/}
+                        <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z" />
+                      </svg>
+                    )}
+                    {this.navigationOpen && (
+                      <svg class="h-3 w-3 text-zinc-400 dark:text-white fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        {/*<!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->*/}
+                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                      </svg>
+                    )}
+                  </button>
                   <a class="text-xl font-bold" href="#home">
                     {this.projectname}
                   </a>
@@ -731,32 +782,7 @@ export class RSDPreviewAlt {
                   </div>
                 }
               </div>
-              <nav class="hidden lg:block mt-10">
-                <ul class="list-none p-0">
-                  <li>
-                    <h2 class="text-sm font-semibold text-zinc-900 dark:text-white">Services</h2>
-                    <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/20 p-0">
-                      {this.resolvedModel.services.map(e => (
-                        <li class="py-[2px]">
-                          <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href={`#services_${e.name}`}>
-                            <span>{e.name}</span>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                  <li class="mt-6">
-                    <h2 class="text-sm font-semibold text-zinc-900 dark:text-white">Types</h2>
-                    <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/20 p-0">
-                      {scalars(this.resolvedModel)}
-                      {enums(this.resolvedModel)}
-                      {mixins(this.resolvedModel)}
-                      {records(this.resolvedModel)}
-                      {unions(this.resolvedModel)}
-                    </ul>
-                  </li>
-                </ul>
-              </nav>
+              <nav class="hidden lg:block mt-10">{sideNav(this.resolvedModel)}</nav>
             </div>
           </header>
           {/* contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pt-4 lg:pb-8 xl:w-80 lg:dark:border-white/10 */}
@@ -764,6 +790,11 @@ export class RSDPreviewAlt {
           <main class="flex prose dark:prose-invert">
             <div class="w-full">{content}</div>
           </main>
+          {this.navigationOpen && (
+            <div class="lg:hidden fixed shadow-lg ring-1 shadow-zinc-900/10 ring-zinc-900/7.5 top-14 bottom-0 left-0 w-full overflow-y-auto min-[416px]:max-w-sm bg-gray-50 pt-7 px-6 pb-8 transition-opacity duration-500 ease-in-out">
+              <nav>{sideNav(this.resolvedModel)}</nav>
+            </div>
+          )}
         </div>
       </Fragment>
     );
@@ -811,6 +842,7 @@ export class RSDPreviewAlt {
   private handleHashchanged = () => {
     if (location.hash.length > 1) {
       this.activeContext = location.hash.substring(1);
+      this.navigationOpen = false;
     }
   };
 }
