@@ -7,17 +7,15 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-yellow-200: oklch(94.5% 0.129 101.54);
+    --color-lime-400: oklch(84.1% 0.238 128.85);
     --color-sky-400: oklch(74.6% 0.16 232.661);
     --color-blue-300: oklch(80.9% 0.105 251.813);
     --color-violet-300: oklch(81.1% 0.111 293.571);
     --color-pink-400: oklch(71.8% 0.202 349.761);
     --color-slate-700: oklch(37.2% 0.044 257.287);
     --color-slate-800: oklch(27.9% 0.041 260.031);
-    --color-slate-900: oklch(20.8% 0.042 265.755);
     --color-gray-50: oklch(98.5% 0.002 247.839);
-    --color-gray-700: oklch(37.3% 0.034 259.733);
-    --color-gray-800: oklch(27.8% 0.033 256.848);
-    --color-gray-900: oklch(21% 0.034 264.665);
     --color-zinc-300: oklch(87.1% 0.006 286.286);
     --color-zinc-400: oklch(70.5% 0.015 286.067);
     --color-zinc-500: oklch(55.2% 0.016 285.938);
@@ -25,8 +23,6 @@
     --color-zinc-700: oklch(37% 0.013 285.805);
     --color-zinc-800: oklch(27.4% 0.006 286.033);
     --color-zinc-900: oklch(21% 0.006 285.885);
-    --color-neutral-700: oklch(37.1% 0 0);
-    --color-neutral-800: oklch(26.9% 0 0);
     --color-neutral-900: oklch(20.5% 0 0);
     --color-black: #000;
     --color-white: #fff;
@@ -632,9 +628,6 @@
   .mt-3 {
     margin-top: calc(var(--spacing) * 3);
   }
-  .mt-5 {
-    margin-top: calc(var(--spacing) * 5);
-  }
   .mt-6 {
     margin-top: calc(var(--spacing) * 6);
   }
@@ -665,18 +658,8 @@
   .hidden {
     display: none;
   }
-  .inline-flex {
-    display: inline-flex;
-  }
-  .size-12 {
-    width: calc(var(--spacing) * 12);
-    height: calc(var(--spacing) * 12);
-  }
   .h-3 {
     height: calc(var(--spacing) * 3);
-  }
-  .h-4 {
-    height: calc(var(--spacing) * 4);
   }
   .h-6 {
     height: calc(var(--spacing) * 6);
@@ -687,26 +670,11 @@
   .h-14 {
     height: calc(var(--spacing) * 14);
   }
-  .h-\[18px\] {
-    height: 18px;
-  }
-  .h-\[20px\] {
-    height: 20px;
-  }
   .w-3 {
     width: calc(var(--spacing) * 3);
   }
-  .w-4 {
-    width: calc(var(--spacing) * 4);
-  }
   .w-6 {
     width: calc(var(--spacing) * 6);
-  }
-  .w-\[18px\] {
-    width: 18px;
-  }
-  .w-\[20px\] {
-    width: 20px;
   }
   .w-full {
     width: 100%;
@@ -716,9 +684,6 @@
   }
   .list-none {
     list-style-type: none;
-  }
-  .place-content-center {
-    place-content: center;
   }
   .items-center {
     align-items: center;
@@ -767,10 +732,6 @@
   .rounded-lg {
     border-radius: var(--radius-lg);
   }
-  .rounded-t-2xl {
-    border-top-left-radius: var(--radius-2xl);
-    border-top-right-radius: var(--radius-2xl);
-  }
   .rounded-b-2xl {
     border-bottom-right-radius: var(--radius-2xl);
     border-bottom-left-radius: var(--radius-2xl);
@@ -793,26 +754,17 @@
   .border-zinc-300 {
     border-color: var(--color-zinc-300);
   }
-  .border-zinc-700 {
-    border-color: var(--color-zinc-700);
-  }
   .border-zinc-900\/10 {
     border-color: color-mix(in srgb, oklch(21% 0.006 285.885) 10%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       border-color: color-mix(in oklab, var(--color-zinc-900) 10%, transparent);
     }
   }
-  .bg-\[\#0A101F\]\/80 {
-    background-color: color-mix(in oklab, #0A101F 80%, transparent);
-  }
   .bg-gray-50 {
     background-color: var(--color-gray-50);
   }
   .bg-slate-800 {
     background-color: var(--color-slate-800);
-  }
-  .bg-slate-900 {
-    background-color: var(--color-slate-900);
   }
   .bg-white {
     background-color: var(--color-white);
@@ -829,23 +781,11 @@
       background-color: color-mix(in oklab, var(--color-zinc-700) 5%, transparent);
     }
   }
-  .bg-zinc-800 {
-    background-color: var(--color-zinc-800);
-  }
-  .bg-zinc-900 {
-    background-color: var(--color-zinc-900);
-  }
   .fill-current {
     fill: currentcolor;
   }
   .fill-sky-400 {
     fill: var(--color-sky-400);
-  }
-  .fill-white {
-    fill: var(--color-white);
-  }
-  .fill-zinc-400 {
-    fill: var(--color-zinc-400);
   }
   .p-0 {
     padding: calc(var(--spacing) * 0);
@@ -862,26 +802,14 @@
   .py-1 {
     padding-block: calc(var(--spacing) * 1);
   }
-  .py-2 {
-    padding-block: calc(var(--spacing) * 2);
-  }
-  .py-3 {
-    padding-block: calc(var(--spacing) * 3);
-  }
   .py-4 {
     padding-block: calc(var(--spacing) * 4);
-  }
-  .py-5 {
-    padding-block: calc(var(--spacing) * 5);
   }
   .py-\[2px\] {
     padding-block: 2px;
   }
   .pt-1 {
     padding-top: calc(var(--spacing) * 1);
-  }
-  .pt-4 {
-    padding-top: calc(var(--spacing) * 4);
   }
   .pr-3 {
     padding-right: calc(var(--spacing) * 3);
@@ -1136,14 +1064,6 @@
       display: none;
     }
   }
-  .dark\:border-white\/5 {
-    &:where(.dark, .dark *) {
-      border-color: color-mix(in srgb, #fff 5%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        border-color: color-mix(in oklab, var(--color-white) 5%, transparent);
-      }
-    }
-  }
   .dark\:border-white\/10 {
     &:where(.dark, .dark *) {
       border-color: color-mix(in srgb, #fff 10%, transparent);
@@ -1160,50 +1080,9 @@
       }
     }
   }
-  .dark\:border-white\/30 {
-    &:where(.dark, .dark *) {
-      border-color: color-mix(in srgb, #fff 30%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        border-color: color-mix(in oklab, var(--color-white) 30%, transparent);
-      }
-    }
-  }
-  .dark\:border-white\/50 {
-    &:where(.dark, .dark *) {
-      border-color: color-mix(in srgb, #fff 50%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        border-color: color-mix(in oklab, var(--color-white) 50%, transparent);
-      }
-    }
-  }
   .dark\:border-zinc-700 {
     &:where(.dark, .dark *) {
       border-color: var(--color-zinc-700);
-    }
-  }
-  .dark\:bg-gray-700 {
-    &:where(.dark, .dark *) {
-      background-color: var(--color-gray-700);
-    }
-  }
-  .dark\:bg-gray-800 {
-    &:where(.dark, .dark *) {
-      background-color: var(--color-gray-800);
-    }
-  }
-  .dark\:bg-gray-900 {
-    &:where(.dark, .dark *) {
-      background-color: var(--color-gray-900);
-    }
-  }
-  .dark\:bg-neutral-700 {
-    &:where(.dark, .dark *) {
-      background-color: var(--color-neutral-700);
-    }
-  }
-  .dark\:bg-neutral-800 {
-    &:where(.dark, .dark *) {
-      background-color: var(--color-neutral-800);
     }
   }
   .dark\:bg-neutral-900 {
@@ -1214,45 +1093,6 @@
   .dark\:bg-slate-700 {
     &:where(.dark, .dark *) {
       background-color: var(--color-slate-700);
-    }
-  }
-  .dark\:bg-slate-800 {
-    &:where(.dark, .dark *) {
-      background-color: var(--color-slate-800);
-    }
-  }
-  .dark\:bg-slate-900 {
-    &:where(.dark, .dark *) {
-      background-color: var(--color-slate-900);
-    }
-  }
-  .dark\:bg-transparent {
-    &:where(.dark, .dark *) {
-      background-color: transparent;
-    }
-  }
-  .dark\:bg-white\/2\.5 {
-    &:where(.dark, .dark *) {
-      background-color: color-mix(in srgb, #fff 2.5%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        background-color: color-mix(in oklab, var(--color-white) 2.5%, transparent);
-      }
-    }
-  }
-  .dark\:bg-white\/5 {
-    &:where(.dark, .dark *) {
-      background-color: color-mix(in srgb, #fff 5%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        background-color: color-mix(in oklab, var(--color-white) 5%, transparent);
-      }
-    }
-  }
-  .dark\:bg-white\/50 {
-    &:where(.dark, .dark *) {
-      background-color: color-mix(in srgb, #fff 50%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        background-color: color-mix(in oklab, var(--color-white) 50%, transparent);
-      }
     }
   }
   .dark\:bg-zinc-700\/15 {
@@ -1372,6 +1212,7 @@
   --rsd-code-method: var(--color-pink-400);
   --rsd-code-type: var(--color-pink-400);
   --rsd-code-type-ref: var(--color-violet-300);
+  --rsd-code-string: var(--color-yellow-200);
 }
 span.keyword {
   color: var(--rsd-code-keyword);
@@ -1384,6 +1225,9 @@ span.type {
 }
 span.type-ref {
   color: var(--rsd-code-type-ref);
+}
+span.string {
+  color: var(--rsd-code-string);
 }
 p {
   margin-top: 1.25em;

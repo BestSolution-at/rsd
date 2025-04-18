@@ -2,17 +2,28 @@ import { Component, Fragment, h, Prop, State, Watch } from '@stencil/core';
 import {
   isMEnumType,
   isMInlineEnumType,
+  isMKeyProperty,
   isMMixinType,
   isMRecordType,
+  isMRevisionProperty,
   isMRSDModel,
   isMScalarType,
   isMUnionType,
+  MBaseProperty,
+  MEnumType,
   MInlineEnumType,
+  MMixinType,
   MOperation,
   MParameter,
+  MProperty,
+  MResolvedRecordType,
   MResolvedRSDModel,
+  MResolvedService,
+  MResolvedUnionType,
+  MResolvedUserType,
   MReturnType,
   MRSDModel,
+  MScalarType,
   MService,
   resolve,
 } from '../../utils/model';
@@ -23,32 +34,23 @@ function serviceContent(model: MService) {
       <h1 class="text-2xl inner-content">{model.name}</h1>
       <div class="mb-14 inner-content">
         <p>{model.doc}</p>
-        <div class="not-prose">
-          <div class="bg-slate-800 dark:bg-zinc-800 rounded-2xl dark:ring-1 dark:ring-white/10 m-1">
-            {/*<div class="px-4 py-3 rounded-t-2xl border-b border-zinc-700 bg-slate-900 dark:bg-zinc-900">
-              <h3 class="text-sm text-white font-semibold">Definition</h3>
-            </div>*/}
-            <div class="p-4 rounded-b-2xl">
-              <pre class="text-xs text-white overflow-x-auto">
-                <code>
-                  <span>
-                    <span class="keyword">service</span> <span class="type">{model.name}</span> <span>{'{'}</span>
-                  </span>
-                  {'\n\n'}
-                  {model.operations.map(o => (
-                    <Fragment>
-                      {operation(o, '\t', 100)}
-                      {'\n\n'}
-                    </Fragment>
-                  ))}
-                  <span>
-                    <span>{'}'}</span>
-                  </span>
-                </code>
-              </pre>
-            </div>
-          </div>
-        </div>
+        {code(
+          <Fragment>
+            <span>
+              <span class="keyword">service</span> <span class="type">{model.name}</span> <span>{'{'}</span>
+            </span>
+            {'\n\n'}
+            {model.operations.map(o => (
+              <Fragment>
+                {operation(o, '\t', 100)}
+                {'\n\n'}
+              </Fragment>
+            ))}
+            <span>
+              <span>{'}'}</span>
+            </span>
+          </Fragment>,
+        )}
       </div>
       <div class="service-operations">{model.operations.map(serviceMethod)}</div>
     </div>
@@ -67,20 +69,9 @@ function serviceMethod(model: MOperation) {
           <p>{model.doc}</p>
           {reqParameters.length > 0 && parameters('Required Parameters', reqParameters)}
           {optParameters.length > 0 && parameters('Optional Parameters', optParameters)}
-          {model.resultType !== undefined && result(model.resultType)}
+          {model.resultType !== undefined && result(model.resultType, model.errors)}
         </div>
-        <div class="code-column not-prose">
-          <div class="bg-slate-800 dark:bg-zinc-800 rounded-2xl dark:ring-1 dark:ring-white/10 m-1">
-            {/*<div class="p-4 rounded-t-2xl border-b border-zinc-700 bg-zinc-800">
-              <h3 class="text-xs text-white font-semibold">Definition</h3>
-            </div>*/}
-            <div class="p-4 text-xs text-white">
-              <pre class="overflow-x-auto">
-                <code>{operation(model, '')}</code>
-              </pre>
-            </div>
-          </div>
-        </div>
+        <div class="code-column">{code(operation(model, ''))}</div>
       </div>
       <hr></hr>
     </Fragment>
@@ -171,18 +162,17 @@ function parameters(title: string, parameters: MParameter[]) {
   );
 }
 
-function result(resultType: MReturnType) {
+function result(resultType: MReturnType, errors: string[]) {
+  const result = isMInlineEnumType(resultType.type) ? resultType.type.entries.join(' | ') : resultType.type;
   return (
     <Fragment>
       <h3 class="text-sm">Result</h3>
-      <dl class="return-value">
-        <dd class="type">
-          {resultType.array ? 'Array<' : ''}
-          {resultType.type}
-          {resultType.array ? '>' : ''}
-        </dd>
-        <dd>{resultType.doc}</dd>
-      </dl>
+      <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">
+        <li class="not-prose py-4 first:pt-0 last:pb-0">{dl('success', resultType.array ? `Array<${result}>` : result, resultType.doc)}</li>
+        {errors.map(e => (
+          <li class="not-prose py-4 first:pt-0 last:pb-0">{dl('error', e, '')}</li>
+        ))}
+      </ul>
     </Fragment>
   );
 }
@@ -206,15 +196,13 @@ function parameter(p: MParameter) {
 }
 
 function scalars(resolvedModel: MResolvedRSDModel) {
-  const scalars = resolvedModel.elements.filter(isMScalarType);
+  const scalars = resolvedModel.elements.filter(isMScalarType).sort((a, b) => a.name.localeCompare(b.name));
   if (scalars.length === 0) {
     return <Fragment></Fragment>;
   }
   return (
     <li class="py-[2px]">
-      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_scalars">
-        Scalars
-      </a>
+      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline">Scalars</a>
       <ul class="list-none p-0">
         {scalars.map(s => (
           <li>
@@ -229,15 +217,13 @@ function scalars(resolvedModel: MResolvedRSDModel) {
 }
 
 function enums(resolvedModel: MResolvedRSDModel) {
-  const enums = resolvedModel.elements.filter(isMEnumType);
+  const enums = resolvedModel.elements.filter(isMEnumType).sort((a, b) => a.name.localeCompare(b.name));
   if (enums.length === 0) {
     return <Fragment></Fragment>;
   }
   return (
     <li class="py-[2px]">
-      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_enums">
-        Enums
-      </a>
+      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline">Enums</a>
       <ul class="list-none p-0">
         {enums.map(e => (
           <li class="py-[2px]">
@@ -252,15 +238,13 @@ function enums(resolvedModel: MResolvedRSDModel) {
 }
 
 function mixins(resolvedModel: MResolvedRSDModel) {
-  const mixins = resolvedModel.elements.filter(isMMixinType);
+  const mixins = resolvedModel.elements.filter(isMMixinType).sort((a, b) => a.name.localeCompare(b.name));
   if (mixins.length === 0) {
     return <Fragment></Fragment>;
   }
   return (
     <li class="py-[2px]">
-      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_mixins">
-        Mixins
-      </a>
+      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline">Mixins</a>
       <ul class="list-none pl-0">
         {mixins.map(m => (
           <li class="py-[2px]">
@@ -275,15 +259,13 @@ function mixins(resolvedModel: MResolvedRSDModel) {
 }
 
 function records(resolvedModel: MResolvedRSDModel) {
-  const records = resolvedModel.elements.filter(isMRecordType);
+  const records = resolvedModel.elements.filter(isMRecordType).sort((a, b) => a.name.localeCompare(b.name));
   if (records.length === 0) {
     return <Fragment></Fragment>;
   }
   return (
     <li class="py-[2px]">
-      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_records">
-        Records
-      </a>
+      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline">Records</a>
       <ul class="list-none pl-0">
         {records.map(r => (
           <li class="py-[2px]">
@@ -298,15 +280,13 @@ function records(resolvedModel: MResolvedRSDModel) {
 }
 
 function unions(resolvedModel: MResolvedRSDModel) {
-  const unions = resolvedModel.elements.filter(isMUnionType);
+  const unions = resolvedModel.elements.filter(isMUnionType).sort((a, b) => a.name.localeCompare(b.name));
   if (unions.length === 0) {
     return <Fragment></Fragment>;
   }
   return (
     <li class="py-[2px]">
-      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href="#types_unions">
-        Unions
-      </a>
+      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline">Unions</a>
       <ul class="list-none pl-0">
         {unions.map(u => (
           <li class="py-[2px]">
@@ -317,6 +297,319 @@ function unions(resolvedModel: MResolvedRSDModel) {
         ))}
       </ul>
     </li>
+  );
+}
+
+function modelContent(element: MResolvedUserType) {
+  if (isMScalarType(element)) {
+    return scalarContent(element);
+  } else if (isMEnumType(element)) {
+    return enumContent(element);
+  } else if (isMMixinType(element)) {
+    return mixinContent(element);
+  } else if (isMRecordType(element)) {
+    return recordContent(element);
+  } else {
+    return unionContent(element);
+  }
+}
+
+function code(code: any) {
+  return (
+    <div class="not-prose">
+      <div class="bg-slate-800 dark:bg-zinc-800 rounded-2xl dark:ring-1 dark:ring-white/10 m-1">
+        <div class="p-4 rounded-b-2xl">
+          <pre class="text-xs text-white overflow-x-auto">
+            <code>{code}</code>
+          </pre>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function scalarContent(element: MScalarType) {
+  return (
+    <div class="main-content">
+      <h1 class="text-2xl inner-content">{element.name}</h1>
+      <div class="mb-14 inner-content">
+        <p>{element.doc}</p>
+        {code(
+          <Fragment>
+            <span class="keyword">scalar</span>
+            <span> </span>
+            <span>{element.name}</span>
+            <span>;</span>
+          </Fragment>,
+        )}
+      </div>
+    </div>
+  );
+}
+
+function enumContent(element: MEnumType) {
+  return (
+    <div class="main-content">
+      <h1 class="text-2xl inner-content">{element.name}</h1>
+      <div class="mb-14 inner-content">
+        <p>{element.doc}</p>
+        {code(
+          <Fragment>
+            <span class="keyword">enum</span>
+            <span> </span>
+            <span>{element.name}</span>
+            <span> = </span>
+            {'\n'}
+            {element.entries.map((e, idx) => {
+              return (
+                <Fragment>
+                  <span>{idx > 0 ? '\t| ' : '\t  '}</span>
+                  <span>{e.name}</span>
+                  {'\n'}
+                </Fragment>
+              );
+            })}
+            <span>;</span>
+          </Fragment>,
+        )}
+      </div>
+    </div>
+  );
+}
+
+function unionContent(element: MResolvedUnionType) {
+  return (
+    <div class="main-content">
+      <h1 class="text-2xl inner-content">{element.name}</h1>
+      <div class="mb-14 inner-content">
+        <p>{element.doc}</p>
+        {code(
+          <Fragment>
+            <span class="keyword">union</span>
+            <span> </span>
+            <span>{element.name} = </span>
+            {'\n'}
+            {element.types.map((t, idx) => (
+              <Fragment>
+                {'\t'}
+                <span>
+                  {idx > 0 ? '| ' : ''}
+                  {t}(<span class="string">"{element.descriminatorAliases[t] ?? t}"</span>)
+                </span>
+                {'\n'}
+              </Fragment>
+            ))}
+          </Fragment>,
+        )}
+      </div>
+    </div>
+  );
+}
+
+function recordContent(element: MResolvedRecordType) {
+  return (
+    <div class="main-content">
+      <h1 class="text-2xl inner-content">{element.name}</h1>
+      <div class="mb-14 inner-content">
+        <p>{element.doc}</p>
+        {code(
+          <Fragment>
+            <span class="keyword">record</span>
+            <span> </span>
+            <span>{element.name}</span>
+            <span> {'{'}</span>
+            {'\n'}
+            {element.properties.map(p => (
+              <Fragment>
+                {propCode(p)}
+                {'\n'}
+              </Fragment>
+            ))}
+            {element.properties.length > 0 && element.mixins.length > 0 ? '\n' : ''}
+            {element.mixins.map(m => (
+              <Fragment>
+                {'\t'}
+                <span class="keyword">include</span>
+                <span> {m}</span>
+                {'\n'}
+              </Fragment>
+            ))}
+            <span>{'}'}</span>
+          </Fragment>,
+        )}
+        {element.properties.length > 0 || element.mixins.length > 0 ? (
+          <Fragment>
+            <h2 class="text-lg">Properties</h2>
+            <div>
+              <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">
+                {element.properties.map(property)}
+                {element.resolved.mixins.flatMap(m => m.properties).map(property)}
+              </ul>
+            </div>
+          </Fragment>
+        ) : (
+          ''
+        )}
+      </div>
+    </div>
+  );
+}
+
+function mixinContent(element: MMixinType) {
+  return (
+    <div class="main-content">
+      <h1 class="text-2xl inner-content">{element.name}</h1>
+      <div class="mb-14 inner-content">
+        <p>{element.doc}</p>
+        {code(
+          <Fragment>
+            <span class="keyword">mixin</span>
+            <span> </span>
+            <span>{element.name}</span>
+            <span> {'{'}</span>
+            {'\n'}
+            {element.properties.map(p => (
+              <Fragment>
+                {propCode(p)}
+                {'\n'}
+              </Fragment>
+            ))}
+            <span>{'}'}</span>
+          </Fragment>,
+        )}
+        <h2 class="text-lg">Properties</h2>
+        <div>
+          <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">{element.properties.map(property)}</ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function property(p: MProperty) {
+  return (
+    <li class="not-prose py-4 first:pt-0 last:pb-0">
+      <dl class="parameter">
+        <dd>
+          <code class="bg-zinc-700/5 dark:bg-zinc-700/15 border-zinc-300 dark:border-zinc-700 dark:text-white text-xs p-1 rounded-lg border">{p.name}</code>
+        </dd>
+        <dd class="font-mono text-xs text-zinc-400">
+          {p.array ? 'Array<' : ''}
+          {p.type}
+          {p.array ? '>' : ''}
+        </dd>
+        <dd class="doc">{p.doc}</dd>
+      </dl>
+    </li>
+  );
+}
+
+function propCode(prop: MBaseProperty) {
+  if (isMKeyProperty(prop)) {
+    return (
+      <Fragment>
+        <span>{'\t'}</span>
+        <span class="keyword">@id</span>
+        <span> {prop.name}</span>
+        <span>: </span>
+        <span class="type-ref">{prop.type}</span>
+      </Fragment>
+    );
+  } else if (isMRevisionProperty(prop)) {
+    return (
+      <Fragment>
+        <span>{'\t'}</span>
+        <span class="revision">@rev</span>
+        <span> {prop.name}</span>
+        <span>: </span>
+        <span class="type-ref">{prop.type}</span>
+      </Fragment>
+    );
+  } else if (isMInlineEnumType(prop.type)) {
+    return (
+      <Fragment>
+        <span>{'\t'}</span>
+        <span>{prop.name}</span>
+        <span>: </span>
+        <span>{prop.type.entries.map(e => e.name).join(' | ')}</span>
+      </Fragment>
+    );
+  } else {
+    return (
+      <Fragment>
+        <span>{'\t'}</span>
+        <span>{prop.name}</span>
+        <span>: </span>
+        <span class="type-ref">{prop.array ? `Array<${prop.type}>` : prop.type}</span>
+      </Fragment>
+    );
+  }
+}
+
+function home(model: MResolvedRSDModel) {
+  return (
+    <div class="main-content">
+      <div class="inner-content">
+        <h1 class="text-2xl">API Definition</h1>
+        <h2 class="text-lg">Services</h2>
+        <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">{model.services.map(serviceTOC)}</ul>
+        <h2 class="text-lg">Types</h2>
+        <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">
+          {model.elements
+            .filter(isMScalarType)
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(typeTOC)}
+          {model.elements
+            .filter(isMEnumType)
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(typeTOC)}
+          {model.elements
+            .filter(isMMixinType)
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(typeTOC)}
+          {model.elements
+            .filter(isMRecordType)
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(typeTOC)}
+          {model.elements
+            .filter(isMUnionType)
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(typeTOC)}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+function serviceTOC(service: MResolvedService) {
+  return <li class="not-prose py-4 first:pt-0 last:pb-0">{dl(service.name, 'Service', service.doc)}</li>;
+}
+
+function typeTOC(type: MResolvedUserType) {
+  let typeName = '';
+  if (isMEnumType(type)) {
+    typeName = 'Enum';
+  } else if (isMScalarType(type)) {
+    typeName = 'Scalar';
+  } else if (isMMixinType(type)) {
+    typeName = 'Mixin';
+  } else if (isMRecordType(type)) {
+    typeName = 'Record';
+  } else {
+    typeName = 'Union';
+  }
+  return <li class="not-prose py-4 first:pt-0 last:pb-0">{dl(type.name, typeName, type.doc)}</li>;
+}
+
+function dl(code: string, typeString: string, doc: string) {
+  return (
+    <dl class="parameter">
+      <dd>
+        <code class="bg-zinc-700/5 dark:bg-zinc-700/15 border-zinc-300 dark:border-zinc-700 dark:text-white text-xs p-1 rounded-lg border">{code}</code>
+      </dd>
+      <dd class="font-mono text-xs text-zinc-400">{typeString}</dd>
+      <dd class="doc">{doc}</dd>
+    </dl>
   );
 }
 
@@ -344,14 +637,23 @@ export class RSDPreviewAlt {
 
   render() {
     let content = 'Nothing';
-    if (this.activeContext) {
-      if (this.activeContext.startsWith('service')) {
-        const serviceName = this.activeContext.substring('service_'.length + 1);
+    if (this.activeContext && this.activeContext !== 'home') {
+      if (this.activeContext.startsWith('services')) {
+        const serviceName = this.activeContext.substring('services_'.length);
+        console.log(serviceName);
         const service = this.resolvedModel.services.find(s => s.name === serviceName);
         if (service) {
           content = serviceContent(service);
         }
+      } else if (this.activeContext.startsWith('model')) {
+        const elementName = this.activeContext.substring('model_'.length);
+        const element = this.resolvedModel.elements.find(e => e.name === elementName);
+        if (element) {
+          content = modelContent(element);
+        }
       }
+    } else {
+      content = home(this.resolvedModel);
     }
 
     const handleClick = () => {

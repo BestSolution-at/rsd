@@ -13,6 +13,7 @@
   --rsd-code-method: var(--color-pink-400);
   --rsd-code-type: var(--color-pink-400);
   --rsd-code-type-ref: var(--color-violet-300);
+  --rsd-code-string: var(--color-yellow-200)
 }
 
 span.keyword {
@@ -29,6 +30,10 @@ span.type {
 
 span.type-ref {
   color: var(--rsd-code-type-ref);
+}
+
+span.string {
+  color: var(--rsd-code-string);
 }
 
 p {
