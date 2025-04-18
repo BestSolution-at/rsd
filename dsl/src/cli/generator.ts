@@ -270,9 +270,16 @@ function mapOperation(operation: Operation): MOperation {
   const returnDoc = clearDocLines
     .find((d) => d.startsWith('@returns '))
     ?.substring(9);
-  const errors = operation.failures
-    .map((f) => f.error.ref?.name)
-    .filter(isDefined);
+  const operationErrors = operation.failures
+    .map(
+      (f) =>
+        ({
+          '@type': 'OperationError',
+          error: f.error.ref?.name ?? '',
+          doc: removeCommentPrefix(f.doc),
+        } as const)
+    )
+    .filter((e) => e.error);
 
   return {
     '@type': 'Operation',
@@ -282,7 +289,8 @@ function mapOperation(operation: Operation): MOperation {
     resultType: operation.returnType
       ? mapReturnType(operation.returnType, returnDoc ?? '')
       : undefined,
-    errors,
+    errors: operationErrors.map((e) => e.error),
+    operationErrors,
   };
 }
 
