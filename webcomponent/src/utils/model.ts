@@ -218,7 +218,11 @@ export type MOperation = {
   'doc': string;
   'parameters': readonly MParameter[];
   'resultType'?: MReturnType;
+  /**
+   * @deprecated use operationErrors
+   */
   'errors': string[];
+  'operationErrors': MOperationError[];
   'meta'?: {
     rest?: {
       path: string;
@@ -229,6 +233,12 @@ export type MOperation = {
       }[];
     };
   };
+};
+
+export type MOperationError = {
+  '@type': 'OperationError';
+  'error': string;
+  'doc': string;
 };
 
 export type MResolvedOperation = MOperation & {

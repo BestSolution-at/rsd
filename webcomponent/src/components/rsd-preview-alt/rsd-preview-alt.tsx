@@ -14,6 +14,7 @@ import {
   MInlineEnumType,
   MMixinType,
   MOperation,
+  MOperationError,
   MParameter,
   MProperty,
   MResolvedRecordType,
@@ -69,7 +70,7 @@ function serviceMethod(model: MOperation) {
           <p>{model.doc}</p>
           {reqParameters.length > 0 && parameters('Required Parameters', reqParameters)}
           {optParameters.length > 0 && parameters('Optional Parameters', optParameters)}
-          {model.resultType !== undefined && result(model.resultType, model.errors)}
+          {(model.resultType !== undefined || model.operationErrors.length > 0) && result(model.resultType, model.operationErrors)}
         </div>
         <div class="code-column">{code(operation(model, ''))}</div>
       </div>
@@ -162,18 +163,42 @@ function parameters(title: string, parameters: MParameter[]) {
   );
 }
 
-function result(resultType: MReturnType, errors: string[]) {
-  const result = isMInlineEnumType(resultType.type) ? resultType.type.entries.join(' | ') : resultType.type;
+function result(resultType: MReturnType | undefined, errors: MOperationError[]) {
+  const result = resultType ? (isMInlineEnumType(resultType.type) ? resultType.type.entries.join(' | ') : resultType.type) : '';
   return (
     <Fragment>
       <h3 class="text-sm">Result</h3>
       <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">
-        <li class="not-prose py-4 first:pt-0 last:pb-0">{dl('success', resultType.array ? `Array<${result}>` : result, resultType.doc)}</li>
+        {resultType && <li class="not-prose py-4 first:pt-0 last:pb-0">{dlResult('Success', resultType.array ? `Array<${result}>` : result, resultType.doc)}</li>}
         {errors.map(e => (
-          <li class="not-prose py-4 first:pt-0 last:pb-0">{dl('error', e, '')}</li>
+          <li class="not-prose py-4 first:pt-0 last:pb-0">{dlError('Error', e.error, e.doc)}</li>
         ))}
       </ul>
     </Fragment>
+  );
+}
+
+function dlResult(code: string, typeString: string, doc: string) {
+  return (
+    <dl class="parameter">
+      <dd>
+        <code class="ring-cyan-300 dark:ring-cyan-400/30 bg-cyan-400/10 text-cyan-500 dark:text-cyan-400 text-xs p-1 rounded-lg border">{code}</code>
+      </dd>
+      <dd class="font-mono text-xs text-zinc-400">{typeString}</dd>
+      <dd class="doc">{doc}</dd>
+    </dl>
+  );
+}
+
+function dlError(code: string, typeString: string, doc: string) {
+  return (
+    <dl class="parameter">
+      <dd>
+        <code class="ring-orange-200 bg-orange-50 text-orange-500 dark:ring-orange-500/20 dark:bg-orange-400/10 dark:text-orange-400 text-xs p-1 rounded-lg border">{code}</code>
+      </dd>
+      <dd class="font-mono text-xs text-zinc-400">{typeString}</dd>
+      <dd class="doc">{doc}</dd>
+    </dl>
   );
 }
 
