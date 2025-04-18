@@ -669,8 +669,8 @@ function sideNav(resolvedModel: MResolvedRSDModel) {
 }
 
 @Component({
-  tag: 'rsd-preview',
-  styleUrl: 'rsd-preview.css',
+  tag: 'rsd-viewer',
+  styleUrl: 'rsd-viewer.css',
   assetsDirs: ['assets'],
   shadow: true,
 })

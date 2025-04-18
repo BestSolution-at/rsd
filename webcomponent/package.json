@@ -1,7 +1,7 @@
 {
-  "name": "@bestsolution/rsd-viewer",
+  "name": "@bestsolution/rsd-webcomponents",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "description": "Webcomponents to work with RSD",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -12,15 +12,11 @@
     ".": {
       "import": "./dist/rsd-viewer/rsd-viewer.esm.js",
       "require": "./dist/rsd-viewer/rsd-viewer.cjs.js"
-    },
-    "./my-component": {
-      "import": "./dist/components/my-component.js",
-      "types": "./dist/components/my-component.d.js"
     }
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "https://github.com/BestSolution-at/rsd.git"
   },
   "files": [
     "dist/",
@@ -32,7 +28,7 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "tw-css": "npx @tailwindcss/cli -i ./dummy.css -o ./src/components/rsd-preview/rsd-preview.css --watch"
+    "tw-css": "npx @tailwindcss/cli -i ./dummy.css -o ./src/components/rsd-viewer/rsd-viewer.css --watch"
   },
   "devDependencies": {
     "@stencil/core": "^4.7.0",

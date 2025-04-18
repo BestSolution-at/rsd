@@ -8,36 +8,36 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MRSDModel } from "./utils/model";
 export { MRSDModel } from "./utils/model";
 export namespace Components {
-    interface RsdPreview {
+    interface RsdViewer {
         "model": string | MRSDModel;
         "projectname": string;
     }
 }
 declare global {
-    interface HTMLRsdPreviewElement extends Components.RsdPreview, HTMLStencilElement {
+    interface HTMLRsdViewerElement extends Components.RsdViewer, HTMLStencilElement {
     }
-    var HTMLRsdPreviewElement: {
-        prototype: HTMLRsdPreviewElement;
-        new (): HTMLRsdPreviewElement;
+    var HTMLRsdViewerElement: {
+        prototype: HTMLRsdViewerElement;
+        new (): HTMLRsdViewerElement;
     };
     interface HTMLElementTagNameMap {
-        "rsd-preview": HTMLRsdPreviewElement;
+        "rsd-viewer": HTMLRsdViewerElement;
     }
 }
 declare namespace LocalJSX {
-    interface RsdPreview {
+    interface RsdViewer {
         "model"?: string | MRSDModel;
         "projectname"?: string;
     }
     interface IntrinsicElements {
-        "rsd-preview": RsdPreview;
+        "rsd-viewer": RsdViewer;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "rsd-preview": LocalJSX.RsdPreview & JSXBase.HTMLAttributes<HTMLRsdPreviewElement>;
+            "rsd-viewer": LocalJSX.RsdViewer & JSXBase.HTMLAttributes<HTMLRsdViewerElement>;
         }
     }
 }
