@@ -32,7 +32,7 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "tw-css": "npx @tailwindcss/cli -i ./dummy.css -o ./src/components/rsd-preview-alt/rsd-preview-alt.css --watch"
+    "tw-css": "npx @tailwindcss/cli -i ./dummy.css -o ./src/components/rsd-preview/rsd-preview.css --watch"
   },
   "devDependencies": {
     "@stencil/core": "^4.7.0",
