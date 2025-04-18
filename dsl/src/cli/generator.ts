@@ -24,11 +24,11 @@ import {
   RSDResource,
   EnpointPoint,
   ErrorType,
-} from "../language/generated/ast.js";
+} from '../language/generated/ast.js';
 
-import * as fs from "node:fs";
-import * as path from "node:path";
-import { extractDestinationAndName } from "./cli-util.js";
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import { extractDestinationAndName } from './cli-util.js';
 import {
   MEnumEntry,
   MEnumType,
@@ -47,8 +47,8 @@ import {
   MService,
   MUnionType,
   MUserType,
-} from "./model.js";
-import { isDefined } from "./util.js";
+} from './model.js';
+import { isDefined } from './util.js';
 
 export type Models = {
   model: RSDModel;
@@ -74,7 +74,7 @@ export function generateJSON(
 
 export function generateModel(models: Models): MRSDModel {
   let result: MRSDModel = {
-    "@type": "RSDModel",
+    '@type': 'RSDModel',
     elements: models.model.elements.map(mapUserType),
     services: models.model.services.map(mapService),
     errors: models.model.errors.map(mapError),
@@ -142,7 +142,7 @@ function mergeRestOperation(
         ...param.meta,
         rest: {
           name: name,
-          source: "path",
+          source: 'path',
         },
       };
     }
@@ -167,15 +167,15 @@ function mergeRestOperation(
 }
 
 function restTransportTypeToSource(
-  transportType: "cookie-param" | "header-param" | "query-param"
-): "header" | "query" | "cookie" {
+  transportType: 'cookie-param' | 'header-param' | 'query-param'
+): 'header' | 'query' | 'cookie' {
   switch (transportType) {
-    case "cookie-param":
-      return "cookie";
-    case "header-param":
-      return "header";
-    case "query-param":
-      return "query";
+    case 'cookie-param':
+      return 'cookie';
+    case 'header-param':
+      return 'header';
+    case 'query-param':
+      return 'query';
   }
 }
 
@@ -183,15 +183,15 @@ const COMMENT_PREFIX = /^[^\w@]+/;
 
 function removeCommentPrefix(value: string | undefined) {
   if (value === undefined) {
-    return "";
+    return '';
   }
 
-  return value.replace(COMMENT_PREFIX, "").trim();
+  return value.replace(COMMENT_PREFIX, '').trim();
 }
 
 function mapService(service: Service): MService {
   return {
-    "@type": "Service",
+    '@type': 'Service',
     name: service.name,
     doc: buildDocContentString(service.doc),
     operations: service.operations.map(mapOperation),
@@ -200,7 +200,7 @@ function mapService(service: Service): MService {
 
 function buildDocContentString(doc: string | undefined) {
   if (doc === undefined) {
-    return "";
+    return '';
   }
   const docs = doc.split(/\r?\n/).map(removeCommentPrefix);
   const contentDocs: string[] = [];
@@ -208,7 +208,7 @@ function buildDocContentString(doc: string | undefined) {
   // Search for the first line with @
   for (let i = 0; i < docs.length; i++) {
     const v = docs[i];
-    if (!v.startsWith("@")) {
+    if (!v.startsWith('@')) {
       contentDocs.push(docs[i]);
     }
   }
@@ -229,19 +229,19 @@ function buildDocContentString(doc: string | undefined) {
     contentDocs.pop();
   }
 
-  let result = "";
+  let result = '';
   for (let i = 0; i < contentDocs.length; i++) {
     if (contentDocs[i]) {
-      result = !result.endsWith("\n")
+      result = !result.endsWith('\n')
         ? `${result} ${contentDocs[i]}`
         : `${result}${contentDocs[i]}`;
     } else {
       // Remove multiple empty lines
-      while (contentDocs[i] === "") {
+      while (contentDocs[i] === '') {
         i += 1;
       }
       i -= 1;
-      result += "\n\n";
+      result += '\n\n';
     }
   }
   return result;
@@ -249,38 +249,38 @@ function buildDocContentString(doc: string | undefined) {
 
 function mapError(error: ErrorType): MError {
   return {
-    "@type": "Error",
+    '@type': 'Error',
     name: error.name,
   };
 }
 
 function mapOperation(operation: Operation): MOperation {
-  const clearDocLines = (operation.doc ?? "")
+  const clearDocLines = (operation.doc ?? '')
     .split(/\r?\n/)
     .map(removeCommentPrefix);
   const params = clearDocLines
-    .filter((d) => d.startsWith("@param "))
+    .filter((d) => d.startsWith('@param '))
     .map((d) => d.substring(7))
     .map((d) => {
-      const parts = d.split("-", 2).map((d) => d.trim());
+      const parts = d.split('-', 2).map((d) => d.trim());
       return [parts[0], parts[1]] as const;
     });
 
   const paramDocMap = new Map(params);
   const returnDoc = clearDocLines
-    .find((d) => d.startsWith("@returns "))
+    .find((d) => d.startsWith('@returns '))
     ?.substring(9);
   const errors = operation.failures
     .map((f) => f.error.ref?.name)
     .filter(isDefined);
 
   return {
-    "@type": "Operation",
+    '@type': 'Operation',
     name: operation.name,
     doc: buildDocContentString(operation.doc),
     parameters: operation.parameters.map((p) => mapParameter(p, paramDocMap)),
     resultType: operation.returnType
-      ? mapReturnType(operation.returnType, returnDoc ?? "")
+      ? mapReturnType(operation.returnType, returnDoc ?? '')
       : undefined,
     errors,
   };
@@ -291,7 +291,7 @@ function mapParameter(
   docMap: Map<string, string>
 ): MParameter {
   return {
-    "@type": "Parameter",
+    '@type': 'Parameter',
     name: parameter.namedType.name,
     array: parameter.namedType.array,
     arrayMaxLength: parameter.namedType.maxLength,
@@ -300,13 +300,13 @@ function mapParameter(
     patch: parameter.patch,
     variant: computeVariant(parameter.namedType),
     type: computeType(parameter.namedType),
-    doc: docMap.get(parameter.namedType.name) ?? "",
+    doc: docMap.get(parameter.namedType.name) ?? '',
   };
 }
 
 function mapReturnType(returnType: ReturnType, doc: string): MReturnType {
   return {
-    "@type": "ReturnType",
+    '@type': 'ReturnType',
     array: returnType.array,
     arrayMaxLength: returnType.maxLength,
     variant: computeVariant(returnType),
@@ -332,30 +332,32 @@ function mapUserType(userType: UserType): MUserType {
 
 function mapScalarType(scalarType: ScalarType) {
   const rv: MScalarType = {
-    "@type": "ScalarType",
+    '@type': 'ScalarType',
     name: scalarType.name,
+    doc: removeCommentPrefix(scalarType.doc),
   };
   return rv;
 }
 
 function mapUnionType(unionType: UnionType) {
   const rv: MUnionType = {
-    "@type": "UnionType",
+    '@type': 'UnionType',
     name: unionType.name,
     patchable: unionType.patchable,
     types: unionType.records
       .map((r) => r.record.ref)
       .filter(isDefined)
       .map((ref) => ref.name),
-    descriminator: unionType.descProp ?? "@type",
+    descriminator: unionType.descProp ?? '@type',
+    doc: removeCommentPrefix(unionType.doc),
   };
   if (unionType.records.find((r) => r.value)) {
     const alias: Record<string, string> = {};
-    rv["descriminatorAliases"] = alias;
+    rv['descriminatorAliases'] = alias;
     unionType.records
       .filter((r) => r.value)
       .forEach((r) => {
-        alias[r.record.ref?.name ?? ""] = r.value ?? "";
+        alias[r.record.ref?.name ?? ''] = r.value ?? '';
       });
   }
   return rv;
@@ -377,11 +379,12 @@ function mapRecord(recordType: RecordType) {
   properties.push(...recordType.property.map(mapProperty));
 
   const rv: MRecordType = {
-    "@type": "RecordType",
+    '@type': 'RecordType',
     name: recordType.name,
     patchable: recordType.patchable,
     mixins,
     properties,
+    doc: removeCommentPrefix(recordType.doc),
   };
 
   return rv;
@@ -400,9 +403,10 @@ function mapMixinType(mixinType: MixinType) {
   properties.push(...mixinType.property.map(mapProperty));
 
   const rv: MMixinType = {
-    "@type": "MixinType",
+    '@type': 'MixinType',
     name: mixinType.name,
     properties,
+    doc: removeCommentPrefix(mixinType.doc),
   };
 
   return rv;
@@ -410,7 +414,7 @@ function mapMixinType(mixinType: MixinType) {
 
 function mapProperty(property: Property) {
   const rv: MProperty = {
-    "@type": "Property",
+    '@type': 'Property',
     name: property.namedType.name,
     array: property.namedType.array,
     arrayMaxLength: property.namedType.maxLength,
@@ -424,10 +428,10 @@ function mapProperty(property: Property) {
   return rv;
 }
 
-function computeType(namedType: Pick<NamedType, "inlineEnum" | "typeRef">) {
+function computeType(namedType: Pick<NamedType, 'inlineEnum' | 'typeRef'>) {
   if (namedType.inlineEnum) {
     const rv: MInlineEnumType = {
-      "@type": "InlineEnumType",
+      '@type': 'InlineEnumType',
       entries: namedType.inlineEnum.entries.map(mapEnumEntry),
     };
     return rv;
@@ -435,26 +439,26 @@ function computeType(namedType: Pick<NamedType, "inlineEnum" | "typeRef">) {
     if (namedType.typeRef.builtin) {
       return namedType.typeRef.builtin;
     } else {
-      return namedType.typeRef.refType?.ref?.name ?? "**fail**";
+      return namedType.typeRef.refType?.ref?.name ?? '**fail**';
     }
   }
   throw new Error();
 }
 
-function computeVariant(namedType: Pick<NamedType, "inlineEnum" | "typeRef">) {
+function computeVariant(namedType: Pick<NamedType, 'inlineEnum' | 'typeRef'>) {
   if (namedType.inlineEnum) {
-    return "inline-enum";
+    return 'inline-enum';
   } else if (namedType.typeRef) {
     if (namedType.typeRef.builtin) {
-      return "builtin";
+      return 'builtin';
     } else if (isEnumType(namedType.typeRef.refType?.ref)) {
-      return "enum";
+      return 'enum';
     } else if (isUnionType(namedType.typeRef.refType?.ref)) {
-      return "union";
+      return 'union';
     } else if (isRecordType(namedType.typeRef.refType?.ref)) {
-      return "record";
+      return 'record';
     } else if (isScalarType(namedType.typeRef.refType?.ref)) {
-      return "scalar";
+      return 'scalar';
     }
   }
   throw new Error();
@@ -462,7 +466,7 @@ function computeVariant(namedType: Pick<NamedType, "inlineEnum" | "typeRef">) {
 
 function mapKeyProperty(keyProperty: KeyProperty) {
   const rv: MKeyProperty = {
-    "@type": "KeyProperty",
+    '@type': 'KeyProperty',
     name: keyProperty.name,
     type: keyProperty.typeRef,
     doc: removeCommentPrefix(keyProperty.doc),
@@ -472,7 +476,7 @@ function mapKeyProperty(keyProperty: KeyProperty) {
 
 function mapRevisionProperty(revisionProperty: RevisionProperty) {
   const rv: MRevisionProperty = {
-    "@type": "RevisionProperty",
+    '@type': 'RevisionProperty',
     name: revisionProperty.name,
     type: revisionProperty.typeRef,
     doc: removeCommentPrefix(revisionProperty.doc),
@@ -482,7 +486,7 @@ function mapRevisionProperty(revisionProperty: RevisionProperty) {
 
 function mapEnumType(enumType: EnumType) {
   const rv: MEnumType = {
-    "@type": "EnumType",
+    '@type': 'EnumType',
     name: enumType.name,
     entries: enumType.entries.map(mapEnumEntry),
     doc: buildDocContentString(enumType.doc),
@@ -493,7 +497,7 @@ function mapEnumType(enumType: EnumType) {
 
 function mapEnumEntry(enumEntry: EnumEntry) {
   const rv: MEnumEntry = {
-    "@type": "EnumEntry",
+    '@type': 'EnumEntry',
     name: enumEntry.name,
     value: enumEntry.value,
   };
