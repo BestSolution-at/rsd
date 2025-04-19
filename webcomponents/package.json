@@ -1,6 +1,6 @@
 {
   "name": "@bestsolution/rsd-webcomponents",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Library with webcomponents for RSD",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
