@@ -791,7 +791,7 @@ export class RsdViewer {
             <div class="w-full">{content}</div>
           </main>
           {this.navigationOpen && (
-            <div class="lg:hidden fixed shadow-lg ring-1 shadow-zinc-900/10 ring-zinc-900/7.5 top-14 bottom-0 left-0 w-full overflow-y-auto min-[416px]:max-w-sm bg-gray-50 pt-7 px-6 pb-8 transition-opacity duration-500 ease-in-out">
+            <div class="lg:hidden fixed shadow-lg ring-1 shadow-zinc-900/10 ring-zinc-900/7.5 dark:ring-white/7.5 top-14 bottom-0 left-0 w-full overflow-y-auto min-[416px]:max-w-sm bg-gray-50 dark:bg-neutral-900 pt-7 px-6 pb-8">
               <nav>{sideNav(this.resolvedModel)}</nav>
             </div>
           )}
