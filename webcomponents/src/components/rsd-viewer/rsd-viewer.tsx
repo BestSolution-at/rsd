@@ -90,6 +90,7 @@ function operation(model: MOperation, ident = '\t', maxLength = 50) {
       {model.parameters.map((p, idx, arr) => (
         <Fragment>
           {isMulti ? `${ident}\t` : ''}
+          {p.patch ? <span class="keyword">@patch </span> : ''}
           <span>
             {p.name}
             {p.optional ? '?' : ''}
@@ -440,6 +441,7 @@ function recordContent(element: MResolvedRecordType) {
         <p>{element.doc}</p>
         {code(
           <Fragment>
+            {element.patchable ? <span class="keyword">patchable </span> : ''}
             <span class="keyword">record</span>
             <span> </span>
             <span>{element.name}</span>
