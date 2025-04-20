@@ -1,21 +1,22 @@
 import { type Module, inject } from 'langium';
-import { 
-    createDefaultModule, 
-    createDefaultSharedModule, 
-    type DefaultSharedModuleContext, 
-    type LangiumServices, 
-    type LangiumSharedServices, 
-    type PartialLangiumServices 
+import {
+  createDefaultModule,
+  createDefaultSharedModule,
+  type DefaultSharedModuleContext,
+  type LangiumServices,
+  type LangiumSharedServices,
+  type PartialLangiumServices,
 } from 'langium/lsp';
 
-import { 
-    RemoteServiceDefinitionGeneratedModule,
-    RemoteServiceRESTGeneratedModule, 
-    RemoteServiceDescriptionGeneratedSharedModule,
+import {
+  RemoteServiceDefinitionGeneratedModule,
+  RemoteServiceRESTGeneratedModule,
+  RemoteServicePersistenceGeneratedModule,
+  RemoteServiceDescriptionGeneratedSharedModule,
 } from './generated/module.js';
-import { 
-    RemoteServiceDescriptionValidator, 
-    registerValidationChecks 
+import {
+  RemoteServiceDescriptionValidator,
+  registerValidationChecks,
 } from './remote-service-description-validator.js';
 import { RemoteServiceRESTScopeComputation } from './remote-service-scope.js';
 
@@ -23,33 +24,47 @@ import { RemoteServiceRESTScopeComputation } from './remote-service-scope.js';
  * Declaration of custom services - add your own service classes here.
  */
 export type RemoteServiceDescriptionAddedServices = {
-    validation: {
-        RemoteServiceDescriptionValidator: RemoteServiceDescriptionValidator
-    }
-}
+  validation: {
+    RemoteServiceDescriptionValidator: RemoteServiceDescriptionValidator;
+  };
+};
 
 /**
  * Union of Langium default services and your custom services - use this as constructor parameter
  * of custom service classes.
  */
-export type RemoteServiceDescriptionServices = LangiumServices & RemoteServiceDescriptionAddedServices
+export type RemoteServiceDescriptionServices = LangiumServices &
+  RemoteServiceDescriptionAddedServices;
 
 /**
  * Dependency injection module that overrides Langium default services and contributes the
  * declared custom services. The Langium defaults can be partially specified to override only
  * selected services, while the custom services must be fully specified.
  */
-export const RemoteServiceDescriptionModule: Module<RemoteServiceDescriptionServices, PartialLangiumServices & RemoteServiceDescriptionAddedServices> = {
-    validation: {
-        RemoteServiceDescriptionValidator: () => new RemoteServiceDescriptionValidator()
-    }
+export const RemoteServiceDescriptionModule: Module<
+  RemoteServiceDescriptionServices,
+  PartialLangiumServices & RemoteServiceDescriptionAddedServices
+> = {
+  validation: {
+    RemoteServiceDescriptionValidator: () =>
+      new RemoteServiceDescriptionValidator(),
+  },
 };
 
-export const RemoteServiceRESTModule: Module<RemoteServiceDescriptionServices, PartialLangiumServices> = {
-    references: {
-        ScopeComputation: (services) => new RemoteServiceRESTScopeComputation(services),
-    },
-}
+export const RemoteServiceRESTModule: Module<
+  RemoteServiceDescriptionServices,
+  PartialLangiumServices
+> = {
+  references: {
+    ScopeComputation: (services) =>
+      new RemoteServiceRESTScopeComputation(services),
+  },
+};
+
+export const RemoteServicePersistenceModule: Module<
+  RemoteServiceDescriptionServices,
+  PartialLangiumServices
+> = {};
 
 /**
  * Create the full set of services required by Langium.
@@ -66,32 +81,48 @@ export const RemoteServiceRESTModule: Module<RemoteServiceDescriptionServices, P
  * @param context Optional module context with the LSP connection
  * @returns An object wrapping the shared services and the language-specific services
  */
-export function createRemoteServiceDescriptionServices(context: DefaultSharedModuleContext): {
-    shared: LangiumSharedServices,
-    RemoteServiceDefinition: RemoteServiceDescriptionServices
-    RemoteServiceREST: RemoteServiceDescriptionServices
+export function createRemoteServiceDescriptionServices(
+  context: DefaultSharedModuleContext
+): {
+  shared: LangiumSharedServices;
+  RemoteServiceDefinition: RemoteServiceDescriptionServices;
+  RemoteServiceREST: RemoteServiceDescriptionServices;
+  RemoteServicePersistence: RemoteServiceDescriptionServices;
 } {
-    const shared = inject(
-        createDefaultSharedModule(context),
-        RemoteServiceDescriptionGeneratedSharedModule
-    );
-    const RemoteServiceDefinition = inject(
-        createDefaultModule({ shared }),
-        RemoteServiceDefinitionGeneratedModule,
-        RemoteServiceDescriptionModule
-    );
-    const RemoteServiceREST = inject(
-        createDefaultModule({ shared }),
-        RemoteServiceRESTGeneratedModule,
-        RemoteServiceDescriptionModule,
-        RemoteServiceRESTModule
-    )
+  const shared = inject(
+    createDefaultSharedModule(context),
+    RemoteServiceDescriptionGeneratedSharedModule
+  );
+  const RemoteServiceDefinition = inject(
+    createDefaultModule({ shared }),
+    RemoteServiceDefinitionGeneratedModule,
+    RemoteServiceDescriptionModule
+  );
+  const RemoteServiceREST = inject(
+    createDefaultModule({ shared }),
+    RemoteServiceRESTGeneratedModule,
+    RemoteServiceDescriptionModule,
+    RemoteServiceRESTModule
+  );
+  const RemoteServicePersistence = inject(
+    createDefaultModule({ shared }),
+    RemoteServicePersistenceGeneratedModule,
+    RemoteServiceDescriptionModule,
+    RemoteServicePersistenceModule
+  );
 
-    shared.ServiceRegistry.register(RemoteServiceDefinition);
-    shared.ServiceRegistry.register(RemoteServiceREST);
+  shared.ServiceRegistry.register(RemoteServiceDefinition);
+  shared.ServiceRegistry.register(RemoteServiceREST);
+  shared.ServiceRegistry.register(RemoteServicePersistence);
 
-    registerValidationChecks(RemoteServiceDefinition);
-    registerValidationChecks(RemoteServiceREST);
+  registerValidationChecks(RemoteServiceDefinition);
+  registerValidationChecks(RemoteServiceREST);
+  registerValidationChecks(RemoteServicePersistence);
 
-    return { shared, RemoteServiceDefinition, RemoteServiceREST };
+  return {
+    shared,
+    RemoteServiceDefinition,
+    RemoteServiceREST,
+    RemoteServicePersistence,
+  };
 }

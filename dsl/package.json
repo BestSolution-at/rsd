@@ -79,6 +79,15 @@
                 ],
                 "extensions": [".rrsd"],
                 "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "remote-service-persistence",
+                "aliases": [
+                    "Remote Service Persistence",
+                    "remote-service-persistence"
+                ],
+                "extensions": [".rom"],
+                "configuration": "./language-configuration.json"
             }
         ],
         "grammars": [
@@ -91,6 +100,11 @@
                 "language": "remote-service-rest",
                 "scopeName": "source.remote-service-rest",
                 "path": "syntaxes/remote-service-rest.tmLanguage.json"
+            },
+            {
+                "language": "remote-service-persistence",
+                "scopeName": "source.remote-service-persistence",
+                "path": "syntaxes/remote-service-persistence.tmLanguage.json"
             }
         ]
     },

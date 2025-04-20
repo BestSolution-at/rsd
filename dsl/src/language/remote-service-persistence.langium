@@ -1,31 +1,37 @@
 grammar RemoteServicePersistence
 
 entry RSDPersistenceModel:
-    enums += PEnumType*
-    scalars += PScalarType*
-    entities += PEntity+
+    enums+=PEnumType*
+    scalars+=PScalarType*
+    mixins+=PMixinEntity*
+    entities+=PEntity+
 ;
 
 PScalarType:
-    doc = (SL_DOC_COMMENT|ML_DOC_COMMENT)?
+    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'scalar' name=ID ';';
 
 PBuiltinType returns string:
     'boolean'|'short'|'int'|'string'|'float'|'double'|'long'|'local-date'|'local-date-time'|'zoned-date-time';
 
 PEnumType:
-    doc = (SL_DOC_COMMENT|ML_DOC_COMMENT)?
+    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'enum' name=ID '='
-        entries += PEnumEntry ( '|' entries += PEnumEntry )*
+        entries+=PEnumEntry ( '|' entries+=PEnumEntry )*
     ';';
 
 PEnumEntry:
     name=ID ('=' (value=INT|STRING))?
 ;
 
+PMixinEntity:
+    'mixin' name=ID '{'
+    '}'
+;
+
 PEntity:
     'entity' name=ID '{'
-
+        properties+=(PValueProperty|PReferenceProperty)*
     '}'
 ;
 
@@ -38,13 +44,15 @@ PValueTypeRef:
 ;
 
 PValueProperty:
-    'val' name = ID ':' type=PValueTypeRef array?='[]'? optional?='?'? 'as' name=ID
+    'val' name=ID ':' type=PValueTypeRef array?='[]'? optional?='?'? 'as' columnName=ID
 ;
 
 PReferenceProperty:
-    ('contains' name=ID ':' type=[PEntity:ID] array?='[]'? optional?='?'? )
+    ('one-to-many' name=ID ':' type=[PEntity:ID] ('on' propName=ID)? )
     |
-    ('refs' name=ID ':' type=[PEntity:ID] optional?='?'?)
+    ('many-to-one' name=ID ':' type=[PEntity:ID] 'as' columnName=ID )
+    |
+    ('one-to-one' name=ID ':' type=[PEntity:ID] ( ('on' propName=ID) | ('as' columnName=ID) ))
 ;
 
 hidden terminal WS: /\s+/;

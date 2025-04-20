@@ -15,7 +15,8 @@
     },
     "include": [
         "syntaxes/remote-service-definition.monarch.ts",
-        "syntaxes/remote-service-rest.monarch.ts"
+        "syntaxes/remote-service-rest.monarch.ts",
+        "syntaxes/remote-service-persistence.monarch.ts",
     ],
     "exclude": ["out", "node_modules"]
 }

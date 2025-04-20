@@ -22,6 +22,17 @@
             "monarch": {
                 "out": "syntaxes/remote-service-rest.monarch.ts"
             }
+        },
+        {
+            "id": "remote-service-persistence",
+            "grammar": "src/language/remote-service-persistence.langium",
+            "fileExtensions": [".rom"],
+            "textMate": {
+                "out": "syntaxes/remote-service-persistence.tmLanguage.json"
+            },
+            "monarch": {
+                "out": "syntaxes/remote-service-persistence.monarch.ts"
+            }
         }
     ],
     "out": "src/language/generated"
