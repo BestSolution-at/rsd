@@ -24,7 +24,7 @@ export function generateServiceUtils(
         import java.util.stream.Collectors;
         import java.util.stream.Stream;
 
-        import at.bestsolution.quti.client.jdkhttp.impl.model._JsonUtils;
+        import ${packageName}.model._JsonUtils;
         import jakarta.json.Json;
         import jakarta.json.JsonNumber;
         import jakarta.json.JsonObject;

@@ -24,6 +24,7 @@ import { generateUnion } from './union.js';
 import { generateResource } from './resource.js';
 import { generateResponseBuilder } from './response-builder.js';
 import { generateRestUtils } from './rest-utils.js';
+import { generateNillable } from './nillable-impl.js';
 
 export function generate(
   model: MResolvedRSDModel,
@@ -44,6 +45,7 @@ export function generate(
   );
   result.push(generateBase(artifactConfig));
   result.push(generateJsonUtils(artifactConfig));
+  result.push(generateNillable(artifactConfig));
   result.push(
     ...model.services.flatMap((e) => generateResource(e, artifactConfig))
   );

@@ -6,9 +6,9 @@ import {
   JavaServerJakartaWSGeneratorConfig,
   toPath,
 } from '../java-gen-utils.js';
-import { generateJsonUtilsContent } from '../java-model-json/json-utils.js';
+import { generateNillableContent } from '../java-model-json/nillable-impl.js';
 
-export function generateJsonUtils(
+export function generateNillable(
   artifactConfig: JavaServerJakartaWSGeneratorConfig
 ): Artifact {
   const packageName = `${artifactConfig.rootPackageName}.rest.model`;
@@ -16,13 +16,12 @@ export function generateJsonUtils(
   const importCollector = new JavaImportsCollector(packageName);
   const fqn = importCollector.importType.bind(importCollector);
 
-  const node = generateJsonUtilsContent(
+  const node = generateNillableContent(
     fqn,
     `${artifactConfig.rootPackageName}.service.model`
   );
-
   return {
-    name: '_JsonUtils.java',
+    name: '_NillableImpl.java',
     content: toString(
       generateCompilationUnit(packageName, importCollector, node),
       '\t'

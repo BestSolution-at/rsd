@@ -22,6 +22,7 @@ import { generateJsonUtils } from './json-utils.js';
 import { generateUnion } from './union.js';
 import { generateService } from './service.js';
 import { generateServiceUtils } from './service-utils.js';
+import { generateNillable } from './nillable-impl.js';
 
 export function generate(
   model: MResolvedRSDModel,
@@ -40,6 +41,7 @@ export function generate(
   const result: Artifact[] = [];
   result.push(generateClient(model, generatorConfig, artifactConfig));
   result.push(generateBase(artifactConfig));
+  result.push(generateNillable(artifactConfig));
   result.push(generateJsonUtils(artifactConfig));
   result.push(generateServiceUtils(artifactConfig));
   result.push(
