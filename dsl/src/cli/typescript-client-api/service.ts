@@ -42,7 +42,7 @@ function generateServiceContent(
   node.indent((classBody) => {
     s.operations.forEach((o) => {
       const parameters = o.parameters.map((p) => toParameter(p, config, fqn));
-      var Result = fqn('Result:./_type-utils.ts');
+      var Result = fqn('Result:./_result-utils.ts');
       classBody.append(
         `${o.name}(${parameters.join(', ')}): Promise<${Result}<${toResultType(
           o.resultType,
@@ -71,7 +71,7 @@ function toResultType(
   fqn: (type: string) => string
 ) {
   if (result === undefined) {
-    return fqn('VoidType:./_type-utils.ts');
+    return fqn('VoidType:./_result-utils.ts');
   }
 
   let type: string;

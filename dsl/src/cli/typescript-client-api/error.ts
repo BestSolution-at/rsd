@@ -40,8 +40,9 @@ function generateErrorsContent(
     NL,
     NL
   );
+  const RSDError = fqn('RSDError:./_result-utils.ts');
   node.append(
-    'export function isRSDError(value: unknown): value is RSDError<ErrorType> {',
+    `export function isRSDError(value: unknown): value is ${RSDError}<ErrorType> {`,
     NL
   );
   node.indent((mBody) => {
@@ -60,7 +61,7 @@ function generateErrorsContent(
   });
   node.append('}', NL, NL);
   errors.forEach((e) => {
-    const RSDError = fqn('RSDError:./_type-utils.ts');
+    const RSDError = fqn('RSDError:./_result-utils.ts');
     node.append(
       `export type ${e.name}Error = ${RSDError}<'${e.name}'> & { message: string };`,
       NL

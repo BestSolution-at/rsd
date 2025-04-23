@@ -329,7 +329,7 @@ function handleErrorResult(
     struct.append('message: await $response.text(),', NL);
   });
   node.append('} as const;', NL);
-  const ERR = `${fqn(`api:${config.apiNamespacePath}`)}.utils.ERR`;
+  const ERR = `${fqn(`api:${config.apiNamespacePath}`)}.result.ERR`;
   const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts');
   node.append(
     `return ${safeExecute}(${ERR}(err), () => onError?.('${o.name}', err));`,
@@ -345,9 +345,9 @@ function handleOkResult(
 ) {
   const node = new CompositeGeneratorNode();
 
-  const OK = `${fqn(`api:${config.apiNamespacePath}`)}.utils.OK`;
+  const OK = `${fqn(`api:${config.apiNamespacePath}`)}.result.OK`;
   if (o.resultType === undefined) {
-    const Void = `${fqn(`api:${config.apiNamespacePath}`)}.utils.Void`;
+    const Void = `${fqn(`api:${config.apiNamespacePath}`)}.result.Void`;
     const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts');
     node.append(
       `return ${safeExecute}(${OK}(${Void}), () => onSuccess?.('${o.name}', ${Void}));`,
