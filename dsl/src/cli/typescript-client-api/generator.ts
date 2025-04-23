@@ -23,6 +23,7 @@ import { generateErrors } from './error.js';
 import { generateService } from './service.js';
 import { generateModelIndex } from './model-index.js';
 import { generateServiceIndex } from './service-index.js';
+import { generateApiIndex } from './api-index.js';
 
 function generate(
   model: MResolvedRSDModel,
@@ -47,6 +48,7 @@ function generate(
   result.push(...model.services.map((s) => generateService(s, artifactConfig)));
   result.push(generateModelIndex(model, artifactConfig));
   result.push(generateServiceIndex(model, artifactConfig));
+  result.push(generateApiIndex(artifactConfig));
   return result;
 }
 

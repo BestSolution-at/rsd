@@ -45,7 +45,7 @@ function ServicePropsContent(fqn: (t: string) => string) {
       l2.append(
         `onError?: (method: string, err: ${fqn(
           'api:../index.ts'
-        )}.utils.RSDError<T>) => void;`,
+        )}.result.RSDError<T>) => void;`,
         NL
       );
       l2.append('onCatch?: (method: string, err: unknown) => void;', NL);
