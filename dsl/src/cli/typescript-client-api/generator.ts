@@ -24,6 +24,7 @@ import { generateService } from './service.js';
 import { generateModelIndex } from './model-index.js';
 import { generateServiceIndex } from './service-index.js';
 import { generateApiIndex } from './api-index.js';
+import { generateResultUtils } from './result-utils.js';
 
 function generate(
   model: MResolvedRSDModel,
@@ -49,6 +50,7 @@ function generate(
   result.push(generateModelIndex(model, artifactConfig));
   result.push(generateServiceIndex(model, artifactConfig));
   result.push(generateApiIndex(artifactConfig));
+  result.push(generateResultUtils(artifactConfig));
   return result;
 }
 
