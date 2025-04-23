@@ -7,6 +7,7 @@ import {
 import { MResolvedRSDModel } from '../model.js';
 import { isTypescriptFetchClientGeneratorConfig } from '../typescript-gen-utils.js';
 import { generateService } from './service.js';
+import { generateFetchTypeUtils } from './fetch-type-utils.js';
 
 function generate(
   model: MResolvedRSDModel,
@@ -22,7 +23,9 @@ function generate(
 
     return [];
   }
-  return model.services.map((s) => generateService(s, artifactConfig));
+  const rv = model.services.map((s) => generateService(s, artifactConfig));
+  rv.push(generateFetchTypeUtils(artifactConfig));
+  return rv;
 }
 
 export default {
