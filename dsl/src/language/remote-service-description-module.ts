@@ -18,7 +18,10 @@ import {
   RemoteServiceDescriptionValidator,
   registerValidationChecks,
 } from './remote-service-description-validator.js';
-import { RemoteServiceRESTScopeComputation } from './remote-service-scope.js';
+import {
+  RemoteServicePersistenceScopeComputation,
+  RemoteServiceRESTScopeComputation,
+} from './remote-service-scope.js';
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -64,7 +67,12 @@ export const RemoteServiceRESTModule: Module<
 export const RemoteServicePersistenceModule: Module<
   RemoteServiceDescriptionServices,
   PartialLangiumServices
-> = {};
+> = {
+  references: {
+    ScopeComputation: (services) =>
+      new RemoteServicePersistenceScopeComputation(services),
+  },
+};
 
 /**
  * Create the full set of services required by Langium.

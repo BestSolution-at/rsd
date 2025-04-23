@@ -30,9 +30,15 @@ PMixinEntity:
 ;
 
 PEntity:
-    'entity' name=ID '{'
-        properties+=(PValueProperty|PReferenceProperty)*
+    'entity' name=ID ('extends' parent=[PEntity:ID]'('(descrimatorValue=STRING|INT)')')? '{'
+        properties+=PProperty*
+        uniques+=PUniqueConstraint*
+        descrimination=PDescrimination?
     '}'
+;
+
+PProperty:
+    PValueProperty|PKeyProperty|PRevProperty|PReferenceProperty
 ;
 
 PValueType:
@@ -44,15 +50,44 @@ PValueTypeRef:
 ;
 
 PValueProperty:
-    'val' name=ID ':' type=PValueTypeRef array?='[]'? optional?='?'? 'as' columnName=ID
+    name=ID ':' type=PValueTypeRef array?='[]'? optional?='?'? 'as' propName=ID
 ;
 
+PKeyProperty:
+    '@id' name=ID ':' type=PValueTypeRef array?='[]'? optional?='?'? 'as' propName=ID
+;
+
+PRevProperty:
+    '@rev' name=ID ':' type=PValueTypeRef array?='[]'? optional?='?'? 'as' propName=ID
+;
+
+PUniqueConstraint:
+    'unique-key' name=ID '(' props+=[PProperty:ID] (',' props+=[PProperty:ID])* ')'
+;
+
+PDescrimination:
+    'descriminated-by' name=ID ':' columnType=('string'|'int') 'as' propName=ID;
+
 PReferenceProperty:
-    ('one-to-many' name=ID ':' type=[PEntity:ID] ('on' propName=ID)? )
+    POneToManyProperty
     |
-    ('many-to-one' name=ID ':' type=[PEntity:ID] 'as' columnName=ID )
+    PManyToOneProperty
     |
-    ('one-to-one' name=ID ':' type=[PEntity:ID] ( ('on' propName=ID) | ('as' columnName=ID) ))
+    POneToOneProperty
+;
+
+POneToManyProperty:
+    ('one-to-many' type=[PEntity:ID] ('.' ref=[PManyToOneProperty:ID])? 'as' propName=ID )
+;
+
+PManyToOneProperty:
+    ('many-to-one' name=ID ':' type=[PEntity:ID] 'as' propName=ID )
+;
+
+POneToOneProperty:
+    ('one-to-one' name=ID ':' type=[PEntity:ID] 'as' propName=ID )
+    |
+    ('one-to-one' type=[PEntity:ID] '.' ref=ID 'as' propName=ID )
 ;
 
 hidden terminal WS: /\s+/;
