@@ -20,5 +20,6 @@ export function generateApiIndex(config: TypescriptClientAPIGeneratorConfig) {
 function generateApiIndexContent() {
   const node = new CompositeGeneratorNode();
   node.append(`export * as api from './index-namespaces.ts';`, NL);
+  node.append(`export { $ } from './_result-utils.ts';`, NL);
   return node;
 }

@@ -22,39 +22,77 @@ export function generateResultUtils(
 
 function generateResultUtilsContent(fqn: (t: string) => string) {
   const node = new CompositeGeneratorNode();
-  node.append(`export const None: unique symbol = Symbol('None');`, NL);
-  node.append('export type NoneType = typeof None;', NL);
-  node.append(`export const Void: unique symbol = Symbol('Void');`, NL);
-  node.append('export type VoidType = typeof Void;', NL, NL);
+  node.append(`const _Void: unique symbol = Symbol('Void');`, NL);
+  node.append('export type VoidType = { _: typeof _Void };', NL);
+  node.append(
+    'export const Void: VoidType = Object.freeze({ _: _Void });',
+    NL,
+    NL
+  );
 
-  node.append('type Ok<T> = readonly [ok: T, error: NoneType];', NL);
-  node.append('type Err<E> = readonly [ok: NoneType, error: E];', NL);
-  node.append('export type Result<T, E> = Ok<T> | Err<E>;', NL, NL);
+  node.append(
+    'export type NonUndefined = NonNullable<unknown> | null;',
+    NL,
+    NL
+  );
 
-  node.append('export type RSDError<T> = {', NL);
+  node.append(
+    'export type Ok<T extends NonUndefined> = readonly [ok: T, err: null];',
+    NL
+  );
+  node.append(
+    'export type Err<E extends RSDError> = readonly [ok: undefined, err: E];',
+    NL
+  );
+  node.append(
+    'export type Result<T extends NonUndefined, E extends RSDError> = Ok<T> | Err<E>;',
+    NL,
+    NL
+  );
+
+  node.append('export type RSDError<T = string> = {', NL);
   node.indent((block) => {
     block.append('_type: T;', NL);
+  });
+  node.append('};', NL, NL);
+
+  node.append(
+    'export function isOk<T extends NonUndefined, E extends RSDError>(value: Result<T, E>): value is Ok<T> {',
+    NL
+  );
+  node.indent((mBody) => {
+    mBody.append('const [err] = value;', NL);
+    mBody.append('return err === null;', NL);
   });
   node.append('}', NL, NL);
 
   node.append(
-    'export function isOk<T, E>(value: Result<T, E>): value is [T, NoneType] {',
+    'export function OK<T extends NonUndefined>(value: T): Ok<T> {',
     NL
   );
   node.indent((mBody) => {
-    mBody.append('return value[0] !== None;', NL);
+    mBody.append('return [value, null];', NL);
   });
   node.append('}', NL, NL);
 
-  node.append('export function OK<T>(value: T): Ok<T> {', NL);
+  node.append('export function ERR<E extends RSDError>(err: E): Err<E> {', NL);
   node.indent((mBody) => {
-    mBody.append('return [value, None];', NL);
+    mBody.append('return [undefined, err];', NL);
   });
   node.append('}', NL, NL);
 
-  node.append('export function ERR<E>(err: E): Err<E> {', NL);
+  node.append(
+    'export async function $<X extends NonUndefined, Y extends RSDError>(source: Promise<Result<X, Y>>): Promise<X> {',
+    NL
+  );
   node.indent((mBody) => {
-    mBody.append('return [None, err];', NL);
+    mBody.append('const [o, r] = await source;', NL);
+    mBody.append('if (r !== null) {', NL);
+    mBody.indent((block) => {
+      block.append('throw r;', NL);
+    });
+    mBody.append('}', NL);
+    mBody.append('throw o;', NL);
   });
   node.append('}', NL, NL);
 
