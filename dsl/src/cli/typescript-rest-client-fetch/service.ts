@@ -100,7 +100,15 @@ function generateServiceContent(
         code.append('} catch(e) {', NL);
         code.indent((catchBlock) => {
           catchBlock.append(`onCatch?.('${o.name}', e)`, NL);
-          catchBlock.append('throw e;', NL);
+          catchBlock.append(
+            `const ee = e instanceof Error ? e : new Error('', { cause: e });`,
+            NL
+          );
+          catchBlock.append(
+            `const err = { _type: '_Native', message: ee.message, error: ee, } as const;`,
+            NL
+          );
+          catchBlock.append('return api.result.ERR(err);', NL);
         });
         code.append('} finally {', NL);
         code.indent((finallyBlock) => {
@@ -310,8 +318,10 @@ function generateRemoteInvoke(
 
   node.append(
     NL,
-    'throw new Error(`Unsupported return status: ${$response.status}. The status text was: ${$response.statusText}`);'
+    `const err = { _type: '_Status', message: $response.statusText, status: $response.status, } as const;`,
+    NL
   );
+  node.append('return api.result.ERR(err);');
 
   return node;
 }

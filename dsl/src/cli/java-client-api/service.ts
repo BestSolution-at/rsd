@@ -42,7 +42,7 @@ export function generateService(
       }
     });
   });
-  node.append('}');
+  node.append('}', NL);
 
   return {
     name: `${s.name}Service.java`,

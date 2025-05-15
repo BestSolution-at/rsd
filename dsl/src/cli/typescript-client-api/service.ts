@@ -58,10 +58,15 @@ function generateServiceContent(
 }
 
 function toErrorType(errors: string[], fqn: (type: string) => string) {
+  const Status = fqn(`StatusRSDError:./Errors.ts`);
+  const Native = fqn(`NativeRSDError:./Errors.ts`);
   if (errors.length === 0) {
-    return 'never';
+    return `${Status} | ${Native}`;
   } else {
-    return errors.map((e) => fqn(`${e}Error:./Errors.ts`)).join(' | ');
+    return (
+      errors.map((e) => fqn(`${e}Error:./Errors.ts`)).join(' | ') +
+      ` | ${Status} | ${Native}`
+    );
   }
 }
 

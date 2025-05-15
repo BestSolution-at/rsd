@@ -107,7 +107,7 @@ export function generateNillableContent(
     body.append('}', NL);
   });
 
-  node.append('}');
+  node.append('}', NL);
 
   return node;
 }

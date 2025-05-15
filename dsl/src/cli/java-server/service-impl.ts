@@ -72,7 +72,7 @@ function generateServiceContent(
       classBody.append('@Override', NL);
       classBody.append(
         generateServiceSignature(o, o.parameters, artifactConfig, fqn),
-        '{',
+        ' {',
         NL
       );
       classBody.indent((methodBody) => {
@@ -101,7 +101,7 @@ function generateServiceContent(
           NL
         );
       });
-      classBody.append('}', NL);
+      classBody.append('}', NL, NL);
     });
   });
   node.append('}', NL);

@@ -267,7 +267,7 @@ function generateJSONBuilder(prop: MResolvedBaseProperty): string {
   ) {
     return `$builder.add("${prop.name}", ${prop.name}.toString())`;
   } else {
-    return `$builder.add("${prop.name}", ((_BaseDataImpl)${prop.name}).data)`;
+    return `$builder.add("${prop.name}", ((_BaseDataImpl) ${prop.name}).data)`;
   }
 }
 

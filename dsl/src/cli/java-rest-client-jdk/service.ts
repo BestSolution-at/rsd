@@ -77,7 +77,8 @@ export function generateService(
   return {
     name: `${s.name}ServiceImpl.java`,
     content: toString(
-      generateCompilationUnit(packageName, importCollector, node)
+      generateCompilationUnit(packageName, importCollector, node),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };
@@ -105,15 +106,15 @@ function generateOpertationMethod(
   if (o.errors.length > 0) {
     node.appendNewLine();
     node.indent((throwBody) => {
-      throwBody.append(
-        'throws ',
-        fqn(`${artifactConfig.rootPackageName}.${o.errors[0]}Exception`),
-        o.errors.length > 1 ? ',' : ''
-      );
-      if (o.errors.length > 1) {
-        throwBody.appendNewLine();
-      }
       throwBody.indent((other) => {
+        other.append(
+          'throws ',
+          fqn(`${artifactConfig.rootPackageName}.${o.errors[0]}Exception`),
+          o.errors.length > 1 ? ',' : ''
+        );
+        if (o.errors.length > 1) {
+          other.appendNewLine();
+        }
         o.errors.slice(1).forEach((e, idx, arr) => {
           other.append(
             fqn(`${artifactConfig.rootPackageName}.${e}Exception`),
@@ -146,11 +147,16 @@ function generateOpertationMethod(
         }
       });
     methodBody.append(`var $path = "${endpoint}".formatted(`, NL);
-    methodBody.indent((formatted) => {
-      variables.forEach((v, idx) =>
-        formatted.append(`${v}${idx + 1 < variables.length ? ',' : ''}`, NL)
-      );
-    });
+    methodBody.indent((tmp) =>
+      tmp.indent((formatted) => {
+        variables.forEach((v, idx) =>
+          formatted.append(
+            `${v}${idx + 1 < variables.length ? ',' : ''}`,
+            idx + 1 < variables.length ? NL : ''
+          )
+        );
+      })
+    );
     methodBody.append(');', NL);
     methodBody.appendNewLine();
     const hasQueryParams = allParameters.find(
@@ -163,14 +169,16 @@ function generateOpertationMethod(
         .filter((p) => p.meta?.rest?.source === 'query')
         .forEach((p, idx, arr) => {
           const last = idx + 1 === arr.length;
-          methodBody.indent((map) => {
-            map.append(
-              `"${
-                p.meta?.rest?.name ?? p.name.toLowerCase()
-              }",ServiceUtils.toQueryString(${p.name})${last ? '' : ','}`,
-              NL
-            );
-          });
+          methodBody.indent((tmp) =>
+            tmp.indent((map) => {
+              map.append(
+                `"${
+                  p.meta?.rest?.name ?? p.name.toLowerCase()
+                }", ServiceUtils.toQueryString(${p.name})${last ? '' : ','}`,
+                last ? '' : NL
+              );
+            })
+          );
         });
       methodBody.append(');', NL);
       methodBody.append(
@@ -190,14 +198,16 @@ function generateOpertationMethod(
         .forEach((p, idx, arr) => {
           const last = idx + 1 === arr.length;
           const Objects = fqn('java.util.Objects');
-          methodBody.indent((map) => {
-            map.append(
-              `"${
-                p.meta?.rest?.name ?? p.name.toLowerCase()
-              }",${Objects}.toString(${p.name})${last ? '' : ','}`,
-              NL
-            );
-          });
+          methodBody.indent((tmp) =>
+            tmp.indent((map) => {
+              map.append(
+                `"${
+                  p.meta?.rest?.name ?? p.name.toLowerCase()
+                }", ${Objects}.toString(${p.name})${last ? '' : ','}`,
+                last ? '' : NL
+              );
+            })
+          );
         });
       methodBody.append(');', NL);
       methodBody.append(
@@ -226,7 +236,7 @@ function generateOpertationMethod(
           );
         } else {
           methodBody.append(
-            `var $body = ${BodyPublishers}.ofString(String.format("\\"%s\\"",${bodyParams[0].name}));`,
+            `var $body = ${BodyPublishers}.ofString(String.format("\\"%s\\"", ${bodyParams[0].name}));`,
             NL
           );
         }
@@ -285,7 +295,7 @@ function generateOpertationMethod(
           `${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`
         );
         methodBody.append(
-          `var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString($builder.build(),false));`,
+          `var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString($builder.build(), false));`,
           NL
         );
       }
@@ -342,7 +352,7 @@ function generateOpertationMethod(
           tryBlock.append(
             `${idx === 0 ? '' : ' else '}if ($response.statusCode() == ${
               r.statusCode
-            } ) {`,
+            }) {`,
             NL
           );
           tryBlock.indent((resBlock) => {
@@ -395,11 +405,15 @@ function generateOperation(
   if (idx === -1) {
     generateOpertationMethod(node, o, o.parameters, artifactConfig, fqn, path);
   } else {
+    let first = true;
     for (idx; idx <= o.parameters.length; idx++) {
       const params = [...o.parameters];
       params.length = idx;
+      if (!first) {
+        node.appendNewLine();
+      }
       generateOpertationMethod(node, o, params, artifactConfig, fqn, path);
-      node.appendNewLine();
+      first = false;
     }
   }
 }

@@ -59,7 +59,7 @@ export function generateRecordContent(
       );
     }
   });
-  node.append('}');
+  node.append('}', NL);
   return node;
 }
 

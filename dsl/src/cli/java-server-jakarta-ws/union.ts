@@ -32,7 +32,8 @@ export function generateUnion(
             `${artifactConfig.rootPackageName}.service.model`,
             fqn
           )
-        )
+        ),
+        '\t'
       ),
       path: toPath(artifactConfig.targetFolder, packageName),
     },

@@ -21,6 +21,9 @@ export function generateResultUtils(
 }
 
 function generateResultUtilsContent(fqn: (t: string) => string) {
+  fqn(`isRecord:./_type-utils.ts`);
+  fqn(`checkProp:./_type-utils.ts`);
+  fqn(`isString:./_type-utils.ts`);
   const node = new CompositeGeneratorNode();
   node.append(`const _Void: unique symbol = Symbol('Void');`, NL);
   node.append('export type VoidType = { _: typeof _Void };', NL);
@@ -50,11 +53,23 @@ function generateResultUtilsContent(fqn: (t: string) => string) {
     NL
   );
 
-  node.append('export type RSDError<T = string> = {', NL);
+  node.append('export type RSDError<T extends string = string> = {', NL);
   node.indent((block) => {
     block.append('_type: T;', NL);
   });
   node.append('};', NL, NL);
+
+  node.append(
+    'export function isRSDError(value: unknown): value is RSDError {',
+    NL
+  );
+  node.indent((block) => {
+    block.append(
+      `return isRecord(value) && checkProp(value, '_type', isString);`,
+      NL
+    );
+  });
+  node.append('}', NL, NL);
 
   node.append(
     'export function isOk<T extends NonUndefined, E extends RSDError>(value: Result<T, E>): value is Ok<T> {',

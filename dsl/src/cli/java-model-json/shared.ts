@@ -359,12 +359,12 @@ function generatePatchPropertyAccessor_NoRecord(
         node.indent((methodBody) => {
           if (property.array) {
             methodBody.append(
-              `return _JsonUtils.mapNilLiterals(data, "${property.name}", ${property.type}::valueOf );`,
+              `return _JsonUtils.mapNilLiterals(data, "${property.name}", ${property.type}::valueOf);`,
               NL
             );
           } else {
             methodBody.append(
-              `return _JsonUtils.mapNilLiteral(data, "${property.name}", ${property.type}::valueOf );`,
+              `return _JsonUtils.mapNilLiteral(data, "${property.name}", ${property.type}::valueOf);`,
               NL
             );
           }
@@ -381,12 +381,12 @@ function generatePatchPropertyAccessor_NoRecord(
       node.indent((methodBody) => {
         if (property.array) {
           methodBody.append(
-            `return _JsonUtils.mapNilLiterals(data, "${property.name}", ${Type}::valueOf )`,
+            `return _JsonUtils.mapNilLiterals(data, "${property.name}", ${Type}::valueOf)`,
             NL
           );
         } else {
           methodBody.append(
-            `return _JsonUtils.mapNilLiteral(data, "${property.name}", ${Type}::valueOf )`,
+            `return _JsonUtils.mapNilLiteral(data, "${property.name}", ${Type}::valueOf)`,
             NL
           );
         }
@@ -420,12 +420,12 @@ function generatePatchPropertyAccessor_NoRecord(
         node.indent((methodBody) => {
           if (property.array) {
             methodBody.append(
-              `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${Type}::of );`,
+              `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${Type}::of);`,
               NL
             );
           } else {
             methodBody.append(
-              `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${Type}::of );`,
+              `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${Type}::of);`,
               NL
             );
           }
@@ -434,12 +434,12 @@ function generatePatchPropertyAccessor_NoRecord(
         node.indent((methodBody) => {
           if (property.array) {
             methodBody.append(
-              `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${property.type}::valueOf );`,
+              `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${property.type}::valueOf);`,
               NL
             );
           } else {
             methodBody.append(
-              `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${property.type}::valueOf );`,
+              `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${property.type}::valueOf);`,
               NL
             );
           }
@@ -456,12 +456,12 @@ function generatePatchPropertyAccessor_NoRecord(
       node.indent((methodBody) => {
         if (property.array) {
           methodBody.append(
-            `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${Type}::valueOf );`,
+            `return _JsonUtils.mapOptLiterals(data, "${property.name}", ${Type}::valueOf);`,
             NL
           );
         } else {
           methodBody.append(
-            `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${Type}::valueOf );`,
+            `return _JsonUtils.mapOptLiteral(data, "${property.name}", ${Type}::valueOf);`,
             NL
           );
         }
@@ -641,7 +641,7 @@ export function generatePatchBuilderPropertyAccessor(
     if (property.array) {
       content = `$builder.add("${property.name}", _JSONUtils.toJsonObjectArray(${property.name}))`;
     } else {
-      content = `$builder.add("${property.name}", ((_BaseDataImpl)${property.name}).data)`;
+      content = `$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data)`;
     }
 
     node.indent((methodBody) => {

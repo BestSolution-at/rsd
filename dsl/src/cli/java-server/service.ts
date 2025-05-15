@@ -51,7 +51,7 @@ function generateServiceContent(
       toMethod(child, o, o.parameters, artifactConfig, fqn);
     });
   });
-  node.append('}');
+  node.append('}', NL);
   return node;
 }
 

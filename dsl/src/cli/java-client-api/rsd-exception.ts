@@ -42,7 +42,7 @@ function generateRSDExceptionTypeContent(errors: readonly MError[]) {
       classBody.append(e.name, idx + 1 < arr.length ? ',' : ';', NL);
     });
   });
-  node.append('}', NL);
+  node.append('}', NL, NL);
   return node;
 }
 
@@ -79,8 +79,8 @@ function generateRSDExceptionContent(
       });
       innerClassBody.append('}', NL);
     });
-    classBody.append('}');
+    classBody.append('}', NL);
   });
-  node.append('}');
+  node.append('}', NL);
   return node;
 }

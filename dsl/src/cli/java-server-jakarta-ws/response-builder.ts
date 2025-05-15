@@ -83,7 +83,9 @@ function generateContent(
             o.resultType.variant === 'record' ||
             o.resultType.variant === 'union'
           ) {
-            const JsonUtils = fqn('at.bestsolution.quti.rest.model._JsonUtils');
+            const JsonUtils = fqn(
+              `${artifactConfig.rootPackageName}.rest.model._JsonUtils`
+            );
             methodBody.append(
               `return ${Response}.status(${code}).entity(${JsonUtils}.toJsonString(result, false));`,
               NL
@@ -94,7 +96,7 @@ function generateContent(
               o.resultType.type === 'string'
             ) {
               const JsonUtils = fqn(
-                'at.bestsolution.quti.rest.model._JsonUtils'
+                `${artifactConfig.rootPackageName}.rest.model._JsonUtils`
               );
               methodBody.append(
                 `return ${Response}.status(${code}).entity(${JsonUtils}.encodeAsJsonString(result));`,

@@ -30,7 +30,8 @@ export function generateUnion(
           `${artifactConfig.rootPackageName}.model`,
           fqn
         )
-      )
+      ),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };

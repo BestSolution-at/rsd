@@ -133,9 +133,9 @@ export function generateClient(
         'var builderConstructor = BUILDER_CREATOR_MAP.get(clazz);',
         NL
       );
-      mBody.append('if( builderConstructor != null ) {', NL);
+      mBody.append('if (builderConstructor != null) {', NL);
       mBody.indent((block) => {
-        block.append('return (T)builderConstructor.get();', NL);
+        block.append('return (T) builderConstructor.get();', NL);
       });
       mBody.append('}', NL);
       mBody.append(
@@ -156,7 +156,7 @@ export function generateClient(
         'var serviceConstructor = SERVICE_CREATOR_MAP.get(clazz);',
         NL
       );
-      mBody.append('if( serviceConstructor != null ) {', NL);
+      mBody.append('if (serviceConstructor != null) {', NL);
       mBody.indent((block) => {
         block.append(
           'return (T) serviceConstructor.apply(this.httpClient, this.baseURI.toString());',
@@ -169,15 +169,16 @@ export function generateClient(
         NL
       );
     });
-    clBody.append('}');
+    clBody.append('}', NL);
   });
 
-  content.append('}');
+  content.append('}', NL);
 
   return {
     name: `JDK${generatorConfig.name}Client.java`,
     content: toString(
-      generateCompilationUnit(packageName, importCollector, content)
+      generateCompilationUnit(packageName, importCollector, content),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };

@@ -46,9 +46,10 @@ export function generateClient(
         NL
       );
     });
-    client.append('}', NL);
+    client.append('}', NL, NL);
     client.append(
       `public <T extends ${baseDTOType}.BaseDataBuilder<?>> T builder(Class<T> clazz);`,
+      NL,
       NL
     );
     client.append(

@@ -139,16 +139,18 @@ function _generateResource(
       if (params.length > 0) {
         if (params.length > 1) {
           cBody.append(`public ${Response} ${o.name}(`, NL);
-          cBody.indent((paramIndent) => {
-            params.forEach((p, idx, arr) => {
-              paramIndent.append(`${p}`);
-              if (idx + 1 < arr.length) {
-                paramIndent.append(',', NL);
-              } else {
-                paramIndent.append(') {', NL);
-              }
-            });
-          });
+          cBody.indent((tmp) =>
+            tmp.indent((paramIndent) => {
+              params.forEach((p, idx, arr) => {
+                paramIndent.append(`${p}`);
+                if (idx + 1 < arr.length) {
+                  paramIndent.append(',', NL);
+                } else {
+                  paramIndent.append(') {', NL);
+                }
+              });
+            })
+          );
         } else {
           cBody.append(`public ${Response} ${o.name}(${params[0]}) {`, NL);
         }
@@ -210,7 +212,7 @@ function _generateResource(
             const Type = fqn(
               `${artifactConfig.rootPackageName}.service.${e.error}Exception`
             );
-            mBody.append(`} catch(${Type} e) {`, NL);
+            mBody.append(`} catch (${Type} e) {`, NL);
             mBody.indent((inner) => {
               inner.append(
                 `return _RestUtils.toResponse(${e.statusCode}, e);`,
@@ -233,7 +235,8 @@ function _generateResource(
   return {
     name: `${toFirstUpper(s.name)}Resource.java`,
     content: toString(
-      generateCompilationUnit(packageName, importCollector, node)
+      generateCompilationUnit(packageName, importCollector, node),
+      '\t'
     ),
     path: toPath(artifactConfig.targetFolder, packageName),
   };
@@ -260,7 +263,7 @@ function okResultContent(o: MOperation, serviceParams: string[]) {
       node.append(`return responseBuilder.${o.name}(result).build();`, NL);
     } else {
       node.append(
-        `return responseBuilder.${o.name}(result,${serviceParams.join(
+        `return responseBuilder.${o.name}(result, ${serviceParams.join(
           ', '
         )}).build();`,
         NL
