@@ -16,6 +16,7 @@ import {
   computeParameterAPIType,
 } from '../java-gen-utils.js';
 import { MOperation, MParameter, MReturnType, MService } from '../model.js';
+import { toNode } from '../util.js';
 
 export function generateService(
   s: MService,
@@ -64,12 +65,45 @@ function toMethod(
   const parameters = allParameters.map((p) =>
     toParameter(p, artifactConfig, fqn)
   );
-  child.append(
-    `public ${toResultType(o.resultType, artifactConfig, fqn)} ${
-      o.name
-    }(${parameters.join(', ')})`
-  );
-  if (o.errors.length > 0) {
+  if (parameters.length <= 1) {
+    child.append(
+      toNode(
+        [
+          `public ${toResultType(o.resultType, artifactConfig, fqn)} ${
+            o.name
+          }(${parameters.join(', ')})`,
+        ],
+        false
+      )
+    );
+  } else {
+    child.append(
+      toNode([
+        `public ${toResultType(o.resultType, artifactConfig, fqn)} ${o.name}(`,
+        [
+          parameters
+            .filter((_, idx, arr) => idx + 1 < arr.length)
+            .map((p) => p + ', '),
+        ],
+      ])
+    );
+    child.indent((i1) =>
+      i1.indent((i2) => i2.append(parameters[parameters.length - 1] + ')'))
+    );
+  }
+
+  if (o.operationErrors.length > 0) {
+    child.append(
+      ' throws ' +
+        o.operationErrors
+          .map((e, idx, arr) =>
+            fqn(
+              `${artifactConfig.rootPackageName}.${o.operationErrors[0].error}Exception`
+            )
+          )
+          .join(', ')
+    );
+    /*
     child.appendNewLine();
     child.indent((outer) => {
       outer.indent((throwBody) => {
@@ -91,7 +125,7 @@ function toMethod(
           }
         });
       });
-    });
+    });*/
   }
   child.append(';', NL);
   child.appendNewLine();

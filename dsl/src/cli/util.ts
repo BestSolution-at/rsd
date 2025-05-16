@@ -18,14 +18,14 @@ export function toFirstLower(value: string) {
 
 export type IndentBlock = (string | IndentBlock)[];
 
-export function toNode(block: IndentBlock) {
+export function toNode(block: IndentBlock, endWithNewLine = true) {
   const node = new CompositeGeneratorNode();
-  block.forEach((e) => {
+  block.forEach((e, idx, arr) => {
     if (typeof e === 'string') {
-      node.append(e, NL);
+      node.append(e, endWithNewLine || idx + 1 < arr.length ? NL : '');
     } else {
       node.indent((i) => {
-        i.append(toNode(e));
+        i.append(toNode(e, true));
       });
     }
   });
