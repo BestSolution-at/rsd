@@ -3,13 +3,13 @@ import { MResolvedUnionType } from '../model.js';
 
 export function generateUnionContent(
   u: MResolvedUnionType,
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   node.append(
     `export type ${u.name} = ${u.resolved.records
       .map((r) => {
-        return fqn(`${r.name}:./${r.name}.ts`);
+        return fqn(`${r.name}:./${r.name}.ts`, true);
       })
       .join(' | ')};`,
     NL,
@@ -23,7 +23,7 @@ export function generateUnionContent(
     node.append(
       `export type ${u.name}Patch = ${u.resolved.records
         .map((r) => {
-          return fqn(`${r.name}:./${r.name}.ts`);
+          return fqn(`${r.name}:./${r.name}.ts`, true);
         })
         .join(' | ')};`,
       NL,
@@ -34,14 +34,17 @@ export function generateUnionContent(
   return node;
 }
 
-function generateTypeguard(u: MResolvedUnionType, fqn: (t: string) => string) {
+function generateTypeguard(
+  u: MResolvedUnionType,
+  fqn: (t: string, typeOnly: boolean) => string
+) {
   const node = new CompositeGeneratorNode();
   node.append(`export function is${u.name}(value: unknown) {`, NL);
   node.indent((mBody) => {
     mBody.append(
       `return ${u.resolved.records
         .map((r) => {
-          const check = fqn(`is${r.name}:./${r.name}.ts`);
+          const check = fqn(`is${r.name}:./${r.name}.ts`, false);
           return `${check}(value)`;
         })
         .join(' || ')};`,
@@ -52,9 +55,12 @@ function generateTypeguard(u: MResolvedUnionType, fqn: (t: string) => string) {
   return node;
 }
 
-function generateFromJSON(u: MResolvedUnionType, fqn: (t: string) => string) {
+function generateFromJSON(
+  u: MResolvedUnionType,
+  fqn: (t: string, typeOnly: boolean) => string
+) {
   const node = new CompositeGeneratorNode();
-  const isString = fqn('isString:../_type-utils.ts');
+  const isString = fqn('isString:../_type-utils.ts', false);
   node.append(
     `export function ${u.name}FromJSON(value: Record<string, unknown>): ${u.name} {`,
     NL
@@ -72,7 +78,7 @@ function generateFromJSON(u: MResolvedUnionType, fqn: (t: string) => string) {
         const alias = (u.descriminatorAliases ?? {})[r.name] ?? r.name;
         switchBlock.append(`case '${alias}':`, NL);
         switchBlock.indent((caseBlock) => {
-          const mapper = fqn(`${r.name}FromJSON:./${r.name}.ts`);
+          const mapper = fqn(`${r.name}FromJSON:./${r.name}.ts`, false);
           caseBlock.append(`return ${mapper}(value);`, NL);
         });
       });
@@ -91,7 +97,10 @@ function generateFromJSON(u: MResolvedUnionType, fqn: (t: string) => string) {
   return node;
 }
 
-function generateToJSON(u: MResolvedUnionType, fqn: (t: string) => string) {
+function generateToJSON(
+  u: MResolvedUnionType,
+  fqn: (t: string, typeOnly: boolean) => string
+) {
   const node = new CompositeGeneratorNode();
   node.append(
     `export function ${u.name}ToJSON(value: ${u.name}): Record<string, unknown> {`,
@@ -105,7 +114,7 @@ function generateToJSON(u: MResolvedUnionType, fqn: (t: string) => string) {
         const alias = (u.descriminatorAliases ?? {})[r.name] ?? r.name;
         switchBlock.append(`case '${alias}':`, NL);
         switchBlock.indent((caseBlock) => {
-          const mapper = fqn(`${r.name}ToJSON:./${r.name}.ts`);
+          const mapper = fqn(`${r.name}ToJSON:./${r.name}.ts`, false);
           caseBlock.append(`return ${mapper}(value);`, NL);
         });
       });

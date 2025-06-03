@@ -18,7 +18,7 @@ import { builtinToJSType } from '../typescript-gen-utils.js';
 
 export function generateRecordContent(
   t: MResolvedRecordType,
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const allProps = allResolvedRecordProperties(t);
   const node = new CompositeGeneratorNode();
@@ -73,7 +73,7 @@ function generateInlineTypeguard(
 function generateRecord(
   t: MResolvedRecordType,
   props: MResolvedBaseProperty[],
-  fqn: (t: string) => string
+  fqn: (t: string, type: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   node.append(`export type ${t.name} = {`, NL);
@@ -98,7 +98,7 @@ function generateRecord(
 function generateFromJSON(
   t: MResolvedRecordType,
   props: MResolvedBaseProperty[],
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   node.append(
@@ -108,8 +108,8 @@ function generateFromJSON(
   node.indent((fBody) => {
     props.forEach((p) => {
       if (isMKeyProperty(p) || isMRevisionProperty(p)) {
-        const propValue = fqn('propValue:../_type-utils.ts');
-        const isString = fqn('isString:../_type-utils.ts');
+        const propValue = fqn('propValue:../_type-utils.ts', false);
+        const isString = fqn('isString:../_type-utils.ts', false);
         fBody.append(
           `const ${p.name} = ${propValue}('${p.name}', value, ${isString});`,
           NL
@@ -127,9 +127,9 @@ function generateFromJSON(
         } else if (isMInlineEnumType(p.type)) {
           guard = `is${t.name}_${toFirstUpper(p.name)}`;
         } else if (p.variant === 'enum') {
-          guard = fqn(`is${p.type}:./${p.type}.ts`);
+          guard = fqn(`is${p.type}:./${p.type}.ts`, false);
         } else if (p.variant === 'scalar') {
-          guard = fqn('isString:../_type-utils.ts');
+          guard = fqn('isString:../_type-utils.ts', false);
         } else {
           guard = 'err';
         }
@@ -144,7 +144,7 @@ function generateFromJSON(
         }
 
         if (p.array) {
-          const propListValue = fqn('propListValue:../_type-utils.ts');
+          const propListValue = fqn('propListValue:../_type-utils.ts', false);
           fBody.append(
             `const ${p.name} = ${propListValue}('${p.name}', value, ${guard}`,
             allow,
@@ -152,7 +152,7 @@ function generateFromJSON(
             NL
           );
         } else {
-          const propValue = fqn('propValue:../_type-utils.ts');
+          const propValue = fqn('propValue:../_type-utils.ts', false);
           fBody.append(
             `const ${p.name} = ${propValue}('${p.name}', value, ${guard}`,
             allow,
@@ -170,12 +170,13 @@ function generateFromJSON(
           allow = ", 'null'";
         }
 
-        const guard = fqn('isRecord:../_type-utils.ts');
-        const map = fqn(`${p.type}FromJSON:./${p.type}.ts`);
+        const guard = fqn('isRecord:../_type-utils.ts', false);
+        const map = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
 
         if (p.array) {
           const propMappedListValue = fqn(
-            'propMappedListValue:../_type-utils.ts'
+            'propMappedListValue:../_type-utils.ts',
+            false
           );
           fBody.append(
             `const ${p.name} = ${propMappedListValue}('${p.name}', value, ${guard}, ${map}`,
@@ -184,7 +185,10 @@ function generateFromJSON(
             NL
           );
         } else {
-          const propMappedValue = fqn('propMappedValue:../_type-utils.ts');
+          const propMappedValue = fqn(
+            'propMappedValue:../_type-utils.ts',
+            false
+          );
           fBody.append(
             `const ${p.name} = ${propMappedValue}('${p.name}', value, ${guard}, ${map}`,
             allow,
@@ -218,7 +222,7 @@ function generateFromJSON(
 function generateToJSON(
   t: MResolvedRecordType,
   props: MResolvedBaseProperty[],
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   node.append(
@@ -237,20 +241,20 @@ function generateToJSON(
       ) {
         mBody.append(`const ${p.name} = value.${p.name};`, NL);
       } else {
-        const ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`);
+        const ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
         mBody.append(`const ${p.name} = `);
 
         if (p.optional && p.nullable) {
-          const isUndefined = fqn('isUndefined:../_type-utils.ts');
-          const isNull = fqn('isNull:../_type-utils.ts');
+          const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
+          const isNull = fqn('isNull:../_type-utils.ts', false);
           mBody.append(
             `${isUndefined}(value.${p.name}) || ${isNull}(value.${p.name}) ? value.${p.name} : `
           );
         } else if (p.optional) {
-          const isUndefined = fqn('isUndefined:../_type-utils.ts');
+          const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
           mBody.append(`${isUndefined}(value.${p.name}) ? undefined : `);
         } else if (p.nullable) {
-          const isNull = fqn('isNull:../_type-utils.ts');
+          const isNull = fqn('isNull:../_type-utils.ts', false);
           mBody.append(`${isNull}(value.${p.name}) ? null : `);
         }
 
@@ -284,7 +288,7 @@ function generateToJSON(
 function generateTypeguard(
   t: MResolvedRecordType,
   props: MResolvedBaseProperty[],
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   node.append(
@@ -292,13 +296,14 @@ function generateTypeguard(
     NL
   );
   node.indent((mBody) => {
-    const isRecord = fqn('isRecord:../_type-utils.ts');
+    const isRecord = fqn('isRecord:../_type-utils.ts', false);
     mBody.append(`return ${isRecord}(value) &&`, NL);
     mBody.indent((andBlock) => {
       if (t.resolved.unions.length > 0) {
-        const checkProp = fqn('checkProp:../_type-utils.ts');
+        const checkProp = fqn('checkProp:../_type-utils.ts', false);
         const createIsStringTypeGuard = fqn(
-          'createIsStringTypeGuard:../_type-utils.ts'
+          'createIsStringTypeGuard:../_type-utils.ts',
+          false
         );
         const alias =
           (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
@@ -314,7 +319,7 @@ function generateTypeguard(
 
         if (isMKeyProperty(p) || isMRevisionProperty(p)) {
           const guard = builtinTypeGuard(p.type, fqn);
-          const checkProp = fqn('checkProp:../_type-utils.ts');
+          const checkProp = fqn('checkProp:../_type-utils.ts', false);
           andBlock.append(`${checkProp}(value, '${p.name}', ${guard})`);
         } else {
           let guard: string;
@@ -324,22 +329,23 @@ function generateTypeguard(
           } else if (isMInlineEnumType(p.type)) {
             guard = `is${t.name}_${toFirstUpper(p.name)}`;
           } else if (p.variant === 'scalar') {
-            guard = fqn('isString:../_type-utils.ts');
+            guard = fqn('isString:../_type-utils.ts', false);
           } else {
-            guard = fqn(`is${p.type}:./${p.type}.ts`);
+            guard = fqn(`is${p.type}:./${p.type}.ts`, false);
           }
 
           if (p.nullable) {
-            const nullGuard = fqn('isNull:../_type-utils.ts');
+            const nullGuard = fqn('isNull:../_type-utils.ts', false);
             andBlock.append('(', `${nullGuard}(value.${p.name}) || `);
           }
 
           const check = p.optional
-            ? fqn('checkOptProp:../_type-utils.ts')
-            : fqn('checkProp:../_type-utils.ts');
+            ? fqn('checkOptProp:../_type-utils.ts', false)
+            : fqn('checkProp:../_type-utils.ts', false);
           if (p.array) {
             const createTypedArrayGuard = fqn(
-              'createTypedArrayGuard:../_type-utils.ts'
+              'createTypedArrayGuard:../_type-utils.ts',
+              false
             );
             andBlock.append(
               `${check}(value, '${p.name}', ${createTypedArrayGuard}(${guard}))`
@@ -365,7 +371,7 @@ function generateTypeguard(
 function generateRecordPatch(
   t: MResolvedRecordType,
   props: MResolvedBaseProperty[],
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   node.append(`export type ${t.name}Patch = {`, NL);
@@ -390,7 +396,7 @@ function generateRecordPatch(
 function generatePatchTypeguard(
   t: MResolvedRecordType,
   props: MResolvedBaseProperty[],
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   node.append(
@@ -398,13 +404,14 @@ function generatePatchTypeguard(
     NL
   );
   node.indent((mBody) => {
-    const isRecord = fqn('isRecord:../_type-utils.ts');
+    const isRecord = fqn('isRecord:../_type-utils.ts', false);
     mBody.append(`return ${isRecord}(value) &&`, NL);
     mBody.indent((andBlock) => {
       if (t.resolved.unions.length > 0) {
-        const checkProp = fqn('checkProp:../_type-utils.ts');
+        const checkProp = fqn('checkProp:../_type-utils.ts', false);
         const createIsStringTypeGuard = fqn(
-          'createIsStringTypeGuard:../_type-utils.ts'
+          'createIsStringTypeGuard:../_type-utils.ts',
+          false
         );
         const alias =
           (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
@@ -425,20 +432,21 @@ function generatePatchTypeguard(
         } else if (isMInlineEnumType(p.type)) {
           guard = `is${t.name}_${toFirstUpper(p.name)}`;
         } else if (p.variant === 'scalar') {
-          guard = fqn('isString:../_type-utils.ts');
+          guard = fqn('isString:../_type-utils.ts', false);
         } else {
-          guard = fqn(`is${p.type}:./${p.type}.ts`);
+          guard = fqn(`is${p.type}:./${p.type}.ts`, false);
         }
 
         if (p.nullable || p.optional) {
-          const nullGuard = fqn('isNull:../_type-utils.ts');
+          const nullGuard = fqn('isNull:../_type-utils.ts', false);
           andBlock.append('(', `${nullGuard}(value.${p.name}) || `);
         }
 
-        const check = fqn('checkOptProp:../_type-utils.ts');
+        const check = fqn('checkOptProp:../_type-utils.ts', false);
         if (p.array) {
           const createTypedArrayGuard = fqn(
-            'createTypedArrayGuard:../_type-utils.ts'
+            'createTypedArrayGuard:../_type-utils.ts',
+            false
           );
           andBlock.append(
             `${check}(value, '${p.name}', ${createTypedArrayGuard}(${guard}))`
@@ -463,7 +471,7 @@ function generatePatchTypeguard(
 function generatePatchFromJSON(
   t: MResolvedRecordType,
   props: MResolvedBaseProperty[],
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   node.append(
@@ -485,9 +493,9 @@ function generatePatchFromJSON(
         } else if (isMInlineEnumType(p.type)) {
           guard = `is${t.name}_${toFirstUpper(p.name)}`;
         } else if (p.variant === 'enum') {
-          guard = fqn(`is${p.type}:./${p.type}.ts`);
+          guard = fqn(`is${p.type}:./${p.type}.ts`, false);
         } else if (p.variant === 'scalar') {
-          guard = fqn('isString:../_type-utils.ts');
+          guard = fqn('isString:../_type-utils.ts', false);
         } else {
           guard = 'err';
         }
@@ -498,7 +506,7 @@ function generatePatchFromJSON(
         }
 
         if (p.array) {
-          const propListValue = fqn('propListValue:../_type-utils.ts');
+          const propListValue = fqn('propListValue:../_type-utils.ts', false);
           fBody.append(
             `const ${p.name} = ${propListValue}('${p.name}', value, ${guard}`,
             allow,
@@ -506,7 +514,7 @@ function generatePatchFromJSON(
             NL
           );
         } else {
-          const propValue = fqn('propValue:../_type-utils.ts');
+          const propValue = fqn('propValue:../_type-utils.ts', false);
           fBody.append(
             `const ${p.name} = ${propValue}('${p.name}', value, ${guard}`,
             allow,
@@ -520,12 +528,13 @@ function generatePatchFromJSON(
           allow = ", 'optional_null'";
         }
 
-        const guard = fqn('isRecord:../_type-utils.ts');
-        const map = fqn(`${p.type}FromJSON:./${p.type}.ts`);
+        const guard = fqn('isRecord:../_type-utils.ts', false);
+        const map = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
 
         if (p.array) {
           const propMappedListValue = fqn(
-            'propMappedListValue:../_type-utils.ts'
+            'propMappedListValue:../_type-utils.ts',
+            false
           );
           fBody.append(
             `const ${p.name} = ${propMappedListValue}('${p.name}', value, ${guard}, ${map}`,
@@ -534,7 +543,10 @@ function generatePatchFromJSON(
             NL
           );
         } else {
-          const propMappedValue = fqn('propMappedValue:../_type-utils.ts');
+          const propMappedValue = fqn(
+            'propMappedValue:../_type-utils.ts',
+            false
+          );
           fBody.append(
             `const ${p.name} = ${propMappedValue}('${p.name}', value, ${guard}, ${map}`,
             allow,
@@ -568,7 +580,7 @@ function generatePatchFromJSON(
 function generatePatchToJSON(
   t: MResolvedRecordType,
   props: MResolvedBaseProperty[],
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   node.append(
@@ -585,17 +597,17 @@ function generatePatchToJSON(
       ) {
         mBody.append(`const ${p.name} = value.${p.name};`, NL);
       } else {
-        const ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`);
+        const ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
         mBody.append(`const ${p.name} = `);
 
         if (p.optional || p.nullable) {
-          const isUndefined = fqn('isUndefined:../_type-utils.ts');
-          const isNull = fqn('isNull:../_type-utils.ts');
+          const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
+          const isNull = fqn('isNull:../_type-utils.ts', false);
           mBody.append(
             `${isUndefined}(value.${p.name}) || ${isNull}(value.${p.name}) ? value.${p.name} : `
           );
         } else {
-          const isUndefined = fqn('isUndefined:../_type-utils.ts');
+          const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
           mBody.append(`${isUndefined}(value.${p.name}) ? undefined : `);
         }
 
@@ -628,7 +640,7 @@ function generatePatchToJSON(
 
 function generateProperty(
   prop: MResolvedBaseProperty,
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   if (isMKeyProperty(prop) || isMRevisionProperty(prop)) {
@@ -647,7 +659,7 @@ function generateProperty(
       prop.variant === 'record' ||
       prop.variant === 'union'
     ) {
-      type = fqn(`${prop.type}:./${prop.type}.ts`);
+      type = fqn(`${prop.type}:./${prop.type}.ts`, true);
     } else {
       type = 'any';
     }
@@ -667,7 +679,7 @@ function generateProperty(
 
 function generatePatchProperty(
   prop: MResolvedPropery,
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   let type: string = 'string';
@@ -678,9 +690,9 @@ function generatePatchProperty(
   } else if (isMInlineEnumType(prop.type)) {
     type = prop.type.entries.map((e) => `'${e.name}'`).join(' | ');
   } else if (prop.variant === 'enum') {
-    type = fqn(`${prop.type}:./${prop.type}.ts`);
+    type = fqn(`${prop.type}:./${prop.type}.ts`, true);
   } else if (prop.variant === 'record' || prop.variant === 'union') {
-    type = fqn(`${prop.type}:./${prop.type}.ts`);
+    type = fqn(`${prop.type}:./${prop.type}.ts`, true);
   } else {
     type = 'any';
   }
@@ -693,9 +705,12 @@ function generatePatchProperty(
   return node;
 }
 
-function builtinTypeGuard(type: MBuiltinType, fqn: (v: string) => string) {
+function builtinTypeGuard(
+  type: MBuiltinType,
+  fqn: (v: string, typeOnly: boolean) => string
+) {
   if (type === 'boolean') {
-    return fqn('isBoolean:../_type-utils.ts');
+    return fqn('isBoolean:../_type-utils.ts', false);
   } else if (
     type === 'double' ||
     type === 'float' ||
@@ -703,8 +718,8 @@ function builtinTypeGuard(type: MBuiltinType, fqn: (v: string) => string) {
     type === 'long' ||
     type === 'short'
   ) {
-    return fqn('isNumber:../_type-utils.ts');
+    return fqn('isNumber:../_type-utils.ts', false);
   } else {
-    return fqn('isString:../_type-utils.ts');
+    return fqn('isString:../_type-utils.ts', false);
   }
 }

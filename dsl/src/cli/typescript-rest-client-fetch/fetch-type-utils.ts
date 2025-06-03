@@ -20,7 +20,9 @@ export function generateFetchTypeUtils(
   };
 }
 
-function generateFetchTypeUtilsContent(fqn: (t: string) => string) {
+function generateFetchTypeUtilsContent(
+  fqn: (t: string, typeOnly: boolean) => string
+) {
   const node = new CompositeGeneratorNode();
   node.append('export type Fetch = typeof fetch;', NL);
   node.append(ServicePropsContent(fqn), NL);
@@ -29,7 +31,7 @@ function generateFetchTypeUtilsContent(fqn: (t: string) => string) {
   return node;
 }
 
-function ServicePropsContent(fqn: (t: string) => string) {
+function ServicePropsContent(fqn: (t: string, typeOnly: boolean) => string) {
   const node = new CompositeGeneratorNode();
   node.append('export type ServiceProps<T> = {', NL);
   node.indent((l1) => {
@@ -44,7 +46,8 @@ function ServicePropsContent(fqn: (t: string) => string) {
       l2.append('onSuccess?: (method: string, value: unknown) => void;', NL);
       l2.append(
         `onError?: (method: string, err: ${fqn(
-          'api:../index.ts'
+          'api:../index.ts',
+          false
         )}.result.RSDError<T>) => void;`,
         NL
       );

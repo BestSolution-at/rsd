@@ -25,7 +25,7 @@ export function generateErrors(
 
 function generateErrorsContent(
   errors: readonly MError[],
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   node.append(
@@ -42,7 +42,7 @@ function generateErrorsContent(
     NL,
     NL
   );
-  const RSDError = fqn('RSDError:./_result-utils.ts');
+  const RSDError = fqn('RSDError:./_result-utils.ts', true);
   node.append(
     `export function isKnownRSDError(value: unknown): value is ${RSDError}<ErrorType> {`,
     NL
@@ -50,9 +50,9 @@ function generateErrorsContent(
   node.indent((mBody) => {
     mBody.append('return (', NL);
     mBody.indent((andBlock) => {
-      const isRecord = fqn('isRecord:./_type-utils.ts');
-      const isString = fqn('isString:./_type-utils.ts');
-      const checkProp = fqn('checkProp:./_type-utils.ts');
+      const isRecord = fqn('isRecord:./_type-utils.ts', false);
+      const isString = fqn('isString:./_type-utils.ts', false);
+      const checkProp = fqn('checkProp:./_type-utils.ts', false);
       andBlock.append(`${isRecord}(value) &&`, NL);
       andBlock.append(
         `${checkProp}(value, '_type', ${isString}, errorTypes.has.bind(errorTypes))`,
@@ -75,7 +75,7 @@ function generateErrorsContent(
   node.append('};', NL, NL);
 
   errors.forEach((e) => {
-    const RSDError = fqn('RSDError:./_result-utils.ts');
+    const RSDError = fqn('RSDError:./_result-utils.ts', true);
     node.append(
       `export type ${e.name}Error = ${RSDError}<'${e.name}'> & { message: string };`,
       NL
@@ -89,9 +89,9 @@ function generateErrorsContent(
   node.indent((mBody) => {
     mBody.append(`return (`);
     mBody.indent((block) => {
-      const isString = fqn('isString:./_type-utils.ts');
-      const isRecord = fqn('isRecord:./_type-utils.ts');
-      const checkProp = fqn('checkProp:./_type-utils.ts');
+      const isString = fqn('isString:./_type-utils.ts', false);
+      const isRecord = fqn('isRecord:./_type-utils.ts', false);
+      const checkProp = fqn('checkProp:./_type-utils.ts', false);
 
       block.append(`${isRecord}(value) &&`, NL);
       block.append(
@@ -114,10 +114,10 @@ function generateErrorsContent(
   node.indent((mBody) => {
     mBody.append(`return (`, NL);
     mBody.indent((block) => {
-      const isString = fqn('isString:./_type-utils.ts');
-      const isNumber = fqn('isNumber:./_type-utils.ts');
-      const isRecord = fqn('isRecord:./_type-utils.ts');
-      const checkProp = fqn('checkProp:./_type-utils.ts');
+      const isString = fqn('isString:./_type-utils.ts', false);
+      const isNumber = fqn('isNumber:./_type-utils.ts', false);
+      const isRecord = fqn('isRecord:./_type-utils.ts', false);
+      const checkProp = fqn('checkProp:./_type-utils.ts', false);
 
       block.append(`${isRecord}(value) &&`, NL);
       block.append(
@@ -139,9 +139,9 @@ function generateErrorsContent(
     node.indent((mBody) => {
       mBody.append('return (', NL);
       mBody.indent((andBlock) => {
-        const isRecord = fqn('isRecord:./_type-utils.ts');
-        const isString = fqn('isString:./_type-utils.ts');
-        const checkProp = fqn('checkProp:./_type-utils.ts');
+        const isRecord = fqn('isRecord:./_type-utils.ts', false);
+        const isString = fqn('isString:./_type-utils.ts', false);
+        const checkProp = fqn('checkProp:./_type-utils.ts', false);
         andBlock.append(`${isRecord}(value) &&`, NL);
         andBlock.append(
           `${checkProp}(value, '_type', v => v === '${e.name}') &&`,

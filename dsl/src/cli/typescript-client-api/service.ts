@@ -35,14 +35,14 @@ export function generateService(
 function generateServiceContent(
   s: MResolvedService,
   config: TypescriptClientAPIGeneratorConfig,
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   node.append(`export interface ${s.name}Service {`, NL);
   node.indent((classBody) => {
     s.operations.forEach((o) => {
       const parameters = o.parameters.map((p) => toParameter(p, config, fqn));
-      var Result = fqn('Result:./_result-utils.ts');
+      var Result = fqn('Result:./_result-utils.ts', true);
       classBody.append(
         `${o.name}(${parameters.join(', ')}): Promise<${Result}<${toResultType(
           o.resultType,
@@ -57,14 +57,17 @@ function generateServiceContent(
   return node;
 }
 
-function toErrorType(errors: string[], fqn: (type: string) => string) {
-  const Status = fqn(`StatusRSDError:./Errors.ts`);
-  const Native = fqn(`NativeRSDError:./Errors.ts`);
+function toErrorType(
+  errors: string[],
+  fqn: (type: string, typeOnly: boolean) => string
+) {
+  const Status = fqn(`StatusRSDError:./Errors.ts`, true);
+  const Native = fqn(`NativeRSDError:./Errors.ts`, true);
   if (errors.length === 0) {
     return `${Status} | ${Native}`;
   } else {
     return (
-      errors.map((e) => fqn(`${e}Error:./Errors.ts`)).join(' | ') +
+      errors.map((e) => fqn(`${e}Error:./Errors.ts`, true)).join(' | ') +
       ` | ${Status} | ${Native}`
     );
   }
@@ -73,10 +76,10 @@ function toErrorType(errors: string[], fqn: (type: string) => string) {
 function toResultType(
   result: MReturnType | undefined,
   config: TypescriptClientAPIGeneratorConfig,
-  fqn: (type: string) => string
+  fqn: (type: string, typeOnly: boolean) => string
 ) {
   if (result === undefined) {
-    return fqn('VoidType:./_result-utils.ts');
+    return fqn('VoidType:./_result-utils.ts', true);
   }
 
   let type: string;
@@ -87,9 +90,9 @@ function toResultType(
   } else if (isMInlineEnumType(result.type)) {
     type = `${result.type.entries.map((e) => `'${e.name}'`).join(' | ')}`;
   } else if (result.variant === 'enum') {
-    type = fqn(`${result.type}:./model/${result.type}.ts`);
+    type = fqn(`${result.type}:./model/${result.type}.ts`, true);
   } else if (result.variant === 'record' || result.variant === 'union') {
-    type = fqn(`${result.type}:./model/${result.type}.ts`);
+    type = fqn(`${result.type}:./model/${result.type}.ts`, true);
   } else {
     type = 'any';
   }
@@ -102,7 +105,7 @@ function toResultType(
 function toParameter(
   parameter: MParameter,
   config: TypescriptClientAPIGeneratorConfig,
-  fqn: (type: string) => string
+  fqn: (type: string, typeOnly: boolean) => string
 ) {
   let type: string;
   if (isMBuiltinType(parameter.type)) {
@@ -112,12 +115,12 @@ function toParameter(
   } else if (isMInlineEnumType(parameter.type)) {
     type = `${parameter.type.entries.map((e) => `'${e.name}'`).join(' | ')}`;
   } else if (parameter.variant === 'enum') {
-    type = fqn(`${parameter.type}:./model/${parameter.type}.ts`);
+    type = fqn(`${parameter.type}:./model/${parameter.type}.ts`, true);
   } else if (parameter.variant === 'record' || parameter.variant === 'union') {
     if (parameter.patch) {
-      type = fqn(`${parameter.type}Patch:./model/${parameter.type}.ts`);
+      type = fqn(`${parameter.type}Patch:./model/${parameter.type}.ts`, true);
     } else {
-      type = fqn(`${parameter.type}:./model/${parameter.type}.ts`);
+      type = fqn(`${parameter.type}:./model/${parameter.type}.ts`, true);
     }
   } else {
     type = 'any';

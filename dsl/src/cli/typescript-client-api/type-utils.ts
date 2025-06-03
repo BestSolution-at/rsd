@@ -18,7 +18,9 @@ export function generateTypeUtils(config: TypescriptClientAPIGeneratorConfig) {
   };
 }
 
-function generateTypeUtilsContent(fqn: (t: string) => string) {
+function generateTypeUtilsContent(
+  fqn: (t: string, typeOnly: boolean) => string
+) {
   const node = new CompositeGeneratorNode();
   node.append(
     singleStatementFunction(

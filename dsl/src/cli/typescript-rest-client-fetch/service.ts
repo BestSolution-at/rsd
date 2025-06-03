@@ -37,14 +37,15 @@ export function generateService(
 function generateServiceContent(
   s: MResolvedService,
   config: TypescriptFetchClientGeneratorConfig,
-  fqn: (t: string) => string
+  fqn: (t: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
-  const ServiceProps = fqn('ServiceProps:./_fetch-type-utils.ts');
+  const ServiceProps = fqn('ServiceProps:./_fetch-type-utils.ts', true);
   const ErrorType = `${fqn(
-    `api:${config.apiNamespacePath}`
+    `api:${config.apiNamespacePath}`,
+    false
   )}.service.ErrorType`;
-  const Service = `${fqn(`api:${config.apiNamespacePath}`)}.service.${
+  const Service = `${fqn(`api:${config.apiNamespacePath}`, false)}.service.${
     s.name
   }Service`;
   node.append(
@@ -127,7 +128,7 @@ function generateRemoteInvoke(
   s: MService,
   o: MResolvedOperation,
   config: TypescriptFetchClientGeneratorConfig,
-  fqn: (type: string) => string
+  fqn: (type: string, typeOnly: boolean) => string
 ) {
   const path = s.meta?.rest?.path ?? s.name.toLowerCase();
   const processedPath = `${path.replace(/^\//, '')}/${
@@ -158,7 +159,7 @@ function generateRemoteInvoke(
         p.variant === 'scalar'
       ) {
         if (p.optional) {
-          const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts');
+          const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
           node.append(
             `${ifDefined}(${p.name}, v => $headers.append('${p.name}',\`\${v}\`));`,
             NL
@@ -167,12 +168,12 @@ function generateRemoteInvoke(
           node.append(`$headers.append('${p.name}',\`\${${p.name}}\`);`, NL);
         }
       } else {
-        const toJSON = `${fqn(`api:${config.apiNamespacePath}`)}.model.${
+        const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${
           p.type
         }ToJSON`;
 
         if (p.optional) {
-          const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts');
+          const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
           node.append(
             `${ifDefined}(${p.name}, v => $headers.append('${p.name}',JSON.strinify(${toJSON}(v)));`,
             NL
@@ -200,7 +201,7 @@ function generateRemoteInvoke(
           isMInlineEnumType(p.type)
         ) {
           if (p.optional) {
-            const ifDefined = fqn('ifDefined:./_fetch-type-utils');
+            const ifDefined = fqn('ifDefined:./_fetch-type-utils', false);
             node.append(
               `${ifDefined}($param.append(${p.name}, v => '${
                 p.meta?.rest?.name ?? p.name
@@ -216,11 +217,12 @@ function generateRemoteInvoke(
             );
           }
         } else {
-          const toJSON = `${fqn(`api:${config.apiNamespacePath}`)}.model.${
-            p.type
-          }ToJSON`;
+          const toJSON = `${fqn(
+            `api:${config.apiNamespacePath}`,
+            false
+          )}.model.${p.type}ToJSON`;
           if (p.optional) {
-            const ifDefined = fqn('ifDefined:./_fetch-type-utils');
+            const ifDefined = fqn('ifDefined:./_fetch-type-utils', false);
             node.append(
               `${ifDefined}(${p.name}, v => $param.append('${
                 p.meta?.rest?.name ?? p.name
@@ -256,7 +258,7 @@ function generateRemoteInvoke(
         bodyParams[0].variant === 'record' ||
         bodyParams[0].variant === 'union'
       ) {
-        const toJSON = `${fqn(`api:${config.apiNamespacePath}`)}.model.${
+        const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${
           bodyParams[0].type + (bodyParams[0].patch ? 'Patch' : '')
         }ToJSON`;
         node.append(
@@ -271,9 +273,10 @@ function generateRemoteInvoke(
       node.indent((struct) => {
         bodyParams.forEach((p) => {
           if (p.variant === 'record' || p.variant === 'union') {
-            const toJSON = `${fqn(`api:${config.apiNamespacePath}`)}.model.${
-              p.type + (p.patch ? 'Patch' : '')
-            }ToJSON`;
+            const toJSON = `${fqn(
+              `api:${config.apiNamespacePath}`,
+              false
+            )}.model.${p.type + (p.patch ? 'Patch' : '')}ToJSON`;
             struct.append(`${p.name}: ${toJSON}(${p.name}),`, NL);
           } else {
             struct.append(`${p.name}: \`\${${p.name}}\`,`, NL);
@@ -330,7 +333,7 @@ function handleErrorResult(
   o: MResolvedOperation,
   error: string,
   config: TypescriptFetchClientGeneratorConfig,
-  fqn: (type: string) => string
+  fqn: (type: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
   node.append(`const err = {`, NL);
@@ -339,8 +342,8 @@ function handleErrorResult(
     struct.append('message: await $response.text(),', NL);
   });
   node.append('} as const;', NL);
-  const ERR = `${fqn(`api:${config.apiNamespacePath}`)}.result.ERR`;
-  const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts');
+  const ERR = `${fqn(`api:${config.apiNamespacePath}`, false)}.result.ERR`;
+  const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
   node.append(
     `return ${safeExecute}(${ERR}(err), () => onError?.('${o.name}', err));`,
     NL
@@ -351,14 +354,14 @@ function handleErrorResult(
 function handleOkResult(
   o: MResolvedOperation,
   config: TypescriptFetchClientGeneratorConfig,
-  fqn: (type: string) => string
+  fqn: (type: string, typeOnly: boolean) => string
 ) {
   const node = new CompositeGeneratorNode();
 
-  const OK = `${fqn(`api:${config.apiNamespacePath}`)}.result.OK`;
+  const OK = `${fqn(`api:${config.apiNamespacePath}`, false)}.result.OK`;
   if (o.resultType === undefined) {
-    const Void = `${fqn(`api:${config.apiNamespacePath}`)}.result.Void`;
-    const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts');
+    const Void = `${fqn(`api:${config.apiNamespacePath}`, false)}.result.Void`;
+    const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
     node.append(
       `return ${safeExecute}(${OK}(${Void}), () => onSuccess?.('${o.name}', ${Void}));`,
       NL
@@ -371,18 +374,19 @@ function handleOkResult(
       o.resultType.variant === 'enum' ||
       isMInlineEnumType(o.resultType.type)
     ) {
-      const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts');
+      const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
       node.append(
         `return ${safeExecute}(${OK}($data), () => onSuccess?.('${o.name}', $data));`,
         NL
       );
     } else {
-      const fromJSON = `${fqn(`api:${config.apiNamespacePath}`)}.model.${
+      const fromJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${
         o.resultType.type
       }FromJSON`;
       if (o.resultType.array) {
         const isArray = `${fqn(
-          `api:${config.apiNamespacePath}`
+          `api:${config.apiNamespacePath}`,
+          false
         )}.utils.isArray`;
         node.append(`if(!${isArray}) {`, NL);
         node.indent((block) => {
@@ -393,7 +397,7 @@ function handleOkResult(
       } else {
         node.append(`const $result = ${fromJSON}($data);`, NL);
       }
-      const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts');
+      const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
       node.append(
         `return ${safeExecute}(${OK}($result), () => onSuccess?.('${o.name}', $result));`,
         NL
@@ -406,7 +410,7 @@ function handleOkResult(
 function toParameter(
   parameter: MParameter,
   config: TypescriptFetchClientGeneratorConfig,
-  fqn: (type: string) => string
+  fqn: (type: string, typeOnly: boolean) => string
 ) {
   let type: string;
   if (isMBuiltinType(parameter.type)) {
@@ -416,9 +420,13 @@ function toParameter(
   } else if (isMInlineEnumType(parameter.type)) {
     type = `${parameter.type.entries.map((e) => `'${e.name}'`).join(' | ')}`;
   } else if (parameter.variant === 'enum') {
-    type = `${fqn(`api:${config.apiNamespacePath}`)}.model.${parameter.type}`;
+    type = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${
+      parameter.type
+    }`;
   } else if (parameter.variant === 'record' || parameter.variant === 'union') {
-    type = `${fqn(`api:${config.apiNamespacePath}`)}.model.${parameter.type}`;
+    type = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${
+      parameter.type
+    }`;
   } else {
     type = 'any';
   }

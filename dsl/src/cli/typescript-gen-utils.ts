@@ -28,6 +28,7 @@ export class TypescriptImportCollector {
   private aliasCount = 0;
   private readonly fqnTypes = new Map<string, string>();
   private readonly importTypes = new Map<string, Set<string>>();
+  private readonly typeOnlyTypes = new Set<string>();
   private readonly allowImportingTsExtensions: boolean;
 
   constructor(config: TypescriptClientAPIGeneratorConfig) {
@@ -35,14 +36,9 @@ export class TypescriptImportCollector {
       config.allowImportingTsExtensions ?? false;
   }
 
-  importType(type: string) {
+  importType(type: string, typeOnly: boolean) {
     const parts = type.split(':');
-    return this._importType(parts[0], parts[1], false);
-  }
-
-  importTypeOnly(type: string) {
-    const parts = type.split(':');
-    return this._importType(parts[0], parts[1], true);
+    return this._importType(parts[0], parts[1], typeOnly);
   }
 
   public appendImportGroups(node: CompositeGeneratorNode) {
@@ -50,12 +46,23 @@ export class TypescriptImportCollector {
       if (!this.allowImportingTsExtensions) {
         p = p.replace(/\.ts$/, '.js');
       }
-      node.append(
-        `import { ${[...v]
-          .sort((a, b) => a.localeCompare(b))
-          .join(', ')} } from '${p}';`,
-        NL
-      );
+      const importedTypes = [...v];
+      if (importedTypes.find((i) => !this.typeOnlyTypes.has(i))) {
+        node.append(
+          `import { ${importedTypes
+            .sort((a, b) => a.localeCompare(b))
+            .map((v) => (this.typeOnlyTypes.has(v) ? `type ${v}` : v))
+            .join(', ')} } from '${p}';`,
+          NL
+        );
+      } else {
+        node.append(
+          `import type { ${importedTypes
+            .sort((a, b) => a.localeCompare(b))
+            .join(', ')} } from '${p}';`,
+          NL
+        );
+      }
     });
 
     node.appendNewLineIf(this.importTypes.size > 0);
@@ -72,10 +79,9 @@ export class TypescriptImportCollector {
 
     const types = this.importTypes.get(path) ?? new Set();
     this.importTypes.set(path, types);
+    types.add(type);
     if (typeOnly) {
-      types.add(`type ${type}`);
-    } else {
-      types.add(type);
+      this.typeOnlyTypes.add(type);
     }
 
     return resultType;
