@@ -8,7 +8,7 @@ import {
 export function generateResultUtils(
   config: TypescriptClientAPIGeneratorConfig
 ) {
-  const collector = new TypescriptImportCollector();
+  const collector = new TypescriptImportCollector(config);
   const fqn = collector.importType.bind(collector);
   return {
     name: `_result-utils.ts`,

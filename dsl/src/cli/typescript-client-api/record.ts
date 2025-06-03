@@ -12,7 +12,7 @@ export function generateRecord(
   t: MResolvedRecordType,
   config: TypescriptClientAPIGeneratorConfig
 ): Artifact {
-  const collector = new TypescriptImportCollector();
+  const collector = new TypescriptImportCollector(config);
   const fqn = collector.importType.bind(collector);
   return {
     name: `${t.name}.ts`,

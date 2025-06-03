@@ -8,7 +8,7 @@ import {
 export function generateFetchTypeUtils(
   config: TypescriptFetchClientGeneratorConfig
 ) {
-  const collector = new TypescriptImportCollector();
+  const collector = new TypescriptImportCollector(config);
   const fqn = collector.importType.bind(collector);
   return {
     name: `_fetch-type-utils.ts`,

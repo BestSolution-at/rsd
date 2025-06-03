@@ -11,24 +11,38 @@ export function generateServiceIndex(
   model: MResolvedRSDModel,
   config: TypescriptClientAPIGeneratorConfig
 ): Artifact {
-  const collector = new TypescriptImportCollector();
+  const collector = new TypescriptImportCollector(config);
   return {
     name: `index-service.ts`,
     content: toString(
-      generateCompilationUnit(collector, generateIndexContent(model)),
+      generateCompilationUnit(
+        collector,
+        generateIndexContent(model, config.allowImportingTsExtensions ?? false)
+      ),
       '\t'
     ),
     path: `${config.targetFolder}`,
   };
 }
 
-function generateIndexContent(model: MResolvedRSDModel) {
+function generateIndexContent(
+  model: MResolvedRSDModel,
+  allowImportingTsExtensions: boolean
+) {
   const node = new CompositeGeneratorNode();
   model.services.forEach((e) => {
-    node.append(`export * from './${e.name}Service.ts'`, NL);
+    if (allowImportingTsExtensions) {
+      node.append(`export * from './${e.name}Service.ts'`, NL);
+    } else {
+      node.append(`export * from './${e.name}Service.js'`, NL);
+    }
   });
   if (model.errors.length > 0) {
-    node.append(`export * from './Errors.ts'`, NL);
+    if (allowImportingTsExtensions) {
+      node.append(`export * from './Errors.ts'`, NL);
+    } else {
+      node.append(`export * from './Errors.js'`, NL);
+    }
   }
 
   return node;

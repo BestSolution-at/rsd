@@ -19,7 +19,7 @@ export function generateService(
   s: MResolvedService,
   config: TypescriptFetchClientGeneratorConfig
 ) {
-  const collector = new TypescriptImportCollector();
+  const collector = new TypescriptImportCollector(config);
   const fqn = collector.importType.bind(collector);
   return {
     name: `${s.name}ServiceFetchImpl.ts`,

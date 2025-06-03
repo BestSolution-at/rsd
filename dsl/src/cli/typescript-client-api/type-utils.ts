@@ -6,7 +6,7 @@ import {
 } from '../typescript-gen-utils.js';
 
 export function generateTypeUtils(config: TypescriptClientAPIGeneratorConfig) {
-  const collector = new TypescriptImportCollector();
+  const collector = new TypescriptImportCollector(config);
   const fqn = collector.importType.bind(collector);
   return {
     name: `_type-utils.ts`,

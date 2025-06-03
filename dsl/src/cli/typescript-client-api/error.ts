@@ -11,7 +11,7 @@ export function generateErrors(
   errors: readonly MError[],
   config: TypescriptClientAPIGeneratorConfig
 ): Artifact {
-  const collector = new TypescriptImportCollector();
+  const collector = new TypescriptImportCollector(config);
   const fqn = collector.importType.bind(collector);
   return {
     name: `Errors.ts`,

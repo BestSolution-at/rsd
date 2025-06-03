@@ -17,7 +17,7 @@ export function generateService(
   s: MResolvedService,
   config: TypescriptClientAPIGeneratorConfig
 ) {
-  const collector = new TypescriptImportCollector();
+  const collector = new TypescriptImportCollector(config);
   const fqn = collector.importType.bind(collector);
   return {
     name: `${s.name}Service.ts`,

@@ -12,7 +12,7 @@ export function generateEnum(
   t: MResolvedEnumType,
   config: TypescriptClientAPIGeneratorConfig
 ): Artifact {
-  const collector = new TypescriptImportCollector();
+  const collector = new TypescriptImportCollector(config);
   return {
     name: `${t.name}.ts`,
     content: toString(

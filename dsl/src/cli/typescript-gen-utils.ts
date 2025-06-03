@@ -4,6 +4,7 @@ import { MBuiltinType } from './model.js';
 
 export type TypescriptClientAPIGeneratorConfig = ArtifactGeneratorConfig & {
   targetFolder: string;
+  allowImportingTsExtensions?: boolean;
 };
 
 export function isTypescriptClientAPIGeneratorConfig(
@@ -27,16 +28,28 @@ export class TypescriptImportCollector {
   private aliasCount = 0;
   private readonly fqnTypes = new Map<string, string>();
   private readonly importTypes = new Map<string, Set<string>>();
+  private readonly allowImportingTsExtensions: boolean;
 
-  constructor() {}
+  constructor(config: TypescriptClientAPIGeneratorConfig) {
+    this.allowImportingTsExtensions =
+      config.allowImportingTsExtensions ?? false;
+  }
 
   importType(type: string) {
     const parts = type.split(':');
-    return this._importType(parts[0], parts[1]);
+    return this._importType(parts[0], parts[1], false);
+  }
+
+  importTypeOnly(type: string) {
+    const parts = type.split(':');
+    return this._importType(parts[0], parts[1], true);
   }
 
   public appendImportGroups(node: CompositeGeneratorNode) {
     this.importTypes.forEach((v, p) => {
+      if (!this.allowImportingTsExtensions) {
+        p = p.replace(/\.ts$/, '.js');
+      }
       node.append(
         `import { ${[...v]
           .sort((a, b) => a.localeCompare(b))
@@ -48,7 +61,7 @@ export class TypescriptImportCollector {
     node.appendNewLineIf(this.importTypes.size > 0);
   }
 
-  private _importType(type: string, path: string) {
+  private _importType(type: string, path: string, typeOnly: boolean) {
     let resultType = type;
     if (this.fqnTypes.get(type) == null) {
       this.fqnTypes.set(type, path);
@@ -59,7 +72,12 @@ export class TypescriptImportCollector {
 
     const types = this.importTypes.get(path) ?? new Set();
     this.importTypes.set(path, types);
-    types.add(type);
+    if (typeOnly) {
+      types.add(`type ${type}`);
+    } else {
+      types.add(type);
+    }
+
     return resultType;
   }
 }
