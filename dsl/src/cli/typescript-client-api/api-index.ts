@@ -25,9 +25,11 @@ function generateApiIndexContent(allowImportingTsExtensions: boolean) {
   if (allowImportingTsExtensions) {
     node.append(`export * as api from './index-namespaces.ts';`, NL);
     node.append(`export { $ } from './_result-utils.ts';`, NL);
+    node.append(`export * from './services/index.ts';`, NL);
   } else {
     node.append(`export * as api from './index-namespaces.js';`, NL);
     node.append(`export { $ } from './_result-utils.js';`, NL);
+    node.append(`export * from './services/index.js';`, NL);
   }
   return node;
 }

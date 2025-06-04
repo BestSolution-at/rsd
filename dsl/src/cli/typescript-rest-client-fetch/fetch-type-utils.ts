@@ -16,7 +16,7 @@ export function generateFetchTypeUtils(
       generateCompilationUnit(collector, generateFetchTypeUtilsContent(fqn)),
       '\t'
     ),
-    path: `${config.targetFolder}`,
+    path: `${config.targetFolder}/services`,
   };
 }
 
@@ -33,7 +33,7 @@ function generateFetchTypeUtilsContent(
 
 function ServicePropsContent(fqn: (t: string, typeOnly: boolean) => string) {
   const node = new CompositeGeneratorNode();
-  node.append('export type ServiceProps<T> = {', NL);
+  node.append('export type ServiceProps<T extends string = string> = {', NL);
   node.indent((l1) => {
     l1.append('baseUrl: string;', NL);
     l1.append('fetchAPI?: Fetch;', NL);

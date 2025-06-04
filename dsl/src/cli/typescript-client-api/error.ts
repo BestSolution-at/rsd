@@ -65,6 +65,7 @@ function generateErrorsContent(
   node.append(`export type NativeRSDError = RSDError<'_Native'> & {`, NL);
   node.indent((block) => {
     block.append('error: Error;', NL);
+    block.append('message: string;', NL);
   });
   node.append('};', NL, NL);
   node.append(`export type StatusRSDError = RSDError<'_Status'> & {`, NL);
@@ -87,7 +88,7 @@ function generateErrorsContent(
     NL
   );
   node.indent((mBody) => {
-    mBody.append(`return (`);
+    mBody.append(`return (`, NL);
     mBody.indent((block) => {
       const isString = fqn('isString:./_type-utils.ts', false);
       const isRecord = fqn('isRecord:./_type-utils.ts', false);

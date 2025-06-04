@@ -30,7 +30,7 @@ export function generateService(
       ),
       '\t'
     ),
-    path: `${config.targetFolder}`,
+    path: `${config.targetFolder}/services`,
   };
 }
 

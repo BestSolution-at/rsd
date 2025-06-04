@@ -26,6 +26,7 @@ import { generateServiceIndex } from './service-index.js';
 import { generateApiIndex } from './api-index.js';
 import { generateResultUtils } from './result-utils.js';
 import { generateTypeUtils } from './type-utils.js';
+import { generateNamespacesIndex } from './namespaces-index.js';
 
 function generate(
   model: MResolvedRSDModel,
@@ -53,6 +54,7 @@ function generate(
   result.push(generateApiIndex(artifactConfig));
   result.push(generateResultUtils(artifactConfig));
   result.push(generateTypeUtils(artifactConfig));
+  result.push(generateNamespacesIndex(artifactConfig));
   return result;
 }
 

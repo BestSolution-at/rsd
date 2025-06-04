@@ -16,6 +16,7 @@ export function isTypescriptClientAPIGeneratorConfig(
 export type TypescriptFetchClientGeneratorConfig = ArtifactGeneratorConfig & {
   targetFolder: string;
   apiNamespacePath: string;
+  allowImportingTsExtensions?: boolean;
 };
 
 export function isTypescriptFetchClientGeneratorConfig(
