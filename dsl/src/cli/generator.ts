@@ -317,8 +317,8 @@ function mapReturnType(returnType: ReturnType, doc: string): MReturnType {
     '@type': 'ReturnType',
     array: returnType.array,
     arrayMaxLength: returnType.maxLength,
-    variant: computeVariant(returnType),
-    type: computeType(returnType),
+    variant: returnType.stream ? 'stream' : computeVariant(returnType),
+    type: returnType.stream ? returnType.stream : computeType(returnType),
     doc,
   };
 }

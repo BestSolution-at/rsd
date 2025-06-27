@@ -139,7 +139,12 @@ function toResultType(
     return 'void';
   }
 
-  if (type.variant === 'union' || type.variant === 'record') {
+  if (type.variant === 'stream') {
+    if (type.type === 'file') {
+      return fqn(`${dtoPkg}._File`);
+    }
+    return fqn(`${dtoPkg}._Blob`);
+  } else if (type.variant === 'union' || type.variant === 'record') {
     const dtoType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
     if (type.array) {
       return `${fqn('java.util.List')}<${dtoType}>`;

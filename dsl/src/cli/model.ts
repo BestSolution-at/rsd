@@ -27,6 +27,12 @@ export function isMBuiltinType(value: unknown): value is MBuiltinType {
   );
 }
 
+export type MStreamType = 'blob' | 'file';
+
+export function isMStreamType(value: unknown): value is MStreamType {
+  return value === 'blob' || value === 'file';
+}
+
 export type MRSDModel<
   T extends MUserType = MUserType,
   S extends MService = MService
@@ -310,7 +316,14 @@ export type MParameter = {
 
 export type MReturnType = {
   '@type': 'ReturnType';
-  variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'inline-enum';
+  variant:
+    | 'enum'
+    | 'builtin'
+    | 'scalar'
+    | 'union'
+    | 'record'
+    | 'inline-enum'
+    | 'stream';
   type: string | MInlineEnumType;
   array: boolean;
   arrayMaxLength?: number;

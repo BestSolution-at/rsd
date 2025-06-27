@@ -65,9 +65,15 @@ function generateContent(
       const params = o.parameters.map((p) =>
         toParameter(p, artifactConfig, fqn)
       );
+      if (artifactConfig.scopeValues) {
+        params.unshift(
+          ...artifactConfig.scopeValues.map((v) => `${fqn(v.type)} $${v.name}`)
+        );
+      }
+
       if (o.resultType !== undefined) {
         params.unshift(
-          `${toResultType(o.resultType, artifactConfig, fqn)} result`
+          `${toResultType(o.resultType, artifactConfig, fqn)} $result`
         );
       }
       classBody.append(
@@ -79,7 +85,19 @@ function generateContent(
           o.meta?.rest?.results.find((r) => r.error === undefined)
             ?.statusCode ?? (o.resultType ? 200 : 204);
         if (o.resultType) {
-          if (
+          if (o.resultType.variant === 'stream') {
+            if (o.resultType.type === 'file') {
+              methodBody.append(
+                `return _RestUtils.toStreamResponse(${code},$result);`,
+                NL
+              );
+            } else {
+              methodBody.append(
+                `return ${Response}.status(${code}).entity();`,
+                NL
+              );
+            }
+          } else if (
             o.resultType.variant === 'record' ||
             o.resultType.variant === 'union'
           ) {
@@ -87,7 +105,7 @@ function generateContent(
               `${artifactConfig.rootPackageName}.rest.model._JsonUtils`
             );
             methodBody.append(
-              `return ${Response}.status(${code}).entity(${JsonUtils}.toJsonString(result, false));`,
+              `return ${Response}.status(${code}).entity(${JsonUtils}.toJsonString($result, false));`,
               NL
             );
           } else {
@@ -99,12 +117,12 @@ function generateContent(
                 `${artifactConfig.rootPackageName}.rest.model._JsonUtils`
               );
               methodBody.append(
-                `return ${Response}.status(${code}).entity(${JsonUtils}.encodeAsJsonString(result));`,
+                `return ${Response}.status(${code}).entity(${JsonUtils}.encodeAsJsonString($result));`,
                 NL
               );
             } else {
               methodBody.append(
-                `return ${Response}.status(${code}).entity(result);`,
+                `return ${Response}.status(${code}).entity($result);`,
                 NL
               );
             }
@@ -144,7 +162,9 @@ function toResultType(
     return 'void';
   }
 
-  if (type.variant === 'union' || type.variant === 'record') {
+  if (type.variant === 'stream') {
+    return fqn(type.type === 'file' ? `${dtoPkg}._File` : `${dtoPkg}._Blob`);
+  } else if (type.variant === 'union' || type.variant === 'record') {
     const dtoType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
     if (type.array) {
       return `${fqn('java.util.List')}<${dtoType}>`;

@@ -25,6 +25,7 @@ import { generateResource } from './resource.js';
 import { generateResponseBuilder } from './response-builder.js';
 import { generateRestUtils } from './rest-utils.js';
 import { generateNillable } from './nillable-impl.js';
+import { generateScopeValueProvider } from './scopevalue-provider.js';
 
 export function generate(
   model: MResolvedRSDModel,
@@ -55,7 +56,8 @@ export function generate(
       generateResponseBuilder(s, model, artifactConfig)
     )
   );
-  result.push(generateRestUtils(artifactConfig));
+  result.push(...generateRestUtils(artifactConfig, model));
+  result.push(...generateScopeValueProvider(artifactConfig));
 
   return result;
 }

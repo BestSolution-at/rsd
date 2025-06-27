@@ -16,6 +16,9 @@ ScalarType:
 BuiltinType returns string:
     'boolean'|'short'|'int'|'string'|'float'|'double'|'long'|'local-date'|'local-date-time'|'zoned-date-time';
 
+StreamType returns string:
+        'blob' | 'file';
+
 EnumType:
     doc = (SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'enum' name=ID '='
@@ -75,6 +78,9 @@ NamedType:
     name=ID optional?='?'? ':' (typeRef=TypeRef | inlineEnum=InlineEnumType) (array?='[' maxLength=INT? ']')? nullable?='?'?
 ;
 
+NamedStreamType:
+    name=ID streamtType=StreamType;
+
 Property:
     readonly?='@readonly'? namedType=NamedType doc=SL_DOC_COMMENT?;
 
@@ -90,11 +96,11 @@ Service:
 ;
 
 Parameter:
-    patch?='@patch'? namedType=NamedType
+    (patch?='@patch'? namedType=NamedType) // | namedType=NamedStreamType
 ;
 
 ReturnType:
-    (typeRef=TypeRef | inlineEnum=InlineEnumType) (array?='[' maxLength=INT? ']')?
+    ((typeRef=TypeRef | inlineEnum=InlineEnumType ) (array?='[' maxLength=INT? ']')?) | stream=StreamType
 ;
 
 ErrorType:

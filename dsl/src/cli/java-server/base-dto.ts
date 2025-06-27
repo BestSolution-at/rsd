@@ -3,14 +3,14 @@ import { toString } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
 import {
   generateCompilationUnit,
-  JavaClientAPIGeneratorConfig,
   JavaImportsCollector,
+  JavaServerGeneratorConfig,
   toPath,
 } from '../java-gen-utils.js';
 import { generateBaseContent } from '../java-model-api/base.js';
 
 export function generateBaseDTO(
-  artifactConfig: JavaClientAPIGeneratorConfig
+  artifactConfig: JavaServerGeneratorConfig
 ): Artifact {
   const packageName = `${artifactConfig.rootPackageName}.service.model`;
   const importCollector = new JavaImportsCollector(packageName);

@@ -82,6 +82,17 @@ function _generateResource(
       `private final ${s.name}ResourceResponseBuilder responseBuilder;`,
       NL
     );
+    if (artifactConfig.scopeValues) {
+      artifactConfig.scopeValues.forEach((v) => {
+        cBody.append('@Inject', NL);
+        cBody.append(
+          `_ScopeValueProvider.${toFirstUpper(v.name)}Provider ${
+            v.name
+          }Provider;`,
+          NL
+        );
+      });
+    }
     cBody.appendNewLine();
     cBody.append(`@${Inject}`, NL);
     cBody.append(
@@ -134,6 +145,12 @@ function _generateResource(
           ...o.parameters.map((p) => toParameter(p, artifactConfig, fqn))
         );
         serviceParams.push(...o.parameters.map((p) => p.name));
+      }
+
+      if (artifactConfig.scopeValues) {
+        serviceParams.unshift(
+          ...artifactConfig.scopeValues.map((v) => `$${v.name}`)
+        );
       }
 
       if (params.length > 0) {
@@ -200,6 +217,14 @@ function _generateResource(
             `var dto = ${_JsonUtils}.fromString(data, ${Type}::new);`,
             NL
           );
+        }
+        if (artifactConfig.scopeValues) {
+          artifactConfig.scopeValues.forEach((v) => {
+            mBody.append(
+              `var $${v.name} = this.${v.name}Provider.${v.name}();`,
+              NL
+            );
+          });
         }
 
         const errors = o.meta?.rest?.results.filter((e) => e.error);
