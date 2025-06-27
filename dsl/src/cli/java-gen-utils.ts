@@ -224,6 +224,7 @@ export type JavaServerGeneratorConfig = ArtifactGeneratorConfig & {
   targetFolder: string;
   rootPackageName: string;
   nativeTypeSubstitues?: Record<string, string>;
+  scopeValues?: { type: string; name: string }[];
 };
 
 export function isJavaClientAPIGeneratorConfig(

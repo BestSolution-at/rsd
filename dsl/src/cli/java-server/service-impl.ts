@@ -78,6 +78,7 @@ function generateServiceContent(
       classBody.indent((methodBody) => {
         const parameters = [
           '_factory',
+          ...(artifactConfig.scopeValues?.map((s) => s.name) ?? []),
           ...o.parameters.map((p) => p.name),
         ].join(', ');
         if (o.resultType) {

@@ -74,8 +74,11 @@ export function generateServiceSignature(
   fqn: (type: string) => string
 ) {
   const child = new CompositeGeneratorNode();
+  const scopeValues =
+    artifactConfig.scopeValues?.map((s) => `${fqn(s.type)} ${s.name}`) ?? [];
   const parameters = [
     'BuilderFactory _factory',
+    ...scopeValues,
     ...allParameters.map((p) => toParameter(p, artifactConfig, fqn)),
   ].join(', ');
   child.append(
