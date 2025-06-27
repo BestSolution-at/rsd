@@ -649,6 +649,12 @@ export function generateJsonUtilsContent(
       )
     );
     classBody.append(
+      generateSingleLineMethod(
+        'public static <T> JsonArray toJsonValueArray(List<T> value, Function<T, JsonValue> jsonValueConverter)',
+        'return value.stream().collect(toArray(jsonValueConverter))'
+      )
+    );
+    classBody.append(
       'public static <T> Collector<T, ?, JsonArray> toArray(Function<T, JsonValue> jsonValueConverter) {',
       NL
     );

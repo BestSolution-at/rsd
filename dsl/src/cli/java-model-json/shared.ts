@@ -505,20 +505,34 @@ export function generatePatchPropertyAccessor(
       const _Base = fqn(basePackageName + '._Base');
       node.append(`public ${_Base}.Nillable<${type}> ${property.name}() {`, NL);
       node.indent((methodBody) => {
-        methodBody.append(
-          `return _JsonUtils.mapNilObject(data, "${property.name}", ${property.type}DataImpl::of);`,
-          NL
-        );
+        if (property.array) {
+          methodBody.append(
+            `return _JsonUtils.mapNilObjects(data, "${property.name}", ${property.type}DataImpl::of);`,
+            NL
+          );
+        } else {
+          methodBody.append(
+            `return _JsonUtils.mapNilObject(data, "${property.name}", ${property.type}DataImpl::of);`,
+            NL
+          );
+        }
       });
       node.append('}', NL);
     } else {
       const Optional = fqn('java.util.Optional');
       node.append(`public ${Optional}<${type}> ${property.name}() {`, NL);
       node.indent((methodBody) => {
-        methodBody.append(
-          `return _JsonUtils.mapOptObject(data, "${property.name}", ${property.type}DataImpl::of);`,
-          NL
-        );
+        if (property.array) {
+          methodBody.append(
+            `return _JsonUtils.mapOptObjects(data, "${property.name}", ${property.type}DataImpl::of);`,
+            NL
+          );
+        } else {
+          methodBody.append(
+            `return _JsonUtils.mapOptObject(data, "${property.name}", ${property.type}DataImpl::of);`,
+            NL
+          );
+        }
       });
       node.append('}', NL);
     }
@@ -639,7 +653,7 @@ export function generatePatchBuilderPropertyAccessor(
 
     let content: string;
     if (property.array) {
-      content = `$builder.add("${property.name}", _JSONUtils.toJsonObjectArray(${property.name}))`;
+      content = `$builder.add("${property.name}", _JsonUtils.toJsonValueArray(${property.name}, $e -> ((_BaseDataImpl) $e).data))`;
     } else {
       content = `$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data)`;
     }

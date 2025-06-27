@@ -254,7 +254,7 @@ function generateJSONBuilder(prop: MResolvedBaseProperty): string {
     ) {
       return `$builder.add("${prop.name}", _JsonUtils.toJsonLiteralArray(${prop.name}))`;
     } else {
-      return 'UNSUPPORTED record/union';
+      return `$builder.add("${prop.name}", _JsonUtils.toJsonValueArray(tags, $e -> ((_BaseDataImpl) $e).data))`;
     }
   }
 
