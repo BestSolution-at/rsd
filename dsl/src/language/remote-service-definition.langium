@@ -82,13 +82,9 @@ TypeRef:
     (builtin=BuiltinType | refType=[UserType:ID])
 ;
 
-DefaultParameter:
-    name=ID ':' typeRef=TypeRef
-;
-
 Service:
     doc = (SL_DOC_COMMENT|ML_DOC_COMMENT)?
-    'service' name=ID ('(' (defaultParameters += DefaultParameter) (',' defaultParameters += DefaultParameter)* ')')? '{'
+    'service' name=ID '{'
         operations += Operation*
     '}'
 ;
