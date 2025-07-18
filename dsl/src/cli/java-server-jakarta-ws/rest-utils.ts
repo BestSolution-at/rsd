@@ -21,7 +21,7 @@ function hasFileStreamResult(model: MResolvedRSDModel): boolean {
     model.services
       .flatMap((s) => s.operations)
       .filter((o) => o.resultType?.variant === 'stream')
-      .filter((o) => o.resultType?.type === 'file') !== undefined
+      .find((o) => o.resultType?.type === 'file') !== undefined
   );
 }
 
@@ -82,7 +82,7 @@ function generateStreamResultHelper(
   fqn: (type: string) => string
 ) {
   const StreamingOutput = fqn('jakarta.ws.rs.core.StreamingOutput');
-  const _Blob = fqn(`${artifactConfig.rootPackageName}.service.model._Blob`);
+  const _Blob = fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`);
   fqn('java.io.OutputStream');
   fqn('java.io.IOException');
   fqn('jakarta.ws.rs.WebApplicationException');
@@ -112,15 +112,6 @@ function generateStreamResultHelper(
       cBody.append('}', NL);
     });
     mBody.append('}', NL);
-    /*
-
-		
-		if (blob instanceof _File f) {
-			
-			
-		}
-		return builder;
-    */
     mBody.append(
       'var mediaType = blob.mimeType().map(MediaType::valueOf).orElse(MediaType.APPLICATION_OCTET_STREAM_TYPE);',
       NL
@@ -130,8 +121,8 @@ function generateStreamResultHelper(
       NL
     );
     if (hasFileStreamResult(model)) {
-      fqn(`${artifactConfig.rootPackageName}.service.model._File`);
-      mBody.append('if (blob instanceof _File f) {', NL);
+      fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`);
+      mBody.append('if (blob instanceof RSDFile f) {', NL);
       mBody.indent((block) => {
         block.append('var fileName = f.filename().replace("\\"", "");', NL);
         block.append(

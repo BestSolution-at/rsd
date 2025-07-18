@@ -32,6 +32,9 @@ export function generateResource(
   const result: Artifact[] = [];
   const serviceDTOs = s.operations
     .filter(
+      (o) => o.parameters.find((p) => p.variant === 'stream') == undefined // If there's a stream we have to use multi-part
+    )
+    .filter(
       (o) =>
         o.parameters.filter((p) => p.meta?.rest?.source === undefined).length >
         1
@@ -107,152 +110,315 @@ function _generateResource(
     cBody.append('}', NL);
     cBody.appendNewLine();
 
-    s.operations.forEach((o) => {
-      if (o.meta?.rest === undefined) {
-        return;
-      }
+    s.operations
+      .filter(
+        (o) => o.parameters.find((p) => p.variant === 'stream') === undefined
+      )
+      .forEach((o) => {
+        if (o.meta?.rest === undefined) {
+          return;
+        }
 
-      cBody.append(`@${fqn(`jakarta.ws.rs.${o.meta.rest.method}`)}`, NL);
-      if (o.meta.rest.path) {
-        cBody.append(`@${Path}("${o.meta.rest.path.replace('$', '')}")`, NL);
-      }
+        cBody.append(`@${fqn(`jakarta.ws.rs.${o.meta.rest.method}`)}`, NL);
+        if (o.meta.rest.path) {
+          cBody.append(`@${Path}("${o.meta.rest.path.replace('$', '')}")`, NL);
+        }
 
-      const multiBody =
-        o.parameters.filter((p) => p.meta?.rest?.source === undefined).length >
-        1;
-      const params: string[] = [];
-      const serviceParams: string[] = [];
+        const multiBody =
+          o.parameters.filter((p) => p.meta?.rest?.source === undefined)
+            .length > 1;
+        const params: string[] = [];
+        const serviceParams: string[] = [];
 
-      if (multiBody) {
-        params.push(
-          ...o.parameters
-            .filter((p) => p.meta?.rest !== undefined)
-            .filter((p) => p.meta?.rest?.source !== undefined)
-            .map((p) => toParameter(p, artifactConfig, fqn))
-        );
+        if (multiBody) {
+          params.push(
+            ...o.parameters
+              .filter((p) => p.meta?.rest !== undefined)
+              .filter((p) => p.meta?.rest?.source !== undefined)
+              .map((p) => toParameter(p, false, artifactConfig, fqn))
+          );
 
-        params.push(`String data`);
-        serviceParams.push(
-          ...o.parameters.map((p) => {
-            if (p.meta?.rest?.source === undefined) {
-              return `dto.${p.name}()`;
-            }
-            return p.name;
-          })
-        );
-      } else {
-        params.push(
-          ...o.parameters.map((p) => toParameter(p, artifactConfig, fqn))
-        );
-        serviceParams.push(...o.parameters.map((p) => p.name));
-      }
-
-      if (artifactConfig.scopeValues) {
-        serviceParams.unshift(
-          ...artifactConfig.scopeValues.map((v) => `$${v.name}`)
-        );
-      }
-
-      if (params.length > 0) {
-        if (params.length > 1) {
-          cBody.append(`public ${Response} ${o.name}(`, NL);
-          cBody.indent((tmp) =>
-            tmp.indent((paramIndent) => {
-              params.forEach((p, idx, arr) => {
-                paramIndent.append(`${p}`);
-                if (idx + 1 < arr.length) {
-                  paramIndent.append(',', NL);
-                } else {
-                  paramIndent.append(') {', NL);
-                }
-              });
+          params.push(`String data`);
+          serviceParams.push(
+            ...o.parameters.map((p) => {
+              if (p.meta?.rest?.source === undefined) {
+                return `dto.${p.name}()`;
+              }
+              return p.name;
             })
           );
         } else {
-          cBody.append(`public ${Response} ${o.name}(${params[0]}) {`, NL);
-        }
-      } else {
-        cBody.append(`public ${Response} ${o.name}() {`, NL);
-      }
-      cBody.indent((mBody) => {
-        o.parameters.forEach((p) => {
-          if (multiBody && p.meta?.rest?.source === undefined) {
-            return;
-          }
-          if (p.variant === 'record' || p.variant === 'union') {
-            const type = computeParameterAPIType(
-              p,
-              artifactConfig.nativeTypeSubstitues,
-              `${artifactConfig.rootPackageName}.service.model`,
-              fqn
-            );
-            mBody.append(
-              `var ${p.name} = builderFactory.of(${type}.class, _${p.name});`,
-              NL
-            );
-          } else if (p.variant === 'builtin') {
-            mBody.append(`var ${p.name} = _${p.name};`, NL);
-          } else if (p.variant === 'scalar') {
-            const type = p.type;
-            if (typeof type === 'string') {
-              const t = resolveType(
-                type,
-                artifactConfig.nativeTypeSubstitues,
-                fqn,
-                false
-              );
-              mBody.append(
-                `var ${p.name} = _${p.name} == null ? null : ${t}.of(_${p.name});`,
-                NL
-              );
-            }
-          }
-        });
-        if (multiBody) {
-          const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
-          const Type = fqn(
-            `${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`
+          params.push(
+            ...o.parameters.map((p) =>
+              toParameter(p, false, artifactConfig, fqn)
+            )
           );
-          mBody.append(
-            `var dto = ${_JsonUtils}.fromString(data, ${Type}::new);`,
-            NL
-          );
-        }
-        if (artifactConfig.scopeValues) {
-          artifactConfig.scopeValues.forEach((v) => {
-            mBody.append(
-              `var $${v.name} = this.${v.name}Provider.${v.name}();`,
-              NL
-            );
-          });
+          serviceParams.push(...o.parameters.map((p) => p.name));
         }
 
-        const errors = o.meta?.rest?.results.filter((e) => e.error);
-        if (errors && errors.length > 0) {
-          mBody.append('try {', NL);
-          mBody.indent((inner) => {
-            inner.append(okResultContent(o, serviceParams));
-          });
-          errors.forEach((e) => {
-            const Type = fqn(
-              `${artifactConfig.rootPackageName}.service.${e.error}Exception`
+        if (artifactConfig.scopeValues) {
+          serviceParams.unshift(
+            ...artifactConfig.scopeValues.map((v) => `$${v.name}`)
+          );
+        }
+
+        if (params.length > 0) {
+          if (params.length > 1) {
+            cBody.append(`public ${Response} ${o.name}(`, NL);
+            cBody.indent((tmp) =>
+              tmp.indent((paramIndent) => {
+                params.forEach((p, idx, arr) => {
+                  paramIndent.append(`${p}`);
+                  if (idx + 1 < arr.length) {
+                    paramIndent.append(',', NL);
+                  } else {
+                    paramIndent.append(') {', NL);
+                  }
+                });
+              })
             );
-            mBody.append(`} catch (${Type} e) {`, NL);
-            mBody.indent((inner) => {
-              inner.append(
-                `return _RestUtils.toResponse(${e.statusCode}, e);`,
+          } else {
+            cBody.append(`public ${Response} ${o.name}(${params[0]}) {`, NL);
+          }
+        } else {
+          cBody.append(`public ${Response} ${o.name}() {`, NL);
+        }
+        cBody.indent((mBody) => {
+          o.parameters.forEach((p) => {
+            if (multiBody && p.meta?.rest?.source === undefined) {
+              return;
+            }
+            if (p.variant === 'record' || p.variant === 'union') {
+              const type = computeParameterAPIType(
+                p,
+                artifactConfig.nativeTypeSubstitues,
+                `${artifactConfig.rootPackageName}.service.model`,
+                fqn
+              );
+              mBody.append(
+                `var ${p.name} = builderFactory.of(${type}.class, _${p.name});`,
+                NL
+              );
+            } else if (p.variant === 'builtin') {
+              mBody.append(`var ${p.name} = _${p.name};`, NL);
+            } else if (p.variant === 'scalar') {
+              const type = p.type;
+              if (typeof type === 'string') {
+                const t = resolveType(
+                  type,
+                  artifactConfig.nativeTypeSubstitues,
+                  fqn,
+                  false
+                );
+                mBody.append(
+                  `var ${p.name} = _${p.name} == null ? null : ${t}.of(_${p.name});`,
+                  NL
+                );
+              }
+            }
+          });
+          if (multiBody) {
+            const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
+            const Type = fqn(
+              `${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`
+            );
+            mBody.append(
+              `var dto = ${_JsonUtils}.fromString(data, ${Type}::new);`,
+              NL
+            );
+          }
+          if (artifactConfig.scopeValues) {
+            artifactConfig.scopeValues.forEach((v) => {
+              mBody.append(
+                `var $${v.name} = this.${v.name}Provider.${v.name}();`,
                 NL
               );
             });
-          });
-          mBody.append('}', NL);
-        } else {
-          mBody.append(okResultContent(o, serviceParams));
-        }
+          }
+
+          const errors = o.meta?.rest?.results.filter((e) => e.error);
+          if (errors && errors.length > 0) {
+            mBody.append('try {', NL);
+            mBody.indent((inner) => {
+              inner.append(okResultContent(o, serviceParams));
+            });
+            errors.forEach((e) => {
+              const Type = fqn(
+                `${artifactConfig.rootPackageName}.service.${e.error}Exception`
+              );
+              mBody.append(`} catch (${Type} e) {`, NL);
+              mBody.indent((inner) => {
+                inner.append(
+                  `return _RestUtils.toResponse(${e.statusCode}, e);`,
+                  NL
+                );
+              });
+            });
+            mBody.append('}', NL);
+          } else {
+            mBody.append(okResultContent(o, serviceParams));
+          }
+        });
+        cBody.append('}', NL);
+        cBody.appendNewLine();
       });
-      cBody.append('}', NL);
-      cBody.appendNewLine();
-    });
+
+    s.operations
+      .filter(
+        (o) => o.parameters.find((p) => p.variant === 'stream') !== undefined
+      )
+      .forEach((o) => {
+        if (o.meta?.rest === undefined) {
+          return;
+        }
+
+        cBody.append(`@${fqn(`jakarta.ws.rs.${o.meta.rest.method}`)}`, NL);
+        if (o.meta.rest.path) {
+          cBody.append(`@${Path}("${o.meta.rest.path.replace('$', '')}")`, NL);
+        }
+        cBody.append(
+          `@${fqn('jakarta.ws.rs.Consumes')}(${fqn(
+            'jakarta.ws.rs.core.MediaType'
+          )}.MULTIPART_FORM_DATA)`,
+          NL
+        );
+        const params: string[] = o.parameters.map((p) =>
+          toParameter(p, true, artifactConfig, fqn)
+        );
+        const serviceParams: string[] = [];
+
+        serviceParams.push(...o.parameters.map((p) => p.name));
+        if (artifactConfig.scopeValues) {
+          serviceParams.unshift(
+            ...artifactConfig.scopeValues.map((v) => `$${v.name}`)
+          );
+        }
+
+        cBody.append(
+          `public ${fqn('jakarta.ws.rs.core.Response')} ${o.name}(${params.join(
+            ', '
+          )}) {`,
+          NL
+        );
+        cBody.indent((mBody) => {
+          if (artifactConfig.scopeValues) {
+            o.parameters.forEach((p) => {
+              if (p.variant === 'stream') {
+                if (p.type === 'file') {
+                  mBody.append(
+                    `var ${p.name} = ${fqn(
+                      `${artifactConfig.rootPackageName}.rest.model._FileImpl`
+                    )}.of(_${p.name}.filePath(), _${p.name}.contentType(), _${
+                      p.name
+                    }.fileName());`,
+                    NL
+                  );
+                } else {
+                  mBody.append(
+                    `var ${p.name} = ${fqn(
+                      `${artifactConfig.rootPackageName}.rest.model._BlobImpl`
+                    )}.of(_${p.name}.filePath(), _${p.name}.contentType());`,
+                    NL
+                  );
+                }
+              } else {
+                if (p.meta?.rest?.source === 'path') {
+                  return;
+                }
+                if (p.variant === 'record' || p.variant === 'union') {
+                  const type = computeParameterAPIType(
+                    p,
+                    artifactConfig.nativeTypeSubstitues,
+                    `${artifactConfig.rootPackageName}.service.model`,
+                    fqn
+                  );
+                  mBody.append(
+                    `var ${p.name} = builderFactory.of(${type}.class, _${p.name});`,
+                    NL
+                  );
+                } else if (p.variant === 'builtin') {
+                  mBody.append(`var ${p.name} = _${p.name};`, NL);
+                } else if (p.variant === 'scalar') {
+                  const type = p.type;
+                  if (typeof type === 'string') {
+                    const t = resolveType(
+                      type,
+                      artifactConfig.nativeTypeSubstitues,
+                      fqn,
+                      false
+                    );
+                    mBody.append(
+                      `var ${p.name} = _${p.name} == null ? null : ${t}.of(_${p.name});`,
+                      NL
+                    );
+                  }
+                }
+              }
+            });
+            artifactConfig.scopeValues.forEach((v) => {
+              mBody.append(
+                `var $${v.name} = this.${v.name}Provider.${v.name}();`,
+                NL
+              );
+            });
+            const errors = o.meta?.rest?.results.filter((e) => e.error);
+            if (errors && errors.length > 0) {
+              mBody.append('try {', NL);
+              mBody.indent((inner) => {
+                inner.append(okResultContent(o, serviceParams));
+              });
+              errors.forEach((e) => {
+                const Type = fqn(
+                  `${artifactConfig.rootPackageName}.service.${e.error}Exception`
+                );
+                mBody.append(`} catch (${Type} e) {`, NL);
+                mBody.indent((inner) => {
+                  inner.append(
+                    `return _RestUtils.toResponse(${e.statusCode}, e);`,
+                    NL
+                  );
+                });
+              });
+              mBody.append('}', NL);
+            } else {
+              mBody.append(okResultContent(o, serviceParams));
+            }
+          }
+        });
+        cBody.append('}', NL);
+
+        /*
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+
+import org.jboss.resteasy.reactive.RestForm;
+import org.jboss.resteasy.reactive.multipart.FileUpload;
+
+import com.onacta.dms.server.rest.model._FileImpl;
+import com.onacta.dms.server.service.DokumenteService;
+import com.onacta.dms.server.service.model.Dokument;
+
+	@POST
+	@Path("")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public Response upload(@RestForm("stream") FileUpload _stream, @RestForm("dokument") String _dokument) {
+		var $principal = this.principalProvider.principal();
+		var stream = _FileImpl.of(_stream);
+		var dokument = builderFactory.of(Dokument.Data.class, _dokument);
+		var $result = service.upload(builderFactory, $principal, dokument, stream);
+		return responseBuilder.upload($result, $principal, dokument, stream).build();
+	}
+
+*/
+      });
   });
 
   node.append('}', NL);
@@ -305,10 +471,11 @@ function okResultContent(o: MOperation, serviceParams: string[]) {
 
 function toParameter(
   p: MParameter,
+  form: boolean,
   artifactConfig: JavaServerJakartaWSGeneratorConfig,
   fqn: (type: string) => string
 ): string {
-  const annotation = computeParameterAnnotation(p, fqn);
+  const annotation = computeParameterAnnotation(p, form, fqn);
   const type = computeParameterType(p, artifactConfig, fqn);
 
   return `${annotation}${type} _${p.name}`;
@@ -319,7 +486,14 @@ function computeParameterType(
   artifactConfig: JavaServerJakartaWSGeneratorConfig,
   fqn: (type: string) => string
 ): string {
-  if (
+  if (p.variant === 'stream') {
+    let t = fqn('org.jboss.resteasy.reactive.multipart.FileUpload');
+    if (p.array) {
+      const List = fqn('java.util.List');
+      return `${List}<${t}>`;
+    }
+    return t;
+  } else if (
     p.variant === 'record' ||
     p.variant === 'union' ||
     p.variant === 'scalar'
@@ -348,9 +522,12 @@ function computeParameterType(
 
 function computeParameterAnnotation(
   p: MParameter,
+  form: boolean,
   fqn: (type: string) => string
 ): string {
-  if (p.meta?.rest?.source === 'path') {
+  if (form) {
+    return `@${fqn('org.jboss.resteasy.reactive.RestForm')}("${p.name}") `;
+  } else if (p.meta?.rest?.source === 'path') {
     return `@${fqn('jakarta.ws.rs.PathParam')}("${p.meta.rest.name}") `;
   } else if (p.meta?.rest?.source === 'header') {
     return `@${fqn('jakarta.ws.rs.HeaderParam')}("${p.meta.rest.name}") `;

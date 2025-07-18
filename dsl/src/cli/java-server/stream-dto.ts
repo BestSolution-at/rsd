@@ -25,7 +25,7 @@ export function generateStreamDTO(
       const fqn = importCollector.importType.bind(importCollector);
 
       artifacts.push({
-        name: '_Blob.java',
+        name: 'RSDBlob.java',
         content: toString(
           generateCompilationUnit(
             packageName,
@@ -41,7 +41,7 @@ export function generateStreamDTO(
     if (streamReturns.find((o) => o.resultType?.type === 'file')) {
       const importCollector = new JavaImportsCollector(packageName);
       artifacts.push({
-        name: '_File.java',
+        name: 'RSDFile.java',
         content: toString(
           generateCompilationUnit(packageName, importCollector, generateFile()),
           '\t'
@@ -59,7 +59,7 @@ function generateBlob(fqn: (type: string) => string) {
   fqn('java.io.InputStream');
   fqn('java.util.Optional');
 
-  result.append('public interface _Blob {', NL);
+  result.append('public interface RSDBlob {', NL);
   result.indent((body) => {
     body.append('public InputStream stream();', NL, NL);
     body.append('public Optional<String> mimeType();', NL);
@@ -72,7 +72,7 @@ function generateBlob(fqn: (type: string) => string) {
 function generateFile() {
   const result = new CompositeGeneratorNode();
 
-  result.append('public interface _File extends _Blob {', NL);
+  result.append('public interface RSDFile extends RSDBlob {', NL);
   result.indent((body) => {
     body.append('public String filename();', NL);
   });

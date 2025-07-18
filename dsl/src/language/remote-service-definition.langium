@@ -78,9 +78,6 @@ NamedType:
     name=ID optional?='?'? ':' (typeRef=TypeRef | inlineEnum=InlineEnumType) (array?='[' maxLength=INT? ']')? nullable?='?'?
 ;
 
-NamedStreamType:
-    name=ID streamtType=StreamType;
-
 Property:
     readonly?='@readonly'? namedType=NamedType doc=SL_DOC_COMMENT?;
 
@@ -96,7 +93,11 @@ Service:
 ;
 
 Parameter:
-    (patch?='@patch'? namedType=NamedType) // | namedType=NamedStreamType
+    patch?='@patch'? namedType=ParameterNamedType
+;
+
+ParameterNamedType:
+    name=ID optional?='?'? ':' (typeRef=TypeRef | inlineEnum=InlineEnumType | stream=StreamType) (array?='[' maxLength=INT? ']')? nullable?='?'?
 ;
 
 ReturnType:

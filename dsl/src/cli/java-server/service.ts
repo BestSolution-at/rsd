@@ -141,9 +141,9 @@ function toResultType(
 
   if (type.variant === 'stream') {
     if (type.type === 'file') {
-      return fqn(`${dtoPkg}._File`);
+      return fqn(`${dtoPkg}.RSDFile`);
     }
-    return fqn(`${dtoPkg}._Blob`);
+    return fqn(`${dtoPkg}.RSDBlob`);
   } else if (type.variant === 'union' || type.variant === 'record') {
     const dtoType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
     if (type.array) {

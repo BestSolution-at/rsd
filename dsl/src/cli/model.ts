@@ -303,7 +303,14 @@ export type MParameter = {
   arrayMaxLength?: number;
   optional: boolean;
   nullable: boolean;
-  variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'inline-enum';
+  variant:
+    | 'enum'
+    | 'builtin'
+    | 'scalar'
+    | 'union'
+    | 'record'
+    | 'inline-enum'
+    | 'stream';
   type: string | MInlineEnumType;
   doc: string;
   meta?: {

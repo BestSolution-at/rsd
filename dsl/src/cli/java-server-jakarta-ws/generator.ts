@@ -26,6 +26,7 @@ import { generateResponseBuilder } from './response-builder.js';
 import { generateRestUtils } from './rest-utils.js';
 import { generateNillable } from './nillable-impl.js';
 import { generateScopeValueProvider } from './scopevalue-provider.js';
+import { generateStreamImpls } from './stream-impl.js';
 
 export function generate(
   model: MResolvedRSDModel,
@@ -58,6 +59,7 @@ export function generate(
   );
   result.push(...generateRestUtils(artifactConfig, model));
   result.push(...generateScopeValueProvider(artifactConfig));
+  result.push(...generateStreamImpls(artifactConfig, model));
 
   return result;
 }

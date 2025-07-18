@@ -106,7 +106,13 @@ export function computeParameterAPIType(
   noArray = false
 ) {
   let type: string;
-  if (isMBuiltinType(parameter.type)) {
+  if (parameter.variant === 'stream') {
+    if (parameter.type === 'file') {
+      type = fqn(`${basePackageName}.RSDFile`);
+    } else {
+      type = fqn(`${basePackageName}.RSDBlob`);
+    }
+  } else if (isMBuiltinType(parameter.type)) {
     if (parameter.array || parameter.optional) {
       type = builtinToJavaObjectType(parameter.type, fqn);
     } else {

@@ -306,8 +306,12 @@ function mapParameter(
     nullable: parameter.namedType.nullable,
     optional: parameter.namedType.optional,
     patch: parameter.patch,
-    variant: computeVariant(parameter.namedType),
-    type: computeType(parameter.namedType),
+    variant: parameter.namedType.stream
+      ? 'stream'
+      : computeVariant(parameter.namedType),
+    type: parameter.namedType.stream
+      ? parameter.namedType.stream
+      : computeType(parameter.namedType),
     doc: docMap.get(parameter.namedType.name) ?? '',
   };
 }

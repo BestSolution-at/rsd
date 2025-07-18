@@ -163,7 +163,9 @@ function toResultType(
   }
 
   if (type.variant === 'stream') {
-    return fqn(type.type === 'file' ? `${dtoPkg}._File` : `${dtoPkg}._Blob`);
+    return fqn(
+      type.type === 'file' ? `${dtoPkg}.RSDFile` : `${dtoPkg}.RSDBlob`
+    );
   } else if (type.variant === 'union' || type.variant === 'record') {
     const dtoType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
     if (type.array) {

@@ -26,7 +26,7 @@ import { generateRSDException } from '../java-client-api/rsd-exception.js';
 import { generateError } from '../java-client-api/error.js';
 import { generateService } from './service.js';
 import { generateServiceImpl } from './service-impl.js';
-import { generateStreamDTO } from './_stream-dto.js';
+import { generateStreamDTO } from './stream-dto.js';
 
 export function generate(
   model: MResolvedRSDModel,
