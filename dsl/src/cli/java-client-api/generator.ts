@@ -30,6 +30,7 @@ import { generateService } from './service.js';
 import { generateError } from './error.js';
 import { generateMixin } from './mixin.js';
 import { generateRSDException } from './rsd-exception.js';
+import { generateStreamDTO } from './stream-dto.js';
 
 function generate(
   model: MResolvedRSDModel,
@@ -62,7 +63,7 @@ function generate(
   );
   result.push(generateBase(artifactConfig));
   result.push(generateBaseService(artifactConfig));
-  result.push(generateClient(generatorConfig, artifactConfig));
+  result.push(generateClient(generatorConfig, artifactConfig, model));
   result.push(generateFactory(generatorConfig, artifactConfig));
 
   result.push(
@@ -70,6 +71,7 @@ function generate(
       .map((s) => generateService(s, artifactConfig))
       .filter(isDefined)
   );
+  result.push(...generateStreamDTO(artifactConfig, model));
 
   return result;
 }

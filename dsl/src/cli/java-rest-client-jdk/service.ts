@@ -255,7 +255,7 @@ function generateOpertationMethod(
                 `${artifactConfig.rootPackageName}.jdkhttp.impl.model._BaseDataImpl`
               );
               methodBody.append(
-                `.add("${p.name}", ((${_BaseDataImpl})${p.name}).data)`,
+                `$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`,
                 NL
               );
             }

@@ -7,23 +7,7 @@ import {
   toPath,
 } from '../java-gen-utils.js';
 import { MResolvedRSDModel } from '../model.js';
-
-function hasStreamResult(model: MResolvedRSDModel): boolean {
-  return (
-    model.services
-      .flatMap((s) => s.operations)
-      .find((o) => o.resultType?.variant === 'stream') !== undefined
-  );
-}
-
-function hasFileStreamResult(model: MResolvedRSDModel): boolean {
-  return (
-    model.services
-      .flatMap((s) => s.operations)
-      .filter((o) => o.resultType?.variant === 'stream')
-      .find((o) => o.resultType?.type === 'file') !== undefined
-  );
-}
+import { hasFileStreamResult, hasStreamResult } from '../util.js';
 
 export function generateRestUtils(
   artifactConfig: JavaServerJakartaWSGeneratorConfig,

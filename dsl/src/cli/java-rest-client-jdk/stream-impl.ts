@@ -18,7 +18,7 @@ export function generateStreamImpls(
   model: MResolvedRSDModel
 ): Artifact[] {
   if (hasStream(model)) {
-    const packageName = `${artifactConfig.rootPackageName}.rest.model`;
+    const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
     const importCollector = new JavaImportsCollector(packageName);
     const rv: Artifact[] = [
       {
@@ -27,7 +27,7 @@ export function generateStreamImpls(
           generateCompilationUnit(
             packageName,
             importCollector,
-            generateBlobImpl(`${artifactConfig.rootPackageName}.service.model`)
+            generateBlobImpl(`${artifactConfig.rootPackageName}.model`)
           ),
           '\t'
         ),
@@ -41,7 +41,7 @@ export function generateStreamImpls(
           generateCompilationUnit(
             packageName,
             importCollector,
-            generateFileImpl(`${artifactConfig.rootPackageName}.service.model`)
+            generateFileImpl(`${artifactConfig.rootPackageName}.model`)
           ),
           '\t'
         ),

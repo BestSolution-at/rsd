@@ -1,10 +1,12 @@
 import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
 import { JavaRestClientJDKGeneratorConfig, toPath } from '../java-gen-utils.js';
-import { toNode } from '../util.js';
+import { hasFileStreamResult, hasStreamResult, toNode } from '../util.js';
+import { MResolvedRSDModel } from '../model.js';
 
 export function generateServiceUtils(
-  artifactConfig: JavaRestClientJDKGeneratorConfig
+  artifactConfig: JavaRestClientJDKGeneratorConfig,
+  model: MResolvedRSDModel
 ): Artifact {
   const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl`;
 
@@ -16,6 +18,9 @@ export function generateServiceUtils(
   compilationContent.append(`import java.net.URLEncoder;`, NL);
   compilationContent.append(`import java.net.http.HttpResponse;`, NL);
   compilationContent.append(`import java.nio.charset.StandardCharsets;`, NL);
+  if (hasStreamResult(model)) {
+    compilationContent.append(`import java.nio.file.Path;`, NL);
+  }
   compilationContent.append(`import java.time.LocalDate;`, NL);
   compilationContent.append(`import java.time.LocalDateTime;`, NL);
   compilationContent.append(`import java.time.ZonedDateTime;`, NL);
@@ -25,7 +30,26 @@ export function generateServiceUtils(
   compilationContent.append(`import java.util.stream.Collectors;`, NL);
   compilationContent.append(`import java.util.stream.Stream;`, NL, NL);
 
+  if (hasStreamResult(model)) {
+    compilationContent.append(`import ${packageName}.model._BlobImpl;`, NL);
+    if (hasFileStreamResult(model)) {
+      compilationContent.append(`import ${packageName}.model._FileImpl;`, NL);
+    }
+  }
   compilationContent.append(`import ${packageName}.model._JsonUtils;`, NL);
+  if (hasStreamResult(model)) {
+    compilationContent.append(
+      `import ${artifactConfig.rootPackageName}.model.RSDBlob;`,
+      NL
+    );
+    if (hasFileStreamResult(model)) {
+      compilationContent.append(
+        `import ${artifactConfig.rootPackageName}.model.RSDFile;`,
+        NL
+      );
+    }
+  }
+
   compilationContent.append(`import jakarta.json.Json;`, NL);
   compilationContent.append(`import jakarta.json.JsonNumber;`, NL);
   compilationContent.append(`import jakarta.json.JsonObject;`, NL);
@@ -121,6 +145,52 @@ export function generateServiceUtils(
     ]),
     NL
   );
+
+  /*public static RSDFile mapFile(HttpResponse<Path> response) {
+		var mimeType = response.headers().firstValue("Content-Type")
+				.orElse(null);
+		var file = response.body();
+		var dispoHeader = response.headers()
+				.firstValue("Content-Disposition").orElseThrow();
+		var fileNameWithQuotes = dispoHeader.substring(dispoHeader.indexOf("filename=") + "filename=".length());
+		var fileName = fileNameWithQuotes.substring(1, fileNameWithQuotes.length() - 1);
+		return _FileImpl.of(file, mimeType, fileName);
+	}*/
+
+  if (hasStreamResult(model)) {
+    content.append(
+      toNode([
+        'public static RSDBlob mapBlob(HttpResponse<Path> response) {',
+        [
+          'var mimeType = response.headers().firstValue("Content-Type")',
+          [['.orElse(null);']],
+          'var file = response.body();',
+          'return _BlobImpl.of(file, mimeType);',
+        ],
+        '}',
+      ]),
+      NL
+    );
+    if (hasFileStreamResult(model)) {
+      content.append(
+        toNode([
+          'public static RSDFile mapFile(HttpResponse<Path> response) {',
+          [
+            'var mimeType = response.headers().firstValue("Content-Type")',
+            [['.orElse(null);']],
+            'var file = response.body();',
+            'var dispoHeader = response.headers()',
+            [['.firstValue("Content-Disposition").orElseThrow();']],
+            'var fileNameWithQuotes = dispoHeader.substring(dispoHeader.indexOf("filename=") + "filename=".length());',
+            'var fileName = fileNameWithQuotes.substring(1, fileNameWithQuotes.length() - 1);',
+            'return _FileImpl.of(file, mimeType, fileName);',
+          ],
+          '}',
+        ]),
+        NL
+      );
+    }
+  }
   content.append(
     toNode([
       'public static String mapString(HttpResponse<String> response) {',

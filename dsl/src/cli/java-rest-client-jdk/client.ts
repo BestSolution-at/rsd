@@ -7,6 +7,7 @@ import {
   toPath,
 } from '../java-gen-utils.js';
 import { isMResolvedRecordType, MResolvedRSDModel } from '../model.js';
+import { hasFileStream, hasStream, toCamelCaseIdentifier } from '../util.js';
 
 export function generateClient(
   m: MResolvedRSDModel,
@@ -19,7 +20,9 @@ export function generateClient(
   const importCollector = new JavaImportsCollector(packageName);
   const fqn = importCollector.importType.bind(importCollector);
 
-  const Client = fqn(`${basePackage}.${generatorConfig.name}Client`);
+  const Client = fqn(
+    `${basePackage}.${toCamelCaseIdentifier(generatorConfig.name)}Client`
+  );
   const URI = fqn('java.net.URI');
   const Map = fqn('java.util.Map');
   const HashMap = fqn('java.util.HashMap');
@@ -31,7 +34,9 @@ export function generateClient(
 
   const content = new CompositeGeneratorNode();
   content.append(
-    `public class JDK${generatorConfig.name}Client implements ${Client} {`,
+    `public class JDK${toCamelCaseIdentifier(
+      generatorConfig.name
+    )}Client implements ${Client} {`,
     NL
   );
   content.indent((clBody) => {
@@ -106,7 +111,12 @@ export function generateClient(
     clBody.append(`private final ${URI} baseURI;`, NL);
     clBody.append(`private final ${HttpClient} httpClient;`, NL);
     clBody.appendNewLine();
-    clBody.append(`JDK${generatorConfig.name}Client(${URI} baseURI) {`, NL);
+    clBody.append(
+      `JDK${toCamelCaseIdentifier(
+        generatorConfig.name
+      )}Client(${URI} baseURI) {`,
+      NL
+    );
     clBody.indent((initBlock) => {
       initBlock.append('this.baseURI = baseURI;', NL);
       initBlock.append('this.httpClient = HttpClient.newHttpClient();', NL);
@@ -114,11 +124,18 @@ export function generateClient(
     clBody.append('}', NL);
     clBody.appendNewLine();
     clBody.append(
-      `public static ${generatorConfig.name}Client create(${URI} baseURI) {`,
+      `public static ${toCamelCaseIdentifier(
+        generatorConfig.name
+      )}Client create(${URI} baseURI) {`,
       NL
     );
     clBody.indent((mBody) => {
-      mBody.append('return new JDKQutiClient(baseURI);', NL);
+      mBody.append(
+        `return new JDK${toCamelCaseIdentifier(
+          generatorConfig.name
+        )}Client(baseURI);`,
+        NL
+      );
     });
     clBody.append('}', NL);
     clBody.appendNewLine();
@@ -170,12 +187,51 @@ export function generateClient(
       );
     });
     clBody.append('}', NL);
+
+    if (hasStream(m)) {
+      clBody.appendNewLine();
+      clBody.append(
+        `public ${fqn(
+          `${artifactConfig.rootPackageName}.model.RSDBlob`
+        )} creatBlob(${fqn('java.nio.file.Path')} file, String mimeType) {`,
+        NL
+      );
+      clBody.indent((mBody) => {
+        mBody.append(
+          `return ${fqn(
+            `${packageName}.impl.model._BlobImpl`
+          )}.of(file, mimeType);`,
+          NL
+        );
+      });
+      clBody.append('}', NL);
+      if (hasFileStream(m)) {
+        clBody.appendNewLine();
+        clBody.append(
+          `public ${fqn(
+            `${artifactConfig.rootPackageName}.model.RSDFile`
+          )} creatFile(${fqn(
+            'java.nio.file.Path'
+          )} file, String mimeType, String filename) {`,
+          NL
+        );
+        clBody.indent((mBody) => {
+          mBody.append(
+            `return ${fqn(
+              `${packageName}.impl.model._FileImpl`
+            )}.of(file, mimeType, filename);`,
+            NL
+          );
+        });
+        clBody.append('}', NL);
+      }
+    }
   });
 
   content.append('}', NL);
 
   return {
-    name: `JDK${generatorConfig.name}Client.java`,
+    name: `JDK${toCamelCaseIdentifier(generatorConfig.name)}Client.java`,
     content: toString(
       generateCompilationUnit(packageName, importCollector, content),
       '\t'

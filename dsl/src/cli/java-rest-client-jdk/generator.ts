@@ -23,6 +23,7 @@ import { generateUnion } from './union.js';
 import { generateService } from './service.js';
 import { generateServiceUtils } from './service-utils.js';
 import { generateNillable } from './nillable-impl.js';
+import { generateStreamImpls } from './stream-impl.js';
 
 export function generate(
   model: MResolvedRSDModel,
@@ -43,13 +44,14 @@ export function generate(
   result.push(generateBase(artifactConfig));
   result.push(generateNillable(artifactConfig));
   result.push(generateJsonUtils(artifactConfig));
-  result.push(generateServiceUtils(artifactConfig));
+  result.push(generateServiceUtils(artifactConfig, model));
   result.push(
     ...model.elements
       .flatMap((e) => generateType(e, model, artifactConfig))
       .filter(isDefined)
   );
   result.push(...model.services.map((e) => generateService(e, artifactConfig)));
+  result.push(...generateStreamImpls(artifactConfig, model));
 
   return result;
 }

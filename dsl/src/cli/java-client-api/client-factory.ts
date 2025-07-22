@@ -7,7 +7,7 @@ import {
   generateCompilationUnit,
   toPath,
 } from '../java-gen-utils.js';
-import { toFirstUpper } from '../util.js';
+import { toCamelCaseIdentifier, toFirstUpper } from '../util.js';
 
 export function generateFactory(
   generatorConfig: ArtifactGenerationConfig,
@@ -20,13 +20,15 @@ export function generateFactory(
 
   const content = new CompositeGeneratorNode();
   content.append(
-    `public interface ${toFirstUpper(generatorConfig.name)}ClientFactory {`,
+    `public interface ${toFirstUpper(
+      toCamelCaseIdentifier(generatorConfig.name)
+    )}ClientFactory {`,
     NL
   );
   content.indent((child) => {
     const clientType = fqn(
       `${artifactConfig.rootPackageName}.${toFirstUpper(
-        generatorConfig.name
+        toCamelCaseIdentifier(generatorConfig.name)
       )}Client`
     );
     const uriType = fqn('java.net.URI');
@@ -36,7 +38,9 @@ export function generateFactory(
   content.append('}', NL);
 
   return {
-    name: `${toFirstUpper(generatorConfig.name)}ClientFactory.java`,
+    name: `${toFirstUpper(
+      toCamelCaseIdentifier(generatorConfig.name)
+    )}ClientFactory.java`,
     content: toString(
       generateCompilationUnit(packageName, importCollector, content),
       '\t'

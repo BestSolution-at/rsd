@@ -7,11 +7,18 @@ import {
   generateCompilationUnit,
   toPath,
 } from '../java-gen-utils.js';
-import { toFirstUpper } from '../util.js';
+import {
+  hasFileStream,
+  hasStream,
+  toCamelCaseIdentifier,
+  toFirstUpper,
+} from '../util.js';
+import { MResolvedRSDModel } from '../model.js';
 
 export function generateClient(
   generatorConfig: ArtifactGenerationConfig,
-  artifactConfig: JavaClientAPIGeneratorConfig
+  artifactConfig: JavaClientAPIGeneratorConfig,
+  model: MResolvedRSDModel
 ): Artifact {
   const packageName = `${artifactConfig.rootPackageName}`;
 
@@ -22,7 +29,7 @@ export function generateClient(
   const slType = fqn('java.util.ServiceLoader');
   const clFactoryType = fqn(
     `${artifactConfig.rootPackageName}.spi.${toFirstUpper(
-      generatorConfig.name
+      toCamelCaseIdentifier(generatorConfig.name)
     )}ClientFactory`
   );
   const baseDTOType = fqn(`${artifactConfig.rootPackageName}.model._Base`);
@@ -30,13 +37,15 @@ export function generateClient(
   const content = new CompositeGeneratorNode();
 
   content.append(
-    `public interface ${toFirstUpper(generatorConfig.name)}Client {`,
+    `public interface ${toFirstUpper(
+      toCamelCaseIdentifier(generatorConfig.name)
+    )}Client {`,
     NL
   );
   content.indent((client) => {
     client.append(
       `public static ${toFirstUpper(
-        generatorConfig.name
+        toCamelCaseIdentifier(generatorConfig.name)
       )}Client create(${uriType} baseURL) {`,
       NL
     );
@@ -56,12 +65,34 @@ export function generateClient(
       'public <T extends BaseService> T service(Class<T> clazz);',
       NL
     );
+    if (hasStream(model)) {
+      client.appendNewLine();
+      client.append(
+        `public ${fqn(
+          `${artifactConfig.rootPackageName}.model.RSDBlob`
+        )} creatBlob(${fqn('java.nio.file.Path')} file, String mimeType);`,
+        NL
+      );
+      if (hasFileStream(model)) {
+        client.appendNewLine();
+        client.append(
+          `public ${fqn(
+            `${artifactConfig.rootPackageName}.model.RSDFile`
+          )} creatFile(${fqn(
+            'java.nio.file.Path'
+          )} file, String mimeType, String filename);`,
+          NL
+        );
+      }
+    }
   });
 
   content.append('}', NL);
 
   return {
-    name: `${toFirstUpper(generatorConfig.name)}Client.java`,
+    name: `${toFirstUpper(
+      toCamelCaseIdentifier(generatorConfig.name)
+    )}Client.java`,
     content: toString(
       generateCompilationUnit(packageName, importCollector, content),
       '\t'

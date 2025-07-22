@@ -103,29 +103,6 @@ function toMethod(
           )
           .join(', ')
     );
-    /*
-    child.appendNewLine();
-    child.indent((outer) => {
-      outer.indent((throwBody) => {
-        throwBody.append(
-          'throws ',
-          fqn(`${artifactConfig.rootPackageName}.${o.errors[0]}Exception`),
-          o.errors.length > 1 ? ',' : ''
-        );
-        if (o.errors.length > 1) {
-          throwBody.appendNewLine();
-        }
-        o.errors.slice(1).forEach((e, idx, arr) => {
-          throwBody.append(
-            fqn(`${artifactConfig.rootPackageName}.${e}Exception`),
-            arr.length !== idx + 1 ? ',' : ''
-          );
-          if (arr.length !== idx + 1) {
-            throwBody.appendNewLine();
-          }
-        });
-      });
-    });*/
   }
   child.append(';', NL);
   child.appendNewLine();
@@ -155,7 +132,12 @@ function toResultType(
     return 'void';
   }
 
-  if (type.variant === 'union' || type.variant === 'record') {
+  if (type.variant === 'stream') {
+    if (type.type === 'file') {
+      return fqn(`${dtoPkg}.RSDFile`);
+    }
+    return fqn(`${dtoPkg}.RSDBlob`);
+  } else if (type.variant === 'union' || type.variant === 'record') {
     const dtoType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
     if (type.array) {
       return `${fqn('java.util.List')}<${dtoType}>`;

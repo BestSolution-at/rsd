@@ -17,7 +17,7 @@ export function generateStreamDTO(
   const artifacts: Artifact[] = [];
 
   if (hasStream(model)) {
-    const packageName = `${artifactConfig.rootPackageName}.service.model`;
+    const packageName = `${artifactConfig.rootPackageName}.model`;
 
     {
       const importCollector = new JavaImportsCollector(packageName);
