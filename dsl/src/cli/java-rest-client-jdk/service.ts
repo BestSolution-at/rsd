@@ -217,6 +217,15 @@ function generateOpertationMethod(
       methodBody.appendNewLine();
     }
 
+    if (hasQueryParams) {
+      methodBody.append(
+        `var $uri = ${URI}.create($path + $queryParamString);`,
+        NL
+      );
+    } else {
+      methodBody.append(`var $uri = ${URI}.create($path);`, NL);
+    }
+
     const method = o.meta?.rest?.method;
     if (method === 'PUT' || method === 'POST' || method === 'PATCH') {
       const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
@@ -300,15 +309,6 @@ function generateOpertationMethod(
         );
       }
       methodBody.appendNewLine();
-    }
-
-    if (hasQueryParams) {
-      methodBody.append(
-        `var $uri = ${URI}.create($path + $queryParamString);`,
-        NL
-      );
-    } else {
-      methodBody.append(`var $uri = ${URI}.create($path);`, NL);
     }
 
     methodBody.append(`var $request = ${HttpRequest}.newBuilder()`, NL);
