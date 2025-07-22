@@ -24,5 +24,9 @@ export function computePath(orignalPath: string): {
     path += orignalPath.substring(lastMatchEnd);
   }
 
+  if (path.endsWith('/')) {
+    path = path.substring(0, path.length - 1);
+  }
+
   return { path, variables };
 }
