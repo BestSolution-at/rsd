@@ -93,7 +93,6 @@ function generateOpertationMethod(
   path: string
 ) {
   const URI = fqn('java.net.URI');
-  const HttpRequest = fqn('java.net.http.HttpRequest');
 
   const parameters = allParameters.map((p) =>
     toParameter(p, artifactConfig, fqn)
@@ -187,9 +186,9 @@ function generateOpertationMethod(
       );
       methodBody.appendNewLine();
     }
-    const hasHeaderParams = allParameters.find(
-      (p) => p.meta?.rest?.source === 'header'
-    );
+    const hasHeaderParams =
+      allParameters.find((p) => p.meta?.rest?.source === 'header') !==
+      undefined;
     if (hasHeaderParams) {
       const Map = fqn('java.util.Map');
       methodBody.append(`var $headerParams = ${Map}.of(`, NL);
@@ -226,160 +225,19 @@ function generateOpertationMethod(
       methodBody.append(`var $uri = ${URI}.create($path);`, NL);
     }
 
-    const method = o.meta?.rest?.method;
-    if (method === 'PUT' || method === 'POST' || method === 'PATCH') {
-      const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
-      const bodyParams = allParameters.filter(
-        (p) => p.meta?.rest?.source === undefined
-      );
-      if (bodyParams.length === 0) {
-        methodBody.append(`var $body = ${BodyPublishers}.ofString("");`, NL);
-      } else if (bodyParams.length === 1) {
-        if (bodyParams[0].variant === 'record') {
-          const _JsonUtils = fqn(
-            `${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`
-          );
-          methodBody.append(
-            `var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString(${bodyParams[0].name}, false));`,
-            NL
-          );
-        } else {
-          methodBody.append(
-            `var $body = ${BodyPublishers}.ofString(String.format("\\"%s\\"", ${bodyParams[0].name}));`,
-            NL
-          );
-        }
-      } else {
-        const Json = fqn('jakarta.json.Json');
-        methodBody.append(`var $builder = ${Json}.createObjectBuilder();`, NL);
-        bodyParams.forEach((p) => {
-          if (p.variant === 'record' || p.variant === 'union') {
-            if (p.array) {
-              methodBody.append(
-                'throw new UnsupportedOperationException();',
-                NL
-              );
-            } else {
-              const _BaseDataImpl = fqn(
-                `${artifactConfig.rootPackageName}.jdkhttp.impl.model._BaseDataImpl`
-              );
-              methodBody.append(
-                `$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`,
-                NL
-              );
-            }
-          } else if (p.variant === 'builtin' && isBuiltinType(p.type)) {
-            if (p.array) {
-              methodBody.append(
-                '$builder = ' +
-                  builtinBuilderArrayJSONAccess({
-                    name: p.name,
-                    type: p.type,
-                  }) +
-                  ';',
-                NL
-              );
-            } else {
-              if (p.nullable) {
-                methodBody.append(
-                  `$builder = ${p.name} == null ? $builder.addNull('${p.name}') : ` +
-                    builtinBuilderAccess({ name: p.name, type: p.type }) +
-                    ';',
-                  NL
-                );
-              } else {
-                methodBody.append(
-                  '$builder = ' +
-                    builtinBuilderAccess({ name: p.name, type: p.type }) +
-                    ';',
-                  NL
-                );
-              }
-            }
-          } else {
-            methodBody.append('throw new UnsupportedOperationException();', NL);
-          }
-        });
-        const _JsonUtils = fqn(
-          `${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`
-        );
-        methodBody.append(
-          `var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString($builder.build(), false));`,
-          NL
-        );
-      }
-      methodBody.appendNewLine();
-    }
-
-    methodBody.append(`var $request = ${HttpRequest}.newBuilder()`, NL);
-
-    methodBody.indent((tmp) => {
-      tmp.indent((l) => {
-        l.append(`.uri($uri)`, NL);
-        if (hasHeaderParams) {
-          l.append('.headers($headers)', NL);
-        }
-
-        if (method === 'GET') {
-          l.append('.GET()', NL);
-        } else if (method === 'DELETE') {
-          l.append('.DELETE()', NL);
-        } else if (method === 'PUT' || method === 'POST') {
-          l.append('.header("Content-Type", "application/json")', NL);
-          if (method === 'PUT') {
-            l.append('.PUT($body)', NL);
-          } else {
-            l.append('.POST($body)', NL);
-          }
-        } else if (method === 'PATCH') {
-          l.append('.method("PATCH", $body)', NL);
-        }
-        l.append('.build();', NL);
-      });
-    });
-    methodBody.appendNewLine();
-
     const IOException = fqn('java.io.IOException');
-    const BodyHandlers = fqn('java.net.http.HttpResponse.BodyHandlers');
-    methodBody.append(`try {`, NL);
+
+    methodBody.append('try {', NL);
     methodBody.indent((tryBlock) => {
       tryBlock.append(
-        `var $response = this.client.send($request, ${BodyHandlers}.ofString());`,
-        NL
+        generateInvokation(
+          o,
+          allParameters,
+          artifactConfig,
+          fqn,
+          hasHeaderParams
+        )
       );
-      if (o.meta?.rest?.results.length) {
-        o.meta.rest.results.forEach((r, idx) => {
-          tryBlock.append(
-            `${idx === 0 ? '' : ' else '}if ($response.statusCode() == ${
-              r.statusCode
-            }) {`,
-            NL
-          );
-          tryBlock.indent((resBlock) => {
-            if (r.error === undefined) {
-              handleOkResult(resBlock, o, artifactConfig, fqn);
-            } else {
-              handleErroResult(resBlock, o, r.error, artifactConfig, fqn);
-            }
-          });
-          tryBlock.append('}');
-        });
-        tryBlock.appendNewLine();
-      } else {
-        const code = o.resultType ? '200' : '204';
-        tryBlock.append(`if ($response.statusCode() == ${code}) {`, NL);
-        tryBlock.indent((resBlock) => {
-          handleOkResult(resBlock, o, artifactConfig, fqn);
-        });
-        tryBlock.append('}', NL);
-      }
-
-      tryBlock.append(
-        'throw new IllegalStateException(String.format("Unsupported Http-Status \'%s\':\\n%s", $response.statusCode(), $response.body()));',
-        NL
-      );
-
-      tryBlock.append();
     });
     methodBody.append(
       `} catch (${IOException} | InterruptedException e) {`,
@@ -391,6 +249,167 @@ function generateOpertationMethod(
     methodBody.append('}', NL);
   });
   node.append('}', NL);
+}
+
+function generateInvokation(
+  o: MResolvedOperation,
+  allParameters: readonly MParameter[],
+  artifactConfig: JavaRestClientJDKGeneratorConfig,
+  fqn: (type: string) => string,
+  hasHeaderParams: boolean
+) {
+  const HttpRequest = fqn('java.net.http.HttpRequest');
+
+  const methodBody = new CompositeGeneratorNode();
+  const method = o.meta?.rest?.method;
+  if (method === 'PUT' || method === 'POST' || method === 'PATCH') {
+    const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
+    const bodyParams = allParameters.filter(
+      (p) => p.meta?.rest?.source === undefined
+    );
+    if (bodyParams.length === 0) {
+      methodBody.append(`var $body = ${BodyPublishers}.ofString("");`, NL);
+    } else if (bodyParams.length === 1) {
+      if (bodyParams[0].variant === 'record') {
+        const _JsonUtils = fqn(
+          `${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`
+        );
+        methodBody.append(
+          `var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString(${bodyParams[0].name}, false));`,
+          NL
+        );
+      } else {
+        methodBody.append(
+          `var $body = ${BodyPublishers}.ofString(String.format("\\"%s\\"", ${bodyParams[0].name}));`,
+          NL
+        );
+      }
+    } else {
+      const Json = fqn('jakarta.json.Json');
+      methodBody.append(`var $builder = ${Json}.createObjectBuilder();`, NL);
+      bodyParams.forEach((p) => {
+        if (p.variant === 'record' || p.variant === 'union') {
+          if (p.array) {
+            methodBody.append('throw new UnsupportedOperationException();', NL);
+          } else {
+            const _BaseDataImpl = fqn(
+              `${artifactConfig.rootPackageName}.jdkhttp.impl.model._BaseDataImpl`
+            );
+            methodBody.append(
+              `$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`,
+              NL
+            );
+          }
+        } else if (p.variant === 'builtin' && isBuiltinType(p.type)) {
+          if (p.array) {
+            methodBody.append(
+              '$builder = ' +
+                builtinBuilderArrayJSONAccess({
+                  name: p.name,
+                  type: p.type,
+                }) +
+                ';',
+              NL
+            );
+          } else {
+            if (p.nullable) {
+              methodBody.append(
+                `$builder = ${p.name} == null ? $builder.addNull('${p.name}') : ` +
+                  builtinBuilderAccess({ name: p.name, type: p.type }) +
+                  ';',
+                NL
+              );
+            } else {
+              methodBody.append(
+                '$builder = ' +
+                  builtinBuilderAccess({ name: p.name, type: p.type }) +
+                  ';',
+                NL
+              );
+            }
+          }
+        } else {
+          methodBody.append('throw new UnsupportedOperationException();', NL);
+        }
+      });
+      const _JsonUtils = fqn(
+        `${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`
+      );
+      methodBody.append(
+        `var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString($builder.build(), false));`,
+        NL
+      );
+    }
+    methodBody.appendNewLine();
+  }
+
+  methodBody.append(`var $request = ${HttpRequest}.newBuilder()`, NL);
+
+  methodBody.indent((tmp) => {
+    tmp.indent((l) => {
+      l.append(`.uri($uri)`, NL);
+      if (hasHeaderParams) {
+        l.append('.headers($headers)', NL);
+      }
+
+      if (method === 'GET') {
+        l.append('.GET()', NL);
+      } else if (method === 'DELETE') {
+        l.append('.DELETE()', NL);
+      } else if (method === 'PUT' || method === 'POST') {
+        l.append('.header("Content-Type", "application/json")', NL);
+        if (method === 'PUT') {
+          l.append('.PUT($body)', NL);
+        } else {
+          l.append('.POST($body)', NL);
+        }
+      } else if (method === 'PATCH') {
+        l.append('.method("PATCH", $body)', NL);
+      }
+      l.append('.build();', NL);
+    });
+  });
+  methodBody.appendNewLine();
+
+  const BodyHandlers = fqn('java.net.http.HttpResponse.BodyHandlers');
+  methodBody.append(
+    `var $response = this.client.send($request, ${BodyHandlers}.ofString());`,
+    NL
+  );
+  if (o.meta?.rest?.results.length) {
+    o.meta.rest.results.forEach((r, idx) => {
+      methodBody.append(
+        `${idx === 0 ? '' : ' else '}if ($response.statusCode() == ${
+          r.statusCode
+        }) {`,
+        NL
+      );
+      methodBody.indent((resBlock) => {
+        if (r.error === undefined) {
+          handleOkResult(resBlock, o, artifactConfig, fqn);
+        } else {
+          handleErroResult(resBlock, o, r.error, artifactConfig, fqn);
+        }
+      });
+      methodBody.append('}');
+    });
+    methodBody.appendNewLine();
+  } else {
+    const code = o.resultType ? '200' : '204';
+    methodBody.append(`if ($response.statusCode() == ${code}) {`, NL);
+    methodBody.indent((resBlock) => {
+      handleOkResult(resBlock, o, artifactConfig, fqn);
+    });
+    methodBody.append('}', NL);
+  }
+
+  methodBody.append(
+    'throw new IllegalStateException(String.format("Unsupported Http-Status \'%s\':\\n%s", $response.statusCode(), $response.body()));',
+    NL
+  );
+
+  methodBody.append();
+  return methodBody;
 }
 
 function generateOperation(
