@@ -227,7 +227,15 @@ function generateOpertationMethod(
 
     const IOException = fqn('java.io.IOException');
 
-    methodBody.append('try {', NL);
+    if (o.parameters.find((p) => p.variant === 'stream')) {
+      methodBody.append(
+        'try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {',
+        NL
+      );
+    } else {
+      methodBody.append('try {', NL);
+    }
+
     methodBody.indent((tryBlock) => {
       tryBlock.append(
         generateInvokation(
@@ -263,84 +271,132 @@ function generateInvokation(
   const methodBody = new CompositeGeneratorNode();
   const method = o.meta?.rest?.method;
   if (method === 'PUT' || method === 'POST' || method === 'PATCH') {
-    const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
-    const bodyParams = allParameters.filter(
-      (p) => p.meta?.rest?.source === undefined
-    );
-    if (bodyParams.length === 0) {
-      methodBody.append(`var $body = ${BodyPublishers}.ofString("");`, NL);
-    } else if (bodyParams.length === 1) {
-      if (bodyParams[0].variant === 'record') {
-        const _JsonUtils = fqn(
-          `${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`
-        );
-        methodBody.append(
-          `var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString(${bodyParams[0].name}, false));`,
-          NL
-        );
-      } else {
-        methodBody.append(
-          `var $body = ${BodyPublishers}.ofString(String.format("\\"%s\\"", ${bodyParams[0].name}));`,
-          NL
-        );
-      }
-    } else {
-      const Json = fqn('jakarta.json.Json');
-      methodBody.append(`var $builder = ${Json}.createObjectBuilder();`, NL);
-      bodyParams.forEach((p) => {
-        if (p.variant === 'record' || p.variant === 'union') {
-          if (p.array) {
-            methodBody.append('throw new UnsupportedOperationException();', NL);
-          } else {
-            const _BaseDataImpl = fqn(
-              `${artifactConfig.rootPackageName}.jdkhttp.impl.model._BaseDataImpl`
-            );
-            methodBody.append(
-              `$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`,
-              NL
-            );
-          }
-        } else if (p.variant === 'builtin' && isBuiltinType(p.type)) {
-          if (p.array) {
-            methodBody.append(
-              '$builder = ' +
-                builtinBuilderArrayJSONAccess({
-                  name: p.name,
-                  type: p.type,
-                }) +
-                ';',
-              NL
-            );
-          } else {
-            if (p.nullable) {
+    if (o.parameters.find((p) => p.variant === 'stream')) {
+      allParameters
+        .filter((p) => p.meta?.rest?.source === undefined)
+        .forEach((p) => {
+          if (p.variant === 'stream') {
+            if (p.type === 'file') {
               methodBody.append(
-                `$builder = ${p.name} == null ? $builder.addNull('${p.name}') : ` +
-                  builtinBuilderAccess({ name: p.name, type: p.type }) +
-                  ';',
+                `$formDataBuilder.addFile("${p.meta?.rest?.name ?? p.name}", ${
+                  p.name
+                });`,
+                NL
+              );
+            }
+          } else {
+            const _JsonUtils = fqn(
+              `${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`
+            );
+
+            if (p.variant === 'record' || p.variant === 'union') {
+              methodBody.append(
+                `$formDataBuilder.addString("${
+                  p.meta?.rest?.name ?? p.name
+                }",${_JsonUtils}.toJsonString(${
+                  p.name
+                }, false),"application/json");`,
                 NL
               );
             } else {
               methodBody.append(
-                '$builder = ' +
-                  builtinBuilderAccess({ name: p.name, type: p.type }) +
-                  ';',
+                `$formDataBuilder.addString("${
+                  p.meta?.rest?.name ?? p.name
+                }",${_JsonUtils}.toJsonString(${
+                  p.name
+                }, false),"text/plain; charset=utf-8");`,
                 NL
               );
             }
           }
+        });
+      methodBody.append('var $formData = $formDataBuilder.build();', NL);
+      methodBody.append('var $body = $formData.publisher();', NL);
+      methodBody.append('var $contentType = $formData.contentType();', NL);
+    } else {
+      methodBody.append('var $contentType = "application/json";', NL);
+      const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
+      const bodyParams = allParameters.filter(
+        (p) => p.meta?.rest?.source === undefined
+      );
+      if (bodyParams.length === 0) {
+        methodBody.append(`var $body = ${BodyPublishers}.ofString("");`, NL);
+      } else if (bodyParams.length === 1) {
+        if (bodyParams[0].variant === 'record') {
+          const _JsonUtils = fqn(
+            `${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`
+          );
+          methodBody.append(
+            `var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString(${bodyParams[0].name}, false));`,
+            NL
+          );
         } else {
-          methodBody.append('throw new UnsupportedOperationException();', NL);
+          methodBody.append(
+            `var $body = ${BodyPublishers}.ofString(String.format("\\"%s\\"", ${bodyParams[0].name}));`,
+            NL
+          );
         }
-      });
-      const _JsonUtils = fqn(
-        `${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`
-      );
-      methodBody.append(
-        `var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString($builder.build(), false));`,
-        NL
-      );
+      } else {
+        const Json = fqn('jakarta.json.Json');
+        methodBody.append(`var $builder = ${Json}.createObjectBuilder();`, NL);
+        bodyParams.forEach((p) => {
+          if (p.variant === 'record' || p.variant === 'union') {
+            if (p.array) {
+              methodBody.append(
+                'throw new UnsupportedOperationException();',
+                NL
+              );
+            } else {
+              const _BaseDataImpl = fqn(
+                `${artifactConfig.rootPackageName}.jdkhttp.impl.model._BaseDataImpl`
+              );
+              methodBody.append(
+                `$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`,
+                NL
+              );
+            }
+          } else if (p.variant === 'builtin' && isBuiltinType(p.type)) {
+            if (p.array) {
+              methodBody.append(
+                '$builder = ' +
+                  builtinBuilderArrayJSONAccess({
+                    name: p.name,
+                    type: p.type,
+                  }) +
+                  ';',
+                NL
+              );
+            } else {
+              if (p.nullable) {
+                methodBody.append(
+                  `$builder = ${p.name} == null ? $builder.addNull('${p.name}') : ` +
+                    builtinBuilderAccess({ name: p.name, type: p.type }) +
+                    ';',
+                  NL
+                );
+              } else {
+                methodBody.append(
+                  '$builder = ' +
+                    builtinBuilderAccess({ name: p.name, type: p.type }) +
+                    ';',
+                  NL
+                );
+              }
+            }
+          } else {
+            methodBody.append('throw new UnsupportedOperationException();', NL);
+          }
+        });
+        const _JsonUtils = fqn(
+          `${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`
+        );
+        methodBody.append(
+          `var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString($builder.build(), false));`,
+          NL
+        );
+      }
+      methodBody.appendNewLine();
     }
-    methodBody.appendNewLine();
   }
 
   methodBody.append(`var $request = ${HttpRequest}.newBuilder()`, NL);
@@ -357,13 +413,14 @@ function generateInvokation(
       } else if (method === 'DELETE') {
         l.append('.DELETE()', NL);
       } else if (method === 'PUT' || method === 'POST') {
-        l.append('.header("Content-Type", "application/json")', NL);
+        l.append('.header("Content-Type", $contentType)', NL);
         if (method === 'PUT') {
           l.append('.PUT($body)', NL);
         } else {
           l.append('.POST($body)', NL);
         }
       } else if (method === 'PATCH') {
+        l.append('.header("Content-Type", $contentType)', NL);
         l.append('.method("PATCH", $body)', NL);
       }
       l.append('.build();', NL);
@@ -372,10 +429,19 @@ function generateInvokation(
   methodBody.appendNewLine();
 
   const BodyHandlers = fqn('java.net.http.HttpResponse.BodyHandlers');
-  methodBody.append(
-    `var $response = this.client.send($request, ${BodyHandlers}.ofString());`,
-    NL
-  );
+  if (o.resultType?.variant === 'stream') {
+    methodBody.append(
+      `var $response = this.client.send($request, ${BodyHandlers}.ofFile(${fqn(
+        'java.nio.file.Files'
+      )}.createTempFile("rsd-download","tmp")));`,
+      NL
+    );
+  } else {
+    methodBody.append(
+      `var $response = this.client.send($request, ${BodyHandlers}.ofString());`,
+      NL
+    );
+  }
   if (o.meta?.rest?.results.length) {
     o.meta.rest.results.forEach((r, idx) => {
       methodBody.append(
@@ -447,7 +513,12 @@ function handleOkResult(
     node.append('return;', NL);
     return;
   }
-  if (o.resultType.variant === 'record' || o.resultType.variant === 'union') {
+  if (o.resultType.variant === 'stream') {
+    node.append('ServiceUtils.mapFile($response);', NL);
+  } else if (
+    o.resultType.variant === 'record' ||
+    o.resultType.variant === 'union'
+  ) {
     const modelPkg = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
     const modelType = fqn(`${modelPkg}.${o.resultType.type}DataImpl`);
     if (o.resultType.array) {
@@ -565,7 +636,12 @@ function toResultType(
     return 'void';
   }
 
-  if (type.variant === 'union' || type.variant === 'record') {
+  if (type.variant === 'stream') {
+    if (type.type === 'file') {
+      return fqn(`${modelPkg}.RSDFile`);
+    }
+    return fqn(`${modelPkg}.RSDBlob`);
+  } else if (type.variant === 'union' || type.variant === 'record') {
     const modelType = fqn(`${modelPkg}.${type.type}`) + '.Data';
     if (type.array) {
       return `${fqn('java.util.List')}<${modelType}>`;

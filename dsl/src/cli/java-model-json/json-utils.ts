@@ -26,6 +26,8 @@ export function generateJsonUtilsContent(
   fqn('java.util.OptionalDouble');
   fqn('java.util.OptionalInt');
   fqn('java.util.OptionalLong');
+  fqn('java.math.BigDecimal');
+  fqn('java.math.BigInteger');
   fqn(`${modelApiPackage}._Base`);
 
   const node = new CompositeGeneratorNode();
@@ -675,6 +677,11 @@ export function generateJsonUtilsContent(
       NL
     );
     classBody.indent((methodBody) => {
+      methodBody.append('if (o == null) {', NL);
+      methodBody.indent((block) => {
+        block.append('return "null";', NL);
+      });
+      methodBody.append('}', NL);
       methodBody.append('if (o instanceof List<?> list) {', NL);
       methodBody.indent((block) => {
         block.append('var writer = new StringWriter();', NL);
@@ -696,9 +703,44 @@ export function generateJsonUtilsContent(
           forBlock.indent((ifBlock) => {
             ifBlock.append('generator.write(b.data);', NL);
           });
+          forBlock.append('} else if (e == null) {', NL);
+          forBlock.indent((ifBlock) => {
+            ifBlock.append('generator.writeNull();', NL);
+          });
+          forBlock.append('} else if (e instanceof Number n) {', NL);
+          forBlock.indent((ifBlock) => {
+            ifBlock.append(
+              'if (e instanceof Float || e instanceof Double) {',
+              NL
+            );
+            ifBlock.indent((innerIfBlock) => {
+              innerIfBlock.append('generator.write(n.doubleValue());', NL);
+            });
+            ifBlock.append('} else if (e instanceof BigDecimal v) {', NL);
+            ifBlock.indent((innerIfBlock) => {
+              innerIfBlock.append('generator.write(v);', NL);
+            });
+            ifBlock.append('} else if (e instanceof BigInteger v) {', NL);
+            ifBlock.indent((innerIfBlock) => {
+              innerIfBlock.append('generator.write(v);', NL);
+            });
+            ifBlock.append('} else if (e instanceof Long) {', NL);
+            ifBlock.indent((innerIfBlock) => {
+              innerIfBlock.append('generator.write(n.longValue());', NL);
+            });
+            ifBlock.append('} else {', NL);
+            ifBlock.indent((innerIfBlock) => {
+              innerIfBlock.append('generator.write(n.intValue());', NL);
+            });
+            ifBlock.append('}', NL);
+          });
+          forBlock.append('} else if (e instanceof Boolean v) {', NL);
+          forBlock.indent((ifBlock) => {
+            ifBlock.append('generator.write(v);', NL);
+          });
           forBlock.append('} else {', NL);
           forBlock.indent((ifBlock) => {
-            ifBlock.append('throw new IllegalStateException();', NL);
+            ifBlock.append('generator.write(e.toString());', NL);
           });
           forBlock.append('}', NL);
         });

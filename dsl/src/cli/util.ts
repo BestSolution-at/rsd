@@ -1,5 +1,5 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
-import { MResolvedRSDModel } from './model.js';
+import { MBuiltinType, MResolvedRSDModel } from './model.js';
 
 export function isDefined<T>(value: T | undefined): value is T {
   return value !== undefined;
@@ -92,5 +92,14 @@ export function hasFileStreamParameter(model: MResolvedRSDModel): boolean {
       .flatMap((o) => o.parameters)
       .filter((p) => p.variant === 'stream')
       .find((p) => p.type === 'file') !== undefined
+  );
+}
+
+export function isStringSerializedType(type: MBuiltinType) {
+  return (
+    type === 'local-date' ||
+    type === 'local-date-time' ||
+    type === 'string' ||
+    type === 'zoned-date-time'
   );
 }
