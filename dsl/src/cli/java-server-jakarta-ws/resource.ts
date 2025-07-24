@@ -322,9 +322,6 @@ function _generateResource(
                   );
                 }
               } else {
-                if (p.meta?.rest?.source === 'path') {
-                  return;
-                }
                 if (p.variant === 'record' || p.variant === 'union') {
                   const type = computeParameterAPIType(
                     p,
@@ -386,38 +383,6 @@ function _generateResource(
           }
         });
         cBody.append('}', NL);
-
-        /*
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
-
-import org.jboss.resteasy.reactive.RestForm;
-import org.jboss.resteasy.reactive.multipart.FileUpload;
-
-import com.onacta.dms.server.rest.model._FileImpl;
-import com.onacta.dms.server.service.DokumenteService;
-import com.onacta.dms.server.service.model.Dokument;
-
-	@POST
-	@Path("")
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response upload(@RestForm("stream") FileUpload _stream, @RestForm("dokument") String _dokument) {
-		var $principal = this.principalProvider.principal();
-		var stream = _FileImpl.of(_stream);
-		var dokument = builderFactory.of(Dokument.Data.class, _dokument);
-		var $result = service.upload(builderFactory, $principal, dokument, stream);
-		return responseBuilder.upload($result, $principal, dokument, stream).build();
-	}
-
-*/
       });
   });
 
@@ -525,9 +490,7 @@ function computeParameterAnnotation(
   form: boolean,
   fqn: (type: string) => string
 ): string {
-  if (form) {
-    return `@${fqn('org.jboss.resteasy.reactive.RestForm')}("${p.name}") `;
-  } else if (p.meta?.rest?.source === 'path') {
+  if (p.meta?.rest?.source === 'path') {
     return `@${fqn('jakarta.ws.rs.PathParam')}("${p.meta.rest.name}") `;
   } else if (p.meta?.rest?.source === 'header') {
     return `@${fqn('jakarta.ws.rs.HeaderParam')}("${p.meta.rest.name}") `;
@@ -535,6 +498,8 @@ function computeParameterAnnotation(
     return `@${fqn('jakarta.ws.rs.CookieParam')}("${p.meta.rest.name}") `;
   } else if (p.meta?.rest?.source === 'query') {
     return `@${fqn('jakarta.ws.rs.QueryParam')}("${p.meta.rest.name}") `;
+  } else if (form) {
+    return `@${fqn('org.jboss.resteasy.reactive.RestForm')}("${p.name}") `;
   }
   return '';
 }
