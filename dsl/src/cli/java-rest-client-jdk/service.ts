@@ -341,15 +341,18 @@ function generateInvokation(
         methodBody.append(`var $builder = ${Json}.createObjectBuilder();`, NL);
         bodyParams.forEach((p) => {
           if (p.variant === 'record' || p.variant === 'union') {
+            const _BaseDataImpl = fqn(
+              `${artifactConfig.rootPackageName}.jdkhttp.impl.model._BaseDataImpl`
+            );
             if (p.array) {
+              const _JsonUtils = fqn(
+                `${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`
+              );
               methodBody.append(
-                'throw new UnsupportedOperationException();',
+                `$builder = $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
                 NL
               );
             } else {
-              const _BaseDataImpl = fqn(
-                `${artifactConfig.rootPackageName}.jdkhttp.impl.model._BaseDataImpl`
-              );
               methodBody.append(
                 `$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`,
                 NL
@@ -514,7 +517,7 @@ function handleOkResult(
     return;
   }
   if (o.resultType.variant === 'stream') {
-    node.append('ServiceUtils.mapFile($response);', NL);
+    node.append('return ServiceUtils.mapFile($response);', NL);
   } else if (
     o.resultType.variant === 'record' ||
     o.resultType.variant === 'union'
@@ -602,14 +605,21 @@ function handleErroResult(
   artifactConfig: JavaRestClientJDKGeneratorConfig,
   fqn: (type: string) => string
 ) {
-  // o.resolved.errors.find( e => e.name === error );
-
-  node.append(
-    `throw new ${fqn(
-      `${artifactConfig.rootPackageName}.${error}Exception`
-    )}(ServiceUtils.mapString($response));`,
-    NL
-  );
+  if (o.resultType?.variant === 'stream') {
+    node.append(
+      `throw new ${fqn(
+        `${artifactConfig.rootPackageName}.${error}Exception`
+      )}(ServiceUtils.mapFileToString($response));`,
+      NL
+    );
+  } else {
+    node.append(
+      `throw new ${fqn(
+        `${artifactConfig.rootPackageName}.${error}Exception`
+      )}(ServiceUtils.mapString($response));`,
+      NL
+    );
+  }
 }
 
 function toParameter(
