@@ -113,9 +113,8 @@ function operation(model: MResolvedOperation, ident = '\t', maxLength = 50) {
         <Fragment>
           <span>:</span>{' '}
           <span class="type-ref">
-            {model.resultType.array ? 'Array<' : ''}
             {isMInlineEnumType(model.resultType.type) ? model.resultType.type.entries.map(e => e.name).join(' | ') : model.resultType.type}
-            {model.resultType.array ? '>' : ''}
+            {model.resultType.array ? '[]' : ''}
           </span>
         </Fragment>
       )}
@@ -169,7 +168,7 @@ function result(resultType: MReturnType | undefined, errors: MOperationError[]) 
     <Fragment>
       <h3 class="text-sm">Result</h3>
       <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">
-        {resultType && <li class="not-prose py-4 first:pt-0 last:pb-0">{dlResult('Success', resultType.array ? `Array<${result}>` : result, resultType.doc)}</li>}
+        {resultType && <li class="not-prose py-4 first:pt-0 last:pb-0">{dlResult('Success', resultType.array ? `${result}[]` : result, resultType.doc)}</li>}
         {resultType === undefined && <li class="not-prose py-4 first:pt-0 last:pb-0">{dlResult('Success', 'void', '')}</li>}
         {errors.map(e => (
           <li class="not-prose py-4 first:pt-0 last:pb-0">{dlError('Error', e.error, e.doc)}</li>
@@ -211,9 +210,8 @@ function parameter(p: MParameter) {
           <code class="bg-zinc-700/5 dark:bg-zinc-700/15 border-zinc-300 dark:border-zinc-700 dark:text-white text-xs p-1 rounded-lg border">{p.name}</code>
         </dd>
         <dd class="font-mono text-xs text-zinc-400">
-          {p.array ? 'Array<' : ''}
           {p.type}
-          {p.array ? '>' : ''}
+          {p.array ? '[]' : ''}
         </dd>
         <dd class="doc">{p.doc}</dd>
       </dl>
@@ -521,9 +519,8 @@ function property(p: MProperty) {
           <code class="bg-zinc-700/5 dark:bg-zinc-700/15 border-zinc-300 dark:border-zinc-700 dark:text-white text-xs p-1 rounded-lg border">{p.name}</code>
         </dd>
         <dd class="font-mono text-xs text-zinc-400">
-          {p.array ? 'Array<' : ''}
           {p.type}
-          {p.array ? '>' : ''}
+          {p.array ? '[]' : ''}
         </dd>
         <dd class="doc">{p.doc}</dd>
       </dl>
@@ -567,7 +564,7 @@ function propCode(prop: MBaseProperty) {
         <span>{'\t'}</span>
         <span>{prop.name}</span>
         <span>: </span>
-        <span class="type-ref">{prop.array ? `Array<${prop.type}>` : prop.type}</span>
+        <span class="type-ref">{prop.array ? `${prop.type}[]` : prop.type}</span>
       </Fragment>
     );
   }
