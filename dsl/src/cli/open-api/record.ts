@@ -28,7 +28,7 @@ export function generateRecordContent(t: MResolvedRecordType) {
     }
 
     const required = allProps
-      .filter((p) => !isMResolvedProperty(p) || p.optional)
+      .filter((p) => isMKeyProperty(p) || isMRevisionProperty(p) || !p.optional)
       .map((p) => p.name);
 
     rv[t.name] = {
