@@ -37,6 +37,7 @@ jobs:
           node-version: 18.x
       - name: Build
         run: |
+          ls -la
           cd webcomponent
           npm ci
           npm run build
