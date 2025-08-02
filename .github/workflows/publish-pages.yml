@@ -31,22 +31,30 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
+
+      - name: Setup Pages
+        id: setup_pages
+        uses: actions/configure-pages@v5
+
       - name: Build
         run: |
           cd website
           npm ci
           npm run build
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+        env:
+          PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
           path: './website/out'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
