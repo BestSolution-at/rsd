@@ -1,0 +1,89 @@
+record Order {
+    @id id: long
+
+    petId?: long
+    quantity?: int
+    shipDate?: zoned-date-time
+    status?: enum placed | approved | delivered
+    complete?: boolean
+}
+
+record Address {
+    street?: string
+    city?: string
+    state?: string
+    zip?: string
+}
+
+record Customer {
+    @id id: long
+    
+    username?: string
+    address?: Address[]
+}
+
+record Category {
+    @id id: long
+
+    name?: string
+}
+
+record User {
+    @id id: long
+
+    username?: string
+    firstName?: string
+    lastName?: string
+    email?: string
+    password?: string
+    phone?: string
+    userStatus?: int
+}
+
+record Tag {
+    @id id: long
+
+    name?: string
+}
+
+enum PetStatus = available | pending | sold;
+
+record Pet {
+    @id id: long
+
+    name: string
+    category?: Category
+
+    photoUrls: string[]
+    tags?: Tag[]
+    status: PetStatus 
+}
+
+error Error;
+
+service Pet {
+    operation updatePet(pet: Pet): Pet throws Error;
+    operation addPet(pet: Pet): Pet throws Error;
+    operation findPetsByStatus(status: PetStatus): Pet[] throws Error;
+    operation findPetsByTags(tags: string[]): Pet[] throws Error;
+    operation getPetById(id: long): Pet throws Error;
+    operation deletePet(id: long) throws Error;
+    operation uploadFile(id: long, image: blob);
+}
+
+service Store {
+    operation getInventory();
+    operation placeOrder(order: Order): Order throws Error;
+    operation getOrderById(orderId: long): Order throws Error;
+    operation deleteOrder(orderId: long) throws Error;
+}
+
+service User {
+    operation createUser(user: User): User throws Error;
+    operation createWithList(user: User[]): User[] throws Error;
+    operation loginUser(username: string, password: string): string throws Error;
+    operation logoutUser();
+    operation getUserByName(username: string): User throws Error;
+    operation updateUser(username: string, user: User) throws Error;
+    operation deleteUser(username: string) throws Error;
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Simple Sample",
+    "generators": [
+        {
+            "name": "openapi",
+            "targetFolder": "./generated/openapi",
+            "specFileName": "openapi",
+            "staticSpec": {
+                "info": {
+                    "title": "Simple Sample",
+                    "version": "1.0.0"
+                }
+            }
+		}
+    ]
+}

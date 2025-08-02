@@ -1,0 +1,308 @@
+{
+  "@type": "RSDModel",
+  "elements": [
+    {
+      "@type": "RecordType",
+      "name": "Person",
+      "patchable": true,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "KeyProperty",
+          "name": "id",
+          "type": "string",
+          "doc": "unique identifier for the person"
+        },
+        {
+          "@type": "Property",
+          "name": "firstname",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": "first name of the person"
+        },
+        {
+          "@type": "Property",
+          "name": "lastname",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": "last name of the person"
+        },
+        {
+          "@type": "Property",
+          "name": "shoesize",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "double",
+          "doc": "optional shoesize"
+        }
+      ],
+      "doc": "domain object\n *>"
+    }
+  ],
+  "services": [
+    {
+      "@type": "Service",
+      "name": "Person",
+      "doc": " CRUD-Service for persons",
+      "operations": [
+        {
+          "@type": "Operation",
+          "name": "get",
+          "doc": " Retrieve the person associated with the provided key",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "key",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "the key of the person",
+              "meta": {
+                "rest": {
+                  "name": "key",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "Person",
+            "doc": "the person"
+          },
+          "errors": [
+            "NotFound"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "NotFound",
+              "doc": "if there is no person with the given key"
+            }
+          ],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "${key}",
+              "results": [
+                {
+                  "statusCode": 200
+                },
+                {
+                  "statusCode": 404,
+                  "error": "NotFound"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "list",
+          "doc": " get all persons",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "record",
+            "type": "Person",
+            "doc": "all persons known to the system"
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "create",
+          "doc": " create a new person",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "firstname",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "the first name of the person"
+            },
+            {
+              "@type": "Parameter",
+              "name": "lastname",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "the last name of the person"
+            },
+            {
+              "@type": "Parameter",
+              "name": "shoesize",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "double",
+              "doc": "the shoesize of the person"
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "Person",
+            "doc": "a new person instance"
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "",
+              "results": [
+                {
+                  "statusCode": 201
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "update",
+          "doc": " update a person entity",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "key",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "the key of the person to update",
+              "meta": {
+                "rest": {
+                  "name": "key",
+                  "source": "path"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "personChange",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": true,
+              "variant": "record",
+              "type": "Person",
+              "doc": "the changes to apply to the person"
+            }
+          ],
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PATCH",
+              "path": "${key}",
+              "results": [
+                {
+                  "statusCode": 204
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "delete",
+          "doc": " delete a person entity",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "key",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "the key of the person",
+              "meta": {
+                "rest": {
+                  "name": "key",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "errors": [
+            "NotFound"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "NotFound",
+              "doc": "if there is no person with the given key"
+            }
+          ],
+          "meta": {
+            "rest": {
+              "method": "DELETE",
+              "path": "${key}",
+              "results": [
+                {
+                  "statusCode": 200
+                },
+                {
+                  "statusCode": 404,
+                  "error": "NotFound"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "meta": {
+        "rest": {
+          "path": "/api/person"
+        }
+      }
+    }
+  ],
+  "errors": [
+    {
+      "@type": "Error",
+      "name": "NotFound"
+    }
+  ]
+}

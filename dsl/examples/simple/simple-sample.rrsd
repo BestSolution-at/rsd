@@ -1,0 +1,17 @@
+resource Person at '/api/person' {
+  GET get at '${key}' => {
+    200
+    404: NotFound
+  }
+  GET list at ''
+  POST create at '' => {
+    201
+  }
+  PATCH update at '${key}' => {
+    204
+  }
+  DELETE delete at '${key}' => {
+    200
+    404: NotFound
+  }
+}

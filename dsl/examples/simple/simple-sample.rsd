@@ -1,0 +1,62 @@
+<*
+ * domain object
+ *>
+patchable record Person {
+  @id id: string << unique identifier for the person
+
+  firstname: string << first name of the person
+  lastname: string  << last name of the person
+  shoesize?: double << optional shoesize
+}
+
+<< Error created if an entity could not be found
+error NotFound;
+
+<*
+ * CRUD-Service for persons
+ *>
+service Person {
+  <*
+   * Retrieve the person associated with the provided key
+   * 
+   * @param key - the key of the person
+   * @returns the person
+   *>
+  operation get(key: string): Person 
+    throws NotFound << if there is no person with the given key
+  ;
+  
+  <*
+   * get all persons
+   *
+   * @returns all persons known to the system
+   *>
+  operation list(): Person[];
+  
+  <*
+   * create a new person
+   *
+   * @param firstname - the first name of the person
+   * @param lastname - the last name of the person
+   * @param shoesize - the shoesize of the person
+   * @returns a new person instance
+   *>
+  operation create(firstname: string, lastname: string, shoesize?: double): Person;
+  
+  <*
+   * update a person entity
+   *
+   * @param key - the key of the person to update
+   * @param personChange - the changes to apply to the person
+   *>
+  operation update(key: string, @patch personChange: Person);
+  
+  <*
+   * delete a person entity
+   * 
+   * @param key - the key of the person
+   *>
+  operation delete(key: string) 
+    throws NotFound << if there is no person with the given key
+  ;
+}
