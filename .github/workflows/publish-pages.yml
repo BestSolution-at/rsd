@@ -37,7 +37,7 @@ jobs:
           node-version: 18.x
       - name: Build
         run: |
-          cd webcomponents
+          cd website
           npm ci
           npm run build
       - name: Setup Pages
@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: './webcomponents/dist'
+          path: './website/out'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
