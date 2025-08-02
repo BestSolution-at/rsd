@@ -13,10 +13,10 @@ import {
   MEnumType,
   MInlineEnumType,
   MMixinType,
-  MOperation,
   MOperationError,
   MParameter,
   MProperty,
+  MResolvedOperation,
   MResolvedRecordType,
   MResolvedRSDModel,
   MResolvedService,
@@ -25,11 +25,10 @@ import {
   MReturnType,
   MRSDModel,
   MScalarType,
-  MService,
   resolve,
 } from '../../utils/model';
 
-function serviceContent(model: MService) {
+function serviceContent(model: MResolvedService) {
   return (
     <div class="main-content">
       <h1 class="text-2xl inner-content">{model.name}</h1>
@@ -58,7 +57,7 @@ function serviceContent(model: MService) {
   );
 }
 
-function serviceMethod(model: MOperation) {
+function serviceMethod(model: MResolvedOperation) {
   const reqParameters = model.parameters.filter(p => !p.optional);
   const optParameters = model.parameters.filter(p => p.optional);
 
@@ -79,7 +78,7 @@ function serviceMethod(model: MOperation) {
   );
 }
 
-function operation(model: MOperation, ident = '\t', maxLength = 50) {
+function operation(model: MResolvedOperation, ident = '\t', maxLength = 50) {
   const isMulti = isMultiLineOperation(model, maxLength);
   return (
     <span>
@@ -133,7 +132,7 @@ function operation(model: MOperation, ident = '\t', maxLength = 50) {
   );
 }
 
-function isMultiLineOperation(model: MOperation, maxLength = 50) {
+function isMultiLineOperation(model: MResolvedOperation, maxLength = 50) {
   let line = `  operation ${model.name}(${model.parameters.map(parameterString).join(', ')})`;
   if (model.resultType) {
     line += `: ${typeString(model.resultType.type)}`;
