@@ -52,23 +52,73 @@ function serviceContent(model: MResolvedService) {
           </Fragment>,
         )}
       </div>
-      <div class="service-operations">{model.operations.map(serviceMethod)}</div>
+      <div class="service-operations">{model.operations.map(o => serviceMethod(o, model))}</div>
     </div>
   );
 }
 
-function serviceMethod(model: MResolvedOperation) {
+function restMethod(model: MResolvedOperation, service: MResolvedService) {
+  if (model.meta.rest) {
+    let method = <div></div>;
+
+    if (model.meta.rest.method === 'GET') {
+      method = (
+        <span class="font-mono text-[0.625rem]/6 font-semibold rounded-lg px-1.5 ring-1 ring-inset ring-emerald-300 dark:ring-emerald-400/30 bg-emerald-400/10 text-emerald-500 dark:text-emerald-400">
+          {model.meta.rest.method}
+        </span>
+      );
+    } else if (model.meta.rest.method === 'PUT') {
+      method = (
+        <span class="font-mono text-[0.625rem]/6 font-semibold rounded-lg px-1.5 ring-1 ring-inset ring-amber-300 bg-amber-400/10 text-amber-500 dark:ring-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400">
+          {model.meta.rest.method}
+        </span>
+      );
+    } else if (model.meta.rest.method === 'DELETE') {
+      method = (
+        <span class="font-mono text-[0.625rem]/6 font-semibold rounded-lg px-1.5 ring-1 ring-inset ring-rose-200 bg-rose-50 text-red-500 dark:ring-rose-500/20 dark:bg-rose-400/10 dark:text-rose-400">
+          {model.meta.rest.method}
+        </span>
+      );
+    } else if (model.meta.rest.method === 'PATCH') {
+      method = (
+        <span class="font-mono text-[0.625rem]/6 font-semibold rounded-lg px-1.5 ring-1 ring-inset ring-purple-200 bg-purple-50 text-purple-500 dark:ring-purple-500/20 dark:bg-purple-400/10 dark:text-purple-400">
+          {model.meta.rest.method}
+        </span>
+      );
+    } else {
+      method = (
+        <span class="font-mono text-[0.625rem]/6 font-semibold rounded-lg px-1.5 ring-1 ring-inset ring-sky-300 bg-sky-400/10 text-sky-500 dark:ring-sky-400/30 dark:bg-sky-400/10 dark:text-sky-400">
+          {model.meta.rest.method}
+        </span>
+      );
+    }
+
+    const path = service.meta.rest.path + '/' + model.meta.rest.path;
+
+    return (
+      <div class="flex items-center inner-content mt-2 mb-2 gap-x-3">
+        {method}
+        <span class="h-0.5 w-0.5 rounded-full bg-zinc-300 dark:bg-zinc-600"></span>
+        <span class="font-mono text-xs text-zinc-400">{path.endsWith('/') ? path.substring(0, path.length - 1) : path}</span>
+      </div>
+    );
+  }
+  return '';
+}
+
+function serviceMethod(model: MResolvedOperation, service: MResolvedService) {
   const reqParameters = model.parameters.filter(p => !p.optional);
   const optParameters = model.parameters.filter(p => p.optional);
 
   return (
     <Fragment>
+      {restMethod(model, service)}
       <h2 class="text-lg inner-content mt-2 mb-2">{model.name}</h2>
       <div class="service-operation-content inner-content">
         <div class="text-sm">
           <p>{model.doc}</p>
-          {reqParameters.length > 0 && parameters('Required Parameters', reqParameters)}
-          {optParameters.length > 0 && parameters('Optional Parameters', optParameters)}
+          {reqParameters.length > 0 && parameters('Required Parameters', reqParameters, service)}
+          {optParameters.length > 0 && parameters('Optional Parameters', optParameters, service)}
           {result(model.resultType, model.operationErrors)}
         </div>
         <div class="code-column">{code(operation(model, ''))}</div>
@@ -151,12 +201,12 @@ function typeString(type: string | MInlineEnumType) {
   return type;
 }
 
-function parameters(title: string, parameters: MParameter[]) {
+function parameters(title: string, parameters: MParameter[], service: MResolvedService) {
   return (
     <Fragment>
       <h3 class="text-sm">{title}</h3>
       <div>
-        <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">{parameters.map(parameter)}</ul>
+        <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">{parameters.map(p => parameter(p, service))}</ul>
       </div>
     </Fragment>
   );
@@ -202,12 +252,32 @@ function dlError(code: string, typeString: string, doc: string) {
   );
 }
 
-function parameter(p: MParameter) {
+function restParam(p: MParameter, service: MResolvedService) {
+  if (service.meta.rest) {
+    if (p.meta?.rest?.source === 'path') {
+      return <span class="font-mono text-emerald-500 dark:text-emerald-400">path:</span>;
+    } else if (p.meta?.rest?.source === 'query') {
+      return <span class="font-mono text-sky-500 dark:text-sky-400">query:</span>;
+    } else if (p.meta?.rest?.source === 'header') {
+      return <span class="font-mono text-yellow-500 dark:text-yellow-400">header:</span>;
+    } else if (p.meta?.rest?.source === 'cookie') {
+      return <span class="font-mono text-pink-500 dark:text-pink-400">cookie:</span>;
+    } else {
+      return <span class="font-mono text-rose-500 dark:text-rose-400">body:</span>;
+    }
+  }
+  return '';
+}
+
+function parameter(p: MParameter, service: MResolvedService) {
   return (
     <li class="not-prose py-4 first:pt-0 last:pb-0">
       <dl class="parameter">
         <dd>
-          <code class="bg-zinc-700/5 dark:bg-zinc-700/15 border-zinc-300 dark:border-zinc-700 dark:text-white text-xs p-1 rounded-lg border">{p.name}</code>
+          <code class="flex items-center bg-zinc-700/5 dark:bg-zinc-700/15 border-zinc-300 dark:border-zinc-700 dark:text-white text-xs p-1 rounded-lg border gap-x-3">
+            {restParam(p, service)}
+            {p.name}
+          </code>
         </dd>
         <dd class="font-mono text-xs text-zinc-400">
           {p.type}
