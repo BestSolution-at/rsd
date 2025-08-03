@@ -2,8 +2,10 @@ import { CompositeGeneratorNode, NL } from 'langium/generate';
 import {
   allResolvedRecordProperties,
   isMInlineEnumType,
+  isMKeyProperty,
   isMProperty,
   isMResolvedProperty,
+  isMRevisionProperty,
   MResolvedBaseProperty,
   MResolvedRecordType,
 } from '../model.js';
@@ -150,6 +152,19 @@ function generatePatch(
   node.indent((classBody) => {
     classBody.append(
       ...props
+        .filter((p) => isMKeyProperty(p) || isMRevisionProperty(p))
+        .flatMap((p) => [
+          generatePropertyAccessor(
+            p,
+            nativeTypeSubstitues,
+            basePackageName,
+            fqn
+          ),
+          NL,
+        ])
+    );
+    classBody.append(
+      ...props
         .filter(isMResolvedProperty)
         .flatMap((p) => [
           generatePatchPropertyAccessor(
@@ -179,6 +194,20 @@ function generatePatchBuilder(
     NL
   );
   node.indent((classBody) => {
+    classBody.append(
+      ...props
+        .filter((p) => isMKeyProperty(p) || isMRevisionProperty(p))
+        .flatMap((p) => [
+          generateBuilderPropertyAccessor(
+            p,
+            nativeTypeSubstitues,
+            basePackageName,
+            fqn,
+            'PatchBuilder'
+          ),
+          NL,
+        ])
+    );
     classBody.append(
       ...props
         .filter(isMResolvedProperty)

@@ -1,15 +1,22 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
 import {
   allResolvedRecordProperties,
+  isMKeyProperty,
   isMResolvedProperty,
+  isMRevisionProperty,
+  MKeyProperty,
   MResolvedBaseProperty,
   MResolvedRecordType,
   MResolvedRSDModel,
+  MRevisionProperty,
 } from '../model.js';
 import {
+  builtinBuilderAccess,
   generatePatchBuilderPropertyAccessor,
   generatePatchPropertyAccessor,
+  generatePropertyNG,
 } from './shared.js';
+import { computeAPIType } from '../java-gen-utils.js';
 
 export function generateRecordPatchContent(
   t: MResolvedRecordType,
@@ -97,6 +104,21 @@ function generatePatchBuilderImpl(
       NL
     );
     classBody.append(
+      ...props
+        .filter((p) => isMKeyProperty(p) || isMRevisionProperty(p))
+        .flatMap((p) => {
+          return [
+            generateKeyRevBuilderPropertyAccessor(
+              p as (MKeyProperty | MRevisionProperty) & MResolvedBaseProperty, // FIXME Typesystem woes!?!
+              nativeTypeSubstitues,
+              interfaceBasePackage,
+              fqn
+            ),
+            NL,
+          ];
+        })
+    );
+    classBody.append(
       ...props.filter(isMResolvedProperty).flatMap((p) => {
         return [
           generatePatchBuilderPropertyAccessor(
@@ -124,6 +146,35 @@ function generatePatchBuilderImpl(
   return node;
 }
 
+function generateKeyRevBuilderPropertyAccessor(
+  p: (MKeyProperty | MRevisionProperty) & MResolvedBaseProperty,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  const rv = new CompositeGeneratorNode();
+  rv.append(
+    `public PatchBuilder ${p.name}(${computeAPIType(
+      p as MResolvedBaseProperty,
+      nativeTypeSubstitues,
+      basePackageName,
+      fqn
+    )} ${p.name}) {`,
+    NL
+  );
+  rv.indent((mBody) => {
+    var content = builtinBuilderAccess({
+      type: p.type,
+      name: p.name,
+    });
+    mBody.append(content, ';', NL);
+    mBody.append('return this;', NL);
+  });
+  rv.append('}', NL);
+
+  return rv;
+}
+
 function generatePropertyAccessors(
   owner: MResolvedRecordType,
   props: MResolvedBaseProperty[],
@@ -132,6 +183,20 @@ function generatePropertyAccessors(
   fqn: (type: string) => string
 ) {
   const node = new CompositeGeneratorNode();
+  node.append(
+    ...props
+      .filter((p) => isMKeyProperty(p) || isMRevisionProperty(p))
+      .flatMap((p) => [
+        generatePropertyNG(
+          owner,
+          p,
+          nativeTypeSubstitues,
+          interfaceBasePackage,
+          fqn
+        ),
+        NL,
+      ])
+  );
   node.append(
     ...props.filter(isMResolvedProperty).flatMap((p) => {
       return [

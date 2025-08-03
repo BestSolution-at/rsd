@@ -30,11 +30,12 @@ export function generateBuilderPropertyAccessor(
   property: MResolvedBaseProperty,
   nativeTypeSubstitues: Record<string, string> | undefined,
   basePackageName: string,
-  fqn: (type: string) => string
+  fqn: (type: string) => string,
+  returnType = 'DataBuilder'
 ) {
   const node = new CompositeGeneratorNode();
   node.append(
-    `public DataBuilder ${property.name}(${computeAPIType(
+    `public ${returnType} ${property.name}(${computeAPIType(
       property,
       nativeTypeSubstitues,
       basePackageName,
@@ -52,7 +53,7 @@ export function generateBuilderPropertyAccessor(
       NL,
       `public <T extends ${
         property.type
-      }.DataBuilder> DataBuilder with${toFirstUpper(
+      }.DataBuilder> ${returnType} with${toFirstUpper(
         property.name
       )}(Class<T> clazz, ${Function}<T, ${property.type}.Data> block);`,
       NL
