@@ -652,12 +652,12 @@ export function generateJsonUtilsContent(
     );
     classBody.append(
       generateSingleLineMethod(
-        'public static <T> JsonArray toJsonValueArray(List<T> value, Function<T, JsonValue> jsonValueConverter)',
+        'public static <T> JsonArray toJsonValueArray(List<T> value, Function<T, ? extends JsonValue> jsonValueConverter)',
         'return value.stream().collect(toArray(jsonValueConverter))'
       )
     );
     classBody.append(
-      'public static <T> Collector<T, ?, JsonArray> toArray(Function<T, JsonValue> jsonValueConverter) {',
+      'public static <T> Collector<T, ?, JsonArray> toArray(Function<T, ? extends JsonValue> jsonValueConverter) {',
       NL
     );
     classBody.indent((methodBody) => {
@@ -665,7 +665,7 @@ export function generateJsonUtilsContent(
       methodBody.indent((i) =>
         i.indent((chain) => {
           chain.append('Json::createArrayBuilder,', NL);
-          chain.append('(b, v) -> jsonValueConverter.apply(v),', NL);
+          chain.append('(b, v) -> b.add(jsonValueConverter.apply(v)),', NL);
           chain.append('JsonArrayBuilder::add,', NL);
           chain.append('JsonArrayBuilder::build);', NL);
         })
