@@ -75,9 +75,14 @@ export function generatePatchPropertyAccessor(
     property.variant === 'inline-enum' ||
     property.variant === 'scalar'
   ) {
-    const type = primitiveToObject(
-      computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn)
+    let type = primitiveToObject(
+      computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true)
     );
+
+    if (property.array) {
+      type = `_Base.SimpleListChange<${type}, ${type}>`;
+    }
+
     if (property.optional || property.nullable) {
       node.append(`public _Base.Nillable<${type}> ${property.name}();`, NL);
     } else {
@@ -85,12 +90,20 @@ export function generatePatchPropertyAccessor(
       node.append(`public ${Optional}<${type}> ${property.name}();`, NL);
     }
   } else {
-    const type = computeAPIType(
+    let type = computeAPIType(
       property,
       nativeTypeSubstitues,
       basePackageName,
-      fqn
+      fqn,
+      true
     );
+
+    if (property.array) {
+      type = `_Base.ListChange<${type}, ${
+        fqn(`${basePackageName}.${property.type}`) + '.Patch'
+      }, String>`; // We always use string because the one can then include the etag with {id}@{etag}
+    }
+
     if (property.optional || property.nullable) {
       node.append(`public _Base.Nillable<${type}> ${property.name}();`, NL);
     } else {
@@ -119,26 +132,40 @@ export function generatePatchBuilderPropertyAccessor(
       property,
       nativeTypeSubstitues,
       basePackageName,
-      fqn
+      fqn,
+      true
     );
-    if (property.nullable || property.optional) {
+    if (property.nullable || property.optional || property.array) {
       type = primitiveToObject(type);
     }
-    node.append(
-      `public PatchBuilder ${property.name}(${type} ${property.name});`,
-      NL
-    );
+
+    if (property.array) {
+      node.append(
+        `public PatchBuilder ${property.name}(_Base.SimpleListChange<${type}, ${type}> ${property.name});`,
+        NL,
+        NL
+      );
+      node.append(
+        `public PatchBuilder ${property.name}(List<${type}> additions, List<${type}> removals);`,
+        NL
+      );
+    } else {
+      node.append(
+        `public PatchBuilder ${property.name}(${type} ${property.name});`,
+        NL
+      );
+    }
   } else {
-    node.append(
-      `public PatchBuilder ${property.name}(${computeAPIType(
-        property,
-        nativeTypeSubstitues,
-        basePackageName,
-        fqn
-      )} ${property.name});`,
-      NL
-    );
     if (!property.array) {
+      node.append(
+        `public PatchBuilder ${property.name}(${computeAPIType(
+          property,
+          nativeTypeSubstitues,
+          basePackageName,
+          fqn
+        )} ${property.name});`,
+        NL
+      );
       const Function = fqn('java.util.function.Function');
       node.append(
         NL,
@@ -147,6 +174,25 @@ export function generatePatchBuilderPropertyAccessor(
         }.DataBuilder> PatchBuilder with${toFirstUpper(
           property.name
         )}(Class<T> clazz, ${Function}<T, ${property.type}.Data> block);`,
+        NL
+      );
+    } else {
+      const type = computeAPIType(
+        property,
+        nativeTypeSubstitues,
+        basePackageName,
+        fqn,
+        true
+      );
+      const baseType = fqn(`${basePackageName}.${property.type}`);
+      node.append(
+        `public PatchBuilder ${property.name}(_Base.ListChange<${type}, ${baseType}.Patch, String> ${property.name});`,
+        NL,
+        NL
+      );
+      const List = fqn('java.util.List');
+      node.append(
+        `public PatchBuilder ${property.name}(${List}<${type}> additions, ${List}<${baseType}.Patch> updates, ${List}<String> removals);`,
         NL
       );
     }

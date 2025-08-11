@@ -3,6 +3,7 @@ import { CompositeGeneratorNode, NL } from 'langium/generate';
 export function generateBaseContent(fqn: (type: string) => string) {
   const Function = fqn('java.util.function.Function');
   const Consumer = fqn('java.util.function.Consumer');
+  const List = fqn('java.util.List');
 
   const result = new CompositeGeneratorNode();
   result.append('public interface _Base {', NL);
@@ -21,6 +22,22 @@ export function generateBaseContent(fqn: (type: string) => string) {
       );
     });
     classBody.append('}', NL, NL);
+
+    classBody.append('public interface ListChange<D, P, K> {', NL);
+    classBody.indent((innerBody) => {
+      innerBody.append(`public ${List}<D> additions();`, NL, NL);
+      innerBody.append(`public ${List}<P> updates();`, NL, NL);
+      innerBody.append(`public ${List}<K> removals();`, NL);
+    });
+    classBody.append('}', NL, NL);
+
+    classBody.append('public interface SimpleListChange<T, K> {', NL);
+    classBody.indent((innerBody) => {
+      innerBody.append(`public ${List}<T> additions();`, NL, NL);
+      innerBody.append(`public ${List}<K> removals();`, NL);
+    });
+    classBody.append('}', NL, NL);
+
     classBody.append('public interface BaseData {', NL);
     classBody.append('}', NL, NL);
     classBody.append('public interface BaseDataBuilder<T> {', NL);
