@@ -114,14 +114,16 @@ export function generateClient(
     clBody.append(
       `JDK${toCamelCaseIdentifier(
         generatorConfig.name
-      )}Client(${URI} baseURI) {`,
+      )}Client(${URI} baseURI, ${Supplier}<${HttpClient}> httpClientSupplier) {`,
       NL
     );
     clBody.indent((initBlock) => {
       initBlock.append('this.baseURI = baseURI;', NL);
-      initBlock.append('this.httpClient = HttpClient.newHttpClient();', NL);
+      initBlock.append('this.httpClient = httpClientSupplier.get();', NL);
     });
     clBody.append('}', NL);
+
+    // Factory methods
     clBody.appendNewLine();
     clBody.append(
       `public static ${toCamelCaseIdentifier(
@@ -133,11 +135,29 @@ export function generateClient(
       mBody.append(
         `return new JDK${toCamelCaseIdentifier(
           generatorConfig.name
-        )}Client(baseURI);`,
+        )}Client(baseURI, HttpClient::newHttpClient);`,
         NL
       );
     });
     clBody.append('}', NL);
+
+    clBody.appendNewLine();
+    clBody.append(
+      `public static ${toCamelCaseIdentifier(
+        generatorConfig.name
+      )}Client create(${URI} baseURI, ${Supplier}<${HttpClient}> httpClientSupplier) {`,
+      NL
+    );
+    clBody.indent((mBody) => {
+      mBody.append(
+        `return new JDK${toCamelCaseIdentifier(
+          generatorConfig.name
+        )}Client(baseURI, httpClientSupplier);`,
+        NL
+      );
+    });
+    clBody.append('}', NL);
+
     clBody.appendNewLine();
     clBody.append('@SuppressWarnings("unchecked")', NL);
     clBody.append('@Override', NL);
