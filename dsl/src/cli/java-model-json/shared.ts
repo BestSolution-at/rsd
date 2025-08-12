@@ -225,31 +225,34 @@ export function builtinOptionalJSONAccessNG(property: {
   }
 }
 
-export function builtinBuilderArrayJSONAccess(property: {
-  type: MBuiltinType;
-  name: string;
-}): string {
+export function builtinBuilderArrayJSONAccess(
+  property: {
+    type: MBuiltinType;
+    name: string;
+  },
+  builderName = '$builder'
+): string {
   switch (property.type) {
     case 'boolean':
-      return `$builder.add("${property.name}", _JsonUtils.toJsonBooleanArray(${property.name}))`;
+      return `${builderName}.add("${property.name}", _JsonUtils.toJsonBooleanArray(${property.name}))`;
     case 'double':
-      return `$builder.add("${property.name}", _JsonUtils.toJsonDoubleArray(${property.name}))`;
+      return `${builderName}.add("${property.name}", _JsonUtils.toJsonDoubleArray(${property.name}))`;
     case 'float':
-      return `$builder.add("${property.name}", _JsonUtils.toJsonFloatArray(${property.name}))`;
+      return `${builderName}.add("${property.name}", _JsonUtils.toJsonFloatArray(${property.name}))`;
     case 'int':
-      return `$builder.add("${property.name}", _JsonUtils.toJsonIntArray(${property.name}))`;
+      return `${builderName}.add("${property.name}", _JsonUtils.toJsonIntArray(${property.name}))`;
     case 'local-date':
-      return `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
+      return `${builderName}.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
     case 'local-date-time':
-      return `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name})::toString))`;
+      return `${builderName}.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name})::toString))`;
     case 'long':
-      return `$builder.add("${property.name}", _JsonUtils.toJsonLongArray(${property.name}))`;
+      return `${builderName}.add("${property.name}", _JsonUtils.toJsonLongArray(${property.name}))`;
     case 'short':
-      return `$builder.add("${property.name}", _JsonUtils.toJsonShortArray(${property.name}))`;
+      return `${builderName}.add("${property.name}", _JsonUtils.toJsonShortArray(${property.name}))`;
     case 'string':
-      return `$builder.add("${property.name}", _JsonUtils.toJsonStringArray(${property.name}))`;
+      return `${builderName}.add("${property.name}", _JsonUtils.toJsonStringArray(${property.name}))`;
     case 'zoned-date-time':
-      return `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
+      return `${builderName}.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
   }
 }
 
@@ -479,6 +482,154 @@ export function generatePatchPropertyAccessor(
   basePackageName: string,
   fqn: (type: string) => string
 ) {
+  if (property.array) {
+    return generatePatchPropertyAccessor_Array(
+      property,
+      nativeTypeSubstitues,
+      basePackageName,
+      fqn
+    );
+  } else {
+    return generatePatchPropertyAccessor_Scalar(
+      property,
+      nativeTypeSubstitues,
+      basePackageName,
+      fqn
+    );
+  }
+}
+
+function generatePatchPropertyAccessor_Array(
+  property: MResolvedPropery,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  const node = new CompositeGeneratorNode();
+
+  const _Base = fqn(basePackageName + '._Base');
+  const Optional = fqn('java.util.Optional');
+  if (
+    property.variant === 'builtin' ||
+    property.variant === 'enum' ||
+    property.variant === 'inline-enum' ||
+    property.variant === 'scalar'
+  ) {
+    const type = primitiveToObject(
+      computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true)
+    );
+
+    node.append(
+      `public ${Optional}<${_Base}.SimpleListChange<${type}, ${type}>> ${property.name}() {`,
+      NL
+    );
+    if (property.variant === 'builtin' && isMBuiltinType(property.type)) {
+      if (property.type === 'boolean') {
+        const JsonValue = fqn('jakarta.json.JsonValue');
+        node.indent((mBody) => {
+          mBody.append(
+            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _SimpleListChangeImpl.of(o, v -> v.getValueType() == ${JsonValue}.ValueType.TRUE))`,
+            ';',
+            NL
+          );
+        });
+      } else if (property.type === 'double' || property.type === 'float') {
+        const JsonNumber = fqn('jakarta.json.JsonNumber');
+        node.indent((mBody) => {
+          mBody.append(
+            `return _JsonUtils.mapOptObject(data, "${
+              property.name
+            }", o -> _SimpleListChangeImpl.of(o, v -> ((${JsonNumber})v).${
+              property.type === 'double'
+                ? 'doubleValue()'
+                : 'numberValue().floatValue()'
+            }))`,
+            ';',
+            NL
+          );
+        });
+      } else if (
+        property.type === 'int' ||
+        property.type === 'long' ||
+        property.type === 'short'
+      ) {
+        const JsonNumber = fqn('jakarta.json.JsonNumber');
+        let numAccessor = '';
+        if (property.type === 'int') {
+          numAccessor = 'intValue()';
+        } else if (property.type === 'long') {
+          numAccessor = 'longValue()';
+        } else {
+          numAccessor = 'numberValue().shortValue()';
+        }
+        node.indent((mBody) => {
+          mBody.append(
+            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _SimpleListChangeImpl.of(o, v -> ((${JsonNumber})v).${numAccessor}))`,
+            ';',
+            NL
+          );
+        });
+      } else if (property.type === 'string') {
+        const JsonString = fqn('jakarta.json.JsonString');
+        node.indent((mBody) => {
+          mBody.append(
+            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _SimpleListChangeImpl.of(o, v -> ((${JsonString})v).getString()))`,
+            ';',
+            NL
+          );
+        });
+      } else {
+        const JsonString = fqn('jakarta.json.JsonString');
+        node.indent((mBody) => {
+          mBody.append(
+            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _SimpleListChangeImpl.of(o, v -> ${type}.parse(((${JsonString})v).getString())))`,
+            ';',
+            NL
+          );
+        });
+      }
+    } else {
+      const JsonString = fqn('jakarta.json.JsonString');
+
+      node.indent((mBody) => {
+        mBody.append(`${Function}<>`);
+        mBody.append(
+          `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _SimpleListChangeImpl.of(o, v -> ${type}.valueOf(((${JsonString})v).getString())))`,
+          ';',
+          NL
+        );
+      });
+    }
+    node.append('}', NL);
+  } else {
+    const JsonString = fqn('jakarta.json.JsonString');
+    const type = primitiveToObject(
+      computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true)
+    );
+    const baseType = fqn(`${basePackageName}.${property.type}`);
+
+    node.append(
+      `public ${Optional}<${_Base}.ListChange<${type}, ${baseType}.Patch, String>> ${property.name}() {`,
+      NL
+    );
+    node.indent((mBody) => {
+      mBody.append(
+        `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, ${property.type}DataImpl::of, ${property.type}DataPatchImpl::of, v -> ((${JsonString})v).getString()))`,
+        ';',
+        NL
+      );
+    });
+    node.append('}');
+  }
+  return node;
+}
+
+function generatePatchPropertyAccessor_Scalar(
+  property: MResolvedPropery,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
   const node = new CompositeGeneratorNode();
   if (
     property.variant === 'builtin' ||
@@ -541,7 +692,7 @@ export function generatePatchPropertyAccessor(
   return node;
 }
 
-function generatePatchBuilderPropertyAccessor_NoRecord(
+function generatePatchBuilderPropertyAccessor_NoRecord_Scalar(
   property: MResolvedPropery,
   nativeTypeSubstitues: Record<string, string> | undefined,
   basePackageName: string,
@@ -606,7 +757,147 @@ function generatePatchBuilderPropertyAccessor_NoRecord(
   return node;
 }
 
+function generatePatchBuilderPropertyAccessor_Array(
+  property: MResolvedPropery,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  let type = primitiveToObject(
+    computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true)
+  );
+  const node = new CompositeGeneratorNode();
+
+  node.append('@Override', NL);
+  if (
+    property.variant === 'builtin' ||
+    property.variant === 'enum' ||
+    property.variant === 'inline-enum' ||
+    property.variant === 'scalar'
+  ) {
+    const List = fqn('java.util.List');
+    node.append(
+      `public PatchBuilder ${property.name}(_Base.SimpleListChange<${type}, ${type}> ${property.name}) {`,
+      NL
+    );
+    node.indent((mBody) => {
+      mBody.append(
+        `$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data);`,
+        NL
+      );
+      mBody.append('return this;', NL);
+    });
+    node.append('}', NL, NL);
+    node.append(
+      `public PatchBuilder ${property.name}(${List}<${type}> additions, ${List}<${type}> removals) {`,
+      NL
+    );
+    node.indent((mBody) => {
+      mBody.append('var $changeBuilder = Json.createObjectBuilder();', NL, NL);
+      if (isMBuiltinType(property.type)) {
+        mBody.append(
+          builtinBuilderArrayJSONAccess(
+            { type: property.type, name: 'additions' },
+            '$changeBuilder'
+          ),
+          ';',
+          NL
+        );
+        mBody.append(
+          builtinBuilderArrayJSONAccess(
+            { type: property.type, name: 'removals' },
+            '$changeBuilder'
+          ),
+          ';',
+          NL
+        );
+      } else {
+        mBody.append(
+          `$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));`
+        );
+        mBody.append(
+          `$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));`
+        );
+      }
+
+      mBody.append(
+        `$builder.add("${property.name}", $changeBuilder.build());`,
+        NL
+      );
+      mBody.append('return this;');
+    });
+    node.append('}', NL);
+  } else {
+    const baseType = fqn(`${basePackageName}.${property.type}`);
+    const List = fqn('java.util.List');
+    node.append(
+      `public PatchBuilder ${property.name}(_Base.ListChange<${type}, ${baseType}.Patch, String> ${property.name}) {`,
+      NL
+    );
+    node.indent((mBody) => {
+      mBody.append(
+        `$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data);`,
+        NL
+      );
+      mBody.append('return this;', NL);
+    });
+    node.append('}', NL, NL);
+
+    node.append(
+      `public PatchBuilder ${property.name}(${List}<${type}> additions, ${List}<${baseType}.Patch> updates, ${List}<String> removals) {`,
+      NL
+    );
+    node.indent((mBody) => {
+      mBody.append(`var $changeBuilder = Json.createObjectBuilder();`, NL, NL);
+      mBody.append(
+        `$changeBuilder.add("additions", _JsonUtils.toJsonValueArray(additions, $e -> ((_BaseDataImpl) $e).data));`,
+        NL
+      );
+      mBody.append(
+        '$changeBuilder.add("updates", _JsonUtils.toJsonValueArray(updates, $e -> ((_BaseDataImpl) $e).data));',
+        NL
+      );
+      mBody.append(
+        '$changeBuilder.add("removals", _JsonUtils.toJsonStringArray(removals));',
+        NL
+      );
+      mBody.append(
+        `$builder.add("${property.name}", $changeBuilder.build());`,
+        NL
+      );
+      mBody.append('return this;', NL);
+    });
+
+    node.append('}', NL);
+  }
+
+  return node;
+}
+
 export function generatePatchBuilderPropertyAccessor(
+  property: MResolvedPropery,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  if (property.array) {
+    return generatePatchBuilderPropertyAccessor_Array(
+      property,
+      nativeTypeSubstitues,
+      basePackageName,
+      fqn
+    );
+  } else {
+    return generatePatchBuilderPropertyAccessor_Scalar(
+      property,
+      nativeTypeSubstitues,
+      basePackageName,
+      fqn
+    );
+  }
+}
+
+export function generatePatchBuilderPropertyAccessor_Scalar(
   property: MResolvedPropery,
   nativeTypeSubstitues: Record<string, string> | undefined,
   basePackageName: string,
@@ -620,7 +911,7 @@ export function generatePatchBuilderPropertyAccessor(
     property.variant === 'scalar'
   ) {
     node.append(
-      generatePatchBuilderPropertyAccessor_NoRecord(
+      generatePatchBuilderPropertyAccessor_NoRecord_Scalar(
         property,
         nativeTypeSubstitues,
         basePackageName,
@@ -651,59 +942,53 @@ export function generatePatchBuilderPropertyAccessor(
       });
     }
 
-    let content: string;
-    if (property.array) {
-      content = `$builder.add("${property.name}", _JsonUtils.toJsonValueArray(${property.name}, $e -> ((_BaseDataImpl) $e).data))`;
-    } else {
-      content = `$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data)`;
-    }
-
     node.indent((methodBody) => {
-      methodBody.append(content, ';', NL);
+      methodBody.append(
+        `$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data);`,
+        NL
+      );
       methodBody.append('return this;', NL);
     });
 
     node.append('}', NL);
-    if (!property.array) {
-      const Function = fqn('java.util.function.Function');
-      node.append(
-        NL,
-        `public <T extends ${property.type}.DataBuilder> PatchBuilder withRepeat(Class<T> clazz, ${Function}<T, ${type}> block) {`,
-        NL
-      );
-      node.indent((methodBody) => {
-        if (isMResolvedUnionType(property.resolved.resolvedObjectType)) {
-          methodBody.append(`${property.type}.DataBuilder b;`, NL);
-          property.resolved.resolvedObjectType.types.forEach((e, idx) => {
-            if (idx > 0) {
-              methodBody.append(' else ');
-            }
-            const Type = fqn(`${basePackageName}.${e}`);
-            methodBody.append(`if (clazz == ${Type}.DataBuilder.class) {`, NL);
-            methodBody.indent((block) => {
-              block.append(`b = ${e}DataImpl.builder();`, NL);
-            });
-            methodBody.append('}');
-          });
-          methodBody.append(' else {', NL);
+    const Function = fqn('java.util.function.Function');
+    node.append(
+      NL,
+      `public <T extends ${property.type}.DataBuilder> PatchBuilder withRepeat(Class<T> clazz, ${Function}<T, ${type}> block) {`,
+      NL
+    );
+    node.indent((methodBody) => {
+      if (isMResolvedUnionType(property.resolved.resolvedObjectType)) {
+        methodBody.append(`${property.type}.DataBuilder b;`, NL);
+        property.resolved.resolvedObjectType.types.forEach((e, idx) => {
+          if (idx > 0) {
+            methodBody.append(' else ');
+          }
+          const Type = fqn(`${basePackageName}.${e}`);
+          methodBody.append(`if (clazz == ${Type}.DataBuilder.class) {`, NL);
           methodBody.indent((block) => {
-            block.append(
-              'throw new IllegalArgumentException("Unknown builder type %s".formatted(clazz));',
-              NL
-            );
+            block.append(`b = ${e}DataImpl.builder();`, NL);
           });
-          methodBody.append('}', NL);
-        } else {
-          methodBody.append(
-            `${property.type}.DataBuilder b = ${property.type}.DataBuilder.builder();`,
+          methodBody.append('}');
+        });
+        methodBody.append(' else {', NL);
+        methodBody.indent((block) => {
+          block.append(
+            'throw new IllegalArgumentException("Unknown builder type %s".formatted(clazz));',
             NL
           );
-        }
+        });
+        methodBody.append('}', NL);
+      } else {
+        methodBody.append(
+          `${property.type}.DataBuilder b = ${property.type}.DataBuilder.builder();`,
+          NL
+        );
+      }
 
-        methodBody.append(`return repeat(block.apply(clazz.cast(b)));`, NL);
-      });
-      node.append('}', NL);
-    }
+      methodBody.append(`return repeat(block.apply(clazz.cast(b)));`, NL);
+    });
+    node.append('}', NL);
   }
   return node;
 }

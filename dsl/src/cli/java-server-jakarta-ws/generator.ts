@@ -27,6 +27,7 @@ import { generateRestUtils } from './rest-utils.js';
 import { generateNillable } from './nillable-impl.js';
 import { generateScopeValueProvider } from './scopevalue-provider.js';
 import { generateStreamImpls } from './stream-impl.js';
+import { generateListChange } from './listchange.js';
 
 export function generate(
   model: MResolvedRSDModel,
@@ -60,6 +61,7 @@ export function generate(
   result.push(...generateRestUtils(artifactConfig, model));
   result.push(...generateScopeValueProvider(artifactConfig));
   result.push(...generateStreamImpls(artifactConfig, model));
+  result.push(...generateListChange(artifactConfig));
 
   return result;
 }

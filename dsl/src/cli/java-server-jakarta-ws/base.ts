@@ -3,13 +3,13 @@ import { Artifact } from '../artifact-generator.js';
 import {
   generateCompilationUnit,
   JavaImportsCollector,
-  JavaRestClientJDKGeneratorConfig,
+  JavaServerJakartaWSGeneratorConfig,
   toPath,
 } from '../java-gen-utils.js';
 import { generateBaseDTOContent } from '../java-model-json/base.js';
 
 export function generateBase(
-  artifactConfig: JavaRestClientJDKGeneratorConfig
+  artifactConfig: JavaServerJakartaWSGeneratorConfig
 ): Artifact {
   const packageName = `${artifactConfig.rootPackageName}.rest.model`;
 
