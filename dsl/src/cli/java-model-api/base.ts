@@ -1,51 +1,74 @@
-import { CompositeGeneratorNode, NL } from 'langium/generate';
+import { toNode } from '../util.js';
 
 export function generateBaseContent(fqn: (type: string) => string) {
-  const Function = fqn('java.util.function.Function');
-  const Consumer = fqn('java.util.function.Consumer');
-  const List = fqn('java.util.List');
+  fqn('java.util.function.Function');
+  fqn('java.util.function.Consumer');
+  fqn('java.util.List');
+  fqn('java.util.Optional');
 
-  const result = new CompositeGeneratorNode();
-  result.append('public interface _Base {', NL);
-  result.indent((classBody) => {
-    classBody.append('public interface Nillable<T> {', NL);
-    classBody.indent((innerBody) => {
-      innerBody.append(
-        `public <R> R apply(${Function}<T, R> function, R defaultValue);`,
-        NL,
-        NL
-      );
-      innerBody.append(`public void accept(${Consumer}<T> block);`, NL, NL);
-      innerBody.append(
-        `public <R> Nillable<R> map(${Function}<T, R> mapper);`,
-        NL
-      );
-    });
-    classBody.append('}', NL, NL);
-
-    classBody.append('public interface ListChange<D, P, K> {', NL);
-    classBody.indent((innerBody) => {
-      innerBody.append(`public ${List}<D> additions();`, NL, NL);
-      innerBody.append(`public ${List}<P> updates();`, NL, NL);
-      innerBody.append(`public ${List}<K> removals();`, NL);
-    });
-    classBody.append('}', NL, NL);
-
-    classBody.append('public interface SimpleListChange<T, K> {', NL);
-    classBody.indent((innerBody) => {
-      innerBody.append(`public ${List}<T> additions();`, NL, NL);
-      innerBody.append(`public ${List}<K> removals();`, NL);
-    });
-    classBody.append('}', NL, NL);
-
-    classBody.append('public interface BaseData {', NL);
-    classBody.append('}', NL, NL);
-    classBody.append('public interface BaseDataBuilder<T> {', NL);
-    classBody.indent((innerBody) => {
-      innerBody.append('public T build();', NL);
-    });
-    classBody.append('}', NL);
-  });
-  result.append('}', NL);
-  return result;
+  return toNode([
+    'public interface _Base {',
+    [
+      'public interface Nillable<T> {',
+      [
+        `public <R> R apply(Function<T, R> function, R defaultValue);`,
+        '',
+        `public void accept(Consumer<T> block);`,
+        '',
+        `public <R> Nillable<R> map(Function<T, R> mapper);`,
+      ],
+      '}',
+      '',
+      'public interface BaseData {',
+      '}',
+      '',
+      'public interface BaseDataBuilder<T> {',
+      ['public T build();'],
+      '}',
+      '',
+      'public interface ListSetElementsChange<T> {',
+      [`public List<T> elements();`],
+      '}',
+      '',
+      'public interface ListAddRemoveChange<A, R> {',
+      ['public List<A> additions();', 'public List<R> removals();'],
+      '}',
+      '',
+      'public interface ListAddRemoveUpdateChange<A, U, R> extends ListAddRemoveChange<A, R> {',
+      ['public List<U> updates();'],
+      '}',
+      '',
+      'public interface ListChange<E, D> {',
+      [
+        'public Optional<E> elementsChange();',
+        '',
+        'public Optional<D> deltaChange();',
+        '',
+        'public default void acceptOne(',
+        [
+          ['Consumer<E> elementsChange,', 'Consumer<D> deltaChange) {'],
+          'elementsChange().ifPresent(elementsChange);',
+          'deltaChange().ifPresent(deltaChange);',
+        ],
+        '}',
+        '',
+        'public default <V> V applyOne(',
+        [
+          ['Function<E, V> elementsChange,', 'Function<D, V> deltaChange) {'],
+          'var el = elementsChange();',
+          'if (el.isPresent()) {',
+          ['return elementsChange.apply(el.get());'],
+          '}',
+          'var de = deltaChange();',
+          'if (de.isPresent()) {',
+          ['return deltaChange.apply(de.get());'],
+          '}',
+          'throw new IllegalStateException();',
+        ],
+        '}',
+      ],
+      '}',
+    ],
+    '}',
+  ]);
 }

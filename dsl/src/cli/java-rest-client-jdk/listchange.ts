@@ -7,7 +7,6 @@ import {
   toPath,
 } from '../java-gen-utils.js';
 import { generateListChangeContent } from '../java-model-json/listchange-impl.js';
-import { generateSimpleListChangeContent } from '../java-model-json/simplelistchange-impl.js';
 
 export function generateListChange(
   artifactConfig: JavaRestClientJDKGeneratorConfig
@@ -26,27 +25,6 @@ export function generateListChange(
           packageName,
           importCollector,
           generateListChangeContent(
-            `${artifactConfig.rootPackageName}.model`,
-            fqn
-          )
-        ),
-        '\t'
-      ),
-      path: toPath(artifactConfig.targetFolder, packageName),
-    });
-  }
-
-  {
-    const importCollector = new JavaImportsCollector(packageName);
-    const fqn = importCollector.importType.bind(importCollector);
-
-    rv.push({
-      name: `_SimpleListChangeImpl.java`,
-      content: toString(
-        generateCompilationUnit(
-          packageName,
-          importCollector,
-          generateSimpleListChangeContent(
             `${artifactConfig.rootPackageName}.model`,
             fqn
           )

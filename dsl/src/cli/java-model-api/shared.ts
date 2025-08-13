@@ -80,7 +80,7 @@ export function generatePatchPropertyAccessor(
     );
 
     if (property.array) {
-      type = `_Base.SimpleListChange<${type}, ${type}>`;
+      type = `_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveChange<${type}, ${type}>>`;
     }
 
     if (property.optional || property.nullable) {
@@ -99,9 +99,9 @@ export function generatePatchPropertyAccessor(
     );
 
     if (property.array) {
-      type = `_Base.ListChange<${type}, ${
+      type = `_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveUpdateChange<${type}, ${
         fqn(`${basePackageName}.${property.type}`) + '.Patch'
-      }, String>`; // We always use string because the one can then include the etag with {id}@{etag}
+      }, String>>`; // We always use string because the one can then include the etag with {id}@{etag}
     }
 
     if (property.optional || property.nullable) {
@@ -141,12 +141,16 @@ export function generatePatchBuilderPropertyAccessor(
 
     if (property.array) {
       node.append(
-        `public PatchBuilder ${property.name}(_Base.SimpleListChange<${type}, ${type}> ${property.name});`,
+        `public PatchBuilder ${property.name}(_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveChange<${type}, ${type}>> ${property.name});`,
         NL,
         NL
       );
       node.append(
         `public PatchBuilder ${property.name}(List<${type}> additions, List<${type}> removals);`,
+        NL
+      );
+      node.append(
+        `public PatchBuilder ${property.name}(List<${type}> elements);`,
         NL
       );
     } else {
@@ -186,13 +190,17 @@ export function generatePatchBuilderPropertyAccessor(
       );
       const baseType = fqn(`${basePackageName}.${property.type}`);
       node.append(
-        `public PatchBuilder ${property.name}(_Base.ListChange<${type}, ${baseType}.Patch, String> ${property.name});`,
+        `public PatchBuilder ${property.name}(_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveUpdateChange<${type}, ${baseType}.Patch, String>> ${property.name});`,
         NL,
         NL
       );
       const List = fqn('java.util.List');
       node.append(
         `public PatchBuilder ${property.name}(${List}<${type}> additions, ${List}<${baseType}.Patch> updates, ${List}<String> removals);`,
+        NL
+      );
+      node.append(
+        `public PatchBuilder ${property.name}(List<${type}> elements);`,
         NL
       );
     }

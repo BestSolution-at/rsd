@@ -12,6 +12,7 @@ import {
 } from '../model.js';
 import { computeAPIType, primitiveToObject } from '../java-gen-utils.js';
 import { BuiltinType } from '../../language/generated/ast.js';
+import { toNode } from '../util.js';
 
 export function generatePropertyNG(
   owner: MResolvedRecordType,
@@ -520,7 +521,7 @@ function generatePatchPropertyAccessor_Array(
     );
 
     node.append(
-      `public ${Optional}<${_Base}.SimpleListChange<${type}, ${type}>> ${property.name}() {`,
+      `public ${Optional}<${_Base}.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveChange<${type}, ${type}>>> ${property.name}() {`,
       NL
     );
     if (property.variant === 'builtin' && isMBuiltinType(property.type)) {
@@ -528,7 +529,7 @@ function generatePatchPropertyAccessor_Array(
         const JsonValue = fqn('jakarta.json.JsonValue');
         node.indent((mBody) => {
           mBody.append(
-            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _SimpleListChangeImpl.of(o, v -> v.getValueType() == ${JsonValue}.ValueType.TRUE))`,
+            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, v -> v.getValueType() == ${JsonValue}.ValueType.TRUE))`,
             ';',
             NL
           );
@@ -539,7 +540,7 @@ function generatePatchPropertyAccessor_Array(
           mBody.append(
             `return _JsonUtils.mapOptObject(data, "${
               property.name
-            }", o -> _SimpleListChangeImpl.of(o, v -> ((${JsonNumber})v).${
+            }", o -> _ListChangeImpl.of(o, v -> ((${JsonNumber})v).${
               property.type === 'double'
                 ? 'doubleValue()'
                 : 'numberValue().floatValue()'
@@ -564,7 +565,7 @@ function generatePatchPropertyAccessor_Array(
         }
         node.indent((mBody) => {
           mBody.append(
-            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _SimpleListChangeImpl.of(o, v -> ((${JsonNumber})v).${numAccessor}))`,
+            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, v -> ((${JsonNumber})v).${numAccessor}))`,
             ';',
             NL
           );
@@ -573,7 +574,7 @@ function generatePatchPropertyAccessor_Array(
         const JsonString = fqn('jakarta.json.JsonString');
         node.indent((mBody) => {
           mBody.append(
-            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _SimpleListChangeImpl.of(o, v -> ((${JsonString})v).getString()))`,
+            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, v -> ((${JsonString})v).getString()))`,
             ';',
             NL
           );
@@ -582,7 +583,7 @@ function generatePatchPropertyAccessor_Array(
         const JsonString = fqn('jakarta.json.JsonString');
         node.indent((mBody) => {
           mBody.append(
-            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _SimpleListChangeImpl.of(o, v -> ${type}.parse(((${JsonString})v).getString())))`,
+            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, v -> ${type}.parse(((${JsonString})v).getString())))`,
             ';',
             NL
           );
@@ -592,9 +593,8 @@ function generatePatchPropertyAccessor_Array(
       const JsonString = fqn('jakarta.json.JsonString');
 
       node.indent((mBody) => {
-        mBody.append(`${Function}<>`);
         mBody.append(
-          `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _SimpleListChangeImpl.of(o, v -> ${type}.valueOf(((${JsonString})v).getString())))`,
+          `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, v -> ${type}.valueOf(((${JsonString})v).getString())))`,
           ';',
           NL
         );
@@ -609,7 +609,7 @@ function generatePatchPropertyAccessor_Array(
     const baseType = fqn(`${basePackageName}.${property.type}`);
 
     node.append(
-      `public ${Optional}<${_Base}.ListChange<${type}, ${baseType}.Patch, String>> ${property.name}() {`,
+      `public ${Optional}<${_Base}.ListChange<${_Base}.ListSetElementsChange<${type}>, ${_Base}.ListAddRemoveUpdateChange<${type}, ${baseType}.Patch, String>>> ${property.name}() {`,
       NL
     );
     node.indent((mBody) => {
@@ -777,7 +777,7 @@ function generatePatchBuilderPropertyAccessor_Array(
   ) {
     const List = fqn('java.util.List');
     node.append(
-      `public PatchBuilder ${property.name}(_Base.SimpleListChange<${type}, ${type}> ${property.name}) {`,
+      `public PatchBuilder ${property.name}(_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveChange<${type}, ${type}>> ${property.name}) {`,
       NL
     );
     node.indent((mBody) => {
@@ -793,7 +793,8 @@ function generatePatchBuilderPropertyAccessor_Array(
       NL
     );
     node.indent((mBody) => {
-      mBody.append('var $changeBuilder = Json.createObjectBuilder();', NL, NL);
+      mBody.append('var $changeBuilder = Json.createObjectBuilder();', NL);
+      mBody.append('$changeBuilder.add("@type", "delta-change");', NL);
       if (isMBuiltinType(property.type)) {
         mBody.append(
           builtinBuilderArrayJSONAccess(
@@ -813,10 +814,12 @@ function generatePatchBuilderPropertyAccessor_Array(
         );
       } else {
         mBody.append(
-          `$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));`
+          `$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));`,
+          NL
         );
         mBody.append(
-          `$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));`
+          `$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));`,
+          NL
         );
       }
 
@@ -824,14 +827,27 @@ function generatePatchBuilderPropertyAccessor_Array(
         `$builder.add("${property.name}", $changeBuilder.build());`,
         NL
       );
-      mBody.append('return this;');
+      mBody.append('return this;', NL);
     });
-    node.append('}', NL);
+    node.append('}', NL, NL);
+    node.append(
+      toNode([
+        'public PatchBuilder attachments(List<String> elements) {',
+        [
+          'var $changeBuilder = Json.createObjectBuilder();',
+          '$changeBuilder.add("@type", "elements-change");',
+          '$changeBuilder.add("elements", _JsonUtils.toJsonStringArray(elements));',
+          '$builder.add("attachments", $changeBuilder.build());',
+          'return this;',
+        ],
+        '}',
+      ])
+    );
   } else {
     const baseType = fqn(`${basePackageName}.${property.type}`);
     const List = fqn('java.util.List');
     node.append(
-      `public PatchBuilder ${property.name}(_Base.ListChange<${type}, ${baseType}.Patch, String> ${property.name}) {`,
+      `public PatchBuilder ${property.name}(_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveUpdateChange<${type}, ${baseType}.Patch, String>> ${property.name}) {`,
       NL
     );
     node.indent((mBody) => {
@@ -848,7 +864,8 @@ function generatePatchBuilderPropertyAccessor_Array(
       NL
     );
     node.indent((mBody) => {
-      mBody.append(`var $changeBuilder = Json.createObjectBuilder();`, NL, NL);
+      mBody.append(`var $changeBuilder = Json.createObjectBuilder();`, NL);
+      mBody.append(`$changeBuilder.add("@type", "delta-change");`, NL);
       mBody.append(
         `$changeBuilder.add("additions", _JsonUtils.toJsonValueArray(additions, $e -> ((_BaseDataImpl) $e).data));`,
         NL
@@ -868,9 +885,21 @@ function generatePatchBuilderPropertyAccessor_Array(
       mBody.append('return this;', NL);
     });
 
-    node.append('}', NL);
+    node.append('}', NL, NL);
+    node.append(
+      toNode([
+        'public PatchBuilder tags(List<Tag.Data> elements) {',
+        [
+          'var $changeBuilder = Json.createObjectBuilder();',
+          '$changeBuilder.add("@type", "elements-change");',
+          '$changeBuilder.add("elements", _JsonUtils.toJsonValueArray(elements, $e -> ((_BaseDataImpl) $e).data));',
+          '$builder.add("attachments", $changeBuilder.build());',
+          'return this;',
+        ],
+        '}',
+      ])
+    );
   }
-
   return node;
 }
 

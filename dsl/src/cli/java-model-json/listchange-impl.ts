@@ -6,19 +6,18 @@ export function generateListChangeContent(
   fqn: (type: string) => string
 ): CompositeGeneratorNode {
   fqn('java.util.List');
+  fqn('java.util.Optional');
   fqn('java.util.function.Function');
-  fqn('jakarta.json.Json');
+
   fqn('jakarta.json.JsonObject');
-  fqn('jakarta.json.JsonObjectBuilder');
   fqn('jakarta.json.JsonValue');
   fqn(`${interfaceBasePackage}._Base`);
 
   return toNode([
-    'public class _ListChangeImpl<D, P, K> extends _BaseDataImpl implements _Base.ListChange<D, P, K> {',
+    'public class _ListChangeImpl<E, D> extends _BaseDataImpl implements _Base.ListChange<E, D> {',
     [
-      'private final Function<JsonObject, D> dataConverter;',
-      'private final Function<JsonObject, P> patchConverter;',
-      'private final Function<JsonValue, K> keyConverter;',
+      'private final Function<JsonObject, E> elementFactory;',
+      'private final Function<JsonObject, D> deltaFactory;',
     ],
     '',
     [
@@ -26,89 +25,193 @@ export function generateListChangeContent(
       [
         [
           'JsonObject data,',
-          'Function<JsonObject, D> dataConverter,',
-          'Function<JsonObject, P> patchConverter,',
-          'Function<JsonValue, K> keyConverter) {',
+          'Function<JsonObject, E> elementFactory,',
+          'Function<JsonObject, D> deltaFactory) {',
         ],
         'super(data);',
-        'this.dataConverter = dataConverter;',
-        'this.patchConverter = patchConverter;',
-        'this.keyConverter = keyConverter;',
+        'this.elementFactory = elementFactory;',
+        'this.deltaFactory = deltaFactory;',
       ],
       '}',
     ],
     '',
     [
       '@Override',
-      'public List<D> additions() {',
-      ['return _JsonUtils.mapObjects(data, "additions", this.dataConverter);'],
-      '}',
-    ],
-    '',
-    [
-      '@Override',
-      'public List<P> updates() {',
-      ['return _JsonUtils.mapObjects(data, "updates", this.patchConverter);'],
-      '}',
-    ],
-    '',
-    [
-      '@Override',
-      'public List<K> removals() {',
+      'public Optional<D> deltaChange() {',
       [
-        'return _JsonUtils.mapToStream(data, "removals", JsonValue.class, this.keyConverter).toList();',
+        'if (data.getString("@type", "").equals("delta-change")) {',
+        ['return Optional.of(deltaFactory.apply(data));'],
+        '}',
+        'return Optional.empty();',
       ],
       '}',
-    ],
-    '',
-    [
-      'public static <D, P, K> _Base.ListChange<D, P, K> of(',
+      '',
+      '@Override',
+      'public Optional<E> elementsChange() {',
+      [
+        'if (data.getString("@type", "").equals("elements-change")) {',
+        ['return Optional.of(elementFactory.apply(data));'],
+        '}',
+        'return Optional.empty();',
+      ],
+      '}',
+      '',
+      'public static <T> _Base.ListChange<_Base.ListSetElementsChange<T>, _Base.ListAddRemoveChange<T, T>> of(',
+      [
+        ['JsonObject data,', 'Function<JsonValue, T> converter) {'],
+        'return new _ListChangeImpl<>(',
+        [
+          [
+            'data,',
+            'd -> new ValueElementsChange<>(d, converter),',
+            'd -> new AddRemoveListChangeImpl<>(d, converter, converter));',
+          ],
+        ],
+      ],
+      '}',
+      '',
+      'public static <A, U, R> _Base.ListChange<_Base.ListSetElementsChange<A>, _Base.ListAddRemoveUpdateChange<A, U, R>> of(',
       [
         [
           'JsonObject data,',
-          'Function<JsonObject, D> dataConverter,',
-          'Function<JsonObject, P> patchConverter,',
-          'Function<JsonValue, K> keyConverter) {',
+          'Function<JsonObject, A> additionConverter,',
+          'Function<JsonObject, U> updateConverter,',
+          'Function<JsonValue, R> removalConverter) {',
         ],
-        'return new _ListChangeImpl<>(data,',
-        [['dataConverter,', 'patchConverter,', 'keyConverter);']],
+        'return new _ListChangeImpl<>(',
+        [
+          [
+            'data,',
+            'd -> new ObjectElementsChange<>(d, additionConverter),',
+            'd -> new AddRemoveUpdateListChangeImpl<>(data, additionConverter, updateConverter, removalConverter));',
+          ],
+        ],
       ],
       '}',
-    ],
-    '',
-    [
-      'public static class ListChangeBuilderImpl<D, P, K> {',
+      '',
+      'private static class AddRemoveListChangeImpl<A, R> extends _BaseDataImpl',
       [
-        'private final JsonObjectBuilder $builder = Json.createObjectBuilder();',
-        'private final Function<K, JsonValue> keyConverter;',
+        ['implements _Base.ListAddRemoveChange<A, R> {'],
+        'private final Function<JsonValue, A> additionConverter;',
+        'private final Function<JsonValue, R> removalConverter;',
         '',
-        'ListChangeBuilderImpl(Function<K, JsonValue> keyConverter) {',
-        ['this.keyConverter = keyConverter;'],
-        '}',
-        '',
-        'public ListChangeBuilderImpl<D, P, K> removals(List<K> items) {',
+        'AddRemoveListChangeImpl(',
         [
-          '$builder.add("removals", _JsonUtils.toJsonValueArray(items, keyConverter));',
-          'return this;',
+          [
+            'JsonObject data,',
+            'Function<JsonValue, A> additionConverter,',
+            'Function<JsonValue, R> removalConverter) {',
+          ],
+          'super(data);',
+          'this.additionConverter = additionConverter;',
+          'this.removalConverter = removalConverter;',
         ],
         '}',
         '',
-        'public ListChangeBuilderImpl<D, P, K> additions(List<D> items) {',
+        '@Override',
+        'public List<A> additions() {',
         [
-          '$builder.add("additions", _JsonUtils.toJsonValueArray(items, $e -> ((_BaseDataImpl) $e).data));',
-          'return this;',
+          'return _JsonUtils.mapToStream(',
+          [
+            [
+              'data,',
+              '"additions",',
+              'JsonValue.class,',
+              'additionConverter).toList();',
+            ],
+          ],
         ],
         '}',
         '',
-        'public ListChangeBuilderImpl<D, P, K> updates(List<P> items) {',
+        '@Override',
+        'public List<R> removals() {',
         [
-          '$builder.add("updates", _JsonUtils.toJsonValueArray(items, $e -> ((_BaseDataImpl) $e).data));',
-          'return this;',
+          'return _JsonUtils.mapToStream(',
+          [
+            'data,',
+            '"removals",',
+            'JsonValue.class,',
+            'removalConverter).toList();',
+          ],
+        ],
+        '}',
+      ],
+      '}',
+      '',
+      'private static class AddRemoveUpdateListChangeImpl<A, U, R> extends _BaseDataImpl',
+      [
+        ['implements _Base.ListAddRemoveUpdateChange<A, U, R> {'],
+        '',
+        'private final Function<JsonObject, A> additionConverter;',
+        'private final Function<JsonObject, U> updateConverter;',
+        'private final Function<JsonValue, R> removalConverter;',
+        '',
+        'public AddRemoveUpdateListChangeImpl(',
+        [
+          [
+            'JsonObject data,',
+            'Function<JsonObject, A> additionConverter,',
+            'Function<JsonObject, U> updateConverter,',
+            'Function<JsonValue, R> removalConverter) {',
+          ],
+          'super(data);',
+          'this.additionConverter = additionConverter;',
+          'this.updateConverter = updateConverter;',
+          'this.removalConverter = removalConverter;',
         ],
         '}',
         '',
-        'public JsonObject build() {',
-        ['return $builder.build();'],
+        '@Override',
+        'public List<A> additions() {',
+        [
+          'return _JsonUtils.mapObjects(data, "additions", this.additionConverter);',
+        ],
+        '}',
+        '',
+        '@Override',
+        'public List<R> removals() {',
+        [
+          'return _JsonUtils.mapToStream(data, "removals", JsonValue.class, this.removalConverter).toList();',
+        ],
+        '}',
+        '',
+        '@Override',
+        'public List<U> updates() {',
+        [
+          'return _JsonUtils.mapObjects(data, "updates", this.updateConverter);',
+        ],
+        '}',
+      ],
+      '}',
+      '',
+      'private static class ValueElementsChange<T> extends _BaseDataImpl implements _Base.ListSetElementsChange<T> {',
+      [
+        'private final Function<JsonValue, T> converter;',
+        '',
+        'ValueElementsChange(JsonObject data, Function<JsonValue, T> converter) {',
+        ['super(data);', 'this.converter = converter;'],
+        '}',
+        '',
+        '@Override',
+        'public List<T> elements() {',
+        [
+          'return _JsonUtils.mapToStream(data, "elements", JsonValue.class, converter).toList();',
+        ],
+        '}',
+      ],
+      '}',
+      '',
+      'private static class ObjectElementsChange<T> extends _BaseDataImpl implements _Base.ListSetElementsChange<T> {',
+      [
+        'private final Function<JsonObject, T> converter;',
+        '',
+        'ObjectElementsChange(JsonObject data, Function<JsonObject, T> converter) {',
+        ['super(data);', 'this.converter = converter;'],
+        '}',
+        '',
+        '@Override',
+        'public List<T> elements() {',
+        ['return _JsonUtils.mapObjects(data, "elements", converter);'],
         '}',
       ],
       '}',
@@ -116,3 +219,10 @@ export function generateListChangeContent(
     '}',
   ]);
 }
+
+/*
+        
+
+      
+    '}',
+*/
