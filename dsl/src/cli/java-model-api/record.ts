@@ -166,6 +166,7 @@ function generatePatch(
     classBody.append(
       ...props
         .filter(isMResolvedProperty)
+        .filter((p) => p.readonly === false)
         .flatMap((p) => [
           generatePatchPropertyAccessor(
             p,
@@ -211,6 +212,7 @@ function generatePatchBuilder(
     classBody.append(
       ...props
         .filter(isMResolvedProperty)
+        .filter((p) => p.readonly === false)
         .flatMap((p) => [
           generatePatchBuilderPropertyAccessor(
             p,

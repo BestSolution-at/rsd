@@ -119,17 +119,20 @@ function generatePatchBuilderImpl(
         })
     );
     classBody.append(
-      ...props.filter(isMResolvedProperty).flatMap((p) => {
-        return [
-          generatePatchBuilderPropertyAccessor(
-            p,
-            nativeTypeSubstitues,
-            interfaceBasePackage,
-            fqn
-          ),
-          NL,
-        ];
-      })
+      ...props
+        .filter(isMResolvedProperty)
+        .filter((p) => p.readonly === false)
+        .flatMap((p) => {
+          return [
+            generatePatchBuilderPropertyAccessor(
+              p,
+              nativeTypeSubstitues,
+              interfaceBasePackage,
+              fqn
+            ),
+            NL,
+          ];
+        })
     );
     classBody.append('@Override', NL);
     classBody.append('public Patch build() {', NL);
@@ -198,17 +201,20 @@ function generatePropertyAccessors(
       ])
   );
   node.append(
-    ...props.filter(isMResolvedProperty).flatMap((p) => {
-      return [
-        generatePatchPropertyAccessor(
-          p,
-          nativeTypeSubstitues,
-          interfaceBasePackage,
-          fqn
-        ),
-        NL,
-      ];
-    })
+    ...props
+      .filter(isMResolvedProperty)
+      .filter((p) => p.readonly === false)
+      .flatMap((p) => {
+        return [
+          generatePatchPropertyAccessor(
+            p,
+            nativeTypeSubstitues,
+            interfaceBasePackage,
+            fqn
+          ),
+          NL,
+        ];
+      })
   );
   return node;
 }
