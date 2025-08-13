@@ -254,7 +254,7 @@ function generateJSONBuilder(prop: MResolvedBaseProperty): string {
     ) {
       return `$builder.add("${prop.name}", _JsonUtils.toJsonLiteralArray(${prop.name}))`;
     } else {
-      return `$builder.add("${prop.name}", _JsonUtils.toJsonValueArray(tags, $e -> ((_BaseDataImpl) $e).data))`;
+      return `$builder.add("${prop.name}", _JsonUtils.toJsonValueArray(${prop.name}, $e -> ((_BaseDataImpl) $e).data))`;
     }
   }
 

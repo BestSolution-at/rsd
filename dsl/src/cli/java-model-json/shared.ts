@@ -1,5 +1,7 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
 import {
+  isMBuiltinFloatType,
+  isMBuiltinIntegerType,
   isMBuiltinType,
   isMInlineEnumType,
   isMKeyProperty,
@@ -832,12 +834,31 @@ function generatePatchBuilderPropertyAccessor_Array(
     node.append('}', NL, NL);
     node.append(
       toNode([
-        'public PatchBuilder attachments(List<String> elements) {',
+        `public PatchBuilder ${property.name}(List<${type}> elements) {`,
         [
           'var $changeBuilder = Json.createObjectBuilder();',
           '$changeBuilder.add("@type", "elements-change");',
-          '$changeBuilder.add("elements", _JsonUtils.toJsonStringArray(elements));',
-          '$builder.add("attachments", $changeBuilder.build());',
+          (() => {
+            if (property.type === 'boolean') {
+              return '$changeBuilder.add("elements", _JsonUtils.toJsonBooleanArray(elements));';
+            } else if (isMBuiltinIntegerType(property.type)) {
+              if (property.type === 'int') {
+                return '$changeBuilder.add("elements", _JsonUtils.toJsonIntArray(elements));';
+              } else if (property.type === 'long') {
+                return '$changeBuilder.add("elements", _JsonUtils.toJsonLongArray(elements));';
+              } else if (property.type === 'short') {
+                return '$changeBuilder.add("elements", _JsonUtils.toJsonShortArray(elements));';
+              }
+            } else if (isMBuiltinFloatType(property.type)) {
+              if (property.type === 'double') {
+                return '$changeBuilder.add("elements", _JsonUtils.toJsonDoubleArray(elements));';
+              } else if (property.type === 'float') {
+                return '$changeBuilder.add("elements", _JsonUtils.toJsonFloatArray(elements));';
+              }
+            }
+            return '$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements));';
+          })(),
+          `$builder.add("${property.name}", $changeBuilder.build());`,
           'return this;',
         ],
         '}',
@@ -888,12 +909,12 @@ function generatePatchBuilderPropertyAccessor_Array(
     node.append('}', NL, NL);
     node.append(
       toNode([
-        'public PatchBuilder tags(List<Tag.Data> elements) {',
+        `public PatchBuilder ${property.name}(List<${type}> elements) {`,
         [
           'var $changeBuilder = Json.createObjectBuilder();',
           '$changeBuilder.add("@type", "elements-change");',
           '$changeBuilder.add("elements", _JsonUtils.toJsonValueArray(elements, $e -> ((_BaseDataImpl) $e).data));',
-          '$builder.add("attachments", $changeBuilder.build());',
+          `$builder.add("${property.name}", $changeBuilder.build());`,
           'return this;',
         ],
         '}',
