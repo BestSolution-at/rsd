@@ -147,8 +147,18 @@ function generatePatch(
   basePackageName: string,
   fqn: (type: string) => string
 ) {
+  const unions =
+    t.resolved.unions.length > 0
+      ? ', ' +
+        t.resolved.unions
+          .map((u) => fqn(`${basePackageName}.${u.name}`) + '.Patch')
+          .join(', ')
+      : '';
   const node = new CompositeGeneratorNode();
-  node.append(`public interface Patch extends _Base.BaseData, ${t.name} {`, NL);
+  node.append(
+    `public interface Patch extends _Base.BaseData, ${t.name}${unions} {`,
+    NL
+  );
   node.indent((classBody) => {
     classBody.append(
       ...props
@@ -189,9 +199,16 @@ function generatePatchBuilder(
   basePackageName: string,
   fqn: (type: string) => string
 ) {
+  const unions =
+    t.resolved.unions.length > 0
+      ? ', ' +
+        t.resolved.unions
+          .map((u) => fqn(`${basePackageName}.${u.name}`) + '.PatchBuilder')
+          .join(', ')
+      : '';
   const node = new CompositeGeneratorNode();
   node.append(
-    `public interface PatchBuilder extends _Base.BaseDataBuilder<${t.name}.Patch> {`,
+    `public interface PatchBuilder extends _Base.BaseDataBuilder<${t.name}.Patch>${unions} {`,
     NL
   );
   node.indent((classBody) => {

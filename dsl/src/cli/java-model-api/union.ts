@@ -1,6 +1,10 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
-import { MResolvedUnionType } from '../model.js';
-import { generatePropertyAccessor } from './shared.js';
+import { isMResolvedProperty, MResolvedUnionType } from '../model.js';
+import {
+  generatePatchPropertyAccessor,
+  generatePropertyAccessor,
+} from './shared.js';
+import { toNode } from '../util.js';
 
 export function generateUnionContent(
   t: MResolvedUnionType,
@@ -16,6 +20,15 @@ export function generateUnionContent(
     );
     classBody.appendNewLine();
     classBody.append(generateDataBuilder(t));
+
+    if (t.resolved.records.find((r) => r.patchable)) {
+      classBody.append(
+        NL,
+        generatePatch(t, nativeTypeSubstitues, basePackageName, fqn),
+        NL
+      );
+      classBody.append(generatePatchBuilder(t), NL);
+    }
   });
   node.append('}', NL);
   return node;
@@ -44,6 +57,37 @@ function generateData(
 function generateDataBuilder(t: MResolvedUnionType) {
   const node = new CompositeGeneratorNode();
   node.append(`public interface DataBuilder {`, NL);
+  node.append('}', NL);
+  return node;
+}
+
+function generatePatch(
+  t: MResolvedUnionType,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  return toNode([
+    `public interface Patch extends ${t.name} {`,
+    t.resolved.sharedProps
+      .filter(isMResolvedProperty)
+      .filter((p) => p.readonly === false)
+      .flatMap((p) => [
+        generatePatchPropertyAccessor(
+          p,
+          nativeTypeSubstitues,
+          basePackageName,
+          fqn
+        ),
+        NL,
+      ]),
+    '}',
+  ]);
+}
+
+function generatePatchBuilder(t: MResolvedUnionType) {
+  const node = new CompositeGeneratorNode();
+  node.append(`public interface PatchBuilder {`, NL);
   node.append('}', NL);
   return node;
 }

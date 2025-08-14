@@ -109,6 +109,7 @@ function generatePatchBuilderImpl(
         .flatMap((p) => {
           return [
             generateKeyRevBuilderPropertyAccessor(
+              t,
               p as (MKeyProperty | MRevisionProperty) & MResolvedBaseProperty, // FIXME Typesystem woes!?!
               nativeTypeSubstitues,
               interfaceBasePackage,
@@ -125,6 +126,7 @@ function generatePatchBuilderImpl(
         .flatMap((p) => {
           return [
             generatePatchBuilderPropertyAccessor(
+              t,
               p,
               nativeTypeSubstitues,
               interfaceBasePackage,
@@ -135,7 +137,7 @@ function generatePatchBuilderImpl(
         })
     );
     classBody.append('@Override', NL);
-    classBody.append('public Patch build() {', NL);
+    classBody.append(`public ${t.name}.Patch build() {`, NL);
     classBody.indent((methodBody) => {
       methodBody.append(
         `return new ${t.name}DataPatchImpl($builder.build());`,
@@ -150,6 +152,7 @@ function generatePatchBuilderImpl(
 }
 
 function generateKeyRevBuilderPropertyAccessor(
+  t: MResolvedRecordType,
   p: (MKeyProperty | MRevisionProperty) & MResolvedBaseProperty,
   nativeTypeSubstitues: Record<string, string> | undefined,
   basePackageName: string,
@@ -157,7 +160,7 @@ function generateKeyRevBuilderPropertyAccessor(
 ) {
   const rv = new CompositeGeneratorNode();
   rv.append(
-    `public PatchBuilder ${p.name}(${computeAPIType(
+    `public ${t.name}.PatchBuilder ${p.name}(${computeAPIType(
       p as MResolvedBaseProperty,
       nativeTypeSubstitues,
       basePackageName,

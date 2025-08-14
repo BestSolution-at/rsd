@@ -695,6 +695,7 @@ function generatePatchPropertyAccessor_Scalar(
 }
 
 function generatePatchBuilderPropertyAccessor_NoRecord_Scalar(
+  t: MResolvedRecordType,
   property: MResolvedPropery,
   nativeTypeSubstitues: Record<string, string> | undefined,
   basePackageName: string,
@@ -714,7 +715,7 @@ function generatePatchBuilderPropertyAccessor_NoRecord_Scalar(
   const node = new CompositeGeneratorNode();
   node.append('@Override', NL);
   node.append(
-    `public PatchBuilder ${property.name}(${type} ${property.name}) {`,
+    `public ${t.name}.PatchBuilder ${property.name}(${type} ${property.name}) {`,
     NL
   );
 
@@ -760,6 +761,7 @@ function generatePatchBuilderPropertyAccessor_NoRecord_Scalar(
 }
 
 function generatePatchBuilderPropertyAccessor_Array(
+  t: MResolvedRecordType,
   property: MResolvedPropery,
   nativeTypeSubstitues: Record<string, string> | undefined,
   basePackageName: string,
@@ -779,7 +781,7 @@ function generatePatchBuilderPropertyAccessor_Array(
   ) {
     const List = fqn('java.util.List');
     node.append(
-      `public PatchBuilder ${property.name}(_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveChange<${type}, ${type}>> ${property.name}) {`,
+      `public ${t.name}.PatchBuilder ${property.name}(_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveChange<${type}, ${type}>> ${property.name}) {`,
       NL
     );
     node.indent((mBody) => {
@@ -791,7 +793,7 @@ function generatePatchBuilderPropertyAccessor_Array(
     });
     node.append('}', NL, NL);
     node.append(
-      `public PatchBuilder ${property.name}(${List}<${type}> additions, ${List}<${type}> removals) {`,
+      `public ${t.name}.PatchBuilder ${property.name}(${List}<${type}> additions, ${List}<${type}> removals) {`,
       NL
     );
     node.indent((mBody) => {
@@ -834,7 +836,7 @@ function generatePatchBuilderPropertyAccessor_Array(
     node.append('}', NL, NL);
     node.append(
       toNode([
-        `public PatchBuilder ${property.name}(List<${type}> elements) {`,
+        `public ${t.name}.PatchBuilder ${property.name}(List<${type}> elements) {`,
         [
           'var $changeBuilder = Json.createObjectBuilder();',
           '$changeBuilder.add("@type", "elements-change");',
@@ -868,7 +870,7 @@ function generatePatchBuilderPropertyAccessor_Array(
     const baseType = fqn(`${basePackageName}.${property.type}`);
     const List = fqn('java.util.List');
     node.append(
-      `public PatchBuilder ${property.name}(_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveUpdateChange<${type}, ${baseType}.Patch, String>> ${property.name}) {`,
+      `public ${t.name}.PatchBuilder ${property.name}(_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveUpdateChange<${type}, ${baseType}.Patch, String>> ${property.name}) {`,
       NL
     );
     node.indent((mBody) => {
@@ -881,7 +883,7 @@ function generatePatchBuilderPropertyAccessor_Array(
     node.append('}', NL, NL);
 
     node.append(
-      `public PatchBuilder ${property.name}(${List}<${type}> additions, ${List}<${baseType}.Patch> updates, ${List}<String> removals) {`,
+      `public ${t.name}.PatchBuilder ${property.name}(${List}<${type}> additions, ${List}<${baseType}.Patch> updates, ${List}<String> removals) {`,
       NL
     );
     node.indent((mBody) => {
@@ -909,7 +911,7 @@ function generatePatchBuilderPropertyAccessor_Array(
     node.append('}', NL, NL);
     node.append(
       toNode([
-        `public PatchBuilder ${property.name}(List<${type}> elements) {`,
+        `public ${t.name}.PatchBuilder ${property.name}(List<${type}> elements) {`,
         [
           'var $changeBuilder = Json.createObjectBuilder();',
           '$changeBuilder.add("@type", "elements-change");',
@@ -925,6 +927,7 @@ function generatePatchBuilderPropertyAccessor_Array(
 }
 
 export function generatePatchBuilderPropertyAccessor(
+  t: MResolvedRecordType,
   property: MResolvedPropery,
   nativeTypeSubstitues: Record<string, string> | undefined,
   basePackageName: string,
@@ -932,6 +935,7 @@ export function generatePatchBuilderPropertyAccessor(
 ) {
   if (property.array) {
     return generatePatchBuilderPropertyAccessor_Array(
+      t,
       property,
       nativeTypeSubstitues,
       basePackageName,
@@ -939,6 +943,7 @@ export function generatePatchBuilderPropertyAccessor(
     );
   } else {
     return generatePatchBuilderPropertyAccessor_Scalar(
+      t,
       property,
       nativeTypeSubstitues,
       basePackageName,
@@ -948,6 +953,7 @@ export function generatePatchBuilderPropertyAccessor(
 }
 
 export function generatePatchBuilderPropertyAccessor_Scalar(
+  t: MResolvedRecordType,
   property: MResolvedPropery,
   nativeTypeSubstitues: Record<string, string> | undefined,
   basePackageName: string,
@@ -962,6 +968,7 @@ export function generatePatchBuilderPropertyAccessor_Scalar(
   ) {
     node.append(
       generatePatchBuilderPropertyAccessor_NoRecord_Scalar(
+        t,
         property,
         nativeTypeSubstitues,
         basePackageName,
@@ -977,7 +984,7 @@ export function generatePatchBuilderPropertyAccessor_Scalar(
     );
     node.append('@Override', NL);
     node.append(
-      `public PatchBuilder ${property.name}(${type} ${property.name}) {`,
+      `public ${t.name}.PatchBuilder ${property.name}(${type} ${property.name}) {`,
       NL
     );
 
@@ -1004,7 +1011,7 @@ export function generatePatchBuilderPropertyAccessor_Scalar(
     const Function = fqn('java.util.function.Function');
     node.append(
       NL,
-      `public <T extends ${property.type}.DataBuilder> PatchBuilder withRepeat(Class<T> clazz, ${Function}<T, ${type}> block) {`,
+      `public <T extends ${property.type}.DataBuilder> ${t.name}.PatchBuilder withRepeat(Class<T> clazz, ${Function}<T, ${type}> block) {`,
       NL
     );
     node.indent((methodBody) => {

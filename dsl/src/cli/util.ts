@@ -1,4 +1,4 @@
-import { CompositeGeneratorNode, NL } from 'langium/generate';
+import { CompositeGeneratorNode, GeneratorNode, NL } from 'langium/generate';
 import { MBuiltinType, MResolvedRSDModel } from './model.js';
 
 export function isDefined<T>(value: T | undefined): value is T {
@@ -17,17 +17,19 @@ export function toFirstLower(value: string) {
   return value[0].toLowerCase() + value.substring(1);
 }
 
-export type IndentBlock = (string | IndentBlock)[];
+export type IndentBlock = (string | IndentBlock | GeneratorNode)[];
 
 export function toNode(block: IndentBlock, endWithNewLine = true) {
   const node = new CompositeGeneratorNode();
   block.forEach((e, idx, arr) => {
-    if (typeof e === 'string') {
-      node.append(e, endWithNewLine || idx + 1 < arr.length ? NL : '');
-    } else {
+    if (Array.isArray(e)) {
       node.indent((i) => {
         i.append(toNode(e, true));
       });
+    } else if (typeof e === 'string') {
+      node.append(e, endWithNewLine || idx + 1 < arr.length ? NL : '');
+    } else {
+      node.append(e);
     }
   });
   return node;

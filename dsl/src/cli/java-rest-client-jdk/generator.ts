@@ -66,7 +66,7 @@ function generateType(
   if (isMRecordType(t)) {
     return generateRecord(t, model, artifactConfig);
   } else if (isMUnionType(t)) {
-    return [generateUnion(t, artifactConfig)];
+    return generateUnion(t, artifactConfig);
   }
   return [];
 }

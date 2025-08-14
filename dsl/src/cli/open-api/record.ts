@@ -34,7 +34,7 @@ export function generateRecordContent(t: MResolvedRecordType) {
     rv[t.name] = {
       type: 'object',
       properties,
-      required,
+      required: required.length === 0 ? undefined : required,
     };
   }
 
