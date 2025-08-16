@@ -30,7 +30,7 @@ export function generateUnionPatchContent(
         t.resolved.records.forEach((r, idx) => {
           const key = (t.descriminatorAliases ?? {})[r.name] ?? r.name;
           caseBody.append(
-            `case "${key}" -> new ${r.name}DataPatchImpl(obj);`,
+            `case "patch:${key}" -> new ${r.name}DataPatchImpl(obj);`,
             NL
           );
         });

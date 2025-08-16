@@ -103,6 +103,15 @@ function generatePatchBuilderImpl(
       NL,
       NL
     );
+    if (t.resolved.unions.length > 0) {
+      classBody.append('public PatchBuilderImpl() {', NL);
+      classBody.indent((methodBody) => {
+        const key =
+          (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+        methodBody.append(`$builder.add("@type", "patch:${key}");`, NL);
+      });
+      classBody.append('}', NL, NL);
+    }
     classBody.append(
       ...props
         .filter((p) => isMKeyProperty(p) || isMRevisionProperty(p))
