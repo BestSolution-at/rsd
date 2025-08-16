@@ -102,6 +102,10 @@ export function generatePatchPropertyAccessor(
       type = `_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveUpdateChange<${type}, ${
         fqn(`${basePackageName}.${property.type}`) + '.Patch'
       }, String>>`; // We always use string because the one can then include the etag with {id}@{etag}
+    } else {
+      type = `_Base.Change<_Base.SetChange<${type}>, _Base.DeltaChange<${fqn(
+        `${basePackageName}.${property.type}`
+      )}.Patch>>`;
     }
 
     if (property.optional || property.nullable) {
@@ -161,23 +165,16 @@ export function generatePatchBuilderPropertyAccessor(
     }
   } else {
     if (!property.array) {
-      node.append(
-        `public PatchBuilder ${property.name}(${computeAPIType(
-          property,
-          nativeTypeSubstitues,
-          basePackageName,
-          fqn
-        )} ${property.name});`,
-        NL
-      );
+      const baseType = fqn(`${basePackageName}.${property.type}`);
       const Function = fqn('java.util.function.Function');
       node.append(
-        NL,
-        `public <T extends ${
-          property.type
-        }.DataBuilder> PatchBuilder with${toFirstUpper(
+        `public PatchBuilder ${property.name}(${baseType} ${property.name});`,
+        NL
+      );
+      node.append(
+        `public <T extends ${baseType}.Builder> PatchBuilder with${toFirstUpper(
           property.name
-        )}(Class<T> clazz, ${Function}<T, ${property.type}.Data> block);`,
+        )}(Class<T> clazz, ${Function}<T, ${baseType}> block);`,
         NL
       );
     } else {

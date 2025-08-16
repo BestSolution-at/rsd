@@ -45,7 +45,7 @@ export function generateUnion(
     const fqn = importCollector.importType.bind(importCollector);
 
     result.push({
-      name: `${t.name}PatchImpl.java`,
+      name: `${t.name}DataPatchImpl.java`,
       content: toString(
         generateCompilationUnit(
           packageName,

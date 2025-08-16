@@ -15,6 +15,8 @@ export function generateUnionContent(
   const node = new CompositeGeneratorNode();
   node.append(`public interface ${t.name} {`, NL);
   node.indent((classBody) => {
+    classBody.append(Builder());
+    classBody.appendNewLine();
     classBody.append(
       generateData(t, nativeTypeSubstitues, basePackageName, fqn)
     );
@@ -32,6 +34,10 @@ export function generateUnionContent(
   });
   node.append('}', NL);
   return node;
+}
+
+function Builder() {
+  return toNode(['public interface Builder {', '', '}']);
 }
 
 function generateData(
@@ -56,7 +62,7 @@ function generateData(
 
 function generateDataBuilder(t: MResolvedUnionType) {
   const node = new CompositeGeneratorNode();
-  node.append(`public interface DataBuilder {`, NL);
+  node.append(`public interface DataBuilder extends Builder {`, NL);
   node.append('}', NL);
   return node;
 }
@@ -87,7 +93,7 @@ function generatePatch(
 
 function generatePatchBuilder(t: MResolvedUnionType) {
   const node = new CompositeGeneratorNode();
-  node.append(`public interface PatchBuilder {`, NL);
+  node.append(`public interface PatchBuilder extends Builder {`, NL);
   node.append('}', NL);
   return node;
 }

@@ -14,7 +14,7 @@ import {
 } from '../model.js';
 import { computeAPIType, primitiveToObject } from '../java-gen-utils.js';
 import { BuiltinType } from '../../language/generated/ast.js';
-import { toNode } from '../util.js';
+import { toFirstUpper, toNode } from '../util.js';
 
 export function generatePropertyNG(
   owner: MResolvedRecordType,
@@ -656,19 +656,16 @@ function generatePatchPropertyAccessor_Scalar(
     );
     if (property.optional || property.nullable) {
       const _Base = fqn(basePackageName + '._Base');
-      node.append(`public ${_Base}.Nillable<${type}> ${property.name}() {`, NL);
+      const BaseType = fqn(`${basePackageName}.${property.type}`);
+      node.append(
+        `public ${_Base}.Nillable<_Base.Change<_Base.SetChange<${type}>, _Base.DeltaChange<${BaseType}.Patch>>> ${property.name}() {`,
+        NL
+      );
       node.indent((methodBody) => {
-        if (property.array) {
-          methodBody.append(
-            `return _JsonUtils.mapNilObjects(data, "${property.name}", ${property.type}DataImpl::of);`,
-            NL
-          );
-        } else {
-          methodBody.append(
-            `return _JsonUtils.mapNilObject(data, "${property.name}", ${property.type}DataImpl::of);`,
-            NL
-          );
-        }
+        methodBody.append(
+          `return _JsonUtils.mapNilObject(data, "${property.name}", o -> _ChangeImpl.of(o, ${property.type}DataImpl::of, ${property.type}DataPatchImpl::of));`,
+          NL
+        );
       });
       node.append('}', NL);
     } else {
@@ -976,39 +973,8 @@ export function generatePatchBuilderPropertyAccessor_Scalar(
       )
     );
   } else {
-    let type = computeAPIType(
-      property,
-      nativeTypeSubstitues,
-      basePackageName,
-      fqn
-    );
-    node.append('@Override', NL);
-    node.append(
-      `public ${t.name}.PatchBuilder ${property.name}(${type} ${property.name}) {`,
-      NL
-    );
-
-    if (property.optional || property.nullable) {
-      node.indent((methodBody) => {
-        methodBody.append(`if (${property.name} == null) {`, NL);
-        methodBody.indent((block) => {
-          block.append(`$builder.addNull("${property.name}");`, NL);
-          block.append('return this;', NL);
-        });
-        methodBody.append('}', NL);
-      });
-    }
-
-    node.indent((methodBody) => {
-      methodBody.append(
-        `$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data);`,
-        NL
-      );
-      methodBody.append('return this;', NL);
-    });
-
-    node.append('}', NL);
-    const Function = fqn('java.util.function.Function');
+    node.append(RecordPatchBuilderMethods(t, property, basePackageName, fqn));
+    /*    const Function = fqn('java.util.function.Function');
     node.append(
       NL,
       `public <T extends ${property.type}.DataBuilder> ${t.name}.PatchBuilder withRepeat(Class<T> clazz, ${Function}<T, ${type}> block) {`,
@@ -1045,9 +1011,110 @@ export function generatePatchBuilderPropertyAccessor_Scalar(
 
       methodBody.append(`return repeat(block.apply(clazz.cast(b)));`, NL);
     });
-    node.append('}', NL);
+    node.append('}', NL);*/
   }
   return node;
+}
+
+function RecordPatchBuilderMethods(
+  t: MResolvedRecordType,
+  property: MResolvedPropery,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  const type = fqn(`${basePackageName}.${property.type}`);
+  const nullSupport = () => {
+    if (property.optional || property.nullable) {
+      return toNode([
+        `if (${property.name} == null) {`,
+        [`$builder.addNull("${property.name}");`, 'return this;'],
+        '}',
+      ]);
+    }
+    return undefined;
+  };
+  const withContent = () => {
+    if (isMResolvedUnionType(property.resolved.resolvedObjectType)) {
+      const dataBuilders = property.resolved.resolvedObjectType.types.flatMap(
+        (e, idx) => {
+          const Type = fqn(`${basePackageName}.${e}`);
+          const start =
+            idx === 0
+              ? `if (clazz == ${Type}.DataBuilder.class) {`
+              : `} else if (clazz == ${Type}.DataBuilder.class) {`;
+          return [start, [`b = ${e}DataImpl.builder();`]];
+        }
+      );
+
+      const patchBuilders = property.resolved.resolvedObjectType.types.flatMap(
+        (e) => {
+          const Type = fqn(`${basePackageName}.${e}`);
+          return [
+            `} else if (clazz == ${Type}.PatchBuilder.class) {`,
+            [`b = ${e}DataPatchImpl.builder();`],
+          ];
+        }
+      );
+
+      return toNode([
+        ...dataBuilders,
+        ...patchBuilders,
+        '} else {',
+        [
+          'throw new IllegalArgumentException("Unsupported builder type %s".formatted(clazz));',
+        ],
+        '}',
+      ]);
+    }
+    return toNode([
+      `if(clazz == ${property.type}.DataBuilder ) {`,
+      [`b = ${property.type}DataImpl.builder();`],
+      `} else if (clazz == ${property.type}.PatchBuilder ) {`,
+      [`b = ${property.type}DataPatchImpl.builder();`],
+      '} else {',
+      [
+        'throw new IllegalArgumentException("Unsupported builder type %s".formatted(clazz));',
+      ],
+      '}',
+    ]);
+  };
+
+  const Function = fqn('java.util.function.Function');
+  return toNode([
+    '@Override',
+    `public ${t.name}.PatchBuilder ${property.name}(${type} ${property.name}) {`,
+    [
+      nullSupport,
+      'var $changeBuilder = Json.createObjectBuilder();',
+      `if (${property.name} instanceof EventRepeat.Patch) {`,
+      [
+        '$builder.add("@type", "delta-change");',
+        `$changeBuilder.add("delta", ((_BaseDataImpl) ${property.name}).data);`,
+      ],
+      '} else {',
+      [
+        '$builder.add("@type", "set-change");',
+        `$changeBuilder.add("value", ((_BaseDataImpl) ${property.name}).data);`,
+      ],
+      '}',
+      '',
+      `$changeBuilder.add("${property.name}", $changeBuilder.build());`,
+      'return this;',
+    ],
+    '}',
+    '',
+    `public <T extends ${type}.Builder> ${
+      t.name
+    }.PatchBuilder with${toFirstUpper(
+      property.name
+    )}(Class<T> clazz, ${Function}<T, ${type}> block) {`,
+    [
+      `${property.type}.Builder b;`,
+      withContent,
+      `return repeat(block.apply(clazz.cast(b)));`,
+    ],
+    '}',
+  ]);
 }
 
 export function builtinOptJSONAccess(property: {

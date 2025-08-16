@@ -1,20 +1,26 @@
 import { isDefined, isObject } from './util.js';
 
-export type MBuiltinType = 'boolean' | 'double' | 'float' | 'int' | 'local-date' | 'local-date-time' | 'long' | 'short' | 'string' | 'zoned-date-time';
+export type FloatBuiltinType = 'double' | 'float';
+export type IntegerBuiltinType = 'int' | 'long' | 'short';
+
+export type NumericBuiltinType = FloatBuiltinType | IntegerBuiltinType;
+
+export type MBuiltinType = 'boolean' | 'local-date' | 'local-date-time' | 'string' | 'zoned-date-time' | NumericBuiltinType;
 
 export function isMBuiltinType(value: unknown): value is MBuiltinType {
-  return (
-    value === 'boolean' ||
-    value === 'double' ||
-    value === 'float' ||
-    value === 'int' ||
-    value === 'local-date' ||
-    value === 'local-date-time' ||
-    value === 'long' ||
-    value === 'short' ||
-    value === 'string' ||
-    value === 'zoned-date-time'
-  );
+  return value === 'boolean' || value === 'local-date' || value === 'local-date-time' || value === 'string' || value === 'zoned-date-time' || isMBuiltinNumericType(value);
+}
+
+export function isMBuiltinNumericType(value: unknown): value is NumericBuiltinType {
+  return isMBuiltinFloatType(value) || isMBuiltinIntegerType(value);
+}
+
+export function isMBuiltinFloatType(value: unknown): value is FloatBuiltinType {
+  return value === 'double' || value === 'float';
+}
+
+export function isMBuiltinIntegerType(value: unknown): value is IntegerBuiltinType {
+  return value === 'int' || value === 'long' || value === 'short';
 }
 
 export type MStreamType = 'blob' | 'file';

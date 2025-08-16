@@ -12,7 +12,7 @@ export function generateUnionPatchContent(
 
   const node = new CompositeGeneratorNode();
   node.append(
-    `public abstract class ${t.name}PatchImpl implements ${Interface}.Patch {`,
+    `public abstract class ${t.name}DataPatchImpl implements ${Interface}.Patch {`,
     NL
   );
   node.indent((classBody) => {
