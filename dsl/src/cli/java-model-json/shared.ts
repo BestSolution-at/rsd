@@ -658,12 +658,12 @@ function generatePatchPropertyAccessor_Scalar(
       const _Base = fqn(basePackageName + '._Base');
       const BaseType = fqn(`${basePackageName}.${property.type}`);
       node.append(
-        `public ${_Base}.Nillable<_Base.Change<_Base.SetChange<${type}>, _Base.DeltaChange<${BaseType}.Patch>>> ${property.name}() {`,
+        `public ${_Base}.Nillable<${BaseType}> ${property.name}() {`,
         NL
       );
       node.indent((methodBody) => {
         methodBody.append(
-          `return _JsonUtils.mapNilObject(data, "${property.name}", o -> _ChangeImpl.of(o, ${property.type}DataImpl::of, ${property.type}DataPatchImpl::of));`,
+          `return _JsonUtils.mapNilObject(data, "${property.name}", o -> ${property.type}DataImpl.isSupportedType(o) ? ${property.type}DataImpl.of(o) : ${property.type}DataPatchImpl.of(o));`,
           NL
         );
       });
@@ -974,44 +974,6 @@ export function generatePatchBuilderPropertyAccessor_Scalar(
     );
   } else {
     node.append(RecordPatchBuilderMethods(t, property, basePackageName, fqn));
-    /*    const Function = fqn('java.util.function.Function');
-    node.append(
-      NL,
-      `public <T extends ${property.type}.DataBuilder> ${t.name}.PatchBuilder withRepeat(Class<T> clazz, ${Function}<T, ${type}> block) {`,
-      NL
-    );
-    node.indent((methodBody) => {
-      if (isMResolvedUnionType(property.resolved.resolvedObjectType)) {
-        methodBody.append(`${property.type}.DataBuilder b;`, NL);
-        property.resolved.resolvedObjectType.types.forEach((e, idx) => {
-          if (idx > 0) {
-            methodBody.append(' else ');
-          }
-          const Type = fqn(`${basePackageName}.${e}`);
-          methodBody.append(`if (clazz == ${Type}.DataBuilder.class) {`, NL);
-          methodBody.indent((block) => {
-            block.append(`b = ${e}DataImpl.builder();`, NL);
-          });
-          methodBody.append('}');
-        });
-        methodBody.append(' else {', NL);
-        methodBody.indent((block) => {
-          block.append(
-            'throw new IllegalArgumentException("Unknown builder type %s".formatted(clazz));',
-            NL
-          );
-        });
-        methodBody.append('}', NL);
-      } else {
-        methodBody.append(
-          `${property.type}.DataBuilder b = ${property.type}.DataBuilder.builder();`,
-          NL
-        );
-      }
-
-      methodBody.append(`return repeat(block.apply(clazz.cast(b)));`, NL);
-    });
-    node.append('}', NL);*/
   }
   return node;
 }
@@ -1085,20 +1047,7 @@ function RecordPatchBuilderMethods(
     `public ${t.name}.PatchBuilder ${property.name}(${type} ${property.name}) {`,
     [
       nullSupport,
-      'var $changeBuilder = Json.createObjectBuilder();',
-      `if (${property.name} instanceof EventRepeat.Patch) {`,
-      [
-        '$changeBuilder.add("@type", "delta-change");',
-        `$changeBuilder.add("delta", ((_BaseDataImpl) ${property.name}).data);`,
-      ],
-      '} else {',
-      [
-        '$changeBuilder.add("@type", "set-change");',
-        `$changeBuilder.add("value", ((_BaseDataImpl) ${property.name}).data);`,
-      ],
-      '}',
-      '',
-      `$builder.add("${property.name}", $changeBuilder.build());`,
+      `$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data);`,
       'return this;',
     ],
     '}',

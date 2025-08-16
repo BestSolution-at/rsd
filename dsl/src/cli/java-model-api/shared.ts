@@ -103,9 +103,7 @@ export function generatePatchPropertyAccessor(
         fqn(`${basePackageName}.${property.type}`) + '.Patch'
       }, String>>`; // We always use string because the one can then include the etag with {id}@{etag}
     } else {
-      type = `_Base.Change<_Base.SetChange<${type}>, _Base.DeltaChange<${fqn(
-        `${basePackageName}.${property.type}`
-      )}.Patch>>`;
+      type = `${basePackageName}.${property.type}`;
     }
 
     if (property.optional || property.nullable) {

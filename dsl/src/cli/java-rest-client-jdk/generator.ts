@@ -25,7 +25,6 @@ import { generateServiceUtils } from './service-utils.js';
 import { generateNillable } from './nillable-impl.js';
 import { generateStreamImpls } from './stream-impl.js';
 import { generateListChange } from './listchange.js';
-import { generateChange } from './change.js';
 
 export function generate(
   model: MResolvedRSDModel,
@@ -55,7 +54,6 @@ export function generate(
   result.push(...model.services.map((e) => generateService(e, artifactConfig)));
   result.push(...generateStreamImpls(artifactConfig, model));
   result.push(...generateListChange(artifactConfig));
-  result.push(...generateChange(artifactConfig));
 
   return result;
 }
