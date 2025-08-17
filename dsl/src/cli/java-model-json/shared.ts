@@ -513,7 +513,7 @@ function generatePatchPropertyAccessor_Array(
   return toNode([
     `public ${Optional}<${prefix}Change> ${property.name}() {`,
     [
-      `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, "@type", ${prefix}SetChangeImpl::new, ${prefix}MergeChangeImpl::new));`,
+      `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeSupport.of(o, "@type", ${prefix}SetChangeImpl::new, ${prefix}MergeChangeImpl::new));`,
     ],
     '}',
   ]);

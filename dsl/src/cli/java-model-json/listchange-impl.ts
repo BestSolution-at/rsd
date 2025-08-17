@@ -13,7 +13,7 @@ export function generateListChangeContent(
   fqn(`${interfaceBasePackage}._Base`);
 
   return toNode([
-    'public class _ListChangeImpl {',
+    'public class _ListChangeSupport {',
     [
       'public static <T> T of(JsonObject o, String descProperty, Function<JsonObject, T> setFactory, Function<JsonObject, T> deltaFactory) {',
       [

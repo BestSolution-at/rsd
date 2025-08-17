@@ -19,7 +19,7 @@ export function generateListChange(
     const fqn = importCollector.importType.bind(importCollector);
 
     rv.push({
-      name: `_ListChangeImpl.java`,
+      name: `_ListChangeSupport.java`,
       content: toString(
         generateCompilationUnit(
           packageName,

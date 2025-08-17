@@ -121,7 +121,7 @@ function SetChange(
 
   if (prop.variant === 'union' || prop.variant === 'record') {
     return toNode([
-      `static class ${prefix}SetChangeImpl extends _ListChangeImpl.ObjectElementsChange<${type}> implements ${prefix}SetChange {`,
+      `static class ${prefix}SetChangeImpl extends _ListChangeSupport.ObjectElementsChange<${type}> implements ${prefix}SetChange {`,
       [
         `${prefix}SetChangeImpl(JsonObject data) {`,
         [`super(data, ${prop.type}DataImpl::of);`],
@@ -131,7 +131,7 @@ function SetChange(
     ]);
   } else {
     return toNode([
-      `static class ${prefix}SetChangeImpl extends _ListChangeImpl.ValueElementsChange<${type}> implements ${prefix}SetChange {`,
+      `static class ${prefix}SetChangeImpl extends _ListChangeSupport.ValueElementsChange<${type}> implements ${prefix}SetChange {`,
       [
         `${prefix}SetChangeImpl(JsonObject data) {`,
         [`super(data, v -> ${lambdaBodyComputer(prop, type, fqn)});`],
@@ -208,7 +208,7 @@ function ListChange(
     const type = fqn(`${interfaceBasePackage}.${prop.type}`);
     const JsonString = fqn('jakarta.json.JsonString');
     return toNode([
-      `static class ${prefix}MergeChangeImpl extends _ListChangeImpl.AddRemoveUpdateListChangeImpl<${type}.Data, ${type}.Patch, String> implements ${prefix}MergeChange {`,
+      `static class ${prefix}MergeChangeImpl extends _ListChangeSupport.AddRemoveUpdateListChangeImpl<${type}.Data, ${type}.Patch, String> implements ${prefix}MergeChange {`,
       [
         `${prefix}MergeChangeImpl(JsonObject data) {`,
         [
@@ -231,7 +231,7 @@ function ListChange(
 
     const lambdaBody = lambdaBodyComputer(prop, type, fqn);
     return toNode([
-      `static class ${prefix}MergeChangeImpl extends _ListChangeImpl.AddRemoveListChangeImpl<${type}, ${type}> implements ${prefix}MergeChange {`,
+      `static class ${prefix}MergeChangeImpl extends _ListChangeSupport.AddRemoveListChangeImpl<${type}, ${type}> implements ${prefix}MergeChange {`,
       [
         `${prefix}MergeChangeImpl(JsonObject data) {`,
         [`super(data, v -> ${lambdaBody}, v -> ${lambdaBody});`],
