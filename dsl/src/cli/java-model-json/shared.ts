@@ -760,8 +760,9 @@ function generatePatchBuilderPropertyAccessor_Array(
   } else {
     const baseType = fqn(`${basePackageName}.${property.type}`);
     const List = fqn('java.util.List');
+    const prefix = toFirstUpper(property.name);
     node.append(
-      `public ${t.name}.PatchBuilder ${property.name}(_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveUpdateChange<${type}, ${baseType}.Patch, String>> ${property.name}) {`,
+      `public ${t.name}.PatchBuilder ${property.name}(${prefix}Change ${property.name}) {`,
       NL
     );
     node.indent((mBody) => {

@@ -124,7 +124,7 @@ function SetChange(
       `static class ${prefix}SetChangeImpl extends _ListChangeImpl.ObjectElementsChange<${type}> implements ${prefix}SetChange {`,
       [
         `${prefix}SetChangeImpl(JsonObject data) {`,
-        [`super(data, ${prefix}DataImpl::of)`],
+        [`super(data, ${prop.type}DataImpl::of);`],
         '}',
       ],
       '}',
@@ -206,12 +206,13 @@ function ListChange(
 
   if (prop.variant === 'union' || prop.variant === 'record') {
     const type = fqn(`${interfaceBasePackage}.${prop.type}`);
+    const JsonString = fqn('jakarta.json.JsonString');
     return toNode([
       `static class ${prefix}MergeChangeImpl extends _ListChangeImpl.AddRemoveUpdateListChangeImpl<${type}.Data, ${type}.Patch, String> implements ${prefix}MergeChange {`,
       [
         `${prefix}MergeChangeImpl(JsonObject data) {`,
         [
-          `super(data, ${prop.type}DataImpl::of, ${prop.type}DataPatchImpl::of);`,
+          `super(data, ${prop.type}DataImpl::of, ${prop.type}DataPatchImpl::of, v -> ((${JsonString})v).getString() );`,
         ],
         '}',
       ],

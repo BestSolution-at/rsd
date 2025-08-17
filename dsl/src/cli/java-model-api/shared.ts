@@ -183,9 +183,9 @@ export function generatePatchBuilderPropertyAccessor(
         true
       );
       const baseType = fqn(`${basePackageName}.${property.type}`);
+      const prefix = toFirstUpper(property.name);
       node.append(
-        `public PatchBuilder ${property.name}(_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveUpdateChange<${type}, ${baseType}.Patch, String>> ${property.name});`,
-        NL,
+        `public PatchBuilder ${property.name}(Patch.${prefix}Change ${property.name});`,
         NL
       );
       const List = fqn('java.util.List');

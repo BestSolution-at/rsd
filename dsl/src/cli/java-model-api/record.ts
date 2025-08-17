@@ -247,7 +247,7 @@ function ListChange(
   if (prop.variant === 'record' || prop.variant === 'union') {
     const Type = fqn(`${basePackageName}.${prop.type}`);
     return toNode([
-      `public interface ${prefix}UpdateChange extends ${prefix}Change, _Base.ListAddRemoveUpdateChange<${Type}.Data, ${Type}.Patch, String> {`,
+      `public interface ${prefix}MergeChange extends ${prefix}Change, _Base.ListAddRemoveUpdateChange<${Type}.Data, ${Type}.Patch, String> {`,
       '}',
     ]);
   }
