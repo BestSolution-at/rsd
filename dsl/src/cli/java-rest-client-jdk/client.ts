@@ -65,9 +65,7 @@ export function generateClient(
         .filter((t) => t.patchable)
         .forEach((e, idx) => {
           const type = fqn(`${basePackage}.model.${e.name}`);
-          const implType = fqn(
-            `${packageName}.impl.model.${e.name}DataPatchImpl`
-          );
+          const implType = fqn(`${packageName}.impl.model.${e.name}PatchImpl`);
           if (idx === 0) {
             staticBody.append(NL);
           }

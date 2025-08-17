@@ -39,14 +39,14 @@ export function generateRecordPatchContent(
   const revProp = allProps.find(isMRevisionProperty);*/
 
   node.append(
-    `public class ${t.name}DataPatchImpl extends _BaseDataImpl implements ${Interface}.Patch {`,
+    `public class ${t.name}PatchImpl extends _BaseDataImpl implements ${Interface}.Patch {`,
     NL
   );
   node.indent((classBody) => {
     classBody.append(
       ChangeTypes(allProps, nativeTypeSubstitues, interfaceBasePackage, fqn)
     );
-    classBody.append(`${t.name}DataPatchImpl(${JsonObject} data) {`, NL);
+    classBody.append(`${t.name}PatchImpl(${JsonObject} data) {`, NL);
     classBody.indent((initBody) => {
       initBody.append('super(data);', NL);
     });
@@ -76,7 +76,7 @@ export function generateRecordPatchContent(
       NL
     );
     classBody.indent((methodBody) => {
-      methodBody.append(`return new ${t.name}DataPatchImpl(obj);`, NL);
+      methodBody.append(`return new ${t.name}PatchImpl(obj);`, NL);
     });
     classBody.append('}', NL);
     classBody.append(NL, 'public static PatchBuilderImpl builder() {', NL);
@@ -212,7 +212,7 @@ function ListChange(
       [
         `${prefix}MergeChangeImpl(JsonObject data) {`,
         [
-          `super(data, ${prop.type}DataImpl::of, ${prop.type}DataPatchImpl::of, v -> ((${JsonString})v).getString() );`,
+          `super(data, ${prop.type}DataImpl::of, ${prop.type}PatchImpl::of, v -> ((${JsonString})v).getString() );`,
         ],
         '}',
       ],
@@ -308,10 +308,7 @@ function generatePatchBuilderImpl(
     classBody.append('@Override', NL);
     classBody.append(`public ${t.name}.Patch build() {`, NL);
     classBody.indent((methodBody) => {
-      methodBody.append(
-        `return new ${t.name}DataPatchImpl($builder.build());`,
-        NL
-      );
+      methodBody.append(`return new ${t.name}PatchImpl($builder.build());`, NL);
     });
     classBody.append('}', NL);
   });

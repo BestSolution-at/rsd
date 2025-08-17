@@ -639,7 +639,7 @@ function generateParameterContent(
           true
         );*/
       const type = prop.patch
-        ? `${prop.type}DataPatchImpl`
+        ? `${prop.type}PatchImpl`
         : `${prop.type}DataImpl`;
       if (array) {
         mapper = `_JsonUtils.mapObjects(data, "${prop.name}", ${type}::of)`;

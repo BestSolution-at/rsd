@@ -102,7 +102,7 @@ function generateBuilderMethodBody(
       mBody.append('}', NL);
       if (t.patchable) {
         const PatchImplType = fqn(
-          `${artifactConfig.rootPackageName}.rest.model.${t.name}DataPatchImpl`
+          `${artifactConfig.rootPackageName}.rest.model.${t.name}PatchImpl`
         );
         mBody.append(`if (type == ${InterfaceType}.PatchBuilder.class) {`, NL);
         mBody.indent((block) => {
@@ -165,7 +165,7 @@ function generateOfMethodBody(
           `${artifactConfig.rootPackageName}.service.model.${t.name}`
         );
         const ImplType = fqn(
-          `${artifactConfig.rootPackageName}.rest.model.${t.name}DataPatchImpl`
+          `${artifactConfig.rootPackageName}.rest.model.${t.name}PatchImpl`
         );
         mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
         mBody.indent((block) => {

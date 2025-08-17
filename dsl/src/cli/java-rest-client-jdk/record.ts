@@ -47,7 +47,7 @@ export function generateRecord(
     const importCollector = new JavaImportsCollector(packageName);
     const fqn = importCollector.importType.bind(importCollector);
     result.push({
-      name: `${t.name}DataPatchImpl.java`,
+      name: `${t.name}PatchImpl.java`,
       content: toString(
         generateCompilationUnit(
           packageName,

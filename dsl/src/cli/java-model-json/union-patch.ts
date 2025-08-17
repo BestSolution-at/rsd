@@ -17,7 +17,7 @@ export function generateUnionPatchContent(
   const switchOfCases = t.resolved.records.map((r) => {
     return `case "patch:${computeDescKey(r.name)}" -> new ${
       r.name
-    }DataPatchImpl(obj);`;
+    }PatchImpl(obj);`;
   });
 
   const switchSupportCases = [
@@ -36,7 +36,7 @@ export function generateUnionPatchContent(
   ];
 
   return toNode([
-    `public abstract class ${t.name}DataPatchImpl implements ${Interface}.Patch {`,
+    `public abstract class ${t.name}PatchImpl implements ${Interface}.Patch {`,
     [
       `public static boolean isSupportedType(${JsonObject} obj) {`,
       [

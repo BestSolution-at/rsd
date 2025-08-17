@@ -556,7 +556,7 @@ function generatePatchPropertyAccessor_Scalar(
       );
       node.indent((methodBody) => {
         methodBody.append(
-          `return _JsonUtils.mapNilObject(data, "${property.name}", o -> ${property.type}DataImpl.isSupportedType(o) ? ${property.type}DataImpl.of(o) : ${property.type}DataPatchImpl.of(o));`,
+          `return _JsonUtils.mapNilObject(data, "${property.name}", o -> ${property.type}DataImpl.isSupportedType(o) ? ${property.type}DataImpl.of(o) : ${property.type}PatchImpl.of(o));`,
           NL
         );
       });
@@ -908,7 +908,7 @@ function RecordPatchBuilderMethods(
           const Type = fqn(`${basePackageName}.${e}`);
           return [
             `} else if (clazz == ${Type}.PatchBuilder.class) {`,
-            [`b = ${e}DataPatchImpl.builder();`],
+            [`b = ${e}PatchImpl.builder();`],
           ];
         }
       );
@@ -927,7 +927,7 @@ function RecordPatchBuilderMethods(
       `if(clazz == ${property.type}.DataBuilder ) {`,
       [`b = ${property.type}DataImpl.builder();`],
       `} else if (clazz == ${property.type}.PatchBuilder ) {`,
-      [`b = ${property.type}DataPatchImpl.builder();`],
+      [`b = ${property.type}PatchImpl.builder();`],
       '} else {',
       [
         'throw new IllegalArgumentException("Unsupported builder type %s".formatted(clazz));',
