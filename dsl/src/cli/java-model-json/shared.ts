@@ -508,122 +508,15 @@ function generatePatchPropertyAccessor_Array(
   basePackageName: string,
   fqn: (type: string) => string
 ) {
-  const node = new CompositeGeneratorNode();
-
-  const _Base = fqn(basePackageName + '._Base');
   const Optional = fqn('java.util.Optional');
-  if (
-    property.variant === 'builtin' ||
-    property.variant === 'enum' ||
-    property.variant === 'inline-enum' ||
-    property.variant === 'scalar'
-  ) {
-    const type = primitiveToObject(
-      computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true)
-    );
-
-    node.append(
-      `public ${Optional}<${_Base}.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveChange<${type}, ${type}>>> ${property.name}() {`,
-      NL
-    );
-    if (property.variant === 'builtin' && isMBuiltinType(property.type)) {
-      if (property.type === 'boolean') {
-        const JsonValue = fqn('jakarta.json.JsonValue');
-        node.indent((mBody) => {
-          mBody.append(
-            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, v -> v.getValueType() == ${JsonValue}.ValueType.TRUE))`,
-            ';',
-            NL
-          );
-        });
-      } else if (property.type === 'double' || property.type === 'float') {
-        const JsonNumber = fqn('jakarta.json.JsonNumber');
-        node.indent((mBody) => {
-          mBody.append(
-            `return _JsonUtils.mapOptObject(data, "${
-              property.name
-            }", o -> _ListChangeImpl.of(o, v -> ((${JsonNumber})v).${
-              property.type === 'double'
-                ? 'doubleValue()'
-                : 'numberValue().floatValue()'
-            }))`,
-            ';',
-            NL
-          );
-        });
-      } else if (
-        property.type === 'int' ||
-        property.type === 'long' ||
-        property.type === 'short'
-      ) {
-        const JsonNumber = fqn('jakarta.json.JsonNumber');
-        let numAccessor = '';
-        if (property.type === 'int') {
-          numAccessor = 'intValue()';
-        } else if (property.type === 'long') {
-          numAccessor = 'longValue()';
-        } else {
-          numAccessor = 'numberValue().shortValue()';
-        }
-        node.indent((mBody) => {
-          mBody.append(
-            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, v -> ((${JsonNumber})v).${numAccessor}))`,
-            ';',
-            NL
-          );
-        });
-      } else if (property.type === 'string') {
-        const JsonString = fqn('jakarta.json.JsonString');
-        node.indent((mBody) => {
-          mBody.append(
-            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, v -> ((${JsonString})v).getString()))`,
-            ';',
-            NL
-          );
-        });
-      } else {
-        const JsonString = fqn('jakarta.json.JsonString');
-        node.indent((mBody) => {
-          mBody.append(
-            `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, v -> ${type}.parse(((${JsonString})v).getString())))`,
-            ';',
-            NL
-          );
-        });
-      }
-    } else {
-      const JsonString = fqn('jakarta.json.JsonString');
-
-      node.indent((mBody) => {
-        mBody.append(
-          `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, v -> ${type}.valueOf(((${JsonString})v).getString())))`,
-          ';',
-          NL
-        );
-      });
-    }
-    node.append('}', NL);
-  } else {
-    const JsonString = fqn('jakarta.json.JsonString');
-    const type = primitiveToObject(
-      computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true)
-    );
-    const baseType = fqn(`${basePackageName}.${property.type}`);
-
-    node.append(
-      `public ${Optional}<${_Base}.ListChange<${_Base}.ListSetElementsChange<${type}>, ${_Base}.ListAddRemoveUpdateChange<${type}, ${baseType}.Patch, String>>> ${property.name}() {`,
-      NL
-    );
-    node.indent((mBody) => {
-      mBody.append(
-        `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, ${property.type}DataImpl::of, ${property.type}DataPatchImpl::of, v -> ((${JsonString})v).getString()))`,
-        ';',
-        NL
-      );
-    });
-    node.append('}');
-  }
-  return node;
+  const prefix = toFirstUpper(property.name);
+  return toNode([
+    `public ${Optional}<${prefix}Change> ${property.name}() {`,
+    [
+      `return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeImpl.of(o, "@type", ${prefix}SetChangeImpl::new, ${prefix}MergeChangeImpl::new));`,
+    ],
+    '}',
+  ]);
 }
 
 function generatePatchPropertyAccessor_Scalar(
@@ -769,7 +662,6 @@ function generatePatchBuilderPropertyAccessor_Array(
   );
   const node = new CompositeGeneratorNode();
 
-  node.append('@Override', NL);
   if (
     property.variant === 'builtin' ||
     property.variant === 'enum' ||
@@ -777,8 +669,10 @@ function generatePatchBuilderPropertyAccessor_Array(
     property.variant === 'scalar'
   ) {
     const List = fqn('java.util.List');
+    const prefix = toFirstUpper(property.name);
+    node.append('@Override', NL);
     node.append(
-      `public ${t.name}.PatchBuilder ${property.name}(_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveChange<${type}, ${type}>> ${property.name}) {`,
+      `public ${t.name}.PatchBuilder ${property.name}(${prefix}Change ${property.name}) {`,
       NL
     );
     node.indent((mBody) => {
@@ -795,7 +689,7 @@ function generatePatchBuilderPropertyAccessor_Array(
     );
     node.indent((mBody) => {
       mBody.append('var $changeBuilder = Json.createObjectBuilder();', NL);
-      mBody.append('$changeBuilder.add("@type", "delta-change");', NL);
+      mBody.append('$changeBuilder.add("@type", "merge-change");', NL);
       if (isMBuiltinType(property.type)) {
         mBody.append(
           builtinBuilderArrayJSONAccess(
@@ -836,7 +730,7 @@ function generatePatchBuilderPropertyAccessor_Array(
         `public ${t.name}.PatchBuilder ${property.name}(List<${type}> elements) {`,
         [
           'var $changeBuilder = Json.createObjectBuilder();',
-          '$changeBuilder.add("@type", "elements-change");',
+          '$changeBuilder.add("@type", "set-change");',
           (() => {
             if (property.type === 'boolean') {
               return '$changeBuilder.add("elements", _JsonUtils.toJsonBooleanArray(elements));';
@@ -885,7 +779,7 @@ function generatePatchBuilderPropertyAccessor_Array(
     );
     node.indent((mBody) => {
       mBody.append(`var $changeBuilder = Json.createObjectBuilder();`, NL);
-      mBody.append(`$changeBuilder.add("@type", "delta-change");`, NL);
+      mBody.append(`$changeBuilder.add("@type", "merge-change");`, NL);
       mBody.append(
         `$changeBuilder.add("additions", _JsonUtils.toJsonValueArray(additions, $e -> ((_BaseDataImpl) $e).data));`,
         NL
@@ -911,7 +805,7 @@ function generatePatchBuilderPropertyAccessor_Array(
         `public ${t.name}.PatchBuilder ${property.name}(List<${type}> elements) {`,
         [
           'var $changeBuilder = Json.createObjectBuilder();',
-          '$changeBuilder.add("@type", "elements-change");',
+          '$changeBuilder.add("@type", "set-change");',
           '$changeBuilder.add("elements", _JsonUtils.toJsonValueArray(elements, $e -> ((_BaseDataImpl) $e).data));',
           `$builder.add("${property.name}", $changeBuilder.build());`,
           'return this;',

@@ -7,16 +7,18 @@ import {
   isMResolvedProperty,
   isMRevisionProperty,
   MResolvedBaseProperty,
+  MResolvedPropery,
   MResolvedRecordType,
 } from '../model.js';
 import { generateInlineEnum } from './enum.js';
-import { toFirstUpper } from '../util.js';
+import { toFirstUpper, toNode } from '../util.js';
 import {
   generateBuilderPropertyAccessor,
   generatePatchBuilderPropertyAccessor,
   generatePatchPropertyAccessor,
   generatePropertyAccessor,
 } from './shared.js';
+import { computeAPIType, primitiveToObject } from '../java-gen-utils.js';
 
 export function generateRecordContent(
   t: MResolvedRecordType,
@@ -161,6 +163,9 @@ function generatePatch(
   );
   node.indent((classBody) => {
     classBody.append(
+      ChangeTypes(props, nativeTypeSubstitues, basePackageName, fqn)
+    );
+    classBody.append(
       ...props
         .filter((p) => isMKeyProperty(p) || isMRevisionProperty(p))
         .flatMap((p) => [
@@ -190,6 +195,73 @@ function generatePatch(
   });
   node.append('}', NL);
   return node;
+}
+
+function ChangeTypes(
+  props: MResolvedBaseProperty[],
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  return toNode([
+    ...props
+      .filter(isMResolvedProperty)
+      .filter((p) => p.readonly === false)
+      .filter((p) => p.array)
+      .flatMap((p) => [
+        ChangeType(p),
+        SetChange(p, nativeTypeSubstitues, basePackageName, fqn),
+        ListChange(p, nativeTypeSubstitues, basePackageName, fqn),
+      ]),
+  ]);
+}
+
+function ChangeType(prop: MResolvedPropery) {
+  return toNode([`public interface ${toFirstUpper(prop.name)}Change {`, '}']);
+}
+
+function SetChange(
+  prop: MResolvedPropery,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  const type = primitiveToObject(
+    computeAPIType(prop, nativeTypeSubstitues, basePackageName, fqn, true)
+  );
+  const prefix = toFirstUpper(prop.name);
+  return toNode([
+    `public interface ${prefix}SetChange extends ${prefix}Change, _Base.ListSetElementsChange<${type}> {`,
+    '}',
+  ]);
+}
+
+function ListChange(
+  prop: MResolvedPropery,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  basePackageName: string,
+  fqn: (type: string) => string
+) {
+  const prefix = toFirstUpper(prop.name);
+
+  if (prop.variant === 'record' || prop.variant === 'union') {
+    const Type = fqn(`${basePackageName}.${prop.type}`);
+    return toNode([
+      `public interface ${prefix}UpdateChange extends ${prefix}Change, _Base.ListAddRemoveUpdateChange<${Type}.Data, ${Type}.Patch, String> {`,
+      '}',
+    ]);
+  }
+  const Type = computeAPIType(
+    prop,
+    nativeTypeSubstitues,
+    basePackageName,
+    fqn,
+    true
+  );
+  return toNode([
+    `public interface ${prefix}MergeChange extends ${prefix}Change, _Base.ListAddRemoveChange<${Type}, ${Type}> {`,
+    '}',
+  ]);
 }
 
 function generatePatchBuilder(

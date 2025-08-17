@@ -1,11 +1,15 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
 import {
   allResolvedRecordProperties,
+  isMBuiltinFloatType,
+  isMBuiltinIntegerType,
+  isMBuiltinType,
   isMKeyProperty,
   isMResolvedProperty,
   isMRevisionProperty,
   MKeyProperty,
   MResolvedBaseProperty,
+  MResolvedPropery,
   MResolvedRecordType,
   MResolvedRSDModel,
   MRevisionProperty,
@@ -16,7 +20,8 @@ import {
   generatePatchPropertyAccessor,
   generatePropertyNG,
 } from './shared.js';
-import { computeAPIType } from '../java-gen-utils.js';
+import { computeAPIType, primitiveToObject } from '../java-gen-utils.js';
+import { toFirstUpper, toNode } from '../util.js';
 
 export function generateRecordPatchContent(
   t: MResolvedRecordType,
@@ -38,6 +43,9 @@ export function generateRecordPatchContent(
     NL
   );
   node.indent((classBody) => {
+    classBody.append(
+      ChangeTypes(allProps, nativeTypeSubstitues, interfaceBasePackage, fqn)
+    );
     classBody.append(`${t.name}DataPatchImpl(${JsonObject} data) {`, NL);
     classBody.indent((initBody) => {
       initBody.append('super(data);', NL);
@@ -80,6 +88,157 @@ export function generateRecordPatchContent(
   node.append('}', NL);
 
   return node;
+}
+
+function ChangeTypes(
+  props: MResolvedBaseProperty[],
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  interfaceBasePackage: string,
+  fqn: (type: string) => string
+) {
+  return toNode([
+    ...props
+      .filter(isMResolvedProperty)
+      .filter((p) => p.readonly === false)
+      .filter((p) => p.array)
+      .flatMap((p) => [
+        SetChange(p, nativeTypeSubstitues, interfaceBasePackage, fqn),
+        ListChange(p, nativeTypeSubstitues, interfaceBasePackage, fqn),
+      ]),
+  ]);
+}
+
+function SetChange(
+  prop: MResolvedPropery,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  interfaceBasePackage: string,
+  fqn: (type: string) => string
+) {
+  const type = primitiveToObject(
+    computeAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, true)
+  );
+  const prefix = toFirstUpper(prop.name);
+
+  if (prop.variant === 'union' || prop.variant === 'record') {
+    return toNode([
+      `static class ${prefix}SetChangeImpl extends _ListChangeImpl.ObjectElementsChange<${type}> implements ${prefix}SetChange {`,
+      [
+        `${prefix}SetChangeImpl(JsonObject data) {`,
+        [`super(data, ${prefix}DataImpl::of)`],
+        '}',
+      ],
+      '}',
+    ]);
+  } else {
+    return toNode([
+      `static class ${prefix}SetChangeImpl extends _ListChangeImpl.ValueElementsChange<${type}> implements ${prefix}SetChange {`,
+      [
+        `${prefix}SetChangeImpl(JsonObject data) {`,
+        [`super(data, v -> ${lambdaBodyComputer(prop, type, fqn)});`],
+        '}',
+      ],
+      '}',
+    ]);
+  }
+}
+
+function lambdaBodyComputer(
+  prop: MResolvedPropery,
+  type: string,
+  fqn: (type: string) => string
+) {
+  if (isMBuiltinType(prop.type)) {
+    if (prop.type === 'boolean') {
+      return 'v.getValueType() == ${JsonValue}.ValueType.TRUE';
+    } else if (isMBuiltinFloatType(prop.type)) {
+      const JsonNumber = fqn('jakarta.json.JsonNumber');
+      if (prop.type === 'double') {
+        return `((${JsonNumber}) v).doubleValue()`;
+      } else if (prop.type === 'float') {
+        return `((${JsonNumber})v).numberValue().floatValue()`;
+      } else {
+        throw new Error(`Unsupported float type "${prop.type}"`);
+      }
+    } else if (isMBuiltinIntegerType(prop.type)) {
+      const JsonNumber = fqn('jakarta.json.JsonNumber');
+      if (prop.type === 'short') {
+        return `((${JsonNumber}) v).numberValue().shortValue()`;
+      } else if (prop.type === 'int') {
+        return `((${JsonNumber}) v).intValue()`;
+      } else if (prop.type === 'long') {
+        return `((${JsonNumber}) v).longValue()`;
+      } else {
+        throw new Error(`Unsupported int type "${prop.type}"`);
+      }
+    } else if (prop.type === 'string') {
+      const JsonString = fqn('jakarta.json.JsonString');
+      return `((${JsonString}) v).getString()`;
+    } else if (
+      prop.type === 'local-date' ||
+      prop.type === 'local-date-time' ||
+      prop.type === 'zoned-date-time'
+    ) {
+      const JsonString = fqn('jakarta.json.JsonString');
+      return `${type}.parse(((${JsonString})v).getString())`;
+    } else {
+      throw new Error(`Unknown builtin type ${prop.type}`);
+    }
+  } else if (prop.variant === 'enum' || prop.variant === 'inline-enum') {
+    const JsonString = fqn('jakarta.json.JsonString');
+    return `${type}.valueOf(((${JsonString})v).getString())`;
+  } else if (prop.variant === 'scalar') {
+    const JsonString = fqn('jakarta.json.JsonString');
+    return `${type}.of(((${JsonString}) v).getString())`;
+  } else {
+    throw new Error(
+      `Unsupported variant/type combination '${prop.variant}/${prop.type}'`
+    );
+  }
+}
+
+function ListChange(
+  prop: MResolvedPropery,
+  nativeTypeSubstitues: Record<string, string> | undefined,
+  interfaceBasePackage: string,
+  fqn: (type: string) => string
+) {
+  const prefix = toFirstUpper(prop.name);
+
+  if (prop.variant === 'union' || prop.variant === 'record') {
+    const type = fqn(`${interfaceBasePackage}.${prop.type}`);
+    return toNode([
+      `static class ${prefix}MergeChangeImpl extends _ListChangeImpl.AddRemoveUpdateListChangeImpl<${type}.Data, ${type}.Patch, String> implements ${prefix}MergeChange {`,
+      [
+        `${prefix}MergeChangeImpl(JsonObject data) {`,
+        [
+          `super(data, ${prop.type}DataImpl::of, ${prop.type}DataPatchImpl::of);`,
+        ],
+        '}',
+      ],
+      '}',
+    ]);
+  } else {
+    const type = primitiveToObject(
+      computeAPIType(
+        prop,
+        nativeTypeSubstitues,
+        interfaceBasePackage,
+        fqn,
+        true
+      )
+    );
+
+    const lambdaBody = lambdaBodyComputer(prop, type, fqn);
+    return toNode([
+      `static class ${prefix}MergeChangeImpl extends _ListChangeImpl.AddRemoveListChangeImpl<${type}, ${type}> implements ${prefix}MergeChange {`,
+      [
+        `${prefix}MergeChangeImpl(JsonObject data) {`,
+        [`super(data, v -> ${lambdaBody}, v -> ${lambdaBody});`],
+        '}',
+      ],
+      '}',
+    ]);
+  }
 }
 
 function generatePatchBuilderImpl(

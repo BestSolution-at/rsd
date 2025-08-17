@@ -80,7 +80,7 @@ export function generatePatchPropertyAccessor(
     );
 
     if (property.array) {
-      type = `_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveChange<${type}, ${type}>>`;
+      type = `${toFirstUpper(property.name)}Change`;
     }
 
     if (property.optional || property.nullable) {
@@ -99,9 +99,7 @@ export function generatePatchPropertyAccessor(
     );
 
     if (property.array) {
-      type = `_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveUpdateChange<${type}, ${
-        fqn(`${basePackageName}.${property.type}`) + '.Patch'
-      }, String>>`; // We always use string because the one can then include the etag with {id}@{etag}
+      type = `${toFirstUpper(property.name)}Change`;
     } else {
       type = `${basePackageName}.${property.type}`;
     }
@@ -143,8 +141,9 @@ export function generatePatchBuilderPropertyAccessor(
 
     if (property.array) {
       node.append(
-        `public PatchBuilder ${property.name}(_Base.ListChange<_Base.ListSetElementsChange<${type}>, _Base.ListAddRemoveChange<${type}, ${type}>> ${property.name});`,
-        NL,
+        `public PatchBuilder ${property.name}(Patch.${toFirstUpper(
+          property.name
+        )}Change ${property.name});`,
         NL
       );
       node.append(
