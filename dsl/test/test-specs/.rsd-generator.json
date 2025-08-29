@@ -1,0 +1,9 @@
+{
+    "name": "Spec Samples",
+    "generators": [
+        {
+					"name": "typescript-client-api",
+					"targetFolder": "./gen-out/client/typescript-client/src"
+				}
+    ]
+}

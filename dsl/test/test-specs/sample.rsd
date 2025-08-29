@@ -1,0 +1,235 @@
+enum SampleEnum = A | B;
+enum SampleEnumWithCustValue = A = "foo" | B = 1;
+
+scalar ZoneId;
+
+record SimpleRecord_KeyVersion {
+    @id key: string
+    @rev version: string
+}
+
+record SimpleRecord_KeyVersion_Int_Int {
+    @id key: int
+    @rev version: int
+}
+
+record SimpleRecord_Basic {
+    valueBoolean: boolean
+		valueShort: short
+		valueInt: int
+		valueLong: long
+		valueFloat: float
+		valueDouble: double
+		valueString: string
+		valueLocalDate: local-date
+		valueLocalDateTime: local-date-time
+		valueZonedDateTime: zoned-date-time
+}
+
+record SimpleRecord_Basic_Optional {
+    valueBoolean?: boolean
+		valueShort?: short
+		valueInt?: int
+		valueLong?: long
+		valueFloat?: float
+		valueDouble?: double
+		valueString?: string
+		valueLocalDate?: local-date
+		valueLocalDateTime?: local-date-time
+		valueZonedDateTime?: zoned-date-time
+}
+
+record SimpleRecord_Basic_Null {
+    valueBoolean: boolean?
+		valueShort: short?
+		valueInt: int?
+		valueLong: long?
+		valueFloat: float?
+		valueDouble: double?
+		valueString: string?
+		valueLocalDate: local-date?
+		valueLocalDateTime: local-date-time?
+		valueZonedDateTime: zoned-date-time?
+}
+
+record SimpleRecord_Basic_Optional_Null {
+    valueBoolean?: boolean?
+		valueShort?: short?
+		valueInt?: int?
+		valueLong?: long?
+		valueFloat?: float?
+		valueDouble?: double?
+		valueString?: string?
+		valueLocalDate?: local-date?
+		valueLocalDateTime?: local-date-time?
+		valueZonedDateTime?: zoned-date-time?
+}
+
+record SimpleRecord_Basic_List {
+	valueBoolean: boolean[]
+	valueShort: short[]
+	valueInt: int[]
+	valueLong: long[]
+	valueFloat: float[]
+	valueDouble: double[]
+	valueString: string[]
+	valueLocalDate: local-date[]
+	valueLocalDateTime: local-date-time[]
+	valueZonedDateTime: zoned-date-time[]
+}
+
+record SimpleRecord_Basic_List_Optional {
+	valueBoolean?: boolean[]
+	valueShort?: short[]
+	valueInt?: int[]
+	valueLong?: long[]
+	valueFloat?: float[]
+	valueDouble?: double[]
+	valueString?: string[]
+	valueLocalDate?: local-date[]
+	valueLocalDateTime?: local-date-time[]
+	valueZonedDateTime?: zoned-date-time[]
+}
+
+record SimpleRecord_Basic_List_Null {
+	valueBoolean: boolean[]?
+	valueShort: short[]?
+	valueInt: int[]?
+	valueLong: long[]?
+	valueFloat: float[]?
+	valueDouble: double[]?
+	valueString: string[]?
+	valueLocalDate: local-date[]?
+	valueLocalDateTime: local-date-time[]?
+	valueZonedDateTime: zoned-date-time[]?
+}
+
+record EnumRecord {
+	value: SampleEnum
+	value_Null: SampleEnum?
+	value_Opt?: SampleEnum
+	value_Opt_Null?: SampleEnum?
+	
+	list: SampleEnum[]
+	list_Null: SampleEnum[]?
+	list_Opt?: SampleEnum[]
+	list_Opt_Null?: SampleEnum[]?
+}
+
+record EnumInlineRecord {
+	value: enum A | B
+	value_Null: enum C | D?
+	value_Opt?: enum E | F
+	value_Opt_Null?: enum G | H ?
+
+	list: enum A | B []
+	list_Null: enum C | D []?
+	// Need to fix Grammer list_Opt?: enum E | F [],
+	list_Opt_Null?: enum G | H []?
+}
+
+record ScalarRecord {
+	value: ZoneId
+	value_Null: ZoneId?
+	value_Opt?: ZoneId
+	value_Opt_Null?: ZoneId?
+	
+	list: ZoneId[]
+	list_Null: ZoneId[]?
+	list_Opt?: ZoneId[]
+	list_Opt_Null?: ZoneId[]?
+}
+
+record RecordOfRecords {
+	value: SimpleRecord_Basic
+	value_Null: SimpleRecord_Basic?
+	value_Opt?: SimpleRecord_Basic
+	value_Opt_Null?: SimpleRecord_Basic?
+
+	list: SimpleRecord_Basic[]
+	list_Null: SimpleRecord_Basic[]?
+	list_Opt?: SimpleRecord_Basic[]
+	list_Opt_Null?: SimpleRecord_Basic[]?
+}
+
+patchable record PatchableRecord {
+    @id key: string
+    @rev version: string
+
+		value: string
+}
+
+patchable record PatchableRecord_Basic {
+    @id key: string
+    @rev version: string
+	
+    valueBoolean: boolean
+		valueShort: short
+		valueInt: int
+		valueLong: long
+		valueFloat: float
+		valueDouble: double
+		valueString: string
+		valueLocalDate: local-date
+		valueLocalDateTime: local-date-time
+		valueZonedDateTime: zoned-date-time
+}
+
+patchable record PatchableRecord_Basic_Optional {
+    @id key: string
+    @rev version: string
+
+    valueBoolean?: boolean
+		valueShort?: short
+		valueInt?: int
+		valueLong?: long
+		valueFloat?: float
+		valueDouble?: double
+		valueString?: string
+		valueLocalDate?: local-date
+		valueLocalDateTime?: local-date-time
+		valueZonedDateTime?: zoned-date-time
+}
+
+patchable record PatchableRecord_Basic_Null {
+    @id key: string
+    @rev version: string
+
+    valueBoolean: boolean?
+		valueShort: short?
+		valueInt: int?
+		valueLong: long?
+		valueFloat: float?
+		valueDouble: double?
+		valueString: string?
+		valueLocalDate: local-date?
+		valueLocalDateTime: local-date-time?
+		valueZonedDateTime: zoned-date-time?
+}
+
+patchable record PatchableRecord_Basic_Optional_Null {
+    @id key: string
+    @rev version: string
+
+    valueBoolean?: boolean?
+		valueShort?: short?
+		valueInt?: int?
+		valueLong?: long?
+		valueFloat?: float?
+		valueDouble?: double?
+		valueString?: string?
+		valueLocalDate?: local-date?
+		valueLocalDateTime?: local-date-time?
+		valueZonedDateTime?: zoned-date-time?
+}
+
+mixin SimpleMixin {
+	mValueString: string
+}
+
+record MixinRecord {
+    include SimpleMixin
+
+    sample: string
+}
+
