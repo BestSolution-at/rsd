@@ -2748,6 +2748,180 @@
       "doc": ""
     },
     {
+      "@type": "RecordType",
+      "name": "PatchableRecordWithUnion",
+      "patchable": true,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "value",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "union",
+          "type": "PatchableUnion",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Null",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "union",
+          "type": "PatchableUnion",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "union",
+          "type": "PatchableUnion",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt_Null",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "union",
+          "type": "PatchableUnion",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "union",
+          "type": "PatchableUnion",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Null",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "union",
+          "type": "PatchableUnion",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Opt",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "union",
+          "type": "PatchableUnion",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Opt_Null",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "union",
+          "type": "PatchableUnion",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "PatchableUnionA",
+      "patchable": true,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "shared",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueA",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "PatchableUnionB",
+      "patchable": true,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "shared",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueB",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "UnionType",
+      "name": "PatchableUnion",
+      "patchable": false,
+      "types": [
+        "PatchableUnionA",
+        "PatchableUnionB"
+      ],
+      "descriminator": "@type",
+      "doc": "",
+      "descriminatorAliases": {
+        "PatchableUnionA": "union-a",
+        "PatchableUnionB": "union-b"
+      }
+    },
+    {
       "@type": "MixinType",
       "name": "SimpleMixin",
       "properties": [

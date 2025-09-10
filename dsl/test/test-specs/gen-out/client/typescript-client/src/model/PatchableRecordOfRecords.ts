@@ -90,10 +90,10 @@ type $Value_OptPatch = (PatchableRecord_Basic & { '@type': 'replace' }) | (Patch
 type $Value_Opt_NullPatch = (PatchableRecord_Basic & { '@type': 'replace' }) | (PatchableRecord_BasicPatch & { '@type': 'merge' });
 
 export type PatchableRecordOfRecordsPatch = {
-	readonly value?: PatchableRecord_Basic;
-	readonly value_Null?: PatchableRecord_Basic | null;
-	readonly value_Opt?: PatchableRecord_Basic | null;
-	readonly value_Opt_Null?: PatchableRecord_Basic | null;
+	readonly value?: $ValuePatch;
+	readonly value_Null?: $Value_NullPatch | null;
+	readonly value_Opt?: $Value_OptPatch | null;
+	readonly value_Opt_Null?: $Value_Opt_NullPatch | null;
 	readonly list?: $ListPatch;
 	readonly list_Null?: $List_NullPatch | null;
 	readonly list_Opt?: $List_OptPatch | null;

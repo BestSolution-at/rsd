@@ -593,7 +593,7 @@ function generatePatchProperty(prop: MResolvedPropery, fqn: (t: string, typeOnly
 	} else if (prop.variant === 'enum') {
 		type = fqn(`${prop.type}:./${prop.type}.ts`, true);
 	} else if (prop.variant === 'record' || prop.variant === 'union') {
-		type = fqn(`${prop.type}:./${prop.type}.ts`, true);
+		type = `$${toFirstUpper(prop.name)}Patch`;
 	} else {
 		type = 'any';
 	}

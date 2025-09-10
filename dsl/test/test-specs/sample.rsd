@@ -310,6 +310,31 @@ patchable record PatchableRecordOfRecords {
 	list_Opt_Null?: PatchableRecord_Basic[]?
 }
 
+patchable record PatchableRecordWithUnion {
+	value: PatchableUnion
+	value_Null: PatchableUnion?
+	value_Opt?: PatchableUnion
+	value_Opt_Null?: PatchableUnion?
+
+	list: PatchableUnion[]
+	list_Null: PatchableUnion[]?
+	list_Opt?: PatchableUnion[]
+	list_Opt_Null?: PatchableUnion[]?
+}
+
+patchable record PatchableUnionA {
+	shared: string
+	valueA: string
+}
+
+patchable record PatchableUnionB {
+	shared: string
+	valueB: string
+}
+
+union PatchableUnion = PatchableUnionA('union-a') | PatchableUnionB('union-b');
+
+// TODO Mixed Union
 
 mixin SimpleMixin {
 	mValueString: string
@@ -320,4 +345,3 @@ record MixinRecord {
 
     sample: string
 }
-

@@ -1,5 +1,5 @@
 import { beforeAll, beforeEach, describe, expect, test } from 'vitest';
-import { ListChangeTypes, RecordType, RecordTypePatch } from '../../../src/cli/typescript-model-api/record.js';
+import { ListChangeTypes, RecordType, RecordTypePatch, ValueChangeTypes } from '../../../src/cli/typescript-model-api/record.js';
 import { allResolvedRecordProperties, isMResolvedProperty, isMResolvedRecordType, MResolvedRSDModel } from '../../../src/cli/model.js';
 import { createTypescriptClientAPIGeneratorConfig, findListElement, sampleModel } from '../test-utils.js';
 import { TypescriptImportCollector } from '../../../src/cli/typescript-gen-utils.js';
@@ -417,7 +417,30 @@ export type PatchableScalarRecordPatch = {
 };
 `.trim();
 
-const PatchableRecordOfRecordsPatch_Result = `‚
+const PatchableRecordOfRecordsPatch_Result = `
+export type PatchableRecordOfRecordsPatch = {
+	readonly value?: $ValuePatch;
+	readonly value_Null?: $Value_NullPatch | null;
+	readonly value_Opt?: $Value_OptPatch | null;
+	readonly value_Opt_Null?: $Value_Opt_NullPatch | null;
+	readonly list?: $ListPatch;
+	readonly list_Null?: $List_NullPatch | null;
+	readonly list_Opt?: $List_OptPatch | null;
+	readonly list_Opt_Null?: $List_Opt_NullPatch | null;
+};
+`.trim();
+
+const PatchableRecordWithUnionPatch_Result = `
+export type PatchableRecordWithUnionPatch = {
+	readonly value?: $ValuePatch;
+	readonly value_Null?: $Value_NullPatch | null;
+	readonly value_Opt?: $Value_OptPatch | null;
+	readonly value_Opt_Null?: $Value_Opt_NullPatch | null;
+	readonly list?: $ListPatch;
+	readonly list_Null?: $List_NullPatch | null;
+	readonly list_Opt?: $List_OptPatch | null;
+	readonly list_Opt_Null?: $List_Opt_NullPatch | null;
+};
 `.trim();
 
 const RECORD_TYPE_PATCH_TESTS: RecordTypeTest[] = [
@@ -464,6 +487,14 @@ const RECORD_TYPE_PATCH_TESTS: RecordTypeTest[] = [
 	{
 		name: 'PatchableScalarRecord',
 		result: PatchableScalarRecordPatch_Result,
+	},
+	{
+		name: 'PatchableRecordOfRecords',
+		result: PatchableRecordOfRecordsPatch_Result,
+	},
+	{
+		name: 'PatchableRecordWithUnion',
+		result: PatchableRecordWithUnionPatch_Result,
 	},
 ];
 
@@ -608,6 +639,51 @@ type $List_Opt_NullMerge = ListMergeAddRemove<string, string>;
 type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
 `.trim();
 
+const PatchableRecordOfRecords_list_Result = `
+type $ListReplace = ListReplace<PatchableRecord_BasicPatch>;
+type $ListMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch,string>;
+type $ListPatch = $ListReplace | $ListMerge;
+`.trim();
+
+const PatchableRecordOfRecords_list_Null_Result = `
+type $List_NullReplace = ListReplace<PatchableRecord_BasicPatch>;
+type $List_NullMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch,string>;
+type $List_NullPatch = $List_NullReplace | $List_NullMerge;
+`.trim();
+
+const PatchableRecordOfRecords_list_Opt_Result = `
+type $List_OptReplace = ListReplace<PatchableRecord_BasicPatch>;
+type $List_OptMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch,string>;
+type $List_OptPatch = $List_OptReplace | $List_OptMerge;
+`.trim();
+
+const PatchableRecordOfRecords_list_Opt_Null_Result = `
+type $List_Opt_NullReplace = ListReplace<PatchableRecord_BasicPatch>;
+type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch,string>;
+type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
+`.trim();
+
+const PatchableRecordWithUnion_list = `
+type $ListReplace = ListReplace<PatchableUnionPatch>;
+type $ListMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
+type $ListPatch = $ListReplace | $ListMerge;
+`.trim();
+const PatchableRecordWithUnion_list_Null = `
+type $List_NullReplace = ListReplace<PatchableUnionPatch>;
+type $List_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
+type $List_NullPatch = $List_NullReplace | $List_NullMerge;
+`.trim();
+const PatchableRecordWithUnion_list_Opt = `
+type $List_OptReplace = ListReplace<PatchableUnionPatch>;
+type $List_OptMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
+type $List_OptPatch = $List_OptReplace | $List_OptMerge;
+`.trim();
+const PatchableRecordWithUnion_list_Opt_Null = `
+type $List_Opt_NullReplace = ListReplace<PatchableUnionPatch>;
+type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
+type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
+`.trim();
+
 const LIST_CHANGE_TYPES_TESTS: PropertyTest[] = [
 	{
 		recordName: 'PatchableRecord_Basic_List',
@@ -714,6 +790,46 @@ const LIST_CHANGE_TYPES_TESTS: PropertyTest[] = [
 		propertyName: 'list_Opt_Null',
 		result: PatchableScalarRecord_list_Opt_Null_Result,
 	},
+	{
+		recordName: 'PatchableRecordOfRecords',
+		propertyName: 'list',
+		result: PatchableRecordOfRecords_list_Result,
+	},
+	{
+		recordName: 'PatchableRecordOfRecords',
+		propertyName: 'list_Null',
+		result: PatchableRecordOfRecords_list_Null_Result,
+	},
+	{
+		recordName: 'PatchableRecordOfRecords',
+		propertyName: 'list_Opt',
+		result: PatchableRecordOfRecords_list_Opt_Result,
+	},
+	{
+		recordName: 'PatchableRecordOfRecords',
+		propertyName: 'list_Opt_Null',
+		result: PatchableRecordOfRecords_list_Opt_Null_Result,
+	},
+	{
+		recordName: 'PatchableRecordWithUnion',
+		propertyName: 'list',
+		result: PatchableRecordWithUnion_list,
+	},
+	{
+		recordName: 'PatchableRecordWithUnion',
+		propertyName: 'list_Null',
+		result: PatchableRecordWithUnion_list_Null,
+	},
+	{
+		recordName: 'PatchableRecordWithUnion',
+		propertyName: 'list_Opt',
+		result: PatchableRecordWithUnion_list_Opt,
+	},
+	{
+		recordName: 'PatchableRecordWithUnion',
+		propertyName: 'list_Opt_Null',
+		result: PatchableRecordWithUnion_list_Opt_Null,
+	},
 ];
 
 describe('ListChangeTypes', () => {
@@ -724,6 +840,86 @@ describe('ListChangeTypes', () => {
 		const collector = new TypescriptImportCollector(createTypescriptClientAPIGeneratorConfig());
 		const fqn = collector.importType.bind(collector);
 		const result = toString(ListChangeTypes(prop, fqn), '\t').trim();
+		expect(result).toBe(data.result);
+	});
+});
+
+const PatchableRecordOfRecordsPatch_value_Result = `
+type $ValuePatch = (PatchableRecord_Basic & { '@type': 'replace' }) | (PatchableRecord_BasicPatch & { '@type': 'merge' });
+`.trim();
+
+const PatchableRecordOfRecordsPatch_value_Null_Result = `
+type $Value_NullPatch = (PatchableRecord_Basic & { '@type': 'replace' }) | (PatchableRecord_BasicPatch & { '@type': 'merge' });
+`.trim();
+
+const PatchableRecordOfRecordsPatch_value_Opt_Result = `
+type $Value_OptPatch = (PatchableRecord_Basic & { '@type': 'replace' }) | (PatchableRecord_BasicPatch & { '@type': 'merge' });
+`.trim();
+
+const PatchableRecordOfRecordsPatch_value_Opt_Null_Result = `
+type $Value_Opt_NullPatch = (PatchableRecord_Basic & { '@type': 'replace' }) | (PatchableRecord_BasicPatch & { '@type': 'merge' });
+`.trim();
+
+const PatchableRecordWithUnionPatch_value = `
+type $ValuePatch = PatchableUnion | PatchableUnionPatch;`.trim();
+const PatchableRecordWithUnionPatch_value_Null = `
+type $Value_NullPatch = PatchableUnion | PatchableUnionPatch;`.trim();
+const PatchableRecordWithUnionPatch_value_Opt = `
+type $Value_OptPatch = PatchableUnion | PatchableUnionPatch;`.trim();
+const PatchableRecordWithUnionPatch_value_Opt_Null = `
+type $Value_Opt_NullPatch = PatchableUnion | PatchableUnionPatch;`.trim();
+
+const SINGLE_CHANGE_TYPES = [
+	{
+		recordName: 'PatchableRecordOfRecords',
+		propertyName: 'value',
+		result: PatchableRecordOfRecordsPatch_value_Result,
+	},
+	{
+		recordName: 'PatchableRecordOfRecords',
+		propertyName: 'value_Null',
+		result: PatchableRecordOfRecordsPatch_value_Null_Result,
+	},
+	{
+		recordName: 'PatchableRecordOfRecords',
+		propertyName: 'value_Opt',
+		result: PatchableRecordOfRecordsPatch_value_Opt_Result,
+	},
+	{
+		recordName: 'PatchableRecordOfRecords',
+		propertyName: 'value_Opt_Null',
+		result: PatchableRecordOfRecordsPatch_value_Opt_Null_Result,
+	},
+	{
+		recordName: 'PatchableRecordWithUnion',
+		propertyName: 'value',
+		result: PatchableRecordWithUnionPatch_value,
+	},
+	{
+		recordName: 'PatchableRecordWithUnion',
+		propertyName: 'value_Null',
+		result: PatchableRecordWithUnionPatch_value_Null,
+	},
+	{
+		recordName: 'PatchableRecordWithUnion',
+		propertyName: 'value_Opt',
+		result: PatchableRecordWithUnionPatch_value_Opt,
+	},
+	{
+		recordName: 'PatchableRecordWithUnion',
+		propertyName: 'value_Opt_Null',
+		result: PatchableRecordWithUnionPatch_value_Opt_Null,
+	},
+];
+
+describe('ValueChangeTypes', () => {
+	test.each(SINGLE_CHANGE_TYPES)('$recordName - $propertyName', data => {
+		const recordModel = findListElement(model.elements, isMResolvedRecordType, r => r.name === data.recordName);
+		const allProps = allResolvedRecordProperties(recordModel);
+		const prop = findListElement(allProps, isMResolvedProperty, p => p.name === data.propertyName);
+		const collector = new TypescriptImportCollector(createTypescriptClientAPIGeneratorConfig());
+		const fqn = collector.importType.bind(collector);
+		const result = toString(ValueChangeTypes(prop, fqn), '\t').trim();
 		expect(result).toBe(data.result);
 	});
 });
