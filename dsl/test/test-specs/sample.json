@@ -1930,6 +1930,824 @@
       "doc": ""
     },
     {
+      "@type": "RecordType",
+      "name": "PatchableRecord_Basic_List",
+      "patchable": true,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "valueBoolean",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "boolean",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueShort",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "short",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueInt",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "int",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLong",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "long",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueFloat",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "float",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueDouble",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "double",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueString",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalDate",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "local-date",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "local-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueZonedDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "zoned-date-time",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "PatchableRecord_Basic_List_Optional",
+      "patchable": true,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "valueBoolean",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "boolean",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueShort",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "short",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueInt",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "int",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLong",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "long",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueFloat",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "float",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueDouble",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "double",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueString",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalDate",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "local-date",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "local-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueZonedDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "zoned-date-time",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "PatchableRecord_Basic_List_Null",
+      "patchable": true,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "valueBoolean",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "boolean",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueShort",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "short",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueInt",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "int",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLong",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "long",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueFloat",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "float",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueDouble",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "double",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueString",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalDate",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-date",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueZonedDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "zoned-date-time",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "PatchableEnumRecord",
+      "patchable": true,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "value",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "enum",
+          "type": "SampleEnum",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Null",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "enum",
+          "type": "SampleEnum",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "enum",
+          "type": "SampleEnum",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt_Null",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "enum",
+          "type": "SampleEnum",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "enum",
+          "type": "SampleEnum",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Null",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "enum",
+          "type": "SampleEnum",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Opt",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "enum",
+          "type": "SampleEnum",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Opt_Null",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "enum",
+          "type": "SampleEnum",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "PatchableEnumInlineRecord",
+      "patchable": true,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "value",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "inline-enum",
+          "type": {
+            "@type": "InlineEnumType",
+            "entries": [
+              {
+                "@type": "EnumEntry",
+                "name": "A"
+              },
+              {
+                "@type": "EnumEntry",
+                "name": "B"
+              }
+            ]
+          },
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Null",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "inline-enum",
+          "type": {
+            "@type": "InlineEnumType",
+            "entries": [
+              {
+                "@type": "EnumEntry",
+                "name": "C"
+              },
+              {
+                "@type": "EnumEntry",
+                "name": "D"
+              }
+            ]
+          },
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "inline-enum",
+          "type": {
+            "@type": "InlineEnumType",
+            "entries": [
+              {
+                "@type": "EnumEntry",
+                "name": "E"
+              },
+              {
+                "@type": "EnumEntry",
+                "name": "F"
+              }
+            ]
+          },
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt_Null",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "inline-enum",
+          "type": {
+            "@type": "InlineEnumType",
+            "entries": [
+              {
+                "@type": "EnumEntry",
+                "name": "G"
+              },
+              {
+                "@type": "EnumEntry",
+                "name": "H"
+              }
+            ]
+          },
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "inline-enum",
+          "type": {
+            "@type": "InlineEnumType",
+            "entries": [
+              {
+                "@type": "EnumEntry",
+                "name": "A"
+              },
+              {
+                "@type": "EnumEntry",
+                "name": "B"
+              }
+            ]
+          },
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Null",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "inline-enum",
+          "type": {
+            "@type": "InlineEnumType",
+            "entries": [
+              {
+                "@type": "EnumEntry",
+                "name": "C"
+              },
+              {
+                "@type": "EnumEntry",
+                "name": "D"
+              }
+            ]
+          },
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Opt_Null",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "inline-enum",
+          "type": {
+            "@type": "InlineEnumType",
+            "entries": [
+              {
+                "@type": "EnumEntry",
+                "name": "G"
+              },
+              {
+                "@type": "EnumEntry",
+                "name": "H"
+              }
+            ]
+          },
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "PatchableScalarRecord",
+      "patchable": true,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "value",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "scalar",
+          "type": "ZoneId",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Null",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "scalar",
+          "type": "ZoneId",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "scalar",
+          "type": "ZoneId",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt_Null",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "scalar",
+          "type": "ZoneId",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "scalar",
+          "type": "ZoneId",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Null",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "scalar",
+          "type": "ZoneId",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Opt",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "scalar",
+          "type": "ZoneId",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Opt_Null",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "scalar",
+          "type": "ZoneId",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "PatchableRecordOfRecords",
+      "patchable": true,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "value",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "record",
+          "type": "PatchableRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Null",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "record",
+          "type": "PatchableRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "record",
+          "type": "PatchableRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt_Null",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "record",
+          "type": "PatchableRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "record",
+          "type": "PatchableRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Null",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "record",
+          "type": "PatchableRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Opt",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "record",
+          "type": "PatchableRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Opt_Null",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "record",
+          "type": "PatchableRecord_Basic",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
       "@type": "MixinType",
       "name": "SimpleMixin",
       "properties": [

@@ -36,18 +36,18 @@ function generateTypeUtilsContent(fqn: (t: string, typeOnly: boolean) => string)
 	node.append(checkProp(), NL);
 	node.append(checkOptProp(), NL);
 	node.append(checkListProp(), NL);
-	node.append(ListSetElementsChange(), NL);
-	node.append(ListAddRemoveChange(), NL);
-	node.append(ListAddUpdateRemoveChange(), NL);
-	node.append(isListSetElementsChange(), NL);
-	node.append(isListAddRemoveChange(), NL);
-	node.append(isListAddUpdateRemoveChange(), NL);
-	node.append(ListSetElementsChangeFromJSON(), NL);
-	node.append(ListSetElementsChangeToJSON(), NL);
-	node.append(ListAddRemoveChangeFromJSON(), NL);
-	node.append(ListAddRemoveChangeToJSON(), NL);
-	node.append(ListAddUpdateRemoveChangeFromJSON(), NL);
-	node.append(ListAddUpdateRemoveChangeToJSON(), NL);
+	node.append(ListReplace(), NL);
+	node.append(ListMergeAddRemove(), NL);
+	node.append(ListMergeAddUpdateRemove(), NL);
+	node.append(isListReplace(), NL);
+	node.append(isListMergeAddRemove(), NL);
+	node.append(isListMergeAddUpdateRemove(), NL);
+	node.append(ListReplaceFromJSON(), NL);
+	node.append(ListReplaceToJSON(), NL);
+	node.append(ListMergeAddRemoveFromJSON(), NL);
+	node.append(ListMergeAddRemoveToJSON(), NL);
+	node.append(ListMergeAddUpdateRemoveFromJSON(), NL);
+	node.append(ListMergeAddUpdateRemoveToJSON(), NL);
 	node.append(SetOrPatchChangeFromJSON(), NL);
 	node.append(noopMap(), NL);
 	node.append(JsonValue(), NL);
@@ -324,26 +324,26 @@ function checkListProp() {
 	]);
 }
 
-function ListSetElementsChange() {
+function ListReplace() {
 	return toNode([
 		//
-		'export type ListSetElementsChange<T> = {',
+		'export type ListReplace<T> = {',
 		[
 			//
-			`'@type': 'set-change';`,
+			`'@type': 'replace';`,
 			'readonly elements: readonly T[];',
 		],
 		'};',
 	]);
 }
 
-function ListAddRemoveChange() {
+function ListMergeAddRemove() {
 	return toNode([
 		//
-		'export type ListAddRemoveChange<A, R> = {',
+		'export type ListMergeAddRemove<A, R> = {',
 		[
 			//
-			`'@type': 'patch-change';`,
+			`'@type': 'merge';`,
 			'readonly additions: readonly A[];',
 			'readonly removals: readonly R[];',
 		],
@@ -351,13 +351,13 @@ function ListAddRemoveChange() {
 	]);
 }
 
-function ListAddUpdateRemoveChange() {
+function ListMergeAddUpdateRemove() {
 	return toNode([
 		//
-		`export type ListAddUpdateRemoveChange<A, U, R> = {`,
+		`export type ListMergeAddUpdateRemove<A, U, R> = {`,
 		[
 			//
-			`'@type': 'patch-change';`,
+			`'@type': 'merge';`,
 			'readonly additions: readonly A[];',
 			'readonly updates: readonly U[];',
 			'readonly removals: readonly R[];',
@@ -366,17 +366,17 @@ function ListAddUpdateRemoveChange() {
 	]);
 }
 
-function isListSetElementsChange() {
+function isListReplace() {
 	return toNode([
 		//
-		'export function isListSetElementsChange<T>(value: unknown, typeCheck: (value: unknown) => value is T): value is ListSetElementsChange<T> {',
+		'export function isListReplace<T>(value: unknown, typeCheck: (value: unknown) => value is T): value is ListReplace<T> {',
 		[
 			//
 			'return (',
 			[
 				//
 				'isRecord(value) && //',
-				`checkProp(value, '@type', isString, v => v === 'set-change') &&`,
+				`checkProp(value, '@type', isString, v => v === 'replace') &&`,
 				`checkListProp(value, 'elements', typeCheck)`,
 			],
 			');',
@@ -385,16 +385,16 @@ function isListSetElementsChange() {
 	]);
 }
 
-function isListAddRemoveChange() {
+function isListMergeAddRemove() {
 	return toNode([
 		//
-		'export function isListAddRemoveChange<A, R>(value: unknown, addTypeCheck: (value: unknown) => value is A, removeTypeCheck: (value: unknown) => value is R): value is ListAddRemoveChange<A, R> {',
+		'export function isListMergeAddRemove<A, R>(value: unknown, addTypeCheck: (value: unknown) => value is A, removeTypeCheck: (value: unknown) => value is R): value is ListMergeAddRemove<A, R> {',
 		[
 			'return (',
 			[
 				//
 				'isRecord(value) && //',
-				`checkProp(value, '@type', isString, v => v === 'patch-change') &&`,
+				`checkProp(value, '@type', isString, v => v === 'merge') &&`,
 				`checkListProp(value, 'additions', addTypeCheck) &&`,
 				`checkListProp(value, 'removals', removeTypeCheck)`,
 			],
@@ -404,17 +404,17 @@ function isListAddRemoveChange() {
 	]);
 }
 
-function isListAddUpdateRemoveChange() {
+function isListMergeAddUpdateRemove() {
 	return toNode([
 		//
-		'export function isListAddUpdateRemoveChange<A, U, R>(value: unknown, addTypeCheck: (value: unknown) => value is A, updateTypeCheck: (value: unknown) => value is U, removeTypeCheck: (value: unknown) => value is R): value is ListAddUpdateRemoveChange<A, U, R> {',
+		'export function isListMergeAddUpdateRemove<A, U, R>(value: unknown, addTypeCheck: (value: unknown) => value is A, updateTypeCheck: (value: unknown) => value is U, removeTypeCheck: (value: unknown) => value is R): value is ListMergeAddUpdateRemove<A, U, R> {',
 		[
 			//
 			'return (',
 			[
 				//
 				'isRecord(value) && //',
-				`checkProp(value, '@type', isString, v => v === 'patch-change') &&`,
+				`checkProp(value, '@type', isString, v => v === 'merge') &&`,
 				`checkListProp(value, 'additions', addTypeCheck) &&`,
 				`checkListProp(value, 'updates', updateTypeCheck) &&`,
 				`checkListProp(value, 'removals', removeTypeCheck)`,
@@ -425,17 +425,17 @@ function isListAddUpdateRemoveChange() {
 	]);
 }
 
-function ListSetElementsChangeFromJSON() {
+function ListReplaceFromJSON() {
 	return toNode([
 		//
-		`export function ListSetElementsChangeFromJSON<T, U>(value: Record<string, unknown>, typeGuard: (v: unknown) => v is U, map: (v: U) => T): ListSetElementsChange<T> {`,
+		`export function ListReplaceFromJSON<T, U>(value: Record<string, unknown>, typeGuard: (v: unknown) => v is U, map: (v: U) => T): ListReplace<T> {`,
 		[
 			//
 			`const elements = propMappedListValue('elements', value, typeGuard, map);`,
 			'return {',
 			[
 				//
-				`'@type': 'set-change',`,
+				`'@type': 'replace',`,
 				'elements,',
 			],
 			'};',
@@ -444,17 +444,17 @@ function ListSetElementsChangeFromJSON() {
 	]);
 }
 
-function ListSetElementsChangeToJSON() {
+function ListReplaceToJSON() {
 	return toNode([
 		//
-		'export function ListSetElementsChangeToJSON<T>(value: ListSetElementsChange<T>, map: (value: T) => JsonValue) {',
+		'export function ListReplaceToJSON<T>(value: ListReplace<T>, map: (value: T) => JsonValue) {',
 		[
 			//
 			'const elements = value.elements.map(map);',
 			'return {',
 			[
 				//
-				`'@type': 'set-change',`,
+				`'@type': 'replace',`,
 				'elements,',
 			],
 			'};',
@@ -463,10 +463,10 @@ function ListSetElementsChangeToJSON() {
 	]);
 }
 
-function ListAddRemoveChangeFromJSON() {
+function ListMergeAddRemoveFromJSON() {
 	return toNode([
 		//
-		'export function ListAddRemoveChangeFromJSON<A, X, R, Y>(value: Record<string, unknown>, addTypeGuard: (v: unknown) => v is X, addMap: (v: X) => A, removeTypeGuard: (v: unknown) => v is Y, removeMap: (v: Y) => R): ListAddRemoveChange<A, R> {',
+		'export function ListMergeAddRemoveFromJSON<A, X, R, Y>(value: Record<string, unknown>, addTypeGuard: (v: unknown) => v is X, addMap: (v: X) => A, removeTypeGuard: (v: unknown) => v is Y, removeMap: (v: Y) => R): ListMergeAddRemove<A, R> {',
 		[
 			//
 			`const additions = propMappedListValue('additions', value, addTypeGuard, addMap);`,
@@ -474,7 +474,7 @@ function ListAddRemoveChangeFromJSON() {
 			'return {',
 			[
 				//
-				`'@type': 'patch-change',`,
+				`'@type': 'merge',`,
 				'additions,',
 				'removals,',
 			],
@@ -484,10 +484,10 @@ function ListAddRemoveChangeFromJSON() {
 	]);
 }
 
-function ListAddRemoveChangeToJSON() {
+function ListMergeAddRemoveToJSON() {
 	return toNode([
 		//
-		'export function ListAddRemoveChangeToJSON<A, R>(value: ListAddRemoveChange<A, R>, addMap: (value: A) => unknown, removeMap: (value: R) => unknown) {',
+		'export function ListMergeAddRemoveToJSON<A, R>(value: ListMergeAddRemove<A, R>, addMap: (value: A) => unknown, removeMap: (value: R) => unknown) {',
 		[
 			//
 			'const additions = value.additions.map(addMap);',
@@ -495,7 +495,7 @@ function ListAddRemoveChangeToJSON() {
 			'return {',
 			[
 				//
-				`'@type': 'patch-change',`,
+				`'@type': 'merge',`,
 				'additions,',
 				'removals,',
 			],
@@ -505,10 +505,10 @@ function ListAddRemoveChangeToJSON() {
 	]);
 }
 
-function ListAddUpdateRemoveChangeFromJSON() {
+function ListMergeAddUpdateRemoveFromJSON() {
 	return toNode([
 		//
-		'export function ListAddUpdateRemoveChangeFromJSON<A, X, U, Y, R, Z>(value: Record<string, unknown>, addTypeGuard: (v: unknown) => v is X, addMap: (v: X) => A, updateTypeGuard: (v: unknown) => v is Y, updateMap: (v: Y) => U, removeTypeGuard: (v: unknown) => v is Z, removeMap: (v: Z) => R): ListAddUpdateRemoveChange<A, U, R> {',
+		'export function ListMergeAddUpdateRemoveFromJSON<A, X, U, Y, R, Z>(value: Record<string, unknown>, addTypeGuard: (v: unknown) => v is X, addMap: (v: X) => A, updateTypeGuard: (v: unknown) => v is Y, updateMap: (v: Y) => U, removeTypeGuard: (v: unknown) => v is Z, removeMap: (v: Z) => R): ListMergeAddUpdateRemove<A, U, R> {',
 		[
 			//
 			`const additions = propMappedListValue('additions', value, addTypeGuard, addMap);`,
@@ -517,7 +517,7 @@ function ListAddUpdateRemoveChangeFromJSON() {
 			'return {',
 			[
 				//
-				`'@type': 'patch-change',`,
+				`'@type': 'merge',`,
 				'additions,',
 				'updates,',
 				'removals,',
@@ -528,10 +528,10 @@ function ListAddUpdateRemoveChangeFromJSON() {
 	]);
 }
 
-function ListAddUpdateRemoveChangeToJSON() {
+function ListMergeAddUpdateRemoveToJSON() {
 	return toNode([
 		//
-		'export function ListAddUpdateRemoveChangeToJSON<A, U, R>(value: ListAddUpdateRemoveChange<A, U, R>, addMap: (value: A) => unknown, updateMap: (value: U) => unknown, removeMap: (value: R) => unknown) {',
+		'export function ListMergeAddUpdateRemoveToJSON<A, U, R>(value: ListMergeAddUpdateRemove<A, U, R>, addMap: (value: A) => unknown, updateMap: (value: U) => unknown, removeMap: (value: R) => unknown) {',
 		[
 			//
 			'const additions = value.additions.map(addMap);',
@@ -540,7 +540,7 @@ function ListAddUpdateRemoveChangeToJSON() {
 			'return {',
 			[
 				//
-				`'@type': 'patch-change',`,
+				`'@type': 'merge',`,
 				'additions,',
 				'updates,',
 				'removals,',
@@ -557,7 +557,7 @@ function SetOrPatchChangeFromJSON() {
 		'export function SetOrPatchChangeFromJSON<S, P>(value: Record<string, unknown>, setMapper: (value: Record<string, unknown>) => S, patchMapper: (value: Record<string, unknown>) => P): S | P {',
 		[
 			//
-			`if (value['@type'] === 'set-change') {`,
+			`if (value['@type'] === 'replace') {`,
 			['return setMapper(value);'],
 			'}',
 			'return patchMapper(value);',

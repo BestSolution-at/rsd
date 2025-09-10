@@ -1,6 +1,6 @@
 import { beforeAll, beforeEach, describe, expect, test } from 'vitest';
-import { RecordType, RecordTypePatch } from '../../../src/cli/typescript-model-api/record.js';
-import { allResolvedRecordProperties, isMResolvedRecordType, MResolvedRSDModel } from '../../../src/cli/model.js';
+import { ListChangeTypes, RecordType, RecordTypePatch } from '../../../src/cli/typescript-model-api/record.js';
+import { allResolvedRecordProperties, isMResolvedProperty, isMResolvedRecordType, MResolvedRSDModel } from '../../../src/cli/model.js';
 import { createTypescriptClientAPIGeneratorConfig, findListElement, sampleModel } from '../test-utils.js';
 import { TypescriptImportCollector } from '../../../src/cli/typescript-gen-utils.js';
 import { toString } from 'langium/generate';
@@ -179,13 +179,13 @@ export type EnumRecord = {
 
 const EnumInlineRecord_Result = `
 export type EnumInlineRecord = {
-	readonly value: 'A' | 'B';
-	readonly value_Null: 'C' | 'D' | null;
-	readonly value_Opt?: 'E' | 'F';
-	readonly value_Opt_Null?: 'G' | 'H' | null;
-	readonly list: ('A' | 'B')[];
-	readonly list_Null: ('C' | 'D')[] | null;
-	readonly list_Opt_Null?: ('G' | 'H')[] | null;
+	readonly value: ValueEnum;
+	readonly value_Null: Value_NullEnum | null;
+	readonly value_Opt?: Value_OptEnum;
+	readonly value_Opt_Null?: Value_Opt_NullEnum | null;
+	readonly list: ListEnum[];
+	readonly list_Null: List_NullEnum[] | null;
+	readonly list_Opt_Null?: List_Opt_NullEnum[] | null;
 };
 `.trim();
 
@@ -334,6 +334,92 @@ export type PatchableRecord_Basic_Optional_NullPatch = {
 };
 `.trim();
 
+const PatchableRecord_Basic_List_Result = `
+export type PatchableRecord_Basic_ListPatch = {
+	readonly valueBoolean?: $ValueBooleanPatch;
+	readonly valueShort?: $ValueShortPatch;
+	readonly valueInt?: $ValueIntPatch;
+	readonly valueLong?: $ValueLongPatch;
+	readonly valueFloat?: $ValueFloatPatch;
+	readonly valueDouble?: $ValueDoublePatch;
+	readonly valueString?: $ValueStringPatch;
+	readonly valueLocalDate?: $ValueLocalDatePatch;
+	readonly valueLocalDateTime?: $ValueLocalDateTimePatch;
+	readonly valueZonedDateTime?: $ValueZonedDateTimePatch;
+};
+`.trim();
+
+const PatchableRecord_Basic_List_Optional_Result = `
+export type PatchableRecord_Basic_List_OptionalPatch = {
+	readonly valueBoolean?: $ValueBooleanPatch | null;
+	readonly valueShort?: $ValueShortPatch | null;
+	readonly valueInt?: $ValueIntPatch | null;
+	readonly valueLong?: $ValueLongPatch | null;
+	readonly valueFloat?: $ValueFloatPatch | null;
+	readonly valueDouble?: $ValueDoublePatch | null;
+	readonly valueString?: $ValueStringPatch | null;
+	readonly valueLocalDate?: $ValueLocalDatePatch | null;
+	readonly valueLocalDateTime?: $ValueLocalDateTimePatch | null;
+	readonly valueZonedDateTime?: $ValueZonedDateTimePatch | null;
+};
+`.trim();
+
+const PatchableRecord_Basic_List_Null_Result = `
+export type PatchableRecord_Basic_List_NullPatch = {
+	readonly valueBoolean?: $ValueBooleanPatch | null;
+	readonly valueShort?: $ValueShortPatch | null;
+	readonly valueInt?: $ValueIntPatch | null;
+	readonly valueLong?: $ValueLongPatch | null;
+	readonly valueFloat?: $ValueFloatPatch | null;
+	readonly valueDouble?: $ValueDoublePatch | null;
+	readonly valueString?: $ValueStringPatch | null;
+	readonly valueLocalDate?: $ValueLocalDatePatch | null;
+	readonly valueLocalDateTime?: $ValueLocalDateTimePatch | null;
+	readonly valueZonedDateTime?: $ValueZonedDateTimePatch | null;
+};
+`.trim();
+
+const PatchableEnumRecord_Result = `
+export type PatchableEnumRecordPatch = {
+	readonly value?: SampleEnum;
+	readonly value_Null?: SampleEnum | null;
+	readonly value_Opt?: SampleEnum | null;
+	readonly value_Opt_Null?: SampleEnum | null;
+	readonly list?: $ListPatch;
+	readonly list_Null?: $List_NullPatch | null;
+	readonly list_Opt?: $List_OptPatch | null;
+	readonly list_Opt_Null?: $List_Opt_NullPatch | null;
+};
+`.trim();
+
+const PatchableEnumInlineRecord_Result = `
+export type PatchableEnumInlineRecordPatch = {
+	readonly value?: ValueEnum;
+	readonly value_Null?: Value_NullEnum | null;
+	readonly value_Opt?: Value_OptEnum | null;
+	readonly value_Opt_Null?: Value_Opt_NullEnum | null;
+	readonly list?: $ListPatch;
+	readonly list_Null?: $List_NullPatch | null;
+	readonly list_Opt_Null?: $List_Opt_NullPatch | null;
+};
+`.trim();
+
+const PatchableScalarRecordPatch_Result = `
+export type PatchableScalarRecordPatch = {
+	readonly value?: string;
+	readonly value_Null?: string | null;
+	readonly value_Opt?: string | null;
+	readonly value_Opt_Null?: string | null;
+	readonly list?: $ListPatch;
+	readonly list_Null?: $List_NullPatch | null;
+	readonly list_Opt?: $List_OptPatch | null;
+	readonly list_Opt_Null?: $List_Opt_NullPatch | null;
+};
+`.trim();
+
+const PatchableRecordOfRecordsPatch_Result = `‚
+`.trim();
+
 const RECORD_TYPE_PATCH_TESTS: RecordTypeTest[] = [
 	{
 		name: 'PatchableRecord',
@@ -355,6 +441,30 @@ const RECORD_TYPE_PATCH_TESTS: RecordTypeTest[] = [
 		name: 'PatchableRecord_Basic_Optional_Null',
 		result: PatchableRecord_Basic_Optional_Null_Result,
 	},
+	{
+		name: 'PatchableRecord_Basic_List',
+		result: PatchableRecord_Basic_List_Result,
+	},
+	{
+		name: 'PatchableRecord_Basic_List_Optional',
+		result: PatchableRecord_Basic_List_Optional_Result,
+	},
+	{
+		name: 'PatchableRecord_Basic_List_Null',
+		result: PatchableRecord_Basic_List_Null_Result,
+	},
+	{
+		name: 'PatchableEnumRecord',
+		result: PatchableEnumRecord_Result,
+	},
+	{
+		name: 'PatchableEnumInlineRecord',
+		result: PatchableEnumInlineRecord_Result,
+	},
+	{
+		name: 'PatchableScalarRecord',
+		result: PatchableScalarRecordPatch_Result,
+	},
 ];
 
 describe('RecordTypePatch', () => {
@@ -362,6 +472,258 @@ describe('RecordTypePatch', () => {
 		const recordModel = findListElement(model.elements, isMResolvedRecordType, r => r.name === data.name);
 		const allProps = allResolvedRecordProperties(recordModel);
 		const result = toString(RecordTypePatch(recordModel, allProps, fqn), '\t').trim();
+		expect(result).toBe(data.result);
+	});
+});
+
+type PropertyTest = {
+	recordName: string;
+	propertyName: string;
+	result: string;
+};
+
+const PatchableRecord_Basic_List_valueBoolean_Result = `
+type $ValueBooleanReplace = ListReplace<boolean>;
+type $ValueBooleanMerge = ListMergeAddRemove<boolean, boolean>;
+type $ValueBooleanPatch = $ValueBooleanReplace | $ValueBooleanMerge;
+`.trim();
+
+const PatchableRecord_Basic_List_valueShort_Result = `
+type $ValueShortReplace = ListReplace<number>;
+type $ValueShortMerge = ListMergeAddRemove<number, number>;
+type $ValueShortPatch = $ValueShortReplace | $ValueShortMerge;
+`.trim();
+
+const PatchableRecord_Basic_List_valueInt_Result = `
+type $ValueIntReplace = ListReplace<number>;
+type $ValueIntMerge = ListMergeAddRemove<number, number>;
+type $ValueIntPatch = $ValueIntReplace | $ValueIntMerge;
+`.trim();
+
+const PatchableRecord_Basic_List_valueLong_Result = `
+type $ValueLongReplace = ListReplace<number>;
+type $ValueLongMerge = ListMergeAddRemove<number, number>;
+type $ValueLongPatch = $ValueLongReplace | $ValueLongMerge;
+`.trim();
+
+const PatchableRecord_Basic_List_valueFloat_Result = `
+type $ValueFloatReplace = ListReplace<number>;
+type $ValueFloatMerge = ListMergeAddRemove<number, number>;
+type $ValueFloatPatch = $ValueFloatReplace | $ValueFloatMerge;
+`.trim();
+
+const PatchableRecord_Basic_List_valueDouble_Result = `
+type $ValueDoubleReplace = ListReplace<number>;
+type $ValueDoubleMerge = ListMergeAddRemove<number, number>;
+type $ValueDoublePatch = $ValueDoubleReplace | $ValueDoubleMerge;
+`.trim();
+
+const PatchableRecord_Basic_List_valueString_Result = `
+type $ValueStringReplace = ListReplace<string>;
+type $ValueStringMerge = ListMergeAddRemove<string, string>;
+type $ValueStringPatch = $ValueStringReplace | $ValueStringMerge;
+`.trim();
+
+const PatchableRecord_Basic_List_valueLocalDate_Result = `
+type $ValueLocalDateReplace = ListReplace<string>;
+type $ValueLocalDateMerge = ListMergeAddRemove<string, string>;
+type $ValueLocalDatePatch = $ValueLocalDateReplace | $ValueLocalDateMerge;
+`.trim();
+
+const PatchableRecord_Basic_List_valueLocalDateTime_Result = `
+type $ValueLocalDateTimeReplace = ListReplace<string>;
+type $ValueLocalDateTimeMerge = ListMergeAddRemove<string, string>;
+type $ValueLocalDateTimePatch = $ValueLocalDateTimeReplace | $ValueLocalDateTimeMerge;
+`.trim();
+
+const PatchableRecord_Basic_List_valueZonedDateTime_Result = `
+type $ValueZonedDateTimeReplace = ListReplace<string>;
+type $ValueZonedDateTimeMerge = ListMergeAddRemove<string, string>;
+type $ValueZonedDateTimePatch = $ValueZonedDateTimeReplace | $ValueZonedDateTimeMerge;
+`.trim();
+
+const PatchableEnumRecord_list_Result = `
+type $ListReplace = ListReplace<SampleEnum>;
+type $ListMerge = ListMergeAddRemove<SampleEnum, SampleEnum>;
+type $ListPatch = $ListReplace | $ListMerge;
+`.trim();
+
+const PatchableEnumRecord_list_Null_Result = `
+type $List_NullReplace = ListReplace<SampleEnum>;
+type $List_NullMerge = ListMergeAddRemove<SampleEnum, SampleEnum>;
+type $List_NullPatch = $List_NullReplace | $List_NullMerge;
+`.trim();
+
+const PatchableEnumRecord_list_Opt_Result = `
+type $List_OptReplace = ListReplace<SampleEnum>;
+type $List_OptMerge = ListMergeAddRemove<SampleEnum, SampleEnum>;
+type $List_OptPatch = $List_OptReplace | $List_OptMerge;
+`.trim();
+
+const PatchableEnumRecord_list_Opt_Null_Result = `
+type $List_Opt_NullReplace = ListReplace<SampleEnum>;
+type $List_Opt_NullMerge = ListMergeAddRemove<SampleEnum, SampleEnum>;
+type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
+`.trim();
+
+const PatchableEnumInlineRecord_list_Result = `
+type $ListReplace = ListReplace<ListEnum>;
+type $ListMerge = ListMergeAddRemove<ListEnum, ListEnum>;
+type $ListPatch = $ListReplace | $ListMerge;
+`.trim();
+
+const PatchableEnumInlineRecord_list_Null_Result = `
+type $List_NullReplace = ListReplace<List_NullEnum>;
+type $List_NullMerge = ListMergeAddRemove<List_NullEnum, List_NullEnum>;
+type $List_NullPatch = $List_NullReplace | $List_NullMerge;
+`.trim();
+
+const PatchableEnumInlineRecord_list_Opt_Null_Result = `
+type $List_Opt_NullReplace = ListReplace<List_Opt_NullEnum>;
+type $List_Opt_NullMerge = ListMergeAddRemove<List_Opt_NullEnum, List_Opt_NullEnum>;
+type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
+`.trim();
+
+const PatchableScalarRecord_list_Result = `
+type $ListReplace = ListReplace<string>;
+type $ListMerge = ListMergeAddRemove<string, string>;
+type $ListPatch = $ListReplace | $ListMerge;
+`.trim();
+
+const PatchableScalarRecord_list_Null_Result = `
+type $List_NullReplace = ListReplace<string>;
+type $List_NullMerge = ListMergeAddRemove<string, string>;
+type $List_NullPatch = $List_NullReplace | $List_NullMerge;
+`.trim();
+
+const PatchableScalarRecord_list_Opt_Result = `
+type $List_OptReplace = ListReplace<string>;
+type $List_OptMerge = ListMergeAddRemove<string, string>;
+type $List_OptPatch = $List_OptReplace | $List_OptMerge;
+`.trim();
+
+const PatchableScalarRecord_list_Opt_Null_Result = `
+type $List_Opt_NullReplace = ListReplace<string>;
+type $List_Opt_NullMerge = ListMergeAddRemove<string, string>;
+type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
+`.trim();
+
+const LIST_CHANGE_TYPES_TESTS: PropertyTest[] = [
+	{
+		recordName: 'PatchableRecord_Basic_List',
+		propertyName: 'valueBoolean',
+		result: PatchableRecord_Basic_List_valueBoolean_Result,
+	},
+	{
+		recordName: 'PatchableRecord_Basic_List',
+		propertyName: 'valueShort',
+		result: PatchableRecord_Basic_List_valueShort_Result,
+	},
+	{
+		recordName: 'PatchableRecord_Basic_List',
+		propertyName: 'valueInt',
+		result: PatchableRecord_Basic_List_valueInt_Result,
+	},
+	{
+		recordName: 'PatchableRecord_Basic_List',
+		propertyName: 'valueLong',
+		result: PatchableRecord_Basic_List_valueLong_Result,
+	},
+	{
+		recordName: 'PatchableRecord_Basic_List',
+		propertyName: 'valueFloat',
+		result: PatchableRecord_Basic_List_valueFloat_Result,
+	},
+	{
+		recordName: 'PatchableRecord_Basic_List',
+		propertyName: 'valueDouble',
+		result: PatchableRecord_Basic_List_valueDouble_Result,
+	},
+	{
+		recordName: 'PatchableRecord_Basic_List',
+		propertyName: 'valueString',
+		result: PatchableRecord_Basic_List_valueString_Result,
+	},
+	{
+		recordName: 'PatchableRecord_Basic_List',
+		propertyName: 'valueLocalDate',
+		result: PatchableRecord_Basic_List_valueLocalDate_Result,
+	},
+	{
+		recordName: 'PatchableRecord_Basic_List',
+		propertyName: 'valueLocalDateTime',
+		result: PatchableRecord_Basic_List_valueLocalDateTime_Result,
+	},
+	{
+		recordName: 'PatchableRecord_Basic_List',
+		propertyName: 'valueZonedDateTime',
+		result: PatchableRecord_Basic_List_valueZonedDateTime_Result,
+	},
+	{
+		recordName: 'PatchableEnumRecord',
+		propertyName: 'list',
+		result: PatchableEnumRecord_list_Result,
+	},
+	{
+		recordName: 'PatchableEnumRecord',
+		propertyName: 'list_Null',
+		result: PatchableEnumRecord_list_Null_Result,
+	},
+	{
+		recordName: 'PatchableEnumRecord',
+		propertyName: 'list_Opt',
+		result: PatchableEnumRecord_list_Opt_Result,
+	},
+	{
+		recordName: 'PatchableEnumRecord',
+		propertyName: 'list_Opt_Null',
+		result: PatchableEnumRecord_list_Opt_Null_Result,
+	},
+	{
+		recordName: 'PatchableEnumInlineRecord',
+		propertyName: 'list',
+		result: PatchableEnumInlineRecord_list_Result,
+	},
+	{
+		recordName: 'PatchableEnumInlineRecord',
+		propertyName: 'list_Null',
+		result: PatchableEnumInlineRecord_list_Null_Result,
+	},
+	{
+		recordName: 'PatchableEnumInlineRecord',
+		propertyName: 'list_Opt_Null',
+		result: PatchableEnumInlineRecord_list_Opt_Null_Result,
+	},
+	{
+		recordName: 'PatchableScalarRecord',
+		propertyName: 'list',
+		result: PatchableScalarRecord_list_Result,
+	},
+	{
+		recordName: 'PatchableScalarRecord',
+		propertyName: 'list_Null',
+		result: PatchableScalarRecord_list_Null_Result,
+	},
+	{
+		recordName: 'PatchableScalarRecord',
+		propertyName: 'list_Opt',
+		result: PatchableScalarRecord_list_Opt_Result,
+	},
+	{
+		recordName: 'PatchableScalarRecord',
+		propertyName: 'list_Opt_Null',
+		result: PatchableScalarRecord_list_Opt_Null_Result,
+	},
+];
+
+describe('ListChangeTypes', () => {
+	test.each(LIST_CHANGE_TYPES_TESTS)('$recordName - $propertyName', data => {
+		const recordModel = findListElement(model.elements, isMResolvedRecordType, r => r.name === data.recordName);
+		const allProps = allResolvedRecordProperties(recordModel);
+		const prop = findListElement(allProps, isMResolvedProperty, p => p.name === data.propertyName);
+		const collector = new TypescriptImportCollector(createTypescriptClientAPIGeneratorConfig());
+		const fqn = collector.importType.bind(collector);
+		const result = toString(ListChangeTypes(prop, fqn), '\t').trim();
 		expect(result).toBe(data.result);
 	});
 });

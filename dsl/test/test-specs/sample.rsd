@@ -223,6 +223,94 @@ patchable record PatchableRecord_Basic_Optional_Null {
 		valueZonedDateTime?: zoned-date-time?
 }
 
+patchable record PatchableRecord_Basic_List {
+	valueBoolean: boolean[]
+	valueShort: short[]
+	valueInt: int[]
+	valueLong: long[]
+	valueFloat: float[]
+	valueDouble: double[]
+	valueString: string[]
+	valueLocalDate: local-date[]
+	valueLocalDateTime: local-date-time[]
+	valueZonedDateTime: zoned-date-time[]
+}
+
+patchable record PatchableRecord_Basic_List_Optional {
+	valueBoolean?: boolean[]
+	valueShort?: short[]
+	valueInt?: int[]
+	valueLong?: long[]
+	valueFloat?: float[]
+	valueDouble?: double[]
+	valueString?: string[]
+	valueLocalDate?: local-date[]
+	valueLocalDateTime?: local-date-time[]
+	valueZonedDateTime?: zoned-date-time[]
+}
+
+patchable record PatchableRecord_Basic_List_Null {
+	valueBoolean: boolean[]?
+	valueShort: short[]?
+	valueInt: int[]?
+	valueLong: long[]?
+	valueFloat: float[]?
+	valueDouble: double[]?
+	valueString: string[]?
+	valueLocalDate: local-date[]?
+	valueLocalDateTime: local-date-time[]?
+	valueZonedDateTime: zoned-date-time[]?
+}
+
+patchable record PatchableEnumRecord {
+	value: SampleEnum
+	value_Null: SampleEnum?
+	value_Opt?: SampleEnum
+	value_Opt_Null?: SampleEnum?
+	
+	list: SampleEnum[]
+	list_Null: SampleEnum[]?
+	list_Opt?: SampleEnum[]
+	list_Opt_Null?: SampleEnum[]?
+}
+
+patchable record PatchableEnumInlineRecord {
+	value: enum A | B
+	value_Null: enum C | D?
+	value_Opt?: enum E | F
+	value_Opt_Null?: enum G | H ?
+
+	list: enum A | B []
+	list_Null: enum C | D []?
+	// Need to fix Grammer list_Opt?: enum E | F [],
+	list_Opt_Null?: enum G | H []?
+}
+
+patchable record PatchableScalarRecord {
+	value: ZoneId
+	value_Null: ZoneId?
+	value_Opt?: ZoneId
+	value_Opt_Null?: ZoneId?
+	
+	list: ZoneId[]
+	list_Null: ZoneId[]?
+	list_Opt?: ZoneId[]
+	list_Opt_Null?: ZoneId[]?
+}
+
+patchable record PatchableRecordOfRecords {
+	value: PatchableRecord_Basic
+	value_Null: PatchableRecord_Basic?
+	value_Opt?: PatchableRecord_Basic
+	value_Opt_Null?: PatchableRecord_Basic?
+
+	list: PatchableRecord_Basic[]
+	list_Null: PatchableRecord_Basic[]?
+	list_Opt?: PatchableRecord_Basic[]
+	list_Opt_Null?: PatchableRecord_Basic[]?
+}
+
+
 mixin SimpleMixin {
 	mValueString: string
 }

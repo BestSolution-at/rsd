@@ -1,20 +1,41 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
 import { allResolvedRecordProperties, isMBuiltinType, isMInlineEnumType, isMKeyProperty, isMResolvedProperty, isMRevisionProperty, MBaseProperty, MBuiltinType, MInlineEnumType, MResolvedBaseProperty, MResolvedPropery, MResolvedRecordType } from '../model.js';
-import { toFirstUpper } from '../util.js';
+import { toFirstUpper, toNode } from '../util.js';
 import { builtinToJSType } from '../typescript-gen-utils.js';
 
 export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, typeOnly: boolean) => string) {
 	const allProps = allResolvedRecordProperties(t);
 	const node = new CompositeGeneratorNode();
+	node.append(
+		...allProps
+			.filter(isMResolvedProperty)
+			.filter(p => p.variant === 'inline-enum')
+			.map(p => InlineEnumType(p.name, p.type as MInlineEnumType))
+	);
+	allProps.filter(p => isMInlineEnumType(p.type)).forEach(p => node.append(generateInlineTypeguard(t, p, p.type as MInlineEnumType)));
+	node.appendNewLineIf(!node.isEmpty());
 	node.append(RecordType(t, allProps, fqn), NL);
 	node.append(generateTypeguard(t, allProps, fqn), NL);
 	node.append(generateFromJSON(t, allProps, fqn), NL);
 	node.append(generateToJSON(t, allProps, fqn), NL);
 
-	allProps.filter(p => isMInlineEnumType(p.type)).forEach(p => node.append(generateInlineTypeguard(t, p, p.type as MInlineEnumType)));
-
 	if (t.patchable) {
-		node.appendNewLine();
+		allProps
+			.filter(isMResolvedProperty)
+			.filter(p => p.array)
+			.forEach(p => {
+				node.append(ListChangeTypes(p, fqn), NL);
+			});
+
+		const valueChange = new CompositeGeneratorNode();
+		allProps
+			.filter(isMResolvedProperty)
+			.filter(p => !p.array)
+			.filter(p => p.variant === 'record' || p.variant === 'union')
+			.forEach(p => valueChange.append(ValueChangeTypes(p, fqn)));
+		valueChange.appendNewLineIf(!valueChange.isEmpty());
+		node.append(valueChange);
+
 		node.append(RecordTypePatch(t, allProps, fqn), NL);
 		node.append(generatePatchTypeguard(t, allProps, fqn), NL);
 		node.append(generatePatchFromJSON(t, allProps, fqn), NL);
@@ -24,9 +45,16 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 	return node;
 }
 
+function InlineEnumType(propName: string, type: MInlineEnumType) {
+	return toNode([
+		//
+		`type ${toFirstUpper(propName)}Enum = ${type.entries.map(e => `'${e.name}'`).join(' | ')};`,
+	]);
+}
+
 function generateInlineTypeguard(t: MResolvedRecordType, prop: MBaseProperty, type: MInlineEnumType) {
 	const node = new CompositeGeneratorNode();
-	node.append(NL, `export function is${t.name}_${toFirstUpper(prop.name)}(value: unknown) {`, NL);
+	node.append(NL, `export function is${t.name}_${toFirstUpper(prop.name)}(value: unknown): value is ${toFirstUpper(prop.name)}Enum {`, NL);
 	node.indent(mBody => {
 		mBody.append('return ');
 		mBody.append(
@@ -270,6 +298,57 @@ export function RecordTypePatch(t: MResolvedRecordType, props: MResolvedBaseProp
 	return node;
 }
 
+export function ValueChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOnly: boolean) => string) {
+	const type = fqn(`${prop.type}:./${prop.type}.ts`, true);
+	const patchType = fqn(`${prop.type}Patch:./${prop.type}.ts`, true);
+
+	if (prop.variant === 'union') {
+		return toNode([
+			//
+			`type $${toFirstUpper(prop.name)}Patch = ${type} | ${patchType};`,
+		]);
+	}
+
+	return toNode([
+		//
+		`type $${toFirstUpper(prop.name)}Patch = (${type} & { '@type': 'replace' }) | (${patchType} & { '@type': 'merge' });`,
+	]);
+}
+
+export function ListChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOnly: boolean) => string) {
+	let type: string = 'string';
+	if (isMBuiltinType(prop.type)) {
+		type = builtinToJSType(prop.type);
+	} else if (prop.variant === 'scalar') {
+		type = 'string';
+	} else if (isMInlineEnumType(prop.type)) {
+		type = toFirstUpper(prop.name) + 'Enum';
+	} else if (prop.variant === 'enum' || prop.variant === 'record' || prop.variant === 'union') {
+		type = fqn(`${prop.type}:./${prop.type}.ts`, true);
+	} else {
+		type = 'any';
+	}
+
+	const ListReplace = fqn('ListReplace:../_type-utils.ts', true);
+	if (prop.variant === 'record' || prop.variant === 'union') {
+		const patchType = (type = fqn(`${prop.type}Patch:./${prop.type}.ts`, true));
+		const ListMergeAddUpdateRemove = fqn('ListMergeAddUpdateRemove:../_type-utils.ts', true);
+		return toNode([
+			//
+			`type $${toFirstUpper(prop.name)}Replace = ${ListReplace}<${type}>;`,
+			`type $${toFirstUpper(prop.name)}Merge = ${ListMergeAddUpdateRemove}<${type}, ${patchType},string>;`,
+			`type $${toFirstUpper(prop.name)}Patch = $${toFirstUpper(prop.name)}Replace | $${toFirstUpper(prop.name)}Merge;`,
+		]);
+	}
+	const ListMergeAddRemove = fqn('ListMergeAddRemove:../_type-utils.ts', true);
+	return toNode([
+		//
+		`type $${toFirstUpper(prop.name)}Replace = ${ListReplace}<${type}>;`,
+		`type $${toFirstUpper(prop.name)}Merge = ${ListMergeAddRemove}<${type}, ${type}>;`,
+		`type $${toFirstUpper(prop.name)}Patch = $${toFirstUpper(prop.name)}Replace | $${toFirstUpper(prop.name)}Merge;`,
+	]);
+}
+
 function generatePatchTypeguard(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export function is${t.name}Patch(value: unknown): value is ${t.name}Patch {`, NL);
@@ -481,10 +560,7 @@ function generateProperty(prop: MResolvedBaseProperty, fqn: (t: string, typeOnly
 		} else if (prop.variant === 'scalar') {
 			type = 'string';
 		} else if (isMInlineEnumType(prop.type)) {
-			type = prop.type.entries.map(e => `'${e.name}'`).join(' | ');
-			if (prop.array) {
-				type = `(${type})`;
-			}
+			type = toFirstUpper(prop.name) + 'Enum';
 		} else if (prop.variant === 'enum' || prop.variant === 'record' || prop.variant === 'union') {
 			type = fqn(`${prop.type}:./${prop.type}.ts`, true);
 		} else {
@@ -505,14 +581,15 @@ function generateProperty(prop: MResolvedBaseProperty, fqn: (t: string, typeOnly
 }
 
 function generatePatchProperty(prop: MResolvedPropery, fqn: (t: string, typeOnly: boolean) => string) {
-	const node = new CompositeGeneratorNode();
 	let type: string = 'string';
-	if (isMBuiltinType(prop.type)) {
+	if (prop.array) {
+		type = `$${toFirstUpper(prop.name)}Patch`;
+	} else if (isMBuiltinType(prop.type)) {
 		type = builtinToJSType(prop.type);
 	} else if (prop.variant === 'scalar') {
 		type = 'string';
 	} else if (isMInlineEnumType(prop.type)) {
-		type = prop.type.entries.map(e => `'${e.name}'`).join(' | ');
+		type = toFirstUpper(prop.name) + 'Enum';
 	} else if (prop.variant === 'enum') {
 		type = fqn(`${prop.type}:./${prop.type}.ts`, true);
 	} else if (prop.variant === 'record' || prop.variant === 'union') {
@@ -525,8 +602,13 @@ function generatePatchProperty(prop: MResolvedPropery, fqn: (t: string, typeOnly
 		type = `${type} | null`;
 	}
 
-	node.append(`readonly ${prop.name}?: ${type}${prop.array ? '[]' : ''};`);
-	return node;
+	return toNode(
+		[
+			//
+			`readonly ${prop.name}?: ${type};`,
+		],
+		false
+	);
 }
 
 function builtinTypeGuard(type: MBuiltinType, fqn: (v: string, typeOnly: boolean) => string) {

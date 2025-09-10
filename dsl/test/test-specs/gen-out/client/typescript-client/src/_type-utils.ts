@@ -198,105 +198,105 @@ function checkListProp<T, K extends string>(value: Record<string, unknown>, prop
 	);
 }
 
-export type ListSetElementsChange<T> = {
-	'@type': 'set-change';
+export type ListReplace<T> = {
+	'@type': 'replace';
 	readonly elements: readonly T[];
 };
 
-export type ListAddRemoveChange<A, R> = {
-	'@type': 'patch-change';
+export type ListMergeAddRemove<A, R> = {
+	'@type': 'merge';
 	readonly additions: readonly A[];
 	readonly removals: readonly R[];
 };
 
-export type ListAddUpdateRemoveChange<A, U, R> = {
-	'@type': 'patch-change';
+export type ListMergeAddUpdateRemove<A, U, R> = {
+	'@type': 'merge';
 	readonly additions: readonly A[];
 	readonly updates: readonly U[];
 	readonly removals: readonly R[];
 };
 
-export function isListSetElementsChange<T>(value: unknown, typeCheck: (value: unknown) => value is T): value is ListSetElementsChange<T> {
+export function isListReplace<T>(value: unknown, typeCheck: (value: unknown) => value is T): value is ListReplace<T> {
 	return (
 		isRecord(value) && //
-		checkProp(value, '@type', isString, v => v === 'set-change') &&
+		checkProp(value, '@type', isString, v => v === 'replace') &&
 		checkListProp(value, 'elements', typeCheck)
 	);
 }
 
-export function isListAddRemoveChange<A, R>(value: unknown, addTypeCheck: (value: unknown) => value is A, removeTypeCheck: (value: unknown) => value is R): value is ListAddRemoveChange<A, R> {
+export function isListMergeAddRemove<A, R>(value: unknown, addTypeCheck: (value: unknown) => value is A, removeTypeCheck: (value: unknown) => value is R): value is ListMergeAddRemove<A, R> {
 	return (
 		isRecord(value) && //
-		checkProp(value, '@type', isString, v => v === 'patch-change') &&
+		checkProp(value, '@type', isString, v => v === 'merge') &&
 		checkListProp(value, 'additions', addTypeCheck) &&
 		checkListProp(value, 'removals', removeTypeCheck)
 	);
 }
 
-export function isListAddUpdateRemoveChange<A, U, R>(value: unknown, addTypeCheck: (value: unknown) => value is A, updateTypeCheck: (value: unknown) => value is U, removeTypeCheck: (value: unknown) => value is R): value is ListAddUpdateRemoveChange<A, U, R> {
+export function isListMergeAddUpdateRemove<A, U, R>(value: unknown, addTypeCheck: (value: unknown) => value is A, updateTypeCheck: (value: unknown) => value is U, removeTypeCheck: (value: unknown) => value is R): value is ListMergeAddUpdateRemove<A, U, R> {
 	return (
 		isRecord(value) && //
-		checkProp(value, '@type', isString, v => v === 'patch-change') &&
+		checkProp(value, '@type', isString, v => v === 'merge') &&
 		checkListProp(value, 'additions', addTypeCheck) &&
 		checkListProp(value, 'updates', updateTypeCheck) &&
 		checkListProp(value, 'removals', removeTypeCheck)
 	);
 }
 
-export function ListSetElementsChangeFromJSON<T, U>(value: Record<string, unknown>, typeGuard: (v: unknown) => v is U, map: (v: U) => T): ListSetElementsChange<T> {
+export function ListReplaceFromJSON<T, U>(value: Record<string, unknown>, typeGuard: (v: unknown) => v is U, map: (v: U) => T): ListReplace<T> {
 	const elements = propMappedListValue('elements', value, typeGuard, map);
 	return {
-		'@type': 'set-change',
+		'@type': 'replace',
 		elements,
 	};
 }
 
-export function ListSetElementsChangeToJSON<T>(value: ListSetElementsChange<T>, map: (value: T) => JsonValue) {
+export function ListReplaceToJSON<T>(value: ListReplace<T>, map: (value: T) => JsonValue) {
 	const elements = value.elements.map(map);
 	return {
-		'@type': 'set-change',
+		'@type': 'replace',
 		elements,
 	};
 }
 
-export function ListAddRemoveChangeFromJSON<A, X, R, Y>(value: Record<string, unknown>, addTypeGuard: (v: unknown) => v is X, addMap: (v: X) => A, removeTypeGuard: (v: unknown) => v is Y, removeMap: (v: Y) => R): ListAddRemoveChange<A, R> {
+export function ListMergeAddRemoveFromJSON<A, X, R, Y>(value: Record<string, unknown>, addTypeGuard: (v: unknown) => v is X, addMap: (v: X) => A, removeTypeGuard: (v: unknown) => v is Y, removeMap: (v: Y) => R): ListMergeAddRemove<A, R> {
 	const additions = propMappedListValue('additions', value, addTypeGuard, addMap);
 	const removals = propMappedListValue('removals', value, removeTypeGuard, removeMap);
 	return {
-		'@type': 'patch-change',
+		'@type': 'merge',
 		additions,
 		removals,
 	};
 }
 
-export function ListAddRemoveChangeToJSON<A, R>(value: ListAddRemoveChange<A, R>, addMap: (value: A) => unknown, removeMap: (value: R) => unknown) {
+export function ListMergeAddRemoveToJSON<A, R>(value: ListMergeAddRemove<A, R>, addMap: (value: A) => unknown, removeMap: (value: R) => unknown) {
 	const additions = value.additions.map(addMap);
 	const removals = value.removals.map(removeMap);
 	return {
-		'@type': 'patch-change',
+		'@type': 'merge',
 		additions,
 		removals,
 	};
 }
 
-export function ListAddUpdateRemoveChangeFromJSON<A, X, U, Y, R, Z>(value: Record<string, unknown>, addTypeGuard: (v: unknown) => v is X, addMap: (v: X) => A, updateTypeGuard: (v: unknown) => v is Y, updateMap: (v: Y) => U, removeTypeGuard: (v: unknown) => v is Z, removeMap: (v: Z) => R): ListAddUpdateRemoveChange<A, U, R> {
+export function ListMergeAddUpdateRemoveFromJSON<A, X, U, Y, R, Z>(value: Record<string, unknown>, addTypeGuard: (v: unknown) => v is X, addMap: (v: X) => A, updateTypeGuard: (v: unknown) => v is Y, updateMap: (v: Y) => U, removeTypeGuard: (v: unknown) => v is Z, removeMap: (v: Z) => R): ListMergeAddUpdateRemove<A, U, R> {
 	const additions = propMappedListValue('additions', value, addTypeGuard, addMap);
 	const updates = propMappedListValue('updates', value, updateTypeGuard, updateMap);
 	const removals = propMappedListValue('removals', value, removeTypeGuard, removeMap);
 	return {
-		'@type': 'patch-change',
+		'@type': 'merge',
 		additions,
 		updates,
 		removals,
 	};
 }
 
-export function ListAddUpdateRemoveChangeToJSON<A, U, R>(value: ListAddUpdateRemoveChange<A, U, R>, addMap: (value: A) => unknown, updateMap: (value: U) => unknown, removeMap: (value: R) => unknown) {
+export function ListMergeAddUpdateRemoveToJSON<A, U, R>(value: ListMergeAddUpdateRemove<A, U, R>, addMap: (value: A) => unknown, updateMap: (value: U) => unknown, removeMap: (value: R) => unknown) {
 	const additions = value.additions.map(addMap);
 	const updates = value.updates.map(updateMap);
 	const removals = value.removals.map(removeMap);
 	return {
-		'@type': 'patch-change',
+		'@type': 'merge',
 		additions,
 		updates,
 		removals,
@@ -304,7 +304,7 @@ export function ListAddUpdateRemoveChangeToJSON<A, U, R>(value: ListAddUpdateRem
 }
 
 export function SetOrPatchChangeFromJSON<S, P>(value: Record<string, unknown>, setMapper: (value: Record<string, unknown>) => S, patchMapper: (value: Record<string, unknown>) => P): S | P {
-	if (value['@type'] === 'set-change') {
+	if (value['@type'] === 'replace') {
 		return setMapper(value);
 	}
 	return patchMapper(value);

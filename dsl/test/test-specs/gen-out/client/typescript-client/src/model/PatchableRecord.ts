@@ -37,7 +37,6 @@ export function PatchableRecordToJSON($value: PatchableRecord): Record<string, u
 	};
 }
 
-
 export type PatchableRecordPatch = {
 	readonly key: string;
 	readonly version: string;

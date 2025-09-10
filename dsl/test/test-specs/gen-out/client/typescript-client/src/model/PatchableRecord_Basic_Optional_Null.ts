@@ -91,7 +91,6 @@ export function PatchableRecord_Basic_Optional_NullToJSON($value: PatchableRecor
 	};
 }
 
-
 export type PatchableRecord_Basic_Optional_NullPatch = {
 	readonly key: string;
 	readonly version: string;
