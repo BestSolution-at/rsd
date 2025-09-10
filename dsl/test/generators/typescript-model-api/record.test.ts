@@ -1,5 +1,5 @@
 import { beforeAll, beforeEach, describe, expect, test } from 'vitest';
-import { ListChangeTypes, RecordType, RecordTypePatch, ValueChangeTypes } from '../../../src/cli/typescript-model-api/record.js';
+import { ListChangeTypes, RecordType, RecordTypeguard, RecordTypePatch, ValueChangeTypes } from '../../../src/cli/typescript-model-api/record.js';
 import { allResolvedRecordProperties, isMResolvedProperty, isMResolvedRecordType, MResolvedRSDModel } from '../../../src/cli/model.js';
 import { createTypescriptClientAPIGeneratorConfig, findListElement, sampleModel } from '../test-utils.js';
 import { TypescriptImportCollector } from '../../../src/cli/typescript-gen-utils.js';
@@ -191,14 +191,14 @@ export type RecordOfRecords = {
 
 const RecordWithUnions_Result = `
 export type RecordWithUnions = {
-	readonly value: SimpleRecord_Basic;
-	readonly value_Null: SimpleRecord_Basic | null;
-	readonly value_Opt?: SimpleRecord_Basic;
-	readonly value_Opt_Null?: SimpleRecord_Basic | null;
-	readonly list: SimpleRecord_Basic[];
-	readonly list_Null: SimpleRecord_Basic[] | null;
-	readonly list_Opt?: SimpleRecord_Basic[];
-	readonly list_Opt_Null?: SimpleRecord_Basic[] | null;
+	readonly value: Union;
+	readonly value_Null: Union | null;
+	readonly value_Opt?: Union;
+	readonly value_Opt_Null?: Union | null;
+	readonly list: Union[];
+	readonly list_Null: Union[] | null;
+	readonly list_Opt?: Union[];
+	readonly list_Opt_Null?: Union[] | null;
 };
 `.trim();
 
@@ -210,12 +210,12 @@ export type MixinRecord = {
 };
 `.trim();
 
-type RecordTypeTest = {
+type RecordTest = {
 	name: string;
 	result: string;
 };
 
-const RECORD_TYPE_TESTS: RecordTypeTest[] = [
+const RECORD_TYPE_TESTS: RecordTest[] = [
 	{
 		name: 'SimpleRecord_KeyVersion',
 		result: SimpleRecord_KeyVersion_Result,
@@ -472,7 +472,7 @@ export type PatchableRecordWithUnionPatch = {
 };
 `.trim();
 
-const RECORD_TYPE_PATCH_TESTS: RecordTypeTest[] = [
+const RECORD_TYPE_PATCH_TESTS: RecordTest[] = [
 	{
 		name: 'PatchableRecord',
 		result: PatchableRecord_Result,
@@ -898,7 +898,7 @@ type $Value_OptPatch = PatchableUnion | PatchableUnionPatch;`.trim();
 const PatchableRecordWithUnionPatch_value_Opt_Null = `
 type $Value_Opt_NullPatch = PatchableUnion | PatchableUnionPatch;`.trim();
 
-const SINGLE_CHANGE_TYPES = [
+const SINGLE_CHANGE_TYPES: PropertyTest[] = [
 	{
 		recordName: 'PatchableRecordOfRecords',
 		propertyName: 'value',
@@ -949,6 +949,247 @@ describe('ValueChangeTypes', () => {
 		const collector = new TypescriptImportCollector(createTypescriptClientAPIGeneratorConfig());
 		const fqn = collector.importType.bind(collector);
 		const result = toString(ValueChangeTypes(prop, fqn), '\t').trim();
+		expect(result).toBe(data.result);
+	});
+});
+
+const SimpleRecord_Basic_Typeguard_Result = `
+export function isSimpleRecord_Basic(value: unknown): value is SimpleRecord_Basic {
+	return isRecord(value) &&
+		checkProp(value, 'valueBoolean', isBoolean) &&
+		checkProp(value, 'valueShort', isNumber) &&
+		checkProp(value, 'valueInt', isNumber) &&
+		checkProp(value, 'valueLong', isNumber) &&
+		checkProp(value, 'valueFloat', isNumber) &&
+		checkProp(value, 'valueDouble', isNumber) &&
+		checkProp(value, 'valueString', isString) &&
+		checkProp(value, 'valueLocalDate', isString) &&
+		checkProp(value, 'valueLocalDateTime', isString) &&
+		checkProp(value, 'valueZonedDateTime', isString);
+}
+`.trim();
+
+const SimpleRecord_Basic_Optional_Typeguard_Result = `
+export function isSimpleRecord_Basic_Optional(value: unknown): value is SimpleRecord_Basic_Optional {
+	return isRecord(value) &&
+		checkOptProp(value, 'valueBoolean', isBoolean) &&
+		checkOptProp(value, 'valueShort', isNumber) &&
+		checkOptProp(value, 'valueInt', isNumber) &&
+		checkOptProp(value, 'valueLong', isNumber) &&
+		checkOptProp(value, 'valueFloat', isNumber) &&
+		checkOptProp(value, 'valueDouble', isNumber) &&
+		checkOptProp(value, 'valueString', isString) &&
+		checkOptProp(value, 'valueLocalDate', isString) &&
+		checkOptProp(value, 'valueLocalDateTime', isString) &&
+		checkOptProp(value, 'valueZonedDateTime', isString);
+}
+`.trim();
+
+const SimpleRecord_Basic_Null_Typeguard_Result = `
+export function isSimpleRecord_Basic_Null(value: unknown): value is SimpleRecord_Basic_Null {
+	return isRecord(value) &&
+		(isNull(value.valueBoolean) || checkProp(value, 'valueBoolean', isBoolean)) &&
+		(isNull(value.valueShort) || checkProp(value, 'valueShort', isNumber)) &&
+		(isNull(value.valueInt) || checkProp(value, 'valueInt', isNumber)) &&
+		(isNull(value.valueLong) || checkProp(value, 'valueLong', isNumber)) &&
+		(isNull(value.valueFloat) || checkProp(value, 'valueFloat', isNumber)) &&
+		(isNull(value.valueDouble) || checkProp(value, 'valueDouble', isNumber)) &&
+		(isNull(value.valueString) || checkProp(value, 'valueString', isString)) &&
+		(isNull(value.valueLocalDate) || checkProp(value, 'valueLocalDate', isString)) &&
+		(isNull(value.valueLocalDateTime) || checkProp(value, 'valueLocalDateTime', isString)) &&
+		(isNull(value.valueZonedDateTime) || checkProp(value, 'valueZonedDateTime', isString));
+}
+`.trim();
+
+const SimpleRecord_Basic_Optional_Null_Typeguard_Result = `
+export function isSimpleRecord_Basic_Optional_Null(value: unknown): value is SimpleRecord_Basic_Optional_Null {
+	return isRecord(value) &&
+		(isNull(value.valueBoolean) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
+		(isNull(value.valueShort) || checkOptProp(value, 'valueShort', isNumber)) &&
+		(isNull(value.valueInt) || checkOptProp(value, 'valueInt', isNumber)) &&
+		(isNull(value.valueLong) || checkOptProp(value, 'valueLong', isNumber)) &&
+		(isNull(value.valueFloat) || checkOptProp(value, 'valueFloat', isNumber)) &&
+		(isNull(value.valueDouble) || checkOptProp(value, 'valueDouble', isNumber)) &&
+		(isNull(value.valueString) || checkOptProp(value, 'valueString', isString)) &&
+		(isNull(value.valueLocalDate) || checkOptProp(value, 'valueLocalDate', isString)) &&
+		(isNull(value.valueLocalDateTime) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
+		(isNull(value.valueZonedDateTime) || checkOptProp(value, 'valueZonedDateTime', isString));
+}
+`.trim();
+
+const SimpleRecord_Basic_List_Typeguard_Result = `
+export function isSimpleRecord_Basic_List(value: unknown): value is SimpleRecord_Basic_List {
+	return isRecord(value) &&
+		checkProp(value, 'valueBoolean', createTypedArrayGuard(isBoolean)) &&
+		checkProp(value, 'valueShort', createTypedArrayGuard(isNumber)) &&
+		checkProp(value, 'valueInt', createTypedArrayGuard(isNumber)) &&
+		checkProp(value, 'valueLong', createTypedArrayGuard(isNumber)) &&
+		checkProp(value, 'valueFloat', createTypedArrayGuard(isNumber)) &&
+		checkProp(value, 'valueDouble', createTypedArrayGuard(isNumber)) &&
+		checkProp(value, 'valueString', createTypedArrayGuard(isString)) &&
+		checkProp(value, 'valueLocalDate', createTypedArrayGuard(isString)) &&
+		checkProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString)) &&
+		checkProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString));
+}
+`.trim();
+
+const SimpleRecord_Basic_List_Optional_Typeguard_Result = `
+export function isSimpleRecord_Basic_List_Optional(value: unknown): value is SimpleRecord_Basic_List_Optional {
+	return isRecord(value) &&
+		checkOptProp(value, 'valueBoolean', createTypedArrayGuard(isBoolean)) &&
+		checkOptProp(value, 'valueShort', createTypedArrayGuard(isNumber)) &&
+		checkOptProp(value, 'valueInt', createTypedArrayGuard(isNumber)) &&
+		checkOptProp(value, 'valueLong', createTypedArrayGuard(isNumber)) &&
+		checkOptProp(value, 'valueFloat', createTypedArrayGuard(isNumber)) &&
+		checkOptProp(value, 'valueDouble', createTypedArrayGuard(isNumber)) &&
+		checkOptProp(value, 'valueString', createTypedArrayGuard(isString)) &&
+		checkOptProp(value, 'valueLocalDate', createTypedArrayGuard(isString)) &&
+		checkOptProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString)) &&
+		checkOptProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString));
+}
+`.trim();
+
+const SimpleRecord_Basic_List_Null_Typeguard_Result = `
+export function isSimpleRecord_Basic_List_Null(value: unknown): value is SimpleRecord_Basic_List_Null {
+	return isRecord(value) &&
+		(isNull(value.valueBoolean) || checkProp(value, 'valueBoolean', createTypedArrayGuard(isBoolean))) &&
+		(isNull(value.valueShort) || checkProp(value, 'valueShort', createTypedArrayGuard(isNumber))) &&
+		(isNull(value.valueInt) || checkProp(value, 'valueInt', createTypedArrayGuard(isNumber))) &&
+		(isNull(value.valueLong) || checkProp(value, 'valueLong', createTypedArrayGuard(isNumber))) &&
+		(isNull(value.valueFloat) || checkProp(value, 'valueFloat', createTypedArrayGuard(isNumber))) &&
+		(isNull(value.valueDouble) || checkProp(value, 'valueDouble', createTypedArrayGuard(isNumber))) &&
+		(isNull(value.valueString) || checkProp(value, 'valueString', createTypedArrayGuard(isString))) &&
+		(isNull(value.valueLocalDate) || checkProp(value, 'valueLocalDate', createTypedArrayGuard(isString))) &&
+		(isNull(value.valueLocalDateTime) || checkProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString))) &&
+		(isNull(value.valueZonedDateTime) || checkProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString)));
+}
+`.trim();
+
+const EnumRecord_Typeguard_Result = `
+export function isEnumRecord(value: unknown): value is EnumRecord {
+	return isRecord(value) &&
+		checkProp(value, 'value', isSampleEnum) &&
+		(isNull(value.value_Null) || checkProp(value, 'value_Null', isSampleEnum)) &&
+		checkOptProp(value, 'value_Opt', isSampleEnum) &&
+		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isSampleEnum)) &&
+		checkProp(value, 'list', createTypedArrayGuard(isSampleEnum)) &&
+		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isSampleEnum))) &&
+		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isSampleEnum)) &&
+		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isSampleEnum)));
+}
+`.trim();
+
+const EnumInlineRecord_Typeguard_Result = `
+export function isEnumInlineRecord(value: unknown): value is EnumInlineRecord {
+	return isRecord(value) &&
+		checkProp(value, 'value', isEnumInlineRecord_Value) &&
+		(isNull(value.value_Null) || checkProp(value, 'value_Null', isEnumInlineRecord_Value_Null)) &&
+		checkOptProp(value, 'value_Opt', isEnumInlineRecord_Value_Opt) &&
+		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isEnumInlineRecord_Value_Opt_Null)) &&
+		checkProp(value, 'list', createTypedArrayGuard(isEnumInlineRecord_List)) &&
+		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isEnumInlineRecord_List_Null))) &&
+		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isEnumInlineRecord_List_Opt_Null)));
+}
+`.trim();
+
+const ScalarRecord_Typeguard_Result = `
+export function isScalarRecord(value: unknown): value is ScalarRecord {
+	return isRecord(value) &&
+		checkProp(value, 'value', isString) &&
+		(isNull(value.value_Null) || checkProp(value, 'value_Null', isString)) &&
+		checkOptProp(value, 'value_Opt', isString) &&
+		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isString)) &&
+		checkProp(value, 'list', createTypedArrayGuard(isString)) &&
+		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isString))) &&
+		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isString)) &&
+		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isString)));
+}
+`.trim();
+
+const RecordOfRecords_Typeguard_Result = `
+export function isRecordOfRecords(value: unknown): value is RecordOfRecords {
+	return isRecord(value) &&
+		checkProp(value, 'value', isSimpleRecord_Basic) &&
+		(isNull(value.value_Null) || checkProp(value, 'value_Null', isSimpleRecord_Basic)) &&
+		checkOptProp(value, 'value_Opt', isSimpleRecord_Basic) &&
+		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isSimpleRecord_Basic)) &&
+		checkProp(value, 'list', createTypedArrayGuard(isSimpleRecord_Basic)) &&
+		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isSimpleRecord_Basic))) &&
+		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isSimpleRecord_Basic)) &&
+		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isSimpleRecord_Basic)));
+}
+`.trim();
+
+const RecordWithUnions_Typeguard_Result = `
+export function isRecordWithUnions(value: unknown): value is RecordWithUnions {
+	return isRecord(value) &&
+		checkProp(value, 'value', isUnion) &&
+		(isNull(value.value_Null) || checkProp(value, 'value_Null', isUnion)) &&
+		checkOptProp(value, 'value_Opt', isUnion) &&
+		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isUnion)) &&
+		checkProp(value, 'list', createTypedArrayGuard(isUnion)) &&
+		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isUnion))) &&
+		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isUnion)) &&
+		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isUnion)));
+}
+`.trim();
+
+const RECORD_TYPEGUARDS: RecordTest[] = [
+	{
+		name: 'SimpleRecord_Basic',
+		result: SimpleRecord_Basic_Typeguard_Result,
+	},
+	{
+		name: 'SimpleRecord_Basic_Optional',
+		result: SimpleRecord_Basic_Optional_Typeguard_Result,
+	},
+	{
+		name: 'SimpleRecord_Basic_Null',
+		result: SimpleRecord_Basic_Null_Typeguard_Result,
+	},
+	{
+		name: 'SimpleRecord_Basic_Optional_Null',
+		result: SimpleRecord_Basic_Optional_Null_Typeguard_Result,
+	},
+	{
+		name: 'SimpleRecord_Basic_List',
+		result: SimpleRecord_Basic_List_Typeguard_Result,
+	},
+	{
+		name: 'SimpleRecord_Basic_List_Optional',
+		result: SimpleRecord_Basic_List_Optional_Typeguard_Result,
+	},
+	{
+		name: 'SimpleRecord_Basic_List_Null',
+		result: SimpleRecord_Basic_List_Null_Typeguard_Result,
+	},
+	{
+		name: 'EnumRecord',
+		result: EnumRecord_Typeguard_Result,
+	},
+	{
+		name: 'EnumInlineRecord',
+		result: EnumInlineRecord_Typeguard_Result,
+	},
+	{
+		name: 'ScalarRecord',
+		result: ScalarRecord_Typeguard_Result,
+	},
+	{
+		name: 'RecordOfRecords',
+		result: RecordOfRecords_Typeguard_Result,
+	},
+	{
+		name: 'RecordWithUnions',
+		result: RecordWithUnions_Typeguard_Result,
+	},
+];
+
+describe('RecordTypeguard', () => {
+	test.each(RECORD_TYPEGUARDS)('$name', data => {
+		const recordModel = findListElement(model.elements, isMResolvedRecordType, r => r.name === data.name);
+		const allProps = allResolvedRecordProperties(recordModel);
+		const result = toString(RecordTypeguard(recordModel, allProps, fqn), '\t').trim();
 		expect(result).toBe(data.result);
 	});
 });

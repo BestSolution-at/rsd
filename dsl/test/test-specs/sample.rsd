@@ -153,15 +153,15 @@ record RecordOfRecords {
 }
 
 record RecordWithUnions {
-	value: SimpleRecord_Basic
-	value_Null: SimpleRecord_Basic?
-	value_Opt?: SimpleRecord_Basic
-	value_Opt_Null?: SimpleRecord_Basic?
+	value: Union
+	value_Null: Union?
+	value_Opt?: Union
+	value_Opt_Null?: Union?
 
-	list: SimpleRecord_Basic[]
-	list_Null: SimpleRecord_Basic[]?
-	list_Opt?: SimpleRecord_Basic[]
-	list_Opt_Null?: SimpleRecord_Basic[]?
+	list: Union[]
+	list_Null: Union[]?
+	list_Opt?: Union[]
+	list_Opt_Null?: Union[]?
 }
 
 record UnionA {

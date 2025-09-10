@@ -15,7 +15,7 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 	allProps.filter(p => isMInlineEnumType(p.type)).forEach(p => node.append(generateInlineTypeguard(t, p, p.type as MInlineEnumType)));
 	node.appendNewLineIf(!node.isEmpty());
 	node.append(RecordType(t, allProps, fqn), NL);
-	node.append(generateTypeguard(t, allProps, fqn), NL);
+	node.append(RecordTypeguard(t, allProps, fqn), NL);
 	node.append(generateFromJSON(t, allProps, fqn), NL);
 	node.append(generateToJSON(t, allProps, fqn), NL);
 
@@ -214,7 +214,7 @@ function generateToJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[], 
 	return node;
 }
 
-function generateTypeguard(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
+export function RecordTypeguard(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export function is${t.name}(value: unknown): value is ${t.name} {`, NL);
 	node.indent(mBody => {

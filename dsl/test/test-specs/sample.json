@@ -1386,8 +1386,8 @@
           "readonly": false,
           "optional": false,
           "nullable": false,
-          "variant": "record",
-          "type": "SimpleRecord_Basic",
+          "variant": "union",
+          "type": "Union",
           "doc": ""
         },
         {
@@ -1397,8 +1397,8 @@
           "readonly": false,
           "optional": false,
           "nullable": true,
-          "variant": "record",
-          "type": "SimpleRecord_Basic",
+          "variant": "union",
+          "type": "Union",
           "doc": ""
         },
         {
@@ -1408,8 +1408,8 @@
           "readonly": false,
           "optional": true,
           "nullable": false,
-          "variant": "record",
-          "type": "SimpleRecord_Basic",
+          "variant": "union",
+          "type": "Union",
           "doc": ""
         },
         {
@@ -1419,8 +1419,8 @@
           "readonly": false,
           "optional": true,
           "nullable": true,
-          "variant": "record",
-          "type": "SimpleRecord_Basic",
+          "variant": "union",
+          "type": "Union",
           "doc": ""
         },
         {
@@ -1430,8 +1430,8 @@
           "readonly": false,
           "optional": false,
           "nullable": false,
-          "variant": "record",
-          "type": "SimpleRecord_Basic",
+          "variant": "union",
+          "type": "Union",
           "doc": ""
         },
         {
@@ -1441,8 +1441,8 @@
           "readonly": false,
           "optional": false,
           "nullable": true,
-          "variant": "record",
-          "type": "SimpleRecord_Basic",
+          "variant": "union",
+          "type": "Union",
           "doc": ""
         },
         {
@@ -1452,8 +1452,8 @@
           "readonly": false,
           "optional": true,
           "nullable": false,
-          "variant": "record",
-          "type": "SimpleRecord_Basic",
+          "variant": "union",
+          "type": "Union",
           "doc": ""
         },
         {
@@ -1463,8 +1463,8 @@
           "readonly": false,
           "optional": true,
           "nullable": true,
-          "variant": "record",
-          "type": "SimpleRecord_Basic",
+          "variant": "union",
+          "type": "Union",
           "doc": ""
         }
       ],
