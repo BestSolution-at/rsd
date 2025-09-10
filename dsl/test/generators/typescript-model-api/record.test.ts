@@ -151,19 +151,6 @@ export type ScalarRecord = {
 };
 `.trim();
 
-const RecordOfRecords_Result = `
-export type RecordOfRecords = {
-	readonly value: SimpleRecord_Basic;
-	readonly value_Null: SimpleRecord_Basic | null;
-	readonly value_Opt?: SimpleRecord_Basic;
-	readonly value_Opt_Null?: SimpleRecord_Basic | null;
-	readonly list: SimpleRecord_Basic[];
-	readonly list_Null: SimpleRecord_Basic[] | null;
-	readonly list_Opt?: SimpleRecord_Basic[];
-	readonly list_Opt_Null?: SimpleRecord_Basic[] | null;
-};
-`.trim();
-
 const EnumRecord_Result = `
 export type EnumRecord = {
 	readonly value: SampleEnum;
@@ -186,6 +173,40 @@ export type EnumInlineRecord = {
 	readonly list: ListEnum[];
 	readonly list_Null: List_NullEnum[] | null;
 	readonly list_Opt_Null?: List_Opt_NullEnum[] | null;
+};
+`.trim();
+
+const RecordOfRecords_Result = `
+export type RecordOfRecords = {
+	readonly value: SimpleRecord_Basic;
+	readonly value_Null: SimpleRecord_Basic | null;
+	readonly value_Opt?: SimpleRecord_Basic;
+	readonly value_Opt_Null?: SimpleRecord_Basic | null;
+	readonly list: SimpleRecord_Basic[];
+	readonly list_Null: SimpleRecord_Basic[] | null;
+	readonly list_Opt?: SimpleRecord_Basic[];
+	readonly list_Opt_Null?: SimpleRecord_Basic[] | null;
+};
+`.trim();
+
+const RecordWithUnions_Result = `
+export type RecordWithUnions = {
+	readonly value: SimpleRecord_Basic;
+	readonly value_Null: SimpleRecord_Basic | null;
+	readonly value_Opt?: SimpleRecord_Basic;
+	readonly value_Opt_Null?: SimpleRecord_Basic | null;
+	readonly list: SimpleRecord_Basic[];
+	readonly list_Null: SimpleRecord_Basic[] | null;
+	readonly list_Opt?: SimpleRecord_Basic[];
+	readonly list_Opt_Null?: SimpleRecord_Basic[] | null;
+};
+`.trim();
+
+const MixinRecord_Result = `
+export type MixinRecord = {
+	readonly sample: string;
+	readonly mValueString: string;
+	readonly mValueString2: string;
 };
 `.trim();
 
@@ -236,16 +257,24 @@ const RECORD_TYPE_TESTS: RecordTypeTest[] = [
 		result: ScalarRecord_Result,
 	},
 	{
-		name: 'RecordOfRecords',
-		result: RecordOfRecords_Result,
-	},
-	{
 		name: 'EnumRecord',
 		result: EnumRecord_Result,
 	},
 	{
 		name: 'EnumInlineRecord',
 		result: EnumInlineRecord_Result,
+	},
+	{
+		name: 'RecordOfRecords',
+		result: RecordOfRecords_Result,
+	},
+	{
+		name: 'RecordWithUnions',
+		result: RecordWithUnions_Result,
+	},
+	{
+		name: 'MixinRecord',
+		result: MixinRecord_Result,
 	},
 ];
 

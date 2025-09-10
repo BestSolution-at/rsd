@@ -1375,6 +1375,180 @@
     },
     {
       "@type": "RecordType",
+      "name": "RecordWithUnions",
+      "patchable": false,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "value",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "record",
+          "type": "SimpleRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Null",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "record",
+          "type": "SimpleRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "record",
+          "type": "SimpleRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt_Null",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "record",
+          "type": "SimpleRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "record",
+          "type": "SimpleRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Null",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "record",
+          "type": "SimpleRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Opt",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "record",
+          "type": "SimpleRecord_Basic",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Opt_Null",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "record",
+          "type": "SimpleRecord_Basic",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "UnionA",
+      "patchable": false,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "shared",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueA",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "UnionB",
+      "patchable": false,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "shared",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueB",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "UnionType",
+      "name": "Union",
+      "patchable": false,
+      "types": [
+        "UnionA",
+        "UnionB"
+      ],
+      "descriminator": "@type",
+      "doc": "",
+      "descriminatorAliases": {
+        "UnionA": "union-a",
+        "UnionB": "union-b"
+      }
+    },
+    {
+      "@type": "RecordType",
       "name": "PatchableRecord",
       "patchable": true,
       "mixins": [],
@@ -2940,11 +3114,30 @@
       "doc": ""
     },
     {
+      "@type": "MixinType",
+      "name": "SimpleMixin2",
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "mValueString2",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
       "@type": "RecordType",
       "name": "MixinRecord",
       "patchable": false,
       "mixins": [
-        "SimpleMixin"
+        "SimpleMixin",
+        "SimpleMixin2"
       ],
       "properties": [
         {

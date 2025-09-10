@@ -4,30 +4,36 @@ import { checkProp, isRecord, isString, propValue } from '../_type-utils.js';
 export type MixinRecord = {
 	readonly sample: string;
 	readonly mValueString: string;
+	readonly mValueString2: string;
 };
 
 export function isMixinRecord(value: unknown): value is MixinRecord {
 	return isRecord(value) &&
 		checkProp(value, 'sample', isString) &&
-		checkProp(value, 'mValueString', isString);
+		checkProp(value, 'mValueString', isString) &&
+		checkProp(value, 'mValueString2', isString);
 }
 
 export function MixinRecordFromJSON($value: Record<string, unknown>): MixinRecord {
 	const sample = propValue('sample', $value, isString);
 	const mValueString = propValue('mValueString', $value, isString);
+	const mValueString2 = propValue('mValueString2', $value, isString);
 	return {
 		sample,
 		mValueString,
+		mValueString2,
 	};
 }
 
 export function MixinRecordToJSON($value: MixinRecord): Record<string, unknown> {
 	const sample = $value.sample;
 	const mValueString = $value.mValueString;
+	const mValueString2 = $value.mValueString2;
 
 	return {
 		sample,
 		mValueString,
+		mValueString2,
 	};
 }
 
