@@ -16,16 +16,16 @@ export type SimpleRecord_Basic_Null = {
 
 export function isSimpleRecord_Basic_Null(value: unknown): value is SimpleRecord_Basic_Null {
 	return isRecord(value) &&
-		(isNull(value.valueBoolean) || checkProp(value, 'valueBoolean', isBoolean)) &&
-		(isNull(value.valueShort) || checkProp(value, 'valueShort', isNumber)) &&
-		(isNull(value.valueInt) || checkProp(value, 'valueInt', isNumber)) &&
-		(isNull(value.valueLong) || checkProp(value, 'valueLong', isNumber)) &&
-		(isNull(value.valueFloat) || checkProp(value, 'valueFloat', isNumber)) &&
-		(isNull(value.valueDouble) || checkProp(value, 'valueDouble', isNumber)) &&
-		(isNull(value.valueString) || checkProp(value, 'valueString', isString)) &&
-		(isNull(value.valueLocalDate) || checkProp(value, 'valueLocalDate', isString)) &&
-		(isNull(value.valueLocalDateTime) || checkProp(value, 'valueLocalDateTime', isString)) &&
-		(isNull(value.valueZonedDateTime) || checkProp(value, 'valueZonedDateTime', isString));
+		(checkProp(value, 'valueBoolean', isNull) || checkProp(value, 'valueBoolean', isBoolean)) &&
+		(checkProp(value, 'valueShort', isNull) || checkProp(value, 'valueShort', isNumber)) &&
+		(checkProp(value, 'valueInt', isNull) || checkProp(value, 'valueInt', isNumber)) &&
+		(checkProp(value, 'valueLong', isNull) || checkProp(value, 'valueLong', isNumber)) &&
+		(checkProp(value, 'valueFloat', isNull) || checkProp(value, 'valueFloat', isNumber)) &&
+		(checkProp(value, 'valueDouble', isNull) || checkProp(value, 'valueDouble', isNumber)) &&
+		(checkProp(value, 'valueString', isNull) || checkProp(value, 'valueString', isString)) &&
+		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', isString)) &&
+		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', isString)) &&
+		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', isString));
 }
 
 export function SimpleRecord_Basic_NullFromJSON($value: Record<string, unknown>): SimpleRecord_Basic_Null {

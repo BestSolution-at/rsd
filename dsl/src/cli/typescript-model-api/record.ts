@@ -37,7 +37,7 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 		node.append(valueChange);
 
 		node.append(RecordTypePatch(t, allProps, fqn), NL);
-		node.append(generatePatchTypeguard(t, allProps, fqn), NL);
+		node.append(RecordTypeguardPatch(t, allProps, fqn), NL);
 		node.append(generatePatchFromJSON(t, allProps, fqn), NL);
 		node.append(generatePatchToJSON(t, allProps, fqn), NL);
 	}
@@ -249,12 +249,12 @@ export function RecordTypeguard(t: MResolvedRecordType, props: MResolvedBaseProp
 						guard = fqn(`is${p.type}:./${p.type}.ts`, false);
 					}
 
+					const check = p.optional ? fqn('checkOptProp:../_type-utils.ts', false) : fqn('checkProp:../_type-utils.ts', false);
 					if (p.nullable) {
 						const nullGuard = fqn('isNull:../_type-utils.ts', false);
-						andBlock.append('(', `${nullGuard}(value.${p.name}) || `);
+						andBlock.append(`(${check}(value, '${p.name}', ${nullGuard}) || `);
 					}
 
-					const check = p.optional ? fqn('checkOptProp:../_type-utils.ts', false) : fqn('checkProp:../_type-utils.ts', false);
 					if (p.array) {
 						const createTypedArrayGuard = fqn('createTypedArrayGuard:../_type-utils.ts', false);
 						andBlock.append(`${check}(value, '${p.name}', ${createTypedArrayGuard}(${guard}))`);
@@ -349,7 +349,7 @@ export function ListChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOnl
 	]);
 }
 
-function generatePatchTypeguard(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
+export function RecordTypeguardPatch(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export function is${t.name}Patch(value: unknown): value is ${t.name}Patch {`, NL);
 	node.indent(mBody => {
@@ -386,19 +386,30 @@ function generatePatchTypeguard(t: MResolvedRecordType, props: MResolvedBaseProp
 					guard = `is${t.name}_${toFirstUpper(p.name)}`;
 				} else if (p.variant === 'scalar') {
 					guard = fqn('isString:../_type-utils.ts', false);
-				} else {
+				} else if (p.variant === 'enum') {
 					guard = fqn(`is${p.type}:./${p.type}.ts`, false);
-				}
-
-				if (p.nullable || p.optional) {
-					const nullGuard = fqn('isNull:../_type-utils.ts', false);
-					andBlock.append('(', `${nullGuard}(value.${p.name}) || `);
+				} else {
+					guard = fqn(`is${p.type}Patch:./${p.type}.ts`, false);
 				}
 
 				const check = fqn('checkOptProp:../_type-utils.ts', false);
+
+				if (p.nullable || p.optional) {
+					const nullGuard = fqn('isNull:../_type-utils.ts', false);
+					andBlock.append(`(${check}(value, '${p.name}', ${nullGuard}) || `);
+				}
+
 				if (p.array) {
-					const createTypedArrayGuard = fqn('createTypedArrayGuard:../_type-utils.ts', false);
-					andBlock.append(`${check}(value, '${p.name}', ${createTypedArrayGuard}(${guard}))`);
+					if (p.variant === 'record' || p.variant === 'union') {
+						guard = fqn(`is${p.type}:./${p.type}.ts`, false);
+						const createReplaceAddUpdateRemoveGuard = fqn('createReplaceAddUpdateRemoveGuard:../_type-utils.ts', false);
+						const patchGuard = fqn(`is${p.type}Patch:./${p.type}.ts`, false);
+						const isStringGuard = fqn('isString:../_type-utils.ts', false);
+						andBlock.append(`${check}(value, '${p.name}', ${createReplaceAddUpdateRemoveGuard}(${guard}, ${patchGuard}, ${isStringGuard}))`);
+					} else {
+						const createReplaceAddRemoveGuard = fqn('createReplaceAddRemoveGuard:../_type-utils.ts', false);
+						andBlock.append(`${check}(value, '${p.name}', ${createReplaceAddRemoveGuard}(${guard}))`);
+					}
 				} else {
 					andBlock.append(`${check}(value, '${p.name}', ${guard})`);
 				}

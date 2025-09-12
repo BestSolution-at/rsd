@@ -16,16 +16,16 @@ export type SimpleRecord_Basic_List_Null = {
 
 export function isSimpleRecord_Basic_List_Null(value: unknown): value is SimpleRecord_Basic_List_Null {
 	return isRecord(value) &&
-		(isNull(value.valueBoolean) || checkProp(value, 'valueBoolean', createTypedArrayGuard(isBoolean))) &&
-		(isNull(value.valueShort) || checkProp(value, 'valueShort', createTypedArrayGuard(isNumber))) &&
-		(isNull(value.valueInt) || checkProp(value, 'valueInt', createTypedArrayGuard(isNumber))) &&
-		(isNull(value.valueLong) || checkProp(value, 'valueLong', createTypedArrayGuard(isNumber))) &&
-		(isNull(value.valueFloat) || checkProp(value, 'valueFloat', createTypedArrayGuard(isNumber))) &&
-		(isNull(value.valueDouble) || checkProp(value, 'valueDouble', createTypedArrayGuard(isNumber))) &&
-		(isNull(value.valueString) || checkProp(value, 'valueString', createTypedArrayGuard(isString))) &&
-		(isNull(value.valueLocalDate) || checkProp(value, 'valueLocalDate', createTypedArrayGuard(isString))) &&
-		(isNull(value.valueLocalDateTime) || checkProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString))) &&
-		(isNull(value.valueZonedDateTime) || checkProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString)));
+		(checkProp(value, 'valueBoolean', isNull) || checkProp(value, 'valueBoolean', createTypedArrayGuard(isBoolean))) &&
+		(checkProp(value, 'valueShort', isNull) || checkProp(value, 'valueShort', createTypedArrayGuard(isNumber))) &&
+		(checkProp(value, 'valueInt', isNull) || checkProp(value, 'valueInt', createTypedArrayGuard(isNumber))) &&
+		(checkProp(value, 'valueLong', isNull) || checkProp(value, 'valueLong', createTypedArrayGuard(isNumber))) &&
+		(checkProp(value, 'valueFloat', isNull) || checkProp(value, 'valueFloat', createTypedArrayGuard(isNumber))) &&
+		(checkProp(value, 'valueDouble', isNull) || checkProp(value, 'valueDouble', createTypedArrayGuard(isNumber))) &&
+		(checkProp(value, 'valueString', isNull) || checkProp(value, 'valueString', createTypedArrayGuard(isString))) &&
+		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', createTypedArrayGuard(isString))) &&
+		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString))) &&
+		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString)));
 }
 
 export function SimpleRecord_Basic_List_NullFromJSON($value: Record<string, unknown>): SimpleRecord_Basic_List_Null {

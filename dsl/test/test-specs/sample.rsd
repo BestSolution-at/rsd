@@ -13,6 +13,13 @@ record SimpleRecord_KeyVersion_Int_Int {
     @rev version: int
 }
 
+record SimpleRecord {
+    @id key: string
+    @rev version: string
+
+		value: string
+}
+
 record SimpleRecord_Basic {
     valueBoolean: boolean
 		valueShort: short
@@ -102,6 +109,19 @@ record SimpleRecord_Basic_List_Null {
 	valueLocalDate: local-date[]?
 	valueLocalDateTime: local-date-time[]?
 	valueZonedDateTime: zoned-date-time[]?
+}
+
+record SimpleRecord_Basic_List_Optional_Null {
+	valueBoolean?: boolean[]?
+	valueShort?: short[]?
+	valueInt?: int[]?
+	valueLong?: long[]?
+	valueFloat?: float[]?
+	valueDouble?: double[]?
+	valueString?: string[]?
+	valueLocalDate?: local-date[]?
+	valueLocalDateTime?: local-date-time[]?
+	valueZonedDateTime?: zoned-date-time[]?
 }
 
 record EnumRecord {
@@ -248,6 +268,9 @@ patchable record PatchableRecord_Basic_Optional_Null {
 }
 
 patchable record PatchableRecord_Basic_List {
+	@id key: string
+	@rev version: string
+	
 	valueBoolean: boolean[]
 	valueShort: short[]
 	valueInt: int[]
@@ -261,6 +284,9 @@ patchable record PatchableRecord_Basic_List {
 }
 
 patchable record PatchableRecord_Basic_List_Optional {
+	@id key: string
+	@rev version: string
+
 	valueBoolean?: boolean[]
 	valueShort?: short[]
 	valueInt?: int[]
@@ -274,6 +300,9 @@ patchable record PatchableRecord_Basic_List_Optional {
 }
 
 patchable record PatchableRecord_Basic_List_Null {
+	@id key: string
+	@rev version: string
+
 	valueBoolean: boolean[]?
 	valueShort: short[]?
 	valueInt: int[]?
@@ -286,7 +315,26 @@ patchable record PatchableRecord_Basic_List_Null {
 	valueZonedDateTime: zoned-date-time[]?
 }
 
+patchable record PatchableRecord_Basic_List_Optional_Null {
+	@id key: string
+	@rev version: string
+
+	valueBoolean?: boolean[]?
+	valueShort?: short[]?
+	valueInt?: int[]?
+	valueLong?: long[]?
+	valueFloat?: float[]?
+	valueDouble?: double[]?
+	valueString?: string[]?
+	valueLocalDate?: local-date[]?
+	valueLocalDateTime?: local-date-time[]?
+	valueZonedDateTime?: zoned-date-time[]?
+}
+
 patchable record PatchableEnumRecord {
+	@id key: string
+	@rev version: string
+
 	value: SampleEnum
 	value_Null: SampleEnum?
 	value_Opt?: SampleEnum
@@ -299,6 +347,9 @@ patchable record PatchableEnumRecord {
 }
 
 patchable record PatchableEnumInlineRecord {
+	@id key: string
+	@rev version: string
+
 	value: enum A | B
 	value_Null: enum C | D?
 	value_Opt?: enum E | F
@@ -311,6 +362,9 @@ patchable record PatchableEnumInlineRecord {
 }
 
 patchable record PatchableScalarRecord {
+	@id key: string
+	@rev version: string
+
 	value: ZoneId
 	value_Null: ZoneId?
 	value_Opt?: ZoneId
@@ -323,6 +377,9 @@ patchable record PatchableScalarRecord {
 }
 
 patchable record PatchableRecordOfRecords {
+	@id key: string
+	@rev version: string
+
 	value: PatchableRecord_Basic
 	value_Null: PatchableRecord_Basic?
 	value_Opt?: PatchableRecord_Basic
@@ -335,6 +392,9 @@ patchable record PatchableRecordOfRecords {
 }
 
 patchable record PatchableRecordWithUnion {
+	@id key: string
+	@rev version: string
+
 	value: PatchableUnion
 	value_Null: PatchableUnion?
 	value_Opt?: PatchableUnion
@@ -347,11 +407,17 @@ patchable record PatchableRecordWithUnion {
 }
 
 patchable record PatchableUnionA {
+	@id key: string
+	@rev version: string
+
 	shared: string
 	valueA: string
 }
 
 patchable record PatchableUnionB {
+	@id key: string
+	@rev version: string
+
 	shared: string
 	valueB: string
 }

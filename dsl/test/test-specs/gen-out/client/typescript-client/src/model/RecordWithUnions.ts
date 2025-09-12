@@ -16,13 +16,13 @@ export type RecordWithUnions = {
 export function isRecordWithUnions(value: unknown): value is RecordWithUnions {
 	return isRecord(value) &&
 		checkProp(value, 'value', isUnion) &&
-		(isNull(value.value_Null) || checkProp(value, 'value_Null', isUnion)) &&
+		(checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isUnion)) &&
 		checkOptProp(value, 'value_Opt', isUnion) &&
-		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isUnion)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isUnion)) &&
 		checkProp(value, 'list', createTypedArrayGuard(isUnion)) &&
-		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isUnion))) &&
+		(checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isUnion))) &&
 		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isUnion)) &&
-		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isUnion)));
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isUnion)));
 }
 
 export function RecordWithUnionsFromJSON($value: Record<string, unknown>): RecordWithUnions {

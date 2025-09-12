@@ -16,13 +16,13 @@ export type EnumRecord = {
 export function isEnumRecord(value: unknown): value is EnumRecord {
 	return isRecord(value) &&
 		checkProp(value, 'value', isSampleEnum) &&
-		(isNull(value.value_Null) || checkProp(value, 'value_Null', isSampleEnum)) &&
+		(checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isSampleEnum)) &&
 		checkOptProp(value, 'value_Opt', isSampleEnum) &&
-		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isSampleEnum)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isSampleEnum)) &&
 		checkProp(value, 'list', createTypedArrayGuard(isSampleEnum)) &&
-		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isSampleEnum))) &&
+		(checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isSampleEnum))) &&
 		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isSampleEnum)) &&
-		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isSampleEnum)));
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isSampleEnum)));
 }
 
 export function EnumRecordFromJSON($value: Record<string, unknown>): EnumRecord {

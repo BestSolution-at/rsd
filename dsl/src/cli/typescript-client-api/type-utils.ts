@@ -14,6 +14,7 @@ export function generateTypeUtils(config: TypescriptClientAPIGeneratorConfig) {
 
 function generateTypeUtilsContent(fqn: (t: string, typeOnly: boolean) => string) {
 	const node = new CompositeGeneratorNode();
+	node.append('type Guard<T> = (value: unknown) => value is T;', NL, NL);
 	node.append(singleStatementFunction('export function isDefined<T>(value: T | undefined): value is T', 'return value !== undefined'), NL);
 	node.append(singleStatementFunction('export function isUndefined<T>(value: T | undefined): value is undefined', 'return value === undefined'), NL);
 	node.append(singleStatementFunction('export function isNotNull<T>(value: T | null): value is T', 'return value !== null'), NL);
@@ -39,8 +40,13 @@ function generateTypeUtilsContent(fqn: (t: string, typeOnly: boolean) => string)
 	node.append(ListReplace(), NL);
 	node.append(ListMergeAddRemove(), NL);
 	node.append(ListMergeAddUpdateRemove(), NL);
+	node.append(createReplaceAddRemoveGuard(), NL);
+	node.append(createReplaceAddUpdateRemoveGuard(), NL);
+	node.append(createListReplaceGuard(), NL);
 	node.append(isListReplace(), NL);
+	node.append(createListMergeAddRemoveGuard(), NL);
 	node.append(isListMergeAddRemove(), NL);
+	node.append(createListMergeAddUpdateRemoveGuard(), NL);
 	node.append(isListMergeAddUpdateRemove(), NL);
 	node.append(ListReplaceFromJSON(), NL);
 	node.append(ListReplaceToJSON(), NL);
@@ -78,7 +84,7 @@ function isTypedArray() {
 
 function checkOptProp() {
 	const node = new CompositeGeneratorNode();
-	node.append('export function checkOptProp<T, K extends string>(value: Record<string, unknown>, property: K, typeCheck: (value: unknown) => value is T, valueCheck?: (value: T) => boolean): value is Record<string, unknown> {', NL);
+	node.append('export function checkOptProp<T, K extends string>(value: Record<string, unknown>, property: K, typeCheck: (value: unknown) => value is T, valueCheck?: (value: T) => boolean): value is Record<K, T | undefined> {', NL);
 	node.indent(mBody => {
 		mBody.append('if (!(property in value)) {', NL);
 		mBody.indent(block => {
@@ -93,7 +99,7 @@ function checkOptProp() {
 
 function checkProp() {
 	const node = new CompositeGeneratorNode();
-	node.append('export function checkProp<T, K extends string>(value: Record<string, unknown>, property: K, typeCheck: (value: unknown) => value is T, valueCheck?: (value: T) => boolean): value is Record<string, unknown> {', NL);
+	node.append('export function checkProp<T, K extends string>(value: Record<string, unknown>, property: K, typeCheck: (value: unknown) => value is T, valueCheck?: (value: T) => boolean): value is Record<K, T> {', NL);
 	node.indent(mBody => {
 		mBody.append('if (property in value) {', NL);
 		mBody.indent(block => {
@@ -287,7 +293,7 @@ function PropertyCheckErrorContent() {
 function checkListProp() {
 	return toNode([
 		//
-		'function checkListProp<T, K extends string>(value: Record<string, unknown>, property: K, typeCheck: (value: unknown) => value is T, valueCheck?: (value: T) => boolean): value is Record<string, unknown> {',
+		'function checkListProp<T, K extends string>(value: Record<string, unknown>, property: K, typeCheck: (value: unknown) => value is T, valueCheck?: (value: T) => boolean): value is Record<K, T[]> {',
 		[
 			//
 			'return checkProp(',
@@ -366,10 +372,37 @@ function ListMergeAddUpdateRemove() {
 	]);
 }
 
+function createReplaceAddRemoveGuard() {
+	return toNode([
+		//
+		'export function createReplaceAddRemoveGuard<T>(guard: Guard<T>): Guard<ListReplace<T> | ListMergeAddRemove<T, T>> {',
+		['return v => isListReplace(v, guard) || isListMergeAddRemove(v, guard, guard);'],
+		'}',
+	]);
+}
+
+function createReplaceAddUpdateRemoveGuard() {
+	return toNode([
+		//
+		'export function createReplaceAddUpdateRemoveGuard<A, U, R>(guardReplaceAdd: Guard<A>, guardUpdate: Guard<U>, guardRemove: Guard<R>): Guard<ListReplace<A> | ListMergeAddUpdateRemove<A, U, R>> {',
+		['return v => isListReplace(v, guardReplaceAdd) || isListMergeAddUpdateRemove(v, guardReplaceAdd, guardUpdate, guardRemove);'],
+		'}',
+	]);
+}
+
+function createListReplaceGuard() {
+	return toNode([
+		//
+		'export function createListReplaceGuard<T>(guard: Guard<T>): Guard<ListReplace<T>> {',
+		['return v => isListReplace(v, guard);'],
+		'}',
+	]);
+}
+
 function isListReplace() {
 	return toNode([
 		//
-		'export function isListReplace<T>(value: unknown, typeCheck: (value: unknown) => value is T): value is ListReplace<T> {',
+		'export function isListReplace<T>(value: unknown, typeCheck: Guard<T>): value is ListReplace<T> {',
 		[
 			//
 			'return (',
@@ -388,7 +421,7 @@ function isListReplace() {
 function isListMergeAddRemove() {
 	return toNode([
 		//
-		'export function isListMergeAddRemove<A, R>(value: unknown, addTypeCheck: (value: unknown) => value is A, removeTypeCheck: (value: unknown) => value is R): value is ListMergeAddRemove<A, R> {',
+		'export function isListMergeAddRemove<A, R>(value: unknown, addTypeCheck: Guard<A>, removeTypeCheck: Guard<R>): value is ListMergeAddRemove<A, R> {',
 		[
 			'return (',
 			[
@@ -404,10 +437,19 @@ function isListMergeAddRemove() {
 	]);
 }
 
+function createListMergeAddRemoveGuard() {
+	return toNode([
+		//
+		'export function createListMergeAddRemoveGuard<A, R>(addGuard: Guard<A>, removeGuard: Guard<R>): Guard<ListMergeAddRemove<A, R>> {',
+		['return v => isListMergeAddRemove(v, addGuard, removeGuard);'],
+		'}',
+	]);
+}
+
 function isListMergeAddUpdateRemove() {
 	return toNode([
 		//
-		'export function isListMergeAddUpdateRemove<A, U, R>(value: unknown, addTypeCheck: (value: unknown) => value is A, updateTypeCheck: (value: unknown) => value is U, removeTypeCheck: (value: unknown) => value is R): value is ListMergeAddUpdateRemove<A, U, R> {',
+		'export function isListMergeAddUpdateRemove<A, U, R>(value: unknown, addTypeCheck: Guard<A>, updateTypeCheck: Guard<U>, removeTypeCheck: Guard<R>): value is ListMergeAddUpdateRemove<A, U, R> {',
 		[
 			//
 			'return (',
@@ -421,6 +463,15 @@ function isListMergeAddUpdateRemove() {
 			],
 			');',
 		],
+		'}',
+	]);
+}
+
+function createListMergeAddUpdateRemoveGuard() {
+	return toNode([
+		//
+		'export function createListMergeAddUpdateRemoveGuard<A, U, R>(addGuard: Guard<A>, updateGuard: Guard<U>, removeGuard: Guard<R>): Guard<ListMergeAddUpdateRemove<A, U, R>> {',
+		['return v => isListMergeAddUpdateRemove(v, addGuard, updateGuard, removeGuard);'],
 		'}',
 	]);
 }

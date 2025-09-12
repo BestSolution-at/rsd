@@ -20,16 +20,16 @@ export function isPatchableRecord_Basic_Optional_Null(value: unknown): value is 
 	return isRecord(value) &&
 		checkProp(value, 'key', isString) &&
 		checkProp(value, 'version', isString) &&
-		(isNull(value.valueBoolean) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
-		(isNull(value.valueShort) || checkOptProp(value, 'valueShort', isNumber)) &&
-		(isNull(value.valueInt) || checkOptProp(value, 'valueInt', isNumber)) &&
-		(isNull(value.valueLong) || checkOptProp(value, 'valueLong', isNumber)) &&
-		(isNull(value.valueFloat) || checkOptProp(value, 'valueFloat', isNumber)) &&
-		(isNull(value.valueDouble) || checkOptProp(value, 'valueDouble', isNumber)) &&
-		(isNull(value.valueString) || checkOptProp(value, 'valueString', isString)) &&
-		(isNull(value.valueLocalDate) || checkOptProp(value, 'valueLocalDate', isString)) &&
-		(isNull(value.valueLocalDateTime) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
-		(isNull(value.valueZonedDateTime) || checkOptProp(value, 'valueZonedDateTime', isString));
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isNumber)) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isNumber)) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isNumber)) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isNumber)) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isNumber)) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isString)) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isString)) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isString));
 }
 
 export function PatchableRecord_Basic_Optional_NullFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_Optional_Null {
@@ -110,16 +110,16 @@ export function isPatchableRecord_Basic_Optional_NullPatch(value: unknown): valu
 	return isRecord(value) &&
 		checkProp(value, 'key', isString) &&
 		checkProp(value, 'version', isString) &&
-		(isNull(value.valueBoolean) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
-		(isNull(value.valueShort) || checkOptProp(value, 'valueShort', isNumber)) &&
-		(isNull(value.valueInt) || checkOptProp(value, 'valueInt', isNumber)) &&
-		(isNull(value.valueLong) || checkOptProp(value, 'valueLong', isNumber)) &&
-		(isNull(value.valueFloat) || checkOptProp(value, 'valueFloat', isNumber)) &&
-		(isNull(value.valueDouble) || checkOptProp(value, 'valueDouble', isNumber)) &&
-		(isNull(value.valueString) || checkOptProp(value, 'valueString', isString)) &&
-		(isNull(value.valueLocalDate) || checkOptProp(value, 'valueLocalDate', isString)) &&
-		(isNull(value.valueLocalDateTime) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
-		(isNull(value.valueZonedDateTime) || checkOptProp(value, 'valueZonedDateTime', isString));
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isNumber)) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isNumber)) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isNumber)) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isNumber)) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isNumber)) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isString)) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isString)) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isString));
 }
 
 export function PatchableRecord_Basic_Optional_NullPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_Optional_NullPatch {

@@ -16,13 +16,13 @@ export type RecordOfRecords = {
 export function isRecordOfRecords(value: unknown): value is RecordOfRecords {
 	return isRecord(value) &&
 		checkProp(value, 'value', isSimpleRecord_Basic) &&
-		(isNull(value.value_Null) || checkProp(value, 'value_Null', isSimpleRecord_Basic)) &&
+		(checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isSimpleRecord_Basic)) &&
 		checkOptProp(value, 'value_Opt', isSimpleRecord_Basic) &&
-		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isSimpleRecord_Basic)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isSimpleRecord_Basic)) &&
 		checkProp(value, 'list', createTypedArrayGuard(isSimpleRecord_Basic)) &&
-		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isSimpleRecord_Basic))) &&
+		(checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isSimpleRecord_Basic))) &&
 		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isSimpleRecord_Basic)) &&
-		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isSimpleRecord_Basic)));
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isSimpleRecord_Basic)));
 }
 
 export function RecordOfRecordsFromJSON($value: Record<string, unknown>): RecordOfRecords {

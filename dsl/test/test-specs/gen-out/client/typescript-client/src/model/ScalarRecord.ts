@@ -15,13 +15,13 @@ export type ScalarRecord = {
 export function isScalarRecord(value: unknown): value is ScalarRecord {
 	return isRecord(value) &&
 		checkProp(value, 'value', isString) &&
-		(isNull(value.value_Null) || checkProp(value, 'value_Null', isString)) &&
+		(checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isString)) &&
 		checkOptProp(value, 'value_Opt', isString) &&
-		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isString)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isString)) &&
 		checkProp(value, 'list', createTypedArrayGuard(isString)) &&
-		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isString))) &&
+		(checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isString))) &&
 		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isString)) &&
-		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isString)));
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isString)));
 }
 
 export function ScalarRecordFromJSON($value: Record<string, unknown>): ScalarRecord {

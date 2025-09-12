@@ -1,5 +1,5 @@
 import { beforeAll, beforeEach, describe, expect, test } from 'vitest';
-import { ListChangeTypes, RecordType, RecordTypeguard, RecordTypePatch, ValueChangeTypes } from '../../../src/cli/typescript-model-api/record.js';
+import { ListChangeTypes, RecordType, RecordTypeguard, RecordTypeguardPatch, RecordTypePatch, ValueChangeTypes } from '../../../src/cli/typescript-model-api/record.js';
 import { allResolvedRecordProperties, isMResolvedProperty, isMResolvedRecordType, MResolvedRSDModel } from '../../../src/cli/model.js';
 import { createTypescriptClientAPIGeneratorConfig, findListElement, sampleModel } from '../test-utils.js';
 import { TypescriptImportCollector } from '../../../src/cli/typescript-gen-utils.js';
@@ -30,6 +30,14 @@ const SimpleRecord_KeyVersion_Int_Int_Result = `
 export type SimpleRecord_KeyVersion_Int_Int = {
 	readonly key: number;
 	readonly version: number;
+};
+`.trim();
+
+const SimpleRecord_Result = `
+export type SimpleRecord = {
+	readonly key: string;
+	readonly version: string;
+	readonly value: string;
 };
 `.trim();
 
@@ -138,6 +146,21 @@ export type SimpleRecord_Basic_List_Null = {
 };
 `.trim();
 
+const SimpleRecord_Basic_List_Optional_Null_Result = `
+export type SimpleRecord_Basic_List_Optional_Null = {
+	readonly valueBoolean?: boolean[] | null;
+	readonly valueShort?: number[] | null;
+	readonly valueInt?: number[] | null;
+	readonly valueLong?: number[] | null;
+	readonly valueFloat?: number[] | null;
+	readonly valueDouble?: number[] | null;
+	readonly valueString?: string[] | null;
+	readonly valueLocalDate?: string[] | null;
+	readonly valueLocalDateTime?: string[] | null;
+	readonly valueZonedDateTime?: string[] | null;
+};
+`.trim();
+
 const ScalarRecord_Result = `
 export type ScalarRecord = {
 	readonly value: string;
@@ -225,6 +248,10 @@ const RECORD_TYPE_TESTS: RecordTest[] = [
 		result: SimpleRecord_KeyVersion_Int_Int_Result,
 	},
 	{
+		name: 'SimpleRecord',
+		result: SimpleRecord_Result,
+	},
+	{
 		name: 'SimpleRecord_Basic',
 		result: SimpleRecord_Basic_Result,
 	},
@@ -251,6 +278,10 @@ const RECORD_TYPE_TESTS: RecordTest[] = [
 	{
 		name: 'SimpleRecord_Basic_List_Null',
 		result: SimpleRecord_Basic_List_Null_Result,
+	},
+	{
+		name: 'SimpleRecord_Basic_List_Optional_Null',
+		result: SimpleRecord_Basic_List_Optional_Null_Result,
 	},
 	{
 		name: 'ScalarRecord',
@@ -365,6 +396,8 @@ export type PatchableRecord_Basic_Optional_NullPatch = {
 
 const PatchableRecord_Basic_List_Result = `
 export type PatchableRecord_Basic_ListPatch = {
+	readonly key: string;
+	readonly version: string;
 	readonly valueBoolean?: $ValueBooleanPatch;
 	readonly valueShort?: $ValueShortPatch;
 	readonly valueInt?: $ValueIntPatch;
@@ -380,6 +413,8 @@ export type PatchableRecord_Basic_ListPatch = {
 
 const PatchableRecord_Basic_List_Optional_Result = `
 export type PatchableRecord_Basic_List_OptionalPatch = {
+	readonly key: string;
+	readonly version: string;
 	readonly valueBoolean?: $ValueBooleanPatch | null;
 	readonly valueShort?: $ValueShortPatch | null;
 	readonly valueInt?: $ValueIntPatch | null;
@@ -395,6 +430,8 @@ export type PatchableRecord_Basic_List_OptionalPatch = {
 
 const PatchableRecord_Basic_List_Null_Result = `
 export type PatchableRecord_Basic_List_NullPatch = {
+	readonly key: string;
+	readonly version: string;
 	readonly valueBoolean?: $ValueBooleanPatch | null;
 	readonly valueShort?: $ValueShortPatch | null;
 	readonly valueInt?: $ValueIntPatch | null;
@@ -410,6 +447,8 @@ export type PatchableRecord_Basic_List_NullPatch = {
 
 const PatchableEnumRecord_Result = `
 export type PatchableEnumRecordPatch = {
+	readonly key: string;
+	readonly version: string;
 	readonly value?: SampleEnum;
 	readonly value_Null?: SampleEnum | null;
 	readonly value_Opt?: SampleEnum | null;
@@ -423,6 +462,8 @@ export type PatchableEnumRecordPatch = {
 
 const PatchableEnumInlineRecord_Result = `
 export type PatchableEnumInlineRecordPatch = {
+	readonly key: string;
+	readonly version: string;
 	readonly value?: ValueEnum;
 	readonly value_Null?: Value_NullEnum | null;
 	readonly value_Opt?: Value_OptEnum | null;
@@ -435,6 +476,8 @@ export type PatchableEnumInlineRecordPatch = {
 
 const PatchableScalarRecordPatch_Result = `
 export type PatchableScalarRecordPatch = {
+	readonly key: string;
+	readonly version: string;
 	readonly value?: string;
 	readonly value_Null?: string | null;
 	readonly value_Opt?: string | null;
@@ -448,6 +491,8 @@ export type PatchableScalarRecordPatch = {
 
 const PatchableRecordOfRecordsPatch_Result = `
 export type PatchableRecordOfRecordsPatch = {
+	readonly key: string;
+	readonly version: string;
 	readonly value?: $ValuePatch;
 	readonly value_Null?: $Value_NullPatch | null;
 	readonly value_Opt?: $Value_OptPatch | null;
@@ -461,6 +506,8 @@ export type PatchableRecordOfRecordsPatch = {
 
 const PatchableRecordWithUnionPatch_Result = `
 export type PatchableRecordWithUnionPatch = {
+	readonly key: string;
+	readonly version: string;
 	readonly value?: $ValuePatch;
 	readonly value_Null?: $Value_NullPatch | null;
 	readonly value_Opt?: $Value_OptPatch | null;
@@ -953,6 +1000,31 @@ describe('ValueChangeTypes', () => {
 	});
 });
 
+const SimpleRecord_KeyVersion_Typeguard_Result = `
+export function isSimpleRecord_KeyVersion(value: unknown): value is SimpleRecord_KeyVersion {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString)
+}
+`.trim();
+
+const SimpleRecord_KeyVersion_Int_Int_Typeguard_Result = `
+export function isSimpleRecord_KeyVersion_Int_Int(value: unknown): value is SimpleRecord_KeyVersion_Int_Int {
+	return isRecord(value) &&
+		checkProp(value, 'key', isNumber) &&
+		checkProp(value, 'version', isNumber)
+}
+`.trim();
+
+const SimpleRecord_Typeguard_Result = `
+export function isSimpleRecord(value: unknown): value is SimpleRecord {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		checkProp(value, 'value', isString);
+}
+`.trim();
+
 const SimpleRecord_Basic_Typeguard_Result = `
 export function isSimpleRecord_Basic(value: unknown): value is SimpleRecord_Basic {
 	return isRecord(value) &&
@@ -988,32 +1060,32 @@ export function isSimpleRecord_Basic_Optional(value: unknown): value is SimpleRe
 const SimpleRecord_Basic_Null_Typeguard_Result = `
 export function isSimpleRecord_Basic_Null(value: unknown): value is SimpleRecord_Basic_Null {
 	return isRecord(value) &&
-		(isNull(value.valueBoolean) || checkProp(value, 'valueBoolean', isBoolean)) &&
-		(isNull(value.valueShort) || checkProp(value, 'valueShort', isNumber)) &&
-		(isNull(value.valueInt) || checkProp(value, 'valueInt', isNumber)) &&
-		(isNull(value.valueLong) || checkProp(value, 'valueLong', isNumber)) &&
-		(isNull(value.valueFloat) || checkProp(value, 'valueFloat', isNumber)) &&
-		(isNull(value.valueDouble) || checkProp(value, 'valueDouble', isNumber)) &&
-		(isNull(value.valueString) || checkProp(value, 'valueString', isString)) &&
-		(isNull(value.valueLocalDate) || checkProp(value, 'valueLocalDate', isString)) &&
-		(isNull(value.valueLocalDateTime) || checkProp(value, 'valueLocalDateTime', isString)) &&
-		(isNull(value.valueZonedDateTime) || checkProp(value, 'valueZonedDateTime', isString));
+		(checkProp(value, 'valueBoolean', isNull) || checkProp(value, 'valueBoolean', isBoolean)) &&
+		(checkProp(value, 'valueShort', isNull) || checkProp(value, 'valueShort', isNumber)) &&
+		(checkProp(value, 'valueInt', isNull) || checkProp(value, 'valueInt', isNumber)) &&
+		(checkProp(value, 'valueLong', isNull) || checkProp(value, 'valueLong', isNumber)) &&
+		(checkProp(value, 'valueFloat', isNull) || checkProp(value, 'valueFloat', isNumber)) &&
+		(checkProp(value, 'valueDouble', isNull) || checkProp(value, 'valueDouble', isNumber)) &&
+		(checkProp(value, 'valueString', isNull) || checkProp(value, 'valueString', isString)) &&
+		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', isString)) &&
+		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', isString)) &&
+		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', isString));
 }
 `.trim();
 
 const SimpleRecord_Basic_Optional_Null_Typeguard_Result = `
 export function isSimpleRecord_Basic_Optional_Null(value: unknown): value is SimpleRecord_Basic_Optional_Null {
 	return isRecord(value) &&
-		(isNull(value.valueBoolean) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
-		(isNull(value.valueShort) || checkOptProp(value, 'valueShort', isNumber)) &&
-		(isNull(value.valueInt) || checkOptProp(value, 'valueInt', isNumber)) &&
-		(isNull(value.valueLong) || checkOptProp(value, 'valueLong', isNumber)) &&
-		(isNull(value.valueFloat) || checkOptProp(value, 'valueFloat', isNumber)) &&
-		(isNull(value.valueDouble) || checkOptProp(value, 'valueDouble', isNumber)) &&
-		(isNull(value.valueString) || checkOptProp(value, 'valueString', isString)) &&
-		(isNull(value.valueLocalDate) || checkOptProp(value, 'valueLocalDate', isString)) &&
-		(isNull(value.valueLocalDateTime) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
-		(isNull(value.valueZonedDateTime) || checkOptProp(value, 'valueZonedDateTime', isString));
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isNumber)) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isNumber)) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isNumber)) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isNumber)) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isNumber)) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isString)) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isString)) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isString));
 }
 `.trim();
 
@@ -1052,16 +1124,32 @@ export function isSimpleRecord_Basic_List_Optional(value: unknown): value is Sim
 const SimpleRecord_Basic_List_Null_Typeguard_Result = `
 export function isSimpleRecord_Basic_List_Null(value: unknown): value is SimpleRecord_Basic_List_Null {
 	return isRecord(value) &&
-		(isNull(value.valueBoolean) || checkProp(value, 'valueBoolean', createTypedArrayGuard(isBoolean))) &&
-		(isNull(value.valueShort) || checkProp(value, 'valueShort', createTypedArrayGuard(isNumber))) &&
-		(isNull(value.valueInt) || checkProp(value, 'valueInt', createTypedArrayGuard(isNumber))) &&
-		(isNull(value.valueLong) || checkProp(value, 'valueLong', createTypedArrayGuard(isNumber))) &&
-		(isNull(value.valueFloat) || checkProp(value, 'valueFloat', createTypedArrayGuard(isNumber))) &&
-		(isNull(value.valueDouble) || checkProp(value, 'valueDouble', createTypedArrayGuard(isNumber))) &&
-		(isNull(value.valueString) || checkProp(value, 'valueString', createTypedArrayGuard(isString))) &&
-		(isNull(value.valueLocalDate) || checkProp(value, 'valueLocalDate', createTypedArrayGuard(isString))) &&
-		(isNull(value.valueLocalDateTime) || checkProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString))) &&
-		(isNull(value.valueZonedDateTime) || checkProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString)));
+		(checkProp(value, 'valueBoolean', isNull) || checkProp(value, 'valueBoolean', createTypedArrayGuard(isBoolean))) &&
+		(checkProp(value, 'valueShort', isNull) || checkProp(value, 'valueShort', createTypedArrayGuard(isNumber))) &&
+		(checkProp(value, 'valueInt', isNull) || checkProp(value, 'valueInt', createTypedArrayGuard(isNumber))) &&
+		(checkProp(value, 'valueLong', isNull) || checkProp(value, 'valueLong', createTypedArrayGuard(isNumber))) &&
+		(checkProp(value, 'valueFloat', isNull) || checkProp(value, 'valueFloat', createTypedArrayGuard(isNumber))) &&
+		(checkProp(value, 'valueDouble', isNull) || checkProp(value, 'valueDouble', createTypedArrayGuard(isNumber))) &&
+		(checkProp(value, 'valueString', isNull) || checkProp(value, 'valueString', createTypedArrayGuard(isString))) &&
+		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', createTypedArrayGuard(isString))) &&
+		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString))) &&
+		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString)));
+}
+`.trim();
+
+const SimpleRecord_Basic_List_Optional_Null_Typeguard_Result = `
+export function isSimpleRecord_Basic_List_Optional_Null(value: unknown): value is SimpleRecord_Basic_List_Optional_Null {
+	return isRecord(value) &&
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', createTypedArrayGuard(isBoolean))) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', createTypedArrayGuard(isNumber))) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', createTypedArrayGuard(isNumber))) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', createTypedArrayGuard(isNumber))) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', createTypedArrayGuard(isNumber))) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', createTypedArrayGuard(isNumber))) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createTypedArrayGuard(isString))) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createTypedArrayGuard(isString))) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString))) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString)));
 }
 `.trim();
 
@@ -1069,13 +1157,13 @@ const EnumRecord_Typeguard_Result = `
 export function isEnumRecord(value: unknown): value is EnumRecord {
 	return isRecord(value) &&
 		checkProp(value, 'value', isSampleEnum) &&
-		(isNull(value.value_Null) || checkProp(value, 'value_Null', isSampleEnum)) &&
+		(checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isSampleEnum)) &&
 		checkOptProp(value, 'value_Opt', isSampleEnum) &&
-		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isSampleEnum)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isSampleEnum)) &&
 		checkProp(value, 'list', createTypedArrayGuard(isSampleEnum)) &&
-		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isSampleEnum))) &&
+		(checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isSampleEnum))) &&
 		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isSampleEnum)) &&
-		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isSampleEnum)));
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isSampleEnum)));
 }
 `.trim();
 
@@ -1083,12 +1171,12 @@ const EnumInlineRecord_Typeguard_Result = `
 export function isEnumInlineRecord(value: unknown): value is EnumInlineRecord {
 	return isRecord(value) &&
 		checkProp(value, 'value', isEnumInlineRecord_Value) &&
-		(isNull(value.value_Null) || checkProp(value, 'value_Null', isEnumInlineRecord_Value_Null)) &&
+		(checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isEnumInlineRecord_Value_Null)) &&
 		checkOptProp(value, 'value_Opt', isEnumInlineRecord_Value_Opt) &&
-		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isEnumInlineRecord_Value_Opt_Null)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isEnumInlineRecord_Value_Opt_Null)) &&
 		checkProp(value, 'list', createTypedArrayGuard(isEnumInlineRecord_List)) &&
-		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isEnumInlineRecord_List_Null))) &&
-		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isEnumInlineRecord_List_Opt_Null)));
+		(checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isEnumInlineRecord_List_Null))) &&
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isEnumInlineRecord_List_Opt_Null)));
 }
 `.trim();
 
@@ -1096,13 +1184,13 @@ const ScalarRecord_Typeguard_Result = `
 export function isScalarRecord(value: unknown): value is ScalarRecord {
 	return isRecord(value) &&
 		checkProp(value, 'value', isString) &&
-		(isNull(value.value_Null) || checkProp(value, 'value_Null', isString)) &&
+		(checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isString)) &&
 		checkOptProp(value, 'value_Opt', isString) &&
-		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isString)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isString)) &&
 		checkProp(value, 'list', createTypedArrayGuard(isString)) &&
-		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isString))) &&
+		(checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isString))) &&
 		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isString)) &&
-		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isString)));
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isString)));
 }
 `.trim();
 
@@ -1110,13 +1198,13 @@ const RecordOfRecords_Typeguard_Result = `
 export function isRecordOfRecords(value: unknown): value is RecordOfRecords {
 	return isRecord(value) &&
 		checkProp(value, 'value', isSimpleRecord_Basic) &&
-		(isNull(value.value_Null) || checkProp(value, 'value_Null', isSimpleRecord_Basic)) &&
+		(checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isSimpleRecord_Basic)) &&
 		checkOptProp(value, 'value_Opt', isSimpleRecord_Basic) &&
-		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isSimpleRecord_Basic)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isSimpleRecord_Basic)) &&
 		checkProp(value, 'list', createTypedArrayGuard(isSimpleRecord_Basic)) &&
-		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isSimpleRecord_Basic))) &&
+		(checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isSimpleRecord_Basic))) &&
 		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isSimpleRecord_Basic)) &&
-		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isSimpleRecord_Basic)));
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isSimpleRecord_Basic)));
 }
 `.trim();
 
@@ -1124,17 +1212,29 @@ const RecordWithUnions_Typeguard_Result = `
 export function isRecordWithUnions(value: unknown): value is RecordWithUnions {
 	return isRecord(value) &&
 		checkProp(value, 'value', isUnion) &&
-		(isNull(value.value_Null) || checkProp(value, 'value_Null', isUnion)) &&
+		(checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isUnion)) &&
 		checkOptProp(value, 'value_Opt', isUnion) &&
-		(isNull(value.value_Opt_Null) || checkOptProp(value, 'value_Opt_Null', isUnion)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isUnion)) &&
 		checkProp(value, 'list', createTypedArrayGuard(isUnion)) &&
-		(isNull(value.list_Null) || checkProp(value, 'list_Null', createTypedArrayGuard(isUnion))) &&
+		(checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isUnion))) &&
 		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isUnion)) &&
-		(isNull(value.list_Opt_Null) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isUnion)));
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isUnion)));
 }
 `.trim();
 
 const RECORD_TYPEGUARDS: RecordTest[] = [
+	{
+		name: 'SimpleRecord_KeyVersion',
+		result: SimpleRecord_KeyVersion_Typeguard_Result,
+	},
+	{
+		name: 'SimpleRecord_KeyVersion_Int_Int',
+		result: SimpleRecord_KeyVersion_Int_Int_Typeguard_Result,
+	},
+	{
+		name: 'SimpleRecord',
+		result: SimpleRecord_Typeguard_Result,
+	},
 	{
 		name: 'SimpleRecord_Basic',
 		result: SimpleRecord_Basic_Typeguard_Result,
@@ -1164,6 +1264,10 @@ const RECORD_TYPEGUARDS: RecordTest[] = [
 		result: SimpleRecord_Basic_List_Null_Typeguard_Result,
 	},
 	{
+		name: 'SimpleRecord_Basic_List_Optional_Null',
+		result: SimpleRecord_Basic_List_Optional_Null_Typeguard_Result,
+	},
+	{
 		name: 'EnumRecord',
 		result: EnumRecord_Typeguard_Result,
 	},
@@ -1190,6 +1294,302 @@ describe('RecordTypeguard', () => {
 		const recordModel = findListElement(model.elements, isMResolvedRecordType, r => r.name === data.name);
 		const allProps = allResolvedRecordProperties(recordModel);
 		const result = toString(RecordTypeguard(recordModel, allProps, fqn), '\t').trim();
+		expect(result).toBe(data.result);
+	});
+});
+
+const PatchableRecord_Typeguard_Result = `
+export function isPatchableRecordPatch(value: unknown): value is PatchableRecordPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		checkOptProp(value, 'value', isString);
+}
+`.trim();
+
+const PatchableRecord_Basic_Typeguard_Result = `
+export function isPatchableRecord_BasicPatch(value: unknown): value is PatchableRecord_BasicPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		checkOptProp(value, 'valueBoolean', isBoolean) &&
+		checkOptProp(value, 'valueShort', isNumber) &&
+		checkOptProp(value, 'valueInt', isNumber) &&
+		checkOptProp(value, 'valueLong', isNumber) &&
+		checkOptProp(value, 'valueFloat', isNumber) &&
+		checkOptProp(value, 'valueDouble', isNumber) &&
+		checkOptProp(value, 'valueString', isString) &&
+		checkOptProp(value, 'valueLocalDate', isString) &&
+		checkOptProp(value, 'valueLocalDateTime', isString) &&
+		checkOptProp(value, 'valueZonedDateTime', isString);
+}
+`.trim();
+
+const PatchableRecord_Basic_Optional_Typeguard_Result = `
+export function isPatchableRecord_Basic_OptionalPatch(value: unknown): value is PatchableRecord_Basic_OptionalPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isNumber)) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isNumber)) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isNumber)) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isNumber)) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isNumber)) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isString)) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isString)) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isString));
+}
+`.trim();
+
+const PatchableRecord_Basic_Null_Typeguard_Result = `
+export function isPatchableRecord_Basic_NullPatch(value: unknown): value is PatchableRecord_Basic_NullPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isNumber)) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isNumber)) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isNumber)) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isNumber)) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isNumber)) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isString)) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isString)) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isString));
+}
+`.trim();
+
+const PatchableRecord_Basic_Optional_Null_Typeguard_Result = `
+export function isPatchableRecord_Basic_Optional_NullPatch(value: unknown): value is PatchableRecord_Basic_Optional_NullPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isNumber)) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isNumber)) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isNumber)) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isNumber)) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isNumber)) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isString)) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isString)) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isString));
+}
+`.trim();
+
+const PatchableRecord_Basic_List_Typeguard_Result = `
+export function isPatchableRecord_Basic_ListPatch(value: unknown): value is PatchableRecord_Basic_ListPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isBoolean)) &&
+		checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isNumber)) &&
+		checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isNumber)) &&
+		checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isNumber)) &&
+		checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isNumber)) &&
+		checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isNumber)) &&
+		checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isString)) &&
+		checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isString)) &&
+		checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isString)) &&
+		checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isString));
+}
+`.trim();
+
+const PatchableRecord_Basic_List_Optional_Typeguard_Result = `
+export function isPatchableRecord_Basic_List_OptionalPatch(value: unknown): value is PatchableRecord_Basic_List_OptionalPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isBoolean))) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isString)));
+}
+`.trim();
+
+const PatchableRecord_Basic_List_Null_Typeguard_Result = `
+export function isPatchableRecord_Basic_List_NullPatch(value: unknown): value is PatchableRecord_Basic_List_NullPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isBoolean))) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isString)));
+}
+`.trim();
+
+const PatchableRecord_Basic_List_Optional_Null_Typeguard_Result = `
+export function isPatchableRecord_Basic_List_Optional_NullPatch(value: unknown): value is PatchableRecord_Basic_List_Optional_NullPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isBoolean))) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isNumber))) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isString)));
+}
+`.trim();
+
+const PatchableEnumRecord_Typeguard_Result = `
+export function isPatchableEnumRecordPatch(value: unknown): value is PatchableEnumRecordPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		checkOptProp(value, 'value', isSampleEnum) &&
+		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isSampleEnum)) &&
+		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isSampleEnum)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isSampleEnum)) &&
+		checkOptProp(value, 'list', createReplaceAddRemoveGuard(isSampleEnum)) &&
+		(checkOptProp(value, 'list_Null', isNull) || checkOptProp(value, 'list_Null', createReplaceAddRemoveGuard(isSampleEnum))) &&
+		(checkOptProp(value, 'list_Opt', isNull) || checkOptProp(value, 'list_Opt', createReplaceAddRemoveGuard(isSampleEnum))) &&
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createReplaceAddRemoveGuard(isSampleEnum)));
+}
+`.trim();
+
+const PatchableEnumInlineRecord_Typeguard_Result = `
+export function isPatchableEnumInlineRecordPatch(value: unknown): value is PatchableEnumInlineRecordPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		checkOptProp(value, 'value', isPatchableEnumInlineRecord_Value) &&
+		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isPatchableEnumInlineRecord_Value_Null)) &&
+		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isPatchableEnumInlineRecord_Value_Opt)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isPatchableEnumInlineRecord_Value_Opt_Null)) &&
+		checkOptProp(value, 'list', createReplaceAddRemoveGuard(isPatchableEnumInlineRecord_List)) &&
+		(checkOptProp(value, 'list_Null', isNull) || checkOptProp(value, 'list_Null', createReplaceAddRemoveGuard(isPatchableEnumInlineRecord_List_Null))) &&
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createReplaceAddRemoveGuard(isPatchableEnumInlineRecord_List_Opt_Null)));
+}
+`.trim();
+
+const PatchableScalarRecord_Typeguard_Result = `
+export function isPatchableScalarRecordPatch(value: unknown): value is PatchableScalarRecordPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		checkOptProp(value, 'value', isString) &&
+		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isString)) &&
+		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isString)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isString)) &&
+		checkOptProp(value, 'list', createReplaceAddRemoveGuard(isString)) &&
+		(checkOptProp(value, 'list_Null', isNull) || checkOptProp(value, 'list_Null', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'list_Opt', isNull) || checkOptProp(value, 'list_Opt', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createReplaceAddRemoveGuard(isString)));
+}
+`.trim();
+
+const PatchableRecordOfRecords_Typeguard_Result = `
+export function isPatchableRecordOfRecordsPatch(value: unknown): value is PatchableRecordOfRecordsPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		checkOptProp(value, 'value', isPatchableRecord_Basic) &&
+		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isPatchableRecord_Basic)) &&
+		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isPatchableRecord_Basic)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isPatchableRecord_Basic)) &&
+		checkOptProp(value, 'list', createReplaceAddUpdateRemoveGuard(isPatchableRecord_Basic, isPatchableRecord_BasicPatch, isString)) &&
+		(checkOptProp(value, 'list_Null', isNull) || checkOptProp(value, 'list_Null', createReplaceAddUpdateRemoveGuard(isPatchableRecord_Basic, isPatchableRecord_BasicPatch, isString))) &&
+		(checkOptProp(value, 'list_Opt', isNull) || checkOptProp(value, 'list_Opt', createReplaceAddUpdateRemoveGuard(isPatchableRecord_Basic, isPatchableRecord_BasicPatch, isString))) &&
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createReplaceAddUpdateRemoveGuard(isPatchableRecord_Basic, isPatchableRecord_BasicPatch, isString)));
+}
+`.trim();
+
+const PatchableRecordWithUnion_Typeguard_Result = `
+export function isPatchableRecordWithUnionPatch(value: unknown): value is PatchableRecordWithUnionPatch {
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		checkOptProp(value, 'value', isPatchableUnionPatch) &&
+		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isPatchableUnionPatch)) &&
+		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isPatchableUnionPatch)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isPatchableUnionPatch)) &&
+		checkOptProp(value, 'list', createReplaceAddUpdateRemoveGuard(isPatchableUnion, isPatchableUnionPatch, isString)) &&
+		(checkOptProp(value, 'list_Null', isNull) || checkOptProp(value, 'list_Null', createReplaceAddUpdateRemoveGuard(isPatchableUnion, isPatchableUnionPatch, isString))) &&
+		(checkOptProp(value, 'list_Opt', isNull) || checkOptProp(value, 'list_Opt', createReplaceAddUpdateRemoveGuard(isPatchableUnion, isPatchableUnionPatch, isString))) &&
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createReplaceAddUpdateRemoveGuard(isPatchableUnion, isPatchableUnionPatch, isString)));
+}
+`.trim();
+
+const RECORD_TYPEGUARDS_PATCH: RecordTest[] = [
+	{
+		name: 'PatchableRecord',
+		result: PatchableRecord_Typeguard_Result,
+	},
+	{
+		name: 'PatchableRecord_Basic',
+		result: PatchableRecord_Basic_Typeguard_Result,
+	},
+	{
+		name: 'PatchableRecord_Basic_Optional',
+		result: PatchableRecord_Basic_Optional_Typeguard_Result,
+	},
+	{
+		name: 'PatchableRecord_Basic_Null',
+		result: PatchableRecord_Basic_Null_Typeguard_Result,
+	},
+	{
+		name: 'PatchableRecord_Basic_Optional_Null',
+		result: PatchableRecord_Basic_Optional_Null_Typeguard_Result,
+	},
+	{
+		name: 'PatchableRecord_Basic_List',
+		result: PatchableRecord_Basic_List_Typeguard_Result,
+	},
+	{
+		name: 'PatchableRecord_Basic_List_Optional',
+		result: PatchableRecord_Basic_List_Optional_Typeguard_Result,
+	},
+	{
+		name: 'PatchableRecord_Basic_List_Null',
+		result: PatchableRecord_Basic_List_Null_Typeguard_Result,
+	},
+	{
+		name: 'PatchableRecord_Basic_List_Optional_Null',
+		result: PatchableRecord_Basic_List_Optional_Null_Typeguard_Result,
+	},
+	{
+		name: 'PatchableEnumRecord',
+		result: PatchableEnumRecord_Typeguard_Result,
+	},
+	{
+		name: 'PatchableEnumInlineRecord',
+		result: PatchableEnumInlineRecord_Typeguard_Result,
+	},
+	{
+		name: 'PatchableScalarRecord',
+		result: PatchableScalarRecord_Typeguard_Result,
+	},
+	{
+		name: 'PatchableRecordWithUnion',
+		result: PatchableRecordWithUnion_Typeguard_Result,
+	},
+];
+
+describe('RecordTypeguardPatch', () => {
+	test.each(RECORD_TYPEGUARDS_PATCH)('$name', data => {
+		const recordModel = findListElement(model.elements, isMResolvedRecordType, r => r.name === data.name);
+		const allProps = allResolvedRecordProperties(recordModel);
+		const result = toString(RecordTypeguardPatch(recordModel, allProps, fqn), '\t').trim();
 		expect(result).toBe(data.result);
 	});
 });

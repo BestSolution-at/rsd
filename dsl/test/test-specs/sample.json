@@ -81,6 +81,38 @@
     },
     {
       "@type": "RecordType",
+      "name": "SimpleRecord",
+      "patchable": false,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "KeyProperty",
+          "name": "key",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "RevisionProperty",
+          "name": "version",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
       "name": "SimpleRecord_Basic",
       "patchable": false,
       "mixins": [],
@@ -904,6 +936,125 @@
           "array": true,
           "readonly": false,
           "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "zoned-date-time",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "SimpleRecord_Basic_List_Optional_Null",
+      "patchable": false,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "valueBoolean",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "boolean",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueShort",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "short",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueInt",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "int",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLong",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "long",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueFloat",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "float",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueDouble",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "double",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueString",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalDate",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-date",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueZonedDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
           "nullable": true,
           "variant": "builtin",
           "type": "zoned-date-time",
@@ -2110,6 +2261,18 @@
       "mixins": [],
       "properties": [
         {
+          "@type": "KeyProperty",
+          "name": "key",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "RevisionProperty",
+          "name": "version",
+          "type": "string",
+          "doc": ""
+        },
+        {
           "@type": "Property",
           "name": "valueBoolean",
           "array": true,
@@ -2228,6 +2391,18 @@
       "patchable": true,
       "mixins": [],
       "properties": [
+        {
+          "@type": "KeyProperty",
+          "name": "key",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "RevisionProperty",
+          "name": "version",
+          "type": "string",
+          "doc": ""
+        },
         {
           "@type": "Property",
           "name": "valueBoolean",
@@ -2348,6 +2523,18 @@
       "mixins": [],
       "properties": [
         {
+          "@type": "KeyProperty",
+          "name": "key",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "RevisionProperty",
+          "name": "version",
+          "type": "string",
+          "doc": ""
+        },
+        {
           "@type": "Property",
           "name": "valueBoolean",
           "array": true,
@@ -2462,10 +2649,153 @@
     },
     {
       "@type": "RecordType",
+      "name": "PatchableRecord_Basic_List_Optional_Null",
+      "patchable": true,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "KeyProperty",
+          "name": "key",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "RevisionProperty",
+          "name": "version",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueBoolean",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "boolean",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueShort",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "short",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueInt",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "int",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLong",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "long",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueFloat",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "float",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueDouble",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "double",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueString",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalDate",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-date",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueZonedDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "zoned-date-time",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
       "name": "PatchableEnumRecord",
       "patchable": true,
       "mixins": [],
       "properties": [
+        {
+          "@type": "KeyProperty",
+          "name": "key",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "RevisionProperty",
+          "name": "version",
+          "type": "string",
+          "doc": ""
+        },
         {
           "@type": "Property",
           "name": "value",
@@ -2563,6 +2893,18 @@
       "patchable": true,
       "mixins": [],
       "properties": [
+        {
+          "@type": "KeyProperty",
+          "name": "key",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "RevisionProperty",
+          "name": "version",
+          "type": "string",
+          "doc": ""
+        },
         {
           "@type": "Property",
           "name": "value",
@@ -2734,6 +3076,18 @@
       "mixins": [],
       "properties": [
         {
+          "@type": "KeyProperty",
+          "name": "key",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "RevisionProperty",
+          "name": "version",
+          "type": "string",
+          "doc": ""
+        },
+        {
           "@type": "Property",
           "name": "value",
           "array": false,
@@ -2830,6 +3184,18 @@
       "patchable": true,
       "mixins": [],
       "properties": [
+        {
+          "@type": "KeyProperty",
+          "name": "key",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "RevisionProperty",
+          "name": "version",
+          "type": "string",
+          "doc": ""
+        },
         {
           "@type": "Property",
           "name": "value",
@@ -2928,6 +3294,18 @@
       "mixins": [],
       "properties": [
         {
+          "@type": "KeyProperty",
+          "name": "key",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "RevisionProperty",
+          "name": "version",
+          "type": "string",
+          "doc": ""
+        },
+        {
           "@type": "Property",
           "name": "value",
           "array": false,
@@ -3025,6 +3403,18 @@
       "mixins": [],
       "properties": [
         {
+          "@type": "KeyProperty",
+          "name": "key",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "RevisionProperty",
+          "name": "version",
+          "type": "string",
+          "doc": ""
+        },
+        {
           "@type": "Property",
           "name": "shared",
           "array": false,
@@ -3055,6 +3445,18 @@
       "patchable": true,
       "mixins": [],
       "properties": [
+        {
+          "@type": "KeyProperty",
+          "name": "key",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "RevisionProperty",
+          "name": "version",
+          "type": "string",
+          "doc": ""
+        },
         {
           "@type": "Property",
           "name": "shared",
