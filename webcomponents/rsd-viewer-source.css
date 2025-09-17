@@ -134,4 +134,8 @@ dd code {
   .service-operation-content {
     grid-template-columns: 1fr;
   }
+  .service-code-preview {
+    grid-row: 1/2;
+    margin-bottom: 20px;
+  }
 }

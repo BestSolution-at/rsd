@@ -1,4 +1,4 @@
-import { Component, Fragment, h, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Fragment, h, Prop, State, Watch } from '@stencil/core';
 import {
   isMEnumType,
   isMInlineEnumType,
@@ -27,32 +27,54 @@ import {
   MScalarType,
   resolve,
 } from '../../utils/model';
+import { Code } from './rsd-code.types';
 
-function serviceContent(model: MResolvedService) {
+function serviceContent(model: MResolvedService, config: Config) {
+  const rsd = (
+    <Fragment>
+      <span>
+        <span class="keyword">service</span> <span class="type">{model.name}</span> <span>{'{'}</span>
+      </span>
+      {'\n\n'}
+      {model.operations.map(o => (
+        <Fragment>
+          {operation(o, '\t', 100)}
+          {'\n\n'}
+        </Fragment>
+      ))}
+      <span>
+        <span>{'}'}</span>
+      </span>
+    </Fragment>
+  );
+  const codes: Code[] = [{ name: 'Base', content: rsd }];
+  if (config.showREST && model.meta.rest) {
+    const REST = (
+      <Fragment>
+        <span class="keyword">resource</span> <span class="type">{model.name}</span>
+        <span class="keyword"> at</span> <span class="string">'{model.meta.rest.path}'</span>
+        <span> {'{\n'}</span>
+        {model.operations.map(o => (
+          <>
+            {operationREST(o.meta.rest, o, '\t')}
+            {'\n\n'}
+          </>
+        ))}
+        <span>{'}'}</span>
+      </Fragment>
+    );
+    codes.push({ name: 'REST', content: REST });
+  }
   return (
     <div class="main-content">
-      <h1 class="text-2xl inner-content">{model.name}</h1>
+      <h1 class="text-2xl inner-content" id={`services_${model.name}`} style={{ scrollMarginTop: '80px' }}>
+        {model.name}
+      </h1>
       <div class="mb-14 inner-content">
         <p>{model.doc}</p>
-        {code(
-          <Fragment>
-            <span>
-              <span class="keyword">service</span> <span class="type">{model.name}</span> <span>{'{'}</span>
-            </span>
-            {'\n\n'}
-            {model.operations.map(o => (
-              <Fragment>
-                {operation(o, '\t', 100)}
-                {'\n\n'}
-              </Fragment>
-            ))}
-            <span>
-              <span>{'}'}</span>
-            </span>
-          </Fragment>,
-        )}
+        <rsd-code code={codes} theme={config.theme} />
       </div>
-      <div class="service-operations">{model.operations.map(o => serviceMethod(o, model))}</div>
+      <div class="service-operations">{model.operations.map(o => serviceMethod(o, model, config))}</div>
     </div>
   );
 }
@@ -106,25 +128,171 @@ function restMethod(model: MResolvedOperation, service: MResolvedService) {
   return '';
 }
 
-function serviceMethod(model: MResolvedOperation, service: MResolvedService) {
+function serviceMethod(model: MResolvedOperation, service: MResolvedService, config: Config) {
   const reqParameters = model.parameters.filter(p => !p.optional);
   const optParameters = model.parameters.filter(p => p.optional);
 
+  const codes: Code[] = [{ name: 'Base', content: operation(model, '') }];
+  if (config.showREST && model.meta.rest) {
+    codes.push({ name: 'REST', content: operationREST(model.meta.rest, model, '') });
+  }
+  /*if (model.meta.rest) {
+    let content = '';
+    let url = `http://localhost${service.meta.rest.path}/${model.meta.rest.path}`;
+    const hasQueryParams = model.parameters.find(p => p.meta?.rest?.source === 'query');
+    if (hasQueryParams) {
+      url += '?';
+      url += model.parameters //
+        .filter(p => p.meta?.rest?.source === 'query')
+        .map(p => {
+          if (isMBuiltinType(p.type) || p.variant === 'scalar' || p.variant === 'enum' || isMInlineEnumType(p.type)) {
+            return `${p.meta?.rest?.name ?? p.name}=\${${p.name}}`;
+          } else {
+          }
+        })
+        .join('&');
+    }
+
+    const headers = model.parameters
+      .filter(p => p.meta?.rest?.source === 'header')
+      .map(p => (
+        <>
+          {' \\\n\t-H '}
+          <span class="string">
+            "{p.meta?.rest?.name ?? p.name}: {'${'}
+            {p.name}
+            {'}'}"
+          </span>
+        </>
+      ));
+
+    if (model.meta.rest.method === 'GET') {
+      content = (
+        <Fragment>
+          <span>curl</span>
+          {' \\\n\t-X GET'}
+          {headers}
+          {' \\\n\t'}
+          <span class="keyword">{url}</span>
+        </Fragment>
+      );
+    } else if (model.meta.rest.method === 'POST') {
+      content = (
+        <Fragment>
+          <span>curl</span>
+          {' \\\n\t-X POST'}
+          {headers}
+          {' \\\n\t-H '}
+          <span class="string">"Content-Type: application/json"</span>
+          {' \\\n\t-d @body.json'}
+          {' \\\n\t'}
+          <span class="keyword">{url}</span>
+        </Fragment>
+      );
+    } else if (model.meta.rest.method === 'PATCH') {
+      content = (
+        <Fragment>
+          <span>curl</span>
+          {' \\\n\t-X PATCH'}
+          {headers}
+          {' \\\n\t-H '}
+          <span class="string">"Content-Type: application/json"</span>
+          {' \\\n\t-d @body.json'}
+          {' \\n\t'}
+          <span class="keyword">{url}</span>
+        </Fragment>
+      );
+    } else if (model.meta.rest.method === 'PUT') {
+      content = (
+        <Fragment>
+          <span>curl</span>
+          {' \\\n\t-X PUT'}
+          {headers}
+          {' \\\n\t-H '}
+          <span class="string">"Content-Type: application/json"</span>
+          {' \\\n\t-d @body.json'}
+          {' \\\n\t'}
+          <span class="keyword">{url}</span>
+        </Fragment>
+      );
+    } else if (model.meta.rest.method === 'DELETE') {
+      content = (
+        <Fragment>
+          <span>curl</span>
+          {' \\\n\t-X DELETE'}
+          {headers}
+          {' \\\n\t'}
+          <span class="keyword">{url}</span>
+        </Fragment>
+      );
+    }
+    codes.push({ name: 'cUrl', content });
+  }*/
+
   return (
-    <Fragment>
-      {restMethod(model, service)}
+    <div id={`services_${service.name}__${model.name}`}>
+      {config.showREST && restMethod(model, service)}
       <h2 class="text-lg inner-content mt-2 mb-2">{model.name}</h2>
       <div class="service-operation-content inner-content">
-        <div class="text-sm">
+        <div class="text-sm service-docs">
           <p>{model.doc}</p>
-          {reqParameters.length > 0 && parameters('Required Parameters', reqParameters, service)}
-          {optParameters.length > 0 && parameters('Optional Parameters', optParameters, service)}
-          {result(model.resultType, model.operationErrors)}
+          {reqParameters.length > 0 && parameters('Required Parameters', reqParameters, service, config)}
+          {optParameters.length > 0 && parameters('Optional Parameters', optParameters, service, config)}
+          {result(model.resultType, model.operationErrors, model, config)}
         </div>
-        <div class="code-column">{code(operation(model, ''))}</div>
+        <div class="code-column service-code-preview">
+          <rsd-code code={codes} theme={config.theme} />
+        </div>
       </div>
       <hr></hr>
-    </Fragment>
+    </div>
+  );
+}
+
+function operationREST(model: MResolvedOperation['meta']['rest'], operation: MResolvedOperation, ident = '\t', maxLength = 50) {
+  return (
+    <span>
+      {ident}
+      <span class="keyword">{model.method}</span> <span class="method">{operation.name}</span> <span class="keyword">at</span> <span class="string">'{model.path}'</span>
+      {operation.parameters
+        .filter(p => p.meta?.rest)
+        .filter(p => p.meta.rest.source !== 'path')
+        .map(p => (
+          <span>
+            {'\n\t'}
+            {ident}
+            <span class="keyword">{p.meta.rest.source}-param</span> {p.name}{' '}
+            {p.meta.rest.name && p.meta.rest.name !== p.name && (
+              <>
+                <span class="keyword">as</span> <span class="string">'{p.meta.rest.name}'</span>
+              </>
+            )}
+          </span>
+        ))}
+      {model.results.length > 0 && (
+        <>
+          {' => {'}
+          {model.results.map(e => {
+            return (
+              <>
+                {'\n\t'}
+                {operation.parameters.filter(p => p.meta?.rest).filter(p => p.meta.rest.source !== 'path').length > 0 ? '\t' : ''}
+                {ident}
+                {e.statusCode}
+                {e.error && (
+                  <>
+                    : <span class="type-ref">{e.error}</span>
+                  </>
+                )}
+              </>
+            );
+          })}
+          {'\n'}
+          {ident}
+          {'}'}
+        </>
+      )}
+    </span>
   );
 }
 
@@ -201,27 +369,34 @@ function typeString(type: string | MInlineEnumType) {
   return type;
 }
 
-function parameters(title: string, parameters: MParameter[], service: MResolvedService) {
+function parameters(title: string, parameters: MParameter[], service: MResolvedService, config: Config) {
   return (
     <Fragment>
       <h3 class="text-sm">{title}</h3>
       <div>
-        <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">{parameters.map(p => parameter(p, service))}</ul>
+        <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">{parameters.map(p => parameter(p, service, config))}</ul>
       </div>
     </Fragment>
   );
 }
 
-function result(resultType: MReturnType | undefined, errors: MOperationError[]) {
+function result(resultType: MReturnType | undefined, errors: MOperationError[], operation: MResolvedOperation, config: Config) {
   const result = resultType ? (isMInlineEnumType(resultType.type) ? resultType.type.entries.join(' | ') : resultType.type) : 'void';
+  const restSuccess = config.showREST ? ' \u2014 HTTP-' + (operation.meta?.rest?.results.find(r => r.error === undefined)?.statusCode ?? '200') : '';
+  const findRestError = (error: string) => {
+    if (config.showREST) {
+      return ' \u2014 HTTP-' + (operation.meta?.rest?.results.find(r => r.error === error)?.statusCode ?? '<Unknown>');
+    }
+    return '';
+  };
   return (
     <Fragment>
       <h3 class="text-sm">Result</h3>
       <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">
-        {resultType && <li class="not-prose py-4 first:pt-0 last:pb-0">{dlResult('Success', resultType.array ? `${result}[]` : result, resultType.doc)}</li>}
-        {resultType === undefined && <li class="not-prose py-4 first:pt-0 last:pb-0">{dlResult('Success', 'void', '')}</li>}
+        {resultType && <li class="not-prose py-4 first:pt-0 last:pb-0">{dlResult(`Success${restSuccess}`, resultType.array ? `${result}[]` : result, resultType.doc)}</li>}
+        {resultType === undefined && <li class="not-prose py-4 first:pt-0 last:pb-0">{dlResult(`Success${restSuccess}`, 'void', '')}</li>}
         {errors.map(e => (
-          <li class="not-prose py-4 first:pt-0 last:pb-0">{dlError('Error', e.error, e.doc)}</li>
+          <li class="not-prose py-4 first:pt-0 last:pb-0">{dlError(`Error${findRestError(e.error)}`, e.error, e.doc)}</li>
         ))}
       </ul>
     </Fragment>
@@ -255,27 +430,52 @@ function dlError(code: string, typeString: string, doc: string) {
 function restParam(p: MParameter, service: MResolvedService) {
   if (service.meta.rest) {
     if (p.meta?.rest?.source === 'path') {
-      return <span class="font-mono text-emerald-500 dark:text-emerald-400">path:</span>;
+      return (
+        <>
+          <span class="font-mono text-emerald-500 dark:text-emerald-400">@path</span>
+          {' \u2014\u00A0'}
+        </>
+      );
     } else if (p.meta?.rest?.source === 'query') {
-      return <span class="font-mono text-sky-500 dark:text-sky-400">query:</span>;
+      return (
+        <>
+          <span class="font-mono text-sky-500 dark:text-sky-400">@query</span>
+          {' \u2014\u00A0'}
+        </>
+      );
     } else if (p.meta?.rest?.source === 'header') {
-      return <span class="font-mono text-yellow-500 dark:text-yellow-400">header:</span>;
+      return (
+        <>
+          <span class="font-mono text-yellow-500 dark:text-yellow-400">@header</span>
+          {' \u2014\u00A0'}
+        </>
+      );
     } else if (p.meta?.rest?.source === 'cookie') {
-      return <span class="font-mono text-pink-500 dark:text-pink-400">cookie:</span>;
+      return (
+        <>
+          <span class="font-mono text-pink-500 dark:text-pink-400">@cookie</span>
+          {' \u2014\u00A0'}
+        </>
+      );
     } else {
-      return <span class="font-mono text-rose-500 dark:text-rose-400">body:</span>;
+      return (
+        <>
+          <span class="font-mono text-rose-500 dark:text-rose-400">@body</span>
+          {' \u2014\u00A0'}
+        </>
+      );
     }
   }
   return '';
 }
 
-function parameter(p: MParameter, service: MResolvedService) {
+function parameter(p: MParameter, service: MResolvedService, config: Config) {
   return (
     <li class="not-prose py-4 first:pt-0 last:pb-0">
       <dl class="parameter">
         <dd>
-          <code class="flex items-center bg-zinc-700/5 dark:bg-zinc-700/15 border-zinc-300 dark:border-zinc-700 dark:text-white text-xs p-1 rounded-lg border gap-x-3">
-            {restParam(p, service)}
+          <code class="flex items-center bg-zinc-700/5 dark:bg-zinc-700/15 border-zinc-300 dark:border-zinc-700 dark:text-white text-xs p-1 rounded-lg border">
+            {config.showREST && restParam(p, service)}
             {p.name}
           </code>
         </dd>
@@ -296,11 +496,14 @@ function scalars(resolvedModel: MResolvedRSDModel) {
   }
   return (
     <li class="py-[2px]">
-      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline">Scalars</a>
+      <a class="gap-2 py-1 pr-3 text-sm font-semibold transition pl-4 text-zinc-600 dark:text-white no-underline">Scalars</a>
       <ul class="list-none p-0">
         {scalars.map(s => (
           <li>
-            <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${s.name}`}>
+            <a
+              class="flex gap-2 py-1 pr-3 text-sm font-extralight transition pl-8 text-zinc-500 dark:text-zinc-300 no-underline hover:bg-zinc-800/5 hover:dark:bg-white/10"
+              href={`#model_${s.name}`}
+            >
               {s.name}
             </a>
           </li>
@@ -317,11 +520,14 @@ function enums(resolvedModel: MResolvedRSDModel) {
   }
   return (
     <li class="py-[2px]">
-      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline">Enums</a>
+      <a class="gap-2 py-1 pr-3 text-sm font-semibold transition pl-4 text-zinc-600 dark:text-white no-underline">Enums</a>
       <ul class="list-none p-0">
         {enums.map(e => (
           <li class="py-[2px]">
-            <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${e.name}`}>
+            <a
+              class="flex gap-2 py-1 pr-3 text-sm font-extralight transition pl-8 text-zinc-500 dark:text-zinc-300 no-underline hover:bg-zinc-800/5 hover:dark:bg-white/10"
+              href={`#model_${e.name}`}
+            >
               {e.name}
             </a>
           </li>
@@ -338,11 +544,14 @@ function mixins(resolvedModel: MResolvedRSDModel) {
   }
   return (
     <li class="py-[2px]">
-      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline">Mixins</a>
+      <a class="gap-2 py-1 pr-3 text-sm font-semibold transition pl-4 text-zinc-600 dark:text-white no-underline">Mixins</a>
       <ul class="list-none pl-0">
         {mixins.map(m => (
           <li class="py-[2px]">
-            <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${m.name}`}>
+            <a
+              class="flex gap-2 py-1 pr-3 text-sm font-extralight transition pl-8 text-zinc-500 dark:text-zinc-300 no-underline hover:bg-zinc-800/5 hover:dark:bg-white/10"
+              href={`#model_${m.name}`}
+            >
               {m.name}
             </a>
           </li>
@@ -359,11 +568,14 @@ function records(resolvedModel: MResolvedRSDModel) {
   }
   return (
     <li class="py-[2px]">
-      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline">Records</a>
+      <a class="gap-2 py-1 pr-3 text-sm font-semibold transition pl-4 text-zinc-600 dark:text-white no-underline">Records</a>
       <ul class="list-none pl-0">
         {records.map(r => (
           <li class="py-[2px]">
-            <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${r.name}`}>
+            <a
+              class="flex gap-2 py-1 pr-3 text-sm font-extralight transition pl-8 text-zinc-500 dark:text-zinc-300 no-underline hover:bg-zinc-800/5 hover:dark:bg-white/10"
+              href={`#model_${r.name}`}
+            >
               {r.name}
             </a>
           </li>
@@ -380,11 +592,11 @@ function unions(resolvedModel: MResolvedRSDModel) {
   }
   return (
     <li class="py-[2px]">
-      <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline">Unions</a>
+      <a class="gap-2 py-1 pr-3 text-sm font-semibold transition pl-4 text-zinc-600 dark:text-white no-underline">Unions</a>
       <ul class="list-none pl-0">
         {unions.map(u => (
           <li class="py-[2px]">
-            <a class="gap-2 py-1 pr-3 text-sm transition pl-8 text-zinc-600 dark:text-white no-underline" href={`#model_${u.name}`}>
+            <a class="flex gap-2 py-1 pr-3 text-sm font-extralight transition pl-8 text-zinc-500 dark:text-zinc-300 no-underline" href={`#model_${u.name}`}>
               {u.name}
             </a>
           </li>
@@ -394,144 +606,142 @@ function unions(resolvedModel: MResolvedRSDModel) {
   );
 }
 
-function modelContent(element: MResolvedUserType) {
+function modelContent(element: MResolvedUserType, config: Config) {
   if (isMScalarType(element)) {
-    return scalarContent(element);
+    return scalarContent(element, config);
   } else if (isMEnumType(element)) {
-    return enumContent(element);
+    return enumContent(element, config);
   } else if (isMMixinType(element)) {
-    return mixinContent(element);
+    return mixinContent(element, config);
   } else if (isMRecordType(element)) {
-    return recordContent(element);
+    return recordContent(element, config);
   } else {
-    return unionContent(element);
+    return unionContent(element, config);
   }
 }
 
-function code(code: any) {
+function scalarContent(element: MScalarType, config: Config) {
+  const rsd = (
+    <Fragment>
+      <span class="keyword">scalar</span>
+      <span> </span>
+      <span>{element.name}</span>
+      <span>;</span>
+    </Fragment>
+  );
   return (
-    <div class="not-prose">
-      <div class="bg-slate-800 dark:bg-zinc-800 rounded-2xl dark:ring-1 dark:ring-white/10 m-1">
-        <div class="p-4 rounded-b-2xl">
-          <pre class="text-xs text-white overflow-x-auto">
-            <code>{code}</code>
-          </pre>
-        </div>
+    <div class="main-content">
+      <h1 class="text-2xl inner-content" id={`model_${element.name}`} style={{ scrollMarginTop: '80px' }}>
+        {element.name}
+      </h1>
+      <div class="mb-14 inner-content">
+        <p>{element.doc}</p>
+        <rsd-code code={[{ name: 'Base', content: rsd }]} theme={config.theme} />
       </div>
     </div>
   );
 }
 
-function scalarContent(element: MScalarType) {
-  return (
-    <div class="main-content">
-      <h1 class="text-2xl inner-content">{element.name}</h1>
-      <div class="mb-14 inner-content">
-        <p>{element.doc}</p>
-        {code(
+function enumContent(element: MEnumType, config: Config) {
+  const rsd = (
+    <Fragment>
+      <span class="keyword">enum</span>
+      <span> </span>
+      <span>{element.name}</span>
+      <span> = </span>
+      {'\n'}
+      {element.entries.map((e, idx) => {
+        return (
           <Fragment>
-            <span class="keyword">scalar</span>
-            <span> </span>
-            <span>{element.name}</span>
-            <span>;</span>
-          </Fragment>,
-        )}
-      </div>
-    </div>
-  );
-}
-
-function enumContent(element: MEnumType) {
-  return (
-    <div class="main-content">
-      <h1 class="text-2xl inner-content">{element.name}</h1>
-      <div class="mb-14 inner-content">
-        <p>{element.doc}</p>
-        {code(
-          <Fragment>
-            <span class="keyword">enum</span>
-            <span> </span>
-            <span>{element.name}</span>
-            <span> = </span>
+            <span>{idx > 0 ? '\t| ' : '\t  '}</span>
+            <span>{e.name}</span>
             {'\n'}
-            {element.entries.map((e, idx) => {
-              return (
-                <Fragment>
-                  <span>{idx > 0 ? '\t| ' : '\t  '}</span>
-                  <span>{e.name}</span>
-                  {'\n'}
-                </Fragment>
-              );
-            })}
-            <span>;</span>
-          </Fragment>,
-        )}
+          </Fragment>
+        );
+      })}
+      <span>;</span>
+    </Fragment>
+  );
+  return (
+    <div class="main-content">
+      <h1 class="text-2xl inner-content" id={`model_${element.name}`} style={{ scrollMarginTop: '80px' }}>
+        {element.name}
+      </h1>
+      <div class="mb-14 inner-content">
+        <p>{element.doc}</p>
+        <rsd-code code={[{ name: 'Base', content: rsd }]} theme={config.theme} />
       </div>
     </div>
   );
 }
 
-function unionContent(element: MResolvedUnionType) {
+function unionContent(element: MResolvedUnionType, config: Config) {
+  const rsd = (
+    <Fragment>
+      <span class="keyword">union</span>
+      <span> </span>
+      <span>{element.name} = </span>
+      {'\n'}
+      {element.types.map((t, idx) => (
+        <Fragment>
+          {'\t'}
+          <span>
+            {idx > 0 ? '| ' : ''}
+            {t}(<span class="string">"{element.descriminatorAliases[t] ?? t}"</span>)
+          </span>
+          {'\n'}
+        </Fragment>
+      ))}
+    </Fragment>
+  );
   return (
     <div class="main-content">
-      <h1 class="text-2xl inner-content">{element.name}</h1>
+      <h1 class="text-2xl inner-content" id={`model_${element.name}`} style={{ scrollMarginTop: '80px' }}>
+        {element.name}
+      </h1>
       <div class="mb-14 inner-content">
         <p>{element.doc}</p>
-        {code(
-          <Fragment>
-            <span class="keyword">union</span>
-            <span> </span>
-            <span>{element.name} = </span>
-            {'\n'}
-            {element.types.map((t, idx) => (
-              <Fragment>
-                {'\t'}
-                <span>
-                  {idx > 0 ? '| ' : ''}
-                  {t}(<span class="string">"{element.descriminatorAliases[t] ?? t}"</span>)
-                </span>
-                {'\n'}
-              </Fragment>
-            ))}
-          </Fragment>,
-        )}
+        <rsd-code code={[{ name: 'Base', content: rsd }]} theme={config.theme} />
       </div>
     </div>
   );
 }
 
-function recordContent(element: MResolvedRecordType) {
+function recordContent(element: MResolvedRecordType, config: Config) {
+  const rsd = (
+    <Fragment>
+      {element.patchable ? <span class="keyword">patchable </span> : ''}
+      <span class="keyword">record</span>
+      <span> </span>
+      <span>{element.name}</span>
+      <span> {'{'}</span>
+      {'\n'}
+      {element.properties.map(p => (
+        <Fragment>
+          {propCode(p)}
+          {'\n'}
+        </Fragment>
+      ))}
+      {element.properties.length > 0 && element.mixins.length > 0 ? '\n' : ''}
+      {element.mixins.map(m => (
+        <Fragment>
+          {'\t'}
+          <span class="keyword">include</span>
+          <span> {m}</span>
+          {'\n'}
+        </Fragment>
+      ))}
+      <span>{'}'}</span>
+    </Fragment>
+  );
   return (
     <div class="main-content">
-      <h1 class="text-2xl inner-content">{element.name}</h1>
+      <h1 class="text-2xl inner-content" id={`model_${element.name}`} style={{ scrollMarginTop: '80px' }}>
+        {element.name}
+      </h1>
       <div class="mb-14 inner-content">
         <p>{element.doc}</p>
-        {code(
-          <Fragment>
-            {element.patchable ? <span class="keyword">patchable </span> : ''}
-            <span class="keyword">record</span>
-            <span> </span>
-            <span>{element.name}</span>
-            <span> {'{'}</span>
-            {'\n'}
-            {element.properties.map(p => (
-              <Fragment>
-                {propCode(p)}
-                {'\n'}
-              </Fragment>
-            ))}
-            {element.properties.length > 0 && element.mixins.length > 0 ? '\n' : ''}
-            {element.mixins.map(m => (
-              <Fragment>
-                {'\t'}
-                <span class="keyword">include</span>
-                <span> {m}</span>
-                {'\n'}
-              </Fragment>
-            ))}
-            <span>{'}'}</span>
-          </Fragment>,
-        )}
+        <rsd-code code={[{ name: 'Base', content: rsd }]} theme={config.theme} />
         {element.properties.length > 0 || element.mixins.length > 0 ? (
           <Fragment>
             <h2 class="text-lg">Properties</h2>
@@ -550,28 +760,31 @@ function recordContent(element: MResolvedRecordType) {
   );
 }
 
-function mixinContent(element: MMixinType) {
+function mixinContent(element: MMixinType, config: Config) {
+  const rsd = (
+    <Fragment>
+      <span class="keyword">mixin</span>
+      <span> </span>
+      <span>{element.name}</span>
+      <span> {'{'}</span>
+      {'\n'}
+      {element.properties.map(p => (
+        <Fragment>
+          {propCode(p)}
+          {'\n'}
+        </Fragment>
+      ))}
+      <span>{'}'}</span>
+    </Fragment>
+  );
   return (
     <div class="main-content">
-      <h1 class="text-2xl inner-content">{element.name}</h1>
+      <h1 class="text-2xl inner-content" id={`model_${element.name}`} style={{ scrollMarginTop: '80px' }}>
+        {element.name}
+      </h1>
       <div class="mb-14 inner-content">
         <p>{element.doc}</p>
-        {code(
-          <Fragment>
-            <span class="keyword">mixin</span>
-            <span> </span>
-            <span>{element.name}</span>
-            <span> {'{'}</span>
-            {'\n'}
-            {element.properties.map(p => (
-              <Fragment>
-                {propCode(p)}
-                {'\n'}
-              </Fragment>
-            ))}
-            <span>{'}'}</span>
-          </Fragment>,
-        )}
+        <rsd-code code={[{ name: 'Base', content: rsd }]} theme={config.theme} />
         <h2 class="text-lg">Properties</h2>
         <div>
           <ul class="list-none m-0 p-0 divide-y divide-zinc-900/5">{element.properties.map(property)}</ul>
@@ -707,7 +920,54 @@ function dl(code: string, typeString: string, doc: string) {
   );
 }
 
-function sideNav(resolvedModel: MResolvedRSDModel) {
+/*
+    if (model.meta.rest.method === 'GET') {
+      method = (
+        <span class="font-mono text-[0.625rem]/6 font-semibold rounded-lg px-1.5 ring-1 ring-inset ring-emerald-300 dark:ring-emerald-400/30 bg-emerald-400/10 text-emerald-500 dark:text-emerald-400">
+          {model.meta.rest.method}
+        </span>
+      );
+    } else if (model.meta.rest.method === 'PUT') {
+      method = (
+        <span class="font-mono text-[0.625rem]/6 font-semibold rounded-lg px-1.5 ring-1 ring-inset ring-amber-300 bg-amber-400/10 text-amber-500 dark:ring-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400">
+          {model.meta.rest.method}
+        </span>
+      );
+    } else if (model.meta.rest.method === 'DELETE') {
+      method = (
+        <span class="font-mono text-[0.625rem]/6 font-semibold rounded-lg px-1.5 ring-1 ring-inset ring-rose-200 bg-rose-50 text-red-500 dark:ring-rose-500/20 dark:bg-rose-400/10 dark:text-rose-400">
+          {model.meta.rest.method}
+        </span>
+      );
+    } else if (model.meta.rest.method === 'PATCH') {
+      method = (
+        <span class="font-mono text-[0.625rem]/6 font-semibold rounded-lg px-1.5 ring-1 ring-inset ring-purple-200 bg-purple-50 text-purple-500 dark:ring-purple-500/20 dark:bg-purple-400/10 dark:text-purple-400">
+          {model.meta.rest.method}
+        </span>
+      );
+    } else {
+      method = (
+        <span class="font-mono text-[0.625rem]/6 font-semibold rounded-lg px-1.5 ring-1 ring-inset ring-sky-300 bg-sky-400/10 text-sky-500 dark:ring-sky-400/30 dark:bg-sky-400/10 dark:text-sky-400">
+          {model.meta.rest.method}
+        </span>
+      );
+    }
+*/
+
+function sideRestTextColor(method: string) {
+  /*if (method === 'GET') {
+    return <span class="font-mono text-[0.625rem]/6 font-semibold text-emerald-500 dark:text-emerald-400">{method}</span>;
+  } else if (method === 'PUT') {
+    return <span class="font-mono text-[0.625rem]/6 font-semibold text-amber-500 dark:text-amber-400">{method}</span>;
+  } else if (method === 'DELETE') {
+    return <span class="font-mono text-[0.625rem]/6 font-semibold text-red-500 dark:text-rose-400">{method}</span>;
+  } else if (method === 'PATCH') {
+    return <span class="font-mono text-[0.625rem]/6 font-semibold text-purple-500 dark:text-purple-400">{method}</span>;
+  }*/
+  return <span class="font-mono text-[0.625rem]/6 text-zinc-400 dark:text-zinc-200">{method}</span>;
+}
+
+function sideNav(resolvedModel: MResolvedRSDModel, config: Config) {
   return (
     <ul class="list-none p-0">
       <li>
@@ -715,9 +975,22 @@ function sideNav(resolvedModel: MResolvedRSDModel) {
         <ul class="list-none border-l border-transparent mt-3 ml-2 border-zinc-900/10 dark:border-white/20 p-0">
           {resolvedModel.services.map(e => (
             <li class="py-[2px]">
-              <a class="gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-600 dark:text-white no-underline" href={`#services_${e.name}`}>
+              <a class="gap-2 py-1 pr-3 text-sm font-semibold transition pl-4 text-zinc-600 dark:text-white no-underline" href={`#services_${e.name}`}>
                 <span>{e.name}</span>
               </a>
+              <ul class="list-none p-0">
+                {e.operations.map(o => (
+                  <li>
+                    <a
+                      class="flex justify-between gap-2 py-1 pr-3 text-sm font-extralight transition pl-8 text-zinc-500 dark:text-zinc-300 no-underline hover:bg-zinc-800/5 hover:dark:bg-white/10"
+                      href={`#services_${e.name}__${o.name}`}
+                    >
+                      <span class="truncate">{o.name}</span>
+                      {config.showREST && o.meta.rest && sideRestTextColor(o.meta.rest.method)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </li>
           ))}
         </ul>
@@ -736,6 +1009,12 @@ function sideNav(resolvedModel: MResolvedRSDModel) {
   );
 }
 
+type Config = {
+  showREST: boolean;
+  showCurl: boolean;
+  theme: string;
+};
+
 @Component({
   tag: 'rsd-viewer',
   styleUrl: 'rsd-viewer.css',
@@ -745,6 +1024,12 @@ function sideNav(resolvedModel: MResolvedRSDModel) {
 export class RsdViewer {
   @Prop()
   projectname: string;
+
+  @Prop()
+  showREST: boolean = true;
+
+  @Prop()
+  showCurl: boolean = false;
 
   @Prop()
   model: string | MRSDModel;
@@ -761,23 +1046,31 @@ export class RsdViewer {
   @State()
   navigationOpen = false;
 
+  @Element() el!: HTMLElement;
+
   render() {
     let content = 'Nothing';
+    const config = { showREST: this.showREST, showCurl: this.showCurl, theme: this.theme };
     if (this.activeContext && this.activeContext !== 'home') {
       if (this.activeContext.startsWith('services')) {
-        const serviceName = this.activeContext.substring('services_'.length);
-        console.log(serviceName);
+        let serviceName = this.activeContext.substring('services_'.length);
+        if (serviceName.lastIndexOf('__') !== -1) {
+          serviceName = serviceName.substring(0, serviceName.lastIndexOf('__'));
+        }
         const service = this.resolvedModel.services.find(s => s.name === serviceName);
         if (service) {
-          content = serviceContent(service);
+          content = serviceContent(service, { showREST: this.showREST, showCurl: this.showCurl, theme: this.theme });
         }
       } else if (this.activeContext.startsWith('model')) {
         const elementName = this.activeContext.substring('model_'.length);
         const element = this.resolvedModel.elements.find(e => e.name === elementName);
         if (element) {
-          content = modelContent(element);
+          content = modelContent(element, config);
         }
       }
+      setTimeout(() => {
+        this.el.shadowRoot.querySelector('#' + this.activeContext)?.scrollIntoView({ behavior: 'smooth' });
+      });
     } else {
       content = home(this.resolvedModel);
     }
@@ -850,17 +1143,17 @@ export class RsdViewer {
                   </div>
                 }
               </div>
-              <nav class="hidden lg:block mt-10">{sideNav(this.resolvedModel)}</nav>
+              <nav class="hidden lg:block mt-10">{sideNav(this.resolvedModel, config)}</nav>
             </div>
           </header>
           {/* contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pt-4 lg:pb-8 xl:w-80 lg:dark:border-white/10 */}
           {/**/}
-          <main class="flex prose dark:prose-invert">
+          <main class="flex prose dark:prose-invert" style={{ scrollPaddingTop: '80px' }}>
             <div class="w-full">{content}</div>
           </main>
           {this.navigationOpen && (
             <div class="lg:hidden fixed shadow-lg ring-1 shadow-zinc-900/10 ring-zinc-900/7.5 dark:ring-white/7.5 top-14 bottom-0 left-0 w-full overflow-y-auto min-[416px]:max-w-sm bg-gray-50 dark:bg-neutral-900 pt-7 px-6 pb-8">
-              <nav>{sideNav(this.resolvedModel)}</nav>
+              <nav>{sideNav(this.resolvedModel, config)}</nav>
             </div>
           )}
         </div>

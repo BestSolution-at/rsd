@@ -5,15 +5,29 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Code } from "./components/rsd-viewer/rsd-code.types";
 import { MRSDModel } from "./utils/model";
+export { Code } from "./components/rsd-viewer/rsd-code.types";
 export { MRSDModel } from "./utils/model";
 export namespace Components {
+    interface RsdCode {
+        "code": Code[];
+        "theme": string;
+    }
     interface RsdViewer {
         "model": string | MRSDModel;
         "projectname": string;
+        "showCurl": boolean;
+        "showREST": boolean;
     }
 }
 declare global {
+    interface HTMLRsdCodeElement extends Components.RsdCode, HTMLStencilElement {
+    }
+    var HTMLRsdCodeElement: {
+        prototype: HTMLRsdCodeElement;
+        new (): HTMLRsdCodeElement;
+    };
     interface HTMLRsdViewerElement extends Components.RsdViewer, HTMLStencilElement {
     }
     var HTMLRsdViewerElement: {
@@ -21,15 +35,23 @@ declare global {
         new (): HTMLRsdViewerElement;
     };
     interface HTMLElementTagNameMap {
+        "rsd-code": HTMLRsdCodeElement;
         "rsd-viewer": HTMLRsdViewerElement;
     }
 }
 declare namespace LocalJSX {
+    interface RsdCode {
+        "code"?: Code[];
+        "theme"?: string;
+    }
     interface RsdViewer {
         "model"?: string | MRSDModel;
         "projectname"?: string;
+        "showCurl"?: boolean;
+        "showREST"?: boolean;
     }
     interface IntrinsicElements {
+        "rsd-code": RsdCode;
         "rsd-viewer": RsdViewer;
     }
 }
@@ -37,6 +59,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "rsd-code": LocalJSX.RsdCode & JSXBase.HTMLAttributes<HTMLRsdCodeElement>;
             "rsd-viewer": LocalJSX.RsdViewer & JSXBase.HTMLAttributes<HTMLRsdViewerElement>;
         }
     }
