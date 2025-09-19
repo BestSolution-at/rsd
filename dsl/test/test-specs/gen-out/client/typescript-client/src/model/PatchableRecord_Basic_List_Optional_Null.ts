@@ -165,16 +165,16 @@ export function isPatchableRecord_Basic_List_Optional_NullPatch(value: unknown):
 export function PatchableRecord_Basic_List_Optional_NullPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_List_Optional_NullPatch {
 	const key = propValue('key', $value, isString);
 	const version = propValue('version', $value, isString);
-	const valueBoolean = propListValue('valueBoolean', $value, isBoolean, 'optional_null');
-	const valueShort = propListValue('valueShort', $value, isNumber, 'optional_null');
-	const valueInt = propListValue('valueInt', $value, isNumber, 'optional_null');
-	const valueLong = propListValue('valueLong', $value, isNumber, 'optional_null');
-	const valueFloat = propListValue('valueFloat', $value, isNumber, 'optional_null');
-	const valueDouble = propListValue('valueDouble', $value, isNumber, 'optional_null');
-	const valueString = propListValue('valueString', $value, isString, 'optional_null');
-	const valueLocalDate = propListValue('valueLocalDate', $value, isString, 'optional_null');
-	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString, 'optional_null');
-	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString, 'optional_null');
+	const valueBoolean = propValue('valueBoolean', $value, createReplaceAddRemoveGuard(isBoolean), 'optional_null');
+	const valueShort = propValue('valueShort', $value, createReplaceAddRemoveGuard(isNumber), 'optional_null');
+	const valueInt = propValue('valueInt', $value, createReplaceAddRemoveGuard(isNumber), 'optional_null');
+	const valueLong = propValue('valueLong', $value, createReplaceAddRemoveGuard(isNumber), 'optional_null');
+	const valueFloat = propValue('valueFloat', $value, createReplaceAddRemoveGuard(isNumber), 'optional_null');
+	const valueDouble = propValue('valueDouble', $value, createReplaceAddRemoveGuard(isNumber), 'optional_null');
+	const valueString = propValue('valueString', $value, createReplaceAddRemoveGuard(isString), 'optional_null');
+	const valueLocalDate = propValue('valueLocalDate', $value, createReplaceAddRemoveGuard(isString), 'optional_null');
+	const valueLocalDateTime = propValue('valueLocalDateTime', $value, createReplaceAddRemoveGuard(isString), 'optional_null');
+	const valueZonedDateTime = propValue('valueZonedDateTime', $value, createReplaceAddRemoveGuard(isString), 'optional_null');
 	return {
 		key,
 		version,

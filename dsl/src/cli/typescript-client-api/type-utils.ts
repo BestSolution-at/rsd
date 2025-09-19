@@ -356,11 +356,13 @@ function generateTypeUtilsContent() {
 			};
 		}
 
-		export function SetOrPatchChangeFromJSON<S, P>(value: Record<string, unknown>, setMapper: (value: Record<string, unknown>) => S, patchMapper: (value: Record<string, unknown>) => P): S | P {
+		export function ReplaceOrMergeFromJSON<S extends Record<string, unknown>, P>(value: Record<string, unknown>, replaceMapper: (value: Record<string, unknown>) => S, mergeMapper: (value: Record<string, unknown>) => P): (S & Replace) | (P & Merge) {
 			if (value['@type'] === 'replace') {
-				return setMapper(value);
+				return { ...replaceMapper(value), '@type': 'replace' };
+			} else if (value['@type'] === 'merge') {
+				return { ...mergeMapper(value), '@type': 'merge' };
 			}
-			return patchMapper(value);
+			throw new Error(\`Unsupported type '\${value['@type']}.'\`);
 		}
 
 		export function noopMap<T>(v: T): T {

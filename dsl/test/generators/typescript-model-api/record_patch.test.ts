@@ -2,7 +2,7 @@ import { beforeAll, beforeEach, describe, expect, test } from 'vitest';
 import { createTypescriptClientAPIGeneratorConfig, findListElement, sampleModel } from '../test-utils.js';
 import { allResolvedRecordProperties, isMResolvedProperty, isMResolvedRecordType, MResolvedRSDModel } from '../../../src/cli/model.js';
 import { TypescriptImportCollector } from '../../../src/cli/typescript-gen-utils.js';
-import { ListChangeTypes, RecordTypeguardPatch, RecordTypePatch, ValueChangeTypeGuard, ValueChangeTypes } from '../../../src/cli/typescript-model-api/record.js';
+import { FromJSONPatch, ListChangeTypes, RecordTypeguardPatch, RecordTypePatch, ValueChangeTypeGuard, ValueChangeTypes } from '../../../src/cli/typescript-model-api/record.js';
 import { toString } from 'langium/generate';
 
 type RecordTest = {
@@ -1064,3 +1064,454 @@ describe('ValueChangeTypeGuard', () => {
 		expect(result).toBe(data.result);
 	});
 });
+
+const FromJson_PatchableRecord = `
+export function PatchableRecordPatchFromJSON($value: Record<string, unknown>): PatchableRecordPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const value = propValue('value', $value, isString, 'optional');
+	return {
+		key,
+		version,
+		value,
+	};
+}
+`.trim();
+
+const FromJson_PatchableRecord_Basic = `
+export function PatchableRecord_BasicPatchFromJSON($value: Record<string, unknown>): PatchableRecord_BasicPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const valueBoolean = propValue('valueBoolean', $value, isBoolean, 'optional');
+	const valueShort = propValue('valueShort', $value, isNumber, 'optional');
+	const valueInt = propValue('valueInt', $value, isNumber, 'optional');
+	const valueLong = propValue('valueLong', $value, isNumber, 'optional');
+	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional');
+	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional');
+	const valueString = propValue('valueString', $value, isString, 'optional');
+	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional');
+	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional');
+	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional');
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}
+`.trim();
+
+const FromJson_PatchableRecord_Basic_Optional = `
+export function PatchableRecord_Basic_OptionalPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_OptionalPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const valueBoolean = propValue('valueBoolean', $value, isBoolean, 'optional_null');
+	const valueShort = propValue('valueShort', $value, isNumber, 'optional_null');
+	const valueInt = propValue('valueInt', $value, isNumber, 'optional_null');
+	const valueLong = propValue('valueLong', $value, isNumber, 'optional_null');
+	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
+	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
+	const valueString = propValue('valueString', $value, isString, 'optional_null');
+	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
+	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
+	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}
+`.trim();
+
+const FromJson_PatchableRecord_Basic_Null = `
+export function PatchableRecord_Basic_NullPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_NullPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const valueBoolean = propValue('valueBoolean', $value, isBoolean, 'optional_null');
+	const valueShort = propValue('valueShort', $value, isNumber, 'optional_null');
+	const valueInt = propValue('valueInt', $value, isNumber, 'optional_null');
+	const valueLong = propValue('valueLong', $value, isNumber, 'optional_null');
+	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
+	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
+	const valueString = propValue('valueString', $value, isString, 'optional_null');
+	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
+	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
+	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}
+`.trim();
+
+const FromJson_PatchableRecord_Basic_Optional_Null = `
+export function PatchableRecord_Basic_Optional_NullPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_Optional_NullPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const valueBoolean = propValue('valueBoolean', $value, isBoolean, 'optional_null');
+	const valueShort = propValue('valueShort', $value, isNumber, 'optional_null');
+	const valueInt = propValue('valueInt', $value, isNumber, 'optional_null');
+	const valueLong = propValue('valueLong', $value, isNumber, 'optional_null');
+	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
+	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
+	const valueString = propValue('valueString', $value, isString, 'optional_null');
+	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
+	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
+	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}
+`.trim();
+
+const FromJson_PatchableRecord_Basic_List = `
+export function PatchableRecord_Basic_ListPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_ListPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isBoolean, noopMap, isBoolean, noopMap), 'optional');
+	const valueShort = propMappedValue('valueShort', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
+	const valueInt = propMappedValue('valueInt', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
+	const valueLong = propMappedValue('valueLong', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
+	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
+	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
+	const valueString = propMappedValue('valueString', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}
+`.trim();
+
+const FromJson_PatchableRecord_Basic_List_Optional = `
+export function PatchableRecord_Basic_List_OptionalPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_List_OptionalPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isBoolean, noopMap, isBoolean, noopMap), 'optional_null');
+	const valueShort = propMappedValue('valueShort', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueInt = propMappedValue('valueInt', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueString = propMappedValue('valueString', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}`.trim();
+
+const FromJson_PatchableRecord_Basic_List_Null = `
+export function PatchableRecord_Basic_List_NullPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_List_NullPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isBoolean, noopMap, isBoolean, noopMap), 'optional_null');
+	const valueShort = propMappedValue('valueShort', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueInt = propMappedValue('valueInt', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueString = propMappedValue('valueString', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}
+`.trim();
+
+const FromJson_PatchableRecord_Basic_List_Optional_Null = `
+export function PatchableRecord_Basic_List_Optional_NullPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_List_Optional_NullPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isBoolean, noopMap, isBoolean, noopMap), 'optional_null');
+	const valueShort = propMappedValue('valueShort', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueInt = propMappedValue('valueInt', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
+	const valueString = propMappedValue('valueString', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}
+`.trim();
+
+const FromJson_PatchableEnumRecord = `
+export function PatchableEnumRecordPatchFromJSON($value: Record<string, unknown>): PatchableEnumRecordPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const value = propValue('value', $value, isSampleEnum, 'optional');
+	const value_Null = propValue('value_Null', $value, isSampleEnum, 'optional_null');
+	const value_Opt = propValue('value_Opt', $value, isSampleEnum, 'optional_null');
+	const value_Opt_Null = propValue('value_Opt_Null', $value, isSampleEnum, 'optional_null');
+	const list = propMappedValue('list', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isSampleEnum, noopMap, isSampleEnum, noopMap), 'optional');
+	const list_Null = propMappedValue('list_Null', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isSampleEnum, noopMap, isSampleEnum, noopMap), 'optional_null');
+	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isSampleEnum, noopMap, isSampleEnum, noopMap), 'optional_null');
+	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isSampleEnum, noopMap, isSampleEnum, noopMap), 'optional_null');
+	return {
+		key,
+		version,
+		value,
+		value_Null,
+		value_Opt,
+		value_Opt_Null,
+		list,
+		list_Null,
+		list_Opt,
+		list_Opt_Null,
+	};
+}
+`.trim();
+
+const FromJson_PatchableEnumInlineRecord = `
+export function PatchableEnumInlineRecordPatchFromJSON($value: Record<string, unknown>): PatchableEnumInlineRecordPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const value = propValue('value', $value, isPatchableEnumInlineRecord_Value, 'optional');
+	const value_Null = propValue('value_Null', $value, isPatchableEnumInlineRecord_Value_Null, 'optional_null');
+	const value_Opt = propValue('value_Opt', $value, isPatchableEnumInlineRecord_Value_Opt, 'optional_null');
+	const value_Opt_Null = propValue('value_Opt_Null', $value, isPatchableEnumInlineRecord_Value_Opt_Null, 'optional_null');
+	const list = propMappedValue('list', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isPatchableEnumInlineRecord_List, noopMap, isPatchableEnumInlineRecord_List, noopMap), 'optional');
+	const list_Null = propMappedValue('list_Null', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isPatchableEnumInlineRecord_List_Null, noopMap, isPatchableEnumInlineRecord_List_Null, noopMap), 'optional_null');
+	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isPatchableEnumInlineRecord_List_Opt_Null, noopMap, isPatchableEnumInlineRecord_List_Opt_Null, noopMap), 'optional_null');
+	return {
+		key,
+		version,
+		value,
+		value_Null,
+		value_Opt,
+		value_Opt_Null,
+		list,
+		list_Null,
+		list_Opt_Null,
+	};
+}
+`.trim();
+
+const FromJson_PatchableScalarRecord = `
+export function PatchableScalarRecordPatchFromJSON($value: Record<string, unknown>): PatchableScalarRecordPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const value = propValue('value', $value, isString, 'optional');
+	const value_Null = propValue('value_Null', $value, isString, 'optional_null');
+	const value_Opt = propValue('value_Opt', $value, isString, 'optional_null');
+	const value_Opt_Null = propValue('value_Opt_Null', $value, isString, 'optional_null');
+	const list = propMappedValue('list', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
+	const list_Null = propMappedValue('list_Null', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	return {
+		key,
+		version,
+		value,
+		value_Null,
+		value_Opt,
+		value_Opt_Null,
+		list,
+		list_Null,
+		list_Opt,
+		list_Opt_Null,
+	};
+}
+`.trim();
+
+const FromJson_PatchableRecordOfRecords = `
+export function PatchableRecordOfRecordsPatchFromJSON($value: Record<string, unknown>): PatchableRecordOfRecordsPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const value = propMappedValue('value', $value, isRecord, v => ReplaceOrMergeFromJSON(v, PatchableRecord_BasicFromJSON, PatchableRecord_BasicPatchFromJSON), 'optional');
+	const value_Null = propMappedValue('value_Null', $value, isRecord, v => ReplaceOrMergeFromJSON(v, PatchableRecord_BasicFromJSON, PatchableRecord_BasicPatchFromJSON), 'optional_null');
+	const value_Opt = propMappedValue('value_Opt', $value, isRecord, v => ReplaceOrMergeFromJSON(v, PatchableRecord_BasicFromJSON, PatchableRecord_BasicPatchFromJSON), 'optional_null');
+	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isRecord, v => ReplaceOrMergeFromJSON(v, PatchableRecord_BasicFromJSON, PatchableRecord_BasicPatchFromJSON), 'optional_null');
+	const list = propMappedValue('list', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableRecord_BasicFromJSON, isRecord, PatchableRecord_BasicPatchFromJSON, isString, noopMap), 'optional');
+	const list_Null = propMappedValue('list_Null', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableRecord_BasicFromJSON, isRecord, PatchableRecord_BasicPatchFromJSON, isString, noopMap), 'optional_null');
+	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableRecord_BasicFromJSON, isRecord, PatchableRecord_BasicPatchFromJSON, isString, noopMap), 'optional_null');
+	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableRecord_BasicFromJSON, isRecord, PatchableRecord_BasicPatchFromJSON, isString, noopMap), 'optional_null');
+	return {
+		key,
+		version,
+		value,
+		value_Null,
+		value_Opt,
+		value_Opt_Null,
+		list,
+		list_Null,
+		list_Opt,
+		list_Opt_Null,
+	};
+}
+`.trim();
+
+const FromJson_PatchableRecordWithUnion = ``.trim();
+
+const FROM_JSON: RecordTest[] = [
+	{
+		name: 'PatchableRecord',
+		result: FromJson_PatchableRecord,
+	},
+	{
+		name: 'PatchableRecord_Basic',
+		result: FromJson_PatchableRecord_Basic,
+	},
+	{
+		name: 'PatchableRecord_Basic_Optional',
+		result: FromJson_PatchableRecord_Basic_Optional,
+	},
+	{
+		name: 'PatchableRecord_Basic_Null',
+		result: FromJson_PatchableRecord_Basic_Null,
+	},
+	{
+		name: 'PatchableRecord_Basic_Optional_Null',
+		result: FromJson_PatchableRecord_Basic_Optional_Null,
+	},
+	{
+		name: 'PatchableRecord_Basic_List',
+		result: FromJson_PatchableRecord_Basic_List,
+	},
+	{
+		name: 'PatchableRecord_Basic_List_Optional',
+		result: FromJson_PatchableRecord_Basic_List_Optional,
+	},
+	{
+		name: 'PatchableRecord_Basic_List_Null',
+		result: FromJson_PatchableRecord_Basic_List_Null,
+	},
+	{
+		name: 'PatchableRecord_Basic_List_Optional_Null',
+		result: FromJson_PatchableRecord_Basic_List_Optional_Null,
+	},
+	{
+		name: 'PatchableEnumRecord',
+		result: FromJson_PatchableEnumRecord,
+	},
+	{
+		name: 'PatchableEnumInlineRecord',
+		result: FromJson_PatchableEnumInlineRecord,
+	},
+	{
+		name: 'PatchableScalarRecord',
+		result: FromJson_PatchableScalarRecord,
+	},
+	{
+		name: 'PatchableRecordOfRecords',
+		result: FromJson_PatchableRecordOfRecords,
+	},
+	/*{
+		name: 'PatchableRecordWithUnion',
+		result: FromJson_PatchableRecordWithUnion,
+	},*/
+];
+
+describe('FromJSONPatch', () => {
+	test.each(FROM_JSON)('$name', data => {
+		const recordModel = findListElement(model.elements, isMResolvedRecordType, r => r.name === data.name);
+		const allProps = allResolvedRecordProperties(recordModel);
+		const result = toString(FromJSONPatch(recordModel, allProps, fqn), '\t').trim();
+		expect(result).toBe(data.result);
+	});
+});
+
+// PatchableRecord
+// PatchableRecord_Basic
+// PatchableRecord_Basic_Optional
+// PatchableRecord_Basic_Null
+// PatchableRecord_Basic_Optional_Null
+// PatchableRecord_Basic_List
+// PatchableRecord_Basic_List_Optional
+// PatchableRecord_Basic_List_Null
+// PatchableRecord_Basic_List_Optional_Null
+// PatchableEnumRecord
+// PatchableEnumInlineRecord
+// PatchableScalarRecord
+// PatchableRecordOfRecords
+// PatchableRecordWithUnion

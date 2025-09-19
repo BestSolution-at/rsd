@@ -48,7 +48,7 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 		node.append(valueChangeTypeGuard);
 
 		node.append(RecordTypeguardPatch(t, allProps, fqn), NL);
-		node.append(generatePatchFromJSON(t, allProps, fqn), NL);
+		node.append(FromJSONPatch(t, allProps, fqn), NL);
 		node.append(generatePatchToJSON(t, allProps, fqn), NL);
 	}
 
@@ -454,7 +454,7 @@ export function RecordTypeguardPatch(t: MResolvedRecordType, props: MResolvedBas
 	return node;
 }
 
-function generatePatchFromJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
+export function FromJSONPatch(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export function ${t.name}PatchFromJSON($value: Record<string, unknown>): ${t.name}Patch {`, NL);
 	node.indent(fBody => {
@@ -487,8 +487,11 @@ function generatePatchFromJSON(t: MResolvedRecordType, props: MResolvedBasePrope
 				}
 
 				if (p.array) {
-					const propListValue = fqn('propListValue:../_type-utils.ts', false);
-					fBody.append(`const ${p.name} = ${propListValue}('${p.name}', $value, ${guard}`, allow, ');', NL);
+					const propValue = fqn('propMappedValue:../_type-utils.ts', false);
+					const isRecord = fqn('isRecord:../_type-utils.ts', false);
+					const ListMergeAddRemoveFromJSON = fqn('ListMergeAddRemoveFromJSON:../_type-utils.ts', false);
+
+					fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${isRecord}, v => ${ListMergeAddRemoveFromJSON}(v, ${guard}, noopMap, ${guard}, noopMap)`, allow, ');', NL);
 				} else {
 					const propValue = fqn('propValue:../_type-utils.ts', false);
 					fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard}`, allow, ');', NL);
@@ -500,14 +503,19 @@ function generatePatchFromJSON(t: MResolvedRecordType, props: MResolvedBasePrope
 				}
 
 				const guard = fqn('isRecord:../_type-utils.ts', false);
+				const isString = fqn('isString:../_type-utils.ts', false);
+				const noopMap = fqn('noopMap:../_type-utils.ts', false);
 				const map = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
+				const patchMap = fqn(`${p.type}PatchFromJSON:./${p.type}.ts`, false);
 
 				if (p.array) {
-					const propMappedListValue = fqn('propMappedListValue:../_type-utils.ts', false);
-					fBody.append(`const ${p.name} = ${propMappedListValue}('${p.name}', $value, ${guard}, ${map}`, allow, ');', NL);
+					const ListMergeAddUpdateRemoveFromJSON = fqn('ListMergeAddUpdateRemoveFromJSON:../_type-utils.ts', false);
+					const propMappedListValue = fqn('propMappedValue:../_type-utils.ts', false);
+					fBody.append(`const ${p.name} = ${propMappedListValue}('${p.name}', $value, ${guard}, v => ${ListMergeAddUpdateRemoveFromJSON}(v, ${guard}, ${map}, ${guard}, ${patchMap}, ${isString}, ${noopMap})`, allow, ');', NL);
 				} else {
+					const ReplaceOrMergeFromJSON = fqn('ReplaceOrMergeFromJSON:../_type-utils.ts', false);
 					const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
-					fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${map}`, allow, ');', NL);
+					fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, v => ${ReplaceOrMergeFromJSON}(v, ${map}, ${patchMap})`, allow, ');', NL);
 				}
 			}
 		});
