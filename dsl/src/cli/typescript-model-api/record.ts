@@ -16,8 +16,8 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 	node.appendNewLineIf(!node.isEmpty());
 	node.append(RecordType(t, allProps, fqn), NL);
 	node.append(RecordTypeguard(t, allProps, fqn), NL);
-	node.append(generateFromJSON(t, allProps, fqn), NL);
-	node.append(generateToJSON(t, allProps, fqn), NL);
+	node.append(FromJSON(t, allProps, fqn), NL);
+	node.append(ToJSON(t, allProps, fqn), NL);
 
 	if (t.patchable) {
 		allProps
@@ -97,7 +97,7 @@ export function RecordType(t: MResolvedRecordType, props: MResolvedBaseProperty[
 	return node;
 }
 
-function generateFromJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
+export function FromJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export function ${t.name}FromJSON($value: Record<string, unknown>): ${t.name} {`, NL);
 	node.indent(fBody => {
@@ -176,7 +176,7 @@ function generateFromJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[]
 	return node;
 }
 
-function generateToJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
+export function ToJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export function ${t.name}ToJSON($value: ${t.name}): Record<string, unknown> {`, NL);
 	node.indent(mBody => {
