@@ -304,7 +304,7 @@ function generateTypeUtilsContent() {
 			};
 		}
 
-		export function ListReplaceToJSON<T>(value: ListReplace<T>, map: (value: T) => JsonValue) {
+		export function ListReplaceToJSON<T>(value: ListReplace<T>, map: (value: T) => Record<string, unknown>) {
 			const elements = value.elements.map(map);
 			return {
 				'@type': 'replace',
@@ -344,7 +344,7 @@ function generateTypeUtilsContent() {
 			};
 		}
 
-		export function ListMergeAddUpdateRemoveToJSON<A, U, R>(value: ListMergeAddUpdateRemove<A, U, R>, addMap: (value: A) => unknown, updateMap: (value: U) => unknown, removeMap: (value: R) => unknown) {
+		export function ListMergeAddUpdateRemoveToJSON<A, U, R>(value: ListMergeAddUpdateRemove<A, U, R>, addMap: (value: A) => unknown, updateMap: (value: U) => unknown, removeMap: (value: R) => unknown): Record<string, unknown> {
 			const additions = value.additions.map(addMap);
 			const updates = value.updates.map(updateMap);
 			const removals = value.removals.map(removeMap);
@@ -356,13 +356,29 @@ function generateTypeUtilsContent() {
 			};
 		}
 
-		export function ReplaceOrMergeFromJSON<S extends Record<string, unknown>, P>(value: Record<string, unknown>, replaceMapper: (value: Record<string, unknown>) => S, mergeMapper: (value: Record<string, unknown>) => P): (S & Replace) | (P & Merge) {
+		export function ReplaceOrMergeFromJSON<S, P>(value: Record<string, unknown>, replaceMapper: (value: Record<string, unknown>) => S, mergeMapper: (value: Record<string, unknown>) => P): (S & Replace) | (P & Merge) {
 			if (value['@type'] === 'replace') {
 				return { ...replaceMapper(value), '@type': 'replace' };
 			} else if (value['@type'] === 'merge') {
 				return { ...mergeMapper(value), '@type': 'merge' };
 			}
 			throw new Error(\`Unsupported type '\${value['@type']}.'\`);
+		}
+
+		export function ReplaceOrMergeToJSON<S, P>(value: (S & Replace) | (P & Merge), replaceMapper: (v: S) => Record<string, unknown>, mergeMapper: (v: P) => Record<string, unknown>): Record<string, unknown> {
+			if (isReplace(value)) {
+				return { ...replaceMapper(value), '@type': 'replace' };
+			}
+			return { ...mergeMapper(value), '@type': 'merge' };
+		}
+
+		export function createListReplaceToJSON<T>(mapper: (v: T) => Record<string, unknown>): (v: ListReplace<T>) => Record<string, unknown> {
+			return v => ListReplaceToJSON(v, mapper);
+		}
+
+		// We need X because Typescript is not able to deduct the type correctly and would require a local variable
+		export function createListMergeUpdateRemoveToJSON<A, U, R, X extends ListMergeAddUpdateRemove<A, U, R>>(addMapper: (v: A) => Record<string, unknown>, updateMapper: (v: U) => Record<string, unknown>, removeMapper: (v: R) => unknown): (v: X) => Record<string, unknown> {
+			return v => ListMergeAddUpdateRemoveToJSON(v, addMapper, updateMapper, removeMapper);
 		}
 
 		export function noopMap<T>(v: T): T {

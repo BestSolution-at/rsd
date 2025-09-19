@@ -49,7 +49,7 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 
 		node.append(RecordTypeguardPatch(t, allProps, fqn), NL);
 		node.append(FromJSONPatch(t, allProps, fqn), NL);
-		node.append(generatePatchToJSON(t, allProps, fqn), NL);
+		node.append(ToJSONPatch(t, allProps, fqn), NL);
 	}
 
 	return node;
@@ -356,7 +356,7 @@ export function ListChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOnl
 
 	const ListReplace = fqn('ListReplace:../_type-utils.ts', true);
 	if (prop.variant === 'record' || prop.variant === 'union') {
-		const patchType = (type = fqn(`${prop.type}Patch:./${prop.type}.ts`, true));
+		const patchType = fqn(`${prop.type}Patch:./${prop.type}.ts`, true);
 		const ListMergeAddUpdateRemove = fqn('ListMergeAddUpdateRemove:../_type-utils.ts', true);
 		return toNode([
 			//
@@ -489,9 +489,10 @@ export function FromJSONPatch(t: MResolvedRecordType, props: MResolvedBaseProper
 				if (p.array) {
 					const propValue = fqn('propMappedValue:../_type-utils.ts', false);
 					const isRecord = fqn('isRecord:../_type-utils.ts', false);
+					const noopMap = fqn('noopMap:../_type-utils.ts', false);
 					const ListMergeAddRemoveFromJSON = fqn('ListMergeAddRemoveFromJSON:../_type-utils.ts', false);
 
-					fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${isRecord}, v => ${ListMergeAddRemoveFromJSON}(v, ${guard}, noopMap, ${guard}, noopMap)`, allow, ');', NL);
+					fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${isRecord}, v => ${ListMergeAddRemoveFromJSON}(v, ${guard}, ${noopMap}, ${guard}, ${noopMap})`, allow, ');', NL);
 				} else {
 					const propValue = fqn('propValue:../_type-utils.ts', false);
 					fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard}`, allow, ');', NL);
@@ -546,7 +547,7 @@ export function FromJSONPatch(t: MResolvedRecordType, props: MResolvedBaseProper
 	return node;
 }
 
-function generatePatchToJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
+export function ToJSONPatch(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export function ${t.name}PatchToJSON($value: ${t.name}Patch): Record<string, unknown> {`, NL);
 	node.indent(mBody => {
@@ -560,6 +561,7 @@ function generatePatchToJSON(t: MResolvedRecordType, props: MResolvedBasePropert
 				mBody.append(`const ${p.name} = $value.${p.name};`, NL);
 			} else {
 				const ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
+				const ToJSONPatch = fqn(`${p.type}PatchToJSON:./${p.type}.ts`, false);
 				mBody.append(`const ${p.name} = `);
 
 				if (p.optional || p.nullable) {
@@ -572,9 +574,20 @@ function generatePatchToJSON(t: MResolvedRecordType, props: MResolvedBasePropert
 				}
 
 				if (p.array) {
-					mBody.append(`$value.${p.name}.map(${ToJSON});`, NL);
+					const noopMap = fqn('noopMap:../_type-utils.ts', false);
+					const ReplaceOrMergeToJSON = fqn('ReplaceOrMergeToJSON:../_type-utils.ts', false);
+					const createListReplaceToJSON = fqn('createListReplaceToJSON:../_type-utils.ts', false);
+					const createListMergeUpdateRemoveToJSON = fqn('createListMergeUpdateRemoveToJSON:../_type-utils.ts', false);
+
+					const AddType = fqn(`${p.type}:./${p.type}.ts`, false);
+					const UpdateType = fqn(`${p.type}Patch:./${p.type}.ts`, false);
+					const RemoveType = 'string';
+					const MergeType = `\$${toFirstUpper(p.name)}Merge`;
+
+					mBody.append(`${ReplaceOrMergeToJSON}($value.${p.name}, ${createListReplaceToJSON}(${ToJSON}), ${createListMergeUpdateRemoveToJSON}<${AddType}, ${UpdateType}, ${RemoveType}, ${MergeType}>(${ToJSON}, ${ToJSONPatch}, ${noopMap}));`, NL);
 				} else {
-					mBody.append(`${ToJSON}($value.${p.name});`, NL);
+					const ReplaceOrMergeToJSON = fqn('ReplaceOrMergeToJSON:../_type-utils.ts', false);
+					mBody.append(`${ReplaceOrMergeToJSON}($value.${p.name}, ${ToJSON}, ${ToJSONPatch});`, NL);
 				}
 			}
 		});

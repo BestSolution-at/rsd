@@ -2,7 +2,7 @@ import { beforeAll, beforeEach, describe, expect, test } from 'vitest';
 import { createTypescriptClientAPIGeneratorConfig, findListElement, sampleModel } from '../test-utils.js';
 import { allResolvedRecordProperties, isMResolvedProperty, isMResolvedRecordType, MResolvedRSDModel } from '../../../src/cli/model.js';
 import { TypescriptImportCollector } from '../../../src/cli/typescript-gen-utils.js';
-import { FromJSONPatch, ListChangeTypes, RecordTypeguardPatch, RecordTypePatch, ValueChangeTypeGuard, ValueChangeTypes } from '../../../src/cli/typescript-model-api/record.js';
+import { FromJSONPatch, ListChangeTypes, RecordTypeguardPatch, RecordTypePatch, ToJSONPatch, ValueChangeTypeGuard, ValueChangeTypes } from '../../../src/cli/typescript-model-api/record.js';
 import { toString } from 'langium/generate';
 
 type RecordTest = {
@@ -422,47 +422,47 @@ type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
 `.trim();
 
 const PatchableRecordOfRecords_list_Result = `
-type $ListReplace = ListReplace<PatchableRecord_BasicPatch>;
-type $ListMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch, string>;
+type $ListReplace = ListReplace<PatchableRecord_Basic>;
+type $ListMerge = ListMergeAddUpdateRemove<PatchableRecord_Basic, PatchableRecord_BasicPatch, string>;
 type $ListPatch = $ListReplace | $ListMerge;
 `.trim();
 
 const PatchableRecordOfRecords_list_Null_Result = `
-type $List_NullReplace = ListReplace<PatchableRecord_BasicPatch>;
-type $List_NullMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch, string>;
+type $List_NullReplace = ListReplace<PatchableRecord_Basic>;
+type $List_NullMerge = ListMergeAddUpdateRemove<PatchableRecord_Basic, PatchableRecord_BasicPatch, string>;
 type $List_NullPatch = $List_NullReplace | $List_NullMerge;
 `.trim();
 
 const PatchableRecordOfRecords_list_Opt_Result = `
-type $List_OptReplace = ListReplace<PatchableRecord_BasicPatch>;
-type $List_OptMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch, string>;
+type $List_OptReplace = ListReplace<PatchableRecord_Basic>;
+type $List_OptMerge = ListMergeAddUpdateRemove<PatchableRecord_Basic, PatchableRecord_BasicPatch, string>;
 type $List_OptPatch = $List_OptReplace | $List_OptMerge;
 `.trim();
 
 const PatchableRecordOfRecords_list_Opt_Null_Result = `
-type $List_Opt_NullReplace = ListReplace<PatchableRecord_BasicPatch>;
-type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch, string>;
+type $List_Opt_NullReplace = ListReplace<PatchableRecord_Basic>;
+type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableRecord_Basic, PatchableRecord_BasicPatch, string>;
 type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
 `.trim();
 
 const PatchableRecordWithUnion_list = `
-type $ListReplace = ListReplace<PatchableUnionPatch>;
-type $ListMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
+type $ListReplace = ListReplace<PatchableUnion>;
+type $ListMerge = ListMergeAddUpdateRemove<PatchableUnion, PatchableUnionPatch, string>;
 type $ListPatch = $ListReplace | $ListMerge;
 `.trim();
 const PatchableRecordWithUnion_list_Null = `
-type $List_NullReplace = ListReplace<PatchableUnionPatch>;
-type $List_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
+type $List_NullReplace = ListReplace<PatchableUnion>;
+type $List_NullMerge = ListMergeAddUpdateRemove<PatchableUnion, PatchableUnionPatch, string>;
 type $List_NullPatch = $List_NullReplace | $List_NullMerge;
 `.trim();
 const PatchableRecordWithUnion_list_Opt = `
-type $List_OptReplace = ListReplace<PatchableUnionPatch>;
-type $List_OptMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
+type $List_OptReplace = ListReplace<PatchableUnion>;
+type $List_OptMerge = ListMergeAddUpdateRemove<PatchableUnion, PatchableUnionPatch, string>;
 type $List_OptPatch = $List_OptReplace | $List_OptMerge;
 `.trim();
 const PatchableRecordWithUnion_list_Opt_Null = `
-type $List_Opt_NullReplace = ListReplace<PatchableUnionPatch>;
-type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
+type $List_Opt_NullReplace = ListReplace<PatchableUnion>;
+type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableUnion, PatchableUnionPatch, string>;
 type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
 `.trim();
 
@@ -1526,17 +1526,450 @@ describe('FromJSONPatch', () => {
 	});
 });
 
-// PatchableRecord
-// PatchableRecord_Basic
-// PatchableRecord_Basic_Optional
-// PatchableRecord_Basic_Null
-// PatchableRecord_Basic_Optional_Null
-// PatchableRecord_Basic_List
-// PatchableRecord_Basic_List_Optional
-// PatchableRecord_Basic_List_Null
-// PatchableRecord_Basic_List_Optional_Null
-// PatchableEnumRecord
-// PatchableEnumInlineRecord
-// PatchableScalarRecord
-// PatchableRecordOfRecords
-// PatchableRecordWithUnion
+const ToJson_PatchableRecord = `
+export function PatchableRecordPatchToJSON($value: PatchableRecordPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const value = $value.value;
+
+	return {
+		key,
+		version,
+		value,
+	};
+}
+`.trim();
+
+const ToJson_PatchableRecord_Basic = `
+export function PatchableRecord_BasicPatchToJSON($value: PatchableRecord_BasicPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const valueBoolean = $value.valueBoolean;
+	const valueShort = $value.valueShort;
+	const valueInt = $value.valueInt;
+	const valueLong = $value.valueLong;
+	const valueFloat = $value.valueFloat;
+	const valueDouble = $value.valueDouble;
+	const valueString = $value.valueString;
+	const valueLocalDate = $value.valueLocalDate;
+	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
+
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}
+`.trim();
+
+const ToJson_PatchableRecord_Basic_Optional = `
+export function PatchableRecord_Basic_OptionalPatchToJSON($value: PatchableRecord_Basic_OptionalPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const valueBoolean = $value.valueBoolean;
+	const valueShort = $value.valueShort;
+	const valueInt = $value.valueInt;
+	const valueLong = $value.valueLong;
+	const valueFloat = $value.valueFloat;
+	const valueDouble = $value.valueDouble;
+	const valueString = $value.valueString;
+	const valueLocalDate = $value.valueLocalDate;
+	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
+
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}
+`.trim();
+
+const ToJson_PatchableRecord_Basic_Null = `
+export function PatchableRecord_Basic_NullPatchToJSON($value: PatchableRecord_Basic_NullPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const valueBoolean = $value.valueBoolean;
+	const valueShort = $value.valueShort;
+	const valueInt = $value.valueInt;
+	const valueLong = $value.valueLong;
+	const valueFloat = $value.valueFloat;
+	const valueDouble = $value.valueDouble;
+	const valueString = $value.valueString;
+	const valueLocalDate = $value.valueLocalDate;
+	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
+
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}
+`.trim();
+
+const ToJson_PatchableRecord_Basic_Optional_Null = `
+export function PatchableRecord_Basic_Optional_NullPatchToJSON($value: PatchableRecord_Basic_Optional_NullPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const valueBoolean = $value.valueBoolean;
+	const valueShort = $value.valueShort;
+	const valueInt = $value.valueInt;
+	const valueLong = $value.valueLong;
+	const valueFloat = $value.valueFloat;
+	const valueDouble = $value.valueDouble;
+	const valueString = $value.valueString;
+	const valueLocalDate = $value.valueLocalDate;
+	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
+
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}`.trim();
+
+const ToJson_PatchableRecord_Basic_List = `
+export function PatchableRecord_Basic_ListPatchToJSON($value: PatchableRecord_Basic_ListPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const valueBoolean = $value.valueBoolean;
+	const valueShort = $value.valueShort;
+	const valueInt = $value.valueInt;
+	const valueLong = $value.valueLong;
+	const valueFloat = $value.valueFloat;
+	const valueDouble = $value.valueDouble;
+	const valueString = $value.valueString;
+	const valueLocalDate = $value.valueLocalDate;
+	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
+
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}`.trim();
+
+const ToJson_PatchableRecord_Basic_List_Optional = `
+export function PatchableRecord_Basic_List_OptionalPatchToJSON($value: PatchableRecord_Basic_List_OptionalPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const valueBoolean = $value.valueBoolean;
+	const valueShort = $value.valueShort;
+	const valueInt = $value.valueInt;
+	const valueLong = $value.valueLong;
+	const valueFloat = $value.valueFloat;
+	const valueDouble = $value.valueDouble;
+	const valueString = $value.valueString;
+	const valueLocalDate = $value.valueLocalDate;
+	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
+
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}
+`.trim();
+
+const ToJson_PatchableRecord_Basic_List_Null = `
+export function PatchableRecord_Basic_List_NullPatchToJSON($value: PatchableRecord_Basic_List_NullPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const valueBoolean = $value.valueBoolean;
+	const valueShort = $value.valueShort;
+	const valueInt = $value.valueInt;
+	const valueLong = $value.valueLong;
+	const valueFloat = $value.valueFloat;
+	const valueDouble = $value.valueDouble;
+	const valueString = $value.valueString;
+	const valueLocalDate = $value.valueLocalDate;
+	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
+
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}
+`.trim();
+
+const ToJson_PatchableRecord_Basic_List_Optional_Null = `
+export function PatchableRecord_Basic_List_Optional_NullPatchToJSON($value: PatchableRecord_Basic_List_Optional_NullPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const valueBoolean = $value.valueBoolean;
+	const valueShort = $value.valueShort;
+	const valueInt = $value.valueInt;
+	const valueLong = $value.valueLong;
+	const valueFloat = $value.valueFloat;
+	const valueDouble = $value.valueDouble;
+	const valueString = $value.valueString;
+	const valueLocalDate = $value.valueLocalDate;
+	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
+
+	return {
+		key,
+		version,
+		valueBoolean,
+		valueShort,
+		valueInt,
+		valueLong,
+		valueFloat,
+		valueDouble,
+		valueString,
+		valueLocalDate,
+		valueLocalDateTime,
+		valueZonedDateTime,
+	};
+}`.trim();
+
+const ToJson_PatchableEnumRecord = `
+export function PatchableEnumRecordPatchToJSON($value: PatchableEnumRecordPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const value = $value.value;
+	const value_Null = $value.value_Null;
+	const value_Opt = $value.value_Opt;
+	const value_Opt_Null = $value.value_Opt_Null;
+	const list = $value.list;
+	const list_Null = $value.list_Null;
+	const list_Opt = $value.list_Opt;
+	const list_Opt_Null = $value.list_Opt_Null;
+
+	return {
+		key,
+		version,
+		value,
+		value_Null,
+		value_Opt,
+		value_Opt_Null,
+		list,
+		list_Null,
+		list_Opt,
+		list_Opt_Null,
+	};
+}
+`.trim();
+
+const ToJson_PatchableEnumInlineRecord = `
+export function PatchableEnumInlineRecordPatchToJSON($value: PatchableEnumInlineRecordPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const value = $value.value;
+	const value_Null = $value.value_Null;
+	const value_Opt = $value.value_Opt;
+	const value_Opt_Null = $value.value_Opt_Null;
+	const list = $value.list;
+	const list_Null = $value.list_Null;
+	const list_Opt_Null = $value.list_Opt_Null;
+
+	return {
+		key,
+		version,
+		value,
+		value_Null,
+		value_Opt,
+		value_Opt_Null,
+		list,
+		list_Null,
+		list_Opt_Null,
+	};
+}
+`.trim();
+
+const ToJson_PatchableScalarRecord = `
+export function PatchableScalarRecordPatchToJSON($value: PatchableScalarRecordPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const value = $value.value;
+	const value_Null = $value.value_Null;
+	const value_Opt = $value.value_Opt;
+	const value_Opt_Null = $value.value_Opt_Null;
+	const list = $value.list;
+	const list_Null = $value.list_Null;
+	const list_Opt = $value.list_Opt;
+	const list_Opt_Null = $value.list_Opt_Null;
+
+	return {
+		key,
+		version,
+		value,
+		value_Null,
+		value_Opt,
+		value_Opt_Null,
+		list,
+		list_Null,
+		list_Opt,
+		list_Opt_Null,
+	};
+}
+`.trim();
+
+const ToJson_PatchableRecordOfRecords = `
+export function PatchableRecordOfRecordsPatchToJSON($value: PatchableRecordOfRecordsPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const value = isUndefined($value.value) ? undefined : ReplaceOrMergeToJSON($value.value, PatchableRecord_BasicToJSON, PatchableRecord_BasicPatchToJSON);
+	const value_Null = isUndefined($value.value_Null) || isNull($value.value_Null) ? $value.value_Null : ReplaceOrMergeToJSON($value.value_Null, PatchableRecord_BasicToJSON, PatchableRecord_BasicPatchToJSON);
+	const value_Opt = isUndefined($value.value_Opt) || isNull($value.value_Opt) ? $value.value_Opt : ReplaceOrMergeToJSON($value.value_Opt, PatchableRecord_BasicToJSON, PatchableRecord_BasicPatchToJSON);
+	const value_Opt_Null = isUndefined($value.value_Opt_Null) || isNull($value.value_Opt_Null) ? $value.value_Opt_Null : ReplaceOrMergeToJSON($value.value_Opt_Null, PatchableRecord_BasicToJSON, PatchableRecord_BasicPatchToJSON);
+	const list = isUndefined($value.list) ? undefined : ReplaceOrMergeToJSON($value.list, createListReplaceToJSON(PatchableRecord_BasicToJSON), createListMergeUpdateRemoveToJSON<PatchableRecord_Basic, PatchableRecord_BasicPatch, string, $ListMerge>(PatchableRecord_BasicToJSON, PatchableRecord_BasicPatchToJSON, noopMap));
+	const list_Null = isUndefined($value.list_Null) || isNull($value.list_Null) ? $value.list_Null : ReplaceOrMergeToJSON($value.list_Null, createListReplaceToJSON(PatchableRecord_BasicToJSON), createListMergeUpdateRemoveToJSON<PatchableRecord_Basic, PatchableRecord_BasicPatch, string, $List_NullMerge>(PatchableRecord_BasicToJSON, PatchableRecord_BasicPatchToJSON, noopMap));
+	const list_Opt = isUndefined($value.list_Opt) || isNull($value.list_Opt) ? $value.list_Opt : ReplaceOrMergeToJSON($value.list_Opt, createListReplaceToJSON(PatchableRecord_BasicToJSON), createListMergeUpdateRemoveToJSON<PatchableRecord_Basic, PatchableRecord_BasicPatch, string, $List_OptMerge>(PatchableRecord_BasicToJSON, PatchableRecord_BasicPatchToJSON, noopMap));
+	const list_Opt_Null = isUndefined($value.list_Opt_Null) || isNull($value.list_Opt_Null) ? $value.list_Opt_Null : ReplaceOrMergeToJSON($value.list_Opt_Null, createListReplaceToJSON(PatchableRecord_BasicToJSON), createListMergeUpdateRemoveToJSON<PatchableRecord_Basic, PatchableRecord_BasicPatch, string, $List_Opt_NullMerge>(PatchableRecord_BasicToJSON, PatchableRecord_BasicPatchToJSON, noopMap));
+
+	return {
+		key,
+		version,
+		value,
+		value_Null,
+		value_Opt,
+		value_Opt_Null,
+		list,
+		list_Null,
+		list_Opt,
+		list_Opt_Null,
+	};
+}
+`.trim();
+
+const ToJson_PatchableRecordWithUnion = `
+`.trim();
+
+const TO_JSON: RecordTest[] = [
+	{
+		name: 'PatchableRecord',
+		result: ToJson_PatchableRecord,
+	},
+	{
+		name: 'PatchableRecord_Basic',
+		result: ToJson_PatchableRecord_Basic,
+	},
+	{
+		name: 'PatchableRecord_Basic_Optional',
+		result: ToJson_PatchableRecord_Basic_Optional,
+	},
+	{
+		name: 'PatchableRecord_Basic_Null',
+		result: ToJson_PatchableRecord_Basic_Null,
+	},
+	{
+		name: 'PatchableRecord_Basic_Optional_Null',
+		result: ToJson_PatchableRecord_Basic_Optional_Null,
+	},
+	{
+		name: 'PatchableRecord_Basic_List',
+		result: ToJson_PatchableRecord_Basic_List,
+	},
+	{
+		name: 'PatchableRecord_Basic_List_Optional',
+		result: ToJson_PatchableRecord_Basic_List_Optional,
+	},
+	{
+		name: 'PatchableRecord_Basic_List_Null',
+		result: ToJson_PatchableRecord_Basic_List_Null,
+	},
+	{
+		name: 'PatchableRecord_Basic_List_Optional_Null',
+		result: ToJson_PatchableRecord_Basic_List_Optional_Null,
+	},
+	{
+		name: 'PatchableEnumRecord',
+		result: ToJson_PatchableEnumRecord,
+	},
+	{
+		name: 'PatchableEnumInlineRecord',
+		result: ToJson_PatchableEnumInlineRecord,
+	},
+	{
+		name: 'PatchableScalarRecord',
+		result: ToJson_PatchableScalarRecord,
+	},
+	{
+		name: 'PatchableRecordOfRecords',
+		result: ToJson_PatchableRecordOfRecords,
+	},
+	/*{
+		name: 'PatchableRecordWithUnion',
+		result: ToJson_PatchableRecordWithUnion,
+	},*/
+];
+
+describe('ToJSONPatch', () => {
+	test.each(TO_JSON)('$name', data => {
+		const recordModel = findListElement(model.elements, isMResolvedRecordType, r => r.name === data.name);
+		const allProps = allResolvedRecordProperties(recordModel);
+		const result = toString(ToJSONPatch(recordModel, allProps, fqn), '\t').trim();
+		expect(result).toBe(data.result);
+	});
+});
