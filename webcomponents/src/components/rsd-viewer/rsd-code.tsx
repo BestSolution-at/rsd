@@ -1,4 +1,4 @@
-import { Component, Fragment, h, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Prop, State } from '@stencil/core';
 import { Code } from './rsd-code.types';
 
 let counter = 0;

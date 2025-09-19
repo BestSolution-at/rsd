@@ -249,7 +249,7 @@ function serviceMethod(model: MResolvedOperation, service: MResolvedService, con
   );
 }
 
-function operationREST(model: MResolvedOperation['meta']['rest'], operation: MResolvedOperation, ident = '\t', maxLength = 50) {
+function operationREST(model: MResolvedOperation['meta']['rest'], operation: MResolvedOperation, ident = '\t') {
   return (
     <span>
       {ident}
