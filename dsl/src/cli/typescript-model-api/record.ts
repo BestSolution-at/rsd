@@ -309,9 +309,11 @@ export function ValueChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOn
 		]);
 	}
 
+	const Replace = fqn('Replace:../_type-utils.ts', true);
+	const Merge = fqn('Merge:../_type-utils.ts', true);
 	return toNode([
 		//
-		`type $${toFirstUpper(prop.name)}Patch = (${type} & { '@type': 'replace' }) | (${patchType} & { '@type': 'merge' });`,
+		`type $${toFirstUpper(prop.name)}Patch = (${type} & ${Replace}) | (${patchType} & ${Merge});`,
 	]);
 }
 
