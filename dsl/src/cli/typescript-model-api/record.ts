@@ -513,9 +513,14 @@ export function FromJSONPatch(t: MResolvedRecordType, props: MResolvedBaseProper
 					const propMappedListValue = fqn('propMappedValue:../_type-utils.ts', false);
 					fBody.append(`const ${p.name} = ${propMappedListValue}('${p.name}', $value, ${guard}, v => ${ListMergeAddUpdateRemoveFromJSON}(v, ${guard}, ${map}, ${guard}, ${patchMap}, ${isString}, ${noopMap})`, allow, ');', NL);
 				} else {
-					const ReplaceOrMergeFromJSON = fqn('ReplaceOrMergeFromJSON:../_type-utils.ts', false);
-					const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
-					fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, v => ${ReplaceOrMergeFromJSON}(v, ${map}, ${patchMap})`, allow, ');', NL);
+					if (p.variant === 'union') {
+						const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
+						fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${map}`, allow, ');', NL);
+					} else {
+						const ReplaceOrMergeFromJSON = fqn('ReplaceOrMergeFromJSON:../_type-utils.ts', false);
+						const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
+						fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, v => ${ReplaceOrMergeFromJSON}(v, ${map}, ${patchMap})`, allow, ');', NL);
+					}
 				}
 			}
 		});

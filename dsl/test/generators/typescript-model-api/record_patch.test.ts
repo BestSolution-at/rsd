@@ -1431,7 +1431,32 @@ export function PatchableRecordOfRecordsPatchFromJSON($value: Record<string, unk
 }
 `.trim();
 
-const FromJson_PatchableRecordWithUnion = ``.trim();
+const FromJson_PatchableRecordWithUnion = `
+export function PatchableRecordWithUnionPatchFromJSON($value: Record<string, unknown>): PatchableRecordWithUnionPatch {
+	const key = propValue('key', $value, isString);
+	const version = propValue('version', $value, isString);
+	const value = propMappedValue('value', $value, isRecord, PatchableUnionFromJSON, 'optional');
+	const value_Null = propMappedValue('value_Null', $value, isRecord, PatchableUnionFromJSON, 'optional_null');
+	const value_Opt = propMappedValue('value_Opt', $value, isRecord, PatchableUnionFromJSON, 'optional_null');
+	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isRecord, PatchableUnionFromJSON, 'optional_null');
+	const list = propMappedValue('list', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional');
+	const list_Null = propMappedValue('list_Null', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional_null');
+	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional_null');
+	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional_null');
+	return {
+		key,
+		version,
+		value,
+		value_Null,
+		value_Opt,
+		value_Opt_Null,
+		list,
+		list_Null,
+		list_Opt,
+		list_Opt_Null,
+	};
+}
+`.trim();
 
 const FROM_JSON: RecordTest[] = [
 	{
@@ -1486,10 +1511,10 @@ const FROM_JSON: RecordTest[] = [
 		name: 'PatchableRecordOfRecords',
 		result: FromJson_PatchableRecordOfRecords,
 	},
-	/*{
+	{
 		name: 'PatchableRecordWithUnion',
 		result: FromJson_PatchableRecordWithUnion,
-	},*/
+	},
 ];
 
 describe('FromJSONPatch', () => {
