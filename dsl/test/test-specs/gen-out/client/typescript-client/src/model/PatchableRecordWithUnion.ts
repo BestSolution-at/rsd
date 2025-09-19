@@ -81,19 +81,19 @@ export function PatchableRecordWithUnionToJSON($value: PatchableRecordWithUnion)
 }
 
 type $ListReplace = ListReplace<PatchableUnionPatch>;
-type $ListMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
+type $ListMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
 type $ListPatch = $ListReplace | $ListMerge;
 
 type $List_NullReplace = ListReplace<PatchableUnionPatch>;
-type $List_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
+type $List_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
 type $List_NullPatch = $List_NullReplace | $List_NullMerge;
 
 type $List_OptReplace = ListReplace<PatchableUnionPatch>;
-type $List_OptMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
+type $List_OptMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
 type $List_OptPatch = $List_OptReplace | $List_OptMerge;
 
 type $List_Opt_NullReplace = ListReplace<PatchableUnionPatch>;
-type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
+type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
 type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
 
 type $ValuePatch = PatchableUnion | PatchableUnionPatch;

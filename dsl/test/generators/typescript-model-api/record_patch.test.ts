@@ -2,7 +2,7 @@ import { beforeAll, beforeEach, describe, expect, test } from 'vitest';
 import { createTypescriptClientAPIGeneratorConfig, findListElement, sampleModel } from '../test-utils.js';
 import { allResolvedRecordProperties, isMResolvedProperty, isMResolvedRecordType, MResolvedRSDModel } from '../../../src/cli/model.js';
 import { TypescriptImportCollector } from '../../../src/cli/typescript-gen-utils.js';
-import { ListChangeTypes, RecordTypeguardPatch, RecordTypePatch, ValueChangeTypes } from '../../../src/cli/typescript-model-api/record.js';
+import { ListChangeTypes, RecordTypeguardPatch, RecordTypePatch, ValueChangeTypeGuard, ValueChangeTypes } from '../../../src/cli/typescript-model-api/record.js';
 import { toString } from 'langium/generate';
 
 type RecordTest = {
@@ -423,46 +423,46 @@ type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
 
 const PatchableRecordOfRecords_list_Result = `
 type $ListReplace = ListReplace<PatchableRecord_BasicPatch>;
-type $ListMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch,string>;
+type $ListMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch, string>;
 type $ListPatch = $ListReplace | $ListMerge;
 `.trim();
 
 const PatchableRecordOfRecords_list_Null_Result = `
 type $List_NullReplace = ListReplace<PatchableRecord_BasicPatch>;
-type $List_NullMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch,string>;
+type $List_NullMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch, string>;
 type $List_NullPatch = $List_NullReplace | $List_NullMerge;
 `.trim();
 
 const PatchableRecordOfRecords_list_Opt_Result = `
 type $List_OptReplace = ListReplace<PatchableRecord_BasicPatch>;
-type $List_OptMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch,string>;
+type $List_OptMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch, string>;
 type $List_OptPatch = $List_OptReplace | $List_OptMerge;
 `.trim();
 
 const PatchableRecordOfRecords_list_Opt_Null_Result = `
 type $List_Opt_NullReplace = ListReplace<PatchableRecord_BasicPatch>;
-type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch,string>;
+type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableRecord_BasicPatch, PatchableRecord_BasicPatch, string>;
 type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
 `.trim();
 
 const PatchableRecordWithUnion_list = `
 type $ListReplace = ListReplace<PatchableUnionPatch>;
-type $ListMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
+type $ListMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
 type $ListPatch = $ListReplace | $ListMerge;
 `.trim();
 const PatchableRecordWithUnion_list_Null = `
 type $List_NullReplace = ListReplace<PatchableUnionPatch>;
-type $List_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
+type $List_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
 type $List_NullPatch = $List_NullReplace | $List_NullMerge;
 `.trim();
 const PatchableRecordWithUnion_list_Opt = `
 type $List_OptReplace = ListReplace<PatchableUnionPatch>;
-type $List_OptMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
+type $List_OptMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
 type $List_OptPatch = $List_OptReplace | $List_OptMerge;
 `.trim();
 const PatchableRecordWithUnion_list_Opt_Null = `
 type $List_Opt_NullReplace = ListReplace<PatchableUnionPatch>;
-type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
+type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
 type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
 `.trim();
 
@@ -627,19 +627,19 @@ describe('ListChangeTypes', () => {
 });
 
 const PatchableRecordOfRecordsPatch_value_Result = `
-type $ValuePatch = (PatchableRecord_Basic & { '@type': 'replace' }) | (PatchableRecord_BasicPatch & { '@type': 'merge' });
+type $ValuePatch = (PatchableRecord_Basic & Replace) | (PatchableRecord_BasicPatch & Merge);
 `.trim();
 
 const PatchableRecordOfRecordsPatch_value_Null_Result = `
-type $Value_NullPatch = (PatchableRecord_Basic & { '@type': 'replace' }) | (PatchableRecord_BasicPatch & { '@type': 'merge' });
+type $Value_NullPatch = (PatchableRecord_Basic & Replace) | (PatchableRecord_BasicPatch & Merge);
 `.trim();
 
 const PatchableRecordOfRecordsPatch_value_Opt_Result = `
-type $Value_OptPatch = (PatchableRecord_Basic & { '@type': 'replace' }) | (PatchableRecord_BasicPatch & { '@type': 'merge' });
+type $Value_OptPatch = (PatchableRecord_Basic & Replace) | (PatchableRecord_BasicPatch & Merge);
 `.trim();
 
 const PatchableRecordOfRecordsPatch_value_Opt_Null_Result = `
-type $Value_Opt_NullPatch = (PatchableRecord_Basic & { '@type': 'replace' }) | (PatchableRecord_BasicPatch & { '@type': 'merge' });
+type $Value_Opt_NullPatch = (PatchableRecord_Basic & Replace) | (PatchableRecord_BasicPatch & Merge);
 `.trim();
 
 const PatchableRecordWithUnionPatch_value = `
@@ -911,10 +911,10 @@ export function isPatchableRecordOfRecordsPatch(value: unknown): value is Patcha
 	return isRecord(value) &&
 		checkProp(value, 'key', isString) &&
 		checkProp(value, 'version', isString) &&
-		checkOptProp(value, 'value', isPatchableRecord_Basic) &&
-		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isPatchableRecord_Basic)) &&
-		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isPatchableRecord_Basic)) &&
-		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isPatchableRecord_Basic)) &&
+		checkOptProp(value, 'value', isValuePatch) &&
+		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isValue_NullPatch)) &&
+		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isValue_OptPatch)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isValue_Opt_NullPatch)) &&
 		checkOptProp(value, 'list', createReplaceAddUpdateRemoveGuard(isPatchableRecord_Basic, isPatchableRecord_BasicPatch, isString)) &&
 		(checkOptProp(value, 'list_Null', isNull) || checkOptProp(value, 'list_Null', createReplaceAddUpdateRemoveGuard(isPatchableRecord_Basic, isPatchableRecord_BasicPatch, isString))) &&
 		(checkOptProp(value, 'list_Opt', isNull) || checkOptProp(value, 'list_Opt', createReplaceAddUpdateRemoveGuard(isPatchableRecord_Basic, isPatchableRecord_BasicPatch, isString))) &&
@@ -1002,6 +1002,65 @@ describe('RecordTypeguardPatch', () => {
 		const recordModel = findListElement(model.elements, isMResolvedRecordType, r => r.name === data.name);
 		const allProps = allResolvedRecordProperties(recordModel);
 		const result = toString(RecordTypeguardPatch(recordModel, allProps, fqn), '\t').trim();
+		expect(result).toBe(data.result);
+	});
+});
+
+const PatchableRecordOfRecords_value_Typeguard_Result = `
+function isValuePatch(v: unknown): v is $ValuePatch {
+	return (isReplace(v) && isPatchableRecord_Basic(v)) || (isMerge(v) && isPatchableRecord_BasicPatch(v));
+}
+`.trim();
+
+const PatchableRecordOfRecords_value_Null_Typeguard_Result = `
+function isValue_NullPatch(v: unknown): v is $Value_NullPatch {
+	return (isReplace(v) && isPatchableRecord_Basic(v)) || (isMerge(v) && isPatchableRecord_BasicPatch(v));
+}
+`.trim();
+
+const PatchableRecordOfRecords_value_Opt_Typeguard_Result = `
+function isValue_OptPatch(v: unknown): v is $Value_OptPatch {
+	return (isReplace(v) && isPatchableRecord_Basic(v)) || (isMerge(v) && isPatchableRecord_BasicPatch(v));
+}
+`.trim();
+
+const PatchableRecordOfRecords_value_Opt_Null_Typeguard_Result = `
+function isValue_Opt_NullPatch(v: unknown): v is $Value_Opt_NullPatch {
+	return (isReplace(v) && isPatchableRecord_Basic(v)) || (isMerge(v) && isPatchableRecord_BasicPatch(v));
+}
+`.trim();
+
+const RECORD_PROP_TYPEGUARDS: PropertyTest[] = [
+	{
+		recordName: 'PatchableRecordOfRecords',
+		propertyName: 'value',
+		result: PatchableRecordOfRecords_value_Typeguard_Result,
+	},
+	{
+		recordName: 'PatchableRecordOfRecords',
+		propertyName: 'value_Null',
+		result: PatchableRecordOfRecords_value_Null_Typeguard_Result,
+	},
+	{
+		recordName: 'PatchableRecordOfRecords',
+		propertyName: 'value_Opt',
+		result: PatchableRecordOfRecords_value_Opt_Typeguard_Result,
+	},
+	{
+		recordName: 'PatchableRecordOfRecords',
+		propertyName: 'value_Opt_Null',
+		result: PatchableRecordOfRecords_value_Opt_Null_Typeguard_Result,
+	},
+];
+
+describe('ValueChangeTypeGuard', () => {
+	test.each(RECORD_PROP_TYPEGUARDS)('$recordName - $propertyName', data => {
+		const recordModel = findListElement(model.elements, isMResolvedRecordType, r => r.name === data.recordName);
+		const allProps = allResolvedRecordProperties(recordModel);
+		const prop = findListElement(allProps, isMResolvedProperty, p => p.name === data.propertyName);
+		const collector = new TypescriptImportCollector(createTypescriptClientAPIGeneratorConfig());
+		const fqn = collector.importType.bind(collector);
+		const result = toString(ValueChangeTypeGuard(prop, fqn), '\t').trim();
 		expect(result).toBe(data.result);
 	});
 });

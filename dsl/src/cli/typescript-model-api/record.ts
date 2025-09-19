@@ -1,6 +1,6 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
 import { allResolvedRecordProperties, isMBuiltinType, isMInlineEnumType, isMKeyProperty, isMResolvedProperty, isMRevisionProperty, MBaseProperty, MBuiltinType, MInlineEnumType, MResolvedBaseProperty, MResolvedPropery, MResolvedRecordType } from '../model.js';
-import { toFirstUpper, toNode } from '../util.js';
+import { toFirstUpper, toNode, toNodeTree } from '../util.js';
 import { builtinToJSType } from '../typescript-gen-utils.js';
 
 export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, typeOnly: boolean) => string) {
@@ -37,6 +37,16 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 		node.append(valueChange);
 
 		node.append(RecordTypePatch(t, allProps, fqn), NL);
+
+		const valueChangeTypeGuard = new CompositeGeneratorNode();
+		allProps
+			.filter(isMResolvedProperty)
+			.filter(p => !p.array)
+			.filter(p => p.variant === 'record')
+			.forEach(p => valueChangeTypeGuard.append(ValueChangeTypeGuard(p, fqn)));
+		valueChangeTypeGuard.appendNewLineIf(!valueChangeTypeGuard.isEmpty());
+		node.append(valueChangeTypeGuard);
+
 		node.append(RecordTypeguardPatch(t, allProps, fqn), NL);
 		node.append(generatePatchFromJSON(t, allProps, fqn), NL);
 		node.append(generatePatchToJSON(t, allProps, fqn), NL);
@@ -317,6 +327,19 @@ export function ValueChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOn
 	]);
 }
 
+export function ValueChangeTypeGuard(prop: MResolvedPropery, fqn: (t: string, typeOnly: boolean) => string) {
+	const isReplace = fqn('isReplace:../_type-utils.ts', false);
+	const isMerge = fqn('isMerge:../_type-utils.ts', false);
+	const isRecord = fqn(`is${prop.type}:./${prop.type}.ts`, false);
+	const isRecordPatch = fqn(`is${prop.type}Patch:./${prop.type}.ts`, false);
+
+	return toNodeTree(`
+		function is${toFirstUpper(prop.name)}Patch(v: unknown): v is \$${toFirstUpper(prop.name)}Patch {
+			return (${isReplace}(v) && ${isRecord}(v)) || (${isMerge}(v) && ${isRecordPatch}(v));
+		}
+		`);
+}
+
 export function ListChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOnly: boolean) => string) {
 	let type: string = 'string';
 	if (isMBuiltinType(prop.type)) {
@@ -338,7 +361,7 @@ export function ListChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOnl
 		return toNode([
 			//
 			`type $${toFirstUpper(prop.name)}Replace = ${ListReplace}<${type}>;`,
-			`type $${toFirstUpper(prop.name)}Merge = ${ListMergeAddUpdateRemove}<${type}, ${patchType},string>;`,
+			`type $${toFirstUpper(prop.name)}Merge = ${ListMergeAddUpdateRemove}<${type}, ${patchType}, string>;`,
 			`type $${toFirstUpper(prop.name)}Patch = $${toFirstUpper(prop.name)}Replace | $${toFirstUpper(prop.name)}Merge;`,
 		]);
 	}
@@ -390,8 +413,10 @@ export function RecordTypeguardPatch(t: MResolvedRecordType, props: MResolvedBas
 					guard = fqn('isString:../_type-utils.ts', false);
 				} else if (p.variant === 'enum') {
 					guard = fqn(`is${p.type}:./${p.type}.ts`, false);
-				} else {
+				} else if (p.variant === 'union') {
 					guard = fqn(`is${p.type}Patch:./${p.type}.ts`, false);
+				} else {
+					guard = `is${toFirstUpper(p.name)}Patch`;
 				}
 
 				const check = fqn('checkOptProp:../_type-utils.ts', false);
