@@ -16,7 +16,17 @@ export type PatchableRecordWithUnion = {
 };
 
 export function isPatchableRecordWithUnion(value: unknown): value is PatchableRecordWithUnion {
-	return isRecord(value) && checkProp(value, 'key', isString) && checkProp(value, 'version', isString) && checkProp(value, 'value', isPatchableUnion) && (checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isPatchableUnion)) && checkOptProp(value, 'value_Opt', isPatchableUnion) && (checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isPatchableUnion)) && checkProp(value, 'list', createTypedArrayGuard(isPatchableUnion)) && (checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isPatchableUnion))) && checkOptProp(value, 'list_Opt', createTypedArrayGuard(isPatchableUnion)) && (checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isPatchableUnion)));
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		checkProp(value, 'value', isPatchableUnion) &&
+		(checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isPatchableUnion)) &&
+		checkOptProp(value, 'value_Opt', isPatchableUnion) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isPatchableUnion)) &&
+		checkProp(value, 'list', createTypedArrayGuard(isPatchableUnion)) &&
+		(checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isPatchableUnion))) &&
+		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isPatchableUnion)) &&
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isPatchableUnion)));
 }
 
 export function PatchableRecordWithUnionFromJSON($value: Record<string, unknown>): PatchableRecordWithUnion {
@@ -71,19 +81,19 @@ export function PatchableRecordWithUnionToJSON($value: PatchableRecordWithUnion)
 }
 
 type $ListReplace = ListReplace<PatchableUnionPatch>;
-type $ListMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
+type $ListMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
 type $ListPatch = $ListReplace | $ListMerge;
 
 type $List_NullReplace = ListReplace<PatchableUnionPatch>;
-type $List_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
+type $List_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
 type $List_NullPatch = $List_NullReplace | $List_NullMerge;
 
 type $List_OptReplace = ListReplace<PatchableUnionPatch>;
-type $List_OptMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
+type $List_OptMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
 type $List_OptPatch = $List_OptReplace | $List_OptMerge;
 
 type $List_Opt_NullReplace = ListReplace<PatchableUnionPatch>;
-type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch, string>;
+type $List_Opt_NullMerge = ListMergeAddUpdateRemove<PatchableUnionPatch, PatchableUnionPatch,string>;
 type $List_Opt_NullPatch = $List_Opt_NullReplace | $List_Opt_NullMerge;
 
 type $ValuePatch = PatchableUnion | PatchableUnionPatch;
@@ -105,8 +115,7 @@ export type PatchableRecordWithUnionPatch = {
 };
 
 export function isPatchableRecordWithUnionPatch(value: unknown): value is PatchableRecordWithUnionPatch {
-	return (
-		isRecord(value) && //
+	return isRecord(value) &&
 		checkProp(value, 'key', isString) &&
 		checkProp(value, 'version', isString) &&
 		checkOptProp(value, 'value', isPatchableUnionPatch) &&
@@ -116,8 +125,7 @@ export function isPatchableRecordWithUnionPatch(value: unknown): value is Patcha
 		checkOptProp(value, 'list', createReplaceAddUpdateRemoveGuard(isPatchableUnion, isPatchableUnionPatch, isString)) &&
 		(checkOptProp(value, 'list_Null', isNull) || checkOptProp(value, 'list_Null', createReplaceAddUpdateRemoveGuard(isPatchableUnion, isPatchableUnionPatch, isString))) &&
 		(checkOptProp(value, 'list_Opt', isNull) || checkOptProp(value, 'list_Opt', createReplaceAddUpdateRemoveGuard(isPatchableUnion, isPatchableUnionPatch, isString))) &&
-		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createReplaceAddUpdateRemoveGuard(isPatchableUnion, isPatchableUnionPatch, isString)))
-	);
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createReplaceAddUpdateRemoveGuard(isPatchableUnion, isPatchableUnionPatch, isString)));
 }
 
 export function PatchableRecordWithUnionPatchFromJSON($value: Record<string, unknown>): PatchableRecordWithUnionPatch {
@@ -170,3 +178,4 @@ export function PatchableRecordWithUnionPatchToJSON($value: PatchableRecordWithU
 		list_Opt_Null,
 	};
 }
+

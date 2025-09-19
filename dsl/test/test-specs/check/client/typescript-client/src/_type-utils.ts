@@ -200,6 +200,23 @@ function checkListProp<T, K extends string>(value: Record<string, unknown>, prop
 	);
 }
 
+export type Replace = { '@type': 'replace' };
+export type Merge = { '@type': 'merge' };
+
+export function isReplace(value: unknown): value is Replace {
+	return (
+		isRecord(value) && //
+		checkProp(value, '@type', isString, v => v === 'replace')
+	);
+}
+
+export function isMerge(value: unknown): value is Merge {
+	return (
+		isRecord(value) && //
+		checkProp(value, '@type', isString, v => v === 'merge')
+	);
+}
+
 export type ListReplace<T> = {
 	'@type': 'replace';
 	readonly elements: readonly T[];

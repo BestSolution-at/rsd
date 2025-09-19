@@ -15,7 +15,17 @@ export type PatchableScalarRecord = {
 };
 
 export function isPatchableScalarRecord(value: unknown): value is PatchableScalarRecord {
-	return isRecord(value) && checkProp(value, 'key', isString) && checkProp(value, 'version', isString) && checkProp(value, 'value', isString) && (checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isString)) && checkOptProp(value, 'value_Opt', isString) && (checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isString)) && checkProp(value, 'list', createTypedArrayGuard(isString)) && (checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isString))) && checkOptProp(value, 'list_Opt', createTypedArrayGuard(isString)) && (checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isString)));
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		checkProp(value, 'value', isString) &&
+		(checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isString)) &&
+		checkOptProp(value, 'value_Opt', isString) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isString)) &&
+		checkProp(value, 'list', createTypedArrayGuard(isString)) &&
+		(checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isString))) &&
+		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isString)) &&
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isString)));
 }
 
 export function PatchableScalarRecordFromJSON($value: Record<string, unknown>): PatchableScalarRecord {
@@ -99,7 +109,17 @@ export type PatchableScalarRecordPatch = {
 };
 
 export function isPatchableScalarRecordPatch(value: unknown): value is PatchableScalarRecordPatch {
-	return isRecord(value) && checkProp(value, 'key', isString) && checkProp(value, 'version', isString) && checkOptProp(value, 'value', isString) && (checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isString)) && (checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isString)) && (checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isString)) && checkOptProp(value, 'list', createReplaceAddRemoveGuard(isString)) && (checkOptProp(value, 'list_Null', isNull) || checkOptProp(value, 'list_Null', createReplaceAddRemoveGuard(isString))) && (checkOptProp(value, 'list_Opt', isNull) || checkOptProp(value, 'list_Opt', createReplaceAddRemoveGuard(isString))) && (checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createReplaceAddRemoveGuard(isString)));
+	return isRecord(value) &&
+		checkProp(value, 'key', isString) &&
+		checkProp(value, 'version', isString) &&
+		checkOptProp(value, 'value', isString) &&
+		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isString)) &&
+		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isString)) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isString)) &&
+		checkOptProp(value, 'list', createReplaceAddRemoveGuard(isString)) &&
+		(checkOptProp(value, 'list_Null', isNull) || checkOptProp(value, 'list_Null', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'list_Opt', isNull) || checkOptProp(value, 'list_Opt', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createReplaceAddRemoveGuard(isString)));
 }
 
 export function PatchableScalarRecordPatchFromJSON($value: Record<string, unknown>): PatchableScalarRecordPatch {
@@ -152,3 +172,4 @@ export function PatchableScalarRecordPatchToJSON($value: PatchableScalarRecordPa
 		list_Opt_Null,
 	};
 }
+
