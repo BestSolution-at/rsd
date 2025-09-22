@@ -1435,10 +1435,10 @@ const FromJson_PatchableRecordWithUnion = `
 export function PatchableRecordWithUnionPatchFromJSON($value: Record<string, unknown>): PatchableRecordWithUnionPatch {
 	const key = propValue('key', $value, isString);
 	const version = propValue('version', $value, isString);
-	const value = propMappedValue('value', $value, isRecord, PatchableUnionFromJSON, 'optional');
-	const value_Null = propMappedValue('value_Null', $value, isRecord, PatchableUnionFromJSON, 'optional_null');
-	const value_Opt = propMappedValue('value_Opt', $value, isRecord, PatchableUnionFromJSON, 'optional_null');
-	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isRecord, PatchableUnionFromJSON, 'optional_null');
+	const value = propMappedValue('value', $value, isRecord, PatchableUnionOrPatchFromJSON, 'optional');
+	const value_Null = propMappedValue('value_Null', $value, isRecord, PatchableUnionOrPatchFromJSON, 'optional_null');
+	const value_Opt = propMappedValue('value_Opt', $value, isRecord, PatchableUnionOrPatchFromJSON, 'optional_null');
+	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isRecord, PatchableUnionOrPatchFromJSON, 'optional_null');
 	const list = propMappedValue('list', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional');
 	const list_Null = propMappedValue('list_Null', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional_null');
 	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional_null');
@@ -1904,7 +1904,31 @@ export function PatchableRecordOfRecordsPatchToJSON($value: PatchableRecordOfRec
 `.trim();
 
 const ToJson_PatchableRecordWithUnion = `
-`.trim();
+export function PatchableRecordWithUnionPatchToJSON($value: PatchableRecordWithUnionPatch): Record<string, unknown> {
+	const key = $value.key;
+	const version = $value.version;
+	const value = isUndefined($value.value) ? undefined : PatchableUnionOrPatchToJSON($value.value);
+	const value_Null = isUndefined($value.value_Null) || isNull($value.value_Null) ? $value.value_Null : PatchableUnionOrPatchToJSON($value.value_Null);
+	const value_Opt = isUndefined($value.value_Opt) || isNull($value.value_Opt) ? $value.value_Opt : PatchableUnionOrPatchToJSON($value.value_Opt);
+	const value_Opt_Null = isUndefined($value.value_Opt_Null) || isNull($value.value_Opt_Null) ? $value.value_Opt_Null : PatchableUnionOrPatchToJSON($value.value_Opt_Null);
+	const list = isUndefined($value.list) ? undefined : ReplaceOrMergeToJSON($value.list, createListReplaceToJSON(PatchableUnionToJSON), createListMergeUpdateRemoveToJSON<PatchableUnion, PatchableUnionPatch, string, $ListMerge>(PatchableUnionToJSON, PatchableUnionPatchToJSON, noopMap));
+	const list_Null = isUndefined($value.list_Null) || isNull($value.list_Null) ? $value.list_Null : ReplaceOrMergeToJSON($value.list_Null, createListReplaceToJSON(PatchableUnionToJSON), createListMergeUpdateRemoveToJSON<PatchableUnion, PatchableUnionPatch, string, $List_NullMerge>(PatchableUnionToJSON, PatchableUnionPatchToJSON, noopMap));
+	const list_Opt = isUndefined($value.list_Opt) || isNull($value.list_Opt) ? $value.list_Opt : ReplaceOrMergeToJSON($value.list_Opt, createListReplaceToJSON(PatchableUnionToJSON), createListMergeUpdateRemoveToJSON<PatchableUnion, PatchableUnionPatch, string, $List_OptMerge>(PatchableUnionToJSON, PatchableUnionPatchToJSON, noopMap));
+	const list_Opt_Null = isUndefined($value.list_Opt_Null) || isNull($value.list_Opt_Null) ? $value.list_Opt_Null : ReplaceOrMergeToJSON($value.list_Opt_Null, createListReplaceToJSON(PatchableUnionToJSON), createListMergeUpdateRemoveToJSON<PatchableUnion, PatchableUnionPatch, string, $List_Opt_NullMerge>(PatchableUnionToJSON, PatchableUnionPatchToJSON, noopMap));
+
+	return {
+		key,
+		version,
+		value,
+		value_Null,
+		value_Opt,
+		value_Opt_Null,
+		list,
+		list_Null,
+		list_Opt,
+		list_Opt_Null,
+	};
+}`.trim();
 
 const TO_JSON: RecordTest[] = [
 	{
@@ -1959,10 +1983,10 @@ const TO_JSON: RecordTest[] = [
 		name: 'PatchableRecordOfRecords',
 		result: ToJson_PatchableRecordOfRecords,
 	},
-	/*{
+	{
 		name: 'PatchableRecordWithUnion',
 		result: ToJson_PatchableRecordWithUnion,
-	},*/
+	},
 ];
 
 describe('ToJSONPatch', () => {

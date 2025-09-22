@@ -516,7 +516,8 @@ export function FromJSONPatch(t: MResolvedRecordType, props: MResolvedBaseProper
 				} else {
 					if (p.variant === 'union') {
 						const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
-						fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${map}`, allow, ');', NL);
+						const orPatchMap = fqn(`${p.type}OrPatchFromJSON:./${p.type}.ts`, false);
+						fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${orPatchMap}`, allow, ');', NL);
 					} else {
 						const ReplaceOrMergeFromJSON = fqn('ReplaceOrMergeFromJSON:../_type-utils.ts', false);
 						const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
@@ -586,8 +587,13 @@ export function ToJSONPatch(t: MResolvedRecordType, props: MResolvedBaseProperty
 
 					mBody.append(`${ReplaceOrMergeToJSON}($value.${p.name}, ${createListReplaceToJSON}(${ToJSON}), ${createListMergeUpdateRemoveToJSON}<${AddType}, ${UpdateType}, ${RemoveType}, ${MergeType}>(${ToJSON}, ${ToJSONPatch}, ${noopMap}));`, NL);
 				} else {
-					const ReplaceOrMergeToJSON = fqn('ReplaceOrMergeToJSON:../_type-utils.ts', false);
-					mBody.append(`${ReplaceOrMergeToJSON}($value.${p.name}, ${ToJSON}, ${ToJSONPatch});`, NL);
+					if (p.variant === 'union') {
+						const OrPatchToJSON = fqn(`${p.type}OrPatchToJSON:./${p.type}.ts`, false);
+						mBody.append(`${OrPatchToJSON}($value.${p.name});`, NL);
+					} else {
+						const ReplaceOrMergeToJSON = fqn('ReplaceOrMergeToJSON:../_type-utils.ts', false);
+						mBody.append(`${ReplaceOrMergeToJSON}($value.${p.name}, ${ToJSON}, ${ToJSONPatch});`, NL);
+					}
 				}
 			}
 		});
