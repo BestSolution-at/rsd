@@ -2,7 +2,7 @@
 import { checkOptProp, checkProp, createIsStringTypeGuard, isRecord, isString, propValue } from '../_type-utils.js';
 
 export type PatchableUnionA = {
-	'@type': 'union-a',
+	'@type': 'union-a';
 	readonly key: string;
 	readonly version: string;
 	readonly shared: string;
@@ -10,12 +10,7 @@ export type PatchableUnionA = {
 };
 
 export function isPatchableUnionA(value: unknown): value is PatchableUnionA {
-	return isRecord(value) &&
-		checkProp(value, '@type', createIsStringTypeGuard('union-a')) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		checkProp(value, 'shared', isString) &&
-		checkProp(value, 'valueA', isString);
+	return isRecord(value) && checkProp(value, '@type', createIsStringTypeGuard('union-a')) && checkProp(value, 'key', isString) && checkProp(value, 'version', isString) && checkProp(value, 'shared', isString) && checkProp(value, 'valueA', isString);
 }
 
 export function PatchableUnionAFromJSON($value: Record<string, unknown>): PatchableUnionA {
@@ -48,7 +43,7 @@ export function PatchableUnionAToJSON($value: PatchableUnionA): Record<string, u
 }
 
 export type PatchableUnionAPatch = {
-	'@type': 'union-a-patch',
+	'@type': 'patch:union-a';
 	readonly key: string;
 	readonly version: string;
 	readonly shared?: string;
@@ -56,13 +51,14 @@ export type PatchableUnionAPatch = {
 };
 
 export function isPatchableUnionAPatch(value: unknown): value is PatchableUnionAPatch {
-	return isRecord(value) &&
-		checkProp(value, '@type', createIsStringTypeGuard('union-a')) &&
-		 &&
+	return (
+		isRecord(value) && //
+		checkProp(value, '@type', createIsStringTypeGuard('patch:union-a')) &&
 		checkProp(value, 'key', isString) &&
 		checkProp(value, 'version', isString) &&
 		checkOptProp(value, 'shared', isString) &&
-		checkOptProp(value, 'valueA', isString);
+		checkOptProp(value, 'valueA', isString)
+	);
 }
 
 export function PatchableUnionAPatchFromJSON($value: Record<string, unknown>): PatchableUnionAPatch {
@@ -71,7 +67,7 @@ export function PatchableUnionAPatchFromJSON($value: Record<string, unknown>): P
 	const shared = propValue('shared', $value, isString, 'optional');
 	const valueA = propValue('valueA', $value, isString, 'optional');
 	return {
-		'@type': 'union-a-patch',
+		'@type': 'patch:union-a',
 		key,
 		version,
 		shared,
@@ -86,11 +82,10 @@ export function PatchableUnionAPatchToJSON($value: PatchableUnionAPatch): Record
 	const valueA = $value.valueA;
 
 	return {
-		'@type': 'union-a-patch',
+		'@type': 'patch:union-a',
 		key,
 		version,
 		shared,
 		valueA,
 	};
 }
-
