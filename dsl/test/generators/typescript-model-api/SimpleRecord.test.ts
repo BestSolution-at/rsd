@@ -24,7 +24,7 @@ describe('isSimpleRecord', () => {
 	test('simple', () => {
 		expect(isSimpleRecord({ key: 'key', version: 'version', value: 'value' })).toBeTruthy();
 	});
-	test('additionl props', () => {
+	test('additional props', () => {
 		expect(isSimpleRecord({ key: 'key', version: 'version', value: 'value', foo: 'bar' })).toBeTruthy();
 	});
 	test('missing props', () => {
