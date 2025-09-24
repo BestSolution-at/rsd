@@ -1,5 +1,5 @@
 npm run langium:generate \
  && npm run build
 
-node ./bin/cli.js model ./test/test-specs/sample.rsd -d ./test/test-specs
-node ./bin/cli.js artifacts ./test/test-specs/sample.rsd -c ./test/test-specs/.rsd-generator.json
+node ./packages/cli/bin/cli.js model ./packages/cli/test/test-specs/sample.rsd -d ./packages/cli/test/test-specs
+node ./packages/cli/bin/cli.js artifacts ./packages/cli/test/test-specs/sample.rsd -c ./packages/cli/test/test-specs/.rsd-generator.json
