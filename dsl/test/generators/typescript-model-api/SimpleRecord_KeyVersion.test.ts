@@ -29,10 +29,18 @@ describe('isSimpleRecord_KeyVersion', () => {
 		expect(isSimpleRecord_KeyVersion({ key: 'key' })).toBeFalsy();
 		expect(isSimpleRecord_KeyVersion({ version: 'version' })).toBeFalsy();
 	});
+	test('invalid props', () => {
+		expect(isSimpleRecord_KeyVersion({ key: 1, version: 'version' })).toBeFalsy();
+		expect(isSimpleRecord_KeyVersion({ key: 'key', version: 1 })).toBeFalsy();
+	});
 });
 
 describe('SimpleRecord_KeyVersionToJSON', () => {
 	test('simple', () => {
 		expect(SimpleRecord_KeyVersionToJSON({ key: 'key', version: 'version' })).toStrictEqual({ key: 'key', version: 'version' });
+	});
+	test('additional props', () => {
+		const x = { key: 'key', version: 'version' };
+		expect(SimpleRecord_KeyVersionToJSON(x)).toStrictEqual({ key: 'key', version: 'version' });
 	});
 });
