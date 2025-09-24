@@ -11,17 +11,58 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "remote-service-description",
-            "aliases": ["RemoteServiceDescription", "remote-service-description"],
-            "extensions": [".rsd"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "remote-service-description",
-            "scopeName": "source.remote-service-description",
-            "path": "syntaxes/remote-service-description.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "remote-service-definition",
+                "aliases": [
+                    "Remote Service Definition",
+                    "remote-service-definition"
+                ],
+                "extensions": [
+                    ".rsd"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "remote-service-rest",
+                "aliases": [
+                    "Remote Service REST",
+                    "remote-service-rest"
+                ],
+                "extensions": [
+                    ".rrsd"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "remote-service-persistence",
+                "aliases": [
+                    "Remote Service Persistence",
+                    "remote-service-persistence"
+                ],
+                "extensions": [
+                    ".rom"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "remote-service-definition",
+                "scopeName": "source.remote-service-definition",
+                "path": "syntaxes/remote-service-definition.tmLanguage.json"
+            },
+            {
+                "language": "remote-service-rest",
+                "scopeName": "source.remote-service-rest",
+                "path": "syntaxes/remote-service-rest.tmLanguage.json"
+            },
+            {
+                "language": "remote-service-persistence",
+                "scopeName": "source.remote-service-persistence",
+                "path": "syntaxes/remote-service-persistence.tmLanguage.json"
+            }
+        ]
     },
     "activationEvents": [
         "onLanguage:remote-service-description"
@@ -30,7 +71,7 @@
     "scripts": {
         "clean": "shx rm -fr *.tsbuildinfo out syntaxes",
         "vscode:prepublish": "npm run build",
-        "build:prepare": "shx mkdir -p ./syntaxes/ && shx cp -f ../language/syntaxes/remote-service-description.tmLanguage.json ./syntaxes/remote-service-description.tmLanguage.json",
+        "build:prepare": "shx mkdir -p ./syntaxes/ && shx cp -f ../language/syntaxes/* ./syntaxes/",
         "build": "npm run build:prepare && tsc -b tsconfig.json && node esbuild.mjs",
         "build:clean": "npm run clean && npm run build",
         "watch": "npm run build:prepare && concurrently -n tsc,esbuild -c blue,yellow \"tsc -b tsconfig.json --watch\" \"node esbuild.mjs --watch\""
