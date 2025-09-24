@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { toNodeTree } from '../../src/cli/util.js';
+import { toNodeTree } from '../../src/util.js';
 import { toString } from 'langium/generate';
 
 test('toNodeTree', () => {
@@ -22,6 +22,6 @@ ____// FOO
 
 __}
 }
-		`.trim()
+		`.trim(),
 	);
 });
