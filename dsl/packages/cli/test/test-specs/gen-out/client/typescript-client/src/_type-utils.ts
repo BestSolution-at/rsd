@@ -174,7 +174,7 @@ export function checkProp<T, K extends string>(value: Record<string, unknown>, p
 }
 
 export function checkOptProp<T, K extends string>(value: Record<string, unknown>, property: K, typeCheck: (value: unknown) => value is T, valueCheck?: (value: T) => boolean): value is Record<K, T | undefined> {
-	if (!(property in value)) {
+	if (!(property in value) || value[property] === undefined) {
 		return true;
 	}
 	return checkProp(value, property, typeCheck, valueCheck);
@@ -196,7 +196,7 @@ function checkListProp<T, K extends string>(value: Record<string, unknown>, prop
 				} else {
 					return true;
 				}
-			}) === undefined
+			}) === undefined,
 	);
 }
 
@@ -385,4 +385,3 @@ type JsonObject = {
 };
 
 type JsonArray = Array<JsonValue>;
-
