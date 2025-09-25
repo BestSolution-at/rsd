@@ -15,5 +15,5 @@ test('file - content', () => {
 		name: 'typescript-client-api',
 		targetFolder: './gen-out/client/typescript-client/src',
 	});
-	expect(result.content).toBe(loadTestSpecFile('client/typescript-client/src/_type-utils.ts'));
+	expect(result.content).toBe(loadTestSpecFile('client/typescript-client/src/_type-utils.ts.sample'));
 });
