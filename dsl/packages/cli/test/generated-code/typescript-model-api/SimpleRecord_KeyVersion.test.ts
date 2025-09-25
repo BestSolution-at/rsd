@@ -1,12 +1,19 @@
 import { describe, expect, test } from 'vitest';
 import { isSimpleRecord_KeyVersion, SimpleRecord_KeyVersionFromJSON, SimpleRecord_KeyVersionToJSON } from '../../test-specs/gen-out/client/typescript-client/src/model/SimpleRecord_KeyVersion.js';
+import { addFooProperty } from './utils.js';
+
+const Simple = {
+	key: 'key',
+	version: 'version',
+};
 
 describe('SimpleRecord_KeyVersionFromJSON', () => {
 	test('simple', () => {
-		expect(SimpleRecord_KeyVersionFromJSON({ key: 'key', version: 'version' })).toStrictEqual({ key: 'key', version: 'version' });
+		expect(SimpleRecord_KeyVersionFromJSON(Simple)).toStrictEqual(Simple);
+		expect(SimpleRecord_KeyVersionFromJSON(Simple)).not.toBe(Simple);
 	});
 	test('remove-unknown', () => {
-		expect(SimpleRecord_KeyVersionFromJSON({ key: 'key', version: 'version' })).toStrictEqual({ key: 'key', version: 'version' });
+		expect(SimpleRecord_KeyVersionFromJSON(addFooProperty(Simple))).toStrictEqual(Simple);
 	});
 	test('missing prop', () => {
 		expect(() => SimpleRecord_KeyVersionFromJSON({ key: 'key' })).toThrow();
@@ -20,10 +27,10 @@ describe('SimpleRecord_KeyVersionFromJSON', () => {
 
 describe('isSimpleRecord_KeyVersion', () => {
 	test('simple', () => {
-		expect(isSimpleRecord_KeyVersion({ key: 'key', version: 'version' })).toBeTruthy();
+		expect(isSimpleRecord_KeyVersion(Simple)).toBeTruthy();
 	});
 	test('additional props', () => {
-		expect(isSimpleRecord_KeyVersion({ key: 'key', version: 'version', foo: 'bar' })).toBeTruthy();
+		expect(isSimpleRecord_KeyVersion(addFooProperty(Simple))).toBeTruthy();
 	});
 	test('missing props', () => {
 		expect(isSimpleRecord_KeyVersion({ key: 'key' })).toBeFalsy();
@@ -37,10 +44,10 @@ describe('isSimpleRecord_KeyVersion', () => {
 
 describe('SimpleRecord_KeyVersionToJSON', () => {
 	test('simple', () => {
-		expect(SimpleRecord_KeyVersionToJSON({ key: 'key', version: 'version' })).toStrictEqual({ key: 'key', version: 'version' });
+		expect(SimpleRecord_KeyVersionToJSON(Simple)).toStrictEqual(Simple);
+		expect(SimpleRecord_KeyVersionToJSON(Simple)).not.toBe(Simple);
 	});
 	test('additional props', () => {
-		const x = { key: 'key', version: 'version' };
-		expect(SimpleRecord_KeyVersionToJSON(x)).toStrictEqual({ key: 'key', version: 'version' });
+		expect(SimpleRecord_KeyVersionToJSON(addFooProperty(Simple))).toStrictEqual(Simple);
 	});
 });

@@ -1,12 +1,20 @@
 import { describe, expect, test } from 'vitest';
 import { isSimpleRecord, SimpleRecordFromJSON, SimpleRecordToJSON } from '../../test-specs/gen-out/client/typescript-client/src/model/SimpleRecord.js';
+import { addFooProperty } from './utils.js';
+
+const Simple = {
+	key: 'key',
+	version: 'version',
+	value: 'value',
+};
 
 describe('SimpleRecordFromJSON', () => {
 	test('simple', () => {
-		expect(SimpleRecordFromJSON({ key: 'key', version: 'version', value: 'value' })).toStrictEqual({ key: 'key', version: 'version', value: 'value' });
+		expect(SimpleRecordFromJSON(Simple)).toStrictEqual(Simple);
+		expect(SimpleRecordFromJSON(Simple)).not.toBe(Simple);
 	});
 	test('remove-unknown', () => {
-		expect(SimpleRecordFromJSON({ key: 'key', version: 'version', value: 'value', foo: 'bar' })).toStrictEqual({ key: 'key', version: 'version', value: 'value' });
+		expect(SimpleRecordFromJSON(addFooProperty(Simple))).toStrictEqual(Simple);
 	});
 	test('missing prop', () => {
 		expect(() => SimpleRecordFromJSON({ key: 'key', version: 'version' })).toThrowError();
@@ -22,10 +30,10 @@ describe('SimpleRecordFromJSON', () => {
 
 describe('isSimpleRecord', () => {
 	test('simple', () => {
-		expect(isSimpleRecord({ key: 'key', version: 'version', value: 'value' })).toBeTruthy();
+		expect(isSimpleRecord(Simple)).toBeTruthy();
 	});
 	test('additional props', () => {
-		expect(isSimpleRecord({ key: 'key', version: 'version', value: 'value', foo: 'bar' })).toBeTruthy();
+		expect(isSimpleRecord(addFooProperty(Simple))).toBeTruthy();
 	});
 	test('missing props', () => {
 		expect(isSimpleRecord({ key: 'key', version: 'version' })).toBeFalsy();
@@ -41,6 +49,7 @@ describe('isSimpleRecord', () => {
 
 describe('SimpleRecordToJSON', () => {
 	test('simple', () => {
-		expect(SimpleRecordToJSON({ key: 'key', version: 'version', value: 'value' })).toStrictEqual({ key: 'key', version: 'version', value: 'value' });
+		expect(SimpleRecordToJSON(Simple)).toStrictEqual(Simple);
+		expect(SimpleRecordToJSON(Simple)).not.toBe(Simple);
 	});
 });

@@ -1450,6 +1450,10 @@ const TO_JSON: RecordTest[] = [
 		result: ToJson_SimpleRecord,
 	},
 	{
+		name: 'SimpleRecord_Basic',
+		result: ToJson_SimpleRecord_Basic,
+	},
+	{
 		name: 'SimpleRecord_Basic_Optional',
 		result: ToJson_SimpleRecord_Basic_Optional,
 	},
