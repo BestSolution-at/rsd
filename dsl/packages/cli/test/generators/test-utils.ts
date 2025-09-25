@@ -3,7 +3,7 @@ import { MResolvedRSDModel, resolve } from '../../src/model.js';
 import { TypescriptClientAPIGeneratorConfig } from '../../src/typescript-gen-utils.js';
 
 export function loadTestSpecFile(path: string) {
-	return fs.readFileSync(`${__dirname}/../test-specs/check/${path}`).toString();
+	return fs.readFileSync(`${__dirname}/../test-specs/check/${path}.sample`).toString();
 }
 
 let RESOLVED_MODEL: MResolvedRSDModel | undefined;
