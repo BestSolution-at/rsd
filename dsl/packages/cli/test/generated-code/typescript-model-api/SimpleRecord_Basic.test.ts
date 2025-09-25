@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { isSimpleRecord_Basic, SimpleRecord_BasicFromJSON, SimpleRecord_BasicToJSON } from '../../test-specs/gen-out/client/typescript-client/src/model/SimpleRecord_Basic.js';
-import { addFooProperty } from './utils.js';
+import { addFooProperty, invalidateProperty, removeProperty } from './utils.js';
 
 const Simple = {
 	valueBoolean: true,
@@ -18,10 +18,10 @@ const Simple = {
 describe('SimpleRecord_BasicFromJSON', () => {
 	test('simple', () => {
 		expect(SimpleRecord_BasicFromJSON(Simple)).toStrictEqual(Simple);
+		expect(SimpleRecord_BasicFromJSON(Simple)).not.toBe(Simple);
 	});
 	test('remove-unknown', () => {
 		expect(SimpleRecord_BasicFromJSON(addFooProperty(Simple))).toStrictEqual(Simple);
-		expect(SimpleRecord_BasicFromJSON(addFooProperty(Simple))).not.toBe(Simple);
 	});
 	test('empty object', () => {
 		expect(() => SimpleRecord_BasicFromJSON({})).toThrow();
@@ -53,19 +53,11 @@ describe('isSimpleRecord_Basic', () => {
 		expect(isSimpleRecord_Basic({})).toBeFalsy();
 	});
 	test.each(Object.keys(Simple))('missing prop $0', data => {
-		const copy = { ...Simple } as Record<string, unknown>;
-		// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-		delete copy[data];
-		expect(isSimpleRecord_Basic(copy)).toBeFalsy();
+		const { withOut } = removeProperty(Simple, data);
+		expect(isSimpleRecord_Basic(withOut)).toBeFalsy();
 	});
 	test.each(Object.keys(Simple))('invalid prop $0', data => {
-		const copy = { ...Simple } as Record<string, unknown>;
-		if (typeof copy[data] === 'string' || typeof copy[data] === 'number') {
-			copy[data] = true;
-		} else {
-			copy[data] = 'true';
-		}
-		expect(isSimpleRecord_Basic(copy)).toBeFalsy();
+		expect(isSimpleRecord_Basic(invalidateProperty(Simple, data))).toBeFalsy();
 	});
 });
 describe('SimpleRecord_BasicToJSON', () => {
