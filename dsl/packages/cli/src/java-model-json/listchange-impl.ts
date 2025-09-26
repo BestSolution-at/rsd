@@ -1,7 +1,10 @@
 import { CompositeGeneratorNode } from 'langium/generate';
 import { toNode } from '../util.js';
 
-export function generateListChangeContent(interfaceBasePackage: string, fqn: (type: string) => string): CompositeGeneratorNode {
+export function generateListChangeContent(
+	interfaceBasePackage: string,
+	fqn: (type: string) => string,
+): CompositeGeneratorNode {
 	fqn('java.util.List');
 	fqn('java.util.function.Function');
 

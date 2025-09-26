@@ -1,9 +1,17 @@
 import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
-import { generateCompilationUnit, JavaImportsCollector, JavaServerJakartaWSGeneratorConfig, toPath } from '../java-gen-utils.js';
+import {
+	generateCompilationUnit,
+	JavaImportsCollector,
+	JavaServerJakartaWSGeneratorConfig,
+	toPath,
+} from '../java-gen-utils.js';
 import { isMResolvedRecordType, isMResolvedUnionType, MResolvedRSDModel } from '../model.js';
 
-export function generateDTOBuilderFactory(model: MResolvedRSDModel, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact {
+export function generateDTOBuilderFactory(
+	model: MResolvedRSDModel,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
+): Artifact {
 	const packageName = `${artifactConfig.rootPackageName}.rest`;
 
 	const importCollector = new JavaImportsCollector(packageName);
@@ -11,12 +19,23 @@ export function generateDTOBuilderFactory(model: MResolvedRSDModel, artifactConf
 
 	return {
 		name: 'RestBuilderFactory.java',
-		content: toString(generateCompilationUnit(packageName, importCollector, generateDTOBuilderFactoryContent(model, artifactConfig, fqn)), '\t'),
+		content: toString(
+			generateCompilationUnit(
+				packageName,
+				importCollector,
+				generateDTOBuilderFactoryContent(model, artifactConfig, fqn),
+			),
+			'\t',
+		),
 		path: toPath(artifactConfig.targetFolder, packageName),
 	};
 }
 
-function generateDTOBuilderFactoryContent(model: MResolvedRSDModel, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {
+function generateDTOBuilderFactoryContent(
+	model: MResolvedRSDModel,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
+	fqn: (type: string) => string,
+) {
 	const node = new CompositeGeneratorNode();
 
 	const Singleton = fqn('jakarta.inject.Singleton');
@@ -43,7 +62,11 @@ function generateDTOBuilderFactoryContent(model: MResolvedRSDModel, artifactConf
 	return node;
 }
 
-function generateBuilderMethodBody(model: MResolvedRSDModel, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {
+function generateBuilderMethodBody(
+	model: MResolvedRSDModel,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
+	fqn: (type: string) => string,
+) {
 	const mBody = new CompositeGeneratorNode();
 	model.elements.filter(isMResolvedRecordType).forEach(t => {
 		const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${t.name}`);
@@ -66,7 +89,11 @@ function generateBuilderMethodBody(model: MResolvedRSDModel, artifactConfig: Jav
 	return mBody;
 }
 
-function generateOfMethodBody(model: MResolvedRSDModel, artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {
+function generateOfMethodBody(
+	model: MResolvedRSDModel,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
+	fqn: (type: string) => string,
+) {
 	const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.rest.model._JsonUtils`);
 	const mBody = new CompositeGeneratorNode();
 	model.elements

@@ -5,7 +5,7 @@ export function isDefined<T>(value: T | undefined): value is T {
 	return value !== undefined;
 }
 
-export function isObject(value: unknown): value is Object {
+export function isObject(value: unknown): value is object {
 	return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 

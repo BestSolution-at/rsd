@@ -7,7 +7,9 @@ export type TypescriptClientAPIGeneratorConfig = ArtifactGeneratorConfig & {
 	allowImportingTsExtensions?: boolean;
 };
 
-export function isTypescriptClientAPIGeneratorConfig(config: ArtifactGeneratorConfig): config is TypescriptClientAPIGeneratorConfig {
+export function isTypescriptClientAPIGeneratorConfig(
+	config: ArtifactGeneratorConfig,
+): config is TypescriptClientAPIGeneratorConfig {
 	return 'targetFolder' in config && typeof config.targetFolder === 'string';
 }
 
@@ -17,7 +19,9 @@ export type TypescriptFetchClientGeneratorConfig = ArtifactGeneratorConfig & {
 	allowImportingTsExtensions?: boolean;
 };
 
-export function isTypescriptFetchClientGeneratorConfig(config: ArtifactGeneratorConfig): config is TypescriptFetchClientGeneratorConfig {
+export function isTypescriptFetchClientGeneratorConfig(
+	config: ArtifactGeneratorConfig,
+): config is TypescriptFetchClientGeneratorConfig {
 	return 'targetFolder' in config && typeof config.targetFolder === 'string';
 }
 
@@ -49,7 +53,7 @@ export class TypescriptImportCollector {
 						.sort((a, b) => a.localeCompare(b))
 						.map(v => (this.typeOnlyTypes.has(v) ? `type ${v}` : v))
 						.join(', ')} } from '${p}';`,
-					NL
+					NL,
 				);
 			} else {
 				node.append(`import type { ${importedTypes.sort((a, b) => a.localeCompare(b)).join(', ')} } from '${p}';`, NL);

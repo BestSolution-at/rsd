@@ -74,6 +74,7 @@ describe('SimpleRecord_Basic_Optional_NullFromJSON', () => {
 describe('isSimpleRecord_Basic_Optional_Null', () => {
 	test('simple', () => {
 		expect(isSimpleRecord_Basic_Optional_Null(Simple)).toBeTruthy();
+		expect(isSimpleRecord_Basic_Optional_Null(SimpleNull)).toBeTruthy();
 		expect(isSimpleRecord_Basic_Optional_Null(SimpleEmpty)).toBeTruthy();
 		expect(isSimpleRecord_Basic_Optional_Null({})).toBeTruthy();
 	});

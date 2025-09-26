@@ -15,7 +15,8 @@ export type SimpleRecord_Basic_Null = {
 };
 
 export function isSimpleRecord_Basic_Null(value: unknown): value is SimpleRecord_Basic_Null {
-	return isRecord(value) &&
+	return (
+		isRecord(value) &&
 		(checkProp(value, 'valueBoolean', isNull) || checkProp(value, 'valueBoolean', isBoolean)) &&
 		(checkProp(value, 'valueShort', isNull) || checkProp(value, 'valueShort', isNumber)) &&
 		(checkProp(value, 'valueInt', isNull) || checkProp(value, 'valueInt', isNumber)) &&
@@ -25,7 +26,8 @@ export function isSimpleRecord_Basic_Null(value: unknown): value is SimpleRecord
 		(checkProp(value, 'valueString', isNull) || checkProp(value, 'valueString', isString)) &&
 		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', isString)) &&
 		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', isString)) &&
-		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', isString));
+		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', isString))
+	);
 }
 
 export function SimpleRecord_Basic_NullFromJSON($value: Record<string, unknown>): SimpleRecord_Basic_Null {
@@ -78,4 +80,3 @@ export function SimpleRecord_Basic_NullToJSON($value: SimpleRecord_Basic_Null): 
 		valueZonedDateTime,
 	};
 }
-

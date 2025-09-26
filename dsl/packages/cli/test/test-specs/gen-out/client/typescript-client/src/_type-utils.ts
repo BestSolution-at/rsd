@@ -5,7 +5,7 @@ export function isDefined<T>(value: T | undefined): value is T {
 	return value !== undefined;
 }
 
-export function isUndefined<T>(value: T | undefined): value is undefined {
+export function isUndefined(value: unknown): value is undefined {
 	return value === undefined;
 }
 
@@ -13,7 +13,7 @@ export function isNotNull<T>(value: T | null): value is T {
 	return value !== null;
 }
 
-export function isNull<T>(value: T | null): value is null {
+export function isNull(value: unknown): value is null {
 	return value === null;
 }
 
@@ -29,7 +29,7 @@ export function isNumber(value: unknown): value is number {
 	return typeof value === 'number';
 }
 
-export function isArray(value: unknown): value is Array<unknown> {
+export function isArray(value: unknown): value is unknown[] {
 	return isNotNull(value) && isDefined(value) && Array.isArray(value);
 }
 
@@ -53,7 +53,7 @@ export function createTypedArrayGuard<T>(guard: (v: unknown) => v is T): (v: unk
 	return v => isTypedArray(v, guard);
 }
 
-export function isTypedArray<T>(value: unknown, guard: (v: unknown) => v is T): value is Array<T> {
+export function isTypedArray<T>(value: unknown, guard: (v: unknown) => v is T): value is T[] {
 	if (isArray(value)) {
 		if (value.length === 0) {
 			return true;
@@ -75,10 +75,30 @@ export class PropertyCheckError extends Error {
 }
 
 export function propValue<T>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T): T;
-export function propValue<T>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, allow: 'optional'): T | undefined;
-export function propValue<T>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, allow: 'null'): T | null;
-export function propValue<T>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, allow: 'optional_null'): T | null | undefined;
-export function propValue<T>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, allow?: 'optional' | 'null' | 'optional_null'): T | null | undefined {
+export function propValue<T>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	allow: 'optional',
+): T | undefined;
+export function propValue<T>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	allow: 'null',
+): T | null;
+export function propValue<T>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	allow: 'optional_null',
+): T | null | undefined;
+export function propValue<T>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	allow?: 'optional' | 'null' | 'optional_null',
+): T | null | undefined {
 	const v = record[name];
 	if (allow === 'optional' || allow === 'optional_null') {
 		if (isUndefined(v)) {
@@ -98,10 +118,30 @@ export function propValue<T>(name: string, record: Record<string, unknown>, guar
 }
 
 export function propListValue<T>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T): T[];
-export function propListValue<T>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, allow: 'optional'): T[] | undefined;
-export function propListValue<T>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, allow: 'null'): T[] | null;
-export function propListValue<T>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, allow: 'optional_null'): T[] | undefined | null;
-export function propListValue<T>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, allow?: 'optional' | 'null' | 'optional_null'): T[] | undefined | null {
+export function propListValue<T>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	allow: 'optional',
+): T[] | undefined;
+export function propListValue<T>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	allow: 'null',
+): T[] | null;
+export function propListValue<T>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	allow: 'optional_null',
+): T[] | undefined | null;
+export function propListValue<T>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	allow?: 'optional' | 'null' | 'optional_null',
+): T[] | undefined | null {
 	const v = record[name];
 	if (allow === 'optional' || allow == 'optional_null') {
 		if (isUndefined(v)) {
@@ -119,11 +159,40 @@ export function propListValue<T>(name: string, record: Record<string, unknown>, 
 	throw new PropertyCheckError(`Value in property ${name} is invalid`, name, record);
 }
 
-export function propMappedValue<T, U>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, map: (v: T) => U): U;
-export function propMappedValue<T, U>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, map: (v: T) => U, allow: 'optional'): U | undefined;
-export function propMappedValue<T, U>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, map: (v: T) => U, allow: 'null'): U | null;
-export function propMappedValue<T, U>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, map: (v: T) => U, allow: 'optional_null'): U | undefined | null;
-export function propMappedValue<T, U>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, map: (v: T) => U, allow?: 'optional' | 'null' | 'optional_null'): U | undefined | null {
+export function propMappedValue<T, U>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	map: (v: T) => U,
+): U;
+export function propMappedValue<T, U>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	map: (v: T) => U,
+	allow: 'optional',
+): U | undefined;
+export function propMappedValue<T, U>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	map: (v: T) => U,
+	allow: 'null',
+): U | null;
+export function propMappedValue<T, U>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	map: (v: T) => U,
+	allow: 'optional_null',
+): U | undefined | null;
+export function propMappedValue<T, U>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	map: (v: T) => U,
+	allow?: 'optional' | 'null' | 'optional_null',
+): U | undefined | null {
 	const v = record[name];
 	if (allow === 'optional' || allow === 'optional_null') {
 		if (isUndefined(v)) {
@@ -141,8 +210,20 @@ export function propMappedValue<T, U>(name: string, record: Record<string, unkno
 	throw new PropertyCheckError(`Value in property ${name} is invalid`, name, record);
 }
 
-export function propMappedListValue<T, U>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, map: (v: T) => U, allow?: 'optional' | 'null' | 'optional_null'): U[];
-export function propMappedListValue<T, U>(name: string, record: Record<string, unknown>, guard: (v: unknown) => v is T, map: (v: T) => U, allow?: 'optional' | 'null' | 'optional_null'): U[] | undefined | null {
+export function propMappedListValue<T, U>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	map: (v: T) => U,
+	allow?: 'optional' | 'null' | 'optional_null',
+): U[];
+export function propMappedListValue<T, U>(
+	name: string,
+	record: Record<string, unknown>,
+	guard: (v: unknown) => v is T,
+	map: (v: T) => U,
+	allow?: 'optional' | 'null' | 'optional_null',
+): U[] | undefined | null {
 	const v = record[name];
 	if (allow === 'optional' || allow === 'optional_null') {
 		if (isUndefined(v)) {
@@ -160,27 +241,37 @@ export function propMappedListValue<T, U>(name: string, record: Record<string, u
 	throw new PropertyCheckError(`Value in property ${name} is invalid`, name, record);
 }
 
-export function checkProp<T, K extends string>(value: Record<string, unknown>, property: K, typeCheck: (value: unknown) => value is T, valueCheck?: (value: T) => boolean): value is Record<K, T> {
+export function checkProp<T, K extends string>(
+	value: Record<string, unknown>,
+	property: K,
+	typeCheck: (value: unknown) => value is T,
+	valueCheck?: (value: T) => boolean,
+): value is Record<K, T> {
 	if (property in value) {
 		const v = value[property];
-		return (
-			v !== undefined && //
-			v !== null &&
-			typeCheck(v) &&
-			(valueCheck === undefined || valueCheck(v))
-		);
+		return v !== undefined && typeCheck(v) && (valueCheck === undefined || valueCheck(v));
 	}
 	return false;
 }
 
-export function checkOptProp<T, K extends string>(value: Record<string, unknown>, property: K, typeCheck: (value: unknown) => value is T, valueCheck?: (value: T) => boolean): value is Record<K, T | undefined> {
+export function checkOptProp<T, K extends string>(
+	value: Record<string, unknown>,
+	property: K,
+	typeCheck: (value: unknown) => value is T,
+	valueCheck?: (value: T) => boolean,
+): value is Record<K, T | undefined> {
 	if (!(property in value) || value[property] === undefined) {
 		return true;
 	}
 	return checkProp(value, property, typeCheck, valueCheck);
 }
 
-function checkListProp<T, K extends string>(value: Record<string, unknown>, property: K, typeCheck: (value: unknown) => value is T, valueCheck?: (value: T) => boolean): value is Record<K, T[]> {
+function checkListProp<T, K extends string>(
+	value: Record<string, unknown>,
+	property: K,
+	typeCheck: (value: unknown) => value is T,
+	valueCheck?: (value: T) => boolean,
+): value is Record<K, T[]> {
 	return checkProp(
 		value,
 		property,
@@ -239,8 +330,13 @@ export function createReplaceAddRemoveGuard<T>(guard: Guard<T>): Guard<ListRepla
 	return v => isListReplace(v, guard) || isListMergeAddRemove(v, guard, guard);
 }
 
-export function createReplaceAddUpdateRemoveGuard<A, U, R>(guardReplaceAdd: Guard<A>, guardUpdate: Guard<U>, guardRemove: Guard<R>): Guard<ListReplace<A> | ListMergeAddUpdateRemove<A, U, R>> {
-	return v => isListReplace(v, guardReplaceAdd) || isListMergeAddUpdateRemove(v, guardReplaceAdd, guardUpdate, guardRemove);
+export function createReplaceAddUpdateRemoveGuard<A, U, R>(
+	guardReplaceAdd: Guard<A>,
+	guardUpdate: Guard<U>,
+	guardRemove: Guard<R>,
+): Guard<ListReplace<A> | ListMergeAddUpdateRemove<A, U, R>> {
+	return v =>
+		isListReplace(v, guardReplaceAdd) || isListMergeAddUpdateRemove(v, guardReplaceAdd, guardUpdate, guardRemove);
 }
 
 export function createListReplaceGuard<T>(guard: Guard<T>): Guard<ListReplace<T>> {
@@ -255,11 +351,18 @@ export function isListReplace<T>(value: unknown, typeCheck: Guard<T>): value is 
 	);
 }
 
-export function createListMergeAddRemoveGuard<A, R>(addGuard: Guard<A>, removeGuard: Guard<R>): Guard<ListMergeAddRemove<A, R>> {
+export function createListMergeAddRemoveGuard<A, R>(
+	addGuard: Guard<A>,
+	removeGuard: Guard<R>,
+): Guard<ListMergeAddRemove<A, R>> {
 	return v => isListMergeAddRemove(v, addGuard, removeGuard);
 }
 
-export function isListMergeAddRemove<A, R>(value: unknown, addTypeCheck: Guard<A>, removeTypeCheck: Guard<R>): value is ListMergeAddRemove<A, R> {
+export function isListMergeAddRemove<A, R>(
+	value: unknown,
+	addTypeCheck: Guard<A>,
+	removeTypeCheck: Guard<R>,
+): value is ListMergeAddRemove<A, R> {
 	return (
 		isRecord(value) && //
 		checkProp(value, '@type', isString, v => v === 'merge') &&
@@ -268,11 +371,20 @@ export function isListMergeAddRemove<A, R>(value: unknown, addTypeCheck: Guard<A
 	);
 }
 
-export function createListMergeAddUpdateRemoveGuard<A, U, R>(addGuard: Guard<A>, updateGuard: Guard<U>, removeGuard: Guard<R>): Guard<ListMergeAddUpdateRemove<A, U, R>> {
+export function createListMergeAddUpdateRemoveGuard<A, U, R>(
+	addGuard: Guard<A>,
+	updateGuard: Guard<U>,
+	removeGuard: Guard<R>,
+): Guard<ListMergeAddUpdateRemove<A, U, R>> {
 	return v => isListMergeAddUpdateRemove(v, addGuard, updateGuard, removeGuard);
 }
 
-export function isListMergeAddUpdateRemove<A, U, R>(value: unknown, addTypeCheck: Guard<A>, updateTypeCheck: Guard<U>, removeTypeCheck: Guard<R>): value is ListMergeAddUpdateRemove<A, U, R> {
+export function isListMergeAddUpdateRemove<A, U, R>(
+	value: unknown,
+	addTypeCheck: Guard<A>,
+	updateTypeCheck: Guard<U>,
+	removeTypeCheck: Guard<R>,
+): value is ListMergeAddUpdateRemove<A, U, R> {
 	return (
 		isRecord(value) && //
 		checkProp(value, '@type', isString, v => v === 'merge') &&
@@ -282,7 +394,11 @@ export function isListMergeAddUpdateRemove<A, U, R>(value: unknown, addTypeCheck
 	);
 }
 
-export function ListReplaceFromJSON<T, U>(value: Record<string, unknown>, typeGuard: (v: unknown) => v is U, map: (v: U) => T): ListReplace<T> {
+export function ListReplaceFromJSON<T, U>(
+	value: Record<string, unknown>,
+	typeGuard: (v: unknown) => v is U,
+	map: (v: U) => T,
+): ListReplace<T> {
 	const elements = propMappedListValue('elements', value, typeGuard, map);
 	return {
 		'@type': 'replace',
@@ -298,7 +414,13 @@ export function ListReplaceToJSON<T>(value: ListReplace<T>, map: (value: T) => R
 	};
 }
 
-export function ListMergeAddRemoveFromJSON<A, X, R, Y>(value: Record<string, unknown>, addTypeGuard: (v: unknown) => v is X, addMap: (v: X) => A, removeTypeGuard: (v: unknown) => v is Y, removeMap: (v: Y) => R): ListMergeAddRemove<A, R> {
+export function ListMergeAddRemoveFromJSON<A, X, R, Y>(
+	value: Record<string, unknown>,
+	addTypeGuard: (v: unknown) => v is X,
+	addMap: (v: X) => A,
+	removeTypeGuard: (v: unknown) => v is Y,
+	removeMap: (v: Y) => R,
+): ListMergeAddRemove<A, R> {
 	const additions = propMappedListValue('additions', value, addTypeGuard, addMap);
 	const removals = propMappedListValue('removals', value, removeTypeGuard, removeMap);
 	return {
@@ -308,7 +430,11 @@ export function ListMergeAddRemoveFromJSON<A, X, R, Y>(value: Record<string, unk
 	};
 }
 
-export function ListMergeAddRemoveToJSON<A, R>(value: ListMergeAddRemove<A, R>, addMap: (value: A) => unknown, removeMap: (value: R) => unknown) {
+export function ListMergeAddRemoveToJSON<A, R>(
+	value: ListMergeAddRemove<A, R>,
+	addMap: (value: A) => unknown,
+	removeMap: (value: R) => unknown,
+) {
 	const additions = value.additions.map(addMap);
 	const removals = value.removals.map(removeMap);
 	return {
@@ -318,7 +444,15 @@ export function ListMergeAddRemoveToJSON<A, R>(value: ListMergeAddRemove<A, R>, 
 	};
 }
 
-export function ListMergeAddUpdateRemoveFromJSON<A, X, U, Y, R, Z>(value: Record<string, unknown>, addTypeGuard: (v: unknown) => v is X, addMap: (v: X) => A, updateTypeGuard: (v: unknown) => v is Y, updateMap: (v: Y) => U, removeTypeGuard: (v: unknown) => v is Z, removeMap: (v: Z) => R): ListMergeAddUpdateRemove<A, U, R> {
+export function ListMergeAddUpdateRemoveFromJSON<A, X, U, Y, R, Z>(
+	value: Record<string, unknown>,
+	addTypeGuard: (v: unknown) => v is X,
+	addMap: (v: X) => A,
+	updateTypeGuard: (v: unknown) => v is Y,
+	updateMap: (v: Y) => U,
+	removeTypeGuard: (v: unknown) => v is Z,
+	removeMap: (v: Z) => R,
+): ListMergeAddUpdateRemove<A, U, R> {
 	const additions = propMappedListValue('additions', value, addTypeGuard, addMap);
 	const updates = propMappedListValue('updates', value, updateTypeGuard, updateMap);
 	const removals = propMappedListValue('removals', value, removeTypeGuard, removeMap);
@@ -330,7 +464,12 @@ export function ListMergeAddUpdateRemoveFromJSON<A, X, U, Y, R, Z>(value: Record
 	};
 }
 
-export function ListMergeAddUpdateRemoveToJSON<A, U, R>(value: ListMergeAddUpdateRemove<A, U, R>, addMap: (value: A) => unknown, updateMap: (value: U) => unknown, removeMap: (value: R) => unknown): Record<string, unknown> {
+export function ListMergeAddUpdateRemoveToJSON<A, U, R>(
+	value: ListMergeAddUpdateRemove<A, U, R>,
+	addMap: (value: A) => unknown,
+	updateMap: (value: U) => unknown,
+	removeMap: (value: R) => unknown,
+): Record<string, unknown> {
 	const additions = value.additions.map(addMap);
 	const updates = value.updates.map(updateMap);
 	const removals = value.removals.map(removeMap);
@@ -342,28 +481,43 @@ export function ListMergeAddUpdateRemoveToJSON<A, U, R>(value: ListMergeAddUpdat
 	};
 }
 
-export function ReplaceOrMergeFromJSON<S, P>(value: Record<string, unknown>, replaceMapper: (value: Record<string, unknown>) => S, mergeMapper: (value: Record<string, unknown>) => P): (S & Replace) | (P & Merge) {
+export function ReplaceOrMergeFromJSON<S, P>(
+	value: Record<string, unknown>,
+	replaceMapper: (value: Record<string, unknown>) => S,
+	mergeMapper: (value: Record<string, unknown>) => P,
+): (S & Replace) | (P & Merge) {
 	if (value['@type'] === 'replace') {
 		return { ...replaceMapper(value), '@type': 'replace' };
 	} else if (value['@type'] === 'merge') {
 		return { ...mergeMapper(value), '@type': 'merge' };
 	}
-	throw new Error(`Unsupported type '${value['@type']}.'`);
+	throw new Error(`Unsupported type '${String(value['@type'])}.'`);
 }
 
-export function ReplaceOrMergeToJSON<S, P>(value: (S & Replace) | (P & Merge), replaceMapper: (v: S) => Record<string, unknown>, mergeMapper: (v: P) => Record<string, unknown>): Record<string, unknown> {
+export function ReplaceOrMergeToJSON<S, P>(
+	value: (S & Replace) | (P & Merge),
+	replaceMapper: (v: S) => Record<string, unknown>,
+	mergeMapper: (v: P) => Record<string, unknown>,
+): Record<string, unknown> {
 	if (isReplace(value)) {
 		return { ...replaceMapper(value), '@type': 'replace' };
 	}
 	return { ...mergeMapper(value), '@type': 'merge' };
 }
 
-export function createListReplaceToJSON<T>(mapper: (v: T) => Record<string, unknown>): (v: ListReplace<T>) => Record<string, unknown> {
+export function createListReplaceToJSON<T>(
+	mapper: (v: T) => Record<string, unknown>,
+): (v: ListReplace<T>) => Record<string, unknown> {
 	return v => ListReplaceToJSON(v, mapper);
 }
 
 // We need X because Typescript is not able to deduct the type correctly and would require a local variable
-export function createListMergeUpdateRemoveToJSON<A, U, R, X extends ListMergeAddUpdateRemove<A, U, R>>(addMapper: (v: A) => Record<string, unknown>, updateMapper: (v: U) => Record<string, unknown>, removeMapper: (v: R) => unknown): (v: X) => Record<string, unknown> {
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
+export function createListMergeUpdateRemoveToJSON<A, U, R, X extends ListMergeAddUpdateRemove<A, U, R>>(
+	addMapper: (v: A) => Record<string, unknown>,
+	updateMapper: (v: U) => Record<string, unknown>,
+	removeMapper: (v: R) => unknown,
+): (v: X) => Record<string, unknown> {
 	return v => ListMergeAddUpdateRemoveToJSON(v, addMapper, updateMapper, removeMapper);
 }
 
@@ -384,4 +538,4 @@ type JsonObject = {
 	[x: string]: JsonValue;
 };
 
-type JsonArray = Array<JsonValue>;
+type JsonArray = JsonValue[];

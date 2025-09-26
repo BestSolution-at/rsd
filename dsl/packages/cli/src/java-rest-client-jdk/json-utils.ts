@@ -1,32 +1,24 @@
 import { toString } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
 import {
-  generateCompilationUnit,
-  JavaImportsCollector,
-  JavaRestClientJDKGeneratorConfig,
-  toPath,
+	generateCompilationUnit,
+	JavaImportsCollector,
+	JavaRestClientJDKGeneratorConfig,
+	toPath,
 } from '../java-gen-utils.js';
 import { generateJsonUtilsContent } from '../java-model-json/json-utils.js';
 
-export function generateJsonUtils(
-  artifactConfig: JavaRestClientJDKGeneratorConfig
-): Artifact {
-  const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
+export function generateJsonUtils(artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact {
+	const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
 
-  const importCollector = new JavaImportsCollector(packageName);
-  const fqn = importCollector.importType.bind(importCollector);
+	const importCollector = new JavaImportsCollector(packageName);
+	const fqn = importCollector.importType.bind(importCollector);
 
-  const node = generateJsonUtilsContent(
-    fqn,
-    `${artifactConfig.rootPackageName}.model`
-  );
+	const node = generateJsonUtilsContent(fqn, `${artifactConfig.rootPackageName}.model`);
 
-  return {
-    name: '_JsonUtils.java',
-    content: toString(
-      generateCompilationUnit(packageName, importCollector, node),
-      '\t'
-    ),
-    path: toPath(artifactConfig.targetFolder, packageName),
-  };
+	return {
+		name: '_JsonUtils.java',
+		content: toString(generateCompilationUnit(packageName, importCollector, node), '\t'),
+		path: toPath(artifactConfig.targetFolder, packageName),
+	};
 }

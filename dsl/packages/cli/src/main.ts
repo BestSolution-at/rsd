@@ -1,4 +1,9 @@
-import { type RSDModel, type RSDRestModel, RemoteServiceDefinitionLanguageMetaData, createRemoteServiceDescriptionServices } from 'remote-service-description-language';
+import {
+	type RSDModel,
+	type RSDRestModel,
+	RemoteServiceDefinitionLanguageMetaData,
+	createRemoteServiceDescriptionServices,
+} from 'remote-service-description-language';
 import chalk from 'chalk';
 import { Command } from 'commander';
 import { extractAstNode } from './cli-util.js';
@@ -118,8 +123,19 @@ export default function (): void {
 	program.version(JSON.parse(packageContent).version);
 
 	const fileExtensions = RemoteServiceDefinitionLanguageMetaData.fileExtensions.join(', ');
-	program.command('model').argument('<file>', `source file (possible file extensions: ${fileExtensions})`).option('-d, --destination <dir>', 'destination directory of generating').description('Generate a JSON model from the DSL').action(generateAction);
-	program.command('artifacts').argument('<file>', 'source model file (.json or .rsd)').option('-d, --destination <dir>', 'destination directory of generating').option('-c, --configuration <config-file>', 'configuration file').description('Generate Artifacts (Docu, Source-code, ...)').action(generateArtifact);
+	program
+		.command('model')
+		.argument('<file>', `source file (possible file extensions: ${fileExtensions})`)
+		.option('-d, --destination <dir>', 'destination directory of generating')
+		.description('Generate a JSON model from the DSL')
+		.action(generateAction);
+	program
+		.command('artifacts')
+		.argument('<file>', 'source model file (.json or .rsd)')
+		.option('-d, --destination <dir>', 'destination directory of generating')
+		.option('-c, --configuration <config-file>', 'configuration file')
+		.description('Generate Artifacts (Docu, Source-code, ...)')
+		.action(generateArtifact);
 
 	program.parse(process.argv);
 }

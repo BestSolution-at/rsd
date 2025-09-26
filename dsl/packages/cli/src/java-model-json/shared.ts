@@ -1,10 +1,28 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
-import { isMBuiltinFloatType, isMBuiltinIntegerType, isMBuiltinType, isMInlineEnumType, isMKeyProperty, isMResolvedUnionType, isMRevisionProperty, MBuiltinType, MResolvedBaseProperty, MResolvedPropery, MResolvedRecordType } from '../model.js';
+import {
+	isMBuiltinFloatType,
+	isMBuiltinIntegerType,
+	isMBuiltinType,
+	isMInlineEnumType,
+	isMKeyProperty,
+	isMResolvedUnionType,
+	isMRevisionProperty,
+	MBuiltinType,
+	MResolvedBaseProperty,
+	MResolvedPropery,
+	MResolvedRecordType,
+} from '../model.js';
 import { computeAPIType, primitiveToObject } from '../java-gen-utils.js';
 import { BuiltinType } from 'remote-service-description-language';
 import { toFirstUpper, toNode } from '../util.js';
 
-export function generatePropertyNG(owner: MResolvedRecordType, prop: MResolvedBaseProperty, nativeTypeSubstitues: Record<string, string> | undefined, interfaceBasePackage: string, fqn: (type: string) => string) {
+export function generatePropertyNG(
+	owner: MResolvedRecordType,
+	prop: MResolvedBaseProperty,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	interfaceBasePackage: string,
+	fqn: (type: string) => string,
+) {
 	const type = computeAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
 
 	const node = new CompositeGeneratorNode();
@@ -18,7 +36,12 @@ export function generatePropertyNG(owner: MResolvedRecordType, prop: MResolvedBa
 	return node;
 }
 
-function generatePropertyContent(prop: MResolvedBaseProperty, nativeTypeSubstitues: Record<string, string> | undefined, interfaceBasePackage: string, fqn: (type: string) => string) {
+function generatePropertyContent(
+	prop: MResolvedBaseProperty,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	interfaceBasePackage: string,
+	fqn: (type: string) => string,
+) {
 	let mapper: string;
 	const array = !isMKeyProperty(prop) && !isMRevisionProperty(prop) && prop.array;
 
@@ -218,11 +241,23 @@ export function builtinBuilderAccess(property: { type: MBuiltinType; name: strin
 function generatePatchPropertyAccessorContent_Builtin(property: { type: BuiltinType; name: string; array: boolean }) {
 	const type = property.type;
 	const methodBody = new CompositeGeneratorNode();
-	methodBody.append('return ', property.array ? builtinNilArrayJSONAccess({ type, name: property.name }) : builtinNilJSONAccess({ type, name: property.name }), ';', NL);
+	methodBody.append(
+		'return ',
+		property.array
+			? builtinNilArrayJSONAccess({ type, name: property.name })
+			: builtinNilJSONAccess({ type, name: property.name }),
+		';',
+		NL,
+	);
 	return methodBody;
 }
 
-function generatePatchPropertyAccessorContent_Scalar(property: MResolvedPropery, nativeTypeSubstitues: Record<string, string> | undefined, basePackageName: string, fqn: (type: string) => string) {
+function generatePatchPropertyAccessorContent_Scalar(
+	property: MResolvedPropery,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+) {
 	const Type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true);
 	const methodBody = new CompositeGeneratorNode();
 	if (property.array) {
@@ -233,7 +268,12 @@ function generatePatchPropertyAccessorContent_Scalar(property: MResolvedPropery,
 	return methodBody;
 }
 
-function generatePatchPropertyAccessor_NoRecord(property: MResolvedPropery, nativeTypeSubstitues: Record<string, string> | undefined, basePackageName: string, fqn: (type: string) => string) {
+function generatePatchPropertyAccessor_NoRecord(
+	property: MResolvedPropery,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+) {
 	const node = new CompositeGeneratorNode();
 	const type = primitiveToObject(computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn));
 	if (property.optional || property.nullable) {
@@ -253,14 +293,22 @@ function generatePatchPropertyAccessor_NoRecord(property: MResolvedPropery, nati
 				});
 			} else if (property.variant === 'scalar') {
 				node.indent(methodBody => {
-					methodBody.append(generatePatchPropertyAccessorContent_Scalar(property, nativeTypeSubstitues, basePackageName, fqn));
+					methodBody.append(
+						generatePatchPropertyAccessorContent_Scalar(property, nativeTypeSubstitues, basePackageName, fqn),
+					);
 				});
 			} else if (property.variant === 'enum') {
 				node.indent(methodBody => {
 					if (property.array) {
-						methodBody.append(`return _JsonUtils.mapNilLiterals(data, "${property.name}", ${property.type}::valueOf);`, NL);
+						methodBody.append(
+							`return _JsonUtils.mapNilLiterals(data, "${property.name}", ${property.type}::valueOf);`,
+							NL,
+						);
 					} else {
-						methodBody.append(`return _JsonUtils.mapNilLiteral(data, "${property.name}", ${property.type}::valueOf);`, NL);
+						methodBody.append(
+							`return _JsonUtils.mapNilLiteral(data, "${property.name}", ${property.type}::valueOf);`,
+							NL,
+						);
 					}
 				});
 			}
@@ -294,7 +342,14 @@ function generatePatchPropertyAccessor_NoRecord(property: MResolvedPropery, nati
 			const type = property.type;
 			if (isMBuiltinType(type)) {
 				node.indent(methodBody => {
-					methodBody.append('return ', property.array ? builtinOptArrayJSONAccess({ type, name: property.name }) : builtinOptJSONAccess({ type, name: property.name }), ';', NL);
+					methodBody.append(
+						'return ',
+						property.array
+							? builtinOptArrayJSONAccess({ type, name: property.name })
+							: builtinOptJSONAccess({ type, name: property.name }),
+						';',
+						NL,
+					);
 				});
 			} else if (property.variant === 'scalar') {
 				const Type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true);
@@ -308,9 +363,15 @@ function generatePatchPropertyAccessor_NoRecord(property: MResolvedPropery, nati
 			} else if (property.variant === 'enum') {
 				node.indent(methodBody => {
 					if (property.array) {
-						methodBody.append(`return _JsonUtils.mapOptLiterals(data, "${property.name}", ${property.type}::valueOf);`, NL);
+						methodBody.append(
+							`return _JsonUtils.mapOptLiterals(data, "${property.name}", ${property.type}::valueOf);`,
+							NL,
+						);
 					} else {
-						methodBody.append(`return _JsonUtils.mapOptLiteral(data, "${property.name}", ${property.type}::valueOf);`, NL);
+						methodBody.append(
+							`return _JsonUtils.mapOptLiteral(data, "${property.name}", ${property.type}::valueOf);`,
+							NL,
+						);
 					}
 				});
 			}
@@ -330,7 +391,12 @@ function generatePatchPropertyAccessor_NoRecord(property: MResolvedPropery, nati
 	return node;
 }
 
-export function generatePatchPropertyAccessor(property: MResolvedPropery, nativeTypeSubstitues: Record<string, string> | undefined, basePackageName: string, fqn: (type: string) => string) {
+export function generatePatchPropertyAccessor(
+	property: MResolvedPropery,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+) {
 	if (property.array) {
 		return generatePatchPropertyAccessor_Array(property, nativeTypeSubstitues, basePackageName, fqn);
 	} else {
@@ -338,15 +404,36 @@ export function generatePatchPropertyAccessor(property: MResolvedPropery, native
 	}
 }
 
-function generatePatchPropertyAccessor_Array(property: MResolvedPropery, nativeTypeSubstitues: Record<string, string> | undefined, basePackageName: string, fqn: (type: string) => string) {
+function generatePatchPropertyAccessor_Array(
+	property: MResolvedPropery,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+) {
 	const Optional = fqn('java.util.Optional');
 	const prefix = toFirstUpper(property.name);
-	return toNode([`public ${Optional}<${prefix}Change> ${property.name}() {`, [`return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeSupport.of(o, "@type", ${prefix}SetChangeImpl::new, ${prefix}MergeChangeImpl::new));`], '}']);
+	return toNode([
+		`public ${Optional}<${prefix}Change> ${property.name}() {`,
+		[
+			`return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeSupport.of(o, "@type", ${prefix}SetChangeImpl::new, ${prefix}MergeChangeImpl::new));`,
+		],
+		'}',
+	]);
 }
 
-function generatePatchPropertyAccessor_Scalar(property: MResolvedPropery, nativeTypeSubstitues: Record<string, string> | undefined, basePackageName: string, fqn: (type: string) => string) {
+function generatePatchPropertyAccessor_Scalar(
+	property: MResolvedPropery,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+) {
 	const node = new CompositeGeneratorNode();
-	if (property.variant === 'builtin' || property.variant === 'enum' || property.variant === 'inline-enum' || property.variant === 'scalar') {
+	if (
+		property.variant === 'builtin' ||
+		property.variant === 'enum' ||
+		property.variant === 'inline-enum' ||
+		property.variant === 'scalar'
+	) {
 		node.append(generatePatchPropertyAccessor_NoRecord(property, nativeTypeSubstitues, basePackageName, fqn));
 	} else {
 		const type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn);
@@ -355,7 +442,10 @@ function generatePatchPropertyAccessor_Scalar(property: MResolvedPropery, native
 			const BaseType = fqn(`${basePackageName}.${property.type}`);
 			node.append(`public ${_Base}.Nillable<${BaseType}> ${property.name}() {`, NL);
 			node.indent(methodBody => {
-				methodBody.append(`return _JsonUtils.mapNilObject(data, "${property.name}", o -> ${property.type}DataImpl.isSupportedType(o) ? ${property.type}DataImpl.of(o) : ${property.type}PatchImpl.of(o));`, NL);
+				methodBody.append(
+					`return _JsonUtils.mapNilObject(data, "${property.name}", o -> ${property.type}DataImpl.isSupportedType(o) ? ${property.type}DataImpl.of(o) : ${property.type}PatchImpl.of(o));`,
+					NL,
+				);
 			});
 			node.append('}', NL);
 		} else {
@@ -363,9 +453,15 @@ function generatePatchPropertyAccessor_Scalar(property: MResolvedPropery, native
 			node.append(`public ${Optional}<${type}> ${property.name}() {`, NL);
 			node.indent(methodBody => {
 				if (property.array) {
-					methodBody.append(`return _JsonUtils.mapOptObjects(data, "${property.name}", ${property.type}DataImpl::of);`, NL);
+					methodBody.append(
+						`return _JsonUtils.mapOptObjects(data, "${property.name}", ${property.type}DataImpl::of);`,
+						NL,
+					);
 				} else {
-					methodBody.append(`return _JsonUtils.mapOptObject(data, "${property.name}", ${property.type}DataImpl::of);`, NL);
+					methodBody.append(
+						`return _JsonUtils.mapOptObject(data, "${property.name}", ${property.type}DataImpl::of);`,
+						NL,
+					);
 				}
 			});
 			node.append('}', NL);
@@ -375,7 +471,13 @@ function generatePatchPropertyAccessor_Scalar(property: MResolvedPropery, native
 	return node;
 }
 
-function generatePatchBuilderPropertyAccessor_NoRecord_Scalar(t: MResolvedRecordType, property: MResolvedPropery, nativeTypeSubstitues: Record<string, string> | undefined, basePackageName: string, fqn: (type: string) => string) {
+function generatePatchBuilderPropertyAccessor_NoRecord_Scalar(
+	t: MResolvedRecordType,
+	property: MResolvedPropery,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+) {
 	let type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn);
 
 	if (property.optional || property.nullable) {
@@ -427,11 +529,22 @@ function generatePatchBuilderPropertyAccessor_NoRecord_Scalar(t: MResolvedRecord
 	return node;
 }
 
-function generatePatchBuilderPropertyAccessor_Array(t: MResolvedRecordType, property: MResolvedPropery, nativeTypeSubstitues: Record<string, string> | undefined, basePackageName: string, fqn: (type: string) => string) {
+function generatePatchBuilderPropertyAccessor_Array(
+	t: MResolvedRecordType,
+	property: MResolvedPropery,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+) {
 	let type = primitiveToObject(computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true));
 	const node = new CompositeGeneratorNode();
 
-	if (property.variant === 'builtin' || property.variant === 'enum' || property.variant === 'inline-enum' || property.variant === 'scalar') {
+	if (
+		property.variant === 'builtin' ||
+		property.variant === 'enum' ||
+		property.variant === 'inline-enum' ||
+		property.variant === 'scalar'
+	) {
 		const List = fqn('java.util.List');
 		const prefix = toFirstUpper(property.name);
 		node.append('@Override', NL);
@@ -441,13 +554,24 @@ function generatePatchBuilderPropertyAccessor_Array(t: MResolvedRecordType, prop
 			mBody.append('return this;', NL);
 		});
 		node.append('}', NL, NL);
-		node.append(`public ${t.name}.PatchBuilder ${property.name}(${List}<${type}> additions, ${List}<${type}> removals) {`, NL);
+		node.append(
+			`public ${t.name}.PatchBuilder ${property.name}(${List}<${type}> additions, ${List}<${type}> removals) {`,
+			NL,
+		);
 		node.indent(mBody => {
 			mBody.append('var $changeBuilder = Json.createObjectBuilder();', NL);
 			mBody.append('$changeBuilder.add("@type", "merge");', NL);
 			if (isMBuiltinType(property.type)) {
-				mBody.append(builtinBuilderArrayJSONAccess({ type: property.type, name: 'additions' }, '$changeBuilder'), ';', NL);
-				mBody.append(builtinBuilderArrayJSONAccess({ type: property.type, name: 'removals' }, '$changeBuilder'), ';', NL);
+				mBody.append(
+					builtinBuilderArrayJSONAccess({ type: property.type, name: 'additions' }, '$changeBuilder'),
+					';',
+					NL,
+				);
+				mBody.append(
+					builtinBuilderArrayJSONAccess({ type: property.type, name: 'removals' }, '$changeBuilder'),
+					';',
+					NL,
+				);
 			} else {
 				mBody.append(`$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));`, NL);
 				mBody.append(`$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));`, NL);
@@ -500,12 +624,21 @@ function generatePatchBuilderPropertyAccessor_Array(t: MResolvedRecordType, prop
 		});
 		node.append('}', NL, NL);
 
-		node.append(`public ${t.name}.PatchBuilder ${property.name}(${List}<${type}> additions, ${List}<${baseType}.Patch> updates, ${List}<String> removals) {`, NL);
+		node.append(
+			`public ${t.name}.PatchBuilder ${property.name}(${List}<${type}> additions, ${List}<${baseType}.Patch> updates, ${List}<String> removals) {`,
+			NL,
+		);
 		node.indent(mBody => {
 			mBody.append(`var $changeBuilder = Json.createObjectBuilder();`, NL);
 			mBody.append(`$changeBuilder.add("@type", "merge");`, NL);
-			mBody.append(`$changeBuilder.add("additions", _JsonUtils.toJsonValueArray(additions, $e -> ((_BaseDataImpl) $e).data));`, NL);
-			mBody.append('$changeBuilder.add("updates", _JsonUtils.toJsonValueArray(updates, $e -> ((_BaseDataImpl) $e).data));', NL);
+			mBody.append(
+				`$changeBuilder.add("additions", _JsonUtils.toJsonValueArray(additions, $e -> ((_BaseDataImpl) $e).data));`,
+				NL,
+			);
+			mBody.append(
+				'$changeBuilder.add("updates", _JsonUtils.toJsonValueArray(updates, $e -> ((_BaseDataImpl) $e).data));',
+				NL,
+			);
 			mBody.append('$changeBuilder.add("removals", _JsonUtils.toJsonStringArray(removals));', NL);
 			mBody.append(`$builder.add("${property.name}", $changeBuilder.build());`, NL);
 			mBody.append('return this;', NL);
@@ -531,7 +664,13 @@ function generatePatchBuilderPropertyAccessor_Array(t: MResolvedRecordType, prop
 	return node;
 }
 
-export function generatePatchBuilderPropertyAccessor(t: MResolvedRecordType, property: MResolvedPropery, nativeTypeSubstitues: Record<string, string> | undefined, basePackageName: string, fqn: (type: string) => string) {
+export function generatePatchBuilderPropertyAccessor(
+	t: MResolvedRecordType,
+	property: MResolvedPropery,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+) {
 	if (property.array) {
 		return generatePatchBuilderPropertyAccessor_Array(t, property, nativeTypeSubstitues, basePackageName, fqn);
 	} else {
@@ -539,21 +678,43 @@ export function generatePatchBuilderPropertyAccessor(t: MResolvedRecordType, pro
 	}
 }
 
-export function generatePatchBuilderPropertyAccessor_Scalar(t: MResolvedRecordType, property: MResolvedPropery, nativeTypeSubstitues: Record<string, string> | undefined, basePackageName: string, fqn: (type: string) => string) {
+export function generatePatchBuilderPropertyAccessor_Scalar(
+	t: MResolvedRecordType,
+	property: MResolvedPropery,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+) {
 	const node = new CompositeGeneratorNode();
-	if (property.variant === 'builtin' || property.variant === 'enum' || property.variant === 'inline-enum' || property.variant === 'scalar') {
-		node.append(generatePatchBuilderPropertyAccessor_NoRecord_Scalar(t, property, nativeTypeSubstitues, basePackageName, fqn));
+	if (
+		property.variant === 'builtin' ||
+		property.variant === 'enum' ||
+		property.variant === 'inline-enum' ||
+		property.variant === 'scalar'
+	) {
+		node.append(
+			generatePatchBuilderPropertyAccessor_NoRecord_Scalar(t, property, nativeTypeSubstitues, basePackageName, fqn),
+		);
 	} else {
 		node.append(RecordPatchBuilderMethods(t, property, basePackageName, fqn));
 	}
 	return node;
 }
 
-function RecordPatchBuilderMethods(t: MResolvedRecordType, property: MResolvedPropery, basePackageName: string, fqn: (type: string) => string) {
+function RecordPatchBuilderMethods(
+	t: MResolvedRecordType,
+	property: MResolvedPropery,
+	basePackageName: string,
+	fqn: (type: string) => string,
+) {
 	const type = fqn(`${basePackageName}.${property.type}`);
 	const nullSupport = () => {
 		if (property.optional || property.nullable) {
-			return toNode([`if (${property.name} == null) {`, [`$builder.addNull("${property.name}");`, 'return this;'], '}']);
+			return toNode([
+				`if (${property.name} == null) {`,
+				[`$builder.addNull("${property.name}");`, 'return this;'],
+				'}',
+			]);
 		}
 		return undefined;
 	};
@@ -561,7 +722,8 @@ function RecordPatchBuilderMethods(t: MResolvedRecordType, property: MResolvedPr
 		if (isMResolvedUnionType(property.resolved.resolvedObjectType)) {
 			const dataBuilders = property.resolved.resolvedObjectType.types.flatMap((e, idx) => {
 				const Type = fqn(`${basePackageName}.${e}`);
-				const start = idx === 0 ? `if (clazz == ${Type}.DataBuilder.class) {` : `} else if (clazz == ${Type}.DataBuilder.class) {`;
+				const start =
+					idx === 0 ? `if (clazz == ${Type}.DataBuilder.class) {` : `} else if (clazz == ${Type}.DataBuilder.class) {`;
 				return [start, [`b = ${e}DataImpl.builder();`]];
 			});
 
@@ -570,13 +732,36 @@ function RecordPatchBuilderMethods(t: MResolvedRecordType, property: MResolvedPr
 				return [`} else if (clazz == ${Type}.PatchBuilder.class) {`, [`b = ${e}PatchImpl.builder();`]];
 			});
 
-			return toNode([...dataBuilders, ...patchBuilders, '} else {', ['throw new IllegalArgumentException("Unsupported builder type %s".formatted(clazz));'], '}']);
+			return toNode([
+				...dataBuilders,
+				...patchBuilders,
+				'} else {',
+				['throw new IllegalArgumentException("Unsupported builder type %s".formatted(clazz));'],
+				'}',
+			]);
 		}
-		return toNode([`if(clazz == ${property.type}.DataBuilder ) {`, [`b = ${property.type}DataImpl.builder();`], `} else if (clazz == ${property.type}.PatchBuilder ) {`, [`b = ${property.type}PatchImpl.builder();`], '} else {', ['throw new IllegalArgumentException("Unsupported builder type %s".formatted(clazz));'], '}']);
+		return toNode([
+			`if(clazz == ${property.type}.DataBuilder ) {`,
+			[`b = ${property.type}DataImpl.builder();`],
+			`} else if (clazz == ${property.type}.PatchBuilder ) {`,
+			[`b = ${property.type}PatchImpl.builder();`],
+			'} else {',
+			['throw new IllegalArgumentException("Unsupported builder type %s".formatted(clazz));'],
+			'}',
+		]);
 	};
 
 	const Function = fqn('java.util.function.Function');
-	return toNode(['@Override', `public ${t.name}.PatchBuilder ${property.name}(${type} ${property.name}) {`, [nullSupport, `$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data);`, 'return this;'], '}', '', `public <T extends ${type}.Builder> ${t.name}.PatchBuilder with${toFirstUpper(property.name)}(Class<T> clazz, ${Function}<T, ${type}> block) {`, [`${property.type}.Builder b;`, withContent, `return repeat(block.apply(clazz.cast(b)));`], '}']);
+	return toNode([
+		'@Override',
+		`public ${t.name}.PatchBuilder ${property.name}(${type} ${property.name}) {`,
+		[nullSupport, `$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data);`, 'return this;'],
+		'}',
+		'',
+		`public <T extends ${type}.Builder> ${t.name}.PatchBuilder with${toFirstUpper(property.name)}(Class<T> clazz, ${Function}<T, ${type}> block) {`,
+		[`${property.type}.Builder b;`, withContent, `return repeat(block.apply(clazz.cast(b)));`],
+		'}',
+	]);
 }
 
 export function builtinOptJSONAccess(property: { type: MBuiltinType; name: string }): string {

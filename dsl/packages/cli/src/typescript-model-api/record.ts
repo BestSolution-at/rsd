@@ -1,5 +1,18 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
-import { allResolvedRecordProperties, isMBuiltinType, isMInlineEnumType, isMKeyProperty, isMResolvedProperty, isMRevisionProperty, MBaseProperty, MBuiltinType, MInlineEnumType, MResolvedBaseProperty, MResolvedPropery, MResolvedRecordType } from '../model.js';
+import {
+	allResolvedRecordProperties,
+	isMBuiltinType,
+	isMInlineEnumType,
+	isMKeyProperty,
+	isMResolvedProperty,
+	isMRevisionProperty,
+	MBaseProperty,
+	MBuiltinType,
+	MInlineEnumType,
+	MResolvedBaseProperty,
+	MResolvedPropery,
+	MResolvedRecordType,
+} from '../model.js';
 import { toFirstUpper, toNode, toNodeTree } from '../util.js';
 import { builtinToJSType } from '../typescript-gen-utils.js';
 
@@ -10,9 +23,11 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 		...allProps
 			.filter(isMResolvedProperty)
 			.filter(p => p.variant === 'inline-enum')
-			.map(p => InlineEnumType(p.name, p.type as MInlineEnumType))
+			.map(p => InlineEnumType(p.name, p.type as MInlineEnumType)),
 	);
-	allProps.filter(p => isMInlineEnumType(p.type)).forEach(p => node.append(generateInlineTypeguard(t, p, p.type as MInlineEnumType)));
+	allProps
+		.filter(p => isMInlineEnumType(p.type))
+		.forEach(p => node.append(generateInlineTypeguard(t, p, p.type as MInlineEnumType)));
 	node.appendNewLineIf(!node.isEmpty());
 	node.append(RecordType(t, allProps, fqn), NL);
 	node.append(RecordTypeguard(t, allProps, fqn), NL);
@@ -64,7 +79,11 @@ function InlineEnumType(propName: string, type: MInlineEnumType) {
 
 function generateInlineTypeguard(t: MResolvedRecordType, prop: MBaseProperty, type: MInlineEnumType) {
 	const node = new CompositeGeneratorNode();
-	node.append(NL, `export function is${t.name}_${toFirstUpper(prop.name)}(value: unknown): value is ${toFirstUpper(prop.name)}Enum {`, NL);
+	node.append(
+		NL,
+		`export function is${t.name}_${toFirstUpper(prop.name)}(value: unknown): value is ${toFirstUpper(prop.name)}Enum {`,
+		NL,
+	);
 	node.indent(mBody => {
 		mBody.append('return ');
 		mBody.append(
@@ -72,7 +91,7 @@ function generateInlineTypeguard(t: MResolvedRecordType, prop: MBaseProperty, ty
 				.map(e => {
 					return `value === '${e.name}'`;
 				})
-				.join(' || ')
+				.join(' || '),
 		);
 		mBody.append(';', NL);
 	});
@@ -80,7 +99,11 @@ function generateInlineTypeguard(t: MResolvedRecordType, prop: MBaseProperty, ty
 	return node;
 }
 
-export function RecordType(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, type: boolean) => string) {
+export function RecordType(
+	t: MResolvedRecordType,
+	props: MResolvedBaseProperty[],
+	fqn: (t: string, type: boolean) => string,
+) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export type ${t.name} = {`, NL);
 	node.indent(classBody => {
@@ -97,7 +120,11 @@ export function RecordType(t: MResolvedRecordType, props: MResolvedBaseProperty[
 	return node;
 }
 
-export function FromJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
+export function FromJSON(
+	t: MResolvedRecordType,
+	props: MResolvedBaseProperty[],
+	fqn: (t: string, typeOnly: boolean) => string,
+) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export function ${t.name}FromJSON($value: Record<string, unknown>): ${t.name} {`, NL);
 	node.indent(fBody => {
@@ -106,7 +133,12 @@ export function FromJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[],
 				const propValue = fqn('propValue:../_type-utils.ts', false);
 				const guard = builtinTypeGuard(p.type as MBuiltinType, fqn);
 				fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard});`, NL);
-			} else if (p.variant === 'inline-enum' || p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'scalar') {
+			} else if (
+				p.variant === 'inline-enum' ||
+				p.variant === 'builtin' ||
+				p.variant === 'enum' ||
+				p.variant === 'scalar'
+			) {
 				let guard: string;
 
 				if (isMBuiltinType(p.type)) {
@@ -152,7 +184,12 @@ export function FromJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[],
 
 				if (p.array) {
 					const propMappedListValue = fqn('propMappedListValue:../_type-utils.ts', false);
-					fBody.append(`const ${p.name} = ${propMappedListValue}('${p.name}', $value, ${guard}, ${map}`, allow, ');', NL);
+					fBody.append(
+						`const ${p.name} = ${propMappedListValue}('${p.name}', $value, ${guard}, ${map}`,
+						allow,
+						');',
+						NL,
+					);
 				} else {
 					const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
 					fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${map}`, allow, ');', NL);
@@ -176,14 +213,23 @@ export function FromJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[],
 	return node;
 }
 
-export function ToJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
+export function ToJSON(
+	t: MResolvedRecordType,
+	props: MResolvedBaseProperty[],
+	fqn: (t: string, typeOnly: boolean) => string,
+) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export function ${t.name}ToJSON($value: ${t.name}): Record<string, unknown> {`, NL);
 	node.indent(mBody => {
 		props.forEach(p => {
 			if (isMKeyProperty(p) || isMRevisionProperty(p)) {
 				mBody.append(`const ${p.name} = $value.${p.name};`, NL);
-			} else if (p.variant === 'inline-enum' || p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'scalar') {
+			} else if (
+				p.variant === 'inline-enum' ||
+				p.variant === 'builtin' ||
+				p.variant === 'enum' ||
+				p.variant === 'scalar'
+			) {
 				mBody.append(`const ${p.name} = $value.${p.name};`, NL);
 			} else {
 				const ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
@@ -224,7 +270,11 @@ export function ToJSON(t: MResolvedRecordType, props: MResolvedBaseProperty[], f
 	return node;
 }
 
-export function RecordTypeguard(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
+export function RecordTypeguard(
+	t: MResolvedRecordType,
+	props: MResolvedBaseProperty[],
+	fqn: (t: string, typeOnly: boolean) => string,
+) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export function is${t.name}(value: unknown): value is ${t.name} {`, NL);
 	node.indent(mBody => {
@@ -235,7 +285,10 @@ export function RecordTypeguard(t: MResolvedRecordType, props: MResolvedBaseProp
 				const checkProp = fqn('checkProp:../_type-utils.ts', false);
 				const createIsStringTypeGuard = fqn('createIsStringTypeGuard:../_type-utils.ts', false);
 				const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
-				andBlock.append(`${checkProp}(value, '${t.resolved.unions[0].descriminator}', ${createIsStringTypeGuard}('${alias}')) &&`, NL);
+				andBlock.append(
+					`${checkProp}(value, '${t.resolved.unions[0].descriminator}', ${createIsStringTypeGuard}('${alias}')) &&`,
+					NL,
+				);
 			}
 			props.forEach((p, idx, arr) => {
 				if (idx > 0) {
@@ -259,7 +312,9 @@ export function RecordTypeguard(t: MResolvedRecordType, props: MResolvedBaseProp
 						guard = fqn(`is${p.type}:./${p.type}.ts`, false);
 					}
 
-					const check = p.optional ? fqn('checkOptProp:../_type-utils.ts', false) : fqn('checkProp:../_type-utils.ts', false);
+					const check = p.optional
+						? fqn('checkOptProp:../_type-utils.ts', false)
+						: fqn('checkProp:../_type-utils.ts', false);
 					if (p.nullable) {
 						const nullGuard = fqn('isNull:../_type-utils.ts', false);
 						andBlock.append(`(${check}(value, '${p.name}', ${nullGuard}) || `);
@@ -286,7 +341,11 @@ export function RecordTypeguard(t: MResolvedRecordType, props: MResolvedBaseProp
 	return node;
 }
 
-export function RecordTypePatch(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
+export function RecordTypePatch(
+	t: MResolvedRecordType,
+	props: MResolvedBaseProperty[],
+	fqn: (t: string, typeOnly: boolean) => string,
+) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export type ${t.name}Patch = {`, NL);
 	node.indent(classBody => {
@@ -374,7 +433,11 @@ export function ListChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOnl
 	]);
 }
 
-export function RecordTypeguardPatch(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
+export function RecordTypeguardPatch(
+	t: MResolvedRecordType,
+	props: MResolvedBaseProperty[],
+	fqn: (t: string, typeOnly: boolean) => string,
+) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export function is${t.name}Patch(value: unknown): value is ${t.name}Patch {`, NL);
 	node.indent(mBody => {
@@ -385,7 +448,10 @@ export function RecordTypeguardPatch(t: MResolvedRecordType, props: MResolvedBas
 				const checkProp = fqn('checkProp:../_type-utils.ts', false);
 				const createIsStringTypeGuard = fqn('createIsStringTypeGuard:../_type-utils.ts', false);
 				const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
-				andBlock.append(`${checkProp}(value, '${t.resolved.unions[0].descriminator}', ${createIsStringTypeGuard}('${alias}')) &&`, NL);
+				andBlock.append(
+					`${checkProp}(value, '${t.resolved.unions[0].descriminator}', ${createIsStringTypeGuard}('${alias}')) &&`,
+					NL,
+				);
 			}
 			props
 				.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
@@ -432,7 +498,9 @@ export function RecordTypeguardPatch(t: MResolvedRecordType, props: MResolvedBas
 						const createReplaceAddUpdateRemoveGuard = fqn('createReplaceAddUpdateRemoveGuard:../_type-utils.ts', false);
 						const patchGuard = fqn(`is${p.type}Patch:./${p.type}.ts`, false);
 						const isStringGuard = fqn('isString:../_type-utils.ts', false);
-						andBlock.append(`${check}(value, '${p.name}', ${createReplaceAddUpdateRemoveGuard}(${guard}, ${patchGuard}, ${isStringGuard}))`);
+						andBlock.append(
+							`${check}(value, '${p.name}', ${createReplaceAddUpdateRemoveGuard}(${guard}, ${patchGuard}, ${isStringGuard}))`,
+						);
 					} else {
 						const createReplaceAddRemoveGuard = fqn('createReplaceAddRemoveGuard:../_type-utils.ts', false);
 						andBlock.append(`${check}(value, '${p.name}', ${createReplaceAddRemoveGuard}(${guard}))`);
@@ -454,7 +522,11 @@ export function RecordTypeguardPatch(t: MResolvedRecordType, props: MResolvedBas
 	return node;
 }
 
-export function FromJSONPatch(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
+export function FromJSONPatch(
+	t: MResolvedRecordType,
+	props: MResolvedBaseProperty[],
+	fqn: (t: string, typeOnly: boolean) => string,
+) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export function ${t.name}PatchFromJSON($value: Record<string, unknown>): ${t.name}Patch {`, NL);
 	node.indent(fBody => {
@@ -492,7 +564,12 @@ export function FromJSONPatch(t: MResolvedRecordType, props: MResolvedBaseProper
 					const noopMap = fqn('noopMap:../_type-utils.ts', false);
 					const ListMergeAddRemoveFromJSON = fqn('ListMergeAddRemoveFromJSON:../_type-utils.ts', false);
 
-					fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${isRecord}, v => ${ListMergeAddRemoveFromJSON}(v, ${guard}, ${noopMap}, ${guard}, ${noopMap})`, allow, ');', NL);
+					fBody.append(
+						`const ${p.name} = ${propValue}('${p.name}', $value, ${isRecord}, v => ${ListMergeAddRemoveFromJSON}(v, ${guard}, ${noopMap}, ${guard}, ${noopMap})`,
+						allow,
+						');',
+						NL,
+					);
 				} else {
 					const propValue = fqn('propValue:../_type-utils.ts', false);
 					fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard}`, allow, ');', NL);
@@ -512,16 +589,31 @@ export function FromJSONPatch(t: MResolvedRecordType, props: MResolvedBaseProper
 				if (p.array) {
 					const ListMergeAddUpdateRemoveFromJSON = fqn('ListMergeAddUpdateRemoveFromJSON:../_type-utils.ts', false);
 					const propMappedListValue = fqn('propMappedValue:../_type-utils.ts', false);
-					fBody.append(`const ${p.name} = ${propMappedListValue}('${p.name}', $value, ${guard}, v => ${ListMergeAddUpdateRemoveFromJSON}(v, ${guard}, ${map}, ${guard}, ${patchMap}, ${isString}, ${noopMap})`, allow, ');', NL);
+					fBody.append(
+						`const ${p.name} = ${propMappedListValue}('${p.name}', $value, ${guard}, v => ${ListMergeAddUpdateRemoveFromJSON}(v, ${guard}, ${map}, ${guard}, ${patchMap}, ${isString}, ${noopMap})`,
+						allow,
+						');',
+						NL,
+					);
 				} else {
 					if (p.variant === 'union') {
 						const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
 						const orPatchMap = fqn(`${p.type}OrPatchFromJSON:./${p.type}.ts`, false);
-						fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${orPatchMap}`, allow, ');', NL);
+						fBody.append(
+							`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${orPatchMap}`,
+							allow,
+							');',
+							NL,
+						);
 					} else {
 						const ReplaceOrMergeFromJSON = fqn('ReplaceOrMergeFromJSON:../_type-utils.ts', false);
 						const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
-						fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, v => ${ReplaceOrMergeFromJSON}(v, ${map}, ${patchMap})`, allow, ');', NL);
+						fBody.append(
+							`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, v => ${ReplaceOrMergeFromJSON}(v, ${map}, ${patchMap})`,
+							allow,
+							');',
+							NL,
+						);
 					}
 				}
 			}
@@ -548,7 +640,11 @@ export function FromJSONPatch(t: MResolvedRecordType, props: MResolvedBaseProper
 	return node;
 }
 
-export function ToJSONPatch(t: MResolvedRecordType, props: MResolvedBaseProperty[], fqn: (t: string, typeOnly: boolean) => string) {
+export function ToJSONPatch(
+	t: MResolvedRecordType,
+	props: MResolvedBaseProperty[],
+	fqn: (t: string, typeOnly: boolean) => string,
+) {
 	const node = new CompositeGeneratorNode();
 	node.append(`export function ${t.name}PatchToJSON($value: ${t.name}Patch): Record<string, unknown> {`, NL);
 	node.indent(mBody => {
@@ -585,7 +681,10 @@ export function ToJSONPatch(t: MResolvedRecordType, props: MResolvedBaseProperty
 					const RemoveType = 'string';
 					const MergeType = `\$${toFirstUpper(p.name)}Merge`;
 
-					mBody.append(`${ReplaceOrMergeToJSON}($value.${p.name}, ${createListReplaceToJSON}(${ToJSON}), ${createListMergeUpdateRemoveToJSON}<${AddType}, ${UpdateType}, ${RemoveType}, ${MergeType}>(${ToJSON}, ${ToJSONPatch}, ${noopMap}));`, NL);
+					mBody.append(
+						`${ReplaceOrMergeToJSON}($value.${p.name}, ${createListReplaceToJSON}(${ToJSON}), ${createListMergeUpdateRemoveToJSON}<${AddType}, ${UpdateType}, ${RemoveType}, ${MergeType}>(${ToJSON}, ${ToJSONPatch}, ${noopMap}));`,
+						NL,
+					);
 				} else {
 					if (p.variant === 'union') {
 						const OrPatchToJSON = fqn(`${p.type}OrPatchToJSON:./${p.type}.ts`, false);
@@ -677,7 +776,7 @@ function generatePatchProperty(prop: MResolvedPropery, fqn: (t: string, typeOnly
 			//
 			`readonly ${prop.name}?: ${type};`,
 		],
-		false
+		false,
 	);
 }
 
