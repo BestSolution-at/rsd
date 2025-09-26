@@ -76,7 +76,7 @@ function generateTypeUtilsContent() {
 				if (value.length === 0) {
 					return true;
 				}
-				return value.find(guard) === undefined;
+				return value.find(e => !guard(e)) === undefined;
 			}
 			return false;
 		}

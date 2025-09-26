@@ -58,7 +58,7 @@ export function isTypedArray<T>(value: unknown, guard: (v: unknown) => v is T): 
 		if (value.length === 0) {
 			return true;
 		}
-		return value.find(guard) === undefined;
+		return value.find(e => !guard(e)) === undefined;
 	}
 	return false;
 }
