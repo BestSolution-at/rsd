@@ -52,7 +52,6 @@ describe('SimpleRecord_Basic_List_OptionalFromJSON', () => {
 		const { withOut, withUndefined } = removeProperty(Simple, data);
 		expect(SimpleRecord_Basic_List_OptionalFromJSON(withOut)).toStrictEqual(withUndefined);
 	});
-
 	test.each(Object.keys(Simple))('invalid prop $0', data => {
 		expect(() => SimpleRecord_Basic_List_OptionalFromJSON(invalidateProperty(Simple, data))).toThrow();
 		expect(() => SimpleRecord_Basic_List_OptionalFromJSON(invalidateProperty(SimpleEmpty, data))).toThrow();
