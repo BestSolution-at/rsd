@@ -22,11 +22,11 @@ export function generateServiceImpl(s: MService, artifactConfig: JavaServerGener
 }
 
 function generateServiceContent(s: MService, artifactConfig: JavaServerGeneratorConfig, fqn: (type: string) => string) {
-	const Singleton = fqn('jakarta.inject.Singleton');
+	const ApplicationScoped = fqn('jakarta.enterprise.context.ApplicationScoped');
 	const Service = fqn(`${artifactConfig.rootPackageName}.service.${s.name}Service`);
 	fqn(`${artifactConfig.rootPackageName}.service.BuilderFactory`);
 	const node = new CompositeGeneratorNode();
-	node.append(`@${Singleton}`, NL);
+	node.append(`@${ApplicationScoped}`, NL);
 	node.append(`public class ${s.name}ServiceImpl implements ${Service} {`, NL);
 	node.indent(classBody => {
 		s.operations.forEach(o => {
