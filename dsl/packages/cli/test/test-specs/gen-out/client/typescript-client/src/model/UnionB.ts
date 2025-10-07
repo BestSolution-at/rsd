@@ -2,7 +2,7 @@
 import { checkProp, createIsStringTypeGuard, isRecord, isString, propValue } from '../_type-utils.js';
 
 export type UnionB = {
-	'@type': 'union-b',
+	'@type': 'union-b';
 	readonly shared: string;
 	readonly valueB: string;
 };

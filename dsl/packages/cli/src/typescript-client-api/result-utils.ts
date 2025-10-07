@@ -75,7 +75,7 @@ function generateResultUtilsContent(fqn: (t: string, typeOnly: boolean) => strin
 			block.append('throw r;', NL);
 		});
 		mBody.append('}', NL);
-		mBody.append('throw o;', NL);
+		mBody.append('return o as X;', NL);
 	});
 	node.append('}', NL, NL);
 

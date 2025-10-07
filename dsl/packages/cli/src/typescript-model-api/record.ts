@@ -109,7 +109,7 @@ export function RecordType(
 	node.indent(classBody => {
 		if (t.resolved.unions.length === 1) {
 			const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
-			classBody.append(`'${t.resolved.unions[0].descriminator}': '${alias}',`, NL);
+			classBody.append(`'${t.resolved.unions[0].descriminator}': '${alias}';`, NL);
 		}
 		props.forEach(p => {
 			classBody.append(generateProperty(p, fqn), NL);
@@ -351,7 +351,7 @@ export function RecordTypePatch(
 	node.indent(classBody => {
 		if (t.resolved.unions.length === 1) {
 			const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
-			classBody.append(`'${t.resolved.unions[0].descriminator}': '${alias}-patch',`, NL);
+			classBody.append(`'${t.resolved.unions[0].descriminator}': 'patch:${alias}';`, NL);
 		}
 		props
 			.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
@@ -449,8 +449,7 @@ export function RecordTypeguardPatch(
 				const createIsStringTypeGuard = fqn('createIsStringTypeGuard:../_type-utils.ts', false);
 				const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
 				andBlock.append(
-					`${checkProp}(value, '${t.resolved.unions[0].descriminator}', ${createIsStringTypeGuard}('${alias}')) &&`,
-					NL,
+					`${checkProp}(value, '${t.resolved.unions[0].descriminator}', ${createIsStringTypeGuard}('patch:${alias}'))`,
 				);
 			}
 			props
@@ -623,7 +622,7 @@ export function FromJSONPatch(
 		fBody.indent(pBody => {
 			if (t.resolved.unions.length === 1) {
 				const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
-				pBody.append(`'${t.resolved.unions[0].descriminator}': '${alias}-patch',`, NL);
+				pBody.append(`'${t.resolved.unions[0].descriminator}': 'patch:${alias}',`, NL);
 			}
 			props
 				.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
@@ -700,7 +699,7 @@ export function ToJSONPatch(
 		mBody.indent(propBody => {
 			if (t.resolved.unions.length > 0) {
 				const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
-				propBody.append(`'${t.resolved.unions[0].descriminator}': '${alias}-patch',`, NL);
+				propBody.append(`'${t.resolved.unions[0].descriminator}': 'patch:${alias}',`, NL);
 			}
 			props
 				.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
