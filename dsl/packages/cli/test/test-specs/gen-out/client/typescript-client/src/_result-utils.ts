@@ -37,6 +37,6 @@ export async function $<X extends NonUndefined, Y extends RSDError>(source: Prom
 	if (r !== null) {
 		throw r;
 	}
-	throw o;
+	return o as X;
 }
 
