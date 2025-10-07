@@ -24,8 +24,11 @@ export function invalidateProperty(value: Record<string, unknown>, prop: string)
 
 export function invalidateArrayProperty(value: Record<string, unknown>, prop: string): Record<string, unknown> {
 	const copy = { ...value };
-	if (Array.isArray(copy[prop])) {
-		copy[prop].push(Invalid);
+
+	const arr = copy[prop];
+	if (Array.isArray(arr)) {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		copy[prop] = [...arr, Invalid];
 	}
 	return copy;
 }
