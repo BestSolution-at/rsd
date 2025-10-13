@@ -20,6 +20,7 @@ import { generateError } from '../java-client-api/error.js';
 import { generateService } from './service.js';
 import { generateServiceImpl } from './service-impl.js';
 import { generateStreamDTO } from './stream-dto.js';
+import { generateEnum } from './enum.js';
 
 export function generate(
 	model: MResolvedRSDModel,
@@ -55,7 +56,7 @@ function generateType(
 			console.log(chalk.magenta(`  Skipped ${t.name}:`), `Using native ${artifactConfig.nativeTypeSubstitues[t.name]}`);
 			return undefined;
 		}
-		//return generateEnum(t, artifactConfig);
+		return generateEnum(t, artifactConfig);
 	} else if (isMRecordType(t)) {
 		return generateRecord(t, model, artifactConfig);
 	} else if (isMUnionType(t)) {
