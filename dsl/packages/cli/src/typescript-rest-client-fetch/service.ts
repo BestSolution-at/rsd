@@ -65,11 +65,11 @@ function generateServiceContent(
 				code.indent(invoke => {
 					invoke.append(generateRemoteInvoke(s, o, config, fqn), NL);
 				});
-				code.append('} catch(e) {', NL);
+				code.append('} catch (e) {', NL);
 				code.indent(catchBlock => {
-					catchBlock.append(`onCatch?.('${o.name}', e)`, NL);
+					catchBlock.append(`onCatch?.('${o.name}', e);`, NL);
 					catchBlock.append(`const ee = e instanceof Error ? e : new Error('', { cause: e });`, NL);
-					catchBlock.append(`const err = { _type: '_Native', message: ee.message, error: ee, } as const;`, NL);
+					catchBlock.append(`const err = { _type: '_Native', message: ee.message, error: ee } as const;`, NL);
 					catchBlock.append('return api.result.ERR(err);', NL);
 				});
 				code.append('} finally {', NL);
@@ -108,7 +108,7 @@ function generateRemoteInvoke(
 			if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum' || p.variant === 'scalar') {
 				if (p.optional) {
 					const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
-					node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}',\`\${v}\`));`, NL);
+					node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}', \`\${v}\`));`, NL);
 				} else {
 					node.append(`$headers.append('${p.name}',\`\${${p.name}}\`);`, NL);
 				}
@@ -203,7 +203,7 @@ function generateRemoteInvoke(
 			if (idx !== 0) {
 				node.append(' else ');
 			}
-			node.append(`if($response.status === ${r.statusCode}) {`, NL);
+			node.append(`if ($response.status === ${r.statusCode}) {`, NL);
 			if (r.error === undefined) {
 				node.indent(block => {
 					block.append(handleOkResult(o, config, fqn));
@@ -227,7 +227,7 @@ function generateRemoteInvoke(
 
 	node.append(
 		NL,
-		`const err = { _type: '_Status', message: $response.statusText, status: $response.status, } as const;`,
+		`const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;`,
 		NL,
 	);
 	node.append('return api.result.ERR(err);');
@@ -280,7 +280,7 @@ function handleOkResult(
 			const fromJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${o.resultType.type}FromJSON`;
 			if (o.resultType.array) {
 				const isArray = `${fqn(`api:${config.apiNamespacePath}`, false)}.utils.isArray`;
-				node.append(`if(!${isArray}) {`, NL);
+				node.append(`if (!${isArray}) {`, NL);
 				node.indent(block => {
 					block.append(`throw new Error('Invalid result');`, NL);
 				});
@@ -311,7 +311,11 @@ function toParameter(
 	} else if (parameter.variant === 'enum') {
 		type = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${parameter.type}`;
 	} else if (parameter.variant === 'record' || parameter.variant === 'union') {
-		type = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${parameter.type}`;
+		if (parameter.patch) {
+			type = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${parameter.type}Patch`;
+		} else {
+			type = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${parameter.type}`;
+		}
 	} else {
 		type = 'any';
 	}
