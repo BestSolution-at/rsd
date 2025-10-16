@@ -1,4 +1,5 @@
-import { CompositeGeneratorNode, NL } from 'langium/generate';
+import { CompositeGeneratorNode } from 'langium/generate';
+import { toNodeTree } from '../util.js';
 
 export function generateNillableContent(
 	fqn: (type: string) => string,
@@ -8,91 +9,65 @@ export function generateNillableContent(
 	fqn('java.util.function.Function');
 	fqn(`${modelApiPackage}._Base`);
 
-	const node = new CompositeGeneratorNode();
-	node.append('public class _NillableImpl<T> implements _Base.Nillable<T> {', NL);
-	node.indent(body => {
-		body.append('private static _NillableImpl<?> UNDEFINED = new _NillableImpl<>(null);', NL);
-		body.append('private static _NillableImpl<?> NULL = new _NillableImpl<>(null);', NL);
-		body.append('private final T value;', NL, NL);
+	return toNodeTree(`
+		public class _NillableImpl<T> implements _Base.Nillable<T> {
+			private static _NillableImpl<?> UNDEFINED = new _NillableImpl<>(null);
+			private static _NillableImpl<?> NULL = new _NillableImpl<>(null);
+			private final T value;
 
-		// -------
+			_NillableImpl(T value) {
+				this.value = value;
+			}
 
-		body.append('_NillableImpl(T value) {', NL);
-		body.indent(mBody => {
-			mBody.append('this.value = value;', NL);
-		});
-		body.append('}', NL, NL);
+			@Override
+			public <X> X apply(Function<T, X> function, X defaultValue) {
+				if (this == UNDEFINED) {
+					return defaultValue;
+				}
+				return function.apply(value);
+			}
 
-		// -------
+			@Override
+			public void accept(Consumer<T> block) {
+				if (this != UNDEFINED) {
+					block.accept(value);
+				}
+			}
 
-		body.append('@Override', NL);
-		body.append('public <X> X apply(Function<T, X> function, X defaultValue) {', NL);
-		body.indent(mBody => {
-			mBody.append('if (this == UNDEFINED) {', NL);
-			mBody.indent(block => {
-				block.append('return defaultValue;', NL);
-			});
-			mBody.append('}', NL);
-			mBody.append('return function.apply(value);', NL);
-		});
-		body.append('}', NL, NL);
+			@SuppressWarnings("unchecked")
+			@Override
+			public <X> _Base.Nillable<X> map(Function<T, X> mapper) {
+				if (this == UNDEFINED) {
+					return (_Base.Nillable<X>) UNDEFINED;
+				}
+				return of(mapper.apply(value));
+			}
 
-		// -------
-		body.append('@Override', NL);
-		body.append('public void accept(Consumer<T> block) {', NL);
-		body.indent(mBody => {
-			mBody.append('if (this != UNDEFINED) {', NL);
-			mBody.indent(block => {
-				block.append('block.accept(value);', NL);
-			});
-			mBody.append('}', NL);
-		});
-		body.append('}', NL, NL);
+			@Override
+			public boolean isUndefined() {
+				return this == UNDEFINED;
+			}
 
-		// -------
-		body.append('@SuppressWarnings("unchecked")', NL);
-		body.append('@Override', NL);
-		body.append('public <X> _Base.Nillable<X> map(Function<T, X> mapper) {', NL);
-		body.indent(mBody => {
-			mBody.append('if (this == UNDEFINED) {', NL);
-			mBody.indent(block => {
-				block.append('return (_Base.Nillable<X>) UNDEFINED;', NL);
-			});
-			mBody.append('}', NL);
-			mBody.append('return of(mapper.apply(value));', NL);
-		});
-		body.append('}', NL, NL);
+			@Override 
+			public boolean isNull() {
+				return this == NULL;
+			}
+			
+			@SuppressWarnings("unchecked")
+			public static <T> _Base.Nillable<T> undefined() {
+				return (_NillableImpl<T>) UNDEFINED;
+			}
 
-		// -------
-		body.append('@SuppressWarnings("unchecked")', NL);
-		body.append('public static <T> _Base.Nillable<T> undefined() {', NL);
-		body.indent(mBody => {
-			mBody.append('return (_NillableImpl<T>) UNDEFINED;', NL);
-		});
-		body.append('}', NL, NL);
+			@SuppressWarnings("unchecked")
+			public static <T> _Base.Nillable<T> nill() {
+				return (_NillableImpl<T>) NULL;
+			}
 
-		// -------
-		body.append('@SuppressWarnings("unchecked")', NL);
-		body.append('public static <T> _Base.Nillable<T> nill() {', NL);
-		body.indent(mBody => {
-			mBody.append('return (_NillableImpl<T>) NULL;', NL);
-		});
-		body.append('}', NL, NL);
-
-		// -------
-		body.append('public static <T> _Base.Nillable<T> of(T value) {', NL);
-		body.indent(mBody => {
-			mBody.append('if (value != null) {', NL);
-			mBody.indent(block => {
-				block.append('return new _NillableImpl<>(value);', NL);
-			});
-			mBody.append('}', NL);
-			mBody.append('return nill();', NL);
-		});
-		body.append('}', NL);
-	});
-
-	node.append('}', NL);
-
-	return node;
+			public static <T> _Base.Nillable<T> of(T value) {
+				if (value != null) {
+					return new _NillableImpl<>(value);
+				}
+				return nill();
+			}
+		}`);
 }
