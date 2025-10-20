@@ -37,6 +37,7 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 	if (t.patchable) {
 		allProps
 			.filter(isMResolvedProperty)
+			.filter(p => !p.readonly)
 			.filter(p => p.array)
 			.forEach(p => {
 				node.append(ListChangeTypes(p, fqn), NL);
@@ -45,6 +46,7 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 		const valueChange = new CompositeGeneratorNode();
 		allProps
 			.filter(isMResolvedProperty)
+			.filter(p => !p.readonly)
 			.filter(p => !p.array)
 			.filter(p => p.variant === 'record' || p.variant === 'union')
 			.forEach(p => valueChange.append(ValueChangeTypes(p, fqn)));
@@ -56,6 +58,7 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 		const valueChangeTypeGuard = new CompositeGeneratorNode();
 		allProps
 			.filter(isMResolvedProperty)
+			.filter(p => !p.readonly)
 			.filter(p => !p.array)
 			.filter(p => p.variant === 'record')
 			.forEach(p => valueChangeTypeGuard.append(ValueChangeTypeGuard(p, fqn)));
@@ -359,9 +362,12 @@ export function RecordTypePatch(
 				classBody.append(generateProperty(p, fqn), NL);
 			});
 
-		props.filter(isMResolvedProperty).forEach(p => {
-			classBody.append(generatePatchProperty(p, fqn), NL);
-		});
+		props
+			.filter(isMResolvedProperty)
+			.filter(p => !p.readonly)
+			.forEach(p => {
+				classBody.append(generatePatchProperty(p, fqn), NL);
+			});
 	});
 	node.append('};', NL);
 	return node;
@@ -463,58 +469,64 @@ export function RecordTypeguardPatch(
 					const checkProp = fqn('checkProp:../_type-utils.ts', false);
 					andBlock.append(`${checkProp}(value, '${p.name}', ${guard})`);
 				});
-			props.filter(isMResolvedProperty).forEach((p, idx, arr) => {
-				if (!andBlock.isEmpty()) {
-					andBlock.append(' &&', NL);
-				}
-
-				let guard: string;
-
-				if (isMBuiltinType(p.type)) {
-					guard = builtinTypeGuard(p.type, fqn);
-				} else if (isMInlineEnumType(p.type)) {
-					guard = `is${t.name}_${toFirstUpper(p.name)}`;
-				} else if (p.variant === 'scalar') {
-					guard = fqn('isString:../_type-utils.ts', false);
-				} else if (p.variant === 'enum') {
-					guard = fqn(`is${p.type}:./${p.type}.ts`, false);
-				} else if (p.variant === 'union') {
-					guard = fqn(`is${p.type}Patch:./${p.type}.ts`, false);
-				} else {
-					guard = `is${toFirstUpper(p.name)}Patch`;
-				}
-
-				const check = fqn('checkOptProp:../_type-utils.ts', false);
-
-				if (p.nullable || p.optional) {
-					const nullGuard = fqn('isNull:../_type-utils.ts', false);
-					andBlock.append(`(${check}(value, '${p.name}', ${nullGuard}) || `);
-				}
-
-				if (p.array) {
-					if (p.variant === 'record' || p.variant === 'union') {
-						guard = fqn(`is${p.type}:./${p.type}.ts`, false);
-						const createReplaceAddUpdateRemoveGuard = fqn('createReplaceAddUpdateRemoveGuard:../_type-utils.ts', false);
-						const patchGuard = fqn(`is${p.type}Patch:./${p.type}.ts`, false);
-						const isStringGuard = fqn('isString:../_type-utils.ts', false);
-						andBlock.append(
-							`${check}(value, '${p.name}', ${createReplaceAddUpdateRemoveGuard}(${guard}, ${patchGuard}, ${isStringGuard}))`,
-						);
-					} else {
-						const createReplaceAddRemoveGuard = fqn('createReplaceAddRemoveGuard:../_type-utils.ts', false);
-						andBlock.append(`${check}(value, '${p.name}', ${createReplaceAddRemoveGuard}(${guard}))`);
+			props
+				.filter(isMResolvedProperty)
+				.filter(p => !p.readonly)
+				.forEach((p, idx, arr) => {
+					if (!andBlock.isEmpty()) {
+						andBlock.append(' &&', NL);
 					}
-				} else {
-					andBlock.append(`${check}(value, '${p.name}', ${guard})`);
-				}
 
-				if (p.nullable || p.optional) {
-					andBlock.append(')');
-				}
-				if (idx + 1 === arr.length) {
-					andBlock.append(';');
-				}
-			});
+					let guard: string;
+
+					if (isMBuiltinType(p.type)) {
+						guard = builtinTypeGuard(p.type, fqn);
+					} else if (isMInlineEnumType(p.type)) {
+						guard = `is${t.name}_${toFirstUpper(p.name)}`;
+					} else if (p.variant === 'scalar') {
+						guard = fqn('isString:../_type-utils.ts', false);
+					} else if (p.variant === 'enum') {
+						guard = fqn(`is${p.type}:./${p.type}.ts`, false);
+					} else if (p.variant === 'union') {
+						guard = fqn(`is${p.type}Patch:./${p.type}.ts`, false);
+					} else {
+						guard = `is${toFirstUpper(p.name)}Patch`;
+					}
+
+					const check = fqn('checkOptProp:../_type-utils.ts', false);
+
+					if (p.nullable || p.optional) {
+						const nullGuard = fqn('isNull:../_type-utils.ts', false);
+						andBlock.append(`(${check}(value, '${p.name}', ${nullGuard}) || `);
+					}
+
+					if (p.array) {
+						if (p.variant === 'record' || p.variant === 'union') {
+							guard = fqn(`is${p.type}:./${p.type}.ts`, false);
+							const createReplaceAddUpdateRemoveGuard = fqn(
+								'createReplaceAddUpdateRemoveGuard:../_type-utils.ts',
+								false,
+							);
+							const patchGuard = fqn(`is${p.type}Patch:./${p.type}.ts`, false);
+							const isStringGuard = fqn('isString:../_type-utils.ts', false);
+							andBlock.append(
+								`${check}(value, '${p.name}', ${createReplaceAddUpdateRemoveGuard}(${guard}, ${patchGuard}, ${isStringGuard}))`,
+							);
+						} else {
+							const createReplaceAddRemoveGuard = fqn('createReplaceAddRemoveGuard:../_type-utils.ts', false);
+							andBlock.append(`${check}(value, '${p.name}', ${createReplaceAddRemoveGuard}(${guard}))`);
+						}
+					} else {
+						andBlock.append(`${check}(value, '${p.name}', ${guard})`);
+					}
+
+					if (p.nullable || p.optional) {
+						andBlock.append(')');
+					}
+					if (idx + 1 === arr.length) {
+						andBlock.append(';');
+					}
+				});
 		});
 	});
 	node.append(NL, '}', NL);
@@ -536,87 +548,90 @@ export function FromJSONPatch(
 				const propValue = fqn('propValue:../_type-utils.ts', false);
 				fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard});`, NL);
 			});
-		props.filter(isMResolvedProperty).forEach(p => {
-			if (p.variant === 'inline-enum' || p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'scalar') {
-				let guard: string;
+		props
+			.filter(isMResolvedProperty)
+			.filter(p => !p.readonly)
+			.forEach(p => {
+				if (p.variant === 'inline-enum' || p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'scalar') {
+					let guard: string;
 
-				if (isMBuiltinType(p.type)) {
-					guard = builtinTypeGuard(p.type, fqn);
-				} else if (isMInlineEnumType(p.type)) {
-					guard = `is${t.name}_${toFirstUpper(p.name)}`;
-				} else if (p.variant === 'enum') {
-					guard = fqn(`is${p.type}:./${p.type}.ts`, false);
-				} else if (p.variant === 'scalar') {
-					guard = fqn('isString:../_type-utils.ts', false);
-				} else {
-					guard = 'err';
-				}
+					if (isMBuiltinType(p.type)) {
+						guard = builtinTypeGuard(p.type, fqn);
+					} else if (isMInlineEnumType(p.type)) {
+						guard = `is${t.name}_${toFirstUpper(p.name)}`;
+					} else if (p.variant === 'enum') {
+						guard = fqn(`is${p.type}:./${p.type}.ts`, false);
+					} else if (p.variant === 'scalar') {
+						guard = fqn('isString:../_type-utils.ts', false);
+					} else {
+						guard = 'err';
+					}
 
-				let allow = ", 'optional'";
-				if (p.nullable || p.optional) {
-					allow = ", 'optional_null'";
-				}
+					let allow = ", 'optional'";
+					if (p.nullable || p.optional) {
+						allow = ", 'optional_null'";
+					}
 
-				if (p.array) {
-					const propValue = fqn('propMappedValue:../_type-utils.ts', false);
-					const isRecord = fqn('isRecord:../_type-utils.ts', false);
-					const noopMap = fqn('noopMap:../_type-utils.ts', false);
-					const ListMergeAddRemoveFromJSON = fqn('ListMergeAddRemoveFromJSON:../_type-utils.ts', false);
+					if (p.array) {
+						const propValue = fqn('propMappedValue:../_type-utils.ts', false);
+						const isRecord = fqn('isRecord:../_type-utils.ts', false);
+						const noopMap = fqn('noopMap:../_type-utils.ts', false);
+						const ListMergeAddRemoveFromJSON = fqn('ListMergeAddRemoveFromJSON:../_type-utils.ts', false);
 
-					fBody.append(
-						`const ${p.name} = ${propValue}('${p.name}', $value, ${isRecord}, v => ${ListMergeAddRemoveFromJSON}(v, ${guard}, ${noopMap}, ${guard}, ${noopMap})`,
-						allow,
-						');',
-						NL,
-					);
-				} else {
-					const propValue = fqn('propValue:../_type-utils.ts', false);
-					fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard}`, allow, ');', NL);
-				}
-			} else {
-				let allow = ", 'optional'";
-				if (p.optional || p.nullable) {
-					allow = ", 'optional_null'";
-				}
-
-				const guard = fqn('isRecord:../_type-utils.ts', false);
-				const isString = fqn('isString:../_type-utils.ts', false);
-				const noopMap = fqn('noopMap:../_type-utils.ts', false);
-				const map = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
-				const patchMap = fqn(`${p.type}PatchFromJSON:./${p.type}.ts`, false);
-
-				if (p.array) {
-					const ListMergeAddUpdateRemoveFromJSON = fqn('ListMergeAddUpdateRemoveFromJSON:../_type-utils.ts', false);
-					const propMappedListValue = fqn('propMappedValue:../_type-utils.ts', false);
-					fBody.append(
-						`const ${p.name} = ${propMappedListValue}('${p.name}', $value, ${guard}, v => ${ListMergeAddUpdateRemoveFromJSON}(v, ${guard}, ${map}, ${guard}, ${patchMap}, ${isString}, ${noopMap})`,
-						allow,
-						');',
-						NL,
-					);
-				} else {
-					if (p.variant === 'union') {
-						const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
-						const orPatchMap = fqn(`${p.type}OrPatchFromJSON:./${p.type}.ts`, false);
 						fBody.append(
-							`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${orPatchMap}`,
+							`const ${p.name} = ${propValue}('${p.name}', $value, ${isRecord}, v => ${ListMergeAddRemoveFromJSON}(v, ${guard}, ${noopMap}, ${guard}, ${noopMap})`,
 							allow,
 							');',
 							NL,
 						);
 					} else {
-						const ReplaceOrMergeFromJSON = fqn('ReplaceOrMergeFromJSON:../_type-utils.ts', false);
-						const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
+						const propValue = fqn('propValue:../_type-utils.ts', false);
+						fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard}`, allow, ');', NL);
+					}
+				} else {
+					let allow = ", 'optional'";
+					if (p.optional || p.nullable) {
+						allow = ", 'optional_null'";
+					}
+
+					const guard = fqn('isRecord:../_type-utils.ts', false);
+					const isString = fqn('isString:../_type-utils.ts', false);
+					const noopMap = fqn('noopMap:../_type-utils.ts', false);
+					const map = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
+					const patchMap = fqn(`${p.type}PatchFromJSON:./${p.type}.ts`, false);
+
+					if (p.array) {
+						const ListMergeAddUpdateRemoveFromJSON = fqn('ListMergeAddUpdateRemoveFromJSON:../_type-utils.ts', false);
+						const propMappedListValue = fqn('propMappedValue:../_type-utils.ts', false);
 						fBody.append(
-							`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, v => ${ReplaceOrMergeFromJSON}(v, ${map}, ${patchMap})`,
+							`const ${p.name} = ${propMappedListValue}('${p.name}', $value, ${guard}, v => ${ListMergeAddUpdateRemoveFromJSON}(v, ${guard}, ${map}, ${guard}, ${patchMap}, ${isString}, ${noopMap})`,
 							allow,
 							');',
 							NL,
 						);
+					} else {
+						if (p.variant === 'union') {
+							const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
+							const orPatchMap = fqn(`${p.type}OrPatchFromJSON:./${p.type}.ts`, false);
+							fBody.append(
+								`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${orPatchMap}`,
+								allow,
+								');',
+								NL,
+							);
+						} else {
+							const ReplaceOrMergeFromJSON = fqn('ReplaceOrMergeFromJSON:../_type-utils.ts', false);
+							const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
+							fBody.append(
+								`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, v => ${ReplaceOrMergeFromJSON}(v, ${map}, ${patchMap})`,
+								allow,
+								');',
+								NL,
+							);
+						}
 					}
 				}
-			}
-		});
+			});
 
 		fBody.append('return {', NL);
 		fBody.indent(pBody => {
@@ -629,9 +644,12 @@ export function FromJSONPatch(
 				.forEach(p => {
 					pBody.append(`${p.name},`, NL);
 				});
-			props.filter(isMResolvedProperty).forEach(p => {
-				pBody.append(`${p.name},`, NL);
-			});
+			props
+				.filter(isMResolvedProperty)
+				.filter(p => !p.readonly)
+				.forEach(p => {
+					pBody.append(`${p.name},`, NL);
+				});
 		});
 		fBody.append('};', NL);
 	});
@@ -652,49 +670,52 @@ export function ToJSONPatch(
 			.forEach(p => {
 				mBody.append(`const ${p.name} = $value.${p.name};`, NL);
 			});
-		props.filter(isMResolvedProperty).forEach(p => {
-			if (p.variant === 'inline-enum' || p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'scalar') {
-				mBody.append(`const ${p.name} = $value.${p.name};`, NL);
-			} else {
-				const ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
-				const ToJSONPatch = fqn(`${p.type}PatchToJSON:./${p.type}.ts`, false);
-				mBody.append(`const ${p.name} = `);
-
-				if (p.optional || p.nullable) {
-					const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
-					const isNull = fqn('isNull:../_type-utils.ts', false);
-					mBody.append(`${isUndefined}($value.${p.name}) || ${isNull}($value.${p.name}) ? $value.${p.name} : `);
+		props
+			.filter(isMResolvedProperty)
+			.filter(p => !p.readonly)
+			.forEach(p => {
+				if (p.variant === 'inline-enum' || p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'scalar') {
+					mBody.append(`const ${p.name} = $value.${p.name};`, NL);
 				} else {
-					const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
-					mBody.append(`${isUndefined}($value.${p.name}) ? undefined : `);
-				}
+					const ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
+					const ToJSONPatch = fqn(`${p.type}PatchToJSON:./${p.type}.ts`, false);
+					mBody.append(`const ${p.name} = `);
 
-				if (p.array) {
-					const noopMap = fqn('noopMap:../_type-utils.ts', false);
-					const ReplaceOrMergeToJSON = fqn('ReplaceOrMergeToJSON:../_type-utils.ts', false);
-					const createListReplaceToJSON = fqn('createListReplaceToJSON:../_type-utils.ts', false);
-					const createListMergeUpdateRemoveToJSON = fqn('createListMergeUpdateRemoveToJSON:../_type-utils.ts', false);
-
-					const AddType = fqn(`${p.type}:./${p.type}.ts`, false);
-					const UpdateType = fqn(`${p.type}Patch:./${p.type}.ts`, false);
-					const RemoveType = 'string';
-					const MergeType = `\$${toFirstUpper(p.name)}Merge`;
-
-					mBody.append(
-						`${ReplaceOrMergeToJSON}($value.${p.name}, ${createListReplaceToJSON}(${ToJSON}), ${createListMergeUpdateRemoveToJSON}<${AddType}, ${UpdateType}, ${RemoveType}, ${MergeType}>(${ToJSON}, ${ToJSONPatch}, ${noopMap}));`,
-						NL,
-					);
-				} else {
-					if (p.variant === 'union') {
-						const OrPatchToJSON = fqn(`${p.type}OrPatchToJSON:./${p.type}.ts`, false);
-						mBody.append(`${OrPatchToJSON}($value.${p.name});`, NL);
+					if (p.optional || p.nullable) {
+						const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
+						const isNull = fqn('isNull:../_type-utils.ts', false);
+						mBody.append(`${isUndefined}($value.${p.name}) || ${isNull}($value.${p.name}) ? $value.${p.name} : `);
 					} else {
+						const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
+						mBody.append(`${isUndefined}($value.${p.name}) ? undefined : `);
+					}
+
+					if (p.array) {
+						const noopMap = fqn('noopMap:../_type-utils.ts', false);
 						const ReplaceOrMergeToJSON = fqn('ReplaceOrMergeToJSON:../_type-utils.ts', false);
-						mBody.append(`${ReplaceOrMergeToJSON}($value.${p.name}, ${ToJSON}, ${ToJSONPatch});`, NL);
+						const createListReplaceToJSON = fqn('createListReplaceToJSON:../_type-utils.ts', false);
+						const createListMergeUpdateRemoveToJSON = fqn('createListMergeUpdateRemoveToJSON:../_type-utils.ts', false);
+
+						const AddType = fqn(`${p.type}:./${p.type}.ts`, false);
+						const UpdateType = fqn(`${p.type}Patch:./${p.type}.ts`, false);
+						const RemoveType = 'string';
+						const MergeType = `\$${toFirstUpper(p.name)}Merge`;
+
+						mBody.append(
+							`${ReplaceOrMergeToJSON}($value.${p.name}, ${createListReplaceToJSON}(${ToJSON}), ${createListMergeUpdateRemoveToJSON}<${AddType}, ${UpdateType}, ${RemoveType}, ${MergeType}>(${ToJSON}, ${ToJSONPatch}, ${noopMap}));`,
+							NL,
+						);
+					} else {
+						if (p.variant === 'union') {
+							const OrPatchToJSON = fqn(`${p.type}OrPatchToJSON:./${p.type}.ts`, false);
+							mBody.append(`${OrPatchToJSON}($value.${p.name});`, NL);
+						} else {
+							const ReplaceOrMergeToJSON = fqn('ReplaceOrMergeToJSON:../_type-utils.ts', false);
+							mBody.append(`${ReplaceOrMergeToJSON}($value.${p.name}, ${ToJSON}, ${ToJSONPatch});`, NL);
+						}
 					}
 				}
-			}
-		});
+			});
 		mBody.append(NL, 'return {', NL);
 		mBody.indent(propBody => {
 			if (t.resolved.unions.length > 0) {
@@ -706,9 +727,12 @@ export function ToJSONPatch(
 				.forEach(p => {
 					propBody.append(`${p.name},`, NL);
 				});
-			props.filter(isMResolvedProperty).forEach(p => {
-				propBody.append(`${p.name},`, NL);
-			});
+			props
+				.filter(isMResolvedProperty)
+				.filter(p => !p.readonly)
+				.forEach(p => {
+					propBody.append(`${p.name},`, NL);
+				});
 		});
 		mBody.append('};', NL);
 	});
@@ -722,7 +746,7 @@ function generateProperty(prop: MResolvedBaseProperty, fqn: (t: string, typeOnly
 		const type = builtinToJSType(prop.type);
 		node.append(`readonly ${prop.name}: ${type};`);
 	} else {
-		let type: string = 'string';
+		let type = 'string';
 		if (isMBuiltinType(prop.type)) {
 			type = builtinToJSType(prop.type);
 		} else if (prop.variant === 'scalar') {
@@ -749,7 +773,7 @@ function generateProperty(prop: MResolvedBaseProperty, fqn: (t: string, typeOnly
 }
 
 function generatePatchProperty(prop: MResolvedPropery, fqn: (t: string, typeOnly: boolean) => string) {
-	let type: string = 'string';
+	let type = 'string';
 	if (prop.array) {
 		type = `$${toFirstUpper(prop.name)}Patch`;
 	} else if (isMBuiltinType(prop.type)) {
