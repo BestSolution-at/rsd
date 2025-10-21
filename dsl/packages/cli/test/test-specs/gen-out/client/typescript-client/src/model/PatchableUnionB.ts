@@ -10,14 +10,12 @@ export type PatchableUnionB = {
 };
 
 export function isPatchableUnionB(value: unknown): value is PatchableUnionB {
-	return (
-		isRecord(value) && //
+	return isRecord(value) &&
 		checkProp(value, '@type', createIsStringTypeGuard('union-b')) &&
 		checkProp(value, 'key', isString) &&
 		checkProp(value, 'version', isString) &&
 		checkProp(value, 'shared', isString) &&
-		checkProp(value, 'valueB', isString)
-	);
+		checkProp(value, 'valueB', isString);
 }
 
 export function PatchableUnionBFromJSON($value: Record<string, unknown>): PatchableUnionB {
@@ -58,14 +56,12 @@ export type PatchableUnionBPatch = {
 };
 
 export function isPatchableUnionBPatch(value: unknown): value is PatchableUnionBPatch {
-	return (
-		isRecord(value) && //
+	return isRecord(value) &&
 		checkProp(value, '@type', createIsStringTypeGuard('patch:union-b')) &&
 		checkProp(value, 'key', isString) &&
 		checkProp(value, 'version', isString) &&
 		checkOptProp(value, 'shared', isString) &&
-		checkOptProp(value, 'valueB', isString)
-	);
+		checkOptProp(value, 'valueB', isString);
 }
 
 export function PatchableUnionBPatchFromJSON($value: Record<string, unknown>): PatchableUnionBPatch {
@@ -96,3 +92,4 @@ export function PatchableUnionBPatchToJSON($value: PatchableUnionBPatch): Record
 		valueB,
 	};
 }
+
