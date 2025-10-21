@@ -5,17 +5,17 @@ import { isString } from '../_type-utils.js';
 
 export type Union = UnionA | UnionB;
 
-export function isUnion(value: unknown) {
+export function isUnion(value: unknown): value is Union {
 	return isUnionA(value) || isUnionB(value);
 }
 
 export function UnionFromJSON(value: Record<string, unknown>): Union {
 	const descriminator = value['@type'];
 
-	if(!isString(descriminator)) {
+	if (!isString(descriminator)) {
 		throw new Error('No valid descriminator found');
 	}
-	switch(descriminator) {
+	switch (descriminator) {
 		case 'union-a':
 			return UnionAFromJSON(value);
 		case 'union-b':
@@ -24,14 +24,13 @@ export function UnionFromJSON(value: Record<string, unknown>): Union {
 			throw new Error(`Unknown descriminator "${descriminator}"`);
 	}
 }
+
 export function UnionToJSON(value: Union): Record<string, unknown> {
 	const $desc = value['@type'];
-	switch($desc) {
+	switch ($desc) {
 		case 'union-a':
 			return UnionAToJSON(value);
 		case 'union-b':
 			return UnionBToJSON(value);
-		default:
-			throw new Error(`Unknown descriminator "${$desc}";`)
 	}
 }
