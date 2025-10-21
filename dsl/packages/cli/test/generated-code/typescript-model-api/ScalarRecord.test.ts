@@ -18,7 +18,7 @@ const Simple: ScalarRecord = {
 	list_Opt_Null: ['Europe/Vienna', 'Europe/Berlin'],
 };
 
-const SimpleMinimal = {
+const SimpleMinimal: ScalarRecord = {
 	value: 'Europe/Vienna',
 	value_Null: 'Europe/Vienna',
 	value_Opt: undefined,
@@ -29,7 +29,7 @@ const SimpleMinimal = {
 	list_Opt_Null: undefined,
 };
 
-const SimpleNull = {
+const SimpleNull: ScalarRecord = {
 	value: 'Europe/Vienna',
 	value_Null: null,
 	value_Opt: undefined,
