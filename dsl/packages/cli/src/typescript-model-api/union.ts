@@ -190,10 +190,6 @@ function generateToJSON(u: MResolvedUnionType, fqn: (t: string, typeOnly: boolea
 					caseBlock.append(`return ${mapper}(value);`, NL);
 				});
 			});
-			switchBlock.append('default:', NL);
-			switchBlock.indent(caseBlock => {
-				caseBlock.append('throw new Error(`Unknown descriminator "${$desc}"`);', NL);
-			});
 		});
 		mBody.append('}', NL);
 	});
@@ -211,10 +207,6 @@ function generateToJSON(u: MResolvedUnionType, fqn: (t: string, typeOnly: boolea
 						const mapper = fqn(`${r.name}PatchToJSON:./${r.name}.ts`, false);
 						caseBlock.append(`return ${mapper}(value);`, NL);
 					});
-				});
-				switchBlock.append('default:', NL);
-				switchBlock.indent(caseBlock => {
-					caseBlock.append('throw new Error(`Unknown descriminator "${$desc}"`);', NL);
 				});
 			});
 			mBody.append('}', NL);
