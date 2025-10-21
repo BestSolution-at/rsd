@@ -47,11 +47,11 @@ const SimpleNull: RecordOfRecords = {
 	value: SimpleRecord_Basic,
 	value_Null: null,
 	value_Opt: undefined,
-	value_Opt_Null: undefined,
+	value_Opt_Null: null,
 	list: [SimpleRecord_Basic],
 	list_Null: null,
 	list_Opt: undefined,
-	list_Opt_Null: undefined,
+	list_Opt_Null: null,
 };
 
 describe('RecordOfRecordsFromJSON', () => {
