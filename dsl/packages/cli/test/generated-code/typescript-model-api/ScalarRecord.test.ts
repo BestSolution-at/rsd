@@ -5,7 +5,7 @@ import {
 	ScalarRecordFromJSON,
 	ScalarRecordToJSON,
 } from '../../test-specs/gen-out/client/typescript-client/src/model/ScalarRecord.js';
-import { addFooProperty, invalidateProperty, removeProperty } from './utils.js';
+import { addFooProperty, invalidateArrayProperty, invalidateProperty, removeProperty } from './utils.js';
 
 const Simple: ScalarRecord = {
 	value: 'Europe/Vienna',
@@ -57,6 +57,9 @@ describe('ScalarRecordFromJSON', () => {
 		expect(() => ScalarRecordFromJSON(invalidateProperty(Simple, data))).toThrow();
 		expect(() => ScalarRecordFromJSON(invalidateProperty(SimpleMinimal, data))).toThrow();
 		expect(() => ScalarRecordFromJSON(invalidateProperty(SimpleNull, data))).toThrow();
+	});
+	test.each(Object.keys(Simple).filter(p => p.includes('list')))('invalid prop $0', data => {
+		expect(() => ScalarRecordFromJSON(invalidateArrayProperty(Simple, data))).toThrow();
 	});
 });
 

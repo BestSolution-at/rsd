@@ -8,7 +8,7 @@ import {
 } from '../../test-specs/gen-out/client/typescript-client/src/model/RecordWithUnions.js';
 import { UnionA } from '../../test-specs/gen-out/client/typescript-client/src/model/UnionA.js';
 import { UnionB } from '../../test-specs/gen-out/client/typescript-client/src/model/UnionB.js';
-import { addFooProperty, invalidateProperty, removeProperty } from './utils.js';
+import { addFooProperty, invalidateArrayProperty, invalidateProperty, removeProperty } from './utils.js';
 
 const UnionA: UnionA = {
 	'@type': 'union-a',
@@ -70,8 +70,12 @@ describe('RecordWithUnionsFromJSON', () => {
 	});
 	test.each(Object.keys(Simple))('invalid prop $0', data => {
 		expect(() => RecordWithUnionsFromJSON(invalidateProperty(Simple, data))).toThrow();
+
 		expect(() => RecordWithUnionsFromJSON(invalidateProperty(SimpleMinimal, data))).toThrow();
 		expect(() => RecordWithUnionsFromJSON(invalidateProperty(SimpleNull, data))).toThrow();
+	});
+	test.each(Object.keys(Simple).filter(p => p.includes('list')))('invalid prop $0', data => {
+		expect(() => RecordWithUnionsFromJSON(invalidateArrayProperty(Simple, data))).toThrow();
 	});
 });
 describe('isRecordWithUnions', () => {

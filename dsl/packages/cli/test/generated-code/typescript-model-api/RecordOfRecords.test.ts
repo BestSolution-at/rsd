@@ -6,7 +6,7 @@ import {
 	RecordOfRecordsToJSON,
 } from '../../test-specs/gen-out/client/typescript-client/src/model/RecordOfRecords.js';
 import { SimpleRecord_Basic } from '../../test-specs/gen-out/client/typescript-client/src/model/SimpleRecord_Basic.js';
-import { addFooProperty, invalidateProperty, removeProperty } from './utils.js';
+import { addFooProperty, invalidateArrayProperty, invalidateProperty, removeProperty } from './utils.js';
 
 const SimpleRecord_Basic: SimpleRecord_Basic = {
 	valueBoolean: true,
@@ -71,6 +71,9 @@ describe('RecordOfRecordsFromJSON', () => {
 		expect(() => RecordOfRecordsFromJSON(invalidateProperty(Simple, data))).toThrow();
 		expect(() => RecordOfRecordsFromJSON(invalidateProperty(SimpleMinimal, data))).toThrow();
 		expect(() => RecordOfRecordsFromJSON(invalidateProperty(SimpleNull, data))).toThrow();
+	});
+	test.each(Object.keys(Simple).filter(p => p.includes('list')))('invalid prop $0', data => {
+		expect(() => RecordOfRecordsFromJSON(invalidateArrayProperty(Simple, data))).toThrow();
 	});
 });
 describe('isRecordOfRecords', () => {
