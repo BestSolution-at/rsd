@@ -34,3 +34,4 @@ export function UnionToJSON(value: Union): Record<string, unknown> {
 			return UnionBToJSON(value);
 	}
 }
+
