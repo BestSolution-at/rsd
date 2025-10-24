@@ -544,7 +544,7 @@ export function FromJSONPatch(
 		props
 			.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
 			.forEach(p => {
-				const guard = builtinTypeGuard(p.type as MBuiltinType, fqn);
+				const guard = builtinTypeGuard(p.type, fqn);
 				const propValue = fqn('propValue:../_type-utils.ts', false);
 				fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard});`, NL);
 			});
@@ -576,10 +576,12 @@ export function FromJSONPatch(
 						const propValue = fqn('propMappedValue:../_type-utils.ts', false);
 						const isRecord = fqn('isRecord:../_type-utils.ts', false);
 						const noopMap = fqn('noopMap:../_type-utils.ts', false);
+						const isListReplace = fqn('isListReplace:../_type-utils.ts', false);
 						const ListMergeAddRemoveFromJSON = fqn('ListMergeAddRemoveFromJSON:../_type-utils.ts', false);
+						const ListReplaceFromJSON = fqn('ListReplaceFromJSON:../_type-utils.ts', false);
 
 						fBody.append(
-							`const ${p.name} = ${propValue}('${p.name}', $value, ${isRecord}, v => ${ListMergeAddRemoveFromJSON}(v, ${guard}, ${noopMap}, ${guard}, ${noopMap})`,
+							`const ${p.name} = ${propValue}('${p.name}', $value, ${isRecord}, v => ${isListReplace}(v, ${guard}) ? ${ListReplaceFromJSON}(v, ${guard}, ${noopMap}) : ${ListMergeAddRemoveFromJSON}(v, ${guard}, ${noopMap}, ${guard}, ${noopMap})`,
 							allow,
 							');',
 							NL,
