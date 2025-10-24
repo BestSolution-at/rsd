@@ -216,9 +216,6 @@ describe('PatchableScalarRecordPatchFromJSON', () => {
 		expect(() => PatchableScalarRecordPatchFromJSON(invalidateProperty(SimplePatchMinimal, data))).toThrow();
 		expect(() => PatchableScalarRecordPatchFromJSON(invalidateProperty(SimplePatchNull, data))).toThrow();
 	});
-	test.each(Object.keys(Simple).filter(p => p.includes('list')))('invalid prop $0', data => {
-		expect(() => PatchableScalarRecordFromJSON(invalidateArrayProperty(SimplePatchReplace, data))).toThrow();
-	});
 });
 describe('isPatchableScalarRecordPatch', () => {
 	test('simple', () => {

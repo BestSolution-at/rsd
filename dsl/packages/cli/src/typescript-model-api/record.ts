@@ -488,7 +488,9 @@ export function RecordTypeguardPatch(
 					} else if (p.variant === 'enum') {
 						guard = fqn(`is${p.type}:./${p.type}.ts`, false);
 					} else if (p.variant === 'union') {
-						guard = fqn(`is${p.type}Patch:./${p.type}.ts`, false);
+						const typeGuard = fqn(`is${p.type}:./${p.type}.ts`, false);
+						const patchGuard = fqn(`is${p.type}Patch:./${p.type}.ts`, false);
+						guard = `v => ${typeGuard}(v) || ${patchGuard}(v)`;
 					} else {
 						guard = `is${toFirstUpper(p.name)}Patch`;
 					}
@@ -604,9 +606,12 @@ export function FromJSONPatch(
 
 					if (p.array) {
 						const ListMergeAddUpdateRemoveFromJSON = fqn('ListMergeAddUpdateRemoveFromJSON:../_type-utils.ts', false);
+						const isListReplace = fqn('isListReplace:../_type-utils.ts', false);
+						const ListReplaceFromJSON = fqn('ListReplaceFromJSON:../_type-utils.ts', false);
 						const propMappedListValue = fqn('propMappedValue:../_type-utils.ts', false);
+						const map = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
 						fBody.append(
-							`const ${p.name} = ${propMappedListValue}('${p.name}', $value, ${guard}, v => ${ListMergeAddUpdateRemoveFromJSON}(v, ${guard}, ${map}, ${guard}, ${patchMap}, ${isString}, ${noopMap})`,
+							`const ${p.name} = ${propMappedListValue}('${p.name}', $value, ${guard}, v => ${isListReplace}(v, ${guard}) ? ${ListReplaceFromJSON}(v, ${guard}, ${map}) : ${ListMergeAddUpdateRemoveFromJSON}(v, ${guard}, ${map}, ${guard}, ${patchMap}, ${isString}, ${noopMap})`,
 							allow,
 							');',
 							NL,

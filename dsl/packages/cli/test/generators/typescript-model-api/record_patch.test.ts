@@ -940,10 +940,10 @@ export function isPatchableRecordWithUnionPatch(value: unknown): value is Patcha
 	return isRecord(value) &&
 		checkProp(value, 'key', isString) &&
 		checkProp(value, 'version', isString) &&
-		checkOptProp(value, 'value', isPatchableUnionPatch) &&
-		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isPatchableUnionPatch)) &&
-		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isPatchableUnionPatch)) &&
-		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isPatchableUnionPatch)) &&
+		checkOptProp(value, 'value', v => isPatchableUnion(v) || isPatchableUnionPatch(v)) &&
+		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', v => isPatchableUnion(v) || isPatchableUnionPatch(v))) &&
+		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', v => isPatchableUnion(v) || isPatchableUnionPatch(v))) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', v => isPatchableUnion(v) || isPatchableUnionPatch(v))) &&
 		checkOptProp(value, 'list', createReplaceAddUpdateRemoveGuard(isPatchableUnion, isPatchableUnionPatch, isString)) &&
 		(checkOptProp(value, 'list_Null', isNull) || checkOptProp(value, 'list_Null', createReplaceAddUpdateRemoveGuard(isPatchableUnion, isPatchableUnionPatch, isString))) &&
 		(checkOptProp(value, 'list_Opt', isNull) || checkOptProp(value, 'list_Opt', createReplaceAddUpdateRemoveGuard(isPatchableUnion, isPatchableUnionPatch, isString))) &&
@@ -1425,10 +1425,10 @@ export function PatchableRecordOfRecordsPatchFromJSON($value: Record<string, unk
 	const value_Null = propMappedValue('value_Null', $value, isRecord, v => ReplaceOrMergeFromJSON(v, PatchableRecord_BasicFromJSON, PatchableRecord_BasicPatchFromJSON), 'optional_null');
 	const value_Opt = propMappedValue('value_Opt', $value, isRecord, v => ReplaceOrMergeFromJSON(v, PatchableRecord_BasicFromJSON, PatchableRecord_BasicPatchFromJSON), 'optional_null');
 	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isRecord, v => ReplaceOrMergeFromJSON(v, PatchableRecord_BasicFromJSON, PatchableRecord_BasicPatchFromJSON), 'optional_null');
-	const list = propMappedValue('list', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableRecord_BasicFromJSON, isRecord, PatchableRecord_BasicPatchFromJSON, isString, noopMap), 'optional');
-	const list_Null = propMappedValue('list_Null', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableRecord_BasicFromJSON, isRecord, PatchableRecord_BasicPatchFromJSON, isString, noopMap), 'optional_null');
-	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableRecord_BasicFromJSON, isRecord, PatchableRecord_BasicPatchFromJSON, isString, noopMap), 'optional_null');
-	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableRecord_BasicFromJSON, isRecord, PatchableRecord_BasicPatchFromJSON, isString, noopMap), 'optional_null');
+	const list = propMappedValue('list', $value, isRecord, v => isListReplace(v, isRecord) ? ListReplaceFromJSON(v, isRecord, PatchableRecord_BasicFromJSON) : ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableRecord_BasicFromJSON, isRecord, PatchableRecord_BasicPatchFromJSON, isString, noopMap), 'optional');
+	const list_Null = propMappedValue('list_Null', $value, isRecord, v => isListReplace(v, isRecord) ? ListReplaceFromJSON(v, isRecord, PatchableRecord_BasicFromJSON) : ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableRecord_BasicFromJSON, isRecord, PatchableRecord_BasicPatchFromJSON, isString, noopMap), 'optional_null');
+	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => isListReplace(v, isRecord) ? ListReplaceFromJSON(v, isRecord, PatchableRecord_BasicFromJSON) : ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableRecord_BasicFromJSON, isRecord, PatchableRecord_BasicPatchFromJSON, isString, noopMap), 'optional_null');
+	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => isListReplace(v, isRecord) ? ListReplaceFromJSON(v, isRecord, PatchableRecord_BasicFromJSON) : ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableRecord_BasicFromJSON, isRecord, PatchableRecord_BasicPatchFromJSON, isString, noopMap), 'optional_null');
 	return {
 		key,
 		version,
@@ -1452,10 +1452,10 @@ export function PatchableRecordWithUnionPatchFromJSON($value: Record<string, unk
 	const value_Null = propMappedValue('value_Null', $value, isRecord, PatchableUnionOrPatchFromJSON, 'optional_null');
 	const value_Opt = propMappedValue('value_Opt', $value, isRecord, PatchableUnionOrPatchFromJSON, 'optional_null');
 	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isRecord, PatchableUnionOrPatchFromJSON, 'optional_null');
-	const list = propMappedValue('list', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional');
-	const list_Null = propMappedValue('list_Null', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional_null');
-	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional_null');
-	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional_null');
+	const list = propMappedValue('list', $value, isRecord, v => isListReplace(v, isRecord) ? ListReplaceFromJSON(v, isRecord, PatchableUnionFromJSON) : ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional');
+	const list_Null = propMappedValue('list_Null', $value, isRecord, v => isListReplace(v, isRecord) ? ListReplaceFromJSON(v, isRecord, PatchableUnionFromJSON) : ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional_null');
+	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => isListReplace(v, isRecord) ? ListReplaceFromJSON(v, isRecord, PatchableUnionFromJSON) : ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional_null');
+	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => isListReplace(v, isRecord) ? ListReplaceFromJSON(v, isRecord, PatchableUnionFromJSON) : ListMergeAddUpdateRemoveFromJSON(v, isRecord, PatchableUnionFromJSON, isRecord, PatchableUnionPatchFromJSON, isString, noopMap), 'optional_null');
 	return {
 		key,
 		version,
