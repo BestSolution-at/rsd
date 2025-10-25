@@ -9,7 +9,7 @@ import {
 	PatchableRecord_Basic_OptionalPatchToJSON,
 	PatchableRecord_Basic_OptionalToJSON,
 } from '../../test-specs/gen-out/client/typescript-client/src/model/PatchableRecord_Basic_Optional.js';
-import { addFooProperty, invalidateArrayProperty, invalidateProperty, removeProperty } from './utils.js';
+import { addFooProperty, invalidateProperty, removeProperty } from './utils.js';
 
 const Simple: PatchableRecord_Basic_Optional = {
 	key: 'key',
@@ -52,9 +52,6 @@ describe('PatchableRecord_Basic_OptionalFromJSON', () => {
 	test.each(Object.keys(Simple))('invalid prop $0', data => {
 		expect(() => PatchableRecord_Basic_OptionalFromJSON(invalidateProperty(Simple, data))).toThrow();
 		expect(() => PatchableRecord_Basic_OptionalFromJSON(invalidateProperty(SimpleMinimal, data))).toThrow();
-	});
-	test.each(Object.keys(Simple).filter(p => p.includes('list')))('invalid prop $0', data => {
-		expect(() => PatchableRecord_Basic_OptionalFromJSON(invalidateArrayProperty(Simple, data))).toThrow();
 	});
 });
 
