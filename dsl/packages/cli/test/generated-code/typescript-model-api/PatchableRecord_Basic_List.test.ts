@@ -52,7 +52,7 @@ describe('isPatchableRecord_Basic_List', () => {
 	test('additional props', () => {
 		expect(isPatchableRecord_Basic_List(addFooProperty(Simple))).toBeTruthy();
 	});
-	test.each(Object.keys(Simple).filter(v => !v.toLowerCase().includes('opt')))('missing prop $0', data => {
+	test.each(Object.keys(Simple))('missing prop $0', data => {
 		const { withOut } = removeProperty(Simple, data);
 		expect(isPatchableRecord_Basic_List(withOut)).toBeFalsy();
 	});
