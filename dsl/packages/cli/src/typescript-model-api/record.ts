@@ -134,7 +134,7 @@ export function FromJSON(
 		props.forEach(p => {
 			if (isMKeyProperty(p) || isMRevisionProperty(p)) {
 				const propValue = fqn('propValue:../_type-utils.ts', false);
-				const guard = builtinTypeGuard(p.type as MBuiltinType, fqn);
+				const guard = builtinTypeGuard(p.type, fqn);
 				fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard});`, NL);
 			} else if (
 				p.variant === 'inline-enum' ||
