@@ -198,10 +198,9 @@ function buildDocContentString(doc: string | undefined) {
 	const contentDocs: string[] = [];
 
 	// Search for the first line with @
-	for (let i = 0; i < docs.length; i++) {
-		const v = docs[i];
+	for (const v of docs) {
 		if (!v.startsWith('@')) {
-			contentDocs.push(docs[i]);
+			contentDocs.push(v);
 		}
 	}
 
@@ -288,7 +287,7 @@ function mapParameter(parameter: Parameter, docMap: Map<string, string>): MParam
 		optional: parameter.namedType.optional,
 		patch: parameter.patch,
 		variant: parameter.namedType.stream ? 'stream' : computeVariant(parameter.namedType),
-		type: parameter.namedType.stream ? parameter.namedType.stream : computeType(parameter.namedType),
+		type: parameter.namedType.stream ?? computeType(parameter.namedType),
 		doc: docMap.get(parameter.namedType.name) ?? '',
 	};
 }
@@ -299,7 +298,7 @@ function mapReturnType(returnType: ReturnType, doc: string): MReturnType {
 		array: returnType.array,
 		arrayMaxLength: returnType.maxLength,
 		variant: returnType.stream ? 'stream' : computeVariant(returnType),
-		type: returnType.stream ? returnType.stream : computeType(returnType),
+		type: returnType.stream ?? computeType(returnType),
 		doc,
 	};
 }
@@ -342,7 +341,7 @@ function mapUnionType(unionType: UnionType) {
 	};
 	if (unionType.records.find(r => r.value)) {
 		const alias: Record<string, string> = {};
-		rv['descriminatorAliases'] = alias;
+		rv.descriminatorAliases = alias;
 		unionType.records
 			.filter(r => r.value)
 			.forEach(r => {
@@ -399,7 +398,7 @@ function mapMixinType(mixinType: MixinType) {
 	return rv;
 }
 
-function mapProperty(property: Property) {
+function mapProperty(property: Property): MProperty {
 	const rv: MProperty = {
 		'@type': 'Property',
 		name: property.namedType.name,
@@ -408,11 +407,40 @@ function mapProperty(property: Property) {
 		readonly: property.readonly,
 		optional: property.namedType.optional,
 		nullable: property.namedType.nullable,
-		variant: computeVariant(property.namedType),
-		type: computeType(property.namedType),
+		...computeTypeAndVariant(property.namedType),
 		doc: removeCommentPrefix(property.doc),
 	};
 	return rv;
+}
+
+function computeTypeAndVariant(
+	namedType: Pick<NamedType, 'inlineEnum' | 'typeRef'>,
+):
+	| { type: MInlineEnumType; variant: 'inline-enum' }
+	| { type: string; variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' } {
+	if (namedType.inlineEnum) {
+		const rv: MInlineEnumType = {
+			'@type': 'InlineEnumType',
+			entries: namedType.inlineEnum.entries.map(mapEnumEntry),
+		};
+		return { variant: 'inline-enum', type: rv };
+	} else if (namedType.typeRef) {
+		if (namedType.typeRef.builtin) {
+			return { variant: 'builtin', type: namedType.typeRef.builtin };
+		} else {
+			const ref = namedType.typeRef.refType?.ref;
+			if (isEnumType(ref)) {
+				return { variant: 'enum', type: ref.name };
+			} else if (isUnionType(ref)) {
+				return { variant: 'union', type: ref.name };
+			} else if (isRecordType(ref)) {
+				return { variant: 'record', type: ref.name };
+			} else if (isScalarType(ref)) {
+				return { variant: 'scalar', type: ref.name };
+			}
+		}
+	}
+	throw new Error();
 }
 
 function computeType(namedType: Pick<NamedType, 'inlineEnum' | 'typeRef'>) {

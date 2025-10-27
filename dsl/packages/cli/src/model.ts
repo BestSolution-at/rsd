@@ -173,7 +173,7 @@ export function isMRevisionProperty(value: unknown): value is MRevisionProperty 
 	return isObject(value) && '@type' in value && value['@type'] === 'RevisionProperty';
 }
 
-export type MProperty = {
+export type MPropertyInlineProperty = {
 	'@type': 'Property';
 	name: string;
 	array: boolean;
@@ -181,10 +181,35 @@ export type MProperty = {
 	readonly: boolean;
 	optional: boolean;
 	nullable: boolean;
-	variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'inline-enum';
-	type: string | MInlineEnumType;
+	variant: 'inline-enum';
+	type: MInlineEnumType;
 	doc: string;
 };
+
+export type MPropertyNoneInlineProperty = {
+	'@type': 'Property';
+	name: string;
+	array: boolean;
+	arrayMaxLength?: number;
+	readonly: boolean;
+	optional: boolean;
+	nullable: boolean;
+	variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record';
+	type: string;
+	doc: string;
+};
+
+export type MProperty = MPropertyNoneInlineProperty | MPropertyInlineProperty;
+
+export function isMPropertyNoneInlineProperty(value: MProperty): value is MPropertyNoneInlineProperty {
+	return (
+		value.variant === 'enum' ||
+		value.variant === 'builtin' ||
+		value.variant === 'scalar' ||
+		value.variant === 'union' ||
+		value.variant === 'record'
+	);
+}
 
 export type MResolvedPropery = MProperty & MResolvedBaseProperty;
 

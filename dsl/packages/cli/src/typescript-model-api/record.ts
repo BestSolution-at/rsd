@@ -4,11 +4,13 @@ import {
 	isMBuiltinType,
 	isMInlineEnumType,
 	isMKeyProperty,
+	isMPropertyNoneInlineProperty,
 	isMResolvedProperty,
 	isMRevisionProperty,
 	MBaseProperty,
 	MBuiltinType,
 	MInlineEnumType,
+	MPropertyNoneInlineProperty,
 	MResolvedBaseProperty,
 	MResolvedPropery,
 	MResolvedRecordType,
@@ -23,7 +25,7 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 		...allProps
 			.filter(isMResolvedProperty)
 			.filter(p => p.variant === 'inline-enum')
-			.map(p => InlineEnumType(p.name, p.type as MInlineEnumType)),
+			.map(p => InlineEnumType(p.name, p.type)),
 	);
 	allProps
 		.filter(p => isMInlineEnumType(p.type))
@@ -48,6 +50,7 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 			.filter(isMResolvedProperty)
 			.filter(p => !p.readonly)
 			.filter(p => !p.array)
+			.filter(p => isMPropertyNoneInlineProperty(p))
 			.filter(p => p.variant === 'record' || p.variant === 'union')
 			.forEach(p => valueChange.append(ValueChangeTypes(p, fqn)));
 		valueChange.appendNewLineIf(!valueChange.isEmpty());
@@ -60,6 +63,7 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 			.filter(isMResolvedProperty)
 			.filter(p => !p.readonly)
 			.filter(p => !p.array)
+			.filter(p => isMPropertyNoneInlineProperty(p))
 			.filter(p => p.variant === 'record')
 			.forEach(p => valueChangeTypeGuard.append(ValueChangeTypeGuard(p, fqn)));
 		valueChangeTypeGuard.appendNewLineIf(!valueChangeTypeGuard.isEmpty());
@@ -111,7 +115,7 @@ export function RecordType(
 	node.append(`export type ${t.name} = {`, NL);
 	node.indent(classBody => {
 		if (t.resolved.unions.length === 1) {
-			const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+			const alias = t.resolved.unions[0].descriminatorAliases?.[t.name] ?? t.name;
 			classBody.append(`'${t.resolved.unions[0].descriminator}': '${alias}';`, NL);
 		}
 		props.forEach(p => {
@@ -203,7 +207,7 @@ export function FromJSON(
 		fBody.append('return {', NL);
 		fBody.indent(pBody => {
 			if (t.resolved.unions.length === 1) {
-				const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+				const alias = t.resolved.unions[0].descriminatorAliases?.[t.name] ?? t.name;
 				pBody.append(`'${t.resolved.unions[0].descriminator}': '${alias}',`, NL);
 			}
 			props.forEach(p => {
@@ -260,7 +264,7 @@ export function ToJSON(
 		mBody.append(NL, 'return {', NL);
 		mBody.indent(propBody => {
 			if (t.resolved.unions.length > 0) {
-				const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+				const alias = t.resolved.unions[0].descriminatorAliases?.[t.name] ?? t.name;
 				propBody.append(`'${t.resolved.unions[0].descriminator}': '${alias}',`, NL);
 			}
 			props.forEach(p => {
@@ -287,7 +291,7 @@ export function RecordTypeguard(
 			if (t.resolved.unions.length > 0) {
 				const checkProp = fqn('checkProp:../_type-utils.ts', false);
 				const createIsStringTypeGuard = fqn('createIsStringTypeGuard:../_type-utils.ts', false);
-				const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+				const alias = t.resolved.unions[0].descriminatorAliases?.[t.name] ?? t.name;
 				andBlock.append(
 					`${checkProp}(value, '${t.resolved.unions[0].descriminator}', ${createIsStringTypeGuard}('${alias}')) &&`,
 					NL,
@@ -353,7 +357,7 @@ export function RecordTypePatch(
 	node.append(`export type ${t.name}Patch = {`, NL);
 	node.indent(classBody => {
 		if (t.resolved.unions.length === 1) {
-			const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+			const alias = t.resolved.unions[0].descriminatorAliases?.[t.name] ?? t.name;
 			classBody.append(`'${t.resolved.unions[0].descriminator}': 'patch:${alias}';`, NL);
 		}
 		props
@@ -373,7 +377,10 @@ export function RecordTypePatch(
 	return node;
 }
 
-export function ValueChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOnly: boolean) => string) {
+export function ValueChangeTypes(
+	prop: MResolvedPropery & MPropertyNoneInlineProperty,
+	fqn: (t: string, typeOnly: boolean) => string,
+) {
 	const type = fqn(`${prop.type}:./${prop.type}.ts`, true);
 	const patchType = fqn(`${prop.type}Patch:./${prop.type}.ts`, true);
 
@@ -392,21 +399,24 @@ export function ValueChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOn
 	]);
 }
 
-export function ValueChangeTypeGuard(prop: MResolvedPropery, fqn: (t: string, typeOnly: boolean) => string) {
+export function ValueChangeTypeGuard(
+	prop: MResolvedPropery & MPropertyNoneInlineProperty,
+	fqn: (t: string, typeOnly: boolean) => string,
+) {
 	const isReplace = fqn('isReplace:../_type-utils.ts', false);
 	const isMerge = fqn('isMerge:../_type-utils.ts', false);
 	const isRecord = fqn(`is${prop.type}:./${prop.type}.ts`, false);
 	const isRecordPatch = fqn(`is${prop.type}Patch:./${prop.type}.ts`, false);
 
 	return toNodeTree(`
-		function is${toFirstUpper(prop.name)}Patch(v: unknown): v is \$${toFirstUpper(prop.name)}Patch {
+		function is${toFirstUpper(prop.name)}Patch(v: unknown): v is $${toFirstUpper(prop.name)}Patch {
 			return (${isReplace}(v) && ${isRecord}(v)) || (${isMerge}(v) && ${isRecordPatch}(v));
 		}
 		`);
 }
 
 export function ListChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOnly: boolean) => string) {
-	let type: string = 'string';
+	let type = 'string';
 	if (isMBuiltinType(prop.type)) {
 		type = builtinToJSType(prop.type);
 	} else if (prop.variant === 'scalar') {
@@ -453,7 +463,7 @@ export function RecordTypeguardPatch(
 			if (t.resolved.unions.length > 0) {
 				const checkProp = fqn('checkProp:../_type-utils.ts', false);
 				const createIsStringTypeGuard = fqn('createIsStringTypeGuard:../_type-utils.ts', false);
-				const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+				const alias = t.resolved.unions[0].descriminatorAliases?.[t.name] ?? t.name;
 				andBlock.append(
 					`${checkProp}(value, '${t.resolved.unions[0].descriminator}', ${createIsStringTypeGuard}('patch:${alias}'))`,
 				);
@@ -465,7 +475,7 @@ export function RecordTypeguardPatch(
 						andBlock.append(' &&', NL);
 					}
 
-					const guard = builtinTypeGuard(p.type as MBuiltinType, fqn);
+					const guard = builtinTypeGuard(p.type, fqn);
 					const checkProp = fqn('checkProp:../_type-utils.ts', false);
 					andBlock.append(`${checkProp}(value, '${p.name}', ${guard})`);
 				});
@@ -643,7 +653,7 @@ export function FromJSONPatch(
 		fBody.append('return {', NL);
 		fBody.indent(pBody => {
 			if (t.resolved.unions.length === 1) {
-				const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+				const alias = t.resolved.unions[0].descriminatorAliases?.[t.name] ?? t.name;
 				pBody.append(`'${t.resolved.unions[0].descriminator}': 'patch:${alias}',`, NL);
 			}
 			props
@@ -706,7 +716,7 @@ export function ToJSONPatch(
 						const AddType = fqn(`${p.type}:./${p.type}.ts`, false);
 						const UpdateType = fqn(`${p.type}Patch:./${p.type}.ts`, false);
 						const RemoveType = 'string';
-						const MergeType = `\$${toFirstUpper(p.name)}Merge`;
+						const MergeType = `$${toFirstUpper(p.name)}Merge`;
 
 						mBody.append(
 							`${ReplaceOrMergeToJSON}($value.${p.name}, ${createListReplaceToJSON}(${ToJSON}), ${createListMergeUpdateRemoveToJSON}<${AddType}, ${UpdateType}, ${RemoveType}, ${MergeType}>(${ToJSON}, ${ToJSONPatch}, ${noopMap}));`,
@@ -726,7 +736,7 @@ export function ToJSONPatch(
 		mBody.append(NL, 'return {', NL);
 		mBody.indent(propBody => {
 			if (t.resolved.unions.length > 0) {
-				const alias = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+				const alias = t.resolved.unions[0].descriminatorAliases?.[t.name] ?? t.name;
 				propBody.append(`'${t.resolved.unions[0].descriminator}': 'patch:${alias}',`, NL);
 			}
 			props
