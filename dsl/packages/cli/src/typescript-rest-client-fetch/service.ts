@@ -2,6 +2,7 @@ import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import {
 	isMBuiltinType,
 	isMInlineEnumType,
+	MBuiltinType,
 	MParameter,
 	MResolvedOperation,
 	MResolvedService,
@@ -283,6 +284,32 @@ function handleOkResult(
 			isMInlineEnumType(o.resultType.type)
 		) {
 			const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
+			if (o.resultType.array) {
+				// TODO
+			} else {
+				if (isMBuiltinType(o.resultType.type)) {
+					const guard = builtinTypeGuard(o.resultType.type, config, fqn);
+					node.append(`if(!${guard}($data)) {`, NL);
+					node.indent(block => {
+						block.append(`throw new Error('Invalid result');`, NL);
+					});
+					node.append('}', NL);
+				} else if (o.resultType.variant === 'scalar') {
+					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+					node.append(`if(!${guard}($data)) {`, NL);
+					node.indent(block => {
+						block.append(`throw new Error('Invalid result');`, NL);
+					});
+					node.append('}', NL);
+				} else {
+					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
+					node.append(`if(!${guard}($data)) {`, NL);
+					node.indent(block => {
+						block.append(`throw new Error('Invalid result');`, NL);
+					});
+					node.append('}', NL);
+				}
+			}
 			node.append(`return ${safeExecute}(${OK}($data), () => onSuccess?.('${o.name}', $data));`, NL);
 		} else {
 			const fromJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${o.resultType.type}FromJSON`;
@@ -295,6 +322,12 @@ function handleOkResult(
 				node.append('}', NL);
 				node.append(`const $result = $data.map(${fromJSON});`, NL);
 			} else {
+				const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isRecord`;
+				node.append(`if(!${guard}($data)) {`, NL);
+				node.indent(block => {
+					block.append(`throw new Error('Invalid result');`, NL);
+				});
+				node.append('}', NL);
 				node.append(`const $result = ${fromJSON}($data);`, NL);
 			}
 			const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
@@ -334,4 +367,18 @@ function toParameter(
 	}
 
 	return `${parameter.name}${optional}: ${type}${nullable}`;
+}
+
+function builtinTypeGuard(
+	type: MBuiltinType,
+	config: TypescriptFetchClientGeneratorConfig,
+	fqn: (v: string, typeOnly: boolean) => string,
+) {
+	if (type === 'boolean') {
+		return fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isBoolean`;
+	} else if (type === 'double' || type === 'float' || type === 'int' || type === 'long' || type === 'short') {
+		return fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isNumber`;
+	} else {
+		return fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+	}
 }

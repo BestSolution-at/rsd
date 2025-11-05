@@ -1,0 +1,62 @@
+resource SampleService at '/api/samplerecords' {
+		GET getBoolean at 'boolean' => {
+				200
+		}
+
+		GET getShort at 'short' => {
+				200
+		}
+
+		GET getInt at 'int' => {
+				200
+		}
+
+		GET getLong at 'long' => {
+				200
+		}
+
+		GET getFloat at 'float' => {
+				200
+		}
+
+		GET getDouble at 'double' => {
+				200
+		}
+
+		GET getString at 'string' => {
+				200
+		}
+
+		GET getLocalDate at 'localdate' => {
+				200
+		}
+
+		GET getLocalDateTime at 'localdatetime' => {
+				200
+		}
+
+		GET getZonedDateTime at 'zoneddatetime' => {
+				200
+		}
+
+		GET getSimpleRecord at 'simplerecord/${key}' => {
+				200
+		}
+
+		GET getEnum at 'enum' => {
+				200
+		}
+
+		GET getScalar at 'scalar' => {
+				200
+		}
+
+		GET voidOperation at 'voidoperation' => {
+				204
+		}
+
+		GET errorOperation at 'erroroperation' => {
+				200
+				400: SampleError
+		}
+}

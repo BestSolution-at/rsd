@@ -3603,6 +3603,342 @@
       "operations": [
         {
           "@type": "Operation",
+          "name": "getBoolean",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "boolean",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "boolean",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getShort",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "short",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "short",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getInt",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "int",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getLong",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "long",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "long",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getFloat",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "float",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "float",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getDouble",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "double",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "double",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getString",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "string",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getLocalDate",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "local-date",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "localdate",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getLocalDateTime",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "local-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "localdatetime",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getZonedDateTime",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "zoned-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "zoneddatetime",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getScalar",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "scalar",
+            "type": "ZoneId",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "scalar",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "voidOperation",
+          "doc": "",
+          "parameters": [],
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "voidoperation",
+              "results": [
+                {
+                  "statusCode": 204
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "errorOperation",
+          "doc": "",
+          "parameters": [],
+          "errors": [
+            "SampleError"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleError",
+              "doc": ""
+            }
+          ],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "erroroperation",
+              "results": [
+                {
+                  "statusCode": 200
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleError"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "getSimpleRecord",
           "doc": "",
           "parameters": [
@@ -3615,7 +3951,13 @@
               "patch": false,
               "variant": "builtin",
               "type": "string",
-              "doc": ""
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "key",
+                  "source": "path"
+                }
+              }
             }
           ],
           "resultType": {
@@ -3626,30 +3968,67 @@
             "doc": ""
           },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simplerecord/${key}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
-          "name": "getEnumRecord",
+          "name": "getEnum",
           "doc": "",
-          "parameters": [
-            {
-              "@type": "Parameter",
-              "name": "key",
-              "array": false,
-              "nullable": false,
-              "optional": false,
-              "patch": false,
-              "variant": "builtin",
-              "type": "string",
-              "doc": ""
-            }
-          ],
+          "parameters": [],
           "resultType": {
             "@type": "ReturnType",
             "array": false,
-            "variant": "record",
-            "type": "EnumRecord",
+            "variant": "enum",
+            "type": "SampleEnum",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "enum",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "meta": {
+        "rest": {
+          "path": "/api/samplerecords"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "ListSampleService",
+      "doc": "",
+      "operations": [
+        {
+          "@type": "Operation",
+          "name": "listBoolean",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "boolean",
             "doc": ""
           },
           "errors": [],
@@ -3657,26 +4036,14 @@
         },
         {
           "@type": "Operation",
-          "name": "getScalarRecord",
+          "name": "listShort",
           "doc": "",
-          "parameters": [
-            {
-              "@type": "Parameter",
-              "name": "key",
-              "array": false,
-              "nullable": false,
-              "optional": false,
-              "patch": false,
-              "variant": "builtin",
-              "type": "string",
-              "doc": ""
-            }
-          ],
+          "parameters": [],
           "resultType": {
             "@type": "ReturnType",
-            "array": false,
-            "variant": "record",
-            "type": "ScalarRecord",
+            "array": true,
+            "variant": "builtin",
+            "type": "short",
             "doc": ""
           },
           "errors": [],
@@ -3684,26 +4051,14 @@
         },
         {
           "@type": "Operation",
-          "name": "getRecordOfRecords",
+          "name": "listInt",
           "doc": "",
-          "parameters": [
-            {
-              "@type": "Parameter",
-              "name": "key",
-              "array": false,
-              "nullable": false,
-              "optional": false,
-              "patch": false,
-              "variant": "builtin",
-              "type": "string",
-              "doc": ""
-            }
-          ],
+          "parameters": [],
           "resultType": {
             "@type": "ReturnType",
-            "array": false,
-            "variant": "record",
-            "type": "RecordOfRecords",
+            "array": true,
+            "variant": "builtin",
+            "type": "int",
             "doc": ""
           },
           "errors": [],
@@ -3711,26 +4066,14 @@
         },
         {
           "@type": "Operation",
-          "name": "getRecordWithUnions",
+          "name": "listLong",
           "doc": "",
-          "parameters": [
-            {
-              "@type": "Parameter",
-              "name": "key",
-              "array": false,
-              "nullable": false,
-              "optional": false,
-              "patch": false,
-              "variant": "builtin",
-              "type": "string",
-              "doc": ""
-            }
-          ],
+          "parameters": [],
           "resultType": {
             "@type": "ReturnType",
-            "array": false,
-            "variant": "record",
-            "type": "RecordWithUnions",
+            "array": true,
+            "variant": "builtin",
+            "type": "long",
             "doc": ""
           },
           "errors": [],
@@ -3738,26 +4081,104 @@
         },
         {
           "@type": "Operation",
-          "name": "getMixinRecord",
+          "name": "listFloat",
           "doc": "",
-          "parameters": [
-            {
-              "@type": "Parameter",
-              "name": "key",
-              "array": false,
-              "nullable": false,
-              "optional": false,
-              "patch": false,
-              "variant": "builtin",
-              "type": "string",
-              "doc": ""
-            }
-          ],
+          "parameters": [],
           "resultType": {
             "@type": "ReturnType",
-            "array": false,
+            "array": true,
+            "variant": "builtin",
+            "type": "float",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "listDouble",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "double",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "listString",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalDate",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "local-date",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalDateTime",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "local-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "listZonedDateTime",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "zoned-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "listSimpleRecord",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
             "variant": "record",
-            "type": "MixinRecord",
+            "type": "SimpleRecord",
             "doc": ""
           },
           "errors": [],

@@ -459,10 +459,36 @@ record MixinRecord {
 error SampleError;
 
 service SampleService {
+		operation getBoolean(): boolean;
+		operation getShort(): short;
+		operation getInt(): int;
+		operation getLong(): long;
+		operation getFloat(): float;
+		operation getDouble(): double;
+		operation getString(): string;
+		operation getLocalDate(): local-date;
+		operation getLocalDateTime(): local-date-time;
+		operation getZonedDateTime(): zoned-date-time;
+		operation getScalar(): ZoneId;
+
+		operation voidOperation();
+		operation errorOperation() throws SampleError;
+		
 		operation getSimpleRecord(key: string): SimpleRecord;
-		operation getEnumRecord(key: string): EnumRecord;
-		operation getScalarRecord(key: string): ScalarRecord;
-		operation getRecordOfRecords(key: string): RecordOfRecords;
-		operation getRecordWithUnions(key: string): RecordWithUnions;
-		operation getMixinRecord(key: string): MixinRecord;
+		operation getEnum(): SampleEnum;
+}
+
+service ListSampleService {
+		operation listBoolean(): boolean[];
+		operation listShort(): short[];
+		operation listInt(): int[];
+		operation listLong(): long[];
+		operation listFloat(): float[];
+		operation listDouble(): double[];
+		operation listString(): string[];
+		operation listLocalDate(): local-date[];
+		operation listLocalDateTime(): local-date-time[];
+		operation listZonedDateTime(): zoned-date-time[];
+
+		operation listSimpleRecord(): SimpleRecord[];
 }
