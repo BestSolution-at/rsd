@@ -457,3 +457,12 @@ record MixinRecord {
 }*/
 
 error SampleError;
+
+service SampleService {
+		operation getSimpleRecord(key: string): SimpleRecord;
+		operation getEnumRecord(key: string): EnumRecord;
+		operation getScalarRecord(key: string): ScalarRecord;
+		operation getRecordOfRecords(key: string): RecordOfRecords;
+		operation getRecordWithUnions(key: string): RecordWithUnions;
+		operation getMixinRecord(key: string): MixinRecord;
+}

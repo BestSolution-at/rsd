@@ -7,8 +7,8 @@
 				},
         {
             "name": "typescript-rest-client-fetch",
-            "targetFolder": "./gen-out/client/typescript-client/src/remote",
-            "allowImportingTsExtensions": true,
+            "targetFolder": "./gen-out/client/typescript-client/src",
+            "allowImportingTsExtensions": false,
             "apiNamespacePath": "../index.ts"
         }
     ]

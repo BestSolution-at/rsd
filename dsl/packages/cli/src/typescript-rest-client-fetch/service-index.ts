@@ -23,12 +23,14 @@ export function generateServiceIndex(model: MResolvedRSDModel, config: Typescrip
 
 function generateServiceIndexContent(model: MResolvedRSDModel, allowImportingTsExtensions: boolean) {
 	const node = new CompositeGeneratorNode();
-	model.services.forEach(e => {
-		if (allowImportingTsExtensions) {
-			node.append(`export * from './${e.name}ServiceFetchImpl.ts'`, NL);
-		} else {
-			node.append(`export * from './${e.name}ServiceFetchImpl.js'`, NL);
-		}
-	});
+	model.services
+		.filter(e => e.meta?.rest)
+		.forEach(e => {
+			if (allowImportingTsExtensions) {
+				node.append(`export * from './${e.name}ServiceFetchImpl.ts'`, NL);
+			} else {
+				node.append(`export * from './${e.name}ServiceFetchImpl.js'`, NL);
+			}
+		});
 	return node;
 }

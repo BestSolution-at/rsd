@@ -3595,7 +3595,177 @@
       "doc": ""
     }
   ],
-  "services": [],
+  "services": [
+    {
+      "@type": "Service",
+      "name": "SampleService",
+      "doc": "",
+      "operations": [
+        {
+          "@type": "Operation",
+          "name": "getSimpleRecord",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "key",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "SimpleRecord",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "getEnumRecord",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "key",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "EnumRecord",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "getScalarRecord",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "key",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "ScalarRecord",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "getRecordOfRecords",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "key",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "RecordOfRecords",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "getRecordWithUnions",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "key",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "RecordWithUnions",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "getMixinRecord",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "key",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "MixinRecord",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": []
+        }
+      ]
+    }
+  ],
   "errors": [
     {
       "@type": "Error",
