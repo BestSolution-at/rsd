@@ -3534,12 +3534,50 @@
       "doc": ""
     },
     {
+      "@type": "MixinType",
+      "name": "UnionMixin",
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "myUnion",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "union",
+          "type": "Union",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "MixinType",
+      "name": "RecordMixin",
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "myRecord",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "record",
+          "type": "SimpleRecord",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
       "@type": "RecordType",
       "name": "MixinRecord",
       "patchable": false,
       "mixins": [
         "SimpleMixin",
-        "SimpleMixin2"
+        "SimpleMixin2",
+        "UnionMixin",
+        "RecordMixin"
       ],
       "properties": [
         {
@@ -3558,5 +3596,10 @@
     }
   ],
   "services": [],
-  "errors": []
+  "errors": [
+    {
+      "@type": "Error",
+      "name": "SampleError"
+    }
+  ]
 }

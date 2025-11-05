@@ -15,14 +15,19 @@ export function isTypescriptClientAPIGeneratorConfig(
 
 export type TypescriptFetchClientGeneratorConfig = ArtifactGeneratorConfig & {
 	targetFolder: string;
-	apiNamespacePath?: string;
+	apiNamespacePath: string;
 	allowImportingTsExtensions?: boolean;
 };
 
 export function isTypescriptFetchClientGeneratorConfig(
 	config: ArtifactGeneratorConfig,
 ): config is TypescriptFetchClientGeneratorConfig {
-	return 'targetFolder' in config && typeof config.targetFolder === 'string';
+	return (
+		'apiNamespacePath' in config &&
+		typeof config.apiNamespacePath === 'string' &&
+		'targetFolder' in config &&
+		typeof config.targetFolder === 'string'
+	);
 }
 
 export class TypescriptImportCollector {
@@ -68,7 +73,7 @@ export class TypescriptImportCollector {
 		if (this.fqnTypes.get(type) == null) {
 			this.fqnTypes.set(type, path);
 		} else if (path !== this.fqnTypes.get(type)) {
-			resultType = type + '' + this.aliasCount++;
+			resultType = `${type}${(this.aliasCount++).toFixed()}`;
 			type = type + ' as ' + resultType;
 		}
 

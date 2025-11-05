@@ -18,7 +18,7 @@ function generate(
 
 		return [];
 	}
-	const rv = model.services.map(s => generateService(s, artifactConfig));
+	const rv = model.services.filter(s => s.meta?.rest !== undefined).map(s => generateService(s, artifactConfig));
 	rv.push(generateFetchTypeUtils(artifactConfig));
 	rv.push(generateServiceIndex(model, artifactConfig));
 	return rv;

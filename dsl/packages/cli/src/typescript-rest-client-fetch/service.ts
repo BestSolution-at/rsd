@@ -46,42 +46,44 @@ function generateServiceContent(
 		mBody.append('};', NL);
 	});
 	node.append('}', NL);
-	s.operations.forEach(o => {
-		node.append(
-			`function fn${toFirstUpper(o.name)}(props: ${ServiceProps}<${ErrorType}>): ${Service}['${o.name}'] {`,
-			NL,
-		);
-		node.indent(fnBody => {
-			fnBody.append('const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;', NL);
-			if (o.meta?.rest?.results.find(e => e.error !== undefined)) {
-				fnBody.append('const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;', NL);
-			} else {
-				fnBody.append('const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;', NL);
-			}
+	s.operations
+		.filter(o => o.meta?.rest !== undefined)
+		.forEach(o => {
+			node.append(
+				`function fn${toFirstUpper(o.name)}(props: ${ServiceProps}<${ErrorType}>): ${Service}['${o.name}'] {`,
+				NL,
+			);
+			node.indent(fnBody => {
+				fnBody.append('const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;', NL);
+				if (o.meta?.rest?.results.find(e => e.error !== undefined)) {
+					fnBody.append('const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;', NL);
+				} else {
+					fnBody.append('const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;', NL);
+				}
 
-			fnBody.append(`return async (${o.parameters.map(p => toParameter(p, config, fqn)).join(', ')}) => {`, NL);
-			fnBody.indent(code => {
-				code.append('try {', NL);
-				code.indent(invoke => {
-					invoke.append(generateRemoteInvoke(s, o, config, fqn), NL);
+				fnBody.append(`return async (${o.parameters.map(p => toParameter(p, config, fqn)).join(', ')}) => {`, NL);
+				fnBody.indent(code => {
+					code.append('try {', NL);
+					code.indent(invoke => {
+						invoke.append(generateRemoteInvoke(s, o, config, fqn), NL);
+					});
+					code.append('} catch (e) {', NL);
+					code.indent(catchBlock => {
+						catchBlock.append(`onCatch?.('${o.name}', e);`, NL);
+						catchBlock.append(`const ee = e instanceof Error ? e : new Error('', { cause: e });`, NL);
+						catchBlock.append(`const err = { _type: '_Native', message: ee.message, error: ee } as const;`, NL);
+						catchBlock.append('return api.result.ERR(err);', NL);
+					});
+					code.append('} finally {', NL);
+					code.indent(finallyBlock => {
+						finallyBlock.append(`final?.('${o.name}');`, NL);
+					});
+					code.append('}', NL);
 				});
-				code.append('} catch (e) {', NL);
-				code.indent(catchBlock => {
-					catchBlock.append(`onCatch?.('${o.name}', e);`, NL);
-					catchBlock.append(`const ee = e instanceof Error ? e : new Error('', { cause: e });`, NL);
-					catchBlock.append(`const err = { _type: '_Native', message: ee.message, error: ee } as const;`, NL);
-					catchBlock.append('return api.result.ERR(err);', NL);
-				});
-				code.append('} finally {', NL);
-				code.indent(finallyBlock => {
-					finallyBlock.append(`final?.('${o.name}');`, NL);
-				});
-				code.append('}', NL);
+				fnBody.append('};', NL);
 			});
-			fnBody.append('};', NL);
+			node.append('}', NL, NL);
 		});
-		node.append('}', NL, NL);
-	});
 	return node;
 }
 
@@ -91,8 +93,14 @@ function generateRemoteInvoke(
 	config: TypescriptFetchClientGeneratorConfig,
 	fqn: (type: string, typeOnly: boolean) => string,
 ) {
-	const path = s.meta?.rest?.path ?? s.name.toLowerCase();
-	const processedPath = `${path.replace(/^\//, '')}/${o.meta?.rest?.path ?? ''}`;
+	if (s.meta?.rest === undefined) {
+		throw new Error(`No rest meta data available for service ${s.name}`);
+	}
+	if (o.meta?.rest === undefined) {
+		throw new Error(`No rest meta data available for operation ${s.name}.${o.name}`);
+	}
+	const path = s.meta.rest.path;
+	const processedPath = `${path.replace(/^\//, '')}/${o.meta.rest.path}`;
 	const endpoint = processedPath ? `\${baseUrl}/${processedPath}` : '${baseUrl}';
 	const hasQueryParams = o.parameters.find(p => p.meta?.rest?.source === 'query');
 
@@ -193,17 +201,17 @@ function generateRemoteInvoke(
 		}
 
 		node.append(
-			`const $response = await fetchAPI($path, { ...$init, method: '${o.meta?.rest?.method}', body: $body });`,
+			`const $response = await fetchAPI($path, { ...$init, method: '${o.meta.rest.method}', body: $body });`,
 			NL,
 		);
 	}
 
-	if (o.meta?.rest?.results.length) {
+	if (o.meta.rest.results.length) {
 		o.meta.rest.results.forEach((r, idx) => {
 			if (idx !== 0) {
 				node.append(' else ');
 			}
-			node.append(`if ($response.status === ${r.statusCode}) {`, NL);
+			node.append(`if ($response.status === ${r.statusCode.toFixed()}) {`, NL);
 			if (r.error === undefined) {
 				node.indent(block => {
 					block.append(handleOkResult(o, config, fqn));
@@ -307,7 +315,7 @@ function toParameter(
 	} else if (parameter.variant === 'scalar') {
 		type = 'string';
 	} else if (isMInlineEnumType(parameter.type)) {
-		type = `${parameter.type.entries.map(e => `'${e.name}'`).join(' | ')}`;
+		type = parameter.type.entries.map(e => `'${e.name}'`).join(' | ');
 	} else if (parameter.variant === 'enum') {
 		type = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${parameter.type}`;
 	} else if (parameter.variant === 'record' || parameter.variant === 'union') {

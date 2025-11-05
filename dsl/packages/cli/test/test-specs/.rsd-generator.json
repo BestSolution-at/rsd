@@ -4,6 +4,12 @@
         {
 					"name": "typescript-client-api",
 					"targetFolder": "./gen-out/client/typescript-client/src"
-				}
+				},
+        {
+            "name": "typescript-rest-client-fetch",
+            "targetFolder": "./gen-out/client/typescript-client/src/remote",
+            "allowImportingTsExtensions": true,
+            "apiNamespacePath": "../index.ts"
+        }
     ]
 }

@@ -434,9 +434,26 @@ mixin SimpleMixin2 {
 	mValueString2: string
 }
 
+mixin UnionMixin {
+	myUnion: Union
+}
+
+mixin RecordMixin {
+	myRecord: SimpleRecord
+}
+
 record MixinRecord {
     include SimpleMixin
 		include SimpleMixin2
+		include UnionMixin
+		include RecordMixin
 
     sample: string
 }
+
+/*record Node {
+	parent?: Node[]
+	children: Node[]
+}*/
+
+error SampleError;
