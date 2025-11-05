@@ -43,6 +43,11 @@ resource SampleService at '/api/samplerecords' {
 				200
 		}
 
+		GET getSimpleRecordWithError at 'simplerecordwitherror/${key}' => {
+				200
+				400: SampleError
+		}
+
 		GET getEnum at 'enum' => {
 				200
 		}
@@ -58,5 +63,11 @@ resource SampleService at '/api/samplerecords' {
 		GET errorOperation at 'erroroperation' => {
 				200
 				400: SampleError
+		}
+
+		GET multiErrorOperation at 'multierroroperation' => {
+				200
+				400: SampleError
+				401: SampleError2
 		}
 }

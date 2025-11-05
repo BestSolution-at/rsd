@@ -15,10 +15,12 @@ export function createSampleServiceService(props: ServiceProps<api.service.Error
 		getLocalDateTime: fnGetLocalDateTime(props),
 		getZonedDateTime: fnGetZonedDateTime(props),
 		getScalar: fnGetScalar(props),
+		getEnum: fnGetEnum(props),
 		voidOperation: fnVoidOperation(props),
 		errorOperation: fnErrorOperation(props),
+		multiErrorOperation: fnMultiErrorOperation(props),
 		getSimpleRecord: fnGetSimpleRecord(props),
-		getEnum: fnGetEnum(props),
+		getSimpleRecordWithError: fnGetSimpleRecordWithError(props),
 	};
 }
 function fnGetBoolean(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getBoolean'] {
@@ -384,6 +386,39 @@ function fnGetScalar(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 	};
 }
 
+function fnGetEnum(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getEnum'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async () => {
+		try {
+			const $init = (await preFetch?.('getEnum')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/samplerecords/enum`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if(!api.model.isSampleEnum($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('getEnum', $data));
+			}
+			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('getEnum', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('getEnum');
+		}
+	};
+}
+
 function fnVoidOperation(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['voidOperation'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -448,6 +483,47 @@ function fnErrorOperation(props: ServiceProps<api.service.ErrorType>): api.servi
 	};
 }
 
+function fnMultiErrorOperation(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['multiErrorOperation'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
+	return async () => {
+		try {
+			const $init = (await preFetch?.('multiErrorOperation')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/samplerecords/multierroroperation`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('multiErrorOperation', api.result.Void));
+			} else if ($response.status === 400) {
+				const err = {
+					_type: 'SampleError',
+					message: await $response.text(),
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('multiErrorOperation', err));
+			} else if ($response.status === 401) {
+				const err = {
+					_type: 'SampleError2',
+					message: await $response.text(),
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('multiErrorOperation', err));
+			}
+			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('multiErrorOperation', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('multiErrorOperation');
+		}
+	};
+}
+
 function fnGetSimpleRecord(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getSimpleRecord'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -482,35 +558,42 @@ function fnGetSimpleRecord(props: ServiceProps<api.service.ErrorType>): api.serv
 	};
 }
 
-function fnGetEnum(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getEnum'] {
+function fnGetSimpleRecordWithError(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getSimpleRecordWithError'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
-	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async () => {
+	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
+	return async (key: string) => {
 		try {
-			const $init = (await preFetch?.('getEnum')) ?? {};
+			const $init = (await preFetch?.('getSimpleRecordWithError')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
 			$headers.append('Content-Type', 'application/json');
 			$init.headers = $headers;
 
-			const $path = `${baseUrl}/api/samplerecords/enum`;
+			const $path = `${baseUrl}/api/samplerecords/simplerecordwitherror/${key}`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.model.isSampleEnum($data)) {
+				if(!api.utils.isRecord($data)) {
 					throw new Error('Invalid result');
 				}
-				return safeExecute(api.result.OK($data), () => onSuccess?.('getEnum', $data));
+				const $result = api.model.SimpleRecordFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('getSimpleRecordWithError', $result));
+			} else if ($response.status === 400) {
+				const err = {
+					_type: 'SampleError',
+					message: await $response.text(),
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleRecordWithError', err));
 			}
 			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
-			onCatch?.('getEnum', e);
+			onCatch?.('getSimpleRecordWithError', e);
 			const ee = e instanceof Error ? e : new Error('', { cause: e });
 			const err = { _type: '_Native', message: ee.message, error: ee } as const;
 			return api.result.ERR(err);
 		} finally {
-			final?.('getEnum');
+			final?.('getSimpleRecordWithError');
 		}
 	};
 }

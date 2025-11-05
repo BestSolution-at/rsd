@@ -457,6 +457,7 @@ record MixinRecord {
 }*/
 
 error SampleError;
+error SampleError2;
 
 service SampleService {
 		operation getBoolean(): boolean;
@@ -470,12 +471,14 @@ service SampleService {
 		operation getLocalDateTime(): local-date-time;
 		operation getZonedDateTime(): zoned-date-time;
 		operation getScalar(): ZoneId;
+		operation getEnum(): SampleEnum;
 
 		operation voidOperation();
 		operation errorOperation() throws SampleError;
+		operation multiErrorOperation() throws SampleError SampleError2;
 		
 		operation getSimpleRecord(key: string): SimpleRecord;
-		operation getEnum(): SampleEnum;
+		operation getSimpleRecordWithError(key: string): SimpleRecord throws SampleError;
 }
 
 service ListSampleService {

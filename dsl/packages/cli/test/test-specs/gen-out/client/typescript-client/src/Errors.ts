@@ -2,9 +2,9 @@
 import type { RSDError } from './_result-utils.js';
 import { checkProp, isNumber, isRecord, isString } from './_type-utils.js';
 
-const errorTypes = new Set(['_Native', '_Status', 'SampleError']);
+const errorTypes = new Set(['_Native', '_Status', 'SampleError', 'SampleError2']);
 
-export type ErrorType = '_Native' | '_Status' | 'SampleError';
+export type ErrorType = '_Native' | '_Status' | 'SampleError' | 'SampleError2';
 
 export function isKnownRSDError(value: unknown): value is RSDError<ErrorType> {
 	return (
@@ -24,6 +24,7 @@ export type StatusRSDError = RSDError<'_Status'> & {
 };
 
 export type SampleErrorError = RSDError<'SampleError'> & { message: string };
+export type SampleError2Error = RSDError<'SampleError2'> & { message: string };
 
 export function isNativeError(value: unknown): value is NativeRSDError {
 	return (
@@ -47,6 +48,13 @@ export function isSampleErrorError(value: unknown): value is SampleErrorError {
 	return (
 		isRecord(value) &&
 		checkProp(value, '_type', v => v === 'SampleError') &&
+		checkProp(value, 'message', isString)
+	);
+}
+export function isSampleError2Error(value: unknown): value is SampleError2Error {
+	return (
+		isRecord(value) &&
+		checkProp(value, '_type', v => v === 'SampleError2') &&
 		checkProp(value, 'message', isString)
 	);
 }

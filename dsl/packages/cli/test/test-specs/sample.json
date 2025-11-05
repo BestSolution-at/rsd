@@ -3889,6 +3889,32 @@
         },
         {
           "@type": "Operation",
+          "name": "getEnum",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "SampleEnum",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "enum",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "voidOperation",
           "doc": "",
           "parameters": [],
@@ -3932,6 +3958,47 @@
                 {
                   "statusCode": 400,
                   "error": "SampleError"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "multiErrorOperation",
+          "doc": "",
+          "parameters": [],
+          "errors": [
+            "SampleError",
+            "SampleError2"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleError",
+              "doc": ""
+            },
+            {
+              "@type": "OperationError",
+              "error": "SampleError2",
+              "doc": ""
+            }
+          ],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "multierroroperation",
+              "results": [
+                {
+                  "statusCode": 200
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleError"
+                },
+                {
+                  "statusCode": 401,
+                  "error": "SampleError2"
                 }
               ]
             }
@@ -3983,25 +4050,55 @@
         },
         {
           "@type": "Operation",
-          "name": "getEnum",
+          "name": "getSimpleRecordWithError",
           "doc": "",
-          "parameters": [],
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "key",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "key",
+                  "source": "path"
+                }
+              }
+            }
+          ],
           "resultType": {
             "@type": "ReturnType",
             "array": false,
-            "variant": "enum",
-            "type": "SampleEnum",
+            "variant": "record",
+            "type": "SimpleRecord",
             "doc": ""
           },
-          "errors": [],
-          "operationErrors": [],
+          "errors": [
+            "SampleError"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleError",
+              "doc": ""
+            }
+          ],
           "meta": {
             "rest": {
               "method": "GET",
-              "path": "enum",
+              "path": "simplerecordwitherror/${key}",
               "results": [
                 {
                   "statusCode": 200
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleError"
                 }
               ]
             }
@@ -4191,6 +4288,10 @@
     {
       "@type": "Error",
       "name": "SampleError"
+    },
+    {
+      "@type": "Error",
+      "name": "SampleError2"
     }
   ]
 }
