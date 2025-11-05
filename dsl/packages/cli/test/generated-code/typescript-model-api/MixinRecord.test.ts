@@ -11,6 +11,8 @@ const Simple: MixinRecord = {
 	mValueString: 'a',
 	mValueString2: 'b',
 	sample: 'c',
+	myUnion: { '@type': 'union-a', valueA: 'value', shared: 'shared' },
+	myRecord: { key: 'key', version: 'version', value: 'value' },
 };
 
 describe('MixinRecordFromJSON', () => {

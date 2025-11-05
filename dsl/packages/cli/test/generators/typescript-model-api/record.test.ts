@@ -230,6 +230,8 @@ export type MixinRecord = {
 	readonly sample: string;
 	readonly mValueString: string;
 	readonly mValueString2: string;
+	readonly myUnion: Union;
+	readonly myRecord: SimpleRecord;
 };
 `.trim();
 
