@@ -4129,7 +4129,18 @@
             "doc": ""
           },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "boolean",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -4144,7 +4155,18 @@
             "doc": ""
           },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "short",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -4159,7 +4181,18 @@
             "doc": ""
           },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "int",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -4174,7 +4207,18 @@
             "doc": ""
           },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "long",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -4189,7 +4233,18 @@
             "doc": ""
           },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "float",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -4204,7 +4259,18 @@
             "doc": ""
           },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "double",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -4219,7 +4285,18 @@
             "doc": ""
           },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "string",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -4234,7 +4311,18 @@
             "doc": ""
           },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "localdate",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -4249,7 +4337,18 @@
             "doc": ""
           },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "localdatetime",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -4264,7 +4363,70 @@
             "doc": ""
           },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "zoneddatetime",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listScalar",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "scalar",
+            "type": "ZoneId",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "scalar",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listEnum",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "enum",
+            "type": "SampleEnum",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "enum",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -4279,9 +4441,63 @@
             "doc": ""
           },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simplerecord",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listSimpleRecordWithError",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "record",
+            "type": "SimpleRecord",
+            "doc": ""
+          },
+          "errors": [
+            "SampleError"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleError",
+              "doc": ""
+            }
+          ],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simplerecordwitherror",
+              "results": [
+                {
+                  "statusCode": 200
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleError"
+                }
+              ]
+            }
+          }
         }
-      ]
+      ],
+      "meta": {
+        "rest": {
+          "path": "/api/listsamplerecords"
+        }
+      }
     }
   ],
   "errors": [

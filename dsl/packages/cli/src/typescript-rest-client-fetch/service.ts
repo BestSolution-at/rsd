@@ -285,7 +285,29 @@ function handleOkResult(
 		) {
 			const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
 			if (o.resultType.array) {
-				// TODO
+				const isTypedArrayGuard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isTypedArray`;
+				if (isMBuiltinType(o.resultType.type)) {
+					const guard = builtinTypeGuard(o.resultType.type, config, fqn);
+					node.append(`if(!${isTypedArrayGuard}($data,${guard})) {`, NL);
+					node.indent(block => {
+						block.append(`throw new Error('Invalid result');`, NL);
+					});
+					node.append('}', NL);
+				} else if (o.resultType.variant === 'scalar') {
+					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+					node.append(`if(!${isTypedArrayGuard}($data,${guard})) {`, NL);
+					node.indent(block => {
+						block.append(`throw new Error('Invalid result');`, NL);
+					});
+					node.append('}', NL);
+				} else {
+					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
+					node.append(`if(!${isTypedArrayGuard}($data,${guard})) {`, NL);
+					node.indent(block => {
+						block.append(`throw new Error('Invalid result');`, NL);
+					});
+					node.append('}', NL);
+				}
 			} else {
 				if (isMBuiltinType(o.resultType.type)) {
 					const guard = builtinTypeGuard(o.resultType.type, config, fqn);
@@ -314,8 +336,9 @@ function handleOkResult(
 		} else {
 			const fromJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${o.resultType.type}FromJSON`;
 			if (o.resultType.array) {
-				const isArray = `${fqn(`api:${config.apiNamespacePath}`, false)}.utils.isArray`;
-				node.append(`if (!${isArray}) {`, NL);
+				const isTypedArrayGuard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isTypedArray`;
+				const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
+				node.append(`if (!${isTypedArrayGuard}($data, ${guard})) {`, NL);
 				node.indent(block => {
 					block.append(`throw new Error('Invalid result');`, NL);
 				});

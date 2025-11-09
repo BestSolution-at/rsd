@@ -1,73 +1,132 @@
 resource SampleService at '/api/samplerecords' {
-		GET getBoolean at 'boolean' => {
-				200
-		}
+	GET getBoolean at 'boolean' => {
+			200
+	}
 
-		GET getShort at 'short' => {
-				200
-		}
+	GET getShort at 'short' => {
+			200
+	}
 
-		GET getInt at 'int' => {
-				200
-		}
+	GET getInt at 'int' => {
+			200
+	}
 
-		GET getLong at 'long' => {
-				200
-		}
+	GET getLong at 'long' => {
+			200
+	}
 
-		GET getFloat at 'float' => {
-				200
-		}
+	GET getFloat at 'float' => {
+			200
+	}
 
-		GET getDouble at 'double' => {
-				200
-		}
+	GET getDouble at 'double' => {
+			200
+	}
 
-		GET getString at 'string' => {
-				200
-		}
+	GET getString at 'string' => {
+			200
+	}
 
-		GET getLocalDate at 'localdate' => {
-				200
-		}
+	GET getLocalDate at 'localdate' => {
+			200
+	}
 
-		GET getLocalDateTime at 'localdatetime' => {
-				200
-		}
+	GET getLocalDateTime at 'localdatetime' => {
+			200
+	}
 
-		GET getZonedDateTime at 'zoneddatetime' => {
-				200
-		}
+	GET getZonedDateTime at 'zoneddatetime' => {
+			200
+	}
 
-		GET getSimpleRecord at 'simplerecord/${key}' => {
-				200
-		}
+	GET getSimpleRecord at 'simplerecord/${key}' => {
+			200
+	}
 
-		GET getSimpleRecordWithError at 'simplerecordwitherror/${key}' => {
-				200
-				400: SampleError
-		}
+	GET getSimpleRecordWithError at 'simplerecordwitherror/${key}' => {
+			200
+			400: SampleError
+	}
 
-		GET getEnum at 'enum' => {
-				200
-		}
+	GET getEnum at 'enum' => {
+			200
+	}
 
-		GET getScalar at 'scalar' => {
-				200
-		}
+	GET getScalar at 'scalar' => {
+			200
+	}
 
-		GET voidOperation at 'voidoperation' => {
-				204
-		}
+	GET voidOperation at 'voidoperation' => {
+			204
+	}
 
-		GET errorOperation at 'erroroperation' => {
-				200
-				400: SampleError
-		}
+	GET errorOperation at 'erroroperation' => {
+			200
+			400: SampleError
+	}
 
-		GET multiErrorOperation at 'multierroroperation' => {
-				200
-				400: SampleError
-				401: SampleError2
-		}
+	GET multiErrorOperation at 'multierroroperation' => {
+			200
+			400: SampleError
+			401: SampleError2
+	}
+}
+
+resource ListSampleService at '/api/listsamplerecords' {
+	GET listBoolean at 'boolean' => {
+			200
+	}
+
+	GET listShort at 'short' => {
+			200
+	}
+
+	GET listInt at 'int' => {
+			200
+	}
+
+	GET listLong at 'long' => {
+			200
+	}
+
+	GET listFloat at 'float' => {
+			200
+	}
+
+	GET listDouble at 'double' => {
+			200
+	}
+
+	GET listString at 'string' => {
+			200
+	}
+
+	GET listLocalDate at 'localdate' => {
+			200
+	}
+
+	GET listLocalDateTime at 'localdatetime' => {
+			200
+	}
+
+	GET listZonedDateTime at 'zoneddatetime' => {
+			200
+	}
+
+	GET listScalar at 'scalar' => {
+			200
+	}
+	
+	GET listEnum at 'enum' => {
+			200
+	}
+
+	GET listSimpleRecord at 'simplerecord' => {
+			200
+	}
+
+	GET listSimpleRecordWithError at 'simplerecordwitherror' => {
+			200
+			400: SampleError
+	}
 }

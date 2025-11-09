@@ -492,6 +492,9 @@ service ListSampleService {
 		operation listLocalDate(): local-date[];
 		operation listLocalDateTime(): local-date-time[];
 		operation listZonedDateTime(): zoned-date-time[];
+		operation listScalar(): ZoneId[];
+		operation listEnum(): SampleEnum[];
 
 		operation listSimpleRecord(): SimpleRecord[];
+		operation listSimpleRecordWithError(): SimpleRecord[] throws SampleError;
 }
