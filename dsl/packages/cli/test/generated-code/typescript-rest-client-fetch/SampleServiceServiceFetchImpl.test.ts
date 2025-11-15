@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
 import { api, createSampleServiceService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
+import { isSampleErrorError } from '../../test-specs/gen-out/client/typescript-client/src/Errors.js';
 
 const service = createSampleServiceService({
 	baseUrl: 'http://localhost:3000',
@@ -280,6 +281,15 @@ describe('SampleServiceServiceFetchImpl', () => {
 			const [result, error] = await service.voidOperation();
 			expect(error).toBeNull();
 			expect(result).toBe(api.result.Void);
+		});
+	});
+
+	describe('errorOperation', () => {
+		test('fail - SampleError', async () => {
+			const [result, error] = await service.errorOperation();
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(isSampleErrorError(error)).toBe(true);
 		});
 	});
 });

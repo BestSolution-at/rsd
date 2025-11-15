@@ -221,6 +221,16 @@ async function voidOperation(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+async function errorOperation(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/samplerecords/erroroperation' == ctx.path) {
+		ctx.status = 400;
+		ctx.type = 'application/json';
+		ctx.body = 'My error';
+	} else {
+		await next();
+	}
+}
+
 const app = new Koa();
 
 const all = compose([
@@ -237,6 +247,7 @@ const all = compose([
 	getScalar,
 	getEnum,
 	voidOperation,
+	errorOperation,
 ]);
 app.use(all);
 app.listen(3000);
