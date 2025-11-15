@@ -231,6 +231,21 @@ async function errorOperation(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+async function multiErrorOperation(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/samplerecords/multierroroperation' == ctx.path) {
+		if (ctx.header['x-with-status-401'] === 'true') {
+			ctx.status = 401;
+		} else {
+			ctx.status = 400;
+		}
+
+		ctx.type = 'text/plain';
+		ctx.body = 'My multi error';
+	} else {
+		await next();
+	}
+}
+
 const app = new Koa();
 
 const all = compose([
@@ -248,6 +263,7 @@ const all = compose([
 	getEnum,
 	voidOperation,
 	errorOperation,
+	multiErrorOperation,
 ]);
 app.use(all);
 app.listen(3000);

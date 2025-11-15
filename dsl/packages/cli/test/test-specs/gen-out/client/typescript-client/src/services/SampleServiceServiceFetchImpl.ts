@@ -2,7 +2,9 @@
 import { safeExecute, type ServiceProps } from './_fetch-type-utils.js';
 import { api } from '../index.js';
 
-export function createSampleServiceService(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService {
+export function createSampleServiceService(
+	props: ServiceProps<api.service.ErrorType>,
+): api.service.SampleServiceService {
 	return {
 		getBoolean: fnGetBoolean(props),
 		getShort: fnGetShort(props),
@@ -38,7 +40,7 @@ function fnGetBoolean(props: ServiceProps<api.service.ErrorType>): api.service.S
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isBoolean($data)) {
+				if (!api.utils.isBoolean($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getBoolean', $data));
@@ -71,7 +73,7 @@ function fnGetShort(props: ServiceProps<api.service.ErrorType>): api.service.Sam
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getShort', $data));
@@ -104,7 +106,7 @@ function fnGetInt(props: ServiceProps<api.service.ErrorType>): api.service.Sampl
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getInt', $data));
@@ -137,7 +139,7 @@ function fnGetLong(props: ServiceProps<api.service.ErrorType>): api.service.Samp
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getLong', $data));
@@ -170,7 +172,7 @@ function fnGetFloat(props: ServiceProps<api.service.ErrorType>): api.service.Sam
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getFloat', $data));
@@ -203,7 +205,7 @@ function fnGetDouble(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getDouble', $data));
@@ -236,7 +238,7 @@ function fnGetString(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getString', $data));
@@ -269,7 +271,7 @@ function fnGetLocalDate(props: ServiceProps<api.service.ErrorType>): api.service
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getLocalDate', $data));
@@ -287,7 +289,9 @@ function fnGetLocalDate(props: ServiceProps<api.service.ErrorType>): api.service
 	};
 }
 
-function fnGetLocalDateTime(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getLocalDateTime'] {
+function fnGetLocalDateTime(
+	props: ServiceProps<api.service.ErrorType>,
+): api.service.SampleServiceService['getLocalDateTime'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
 	return async () => {
@@ -302,7 +306,7 @@ function fnGetLocalDateTime(props: ServiceProps<api.service.ErrorType>): api.ser
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getLocalDateTime', $data));
@@ -320,7 +324,9 @@ function fnGetLocalDateTime(props: ServiceProps<api.service.ErrorType>): api.ser
 	};
 }
 
-function fnGetZonedDateTime(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getZonedDateTime'] {
+function fnGetZonedDateTime(
+	props: ServiceProps<api.service.ErrorType>,
+): api.service.SampleServiceService['getZonedDateTime'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
 	return async () => {
@@ -335,7 +341,7 @@ function fnGetZonedDateTime(props: ServiceProps<api.service.ErrorType>): api.ser
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getZonedDateTime', $data));
@@ -368,7 +374,7 @@ function fnGetScalar(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getScalar', $data));
@@ -401,7 +407,7 @@ function fnGetEnum(props: ServiceProps<api.service.ErrorType>): api.service.Samp
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.model.isSampleEnum($data)) {
+				if (!api.model.isSampleEnum($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getEnum', $data));
@@ -419,7 +425,9 @@ function fnGetEnum(props: ServiceProps<api.service.ErrorType>): api.service.Samp
 	};
 }
 
-function fnVoidOperation(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['voidOperation'] {
+function fnVoidOperation(
+	props: ServiceProps<api.service.ErrorType>,
+): api.service.SampleServiceService['voidOperation'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
 	return async () => {
@@ -448,7 +456,9 @@ function fnVoidOperation(props: ServiceProps<api.service.ErrorType>): api.servic
 	};
 }
 
-function fnErrorOperation(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['errorOperation'] {
+function fnErrorOperation(
+	props: ServiceProps<api.service.ErrorType>,
+): api.service.SampleServiceService['errorOperation'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
 	return async () => {
@@ -483,7 +493,9 @@ function fnErrorOperation(props: ServiceProps<api.service.ErrorType>): api.servi
 	};
 }
 
-function fnMultiErrorOperation(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['multiErrorOperation'] {
+function fnMultiErrorOperation(
+	props: ServiceProps<api.service.ErrorType>,
+): api.service.SampleServiceService['multiErrorOperation'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
 	return async () => {
@@ -524,7 +536,9 @@ function fnMultiErrorOperation(props: ServiceProps<api.service.ErrorType>): api.
 	};
 }
 
-function fnGetSimpleRecord(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getSimpleRecord'] {
+function fnGetSimpleRecord(
+	props: ServiceProps<api.service.ErrorType>,
+): api.service.SampleServiceService['getSimpleRecord'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
 	return async (key: string) => {
@@ -539,7 +553,7 @@ function fnGetSimpleRecord(props: ServiceProps<api.service.ErrorType>): api.serv
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isRecord($data)) {
+				if (!api.utils.isRecord($data)) {
 					throw new Error('Invalid result');
 				}
 				const $result = api.model.SimpleRecordFromJSON($data);
@@ -558,7 +572,9 @@ function fnGetSimpleRecord(props: ServiceProps<api.service.ErrorType>): api.serv
 	};
 }
 
-function fnGetSimpleRecordWithError(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getSimpleRecordWithError'] {
+function fnGetSimpleRecordWithError(
+	props: ServiceProps<api.service.ErrorType>,
+): api.service.SampleServiceService['getSimpleRecordWithError'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
 	return async (key: string) => {
@@ -573,7 +589,7 @@ function fnGetSimpleRecordWithError(props: ServiceProps<api.service.ErrorType>):
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isRecord($data)) {
+				if (!api.utils.isRecord($data)) {
 					throw new Error('Invalid result');
 				}
 				const $result = api.model.SimpleRecordFromJSON($data);
@@ -597,4 +613,3 @@ function fnGetSimpleRecordWithError(props: ServiceProps<api.service.ErrorType>):
 		}
 	};
 }
-
