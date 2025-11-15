@@ -40,7 +40,7 @@ function fnListBoolean(props: ServiceProps<api.service.ErrorType>): api.service.
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listBoolean', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listBoolean', e);
@@ -73,7 +73,7 @@ function fnListShort(props: ServiceProps<api.service.ErrorType>): api.service.Li
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listShort', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listShort', e);
@@ -106,7 +106,7 @@ function fnListInt(props: ServiceProps<api.service.ErrorType>): api.service.List
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listInt', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listInt', e);
@@ -139,7 +139,7 @@ function fnListLong(props: ServiceProps<api.service.ErrorType>): api.service.Lis
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listLong', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listLong', e);
@@ -172,7 +172,7 @@ function fnListFloat(props: ServiceProps<api.service.ErrorType>): api.service.Li
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listFloat', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listFloat', e);
@@ -205,7 +205,7 @@ function fnListDouble(props: ServiceProps<api.service.ErrorType>): api.service.L
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listDouble', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listDouble', e);
@@ -238,7 +238,7 @@ function fnListString(props: ServiceProps<api.service.ErrorType>): api.service.L
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listString', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listString', e);
@@ -271,7 +271,7 @@ function fnListLocalDate(props: ServiceProps<api.service.ErrorType>): api.servic
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDate', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listLocalDate', e);
@@ -304,7 +304,7 @@ function fnListLocalDateTime(props: ServiceProps<api.service.ErrorType>): api.se
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateTime', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listLocalDateTime', e);
@@ -337,7 +337,7 @@ function fnListZonedDateTime(props: ServiceProps<api.service.ErrorType>): api.se
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listZonedDateTime', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listZonedDateTime', e);
@@ -370,7 +370,7 @@ function fnListScalar(props: ServiceProps<api.service.ErrorType>): api.service.L
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listScalar', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listScalar', e);
@@ -403,7 +403,7 @@ function fnListEnum(props: ServiceProps<api.service.ErrorType>): api.service.Lis
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listEnum', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listEnum', e);
@@ -437,7 +437,7 @@ function fnListSimpleRecord(props: ServiceProps<api.service.ErrorType>): api.ser
 				const $result = $data.map(api.model.SimpleRecordFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listSimpleRecord', $result));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listSimpleRecord', e);
@@ -477,7 +477,7 @@ function fnListSimpleRecordWithError(props: ServiceProps<api.service.ErrorType>)
 				} as const;
 				return safeExecute(api.result.ERR(err), () => onError?.('listSimpleRecordWithError', err));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('listSimpleRecordWithError', e);

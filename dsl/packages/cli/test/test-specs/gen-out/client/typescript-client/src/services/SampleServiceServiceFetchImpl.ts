@@ -43,7 +43,7 @@ function fnGetBoolean(props: ServiceProps<api.service.ErrorType>): api.service.S
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getBoolean', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getBoolean', e);
@@ -76,7 +76,7 @@ function fnGetShort(props: ServiceProps<api.service.ErrorType>): api.service.Sam
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getShort', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getShort', e);
@@ -109,7 +109,7 @@ function fnGetInt(props: ServiceProps<api.service.ErrorType>): api.service.Sampl
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getInt', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getInt', e);
@@ -142,7 +142,7 @@ function fnGetLong(props: ServiceProps<api.service.ErrorType>): api.service.Samp
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getLong', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getLong', e);
@@ -175,7 +175,7 @@ function fnGetFloat(props: ServiceProps<api.service.ErrorType>): api.service.Sam
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getFloat', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getFloat', e);
@@ -208,7 +208,7 @@ function fnGetDouble(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getDouble', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getDouble', e);
@@ -241,7 +241,7 @@ function fnGetString(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getString', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getString', e);
@@ -274,7 +274,7 @@ function fnGetLocalDate(props: ServiceProps<api.service.ErrorType>): api.service
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getLocalDate', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getLocalDate', e);
@@ -307,7 +307,7 @@ function fnGetLocalDateTime(props: ServiceProps<api.service.ErrorType>): api.ser
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getLocalDateTime', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getLocalDateTime', e);
@@ -340,7 +340,7 @@ function fnGetZonedDateTime(props: ServiceProps<api.service.ErrorType>): api.ser
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getZonedDateTime', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getZonedDateTime', e);
@@ -373,7 +373,7 @@ function fnGetScalar(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getScalar', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getScalar', e);
@@ -406,7 +406,7 @@ function fnGetEnum(props: ServiceProps<api.service.ErrorType>): api.service.Samp
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getEnum', $data));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getEnum', e);
@@ -435,7 +435,7 @@ function fnVoidOperation(props: ServiceProps<api.service.ErrorType>): api.servic
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('voidOperation', api.result.Void));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('voidOperation', e);
@@ -470,7 +470,7 @@ function fnErrorOperation(props: ServiceProps<api.service.ErrorType>): api.servi
 				} as const;
 				return safeExecute(api.result.ERR(err), () => onError?.('errorOperation', err));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('errorOperation', e);
@@ -511,7 +511,7 @@ function fnMultiErrorOperation(props: ServiceProps<api.service.ErrorType>): api.
 				} as const;
 				return safeExecute(api.result.ERR(err), () => onError?.('multiErrorOperation', err));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('multiErrorOperation', e);
@@ -545,7 +545,7 @@ function fnGetSimpleRecord(props: ServiceProps<api.service.ErrorType>): api.serv
 				const $result = api.model.SimpleRecordFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getSimpleRecord', $result));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getSimpleRecord', e);
@@ -585,7 +585,7 @@ function fnGetSimpleRecordWithError(props: ServiceProps<api.service.ErrorType>):
 				} as const;
 				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleRecordWithError', err));
 			}
-			const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
 			onCatch?.('getSimpleRecordWithError', e);

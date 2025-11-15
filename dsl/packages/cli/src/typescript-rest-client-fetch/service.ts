@@ -236,7 +236,7 @@ function generateRemoteInvoke(
 
 	node.append(
 		NL,
-		`const err = { _type: '_Status', message: $response.statusText, status: $response.status } as const;`,
+		`const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;`,
 		NL,
 	);
 	node.append('return api.result.ERR(err);');
