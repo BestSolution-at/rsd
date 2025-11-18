@@ -320,4 +320,21 @@ describe('SampleServiceServiceFetchImpl', () => {
 			expect(isSampleError2Error(error)).toBe(true);
 		});
 	});
+	describe('getSimpleRecord', () => {
+		test('success', async () => {
+			const [result, error] = await service.getSimpleRecord('123');
+			expect(error).toBeNull();
+			expect(result).toEqual({
+				key: '123',
+				version: '1',
+				value: 'Sample Name',
+			});
+		});
+		test('fail - invalid data', async () => {
+			const [result, error] = await serviceFailInvalid.getSimpleRecord('123');
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(api.service.isNativeError(error)).toBe(true);
+		});
+	});
 });

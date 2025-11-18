@@ -246,6 +246,30 @@ async function multiErrorOperation(ctx: Koa.ParameterizedContext, next: Koa.Next
 	}
 }
 
+async function getSimpleRecord(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/samplerecords/simplerecord/')) {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify({
+				a: '123',
+				b: '1',
+				c: 'Sample Name',
+			});
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify({
+			key: '123',
+			version: '1',
+			value: 'Sample Name',
+		});
+	} else {
+		await next();
+	}
+}
+
 const app = new Koa();
 
 const all = compose([
@@ -264,6 +288,7 @@ const all = compose([
 	voidOperation,
 	errorOperation,
 	multiErrorOperation,
+	getSimpleRecord,
 ]);
 app.use(all);
 app.listen(3000);
