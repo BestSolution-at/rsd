@@ -337,4 +337,13 @@ describe('SampleServiceServiceFetchImpl', () => {
 			expect(api.service.isNativeError(error)).toBe(true);
 		});
 	});
+
+	describe('getSimpleRecordWithError', () => {
+		test('fail - SampleError', async () => {
+			const [result, error] = await service.getSimpleRecordWithError('123');
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(isSampleErrorError(error)).toBe(true);
+		});
+	});
 });

@@ -270,6 +270,17 @@ async function getSimpleRecord(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+async function getSimpleRecordWithError(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/samplerecords/simplerecordwitherror/')) {
+		ctx.status = 400;
+		ctx.type = 'text/plain';
+		ctx.body = 'My error';
+		return;
+	} else {
+		await next();
+	}
+}
+
 const app = new Koa();
 
 const all = compose([
@@ -289,6 +300,7 @@ const all = compose([
 	errorOperation,
 	multiErrorOperation,
 	getSimpleRecord,
+	getSimpleRecordWithError,
 ]);
 app.use(all);
 app.listen(3000);
