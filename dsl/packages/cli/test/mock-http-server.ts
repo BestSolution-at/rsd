@@ -281,6 +281,198 @@ async function getSimpleRecordWithError(ctx: Koa.ParameterizedContext, next: Koa
 	}
 }
 
+async function listBoolean(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/listsamplerecords/boolean' == ctx.path) {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify(['a', 'b', 1]);
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify([true, false, true]);
+	} else {
+		await next();
+	}
+}
+
+async function listShort(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/listsamplerecords/short' == ctx.path) {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify(['a', 'b', true]);
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify([123, 456, 789]);
+	} else {
+		await next();
+	}
+}
+
+async function listInt(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/listsamplerecords/int' == ctx.path) {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify(['a', 'b', true]);
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify([123456, 789012, 345678]);
+	} else {
+		await next();
+	}
+}
+
+async function listLong(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/listsamplerecords/long' == ctx.path) {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify(['a', 'b', true]);
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify([1234567890123, 2345678901234, 3456789012345]);
+	} else {
+		await next();
+	}
+}
+
+async function listFloat(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/listsamplerecords/float' == ctx.path) {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify(['a', 'b', true]);
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify([12.34, 56.78, 90.12]);
+	} else {
+		await next();
+	}
+}
+
+async function listDouble(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/listsamplerecords/double' == ctx.path) {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify(['a', 'b', true]);
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify([12.3456789, 98.7654321, 54.3210987]);
+	} else {
+		await next();
+	}
+}
+
+async function listString(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/listsamplerecords/string' == ctx.path) {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify([123, true, 45.6]);
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify(['first', 'second', 'third']);
+	} else {
+		await next();
+	}
+}
+
+async function listLocalDate(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/listsamplerecords/localdate' == ctx.path) {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify([123, true, 45.6]);
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify(['2020-01-01', '2021-02-02', '2022-03-03']);
+	} else {
+		await next();
+	}
+}
+
+async function listLocalDateTime(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/listsamplerecords/localdatetime' == ctx.path) {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify([123, true, 45.6]);
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify(['2020-01-01T10:00:00', '2021-02-02T11:30:00', '2022-03-03T12:45:00']);
+	} else {
+		await next();
+	}
+}
+
+async function listZonedDateTime(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/listsamplerecords/zoneddatetime' == ctx.path) {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify([123, true, 45.6]);
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify(['2020-01-01T10:00:00Z', '2021-02-02T11:30:00Z', '2022-03-03T12:45:00Z']);
+	} else {
+		await next();
+	}
+}
+
+async function listScalar(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/listsamplerecords/scalar' == ctx.path) {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify([123, true, 45.6]);
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify(['Europe/Vienna', 'America/New_York', 'Asia/Tokyo']);
+	} else {
+		await next();
+	}
+}
+
+async function listEnum(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if ('/api/listsamplerecords/enum' == ctx.path) {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify([123, true, 45.6]);
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify(['A', 'B']);
+	} else {
+		await next();
+	}
+}
+
 const app = new Koa();
 
 const all = compose([
@@ -301,6 +493,19 @@ const all = compose([
 	multiErrorOperation,
 	getSimpleRecord,
 	getSimpleRecordWithError,
+
+	listBoolean,
+	listShort,
+	listInt,
+	listLong,
+	listFloat,
+	listDouble,
+	listString,
+	listLocalDate,
+	listLocalDateTime,
+	listZonedDateTime,
+	listScalar,
+	listEnum,
 ]);
 app.use(all);
 app.listen(3000);
