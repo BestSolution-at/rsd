@@ -473,6 +473,47 @@ async function listEnum(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+async function listSimpleRecord(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path === '/api/listsamplerecords/simplerecord') {
+		if (ctx.header['x-fail-invalid-data'] === 'true') {
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify([
+				{
+					a: '123',
+					b: '1',
+					c: 'Sample Name',
+				},
+			]);
+			return;
+		}
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = JSON.stringify([
+			{
+				key: '123',
+				version: '1',
+				value: 'Sample Name',
+			},
+		]);
+	} else {
+		await next();
+	}
+}
+
+async function listSimpleRecordWithError(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	{
+		if (ctx.path.startsWith('/api/listsamplerecords/simplerecordwitherror')) {
+			ctx.status = 400;
+			ctx.type = 'text/plain';
+			ctx.body = 'My error';
+			return;
+		} else {
+			await next();
+		}
+	}
+}
+
 const app = new Koa();
 
 const all = compose([
@@ -506,6 +547,8 @@ const all = compose([
 	listZonedDateTime,
 	listScalar,
 	listEnum,
+	listSimpleRecord,
+	listSimpleRecordWithError,
 ]);
 app.use(all);
 app.listen(3000);

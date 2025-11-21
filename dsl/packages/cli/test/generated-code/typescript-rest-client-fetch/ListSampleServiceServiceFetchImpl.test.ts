@@ -1,10 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
 import { api, createListSampleServiceService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
-import {
-	isSampleError2Error,
-	isSampleErrorError,
-} from '../../test-specs/gen-out/client/typescript-client/src/Errors.js';
+import { isSampleErrorError } from '../../test-specs/gen-out/client/typescript-client/src/Errors.js';
 
 const service = createListSampleServiceService({
 	baseUrl: 'http://localhost:3000',
@@ -220,6 +217,41 @@ describe('ListSampleServiceServiceImpl', () => {
 			expect(api.service.isNativeError(error)).toBe(true);
 			if (api.service.isNativeError(error)) {
 				expect(error.error.message).toEqual('Invalid result');
+			}
+		});
+	});
+
+	describe('listSimpleRecord', () => {
+		test('sucess', async () => {
+			const [result, error] = await service.listSimpleRecord();
+			expect(error).toBeNull();
+			expect(result).toStrictEqual([
+				{
+					key: '123',
+					version: '1',
+					value: 'Sample Name',
+				},
+			]);
+		});
+		test('fail - invalid data', async () => {
+			const [result, error] = await serviceFailInvalid.listSimpleRecord();
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(api.service.isNativeError(error)).toBe(true);
+			if (api.service.isNativeError(error)) {
+				expect(error.error.message).toEqual('Invalid result');
+			}
+		});
+	});
+
+	describe('listSimpleRecordWithError', () => {
+		test('error case - SampleErrorError', async () => {
+			const [result, error] = await service.listSimpleRecordWithError();
+			expect(result).toBeUndefined();
+			expect(error).not.toBeNull();
+			expect(isSampleErrorError(error)).toBe(true);
+			if (isSampleErrorError(error)) {
+				expect(error.message).toEqual('My error');
 			}
 		});
 	});
