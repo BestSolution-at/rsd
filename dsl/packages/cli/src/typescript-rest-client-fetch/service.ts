@@ -101,7 +101,10 @@ function generateRemoteInvoke(
 		throw new Error(`No rest meta data available for operation ${s.name}.${o.name}`);
 	}
 	const path = s.meta.rest.path;
-	const processedPath = `${path.replace(/^\//, '')}/${o.meta.rest.path}`;
+	const processedPath = `${path.replace(/^\//, '')}/${o.meta.rest.path}`.replace(
+		/\${(\w+)}/g,
+		'${encodeURIComponent($1)}',
+	);
 	const endpoint = processedPath ? `\${baseUrl}/${processedPath}` : '${baseUrl}';
 	const hasQueryParams = o.parameters.find(p => p.meta?.rest?.source === 'query');
 
@@ -172,7 +175,7 @@ function generateRemoteInvoke(
 	const bodyParams = o.parameters.filter(p => p.meta?.rest?.source === undefined);
 
 	if (bodyParams.length === 0) {
-		node.append(`const $response = await fetchAPI($path, { ...$init, method: '${o.meta?.rest?.method}' });`, NL, NL);
+		node.append(`const $response = await fetchAPI($path, { ...$init, method: '${o.meta.rest.method}' });`, NL, NL);
 	} else {
 		if (bodyParams.length === 1) {
 			if (bodyParams[0].variant === 'record' || bodyParams[0].variant === 'union') {
