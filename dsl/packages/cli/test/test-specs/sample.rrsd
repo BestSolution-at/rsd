@@ -130,3 +130,45 @@ resource ListSampleService at '/api/listsamplerecords' {
 			400: SampleError
 	}
 }
+
+resource PathParameterTypeService at '/api/pathparametertype' {
+	GET simpleBooleanPathParam at 'boolean/${pathBoolean}' => {
+			200
+	}
+	GET simpleShortPathParam at 'short/${pathShort}' => {
+			200
+	}
+	GET simpleIntPathParam at 'int/${pathInt}' => {
+			200
+	}
+	GET simpleLongPathParam at 'long/${pathLong}' => {
+			200
+	}
+	GET simpleFloatPathParam at 'float/${pathFloat}' => {
+			200
+	}
+	GET simpleDoublePathParam at 'double/${pathDouble}' => {
+			200
+	}
+	GET simpleStringPathParam at 'string/${pathString}' => {
+			200
+	}
+	GET simpleLocalDatePathParam at 'localdate/${pathLocalDate}' => {
+			200
+	}
+	GET simpleLocalDateTimePathParam at 'localdatetime/${pathLocalDateTime}' => {
+			200
+	}
+	GET simpleZonedDateTimePathParam at 'zoneddatetime/${pathZonedDateTime}' => {
+			200
+	}
+	GET simpleEnumPathParam at 'enum/${pathEnum}' => {
+			200
+	}
+	GET simpleScalarPathParam at 'scalar/${pathScalar}' => {
+			200
+	}
+	GET multiPathParam at 'multipathparam/${valueA}/${valueB}' => {
+			200
+	}
+}

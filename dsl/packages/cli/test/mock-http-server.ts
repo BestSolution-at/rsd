@@ -514,6 +514,151 @@ async function listSimpleRecordWithError(ctx: Koa.ParameterizedContext, next: Ko
 	}
 }
 
+async function simpleBooleanPathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/pathparametertype/boolean/')) {
+		const pathParam = ctx.path.substring('/api/pathparametertype/boolean/'.length);
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = pathParam === 'true' ? 'true' : 'false';
+	} else {
+		await next();
+	}
+}
+
+async function simpleShortPathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/pathparametertype/short/')) {
+		const pathParam = ctx.path.substring('/api/pathparametertype/short/'.length);
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = pathParam;
+	} else {
+		await next();
+	}
+}
+
+async function simpleIntPathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/pathparametertype/int/')) {
+		const pathParam = ctx.path.substring('/api/pathparametertype/int/'.length);
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = pathParam;
+	} else {
+		await next();
+	}
+}
+
+async function simpleLongPathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/pathparametertype/long/')) {
+		const pathParam = ctx.path.substring('/api/pathparametertype/long/'.length);
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = pathParam;
+	} else {
+		await next();
+	}
+}
+
+async function simpleFloatPathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/pathparametertype/float/')) {
+		const pathParam = ctx.path.substring('/api/pathparametertype/float/'.length);
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = pathParam;
+	} else {
+		await next();
+	}
+}
+
+async function simpleDoublePathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/pathparametertype/double/')) {
+		const pathParam = ctx.path.substring('/api/pathparametertype/double/'.length);
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = pathParam;
+	} else {
+		await next();
+	}
+}
+
+async function simpleStringPathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/pathparametertype/string/')) {
+		const pathParam = ctx.path.substring('/api/pathparametertype/string/'.length);
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = `"${decodeURIComponent(pathParam).replace(/"/g, '\\"')}"`;
+	} else {
+		await next();
+	}
+}
+
+async function simpleLocalDatePathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/pathparametertype/localdate/')) {
+		const pathParam = ctx.path.substring('/api/pathparametertype/localdate/'.length);
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = `"${decodeURIComponent(pathParam)}"`;
+	} else {
+		await next();
+	}
+}
+
+async function simpleLocalDateTimePathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/pathparametertype/localdatetime/')) {
+		const pathParam = ctx.path.substring('/api/pathparametertype/localdatetime/'.length);
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = `"${decodeURIComponent(pathParam)}"`;
+	} else {
+		await next();
+	}
+}
+
+async function simpleZonedDateTimePathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/pathparametertype/zoneddatetime/')) {
+		const pathParam = ctx.path.substring('/api/pathparametertype/zoneddatetime/'.length);
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = `"${decodeURIComponent(pathParam)}"`;
+	} else {
+		await next();
+	}
+}
+
+async function simpleScalarPathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/pathparametertype/scalar/')) {
+		const pathParam = ctx.path.substring('/api/pathparametertype/scalar/'.length);
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = `"${decodeURIComponent(pathParam)}"`;
+	} else {
+		await next();
+	}
+}
+
+async function simpleEnumPathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/pathparametertype/enum/')) {
+		const pathParam = ctx.path.substring('/api/pathparametertype/enum/'.length);
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = `"${decodeURIComponent(pathParam)}"`;
+	} else {
+		await next();
+	}
+}
+
+async function multiPathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path.startsWith('/api/pathparametertype/multipathparam/')) {
+		const parts = ctx.path.substring('/api/pathparametertype/multipathparam/'.length).split('/');
+		const valueA = decodeURIComponent(parts[0]);
+		const valueB = decodeURIComponent(parts[1]);
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = `"${valueA}-${valueB}"`;
+	} else {
+		await next();
+	}
+}
+
 const app = new Koa();
 
 const all = compose([
@@ -549,6 +694,20 @@ const all = compose([
 	listEnum,
 	listSimpleRecord,
 	listSimpleRecordWithError,
+
+	simpleBooleanPathParam,
+	simpleShortPathParam,
+	simpleIntPathParam,
+	simpleLongPathParam,
+	simpleFloatPathParam,
+	simpleDoublePathParam,
+	simpleStringPathParam,
+	simpleLocalDatePathParam,
+	simpleLocalDateTimePathParam,
+	simpleZonedDateTimePathParam,
+	simpleScalarPathParam,
+	simpleEnumPathParam,
+	multiPathParam,
 ]);
 app.use(all);
 app.listen(3000);

@@ -459,6 +459,7 @@ record MixinRecord {
 error SampleError;
 error SampleError2;
 
+
 service SampleService {
 		operation getBoolean(): boolean;
 		operation getShort(): short;
@@ -497,4 +498,81 @@ service ListSampleService {
 
 		operation listSimpleRecord(): SimpleRecord[];
 		operation listSimpleRecordWithError(): SimpleRecord[] throws SampleError;
+}
+
+
+service PathParameterTypeService {
+	operation simpleBooleanPathParam(
+		pathBoolean: boolean
+	): boolean;
+	operation simpleShortPathParam(
+		pathShort: short
+	): short;
+	operation simpleIntPathParam(
+		pathInt: int
+	): int;
+	operation simpleLongPathParam(
+		pathLong: long
+	): long;
+	operation simpleFloatPathParam(
+		pathFloat: float
+	): float;
+	operation simpleDoublePathParam(
+		pathDouble: double
+	): double;
+	operation simpleStringPathParam(
+		pathString: string
+	): string;
+	operation simpleLocalDatePathParam(
+		pathLocalDate: local-date
+	): local-date;
+	operation simpleLocalDateTimePathParam(
+		pathLocalDateTime: local-date-time
+	): local-date-time;
+	operation simpleZonedDateTimePathParam(
+		pathZonedDateTime: zoned-date-time
+	): zoned-date-time;
+	operation simpleScalarPathParam(
+		pathScalar: ZoneId
+	): ZoneId;
+	operation simpleEnumPathParam(
+		pathEnum: SampleEnum
+	): SampleEnum;
+	operation multiPathParam(valueA: string, valueB: int): string;
+}
+
+service BodyParameterTypes {
+	operation simpleBooleanBodyParam(
+		bodyBoolean: boolean
+	);
+	operation simpleShortBodyParam(
+		bodyShort: short
+	);
+	operation simpleIntBodyParam(
+		bodyInt: int
+	);
+	operation simpleLongBodyParam(
+		bodyLong: long
+	);
+	operation simpleFloatBodyParam(
+		bodyFloat: float
+	);
+	operation simpleDoubleBodyParam(
+		bodyDouble: double
+	);
+	operation simpleStringBodyParam(
+		bodyString: string
+	);
+	operation simpleLocalDateBodyParam(
+		bodyLocalDate: local-date
+	);
+	operation simpleLocalDateTimeBodyParam(
+		bodyLocalDateTime: local-date-time
+	);
+	operation simpleZonedDateTimeBodyParam(
+		bodyZonedDateTime: zoned-date-time
+	);
+	operation simpleScalarBodyParam(
+		bodyScalar: ZoneId
+	);
 }

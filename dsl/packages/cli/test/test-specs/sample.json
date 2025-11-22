@@ -4498,6 +4498,834 @@
           "path": "/api/listsamplerecords"
         }
       }
+    },
+    {
+      "@type": "Service",
+      "name": "PathParameterTypeService",
+      "doc": "",
+      "operations": [
+        {
+          "@type": "Operation",
+          "name": "simpleBooleanPathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathBoolean",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "boolean",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathBoolean",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "boolean",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "boolean/${pathBoolean}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleShortPathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathShort",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "short",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathShort",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "short",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "short/${pathShort}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleIntPathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathInt",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathInt",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "int/${pathInt}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLongPathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathLong",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "long",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathLong",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "long",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "long/${pathLong}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleFloatPathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathFloat",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "float",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathFloat",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "float",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "float/${pathFloat}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleDoublePathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathDouble",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "double",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathDouble",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "double",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "double/${pathDouble}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleStringPathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathString",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathString",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "string/${pathString}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalDatePathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathLocalDate",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathLocalDate",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "local-date",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "localdate/${pathLocalDate}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalDateTimePathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathLocalDateTime",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathLocalDateTime",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "local-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "localdatetime/${pathLocalDateTime}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleZonedDateTimePathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathZonedDateTime",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "zoned-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathZonedDateTime",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "zoned-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "zoneddatetime/${pathZonedDateTime}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleScalarPathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathScalar",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathScalar",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "scalar",
+            "type": "ZoneId",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "scalar/${pathScalar}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleEnumPathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathEnum",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "SampleEnum",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathEnum",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "SampleEnum",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "enum/${pathEnum}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "multiPathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "valueA",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueA",
+                  "source": "path"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueB",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueB",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "multipathparam/${valueA}/${valueB}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "meta": {
+        "rest": {
+          "path": "/api/pathparametertype"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "BodyParameterTypes",
+      "doc": "",
+      "operations": [
+        {
+          "@type": "Operation",
+          "name": "simpleBooleanBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyBoolean",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "boolean",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleShortBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyShort",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "short",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleIntBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyInt",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLongBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLong",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "long",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleFloatBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyFloat",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "float",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleDoubleBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyDouble",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "double",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleStringBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyString",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalDateBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalDate",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalDateTimeBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalDateTime",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date-time",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleZonedDateTimeBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyZonedDateTime",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "zoned-date-time",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": []
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleScalarBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyScalar",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": []
+        }
+      ]
     }
   ],
   "errors": [
