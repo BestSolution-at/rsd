@@ -1,5 +1,5 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
-import { MResolvedUnionType } from '../model.js';
+import { isMResolvedProperty, MResolvedUnionType } from '../model.js';
 import { generatePatchPropertyAccessor, generatePropertyAccessor } from './shared.js';
 import { toNode } from '../util.js';
 
@@ -67,7 +67,14 @@ function generatePatch(
 	return toNode([
 		//
 		`public interface Patch extends _Base.BaseData, ${t.name} {`,
-		t.resolved.sharedProps.flatMap(p => [generatePatchPropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn)]),
+		t.resolved.sharedProps
+			.filter(p => {
+				if (isMResolvedProperty(p)) {
+					return !p.readonly;
+				}
+				return true;
+			})
+			.flatMap(p => [generatePatchPropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn)]),
 		'}',
 	]);
 }
