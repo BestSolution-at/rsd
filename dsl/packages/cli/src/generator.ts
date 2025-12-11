@@ -293,12 +293,21 @@ function mapParameter(parameter: Parameter, docMap: Map<string, string>): MParam
 }
 
 function mapReturnType(returnType: ReturnType, doc: string): MReturnType {
+	if (returnType.stream) {
+		return {
+			'@type': 'ReturnType',
+			array: returnType.array,
+			arrayMaxLength: returnType.maxLength,
+			variant: 'stream',
+			type: returnType.stream,
+			doc,
+		};
+	}
 	return {
 		'@type': 'ReturnType',
 		array: returnType.array,
 		arrayMaxLength: returnType.maxLength,
-		variant: returnType.stream ? 'stream' : computeVariant(returnType),
-		type: returnType.stream ?? computeType(returnType),
+		...computeTypeAndVariant(returnType),
 		doc,
 	};
 }

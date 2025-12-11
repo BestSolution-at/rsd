@@ -321,14 +321,25 @@ export type MParameter = {
 	};
 };
 
-export type MReturnType = {
+export type MReturnTypeInlineEnumType = {
 	'@type': 'ReturnType';
-	variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'inline-enum' | 'stream';
-	type: string | MInlineEnumType;
+	variant: 'inline-enum';
+	type: MInlineEnumType;
 	array: boolean;
 	arrayMaxLength?: number;
 	doc: string;
 };
+
+export type MReturnTypeNoneInlineEnumType = {
+	'@type': 'ReturnType';
+	variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'stream';
+	type: string;
+	array: boolean;
+	arrayMaxLength?: number;
+	doc: string;
+};
+
+export type MReturnType = MReturnTypeInlineEnumType | MReturnTypeNoneInlineEnumType;
 
 export type MError = {
 	'@type': 'Error';

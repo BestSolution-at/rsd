@@ -118,7 +118,7 @@ function toResultType(
 		if (type.array) {
 			return `${fqn('java.util.List')}<${resolveObjectType(type.type, artifactConfig.nativeTypeSubstitues, fqn)}>`;
 		} else {
-			return `${resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false)}`;
+			return resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false);
 		}
 	}
 	return type.type;
