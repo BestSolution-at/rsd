@@ -5122,8 +5122,26 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "boolean",
+            "doc": ""
+          },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleBooleanBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -5142,8 +5160,26 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "short",
+            "doc": ""
+          },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleShortBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -5162,8 +5198,26 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleIntBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -5182,8 +5236,26 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "long",
+            "doc": ""
+          },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleLongBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -5202,8 +5274,26 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "float",
+            "doc": ""
+          },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleFloatBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -5222,8 +5312,26 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "double",
+            "doc": ""
+          },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleDoubleBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -5242,8 +5350,26 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleStringBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -5262,8 +5388,26 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "local-date",
+            "doc": ""
+          },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleLocalDateBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -5282,8 +5426,26 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "local-date-time",
+            "doc": ""
+          },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleLocalDateTimeBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -5302,8 +5464,26 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "zoned-date-time",
+            "doc": ""
+          },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleZonedDateTimeBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         },
         {
           "@type": "Operation",
@@ -5322,10 +5502,220 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "scalar",
+            "type": "ZoneId",
+            "doc": ""
+          },
           "errors": [],
-          "operationErrors": []
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleScalarBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleEnumBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyEnum",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "SampleEnum",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "SampleEnum",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleEnumBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleInlineEnumBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyEnum",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "inline-enum",
+              "type": {
+                "@type": "InlineEnumType",
+                "entries": [
+                  {
+                    "@type": "EnumEntry",
+                    "name": "A"
+                  },
+                  {
+                    "@type": "EnumEntry",
+                    "name": "B"
+                  }
+                ]
+              },
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "inline-enum",
+            "type": {
+              "@type": "InlineEnumType",
+              "entries": [
+                {
+                  "@type": "EnumEntry",
+                  "name": "A"
+                },
+                {
+                  "@type": "EnumEntry",
+                  "name": "B"
+                }
+              ]
+            },
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleInlineEnumBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "multiBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "valueA",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueB",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "multiBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "recordBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyRecord",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "SimpleRecord",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "recordBodyParam",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
         }
-      ]
+      ],
+      "meta": {
+        "rest": {
+          "path": "/api/bodyparametertypes"
+        }
+      }
     }
   ],
   "errors": [

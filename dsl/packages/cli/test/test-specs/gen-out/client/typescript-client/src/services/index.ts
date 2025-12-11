@@ -2,3 +2,4 @@
 export * from './SampleServiceServiceFetchImpl.js'
 export * from './ListSampleServiceServiceFetchImpl.js'
 export * from './PathParameterTypeServiceServiceFetchImpl.js'
+export * from './BodyParameterTypesServiceFetchImpl.js'

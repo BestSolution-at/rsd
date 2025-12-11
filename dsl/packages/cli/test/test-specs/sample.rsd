@@ -544,35 +544,45 @@ service PathParameterTypeService {
 service BodyParameterTypes {
 	operation simpleBooleanBodyParam(
 		bodyBoolean: boolean
-	);
+	): boolean;
 	operation simpleShortBodyParam(
 		bodyShort: short
-	);
+	): short;
 	operation simpleIntBodyParam(
 		bodyInt: int
-	);
+	): int;
 	operation simpleLongBodyParam(
 		bodyLong: long
-	);
+	): long;
 	operation simpleFloatBodyParam(
 		bodyFloat: float
-	);
+	): float;
 	operation simpleDoubleBodyParam(
 		bodyDouble: double
-	);
+	): double;
 	operation simpleStringBodyParam(
 		bodyString: string
-	);
+	): string;
 	operation simpleLocalDateBodyParam(
 		bodyLocalDate: local-date
-	);
+	): local-date;
 	operation simpleLocalDateTimeBodyParam(
 		bodyLocalDateTime: local-date-time
-	);
+	): local-date-time;
 	operation simpleZonedDateTimeBodyParam(
 		bodyZonedDateTime: zoned-date-time
-	);
+	): zoned-date-time;
 	operation simpleScalarBodyParam(
 		bodyScalar: ZoneId
-	);
+	): ZoneId;
+	operation simpleEnumBodyParam(
+		bodyEnum: SampleEnum
+	): SampleEnum;
+	operation simpleInlineEnumBodyParam(
+		bodyEnum: enum A | B
+	): enum A | B;
+	operation multiBodyParam(valueA: string, valueB: int): string;
+	operation recordBodyParam(
+		bodyRecord: SimpleRecord
+	): SimpleRecord;
 }
