@@ -278,6 +278,20 @@ function mapOperation(operation: Operation): MOperation {
 }
 
 function mapParameter(parameter: Parameter, docMap: Map<string, string>): MParameter {
+	if (parameter.namedType.stream) {
+		return {
+			'@type': 'Parameter',
+			name: parameter.namedType.name,
+			array: parameter.namedType.array,
+			arrayMaxLength: parameter.namedType.maxLength,
+			nullable: parameter.namedType.nullable,
+			optional: parameter.namedType.optional,
+			patch: parameter.patch,
+			variant: 'stream',
+			type: parameter.namedType.stream,
+			doc: docMap.get(parameter.namedType.name) ?? '',
+		};
+	}
 	return {
 		'@type': 'Parameter',
 		name: parameter.namedType.name,
@@ -286,8 +300,7 @@ function mapParameter(parameter: Parameter, docMap: Map<string, string>): MParam
 		nullable: parameter.namedType.nullable,
 		optional: parameter.namedType.optional,
 		patch: parameter.patch,
-		variant: parameter.namedType.stream ? 'stream' : computeVariant(parameter.namedType),
-		type: parameter.namedType.stream ?? computeType(parameter.namedType),
+		...computeTypeAndVariant(parameter.namedType),
 		doc: docMap.get(parameter.namedType.name) ?? '',
 	};
 }
@@ -447,42 +460,6 @@ function computeTypeAndVariant(
 			} else if (isScalarType(ref)) {
 				return { variant: 'scalar', type: ref.name };
 			}
-		}
-	}
-	throw new Error();
-}
-
-function computeType(namedType: Pick<NamedType, 'inlineEnum' | 'typeRef'>) {
-	if (namedType.inlineEnum) {
-		const rv: MInlineEnumType = {
-			'@type': 'InlineEnumType',
-			entries: namedType.inlineEnum.entries.map(mapEnumEntry),
-		};
-		return rv;
-	} else if (namedType.typeRef) {
-		if (namedType.typeRef.builtin) {
-			return namedType.typeRef.builtin;
-		} else {
-			return namedType.typeRef.refType?.ref?.name ?? '**fail**';
-		}
-	}
-	throw new Error();
-}
-
-function computeVariant(namedType: Pick<NamedType, 'inlineEnum' | 'typeRef'>) {
-	if (namedType.inlineEnum) {
-		return 'inline-enum';
-	} else if (namedType.typeRef) {
-		if (namedType.typeRef.builtin) {
-			return 'builtin';
-		} else if (isEnumType(namedType.typeRef.refType?.ref)) {
-			return 'enum';
-		} else if (isUnionType(namedType.typeRef.refType?.ref)) {
-			return 'union';
-		} else if (isRecordType(namedType.typeRef.refType?.ref)) {
-			return 'record';
-		} else if (isScalarType(namedType.typeRef.refType?.ref)) {
-			return 'scalar';
 		}
 	}
 	throw new Error();

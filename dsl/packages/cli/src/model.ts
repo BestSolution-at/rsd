@@ -302,7 +302,7 @@ export type MResolvedOperation = MOperation & {
 	};
 };
 
-export type MParameter = {
+export type MParameterInlineEnumType = {
 	'@type': 'Parameter';
 	name: string;
 	patch: boolean;
@@ -310,8 +310,8 @@ export type MParameter = {
 	arrayMaxLength?: number;
 	optional: boolean;
 	nullable: boolean;
-	variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'inline-enum' | 'stream';
-	type: string | MInlineEnumType;
+	variant: 'inline-enum';
+	type: MInlineEnumType;
 	doc: string;
 	meta?: {
 		rest?: {
@@ -320,6 +320,27 @@ export type MParameter = {
 		};
 	};
 };
+
+export type MParameterNoneInlineEnumType = {
+	'@type': 'Parameter';
+	name: string;
+	patch: boolean;
+	array: boolean;
+	arrayMaxLength?: number;
+	optional: boolean;
+	nullable: boolean;
+	variant: 'enum' | 'builtin' | 'scalar' | 'union' | 'record' | 'stream';
+	type: string;
+	doc: string;
+	meta?: {
+		rest?: {
+			source: 'path' | 'header' | 'query' | 'cookie';
+			name: string;
+		};
+	};
+};
+
+export type MParameter = MParameterInlineEnumType | MParameterNoneInlineEnumType;
 
 export type MReturnTypeInlineEnumType = {
 	'@type': 'ReturnType';

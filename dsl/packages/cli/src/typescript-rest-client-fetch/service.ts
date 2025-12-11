@@ -1,8 +1,10 @@
 import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import {
+	isMBuiltinNumericType,
 	isMBuiltinType,
 	isMInlineEnumType,
 	MBuiltinType,
+	MInlineEnumType,
 	MParameter,
 	MResolvedOperation,
 	MResolvedService,
@@ -35,6 +37,30 @@ function generateServiceContent(
 	const ServiceProps = fqn('ServiceProps:./_fetch-type-utils.ts', true);
 	const ErrorType = `${fqn(`api:${config.apiNamespacePath}`, false)}.service.ErrorType`;
 	const Service = `${fqn(`api:${config.apiNamespacePath}`, false)}.service.${s.name}Service`;
+
+	s.operations
+		.filter(o => o.resultType?.variant === 'inline-enum')
+		.forEach(o => {
+			const type = o.resultType?.type as MInlineEnumType;
+			console.log(type);
+			node.append(
+				`function is${toFirstUpper(o.name)}Result(value: unknown): value is ${type.entries.map(e => `'${e.name}'`).join(' | ')} {`,
+				NL,
+			);
+			node.indent(body => {
+				body.append('return ');
+				body.append(
+					type.entries
+						.map(e => {
+							return `value === '${e.name}'`;
+						})
+						.join(' || '),
+				);
+				body.append(';', NL);
+			});
+			node.append('}', NL, NL);
+		});
+
 	node.append(`export function create${s.name}Service(props: ${ServiceProps}<${ErrorType}>): ${Service} {`, NL);
 	node.indent(mBody => {
 		mBody.append('return {', NL);
@@ -183,8 +209,10 @@ function generateRemoteInvoke(
 					bodyParams[0].type + (bodyParams[0].patch ? 'Patch' : '')
 				}ToJSON`;
 				node.append(`const $body = JSON.stringify(${toJSON}(${bodyParams[0].name}));`, NL);
+			} else if (isMBuiltinNumericType(bodyParams[0].type) || bodyParams[0].type === 'boolean') {
+				node.append(`const $body = String(${bodyParams[0].name});`, NL);
 			} else {
-				node.append(`const $body = \`\${${bodyParams[0].name}}\`;`, NL);
+				node.append(`const $body = \`"\${${bodyParams[0].name}}"\`;`, NL);
 			}
 		} else {
 			node.append(`const $body = JSON.stringify({`, NL);
@@ -197,7 +225,7 @@ function generateRemoteInvoke(
 						)}.model.${p.type + (p.patch ? 'Patch' : '')}ToJSON`;
 						struct.append(`${p.name}: ${toJSON}(${p.name}),`, NL);
 					} else {
-						struct.append(`${p.name}: \`\${${p.name}}\`,`, NL);
+						struct.append(`${p.name},`, NL);
 					}
 				});
 			});
@@ -303,6 +331,13 @@ function handleOkResult(
 						block.append(`throw new Error('Invalid result');`, NL);
 					});
 					node.append('}', NL);
+				} else if (o.resultType.variant === 'inline-enum') {
+					const guard = `is${o.name}Result`;
+					node.append(`if(!${isTypedArrayGuard}($data,${guard})) {`, NL);
+					node.indent(block => {
+						block.append(`throw new Error('Invalid result');`, NL);
+					});
+					node.append('}', NL);
 				} else {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
 					node.append(`if(!${isTypedArrayGuard}($data,${guard})) {`, NL);
@@ -321,6 +356,13 @@ function handleOkResult(
 					node.append('}', NL);
 				} else if (o.resultType.variant === 'scalar') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+					node.append(`if(!${guard}($data)) {`, NL);
+					node.indent(block => {
+						block.append(`throw new Error('Invalid result');`, NL);
+					});
+					node.append('}', NL);
+				} else if (o.resultType.variant === 'inline-enum') {
+					const guard = `is${toFirstUpper(o.name)}Result`;
 					node.append(`if(!${guard}($data)) {`, NL);
 					node.indent(block => {
 						block.append(`throw new Error('Invalid result');`, NL);
