@@ -119,7 +119,7 @@ function generatePatch(
 		classBody.append(
 			...props
 				.filter(isMResolvedProperty)
-				.filter(p => p.readonly === false)
+				.filter(p => !p.readonly)
 				.flatMap(p => [generatePatchPropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn), NL]),
 		);
 	});
@@ -136,7 +136,7 @@ function ChangeTypes(
 	return toNode([
 		...props
 			.filter(isMResolvedProperty)
-			.filter(p => p.readonly === false)
+			.filter(p => !p.readonly)
 			.filter(p => p.array)
 			.flatMap(p => [
 				ChangeType(p),
@@ -208,7 +208,7 @@ function generatePatchBuilder(
 		classBody.append(
 			...props
 				.filter(isMResolvedProperty)
-				.filter(p => p.readonly === false)
+				.filter(p => !p.readonly)
 				.flatMap(p => [generatePatchBuilderPropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn), NL]),
 		);
 	});
