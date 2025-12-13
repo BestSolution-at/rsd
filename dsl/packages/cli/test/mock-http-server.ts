@@ -1,6 +1,8 @@
 import Koa from 'koa';
 import compose from 'koa-compose';
 
+import raw from 'raw-body';
+
 async function getBoolean(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	if ('/api/samplerecords/boolean' == ctx.path) {
 		if (ctx.header['x-fail-unknown-status'] === 'true') {
@@ -659,6 +661,44 @@ async function multiPathParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+const bodyParamPaths = [
+	'/api/bodyparametertypes/simpleBooleanBodyParam',
+	'/api/bodyparametertypes/simpleShortBodyParam',
+	'/api/bodyparametertypes/simpleIntBodyParam',
+	'/api/bodyparametertypes/simpleLongBodyParam',
+	'/api/bodyparametertypes/simpleFloatBodyParam',
+	'/api/bodyparametertypes/simpleDoubleBodyParam',
+	'/api/bodyparametertypes/simpleStringBodyParam',
+	'/api/bodyparametertypes/simpleLocalDateBodyParam',
+	'/api/bodyparametertypes/simpleLocalDateTimeBodyParam',
+	'/api/bodyparametertypes/simpleZonedDateTimeBodyParam',
+	'/api/bodyparametertypes/simpleScalarBodyParam',
+	'/api/bodyparametertypes/simpleEnumBodyParam',
+	'/api/bodyparametertypes/simpleInlineEnumBodyParam',
+	'/api/bodyparametertypes/multiBodyParam',
+	'/api/bodyparametertypes/recordBodyParam',
+];
+
+async function bodyParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (bodyParamPaths.includes(ctx.path) && ctx.method === 'POST') {
+		const str = await raw(ctx.req, { encoding: 'utf-8' });
+		if (ctx.path === '/api/bodyparametertypes/multiBodyParam') {
+			const body = JSON.parse(str) as { valueA: string; valueB: string };
+			const response = `${body.valueA}-${body.valueB}`;
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = `"${response}"`;
+			return;
+		}
+
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = str;
+	} else {
+		await next();
+	}
+}
+
 const app = new Koa();
 
 const all = compose([
@@ -708,6 +748,8 @@ const all = compose([
 	simpleScalarPathParam,
 	simpleEnumPathParam,
 	multiPathParam,
+
+	bodyParam,
 ]);
 app.use(all);
 app.listen(3000);
