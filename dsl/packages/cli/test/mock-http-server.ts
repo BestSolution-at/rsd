@@ -718,7 +718,7 @@ const listBodyParamPaths = [
 ];
 
 async function listBodyParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
-	if (listBodyParamPaths.includes(ctx.path) && ctx.method === 'POST') {
+	if (listBodyParamPaths.includes(ctx.path) && ctx.method === 'PUT') {
 		const str = await raw(ctx.req, { encoding: 'utf-8' });
 		if (ctx.path === '/api/listbodyparametertypes/listMultiBodyParam') {
 			const body = JSON.parse(str) as { valueA: string[]; valueB: number[] };

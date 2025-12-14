@@ -6339,7 +6339,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listBooleanBodyParam",
               "results": []
             }
@@ -6373,7 +6373,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listShortBodyParam",
               "results": []
             }
@@ -6407,7 +6407,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listIntBodyParam",
               "results": []
             }
@@ -6441,7 +6441,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listLongBodyParam",
               "results": []
             }
@@ -6475,7 +6475,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listFloatBodyParam",
               "results": []
             }
@@ -6509,7 +6509,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listDoubleBodyParam",
               "results": []
             }
@@ -6543,7 +6543,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listStringBodyParam",
               "results": []
             }
@@ -6577,7 +6577,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listLocalDateBodyParam",
               "results": []
             }
@@ -6611,7 +6611,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listLocalDateTimeBodyParam",
               "results": []
             }
@@ -6645,7 +6645,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listZonedDateTimeBodyParam",
               "results": []
             }
@@ -6679,7 +6679,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listScalarBodyParam",
               "results": []
             }
@@ -6713,7 +6713,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listEnumBodyParam",
               "results": []
             }
@@ -6771,7 +6771,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listInlineEnumBodyParam",
               "results": []
             }
@@ -6816,7 +6816,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listMultiBodyParam",
               "results": []
             }
@@ -6850,7 +6850,7 @@
           "operationErrors": [],
           "meta": {
             "rest": {
-              "method": "POST",
+              "method": "PUT",
               "path": "listRecordBodyParam",
               "results": []
             }
