@@ -110,4 +110,33 @@ describe('BodyParameterTypesServiceFetchImpl', () => {
 			expect(result).toBe('Hello-1');
 		});
 	});
+	describe('recordBodyParam', () => {
+		test('success - valueA: foo, valueB: 42', async () => {
+			const [result, error] = await service.recordBodyParam({ key: '1', version: '1', value: 'foo' });
+			expect(error).toBeNull();
+			expect(result).toEqual({ key: '1', version: '1', value: 'foo' });
+		});
+	});
+	describe('unionBodyParam', () => {
+		test('success - string value', async () => {
+			const [result, error] = await service.unionBodyParam({
+				'@type': 'union-a',
+				valueA: 'testString',
+				shared: 'shared',
+			});
+			expect(error).toBeNull();
+			expect(result).toEqual({
+				'@type': 'union-a',
+				valueA: 'testString',
+				shared: 'shared',
+			});
+		});
+	});
+	describe('patchableRecordBodyParam', () => {
+		test('success - valueA: foo, valueB: 42', async () => {
+			const [result, error] = await service.patchableRecordBodyParam({ key: '1', version: '1', value: 'patchedValue' });
+			expect(error).toBeNull();
+			expect(result).toEqual({ key: '1', version: '1', value: 'patchedValue' });
+		});
+	});
 });

@@ -677,6 +677,7 @@ const bodyParamPaths = [
 	'/api/bodyparametertypes/simpleInlineEnumBodyParam',
 	'/api/bodyparametertypes/multiBodyParam',
 	'/api/bodyparametertypes/recordBodyParam',
+	'/api/bodyparametertypes/unionBodyParam',
 ];
 
 async function bodyParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
@@ -691,6 +692,17 @@ async function bodyParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 			return;
 		}
 
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = str;
+	} else {
+		await next();
+	}
+}
+
+async function bodyPatchParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path === '/api/bodyparametertypes/patchableRecordBodyParam' && ctx.method === 'PATCH') {
+		const str = await raw(ctx.req, { encoding: 'utf-8' });
 		ctx.status = 200;
 		ctx.type = 'application/json';
 		ctx.body = str;
@@ -839,6 +851,7 @@ const all = compose([
 	multiPathParam,
 
 	bodyParam,
+	bodyPatchParam,
 	listBodyParam,
 	headerParam,
 	multiHeaderParam,

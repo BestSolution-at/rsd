@@ -5135,11 +5135,7 @@
             "rest": {
               "method": "POST",
               "path": "simpleBooleanBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5173,11 +5169,7 @@
             "rest": {
               "method": "POST",
               "path": "simpleShortBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5211,11 +5203,7 @@
             "rest": {
               "method": "POST",
               "path": "simpleIntBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5249,11 +5237,7 @@
             "rest": {
               "method": "POST",
               "path": "simpleLongBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5287,11 +5271,7 @@
             "rest": {
               "method": "POST",
               "path": "simpleFloatBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5325,11 +5305,7 @@
             "rest": {
               "method": "POST",
               "path": "simpleDoubleBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5363,11 +5339,7 @@
             "rest": {
               "method": "POST",
               "path": "simpleStringBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5401,11 +5373,7 @@
             "rest": {
               "method": "POST",
               "path": "simpleLocalDateBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5439,11 +5407,7 @@
             "rest": {
               "method": "POST",
               "path": "simpleLocalDateTimeBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5477,11 +5441,7 @@
             "rest": {
               "method": "POST",
               "path": "simpleZonedDateTimeBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5515,11 +5475,7 @@
             "rest": {
               "method": "POST",
               "path": "simpleScalarBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5553,11 +5509,7 @@
             "rest": {
               "method": "POST",
               "path": "simpleEnumBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5615,11 +5567,7 @@
             "rest": {
               "method": "POST",
               "path": "simpleInlineEnumBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5664,11 +5612,7 @@
             "rest": {
               "method": "POST",
               "path": "multiBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
             }
           }
         },
@@ -5702,11 +5646,75 @@
             "rest": {
               "method": "POST",
               "path": "recordBodyParam",
-              "results": [
-                {
-                  "statusCode": 200
-                }
-              ]
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "unionBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyUnion",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "union",
+              "type": "Union",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "union",
+            "type": "Union",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "unionBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "patchableRecordBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyRecord",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": true,
+              "variant": "record",
+              "type": "PatchableRecord",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "PatchableRecord",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PATCH",
+              "path": "patchableRecordBodyParam",
+              "results": []
             }
           }
         }

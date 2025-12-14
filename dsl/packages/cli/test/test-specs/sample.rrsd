@@ -174,51 +174,23 @@ resource PathParameterTypeService at '/api/pathparametertype' {
 }
 
 resource BodyParameterTypes at '/api/bodyparametertypes' {
-	POST simpleBooleanBodyParam at 'simpleBooleanBodyParam' => {
-			200
-	}
-	POST simpleShortBodyParam at 'simpleShortBodyParam' => {
-			200
-	}
-	POST simpleIntBodyParam at 'simpleIntBodyParam' => {
-			200
-	}
-	POST simpleLongBodyParam at 'simpleLongBodyParam' => {
-			200
-	}
-	POST simpleFloatBodyParam at 'simpleFloatBodyParam' => {
-			200
-	}
-	POST simpleDoubleBodyParam at 'simpleDoubleBodyParam' => {
-			200
-	}
-	POST simpleStringBodyParam at 'simpleStringBodyParam' => {
-			200
-	}
-	POST simpleLocalDateBodyParam at 'simpleLocalDateBodyParam' => {
-			200
-	}
-	POST simpleLocalDateTimeBodyParam at 'simpleLocalDateTimeBodyParam' => {
-			200
-	}
-	POST simpleZonedDateTimeBodyParam at 'simpleZonedDateTimeBodyParam' => {
-			200
-	}
-	POST simpleScalarBodyParam at 'simpleScalarBodyParam' => {
-			200
-	}
-	POST simpleEnumBodyParam at 'simpleEnumBodyParam' => {
-			200
-	}
-	POST simpleInlineEnumBodyParam at 'simpleInlineEnumBodyParam' => {
-			200
-	}
-	POST multiBodyParam at 'multiBodyParam' => {
-			200
-	}
-	POST recordBodyParam at 'recordBodyParam' => {
-			200
-	}
+	POST simpleBooleanBodyParam at 'simpleBooleanBodyParam'
+	POST simpleShortBodyParam at 'simpleShortBodyParam'
+	POST simpleIntBodyParam at 'simpleIntBodyParam'
+	POST simpleLongBodyParam at 'simpleLongBodyParam'
+	POST simpleFloatBodyParam at 'simpleFloatBodyParam'
+	POST simpleDoubleBodyParam at 'simpleDoubleBodyParam'
+	POST simpleStringBodyParam at 'simpleStringBodyParam'
+	POST simpleLocalDateBodyParam at 'simpleLocalDateBodyParam'
+	POST simpleLocalDateTimeBodyParam at 'simpleLocalDateTimeBodyParam'
+	POST simpleZonedDateTimeBodyParam at 'simpleZonedDateTimeBodyParam'
+	POST simpleScalarBodyParam at 'simpleScalarBodyParam'
+	POST simpleEnumBodyParam at 'simpleEnumBodyParam'
+	POST simpleInlineEnumBodyParam at 'simpleInlineEnumBodyParam'
+	POST multiBodyParam at 'multiBodyParam'
+	POST recordBodyParam at 'recordBodyParam'
+	PATCH patchableRecordBodyParam at 'patchableRecordBodyParam'
+	POST unionBodyParam at 'unionBodyParam'
 }
 
 resource HeaderParameterTypes at '/api/headerparametertypes' {

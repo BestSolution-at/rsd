@@ -34,7 +34,7 @@ function fnSimpleBooleanHeaderParam(props: ServiceProps<api.service.ErrorType>):
 			const $path = `${baseUrl}/api/headerparametertypes/simpleBooleanHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.utils.isBoolean($data)) {
 					throw new Error('Invalid result');
@@ -68,7 +68,7 @@ function fnSimpleShortHeaderParam(props: ServiceProps<api.service.ErrorType>): a
 			const $path = `${baseUrl}/api/headerparametertypes/simpleShortHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
@@ -102,7 +102,7 @@ function fnSimpleIntHeaderParam(props: ServiceProps<api.service.ErrorType>): api
 			const $path = `${baseUrl}/api/headerparametertypes/simpleIntHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
@@ -136,7 +136,7 @@ function fnSimpleLongHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 			const $path = `${baseUrl}/api/headerparametertypes/simpleLongHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
@@ -170,7 +170,7 @@ function fnSimpleFloatHeaderParam(props: ServiceProps<api.service.ErrorType>): a
 			const $path = `${baseUrl}/api/headerparametertypes/simpleFloatHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
@@ -204,7 +204,7 @@ function fnSimpleDoubleHeaderParam(props: ServiceProps<api.service.ErrorType>): 
 			const $path = `${baseUrl}/api/headerparametertypes/simpleDoubleHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
@@ -238,7 +238,7 @@ function fnSimpleStringHeaderParam(props: ServiceProps<api.service.ErrorType>): 
 			const $path = `${baseUrl}/api/headerparametertypes/simpleStringHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.utils.isString($data)) {
 					throw new Error('Invalid result');
@@ -272,7 +272,7 @@ function fnSimpleLocalDateHeaderParam(props: ServiceProps<api.service.ErrorType>
 			const $path = `${baseUrl}/api/headerparametertypes/simpleLocalDateHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.utils.isString($data)) {
 					throw new Error('Invalid result');
@@ -306,7 +306,7 @@ function fnSimpleLocalDateTimeHeaderParam(props: ServiceProps<api.service.ErrorT
 			const $path = `${baseUrl}/api/headerparametertypes/simpleLocalDateTimeHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.utils.isString($data)) {
 					throw new Error('Invalid result');
@@ -340,7 +340,7 @@ function fnSimpleZonedDateTimeHeaderParam(props: ServiceProps<api.service.ErrorT
 			const $path = `${baseUrl}/api/headerparametertypes/simpleZonedDateTimeHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.utils.isString($data)) {
 					throw new Error('Invalid result');
@@ -374,7 +374,7 @@ function fnSimpleScalarHeaderParam(props: ServiceProps<api.service.ErrorType>): 
 			const $path = `${baseUrl}/api/headerparametertypes/simpleScalarHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.utils.isString($data)) {
 					throw new Error('Invalid result');
@@ -408,7 +408,7 @@ function fnSimpleEnumHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 			const $path = `${baseUrl}/api/headerparametertypes/simpleEnumHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.model.isSampleEnum($data)) {
 					throw new Error('Invalid result');
@@ -443,7 +443,7 @@ function fnMultiHeaderParam(props: ServiceProps<api.service.ErrorType>): api.ser
 			const $path = `${baseUrl}/api/headerparametertypes/multiHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.utils.isString($data)) {
 					throw new Error('Invalid result');
@@ -477,7 +477,7 @@ function fnRecordHeaderParam(props: ServiceProps<api.service.ErrorType>): api.se
 			const $path = `${baseUrl}/api/headerparametertypes/recordHeaderParam`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
-			if ($response.status == 200) {
+			if ($response.status === 200) {
 				const $data = await $response.json();
 				if(!api.utils.isRecord($data)) {
 					throw new Error('Invalid result');

@@ -23,6 +23,8 @@ export function createBodyParameterTypesService(props: ServiceProps<api.service.
 		simpleInlineEnumBodyParam: fnSimpleInlineEnumBodyParam(props),
 		multiBodyParam: fnMultiBodyParam(props),
 		recordBodyParam: fnRecordBodyParam(props),
+		unionBodyParam: fnUnionBodyParam(props),
+		patchableRecordBodyParam: fnPatchableRecordBodyParam(props),
 	};
 }
 function fnSimpleBooleanBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleBooleanBodyParam'] {
@@ -520,6 +522,74 @@ function fnRecordBodyParam(props: ServiceProps<api.service.ErrorType>): api.serv
 			return api.result.ERR(err);
 		} finally {
 			final?.('recordBodyParam');
+		}
+	};
+}
+
+function fnUnionBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['unionBodyParam'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyUnion: api.model.Union) => {
+		try {
+			const $init = (await preFetch?.('unionBodyParam')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/unionBodyParam`;
+			const $body = JSON.stringify(api.model.UnionToJSON(bodyUnion));
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if(!api.utils.isRecord($data)) {
+					throw new Error('Invalid result');
+				}
+				const $result = api.model.UnionFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('unionBodyParam', $result));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('unionBodyParam', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('unionBodyParam');
+		}
+	};
+}
+
+function fnPatchableRecordBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['patchableRecordBodyParam'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyRecord: api.model.PatchableRecordPatch) => {
+		try {
+			const $init = (await preFetch?.('patchableRecordBodyParam')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/patchableRecordBodyParam`;
+			const $body = JSON.stringify(api.model.PatchableRecordPatchToJSON(bodyRecord));
+			const $response = await fetchAPI($path, { ...$init, method: 'PATCH', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if(!api.utils.isRecord($data)) {
+					throw new Error('Invalid result');
+				}
+				const $result = api.model.PatchableRecordFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('patchableRecordBodyParam', $result));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('patchableRecordBodyParam', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('patchableRecordBodyParam');
 		}
 	};
 }

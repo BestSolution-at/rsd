@@ -3,6 +3,8 @@ import type { Result } from './_result-utils.js';
 import type { NativeRSDError, StatusRSDError } from './Errors.js';
 import type { SampleEnum } from './model/SampleEnum.js';
 import type { SimpleRecord } from './model/SimpleRecord.js';
+import type { Union } from './model/Union.js';
+import type { PatchableRecord, PatchableRecordPatch } from './model/PatchableRecord.js';
 
 export interface BodyParameterTypesService {
 	simpleBooleanBodyParam(bodyBoolean: boolean): Promise<Result<boolean, StatusRSDError | NativeRSDError>>;
@@ -20,4 +22,6 @@ export interface BodyParameterTypesService {
 	simpleInlineEnumBodyParam(bodyEnum: 'A' | 'B'): Promise<Result<'A' | 'B', StatusRSDError | NativeRSDError>>;
 	multiBodyParam(valueA: string, valueB: number): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	recordBodyParam(bodyRecord: SimpleRecord): Promise<Result<SimpleRecord, StatusRSDError | NativeRSDError>>;
+	unionBodyParam(bodyUnion: Union): Promise<Result<Union, StatusRSDError | NativeRSDError>>;
+	patchableRecordBodyParam(bodyRecord: PatchableRecordPatch): Promise<Result<PatchableRecord, StatusRSDError | NativeRSDError>>;
 }

@@ -585,6 +585,13 @@ service BodyParameterTypes {
 	operation recordBodyParam(
 		bodyRecord: SimpleRecord
 	): SimpleRecord;
+	
+	operation unionBodyParam(
+		bodyUnion: Union
+	): Union;
+	operation patchableRecordBodyParam(
+		@patch bodyRecord: PatchableRecord
+	): PatchableRecord;
 }
 
 service HeaderParameterTypes {
