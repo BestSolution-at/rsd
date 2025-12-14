@@ -278,7 +278,7 @@ function generateRemoteInvoke(
 		});
 	} else {
 		const code = o.resultType ? '200' : '204';
-		node.append(`if ($response.status == ${code}) {`, NL);
+		node.append(`if ($response.status === ${code}) {`, NL);
 		node.indent(block => {
 			block.append(handleOkResult(o, config, fqn));
 		});
