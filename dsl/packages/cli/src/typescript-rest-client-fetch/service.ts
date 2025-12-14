@@ -216,11 +216,23 @@ function generateRemoteInvoke(
 				const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${
 					bodyParams[0].type + (bodyParams[0].patch ? 'Patch' : '')
 				}ToJSON`;
-				node.append(`const $body = JSON.stringify(${toJSON}(${bodyParams[0].name}));`, NL);
+				if (bodyParams[0].array) {
+					node.append(`const $body = JSON.stringify(${bodyParams[0].name}.map(${toJSON}));`, NL);
+				} else {
+					node.append(`const $body = JSON.stringify(${toJSON}(${bodyParams[0].name}));`, NL);
+				}
 			} else if (isMBuiltinNumericType(bodyParams[0].type) || bodyParams[0].type === 'boolean') {
-				node.append(`const $body = String(${bodyParams[0].name});`, NL);
+				if (bodyParams[0].array) {
+					node.append(`const $body = JSON.stringify(${bodyParams[0].name});`, NL);
+				} else {
+					node.append(`const $body = String(${bodyParams[0].name});`, NL);
+				}
 			} else {
-				node.append(`const $body = \`"\${${bodyParams[0].name}}"\`;`, NL);
+				if (bodyParams[0].array) {
+					node.append(`const $body = JSON.stringify(${bodyParams[0].name});`, NL);
+				} else {
+					node.append(`const $body = \`"\${${bodyParams[0].name}}"\`;`, NL);
+				}
 			}
 		} else {
 			node.append(`const $body = JSON.stringify({`, NL);
@@ -340,7 +352,7 @@ function handleOkResult(
 					});
 					node.append('}', NL);
 				} else if (o.resultType.variant === 'inline-enum') {
-					const guard = `is${o.name}Result`;
+					const guard = `is${toFirstUpper(o.name)}Result`;
 					node.append(`if(!${isTypedArrayGuard}($data,${guard})) {`, NL);
 					node.indent(block => {
 						block.append(`throw new Error('Invalid result');`, NL);
@@ -425,6 +437,9 @@ function toParameter(
 		type = 'string';
 	} else if (isMInlineEnumType(parameter.type)) {
 		type = parameter.type.entries.map(e => `'${e.name}'`).join(' | ');
+		if (parameter.array) {
+			type = `(${type})`;
+		}
 	} else if (parameter.variant === 'enum') {
 		type = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${parameter.type}`;
 	} else if (parameter.variant === 'record' || parameter.variant === 'union') {

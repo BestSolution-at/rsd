@@ -27,7 +27,7 @@ function generateServiceContent(
 	node.indent(classBody => {
 		s.operations.forEach(o => {
 			const parameters = o.parameters.map(p => toParameter(p, config, fqn));
-			var Result = fqn('Result:./_result-utils.ts', true);
+			const Result = fqn('Result:./_result-utils.ts', true);
 			classBody.append(
 				`${o.name}(${parameters.join(', ')}): Promise<${Result}<${toResultType(
 					o.resultType,
@@ -67,7 +67,10 @@ function toResultType(
 	} else if (result.variant === 'scalar') {
 		type = 'string';
 	} else if (isMInlineEnumType(result.type)) {
-		type = `${result.type.entries.map(e => `'${e.name}'`).join(' | ')}`;
+		type = result.type.entries.map(e => `'${e.name}'`).join(' | ');
+		if (result.array) {
+			type = `(${type})`;
+		}
 	} else if (result.variant === 'enum') {
 		type = fqn(`${result.type}:./model/${result.type}.ts`, true);
 	} else if (result.variant === 'record' || result.variant === 'union') {
@@ -92,7 +95,10 @@ function toParameter(
 	} else if (parameter.variant === 'scalar') {
 		type = 'string';
 	} else if (isMInlineEnumType(parameter.type)) {
-		type = `${parameter.type.entries.map(e => `'${e.name}'`).join(' | ')}`;
+		type = parameter.type.entries.map(e => `'${e.name}'`).join(' | ');
+		if (parameter.array) {
+			type = `(${type})`;
+		}
 	} else if (parameter.variant === 'enum') {
 		type = fqn(`${parameter.type}:./model/${parameter.type}.ts`, true);
 	} else if (parameter.variant === 'record' || parameter.variant === 'union') {
