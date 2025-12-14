@@ -5716,6 +5716,595 @@
           "path": "/api/bodyparametertypes"
         }
       }
+    },
+    {
+      "@type": "Service",
+      "name": "HeaderParameterTypes",
+      "doc": "",
+      "operations": [
+        {
+          "@type": "Operation",
+          "name": "simpleBooleanHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "boolean",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "boolean",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleBooleanHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleShortHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "short",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "short",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleShortHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleIntHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleIntHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLongHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "long",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "long",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleLongHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleFloatHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "float",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "float",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleFloatHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleDoubleHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "double",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "double",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleDoubleHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleStringHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleStringHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalDateHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "local-date",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleLocalDateHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalDateTimeHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "local-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleLocalDateTimeHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleZonedDateTimeHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "zoned-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "zoned-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleZonedDateTimeHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleScalarHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "scalar",
+            "type": "ZoneId",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleScalarHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleEnumHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "SampleEnum",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "SampleEnum",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleEnumHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "multiHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "valueA",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueA",
+                  "source": "header"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueB",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueB",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "multiHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "recordHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "SimpleRecord",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "recordHeaderParam",
+              "results": []
+            }
+          }
+        }
+      ],
+      "meta": {
+        "rest": {
+          "path": "/api/headerparametertypes"
+        }
+      }
     }
   ],
   "errors": [

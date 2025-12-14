@@ -699,6 +699,57 @@ async function bodyParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+const headerParamPaths = [
+	'/api/headerparametertypes/simpleBooleanHeaderParam',
+
+	'/api/headerparametertypes/simpleShortHeaderParam',
+	'/api/headerparametertypes/simpleIntHeaderParam',
+	'/api/headerparametertypes/simpleLongHeaderParam',
+	'/api/headerparametertypes/simpleFloatHeaderParam',
+	'/api/headerparametertypes/simpleDoubleHeaderParam',
+	'/api/headerparametertypes/recordHeaderParam',
+
+	'/api/headerparametertypes/simpleStringHeaderParam',
+	'/api/headerparametertypes/simpleLocalDateHeaderParam',
+	'/api/headerparametertypes/simpleLocalDateTimeHeaderParam',
+	'/api/headerparametertypes/simpleZonedDateTimeHeaderParam',
+	'/api/headerparametertypes/simpleScalarHeaderParam',
+	'/api/headerparametertypes/simpleEnumHeaderParam',
+];
+
+const stringHeaderParamPaths = [
+	'/api/headerparametertypes/simpleStringHeaderParam',
+	'/api/headerparametertypes/simpleLocalDateHeaderParam',
+	'/api/headerparametertypes/simpleLocalDateTimeHeaderParam',
+	'/api/headerparametertypes/simpleZonedDateTimeHeaderParam',
+	'/api/headerparametertypes/simpleScalarHeaderParam',
+	'/api/headerparametertypes/simpleEnumHeaderParam',
+];
+
+async function headerParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (headerParamPaths.includes(ctx.path) && ctx.method === 'GET') {
+		const headerValue = ctx.header.headervalue;
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = stringHeaderParamPaths.includes(ctx.path) ? `"${String(headerValue)}"` : headerValue;
+	} else {
+		await next();
+	}
+}
+
+async function multiHeaderParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path === '/api/headerparametertypes/multiHeaderParam' && ctx.method === 'GET') {
+		const headerValueA = ctx.header.valuea;
+		const headerValueB = ctx.header.valueb;
+		const response = `${String(headerValueA)}-${String(headerValueB)}`;
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = `"${response}"`;
+	} else {
+		await next();
+	}
+}
+
 const app = new Koa();
 
 const all = compose([
@@ -750,6 +801,8 @@ const all = compose([
 	multiPathParam,
 
 	bodyParam,
+	headerParam,
+	multiHeaderParam,
 ]);
 app.use(all);
 app.listen(3000);

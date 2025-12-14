@@ -146,18 +146,26 @@ function generateRemoteInvoke(
 			if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum' || p.variant === 'scalar') {
 				if (p.optional) {
 					const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
-					node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}', \`\${v}\`));`, NL);
+					if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
+						node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}', String(v)));`, NL);
+					} else {
+						node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}', v));`, NL);
+					}
 				} else {
-					node.append(`$headers.append('${p.name}',\`\${${p.name}}\`);`, NL);
+					if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
+						node.append(`$headers.append('${p.name}', String(${p.name}));`, NL);
+					} else {
+						node.append(`$headers.append('${p.name}', ${p.name});`, NL);
+					}
 				}
 			} else {
 				const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
 
 				if (p.optional) {
 					const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
-					node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}',JSON.strinify(${toJSON}(v)));`, NL);
+					node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}', JSON.stringify(${toJSON}(v)));`, NL);
 				} else {
-					node.append(`$headers.append('${p.name}',JSON.strinify(${toJSON}(${p.name})));`, NL);
+					node.append(`$headers.append('${p.name}', JSON.stringify(${toJSON}(${p.name})));`, NL);
 				}
 			}
 		});

@@ -220,3 +220,48 @@ resource BodyParameterTypes at '/api/bodyparametertypes' {
 			200
 	}
 }
+
+resource HeaderParameterTypes at '/api/headerparametertypes' {
+	GET simpleBooleanHeaderParam at 'simpleBooleanHeaderParam'
+		header-param headerValue
+
+	GET simpleShortHeaderParam at 'simpleShortHeaderParam'
+		header-param headerValue
+
+	GET simpleIntHeaderParam at 'simpleIntHeaderParam'
+		header-param headerValue
+
+	GET simpleLongHeaderParam at 'simpleLongHeaderParam'
+		header-param headerValue
+
+	GET simpleFloatHeaderParam at 'simpleFloatHeaderParam'
+		header-param headerValue
+
+	GET simpleDoubleHeaderParam at 'simpleDoubleHeaderParam'
+		header-param headerValue
+
+	GET simpleStringHeaderParam at 'simpleStringHeaderParam'
+		header-param headerValue
+
+	GET simpleLocalDateHeaderParam at 'simpleLocalDateHeaderParam'
+		header-param headerValue
+
+	GET simpleLocalDateTimeHeaderParam at 'simpleLocalDateTimeHeaderParam'
+		header-param headerValue
+
+	GET simpleZonedDateTimeHeaderParam at 'simpleZonedDateTimeHeaderParam'
+		header-param headerValue
+
+	GET simpleEnumHeaderParam at 'simpleEnumHeaderParam'
+		header-param headerValue
+
+	GET simpleScalarHeaderParam at 'simpleScalarHeaderParam'
+		header-param headerValue
+	
+	GET multiHeaderParam at 'multiHeaderParam'
+		header-param valueA
+		header-param valueB
+	
+	GET recordHeaderParam at 'recordHeaderParam'
+		header-param headerValue
+}

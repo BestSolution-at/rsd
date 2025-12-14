@@ -586,3 +586,46 @@ service BodyParameterTypes {
 		bodyRecord: SimpleRecord
 	): SimpleRecord;
 }
+
+service HeaderParameterTypes {
+	operation simpleBooleanHeaderParam(
+		headerValue: boolean
+	): boolean;
+	operation simpleShortHeaderParam(
+		headerValue: short
+	): short;
+	operation simpleIntHeaderParam(
+		headerValue: int
+	): int;
+	operation simpleLongHeaderParam(
+		headerValue: long
+	): long;
+	operation simpleFloatHeaderParam(
+		headerValue: float
+	): float;
+	operation simpleDoubleHeaderParam(
+		headerValue: double
+	): double;
+	operation simpleStringHeaderParam(
+		headerValue: string
+	): string;
+	operation simpleLocalDateHeaderParam(
+		headerValue: local-date
+	): local-date;
+	operation simpleLocalDateTimeHeaderParam(
+		headerValue: local-date-time
+	): local-date-time;
+	operation simpleZonedDateTimeHeaderParam(
+		headerValue: zoned-date-time
+	): zoned-date-time;
+	operation simpleScalarHeaderParam(
+		headerValue: ZoneId
+	): ZoneId;
+	operation simpleEnumHeaderParam(
+		headerValue: SampleEnum
+	): SampleEnum;
+	operation multiHeaderParam(valueA: string, valueB: int): string;
+	operation recordHeaderParam(
+		headerValue: SimpleRecord
+	): SimpleRecord;
+}
