@@ -699,6 +699,44 @@ async function bodyParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+const listBodyParamPaths = [
+	'/api/listbodyparametertypes/listBooleanBodyParam',
+	'/api/listbodyparametertypes/listShortBodyParam',
+	'/api/listbodyparametertypes/listIntBodyParam',
+	'/api/listbodyparametertypes/listLongBodyParam',
+	'/api/listbodyparametertypes/listFloatBodyParam',
+	'/api/listbodyparametertypes/listDoubleBodyParam',
+	'/api/listbodyparametertypes/listStringBodyParam',
+	'/api/listbodyparametertypes/listLocalDateBodyParam',
+	'/api/listbodyparametertypes/listLocalDateTimeBodyParam',
+	'/api/listbodyparametertypes/listZonedDateTimeBodyParam',
+	'/api/listbodyparametertypes/listScalarBodyParam',
+	'/api/listbodyparametertypes/listEnumBodyParam',
+	'/api/listbodyparametertypes/listInlineEnumBodyParam',
+	'/api/listbodyparametertypes/listMultiBodyParam',
+	'/api/listbodyparametertypes/listRecordBodyParam',
+];
+
+async function listBodyParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (listBodyParamPaths.includes(ctx.path) && ctx.method === 'POST') {
+		const str = await raw(ctx.req, { encoding: 'utf-8' });
+		if (ctx.path === '/api/listbodyparametertypes/listMultiBodyParam') {
+			const body = JSON.parse(str) as { valueA: string[]; valueB: number[] };
+			const response = `${body.valueA.join(',')}-${body.valueB.join(',')}`;
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = `"${response}"`;
+			return;
+		}
+
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = str;
+	} else {
+		await next();
+	}
+}
+
 const headerParamPaths = [
 	'/api/headerparametertypes/simpleBooleanHeaderParam',
 
@@ -801,6 +839,7 @@ const all = compose([
 	multiPathParam,
 
 	bodyParam,
+	listBodyParam,
 	headerParam,
 	multiHeaderParam,
 ]);

@@ -265,3 +265,21 @@ resource HeaderParameterTypes at '/api/headerparametertypes' {
 	GET recordHeaderParam at 'recordHeaderParam'
 		header-param headerValue
 }
+
+resource ListBodyParameterTypes at '/api/listbodyparametertypes' {
+	POST listBooleanBodyParam at 'listBooleanBodyParam'
+	POST listShortBodyParam at 'listShortBodyParam'
+	POST listIntBodyParam at 'listIntBodyParam'
+	POST listLongBodyParam at 'listLongBodyParam'
+	POST listFloatBodyParam at 'listFloatBodyParam'
+	POST listDoubleBodyParam at 'listDoubleBodyParam'
+	POST listStringBodyParam at 'listStringBodyParam'
+	POST listLocalDateBodyParam at 'listLocalDateBodyParam'
+	POST listLocalDateTimeBodyParam at 'listLocalDateTimeBodyParam'
+	POST listZonedDateTimeBodyParam at 'listZonedDateTimeBodyParam'
+	POST listScalarBodyParam at 'listScalarBodyParam'
+	POST listEnumBodyParam at 'listEnumBodyParam'
+	POST listInlineEnumBodyParam at 'listInlineEnumBodyParam'
+	POST listRecordBodyParam at 'listRecordBodyParam'
+	POST listMultiBodyParam at 'listMultiBodyParam'
+}

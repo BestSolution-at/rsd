@@ -6305,6 +6305,563 @@
           "path": "/api/headerparametertypes"
         }
       }
+    },
+    {
+      "@type": "Service",
+      "name": "ListBodyParameterTypes",
+      "doc": "",
+      "operations": [
+        {
+          "@type": "Operation",
+          "name": "listBooleanBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyBoolean",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "boolean",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "boolean",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listBooleanBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listShortBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyShort",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "short",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "short",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listShortBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listIntBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyInt",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listIntBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLongBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLong",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "long",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "long",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listLongBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listFloatBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyFloat",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "float",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "float",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listFloatBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listDoubleBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyDouble",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "double",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "double",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listDoubleBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listStringBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyString",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listStringBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalDateBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalDate",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "local-date",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listLocalDateBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalDateTimeBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalDateTime",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "local-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listLocalDateTimeBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listZonedDateTimeBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyZonedDateTime",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "zoned-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "zoned-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listZonedDateTimeBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listScalarBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyScalar",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "scalar",
+            "type": "ZoneId",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listScalarBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listEnumBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyEnum",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "SampleEnum",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "enum",
+            "type": "SampleEnum",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listEnumBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listInlineEnumBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyEnum",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "inline-enum",
+              "type": {
+                "@type": "InlineEnumType",
+                "entries": [
+                  {
+                    "@type": "EnumEntry",
+                    "name": "A"
+                  },
+                  {
+                    "@type": "EnumEntry",
+                    "name": "B"
+                  }
+                ]
+              },
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "inline-enum",
+            "type": {
+              "@type": "InlineEnumType",
+              "entries": [
+                {
+                  "@type": "EnumEntry",
+                  "name": "A"
+                },
+                {
+                  "@type": "EnumEntry",
+                  "name": "B"
+                }
+              ]
+            },
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listInlineEnumBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listMultiBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "valueA",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueB",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listMultiBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listRecordBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyRecord",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "record",
+            "type": "SimpleRecord",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "listRecordBodyParam",
+              "results": []
+            }
+          }
+        }
+      ],
+      "meta": {
+        "rest": {
+          "path": "/api/listbodyparametertypes"
+        }
+      }
     }
   ],
   "errors": [

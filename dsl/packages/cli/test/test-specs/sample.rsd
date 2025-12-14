@@ -629,3 +629,49 @@ service HeaderParameterTypes {
 		headerValue: SimpleRecord
 	): SimpleRecord;
 }
+
+service ListBodyParameterTypes {
+	operation listBooleanBodyParam(
+		bodyBoolean: boolean[]
+	): boolean[];
+	operation listShortBodyParam(
+		bodyShort: short[]
+	): short[];
+	operation listIntBodyParam(
+		bodyInt: int[]
+	): int[];
+	operation listLongBodyParam(
+		bodyLong: long[]
+	): long[];
+	operation listFloatBodyParam(
+		bodyFloat: float[]
+	): float[];
+	operation listDoubleBodyParam(
+		bodyDouble: double[]
+	): double[];
+	operation listStringBodyParam(
+		bodyString: string[]
+	): string[];
+	operation listLocalDateBodyParam(
+		bodyLocalDate: local-date[]
+	): local-date[];
+	operation listLocalDateTimeBodyParam(
+		bodyLocalDateTime: local-date-time[]
+	): local-date-time[];
+	operation listZonedDateTimeBodyParam(
+		bodyZonedDateTime: zoned-date-time[]
+	): zoned-date-time[];
+	operation listScalarBodyParam(
+		bodyScalar: ZoneId[]
+	): ZoneId[];
+	operation listEnumBodyParam(
+		bodyEnum: SampleEnum[]
+	): SampleEnum[];
+	operation listInlineEnumBodyParam(
+		bodyEnum: enum A | B[]
+	): enum A | B[];
+	operation listMultiBodyParam(valueA: string[], valueB: int[]): string;
+	operation listRecordBodyParam(
+		bodyRecord: SimpleRecord[]
+	): SimpleRecord[];
+}
