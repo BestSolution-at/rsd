@@ -7,6 +7,7 @@ import {
 	toPath,
 } from '../java-gen-utils.js';
 import { isMResolvedRecordType, isMResolvedUnionType, MResolvedRSDModel } from '../model.js';
+import { hasFileStream, hasStream } from '../util.js';
 
 export function generateDTOBuilderFactory(
 	model: MResolvedRSDModel,
@@ -56,6 +57,33 @@ function generateDTOBuilderFactoryContent(
 			mBody.append(generateOfMethodBody(model, artifactConfig, fqn));
 		});
 		body.append('}', NL);
+		if (hasStream(model)) {
+			body.appendNewLine();
+			body.append(
+				`public ${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)} createBlob(${fqn('java.nio.file.Path')} file, String mimeType) {`,
+				NL,
+			);
+			body.indent(mBody => {
+				const BlobImpl = fqn(`${artifactConfig.rootPackageName}.rest.model._BlobImpl`);
+				mBody.append(`return ${BlobImpl}.of(file, mimeType);`, NL);
+			});
+			body.append('}', NL);
+
+			if (hasFileStream(model)) {
+				body.appendNewLine();
+				body.append(
+					`public ${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)} createFile(${fqn(
+						'java.nio.file.Path',
+					)} file, String mimeType, String filename) {`,
+					NL,
+				);
+				body.indent(mBody => {
+					const FileImpl = fqn(`${artifactConfig.rootPackageName}.rest.model._FileImpl`);
+					mBody.append(`return ${FileImpl}.of(file, mimeType, filename);`, NL);
+				});
+				body.append('}', NL);
+			}
+		}
 	});
 	node.append('}', NL);
 

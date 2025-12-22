@@ -37,7 +37,7 @@ export function generate(
 	const result = model.elements.map(e => generateType(e, model, artifactConfig)).filter(isDefined);
 	result.push(generateBaseDTO(artifactConfig));
 	result.push(...generateStreamDTO(artifactConfig, model));
-	result.push(generateDTOBuilderFactory(artifactConfig));
+	result.push(generateDTOBuilderFactory(artifactConfig, model));
 	result.push(...model.services.map(e => generateService(e, artifactConfig)));
 	result.push(...model.services.map(e => generateServiceImpl(e, artifactConfig)));
 	result.push(...generateRSDException(model.errors, artifactConfig, `${artifactConfig.rootPackageName}.service`));
