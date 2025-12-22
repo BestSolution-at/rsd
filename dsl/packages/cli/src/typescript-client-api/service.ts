@@ -75,6 +75,8 @@ function toResultType(
 		type = fqn(`${result.type}:./model/${result.type}.ts`, true);
 	} else if (result.variant === 'record' || result.variant === 'union') {
 		type = fqn(`${result.type}:./model/${result.type}.ts`, true);
+	} else if (result.variant === 'stream') {
+		type = result.type === 'blob' ? 'Blob' : 'File';
 	} else {
 		type = 'any';
 	}
@@ -107,6 +109,8 @@ function toParameter(
 		} else {
 			type = fqn(`${parameter.type}:./model/${parameter.type}.ts`, true);
 		}
+	} else if (parameter.variant === 'stream') {
+		type = parameter.type === 'blob' ? 'Blob' : 'File';
 	} else {
 		type = 'any';
 	}
