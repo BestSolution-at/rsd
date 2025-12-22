@@ -23,7 +23,6 @@ function fnUploadFile(props: ServiceProps<api.service.ErrorType>): api.service.B
 			const $path = `${baseUrl}/api/binarytypes/uploadFile`;
 			const $body = new FormData();
 			$body.append('data', data);
-
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 201) {
 				const $data = await $response.json();
@@ -52,7 +51,7 @@ function fnUploadBlob(props: ServiceProps<api.service.ErrorType>): api.service.B
 		try {
 			const $init = (await preFetch?.('uploadBlob')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Content-Type', 'multipart/form-data');
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadBlob`;
@@ -146,3 +145,4 @@ function fnDownloadBlob(props: ServiceProps<api.service.ErrorType>): api.service
 		}
 	};
 }
+

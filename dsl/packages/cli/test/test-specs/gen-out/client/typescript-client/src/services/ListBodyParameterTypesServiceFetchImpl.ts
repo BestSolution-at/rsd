@@ -40,7 +40,7 @@ function fnListBooleanBodyParam(props: ServiceProps<api.service.ErrorType>): api
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isBoolean)) {
+				if (!api.utils.isTypedArray($data,api.utils.isBoolean)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listBooleanBodyParam', $data));
@@ -73,7 +73,7 @@ function fnListShortBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isNumber)) {
+				if (!api.utils.isTypedArray($data,api.utils.isNumber)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listShortBodyParam', $data));
@@ -106,7 +106,7 @@ function fnListIntBodyParam(props: ServiceProps<api.service.ErrorType>): api.ser
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isNumber)) {
+				if (!api.utils.isTypedArray($data,api.utils.isNumber)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listIntBodyParam', $data));
@@ -139,7 +139,7 @@ function fnListLongBodyParam(props: ServiceProps<api.service.ErrorType>): api.se
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isNumber)) {
+				if (!api.utils.isTypedArray($data,api.utils.isNumber)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listLongBodyParam', $data));
@@ -172,7 +172,7 @@ function fnListFloatBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isNumber)) {
+				if (!api.utils.isTypedArray($data,api.utils.isNumber)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listFloatBodyParam', $data));
@@ -205,7 +205,7 @@ function fnListDoubleBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isNumber)) {
+				if (!api.utils.isTypedArray($data,api.utils.isNumber)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listDoubleBodyParam', $data));
@@ -238,7 +238,7 @@ function fnListStringBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isString)) {
+				if (!api.utils.isTypedArray($data,api.utils.isString)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listStringBodyParam', $data));
@@ -271,7 +271,7 @@ function fnListLocalDateBodyParam(props: ServiceProps<api.service.ErrorType>): a
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isString)) {
+				if (!api.utils.isTypedArray($data,api.utils.isString)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateBodyParam', $data));
@@ -304,7 +304,7 @@ function fnListLocalDateTimeBodyParam(props: ServiceProps<api.service.ErrorType>
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isString)) {
+				if (!api.utils.isTypedArray($data,api.utils.isString)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateTimeBodyParam', $data));
@@ -337,7 +337,7 @@ function fnListZonedDateTimeBodyParam(props: ServiceProps<api.service.ErrorType>
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isString)) {
+				if (!api.utils.isTypedArray($data,api.utils.isString)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listZonedDateTimeBodyParam', $data));
@@ -370,7 +370,7 @@ function fnListScalarBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isString)) {
+				if (!api.utils.isTypedArray($data,api.utils.isString)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listScalarBodyParam', $data));
@@ -403,7 +403,7 @@ function fnListEnumBodyParam(props: ServiceProps<api.service.ErrorType>): api.se
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.model.isSampleEnum)) {
+				if (!api.utils.isTypedArray($data,api.model.isSampleEnum)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listEnumBodyParam', $data));
@@ -436,7 +436,7 @@ function fnListInlineEnumBodyParam(props: ServiceProps<api.service.ErrorType>): 
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,isListInlineEnumBodyParamResult)) {
+				if (!api.utils.isTypedArray($data,isListInlineEnumBodyParamResult)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listInlineEnumBodyParam', $data));
@@ -472,7 +472,7 @@ function fnListMultiBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listMultiBodyParam', $data));

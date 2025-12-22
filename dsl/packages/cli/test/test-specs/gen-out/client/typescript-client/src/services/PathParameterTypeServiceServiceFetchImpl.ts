@@ -34,7 +34,7 @@ function fnSimpleBooleanPathParam(props: ServiceProps<api.service.ErrorType>): a
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isBoolean($data)) {
+				if (!api.utils.isBoolean($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleBooleanPathParam', $data));
@@ -67,7 +67,7 @@ function fnSimpleShortPathParam(props: ServiceProps<api.service.ErrorType>): api
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleShortPathParam', $data));
@@ -100,7 +100,7 @@ function fnSimpleIntPathParam(props: ServiceProps<api.service.ErrorType>): api.s
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleIntPathParam', $data));
@@ -133,7 +133,7 @@ function fnSimpleLongPathParam(props: ServiceProps<api.service.ErrorType>): api.
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLongPathParam', $data));
@@ -166,7 +166,7 @@ function fnSimpleFloatPathParam(props: ServiceProps<api.service.ErrorType>): api
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleFloatPathParam', $data));
@@ -199,7 +199,7 @@ function fnSimpleDoublePathParam(props: ServiceProps<api.service.ErrorType>): ap
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleDoublePathParam', $data));
@@ -232,7 +232,7 @@ function fnSimpleStringPathParam(props: ServiceProps<api.service.ErrorType>): ap
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleStringPathParam', $data));
@@ -265,7 +265,7 @@ function fnSimpleLocalDatePathParam(props: ServiceProps<api.service.ErrorType>):
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDatePathParam', $data));
@@ -298,7 +298,7 @@ function fnSimpleLocalDateTimePathParam(props: ServiceProps<api.service.ErrorTyp
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDateTimePathParam', $data));
@@ -331,7 +331,7 @@ function fnSimpleZonedDateTimePathParam(props: ServiceProps<api.service.ErrorTyp
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleZonedDateTimePathParam', $data));
@@ -364,7 +364,7 @@ function fnSimpleScalarPathParam(props: ServiceProps<api.service.ErrorType>): ap
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleScalarPathParam', $data));
@@ -397,7 +397,7 @@ function fnSimpleEnumPathParam(props: ServiceProps<api.service.ErrorType>): api.
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.model.isSampleEnum($data)) {
+				if (!api.model.isSampleEnum($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleEnumPathParam', $data));
@@ -430,7 +430,7 @@ function fnMultiPathParam(props: ServiceProps<api.service.ErrorType>): api.servi
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('multiPathParam', $data));

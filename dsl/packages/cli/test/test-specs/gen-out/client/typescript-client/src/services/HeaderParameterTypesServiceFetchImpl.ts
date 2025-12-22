@@ -36,7 +36,7 @@ function fnSimpleBooleanHeaderParam(props: ServiceProps<api.service.ErrorType>):
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isBoolean($data)) {
+				if (!api.utils.isBoolean($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleBooleanHeaderParam', $data));
@@ -70,7 +70,7 @@ function fnSimpleShortHeaderParam(props: ServiceProps<api.service.ErrorType>): a
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleShortHeaderParam', $data));
@@ -104,7 +104,7 @@ function fnSimpleIntHeaderParam(props: ServiceProps<api.service.ErrorType>): api
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleIntHeaderParam', $data));
@@ -138,7 +138,7 @@ function fnSimpleLongHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLongHeaderParam', $data));
@@ -172,7 +172,7 @@ function fnSimpleFloatHeaderParam(props: ServiceProps<api.service.ErrorType>): a
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleFloatHeaderParam', $data));
@@ -206,7 +206,7 @@ function fnSimpleDoubleHeaderParam(props: ServiceProps<api.service.ErrorType>): 
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleDoubleHeaderParam', $data));
@@ -240,7 +240,7 @@ function fnSimpleStringHeaderParam(props: ServiceProps<api.service.ErrorType>): 
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleStringHeaderParam', $data));
@@ -274,7 +274,7 @@ function fnSimpleLocalDateHeaderParam(props: ServiceProps<api.service.ErrorType>
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDateHeaderParam', $data));
@@ -308,7 +308,7 @@ function fnSimpleLocalDateTimeHeaderParam(props: ServiceProps<api.service.ErrorT
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDateTimeHeaderParam', $data));
@@ -342,7 +342,7 @@ function fnSimpleZonedDateTimeHeaderParam(props: ServiceProps<api.service.ErrorT
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleZonedDateTimeHeaderParam', $data));
@@ -376,7 +376,7 @@ function fnSimpleScalarHeaderParam(props: ServiceProps<api.service.ErrorType>): 
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleScalarHeaderParam', $data));
@@ -410,7 +410,7 @@ function fnSimpleEnumHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.model.isSampleEnum($data)) {
+				if (!api.model.isSampleEnum($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleEnumHeaderParam', $data));
@@ -445,7 +445,7 @@ function fnMultiHeaderParam(props: ServiceProps<api.service.ErrorType>): api.ser
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('multiHeaderParam', $data));

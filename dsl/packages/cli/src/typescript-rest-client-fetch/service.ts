@@ -140,7 +140,13 @@ function generateRemoteInvoke(
 	const headerParams = o.parameters.filter(p => p.meta?.rest?.source === 'header');
 
 	node.append(`const $headers = new Headers($init.headers ?? {});`, NL);
-	node.append(`$headers.append('Content-Type', 'application/json');`, NL);
+	const hasStreamParam = o.parameters.some(p => p.variant === 'stream');
+	if (hasStreamParam) {
+		node.append(`$headers.append('Content-Type', 'multipart/form-data');`, NL);
+	} else {
+		node.append(`$headers.append('Content-Type', 'application/json');`, NL);
+	}
+
 	if (headerParams.length) {
 		headerParams.forEach(p => {
 			if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum' || p.variant === 'scalar') {
@@ -211,7 +217,27 @@ function generateRemoteInvoke(
 	if (bodyParams.length === 0) {
 		node.append(`const $response = await fetchAPI($path, { ...$init, method: '${o.meta.rest.method}' });`, NL, NL);
 	} else {
-		if (bodyParams.length === 1) {
+		if (hasStreamParam) {
+			node.append(`const $body = new FormData();`, NL);
+			bodyParams.forEach(p => {
+				if (p.variant === 'stream') {
+					node.append(`$body.append('${p.name}', ${p.name});`, NL);
+				} else {
+					if (p.variant === 'record' || p.variant === 'union') {
+						const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${
+							p.type + (p.patch ? 'Patch' : '')
+						}ToJSON`;
+						if (p.array) {
+							node.append(`$body.append('${p.name}', JSON.stringify(${p.name}.map(${toJSON})));`, NL);
+						} else {
+							node.append(`$body.append('${p.name}', JSON.stringify(${toJSON}(${p.name})));`, NL);
+						}
+					} else {
+						node.append(`$body.append('${p.name}', JSON.stringify(${p.name}));`, NL);
+					}
+				}
+			});
+		} else if (bodyParams.length === 1) {
 			if (bodyParams[0].variant === 'record' || bodyParams[0].variant === 'union') {
 				const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${
 					bodyParams[0].type + (bodyParams[0].patch ? 'Patch' : '')
@@ -221,18 +247,8 @@ function generateRemoteInvoke(
 				} else {
 					node.append(`const $body = JSON.stringify(${toJSON}(${bodyParams[0].name}));`, NL);
 				}
-			} else if (isMBuiltinNumericType(bodyParams[0].type) || bodyParams[0].type === 'boolean') {
-				if (bodyParams[0].array) {
-					node.append(`const $body = JSON.stringify(${bodyParams[0].name});`, NL);
-				} else {
-					node.append(`const $body = String(${bodyParams[0].name});`, NL);
-				}
 			} else {
-				if (bodyParams[0].array) {
-					node.append(`const $body = JSON.stringify(${bodyParams[0].name});`, NL);
-				} else {
-					node.append(`const $body = \`"\${${bodyParams[0].name}}"\`;`, NL);
-				}
+				node.append(`const $body = JSON.stringify(${bodyParams[0].name});`, NL);
 			}
 		} else {
 			node.append(`const $body = JSON.stringify({`, NL);
@@ -326,6 +342,26 @@ function handleOkResult(
 		const Void = `${fqn(`api:${config.apiNamespacePath}`, false)}.result.Void`;
 		const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
 		node.append(`return ${safeExecute}(${OK}(${Void}), () => onSuccess?.('${o.name}', ${Void}));`, NL);
+	} else if (o.resultType.variant === 'stream') {
+		node.append('const $data = await $response.blob();', NL);
+		if (o.resultType.type === 'file') {
+			node.append("let fileName = 'unknown';", NL);
+			node.append("const dispoHeader = $response.headers.get('Content-Disposition');", NL);
+			node.append("if (dispoHeader?.includes('filename=')) {", NL);
+			node.indent(block => {
+				block.append(
+					"const fileNameWithQuotes = dispoHeader.substring(dispoHeader.indexOf('filename=') + 'filename='.length);",
+					NL,
+				);
+				block.append('fileName = fileNameWithQuotes.substring(1, fileNameWithQuotes.length - 1);', NL);
+			});
+			node.append('}', NL);
+			node.append('const $result = new File([$data], fileName);', NL);
+		} else {
+			node.append('const $result = $data;', NL);
+		}
+		const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
+		node.append(`return ${safeExecute}(${OK}($result), () => onSuccess?.('${o.name}', $result));`, NL);
 	} else {
 		node.append('const $data = await $response.json();', NL);
 		if (
@@ -339,28 +375,28 @@ function handleOkResult(
 				const isTypedArrayGuard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isTypedArray`;
 				if (isMBuiltinType(o.resultType.type)) {
 					const guard = builtinTypeGuard(o.resultType.type, config, fqn);
-					node.append(`if(!${isTypedArrayGuard}($data,${guard})) {`, NL);
+					node.append(`if (!${isTypedArrayGuard}($data,${guard})) {`, NL);
 					node.indent(block => {
 						block.append(`throw new Error('Invalid result');`, NL);
 					});
 					node.append('}', NL);
 				} else if (o.resultType.variant === 'scalar') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-					node.append(`if(!${isTypedArrayGuard}($data,${guard})) {`, NL);
+					node.append(`if (!${isTypedArrayGuard}($data,${guard})) {`, NL);
 					node.indent(block => {
 						block.append(`throw new Error('Invalid result');`, NL);
 					});
 					node.append('}', NL);
 				} else if (o.resultType.variant === 'inline-enum') {
 					const guard = `is${toFirstUpper(o.name)}Result`;
-					node.append(`if(!${isTypedArrayGuard}($data,${guard})) {`, NL);
+					node.append(`if (!${isTypedArrayGuard}($data,${guard})) {`, NL);
 					node.indent(block => {
 						block.append(`throw new Error('Invalid result');`, NL);
 					});
 					node.append('}', NL);
 				} else {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
-					node.append(`if(!${isTypedArrayGuard}($data,${guard})) {`, NL);
+					node.append(`if (!${isTypedArrayGuard}($data,${guard})) {`, NL);
 					node.indent(block => {
 						block.append(`throw new Error('Invalid result');`, NL);
 					});
@@ -369,28 +405,28 @@ function handleOkResult(
 			} else {
 				if (isMBuiltinType(o.resultType.type)) {
 					const guard = builtinTypeGuard(o.resultType.type, config, fqn);
-					node.append(`if(!${guard}($data)) {`, NL);
+					node.append(`if (!${guard}($data)) {`, NL);
 					node.indent(block => {
 						block.append(`throw new Error('Invalid result');`, NL);
 					});
 					node.append('}', NL);
 				} else if (o.resultType.variant === 'scalar') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-					node.append(`if(!${guard}($data)) {`, NL);
+					node.append(`if (!${guard}($data)) {`, NL);
 					node.indent(block => {
 						block.append(`throw new Error('Invalid result');`, NL);
 					});
 					node.append('}', NL);
 				} else if (o.resultType.variant === 'inline-enum') {
 					const guard = `is${toFirstUpper(o.name)}Result`;
-					node.append(`if(!${guard}($data)) {`, NL);
+					node.append(`if (!${guard}($data)) {`, NL);
 					node.indent(block => {
 						block.append(`throw new Error('Invalid result');`, NL);
 					});
 					node.append('}', NL);
 				} else {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
-					node.append(`if(!${guard}($data)) {`, NL);
+					node.append(`if (!${guard}($data)) {`, NL);
 					node.indent(block => {
 						block.append(`throw new Error('Invalid result');`, NL);
 					});
@@ -448,6 +484,8 @@ function toParameter(
 		} else {
 			type = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${parameter.type}`;
 		}
+	} else if (parameter.variant === 'stream') {
+		type = parameter.type === 'blob' ? 'Blob' : 'File';
 	} else {
 		type = 'any';
 	}

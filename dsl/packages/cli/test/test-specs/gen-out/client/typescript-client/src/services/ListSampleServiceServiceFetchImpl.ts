@@ -35,7 +35,7 @@ function fnListBoolean(props: ServiceProps<api.service.ErrorType>): api.service.
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isBoolean)) {
+				if (!api.utils.isTypedArray($data,api.utils.isBoolean)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listBoolean', $data));
@@ -68,7 +68,7 @@ function fnListShort(props: ServiceProps<api.service.ErrorType>): api.service.Li
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isNumber)) {
+				if (!api.utils.isTypedArray($data,api.utils.isNumber)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listShort', $data));
@@ -101,7 +101,7 @@ function fnListInt(props: ServiceProps<api.service.ErrorType>): api.service.List
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isNumber)) {
+				if (!api.utils.isTypedArray($data,api.utils.isNumber)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listInt', $data));
@@ -134,7 +134,7 @@ function fnListLong(props: ServiceProps<api.service.ErrorType>): api.service.Lis
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isNumber)) {
+				if (!api.utils.isTypedArray($data,api.utils.isNumber)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listLong', $data));
@@ -167,7 +167,7 @@ function fnListFloat(props: ServiceProps<api.service.ErrorType>): api.service.Li
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isNumber)) {
+				if (!api.utils.isTypedArray($data,api.utils.isNumber)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listFloat', $data));
@@ -200,7 +200,7 @@ function fnListDouble(props: ServiceProps<api.service.ErrorType>): api.service.L
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isNumber)) {
+				if (!api.utils.isTypedArray($data,api.utils.isNumber)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listDouble', $data));
@@ -233,7 +233,7 @@ function fnListString(props: ServiceProps<api.service.ErrorType>): api.service.L
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isString)) {
+				if (!api.utils.isTypedArray($data,api.utils.isString)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listString', $data));
@@ -266,7 +266,7 @@ function fnListLocalDate(props: ServiceProps<api.service.ErrorType>): api.servic
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isString)) {
+				if (!api.utils.isTypedArray($data,api.utils.isString)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDate', $data));
@@ -299,7 +299,7 @@ function fnListLocalDateTime(props: ServiceProps<api.service.ErrorType>): api.se
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isString)) {
+				if (!api.utils.isTypedArray($data,api.utils.isString)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateTime', $data));
@@ -332,7 +332,7 @@ function fnListZonedDateTime(props: ServiceProps<api.service.ErrorType>): api.se
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isString)) {
+				if (!api.utils.isTypedArray($data,api.utils.isString)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listZonedDateTime', $data));
@@ -365,7 +365,7 @@ function fnListScalar(props: ServiceProps<api.service.ErrorType>): api.service.L
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.utils.isString)) {
+				if (!api.utils.isTypedArray($data,api.utils.isString)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listScalar', $data));
@@ -398,7 +398,7 @@ function fnListEnum(props: ServiceProps<api.service.ErrorType>): api.service.Lis
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isTypedArray($data,api.model.isSampleEnum)) {
+				if (!api.utils.isTypedArray($data,api.model.isSampleEnum)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listEnum', $data));

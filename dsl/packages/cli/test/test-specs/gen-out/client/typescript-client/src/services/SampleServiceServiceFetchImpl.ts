@@ -38,7 +38,7 @@ function fnGetBoolean(props: ServiceProps<api.service.ErrorType>): api.service.S
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isBoolean($data)) {
+				if (!api.utils.isBoolean($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getBoolean', $data));
@@ -71,7 +71,7 @@ function fnGetShort(props: ServiceProps<api.service.ErrorType>): api.service.Sam
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getShort', $data));
@@ -104,7 +104,7 @@ function fnGetInt(props: ServiceProps<api.service.ErrorType>): api.service.Sampl
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getInt', $data));
@@ -137,7 +137,7 @@ function fnGetLong(props: ServiceProps<api.service.ErrorType>): api.service.Samp
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getLong', $data));
@@ -170,7 +170,7 @@ function fnGetFloat(props: ServiceProps<api.service.ErrorType>): api.service.Sam
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getFloat', $data));
@@ -203,7 +203,7 @@ function fnGetDouble(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getDouble', $data));
@@ -236,7 +236,7 @@ function fnGetString(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getString', $data));
@@ -269,7 +269,7 @@ function fnGetLocalDate(props: ServiceProps<api.service.ErrorType>): api.service
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getLocalDate', $data));
@@ -302,7 +302,7 @@ function fnGetLocalDateTime(props: ServiceProps<api.service.ErrorType>): api.ser
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getLocalDateTime', $data));
@@ -335,7 +335,7 @@ function fnGetZonedDateTime(props: ServiceProps<api.service.ErrorType>): api.ser
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getZonedDateTime', $data));
@@ -368,7 +368,7 @@ function fnGetScalar(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getScalar', $data));
@@ -401,7 +401,7 @@ function fnGetEnum(props: ServiceProps<api.service.ErrorType>): api.service.Samp
 
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.model.isSampleEnum($data)) {
+				if (!api.model.isSampleEnum($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getEnum', $data));

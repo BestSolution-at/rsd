@@ -38,11 +38,11 @@ function fnSimpleBooleanBodyParam(props: ServiceProps<api.service.ErrorType>): a
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleBooleanBodyParam`;
-			const $body = String(bodyBoolean);
+			const $body = JSON.stringify(bodyBoolean);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isBoolean($data)) {
+				if (!api.utils.isBoolean($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleBooleanBodyParam', $data));
@@ -71,11 +71,11 @@ function fnSimpleShortBodyParam(props: ServiceProps<api.service.ErrorType>): api
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleShortBodyParam`;
-			const $body = String(bodyShort);
+			const $body = JSON.stringify(bodyShort);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleShortBodyParam', $data));
@@ -104,11 +104,11 @@ function fnSimpleIntBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleIntBodyParam`;
-			const $body = String(bodyInt);
+			const $body = JSON.stringify(bodyInt);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleIntBodyParam', $data));
@@ -137,11 +137,11 @@ function fnSimpleLongBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleLongBodyParam`;
-			const $body = String(bodyLong);
+			const $body = JSON.stringify(bodyLong);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLongBodyParam', $data));
@@ -170,11 +170,11 @@ function fnSimpleFloatBodyParam(props: ServiceProps<api.service.ErrorType>): api
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleFloatBodyParam`;
-			const $body = String(bodyFloat);
+			const $body = JSON.stringify(bodyFloat);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleFloatBodyParam', $data));
@@ -203,11 +203,11 @@ function fnSimpleDoubleBodyParam(props: ServiceProps<api.service.ErrorType>): ap
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleDoubleBodyParam`;
-			const $body = String(bodyDouble);
+			const $body = JSON.stringify(bodyDouble);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isNumber($data)) {
+				if (!api.utils.isNumber($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleDoubleBodyParam', $data));
@@ -236,11 +236,11 @@ function fnSimpleStringBodyParam(props: ServiceProps<api.service.ErrorType>): ap
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleStringBodyParam`;
-			const $body = `"${bodyString}"`;
+			const $body = JSON.stringify(bodyString);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleStringBodyParam', $data));
@@ -269,11 +269,11 @@ function fnSimpleLocalDateBodyParam(props: ServiceProps<api.service.ErrorType>):
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleLocalDateBodyParam`;
-			const $body = `"${bodyLocalDate}"`;
+			const $body = JSON.stringify(bodyLocalDate);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDateBodyParam', $data));
@@ -302,11 +302,11 @@ function fnSimpleLocalDateTimeBodyParam(props: ServiceProps<api.service.ErrorTyp
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleLocalDateTimeBodyParam`;
-			const $body = `"${bodyLocalDateTime}"`;
+			const $body = JSON.stringify(bodyLocalDateTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDateTimeBodyParam', $data));
@@ -335,11 +335,11 @@ function fnSimpleZonedDateTimeBodyParam(props: ServiceProps<api.service.ErrorTyp
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleZonedDateTimeBodyParam`;
-			const $body = `"${bodyZonedDateTime}"`;
+			const $body = JSON.stringify(bodyZonedDateTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleZonedDateTimeBodyParam', $data));
@@ -368,11 +368,11 @@ function fnSimpleScalarBodyParam(props: ServiceProps<api.service.ErrorType>): ap
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleScalarBodyParam`;
-			const $body = `"${bodyScalar}"`;
+			const $body = JSON.stringify(bodyScalar);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleScalarBodyParam', $data));
@@ -401,11 +401,11 @@ function fnSimpleEnumBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleEnumBodyParam`;
-			const $body = `"${bodyEnum}"`;
+			const $body = JSON.stringify(bodyEnum);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.model.isSampleEnum($data)) {
+				if (!api.model.isSampleEnum($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleEnumBodyParam', $data));
@@ -434,11 +434,11 @@ function fnSimpleInlineEnumBodyParam(props: ServiceProps<api.service.ErrorType>)
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleInlineEnumBodyParam`;
-			const $body = `"${bodyEnum}"`;
+			const $body = JSON.stringify(bodyEnum);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!isSimpleInlineEnumBodyParamResult($data)) {
+				if (!isSimpleInlineEnumBodyParamResult($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleInlineEnumBodyParam', $data));
@@ -474,7 +474,7 @@ function fnMultiBodyParam(props: ServiceProps<api.service.ErrorType>): api.servi
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isString($data)) {
+				if (!api.utils.isString($data)) {
 					throw new Error('Invalid result');
 				}
 				return safeExecute(api.result.OK($data), () => onSuccess?.('multiBodyParam', $data));
