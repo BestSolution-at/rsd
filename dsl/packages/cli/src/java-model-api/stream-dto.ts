@@ -1,28 +1,22 @@
-import { CompositeGeneratorNode, NL } from 'langium/generate';
+import { toNodeTree } from '../util.js';
 
 export function generateBlob(fqn: (type: string) => string) {
-	const result = new CompositeGeneratorNode();
 	fqn('java.io.InputStream');
 	fqn('java.util.Optional');
 
-	result.append('public interface RSDBlob {', NL);
-	result.indent(body => {
-		body.append('public InputStream stream();', NL, NL);
-		body.append('public Optional<String> mimeType();', NL);
-	});
-	result.append('}', NL);
+	return toNodeTree(`
+		public interface RSDBlob {
+			public InputStream stream();
 
-	return result;
+			public Optional<String> mimeType();
+
+			// public void dispose();
+		}`);
 }
 
 export function generateFile() {
-	const result = new CompositeGeneratorNode();
-
-	result.append('public interface RSDFile extends RSDBlob {', NL);
-	result.indent(body => {
-		body.append('public String filename();', NL);
-	});
-	result.append('}', NL);
-
-	return result;
+	return toNodeTree(`
+		public interface RSDFile extends RSDBlob {
+			public String filename();
+		}`);
 }
