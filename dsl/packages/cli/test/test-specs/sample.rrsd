@@ -255,3 +255,18 @@ resource ListBodyParameterTypes at '/api/listbodyparametertypes' {
 	PUT listRecordBodyParam at 'listRecordBodyParam'
 	PUT listMultiBodyParam at 'listMultiBodyParam'
 }
+
+resource BinaryTypes at '/api/binarytypes' {
+	POST uploadBlob at 'uploadBlob' => {
+			201
+	}
+	GET downloadBlob at 'downloadBlob' => {
+			200
+	}
+	POST uploadFile at 'uploadFile' => {
+			201
+	}
+	GET downloadFile at 'downloadFile' => {
+			200
+	}
+}

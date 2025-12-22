@@ -682,3 +682,15 @@ service ListBodyParameterTypes {
 		bodyRecord: SimpleRecord[]
 	): SimpleRecord[];
 }
+
+service BinaryTypes {
+	operation uploadFile(
+		data: file
+	): int;
+	operation uploadBlob(
+		data: blob
+	): int;
+		
+	operation downloadFile(): file;
+	operation downloadBlob(): blob;
+}
