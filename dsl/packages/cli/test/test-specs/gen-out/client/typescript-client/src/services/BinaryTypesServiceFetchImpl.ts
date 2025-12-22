@@ -17,7 +17,6 @@ function fnUploadFile(props: ServiceProps<api.service.ErrorType>): api.service.B
 		try {
 			const $init = (await preFetch?.('uploadFile')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'multipart/form-data');
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadFile`;
@@ -51,7 +50,6 @@ function fnUploadBlob(props: ServiceProps<api.service.ErrorType>): api.service.B
 		try {
 			const $init = (await preFetch?.('uploadBlob')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'multipart/form-data');
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadBlob`;

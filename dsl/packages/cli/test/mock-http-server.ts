@@ -2,6 +2,7 @@ import Koa from 'koa';
 import compose from 'koa-compose';
 
 import raw from 'raw-body';
+import busboy from 'busboy';
 
 async function getBoolean(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	if ('/api/samplerecords/boolean' == ctx.path) {
@@ -800,6 +801,58 @@ async function multiHeaderParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+async function uploadFile(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path === '/api/binarytypes/uploadFile' && ctx.method === 'POST') {
+		const bb = busboy({ headers: ctx.req.headers });
+		let finish: (value: void | PromiseLike<void>) => void;
+		const wait = new Promise<void>(resolve => {
+			finish = resolve;
+		});
+		bb.on('file', (name, file, info) => {
+			const { filename, mimeType } = info;
+			if (name === 'data' && filename === 'hello.txt' && mimeType === 'text/plain') {
+				file.on('data', data => {
+					ctx.body = String(data).length;
+				});
+			}
+		}).on('close', () => {
+			ctx.status = 201;
+			ctx.type = 'application/json';
+			finish();
+		});
+		ctx.req.pipe(bb);
+		await wait;
+	} else {
+		await next();
+	}
+}
+
+async function uploadBlob(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path === '/api/binarytypes/uploadBlob' && ctx.method === 'POST') {
+		const bb = busboy({ headers: ctx.req.headers });
+		let finish: (value: void | PromiseLike<void>) => void;
+		const wait = new Promise<void>(resolve => {
+			finish = resolve;
+		});
+		bb.on('file', (name, file, info) => {
+			const { filename, mimeType } = info;
+			if (name === 'data' && filename === 'blob' && mimeType === 'text/plain') {
+				file.on('data', data => {
+					ctx.body = String(data).length;
+				});
+			}
+		}).on('close', () => {
+			ctx.status = 201;
+			ctx.type = 'application/json';
+			finish();
+		});
+		ctx.req.pipe(bb);
+		await wait;
+	} else {
+		await next();
+	}
+}
+
 const app = new Koa();
 
 const all = compose([
@@ -855,6 +908,11 @@ const all = compose([
 	listBodyParam,
 	headerParam,
 	multiHeaderParam,
+
+	// Binary types
+	uploadFile,
+	uploadBlob,
 ]);
 app.use(all);
+
 app.listen(3000);

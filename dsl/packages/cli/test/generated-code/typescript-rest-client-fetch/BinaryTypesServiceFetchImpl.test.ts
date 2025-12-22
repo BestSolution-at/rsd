@@ -12,7 +12,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 			const file = new File(['Hello, World!'], 'hello.txt', { type: 'text/plain' });
 			const [result, error] = await service.uploadFile(file);
 			expect(error).toBeNull();
-			expect(result).toBeGreaterThan(0);
+			expect(result).toBe(13);
 		});
 	});
 	describe('uploadBlob', () => {

@@ -141,9 +141,7 @@ function generateRemoteInvoke(
 
 	node.append(`const $headers = new Headers($init.headers ?? {});`, NL);
 	const hasStreamParam = o.parameters.some(p => p.variant === 'stream');
-	if (hasStreamParam) {
-		node.append(`$headers.append('Content-Type', 'multipart/form-data');`, NL);
-	} else {
+	if (!hasStreamParam) {
 		node.append(`$headers.append('Content-Type', 'application/json');`, NL);
 	}
 
