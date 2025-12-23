@@ -175,22 +175,91 @@ resource PathParameterTypeService at '/api/pathparametertype' {
 
 resource BodyParameterTypes at '/api/bodyparametertypes' {
 	POST simpleBooleanBodyParam at 'simpleBooleanBodyParam'
+	POST simpleBooleanBodyParamOpt at 'simpleBooleanBodyParamOpt'
+	POST simpleBooleanBodyParamNil at 'simpleBooleanBodyParamNil'
+	POST simpleBooleanBodyParamOptNil at 'simpleBooleanBodyParamOptNil'
+
 	POST simpleShortBodyParam at 'simpleShortBodyParam'
+	POST simpleShortBodyParamOpt at 'simpleShortBodyParamOpt'
+	POST simpleShortBodyParamNil at 'simpleShortBodyParamNil'
+	POST simpleShortBodyParamOptNil at 'simpleShortBodyParamOptNil'
+
 	POST simpleIntBodyParam at 'simpleIntBodyParam'
+	POST simpleIntBodyParamOpt at 'simpleIntBodyParamOpt'
+	POST simpleIntBodyParamNil at 'simpleIntBodyParamNil'
+	POST simpleIntBodyParamOptNil at 'simpleIntBodyParamOptNil'
+
 	POST simpleLongBodyParam at 'simpleLongBodyParam'
+	POST simpleLongBodyParamOpt at 'simpleLongBodyParamOpt'
+	POST simpleLongBodyParamNil at 'simpleLongBodyParamNil'
+	POST simpleLongBodyParamOptNil at 'simpleLongBodyParamOptNil'
+
 	POST simpleFloatBodyParam at 'simpleFloatBodyParam'
+	POST simpleFloatBodyParamOpt at 'simpleFloatBodyParamOpt'
+	POST simpleFloatBodyParamNil at 'simpleFloatBodyParamNil'
+	POST simpleFloatBodyParamOptNil at 'simpleFloatBodyParamOptNil'
+
 	POST simpleDoubleBodyParam at 'simpleDoubleBodyParam'
+	POST simpleDoubleBodyParamOpt at 'simpleDoubleBodyParamOpt'
+	POST simpleDoubleBodyParamNil at 'simpleDoubleBodyParamNil'
+	POST simpleDoubleBodyParamOptNil at 'simpleDoubleBodyParamOptNil'
+
 	POST simpleStringBodyParam at 'simpleStringBodyParam'
+	POST simpleStringBodyParamOpt at 'simpleStringBodyParamOpt'
+	POST simpleStringBodyParamNil at 'simpleStringBodyParamNil'
+	POST simpleStringBodyParamOptNil at 'simpleStringBodyParamOptNil'
+
 	POST simpleLocalDateBodyParam at 'simpleLocalDateBodyParam'
+	POST simpleLocalDateBodyParamOpt at 'simpleLocalDateBodyParamOpt'
+	POST simpleLocalDateBodyParamNil at 'simpleLocalDateBodyParamNil'
+	POST simpleLocalDateBodyParamOptNil at 'simpleLocalDateBodyParamOptNil'
+
 	POST simpleLocalDateTimeBodyParam at 'simpleLocalDateTimeBodyParam'
+	POST simpleLocalDateTimeBodyParamOpt at 'simpleLocalDateTimeBodyParamOpt'
+	POST simpleLocalDateTimeBodyParamNil at 'simpleLocalDateTimeBodyParamNil'
+	POST simpleLocalDateTimeBodyParamOptNil at 'simpleLocalDateTimeBodyParamOptNil'
+
 	POST simpleZonedDateTimeBodyParam at 'simpleZonedDateTimeBodyParam'
+	POST simpleZonedDateTimeBodyParamOpt at 'simpleZonedDateTimeBodyParamOpt'
+	POST simpleZonedDateTimeBodyParamNil at 'simpleZonedDateTimeBodyParamNil'
+	POST simpleZonedDateTimeBodyParamOptNil at 'simpleZonedDateTimeBodyParamOptNil'
+
 	POST simpleScalarBodyParam at 'simpleScalarBodyParam'
+	POST simpleScalarBodyParamOpt at 'simpleScalarBodyParamOpt'
+	POST simpleScalarBodyParamNil at 'simpleScalarBodyParamNil'
+	POST simpleScalarBodyParamOptNil at 'simpleScalarBodyParamOptNil'
+
 	POST simpleEnumBodyParam at 'simpleEnumBodyParam'
+	POST simpleEnumBodyParamOpt at 'simpleEnumBodyParamOpt'
+	POST simpleEnumBodyParamNil at 'simpleEnumBodyParamNil'
+	POST simpleEnumBodyParamOptNil at 'simpleEnumBodyParamOptNil'
+
 	POST simpleInlineEnumBodyParam at 'simpleInlineEnumBodyParam'
+	POST simpleInlineEnumBodyParamOpt at 'simpleInlineEnumBodyParamOpt'
+	POST simpleInlineEnumBodyParamNil at 'simpleInlineEnumBodyParamNil'
+	POST simpleInlineEnumBodyParamOptNil at 'simpleInlineEnumBodyParamOptNil'
+
 	POST multiBodyParam at 'multiBodyParam'
+	POST multiBodyParamOpt at 'multiBodyParamOpt'
+	POST multiBodyParamNil at 'multiBodyParamNil'
+	POST multiBodyParamOptNil at 'multiBodyParamOptNil'
+
 	POST recordBodyParam at 'recordBodyParam'
-	PATCH patchableRecordBodyParam at 'patchableRecordBodyParam'
+	POST recordBodyParamOpt at 'recordBodyParamOpt'
+	POST recordBodyParamNil at 'recordBodyParamNil'
+	POST recordBodyParamOptNil at 'recordBodyParamOptNil'
+
 	POST unionBodyParam at 'unionBodyParam'
+	POST unionBodyParamOpt at 'unionBodyParamOpt'
+	POST unionBodyParamNil at 'unionBodyParamNil'
+	POST unionBodyParamOptNil at 'unionBodyParamOptNil'
+
+	PATCH patchableRecordBodyParam at 'patchableRecordBodyParam'
+	PATCH patchableRecordBodyParamOpt at 'patchableRecordBodyParamOpt'
+	PATCH patchableRecordBodyParamNil at 'patchableRecordBodyParamNil'
+	PATCH patchableRecordBodyParamOptNil at 'patchableRecordBodyParamOptNil'
+
+	POST multiBodyParamFirst at 'multiBodyParamFirst'
 }
 
 resource HeaderParameterTypes at '/api/headerparametertypes' {

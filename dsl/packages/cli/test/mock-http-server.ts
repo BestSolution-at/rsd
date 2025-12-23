@@ -701,6 +701,53 @@ async function bodyParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+const bodyParamNilPaths = [
+	'/api/bodyparametertypes/simpleBooleanBodyParamNil',
+	'/api/bodyparametertypes/simpleBooleanBodyParamOpt',
+	'/api/bodyparametertypes/simpleShortBodyParamNil',
+	'/api/bodyparametertypes/simpleIntBodyParamNil',
+	'/api/bodyparametertypes/simpleLongBodyParamNil',
+	'/api/bodyparametertypes/simpleFloatBodyParamNil',
+	'/api/bodyparametertypes/simpleDoubleBodyParamNil',
+	'/api/bodyparametertypes/simpleStringBodyParamNil',
+	'/api/bodyparametertypes/simpleLocalDateBodyParamNil',
+	'/api/bodyparametertypes/simpleLocalDateTimeBodyParamNil',
+	'/api/bodyparametertypes/simpleZonedDateTimeBodyParamNil',
+	'/api/bodyparametertypes/simpleScalarBodyParamNil',
+	'/api/bodyparametertypes/simpleEnumBodyParamNil',
+	'/api/bodyparametertypes/simpleInlineEnumBodyParamNil',
+	'/api/bodyparametertypes/multiBodyParamNil',
+	'/api/bodyparametertypes/recordBodyParamNil',
+	'/api/bodyparametertypes/unionBodyParamNil',
+];
+
+async function bodyParamNil(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (bodyParamNilPaths.includes(ctx.path) && ctx.method === 'POST') {
+		const str = await raw(ctx.req, { encoding: 'utf-8' });
+		console.log(`Received body for ${ctx.path}: ${str}`);
+		if (ctx.path === '/api/bodyparametertypes/multiBodyParamNil') {
+			const body = JSON.parse(str) as { valueA: string; valueB: string; valueC: Record<string, string> };
+			const response = `${body.valueA}-${body.valueB}-${body.valueC.key}`;
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = `"${response}"`;
+			return;
+		}
+
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		if (str === 'null') {
+			ctx.body = '"NULL"';
+		} else if (str === '') {
+			ctx.body = '"UNDEFINED"';
+		} else {
+			ctx.body = str;
+		}
+	} else {
+		await next();
+	}
+}
+
 async function bodyPatchParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	if (ctx.path === '/api/bodyparametertypes/patchableRecordBodyParam' && ctx.method === 'PATCH') {
 		const str = await raw(ctx.req, { encoding: 'utf-8' });
@@ -999,6 +1046,7 @@ const all = compose([
 	multiPathParam,
 
 	bodyParam,
+	bodyParamNil,
 	bodyPatchParam,
 	listBodyParam,
 	headerParam,

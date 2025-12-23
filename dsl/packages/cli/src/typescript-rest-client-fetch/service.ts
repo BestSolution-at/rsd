@@ -88,7 +88,10 @@ function generateServiceContent(
 					fnBody.append('const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;', NL);
 				}
 
-				fnBody.append(`return async (${o.parameters.map(p => toParameter(p, config, fqn)).join(', ')}) => {`, NL);
+				fnBody.append(
+					`return async (${o.parameters.map(p => toParameter(p, config, anyNoneOptionalAfter(p, o.parameters), fqn)).join(', ')}) => {`,
+					NL,
+				);
 				fnBody.indent(code => {
 					code.append('try {', NL);
 					code.indent(invoke => {
@@ -241,9 +244,23 @@ function generateRemoteInvoke(
 					bodyParams[0].type + (bodyParams[0].patch ? 'Patch' : '')
 				}ToJSON`;
 				if (bodyParams[0].array) {
-					node.append(`const $body = JSON.stringify(${bodyParams[0].name}.map(${toJSON}));`, NL);
+					if (bodyParams[0].nullable || bodyParams[0].optional) {
+						node.append(
+							`const $body = ${bodyParams[0].name} ? JSON.stringify(${bodyParams[0].name}.map(${toJSON})) : ${bodyParams[0].name};`,
+							NL,
+						);
+					} else {
+						node.append(`const $body = JSON.stringify(${bodyParams[0].name}.map(${toJSON}));`, NL);
+					}
 				} else {
-					node.append(`const $body = JSON.stringify(${toJSON}(${bodyParams[0].name}));`, NL);
+					if (bodyParams[0].nullable || bodyParams[0].optional) {
+						node.append(
+							`const $body = ${bodyParams[0].name} ? JSON.stringify(${toJSON}(${bodyParams[0].name})) : ${bodyParams[0].name};`,
+							NL,
+						);
+					} else {
+						node.append(`const $body = JSON.stringify(${toJSON}(${bodyParams[0].name}));`, NL);
+					}
 				}
 			} else {
 				node.append(`const $body = JSON.stringify(${bodyParams[0].name});`, NL);
@@ -258,9 +275,17 @@ function generateRemoteInvoke(
 							false,
 						)}.model.${p.type + (p.patch ? 'Patch' : '')}ToJSON`;
 						if (p.array) {
-							struct.append(`${p.name}: ${p.name}.map(${toJSON}),`, NL);
+							if (p.nullable || p.optional) {
+								struct.append(`${p.name}: ${p.name} ? ${p.name}.map(${toJSON}) : ${p.name},`, NL);
+							} else {
+								struct.append(`${p.name}: ${p.name}.map(${toJSON}),`, NL);
+							}
 						} else {
-							struct.append(`${p.name}: ${toJSON}(${p.name}),`, NL);
+							if (p.nullable || p.optional) {
+								struct.append(`${p.name}: ${p.name} ? ${toJSON}(${p.name}) : ${p.name},`, NL);
+							} else {
+								struct.append(`${p.name}: ${toJSON}(${p.name}),`, NL);
+							}
 						}
 					} else {
 						struct.append(`${p.name},`, NL);
@@ -463,9 +488,20 @@ function handleOkResult(
 	return node;
 }
 
+function anyNoneOptionalAfter(parameter: MParameter, allParams: readonly MParameter[]) {
+	const index = allParams.indexOf(parameter);
+	for (let i = index + 1; i < allParams.length; i++) {
+		if (!allParams[i].optional) {
+			return true;
+		}
+	}
+	return false;
+}
+
 function toParameter(
 	parameter: MParameter,
 	config: TypescriptFetchClientGeneratorConfig,
+	anyNoneOptionalAfter: boolean,
 	fqn: (type: string, typeOnly: boolean) => string,
 ) {
 	let type: string;
@@ -491,13 +527,14 @@ function toParameter(
 	} else {
 		type = 'any';
 	}
-	const optional = parameter.optional ? '?' : '';
+	const optional = parameter.optional && !anyNoneOptionalAfter ? '?' : '';
+	const optUndefined = parameter.optional && anyNoneOptionalAfter ? ' | undefined' : '';
 	const nullable = parameter.nullable ? ' | null' : '';
 	if (parameter.array) {
 		type = `${type}[]`;
 	}
 
-	return `${parameter.name}${optional}: ${type}${nullable}`;
+	return `${parameter.name}${optional}: ${type}${optUndefined}${nullable}`;
 }
 
 function builtinTypeGuard(

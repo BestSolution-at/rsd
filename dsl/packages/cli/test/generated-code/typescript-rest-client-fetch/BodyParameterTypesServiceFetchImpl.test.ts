@@ -19,6 +19,20 @@ describe('BodyParameterTypesServiceFetchImpl', () => {
 			expect(result).toBe(false);
 		});
 	});
+	describe('simpleBooleanBodyParamOpt', () => {
+		test('success - true', async () => {
+			const [result, error] = await service.simpleBooleanBodyParamOpt();
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+	});
+	describe('simpleBooleanBodyParamNil', () => {
+		test('success - true', async () => {
+			const [result, error] = await service.simpleBooleanBodyParamNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+	});
 	describe('simpleShortBodyParam', () => {
 		test('success - 12345', async () => {
 			const [result, error] = await service.simpleShortBodyParam(12345);

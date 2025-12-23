@@ -456,6 +456,8 @@ record MixinRecord {
 	children: Node[]
 }*/
 
+enum NilResult = UNDEFINED | NULL;
+
 error SampleError;
 error SampleError2;
 
@@ -545,52 +547,217 @@ service BodyParameterTypes {
 	operation simpleBooleanBodyParam(
 		bodyBoolean: boolean
 	): boolean;
+	operation simpleBooleanBodyParamOpt(
+		bodyBoolean?: boolean
+	): NilResult;
+	operation simpleBooleanBodyParamNil(
+		bodyBoolean: boolean?
+	): NilResult;
+	operation simpleBooleanBodyParamOptNil(
+		bodyBoolean?: boolean?
+	): NilResult;
+
 	operation simpleShortBodyParam(
 		bodyShort: short
 	): short;
+	operation simpleShortBodyParamOpt(
+		bodyShort?: short
+	): NilResult;
+	operation simpleShortBodyParamNil(
+		bodyShort: short?
+	): NilResult;
+	operation simpleShortBodyParamOptNil(
+		bodyShort?: short?
+	): NilResult;
+
 	operation simpleIntBodyParam(
 		bodyInt: int
 	): int;
+	operation simpleIntBodyParamOpt(
+		bodyInt?: int
+	): NilResult;
+	operation simpleIntBodyParamNil(
+		bodyInt: int?
+	): NilResult;
+	operation simpleIntBodyParamOptNil(
+		bodyInt?: int?
+	): NilResult;
+
 	operation simpleLongBodyParam(
 		bodyLong: long
 	): long;
+	operation simpleLongBodyParamOpt(
+		bodyLong?: long
+	): NilResult;
+	operation simpleLongBodyParamNil(
+		bodyLong: long?
+	): NilResult;
+	operation simpleLongBodyParamOptNil(
+		bodyLong?: long?
+	): NilResult;
+
 	operation simpleFloatBodyParam(
 		bodyFloat: float
 	): float;
+	operation simpleFloatBodyParamOpt(
+		bodyFloat?: float
+	): NilResult;
+	operation simpleFloatBodyParamNil(
+		bodyFloat: float?
+	): NilResult;
+	operation simpleFloatBodyParamOptNil(
+		bodyFloat?: float?
+	): NilResult;
+
 	operation simpleDoubleBodyParam(
 		bodyDouble: double
 	): double;
+	operation simpleDoubleBodyParamOpt(
+		bodyDouble?: double
+	): NilResult;
+	operation simpleDoubleBodyParamNil(
+		bodyDouble: double?
+	): NilResult;
+	operation simpleDoubleBodyParamOptNil(
+		bodyDouble?: double?
+	): NilResult;
+
 	operation simpleStringBodyParam(
 		bodyString: string
 	): string;
+	operation simpleStringBodyParamOpt(
+		bodyString?: string
+	): NilResult;
+	operation simpleStringBodyParamNil(
+		bodyString: string?
+	): NilResult;
+	operation simpleStringBodyParamOptNil(
+		bodyString?: string?
+	): NilResult;
+
 	operation simpleLocalDateBodyParam(
 		bodyLocalDate: local-date
 	): local-date;
+	operation simpleLocalDateBodyParamOpt(
+		bodyLocalDate?: local-date
+	): NilResult;
+	operation simpleLocalDateBodyParamNil(
+		bodyLocalDate: local-date?
+	): NilResult;
+	operation simpleLocalDateBodyParamOptNil(
+		bodyLocalDate?: local-date?
+	): NilResult;
+
 	operation simpleLocalDateTimeBodyParam(
 		bodyLocalDateTime: local-date-time
 	): local-date-time;
+	operation simpleLocalDateTimeBodyParamOpt(
+		bodyLocalDateTime?: local-date-time
+	): NilResult;
+	operation simpleLocalDateTimeBodyParamNil(
+		bodyLocalDateTime: local-date-time?
+	): NilResult;
+	operation simpleLocalDateTimeBodyParamOptNil(
+		bodyLocalDateTime?: local-date-time?
+	): NilResult;
+
 	operation simpleZonedDateTimeBodyParam(
 		bodyZonedDateTime: zoned-date-time
 	): zoned-date-time;
+	operation simpleZonedDateTimeBodyParamOpt(
+		bodyZonedDateTime?: zoned-date-time
+	): NilResult;
+	operation simpleZonedDateTimeBodyParamNil(
+		bodyZonedDateTime: zoned-date-time?
+	): NilResult;
+	operation simpleZonedDateTimeBodyParamOptNil(
+		bodyZonedDateTime?: zoned-date-time?
+	): NilResult;
+
 	operation simpleScalarBodyParam(
 		bodyScalar: ZoneId
 	): ZoneId;
+	operation simpleScalarBodyParamOpt(
+		bodyScalar?: ZoneId
+	): NilResult;
+	operation simpleScalarBodyParamNil(
+		bodyScalar: ZoneId?
+	): NilResult;
+	operation simpleScalarBodyParamOptNil(
+		bodyScalar?: ZoneId?
+	): NilResult;
+
 	operation simpleEnumBodyParam(
 		bodyEnum: SampleEnum
 	): SampleEnum;
+	operation simpleEnumBodyParamOpt(
+		bodyEnum?: SampleEnum
+	): NilResult;
+	operation simpleEnumBodyParamNil(
+		bodyEnum: SampleEnum?
+	): NilResult;
+	operation simpleEnumBodyParamOptNil(
+		bodyEnum?: SampleEnum?
+	): NilResult;
+
 	operation simpleInlineEnumBodyParam(
 		bodyEnum: enum A | B
 	): enum A | B;
+	operation simpleInlineEnumBodyParamOpt(
+		bodyEnum?: enum A | B
+	): NilResult;
+	operation simpleInlineEnumBodyParamNil(
+		bodyEnum: enum C | D?
+	): NilResult;
+	operation simpleInlineEnumBodyParamOptNil(
+		bodyEnum?: enum C | D?
+	): NilResult;
+
 	operation multiBodyParam(valueA: string, valueB: int, valueC: SimpleRecord): string;
+	operation multiBodyParamOpt(valueA?: string, valueB?: int, valueC?: SimpleRecord): string;
+	operation multiBodyParamNil(valueA: string?, valueB: int?, valueC: SimpleRecord?): string;
+	operation multiBodyParamOptNil(valueA?: string?, valueB?: int?, valueC?: SimpleRecord?): string;
+	
+	operation multiBodyParamFirst(valueA?: string, valueB: int, valueC: SimpleRecord): string;
+	
+
 	operation recordBodyParam(
 		bodyRecord: SimpleRecord
+	): SimpleRecord;
+	operation recordBodyParamOpt(
+		bodyRecord?: SimpleRecord
+	): SimpleRecord;
+	operation recordBodyParamNil(
+		bodyRecord: SimpleRecord?
+	): SimpleRecord;
+	operation recordBodyParamOptNil(
+		bodyRecord?: SimpleRecord?
 	): SimpleRecord;
 	
 	operation unionBodyParam(
 		bodyUnion: Union
 	): Union;
+	operation unionBodyParamOpt(
+		bodyUnion?: Union
+	): Union;
+	operation unionBodyParamNil(
+		bodyUnion: Union?
+	): Union;
+	operation unionBodyParamOptNil(
+		bodyUnion?: Union?
+	): Union;
+
 	operation patchableRecordBodyParam(
 		@patch bodyRecord: PatchableRecord
+	): PatchableRecord;
+	operation patchableRecordBodyParamOpt(
+		@patch bodyRecord?: PatchableRecord
+	): PatchableRecord;
+	operation patchableRecordBodyParamNil(
+		@patch bodyRecord: PatchableRecord?
+	): PatchableRecord;
+	operation patchableRecordBodyParamOptNil(
+		@patch bodyRecord?: PatchableRecord?
 	): PatchableRecord;
 }
 

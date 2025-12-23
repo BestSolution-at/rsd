@@ -9,22 +9,74 @@ function isSimpleInlineEnumBodyParamResult(value: unknown): value is 'A' | 'B' {
 export function createBodyParameterTypesService(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService {
 	return {
 		simpleBooleanBodyParam: fnSimpleBooleanBodyParam(props),
+		simpleBooleanBodyParamOpt: fnSimpleBooleanBodyParamOpt(props),
+		simpleBooleanBodyParamNil: fnSimpleBooleanBodyParamNil(props),
+		simpleBooleanBodyParamOptNil: fnSimpleBooleanBodyParamOptNil(props),
 		simpleShortBodyParam: fnSimpleShortBodyParam(props),
+		simpleShortBodyParamOpt: fnSimpleShortBodyParamOpt(props),
+		simpleShortBodyParamNil: fnSimpleShortBodyParamNil(props),
+		simpleShortBodyParamOptNil: fnSimpleShortBodyParamOptNil(props),
 		simpleIntBodyParam: fnSimpleIntBodyParam(props),
+		simpleIntBodyParamOpt: fnSimpleIntBodyParamOpt(props),
+		simpleIntBodyParamNil: fnSimpleIntBodyParamNil(props),
+		simpleIntBodyParamOptNil: fnSimpleIntBodyParamOptNil(props),
 		simpleLongBodyParam: fnSimpleLongBodyParam(props),
+		simpleLongBodyParamOpt: fnSimpleLongBodyParamOpt(props),
+		simpleLongBodyParamNil: fnSimpleLongBodyParamNil(props),
+		simpleLongBodyParamOptNil: fnSimpleLongBodyParamOptNil(props),
 		simpleFloatBodyParam: fnSimpleFloatBodyParam(props),
+		simpleFloatBodyParamOpt: fnSimpleFloatBodyParamOpt(props),
+		simpleFloatBodyParamNil: fnSimpleFloatBodyParamNil(props),
+		simpleFloatBodyParamOptNil: fnSimpleFloatBodyParamOptNil(props),
 		simpleDoubleBodyParam: fnSimpleDoubleBodyParam(props),
+		simpleDoubleBodyParamOpt: fnSimpleDoubleBodyParamOpt(props),
+		simpleDoubleBodyParamNil: fnSimpleDoubleBodyParamNil(props),
+		simpleDoubleBodyParamOptNil: fnSimpleDoubleBodyParamOptNil(props),
 		simpleStringBodyParam: fnSimpleStringBodyParam(props),
+		simpleStringBodyParamOpt: fnSimpleStringBodyParamOpt(props),
+		simpleStringBodyParamNil: fnSimpleStringBodyParamNil(props),
+		simpleStringBodyParamOptNil: fnSimpleStringBodyParamOptNil(props),
 		simpleLocalDateBodyParam: fnSimpleLocalDateBodyParam(props),
+		simpleLocalDateBodyParamOpt: fnSimpleLocalDateBodyParamOpt(props),
+		simpleLocalDateBodyParamNil: fnSimpleLocalDateBodyParamNil(props),
+		simpleLocalDateBodyParamOptNil: fnSimpleLocalDateBodyParamOptNil(props),
 		simpleLocalDateTimeBodyParam: fnSimpleLocalDateTimeBodyParam(props),
+		simpleLocalDateTimeBodyParamOpt: fnSimpleLocalDateTimeBodyParamOpt(props),
+		simpleLocalDateTimeBodyParamNil: fnSimpleLocalDateTimeBodyParamNil(props),
+		simpleLocalDateTimeBodyParamOptNil: fnSimpleLocalDateTimeBodyParamOptNil(props),
 		simpleZonedDateTimeBodyParam: fnSimpleZonedDateTimeBodyParam(props),
+		simpleZonedDateTimeBodyParamOpt: fnSimpleZonedDateTimeBodyParamOpt(props),
+		simpleZonedDateTimeBodyParamNil: fnSimpleZonedDateTimeBodyParamNil(props),
+		simpleZonedDateTimeBodyParamOptNil: fnSimpleZonedDateTimeBodyParamOptNil(props),
 		simpleScalarBodyParam: fnSimpleScalarBodyParam(props),
+		simpleScalarBodyParamOpt: fnSimpleScalarBodyParamOpt(props),
+		simpleScalarBodyParamNil: fnSimpleScalarBodyParamNil(props),
+		simpleScalarBodyParamOptNil: fnSimpleScalarBodyParamOptNil(props),
 		simpleEnumBodyParam: fnSimpleEnumBodyParam(props),
+		simpleEnumBodyParamOpt: fnSimpleEnumBodyParamOpt(props),
+		simpleEnumBodyParamNil: fnSimpleEnumBodyParamNil(props),
+		simpleEnumBodyParamOptNil: fnSimpleEnumBodyParamOptNil(props),
 		simpleInlineEnumBodyParam: fnSimpleInlineEnumBodyParam(props),
+		simpleInlineEnumBodyParamOpt: fnSimpleInlineEnumBodyParamOpt(props),
+		simpleInlineEnumBodyParamNil: fnSimpleInlineEnumBodyParamNil(props),
+		simpleInlineEnumBodyParamOptNil: fnSimpleInlineEnumBodyParamOptNil(props),
 		multiBodyParam: fnMultiBodyParam(props),
+		multiBodyParamOpt: fnMultiBodyParamOpt(props),
+		multiBodyParamNil: fnMultiBodyParamNil(props),
+		multiBodyParamOptNil: fnMultiBodyParamOptNil(props),
+		multiBodyParamFirst: fnMultiBodyParamFirst(props),
 		recordBodyParam: fnRecordBodyParam(props),
+		recordBodyParamOpt: fnRecordBodyParamOpt(props),
+		recordBodyParamNil: fnRecordBodyParamNil(props),
+		recordBodyParamOptNil: fnRecordBodyParamOptNil(props),
 		unionBodyParam: fnUnionBodyParam(props),
+		unionBodyParamOpt: fnUnionBodyParamOpt(props),
+		unionBodyParamNil: fnUnionBodyParamNil(props),
+		unionBodyParamOptNil: fnUnionBodyParamOptNil(props),
 		patchableRecordBodyParam: fnPatchableRecordBodyParam(props),
+		patchableRecordBodyParamOpt: fnPatchableRecordBodyParamOpt(props),
+		patchableRecordBodyParamNil: fnPatchableRecordBodyParamNil(props),
+		patchableRecordBodyParamOptNil: fnPatchableRecordBodyParamOptNil(props),
 	};
 }
 function fnSimpleBooleanBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleBooleanBodyParam'] {
@@ -56,6 +108,105 @@ function fnSimpleBooleanBodyParam(props: ServiceProps<api.service.ErrorType>): a
 			return api.result.ERR(err);
 		} finally {
 			final?.('simpleBooleanBodyParam');
+		}
+	};
+}
+
+function fnSimpleBooleanBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleBooleanBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyBoolean?: boolean) => {
+		try {
+			const $init = (await preFetch?.('simpleBooleanBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleBooleanBodyParamOpt`;
+			const $body = JSON.stringify(bodyBoolean);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleBooleanBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleBooleanBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleBooleanBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleBooleanBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleBooleanBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyBoolean: boolean | null) => {
+		try {
+			const $init = (await preFetch?.('simpleBooleanBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleBooleanBodyParamNil`;
+			const $body = JSON.stringify(bodyBoolean);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleBooleanBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleBooleanBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleBooleanBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleBooleanBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleBooleanBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyBoolean?: boolean | null) => {
+		try {
+			const $init = (await preFetch?.('simpleBooleanBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleBooleanBodyParamOptNil`;
+			const $body = JSON.stringify(bodyBoolean);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleBooleanBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleBooleanBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleBooleanBodyParamOptNil');
 		}
 	};
 }
@@ -93,6 +244,105 @@ function fnSimpleShortBodyParam(props: ServiceProps<api.service.ErrorType>): api
 	};
 }
 
+function fnSimpleShortBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleShortBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyShort?: number) => {
+		try {
+			const $init = (await preFetch?.('simpleShortBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleShortBodyParamOpt`;
+			const $body = JSON.stringify(bodyShort);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleShortBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleShortBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleShortBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleShortBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleShortBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyShort: number | null) => {
+		try {
+			const $init = (await preFetch?.('simpleShortBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleShortBodyParamNil`;
+			const $body = JSON.stringify(bodyShort);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleShortBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleShortBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleShortBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleShortBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleShortBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyShort?: number | null) => {
+		try {
+			const $init = (await preFetch?.('simpleShortBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleShortBodyParamOptNil`;
+			const $body = JSON.stringify(bodyShort);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleShortBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleShortBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleShortBodyParamOptNil');
+		}
+	};
+}
+
 function fnSimpleIntBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleIntBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -122,6 +372,105 @@ function fnSimpleIntBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 			return api.result.ERR(err);
 		} finally {
 			final?.('simpleIntBodyParam');
+		}
+	};
+}
+
+function fnSimpleIntBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleIntBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyInt?: number) => {
+		try {
+			const $init = (await preFetch?.('simpleIntBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleIntBodyParamOpt`;
+			const $body = JSON.stringify(bodyInt);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleIntBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleIntBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleIntBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleIntBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleIntBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyInt: number | null) => {
+		try {
+			const $init = (await preFetch?.('simpleIntBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleIntBodyParamNil`;
+			const $body = JSON.stringify(bodyInt);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleIntBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleIntBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleIntBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleIntBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleIntBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyInt?: number | null) => {
+		try {
+			const $init = (await preFetch?.('simpleIntBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleIntBodyParamOptNil`;
+			const $body = JSON.stringify(bodyInt);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleIntBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleIntBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleIntBodyParamOptNil');
 		}
 	};
 }
@@ -159,6 +508,105 @@ function fnSimpleLongBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 	};
 }
 
+function fnSimpleLongBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLongBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLong?: number) => {
+		try {
+			const $init = (await preFetch?.('simpleLongBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleLongBodyParamOpt`;
+			const $body = JSON.stringify(bodyLong);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLongBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLongBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLongBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleLongBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLongBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLong: number | null) => {
+		try {
+			const $init = (await preFetch?.('simpleLongBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleLongBodyParamNil`;
+			const $body = JSON.stringify(bodyLong);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLongBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLongBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLongBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleLongBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLongBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLong?: number | null) => {
+		try {
+			const $init = (await preFetch?.('simpleLongBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleLongBodyParamOptNil`;
+			const $body = JSON.stringify(bodyLong);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLongBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLongBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLongBodyParamOptNil');
+		}
+	};
+}
+
 function fnSimpleFloatBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleFloatBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -188,6 +636,105 @@ function fnSimpleFloatBodyParam(props: ServiceProps<api.service.ErrorType>): api
 			return api.result.ERR(err);
 		} finally {
 			final?.('simpleFloatBodyParam');
+		}
+	};
+}
+
+function fnSimpleFloatBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleFloatBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyFloat?: number) => {
+		try {
+			const $init = (await preFetch?.('simpleFloatBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleFloatBodyParamOpt`;
+			const $body = JSON.stringify(bodyFloat);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleFloatBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleFloatBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleFloatBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleFloatBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleFloatBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyFloat: number | null) => {
+		try {
+			const $init = (await preFetch?.('simpleFloatBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleFloatBodyParamNil`;
+			const $body = JSON.stringify(bodyFloat);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleFloatBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleFloatBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleFloatBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleFloatBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleFloatBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyFloat?: number | null) => {
+		try {
+			const $init = (await preFetch?.('simpleFloatBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleFloatBodyParamOptNil`;
+			const $body = JSON.stringify(bodyFloat);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleFloatBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleFloatBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleFloatBodyParamOptNil');
 		}
 	};
 }
@@ -225,6 +772,105 @@ function fnSimpleDoubleBodyParam(props: ServiceProps<api.service.ErrorType>): ap
 	};
 }
 
+function fnSimpleDoubleBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleDoubleBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyDouble?: number) => {
+		try {
+			const $init = (await preFetch?.('simpleDoubleBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleDoubleBodyParamOpt`;
+			const $body = JSON.stringify(bodyDouble);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleDoubleBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleDoubleBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleDoubleBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleDoubleBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleDoubleBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyDouble: number | null) => {
+		try {
+			const $init = (await preFetch?.('simpleDoubleBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleDoubleBodyParamNil`;
+			const $body = JSON.stringify(bodyDouble);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleDoubleBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleDoubleBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleDoubleBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleDoubleBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleDoubleBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyDouble?: number | null) => {
+		try {
+			const $init = (await preFetch?.('simpleDoubleBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleDoubleBodyParamOptNil`;
+			const $body = JSON.stringify(bodyDouble);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleDoubleBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleDoubleBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleDoubleBodyParamOptNil');
+		}
+	};
+}
+
 function fnSimpleStringBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleStringBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -254,6 +900,105 @@ function fnSimpleStringBodyParam(props: ServiceProps<api.service.ErrorType>): ap
 			return api.result.ERR(err);
 		} finally {
 			final?.('simpleStringBodyParam');
+		}
+	};
+}
+
+function fnSimpleStringBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleStringBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyString?: string) => {
+		try {
+			const $init = (await preFetch?.('simpleStringBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleStringBodyParamOpt`;
+			const $body = JSON.stringify(bodyString);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleStringBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleStringBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleStringBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleStringBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleStringBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyString: string | null) => {
+		try {
+			const $init = (await preFetch?.('simpleStringBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleStringBodyParamNil`;
+			const $body = JSON.stringify(bodyString);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleStringBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleStringBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleStringBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleStringBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleStringBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyString?: string | null) => {
+		try {
+			const $init = (await preFetch?.('simpleStringBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleStringBodyParamOptNil`;
+			const $body = JSON.stringify(bodyString);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleStringBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleStringBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleStringBodyParamOptNil');
 		}
 	};
 }
@@ -291,6 +1036,105 @@ function fnSimpleLocalDateBodyParam(props: ServiceProps<api.service.ErrorType>):
 	};
 }
 
+function fnSimpleLocalDateBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLocalDateBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalDate?: string) => {
+		try {
+			const $init = (await preFetch?.('simpleLocalDateBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleLocalDateBodyParamOpt`;
+			const $body = JSON.stringify(bodyLocalDate);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDateBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLocalDateBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLocalDateBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleLocalDateBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLocalDateBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalDate: string | null) => {
+		try {
+			const $init = (await preFetch?.('simpleLocalDateBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleLocalDateBodyParamNil`;
+			const $body = JSON.stringify(bodyLocalDate);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDateBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLocalDateBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLocalDateBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleLocalDateBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLocalDateBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalDate?: string | null) => {
+		try {
+			const $init = (await preFetch?.('simpleLocalDateBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleLocalDateBodyParamOptNil`;
+			const $body = JSON.stringify(bodyLocalDate);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDateBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLocalDateBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLocalDateBodyParamOptNil');
+		}
+	};
+}
+
 function fnSimpleLocalDateTimeBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLocalDateTimeBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -320,6 +1164,105 @@ function fnSimpleLocalDateTimeBodyParam(props: ServiceProps<api.service.ErrorTyp
 			return api.result.ERR(err);
 		} finally {
 			final?.('simpleLocalDateTimeBodyParam');
+		}
+	};
+}
+
+function fnSimpleLocalDateTimeBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLocalDateTimeBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalDateTime?: string) => {
+		try {
+			const $init = (await preFetch?.('simpleLocalDateTimeBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleLocalDateTimeBodyParamOpt`;
+			const $body = JSON.stringify(bodyLocalDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDateTimeBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLocalDateTimeBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLocalDateTimeBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleLocalDateTimeBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLocalDateTimeBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalDateTime: string | null) => {
+		try {
+			const $init = (await preFetch?.('simpleLocalDateTimeBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleLocalDateTimeBodyParamNil`;
+			const $body = JSON.stringify(bodyLocalDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDateTimeBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLocalDateTimeBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLocalDateTimeBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleLocalDateTimeBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLocalDateTimeBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalDateTime?: string | null) => {
+		try {
+			const $init = (await preFetch?.('simpleLocalDateTimeBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleLocalDateTimeBodyParamOptNil`;
+			const $body = JSON.stringify(bodyLocalDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDateTimeBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLocalDateTimeBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLocalDateTimeBodyParamOptNil');
 		}
 	};
 }
@@ -357,6 +1300,105 @@ function fnSimpleZonedDateTimeBodyParam(props: ServiceProps<api.service.ErrorTyp
 	};
 }
 
+function fnSimpleZonedDateTimeBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleZonedDateTimeBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyZonedDateTime?: string) => {
+		try {
+			const $init = (await preFetch?.('simpleZonedDateTimeBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleZonedDateTimeBodyParamOpt`;
+			const $body = JSON.stringify(bodyZonedDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleZonedDateTimeBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleZonedDateTimeBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleZonedDateTimeBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleZonedDateTimeBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleZonedDateTimeBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyZonedDateTime: string | null) => {
+		try {
+			const $init = (await preFetch?.('simpleZonedDateTimeBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleZonedDateTimeBodyParamNil`;
+			const $body = JSON.stringify(bodyZonedDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleZonedDateTimeBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleZonedDateTimeBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleZonedDateTimeBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleZonedDateTimeBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleZonedDateTimeBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyZonedDateTime?: string | null) => {
+		try {
+			const $init = (await preFetch?.('simpleZonedDateTimeBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleZonedDateTimeBodyParamOptNil`;
+			const $body = JSON.stringify(bodyZonedDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleZonedDateTimeBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleZonedDateTimeBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleZonedDateTimeBodyParamOptNil');
+		}
+	};
+}
+
 function fnSimpleScalarBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleScalarBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -386,6 +1428,105 @@ function fnSimpleScalarBodyParam(props: ServiceProps<api.service.ErrorType>): ap
 			return api.result.ERR(err);
 		} finally {
 			final?.('simpleScalarBodyParam');
+		}
+	};
+}
+
+function fnSimpleScalarBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleScalarBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyScalar?: string) => {
+		try {
+			const $init = (await preFetch?.('simpleScalarBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleScalarBodyParamOpt`;
+			const $body = JSON.stringify(bodyScalar);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleScalarBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleScalarBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleScalarBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleScalarBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleScalarBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyScalar: string | null) => {
+		try {
+			const $init = (await preFetch?.('simpleScalarBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleScalarBodyParamNil`;
+			const $body = JSON.stringify(bodyScalar);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleScalarBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleScalarBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleScalarBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleScalarBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleScalarBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyScalar?: string | null) => {
+		try {
+			const $init = (await preFetch?.('simpleScalarBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleScalarBodyParamOptNil`;
+			const $body = JSON.stringify(bodyScalar);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleScalarBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleScalarBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleScalarBodyParamOptNil');
 		}
 	};
 }
@@ -423,6 +1564,105 @@ function fnSimpleEnumBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 	};
 }
 
+function fnSimpleEnumBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleEnumBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyEnum?: api.model.SampleEnum) => {
+		try {
+			const $init = (await preFetch?.('simpleEnumBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleEnumBodyParamOpt`;
+			const $body = JSON.stringify(bodyEnum);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleEnumBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleEnumBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleEnumBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleEnumBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleEnumBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyEnum: api.model.SampleEnum | null) => {
+		try {
+			const $init = (await preFetch?.('simpleEnumBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleEnumBodyParamNil`;
+			const $body = JSON.stringify(bodyEnum);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleEnumBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleEnumBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleEnumBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleEnumBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleEnumBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyEnum?: api.model.SampleEnum | null) => {
+		try {
+			const $init = (await preFetch?.('simpleEnumBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleEnumBodyParamOptNil`;
+			const $body = JSON.stringify(bodyEnum);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleEnumBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleEnumBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleEnumBodyParamOptNil');
+		}
+	};
+}
+
 function fnSimpleInlineEnumBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleInlineEnumBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -452,6 +1692,105 @@ function fnSimpleInlineEnumBodyParam(props: ServiceProps<api.service.ErrorType>)
 			return api.result.ERR(err);
 		} finally {
 			final?.('simpleInlineEnumBodyParam');
+		}
+	};
+}
+
+function fnSimpleInlineEnumBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleInlineEnumBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyEnum?: 'A' | 'B') => {
+		try {
+			const $init = (await preFetch?.('simpleInlineEnumBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleInlineEnumBodyParamOpt`;
+			const $body = JSON.stringify(bodyEnum);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleInlineEnumBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleInlineEnumBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleInlineEnumBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleInlineEnumBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleInlineEnumBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyEnum: 'C' | 'D' | null) => {
+		try {
+			const $init = (await preFetch?.('simpleInlineEnumBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleInlineEnumBodyParamNil`;
+			const $body = JSON.stringify(bodyEnum);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleInlineEnumBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleInlineEnumBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleInlineEnumBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleInlineEnumBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleInlineEnumBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyEnum?: 'C' | 'D' | null) => {
+		try {
+			const $init = (await preFetch?.('simpleInlineEnumBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleInlineEnumBodyParamOptNil`;
+			const $body = JSON.stringify(bodyEnum);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.model.isNilResult($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleInlineEnumBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleInlineEnumBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleInlineEnumBodyParamOptNil');
 		}
 	};
 }
@@ -493,6 +1832,154 @@ function fnMultiBodyParam(props: ServiceProps<api.service.ErrorType>): api.servi
 	};
 }
 
+function fnMultiBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['multiBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (valueA?: string, valueB?: number, valueC?: api.model.SimpleRecord) => {
+		try {
+			const $init = (await preFetch?.('multiBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/multiBodyParamOpt`;
+			const $body = JSON.stringify({
+				valueA,
+				valueB,
+				valueC: valueC ? api.model.SimpleRecordToJSON(valueC) : valueC,
+			});
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.utils.isString($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('multiBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('multiBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('multiBodyParamOpt');
+		}
+	};
+}
+
+function fnMultiBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['multiBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (valueA: string | null, valueB: number | null, valueC: api.model.SimpleRecord | null) => {
+		try {
+			const $init = (await preFetch?.('multiBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/multiBodyParamNil`;
+			const $body = JSON.stringify({
+				valueA,
+				valueB,
+				valueC: valueC ? api.model.SimpleRecordToJSON(valueC) : valueC,
+			});
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.utils.isString($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('multiBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('multiBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('multiBodyParamNil');
+		}
+	};
+}
+
+function fnMultiBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['multiBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (valueA?: string | null, valueB?: number | null, valueC?: api.model.SimpleRecord | null) => {
+		try {
+			const $init = (await preFetch?.('multiBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/multiBodyParamOptNil`;
+			const $body = JSON.stringify({
+				valueA,
+				valueB,
+				valueC: valueC ? api.model.SimpleRecordToJSON(valueC) : valueC,
+			});
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.utils.isString($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('multiBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('multiBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('multiBodyParamOptNil');
+		}
+	};
+}
+
+function fnMultiBodyParamFirst(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['multiBodyParamFirst'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (valueA: string | undefined, valueB: number, valueC: api.model.SimpleRecord) => {
+		try {
+			const $init = (await preFetch?.('multiBodyParamFirst')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/multiBodyParamFirst`;
+			const $body = JSON.stringify({
+				valueA,
+				valueB,
+				valueC: api.model.SimpleRecordToJSON(valueC),
+			});
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if (!api.utils.isString($data)) {
+					throw new Error('Invalid result');
+				}
+				return safeExecute(api.result.OK($data), () => onSuccess?.('multiBodyParamFirst', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('multiBodyParamFirst', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('multiBodyParamFirst');
+		}
+	};
+}
+
 function fnRecordBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['recordBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -523,6 +2010,108 @@ function fnRecordBodyParam(props: ServiceProps<api.service.ErrorType>): api.serv
 			return api.result.ERR(err);
 		} finally {
 			final?.('recordBodyParam');
+		}
+	};
+}
+
+function fnRecordBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['recordBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyRecord?: api.model.SimpleRecord) => {
+		try {
+			const $init = (await preFetch?.('recordBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/recordBodyParamOpt`;
+			const $body = bodyRecord ? JSON.stringify(api.model.SimpleRecordToJSON(bodyRecord)) : bodyRecord;
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if(!api.utils.isRecord($data)) {
+					throw new Error('Invalid result');
+				}
+				const $result = api.model.SimpleRecordFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('recordBodyParamOpt', $result));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('recordBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('recordBodyParamOpt');
+		}
+	};
+}
+
+function fnRecordBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['recordBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyRecord: api.model.SimpleRecord | null) => {
+		try {
+			const $init = (await preFetch?.('recordBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/recordBodyParamNil`;
+			const $body = bodyRecord ? JSON.stringify(api.model.SimpleRecordToJSON(bodyRecord)) : bodyRecord;
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if(!api.utils.isRecord($data)) {
+					throw new Error('Invalid result');
+				}
+				const $result = api.model.SimpleRecordFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('recordBodyParamNil', $result));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('recordBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('recordBodyParamNil');
+		}
+	};
+}
+
+function fnRecordBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['recordBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyRecord?: api.model.SimpleRecord | null) => {
+		try {
+			const $init = (await preFetch?.('recordBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/recordBodyParamOptNil`;
+			const $body = bodyRecord ? JSON.stringify(api.model.SimpleRecordToJSON(bodyRecord)) : bodyRecord;
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if(!api.utils.isRecord($data)) {
+					throw new Error('Invalid result');
+				}
+				const $result = api.model.SimpleRecordFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('recordBodyParamOptNil', $result));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('recordBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('recordBodyParamOptNil');
 		}
 	};
 }
@@ -561,6 +2150,108 @@ function fnUnionBodyParam(props: ServiceProps<api.service.ErrorType>): api.servi
 	};
 }
 
+function fnUnionBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['unionBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyUnion?: api.model.Union) => {
+		try {
+			const $init = (await preFetch?.('unionBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/unionBodyParamOpt`;
+			const $body = bodyUnion ? JSON.stringify(api.model.UnionToJSON(bodyUnion)) : bodyUnion;
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if(!api.utils.isRecord($data)) {
+					throw new Error('Invalid result');
+				}
+				const $result = api.model.UnionFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('unionBodyParamOpt', $result));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('unionBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('unionBodyParamOpt');
+		}
+	};
+}
+
+function fnUnionBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['unionBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyUnion: api.model.Union | null) => {
+		try {
+			const $init = (await preFetch?.('unionBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/unionBodyParamNil`;
+			const $body = bodyUnion ? JSON.stringify(api.model.UnionToJSON(bodyUnion)) : bodyUnion;
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if(!api.utils.isRecord($data)) {
+					throw new Error('Invalid result');
+				}
+				const $result = api.model.UnionFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('unionBodyParamNil', $result));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('unionBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('unionBodyParamNil');
+		}
+	};
+}
+
+function fnUnionBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['unionBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyUnion?: api.model.Union | null) => {
+		try {
+			const $init = (await preFetch?.('unionBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/unionBodyParamOptNil`;
+			const $body = bodyUnion ? JSON.stringify(api.model.UnionToJSON(bodyUnion)) : bodyUnion;
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if(!api.utils.isRecord($data)) {
+					throw new Error('Invalid result');
+				}
+				const $result = api.model.UnionFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('unionBodyParamOptNil', $result));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('unionBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('unionBodyParamOptNil');
+		}
+	};
+}
+
 function fnPatchableRecordBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['patchableRecordBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -591,6 +2282,108 @@ function fnPatchableRecordBodyParam(props: ServiceProps<api.service.ErrorType>):
 			return api.result.ERR(err);
 		} finally {
 			final?.('patchableRecordBodyParam');
+		}
+	};
+}
+
+function fnPatchableRecordBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['patchableRecordBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyRecord?: api.model.PatchableRecordPatch) => {
+		try {
+			const $init = (await preFetch?.('patchableRecordBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/patchableRecordBodyParamOpt`;
+			const $body = bodyRecord ? JSON.stringify(api.model.PatchableRecordPatchToJSON(bodyRecord)) : bodyRecord;
+			const $response = await fetchAPI($path, { ...$init, method: 'PATCH', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if(!api.utils.isRecord($data)) {
+					throw new Error('Invalid result');
+				}
+				const $result = api.model.PatchableRecordFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('patchableRecordBodyParamOpt', $result));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('patchableRecordBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('patchableRecordBodyParamOpt');
+		}
+	};
+}
+
+function fnPatchableRecordBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['patchableRecordBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyRecord: api.model.PatchableRecordPatch | null) => {
+		try {
+			const $init = (await preFetch?.('patchableRecordBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/patchableRecordBodyParamNil`;
+			const $body = bodyRecord ? JSON.stringify(api.model.PatchableRecordPatchToJSON(bodyRecord)) : bodyRecord;
+			const $response = await fetchAPI($path, { ...$init, method: 'PATCH', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if(!api.utils.isRecord($data)) {
+					throw new Error('Invalid result');
+				}
+				const $result = api.model.PatchableRecordFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('patchableRecordBodyParamNil', $result));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('patchableRecordBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('patchableRecordBodyParamNil');
+		}
+	};
+}
+
+function fnPatchableRecordBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['patchableRecordBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyRecord?: api.model.PatchableRecordPatch | null) => {
+		try {
+			const $init = (await preFetch?.('patchableRecordBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/patchableRecordBodyParamOptNil`;
+			const $body = bodyRecord ? JSON.stringify(api.model.PatchableRecordPatchToJSON(bodyRecord)) : bodyRecord;
+			const $response = await fetchAPI($path, { ...$init, method: 'PATCH', body: $body });
+			if ($response.status === 200) {
+				const $data = await $response.json();
+				if(!api.utils.isRecord($data)) {
+					throw new Error('Invalid result');
+				}
+				const $result = api.model.PatchableRecordFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('patchableRecordBodyParamOptNil', $result));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('patchableRecordBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('patchableRecordBodyParamOptNil');
 		}
 	};
 }

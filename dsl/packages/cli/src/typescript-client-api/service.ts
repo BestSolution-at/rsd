@@ -26,7 +26,7 @@ function generateServiceContent(
 	node.append(`export interface ${s.name}Service {`, NL);
 	node.indent(classBody => {
 		s.operations.forEach(o => {
-			const parameters = o.parameters.map(p => toParameter(p, config, fqn));
+			const parameters = o.parameters.map(p => toParameter(p, anyNoneOptionalAfter(p, o.parameters), fqn));
 			const Result = fqn('Result:./_result-utils.ts', true);
 			classBody.append(
 				`${o.name}(${parameters.join(', ')}): Promise<${Result}<${toResultType(
@@ -86,9 +86,19 @@ function toResultType(
 	return type;
 }
 
+function anyNoneOptionalAfter(parameter: MParameter, allParams: readonly MParameter[]) {
+	const index = allParams.indexOf(parameter);
+	for (let i = index + 1; i < allParams.length; i++) {
+		if (!allParams[i].optional) {
+			return true;
+		}
+	}
+	return false;
+}
+
 function toParameter(
 	parameter: MParameter,
-	config: TypescriptClientAPIGeneratorConfig,
+	anyNoneOptionalAfter: boolean,
 	fqn: (type: string, typeOnly: boolean) => string,
 ) {
 	let type: string;
@@ -114,11 +124,12 @@ function toParameter(
 	} else {
 		type = 'any';
 	}
-	const optional = parameter.optional ? '?' : '';
+	const optional = parameter.optional && !anyNoneOptionalAfter ? '?' : '';
+	const optUndefined = parameter.optional && anyNoneOptionalAfter ? ' | undefined' : '';
 	const nullable = parameter.nullable ? ' | null' : '';
 	if (parameter.array) {
 		type = `${type}[]`;
 	}
 
-	return `${parameter.name}${optional}: ${type}${nullable}`;
+	return `${parameter.name}${optional}: ${type}${optUndefined}${nullable}`;
 }
