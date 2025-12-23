@@ -685,8 +685,8 @@ async function bodyParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	if (bodyParamPaths.includes(ctx.path) && ctx.method === 'POST') {
 		const str = await raw(ctx.req, { encoding: 'utf-8' });
 		if (ctx.path === '/api/bodyparametertypes/multiBodyParam') {
-			const body = JSON.parse(str) as { valueA: string; valueB: string };
-			const response = `${body.valueA}-${body.valueB}`;
+			const body = JSON.parse(str) as { valueA: string; valueB: string; valueC: Record<string, string> };
+			const response = `${body.valueA}-${body.valueB}-${body.valueC.key}`;
 			ctx.status = 200;
 			ctx.type = 'application/json';
 			ctx.body = `"${response}"`;

@@ -581,7 +581,7 @@ service BodyParameterTypes {
 	operation simpleInlineEnumBodyParam(
 		bodyEnum: enum A | B
 	): enum A | B;
-	operation multiBodyParam(valueA: string, valueB: int): string;
+	operation multiBodyParam(valueA: string, valueB: int, valueC: SimpleRecord): string;
 	operation recordBodyParam(
 		bodyRecord: SimpleRecord
 	): SimpleRecord;

@@ -20,7 +20,7 @@ export interface BodyParameterTypesService {
 	simpleScalarBodyParam(bodyScalar: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	simpleEnumBodyParam(bodyEnum: SampleEnum): Promise<Result<SampleEnum, StatusRSDError | NativeRSDError>>;
 	simpleInlineEnumBodyParam(bodyEnum: 'A' | 'B'): Promise<Result<'A' | 'B', StatusRSDError | NativeRSDError>>;
-	multiBodyParam(valueA: string, valueB: number): Promise<Result<string, StatusRSDError | NativeRSDError>>;
+	multiBodyParam(valueA: string, valueB: number, valueC: SimpleRecord): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	recordBodyParam(bodyRecord: SimpleRecord): Promise<Result<SimpleRecord, StatusRSDError | NativeRSDError>>;
 	unionBodyParam(bodyUnion: Union): Promise<Result<Union, StatusRSDError | NativeRSDError>>;
 	patchableRecordBodyParam(bodyRecord: PatchableRecordPatch): Promise<Result<PatchableRecord, StatusRSDError | NativeRSDError>>;

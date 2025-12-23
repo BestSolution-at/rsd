@@ -5597,6 +5597,17 @@
               "variant": "builtin",
               "type": "int",
               "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueC",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
             }
           ],
           "resultType": {

@@ -105,9 +105,9 @@ describe('BodyParameterTypesServiceFetchImpl', () => {
 	});
 	describe('multiBodyParam', () => {
 		test('success - valueA: Hello, valueB: World', async () => {
-			const [result, error] = await service.multiBodyParam('Hello', 1);
+			const [result, error] = await service.multiBodyParam('Hello', 1, { key: 'a', version: '1', value: 'foo' });
 			expect(error).toBeNull();
-			expect(result).toBe('Hello-1');
+			expect(result).toBe('Hello-1-a');
 		});
 	});
 	describe('recordBodyParam', () => {
