@@ -22,6 +22,7 @@
 				"@types/koa__multer": "^2.0.8",
 				"@types/busboy": "^1.5.4",
 				"@types/node": "~20.17.48",
+				"@msgpack/msgpack": "^3.1.2",
         "eslint": "^9.36.0",
         "eslint-config-prettier": "^10.1.8",
         "koa": "^3.1.1",
