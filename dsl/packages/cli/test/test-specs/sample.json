@@ -6954,6 +6954,110 @@
         },
         {
           "@type": "Operation",
+          "name": "uploadMixed",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "text",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "number",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "rec",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "textList",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "numberList",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "recList",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "dataFile",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "stream",
+              "type": "file",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "dataBlob",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "stream",
+              "type": "blob",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "uploadMixed",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "downloadFile",
           "doc": "",
           "parameters": [],

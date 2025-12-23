@@ -269,4 +269,5 @@ resource BinaryTypes at '/api/binarytypes' {
 	GET downloadFile at 'downloadFile' => {
 			200
 	}
+	PUT uploadMixed at 'uploadMixed'
 }

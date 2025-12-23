@@ -876,6 +876,78 @@ async function downloadBlob(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+async function uploadMixed(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path === '/api/binarytypes/uploadMixed' && ctx.method === 'PUT') {
+		const bb = busboy({ headers: ctx.req.headers });
+		let finish: (value: void | PromiseLike<void>) => void;
+		const wait = new Promise<void>(resolve => {
+			finish = resolve;
+		});
+		let fieldCount = 0;
+		bb.on('file', (name, file, info) => {
+			const { filename, mimeType } = info;
+			if (name === 'dataFile' && filename === 'hello.txt' && mimeType === 'text/plain') {
+				file.on('data', () => {
+					fieldCount += 1;
+				});
+			} else if (name === 'dataBlob' && filename === 'blob' && mimeType === 'text/plain') {
+				file.on('data', () => {
+					fieldCount += 1;
+				});
+			}
+		});
+		bb.on('field', (name, val) => {
+			if (name === 'text') {
+				if (val === '"Sample Text"') {
+					fieldCount += 1;
+				} else {
+					console.error(`Unexpected text field value for ${name}: ${val}`);
+				}
+			} else if (name === 'number') {
+				if (val === '42') {
+					fieldCount += 1;
+				} else {
+					console.error(`Unexpected text field value for ${name}: ${val}`);
+				}
+			} else if (name === 'rec') {
+				if (val === JSON.stringify({ key: '1', version: '1', value: 'Record1' })) {
+					fieldCount += 1;
+				} else {
+					console.error(`Unexpected text field value for ${name}: ${val}`);
+				}
+			} else if (name === 'textList') {
+				if (val === JSON.stringify(['Text1', 'Text2'])) {
+					fieldCount += 1;
+				} else {
+					console.error(`Unexpected text field value for ${name}: ${val}`);
+				}
+			} else if (name === 'numberList') {
+				if (val === JSON.stringify([1, 2, 3])) {
+					fieldCount += 1;
+				} else {
+					console.error(`Unexpected text field value for ${name}: ${val}`);
+				}
+			} else if (name === 'recList') {
+				if (val === JSON.stringify([{ key: '2', version: '1', value: 'Record2' }])) {
+					fieldCount += 1;
+				} else {
+					console.error(`Unexpected text field value for ${name}: ${val}`);
+				}
+			} else {
+				console.error(`Unexpected field name: ${name}`);
+			}
+		});
+		bb.on('close', () => {
+			ctx.status = fieldCount === 8 ? 204 : 500;
+			finish();
+		});
+		ctx.req.pipe(bb);
+		await wait;
+	} else {
+		await next();
+	}
+}
+
 const app = new Koa();
 
 const all = compose([
@@ -937,6 +1009,7 @@ const all = compose([
 	uploadBlob,
 	downloadFile,
 	downloadBlob,
+	uploadMixed,
 ]);
 app.use(all);
 

@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
 import { createBinaryTypesService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
+import { Void } from '../../test-specs/gen-out/client/typescript-client/src/_result-utils.js';
 
 const service = createBinaryTypesService({
 	baseUrl: 'http://localhost:3000',
@@ -45,6 +46,25 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				const text = await result.text();
 				expect(text).toBe('Hello, Blob!');
 			}
+		});
+	});
+
+	describe('uploadMixed', () => {
+		test('success', async () => {
+			const file = new File(['Mixed File Content'], 'hello.txt', { type: 'text/plain' });
+			const blob = new Blob(['Mixed Blob Content'], { type: 'text/plain' });
+			const [result, error] = await service.uploadMixed(
+				'Sample Text',
+				42,
+				{ key: '1', version: '1', value: 'Record1' },
+				['Text1', 'Text2'],
+				[1, 2, 3],
+				[{ key: '2', version: '1', value: 'Record2' }],
+				file,
+				blob,
+			);
+			expect(error).toBeNull();
+			expect(result).toBe(Void);
 		});
 	});
 });

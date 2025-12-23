@@ -6,6 +6,7 @@ export function createBinaryTypesService(props: ServiceProps<api.service.ErrorTy
 	return {
 		uploadFile: fnUploadFile(props),
 		uploadBlob: fnUploadBlob(props),
+		uploadMixed: fnUploadMixed(props),
 		downloadFile: fnDownloadFile(props),
 		downloadBlob: fnDownloadBlob(props),
 	};
@@ -72,6 +73,42 @@ function fnUploadBlob(props: ServiceProps<api.service.ErrorType>): api.service.B
 			return api.result.ERR(err);
 		} finally {
 			final?.('uploadBlob');
+		}
+	};
+}
+
+function fnUploadMixed(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadMixed'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (text: string, number: number, rec: api.model.SimpleRecord, textList: string[], numberList: number[], recList: api.model.SimpleRecord[], dataFile: File, dataBlob: Blob) => {
+		try {
+			const $init = (await preFetch?.('uploadMixed')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadMixed`;
+			const $body = new FormData();
+			$body.append('text', JSON.stringify(text));
+			$body.append('number', JSON.stringify(number));
+			$body.append('rec', JSON.stringify(api.model.SimpleRecordToJSON(rec)));
+			$body.append('textList', JSON.stringify(textList));
+			$body.append('numberList', JSON.stringify(numberList));
+			$body.append('recList', JSON.stringify(recList.map(api.model.SimpleRecordToJSON)));
+			$body.append('dataFile', dataFile);
+			$body.append('dataBlob', dataBlob);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('uploadMixed', api.result.Void));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadMixed', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadMixed');
 		}
 	};
 }

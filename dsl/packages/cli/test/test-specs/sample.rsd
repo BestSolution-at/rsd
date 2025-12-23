@@ -690,7 +690,16 @@ service BinaryTypes {
 	operation uploadBlob(
 		data: blob
 	): int;
-		
+	operation uploadMixed(
+		text: string,
+		number: int,
+		rec: SimpleRecord,
+		textList: string[],
+		numberList: int[],
+		recList: SimpleRecord[],
+		dataFile: file,
+		dataBlob: blob
+	);
 	operation downloadFile(): file;
 	operation downloadBlob(): blob;
 }
