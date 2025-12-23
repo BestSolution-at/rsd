@@ -719,14 +719,41 @@ const bodyParamNilPaths = [
 	'/api/bodyparametertypes/simpleLongBodyParamOptNil',
 
 	'/api/bodyparametertypes/simpleFloatBodyParamNil',
+	'/api/bodyparametertypes/simpleFloatBodyParamOpt',
+	'/api/bodyparametertypes/simpleFloatBodyParamOptNil',
+
 	'/api/bodyparametertypes/simpleDoubleBodyParamNil',
+	'/api/bodyparametertypes/simpleDoubleBodyParamOpt',
+	'/api/bodyparametertypes/simpleDoubleBodyParamOptNil',
+
 	'/api/bodyparametertypes/simpleStringBodyParamNil',
+	'/api/bodyparametertypes/simpleStringBodyParamOpt',
+	'/api/bodyparametertypes/simpleStringBodyParamOptNil',
+
 	'/api/bodyparametertypes/simpleLocalDateBodyParamNil',
+	'/api/bodyparametertypes/simpleLocalDateBodyParamOpt',
+	'/api/bodyparametertypes/simpleLocalDateBodyParamOptNil',
+
 	'/api/bodyparametertypes/simpleLocalDateTimeBodyParamNil',
+	'/api/bodyparametertypes/simpleLocalDateTimeBodyParamOpt',
+	'/api/bodyparametertypes/simpleLocalDateTimeBodyParamOptNil',
+
 	'/api/bodyparametertypes/simpleZonedDateTimeBodyParamNil',
+	'/api/bodyparametertypes/simpleZonedDateTimeBodyParamOpt',
+	'/api/bodyparametertypes/simpleZonedDateTimeBodyParamOptNil',
+
 	'/api/bodyparametertypes/simpleScalarBodyParamNil',
+	'/api/bodyparametertypes/simpleScalarBodyParamOpt',
+	'/api/bodyparametertypes/simpleScalarBodyParamOptNil',
+
 	'/api/bodyparametertypes/simpleEnumBodyParamNil',
+	'/api/bodyparametertypes/simpleEnumBodyParamOpt',
+	'/api/bodyparametertypes/simpleEnumBodyParamOptNil',
+
 	'/api/bodyparametertypes/simpleInlineEnumBodyParamNil',
+	'/api/bodyparametertypes/simpleInlineEnumBodyParamOpt',
+	'/api/bodyparametertypes/simpleInlineEnumBodyParamOptNil',
+
 	'/api/bodyparametertypes/multiBodyParamNil',
 	'/api/bodyparametertypes/recordBodyParamNil',
 	'/api/bodyparametertypes/unionBodyParamNil',
