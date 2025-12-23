@@ -704,9 +704,20 @@ async function bodyParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 const bodyParamNilPaths = [
 	'/api/bodyparametertypes/simpleBooleanBodyParamNil',
 	'/api/bodyparametertypes/simpleBooleanBodyParamOpt',
+	'/api/bodyparametertypes/simpleBooleanBodyParamOptNil',
+
 	'/api/bodyparametertypes/simpleShortBodyParamNil',
+	'/api/bodyparametertypes/simpleShortBodyParamOpt',
+	'/api/bodyparametertypes/simpleShortBodyParamOptNil',
+
 	'/api/bodyparametertypes/simpleIntBodyParamNil',
+	'/api/bodyparametertypes/simpleIntBodyParamOpt',
+	'/api/bodyparametertypes/simpleIntBodyParamOptNil',
+
 	'/api/bodyparametertypes/simpleLongBodyParamNil',
+	'/api/bodyparametertypes/simpleLongBodyParamOpt',
+	'/api/bodyparametertypes/simpleLongBodyParamOptNil',
+
 	'/api/bodyparametertypes/simpleFloatBodyParamNil',
 	'/api/bodyparametertypes/simpleDoubleBodyParamNil',
 	'/api/bodyparametertypes/simpleStringBodyParamNil',
@@ -724,7 +735,6 @@ const bodyParamNilPaths = [
 async function bodyParamNil(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	if (bodyParamNilPaths.includes(ctx.path) && ctx.method === 'POST') {
 		const str = await raw(ctx.req, { encoding: 'utf-8' });
-		console.log(`Received body for ${ctx.path}: ${str}`);
 		if (ctx.path === '/api/bodyparametertypes/multiBodyParamNil') {
 			const body = JSON.parse(str) as { valueA: string; valueB: string; valueC: Record<string, string> };
 			const response = `${body.valueA}-${body.valueB}-${body.valueC.key}`;

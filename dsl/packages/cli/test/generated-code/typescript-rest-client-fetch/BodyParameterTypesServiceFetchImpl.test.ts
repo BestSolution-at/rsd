@@ -20,14 +20,26 @@ describe('BodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('simpleBooleanBodyParamOpt', () => {
-		test('success - true', async () => {
+		test('success - undefined', async () => {
 			const [result, error] = await service.simpleBooleanBodyParamOpt();
 			expect(error).toBeNull();
 			expect(result).toBe('UNDEFINED');
 		});
 	});
+	describe('simpleBooleanBodyParamOptNil', () => {
+		test('success - undefined', async () => {
+			const [result, error] = await service.simpleBooleanBodyParamOptNil();
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+		test('success - null', async () => {
+			const [result, error] = await service.simpleBooleanBodyParamOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+	});
 	describe('simpleBooleanBodyParamNil', () => {
-		test('success - true', async () => {
+		test('success - null', async () => {
 			const [result, error] = await service.simpleBooleanBodyParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
@@ -40,11 +52,63 @@ describe('BodyParameterTypesServiceFetchImpl', () => {
 			expect(result).toBe(12345);
 		});
 	});
+	describe('simpleShortBodyParamOpt', () => {
+		test('success - undefined', async () => {
+			const [result, error] = await service.simpleShortBodyParamOpt();
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+	});
+	describe('simpleShortBodyParamNil', () => {
+		test('success - null', async () => {
+			const [result, error] = await service.simpleShortBodyParamNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+	});
+	describe('simpleShortBodyParamOptNil', () => {
+		test('success - null', async () => {
+			const [result, error] = await service.simpleShortBodyParamOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+		test('success - undefined', async () => {
+			const [result, error] = await service.simpleShortBodyParamOptNil(undefined);
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+	});
 	describe('simpleIntBodyParam', () => {
 		test('success - 123456789', async () => {
 			const [result, error] = await service.simpleIntBodyParam(123456789);
 			expect(error).toBeNull();
 			expect(result).toBe(123456789);
+		});
+	});
+	describe('simpleIntBodyParamOpt', () => {
+		test('success - undefined', async () => {
+			const [result, error] = await service.simpleIntBodyParamOpt();
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+	});
+	describe('simpleIntBodyParamNil', () => {
+		test('success - null', async () => {
+			const [result, error] = await service.simpleIntBodyParamNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+	});
+	describe('simpleIntBodyParamOptNil', () => {
+		test('success - null', async () => {
+			const [result, error] = await service.simpleIntBodyParamOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+		test('success - undefined', async () => {
+			const [result, error] = await service.simpleIntBodyParamOptNil(undefined);
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
 		});
 	});
 	describe('simpleLongBodyParam', () => {
@@ -54,6 +118,33 @@ describe('BodyParameterTypesServiceFetchImpl', () => {
 			expect(result).toBe(1234567890123);
 		});
 	});
+	describe('simpleLongBodyParamOpt', () => {
+		test('success - undefined', async () => {
+			const [result, error] = await service.simpleLongBodyParamOpt();
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+	});
+	describe('simpleLongBodyParamNil', () => {
+		test('success - null', async () => {
+			const [result, error] = await service.simpleLongBodyParamNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+	});
+	describe('simpleLongBodyParamOptNil', () => {
+		test('success - null', async () => {
+			const [result, error] = await service.simpleLongBodyParamOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+		test('success - undefined', async () => {
+			const [result, error] = await service.simpleLongBodyParamOptNil(undefined);
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+	});
+
 	describe('simpleFloatBodyParam', () => {
 		test('success - 12.34', async () => {
 			const [result, error] = await service.simpleFloatBodyParam(12.34);
