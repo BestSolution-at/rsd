@@ -7282,8 +7282,8 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
-            "variant": "record",
-            "type": "SimpleRecord",
+            "variant": "enum",
+            "type": "NilResult",
             "doc": ""
           },
           "errors": [],
@@ -7316,8 +7316,8 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
-            "variant": "record",
-            "type": "SimpleRecord",
+            "variant": "enum",
+            "type": "NilResult",
             "doc": ""
           },
           "errors": [],
@@ -7350,8 +7350,8 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
-            "variant": "record",
-            "type": "SimpleRecord",
+            "variant": "enum",
+            "type": "NilResult",
             "doc": ""
           },
           "errors": [],
@@ -7418,8 +7418,8 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
-            "variant": "union",
-            "type": "Union",
+            "variant": "enum",
+            "type": "NilResult",
             "doc": ""
           },
           "errors": [],
@@ -7452,8 +7452,8 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
-            "variant": "union",
-            "type": "Union",
+            "variant": "enum",
+            "type": "NilResult",
             "doc": ""
           },
           "errors": [],
@@ -7486,8 +7486,8 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
-            "variant": "union",
-            "type": "Union",
+            "variant": "enum",
+            "type": "NilResult",
             "doc": ""
           },
           "errors": [],

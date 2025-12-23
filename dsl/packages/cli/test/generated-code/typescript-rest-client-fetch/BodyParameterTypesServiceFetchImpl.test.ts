@@ -458,6 +458,28 @@ describe('BodyParameterTypesServiceFetchImpl', () => {
 			expect(result).toBe('Hello-1-a');
 		});
 	});
+	describe('multiBodyParamOpt', () => {
+		test('success - valueA: Hello, valueB: undefined', async () => {
+			const [result, error] = await service.multiBodyParamOpt('Hello', undefined, undefined);
+			expect(error).toBeNull();
+			expect(result).toBe('Hello-undefined-undefined');
+		});
+	});
+	describe('multiBodyParamNil', () => {
+		test('success - valueA: Hello, valueB: null', async () => {
+			const [result, error] = await service.multiBodyParamNil('Hello', null, null);
+			expect(error).toBeNull();
+			expect(result).toBe('Hello-null-null');
+		});
+	});
+	describe('multiBodyParamOptNil', () => {
+		test('success - valueA: Hello, valueB: null', async () => {
+			const [result, error] = await service.multiBodyParamOptNil('Hello', null, undefined);
+			expect(error).toBeNull();
+			expect(result).toBe('Hello-null-undefined');
+		});
+	});
+
 	describe('recordBodyParam', () => {
 		test('success - valueA: foo, valueB: 42', async () => {
 			const [result, error] = await service.recordBodyParam({ key: '1', version: '1', value: 'foo' });
@@ -465,6 +487,33 @@ describe('BodyParameterTypesServiceFetchImpl', () => {
 			expect(result).toEqual({ key: '1', version: '1', value: 'foo' });
 		});
 	});
+	describe('recordBodyParamOpt', () => {
+		test('success - undefined', async () => {
+			const [result, error] = await service.recordBodyParamOpt();
+			expect(error).toBeNull();
+			expect(result).toEqual('UNDEFINED');
+		});
+	});
+	describe('recordBodyParamNil', () => {
+		test('success - null', async () => {
+			const [result, error] = await service.recordBodyParamNil(null);
+			expect(error).toBeNull();
+			expect(result).toEqual('NULL');
+		});
+	});
+	describe('recordBodyParamOptNil', () => {
+		test('success - null', async () => {
+			const [result, error] = await service.recordBodyParamOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toEqual('NULL');
+		});
+		test('success - undefined', async () => {
+			const [result, error] = await service.recordBodyParamOptNil(undefined);
+			expect(error).toBeNull();
+			expect(result).toEqual('UNDEFINED');
+		});
+	});
+
 	describe('unionBodyParam', () => {
 		test('success - string value', async () => {
 			const [result, error] = await service.unionBodyParam({
@@ -480,6 +529,34 @@ describe('BodyParameterTypesServiceFetchImpl', () => {
 			});
 		});
 	});
+	describe('unionBodyParamOpt', () => {
+		test('success - undefined', async () => {
+			const [result, error] = await service.unionBodyParamOpt();
+			expect(error).toBeNull();
+			expect(result).toEqual('UNDEFINED');
+		});
+	});
+	describe('unionBodyParamNil', () => {
+		test('success - null', async () => {
+			const [result, error] = await service.unionBodyParamNil(null);
+			expect(error).toBeNull();
+			expect(result).toEqual('NULL');
+		});
+	});
+
+	describe('unionBodyParamOptNil', () => {
+		test('success - null', async () => {
+			const [result, error] = await service.unionBodyParamOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toEqual('NULL');
+		});
+		test('success - undefined', async () => {
+			const [result, error] = await service.unionBodyParamOptNil(undefined);
+			expect(error).toBeNull();
+			expect(result).toEqual('UNDEFINED');
+		});
+	});
+
 	describe('patchableRecordBodyParam', () => {
 		test('success - valueA: foo, valueB: 42', async () => {
 			const [result, error] = await service.patchableRecordBodyParam({ key: '1', version: '1', value: 'patchedValue' });

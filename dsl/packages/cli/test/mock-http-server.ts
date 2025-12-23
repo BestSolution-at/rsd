@@ -755,16 +755,28 @@ const bodyParamNilPaths = [
 	'/api/bodyparametertypes/simpleInlineEnumBodyParamOptNil',
 
 	'/api/bodyparametertypes/multiBodyParamNil',
+	'/api/bodyparametertypes/multiBodyParamOpt',
+	'/api/bodyparametertypes/multiBodyParamOptNil',
+
 	'/api/bodyparametertypes/recordBodyParamNil',
+	'/api/bodyparametertypes/recordBodyParamOpt',
+	'/api/bodyparametertypes/recordBodyParamOptNil',
+
 	'/api/bodyparametertypes/unionBodyParamNil',
+	'/api/bodyparametertypes/unionBodyParamOpt',
+	'/api/bodyparametertypes/unionBodyParamOptNil',
 ];
 
 async function bodyParamNil(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	if (bodyParamNilPaths.includes(ctx.path) && ctx.method === 'POST') {
 		const str = await raw(ctx.req, { encoding: 'utf-8' });
-		if (ctx.path === '/api/bodyparametertypes/multiBodyParamNil') {
-			const body = JSON.parse(str) as { valueA: string; valueB: string; valueC: Record<string, string> };
-			const response = `${body.valueA}-${body.valueB}-${body.valueC.key}`;
+		if (
+			ctx.path === '/api/bodyparametertypes/multiBodyParamNil' ||
+			ctx.path === '/api/bodyparametertypes/multiBodyParamOpt' ||
+			ctx.path === '/api/bodyparametertypes/multiBodyParamOptNil'
+		) {
+			const body = JSON.parse(str) as Record<string, string>;
+			const response = `${body.valueA}-${body.valueB}-${body.valueC}`;
 			ctx.status = 200;
 			ctx.type = 'application/json';
 			ctx.body = `"${response}"`;

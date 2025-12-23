@@ -2025,15 +2025,14 @@ function fnRecordBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.s
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/recordBodyParamOpt`;
-			const $body = bodyRecord ? JSON.stringify(api.model.SimpleRecordToJSON(bodyRecord)) : bodyRecord;
+			const $body = JSON.stringify(bodyRecord ? api.model.SimpleRecordToJSON(bodyRecord) : bodyRecord);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isRecord($data)) {
+				if (!api.model.isNilResult($data)) {
 					throw new Error('Invalid result');
 				}
-				const $result = api.model.SimpleRecordFromJSON($data);
-				return safeExecute(api.result.OK($result), () => onSuccess?.('recordBodyParamOpt', $result));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('recordBodyParamOpt', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
@@ -2059,15 +2058,14 @@ function fnRecordBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.s
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/recordBodyParamNil`;
-			const $body = bodyRecord ? JSON.stringify(api.model.SimpleRecordToJSON(bodyRecord)) : bodyRecord;
+			const $body = JSON.stringify(bodyRecord ? api.model.SimpleRecordToJSON(bodyRecord) : bodyRecord);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isRecord($data)) {
+				if (!api.model.isNilResult($data)) {
 					throw new Error('Invalid result');
 				}
-				const $result = api.model.SimpleRecordFromJSON($data);
-				return safeExecute(api.result.OK($result), () => onSuccess?.('recordBodyParamNil', $result));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('recordBodyParamNil', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
@@ -2093,15 +2091,14 @@ function fnRecordBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): ap
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/recordBodyParamOptNil`;
-			const $body = bodyRecord ? JSON.stringify(api.model.SimpleRecordToJSON(bodyRecord)) : bodyRecord;
+			const $body = JSON.stringify(bodyRecord ? api.model.SimpleRecordToJSON(bodyRecord) : bodyRecord);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isRecord($data)) {
+				if (!api.model.isNilResult($data)) {
 					throw new Error('Invalid result');
 				}
-				const $result = api.model.SimpleRecordFromJSON($data);
-				return safeExecute(api.result.OK($result), () => onSuccess?.('recordBodyParamOptNil', $result));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('recordBodyParamOptNil', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
@@ -2161,15 +2158,14 @@ function fnUnionBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.se
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/unionBodyParamOpt`;
-			const $body = bodyUnion ? JSON.stringify(api.model.UnionToJSON(bodyUnion)) : bodyUnion;
+			const $body = JSON.stringify(bodyUnion ? api.model.UnionToJSON(bodyUnion) : bodyUnion);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isRecord($data)) {
+				if (!api.model.isNilResult($data)) {
 					throw new Error('Invalid result');
 				}
-				const $result = api.model.UnionFromJSON($data);
-				return safeExecute(api.result.OK($result), () => onSuccess?.('unionBodyParamOpt', $result));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('unionBodyParamOpt', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
@@ -2195,15 +2191,14 @@ function fnUnionBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.se
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/unionBodyParamNil`;
-			const $body = bodyUnion ? JSON.stringify(api.model.UnionToJSON(bodyUnion)) : bodyUnion;
+			const $body = JSON.stringify(bodyUnion ? api.model.UnionToJSON(bodyUnion) : bodyUnion);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isRecord($data)) {
+				if (!api.model.isNilResult($data)) {
 					throw new Error('Invalid result');
 				}
-				const $result = api.model.UnionFromJSON($data);
-				return safeExecute(api.result.OK($result), () => onSuccess?.('unionBodyParamNil', $result));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('unionBodyParamNil', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
@@ -2229,15 +2224,14 @@ function fnUnionBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/unionBodyParamOptNil`;
-			const $body = bodyUnion ? JSON.stringify(api.model.UnionToJSON(bodyUnion)) : bodyUnion;
+			const $body = JSON.stringify(bodyUnion ? api.model.UnionToJSON(bodyUnion) : bodyUnion);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
-				if(!api.utils.isRecord($data)) {
+				if (!api.model.isNilResult($data)) {
 					throw new Error('Invalid result');
 				}
-				const $result = api.model.UnionFromJSON($data);
-				return safeExecute(api.result.OK($result), () => onSuccess?.('unionBodyParamOptNil', $result));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('unionBodyParamOptNil', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
@@ -2297,7 +2291,7 @@ function fnPatchableRecordBodyParamOpt(props: ServiceProps<api.service.ErrorType
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/patchableRecordBodyParamOpt`;
-			const $body = bodyRecord ? JSON.stringify(api.model.PatchableRecordPatchToJSON(bodyRecord)) : bodyRecord;
+			const $body = JSON.stringify(bodyRecord ? api.model.PatchableRecordPatchToJSON(bodyRecord) : bodyRecord);
 			const $response = await fetchAPI($path, { ...$init, method: 'PATCH', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -2331,7 +2325,7 @@ function fnPatchableRecordBodyParamNil(props: ServiceProps<api.service.ErrorType
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/patchableRecordBodyParamNil`;
-			const $body = bodyRecord ? JSON.stringify(api.model.PatchableRecordPatchToJSON(bodyRecord)) : bodyRecord;
+			const $body = JSON.stringify(bodyRecord ? api.model.PatchableRecordPatchToJSON(bodyRecord) : bodyRecord);
 			const $response = await fetchAPI($path, { ...$init, method: 'PATCH', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -2365,7 +2359,7 @@ function fnPatchableRecordBodyParamOptNil(props: ServiceProps<api.service.ErrorT
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/patchableRecordBodyParamOptNil`;
-			const $body = bodyRecord ? JSON.stringify(api.model.PatchableRecordPatchToJSON(bodyRecord)) : bodyRecord;
+			const $body = JSON.stringify(bodyRecord ? api.model.PatchableRecordPatchToJSON(bodyRecord) : bodyRecord);
 			const $response = await fetchAPI($path, { ...$init, method: 'PATCH', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();

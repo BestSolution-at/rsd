@@ -726,26 +726,26 @@ service BodyParameterTypes {
 	): SimpleRecord;
 	operation recordBodyParamOpt(
 		bodyRecord?: SimpleRecord
-	): SimpleRecord;
+	): NilResult;
 	operation recordBodyParamNil(
 		bodyRecord: SimpleRecord?
-	): SimpleRecord;
+	): NilResult;
 	operation recordBodyParamOptNil(
 		bodyRecord?: SimpleRecord?
-	): SimpleRecord;
+	): NilResult;
 	
 	operation unionBodyParam(
 		bodyUnion: Union
 	): Union;
 	operation unionBodyParamOpt(
 		bodyUnion?: Union
-	): Union;
+	): NilResult;
 	operation unionBodyParamNil(
 		bodyUnion: Union?
-	): Union;
+	): NilResult;
 	operation unionBodyParamOptNil(
 		bodyUnion?: Union?
-	): Union;
+	): NilResult;
 
 	operation patchableRecordBodyParam(
 		@patch bodyRecord: PatchableRecord

@@ -246,7 +246,7 @@ function generateRemoteInvoke(
 				if (bodyParams[0].array) {
 					if (bodyParams[0].nullable || bodyParams[0].optional) {
 						node.append(
-							`const $body = ${bodyParams[0].name} ? JSON.stringify(${bodyParams[0].name}.map(${toJSON})) : ${bodyParams[0].name};`,
+							`const $body = JSON.stringify(${bodyParams[0].name} ? ${bodyParams[0].name}.map(${toJSON}) : ${bodyParams[0].name});`,
 							NL,
 						);
 					} else {
@@ -255,7 +255,7 @@ function generateRemoteInvoke(
 				} else {
 					if (bodyParams[0].nullable || bodyParams[0].optional) {
 						node.append(
-							`const $body = ${bodyParams[0].name} ? JSON.stringify(${toJSON}(${bodyParams[0].name})) : ${bodyParams[0].name};`,
+							`const $body = JSON.stringify(${bodyParams[0].name} ? ${toJSON}(${bodyParams[0].name}) : ${bodyParams[0].name});`,
 							NL,
 						);
 					} else {
