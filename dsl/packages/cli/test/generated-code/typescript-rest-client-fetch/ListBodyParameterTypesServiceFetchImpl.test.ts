@@ -103,9 +103,17 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 	});
 	describe('listMultiBodyParam', () => {
 		test('success', async () => {
-			const [result, error] = await service.listMultiBodyParam(['one', 'two', 'three'], [1, 2, 3]);
+			const [result, error] = await service.listMultiBodyParam(
+				['one', 'two', 'three'],
+				[1, 2, 3],
+				[
+					{ key: 'a', version: 'v1', value: 'Value1' },
+					{ key: 'b', version: 'v2', value: 'Value2' },
+					{ key: 'c', version: 'v3', value: 'Value3' },
+				],
+			);
 			expect(error).toBeNull();
-			expect(result).toEqual('one,two,three-1,2,3');
+			expect(result).toEqual('one,two,three-1,2,3-a,b,c');
 		});
 	});
 });

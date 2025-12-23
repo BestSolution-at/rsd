@@ -734,8 +734,8 @@ async function listBodyParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	if (listBodyParamPaths.includes(ctx.path) && ctx.method === 'PUT') {
 		const str = await raw(ctx.req, { encoding: 'utf-8' });
 		if (ctx.path === '/api/listbodyparametertypes/listMultiBodyParam') {
-			const body = JSON.parse(str) as { valueA: string[]; valueB: number[] };
-			const response = `${body.valueA.join(',')}-${body.valueB.join(',')}`;
+			const body = JSON.parse(str) as { valueA: string[]; valueB: number[]; valueC: Record<string, string>[] };
+			const response = `${body.valueA.join(',')}-${body.valueB.join(',')}-${body.valueC.map(r => r.key).join(',')}`;
 			ctx.status = 200;
 			ctx.type = 'application/json';
 			ctx.body = `"${response}"`;

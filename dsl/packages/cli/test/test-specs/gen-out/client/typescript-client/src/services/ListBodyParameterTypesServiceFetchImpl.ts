@@ -457,7 +457,7 @@ function fnListInlineEnumBodyParam(props: ServiceProps<api.service.ErrorType>): 
 function fnListMultiBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listMultiBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA: string[], valueB: number[]) => {
+	return async (valueA: string[], valueB: number[], valueC: api.model.SimpleRecord[]) => {
 		try {
 			const $init = (await preFetch?.('listMultiBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -468,6 +468,7 @@ function fnListMultiBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 			const $body = JSON.stringify({
 				valueA,
 				valueB,
+				valueC: valueC.map(api.model.SimpleRecordToJSON),
 			});
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {

@@ -677,7 +677,7 @@ service ListBodyParameterTypes {
 	operation listInlineEnumBodyParam(
 		bodyEnum: enum A | B[]
 	): enum A | B[];
-	operation listMultiBodyParam(valueA: string[], valueB: int[]): string;
+	operation listMultiBodyParam(valueA: string[], valueB: int[], valueC: SimpleRecord[]): string;
 	operation listRecordBodyParam(
 		bodyRecord: SimpleRecord[]
 	): SimpleRecord[];

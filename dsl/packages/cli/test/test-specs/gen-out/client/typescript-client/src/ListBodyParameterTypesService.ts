@@ -18,6 +18,6 @@ export interface ListBodyParameterTypesService {
 	listScalarBodyParam(bodyScalar: string[]): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
 	listEnumBodyParam(bodyEnum: SampleEnum[]): Promise<Result<SampleEnum[], StatusRSDError | NativeRSDError>>;
 	listInlineEnumBodyParam(bodyEnum: ('A' | 'B')[]): Promise<Result<('A' | 'B')[], StatusRSDError | NativeRSDError>>;
-	listMultiBodyParam(valueA: string[], valueB: number[]): Promise<Result<string, StatusRSDError | NativeRSDError>>;
+	listMultiBodyParam(valueA: string[], valueB: number[], valueC: SimpleRecord[]): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	listRecordBodyParam(bodyRecord: SimpleRecord[]): Promise<Result<SimpleRecord[], StatusRSDError | NativeRSDError>>;
 }

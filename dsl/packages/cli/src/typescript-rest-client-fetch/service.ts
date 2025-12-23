@@ -257,7 +257,11 @@ function generateRemoteInvoke(
 							`api:${config.apiNamespacePath}`,
 							false,
 						)}.model.${p.type + (p.patch ? 'Patch' : '')}ToJSON`;
-						struct.append(`${p.name}: ${toJSON}(${p.name}),`, NL);
+						if (p.array) {
+							struct.append(`${p.name}: ${p.name}.map(${toJSON}),`, NL);
+						} else {
+							struct.append(`${p.name}: ${toJSON}(${p.name}),`, NL);
+						}
 					} else {
 						struct.append(`${p.name},`, NL);
 					}
