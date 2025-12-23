@@ -853,6 +853,29 @@ async function uploadBlob(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+async function downloadFile(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path === '/api/binarytypes/downloadFile' && ctx.method === 'GET') {
+		const fileContent = 'Hello, World!';
+		ctx.status = 200;
+		ctx.type = 'text/plain;charset=utf-8';
+		ctx.set('Content-Disposition', 'attachment; filename="hello.txt"');
+		ctx.body = fileContent;
+	} else {
+		await next();
+	}
+}
+
+async function downloadBlob(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (ctx.path === '/api/binarytypes/downloadBlob' && ctx.method === 'GET') {
+		const blobContent = 'Hello, Blob!';
+		ctx.status = 200;
+		ctx.type = 'text/plain;charset=utf-8';
+		ctx.body = blobContent;
+	} else {
+		await next();
+	}
+}
+
 const app = new Koa();
 
 const all = compose([
@@ -912,6 +935,8 @@ const all = compose([
 	// Binary types
 	uploadFile,
 	uploadBlob,
+	downloadFile,
+	downloadBlob,
 ]);
 app.use(all);
 

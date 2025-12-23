@@ -354,7 +354,7 @@ function handleOkResult(
 				block.append('fileName = fileNameWithQuotes.substring(1, fileNameWithQuotes.length - 1);', NL);
 			});
 			node.append('}', NL);
-			node.append('const $result = new File([$data], fileName);', NL);
+			node.append('const $result = new File([$data], fileName, { type: $data.type });', NL);
 		} else {
 			node.append('const $result = $data;', NL);
 		}

@@ -97,7 +97,7 @@ function fnDownloadFile(props: ServiceProps<api.service.ErrorType>): api.service
 					const fileNameWithQuotes = dispoHeader.substring(dispoHeader.indexOf('filename=') + 'filename='.length);
 					fileName = fileNameWithQuotes.substring(1, fileNameWithQuotes.length - 1);
 				}
-				const $result = new File([$data], fileName);
+				const $result = new File([$data], fileName, { type: $data.type });
 				return safeExecute(api.result.OK($result), () => onSuccess?.('downloadFile', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;

@@ -30,6 +30,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 			expect(result).toBeInstanceOf(File);
 			if (result) {
 				expect(result.name).toBe('hello.txt');
+				expect(result.type).toBe('text/plain;charset=utf-8');
 				const text = await result.text();
 				expect(text).toBe('Hello, World!');
 			}
