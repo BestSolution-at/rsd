@@ -239,7 +239,7 @@ describe('ListSampleServiceServiceImpl', () => {
 			expect(result).toBeUndefined();
 			expect(api.service.isNativeError(error)).toBe(true);
 			if (api.service.isNativeError(error)) {
-				expect(error.error.message).toEqual('Invalid result');
+				expect(error.error.message).toEqual('Value in property key is invalid');
 			}
 		});
 	});

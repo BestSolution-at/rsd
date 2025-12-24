@@ -412,7 +412,6 @@ function handleOkResult(
 		const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
 		node.append(`return ${safeExecute}(${OK}($result), () => onSuccess?.('${o.name}', $result));`, NL);
 	} else {
-		node.append('const $data = await $response.json();', NL);
 		if (
 			isMBuiltinType(o.resultType.type) ||
 			o.resultType.variant === 'scalar' ||
@@ -420,87 +419,49 @@ function handleOkResult(
 			isMInlineEnumType(o.resultType.type)
 		) {
 			const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
+			const decodeResponse = fqn('decodeResponse:./_fetch-type-utils.ts', false);
 			if (o.resultType.array) {
 				const isTypedArrayGuard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isTypedArray`;
 				if (isMBuiltinType(o.resultType.type)) {
 					const guard = builtinTypeGuard(o.resultType.type, config, fqn);
-					node.append(`if (!${isTypedArrayGuard}($data,${guard})) {`, NL);
-					node.indent(block => {
-						block.append(`throw new Error('Invalid result');`, NL);
-					});
-					node.append('}', NL);
+					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}))`, NL);
 				} else if (o.resultType.variant === 'scalar') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-					node.append(`if (!${isTypedArrayGuard}($data,${guard})) {`, NL);
-					node.indent(block => {
-						block.append(`throw new Error('Invalid result');`, NL);
-					});
-					node.append('}', NL);
+					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}))`, NL);
 				} else if (o.resultType.variant === 'inline-enum') {
 					const guard = `is${toFirstUpper(o.name)}Result`;
-					node.append(`if (!${isTypedArrayGuard}($data,${guard})) {`, NL);
-					node.indent(block => {
-						block.append(`throw new Error('Invalid result');`, NL);
-					});
-					node.append('}', NL);
+					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}))`, NL);
 				} else {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
-					node.append(`if (!${isTypedArrayGuard}($data,${guard})) {`, NL);
-					node.indent(block => {
-						block.append(`throw new Error('Invalid result');`, NL);
-					});
-					node.append('}', NL);
+					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}))`, NL);
 				}
 			} else {
 				if (isMBuiltinType(o.resultType.type)) {
 					const guard = builtinTypeGuard(o.resultType.type, config, fqn);
-					node.append(`if (!${guard}($data)) {`, NL);
-					node.indent(block => {
-						block.append(`throw new Error('Invalid result');`, NL);
-					});
-					node.append('}', NL);
+					node.append(`const $data = await ${decodeResponse}($response, ${guard})`, NL);
 				} else if (o.resultType.variant === 'scalar') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-					node.append(`if (!${guard}($data)) {`, NL);
-					node.indent(block => {
-						block.append(`throw new Error('Invalid result');`, NL);
-					});
-					node.append('}', NL);
+					node.append(`const $data = await ${decodeResponse}($response, ${guard})`, NL);
 				} else if (o.resultType.variant === 'inline-enum') {
 					const guard = `is${toFirstUpper(o.name)}Result`;
-					node.append(`if (!${guard}($data)) {`, NL);
-					node.indent(block => {
-						block.append(`throw new Error('Invalid result');`, NL);
-					});
-					node.append('}', NL);
+					node.append(`const $data = await ${decodeResponse}($response, ${guard})`, NL);
 				} else {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
-					node.append(`if (!${guard}($data)) {`, NL);
-					node.indent(block => {
-						block.append(`throw new Error('Invalid result');`, NL);
-					});
-					node.append('}', NL);
+					node.append(`const $data = await ${decodeResponse}($response, ${guard})`, NL);
 				}
 			}
 			node.append(`return ${safeExecute}(${OK}($data), () => onSuccess?.('${o.name}', $data));`, NL);
 		} else {
 			const fromJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${o.resultType.type}FromJSON`;
+			const decodeResponse = fqn('decodeResponse:./_fetch-type-utils.ts', false);
 			if (o.resultType.array) {
 				const isTypedArrayGuard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isTypedArray`;
-				const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
-				node.append(`if (!${isTypedArrayGuard}($data, ${guard})) {`, NL);
-				node.indent(block => {
-					block.append(`throw new Error('Invalid result');`, NL);
-				});
-				node.append('}', NL);
+				const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isRecord`;
+				node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}))`, NL);
 				node.append(`const $result = $data.map(${fromJSON});`, NL);
 			} else {
 				const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isRecord`;
-				node.append(`if(!${guard}($data)) {`, NL);
-				node.indent(block => {
-					block.append(`throw new Error('Invalid result');`, NL);
-				});
-				node.append('}', NL);
+				node.append(`const $data = await ${decodeResponse}($response, ${guard})`, NL);
 				node.append(`const $result = ${fromJSON}($data);`, NL);
 			}
 			const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);

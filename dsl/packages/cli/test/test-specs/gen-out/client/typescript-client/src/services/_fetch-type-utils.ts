@@ -46,3 +46,5 @@ export async function decodeResponse<T>(response: Response, guard: (value: unkno
 		throw new Error(`Unsupported response content type: ${String(contentType)}`);
 	}
 }
+
+
