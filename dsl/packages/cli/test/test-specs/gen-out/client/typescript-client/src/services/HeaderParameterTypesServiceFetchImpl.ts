@@ -471,7 +471,7 @@ function fnRecordHeaderParam(props: ServiceProps<api.service.ErrorType>): api.se
 			const $init = (await preFetch?.('recordHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
 			$headers.append('Content-Type', 'application/json');
-			$headers.append('headerValue', encodeValue('json', api.model.SimpleRecordToJSON(headerValue)));
+			$headers.append('headerValue', encodeValue('application/json', api.model.SimpleRecordToJSON(headerValue)));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/headerparametertypes/recordHeaderParam`;

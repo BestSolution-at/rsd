@@ -36,7 +36,7 @@ function fnListBooleanBodyParam(props: ServiceProps<api.service.ErrorType>): api
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listBooleanBodyParam`;
-			const $body = encodeValue('json',bodyBoolean);
+			const $body = encodeValue('application/json',bodyBoolean);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -69,7 +69,7 @@ function fnListShortBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listShortBodyParam`;
-			const $body = encodeValue('json',bodyShort);
+			const $body = encodeValue('application/json',bodyShort);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -102,7 +102,7 @@ function fnListIntBodyParam(props: ServiceProps<api.service.ErrorType>): api.ser
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listIntBodyParam`;
-			const $body = encodeValue('json',bodyInt);
+			const $body = encodeValue('application/json',bodyInt);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -135,7 +135,7 @@ function fnListLongBodyParam(props: ServiceProps<api.service.ErrorType>): api.se
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLongBodyParam`;
-			const $body = encodeValue('json',bodyLong);
+			const $body = encodeValue('application/json',bodyLong);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -168,7 +168,7 @@ function fnListFloatBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listFloatBodyParam`;
-			const $body = encodeValue('json',bodyFloat);
+			const $body = encodeValue('application/json',bodyFloat);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -201,7 +201,7 @@ function fnListDoubleBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listDoubleBodyParam`;
-			const $body = encodeValue('json',bodyDouble);
+			const $body = encodeValue('application/json',bodyDouble);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -234,7 +234,7 @@ function fnListStringBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listStringBodyParam`;
-			const $body = encodeValue('json',bodyString);
+			const $body = encodeValue('application/json',bodyString);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -267,7 +267,7 @@ function fnListLocalDateBodyParam(props: ServiceProps<api.service.ErrorType>): a
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateBodyParam`;
-			const $body = encodeValue('json',bodyLocalDate);
+			const $body = encodeValue('application/json',bodyLocalDate);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -300,7 +300,7 @@ function fnListLocalDateTimeBodyParam(props: ServiceProps<api.service.ErrorType>
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateTimeBodyParam`;
-			const $body = encodeValue('json',bodyLocalDateTime);
+			const $body = encodeValue('application/json',bodyLocalDateTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -333,7 +333,7 @@ function fnListZonedDateTimeBodyParam(props: ServiceProps<api.service.ErrorType>
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listZonedDateTimeBodyParam`;
-			const $body = encodeValue('json',bodyZonedDateTime);
+			const $body = encodeValue('application/json',bodyZonedDateTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -366,7 +366,7 @@ function fnListScalarBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listScalarBodyParam`;
-			const $body = encodeValue('json',bodyScalar);
+			const $body = encodeValue('application/json',bodyScalar);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -399,7 +399,7 @@ function fnListEnumBodyParam(props: ServiceProps<api.service.ErrorType>): api.se
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listEnumBodyParam`;
-			const $body = encodeValue('json',bodyEnum);
+			const $body = encodeValue('application/json',bodyEnum);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -432,7 +432,7 @@ function fnListInlineEnumBodyParam(props: ServiceProps<api.service.ErrorType>): 
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listInlineEnumBodyParam`;
-			const $body = encodeValue('json',bodyEnum);
+			const $body = encodeValue('application/json',bodyEnum);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();
@@ -465,7 +465,7 @@ function fnListMultiBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listMultiBodyParam`;
-			const $body = encodeValue('json', {
+			const $body = encodeValue('application/json', {
 				valueA,
 				valueB,
 				valueC: valueC.map(api.model.SimpleRecordToJSON),
@@ -502,7 +502,7 @@ function fnListRecordBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listRecordBodyParam`;
-			const $body = encodeValue('json', bodyRecord.map(api.model.SimpleRecordToJSON));
+			const $body = encodeValue('application/json', bodyRecord.map(api.model.SimpleRecordToJSON));
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await $response.json();

@@ -169,12 +169,12 @@ function generateRemoteInvoke(
 				if (p.optional) {
 					const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
 					node.append(
-						`${ifDefined}(${p.name}, v => $headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${toJSON}(v)));`,
+						`${ifDefined}(${p.name}, v => $headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${toJSON}(v)));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`$headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${toJSON}(${p.name})));`,
+						`$headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${toJSON}(${p.name})));`,
 						NL,
 					);
 				}
@@ -234,18 +234,18 @@ function generateRemoteInvoke(
 						}ToJSON`;
 						if (p.array) {
 							node.append(
-								`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${p.name}.map(${toJSON})));`,
+								`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${p.name}.map(${toJSON})));`,
 								NL,
 							);
 						} else {
 							node.append(
-								`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${toJSON}(${p.name})));`,
+								`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${toJSON}(${p.name})));`,
 								NL,
 							);
 						}
 					} else {
 						node.append(
-							`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${p.name}));`,
+							`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${p.name}));`,
 							NL,
 						);
 					}
@@ -259,36 +259,36 @@ function generateRemoteInvoke(
 				if (bodyParams[0].array) {
 					if (bodyParams[0].nullable || bodyParams[0].optional) {
 						node.append(
-							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${bodyParams[0].name} ? ${bodyParams[0].name}.map(${toJSON}) : ${bodyParams[0].name});`,
+							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${bodyParams[0].name} ? ${bodyParams[0].name}.map(${toJSON}) : ${bodyParams[0].name});`,
 							NL,
 						);
 					} else {
 						node.append(
-							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${bodyParams[0].name}.map(${toJSON}));`,
+							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${bodyParams[0].name}.map(${toJSON}));`,
 							NL,
 						);
 					}
 				} else {
 					if (bodyParams[0].nullable || bodyParams[0].optional) {
 						node.append(
-							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${bodyParams[0].name} ? ${toJSON}(${bodyParams[0].name}) : ${bodyParams[0].name});`,
+							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${bodyParams[0].name} ? ${toJSON}(${bodyParams[0].name}) : ${bodyParams[0].name});`,
 							NL,
 						);
 					} else {
 						node.append(
-							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${toJSON}(${bodyParams[0].name}));`,
+							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${toJSON}(${bodyParams[0].name}));`,
 							NL,
 						);
 					}
 				}
 			} else {
 				node.append(
-					`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json',${bodyParams[0].name});`,
+					`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json',${bodyParams[0].name});`,
 					NL,
 				);
 			}
 		} else {
-			node.append(`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', {`, NL);
+			node.append(`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', {`, NL);
 			node.indent(struct => {
 				bodyParams.forEach(p => {
 					if (p.variant === 'record' || p.variant === 'union') {

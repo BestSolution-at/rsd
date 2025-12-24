@@ -47,16 +47,22 @@ function generateFetchTypeUtilsContent(fqn: (t: string, typeOnly: boolean) => st
 			return value;
 		}
 		
-		export function encodeValue(type: 'json', value: unknown) {
+		export function encodeValue(type: 'application/json', value: unknown) {
 			return JSON.stringify(value);
 		}
-		
-		export async function decodeResponse<T>(type: 'json', response: Response, guard: (value: unknown) => value is T): Promise<T> {
-			const data = await response.json();
-			if (!guard(data)) {
-				throw new Error('Invalid result');
+
+		export async function decodeResponse<T>(response: Response, guard: (value: unknown) => value is T): Promise<T> {
+			const contentType = response.headers.get('Content-Type');
+			if (contentType?.includes('application/json')) {
+				const data = await response.json();
+				if (!guard(data)) {
+					throw new Error('Invalid result');
+				}
+				return data;
+			} else {
+				throw new Error(\`Unsupported response content type: \${String(contentType)}\`);
 			}
-			return data;
 		}
+
 	`);
 }

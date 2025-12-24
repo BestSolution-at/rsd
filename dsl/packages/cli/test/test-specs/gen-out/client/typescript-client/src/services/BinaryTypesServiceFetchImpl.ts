@@ -88,12 +88,12 @@ function fnUploadMixed(props: ServiceProps<api.service.ErrorType>): api.service.
 
 			const $path = `${baseUrl}/api/binarytypes/uploadMixed`;
 			const $body = new FormData();
-			$body.append('text', encodeValue('json', text));
-			$body.append('number', encodeValue('json', number));
-			$body.append('rec', encodeValue('json', api.model.SimpleRecordToJSON(rec)));
-			$body.append('textList', encodeValue('json', textList));
-			$body.append('numberList', encodeValue('json', numberList));
-			$body.append('recList', encodeValue('json', recList.map(api.model.SimpleRecordToJSON)));
+			$body.append('text', encodeValue('application/json', text));
+			$body.append('number', encodeValue('application/json', number));
+			$body.append('rec', encodeValue('application/json', api.model.SimpleRecordToJSON(rec)));
+			$body.append('textList', encodeValue('application/json', textList));
+			$body.append('numberList', encodeValue('application/json', numberList));
+			$body.append('recList', encodeValue('application/json', recList.map(api.model.SimpleRecordToJSON)));
 			$body.append('dataFile', dataFile);
 			$body.append('dataBlob', dataBlob);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
