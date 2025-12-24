@@ -42,7 +42,6 @@ function generateServiceContent(
 		.filter(o => o.resultType?.variant === 'inline-enum')
 		.forEach(o => {
 			const type = o.resultType?.type as MInlineEnumType;
-			console.log(type);
 			node.append(
 				`function is${toFirstUpper(o.name)}Result(value: unknown): value is ${type.entries.map(e => `'${e.name}'`).join(' | ')} {`,
 				NL,
@@ -60,7 +59,6 @@ function generateServiceContent(
 			});
 			node.append('}', NL, NL);
 		});
-
 	node.append(`export function create${s.name}Service(props: ${ServiceProps}<${ErrorType}>): ${Service} {`, NL);
 	node.indent(mBody => {
 		mBody.append('return {', NL);
@@ -170,9 +168,15 @@ function generateRemoteInvoke(
 
 				if (p.optional) {
 					const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
-					node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}', JSON.stringify(${toJSON}(v)));`, NL);
+					node.append(
+						`${ifDefined}(${p.name}, v => $headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${toJSON}(v)));`,
+						NL,
+					);
 				} else {
-					node.append(`$headers.append('${p.name}', JSON.stringify(${toJSON}(${p.name})));`, NL);
+					node.append(
+						`$headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${toJSON}(${p.name})));`,
+						NL,
+					);
 				}
 			}
 		});
@@ -229,12 +233,21 @@ function generateRemoteInvoke(
 							p.type + (p.patch ? 'Patch' : '')
 						}ToJSON`;
 						if (p.array) {
-							node.append(`$body.append('${p.name}', JSON.stringify(${p.name}.map(${toJSON})));`, NL);
+							node.append(
+								`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${p.name}.map(${toJSON})));`,
+								NL,
+							);
 						} else {
-							node.append(`$body.append('${p.name}', JSON.stringify(${toJSON}(${p.name})));`, NL);
+							node.append(
+								`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${toJSON}(${p.name})));`,
+								NL,
+							);
 						}
 					} else {
-						node.append(`$body.append('${p.name}', JSON.stringify(${p.name}));`, NL);
+						node.append(
+							`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${p.name}));`,
+							NL,
+						);
 					}
 				}
 			});
@@ -246,27 +259,36 @@ function generateRemoteInvoke(
 				if (bodyParams[0].array) {
 					if (bodyParams[0].nullable || bodyParams[0].optional) {
 						node.append(
-							`const $body = JSON.stringify(${bodyParams[0].name} ? ${bodyParams[0].name}.map(${toJSON}) : ${bodyParams[0].name});`,
+							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${bodyParams[0].name} ? ${bodyParams[0].name}.map(${toJSON}) : ${bodyParams[0].name});`,
 							NL,
 						);
 					} else {
-						node.append(`const $body = JSON.stringify(${bodyParams[0].name}.map(${toJSON}));`, NL);
+						node.append(
+							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${bodyParams[0].name}.map(${toJSON}));`,
+							NL,
+						);
 					}
 				} else {
 					if (bodyParams[0].nullable || bodyParams[0].optional) {
 						node.append(
-							`const $body = JSON.stringify(${bodyParams[0].name} ? ${toJSON}(${bodyParams[0].name}) : ${bodyParams[0].name});`,
+							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${bodyParams[0].name} ? ${toJSON}(${bodyParams[0].name}) : ${bodyParams[0].name});`,
 							NL,
 						);
 					} else {
-						node.append(`const $body = JSON.stringify(${toJSON}(${bodyParams[0].name}));`, NL);
+						node.append(
+							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', ${toJSON}(${bodyParams[0].name}));`,
+							NL,
+						);
 					}
 				}
 			} else {
-				node.append(`const $body = JSON.stringify(${bodyParams[0].name});`, NL);
+				node.append(
+					`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json',${bodyParams[0].name});`,
+					NL,
+				);
 			}
 		} else {
-			node.append(`const $body = JSON.stringify({`, NL);
+			node.append(`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('json', {`, NL);
 			node.indent(struct => {
 				bodyParams.forEach(p => {
 					if (p.variant === 'record' || p.variant === 'union') {

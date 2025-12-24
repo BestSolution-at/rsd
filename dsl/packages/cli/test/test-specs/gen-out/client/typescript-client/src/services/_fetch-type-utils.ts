@@ -29,3 +29,16 @@ export function safeExecute<T>(value: T, block: () => void): T {
 
 	return value;
 }
+
+export function encodeValue(type: 'json', value: unknown) {
+	return JSON.stringify(value);
+}
+
+export async function decodeResponse<T>(type: 'json', response: Response, guard: (value: unknown) => value is T): Promise<T> {
+	const data = await response.json();
+	if (!guard(data)) {
+		throw new Error('Invalid result');
+	}
+	return data;
+}
+
