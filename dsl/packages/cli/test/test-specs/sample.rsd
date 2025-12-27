@@ -804,6 +804,105 @@ service HeaderParameterTypes {
 	): SimpleRecord;
 }
 
+service QueryParameterTypes {
+	operation simpleBooleanQueryParam(
+		queryValue: boolean
+	): boolean;
+	operation simpleBooleanQueryParamOpt(
+		queryValue?: boolean
+	): NilResult;
+
+	operation simpleShortQueryParam(
+		queryValue: short
+	): short;
+	operation simpleShortQueryParamOpt(
+		queryValue?: short
+	): NilResult;
+
+	operation simpleIntQueryParam(
+		queryValue: int
+	): int;
+	operation simpleIntQueryParamOpt(
+		queryValue?: int
+	): NilResult;
+
+	operation simpleLongQueryParam(
+		queryValue: long
+	): long;
+	operation simpleLongQueryParamOpt(
+		queryValue?: long
+	): NilResult;
+
+	operation simpleFloatQueryParam(
+		queryValue: float
+	): float;
+	operation simpleFloatQueryParamOpt(
+		queryValue?: float
+	): NilResult;
+
+	operation simpleDoubleQueryParam(
+		queryValue: double
+	): double;
+	operation simpleDoubleQueryParamOpt(
+		queryValue?: double
+	): NilResult;
+
+	operation simpleStringQueryParam(
+		queryValue: string
+	): string;
+	operation simpleStringQueryParamOpt(
+		queryValue?: string
+	): NilResult;
+
+	operation simpleLocalDateQueryParam(
+		queryValue: local-date
+	): local-date;
+	operation simpleLocalDateQueryParamOpt(
+		queryValue?: local-date
+	): NilResult;
+
+	operation simpleLocalDateTimeQueryParam(
+		queryValue: local-date-time
+	): local-date-time;
+	operation simpleLocalDateTimeQueryParamOpt(
+		queryValue?: local-date-time
+	): NilResult;
+
+	operation simpleZonedDateTimeQueryParam(
+		queryValue: zoned-date-time
+	): zoned-date-time;
+	operation simpleZonedDateTimeQueryParamOpt(
+		queryValue?: zoned-date-time
+	): NilResult;
+
+	operation simpleScalarQueryParam(
+		queryValue: ZoneId
+	): ZoneId;
+	operation simpleScalarQueryParamOpt(
+		queryValue?: ZoneId
+	): NilResult;
+
+	operation simpleEnumQueryParam(
+		queryValue: SampleEnum
+	): SampleEnum;
+	operation simpleEnumQueryParamOpt(
+		queryValue?: SampleEnum
+	): NilResult;
+
+	operation multiQueryParam(valueA: string, valueB: int): string;
+	operation multiQueryParamOpt(valueA?: string, valueB?: int): string;
+
+	operation recordQueryParam(
+		queryValue: SimpleRecord
+	): SimpleRecord;
+	operation recordQueryParamOpt(
+		queryValue?: SimpleRecord
+	): NilResult;
+}
+
+// TODO List in Header
+// TODO Query List Params
+
 service ListBodyParameterTypes {
 	operation listBooleanBodyParam(
 		bodyBoolean: boolean[]

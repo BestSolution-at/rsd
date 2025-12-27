@@ -307,6 +307,82 @@ resource HeaderParameterTypes at '/api/headerparametertypes' {
 		header-param headerValue
 }
 
+resource QueryParameterTypes at '/api/queryparametertypes' {
+	GET simpleBooleanQueryParam at 'simpleBooleanQueryParam'
+		query-param queryValue
+	GET simpleBooleanQueryParamOpt at 'simpleBooleanQueryParamOpt'
+		query-param queryValue
+
+	GET simpleShortQueryParam at 'simpleShortQueryParam'
+		query-param queryValue
+	GET simpleShortQueryParamOpt at 'simpleShortQueryParamOpt'
+		query-param queryValue
+
+	GET simpleIntQueryParam at 'simpleIntQueryParam'
+		query-param queryValue
+	GET simpleIntQueryParamOpt at 'simpleIntQueryParamOpt'
+		query-param queryValue
+
+	GET simpleLongQueryParam at 'simpleLongQueryParam'
+		query-param queryValue
+	GET simpleLongQueryParamOpt at 'simpleLongQueryParamOpt'
+		query-param queryValue
+
+	GET simpleFloatQueryParam at 'simpleFloatQueryParam'
+		query-param queryValue
+	GET simpleFloatQueryParamOpt at 'simpleFloatQueryParamOpt'
+		query-param queryValue
+
+	GET simpleDoubleQueryParam at 'simpleDoubleQueryParam'
+		query-param queryValue
+	GET simpleDoubleQueryParamOpt at 'simpleDoubleQueryParamOpt'
+		query-param queryValue
+
+	GET simpleStringQueryParam at 'simpleStringQueryParam'
+		query-param queryValue
+	GET simpleStringQueryParamOpt at 'simpleStringQueryParamOpt'
+		query-param queryValue
+
+	GET simpleLocalDateQueryParam at 'simpleLocalDateQueryParam'
+		query-param queryValue
+	GET simpleLocalDateQueryParamOpt at 'simpleLocalDateQueryParamOpt'
+		query-param queryValue
+
+	GET simpleLocalDateTimeQueryParam at 'simpleLocalDateTimeQueryParam'
+		query-param queryValue
+	GET simpleLocalDateTimeQueryParamOpt at 'simpleLocalDateTimeQueryParamOpt'
+		query-param queryValue
+
+	GET simpleZonedDateTimeQueryParam at 'simpleZonedDateTimeQueryParam'
+		query-param queryValue
+	GET simpleZonedDateTimeQueryParamOpt at 'simpleZonedDateTimeQueryParamOpt'
+		query-param queryValue
+
+	GET simpleEnumQueryParam at 'simpleEnumQueryParam'
+		query-param queryValue
+	GET simpleEnumQueryParamOpt at 'simpleEnumQueryParamOpt'
+		query-param queryValue
+
+	GET simpleScalarQueryParam at 'simpleScalarQueryParam'
+		query-param queryValue
+	GET simpleScalarQueryParamOpt at 'simpleScalarQueryParamOpt'
+		query-param queryValue
+	
+	GET multiQueryParam at 'multiQueryParam'
+		query-param valueA
+		query-param valueB
+	GET multiQueryParamOpt at 'multiQueryParamOpt'
+		query-param valueA
+		query-param valueB
+	
+	GET recordQueryParam at 'recordQueryParam'
+		query-param queryValue
+	GET recordQueryParamOpt at 'recordQueryParamOpt'
+		query-param queryValue
+}
+
+
+
 resource ListBodyParameterTypes at '/api/listbodyparametertypes' {
 	PUT listBooleanBodyParam at 'listBooleanBodyParam'
 	PUT listShortBodyParam at 'listShortBodyParam'

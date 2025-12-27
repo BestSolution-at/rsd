@@ -190,25 +190,44 @@ function generateRemoteInvoke(
 			.forEach(p => {
 				if (isMBuiltinType(p.type) || p.variant === 'scalar' || p.variant === 'enum' || isMInlineEnumType(p.type)) {
 					if (p.optional) {
-						const ifDefined = fqn('ifDefined:./_fetch-type-utils', false);
-						node.append(
-							`${ifDefined}($param.append(${p.name}, v => '${p.meta?.rest?.name ?? p.name}', \`\${v}\`));`,
-							NL,
-						);
+						const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
+						if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
+							node.append(`${ifDefined}(${p.name}, v => {`, NL);
+							node.indent(mBody => {
+								mBody.append(`$param.append('${p.meta?.rest?.name ?? p.name}', String(v));`, NL);
+							});
+							node.append('});', NL);
+						} else {
+							node.append(`${ifDefined}(${p.name}, v => {;`, NL);
+							node.indent(mBody => {
+								mBody.append(`$param.append('${p.meta?.rest?.name ?? p.name}', v);`, NL);
+							});
+							node.append('});', NL);
+						}
 					} else {
-						node.append(`$param.append('${p.meta?.rest?.name ?? p.name}', \`\${${p.name}}\`);`, NL);
+						if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
+							node.append(`$param.append('${p.meta?.rest?.name ?? p.name}', String(${p.name}));`, NL);
+						} else {
+							node.append(`$param.append('${p.meta?.rest?.name ?? p.name}', ${p.name});`, NL);
+						}
 					}
 				} else {
 					const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
 					if (p.optional) {
-						const ifDefined = fqn('ifDefined:./_fetch-type-utils', false);
-						node.append(
-							`${ifDefined}(${p.name}, v => $param.append('${
-								p.meta?.rest?.name ?? p.name
-							}', JSON.stringfy(${toJSON}(v))))`,
-						);
+						const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
+						node.append(`${ifDefined}(${p.name}, v => {`, NL);
+						node.indent(mBody => {
+							mBody.append(
+								`$param.append('${p.meta?.rest?.name ?? p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(v)));`,
+								NL,
+							);
+						});
+						node.append('});', NL);
 					} else {
-						node.append(`$param.append('${p.meta?.rest?.name ?? p.name}', JSON.stringfy(${toJSON}(${p.name})))`);
+						node.append(
+							`$param.append('${p.meta?.rest?.name ?? p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(${p.name})));`,
+							NL,
+						);
 					}
 				}
 			});
