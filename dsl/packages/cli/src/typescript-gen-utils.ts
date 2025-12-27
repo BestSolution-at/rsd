@@ -17,6 +17,7 @@ export type TypescriptFetchClientGeneratorConfig = ArtifactGeneratorConfig & {
 	targetFolder: string;
 	apiNamespacePath: string;
 	allowImportingTsExtensions?: boolean;
+	contentTypeEncodings?: ('application/json' | 'application/x-msgpack')[];
 };
 
 export function isTypescriptFetchClientGeneratorConfig(

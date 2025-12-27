@@ -34,7 +34,7 @@ function fnListBoolean(props: ServiceProps<api.service.ErrorType>): api.service.
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isBoolean))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isBoolean));
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listBoolean', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -64,7 +64,7 @@ function fnListShort(props: ServiceProps<api.service.ErrorType>): api.service.Li
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isNumber))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isNumber));
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listShort', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -94,7 +94,7 @@ function fnListInt(props: ServiceProps<api.service.ErrorType>): api.service.List
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isNumber))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isNumber));
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listInt', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -124,7 +124,7 @@ function fnListLong(props: ServiceProps<api.service.ErrorType>): api.service.Lis
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isNumber))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isNumber));
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listLong', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -154,7 +154,7 @@ function fnListFloat(props: ServiceProps<api.service.ErrorType>): api.service.Li
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isNumber))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isNumber));
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listFloat', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -184,7 +184,7 @@ function fnListDouble(props: ServiceProps<api.service.ErrorType>): api.service.L
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isNumber))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isNumber));
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listDouble', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -214,7 +214,7 @@ function fnListString(props: ServiceProps<api.service.ErrorType>): api.service.L
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listString', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -244,7 +244,7 @@ function fnListLocalDate(props: ServiceProps<api.service.ErrorType>): api.servic
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDate', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -274,7 +274,7 @@ function fnListLocalDateTime(props: ServiceProps<api.service.ErrorType>): api.se
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateTime', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -304,7 +304,7 @@ function fnListZonedDateTime(props: ServiceProps<api.service.ErrorType>): api.se
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listZonedDateTime', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -334,7 +334,7 @@ function fnListScalar(props: ServiceProps<api.service.ErrorType>): api.service.L
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listScalar', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -364,7 +364,7 @@ function fnListEnum(props: ServiceProps<api.service.ErrorType>): api.service.Lis
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isSampleEnum))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isSampleEnum));
 				return safeExecute(api.result.OK($data), () => onSuccess?.('listEnum', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -394,7 +394,7 @@ function fnListSimpleRecord(props: ServiceProps<api.service.ErrorType>): api.ser
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isRecord))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isRecord));
 				const $result = $data.map(api.model.SimpleRecordFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listSimpleRecord', $result));
 			}
@@ -425,7 +425,7 @@ function fnListSimpleRecordWithError(props: ServiceProps<api.service.ErrorType>)
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isRecord))
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isRecord));
 				const $result = $data.map(api.model.SimpleRecordFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listSimpleRecordWithError', $result));
 			} else if ($response.status === 400) {

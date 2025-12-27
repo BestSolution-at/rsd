@@ -37,7 +37,7 @@ function fnGetBoolean(props: ServiceProps<api.service.ErrorType>): api.service.S
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isBoolean)
+				const $data = await decodeResponse($response, api.utils.isBoolean);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getBoolean', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -67,7 +67,7 @@ function fnGetShort(props: ServiceProps<api.service.ErrorType>): api.service.Sam
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isNumber)
+				const $data = await decodeResponse($response, api.utils.isNumber);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getShort', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -97,7 +97,7 @@ function fnGetInt(props: ServiceProps<api.service.ErrorType>): api.service.Sampl
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isNumber)
+				const $data = await decodeResponse($response, api.utils.isNumber);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getInt', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -127,7 +127,7 @@ function fnGetLong(props: ServiceProps<api.service.ErrorType>): api.service.Samp
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isNumber)
+				const $data = await decodeResponse($response, api.utils.isNumber);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getLong', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -157,7 +157,7 @@ function fnGetFloat(props: ServiceProps<api.service.ErrorType>): api.service.Sam
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isNumber)
+				const $data = await decodeResponse($response, api.utils.isNumber);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getFloat', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -187,7 +187,7 @@ function fnGetDouble(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isNumber)
+				const $data = await decodeResponse($response, api.utils.isNumber);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getDouble', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -217,7 +217,7 @@ function fnGetString(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isString)
+				const $data = await decodeResponse($response, api.utils.isString);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getString', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -247,7 +247,7 @@ function fnGetLocalDate(props: ServiceProps<api.service.ErrorType>): api.service
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isString)
+				const $data = await decodeResponse($response, api.utils.isString);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getLocalDate', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -277,7 +277,7 @@ function fnGetLocalDateTime(props: ServiceProps<api.service.ErrorType>): api.ser
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isString)
+				const $data = await decodeResponse($response, api.utils.isString);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getLocalDateTime', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -307,7 +307,7 @@ function fnGetZonedDateTime(props: ServiceProps<api.service.ErrorType>): api.ser
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isString)
+				const $data = await decodeResponse($response, api.utils.isString);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getZonedDateTime', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -337,7 +337,7 @@ function fnGetScalar(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isString)
+				const $data = await decodeResponse($response, api.utils.isString);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getScalar', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -367,7 +367,7 @@ function fnGetEnum(props: ServiceProps<api.service.ErrorType>): api.service.Samp
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isSampleEnum)
+				const $data = await decodeResponse($response, api.model.isSampleEnum);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('getEnum', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -502,7 +502,7 @@ function fnGetSimpleRecord(props: ServiceProps<api.service.ErrorType>): api.serv
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isRecord)
+				const $data = await decodeResponse($response, api.utils.isRecord);
 				const $result = api.model.SimpleRecordFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getSimpleRecord', $result));
 			}
@@ -533,7 +533,7 @@ function fnGetSimpleRecordWithError(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isRecord)
+				const $data = await decodeResponse($response, api.utils.isRecord);
 				const $result = api.model.SimpleRecordFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getSimpleRecordWithError', $result));
 			} else if ($response.status === 400) {

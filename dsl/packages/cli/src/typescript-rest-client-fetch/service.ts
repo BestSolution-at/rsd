@@ -169,12 +169,12 @@ function generateRemoteInvoke(
 				if (p.optional) {
 					const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
 					node.append(
-						`${ifDefined}(${p.name}, v => $headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${toJSON}(v)));`,
+						`${ifDefined}(${p.name}, v => $headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(v)));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`$headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${toJSON}(${p.name})));`,
+						`$headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(${p.name})));`,
 						NL,
 					);
 				}
@@ -234,18 +234,18 @@ function generateRemoteInvoke(
 						}ToJSON`;
 						if (p.array) {
 							node.append(
-								`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${p.name}.map(${toJSON})));`,
+								`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${p.name}.map(${toJSON})));`,
 								NL,
 							);
 						} else {
 							node.append(
-								`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${toJSON}(${p.name})));`,
+								`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(${p.name})));`,
 								NL,
 							);
 						}
 					} else {
 						node.append(
-							`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${p.name}));`,
+							`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${p.name}));`,
 							NL,
 						);
 					}
@@ -259,36 +259,39 @@ function generateRemoteInvoke(
 				if (bodyParams[0].array) {
 					if (bodyParams[0].nullable || bodyParams[0].optional) {
 						node.append(
-							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${bodyParams[0].name} ? ${bodyParams[0].name}.map(${toJSON}) : ${bodyParams[0].name});`,
+							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${bodyParams[0].name} ? ${bodyParams[0].name}.map(${toJSON}) : ${bodyParams[0].name});`,
 							NL,
 						);
 					} else {
 						node.append(
-							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${bodyParams[0].name}.map(${toJSON}));`,
+							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${bodyParams[0].name}.map(${toJSON}));`,
 							NL,
 						);
 					}
 				} else {
 					if (bodyParams[0].nullable || bodyParams[0].optional) {
 						node.append(
-							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${bodyParams[0].name} ? ${toJSON}(${bodyParams[0].name}) : ${bodyParams[0].name});`,
+							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${bodyParams[0].name} ? ${toJSON}(${bodyParams[0].name}) : ${bodyParams[0].name});`,
 							NL,
 						);
 					} else {
 						node.append(
-							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', ${toJSON}(${bodyParams[0].name}));`,
+							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(${bodyParams[0].name}));`,
 							NL,
 						);
 					}
 				}
 			} else {
 				node.append(
-					`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json',${bodyParams[0].name});`,
+					`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${bodyParams[0].name});`,
 					NL,
 				);
 			}
 		} else {
-			node.append(`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}('application/json', {`, NL);
+			node.append(
+				`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), {`,
+				NL,
+			);
 			node.indent(struct => {
 				bodyParams.forEach(p => {
 					if (p.variant === 'record' || p.variant === 'union') {
@@ -424,30 +427,30 @@ function handleOkResult(
 				const isTypedArrayGuard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isTypedArray`;
 				if (isMBuiltinType(o.resultType.type)) {
 					const guard = builtinTypeGuard(o.resultType.type, config, fqn);
-					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}))`, NL);
+					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
 				} else if (o.resultType.variant === 'scalar') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}))`, NL);
+					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
 				} else if (o.resultType.variant === 'inline-enum') {
 					const guard = `is${toFirstUpper(o.name)}Result`;
-					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}))`, NL);
+					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
 				} else {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
-					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}))`, NL);
+					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
 				}
 			} else {
 				if (isMBuiltinType(o.resultType.type)) {
 					const guard = builtinTypeGuard(o.resultType.type, config, fqn);
-					node.append(`const $data = await ${decodeResponse}($response, ${guard})`, NL);
+					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
 				} else if (o.resultType.variant === 'scalar') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-					node.append(`const $data = await ${decodeResponse}($response, ${guard})`, NL);
+					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
 				} else if (o.resultType.variant === 'inline-enum') {
 					const guard = `is${toFirstUpper(o.name)}Result`;
-					node.append(`const $data = await ${decodeResponse}($response, ${guard})`, NL);
+					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
 				} else {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
-					node.append(`const $data = await ${decodeResponse}($response, ${guard})`, NL);
+					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
 				}
 			}
 			node.append(`return ${safeExecute}(${OK}($data), () => onSuccess?.('${o.name}', $data));`, NL);
@@ -457,11 +460,11 @@ function handleOkResult(
 			if (o.resultType.array) {
 				const isTypedArrayGuard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isTypedArray`;
 				const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isRecord`;
-				node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}))`, NL);
+				node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
 				node.append(`const $result = $data.map(${fromJSON});`, NL);
 			} else {
 				const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isRecord`;
-				node.append(`const $data = await ${decodeResponse}($response, ${guard})`, NL);
+				node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
 				node.append(`const $result = ${fromJSON}($data);`, NL);
 			}
 			const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);

@@ -33,7 +33,7 @@ function fnSimpleBooleanPathParam(props: ServiceProps<api.service.ErrorType>): a
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isBoolean)
+				const $data = await decodeResponse($response, api.utils.isBoolean);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleBooleanPathParam', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -63,7 +63,7 @@ function fnSimpleShortPathParam(props: ServiceProps<api.service.ErrorType>): api
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isNumber)
+				const $data = await decodeResponse($response, api.utils.isNumber);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleShortPathParam', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -93,7 +93,7 @@ function fnSimpleIntPathParam(props: ServiceProps<api.service.ErrorType>): api.s
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isNumber)
+				const $data = await decodeResponse($response, api.utils.isNumber);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleIntPathParam', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -123,7 +123,7 @@ function fnSimpleLongPathParam(props: ServiceProps<api.service.ErrorType>): api.
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isNumber)
+				const $data = await decodeResponse($response, api.utils.isNumber);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLongPathParam', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -153,7 +153,7 @@ function fnSimpleFloatPathParam(props: ServiceProps<api.service.ErrorType>): api
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isNumber)
+				const $data = await decodeResponse($response, api.utils.isNumber);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleFloatPathParam', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -183,7 +183,7 @@ function fnSimpleDoublePathParam(props: ServiceProps<api.service.ErrorType>): ap
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isNumber)
+				const $data = await decodeResponse($response, api.utils.isNumber);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleDoublePathParam', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -213,7 +213,7 @@ function fnSimpleStringPathParam(props: ServiceProps<api.service.ErrorType>): ap
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isString)
+				const $data = await decodeResponse($response, api.utils.isString);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleStringPathParam', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -243,7 +243,7 @@ function fnSimpleLocalDatePathParam(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isString)
+				const $data = await decodeResponse($response, api.utils.isString);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDatePathParam', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -273,7 +273,7 @@ function fnSimpleLocalDateTimePathParam(props: ServiceProps<api.service.ErrorTyp
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isString)
+				const $data = await decodeResponse($response, api.utils.isString);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalDateTimePathParam', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -303,7 +303,7 @@ function fnSimpleZonedDateTimePathParam(props: ServiceProps<api.service.ErrorTyp
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isString)
+				const $data = await decodeResponse($response, api.utils.isString);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleZonedDateTimePathParam', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -333,7 +333,7 @@ function fnSimpleScalarPathParam(props: ServiceProps<api.service.ErrorType>): ap
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isString)
+				const $data = await decodeResponse($response, api.utils.isString);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleScalarPathParam', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -363,7 +363,7 @@ function fnSimpleEnumPathParam(props: ServiceProps<api.service.ErrorType>): api.
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isSampleEnum)
+				const $data = await decodeResponse($response, api.model.isSampleEnum);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleEnumPathParam', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -393,7 +393,7 @@ function fnMultiPathParam(props: ServiceProps<api.service.ErrorType>): api.servi
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.utils.isString)
+				const $data = await decodeResponse($response, api.utils.isString);
 				return safeExecute(api.result.OK($data), () => onSuccess?.('multiPathParam', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;

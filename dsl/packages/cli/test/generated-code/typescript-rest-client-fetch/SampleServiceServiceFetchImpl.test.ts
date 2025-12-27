@@ -22,7 +22,7 @@ const serviceFailInvalid = createSampleServiceService({
 
 describe('SampleServiceServiceFetchImpl', () => {
 	describe('getBoolean', () => {
-		test('sucess', async () => {
+		test('sucess getBoolean', async () => {
 			const [result, error] = await service.getBoolean();
 			expect(error).toBeNull();
 			expect(result).toBe(true);
