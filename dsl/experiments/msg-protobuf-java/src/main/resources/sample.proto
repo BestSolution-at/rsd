@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package at.bestsolution.msgprotobuf;
+
+option java_multiple_files = true;
+
+
+message Person {
+  string firstname = 1;
+  string lastname = 2;
+	int32 age = 3;
+	Address address = 4;
+	float shoe_size = 5;
+	bool employed = 6;
+	optional string nickname = 7;
+	repeated PhoneNumber phone_numbers = 8;
+}
+
+message Address {
+	string street = 1;
+	string city = 2;
+	string state = 3;
+	string postal_code = 4;
+}
+
+message PhoneNumber {
+	enum PhoneType {
+		HOME = 0;
+		WORK = 1;
+	}
+	string number = 1;
+	PhoneType type = 2;
+}
