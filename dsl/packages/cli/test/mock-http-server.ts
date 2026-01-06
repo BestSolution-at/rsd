@@ -897,6 +897,80 @@ async function multiHeaderParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+const queryParamPaths = [
+	'/api/queryparametertypes/simpleBooleanQueryParam',
+	'/api/queryparametertypes/simpleBooleanQueryParamOpt',
+
+	'/api/queryparametertypes/simpleShortQueryParam',
+	'/api/queryparametertypes/simpleShortQueryParamOpt',
+	'/api/queryparametertypes/simpleIntQueryParam',
+	'/api/queryparametertypes/simpleIntQueryParamOpt',
+	'/api/queryparametertypes/simpleLongQueryParam',
+	'/api/queryparametertypes/simpleLongQueryParamOpt',
+	'/api/queryparametertypes/simpleFloatQueryParam',
+	'/api/queryparametertypes/simpleFloatQueryParamOpt',
+	'/api/queryparametertypes/simpleDoubleQueryParam',
+	'/api/queryparametertypes/simpleDoubleQueryParamOpt',
+	'/api/queryparametertypes/recordQueryParam',
+	'/api/queryparametertypes/recordQueryParamOpt',
+
+	'/api/queryparametertypes/simpleStringQueryParam',
+	'/api/queryparametertypes/simpleStringQueryParamOpt',
+	'/api/queryparametertypes/simpleLocalDateQueryParam',
+	'/api/queryparametertypes/simpleLocalDateQueryParamOpt',
+	'/api/queryparametertypes/simpleLocalDateTimeQueryParam',
+	'/api/queryparametertypes/simpleLocalDateTimeQueryParamOpt',
+	'/api/queryparametertypes/simpleZonedDateTimeQueryParam',
+	'/api/queryparametertypes/simpleZonedDateTimeQueryParamOpt',
+	'/api/queryparametertypes/simpleScalarQueryParam',
+	'/api/queryparametertypes/simpleScalarQueryParamOpt',
+	'/api/queryparametertypes/simpleEnumQueryParam',
+	'/api/queryparametertypes/simpleEnumQueryParamOpt',
+];
+
+const stringQueryParamPaths = [
+	'/api/queryparametertypes/simpleStringQueryParam',
+	'/api/queryparametertypes/simpleLocalDateQueryParam',
+	'/api/queryparametertypes/simpleLocalDateTimeQueryParam',
+	'/api/queryparametertypes/simpleZonedDateTimeQueryParam',
+	'/api/queryparametertypes/simpleScalarQueryParam',
+	'/api/queryparametertypes/simpleEnumQueryParam',
+];
+
+async function queryParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (queryParamPaths.includes(ctx.path) && ctx.method === 'GET') {
+		const queryValue = ctx.query.queryValue;
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		if (queryValue === 'null') {
+			ctx.body = '"NULL"';
+		} else if (queryValue === undefined) {
+			ctx.body = '"UNDEFINED"';
+		} else {
+			ctx.body = stringQueryParamPaths.includes(ctx.path) ? `"${String(queryValue)}"` : queryValue;
+		}
+	} else {
+		await next();
+	}
+}
+
+async function multiQueryParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (
+		(ctx.path === '/api/queryparametertypes/multiQueryParam' ||
+			ctx.path === '/api/queryparametertypes/multiQueryParamOpt') &&
+		ctx.method === 'GET'
+	) {
+		const queryValueA = ctx.query.valueA;
+		const queryValueB = ctx.query.valueB;
+		const response = `${String(queryValueA)}-${String(queryValueB)}`;
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		ctx.body = `"${response}"`;
+	} else {
+		await next();
+	}
+}
+
 async function uploadFile(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	if (ctx.path === '/api/binarytypes/uploadFile' && ctx.method === 'POST') {
 		const bb = busboy({ headers: ctx.req.headers });
@@ -1100,6 +1174,9 @@ const all = compose([
 	listBodyParam,
 	headerParam,
 	multiHeaderParam,
+
+	queryParam,
+	multiQueryParam,
 
 	// Binary types
 	uploadFile,
