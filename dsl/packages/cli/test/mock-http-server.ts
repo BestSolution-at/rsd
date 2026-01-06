@@ -971,6 +971,81 @@ async function multiQueryParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+const listQueryParamPaths = [
+	'/api/listqueryparametertypes/listBooleanQueryParam',
+	'/api/listqueryparametertypes/listShortQueryParam',
+	'/api/listqueryparametertypes/listIntQueryParam',
+	'/api/listqueryparametertypes/listLongQueryParam',
+	'/api/listqueryparametertypes/listFloatQueryParam',
+	'/api/listqueryparametertypes/listDoubleQueryParam',
+	'/api/listqueryparametertypes/listStringQueryParam',
+	'/api/listqueryparametertypes/listLocalDateQueryParam',
+	'/api/listqueryparametertypes/listLocalDateTimeQueryParam',
+	'/api/listqueryparametertypes/listZonedDateTimeQueryParam',
+	'/api/listqueryparametertypes/listScalarQueryParam',
+	'/api/listqueryparametertypes/listEnumQueryParam',
+	'/api/listqueryparametertypes/listInlineEnumQueryParam',
+	'/api/listqueryparametertypes/listMultiQueryParam',
+	'/api/listqueryparametertypes/listRecordQueryParam',
+];
+
+const numListQueryParamPaths = [
+	'/api/listqueryparametertypes/listShortQueryParam',
+	'/api/listqueryparametertypes/listIntQueryParam',
+	'/api/listqueryparametertypes/listLongQueryParam',
+	'/api/listqueryparametertypes/listFloatQueryParam',
+	'/api/listqueryparametertypes/listDoubleQueryParam',
+];
+
+async function listQueryParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (listQueryParamPaths.includes(ctx.path) && ctx.method === 'GET') {
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		if (ctx.path === '/api/listqueryparametertypes/listMultiQueryParam') {
+			const valueA = ctx.query.valueA;
+			const valueB = ctx.query.valueB;
+			const valueC = ctx.query.valueC;
+			const values = [
+				(Array.isArray(valueA) ? valueA : [valueA]).join(','),
+				(Array.isArray(valueB) ? valueB : [valueB]).join(','),
+				(Array.isArray(valueC) ? valueC : [valueC])
+					.filter(v => v !== undefined)
+					.map(v => JSON.parse(v) as Record<string, unknown>)
+					.map(v => v.key)
+					.join(','),
+			];
+			const response = values.join('-');
+			ctx.body = JSON.stringify(response);
+			return;
+		}
+
+		const queryValue = ctx.query.queryValue;
+		const values = Array.isArray(queryValue) ? queryValue : [queryValue];
+		if (ctx.path === '/api/listqueryparametertypes/listRecordQueryParam') {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+			const parsedValues = values.filter(v => v !== undefined).map(v => JSON.parse(v));
+			ctx.body = JSON.stringify(parsedValues);
+			return;
+		} else if (ctx.path === '/api/listqueryparametertypes/listBooleanQueryParam') {
+			const parsedValues: boolean[] = [];
+			for (let i = 0; i < values.length; i++) {
+				parsedValues[i] = values[i] === 'true';
+			}
+			ctx.body = JSON.stringify(parsedValues);
+		} else if (numListQueryParamPaths.includes(ctx.path)) {
+			const parsedValues: number[] = [];
+			for (let i = 0; i < values.length; i++) {
+				parsedValues[i] = Number(values[i]);
+			}
+			ctx.body = JSON.stringify(parsedValues);
+		} else {
+			ctx.body = JSON.stringify(values);
+		}
+	} else {
+		await next();
+	}
+}
+
 async function uploadFile(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	if (ctx.path === '/api/binarytypes/uploadFile' && ctx.method === 'POST') {
 		const bb = busboy({ headers: ctx.req.headers });
@@ -1177,6 +1252,7 @@ const all = compose([
 
 	queryParam,
 	multiQueryParam,
+	listQueryParam,
 
 	// Binary types
 	uploadFile,

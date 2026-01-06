@@ -381,8 +381,6 @@ resource QueryParameterTypes at '/api/queryparametertypes' {
 		query-param queryValue
 }
 
-
-
 resource ListBodyParameterTypes at '/api/listbodyparametertypes' {
 	PUT listBooleanBodyParam at 'listBooleanBodyParam'
 	PUT listShortBodyParam at 'listShortBodyParam'
@@ -399,6 +397,41 @@ resource ListBodyParameterTypes at '/api/listbodyparametertypes' {
 	PUT listInlineEnumBodyParam at 'listInlineEnumBodyParam'
 	PUT listRecordBodyParam at 'listRecordBodyParam'
 	PUT listMultiBodyParam at 'listMultiBodyParam'
+}
+
+resource ListQueryParameterTypes at '/api/listqueryparametertypes' {
+	GET listBooleanQueryParam at 'listBooleanQueryParam'
+		query-param queryValue
+	GET listShortQueryParam at 'listShortQueryParam'
+		query-param queryValue
+	GET listIntQueryParam at 'listIntQueryParam'
+		query-param queryValue
+	GET listLongQueryParam at 'listLongQueryParam'
+		query-param queryValue
+	GET listFloatQueryParam at 'listFloatQueryParam'
+		query-param queryValue
+	GET listDoubleQueryParam at 'listDoubleQueryParam'
+		query-param queryValue
+	GET listStringQueryParam at 'listStringQueryParam'
+		query-param queryValue
+	GET listLocalDateQueryParam at 'listLocalDateQueryParam'
+		query-param queryValue
+	GET listLocalDateTimeQueryParam at 'listLocalDateTimeQueryParam'
+		query-param queryValue
+	GET listZonedDateTimeQueryParam at 'listZonedDateTimeQueryParam'
+		query-param queryValue
+	GET listScalarQueryParam at 'listScalarQueryParam'
+		query-param queryValue
+	GET listEnumQueryParam at 'listEnumQueryParam'
+		query-param queryValue
+	GET listInlineEnumQueryParam at 'listInlineEnumQueryParam'
+		query-param queryValue
+	GET listMultiQueryParam at 'listMultiQueryParam'
+		query-param valueA
+		query-param valueB
+		query-param valueC
+	GET listRecordQueryParam at 'listRecordQueryParam'
+		query-param queryValue
 }
 
 resource BinaryTypes at '/api/binarytypes' {

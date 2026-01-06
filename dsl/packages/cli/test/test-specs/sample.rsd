@@ -949,6 +949,52 @@ service ListBodyParameterTypes {
 	): SimpleRecord[];
 }
 
+service ListQueryParameterTypes {
+	operation listBooleanQueryParam(
+		queryValue: boolean[]
+	): boolean[];
+	operation listShortQueryParam(
+		queryValue: short[]
+	): short[];
+	operation listIntQueryParam(
+		queryValue: int[]
+	): int[];
+	operation listLongQueryParam(
+		queryValue: long[]
+	): long[];
+	operation listFloatQueryParam(
+		queryValue: float[]
+	): float[];
+	operation listDoubleQueryParam(
+		queryValue: double[]
+	): double[];
+	operation listStringQueryParam(
+		queryValue: string[]
+	): string[];
+	operation listLocalDateQueryParam(
+		queryValue: local-date[]
+	): local-date[];
+	operation listLocalDateTimeQueryParam(
+		queryValue: local-date-time[]
+	): local-date-time[];
+	operation listZonedDateTimeQueryParam(
+		queryValue: zoned-date-time[]
+	): zoned-date-time[];
+	operation listScalarQueryParam(
+		queryValue: ZoneId[]
+	): ZoneId[];
+	operation listEnumQueryParam(
+		queryValue: SampleEnum[]
+	): SampleEnum[];
+	operation listInlineEnumQueryParam(
+		queryValue: enum A | B[]
+	): enum A | B[];
+	operation listMultiQueryParam(valueA: string[], valueB: int[], valueC: SimpleRecord[]): string;
+	operation listRecordQueryParam(
+		queryValue: SimpleRecord[]
+	): SimpleRecord[];
+}
+
 service BinaryTypes {
 	operation uploadFile(
 		data: file
