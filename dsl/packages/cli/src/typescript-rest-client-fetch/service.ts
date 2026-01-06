@@ -152,15 +152,55 @@ function generateRemoteInvoke(
 				if (p.optional) {
 					const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
 					if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
-						node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}', String(v)));`, NL);
+						if (p.array) {
+							node.append(`${ifDefined}(${p.name}, v => {`, NL);
+							node.indent(mBody => {
+								mBody.append(`v.forEach($entry => {`, NL);
+								mBody.indent(mmBody => {
+									mmBody.append(`$headers.append('${p.name}', String($entry));`, NL);
+								});
+								mBody.append('});', NL);
+							});
+							node.append('});', NL);
+						} else {
+							node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}', String(v)));`, NL);
+						}
 					} else {
-						node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}', v));`, NL);
+						if (p.array) {
+							node.append(`${ifDefined}(${p.name}, v => {`, NL);
+							node.indent(mBody => {
+								mBody.append(`v.forEach($entry => {`, NL);
+								mBody.indent(mmBody => {
+									mmBody.append(`$headers.append('${p.name}', $entry);`, NL);
+								});
+								mBody.append('});', NL);
+							});
+							node.append('});', NL);
+						} else {
+							node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}', v));`, NL);
+						}
 					}
 				} else {
 					if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
-						node.append(`$headers.append('${p.name}', String(${p.name}));`, NL);
+						if (p.array) {
+							node.append(`${p.name}.forEach($entry => {`, NL);
+							node.indent(mBody => {
+								mBody.append(`$headers.append('${p.name}', String($entry));`, NL);
+							});
+							node.append('});', NL);
+						} else {
+							node.append(`$headers.append('${p.name}', String(${p.name}));`, NL);
+						}
 					} else {
-						node.append(`$headers.append('${p.name}', ${p.name});`, NL);
+						if (p.array) {
+							node.append(`${p.name}.forEach($entry => {`, NL);
+							node.indent(mBody => {
+								mBody.append(`$headers.append('${p.name}', $entry);`, NL);
+							});
+							node.append('});', NL);
+						} else {
+							node.append(`$headers.append('${p.name}', ${p.name});`, NL);
+						}
 					}
 				}
 			} else {
@@ -168,15 +208,41 @@ function generateRemoteInvoke(
 
 				if (p.optional) {
 					const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
-					node.append(
-						`${ifDefined}(${p.name}, v => $headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(v)));`,
-						NL,
-					);
+					if (p.array) {
+						node.append(`${ifDefined}(${p.name}, v => {`, NL);
+						node.indent(mBody => {
+							mBody.append(`v.forEach($entry => {`, NL);
+							mBody.indent(mmBody => {
+								mmBody.append(
+									`${ifDefined}(${p.name}, v => $headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}($entry)));`,
+									NL,
+								);
+							});
+							mBody.append('});', NL);
+						});
+						node.append('});', NL);
+					} else {
+						node.append(
+							`${ifDefined}(${p.name}, v => $headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(v)));`,
+							NL,
+						);
+					}
 				} else {
-					node.append(
-						`$headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(${p.name})));`,
-						NL,
-					);
+					if (p.array) {
+						node.append(`${p.name}.forEach($entry => {`, NL);
+						node.indent(mBody => {
+							mBody.append(
+								`$headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}($entry)));`,
+								NL,
+							);
+						});
+						node.append('});', NL);
+					} else {
+						node.append(
+							`$headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(${p.name})));`,
+							NL,
+						);
+					}
 				}
 			}
 		});

@@ -434,6 +434,41 @@ resource ListQueryParameterTypes at '/api/listqueryparametertypes' {
 		query-param queryValue
 }
 
+resource ListHeaderParameterTypes at '/api/listheaderparametertypes' {
+	GET listBooleanHeaderParam at 'listBooleanHeaderParam'
+		header-param headerValue
+	GET listShortHeaderParam at 'listShortHeaderParam'
+		header-param headerValue
+	GET listIntHeaderParam at 'listIntHeaderParam'
+		header-param headerValue
+	GET listLongHeaderParam at 'listLongHeaderParam'
+		header-param headerValue
+	GET listFloatHeaderParam at 'listFloatHeaderParam'
+		header-param headerValue
+	GET listDoubleHeaderParam at 'listDoubleHeaderParam'
+		header-param headerValue
+	GET listStringHeaderParam at 'listStringHeaderParam'
+		header-param headerValue
+	GET listLocalDateHeaderParam at 'listLocalDateHeaderParam'
+		header-param headerValue
+	GET listLocalDateTimeHeaderParam at 'listLocalDateTimeHeaderParam'
+		header-param headerValue
+	GET listZonedDateTimeHeaderParam at 'listZonedDateTimeHeaderParam'
+		header-param headerValue
+	GET listScalarHeaderParam at 'listScalarHeaderParam'
+		header-param headerValue
+	GET listEnumHeaderParam at 'listEnumHeaderParam'
+		header-param headerValue
+	GET listInlineEnumHeaderParam at 'listInlineEnumHeaderParam'
+		header-param headerValue
+	GET listMultiHeaderParam at 'listMultiHeaderParam'
+		header-param valueA
+		header-param valueB
+		header-param valueC
+	GET listRecordHeaderParam at 'listRecordHeaderParam'
+		header-param headerValue
+}
+
 resource BinaryTypes at '/api/binarytypes' {
 	POST uploadBlob at 'uploadBlob' => {
 			201

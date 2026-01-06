@@ -901,7 +901,6 @@ service QueryParameterTypes {
 }
 
 // TODO List in Header
-// TODO Query List Params
 
 service ListBodyParameterTypes {
 	operation listBooleanBodyParam(
@@ -992,6 +991,52 @@ service ListQueryParameterTypes {
 	operation listMultiQueryParam(valueA: string[], valueB: int[], valueC: SimpleRecord[]): string;
 	operation listRecordQueryParam(
 		queryValue: SimpleRecord[]
+	): SimpleRecord[];
+}
+
+service ListHeaderParameterTypes {
+	operation listBooleanHeaderParam(
+		headerValue: boolean[]
+	): boolean[];
+	operation listShortHeaderParam(
+		headerValue: short[]
+	): short[];
+	operation listIntHeaderParam(
+		headerValue: int[]
+	): int[];
+	operation listLongHeaderParam(
+		headerValue: long[]
+	): long[];
+	operation listFloatHeaderParam(
+		headerValue: float[]
+	): float[];
+	operation listDoubleHeaderParam(
+		headerValue: double[]
+	): double[];
+	operation listStringHeaderParam(
+		headerValue: string[]
+	): string[];
+	operation listLocalDateHeaderParam(
+		headerValue: local-date[]
+	): local-date[];
+	operation listLocalDateTimeHeaderParam(
+		headerValue: local-date-time[]
+	): local-date-time[];
+	operation listZonedDateTimeHeaderParam(
+		headerValue: zoned-date-time[]
+	): zoned-date-time[];
+	operation listScalarHeaderParam(
+		headerValue: ZoneId[]
+	): ZoneId[];
+	operation listEnumHeaderParam(
+		headerValue: SampleEnum[]
+	): SampleEnum[];
+	operation listInlineEnumHeaderParam(
+		headerValue: enum A | B[]
+	): enum A | B[];
+	operation listMultiHeaderParam(valueA: string[], valueB: int[], valueC: SimpleRecord[]): string;
+	operation listRecordHeaderParam(
+		headerValue: SimpleRecord[]
 	): SimpleRecord[];
 }
 

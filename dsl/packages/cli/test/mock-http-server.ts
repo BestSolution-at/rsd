@@ -897,6 +897,67 @@ async function multiHeaderParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 	}
 }
 
+const listHeaderParamPaths = [
+	'/api/listheaderparametertypes/listBooleanHeaderParam',
+	'/api/listheaderparametertypes/listShortHeaderParam',
+	'/api/listheaderparametertypes/listIntHeaderParam',
+	'/api/listheaderparametertypes/listLongHeaderParam',
+	'/api/listheaderparametertypes/listFloatHeaderParam',
+	'/api/listheaderparametertypes/listDoubleHeaderParam',
+	'/api/listheaderparametertypes/listStringHeaderParam',
+	'/api/listheaderparametertypes/listLocalDateHeaderParam',
+	'/api/listheaderparametertypes/listLocalDateTimeHeaderParam',
+	'/api/listheaderparametertypes/listZonedDateTimeHeaderParam',
+	'/api/listheaderparametertypes/listScalarHeaderParam',
+	'/api/listheaderparametertypes/listEnumHeaderParam',
+	'/api/listheaderparametertypes/listInlineEnumHeaderParam',
+	'/api/listheaderparametertypes/listMultiHeaderParam',
+	'/api/listheaderparametertypes/listRecordHeaderParam',
+];
+
+const numListHeaderParamPaths = [
+	'/api/listheaderparametertypes/listShortHeaderParam',
+	'/api/listheaderparametertypes/listIntHeaderParam',
+	'/api/listheaderparametertypes/listLongHeaderParam',
+	'/api/listheaderparametertypes/listFloatHeaderParam',
+	'/api/listheaderparametertypes/listDoubleHeaderParam',
+];
+
+async function listHeaderParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (listHeaderParamPaths.includes(ctx.path) && ctx.method === 'GET') {
+		ctx.status = 200;
+		ctx.type = 'application/json';
+		if (ctx.path === '/api/listheaderparametertypes/listMultiHeaderParam') {
+			const valueA = String(ctx.header.valuea);
+			const valueB = String(ctx.header.valueb);
+			const valueC = String(ctx.header.valuec);
+			const values = [
+				valueA.replaceAll(', ', ','),
+				valueB.replaceAll(', ', ','),
+				(JSON.parse(`[${valueC}]`) as Record<string, unknown>[]).map(v => v.key).join(','),
+			];
+			const response = values.join('-');
+			ctx.body = JSON.stringify(response);
+			return;
+		}
+
+		const headerValue = String(ctx.header.headervalue);
+		if (ctx.path === '/api/listheaderparametertypes/listRecordHeaderParam') {
+			ctx.body = `[${headerValue}]`;
+			return;
+		} else if (ctx.path === '/api/listheaderparametertypes/listBooleanHeaderParam') {
+			ctx.body = `[${headerValue}]`;
+			console.log('Boolean Header Param Response:', ctx.body);
+		} else if (numListHeaderParamPaths.includes(ctx.path)) {
+			ctx.body = `[${headerValue}]`;
+		} else {
+			ctx.body = JSON.stringify(headerValue.split(', '));
+		}
+	} else {
+		await next();
+	}
+}
+
 const queryParamPaths = [
 	'/api/queryparametertypes/simpleBooleanQueryParam',
 	'/api/queryparametertypes/simpleBooleanQueryParamOpt',
@@ -1249,6 +1310,7 @@ const all = compose([
 	listBodyParam,
 	headerParam,
 	multiHeaderParam,
+	listHeaderParam,
 
 	queryParam,
 	multiQueryParam,
