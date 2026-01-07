@@ -456,7 +456,7 @@ record MixinRecord {
 	children: Node[]
 }*/
 
-enum NilResult = UNDEFINED | NULL;
+enum NilResult = UNDEFINED | NULL | DEFINED;
 
 error SampleError;
 error SampleError2;
@@ -1047,51 +1047,193 @@ service QueryParameterTypes {
 	): NilResult;
 }
 
-// TODO Add Nil variants to Body Params
 service ListBodyParameterTypes {
 	operation listBooleanBodyParam(
 		bodyBoolean: boolean[]
 	): boolean[];
+	operation listBooleanBodyParamOpt(
+		bodyBoolean?: boolean[]
+	): NilResult;
+	operation listBooleanBodyParamNil(
+		bodyBoolean: boolean[]?
+	): NilResult;
+	operation listBooleanBodyParamOptNil(
+		bodyBoolean?: boolean[]?
+	): NilResult;
+
 	operation listShortBodyParam(
 		bodyShort: short[]
 	): short[];
+	operation listShortBodyParamOpt(
+		bodyShort?: short[]
+	): NilResult;
+	operation listShortBodyParamNil(
+		bodyShort: short[]?
+	): NilResult;
+	operation listShortBodyParamOptNil(
+		bodyShort?: short[]?
+	): NilResult;
+
 	operation listIntBodyParam(
 		bodyInt: int[]
 	): int[];
+	operation listIntBodyParamOpt(
+		bodyInt?: int[]
+	): NilResult;
+	operation listIntBodyParamNil(
+		bodyInt: int[]?
+	): NilResult;
+	operation listIntBodyParamOptNil(
+		bodyInt?: int[]?
+	): NilResult;
+
 	operation listLongBodyParam(
 		bodyLong: long[]
 	): long[];
+	operation listLongBodyParamOpt(
+		bodyLong?: long[]
+	): NilResult;
+	operation listLongBodyParamNil(
+		bodyLong: long[]?
+	): NilResult;
+	operation listLongBodyParamOptNil(
+		bodyLong?: long[]?
+	): NilResult;
+
 	operation listFloatBodyParam(
 		bodyFloat: float[]
 	): float[];
+	operation listFloatBodyParamOpt(
+		bodyFloat?: float[]
+	): NilResult;
+	operation listFloatBodyParamNil(
+		bodyFloat: float[]?
+	): NilResult;
+	operation listFloatBodyParamOptNil(
+		bodyFloat?: float[]?
+	): NilResult;
+
 	operation listDoubleBodyParam(
 		bodyDouble: double[]
 	): double[];
+	operation listDoubleBodyParamOpt(
+		bodyDouble?: double[]
+	): NilResult;
+	operation listDoubleBodyParamNil(
+		bodyDouble: double[]?
+	): NilResult;
+	operation listDoubleBodyParamOptNil(
+		bodyDouble?: double[]?
+	): NilResult;
+
 	operation listStringBodyParam(
 		bodyString: string[]
 	): string[];
+	operation listStringBodyParamOpt(
+		bodyString?: string[]
+	): NilResult;
+	operation listStringBodyParamNil(
+		bodyString: string[]?
+	): NilResult;
+	operation listStringBodyParamOptNil(
+		bodyString?: string[]?
+	): NilResult;
+
 	operation listLocalDateBodyParam(
 		bodyLocalDate: local-date[]
 	): local-date[];
+	operation listLocalDateBodyParamOpt(
+		bodyLocalDate?: local-date[]
+	): NilResult;
+	operation listLocalDateBodyParamNil(
+		bodyLocalDate: local-date[]?
+	): NilResult;
+	operation listLocalDateBodyParamOptNil(
+		bodyLocalDate?: local-date[]?
+	): NilResult;
+
 	operation listLocalDateTimeBodyParam(
 		bodyLocalDateTime: local-date-time[]
 	): local-date-time[];
+	operation listLocalDateTimeBodyParamOpt(
+		bodyLocalDateTime?: local-date-time[]
+	): NilResult;
+	operation listLocalDateTimeBodyParamNil(
+		bodyLocalDateTime: local-date-time[]?
+	): NilResult;
+	operation listLocalDateTimeBodyParamOptNil(
+		bodyLocalDateTime?: local-date-time[]?
+	): NilResult;
+
 	operation listZonedDateTimeBodyParam(
 		bodyZonedDateTime: zoned-date-time[]
 	): zoned-date-time[];
+	operation listZonedDateTimeBodyParamOpt(
+		bodyZonedDateTime?: zoned-date-time[]
+	): NilResult;
+	operation listZonedDateTimeBodyParamNil(
+		bodyZonedDateTime: zoned-date-time[]?
+	): NilResult;
+	operation listZonedDateTimeBodyParamOptNil(
+		bodyZonedDateTime?: zoned-date-time[]?
+	): NilResult;
+
 	operation listScalarBodyParam(
 		bodyScalar: ZoneId[]
 	): ZoneId[];
+	operation listScalarBodyParamOpt(
+		bodyScalar?: ZoneId[]
+	): NilResult;
+	operation listScalarBodyParamNil(
+		bodyScalar: ZoneId[]?
+	): NilResult;
+	operation listScalarBodyParamOptNil(
+		bodyScalar?: ZoneId[]?
+	): NilResult;
+
 	operation listEnumBodyParam(
 		bodyEnum: SampleEnum[]
 	): SampleEnum[];
+	operation listEnumBodyParamOpt(
+		bodyEnum?: SampleEnum[]
+	): NilResult;
+	operation listEnumBodyParamNil(
+		bodyEnum: SampleEnum[]?
+	): NilResult;
+	operation listEnumBodyParamOptNil(
+		bodyEnum?: SampleEnum[]?
+	): NilResult;
+
 	operation listInlineEnumBodyParam(
 		bodyEnum: enum A | B[]
 	): enum A | B[];
+	operation listInlineEnumBodyParamOpt(
+		bodyEnum?: enum A | B[]
+	): NilResult;
+	operation listInlineEnumBodyParamNil(
+		bodyEnum: enum C | D []?
+	): NilResult;
+	operation listInlineEnumBodyParamOptNil(
+		bodyEnum?: enum C | D []?
+	): NilResult;
+
 	operation listMultiBodyParam(valueA: string[], valueB: int[], valueC: SimpleRecord[]): string;
+	operation listMultiBodyParamOpt(valueA?: string[], valueB?: int[], valueC?: SimpleRecord[]): NilResult[];
+	operation listMultiBodyParamNil(valueA: string[]?, valueB: int[]?, valueC: SimpleRecord[]?): NilResult[];
+	operation listMultiBodyParamOptNil(valueA?: string[]?, valueB?: int[]?, valueC?: SimpleRecord[]?): NilResult[];
+
 	operation listRecordBodyParam(
 		bodyRecord: SimpleRecord[]
 	): SimpleRecord[];
+	operation listRecordBodyParamOpt(
+		bodyRecord?: SimpleRecord[]
+	): NilResult;
+	operation listRecordBodyParamNil(
+		bodyRecord: SimpleRecord[]?
+	): NilResult;
+	operation listRecordBodyParamOptNil(
+		bodyRecord?: SimpleRecord[]?
+	): NilResult;
 }
 
 // TODO Add Nil variants to Query Params
@@ -1141,7 +1283,6 @@ service ListQueryParameterTypes {
 	): SimpleRecord[];
 }
 
-// TODO Add Nil variants to Header Params
 service ListHeaderParameterTypes {
 	operation listBooleanHeaderParam(
 		headerValue: boolean[]

@@ -15,17 +15,27 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listBooleanHeaderParamOpt', () => {
-		test('success', async () => {
+		test('success undefined', async () => {
 			const [result, error] = await service.listBooleanHeaderParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
+		test('success defined', async () => {
+			const [result, error] = await service.listBooleanHeaderParamOpt([true, true]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
 	});
 	describe('listBooleanHeaderParamNil', () => {
-		test('success', async () => {
+		test('success null', async () => {
 			const [result, error] = await service.listBooleanHeaderParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
+		});
+		test('success defined', async () => {
+			const [result, error] = await service.listBooleanHeaderParamNil([false, false]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 	});
 	describe('listBooleanHeaderParamOptNil', () => {
@@ -39,6 +49,11 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
 		});
+		test('success - defined', async () => {
+			const [result, error] = await service.listBooleanHeaderParamOptNil([true, false]);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 	});
 
 	describe('listShortHeaderParam', () => {
@@ -49,17 +64,27 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listShortHeaderParamOpt', () => {
-		test('success', async () => {
+		test('success undefined', async () => {
 			const [result, error] = await service.listShortHeaderParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
+		test('success defined', async () => {
+			const [result, error] = await service.listShortHeaderParamOpt([400, 500]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
 	});
 	describe('listShortHeaderParamNil', () => {
-		test('success', async () => {
+		test('success null', async () => {
 			const [result, error] = await service.listShortHeaderParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
+		});
+		test('success defined', async () => {
+			const [result, error] = await service.listShortHeaderParamNil([600, 700]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 	});
 	describe('listShortHeaderParamOptNil', () => {
@@ -73,6 +98,11 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
 		});
+		test('success - defined', async () => {
+			const [result, error] = await service.listShortHeaderParamOptNil([800, 900]);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 	});
 
 	describe('listIntHeaderParam', () => {
@@ -83,17 +113,27 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listIntHeaderParamOpt', () => {
-		test('success', async () => {
+		test('success undefined', async () => {
 			const [result, error] = await service.listIntHeaderParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
+		test('success defined', async () => {
+			const [result, error] = await service.listIntHeaderParamOpt([6, 7, 8]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
 	});
 	describe('listIntHeaderParamNil', () => {
-		test('success', async () => {
+		test('success null', async () => {
 			const [result, error] = await service.listIntHeaderParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
+		});
+		test('success defined', async () => {
+			const [result, error] = await service.listIntHeaderParamNil([9, 10]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 	});
 	describe('listIntHeaderParamOptNil', () => {
@@ -107,6 +147,11 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
 		});
+		test('success - defined', async () => {
+			const [result, error] = await service.listIntHeaderParamOptNil([11, 12]);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 	});
 
 	describe('listLongHeaderParam', () => {
@@ -117,17 +162,27 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listLongHeaderParamOpt', () => {
-		test('success', async () => {
+		test('success undefined', async () => {
 			const [result, error] = await service.listLongHeaderParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
+		test('success defined', async () => {
+			const [result, error] = await service.listLongHeaderParamOpt([4000, 5000]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
 	});
 	describe('listLongHeaderParamNil', () => {
-		test('success', async () => {
+		test('success null', async () => {
 			const [result, error] = await service.listLongHeaderParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
+		});
+		test('success defined', async () => {
+			const [result, error] = await service.listLongHeaderParamNil([6000, 7000]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 	});
 	describe('listLongHeaderParamOptNil', () => {
@@ -141,6 +196,11 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
 		});
+		test('success - defined', async () => {
+			const [result, error] = await service.listLongHeaderParamOptNil([8000, 9000]);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 	});
 
 	describe('listFloatHeaderParam', () => {
@@ -151,17 +211,27 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listFloatHeaderParamOpt', () => {
-		test('success', async () => {
+		test('success undefined', async () => {
 			const [result, error] = await service.listFloatHeaderParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
+		test('success defined', async () => {
+			const [result, error] = await service.listFloatHeaderParamOpt([4.5, 5.5]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
 	});
 	describe('listFloatHeaderParamNil', () => {
-		test('success', async () => {
+		test('success null', async () => {
 			const [result, error] = await service.listFloatHeaderParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
+		});
+		test('success defined', async () => {
+			const [result, error] = await service.listFloatHeaderParamNil([6.5, 7.5]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 	});
 	describe('listFloatHeaderParamOptNil', () => {
@@ -175,6 +245,11 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
 		});
+		test('success - defined', async () => {
+			const [result, error] = await service.listFloatHeaderParamOptNil([8.5, 9.5]);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 	});
 
 	describe('listDoubleHeaderParam', () => {
@@ -185,17 +260,27 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listDoubleHeaderParamOpt', () => {
-		test('success', async () => {
+		test('success undefined', async () => {
 			const [result, error] = await service.listDoubleHeaderParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
+		test('success defined', async () => {
+			const [result, error] = await service.listDoubleHeaderParamOpt([4.4, 5.5]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
 	});
 	describe('listDoubleHeaderParamNil', () => {
-		test('success', async () => {
+		test('success null', async () => {
 			const [result, error] = await service.listDoubleHeaderParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
+		});
+		test('success defined', async () => {
+			const [result, error] = await service.listDoubleHeaderParamNil([6.6, 7.7]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 	});
 	describe('listDoubleHeaderParamOptNil', () => {
@@ -209,6 +294,11 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
 		});
+		test('success - defined', async () => {
+			const [result, error] = await service.listDoubleHeaderParamOptNil([8.8, 9.9]);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 	});
 
 	describe('listStringHeaderParam', () => {
@@ -219,17 +309,27 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listStringHeaderParamOpt', () => {
-		test('success', async () => {
+		test('success undefined', async () => {
 			const [result, error] = await service.listStringHeaderParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
+		test('success defined', async () => {
+			const [result, error] = await service.listStringHeaderParamOpt(['delta', 'epsilon']);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
 	});
 	describe('listStringHeaderParamNil', () => {
-		test('success', async () => {
+		test('success null', async () => {
 			const [result, error] = await service.listStringHeaderParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
+		});
+		test('success defined', async () => {
+			const [result, error] = await service.listStringHeaderParamNil(['zeta', 'eta']);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 	});
 	describe('listStringHeaderParamOptNil', () => {
@@ -243,6 +343,11 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
 		});
+		test('success - defined', async () => {
+			const [result, error] = await service.listStringHeaderParamOptNil(['theta', 'iota']);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 	});
 
 	describe('listLocalDateHeaderParam', () => {
@@ -253,17 +358,27 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listLocalDateHeaderParamOpt', () => {
-		test('success', async () => {
+		test('success undefined', async () => {
 			const [result, error] = await service.listLocalDateHeaderParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
+		test('success defined', async () => {
+			const [result, error] = await service.listLocalDateHeaderParamOpt(['2024-06-15', '2024-07-20']);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
 	});
 	describe('listLocalDateHeaderParamNil', () => {
-		test('success', async () => {
+		test('success null', async () => {
 			const [result, error] = await service.listLocalDateHeaderParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
+		});
+		test('success defined', async () => {
+			const [result, error] = await service.listLocalDateHeaderParamNil(['2024-08-25', '2024-09-30']);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 	});
 	describe('listLocalDateHeaderParamOptNil', () => {
@@ -276,6 +391,11 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			const [result, error] = await service.listLocalDateHeaderParamOptNil(null);
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
+		});
+		test('success - defined', async () => {
+			const [result, error] = await service.listLocalDateHeaderParamOptNil(['2024-10-10', '2024-11-11']);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
 		});
 	});
 
@@ -290,17 +410,33 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listLocalDateTimeHeaderParamOpt', () => {
-		test('success', async () => {
+		test('success undefined', async () => {
 			const [result, error] = await service.listLocalDateTimeHeaderParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
+		test('success defined', async () => {
+			const [result, error] = await service.listLocalDateTimeHeaderParamOpt([
+				'2024-06-15T14:00:00',
+				'2024-07-20T16:30:00',
+			]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
 	});
 	describe('listLocalDateTimeHeaderParamNil', () => {
-		test('success', async () => {
+		test('success null', async () => {
 			const [result, error] = await service.listLocalDateTimeHeaderParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
+		});
+		test('success defined', async () => {
+			const [result, error] = await service.listLocalDateTimeHeaderParamNil([
+				'2024-08-25T09:15:00',
+				'2024-09-30T11:45:00',
+			]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 	});
 	describe('listLocalDateTimeHeaderParamOptNil', () => {
@@ -313,6 +449,14 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			const [result, error] = await service.listLocalDateTimeHeaderParamOptNil(null);
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
+		});
+		test('success - defined', async () => {
+			const [result, error] = await service.listLocalDateTimeHeaderParamOptNil([
+				'2024-10-10T12:00:00',
+				'2024-11-11T14:30:00',
+			]);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
 		});
 	});
 
@@ -327,17 +471,33 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listZonedDateTimeHeaderParamOpt', () => {
-		test('success', async () => {
+		test('success undefined', async () => {
 			const [result, error] = await service.listZonedDateTimeHeaderParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
+		test('success defined', async () => {
+			const [result, error] = await service.listZonedDateTimeHeaderParamOpt([
+				'2024-06-15T14:00:00Z',
+				'2024-07-20T16:30:00+01:00',
+			]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
 	});
 	describe('listZonedDateTimeHeaderParamNil', () => {
-		test('success', async () => {
+		test('success null', async () => {
 			const [result, error] = await service.listZonedDateTimeHeaderParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
+		});
+		test('success defined', async () => {
+			const [result, error] = await service.listZonedDateTimeHeaderParamNil([
+				'2024-08-25T09:15:00Z',
+				'2024-09-30T11:45:00+02:00',
+			]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 	});
 	describe('listZonedDateTimeHeaderParamOptNil', () => {
@@ -351,6 +511,14 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
 		});
+		test('success - defined', async () => {
+			const [result, error] = await service.listZonedDateTimeHeaderParamOptNil([
+				'2024-10-10T12:00:00Z',
+				'2024-11-11T14:30:00+02:00',
+			]);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 	});
 
 	describe('listScalarHeaderParam', () => {
@@ -361,17 +529,27 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listScalarHeaderParamOpt', () => {
-		test('success', async () => {
+		test('success undefined', async () => {
 			const [result, error] = await service.listScalarHeaderParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
+		test('success defined', async () => {
+			const [result, error] = await service.listScalarHeaderParamOpt(['Asia/Tokyo', 'Australia/Sydney']);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
 	});
 	describe('listScalarHeaderParamNil', () => {
-		test('success', async () => {
+		test('success null', async () => {
 			const [result, error] = await service.listScalarHeaderParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
+		});
+		test('success defined', async () => {
+			const [result, error] = await service.listScalarHeaderParamNil(['Africa/Cairo', 'Europe/London']);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 	});
 	describe('listScalarHeaderParamOptNil', () => {
@@ -385,6 +563,11 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
 		});
+		test('success - defined', async () => {
+			const [result, error] = await service.listScalarHeaderParamOptNil(['America/Los_Angeles']);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 	});
 
 	describe('listEnumHeaderParam', () => {
@@ -395,17 +578,27 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listEnumHeaderParamOpt', () => {
-		test('success', async () => {
+		test('success undefined', async () => {
 			const [result, error] = await service.listEnumHeaderParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
+		test('success defined', async () => {
+			const [result, error] = await service.listEnumHeaderParamOpt(['B', 'B']);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
 	});
 	describe('listEnumHeaderParamNil', () => {
-		test('success', async () => {
+		test('success null', async () => {
 			const [result, error] = await service.listEnumHeaderParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
+		});
+		test('success defined', async () => {
+			const [result, error] = await service.listEnumHeaderParamNil(['A', 'A']);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 	});
 	describe('listEnumHeaderParamOptNil', () => {
@@ -419,6 +612,11 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
 		});
+		test('success - defined', async () => {
+			const [result, error] = await service.listEnumHeaderParamOptNil(['B', 'A']);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 	});
 
 	describe('listInlineEnumHeaderParam', () => {
@@ -429,17 +627,27 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listInlineEnumHeaderParamOpt', () => {
-		test('success', async () => {
+		test('success undefined', async () => {
 			const [result, error] = await service.listInlineEnumHeaderParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
+		test('success defined', async () => {
+			const [result, error] = await service.listInlineEnumHeaderParamOpt(['B', 'B']);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
 	});
 	describe('listInlineEnumHeaderParamNil', () => {
-		test('success', async () => {
+		test('success null', async () => {
 			const [result, error] = await service.listInlineEnumHeaderParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
+		});
+		test('success defined', async () => {
+			const [result, error] = await service.listInlineEnumHeaderParamNil(['C', 'D']);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 	});
 	describe('listInlineEnumHeaderParamOptNil', () => {
@@ -452,6 +660,11 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			const [result, error] = await service.listInlineEnumHeaderParamOptNil(null);
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
+		});
+		test('success - defined', async () => {
+			const [result, error] = await service.listInlineEnumHeaderParamOptNil(['C', 'D']);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
 		});
 	});
 
@@ -496,9 +709,9 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(result).toEqual(['NULL', 'NULL', 'NULL']);
 		});
 		test('success - mix', async () => {
-			const [result, error] = await service.listMultiHeaderParamOptNil(null, undefined, null);
+			const [result, error] = await service.listMultiHeaderParamOptNil(['x'], undefined, null);
 			expect(error).toBeNull();
-			expect(result).toEqual(['NULL', 'UNDEFINED', 'NULL']);
+			expect(result).toEqual(['DEFINED', 'UNDEFINED', 'NULL']);
 		});
 	});
 

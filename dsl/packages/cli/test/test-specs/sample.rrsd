@@ -479,20 +479,79 @@ resource QueryParameterTypes at '/api/queryparametertypes' {
 
 resource ListBodyParameterTypes at '/api/listbodyparametertypes' {
 	PUT listBooleanBodyParam at 'listBooleanBodyParam'
+	PUT listBooleanBodyParamOpt at 'listBooleanBodyParamOpt'
+	PUT listBooleanBodyParamNil at 'listBooleanBodyParamNil'
+	PUT listBooleanBodyParamOptNil at 'listBooleanBodyParamOptNil'
+
 	PUT listShortBodyParam at 'listShortBodyParam'
+	PUT listShortBodyParamOpt at 'listShortBodyParamOpt'
+	PUT listShortBodyParamNil at 'listShortBodyParamNil'
+	PUT listShortBodyParamOptNil at 'listShortBodyParamOptNil'
+
 	PUT listIntBodyParam at 'listIntBodyParam'
+	PUT listIntBodyParamOpt at 'listIntBodyParamOpt'
+	PUT listIntBodyParamNil at 'listIntBodyParamNil'
+	PUT listIntBodyParamOptNil at 'listIntBodyParamOptNil'
+
 	PUT listLongBodyParam at 'listLongBodyParam'
+	PUT listLongBodyParamOpt at 'listLongBodyParamOpt'
+	PUT listLongBodyParamNil at 'listLongBodyParamNil'
+	PUT listLongBodyParamOptNil at 'listLongBodyParamOptNil'
+
 	PUT listFloatBodyParam at 'listFloatBodyParam'
+	PUT listFloatBodyParamOpt at 'listFloatBodyParamOpt'
+	PUT listFloatBodyParamNil at 'listFloatBodyParamNil'
+	PUT listFloatBodyParamOptNil at 'listFloatBodyParamOptNil'
+
 	PUT listDoubleBodyParam at 'listDoubleBodyParam'
+	PUT listDoubleBodyParamOpt at 'listDoubleBodyParamOpt'
+	PUT listDoubleBodyParamNil at 'listDoubleBodyParamNil'
+	PUT listDoubleBodyParamOptNil at 'listDoubleBodyParamOptNil'
+
 	PUT listStringBodyParam at 'listStringBodyParam'
+	PUT listStringBodyParamOpt at 'listStringBodyParamOpt'
+	PUT listStringBodyParamNil at 'listStringBodyParamNil'
+	PUT listStringBodyParamOptNil at 'listStringBodyParamOptNil'
+
 	PUT listLocalDateBodyParam at 'listLocalDateBodyParam'
+	PUT listLocalDateBodyParamOpt at 'listLocalDateBodyParamOpt'
+	PUT listLocalDateBodyParamNil at 'listLocalDateBodyParamNil'
+	PUT listLocalDateBodyParamOptNil at 'listLocalDateBodyParamOptNil'
+
 	PUT listLocalDateTimeBodyParam at 'listLocalDateTimeBodyParam'
+	PUT listLocalDateTimeBodyParamOpt at 'listLocalDateTimeBodyParamOpt'
+	PUT listLocalDateTimeBodyParamNil at 'listLocalDateTimeBodyParamNil'
+	PUT listLocalDateTimeBodyParamOptNil at 'listLocalDateTimeBodyParamOptNil'
+
 	PUT listZonedDateTimeBodyParam at 'listZonedDateTimeBodyParam'
+	PUT listZonedDateTimeBodyParamOpt at 'listZonedDateTimeBodyParamOpt'
+	PUT listZonedDateTimeBodyParamNil at 'listZonedDateTimeBodyParamNil'
+	PUT listZonedDateTimeBodyParamOptNil at 'listZonedDateTimeBodyParamOptNil'
+
 	PUT listScalarBodyParam at 'listScalarBodyParam'
+	PUT listScalarBodyParamOpt at 'listScalarBodyParamOpt'
+	PUT listScalarBodyParamNil at 'listScalarBodyParamNil'
+	PUT listScalarBodyParamOptNil at 'listScalarBodyParamOptNil'
+
 	PUT listEnumBodyParam at 'listEnumBodyParam'
+	PUT listEnumBodyParamOpt at 'listEnumBodyParamOpt'
+	PUT listEnumBodyParamNil at 'listEnumBodyParamNil'
+	PUT listEnumBodyParamOptNil at 'listEnumBodyParamOptNil'
+
 	PUT listInlineEnumBodyParam at 'listInlineEnumBodyParam'
+	PUT listInlineEnumBodyParamOpt at 'listInlineEnumBodyParamOpt'
+	PUT listInlineEnumBodyParamNil at 'listInlineEnumBodyParamNil'
+	PUT listInlineEnumBodyParamOptNil at 'listInlineEnumBodyParamOptNil'
+
 	PUT listRecordBodyParam at 'listRecordBodyParam'
+	PUT listRecordBodyParamOpt at 'listRecordBodyParamOpt'
+	PUT listRecordBodyParamNil at 'listRecordBodyParamNil'
+	PUT listRecordBodyParamOptNil at 'listRecordBodyParamOptNil'
+
 	PUT listMultiBodyParam at 'listMultiBodyParam'
+	PUT listMultiBodyParamOpt at 'listMultiBodyParamOpt'
+	PUT listMultiBodyParamNil at 'listMultiBodyParamNil'
+	PUT listMultiBodyParamOptNil at 'listMultiBodyParamOptNil'
 }
 
 resource ListQueryParameterTypes at '/api/listqueryparametertypes' {

@@ -9,20 +9,65 @@ function isListInlineEnumBodyParamResult(value: unknown): value is 'A' | 'B' {
 export function createListBodyParameterTypesService(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService {
 	return {
 		listBooleanBodyParam: fnListBooleanBodyParam(props),
+		listBooleanBodyParamOpt: fnListBooleanBodyParamOpt(props),
+		listBooleanBodyParamNil: fnListBooleanBodyParamNil(props),
+		listBooleanBodyParamOptNil: fnListBooleanBodyParamOptNil(props),
 		listShortBodyParam: fnListShortBodyParam(props),
+		listShortBodyParamOpt: fnListShortBodyParamOpt(props),
+		listShortBodyParamNil: fnListShortBodyParamNil(props),
+		listShortBodyParamOptNil: fnListShortBodyParamOptNil(props),
 		listIntBodyParam: fnListIntBodyParam(props),
+		listIntBodyParamOpt: fnListIntBodyParamOpt(props),
+		listIntBodyParamNil: fnListIntBodyParamNil(props),
+		listIntBodyParamOptNil: fnListIntBodyParamOptNil(props),
 		listLongBodyParam: fnListLongBodyParam(props),
+		listLongBodyParamOpt: fnListLongBodyParamOpt(props),
+		listLongBodyParamNil: fnListLongBodyParamNil(props),
+		listLongBodyParamOptNil: fnListLongBodyParamOptNil(props),
 		listFloatBodyParam: fnListFloatBodyParam(props),
+		listFloatBodyParamOpt: fnListFloatBodyParamOpt(props),
+		listFloatBodyParamNil: fnListFloatBodyParamNil(props),
+		listFloatBodyParamOptNil: fnListFloatBodyParamOptNil(props),
 		listDoubleBodyParam: fnListDoubleBodyParam(props),
+		listDoubleBodyParamOpt: fnListDoubleBodyParamOpt(props),
+		listDoubleBodyParamNil: fnListDoubleBodyParamNil(props),
+		listDoubleBodyParamOptNil: fnListDoubleBodyParamOptNil(props),
 		listStringBodyParam: fnListStringBodyParam(props),
+		listStringBodyParamOpt: fnListStringBodyParamOpt(props),
+		listStringBodyParamNil: fnListStringBodyParamNil(props),
+		listStringBodyParamOptNil: fnListStringBodyParamOptNil(props),
 		listLocalDateBodyParam: fnListLocalDateBodyParam(props),
+		listLocalDateBodyParamOpt: fnListLocalDateBodyParamOpt(props),
+		listLocalDateBodyParamNil: fnListLocalDateBodyParamNil(props),
+		listLocalDateBodyParamOptNil: fnListLocalDateBodyParamOptNil(props),
 		listLocalDateTimeBodyParam: fnListLocalDateTimeBodyParam(props),
+		listLocalDateTimeBodyParamOpt: fnListLocalDateTimeBodyParamOpt(props),
+		listLocalDateTimeBodyParamNil: fnListLocalDateTimeBodyParamNil(props),
+		listLocalDateTimeBodyParamOptNil: fnListLocalDateTimeBodyParamOptNil(props),
 		listZonedDateTimeBodyParam: fnListZonedDateTimeBodyParam(props),
+		listZonedDateTimeBodyParamOpt: fnListZonedDateTimeBodyParamOpt(props),
+		listZonedDateTimeBodyParamNil: fnListZonedDateTimeBodyParamNil(props),
+		listZonedDateTimeBodyParamOptNil: fnListZonedDateTimeBodyParamOptNil(props),
 		listScalarBodyParam: fnListScalarBodyParam(props),
+		listScalarBodyParamOpt: fnListScalarBodyParamOpt(props),
+		listScalarBodyParamNil: fnListScalarBodyParamNil(props),
+		listScalarBodyParamOptNil: fnListScalarBodyParamOptNil(props),
 		listEnumBodyParam: fnListEnumBodyParam(props),
+		listEnumBodyParamOpt: fnListEnumBodyParamOpt(props),
+		listEnumBodyParamNil: fnListEnumBodyParamNil(props),
+		listEnumBodyParamOptNil: fnListEnumBodyParamOptNil(props),
 		listInlineEnumBodyParam: fnListInlineEnumBodyParam(props),
+		listInlineEnumBodyParamOpt: fnListInlineEnumBodyParamOpt(props),
+		listInlineEnumBodyParamNil: fnListInlineEnumBodyParamNil(props),
+		listInlineEnumBodyParamOptNil: fnListInlineEnumBodyParamOptNil(props),
 		listMultiBodyParam: fnListMultiBodyParam(props),
+		listMultiBodyParamOpt: fnListMultiBodyParamOpt(props),
+		listMultiBodyParamNil: fnListMultiBodyParamNil(props),
+		listMultiBodyParamOptNil: fnListMultiBodyParamOptNil(props),
 		listRecordBodyParam: fnListRecordBodyParam(props),
+		listRecordBodyParamOpt: fnListRecordBodyParamOpt(props),
+		listRecordBodyParamNil: fnListRecordBodyParamNil(props),
+		listRecordBodyParamOptNil: fnListRecordBodyParamOptNil(props),
 	};
 }
 function fnListBooleanBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listBooleanBodyParam'] {
@@ -51,6 +96,96 @@ function fnListBooleanBodyParam(props: ServiceProps<api.service.ErrorType>): api
 			return api.result.ERR(err);
 		} finally {
 			final?.('listBooleanBodyParam');
+		}
+	};
+}
+
+function fnListBooleanBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listBooleanBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyBoolean?: boolean[]) => {
+		try {
+			const $init = (await preFetch?.('listBooleanBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listBooleanBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyBoolean);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listBooleanBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listBooleanBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listBooleanBodyParamOpt');
+		}
+	};
+}
+
+function fnListBooleanBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listBooleanBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyBoolean: boolean[] | null) => {
+		try {
+			const $init = (await preFetch?.('listBooleanBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listBooleanBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyBoolean);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listBooleanBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listBooleanBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listBooleanBodyParamNil');
+		}
+	};
+}
+
+function fnListBooleanBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listBooleanBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyBoolean?: boolean[] | null) => {
+		try {
+			const $init = (await preFetch?.('listBooleanBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listBooleanBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyBoolean);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listBooleanBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listBooleanBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listBooleanBodyParamOptNil');
 		}
 	};
 }
@@ -85,6 +220,96 @@ function fnListShortBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 	};
 }
 
+function fnListShortBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listShortBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyShort?: number[]) => {
+		try {
+			const $init = (await preFetch?.('listShortBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listShortBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyShort);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listShortBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listShortBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listShortBodyParamOpt');
+		}
+	};
+}
+
+function fnListShortBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listShortBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyShort: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listShortBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listShortBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyShort);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listShortBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listShortBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listShortBodyParamNil');
+		}
+	};
+}
+
+function fnListShortBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listShortBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyShort?: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listShortBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listShortBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyShort);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listShortBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listShortBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listShortBodyParamOptNil');
+		}
+	};
+}
+
 function fnListIntBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listIntBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -111,6 +336,96 @@ function fnListIntBodyParam(props: ServiceProps<api.service.ErrorType>): api.ser
 			return api.result.ERR(err);
 		} finally {
 			final?.('listIntBodyParam');
+		}
+	};
+}
+
+function fnListIntBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listIntBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyInt?: number[]) => {
+		try {
+			const $init = (await preFetch?.('listIntBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listIntBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyInt);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listIntBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listIntBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listIntBodyParamOpt');
+		}
+	};
+}
+
+function fnListIntBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listIntBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyInt: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listIntBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listIntBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyInt);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listIntBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listIntBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listIntBodyParamNil');
+		}
+	};
+}
+
+function fnListIntBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listIntBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyInt?: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listIntBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listIntBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyInt);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listIntBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listIntBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listIntBodyParamOptNil');
 		}
 	};
 }
@@ -145,6 +460,96 @@ function fnListLongBodyParam(props: ServiceProps<api.service.ErrorType>): api.se
 	};
 }
 
+function fnListLongBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLongBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLong?: number[]) => {
+		try {
+			const $init = (await preFetch?.('listLongBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listLongBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyLong);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLongBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLongBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLongBodyParamOpt');
+		}
+	};
+}
+
+function fnListLongBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLongBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLong: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLongBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listLongBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyLong);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLongBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLongBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLongBodyParamNil');
+		}
+	};
+}
+
+function fnListLongBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLongBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLong?: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLongBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listLongBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyLong);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLongBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLongBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLongBodyParamOptNil');
+		}
+	};
+}
+
 function fnListFloatBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listFloatBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -171,6 +576,96 @@ function fnListFloatBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 			return api.result.ERR(err);
 		} finally {
 			final?.('listFloatBodyParam');
+		}
+	};
+}
+
+function fnListFloatBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listFloatBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyFloat?: number[]) => {
+		try {
+			const $init = (await preFetch?.('listFloatBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listFloatBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyFloat);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listFloatBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listFloatBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listFloatBodyParamOpt');
+		}
+	};
+}
+
+function fnListFloatBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listFloatBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyFloat: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listFloatBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listFloatBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyFloat);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listFloatBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listFloatBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listFloatBodyParamNil');
+		}
+	};
+}
+
+function fnListFloatBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listFloatBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyFloat?: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listFloatBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listFloatBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyFloat);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listFloatBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listFloatBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listFloatBodyParamOptNil');
 		}
 	};
 }
@@ -205,6 +700,96 @@ function fnListDoubleBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 	};
 }
 
+function fnListDoubleBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listDoubleBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyDouble?: number[]) => {
+		try {
+			const $init = (await preFetch?.('listDoubleBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listDoubleBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyDouble);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listDoubleBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listDoubleBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listDoubleBodyParamOpt');
+		}
+	};
+}
+
+function fnListDoubleBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listDoubleBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyDouble: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listDoubleBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listDoubleBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyDouble);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listDoubleBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listDoubleBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listDoubleBodyParamNil');
+		}
+	};
+}
+
+function fnListDoubleBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listDoubleBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyDouble?: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listDoubleBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listDoubleBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyDouble);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listDoubleBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listDoubleBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listDoubleBodyParamOptNil');
+		}
+	};
+}
+
 function fnListStringBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listStringBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -231,6 +816,96 @@ function fnListStringBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 			return api.result.ERR(err);
 		} finally {
 			final?.('listStringBodyParam');
+		}
+	};
+}
+
+function fnListStringBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listStringBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyString?: string[]) => {
+		try {
+			const $init = (await preFetch?.('listStringBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listStringBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyString);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listStringBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listStringBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listStringBodyParamOpt');
+		}
+	};
+}
+
+function fnListStringBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listStringBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyString: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listStringBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listStringBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyString);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listStringBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listStringBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listStringBodyParamNil');
+		}
+	};
+}
+
+function fnListStringBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listStringBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyString?: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listStringBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listStringBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyString);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listStringBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listStringBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listStringBodyParamOptNil');
 		}
 	};
 }
@@ -265,6 +940,96 @@ function fnListLocalDateBodyParam(props: ServiceProps<api.service.ErrorType>): a
 	};
 }
 
+function fnListLocalDateBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLocalDateBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalDate?: string[]) => {
+		try {
+			const $init = (await preFetch?.('listLocalDateBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyLocalDate);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalDateBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalDateBodyParamOpt');
+		}
+	};
+}
+
+function fnListLocalDateBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLocalDateBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalDate: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLocalDateBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyLocalDate);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalDateBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalDateBodyParamNil');
+		}
+	};
+}
+
+function fnListLocalDateBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLocalDateBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalDate?: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLocalDateBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyLocalDate);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalDateBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalDateBodyParamOptNil');
+		}
+	};
+}
+
 function fnListLocalDateTimeBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLocalDateTimeBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -291,6 +1056,96 @@ function fnListLocalDateTimeBodyParam(props: ServiceProps<api.service.ErrorType>
 			return api.result.ERR(err);
 		} finally {
 			final?.('listLocalDateTimeBodyParam');
+		}
+	};
+}
+
+function fnListLocalDateTimeBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLocalDateTimeBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalDateTime?: string[]) => {
+		try {
+			const $init = (await preFetch?.('listLocalDateTimeBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateTimeBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyLocalDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateTimeBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalDateTimeBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalDateTimeBodyParamOpt');
+		}
+	};
+}
+
+function fnListLocalDateTimeBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLocalDateTimeBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalDateTime: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLocalDateTimeBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateTimeBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyLocalDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateTimeBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalDateTimeBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalDateTimeBodyParamNil');
+		}
+	};
+}
+
+function fnListLocalDateTimeBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLocalDateTimeBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalDateTime?: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLocalDateTimeBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateTimeBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyLocalDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateTimeBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalDateTimeBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalDateTimeBodyParamOptNil');
 		}
 	};
 }
@@ -325,6 +1180,96 @@ function fnListZonedDateTimeBodyParam(props: ServiceProps<api.service.ErrorType>
 	};
 }
 
+function fnListZonedDateTimeBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listZonedDateTimeBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyZonedDateTime?: string[]) => {
+		try {
+			const $init = (await preFetch?.('listZonedDateTimeBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listZonedDateTimeBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyZonedDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listZonedDateTimeBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listZonedDateTimeBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listZonedDateTimeBodyParamOpt');
+		}
+	};
+}
+
+function fnListZonedDateTimeBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listZonedDateTimeBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyZonedDateTime: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listZonedDateTimeBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listZonedDateTimeBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyZonedDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listZonedDateTimeBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listZonedDateTimeBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listZonedDateTimeBodyParamNil');
+		}
+	};
+}
+
+function fnListZonedDateTimeBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listZonedDateTimeBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyZonedDateTime?: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listZonedDateTimeBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listZonedDateTimeBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyZonedDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listZonedDateTimeBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listZonedDateTimeBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listZonedDateTimeBodyParamOptNil');
+		}
+	};
+}
+
 function fnListScalarBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listScalarBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -351,6 +1296,96 @@ function fnListScalarBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 			return api.result.ERR(err);
 		} finally {
 			final?.('listScalarBodyParam');
+		}
+	};
+}
+
+function fnListScalarBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listScalarBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyScalar?: string[]) => {
+		try {
+			const $init = (await preFetch?.('listScalarBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listScalarBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyScalar);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listScalarBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listScalarBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listScalarBodyParamOpt');
+		}
+	};
+}
+
+function fnListScalarBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listScalarBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyScalar: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listScalarBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listScalarBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyScalar);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listScalarBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listScalarBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listScalarBodyParamNil');
+		}
+	};
+}
+
+function fnListScalarBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listScalarBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyScalar?: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listScalarBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listScalarBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyScalar);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listScalarBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listScalarBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listScalarBodyParamOptNil');
 		}
 	};
 }
@@ -385,6 +1420,96 @@ function fnListEnumBodyParam(props: ServiceProps<api.service.ErrorType>): api.se
 	};
 }
 
+function fnListEnumBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listEnumBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyEnum?: api.model.SampleEnum[]) => {
+		try {
+			const $init = (await preFetch?.('listEnumBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listEnumBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyEnum);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listEnumBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listEnumBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listEnumBodyParamOpt');
+		}
+	};
+}
+
+function fnListEnumBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listEnumBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyEnum: api.model.SampleEnum[] | null) => {
+		try {
+			const $init = (await preFetch?.('listEnumBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listEnumBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyEnum);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listEnumBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listEnumBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listEnumBodyParamNil');
+		}
+	};
+}
+
+function fnListEnumBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listEnumBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyEnum?: api.model.SampleEnum[] | null) => {
+		try {
+			const $init = (await preFetch?.('listEnumBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listEnumBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyEnum);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listEnumBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listEnumBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listEnumBodyParamOptNil');
+		}
+	};
+}
+
 function fnListInlineEnumBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listInlineEnumBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -411,6 +1536,96 @@ function fnListInlineEnumBodyParam(props: ServiceProps<api.service.ErrorType>): 
 			return api.result.ERR(err);
 		} finally {
 			final?.('listInlineEnumBodyParam');
+		}
+	};
+}
+
+function fnListInlineEnumBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listInlineEnumBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyEnum?: ('A' | 'B')[]) => {
+		try {
+			const $init = (await preFetch?.('listInlineEnumBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listInlineEnumBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyEnum);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listInlineEnumBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listInlineEnumBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listInlineEnumBodyParamOpt');
+		}
+	};
+}
+
+function fnListInlineEnumBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listInlineEnumBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyEnum: ('C' | 'D')[] | null) => {
+		try {
+			const $init = (await preFetch?.('listInlineEnumBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listInlineEnumBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyEnum);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listInlineEnumBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listInlineEnumBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listInlineEnumBodyParamNil');
+		}
+	};
+}
+
+function fnListInlineEnumBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listInlineEnumBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyEnum?: ('C' | 'D')[] | null) => {
+		try {
+			const $init = (await preFetch?.('listInlineEnumBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listInlineEnumBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyEnum);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listInlineEnumBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listInlineEnumBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listInlineEnumBodyParamOptNil');
 		}
 	};
 }
@@ -449,6 +1664,108 @@ function fnListMultiBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 	};
 }
 
+function fnListMultiBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listMultiBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (valueA?: string[], valueB?: number[], valueC?: api.model.SimpleRecord[]) => {
+		try {
+			const $init = (await preFetch?.('listMultiBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listMultiBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), {
+				valueA,
+				valueB,
+				valueC: valueC ? valueC.map(api.model.SimpleRecordToJSON) : valueC,
+			});
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isNilResult));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listMultiBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listMultiBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listMultiBodyParamOpt');
+		}
+	};
+}
+
+function fnListMultiBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listMultiBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (valueA: string[] | null, valueB: number[] | null, valueC: api.model.SimpleRecord[] | null) => {
+		try {
+			const $init = (await preFetch?.('listMultiBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listMultiBodyParamNil`;
+			const $body = encodeValue(encodingType(props), {
+				valueA,
+				valueB,
+				valueC: valueC ? valueC.map(api.model.SimpleRecordToJSON) : valueC,
+			});
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isNilResult));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listMultiBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listMultiBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listMultiBodyParamNil');
+		}
+	};
+}
+
+function fnListMultiBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listMultiBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (valueA?: string[] | null, valueB?: number[] | null, valueC?: api.model.SimpleRecord[] | null) => {
+		try {
+			const $init = (await preFetch?.('listMultiBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listMultiBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), {
+				valueA,
+				valueB,
+				valueC: valueC ? valueC.map(api.model.SimpleRecordToJSON) : valueC,
+			});
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isNilResult));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listMultiBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listMultiBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listMultiBodyParamOptNil');
+		}
+	};
+}
+
 function fnListRecordBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listRecordBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -476,6 +1793,96 @@ function fnListRecordBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 			return api.result.ERR(err);
 		} finally {
 			final?.('listRecordBodyParam');
+		}
+	};
+}
+
+function fnListRecordBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listRecordBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyRecord?: api.model.SimpleRecord[]) => {
+		try {
+			const $init = (await preFetch?.('listRecordBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listRecordBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyRecord ? bodyRecord.map(api.model.SimpleRecordToJSON) : bodyRecord);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listRecordBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listRecordBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listRecordBodyParamOpt');
+		}
+	};
+}
+
+function fnListRecordBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listRecordBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyRecord: api.model.SimpleRecord[] | null) => {
+		try {
+			const $init = (await preFetch?.('listRecordBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listRecordBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyRecord ? bodyRecord.map(api.model.SimpleRecordToJSON) : bodyRecord);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listRecordBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listRecordBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listRecordBodyParamNil');
+		}
+	};
+}
+
+function fnListRecordBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listRecordBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyRecord?: api.model.SimpleRecord[] | null) => {
+		try {
+			const $init = (await preFetch?.('listRecordBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listRecordBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyRecord ? bodyRecord.map(api.model.SimpleRecordToJSON) : bodyRecord);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listRecordBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listRecordBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listRecordBodyParamOptNil');
 		}
 	};
 }

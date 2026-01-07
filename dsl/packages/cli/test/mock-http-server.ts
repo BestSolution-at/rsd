@@ -810,20 +810,79 @@ async function bodyPatchParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 
 const listBodyParamPaths = [
 	'/api/listbodyparametertypes/listBooleanBodyParam',
+	'/api/listbodyparametertypes/listBooleanBodyParamOpt',
+	'/api/listbodyparametertypes/listBooleanBodyParamNil',
+	'/api/listbodyparametertypes/listBooleanBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listShortBodyParam',
+	'/api/listbodyparametertypes/listShortBodyParamOpt',
+	'/api/listbodyparametertypes/listShortBodyParamNil',
+	'/api/listbodyparametertypes/listShortBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listIntBodyParam',
+	'/api/listbodyparametertypes/listIntBodyParamOpt',
+	'/api/listbodyparametertypes/listIntBodyParamNil',
+	'/api/listbodyparametertypes/listIntBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listLongBodyParam',
+	'/api/listbodyparametertypes/listLongBodyParamOpt',
+	'/api/listbodyparametertypes/listLongBodyParamNil',
+	'/api/listbodyparametertypes/listLongBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listFloatBodyParam',
+	'/api/listbodyparametertypes/listFloatBodyParamOpt',
+	'/api/listbodyparametertypes/listFloatBodyParamNil',
+	'/api/listbodyparametertypes/listFloatBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listDoubleBodyParam',
+	'/api/listbodyparametertypes/listDoubleBodyParamOpt',
+	'/api/listbodyparametertypes/listDoubleBodyParamNil',
+	'/api/listbodyparametertypes/listDoubleBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listStringBodyParam',
+	'/api/listbodyparametertypes/listStringBodyParamOpt',
+	'/api/listbodyparametertypes/listStringBodyParamNil',
+	'/api/listbodyparametertypes/listStringBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listLocalDateBodyParam',
+	'/api/listbodyparametertypes/listLocalDateBodyParamOpt',
+	'/api/listbodyparametertypes/listLocalDateBodyParamNil',
+	'/api/listbodyparametertypes/listLocalDateBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listLocalDateTimeBodyParam',
+	'/api/listbodyparametertypes/listLocalDateTimeBodyParamOpt',
+	'/api/listbodyparametertypes/listLocalDateTimeBodyParamNil',
+	'/api/listbodyparametertypes/listLocalDateTimeBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listZonedDateTimeBodyParam',
+	'/api/listbodyparametertypes/listZonedDateTimeBodyParamOpt',
+	'/api/listbodyparametertypes/listZonedDateTimeBodyParamNil',
+	'/api/listbodyparametertypes/listZonedDateTimeBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listScalarBodyParam',
+	'/api/listbodyparametertypes/listScalarBodyParamOpt',
+	'/api/listbodyparametertypes/listScalarBodyParamNil',
+	'/api/listbodyparametertypes/listScalarBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listEnumBodyParam',
+	'/api/listbodyparametertypes/listEnumBodyParamOpt',
+	'/api/listbodyparametertypes/listEnumBodyParamNil',
+	'/api/listbodyparametertypes/listEnumBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listInlineEnumBodyParam',
+	'/api/listbodyparametertypes/listInlineEnumBodyParamOpt',
+	'/api/listbodyparametertypes/listInlineEnumBodyParamNil',
+	'/api/listbodyparametertypes/listInlineEnumBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listMultiBodyParam',
+	'/api/listbodyparametertypes/listMultiBodyParamOpt',
+	'/api/listbodyparametertypes/listMultiBodyParamNil',
+	'/api/listbodyparametertypes/listMultiBodyParamOptNil',
+
 	'/api/listbodyparametertypes/listRecordBodyParam',
+	'/api/listbodyparametertypes/listRecordBodyParamOpt',
+	'/api/listbodyparametertypes/listRecordBodyParamNil',
+	'/api/listbodyparametertypes/listRecordBodyParamOptNil',
 ];
 
 async function listBodyParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
@@ -836,11 +895,39 @@ async function listBodyParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 			ctx.type = 'application/json';
 			ctx.body = `"${response}"`;
 			return;
+		} else if (
+			ctx.path === '/api/listbodyparametertypes/listMultiBodyParamNil' ||
+			ctx.path === '/api/listbodyparametertypes/listMultiBodyParamOpt' ||
+			ctx.path === '/api/listbodyparametertypes/listMultiBodyParamOptNil'
+		) {
+			const body = JSON.parse(str) as {
+				valueA: string[] | undefined | null;
+				valueB: number[] | undefined | null;
+				valueC: Record<string, string>[] | undefined | null;
+			};
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify([
+				body.valueA === undefined ? 'UNDEFINED' : body.valueA === null ? 'NULL' : 'DEFINED',
+				body.valueB === undefined ? 'UNDEFINED' : body.valueB === null ? 'NULL' : 'DEFINED',
+				body.valueC === undefined ? 'UNDEFINED' : body.valueC === null ? 'NULL' : 'DEFINED',
+			]);
+			return;
 		}
 
 		ctx.status = 200;
 		ctx.type = 'application/json';
-		ctx.body = str;
+		if (str === 'null') {
+			ctx.body = '"NULL"';
+		} else if (str === '') {
+			ctx.body = '"UNDEFINED"';
+		} else {
+			if (ctx.path.includes('Opt') || ctx.path.includes('Nil')) {
+				ctx.body = '"DEFINED"';
+			} else {
+				ctx.body = str;
+			}
+		}
 	} else {
 		await next();
 	}
@@ -953,8 +1040,8 @@ async function headerParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 			ctx.status = 200;
 			ctx.type = 'application/json';
 			ctx.body = JSON.stringify([
-				headerValueA === undefined ? 'UNDEFINED' : 'NULL',
-				headerValueB === undefined ? 'UNDEFINED' : 'NULL',
+				headerValueA === undefined ? 'UNDEFINED' : headerValueA === 'null' ? 'NULL' : 'DEFINED',
+				headerValueB === undefined ? 'UNDEFINED' : headerValueB === 'null' ? 'NULL' : 'DEFINED',
 			]);
 			return;
 		}
@@ -1085,9 +1172,9 @@ async function listHeaderParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 			ctx.path === '/api/listheaderparametertypes/listMultiHeaderParamOptNil'
 		) {
 			const values = [
-				ctx.header.valuea === undefined ? 'UNDEFINED' : 'NULL',
-				ctx.header.valueb === undefined ? 'UNDEFINED' : 'NULL',
-				ctx.header.valuec === undefined ? 'UNDEFINED' : 'NULL',
+				ctx.header.valuea === undefined ? 'UNDEFINED' : ctx.header.valuea === 'null' ? 'NULL' : 'DEFINED',
+				ctx.header.valueb === undefined ? 'UNDEFINED' : ctx.header.valueb === 'null' ? 'NULL' : 'DEFINED',
+				ctx.header.valuec === undefined ? 'UNDEFINED' : ctx.header.valuec === 'null' ? 'NULL' : 'DEFINED',
 			];
 			ctx.body = JSON.stringify(values);
 			return;
@@ -1099,14 +1186,29 @@ async function listHeaderParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 		} else if (headerValue === 'null') {
 			ctx.body = '"NULL"';
 		} else if (ctx.path === '/api/listheaderparametertypes/listRecordHeaderParam') {
-			ctx.body = `[${headerValue}]`;
-			return;
+			if (ctx.path.includes('Opt') || ctx.path.includes('Nil')) {
+				ctx.body = '"DEFINED"';
+			} else {
+				ctx.body = `[${headerValue}]`;
+			}
 		} else if (ctx.path === '/api/listheaderparametertypes/listBooleanHeaderParam') {
-			ctx.body = `[${headerValue}]`;
+			if (ctx.path.includes('Opt') || ctx.path.includes('Nil')) {
+				ctx.body = '"DEFINED"';
+			} else {
+				ctx.body = `[${headerValue}]`;
+			}
 		} else if (numListHeaderParamPaths.includes(ctx.path)) {
-			ctx.body = `[${headerValue}]`;
+			if (ctx.path.includes('Opt') || ctx.path.includes('Nil')) {
+				ctx.body = '"DEFINED"';
+			} else {
+				ctx.body = `[${headerValue}]`;
+			}
 		} else {
-			ctx.body = JSON.stringify(headerValue.split(', '));
+			if (ctx.path.includes('Opt') || ctx.path.includes('Nil')) {
+				ctx.body = '"DEFINED"';
+			} else {
+				ctx.body = JSON.stringify(headerValue.split(', '));
+			}
 		}
 	} else {
 		await next();

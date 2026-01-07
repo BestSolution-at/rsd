@@ -3605,6 +3605,10 @@
         {
           "@type": "EnumEntry",
           "name": "NULL"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "DEFINED"
         }
       ],
       "doc": ""
@@ -11390,6 +11394,108 @@
         },
         {
           "@type": "Operation",
+          "name": "listBooleanBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyBoolean",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "boolean",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listBooleanBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listBooleanBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyBoolean",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "boolean",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listBooleanBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listBooleanBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyBoolean",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "boolean",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listBooleanBodyParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "listShortBodyParam",
           "doc": "",
           "parameters": [
@@ -11418,6 +11524,108 @@
             "rest": {
               "method": "PUT",
               "path": "listShortBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listShortBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyShort",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "short",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listShortBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listShortBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyShort",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "short",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listShortBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listShortBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyShort",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "short",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listShortBodyParamOptNil",
               "results": []
             }
           }
@@ -11458,6 +11666,108 @@
         },
         {
           "@type": "Operation",
+          "name": "listIntBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyInt",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listIntBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listIntBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyInt",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listIntBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listIntBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyInt",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listIntBodyParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "listLongBodyParam",
           "doc": "",
           "parameters": [
@@ -11486,6 +11796,108 @@
             "rest": {
               "method": "PUT",
               "path": "listLongBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLongBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLong",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "long",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listLongBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLongBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLong",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "long",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listLongBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLongBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLong",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "long",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listLongBodyParamOptNil",
               "results": []
             }
           }
@@ -11526,6 +11938,108 @@
         },
         {
           "@type": "Operation",
+          "name": "listFloatBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyFloat",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "float",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listFloatBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listFloatBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyFloat",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "float",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listFloatBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listFloatBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyFloat",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "float",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listFloatBodyParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "listDoubleBodyParam",
           "doc": "",
           "parameters": [
@@ -11554,6 +12068,108 @@
             "rest": {
               "method": "PUT",
               "path": "listDoubleBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listDoubleBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyDouble",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "double",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listDoubleBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listDoubleBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyDouble",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "double",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listDoubleBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listDoubleBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyDouble",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "double",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listDoubleBodyParamOptNil",
               "results": []
             }
           }
@@ -11594,6 +12210,108 @@
         },
         {
           "@type": "Operation",
+          "name": "listStringBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyString",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listStringBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listStringBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyString",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listStringBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listStringBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyString",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listStringBodyParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "listLocalDateBodyParam",
           "doc": "",
           "parameters": [
@@ -11622,6 +12340,108 @@
             "rest": {
               "method": "PUT",
               "path": "listLocalDateBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalDateBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalDate",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listLocalDateBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalDateBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalDate",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listLocalDateBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalDateBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalDate",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listLocalDateBodyParamOptNil",
               "results": []
             }
           }
@@ -11662,6 +12482,108 @@
         },
         {
           "@type": "Operation",
+          "name": "listLocalDateTimeBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalDateTime",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listLocalDateTimeBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalDateTimeBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalDateTime",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listLocalDateTimeBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalDateTimeBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalDateTime",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listLocalDateTimeBodyParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "listZonedDateTimeBodyParam",
           "doc": "",
           "parameters": [
@@ -11690,6 +12612,108 @@
             "rest": {
               "method": "PUT",
               "path": "listZonedDateTimeBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listZonedDateTimeBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyZonedDateTime",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "zoned-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listZonedDateTimeBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listZonedDateTimeBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyZonedDateTime",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "zoned-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listZonedDateTimeBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listZonedDateTimeBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyZonedDateTime",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "zoned-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listZonedDateTimeBodyParamOptNil",
               "results": []
             }
           }
@@ -11730,6 +12754,108 @@
         },
         {
           "@type": "Operation",
+          "name": "listScalarBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyScalar",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listScalarBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listScalarBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyScalar",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listScalarBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listScalarBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyScalar",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listScalarBodyParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "listEnumBodyParam",
           "doc": "",
           "parameters": [
@@ -11758,6 +12884,108 @@
             "rest": {
               "method": "PUT",
               "path": "listEnumBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listEnumBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyEnum",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "SampleEnum",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listEnumBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listEnumBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyEnum",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "SampleEnum",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listEnumBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listEnumBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyEnum",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "SampleEnum",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listEnumBodyParamOptNil",
               "results": []
             }
           }
@@ -11822,6 +13050,144 @@
         },
         {
           "@type": "Operation",
+          "name": "listInlineEnumBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyEnum",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "inline-enum",
+              "type": {
+                "@type": "InlineEnumType",
+                "entries": [
+                  {
+                    "@type": "EnumEntry",
+                    "name": "A"
+                  },
+                  {
+                    "@type": "EnumEntry",
+                    "name": "B"
+                  }
+                ]
+              },
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listInlineEnumBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listInlineEnumBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyEnum",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "inline-enum",
+              "type": {
+                "@type": "InlineEnumType",
+                "entries": [
+                  {
+                    "@type": "EnumEntry",
+                    "name": "C"
+                  },
+                  {
+                    "@type": "EnumEntry",
+                    "name": "D"
+                  }
+                ]
+              },
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listInlineEnumBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listInlineEnumBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyEnum",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "inline-enum",
+              "type": {
+                "@type": "InlineEnumType",
+                "entries": [
+                  {
+                    "@type": "EnumEntry",
+                    "name": "C"
+                  },
+                  {
+                    "@type": "EnumEntry",
+                    "name": "D"
+                  }
+                ]
+              },
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listInlineEnumBodyParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "listMultiBodyParam",
           "doc": "",
           "parameters": [
@@ -11878,6 +13244,174 @@
         },
         {
           "@type": "Operation",
+          "name": "listMultiBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "valueA",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueB",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueC",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listMultiBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listMultiBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "valueA",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueB",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueC",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listMultiBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listMultiBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "valueA",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueB",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueC",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listMultiBodyParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "listRecordBodyParam",
           "doc": "",
           "parameters": [
@@ -11906,6 +13440,108 @@
             "rest": {
               "method": "PUT",
               "path": "listRecordBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listRecordBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyRecord",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listRecordBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listRecordBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyRecord",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listRecordBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listRecordBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyRecord",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listRecordBodyParamOptNil",
               "results": []
             }
           }
