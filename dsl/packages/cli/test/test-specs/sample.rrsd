@@ -265,45 +265,141 @@ resource BodyParameterTypes at '/api/bodyparametertypes' {
 resource HeaderParameterTypes at '/api/headerparametertypes' {
 	GET simpleBooleanHeaderParam at 'simpleBooleanHeaderParam'
 		header-param headerValue
+	GET simpleBooleanHeaderParamOpt at 'simpleBooleanHeaderParamOpt'
+		header-param headerValue
+	GET simpleBooleanHeaderParamNil at 'simpleBooleanHeaderParamNil'
+		header-param headerValue
+	GET simpleBooleanHeaderParamOptNil at 'simpleBooleanHeaderParamOptNil'
+		header-param headerValue
 
 	GET simpleShortHeaderParam at 'simpleShortHeaderParam'
+		header-param headerValue
+	GET simpleShortHeaderParamOpt at 'simpleShortHeaderParamOpt'
+		header-param headerValue
+	GET simpleShortHeaderParamNil at 'simpleShortHeaderParamNil'
+		header-param headerValue
+	GET simpleShortHeaderParamOptNil at 'simpleShortHeaderParamOptNil'
 		header-param headerValue
 
 	GET simpleIntHeaderParam at 'simpleIntHeaderParam'
 		header-param headerValue
+	GET simpleIntHeaderParamOpt at 'simpleIntHeaderParamOpt'
+		header-param headerValue
+	GET simpleIntHeaderParamNil at 'simpleIntHeaderParamNil'
+		header-param headerValue
+	GET simpleIntHeaderParamOptNil at 'simpleIntHeaderParamOptNil'
+		header-param headerValue
 
 	GET simpleLongHeaderParam at 'simpleLongHeaderParam'
+		header-param headerValue
+	GET simpleLongHeaderParamOpt at 'simpleLongHeaderParamOpt'
+		header-param headerValue
+	GET simpleLongHeaderParamNil at 'simpleLongHeaderParamNil'
+		header-param headerValue
+	GET simpleLongHeaderParamOptNil at 'simpleLongHeaderParamOptNil'
 		header-param headerValue
 
 	GET simpleFloatHeaderParam at 'simpleFloatHeaderParam'
 		header-param headerValue
+	GET simpleFloatHeaderParamOpt at 'simpleFloatHeaderParamOpt'
+		header-param headerValue
+	GET simpleFloatHeaderParamNil at 'simpleFloatHeaderParamNil'
+		header-param headerValue
+	GET simpleFloatHeaderParamOptNil at 'simpleFloatHeaderParamOptNil'
+		header-param headerValue
 
 	GET simpleDoubleHeaderParam at 'simpleDoubleHeaderParam'
+		header-param headerValue
+	GET simpleDoubleHeaderParamOpt at 'simpleDoubleHeaderParamOpt'
+		header-param headerValue
+	GET simpleDoubleHeaderParamNil at 'simpleDoubleHeaderParamNil'
+		header-param headerValue
+	GET simpleDoubleHeaderParamOptNil at 'simpleDoubleHeaderParamOptNil'
 		header-param headerValue
 
 	GET simpleStringHeaderParam at 'simpleStringHeaderParam'
 		header-param headerValue
+	GET simpleStringHeaderParamOpt at 'simpleStringHeaderParamOpt'
+		header-param headerValue
+	GET simpleStringHeaderParamNil at 'simpleStringHeaderParamNil'
+		header-param headerValue
+	GET simpleStringHeaderParamOptNil at 'simpleStringHeaderParamOptNil'
+		header-param headerValue
 
 	GET simpleLocalDateHeaderParam at 'simpleLocalDateHeaderParam'
+		header-param headerValue
+	GET simpleLocalDateHeaderParamOpt at 'simpleLocalDateHeaderParamOpt'
+		header-param headerValue
+	GET simpleLocalDateHeaderParamNil at 'simpleLocalDateHeaderParamNil'
+		header-param headerValue
+	GET simpleLocalDateHeaderParamOptNil at 'simpleLocalDateHeaderParamOptNil'
 		header-param headerValue
 
 	GET simpleLocalDateTimeHeaderParam at 'simpleLocalDateTimeHeaderParam'
 		header-param headerValue
+	GET simpleLocalDateTimeHeaderParamOpt at 'simpleLocalDateTimeHeaderParamOpt'
+		header-param headerValue
+	GET simpleLocalDateTimeHeaderParamNil at 'simpleLocalDateTimeHeaderParamNil'
+		header-param headerValue
+	GET simpleLocalDateTimeHeaderParamOptNil at 'simpleLocalDateTimeHeaderParamOptNil'
+		header-param headerValue
 
 	GET simpleZonedDateTimeHeaderParam at 'simpleZonedDateTimeHeaderParam'
+		header-param headerValue
+	GET simpleZonedDateTimeHeaderParamOpt at 'simpleZonedDateTimeHeaderParamOpt'
+		header-param headerValue
+	GET simpleZonedDateTimeHeaderParamNil at 'simpleZonedDateTimeHeaderParamNil'
+		header-param headerValue
+	GET simpleZonedDateTimeHeaderParamOptNil at 'simpleZonedDateTimeHeaderParamOptNil'
 		header-param headerValue
 
 	GET simpleEnumHeaderParam at 'simpleEnumHeaderParam'
 		header-param headerValue
+	GET simpleEnumHeaderParamOpt at 'simpleEnumHeaderParamOpt'
+		header-param headerValue
+	GET simpleEnumHeaderParamNil at 'simpleEnumHeaderParamNil'
+		header-param headerValue
+	GET simpleEnumHeaderParamOptNil at 'simpleEnumHeaderParamOptNil'
+		header-param headerValue
 
 	GET simpleScalarHeaderParam at 'simpleScalarHeaderParam'
+		header-param headerValue
+	GET simpleScalarHeaderParamOpt at 'simpleScalarHeaderParamOpt'
+		header-param headerValue
+	GET simpleScalarHeaderParamNil at 'simpleScalarHeaderParamNil'
+		header-param headerValue
+	GET simpleScalarHeaderParamOptNil at 'simpleScalarHeaderParamOptNil'
+		header-param headerValue
+
+	GET simpleInlineEnumHeaderParam at 'simpleInlineEnumHeaderParam'
+		header-param headerValue
+	GET simpleInlineEnumHeaderParamOpt at 'simpleInlineEnumHeaderParamOpt'
+		header-param headerValue
+	GET simpleInlineEnumHeaderParamNil at 'simpleInlineEnumHeaderParamNil'
+		header-param headerValue
+	GET simpleInlineEnumHeaderParamOptNil at 'simpleInlineEnumHeaderParamOptNil'
 		header-param headerValue
 	
 	GET multiHeaderParam at 'multiHeaderParam'
 		header-param valueA
 		header-param valueB
+	GET multiHeaderParamOpt at 'multiHeaderParamOpt'
+		header-param valueA
+		header-param valueB
+	GET multiHeaderParamNil at 'multiHeaderParamNil'
+		header-param valueA
+		header-param valueB
+	GET multiHeaderParamOptNil at 'multiHeaderParamOptNil'
+		header-param valueA
+		header-param valueB
 	
 	GET recordHeaderParam at 'recordHeaderParam'
+		header-param headerValue
+	GET recordHeaderParamOpt at 'recordHeaderParamOpt'
+		header-param headerValue
+	GET recordHeaderParamNil at 'recordHeaderParamNil'
+		header-param headerValue
+	GET recordHeaderParamOptNil at 'recordHeaderParamOptNil'
 		header-param headerValue
 }
 

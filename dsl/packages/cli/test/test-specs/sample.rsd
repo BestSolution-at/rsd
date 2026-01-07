@@ -761,48 +761,193 @@ service BodyParameterTypes {
 	): PatchableRecord;
 }
 
-// TODO Add Opt and Nil variants to Header Params
 service HeaderParameterTypes {
 	operation simpleBooleanHeaderParam(
 		headerValue: boolean
 	): boolean;
+	operation simpleBooleanHeaderParamOpt(
+		headerValue?: boolean
+	): NilResult;
+	operation simpleBooleanHeaderParamNil(
+		headerValue: boolean?
+	): NilResult;
+	operation simpleBooleanHeaderParamOptNil(
+		headerValue?: boolean?
+	): NilResult;
+
 	operation simpleShortHeaderParam(
 		headerValue: short
 	): short;
+	operation simpleShortHeaderParamOpt(
+		headerValue?: short
+	): NilResult;
+	operation simpleShortHeaderParamNil(
+		headerValue: short?
+	): NilResult;
+	operation simpleShortHeaderParamOptNil(
+		headerValue?: short?
+	): NilResult;
+
 	operation simpleIntHeaderParam(
 		headerValue: int
 	): int;
+	operation simpleIntHeaderParamOpt(
+		headerValue?: int
+	): NilResult;
+	operation simpleIntHeaderParamNil(
+		headerValue: int?
+	): NilResult;
+	operation simpleIntHeaderParamOptNil(
+		headerValue?: int?
+	): NilResult;
+
 	operation simpleLongHeaderParam(
 		headerValue: long
 	): long;
+	operation simpleLongHeaderParamOpt(
+		headerValue?: long
+	): NilResult;
+	operation simpleLongHeaderParamNil(
+		headerValue: long?
+	): NilResult;
+	operation simpleLongHeaderParamOptNil(
+		headerValue?: long?
+	): NilResult;
+
 	operation simpleFloatHeaderParam(
 		headerValue: float
 	): float;
+	operation simpleFloatHeaderParamOpt(
+		headerValue?: float
+	): NilResult;
+	operation simpleFloatHeaderParamNil(
+		headerValue: float?
+	): NilResult;
+	operation simpleFloatHeaderParamOptNil(
+		headerValue?: float?
+	): NilResult;
+
 	operation simpleDoubleHeaderParam(
 		headerValue: double
 	): double;
+	operation simpleDoubleHeaderParamOpt(
+		headerValue?: double
+	): NilResult;
+	operation simpleDoubleHeaderParamNil(
+		headerValue: double?
+	): NilResult;
+	operation simpleDoubleHeaderParamOptNil(
+		headerValue?: double?
+	): NilResult;
+
 	operation simpleStringHeaderParam(
 		headerValue: string
 	): string;
+	operation simpleStringHeaderParamOpt(
+		headerValue?: string
+	): NilResult;
+	operation simpleStringHeaderParamNil(
+		headerValue: string?
+	): NilResult;
+	operation simpleStringHeaderParamOptNil(
+		headerValue?: string?
+	): NilResult;
+
 	operation simpleLocalDateHeaderParam(
 		headerValue: local-date
 	): local-date;
+	operation simpleLocalDateHeaderParamOpt(
+		headerValue?: local-date
+	): NilResult;
+	operation simpleLocalDateHeaderParamNil(
+		headerValue: local-date?
+	): NilResult;
+	operation simpleLocalDateHeaderParamOptNil(
+		headerValue?: local-date?
+	): NilResult;
+
 	operation simpleLocalDateTimeHeaderParam(
 		headerValue: local-date-time
 	): local-date-time;
+	operation simpleLocalDateTimeHeaderParamOpt(
+		headerValue?: local-date-time
+	): NilResult;
+	operation simpleLocalDateTimeHeaderParamNil(
+		headerValue: local-date-time?
+	): NilResult;
+	operation simpleLocalDateTimeHeaderParamOptNil(
+		headerValue?: local-date-time?
+	): NilResult;
+
 	operation simpleZonedDateTimeHeaderParam(
 		headerValue: zoned-date-time
 	): zoned-date-time;
+	operation simpleZonedDateTimeHeaderParamOpt(
+		headerValue?: zoned-date-time
+	): NilResult;
+	operation simpleZonedDateTimeHeaderParamNil(
+		headerValue: zoned-date-time?
+	): NilResult;
+	operation simpleZonedDateTimeHeaderParamOptNil(
+		headerValue?: zoned-date-time?
+	): NilResult;
+
 	operation simpleScalarHeaderParam(
 		headerValue: ZoneId
 	): ZoneId;
+	operation simpleScalarHeaderParamOpt(
+		headerValue?: ZoneId
+	): NilResult;
+	operation simpleScalarHeaderParamNil(
+		headerValue: ZoneId?
+	): NilResult;
+	operation simpleScalarHeaderParamOptNil(
+		headerValue?: ZoneId?
+	): NilResult;
+
 	operation simpleEnumHeaderParam(
 		headerValue: SampleEnum
 	): SampleEnum;
+	operation simpleEnumHeaderParamOpt(
+		headerValue?: SampleEnum
+	): NilResult;
+	operation simpleEnumHeaderParamNil(
+		headerValue: SampleEnum?
+	): NilResult;
+	operation simpleEnumHeaderParamOptNil(
+		headerValue?: SampleEnum?
+	): NilResult;
+
+	operation simpleInlineEnumHeaderParam(
+		headerValue: enum A | B
+	): enum A | B;
+	operation simpleInlineEnumHeaderParamOpt(
+		headerValue?: enum A | B
+	): NilResult;
+	operation simpleInlineEnumHeaderParamNil(
+		headerValue: enum C | D?
+	): NilResult;
+	operation simpleInlineEnumHeaderParamOptNil(
+		headerValue?: enum C | D?
+	): NilResult;
+
 	operation multiHeaderParam(valueA: string, valueB: int): string;
+	operation multiHeaderParamOpt(valueA?: string, valueB?: int): NilResult[];
+	operation multiHeaderParamNil(valueA: string?, valueB: int?): NilResult[];
+	operation multiHeaderParamOptNil(valueA?: string?, valueB?: int?): NilResult[];
+
 	operation recordHeaderParam(
 		headerValue: SimpleRecord
 	): SimpleRecord;
+	operation recordHeaderParamOpt(
+		headerValue?: SimpleRecord
+	): NilResult;
+	operation recordHeaderParamNil(
+		headerValue: SimpleRecord?
+	): NilResult;
+	operation recordHeaderParamOptNil(
+		headerValue?: SimpleRecord?
+	): NilResult;
 }
 
 // TODO Add Nil variants to Query Params
