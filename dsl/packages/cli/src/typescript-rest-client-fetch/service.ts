@@ -6,6 +6,7 @@ import {
 	MBuiltinType,
 	MInlineEnumType,
 	MParameter,
+	MParameterNoneInlineEnumType,
 	MResolvedOperation,
 	MResolvedService,
 	MService,
@@ -115,6 +116,74 @@ function generateServiceContent(
 	return node;
 }
 
+function numericOrBooleanHeaderQueryCode(target: string, p: MParameter) {
+	const node = new CompositeGeneratorNode();
+	if (p.array) {
+		node.append(`${p.name}.forEach($entry => {`, NL);
+		node.indent(mBody => {
+			mBody.append(`${target}.append('${p.name}', String($entry));`, NL);
+		});
+		node.append('});', NL);
+	} else {
+		node.append(`${target}.append('${p.name}', String(${p.name}));`, NL);
+	}
+	return node;
+}
+
+function stringHeaderQueryCode(target: string, p: MParameter) {
+	const node = new CompositeGeneratorNode();
+	if (p.array) {
+		node.append(`${p.name}.forEach($entry => {`, NL);
+		node.indent(mBody => {
+			mBody.append(`${target}.append('${p.name}', $entry);`, NL);
+		});
+		node.append('});', NL);
+	} else {
+		node.append(`${target}.append('${p.name}', ${p.name});`, NL);
+	}
+	return node;
+}
+
+function recordHeaderQueryCode(
+	target: string,
+	p: MParameterNoneInlineEnumType,
+	config: TypescriptFetchClientGeneratorConfig,
+	fqn: (type: string, typeOnly: boolean) => string,
+) {
+	const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
+	const node = new CompositeGeneratorNode();
+	if (p.array) {
+		node.append(`${p.name}.forEach($entry => {`, NL);
+		node.indent(mBody => {
+			mBody.append(
+				`${target}.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}($entry)));`,
+				NL,
+			);
+		});
+		node.append('});', NL);
+	} else {
+		node.append(
+			`${target}.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(${p.name})));`,
+			NL,
+		);
+	}
+	return node;
+}
+
+function headerQueryCodeBlock(
+	target: string,
+	p: MParameter,
+	config: TypescriptFetchClientGeneratorConfig,
+	fqn: (type: string, typeOnly: boolean) => string,
+) {
+	if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum' || p.variant === 'scalar') {
+		return isMBuiltinNumericType(p.type) || p.type === 'boolean'
+			? numericOrBooleanHeaderQueryCode(target, p)
+			: stringHeaderQueryCode(target, p);
+	}
+	return recordHeaderQueryCode(target, p, config, fqn);
+}
+
 function generateRemoteInvoke(
 	s: MService,
 	o: MResolvedOperation,
@@ -148,102 +217,36 @@ function generateRemoteInvoke(
 
 	if (headerParams.length) {
 		headerParams.forEach(p => {
-			if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum' || p.variant === 'scalar') {
-				if (p.optional) {
-					const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
-					if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
-						if (p.array) {
-							node.append(`${ifDefined}(${p.name}, v => {`, NL);
-							node.indent(mBody => {
-								mBody.append(`v.forEach($entry => {`, NL);
-								mBody.indent(mmBody => {
-									mmBody.append(`$headers.append('${p.name}', String($entry));`, NL);
-								});
-								mBody.append('});', NL);
-							});
-							node.append('});', NL);
-						} else {
-							node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}', String(v)));`, NL);
-						}
-					} else {
-						if (p.array) {
-							node.append(`${ifDefined}(${p.name}, v => {`, NL);
-							node.indent(mBody => {
-								mBody.append(`v.forEach($entry => {`, NL);
-								mBody.indent(mmBody => {
-									mmBody.append(`$headers.append('${p.name}', $entry);`, NL);
-								});
-								mBody.append('});', NL);
-							});
-							node.append('});', NL);
-						} else {
-							node.append(`${ifDefined}(${p.name}, v => $headers.append('${p.name}', v));`, NL);
-						}
-					}
-				} else {
-					if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
-						if (p.array) {
-							node.append(`${p.name}.forEach($entry => {`, NL);
-							node.indent(mBody => {
-								mBody.append(`$headers.append('${p.name}', String($entry));`, NL);
-							});
-							node.append('});', NL);
-						} else {
-							node.append(`$headers.append('${p.name}', String(${p.name}));`, NL);
-						}
-					} else {
-						if (p.array) {
-							node.append(`${p.name}.forEach($entry => {`, NL);
-							node.indent(mBody => {
-								mBody.append(`$headers.append('${p.name}', $entry);`, NL);
-							});
-							node.append('});', NL);
-						} else {
-							node.append(`$headers.append('${p.name}', ${p.name});`, NL);
-						}
-					}
-				}
-			} else {
-				const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
+			const codeBlock = headerQueryCodeBlock('$headers', p, config, fqn);
 
-				if (p.optional) {
-					const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
-					if (p.array) {
-						node.append(`${ifDefined}(${p.name}, v => {`, NL);
-						node.indent(mBody => {
-							mBody.append(`v.forEach($entry => {`, NL);
-							mBody.indent(mmBody => {
-								mmBody.append(
-									`${ifDefined}(${p.name}, v => $headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}($entry)));`,
-									NL,
-								);
-							});
-							mBody.append('});', NL);
-						});
-						node.append('});', NL);
-					} else {
-						node.append(
-							`${ifDefined}(${p.name}, v => $headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(v)));`,
-							NL,
-						);
-					}
-				} else {
-					if (p.array) {
-						node.append(`${p.name}.forEach($entry => {`, NL);
-						node.indent(mBody => {
-							mBody.append(
-								`$headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}($entry)));`,
-								NL,
-							);
-						});
-						node.append('});', NL);
-					} else {
-						node.append(
-							`$headers.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(${p.name})));`,
-							NL,
-						);
-					}
-				}
+			if (p.optional && p.nullable) {
+				node.append('if (' + p.name + ' !== undefined && ' + p.name + ' !== null) {', NL);
+				node.indent(mBody => {
+					mBody.append(codeBlock);
+				});
+				node.append('} else if(' + p.name + ' === null) {', NL);
+				node.indent(mBody => {
+					mBody.append(`$headers.append('${p.name}', 'null');`, NL);
+				});
+				node.append('}', NL);
+			} else if (p.optional) {
+				node.append('if (' + p.name + ' !== undefined) {', NL);
+				node.indent(mBody => {
+					mBody.append(codeBlock);
+				});
+				node.append('}', NL);
+			} else if (p.nullable) {
+				node.append('if (' + p.name + ' !== null) {', NL);
+				node.indent(mBody => {
+					mBody.append(codeBlock);
+				});
+				node.append('} else {', NL);
+				node.indent(mBody => {
+					mBody.append(`$headers.append('${p.name}', 'null');`, NL);
+				});
+				node.append('}', NL);
+			} else {
+				node.append(codeBlock);
 			}
 		});
 	}
@@ -254,101 +257,36 @@ function generateRemoteInvoke(
 		o.parameters
 			.filter(p => p.meta?.rest?.source === 'query')
 			.forEach(p => {
-				if (isMBuiltinType(p.type) || p.variant === 'scalar' || p.variant === 'enum' || isMInlineEnumType(p.type)) {
-					if (p.optional) {
-						const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
-						if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
-							node.append(`${ifDefined}(${p.name}, v => {`, NL);
-							node.indent(mBody => {
-								if (p.array) {
-									mBody.append(`v.forEach($entry => {`, NL);
-									mBody.indent(mmBody => {
-										mmBody.append(`$param.append('${p.meta?.rest?.name ?? p.name}', String($entry));`, NL);
-									});
-									mBody.append('});', NL);
-								} else {
-									mBody.append(`$param.append('${p.meta?.rest?.name ?? p.name}', String(v));`, NL);
-								}
-							});
-							node.append('});', NL);
-						} else {
-							node.append(`${ifDefined}(${p.name}, v => {;`, NL);
-							node.indent(mBody => {
-								if (p.array) {
-									mBody.append(`v.forEach($entry => {`, NL);
-									mBody.indent(mmBody => {
-										mmBody.append(`$param.append('${p.meta?.rest?.name ?? p.name}', $entry);`, NL);
-									});
-									mBody.append('});', NL);
-								} else {
-									mBody.append(`$param.append('${p.meta?.rest?.name ?? p.name}', v);`, NL);
-								}
-							});
-							node.append('});', NL);
-						}
-					} else {
-						if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
-							if (p.array) {
-								node.append(`${p.name}.forEach($entry => {`, NL);
-								node.indent(mBody => {
-									mBody.append(`$param.append('${p.meta?.rest?.name ?? p.name}', String($entry));`, NL);
-								});
-								node.append('});', NL);
-							} else {
-								node.append(`$param.append('${p.meta?.rest?.name ?? p.name}', String(${p.name}));`, NL);
-							}
-						} else {
-							if (p.array) {
-								node.append(`${p.name}.forEach($entry => {`, NL);
-								node.indent(mBody => {
-									mBody.append(`$param.append('${p.meta?.rest?.name ?? p.name}', $entry);`, NL);
-								});
-								node.append('});', NL);
-							} else {
-								node.append(`$param.append('${p.meta?.rest?.name ?? p.name}', ${p.name});`, NL);
-							}
-						}
-					}
+				const codeBlock = headerQueryCodeBlock('$param', p, config, fqn);
+
+				if (p.optional && p.nullable) {
+					node.append('if (' + p.name + ' !== undefined && ' + p.name + ' !== null) {', NL);
+					node.indent(mBody => {
+						mBody.append(codeBlock);
+					});
+					node.append('} else if(' + p.name + ' === null) {', NL);
+					node.indent(mBody => {
+						mBody.append(`$headers.append('${p.name}', 'null');`, NL);
+					});
+					node.append('}', NL);
+				} else if (p.optional) {
+					node.append('if (' + p.name + ' !== undefined) {', NL);
+					node.indent(mBody => {
+						mBody.append(codeBlock);
+					});
+					node.append('}', NL);
+				} else if (p.nullable) {
+					node.append('if (' + p.name + ' !== null) {', NL);
+					node.indent(mBody => {
+						mBody.append(codeBlock);
+					});
+					node.append('} else {', NL);
+					node.indent(mBody => {
+						mBody.append(`$headers.append('${p.name}', 'null');`, NL);
+					});
+					node.append('}', NL);
 				} else {
-					const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
-					if (p.optional) {
-						const ifDefined = fqn('ifDefined:./_fetch-type-utils.ts', false);
-						node.append(`${ifDefined}(${p.name}, v => {`, NL);
-						node.indent(mBody => {
-							if (p.array) {
-								mBody.append(`v.forEach($entry => {`, NL);
-								mBody.indent(mmBody => {
-									mmBody.append(
-										`$param.append('${p.meta?.rest?.name ?? p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}($entry)));`,
-										NL,
-									);
-								});
-								mBody.append('});', NL);
-							} else {
-								mBody.append(
-									`$param.append('${p.meta?.rest?.name ?? p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(v)));`,
-									NL,
-								);
-							}
-						});
-						node.append('});', NL);
-					} else {
-						if (p.array) {
-							node.append(`${p.name}.forEach($entry => {`, NL);
-							node.indent(mBody => {
-								mBody.append(
-									`$param.append('${p.meta?.rest?.name ?? p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}($entry)));`,
-									NL,
-								);
-							});
-							node.append('});', NL);
-						} else {
-							node.append(
-								`$param.append('${p.meta?.rest?.name ?? p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(${p.name})));`,
-								NL,
-							);
-						}
-					}
+					node.append(codeBlock);
 				}
 			});
 		node.append(`const $path = \`${endpoint}?\${$param.toString()}\`;`, NL);

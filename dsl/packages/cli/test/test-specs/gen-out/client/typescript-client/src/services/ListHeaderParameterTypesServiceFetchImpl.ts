@@ -9,20 +9,65 @@ function isListInlineEnumHeaderParamResult(value: unknown): value is 'A' | 'B' {
 export function createListHeaderParameterTypesService(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService {
 	return {
 		listBooleanHeaderParam: fnListBooleanHeaderParam(props),
+		listBooleanHeaderParamOpt: fnListBooleanHeaderParamOpt(props),
+		listBooleanHeaderParamNil: fnListBooleanHeaderParamNil(props),
+		listBooleanHeaderParamOptNil: fnListBooleanHeaderParamOptNil(props),
 		listShortHeaderParam: fnListShortHeaderParam(props),
+		listShortHeaderParamOpt: fnListShortHeaderParamOpt(props),
+		listShortHeaderParamNil: fnListShortHeaderParamNil(props),
+		listShortHeaderParamOptNil: fnListShortHeaderParamOptNil(props),
 		listIntHeaderParam: fnListIntHeaderParam(props),
+		listIntHeaderParamOpt: fnListIntHeaderParamOpt(props),
+		listIntHeaderParamNil: fnListIntHeaderParamNil(props),
+		listIntHeaderParamOptNil: fnListIntHeaderParamOptNil(props),
 		listLongHeaderParam: fnListLongHeaderParam(props),
+		listLongHeaderParamOpt: fnListLongHeaderParamOpt(props),
+		listLongHeaderParamNil: fnListLongHeaderParamNil(props),
+		listLongHeaderParamOptNil: fnListLongHeaderParamOptNil(props),
 		listFloatHeaderParam: fnListFloatHeaderParam(props),
+		listFloatHeaderParamOpt: fnListFloatHeaderParamOpt(props),
+		listFloatHeaderParamNil: fnListFloatHeaderParamNil(props),
+		listFloatHeaderParamOptNil: fnListFloatHeaderParamOptNil(props),
 		listDoubleHeaderParam: fnListDoubleHeaderParam(props),
+		listDoubleHeaderParamOpt: fnListDoubleHeaderParamOpt(props),
+		listDoubleHeaderParamNil: fnListDoubleHeaderParamNil(props),
+		listDoubleHeaderParamOptNil: fnListDoubleHeaderParamOptNil(props),
 		listStringHeaderParam: fnListStringHeaderParam(props),
+		listStringHeaderParamOpt: fnListStringHeaderParamOpt(props),
+		listStringHeaderParamNil: fnListStringHeaderParamNil(props),
+		listStringHeaderParamOptNil: fnListStringHeaderParamOptNil(props),
 		listLocalDateHeaderParam: fnListLocalDateHeaderParam(props),
+		listLocalDateHeaderParamOpt: fnListLocalDateHeaderParamOpt(props),
+		listLocalDateHeaderParamNil: fnListLocalDateHeaderParamNil(props),
+		listLocalDateHeaderParamOptNil: fnListLocalDateHeaderParamOptNil(props),
 		listLocalDateTimeHeaderParam: fnListLocalDateTimeHeaderParam(props),
+		listLocalDateTimeHeaderParamOpt: fnListLocalDateTimeHeaderParamOpt(props),
+		listLocalDateTimeHeaderParamNil: fnListLocalDateTimeHeaderParamNil(props),
+		listLocalDateTimeHeaderParamOptNil: fnListLocalDateTimeHeaderParamOptNil(props),
 		listZonedDateTimeHeaderParam: fnListZonedDateTimeHeaderParam(props),
+		listZonedDateTimeHeaderParamOpt: fnListZonedDateTimeHeaderParamOpt(props),
+		listZonedDateTimeHeaderParamNil: fnListZonedDateTimeHeaderParamNil(props),
+		listZonedDateTimeHeaderParamOptNil: fnListZonedDateTimeHeaderParamOptNil(props),
 		listScalarHeaderParam: fnListScalarHeaderParam(props),
+		listScalarHeaderParamOpt: fnListScalarHeaderParamOpt(props),
+		listScalarHeaderParamNil: fnListScalarHeaderParamNil(props),
+		listScalarHeaderParamOptNil: fnListScalarHeaderParamOptNil(props),
 		listEnumHeaderParam: fnListEnumHeaderParam(props),
+		listEnumHeaderParamOpt: fnListEnumHeaderParamOpt(props),
+		listEnumHeaderParamNil: fnListEnumHeaderParamNil(props),
+		listEnumHeaderParamOptNil: fnListEnumHeaderParamOptNil(props),
 		listInlineEnumHeaderParam: fnListInlineEnumHeaderParam(props),
+		listInlineEnumHeaderParamOpt: fnListInlineEnumHeaderParamOpt(props),
+		listInlineEnumHeaderParamNil: fnListInlineEnumHeaderParamNil(props),
+		listInlineEnumHeaderParamOptNil: fnListInlineEnumHeaderParamOptNil(props),
 		listMultiHeaderParam: fnListMultiHeaderParam(props),
+		listMultiHeaderParamOpt: fnListMultiHeaderParamOpt(props),
+		listMultiHeaderParamNil: fnListMultiHeaderParamNil(props),
+		listMultiHeaderParamOptNil: fnListMultiHeaderParamOptNil(props),
 		listRecordHeaderParam: fnListRecordHeaderParam(props),
+		listRecordHeaderParamOpt: fnListRecordHeaderParamOpt(props),
+		listRecordHeaderParamNil: fnListRecordHeaderParamNil(props),
+		listRecordHeaderParamOptNil: fnListRecordHeaderParamOptNil(props),
 	};
 }
 function fnListBooleanHeaderParam(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listBooleanHeaderParam'] {
@@ -54,6 +99,115 @@ function fnListBooleanHeaderParam(props: ServiceProps<api.service.ErrorType>): a
 			return api.result.ERR(err);
 		} finally {
 			final?.('listBooleanHeaderParam');
+		}
+	};
+}
+
+function fnListBooleanHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listBooleanHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: boolean[]) => {
+		try {
+			const $init = (await preFetch?.('listBooleanHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listBooleanHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listBooleanHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listBooleanHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listBooleanHeaderParamOpt');
+		}
+	};
+}
+
+function fnListBooleanHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listBooleanHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: boolean[] | null) => {
+		try {
+			const $init = (await preFetch?.('listBooleanHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listBooleanHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listBooleanHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listBooleanHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listBooleanHeaderParamNil');
+		}
+	};
+}
+
+function fnListBooleanHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listBooleanHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: boolean[] | null) => {
+		try {
+			const $init = (await preFetch?.('listBooleanHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listBooleanHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listBooleanHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listBooleanHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listBooleanHeaderParamOptNil');
 		}
 	};
 }
@@ -91,6 +245,115 @@ function fnListShortHeaderParam(props: ServiceProps<api.service.ErrorType>): api
 	};
 }
 
+function fnListShortHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listShortHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: number[]) => {
+		try {
+			const $init = (await preFetch?.('listShortHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listShortHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listShortHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listShortHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listShortHeaderParamOpt');
+		}
+	};
+}
+
+function fnListShortHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listShortHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listShortHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listShortHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listShortHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listShortHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listShortHeaderParamNil');
+		}
+	};
+}
+
+function fnListShortHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listShortHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listShortHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listShortHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listShortHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listShortHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listShortHeaderParamOptNil');
+		}
+	};
+}
+
 function fnListIntHeaderParam(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listIntHeaderParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -120,6 +383,115 @@ function fnListIntHeaderParam(props: ServiceProps<api.service.ErrorType>): api.s
 			return api.result.ERR(err);
 		} finally {
 			final?.('listIntHeaderParam');
+		}
+	};
+}
+
+function fnListIntHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listIntHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: number[]) => {
+		try {
+			const $init = (await preFetch?.('listIntHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listIntHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listIntHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listIntHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listIntHeaderParamOpt');
+		}
+	};
+}
+
+function fnListIntHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listIntHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listIntHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listIntHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listIntHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listIntHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listIntHeaderParamNil');
+		}
+	};
+}
+
+function fnListIntHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listIntHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listIntHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listIntHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listIntHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listIntHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listIntHeaderParamOptNil');
 		}
 	};
 }
@@ -157,6 +529,115 @@ function fnListLongHeaderParam(props: ServiceProps<api.service.ErrorType>): api.
 	};
 }
 
+function fnListLongHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listLongHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: number[]) => {
+		try {
+			const $init = (await preFetch?.('listLongHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listLongHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLongHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLongHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLongHeaderParamOpt');
+		}
+	};
+}
+
+function fnListLongHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listLongHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLongHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listLongHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLongHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLongHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLongHeaderParamNil');
+		}
+	};
+}
+
+function fnListLongHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listLongHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLongHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listLongHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLongHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLongHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLongHeaderParamOptNil');
+		}
+	};
+}
+
 function fnListFloatHeaderParam(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listFloatHeaderParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -186,6 +667,115 @@ function fnListFloatHeaderParam(props: ServiceProps<api.service.ErrorType>): api
 			return api.result.ERR(err);
 		} finally {
 			final?.('listFloatHeaderParam');
+		}
+	};
+}
+
+function fnListFloatHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listFloatHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: number[]) => {
+		try {
+			const $init = (await preFetch?.('listFloatHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listFloatHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listFloatHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listFloatHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listFloatHeaderParamOpt');
+		}
+	};
+}
+
+function fnListFloatHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listFloatHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listFloatHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listFloatHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listFloatHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listFloatHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listFloatHeaderParamNil');
+		}
+	};
+}
+
+function fnListFloatHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listFloatHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listFloatHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listFloatHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listFloatHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listFloatHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listFloatHeaderParamOptNil');
 		}
 	};
 }
@@ -223,6 +813,115 @@ function fnListDoubleHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 	};
 }
 
+function fnListDoubleHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listDoubleHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: number[]) => {
+		try {
+			const $init = (await preFetch?.('listDoubleHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listDoubleHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listDoubleHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listDoubleHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listDoubleHeaderParamOpt');
+		}
+	};
+}
+
+function fnListDoubleHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listDoubleHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listDoubleHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listDoubleHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listDoubleHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listDoubleHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listDoubleHeaderParamNil');
+		}
+	};
+}
+
+function fnListDoubleHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listDoubleHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: number[] | null) => {
+		try {
+			const $init = (await preFetch?.('listDoubleHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', String($entry));
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listDoubleHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listDoubleHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listDoubleHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listDoubleHeaderParamOptNil');
+		}
+	};
+}
+
 function fnListStringHeaderParam(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listStringHeaderParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -252,6 +951,115 @@ function fnListStringHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 			return api.result.ERR(err);
 		} finally {
 			final?.('listStringHeaderParam');
+		}
+	};
+}
+
+function fnListStringHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listStringHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: string[]) => {
+		try {
+			const $init = (await preFetch?.('listStringHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listStringHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listStringHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listStringHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listStringHeaderParamOpt');
+		}
+	};
+}
+
+function fnListStringHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listStringHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listStringHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listStringHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listStringHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listStringHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listStringHeaderParamNil');
+		}
+	};
+}
+
+function fnListStringHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listStringHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listStringHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listStringHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listStringHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listStringHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listStringHeaderParamOptNil');
 		}
 	};
 }
@@ -289,6 +1097,115 @@ function fnListLocalDateHeaderParam(props: ServiceProps<api.service.ErrorType>):
 	};
 }
 
+function fnListLocalDateHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listLocalDateHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: string[]) => {
+		try {
+			const $init = (await preFetch?.('listLocalDateHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listLocalDateHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalDateHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalDateHeaderParamOpt');
+		}
+	};
+}
+
+function fnListLocalDateHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listLocalDateHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLocalDateHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listLocalDateHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalDateHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalDateHeaderParamNil');
+		}
+	};
+}
+
+function fnListLocalDateHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listLocalDateHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLocalDateHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listLocalDateHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalDateHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalDateHeaderParamOptNil');
+		}
+	};
+}
+
 function fnListLocalDateTimeHeaderParam(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listLocalDateTimeHeaderParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -318,6 +1235,115 @@ function fnListLocalDateTimeHeaderParam(props: ServiceProps<api.service.ErrorTyp
 			return api.result.ERR(err);
 		} finally {
 			final?.('listLocalDateTimeHeaderParam');
+		}
+	};
+}
+
+function fnListLocalDateTimeHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listLocalDateTimeHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: string[]) => {
+		try {
+			const $init = (await preFetch?.('listLocalDateTimeHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listLocalDateTimeHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateTimeHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalDateTimeHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalDateTimeHeaderParamOpt');
+		}
+	};
+}
+
+function fnListLocalDateTimeHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listLocalDateTimeHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLocalDateTimeHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listLocalDateTimeHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateTimeHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalDateTimeHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalDateTimeHeaderParamNil');
+		}
+	};
+}
+
+function fnListLocalDateTimeHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listLocalDateTimeHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLocalDateTimeHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listLocalDateTimeHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalDateTimeHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalDateTimeHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalDateTimeHeaderParamOptNil');
 		}
 	};
 }
@@ -355,6 +1381,115 @@ function fnListZonedDateTimeHeaderParam(props: ServiceProps<api.service.ErrorTyp
 	};
 }
 
+function fnListZonedDateTimeHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listZonedDateTimeHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: string[]) => {
+		try {
+			const $init = (await preFetch?.('listZonedDateTimeHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listZonedDateTimeHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listZonedDateTimeHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listZonedDateTimeHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listZonedDateTimeHeaderParamOpt');
+		}
+	};
+}
+
+function fnListZonedDateTimeHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listZonedDateTimeHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listZonedDateTimeHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listZonedDateTimeHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listZonedDateTimeHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listZonedDateTimeHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listZonedDateTimeHeaderParamNil');
+		}
+	};
+}
+
+function fnListZonedDateTimeHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listZonedDateTimeHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listZonedDateTimeHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listZonedDateTimeHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listZonedDateTimeHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listZonedDateTimeHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listZonedDateTimeHeaderParamOptNil');
+		}
+	};
+}
+
 function fnListScalarHeaderParam(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listScalarHeaderParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -384,6 +1519,115 @@ function fnListScalarHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 			return api.result.ERR(err);
 		} finally {
 			final?.('listScalarHeaderParam');
+		}
+	};
+}
+
+function fnListScalarHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listScalarHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: string[]) => {
+		try {
+			const $init = (await preFetch?.('listScalarHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listScalarHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listScalarHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listScalarHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listScalarHeaderParamOpt');
+		}
+	};
+}
+
+function fnListScalarHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listScalarHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listScalarHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listScalarHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listScalarHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listScalarHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listScalarHeaderParamNil');
+		}
+	};
+}
+
+function fnListScalarHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listScalarHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listScalarHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listScalarHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listScalarHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listScalarHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listScalarHeaderParamOptNil');
 		}
 	};
 }
@@ -421,6 +1665,115 @@ function fnListEnumHeaderParam(props: ServiceProps<api.service.ErrorType>): api.
 	};
 }
 
+function fnListEnumHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listEnumHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: api.model.SampleEnum[]) => {
+		try {
+			const $init = (await preFetch?.('listEnumHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listEnumHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listEnumHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listEnumHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listEnumHeaderParamOpt');
+		}
+	};
+}
+
+function fnListEnumHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listEnumHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: api.model.SampleEnum[] | null) => {
+		try {
+			const $init = (await preFetch?.('listEnumHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listEnumHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listEnumHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listEnumHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listEnumHeaderParamNil');
+		}
+	};
+}
+
+function fnListEnumHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listEnumHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: api.model.SampleEnum[] | null) => {
+		try {
+			const $init = (await preFetch?.('listEnumHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listEnumHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listEnumHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listEnumHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listEnumHeaderParamOptNil');
+		}
+	};
+}
+
 function fnListInlineEnumHeaderParam(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listInlineEnumHeaderParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -450,6 +1803,115 @@ function fnListInlineEnumHeaderParam(props: ServiceProps<api.service.ErrorType>)
 			return api.result.ERR(err);
 		} finally {
 			final?.('listInlineEnumHeaderParam');
+		}
+	};
+}
+
+function fnListInlineEnumHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listInlineEnumHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: ('A' | 'B')[]) => {
+		try {
+			const $init = (await preFetch?.('listInlineEnumHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listInlineEnumHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listInlineEnumHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listInlineEnumHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listInlineEnumHeaderParamOpt');
+		}
+	};
+}
+
+function fnListInlineEnumHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listInlineEnumHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: ('C' | 'D')[] | null) => {
+		try {
+			const $init = (await preFetch?.('listInlineEnumHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listInlineEnumHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listInlineEnumHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listInlineEnumHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listInlineEnumHeaderParamNil');
+		}
+	};
+}
+
+function fnListInlineEnumHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listInlineEnumHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: ('C' | 'D')[] | null) => {
+		try {
+			const $init = (await preFetch?.('listInlineEnumHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listInlineEnumHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listInlineEnumHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listInlineEnumHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listInlineEnumHeaderParamOptNil');
 		}
 	};
 }
@@ -493,6 +1955,153 @@ function fnListMultiHeaderParam(props: ServiceProps<api.service.ErrorType>): api
 	};
 }
 
+function fnListMultiHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listMultiHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (valueA?: string[], valueB?: number[], valueC?: api.model.SimpleRecord[]) => {
+		try {
+			const $init = (await preFetch?.('listMultiHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (valueA !== undefined) {
+				valueA.forEach($entry => {
+					$headers.append('valueA', $entry);
+				});
+			}
+			if (valueB !== undefined) {
+				valueB.forEach($entry => {
+					$headers.append('valueB', String($entry));
+				});
+			}
+			if (valueC !== undefined) {
+				valueC.forEach($entry => {
+					$headers.append('valueC', encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry)));
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listMultiHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isNilResult));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listMultiHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listMultiHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listMultiHeaderParamOpt');
+		}
+	};
+}
+
+function fnListMultiHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listMultiHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (valueA: string[] | null, valueB: number[] | null, valueC: api.model.SimpleRecord[] | null) => {
+		try {
+			const $init = (await preFetch?.('listMultiHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (valueA !== null) {
+				valueA.forEach($entry => {
+					$headers.append('valueA', $entry);
+				});
+			} else {
+				$headers.append('valueA', 'null');
+			}
+			if (valueB !== null) {
+				valueB.forEach($entry => {
+					$headers.append('valueB', String($entry));
+				});
+			} else {
+				$headers.append('valueB', 'null');
+			}
+			if (valueC !== null) {
+				valueC.forEach($entry => {
+					$headers.append('valueC', encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry)));
+				});
+			} else {
+				$headers.append('valueC', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listMultiHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isNilResult));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listMultiHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listMultiHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listMultiHeaderParamNil');
+		}
+	};
+}
+
+function fnListMultiHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listMultiHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (valueA?: string[] | null, valueB?: number[] | null, valueC?: api.model.SimpleRecord[] | null) => {
+		try {
+			const $init = (await preFetch?.('listMultiHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (valueA !== undefined && valueA !== null) {
+				valueA.forEach($entry => {
+					$headers.append('valueA', $entry);
+				});
+			} else if(valueA === null) {
+				$headers.append('valueA', 'null');
+			}
+			if (valueB !== undefined && valueB !== null) {
+				valueB.forEach($entry => {
+					$headers.append('valueB', String($entry));
+				});
+			} else if(valueB === null) {
+				$headers.append('valueB', 'null');
+			}
+			if (valueC !== undefined && valueC !== null) {
+				valueC.forEach($entry => {
+					$headers.append('valueC', encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry)));
+				});
+			} else if(valueC === null) {
+				$headers.append('valueC', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listMultiHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isNilResult));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listMultiHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listMultiHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listMultiHeaderParamOptNil');
+		}
+	};
+}
+
 function fnListRecordHeaderParam(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listRecordHeaderParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -523,6 +2132,115 @@ function fnListRecordHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 			return api.result.ERR(err);
 		} finally {
 			final?.('listRecordHeaderParam');
+		}
+	};
+}
+
+function fnListRecordHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listRecordHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: api.model.SimpleRecord[]) => {
+		try {
+			const $init = (await preFetch?.('listRecordHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry)));
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listRecordHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listRecordHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listRecordHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listRecordHeaderParamOpt');
+		}
+	};
+}
+
+function fnListRecordHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listRecordHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: api.model.SimpleRecord[] | null) => {
+		try {
+			const $init = (await preFetch?.('listRecordHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry)));
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listRecordHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listRecordHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listRecordHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listRecordHeaderParamNil');
+		}
+	};
+}
+
+function fnListRecordHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listRecordHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: api.model.SimpleRecord[] | null) => {
+		try {
+			const $init = (await preFetch?.('listRecordHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry)));
+				});
+			} else if(headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listRecordHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listRecordHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listRecordHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listRecordHeaderParamOptNil');
 		}
 	};
 }

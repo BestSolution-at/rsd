@@ -69,12 +69,6 @@ function generateFetchTypeUtilsContent(
 			return props.encoding ?? 'application/json';
 		}
 		
-		export function ifDefined<T>(value: T | undefined, block: (v: T) => void) {
-			if (value !== undefined) {
-				block(value);
-			}
-		}
-		
 		export function safeExecute<T>(value: T, block: () => void): T {
 			try {
 				block();

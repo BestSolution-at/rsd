@@ -899,20 +899,84 @@ async function multiHeaderParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 
 const listHeaderParamPaths = [
 	'/api/listheaderparametertypes/listBooleanHeaderParam',
+	'/api/listheaderparametertypes/listBooleanHeaderParamOpt',
+	'/api/listheaderparametertypes/listBooleanHeaderParamNil',
+	'/api/listheaderparametertypes/listBooleanHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listShortHeaderParam',
+	'/api/listheaderparametertypes/listShortHeaderParamOpt',
+	'/api/listheaderparametertypes/listShortHeaderParamNil',
+	'/api/listheaderparametertypes/listShortHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listIntHeaderParam',
+	'/api/listheaderparametertypes/listIntHeaderParamOpt',
+	'/api/listheaderparametertypes/listIntHeaderParamNil',
+	'/api/listheaderparametertypes/listIntHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listLongHeaderParam',
+	'/api/listheaderparametertypes/listLongHeaderParamOpt',
+	'/api/listheaderparametertypes/listLongHeaderParamNil',
+	'/api/listheaderparametertypes/listLongHeaderParamOptNil',
+
+	'/api/listheaderparametertypes/listLongHeaderParam',
+	'/api/listheaderparametertypes/listLongHeaderParamOpt',
+	'/api/listheaderparametertypes/listLongHeaderParamNil',
+	'/api/listheaderparametertypes/listLongHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listFloatHeaderParam',
+	'/api/listheaderparametertypes/listFloatHeaderParamOpt',
+	'/api/listheaderparametertypes/listFloatHeaderParamNil',
+	'/api/listheaderparametertypes/listFloatHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listDoubleHeaderParam',
+	'/api/listheaderparametertypes/listDoubleHeaderParamOpt',
+	'/api/listheaderparametertypes/listDoubleHeaderParamNil',
+	'/api/listheaderparametertypes/listDoubleHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listStringHeaderParam',
+	'/api/listheaderparametertypes/listStringHeaderParamOpt',
+	'/api/listheaderparametertypes/listStringHeaderParamNil',
+	'/api/listheaderparametertypes/listStringHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listLocalDateHeaderParam',
+	'/api/listheaderparametertypes/listLocalDateHeaderParamOpt',
+	'/api/listheaderparametertypes/listLocalDateHeaderParamNil',
+	'/api/listheaderparametertypes/listLocalDateHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listLocalDateTimeHeaderParam',
+	'/api/listheaderparametertypes/listLocalDateTimeHeaderParamOpt',
+	'/api/listheaderparametertypes/listLocalDateTimeHeaderParamNil',
+	'/api/listheaderparametertypes/listLocalDateTimeHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listZonedDateTimeHeaderParam',
+	'/api/listheaderparametertypes/listZonedDateTimeHeaderParamOpt',
+	'/api/listheaderparametertypes/listZonedDateTimeHeaderParamNil',
+	'/api/listheaderparametertypes/listZonedDateTimeHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listScalarHeaderParam',
+	'/api/listheaderparametertypes/listScalarHeaderParamOpt',
+	'/api/listheaderparametertypes/listScalarHeaderParamNil',
+	'/api/listheaderparametertypes/listScalarHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listEnumHeaderParam',
+	'/api/listheaderparametertypes/listEnumHeaderParamOpt',
+	'/api/listheaderparametertypes/listEnumHeaderParamNil',
+	'/api/listheaderparametertypes/listEnumHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listInlineEnumHeaderParam',
+	'/api/listheaderparametertypes/listInlineEnumHeaderParamOpt',
+	'/api/listheaderparametertypes/listInlineEnumHeaderParamNil',
+	'/api/listheaderparametertypes/listInlineEnumHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listMultiHeaderParam',
+	'/api/listheaderparametertypes/listMultiHeaderParamOpt',
+	'/api/listheaderparametertypes/listMultiHeaderParamNil',
+	'/api/listheaderparametertypes/listMultiHeaderParamOptNil',
+
 	'/api/listheaderparametertypes/listRecordHeaderParam',
+	'/api/listheaderparametertypes/listRecordHeaderParamOpt',
+	'/api/listheaderparametertypes/listRecordHeaderParamNil',
+	'/api/listheaderparametertypes/listRecordHeaderParamOptNil',
 ];
 
 const numListHeaderParamPaths = [
@@ -939,15 +1003,30 @@ async function listHeaderParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 			const response = values.join('-');
 			ctx.body = JSON.stringify(response);
 			return;
+		} else if (
+			ctx.path === '/api/listheaderparametertypes/listMultiHeaderParamOpt' ||
+			ctx.path === '/api/listheaderparametertypes/listMultiHeaderParamNil' ||
+			ctx.path === '/api/listheaderparametertypes/listMultiHeaderParamOptNil'
+		) {
+			const values = [
+				ctx.header.valuea === undefined ? 'UNDEFINED' : 'NULL',
+				ctx.header.valueb === undefined ? 'UNDEFINED' : 'NULL',
+				ctx.header.valuec === undefined ? 'UNDEFINED' : 'NULL',
+			];
+			ctx.body = JSON.stringify(values);
+			return;
 		}
 
 		const headerValue = String(ctx.header.headervalue);
-		if (ctx.path === '/api/listheaderparametertypes/listRecordHeaderParam') {
+		if (ctx.header.headervalue === undefined) {
+			ctx.body = '"UNDEFINED"';
+		} else if (headerValue === 'null') {
+			ctx.body = '"NULL"';
+		} else if (ctx.path === '/api/listheaderparametertypes/listRecordHeaderParam') {
 			ctx.body = `[${headerValue}]`;
 			return;
 		} else if (ctx.path === '/api/listheaderparametertypes/listBooleanHeaderParam') {
 			ctx.body = `[${headerValue}]`;
-			console.log('Boolean Header Param Response:', ctx.body);
 		} else if (numListHeaderParamPaths.includes(ctx.path)) {
 			ctx.body = `[${headerValue}]`;
 		} else {

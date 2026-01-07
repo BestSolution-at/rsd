@@ -502,7 +502,7 @@ service ListSampleService {
 		operation listSimpleRecordWithError(): SimpleRecord[] throws SampleError;
 }
 
-
+// Optional and Nil variants of Path Params do not make sense
 service PathParameterTypeService {
 	operation simpleBooleanPathParam(
 		pathBoolean: boolean
@@ -761,6 +761,7 @@ service BodyParameterTypes {
 	): PatchableRecord;
 }
 
+// TODO Add Opt and Nil variants to Header Params
 service HeaderParameterTypes {
 	operation simpleBooleanHeaderParam(
 		headerValue: boolean
@@ -804,6 +805,7 @@ service HeaderParameterTypes {
 	): SimpleRecord;
 }
 
+// TODO Add Nil variants to Query Params
 service QueryParameterTypes {
 	operation simpleBooleanQueryParam(
 		queryValue: boolean
@@ -900,8 +902,7 @@ service QueryParameterTypes {
 	): NilResult;
 }
 
-// TODO List in Header
-
+// TODO Add Nil variants to Body Params
 service ListBodyParameterTypes {
 	operation listBooleanBodyParam(
 		bodyBoolean: boolean[]
@@ -948,6 +949,7 @@ service ListBodyParameterTypes {
 	): SimpleRecord[];
 }
 
+// TODO Add Nil variants to Query Params
 service ListQueryParameterTypes {
 	operation listBooleanQueryParam(
 		queryValue: boolean[]
@@ -994,50 +996,194 @@ service ListQueryParameterTypes {
 	): SimpleRecord[];
 }
 
+// TODO Add Nil variants to Header Params
 service ListHeaderParameterTypes {
 	operation listBooleanHeaderParam(
 		headerValue: boolean[]
 	): boolean[];
+	operation listBooleanHeaderParamOpt(
+		headerValue?: boolean[]
+	): NilResult;
+	operation listBooleanHeaderParamNil(
+		headerValue: boolean[]?
+	): NilResult;
+	operation listBooleanHeaderParamOptNil(
+		headerValue?: boolean[]?
+	): NilResult;
+
 	operation listShortHeaderParam(
 		headerValue: short[]
 	): short[];
+	operation listShortHeaderParamOpt(
+		headerValue?: short[]
+	): NilResult;
+	operation listShortHeaderParamNil(
+		headerValue: short[]?
+	): NilResult;
+	operation listShortHeaderParamOptNil(
+		headerValue?: short[]?
+	): NilResult;
+
 	operation listIntHeaderParam(
 		headerValue: int[]
 	): int[];
+	operation listIntHeaderParamOpt(
+		headerValue?: int[]
+	): NilResult;
+	operation listIntHeaderParamNil(
+		headerValue: int[]?
+	): NilResult;
+	operation listIntHeaderParamOptNil(
+		headerValue?: int[]?
+	): NilResult;
+
 	operation listLongHeaderParam(
 		headerValue: long[]
 	): long[];
+	operation listLongHeaderParamOpt(
+		headerValue?: long[]
+	): NilResult;
+	operation listLongHeaderParamNil(
+		headerValue: long[]?
+	): NilResult;
+	operation listLongHeaderParamOptNil(
+		headerValue?: long[]?
+	): NilResult;
+
 	operation listFloatHeaderParam(
 		headerValue: float[]
 	): float[];
+	operation listFloatHeaderParamOpt(
+		headerValue?: float[]
+	): NilResult;
+	operation listFloatHeaderParamNil(
+		headerValue: float[]?
+	): NilResult;
+	operation listFloatHeaderParamOptNil(
+		headerValue?: float[]?
+	): NilResult;
+
 	operation listDoubleHeaderParam(
 		headerValue: double[]
 	): double[];
+	operation listDoubleHeaderParamOpt(
+		headerValue?: double[]
+	): NilResult;
+	operation listDoubleHeaderParamNil(
+		headerValue: double[]?
+	): NilResult;
+	operation listDoubleHeaderParamOptNil(
+		headerValue?: double[]?
+	): NilResult;
+
 	operation listStringHeaderParam(
 		headerValue: string[]
 	): string[];
+	operation listStringHeaderParamOpt(
+		headerValue?: string[]
+	): NilResult;
+	operation listStringHeaderParamNil(
+		headerValue: string[]?
+	): NilResult;
+	operation listStringHeaderParamOptNil(
+		headerValue?: string[]?
+	): NilResult;
+
 	operation listLocalDateHeaderParam(
 		headerValue: local-date[]
 	): local-date[];
+	operation listLocalDateHeaderParamOpt(
+		headerValue?: local-date[]
+	): NilResult;
+	operation listLocalDateHeaderParamNil(
+		headerValue: local-date[]?
+	): NilResult;
+	operation listLocalDateHeaderParamOptNil(
+		headerValue?: local-date[]?
+	): NilResult;
+
 	operation listLocalDateTimeHeaderParam(
 		headerValue: local-date-time[]
 	): local-date-time[];
+	operation listLocalDateTimeHeaderParamOpt(
+		headerValue?: local-date-time[]
+	): NilResult;
+	operation listLocalDateTimeHeaderParamNil(
+		headerValue: local-date-time[]?
+	): NilResult;
+	operation listLocalDateTimeHeaderParamOptNil(
+		headerValue?: local-date-time[]?
+	): NilResult;
+
 	operation listZonedDateTimeHeaderParam(
 		headerValue: zoned-date-time[]
 	): zoned-date-time[];
+	operation listZonedDateTimeHeaderParamOpt(
+		headerValue?: zoned-date-time[]
+	): NilResult;
+	operation listZonedDateTimeHeaderParamNil(
+		headerValue: zoned-date-time[]?
+	): NilResult;
+	operation listZonedDateTimeHeaderParamOptNil(
+		headerValue?: zoned-date-time[]?
+	): NilResult;
+
 	operation listScalarHeaderParam(
 		headerValue: ZoneId[]
 	): ZoneId[];
+	operation listScalarHeaderParamOpt(
+		headerValue?: ZoneId[]
+	): NilResult;
+	operation listScalarHeaderParamNil(
+		headerValue: ZoneId[]?
+	): NilResult;
+	operation listScalarHeaderParamOptNil(
+		headerValue?: ZoneId[]?
+	): NilResult;
+
 	operation listEnumHeaderParam(
 		headerValue: SampleEnum[]
 	): SampleEnum[];
+	operation listEnumHeaderParamOpt(
+		headerValue?: SampleEnum[]
+	): NilResult;
+	operation listEnumHeaderParamNil(
+		headerValue: SampleEnum[]?
+	): NilResult;
+	operation listEnumHeaderParamOptNil(
+		headerValue?: SampleEnum[]?
+	): NilResult;
+
 	operation listInlineEnumHeaderParam(
 		headerValue: enum A | B[]
 	): enum A | B[];
+	operation listInlineEnumHeaderParamOpt(
+		headerValue?: enum A | B[]
+	): NilResult;
+	operation listInlineEnumHeaderParamNil(
+		headerValue: enum C | D []?
+	): NilResult;
+	operation listInlineEnumHeaderParamOptNil(
+		headerValue?: enum C | D []?
+	): NilResult;
+
 	operation listMultiHeaderParam(valueA: string[], valueB: int[], valueC: SimpleRecord[]): string;
+	operation listMultiHeaderParamOpt(valueA?: string[], valueB?: int[], valueC?: SimpleRecord[]): NilResult[];
+	operation listMultiHeaderParamNil(valueA: string[]?, valueB: int[]?, valueC: SimpleRecord[]?): NilResult[];
+	operation listMultiHeaderParamOptNil(valueA?: string[]?, valueB?: int[]?, valueC?: SimpleRecord[]?): NilResult[];
+	
 	operation listRecordHeaderParam(
 		headerValue: SimpleRecord[]
 	): SimpleRecord[];
+	operation listRecordHeaderParamOpt(
+		headerValue?: SimpleRecord[]
+	): NilResult;
+	operation listRecordHeaderParamNil(
+		headerValue: SimpleRecord[]?
+	): NilResult;
+	operation listRecordHeaderParamOptNil(
+		headerValue?: SimpleRecord[]?
+	): NilResult;
 }
 
 service BinaryTypes {

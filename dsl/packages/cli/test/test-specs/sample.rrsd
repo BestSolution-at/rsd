@@ -437,35 +437,145 @@ resource ListQueryParameterTypes at '/api/listqueryparametertypes' {
 resource ListHeaderParameterTypes at '/api/listheaderparametertypes' {
 	GET listBooleanHeaderParam at 'listBooleanHeaderParam'
 		header-param headerValue
+	GET listBooleanHeaderParamOpt at 'listBooleanHeaderParamOpt'
+		header-param headerValue
+	GET listBooleanHeaderParamNil at 'listBooleanHeaderParamNil'
+		header-param headerValue
+	GET listBooleanHeaderParamOptNil at 'listBooleanHeaderParamOptNil'
+		header-param headerValue
+
 	GET listShortHeaderParam at 'listShortHeaderParam'
 		header-param headerValue
+	GET listShortHeaderParamOpt at 'listShortHeaderParamOpt'
+		header-param headerValue
+	GET listShortHeaderParamNil at 'listShortHeaderParamNil'
+		header-param headerValue
+	GET listShortHeaderParamOptNil at 'listShortHeaderParamOptNil'
+		header-param headerValue
+	
 	GET listIntHeaderParam at 'listIntHeaderParam'
 		header-param headerValue
+	GET listIntHeaderParamOpt at 'listIntHeaderParamOpt'
+		header-param headerValue
+	GET listIntHeaderParamNil at 'listIntHeaderParamNil'
+		header-param headerValue
+	GET listIntHeaderParamOptNil at 'listIntHeaderParamOptNil'
+		header-param headerValue
+	
 	GET listLongHeaderParam at 'listLongHeaderParam'
 		header-param headerValue
+	GET listLongHeaderParamOpt at 'listLongHeaderParamOpt'
+		header-param headerValue
+	GET listLongHeaderParamNil at 'listLongHeaderParamNil'
+		header-param headerValue
+	GET listLongHeaderParamOptNil at 'listLongHeaderParamOptNil'
+		header-param headerValue
+	
 	GET listFloatHeaderParam at 'listFloatHeaderParam'
 		header-param headerValue
+	GET listFloatHeaderParamOpt at 'listFloatHeaderParamOpt'
+		header-param headerValue
+	GET listFloatHeaderParamNil at 'listFloatHeaderParamNil'
+		header-param headerValue
+	GET listFloatHeaderParamOptNil at 'listFloatHeaderParamOptNil'
+		header-param headerValue
+	
 	GET listDoubleHeaderParam at 'listDoubleHeaderParam'
 		header-param headerValue
+	GET listDoubleHeaderParamOpt at 'listDoubleHeaderParamOpt'
+		header-param headerValue
+	GET listDoubleHeaderParamNil at 'listDoubleHeaderParamNil'
+		header-param headerValue
+	GET listDoubleHeaderParamOptNil at 'listDoubleHeaderParamOptNil'
+		header-param headerValue
+	
 	GET listStringHeaderParam at 'listStringHeaderParam'
 		header-param headerValue
+	GET listStringHeaderParamOpt at 'listStringHeaderParamOpt'
+		header-param headerValue
+	GET listStringHeaderParamNil at 'listStringHeaderParamNil'
+		header-param headerValue
+	GET listStringHeaderParamOptNil at 'listStringHeaderParamOptNil'
+		header-param headerValue
+	
 	GET listLocalDateHeaderParam at 'listLocalDateHeaderParam'
 		header-param headerValue
+	GET listLocalDateHeaderParamOpt at 'listLocalDateHeaderParamOpt'
+		header-param headerValue
+	GET listLocalDateHeaderParamNil at 'listLocalDateHeaderParamNil'
+		header-param headerValue
+	GET listLocalDateHeaderParamOptNil at 'listLocalDateHeaderParamOptNil'
+		header-param headerValue
+	
 	GET listLocalDateTimeHeaderParam at 'listLocalDateTimeHeaderParam'
 		header-param headerValue
+	GET listLocalDateTimeHeaderParamOpt at 'listLocalDateTimeHeaderParamOpt'
+		header-param headerValue
+	GET listLocalDateTimeHeaderParamNil at 'listLocalDateTimeHeaderParamNil'
+		header-param headerValue
+	GET listLocalDateTimeHeaderParamOptNil at 'listLocalDateTimeHeaderParamOptNil'
+		header-param headerValue
+	
 	GET listZonedDateTimeHeaderParam at 'listZonedDateTimeHeaderParam'
 		header-param headerValue
+	GET listZonedDateTimeHeaderParamOpt at 'listZonedDateTimeHeaderParamOpt'
+		header-param headerValue
+	GET listZonedDateTimeHeaderParamNil at 'listZonedDateTimeHeaderParamNil'
+		header-param headerValue
+	GET listZonedDateTimeHeaderParamOptNil at 'listZonedDateTimeHeaderParamOptNil'
+		header-param headerValue
+	
 	GET listScalarHeaderParam at 'listScalarHeaderParam'
 		header-param headerValue
+	GET listScalarHeaderParamOpt at 'listScalarHeaderParamOpt'
+		header-param headerValue
+	GET listScalarHeaderParamNil at 'listScalarHeaderParamNil'
+		header-param headerValue
+	GET listScalarHeaderParamOptNil at 'listScalarHeaderParamOptNil'
+		header-param headerValue
+	
 	GET listEnumHeaderParam at 'listEnumHeaderParam'
 		header-param headerValue
+	GET listEnumHeaderParamOpt at 'listEnumHeaderParamOpt'
+		header-param headerValue
+	GET listEnumHeaderParamNil at 'listEnumHeaderParamNil'
+		header-param headerValue
+	GET listEnumHeaderParamOptNil at 'listEnumHeaderParamOptNil'
+		header-param headerValue
+	
 	GET listInlineEnumHeaderParam at 'listInlineEnumHeaderParam'
 		header-param headerValue
+	GET listInlineEnumHeaderParamOpt at 'listInlineEnumHeaderParamOpt'
+		header-param headerValue
+	GET listInlineEnumHeaderParamNil at 'listInlineEnumHeaderParamNil'
+		header-param headerValue
+	GET listInlineEnumHeaderParamOptNil at 'listInlineEnumHeaderParamOptNil'
+		header-param headerValue
+	
 	GET listMultiHeaderParam at 'listMultiHeaderParam'
 		header-param valueA
 		header-param valueB
 		header-param valueC
+	GET listMultiHeaderParamOpt at 'listMultiHeaderParamOpt'
+		header-param valueA
+		header-param valueB
+		header-param valueC
+	GET listMultiHeaderParamNil at 'listMultiHeaderParamNil'
+		header-param valueA
+		header-param valueB
+		header-param valueC
+	GET listMultiHeaderParamOptNil at 'listMultiHeaderParamOptNil'
+		header-param valueA
+		header-param valueB
+		header-param valueC
+	
 	GET listRecordHeaderParam at 'listRecordHeaderParam'
+		header-param headerValue
+	GET listRecordHeaderParamOpt at 'listRecordHeaderParamOpt'
+		header-param headerValue
+	GET listRecordHeaderParamNil at 'listRecordHeaderParamNil'
+		header-param headerValue
+	GET listRecordHeaderParamOptNil at 'listRecordHeaderParamOptNil'
 		header-param headerValue
 }
 
