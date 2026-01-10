@@ -59,7 +59,10 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				{ key: '1', version: '1', value: 'Record1' },
 				['Text1', 'Text2'],
 				[1, 2, 3],
-				[{ key: '2', version: '1', value: 'Record2' }],
+				[
+					{ key: '2', version: '1', value: 'Record2' },
+					{ key: '3', version: '1', value: 'Record3' },
+				],
 				file,
 				blob,
 			);

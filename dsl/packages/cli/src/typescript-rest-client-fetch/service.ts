@@ -303,28 +303,45 @@ function generateRemoteInvoke(
 			node.append(`const $body = new FormData();`, NL);
 			bodyParams.forEach(p => {
 				if (p.variant === 'stream') {
-					node.append(`$body.append('${p.name}', ${p.name});`, NL);
+					if (p.array) {
+						node.append(`${p.name}.forEach($entry => {`, NL);
+						node.indent(mBody => {
+							mBody.append(`$body.append('${p.name}', $entry);`, NL);
+						});
+						node.append('});', NL);
+					} else {
+						node.append(`$body.append('${p.name}', ${p.name});`, NL);
+					}
 				} else {
 					if (p.variant === 'record' || p.variant === 'union') {
+						const encodeValue = fqn('encodeValue:./_fetch-type-utils.ts', false);
+						const encodingType = fqn('encodingType:./_fetch-type-utils.ts', false);
 						const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${
 							p.type + (p.patch ? 'Patch' : '')
 						}ToJSON`;
 						if (p.array) {
-							node.append(
-								`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${p.name}.map(${toJSON})));`,
-								NL,
-							);
+							node.append(`${p.name}.forEach($entry => {`, NL);
+							node.indent(mBody => {
+								mBody.append(
+									`$body.append('${p.name}', new Blob([${encodeValue}(${encodingType}(props), ${toJSON}($entry))], { type: ${encodingType}(props) }));`,
+									NL,
+								);
+							});
+							node.append('});', NL);
 						} else {
 							node.append(
-								`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(${p.name})));`,
+								`$body.append('${p.name}', new Blob([${encodeValue}(${encodingType}(props), ${toJSON}(${p.name}))], { type: ${encodingType}(props) }));`,
 								NL,
 							);
 						}
+					} else if (p.array) {
+						node.append(`${p.name}.forEach($entry => {`, NL);
+						node.indent(mBody => {
+							mBody.append(`$body.append('${p.name}', $entry);`, NL);
+						});
+						node.append('});', NL);
 					} else {
-						node.append(
-							`$body.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${p.name}));`,
-							NL,
-						);
+						node.append(`$body.append('${p.name}', ${p.name});`, NL);
 					}
 				}
 			});

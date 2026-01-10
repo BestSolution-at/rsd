@@ -1457,11 +1457,21 @@ async function uploadMixed(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 				file.on('data', () => {
 					fieldCount += 1;
 				});
+			} else if (name === 'rec' && filename === 'blob' && mimeType === 'application/json') {
+				file.on('data', () => {
+					fieldCount += 1;
+				});
+			} else if (name === 'recList' && filename === 'blob' && mimeType === 'application/json') {
+				file.on('data', () => {
+					fieldCount += 1;
+				});
+			} else {
+				console.error(`Unexpected file field: ${name}, ${filename}, ${mimeType}`);
 			}
 		});
 		bb.on('field', (name, val) => {
 			if (name === 'text') {
-				if (val === '"Sample Text"') {
+				if (val === 'Sample Text') {
 					fieldCount += 1;
 				} else {
 					console.error(`Unexpected text field value for ${name}: ${val}`);
@@ -1472,26 +1482,14 @@ async function uploadMixed(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 				} else {
 					console.error(`Unexpected text field value for ${name}: ${val}`);
 				}
-			} else if (name === 'rec') {
-				if (val === JSON.stringify({ key: '1', version: '1', value: 'Record1' })) {
-					fieldCount += 1;
-				} else {
-					console.error(`Unexpected text field value for ${name}: ${val}`);
-				}
 			} else if (name === 'textList') {
-				if (val === JSON.stringify(['Text1', 'Text2'])) {
+				if (val === 'Text1' || val === 'Text2') {
 					fieldCount += 1;
 				} else {
 					console.error(`Unexpected text field value for ${name}: ${val}`);
 				}
 			} else if (name === 'numberList') {
-				if (val === JSON.stringify([1, 2, 3])) {
-					fieldCount += 1;
-				} else {
-					console.error(`Unexpected text field value for ${name}: ${val}`);
-				}
-			} else if (name === 'recList') {
-				if (val === JSON.stringify([{ key: '2', version: '1', value: 'Record2' }])) {
+				if (val === '1' || val === '2' || val === '3') {
 					fieldCount += 1;
 				} else {
 					console.error(`Unexpected text field value for ${name}: ${val}`);
@@ -1501,7 +1499,7 @@ async function uploadMixed(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 			}
 		});
 		bb.on('close', () => {
-			ctx.status = fieldCount === 8 ? 204 : 500;
+			ctx.status = fieldCount === 12 ? 204 : 500;
 			finish();
 		});
 		ctx.req.pipe(bb);

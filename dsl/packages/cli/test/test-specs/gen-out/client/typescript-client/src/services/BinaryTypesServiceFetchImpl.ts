@@ -82,12 +82,18 @@ function fnUploadMixed(props: ServiceProps<api.service.ErrorType>): api.service.
 
 			const $path = `${baseUrl}/api/binarytypes/uploadMixed`;
 			const $body = new FormData();
-			$body.append('text', encodeValue(encodingType(props), text));
-			$body.append('number', encodeValue(encodingType(props), number));
-			$body.append('rec', encodeValue(encodingType(props), api.model.SimpleRecordToJSON(rec)));
-			$body.append('textList', encodeValue(encodingType(props), textList));
-			$body.append('numberList', encodeValue(encodingType(props), numberList));
-			$body.append('recList', encodeValue(encodingType(props), recList.map(api.model.SimpleRecordToJSON)));
+			$body.append('text', text);
+			$body.append('number', number);
+			$body.append('rec', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON(rec))], { type: encodingType(props) }));
+			textList.forEach($entry => {
+				$body.append('textList', $entry);
+			});
+			numberList.forEach($entry => {
+				$body.append('numberList', $entry);
+			});
+			recList.forEach($entry => {
+				$body.append('recList', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))], { type: encodingType(props) }));
+			});
 			$body.append('dataFile', dataFile);
 			$body.append('dataBlob', dataBlob);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
