@@ -97,6 +97,7 @@ function generateBuilderPropertyMethods(
 	const node = new CompositeGeneratorNode();
 	props.forEach(prop => {
 		const type = computeAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
+		node.append('@Override', NL);
 		node.append(`public ${owner.name}.DataBuilder ${prop.name}(${type} ${prop.name}) {`, NL);
 		node.indent(methodBody => {
 			if (isMProperty(prop)) {
