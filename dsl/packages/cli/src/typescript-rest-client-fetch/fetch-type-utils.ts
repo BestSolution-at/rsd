@@ -80,7 +80,11 @@ function generateFetchTypeUtilsContent(
 		}`);
 
 	result.append(basic, NL, NL);
-	result.append('export function encodeValue(type: ContentTypeEncodings, value: unknown) {', NL);
+	if (encodings.length > 1) {
+		result.append('export function encodeValue(type: ContentTypeEncodings, value: unknown) {', NL);
+	} else {
+		result.append('export function encodeValue(_type: ContentTypeEncodings, value: unknown) {', NL);
+	}
 
 	result.indent(mBody => {
 		if (encodings.length > 1) {
