@@ -518,6 +518,8 @@ function generatePatchBuilderPropertyAccessor_NoRecord_Scalar(
 		} else {
 			content = `$builder.add("${property.name}", ${property.name}.toString())`;
 		}
+	} else if (property.variant === 'enum') {
+		content = `$builder.add("${property.name}", ${property.name}.toString())`;
 	}
 	node.indent(methodBody => {
 		methodBody.append(content, ';', NL);
