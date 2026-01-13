@@ -8,8 +8,12 @@ export function generatePropertyAccessor(
 	nativeTypeSubstitues: Record<string, string> | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
+	inherited = false,
 ) {
 	const node = new CompositeGeneratorNode();
+	if (inherited) {
+		node.append('@Override', NL);
+	}
 	node.append(`public ${computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn)} ${property.name}();`, NL);
 	return node;
 }

@@ -66,7 +66,10 @@ function generateData(
 	node.append(`public interface Data extends _Base.BaseData, ${t.name}${mixins}${unions} {`, NL);
 	node.indent(classBody => {
 		classBody.append(
-			...props.flatMap(p => [generatePropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn), NL]),
+			...props.flatMap(p => [
+				generatePropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn, t.name !== p.resolved.owner.name),
+				NL,
+			]),
 		);
 	});
 	node.append('}', NL);
@@ -114,7 +117,10 @@ function generatePatch(
 		classBody.append(
 			...props
 				.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
-				.flatMap(p => [generatePropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn), NL]),
+				.flatMap(p => [
+					generatePropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn, t.name !== p.resolved.owner.name),
+					NL,
+				]),
 		);
 		classBody.append(
 			...props

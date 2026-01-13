@@ -26,6 +26,7 @@ export function generatePropertyNG(
 	const type = computeAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
 
 	const node = new CompositeGeneratorNode();
+	node.append('@Override', NL);
 	node.append(`public ${type} ${prop.name}() {`, NL);
 
 	node.indent(methodBody => {
