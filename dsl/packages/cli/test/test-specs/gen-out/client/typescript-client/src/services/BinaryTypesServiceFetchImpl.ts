@@ -5,8 +5,25 @@ import { api } from '../index.js';
 export function createBinaryTypesService(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService {
 	return {
 		uploadFile: fnUploadFile(props),
+		uploadFileOpt: fnUploadFileOpt(props),
+		uploadFileNil: fnUploadFileNil(props),
+		uploadFileOptNil: fnUploadFileOptNil(props),
 		uploadBlob: fnUploadBlob(props),
+		uploadBlobOpt: fnUploadBlobOpt(props),
+		uploadBlobNil: fnUploadBlobNil(props),
+		uploadBlobOptNil: fnUploadBlobOptNil(props),
+		uploadFileList: fnUploadFileList(props),
+		uploadFileListOpt: fnUploadFileListOpt(props),
+		uploadFileListNil: fnUploadFileListNil(props),
+		uploadFileListOptNil: fnUploadFileListOptNil(props),
+		uploadBlobList: fnUploadBlobList(props),
+		uploadBlobListOpt: fnUploadBlobListOpt(props),
+		uploadBlobListNil: fnUploadBlobListNil(props),
+		uploadBlobListOptNil: fnUploadBlobListOptNil(props),
 		uploadMixed: fnUploadMixed(props),
+		uploadMixedOpt: fnUploadMixedOpt(props),
+		uploadMixedNil: fnUploadMixedNil(props),
+		uploadMixedOptNil: fnUploadMixedOptNil(props),
 		downloadFile: fnDownloadFile(props),
 		downloadBlob: fnDownloadBlob(props),
 	};
@@ -41,6 +58,106 @@ function fnUploadFile(props: ServiceProps<api.service.ErrorType>): api.service.B
 	};
 }
 
+function fnUploadFileOpt(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadFileOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data?: File) => {
+		try {
+			const $init = (await preFetch?.('uploadFileOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadFileOpt`;
+			const $body = new FormData();
+			if (data !== undefined) {
+				$body.append('data', data);
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 201) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadFileOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadFileOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadFileOpt');
+		}
+	};
+}
+
+function fnUploadFileNil(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadFileNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data: File | null) => {
+		try {
+			const $init = (await preFetch?.('uploadFileNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadFileNil`;
+			const $body = new FormData();
+			if (data !== null) {
+				$body.append('data', data);
+			} else {
+				$body.append('data', 'null');
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 201) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadFileNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadFileNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadFileNil');
+		}
+	};
+}
+
+function fnUploadFileOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadFileOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data?: File | null) => {
+		try {
+			const $init = (await preFetch?.('uploadFileOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadFileOptNil`;
+			const $body = new FormData();
+			if (data !== undefined && data !== null) {
+				$body.append('data', data);
+			} else if(data === null) {
+				$body.append('data', 'null');
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 201) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadFileOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadFileOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadFileOptNil');
+		}
+	};
+}
+
 function fnUploadBlob(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadBlob'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
@@ -67,6 +184,382 @@ function fnUploadBlob(props: ServiceProps<api.service.ErrorType>): api.service.B
 			return api.result.ERR(err);
 		} finally {
 			final?.('uploadBlob');
+		}
+	};
+}
+
+function fnUploadBlobOpt(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadBlobOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data?: Blob) => {
+		try {
+			const $init = (await preFetch?.('uploadBlobOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadBlobOpt`;
+			const $body = new FormData();
+			if (data !== undefined) {
+				$body.append('data', data);
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 201) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadBlobOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadBlobOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadBlobOpt');
+		}
+	};
+}
+
+function fnUploadBlobNil(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadBlobNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data: Blob | null) => {
+		try {
+			const $init = (await preFetch?.('uploadBlobNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadBlobNil`;
+			const $body = new FormData();
+			if (data !== null) {
+				$body.append('data', data);
+			} else {
+				$body.append('data', 'null');
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 201) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadBlobNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadBlobNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadBlobNil');
+		}
+	};
+}
+
+function fnUploadBlobOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadBlobOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data?: Blob | null) => {
+		try {
+			const $init = (await preFetch?.('uploadBlobOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadBlobOptNil`;
+			const $body = new FormData();
+			if (data !== undefined && data !== null) {
+				$body.append('data', data);
+			} else if(data === null) {
+				$body.append('data', 'null');
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 201) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadBlobOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadBlobOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadBlobOptNil');
+		}
+	};
+}
+
+function fnUploadFileList(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadFileList'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data: File[]) => {
+		try {
+			const $init = (await preFetch?.('uploadFileList')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadFileList`;
+			const $body = new FormData();
+			data.forEach($entry => {
+				$body.append('data', $entry);
+			});
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadFileList', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadFileList', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadFileList');
+		}
+	};
+}
+
+function fnUploadFileListOpt(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadFileListOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data?: File[]) => {
+		try {
+			const $init = (await preFetch?.('uploadFileListOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadFileListOpt`;
+			const $body = new FormData();
+			if (data !== undefined) {
+				data.forEach($entry => {
+					$body.append('data', $entry);
+				});
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadFileListOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadFileListOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadFileListOpt');
+		}
+	};
+}
+
+function fnUploadFileListNil(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadFileListNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data: File[] | null) => {
+		try {
+			const $init = (await preFetch?.('uploadFileListNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadFileListNil`;
+			const $body = new FormData();
+			if (data !== null) {
+				data.forEach($entry => {
+					$body.append('data', $entry);
+				});
+			} else {
+				$body.append('data', 'null');
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadFileListNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadFileListNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadFileListNil');
+		}
+	};
+}
+
+function fnUploadFileListOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadFileListOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data?: File[] | null) => {
+		try {
+			const $init = (await preFetch?.('uploadFileListOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadFileListOptNil`;
+			const $body = new FormData();
+			if (data !== undefined && data !== null) {
+				data.forEach($entry => {
+					$body.append('data', $entry);
+				});
+			} else if(data === null) {
+				$body.append('data', 'null');
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadFileListOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadFileListOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadFileListOptNil');
+		}
+	};
+}
+
+function fnUploadBlobList(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadBlobList'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data: Blob[]) => {
+		try {
+			const $init = (await preFetch?.('uploadBlobList')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadBlobList`;
+			const $body = new FormData();
+			data.forEach($entry => {
+				$body.append('data', $entry);
+			});
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadBlobList', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadBlobList', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadBlobList');
+		}
+	};
+}
+
+function fnUploadBlobListOpt(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadBlobListOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data?: Blob[]) => {
+		try {
+			const $init = (await preFetch?.('uploadBlobListOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadBlobListOpt`;
+			const $body = new FormData();
+			if (data !== undefined) {
+				data.forEach($entry => {
+					$body.append('data', $entry);
+				});
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadBlobListOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadBlobListOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadBlobListOpt');
+		}
+	};
+}
+
+function fnUploadBlobListNil(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadBlobListNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data: Blob[] | null) => {
+		try {
+			const $init = (await preFetch?.('uploadBlobListNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadBlobListNil`;
+			const $body = new FormData();
+			if (data !== null) {
+				data.forEach($entry => {
+					$body.append('data', $entry);
+				});
+			} else {
+				$body.append('data', 'null');
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadBlobListNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadBlobListNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadBlobListNil');
+		}
+	};
+}
+
+function fnUploadBlobListOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadBlobListOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (data?: Blob[] | null) => {
+		try {
+			const $init = (await preFetch?.('uploadBlobListOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadBlobListOptNil`;
+			const $body = new FormData();
+			if (data !== undefined && data !== null) {
+				data.forEach($entry => {
+					$body.append('data', $entry);
+				});
+			} else if(data === null) {
+				$body.append('data', 'null');
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isNumber);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('uploadBlobListOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadBlobListOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadBlobListOptNil');
 		}
 	};
 }
@@ -109,6 +602,212 @@ function fnUploadMixed(props: ServiceProps<api.service.ErrorType>): api.service.
 			return api.result.ERR(err);
 		} finally {
 			final?.('uploadMixed');
+		}
+	};
+}
+
+function fnUploadMixedOpt(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadMixedOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (text?: string, number?: number, rec?: api.model.SimpleRecord, textList?: string[], numberList?: number[], recList?: api.model.SimpleRecord[], dataFile?: File, dataBlob?: Blob) => {
+		try {
+			const $init = (await preFetch?.('uploadMixedOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadMixedOpt`;
+			const $body = new FormData();
+			if (text !== undefined) {
+				$body.append('text', text);
+			}
+			if (number !== undefined) {
+				$body.append('number', number);
+			}
+			if (rec !== undefined) {
+				$body.append('rec', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON(rec))], { type: encodingType(props) }));
+			}
+			if (textList !== undefined) {
+				textList.forEach($entry => {
+					$body.append('textList', $entry);
+				});
+			}
+			if (numberList !== undefined) {
+				numberList.forEach($entry => {
+					$body.append('numberList', $entry);
+				});
+			}
+			if (recList !== undefined) {
+				recList.forEach($entry => {
+					$body.append('recList', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))], { type: encodingType(props) }));
+				});
+			}
+			if (dataFile !== undefined) {
+				$body.append('dataFile', dataFile);
+			}
+			if (dataBlob !== undefined) {
+				$body.append('dataBlob', dataBlob);
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('uploadMixedOpt', api.result.Void));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadMixedOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadMixedOpt');
+		}
+	};
+}
+
+function fnUploadMixedNil(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadMixedNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (text: string | null, number: number | null, rec: api.model.SimpleRecord | null, textList: string[] | null, numberList: number[] | null, recList: api.model.SimpleRecord[] | null, dataFile: File | null, dataBlob: Blob | null) => {
+		try {
+			const $init = (await preFetch?.('uploadMixedNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadMixedNil`;
+			const $body = new FormData();
+			if (text !== null) {
+				$body.append('text', text);
+			} else {
+				$body.append('text', 'null');
+			}
+			if (number !== null) {
+				$body.append('number', number);
+			} else {
+				$body.append('number', 'null');
+			}
+			if (rec !== null) {
+				$body.append('rec', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON(rec))], { type: encodingType(props) }));
+			} else {
+				$body.append('rec', 'null');
+			}
+			if (textList !== null) {
+				textList.forEach($entry => {
+					$body.append('textList', $entry);
+				});
+			} else {
+				$body.append('textList', 'null');
+			}
+			if (numberList !== null) {
+				numberList.forEach($entry => {
+					$body.append('numberList', $entry);
+				});
+			} else {
+				$body.append('numberList', 'null');
+			}
+			if (recList !== null) {
+				recList.forEach($entry => {
+					$body.append('recList', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))], { type: encodingType(props) }));
+				});
+			} else {
+				$body.append('recList', 'null');
+			}
+			if (dataFile !== null) {
+				$body.append('dataFile', dataFile);
+			} else {
+				$body.append('dataFile', 'null');
+			}
+			if (dataBlob !== null) {
+				$body.append('dataBlob', dataBlob);
+			} else {
+				$body.append('dataBlob', 'null');
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('uploadMixedNil', api.result.Void));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadMixedNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadMixedNil');
+		}
+	};
+}
+
+function fnUploadMixedOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadMixedOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (text?: string | null, number?: number | null, rec?: api.model.SimpleRecord | null, textList?: string[] | null, numberList?: number[] | null, recList?: api.model.SimpleRecord[] | null, dataFile?: File | null, dataBlob?: Blob | null) => {
+		try {
+			const $init = (await preFetch?.('uploadMixedOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/uploadMixedOptNil`;
+			const $body = new FormData();
+			if (text !== undefined && text !== null) {
+				$body.append('text', text);
+			} else if(text === null) {
+				$body.append('text', 'null');
+			}
+			if (number !== undefined && number !== null) {
+				$body.append('number', number);
+			} else if(number === null) {
+				$body.append('number', 'null');
+			}
+			if (rec !== undefined && rec !== null) {
+				$body.append('rec', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON(rec))], { type: encodingType(props) }));
+			} else if(rec === null) {
+				$body.append('rec', 'null');
+			}
+			if (textList !== undefined && textList !== null) {
+				textList.forEach($entry => {
+					$body.append('textList', $entry);
+				});
+			} else if(textList === null) {
+				$body.append('textList', 'null');
+			}
+			if (numberList !== undefined && numberList !== null) {
+				numberList.forEach($entry => {
+					$body.append('numberList', $entry);
+				});
+			} else if(numberList === null) {
+				$body.append('numberList', 'null');
+			}
+			if (recList !== undefined && recList !== null) {
+				recList.forEach($entry => {
+					$body.append('recList', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))], { type: encodingType(props) }));
+				});
+			} else if(recList === null) {
+				$body.append('recList', 'null');
+			}
+			if (dataFile !== undefined && dataFile !== null) {
+				$body.append('dataFile', dataFile);
+			} else if(dataFile === null) {
+				$body.append('dataFile', 'null');
+			}
+			if (dataBlob !== undefined && dataBlob !== null) {
+				$body.append('dataBlob', dataBlob);
+			} else if(dataBlob === null) {
+				$body.append('dataBlob', 'null');
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('uploadMixedOptNil', api.result.Void));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('uploadMixedOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('uploadMixedOptNil');
 		}
 	};
 }

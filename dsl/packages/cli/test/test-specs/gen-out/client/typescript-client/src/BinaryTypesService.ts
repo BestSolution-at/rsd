@@ -5,8 +5,25 @@ import type { SimpleRecord } from './model/SimpleRecord.js';
 
 export interface BinaryTypesService {
 	uploadFile(data: File): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadFileOpt(data?: File): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadFileNil(data: File | null): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadFileOptNil(data?: File | null): Promise<Result<number, StatusRSDError | NativeRSDError>>;
 	uploadBlob(data: Blob): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadBlobOpt(data?: Blob): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadBlobNil(data: Blob | null): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadBlobOptNil(data?: Blob | null): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadFileList(data: File[]): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadFileListOpt(data?: File[]): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadFileListNil(data: File[] | null): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadFileListOptNil(data?: File[] | null): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadBlobList(data: Blob[]): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadBlobListOpt(data?: Blob[]): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadBlobListNil(data: Blob[] | null): Promise<Result<number, StatusRSDError | NativeRSDError>>;
+	uploadBlobListOptNil(data?: Blob[] | null): Promise<Result<number, StatusRSDError | NativeRSDError>>;
 	uploadMixed(text: string, number: number, rec: SimpleRecord, textList: string[], numberList: number[], recList: SimpleRecord[], dataFile: File, dataBlob: Blob): Promise<Result<VoidType, StatusRSDError | NativeRSDError>>;
+	uploadMixedOpt(text?: string, number?: number, rec?: SimpleRecord, textList?: string[], numberList?: number[], recList?: SimpleRecord[], dataFile?: File, dataBlob?: Blob): Promise<Result<VoidType, StatusRSDError | NativeRSDError>>;
+	uploadMixedNil(text: string | null, number: number | null, rec: SimpleRecord | null, textList: string[] | null, numberList: number[] | null, recList: SimpleRecord[] | null, dataFile: File | null, dataBlob: Blob | null): Promise<Result<VoidType, StatusRSDError | NativeRSDError>>;
+	uploadMixedOptNil(text?: string | null, number?: number | null, rec?: SimpleRecord | null, textList?: string[] | null, numberList?: number[] | null, recList?: SimpleRecord[] | null, dataFile?: File | null, dataBlob?: Blob | null): Promise<Result<VoidType, StatusRSDError | NativeRSDError>>;
 	downloadFile(): Promise<Result<File, StatusRSDError | NativeRSDError>>;
 	downloadBlob(): Promise<Result<Blob, StatusRSDError | NativeRSDError>>;
 }

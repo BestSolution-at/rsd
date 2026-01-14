@@ -16876,6 +16876,120 @@
         },
         {
           "@type": "Operation",
+          "name": "uploadFileOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "stream",
+              "type": "file",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "uploadFileOpt",
+              "results": [
+                {
+                  "statusCode": 201
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadFileNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "stream",
+              "type": "file",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "uploadFileNil",
+              "results": [
+                {
+                  "statusCode": 201
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadFileOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "stream",
+              "type": "file",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "uploadFileOptNil",
+              "results": [
+                {
+                  "statusCode": 201
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "uploadBlob",
           "doc": "",
           "parameters": [
@@ -16909,6 +17023,392 @@
                   "statusCode": 201
                 }
               ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadBlobOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "stream",
+              "type": "blob",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "uploadBlobOpt",
+              "results": [
+                {
+                  "statusCode": 201
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadBlobNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "stream",
+              "type": "blob",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "uploadBlobNil",
+              "results": [
+                {
+                  "statusCode": 201
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadBlobOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "stream",
+              "type": "blob",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "uploadBlobOptNil",
+              "results": [
+                {
+                  "statusCode": 201
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadFileList",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "stream",
+              "type": "file",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "uploadFileList",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadFileListOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "stream",
+              "type": "file",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "uploadFileListOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadFileListNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "stream",
+              "type": "file",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "uploadFileListNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadFileListOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "stream",
+              "type": "file",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "uploadFileListOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadBlobList",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "stream",
+              "type": "blob",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "uploadBlobList",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadBlobListOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "stream",
+              "type": "blob",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "uploadBlobListOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadBlobListNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "stream",
+              "type": "blob",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "uploadBlobListNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadBlobListOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "stream",
+              "type": "blob",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "uploadBlobListOptNil",
+              "results": []
             }
           }
         },
@@ -17012,6 +17512,318 @@
             "rest": {
               "method": "PUT",
               "path": "uploadMixed",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadMixedOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "text",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "number",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "rec",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "textList",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "numberList",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "recList",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "dataFile",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "stream",
+              "type": "file",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "dataBlob",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "stream",
+              "type": "blob",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "uploadMixedOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadMixedNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "text",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "number",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "rec",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "textList",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "numberList",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "recList",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "dataFile",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "stream",
+              "type": "file",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "dataBlob",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "stream",
+              "type": "blob",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "uploadMixedNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadMixedOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "text",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "number",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "rec",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "textList",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "numberList",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "recList",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "dataFile",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "stream",
+              "type": "file",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "dataBlob",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "stream",
+              "type": "blob",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "uploadMixedOptNil",
               "results": []
             }
           }

@@ -184,6 +184,69 @@ function headerQueryCodeBlock(
 	return recordHeaderQueryCode(target, p, config, fqn);
 }
 
+function formdataStreamCode(p: MParameter) {
+	const codeBlock = new CompositeGeneratorNode();
+	if (p.array) {
+		codeBlock.append(`${p.name}.forEach($entry => {`, NL);
+		codeBlock.indent(mBody => {
+			mBody.append(`$body.append('${p.name}', $entry);`, NL);
+		});
+		codeBlock.append('});', NL);
+	} else {
+		codeBlock.append(`$body.append('${p.name}', ${p.name});`, NL);
+	}
+	return codeBlock;
+}
+
+function formdataNoneStreamCode(
+	p: MParameter,
+	config: TypescriptFetchClientGeneratorConfig,
+	fqn: (type: string, typeOnly: boolean) => string,
+) {
+	const node = new CompositeGeneratorNode();
+	if (p.variant === 'record' || p.variant === 'union') {
+		const encodeValue = fqn('encodeValue:./_fetch-type-utils.ts', false);
+		const encodingType = fqn('encodingType:./_fetch-type-utils.ts', false);
+		const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type + (p.patch ? 'Patch' : '')}ToJSON`;
+		if (p.array) {
+			node.append(`${p.name}.forEach($entry => {`, NL);
+			node.indent(mBody => {
+				mBody.append(
+					`$body.append('${p.name}', new Blob([${encodeValue}(${encodingType}(props), ${toJSON}($entry))], { type: ${encodingType}(props) }));`,
+					NL,
+				);
+			});
+			node.append('});', NL);
+		} else {
+			node.append(
+				`$body.append('${p.name}', new Blob([${encodeValue}(${encodingType}(props), ${toJSON}(${p.name}))], { type: ${encodingType}(props) }));`,
+				NL,
+			);
+		}
+	} else if (p.array) {
+		node.append(`${p.name}.forEach($entry => {`, NL);
+		node.indent(mBody => {
+			mBody.append(`$body.append('${p.name}', $entry);`, NL);
+		});
+		node.append('});', NL);
+	} else {
+		node.append(`$body.append('${p.name}', ${p.name});`, NL);
+	}
+	return node;
+}
+
+function formdataCodeBlock(
+	p: MParameter,
+	config: TypescriptFetchClientGeneratorConfig,
+	fqn: (type: string, typeOnly: boolean) => string,
+) {
+	if (p.variant === 'stream') {
+		return formdataStreamCode(p);
+	} else {
+		return formdataNoneStreamCode(p, config, fqn);
+	}
+}
+
 function generateRemoteInvoke(
 	s: MService,
 	o: MResolvedOperation,
@@ -302,47 +365,35 @@ function generateRemoteInvoke(
 		if (hasStreamParam) {
 			node.append(`const $body = new FormData();`, NL);
 			bodyParams.forEach(p => {
-				if (p.variant === 'stream') {
-					if (p.array) {
-						node.append(`${p.name}.forEach($entry => {`, NL);
-						node.indent(mBody => {
-							mBody.append(`$body.append('${p.name}', $entry);`, NL);
-						});
-						node.append('});', NL);
-					} else {
-						node.append(`$body.append('${p.name}', ${p.name});`, NL);
-					}
+				const codeBlock = formdataCodeBlock(p, config, fqn);
+				if (p.optional && p.nullable) {
+					node.append('if (' + p.name + ' !== undefined && ' + p.name + ' !== null) {', NL);
+					node.indent(mBody => {
+						mBody.append(codeBlock);
+					});
+					node.append('} else if(' + p.name + ' === null) {', NL);
+					node.indent(mBody => {
+						mBody.append(`$body.append('${p.name}', 'null');`, NL);
+					});
+					node.append('}', NL);
+				} else if (p.optional) {
+					node.append('if (' + p.name + ' !== undefined) {', NL);
+					node.indent(mBody => {
+						mBody.append(codeBlock);
+					});
+					node.append('}', NL);
+				} else if (p.nullable) {
+					node.append('if (' + p.name + ' !== null) {', NL);
+					node.indent(mBody => {
+						mBody.append(codeBlock);
+					});
+					node.append('} else {', NL);
+					node.indent(mBody => {
+						mBody.append(`$body.append('${p.name}', 'null');`, NL);
+					});
+					node.append('}', NL);
 				} else {
-					if (p.variant === 'record' || p.variant === 'union') {
-						const encodeValue = fqn('encodeValue:./_fetch-type-utils.ts', false);
-						const encodingType = fqn('encodingType:./_fetch-type-utils.ts', false);
-						const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${
-							p.type + (p.patch ? 'Patch' : '')
-						}ToJSON`;
-						if (p.array) {
-							node.append(`${p.name}.forEach($entry => {`, NL);
-							node.indent(mBody => {
-								mBody.append(
-									`$body.append('${p.name}', new Blob([${encodeValue}(${encodingType}(props), ${toJSON}($entry))], { type: ${encodingType}(props) }));`,
-									NL,
-								);
-							});
-							node.append('});', NL);
-						} else {
-							node.append(
-								`$body.append('${p.name}', new Blob([${encodeValue}(${encodingType}(props), ${toJSON}(${p.name}))], { type: ${encodingType}(props) }));`,
-								NL,
-							);
-						}
-					} else if (p.array) {
-						node.append(`${p.name}.forEach($entry => {`, NL);
-						node.indent(mBody => {
-							mBody.append(`$body.append('${p.name}', $entry);`, NL);
-						});
-						node.append('});', NL);
-					} else {
-						node.append(`$body.append('${p.name}', ${p.name});`, NL);
-					}
+					node.append(codeBlock);
 				}
 			});
 		} else if (bodyParams.length === 1) {

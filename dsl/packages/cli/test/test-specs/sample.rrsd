@@ -735,17 +735,50 @@ resource ListHeaderParameterTypes at '/api/listheaderparametertypes' {
 }
 
 resource BinaryTypes at '/api/binarytypes' {
-	POST uploadBlob at 'uploadBlob' => {
+	POST uploadFile at 'uploadFile' => {
 			201
 	}
-	GET downloadBlob at 'downloadBlob' => {
-			200
+	POST uploadFileOpt at 'uploadFileOpt' => {
+			201
 	}
-	POST uploadFile at 'uploadFile' => {
+	POST uploadFileNil at 'uploadFileNil' => {
+			201
+	}
+	POST uploadFileOptNil at 'uploadFileOptNil' => {
 			201
 	}
 	GET downloadFile at 'downloadFile' => {
 			200
 	}
+
+	POST uploadBlob at 'uploadBlob' => {
+			201
+	}
+	POST uploadBlobOpt at 'uploadBlobOpt' => {
+			201
+	}
+	POST uploadBlobNil at 'uploadBlobNil' => {
+			201
+	}
+	POST uploadBlobOptNil at 'uploadBlobOptNil' => {
+			201
+	}
+	GET downloadBlob at 'downloadBlob' => {
+			200
+	}
+
+	PUT uploadFileList at 'uploadFileList'
+	PUT uploadFileListOpt at 'uploadFileListOpt'
+	PUT uploadFileListNil at 'uploadFileListNil'
+	PUT uploadFileListOptNil at 'uploadFileListOptNil'
+
+	PUT uploadBlobList at 'uploadBlobList'
+	PUT uploadBlobListOpt at 'uploadBlobListOpt'
+	PUT uploadBlobListNil at 'uploadBlobListNil'
+	PUT uploadBlobListOptNil at 'uploadBlobListOptNil'
+
 	PUT uploadMixed at 'uploadMixed'
+	PUT uploadMixedOpt at 'uploadMixedOpt'
+	PUT uploadMixedNil at 'uploadMixedNil'
+	PUT uploadMixedOptNil at 'uploadMixedOptNil'
 }

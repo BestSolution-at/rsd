@@ -1365,7 +1365,13 @@ async function listQueryParam(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 }
 
 async function uploadFile(ctx: Koa.ParameterizedContext, next: Koa.Next) {
-	if (ctx.path === '/api/binarytypes/uploadFile' && ctx.method === 'POST') {
+	if (
+		(ctx.path === '/api/binarytypes/uploadFile' ||
+			ctx.path === '/api/binarytypes/uploadFileOpt' ||
+			ctx.path === '/api/binarytypes/uploadFileNil' ||
+			ctx.path === '/api/binarytypes/uploadFileOptNil') &&
+		ctx.method === 'POST'
+	) {
 		const bb = busboy({ headers: ctx.req.headers });
 		let finish: (value: void | PromiseLike<void>) => void;
 		const wait = new Promise<void>(resolve => {
@@ -1378,11 +1384,60 @@ async function uploadFile(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 					ctx.body = String(data).length;
 				});
 			}
-		}).on('close', () => {
-			ctx.status = 201;
-			ctx.type = 'application/json';
-			finish();
+		})
+			.on('field', (name, val) => {
+				if (name === 'data' && val === 'null') {
+					ctx.body = '-1';
+				}
+			})
+			.on('close', () => {
+				ctx.status = 201;
+				ctx.type = 'application/json';
+				if (ctx.body === undefined) {
+					ctx.body = '0';
+				}
+				finish();
+			});
+		ctx.req.pipe(bb);
+		await wait;
+	} else {
+		await next();
+	}
+}
+
+async function uploadFileList(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (
+		(ctx.path === '/api/binarytypes/uploadFileList' ||
+			ctx.path === '/api/binarytypes/uploadFileListOpt' ||
+			ctx.path === '/api/binarytypes/uploadFileListNil' ||
+			ctx.path === '/api/binarytypes/uploadFileListOptNil') &&
+		ctx.method === 'PUT'
+	) {
+		const bb = busboy({ headers: ctx.req.headers });
+		let finish: (value: void | PromiseLike<void>) => void;
+		const wait = new Promise<void>(resolve => {
+			finish = resolve;
 		});
+		let sizeSum = 0;
+		bb.on('file', (name, file, info) => {
+			const { filename, mimeType } = info;
+			if (name === 'data' && (filename === 'file1.txt' || filename === 'file2.txt') && mimeType === 'text/plain') {
+				file.on('data', data => {
+					sizeSum += String(data).length;
+				});
+			}
+		})
+			.on('field', (name, val) => {
+				if (name === 'data' && val === 'null') {
+					sizeSum -= 1;
+				}
+			})
+			.on('close', () => {
+				ctx.status = 200;
+				ctx.type = 'application/json';
+				ctx.body = String(sizeSum);
+				finish();
+			});
 		ctx.req.pipe(bb);
 		await wait;
 	} else {
@@ -1391,7 +1446,13 @@ async function uploadFile(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 }
 
 async function uploadBlob(ctx: Koa.ParameterizedContext, next: Koa.Next) {
-	if (ctx.path === '/api/binarytypes/uploadBlob' && ctx.method === 'POST') {
+	if (
+		(ctx.path === '/api/binarytypes/uploadBlob' ||
+			ctx.path === '/api/binarytypes/uploadBlobOpt' ||
+			ctx.path === '/api/binarytypes/uploadBlobNil' ||
+			ctx.path === '/api/binarytypes/uploadBlobOptNil') &&
+		ctx.method === 'POST'
+	) {
 		const bb = busboy({ headers: ctx.req.headers });
 		let finish: (value: void | PromiseLike<void>) => void;
 		const wait = new Promise<void>(resolve => {
@@ -1404,11 +1465,60 @@ async function uploadBlob(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 					ctx.body = String(data).length;
 				});
 			}
-		}).on('close', () => {
-			ctx.status = 201;
-			ctx.type = 'application/json';
-			finish();
+		})
+			.on('field', (name, val) => {
+				if (name === 'data' && val === 'null') {
+					ctx.body = '-1';
+				}
+			})
+			.on('close', () => {
+				ctx.status = 201;
+				ctx.type = 'application/json';
+				if (ctx.body === undefined) {
+					ctx.body = '0';
+				}
+				finish();
+			});
+		ctx.req.pipe(bb);
+		await wait;
+	} else {
+		await next();
+	}
+}
+
+async function uploadBlobList(ctx: Koa.ParameterizedContext, next: Koa.Next) {
+	if (
+		(ctx.path === '/api/binarytypes/uploadBlobList' ||
+			ctx.path === '/api/binarytypes/uploadBlobListOpt' ||
+			ctx.path === '/api/binarytypes/uploadBlobListNil' ||
+			ctx.path === '/api/binarytypes/uploadBlobListOptNil') &&
+		ctx.method === 'PUT'
+	) {
+		const bb = busboy({ headers: ctx.req.headers });
+		let finish: (value: void | PromiseLike<void>) => void;
+		const wait = new Promise<void>(resolve => {
+			finish = resolve;
 		});
+		let sizeSum = 0;
+		bb.on('file', (name, file, info) => {
+			const { filename, mimeType } = info;
+			if (name === 'data' && filename === 'blob' && mimeType === 'text/plain') {
+				file.on('data', data => {
+					sizeSum += String(data).length;
+				});
+			}
+		})
+			.on('field', (name, val) => {
+				if (name === 'data' && val === 'null') {
+					sizeSum -= 1;
+				}
+			})
+			.on('close', () => {
+				ctx.status = 200;
+				ctx.type = 'application/json';
+				ctx.body = String(sizeSum);
+				finish();
+			});
 		ctx.req.pipe(bb);
 		await wait;
 	} else {
@@ -1573,7 +1683,9 @@ const all = compose([
 
 	// Binary types
 	uploadFile,
+	uploadFileList,
 	uploadBlob,
+	uploadBlobList,
 	downloadFile,
 	downloadBlob,
 	uploadMixed,

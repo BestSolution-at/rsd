@@ -16,14 +16,218 @@ describe('BinaryTypesServiceFetchImpl', () => {
 			expect(result).toBe(13);
 		});
 	});
+	describe('uploadFileOpt', () => {
+		test('success with file', async () => {
+			const file = new File(['Hello, World!'], 'hello.txt', { type: 'text/plain' });
+			const [result, error] = await service.uploadFileOpt(file);
+			expect(error).toBeNull();
+			expect(result).toBe(13);
+		});
+		test('success with undefined', async () => {
+			const [result, error] = await service.uploadFileOpt(undefined);
+			expect(error).toBeNull();
+			expect(result).toBe(0);
+		});
+	});
+	describe('uploadFileNil', () => {
+		test('success with file', async () => {
+			const file = new File(['Hello, World!'], 'hello.txt', { type: 'text/plain' });
+			const [result, error] = await service.uploadFileNil(file);
+			expect(error).toBeNull();
+			expect(result).toBe(13);
+		});
+		test('success with null', async () => {
+			const [result, error] = await service.uploadFileNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe(-1);
+		});
+	});
+	describe('uploadFileOptNil', () => {
+		test('success with file', async () => {
+			const file = new File(['Hello, World!'], 'hello.txt', { type: 'text/plain' });
+			const [result, error] = await service.uploadFileOptNil(file);
+			expect(error).toBeNull();
+			expect(result).toBe(13);
+		});
+		test('success with null', async () => {
+			const [result, error] = await service.uploadFileOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe(-1);
+		});
+		test('success with undefined', async () => {
+			const [result, error] = await service.uploadFileOptNil(undefined);
+			expect(error).toBeNull();
+			expect(result).toBe(0);
+		});
+	});
+
 	describe('uploadBlob', () => {
 		test('success', async () => {
 			const blob = new Blob(['Hello, Blob!'], { type: 'text/plain' });
 			const [result, error] = await service.uploadBlob(blob);
 			expect(error).toBeNull();
-			expect(result).toBeGreaterThan(0);
+			expect(result).toBe(12);
 		});
 	});
+	describe('uploadBlobOpt', () => {
+		test('success with blob', async () => {
+			const blob = new Blob(['Hello, Blob!'], { type: 'text/plain' });
+			const [result, error] = await service.uploadBlobOpt(blob);
+			expect(error).toBeNull();
+			expect(result).toBe(12);
+		});
+		test('success with undefined', async () => {
+			const [result, error] = await service.uploadBlobOpt(undefined);
+			expect(error).toBeNull();
+			expect(result).toBe(0);
+		});
+	});
+	describe('uploadBlobNil', () => {
+		test('success with blob', async () => {
+			const blob = new Blob(['Hello, Blob!'], { type: 'text/plain' });
+			const [result, error] = await service.uploadBlobNil(blob);
+			expect(error).toBeNull();
+			expect(result).toBe(12);
+		});
+		test('success with null', async () => {
+			const [result, error] = await service.uploadBlobNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe(-1);
+		});
+	});
+	describe('uploadBlobOptNil', () => {
+		test('success with blob', async () => {
+			const blob = new Blob(['Hello, Blob!'], { type: 'text/plain' });
+			const [result, error] = await service.uploadBlobOptNil(blob);
+			expect(error).toBeNull();
+			expect(result).toBe(12);
+		});
+		test('success with null', async () => {
+			const [result, error] = await service.uploadBlobOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe(-1);
+		});
+		test('success with undefined', async () => {
+			const [result, error] = await service.uploadBlobOptNil(undefined);
+			expect(error).toBeNull();
+			expect(result).toBe(0);
+		});
+	});
+
+	describe('uploadFileList', () => {
+		test('success', async () => {
+			const file1 = new File(['File One'], 'file1.txt', { type: 'text/plain' });
+			const file2 = new File(['File Two'], 'file2.txt', { type: 'text/plain' });
+			const [result, error] = await service.uploadFileList([file1, file2]);
+			expect(error).toBeNull();
+			expect(result).toBe(16);
+		});
+	});
+	describe('uploadFileListOpt', () => {
+		test('success with list', async () => {
+			const file1 = new File(['File One'], 'file1.txt', { type: 'text/plain' });
+			const file2 = new File(['File Two'], 'file2.txt', { type: 'text/plain' });
+			const [result, error] = await service.uploadFileListOpt([file1, file2]);
+			expect(error).toBeNull();
+			expect(result).toBe(16);
+		});
+		test('success with undefined', async () => {
+			const [result, error] = await service.uploadFileListOpt(undefined);
+			expect(error).toBeNull();
+			expect(result).toBe(0);
+		});
+	});
+	describe('uploadFileListNil', () => {
+		test('success with list', async () => {
+			const file1 = new File(['File One'], 'file1.txt', { type: 'text/plain' });
+			const file2 = new File(['File Two'], 'file2.txt', { type: 'text/plain' });
+			const [result, error] = await service.uploadFileListNil([file1, file2]);
+			expect(error).toBeNull();
+			expect(result).toBe(16);
+		});
+		test('success with null', async () => {
+			const [result, error] = await service.uploadFileListNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe(-1);
+		});
+	});
+	describe('uploadFileListOptNil', () => {
+		test('success with list', async () => {
+			const file1 = new File(['File One'], 'file1.txt', { type: 'text/plain' });
+			const file2 = new File(['File Two'], 'file2.txt', { type: 'text/plain' });
+			const [result, error] = await service.uploadFileListOptNil([file1, file2]);
+			expect(error).toBeNull();
+			expect(result).toBe(16);
+		});
+		test('success with null', async () => {
+			const [result, error] = await service.uploadFileListOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe(-1);
+		});
+		test('success with undefined', async () => {
+			const [result, error] = await service.uploadFileListOptNil(undefined);
+			expect(error).toBeNull();
+			expect(result).toBe(0);
+		});
+	});
+
+	describe('uploadBlobList', () => {
+		test('success', async () => {
+			const blob1 = new Blob(['Blob One'], { type: 'text/plain' });
+			const blob2 = new Blob(['Blob Two'], { type: 'text/plain' });
+			const [result, error] = await service.uploadBlobList([blob1, blob2]);
+			expect(error).toBeNull();
+			expect(result).toBe(16);
+		});
+	});
+	describe('uploadBlobListOpt', () => {
+		test('success with list', async () => {
+			const blob1 = new Blob(['Blob One'], { type: 'text/plain' });
+			const blob2 = new Blob(['Blob Two'], { type: 'text/plain' });
+			const [result, error] = await service.uploadBlobListOpt([blob1, blob2]);
+			expect(error).toBeNull();
+			expect(result).toBe(16);
+		});
+		test('success with undefined', async () => {
+			const [result, error] = await service.uploadBlobListOpt(undefined);
+			expect(error).toBeNull();
+			expect(result).toBe(0);
+		});
+	});
+	describe('uploadBlobListNil', () => {
+		test('success with list', async () => {
+			const blob1 = new Blob(['Blob One'], { type: 'text/plain' });
+			const blob2 = new Blob(['Blob Two'], { type: 'text/plain' });
+			const [result, error] = await service.uploadBlobListNil([blob1, blob2]);
+			expect(error).toBeNull();
+			expect(result).toBe(16);
+		});
+		test('success with null', async () => {
+			const [result, error] = await service.uploadBlobListNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe(-1);
+		});
+	});
+	describe('uploadBlobListOptNil', () => {
+		test('success with list', async () => {
+			const blob1 = new Blob(['Blob One'], { type: 'text/plain' });
+			const blob2 = new Blob(['Blob Two'], { type: 'text/plain' });
+			const [result, error] = await service.uploadBlobListOptNil([blob1, blob2]);
+			expect(error).toBeNull();
+			expect(result).toBe(16);
+		});
+		test('success with null', async () => {
+			const [result, error] = await service.uploadBlobListOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe(-1);
+		});
+		test('success with undefined', async () => {
+			const [result, error] = await service.uploadBlobListOptNil(undefined);
+			expect(error).toBeNull();
+			expect(result).toBe(0);
+		});
+	});
+
 	describe('downloadFile', () => {
 		test('success', async () => {
 			const [result, error] = await service.downloadFile();
