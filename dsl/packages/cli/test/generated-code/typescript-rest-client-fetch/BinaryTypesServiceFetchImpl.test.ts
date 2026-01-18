@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
 import { createBinaryTypesService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
-import { Void } from '../../test-specs/gen-out/client/typescript-client/src/_result-utils.js';
+import { UploadMixedResult } from '../../test-specs/gen-out/client/typescript-client/src/model/UploadMixedResult.js';
 
 const service = createBinaryTypesService({
 	baseUrl: 'http://localhost:3000',
@@ -270,8 +270,125 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				file,
 				blob,
 			);
+			const check: UploadMixedResult = {
+				text: 'Sample Text',
+				number: 42,
+				rec: { key: '1', version: '1', value: 'Record1' },
+				textList: ['Text1', 'Text2'],
+				numberList: [1, 2, 3],
+				recList: [
+					{ key: '2', version: '1', value: 'Record2' },
+					{ key: '3', version: '1', value: 'Record3' },
+				],
+				dataFileContent: 'Mixed File Content',
+				dataBlobContent: 'Mixed Blob Content',
+			};
+
 			expect(error).toBeNull();
-			expect(result).toBe(Void);
+			expect(result).toStrictEqual(check);
+		});
+	});
+	describe('uploadMixedOpt', () => {
+		test('success with all params', async () => {
+			const file = new File(['Mixed File Content'], 'hello.txt', { type: 'text/plain' });
+			const blob = new Blob(['Mixed Blob Content'], { type: 'text/plain' });
+			const [result, error] = await service.uploadMixedOpt(
+				'Sample Text',
+				42,
+				{ key: '1', version: '1', value: 'Record1' },
+				['Text1', 'Text2'],
+				[1, 2, 3],
+				[
+					{ key: '2', version: '1', value: 'Record2' },
+					{ key: '3', version: '1', value: 'Record3' },
+				],
+				file,
+				blob,
+			);
+			expect(error).toBeNull();
+			expect(result).toStrictEqual({
+				text: 'Sample Text',
+				number: 42,
+				rec: { key: '1', version: '1', value: 'Record1' },
+				textList: ['Text1', 'Text2'],
+				numberList: [1, 2, 3],
+				recList: [
+					{ key: '2', version: '1', value: 'Record2' },
+					{ key: '3', version: '1', value: 'Record3' },
+				],
+				dataFileContent: 'Mixed File Content',
+				dataBlobContent: 'Mixed Blob Content',
+			});
+		});
+		test('success with undefined params', async () => {
+			const [result, error] = await service.uploadMixedOpt(
+				undefined,
+				undefined,
+				undefined,
+				undefined,
+				undefined,
+				undefined,
+				undefined,
+				undefined,
+			);
+			expect(error).toBeNull();
+			expect(result).toStrictEqual({
+				text: undefined,
+				number: undefined,
+				rec: undefined,
+				textList: undefined,
+				numberList: undefined,
+				recList: undefined,
+				dataFileContent: undefined,
+				dataBlobContent: undefined,
+			});
+		});
+	});
+	describe('uploadMixedNil', () => {
+		test('success with all params', async () => {
+			const file = new File(['Mixed File Content'], 'hello.txt', { type: 'text/plain' });
+			const blob = new Blob(['Mixed Blob Content'], { type: 'text/plain' });
+			const [result, error] = await service.uploadMixedNil(
+				'Sample Text',
+				42,
+				{ key: '1', version: '1', value: 'Record1' },
+				['Text1', 'Text2'],
+				[1, 2, 3],
+				[
+					{ key: '2', version: '1', value: 'Record2' },
+					{ key: '3', version: '1', value: 'Record3' },
+				],
+				file,
+				blob,
+			);
+			expect(error).toBeNull();
+			expect(result).toStrictEqual({
+				text: 'Sample Text',
+				number: 42,
+				rec: { key: '1', version: '1', value: 'Record1' },
+				textList: ['Text1', 'Text2'],
+				numberList: [1, 2, 3],
+				recList: [
+					{ key: '2', version: '1', value: 'Record2' },
+					{ key: '3', version: '1', value: 'Record3' },
+				],
+				dataFileContent: 'Mixed File Content',
+				dataBlobContent: 'Mixed Blob Content',
+			});
+		});
+		test('success with null params', async () => {
+			const [result, error] = await service.uploadMixedNil(null, null, null, null, null, null, null, null);
+			expect(error).toBeNull();
+			expect(result).toStrictEqual({
+				text: null,
+				number: null,
+				rec: null,
+				textList: null,
+				numberList: null,
+				recList: null,
+				dataFileContent: null,
+				dataBlobContent: null,
+			});
 		});
 	});
 });

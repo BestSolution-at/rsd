@@ -451,6 +451,17 @@ record MixinRecord {
     sample: string
 }
 
+record UploadMixedResult {
+	text?: string?
+	number?: int?
+	rec?: SimpleRecord?
+	textList?: string[]?
+	numberList?: int[]?
+	recList?: SimpleRecord[]?
+	dataFileContent?: string?
+	dataBlobContent?: string?
+}
+
 /*record Node {
 	parent?: Node[]
 	children: Node[]
@@ -1534,7 +1545,7 @@ service BinaryTypes {
 		recList: SimpleRecord[],
 		dataFile: file,
 		dataBlob: blob
-	);
+	): UploadMixedResult;
 	operation uploadMixedOpt(
 		text?: string,
 		number?: int,
@@ -1544,7 +1555,7 @@ service BinaryTypes {
 		recList?: SimpleRecord[],
 		dataFile?: file,
 		dataBlob?: blob
-	);
+	): UploadMixedResult;
 	operation uploadMixedNil(
 		text: string?,
 		number: int?,
@@ -1554,7 +1565,7 @@ service BinaryTypes {
 		recList: SimpleRecord[]?,
 		dataFile: file?,
 		dataBlob: blob?
-	);
+	): UploadMixedResult;
 	operation uploadMixedOptNil(
 		text?: string?,
 		number?: int?,
@@ -1564,7 +1575,7 @@ service BinaryTypes {
 		recList?: SimpleRecord[]?,
 		dataFile?: file?,
 		dataBlob?: blob?
-	);
+	): UploadMixedResult;
 	
 	operation downloadFile(): file;
 	operation downloadBlob(): blob;

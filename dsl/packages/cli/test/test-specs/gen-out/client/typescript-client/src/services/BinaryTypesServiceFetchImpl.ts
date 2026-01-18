@@ -590,8 +590,10 @@ function fnUploadMixed(props: ServiceProps<api.service.ErrorType>): api.service.
 			$body.append('dataFile', dataFile);
 			$body.append('dataBlob', dataBlob);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
-			if ($response.status === 204) {
-				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('uploadMixed', api.result.Void));
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.UploadMixedResultFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('uploadMixed', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
@@ -648,8 +650,10 @@ function fnUploadMixedOpt(props: ServiceProps<api.service.ErrorType>): api.servi
 				$body.append('dataBlob', dataBlob);
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
-			if ($response.status === 204) {
-				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('uploadMixedOpt', api.result.Void));
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.UploadMixedResultFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('uploadMixedOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
@@ -722,8 +726,10 @@ function fnUploadMixedNil(props: ServiceProps<api.service.ErrorType>): api.servi
 				$body.append('dataBlob', 'null');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
-			if ($response.status === 204) {
-				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('uploadMixedNil', api.result.Void));
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.UploadMixedResultFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('uploadMixedNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
@@ -796,8 +802,10 @@ function fnUploadMixedOptNil(props: ServiceProps<api.service.ErrorType>): api.se
 				$body.append('dataBlob', 'null');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
-			if ($response.status === 204) {
-				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('uploadMixedOptNil', api.result.Void));
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.UploadMixedResultFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('uploadMixedOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);

@@ -1550,30 +1550,39 @@ async function downloadBlob(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 }
 
 async function uploadMixed(ctx: Koa.ParameterizedContext, next: Koa.Next) {
-	if (ctx.path === '/api/binarytypes/uploadMixed' && ctx.method === 'PUT') {
+	if (
+		(ctx.path === '/api/binarytypes/uploadMixed' ||
+			ctx.path === '/api/binarytypes/uploadMixedOpt' ||
+			ctx.path === '/api/binarytypes/uploadMixedNil' ||
+			ctx.path === '/api/binarytypes/uploadMixedOptNil') &&
+		ctx.method === 'PUT'
+	) {
 		const bb = busboy({ headers: ctx.req.headers });
 		let finish: (value: void | PromiseLike<void>) => void;
 		const wait = new Promise<void>(resolve => {
 			finish = resolve;
 		});
-		let fieldCount = 0;
+		let result: Record<string, unknown> = {};
 		bb.on('file', (name, file, info) => {
 			const { filename, mimeType } = info;
 			if (name === 'dataFile' && filename === 'hello.txt' && mimeType === 'text/plain') {
-				file.on('data', () => {
-					fieldCount += 1;
+				file.on('data', data => {
+					result = { ...result, dataFileContent: String(data) };
 				});
 			} else if (name === 'dataBlob' && filename === 'blob' && mimeType === 'text/plain') {
-				file.on('data', () => {
-					fieldCount += 1;
+				file.on('data', data => {
+					result = { ...result, dataBlobContent: String(data) };
 				});
 			} else if (name === 'rec' && filename === 'blob' && mimeType === 'application/json') {
-				file.on('data', () => {
-					fieldCount += 1;
+				file.on('data', data => {
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+					result = { ...result, rec: JSON.parse(String(data)) };
 				});
 			} else if (name === 'recList' && filename === 'blob' && mimeType === 'application/json') {
-				file.on('data', () => {
-					fieldCount += 1;
+				file.on('data', data => {
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+					const val = JSON.parse(String(data));
+					result = { ...result, recList: result.recList ? [...(result.recList as unknown[]), val] : [val] };
 				});
 			} else {
 				console.error(`Unexpected file field: ${name}, ${filename}, ${mimeType}`);
@@ -1581,35 +1590,48 @@ async function uploadMixed(ctx: Koa.ParameterizedContext, next: Koa.Next) {
 		});
 		bb.on('field', (name, val) => {
 			if (name === 'text') {
-				if (val === 'Sample Text') {
-					fieldCount += 1;
+				if (val === 'null') {
+					result = { ...result, text: null };
 				} else {
-					console.error(`Unexpected text field value for ${name}: ${val}`);
+					result = { ...result, text: val };
 				}
 			} else if (name === 'number') {
-				if (val === '42') {
-					fieldCount += 1;
+				if (val === 'null') {
+					result = { ...result, number: null };
 				} else {
-					console.error(`Unexpected text field value for ${name}: ${val}`);
+					result = { ...result, number: parseInt(val) };
 				}
 			} else if (name === 'textList') {
-				if (val === 'Text1' || val === 'Text2') {
-					fieldCount += 1;
+				if (val === 'null') {
+					result = { ...result, textList: null };
 				} else {
-					console.error(`Unexpected text field value for ${name}: ${val}`);
+					result = { ...result, textList: result.textList ? [...(result.textList as unknown[]), val] : [val] };
 				}
 			} else if (name === 'numberList') {
-				if (val === '1' || val === '2' || val === '3') {
-					fieldCount += 1;
+				if (val === 'null') {
+					result = { ...result, numberList: null };
 				} else {
-					console.error(`Unexpected text field value for ${name}: ${val}`);
+					result = {
+						...result,
+						numberList: result.numberList ? [...(result.numberList as unknown[]), parseInt(val)] : [parseInt(val)],
+					};
 				}
+			} else if (name === 'dataBlob' && val === 'null') {
+				result = { ...result, dataBlobContent: null };
+			} else if (name === 'dataFile' && val === 'null') {
+				result = { ...result, dataFileContent: null };
+			} else if (name === 'rec' && val === 'null') {
+				result = { ...result, rec: null };
+			} else if (name === 'recList' && val === 'null') {
+				result = { ...result, recList: null };
 			} else {
 				console.error(`Unexpected field name: ${name}`);
 			}
 		});
 		bb.on('close', () => {
-			ctx.status = fieldCount === 12 ? 204 : 500;
+			ctx.status = 200;
+			ctx.type = 'application/json';
+			ctx.body = JSON.stringify(result);
 			finish();
 		});
 		ctx.req.pipe(bb);

@@ -3595,6 +3595,103 @@
       "doc": ""
     },
     {
+      "@type": "RecordType",
+      "name": "UploadMixedResult",
+      "patchable": false,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "text",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "number",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "int",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "rec",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "record",
+          "type": "SimpleRecord",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "textList",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "numberList",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "int",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "recList",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "record",
+          "type": "SimpleRecord",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "dataFileContent",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "dataBlobContent",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
       "@type": "EnumType",
       "name": "NilResult",
       "entries": [
@@ -17506,6 +17603,13 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "UploadMixedResult",
+            "doc": ""
+          },
           "errors": [],
           "operationErrors": [],
           "meta": {
@@ -17610,6 +17714,13 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "UploadMixedResult",
+            "doc": ""
+          },
           "errors": [],
           "operationErrors": [],
           "meta": {
@@ -17714,6 +17825,13 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "UploadMixedResult",
+            "doc": ""
+          },
           "errors": [],
           "operationErrors": [],
           "meta": {
@@ -17818,6 +17936,13 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "UploadMixedResult",
+            "doc": ""
+          },
           "errors": [],
           "operationErrors": [],
           "meta": {
