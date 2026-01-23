@@ -15,7 +15,7 @@ export function generateEnumContent(t: MEnumType): CompositeGeneratorNode {
 
 export function generateInlineEnum(t: MInlineEnumType, name: string) {
 	const node = new CompositeGeneratorNode();
-	node.append(`public enum ${name} {`, NL);
+	node.append(`public enum ${name}$ {`, NL);
 	node.indent(enumBody => {
 		t.entries.forEach(e => {
 			enumBody.append(`${e.name},`, NL);

@@ -31,6 +31,9 @@ export function generateRecordContent(
 	const node = new CompositeGeneratorNode();
 	node.append(`public interface ${t.name} {`, NL);
 	node.indent(classBody => {
+		if (t.patchable) {
+			classBody.append(`public interface Builder {}`, NL);
+		}
 		classBody.append(generateInlineEnums(t));
 		classBody.appendNewLineIf(classBody.contents.length > 0);
 		classBody.append(generateData(t, allProps, nativeTypeSubstitues, basePackageName, fqn));
@@ -89,7 +92,12 @@ function generateDataBuilder(
 			: '';
 
 	const node = new CompositeGeneratorNode();
-	node.append(`public interface DataBuilder extends _Base.BaseDataBuilder<${t.name}.Data>${unions} {`, NL);
+	if (t.patchable) {
+		node.append(`public interface DataBuilder extends Builder, _Base.BaseDataBuilder<${t.name}.Data>${unions} {`, NL);
+	} else {
+		node.append(`public interface DataBuilder extends _Base.BaseDataBuilder<${t.name}.Data>${unions} {`, NL);
+	}
+
 	node.indent(classBody => {
 		classBody.append(
 			...props.flatMap(p => [generateBuilderPropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn), NL]),
@@ -201,7 +209,7 @@ function generatePatchBuilder(
 			? ', ' + t.resolved.unions.map(u => fqn(`${basePackageName}.${u.name}`) + '.PatchBuilder').join(', ')
 			: '';
 	const node = new CompositeGeneratorNode();
-	node.append(`public interface PatchBuilder extends _Base.BaseDataBuilder<${t.name}.Patch>${unions} {`, NL);
+	node.append(`public interface PatchBuilder extends Builder, _Base.BaseDataBuilder<${t.name}.Patch>${unions} {`, NL);
 	node.indent(classBody => {
 		classBody.append(
 			...props

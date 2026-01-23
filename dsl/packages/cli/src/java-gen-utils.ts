@@ -98,6 +98,7 @@ export function computeParameterAPIType(
 	basePackageName: string,
 	fqn: (type: string) => string,
 	noArray = false,
+	methodName = '',
 ) {
 	let type: string;
 	if (parameter.variant === 'stream') {
@@ -113,7 +114,7 @@ export function computeParameterAPIType(
 			type = builtinToJavaType(parameter.type, fqn);
 		}
 	} else if (isMInlineEnumType(parameter.type)) {
-		throw new Error('Should not get here');
+		type = toFirstUpper(methodName) + '_' + toFirstUpper(parameter.name) + '_Param$';
 	} else {
 		if (parameter.variant === 'enum' || parameter.variant === 'scalar') {
 			if (nativeTypeSubstitues !== undefined && parameter.type in nativeTypeSubstitues) {
@@ -157,9 +158,10 @@ export function computeAPIType(
 		}
 	} else if (isMInlineEnumType(property.type)) {
 		if (isMMixinType(property.resolved.owner)) {
-			type = fqn(`${basePackageName}.mixins.${property.resolved.owner.name}Mixin`) + '.' + toFirstUpper(property.name);
+			type =
+				fqn(`${basePackageName}.mixins.${property.resolved.owner.name}Mixin`) + '.' + toFirstUpper(property.name) + '$';
 		} else {
-			type = fqn(`${basePackageName}.${property.resolved.owner.name}`) + +'.' + toFirstUpper(property.name);
+			type = toFirstUpper(property.name) + '$';
 		}
 	} else {
 		if (property.variant === 'enum' || property.variant === 'scalar') {
