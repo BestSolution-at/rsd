@@ -10,6 +10,16 @@
             "targetFolder": "./gen-out/client/typescript-client/src",
             "allowImportingTsExtensions": false,
             "apiNamespacePath": "../index.ts"
+        },
+				{
+            "name": "java-client-api",
+            "targetFolder": "../../../../java-test/java-client/src/main/java",
+            "rootPackageName": "dev.rsdlang.sample.client",
+            "nativeTypeSubstitues": {
+                "ZoneId": "java.time.ZoneId",
+                "DayOfWeek": "java.time.DayOfWeek",
+                "Month": "java.time.Month"
+            }
         }
     ]
 }
