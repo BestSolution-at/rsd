@@ -26,9 +26,15 @@
             "targetFolder": "../../../../java-test/java-client/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.client",
             "nativeTypeSubstitues": {
-                "ZoneId": "java.time.ZoneId",
-                "DayOfWeek": "java.time.DayOfWeek",
-                "Month": "java.time.Month"
+                "ZoneId": "java.time.ZoneId"
+            }
+        },
+        {
+            "name": "java-server-base",
+            "targetFolder": "../../../../java-test/java-quarkus/src/main/java",
+            "rootPackageName": "dev.rsdlang.sample.server",
+            "nativeTypeSubstitues": {
+                "ZoneId": "java.time.ZoneId"
             }
         }
     ]
