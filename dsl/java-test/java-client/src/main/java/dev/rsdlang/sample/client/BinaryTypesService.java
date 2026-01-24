@@ -122,7 +122,7 @@ public interface BinaryTypesService extends BaseService {
 
 	public UploadMixedResult.Data uploadMixedNil(
 			String text, 
-			int number, 
+			Integer number, 
 			SimpleRecord.Data rec, 
 			List<String> textList, 
 			List<Integer> numberList, 

@@ -20,6 +20,16 @@
                 "DayOfWeek": "java.time.DayOfWeek",
                 "Month": "java.time.Month"
             }
+        },
+				{
+            "name": "java-rest-client-jdk",
+            "targetFolder": "../../../../java-test/java-client/src/main/java",
+            "rootPackageName": "dev.rsdlang.sample.client",
+            "nativeTypeSubstitues": {
+                "ZoneId": "java.time.ZoneId",
+                "DayOfWeek": "java.time.DayOfWeek",
+                "Month": "java.time.Month"
+            }
         }
     ]
 }

@@ -5,7 +5,6 @@ import {
 	JavaImportsCollector,
 	JavaClientAPIGeneratorConfig,
 	generateCompilationUnit,
-	resolveObjectType,
 	resolveType,
 	toPath,
 	computeParameterAPIType,
@@ -140,36 +139,26 @@ function toResultType(
 		return 'void';
 	}
 
+	let rvType: string;
 	if (type.variant === 'stream') {
 		if (type.type === 'file') {
-			return fqn(`${dtoPkg}.RSDFile`);
+			rvType = fqn(`${dtoPkg}.RSDFile`);
+		} else {
+			rvType = fqn(`${dtoPkg}.RSDBlob`);
 		}
-		return fqn(`${dtoPkg}.RSDBlob`);
 	} else if (type.variant === 'union' || type.variant === 'record') {
-		const dtoType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
-		if (type.array) {
-			return `${fqn('java.util.List')}<${dtoType}>`;
-		} else {
-			return dtoType;
-		}
+		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
 	} else if (type.variant === 'enum') {
-		const t =
-			artifactConfig.nativeTypeSubstitues !== undefined && type.type in artifactConfig.nativeTypeSubstitues
-				? fqn(artifactConfig.nativeTypeSubstitues[type.type])
-				: fqn(`${dtoPkg}.${type.type}`);
-		if (type.array) {
-			return `${fqn('java.util.List')}<${t}>`;
-		} else {
-			return t;
-		}
-	} else if (type.variant === 'inline-enum') {
-		return toFirstUpper(methodName) + '_Result$';
+		rvType = fqn(`${dtoPkg}.${type.type}`);
 	} else if (typeof type.type === 'string') {
-		if (type.array) {
-			return `${fqn('java.util.List')}<${resolveObjectType(type.type, artifactConfig.nativeTypeSubstitues, fqn)}>`;
-		} else {
-			return resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false);
-		}
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, type.array);
+	} else {
+		rvType = toFirstUpper(methodName) + '_Result$';
 	}
-	return type.type;
+
+	if (type.array) {
+		rvType = `${fqn('java.util.List')}<${rvType}>`;
+	}
+
+	return rvType;
 }

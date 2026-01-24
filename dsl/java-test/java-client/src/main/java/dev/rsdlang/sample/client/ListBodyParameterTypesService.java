@@ -176,7 +176,7 @@ public interface ListBodyParameterTypesService extends BaseService {
 
 	public NilResult listEnumBodyParamOptNil(List<SampleEnum> bodyEnum);
 
-	public ListInlineEnumBodyParam_Result$ listInlineEnumBodyParam(List<ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum);
+	public List<ListInlineEnumBodyParam_Result$> listInlineEnumBodyParam(List<ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum);
 
 	public NilResult listInlineEnumBodyParamOpt();
 

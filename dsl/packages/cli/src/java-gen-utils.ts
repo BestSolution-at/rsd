@@ -108,7 +108,7 @@ export function computeParameterAPIType(
 			type = fqn(`${basePackageName}.RSDBlob`);
 		}
 	} else if (isMBuiltinType(parameter.type)) {
-		if (parameter.array || parameter.optional) {
+		if (parameter.array || parameter.optional || parameter.nullable) {
 			type = builtinToJavaObjectType(parameter.type, fqn);
 		} else {
 			type = builtinToJavaType(parameter.type, fqn);

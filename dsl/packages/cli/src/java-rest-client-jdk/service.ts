@@ -5,7 +5,6 @@ import {
 	generateCompilationUnit,
 	JavaImportsCollector,
 	JavaRestClientJDKGeneratorConfig,
-	resolveObjectType,
 	resolveType,
 	toPath,
 } from '../java-gen-utils.js';
@@ -20,6 +19,7 @@ import {
 } from '../model.js';
 import { builtinBuilderAccess, builtinBuilderArrayJSONAccess } from '../java-model-json/shared.js';
 import { computePath } from '../rest-utils.js';
+import { toFirstUpper } from '../util.js';
 
 export function generateService(s: MResolvedService, artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact {
 	const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl`;
@@ -66,22 +66,22 @@ function generateOpertationMethod(
 ) {
 	const URI = fqn('java.net.URI');
 
-	const parameters = allParameters.map(p => toParameter(p, artifactConfig, fqn));
-	node.append(`public ${toResultType(o.resultType, artifactConfig, fqn)} ${o.name}(${parameters.join(', ')})`);
-	if (o.errors.length > 0) {
+	const parameters = allParameters.map(p => toParameter(p, artifactConfig, fqn, o.name));
+	node.append(`public ${toResultType(o.resultType, artifactConfig, fqn, o.name)} ${o.name}(${parameters.join(', ')})`);
+	if (o.operationErrors.length > 0) {
 		node.appendNewLine();
 		node.indent(throwBody => {
 			throwBody.indent(other => {
 				other.append(
 					'throws ',
-					fqn(`${artifactConfig.rootPackageName}.${o.errors[0]}Exception`),
-					o.errors.length > 1 ? ',' : '',
+					fqn(`${artifactConfig.rootPackageName}.${o.operationErrors[0].error}Exception`),
+					o.operationErrors.length > 1 ? ',' : '',
 				);
-				if (o.errors.length > 1) {
+				if (o.operationErrors.length > 1) {
 					other.appendNewLine();
 				}
-				o.errors.slice(1).forEach((e, idx, arr) => {
-					other.append(fqn(`${artifactConfig.rootPackageName}.${e}Exception`), arr.length !== idx + 1 ? ',' : '');
+				o.operationErrors.slice(1).forEach((e, idx, arr) => {
+					other.append(fqn(`${artifactConfig.rootPackageName}.${e.error}Exception`), arr.length !== idx + 1 ? ',' : '');
 					if (arr.length !== idx + 1) {
 						other.appendNewLine();
 					}
@@ -201,28 +201,48 @@ function generateInvokation(
 			allParameters
 				.filter(p => p.meta?.rest?.source === undefined)
 				.forEach(p => {
+					let codeBlock: string;
 					if (p.variant === 'stream') {
-						if (p.type === 'file') {
-							methodBody.append(`$formDataBuilder.addFile("${p.meta?.rest?.name ?? p.name}", ${p.name});`, NL);
+						if (p.array) {
+							codeBlock = `${p.name}.forEach($b -> $formDataBuilder.addBlob("${p.meta?.rest?.name ?? p.name}", $b));`;
+						} else {
+							codeBlock = `$formDataBuilder.addBlob("${p.meta?.rest?.name ?? p.name}", ${p.name});`;
 						}
 					} else {
 						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
 
 						if (p.variant === 'record' || p.variant === 'union') {
-							methodBody.append(
-								`$formDataBuilder.addString("${p.meta?.rest?.name ?? p.name}",${_JsonUtils}.toJsonString(${
+							if (p.array) {
+								codeBlock = `${p.name}.forEach($i -> $formDataBuilder.addBlob("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonString($i, false),"application/json"));`;
+							} else {
+								codeBlock = `$formDataBuilder.addBlob("${p.meta?.rest?.name ?? p.name}",${_JsonUtils}.toJsonString(${
 									p.name
-								}, false),"application/json");`,
-								NL,
-							);
+								}, false),"application/json");`;
+							}
 						} else {
-							methodBody.append(
-								`$formDataBuilder.addString("${p.meta?.rest?.name ?? p.name}",${_JsonUtils}.toJsonString(${
-									p.name
-								}, false),"text/plain; charset=utf-8");`,
+							if (p.array) {
+								codeBlock = `${p.name}.forEach($v -> $formDataBuilder.addString("${p.meta?.rest?.name ?? p.name}", Objects.toString($v),"text/plain; charset=utf-8"));`;
+							} else {
+								codeBlock = `$formDataBuilder.addString("${p.meta?.rest?.name ?? p.name}",Objects.toString(${p.name}),"text/plain; charset=utf-8");`;
+							}
+						}
+					}
+
+					if (p.nullable) {
+						methodBody.append(`if (${p.name} != null) {`, NL);
+						methodBody.indent(tmp => {
+							tmp.append(codeBlock, NL);
+						});
+						methodBody.append('} else {', NL);
+						methodBody.indent(tmp => {
+							tmp.append(
+								`$formDataBuilder.addString("${p.meta?.rest?.name ?? p.name}", "null","text/plain; charset=utf-8");`,
 								NL,
 							);
-						}
+						});
+						methodBody.append('}', NL, NL);
+					} else {
+						methodBody.append(codeBlock, NL);
 					}
 				});
 			methodBody.append('var $formData = $formDataBuilder.build();', NL);
@@ -276,7 +296,7 @@ function generateInvokation(
 						} else {
 							if (p.nullable) {
 								methodBody.append(
-									`$builder = ${p.name} == null ? $builder.addNull('${p.name}') : ` +
+									`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : ` +
 										builtinBuilderAccess({ name: p.name, type: p.type }) +
 										';',
 									NL,
@@ -341,7 +361,7 @@ function generateInvokation(
 	}
 	if (o.meta?.rest?.results.length) {
 		o.meta.rest.results.forEach((r, idx) => {
-			methodBody.append(`${idx === 0 ? '' : ' else '}if ($response.statusCode() == ${r.statusCode}) {`, NL);
+			methodBody.append(`${idx === 0 ? '' : ' else '}if ($response.statusCode() == ${r.statusCode.toFixed(0)}) {`, NL);
 			methodBody.indent(resBlock => {
 				if (r.error === undefined) {
 					handleOkResult(resBlock, o, artifactConfig, fqn);
@@ -401,30 +421,50 @@ function handleOkResult(
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
 ) {
-	if (o.resultType === undefined) {
+	const type = o.resultType;
+
+	if (type === undefined) {
 		node.append('return;', NL);
 		return;
 	}
-	if (o.resultType.variant === 'stream') {
+	if (type.variant === 'stream') {
 		node.append('return ServiceUtils.mapFile($response);', NL);
-	} else if (o.resultType.variant === 'record' || o.resultType.variant === 'union') {
+	} else if (type.variant === 'record' || type.variant === 'union') {
 		const modelPkg = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
-		const modelType = fqn(`${modelPkg}.${o.resultType.type}DataImpl`);
-		if (o.resultType.array) {
+		const modelType = fqn(`${modelPkg}.${type.type}DataImpl`);
+		if (type.array) {
 			node.append(`return ServiceUtils.mapObjects($response, ${modelType}::of);`, NL);
 		} else {
 			node.append(`return ServiceUtils.mapObject($response, ${modelType}::of);`, NL);
 		}
-	} else if (o.resultType.variant === 'builtin') {
-		if (isMBuiltinType(o.resultType.type)) {
-			if (o.resultType.array) {
-				node.append(`return ${builtinArrayMap(o.resultType.type)};`, NL);
+	} else if (type.variant === 'builtin') {
+		if (isMBuiltinType(type.type)) {
+			if (type.array) {
+				node.append(`return ${builtinArrayMap(type.type)};`, NL);
 			} else {
-				node.append(`return ${builtinMap(o.resultType.type)};`, NL);
+				node.append(`return ${builtinMap(type.type)};`, NL);
 			}
 		}
-	} else if (o.resultType.variant === 'scalar') {
+	} else if (type.variant === 'scalar') {
+		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false);
+		if (type.array) {
+			node.append(`return ServiceUtils.mapLiterals($response, ${resolvedType}::of);`, NL);
+		} else {
+			node.append(`return ServiceUtils.mapLiteral($response, ${resolvedType}::of);`, NL);
+		}
+	} else if (type.variant === 'enum') {
+		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false);
+		if (type.array) {
+			node.append(`return ServiceUtils.mapLiterals($response, ${resolvedType}::valueOf);`, NL);
+		} else {
+			node.append(`return ServiceUtils.mapLiteral($response, ${resolvedType}::valueOf);`, NL);
+		}
 	} else {
+		if (type.array) {
+			node.append(`return ServiceUtils.mapLiterals($response, ${toFirstUpper(o.name)}_Result$::valueOf);`, NL);
+		} else {
+			node.append(`return ServiceUtils.mapLiteral($response, ${toFirstUpper(o.name)}_Result$::valueOf);`, NL);
+		}
 	}
 }
 
@@ -504,12 +544,15 @@ function toParameter(
 	parameter: MParameter,
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
+	methodName: string,
 ) {
 	const type = computeParameterAPIType(
 		parameter,
 		artifactConfig.nativeTypeSubstitues,
 		`${artifactConfig.rootPackageName}.model`,
 		fqn,
+		false,
+		methodName,
 	);
 	return `${type} ${parameter.name}`;
 }
@@ -518,30 +561,33 @@ function toResultType(
 	type: MReturnType | undefined,
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
-) {
+	methodName: string,
+): string {
 	const modelPkg = `${artifactConfig.rootPackageName}.model`;
 	if (type === undefined) {
 		return 'void';
 	}
 
+	let rvType: string;
 	if (type.variant === 'stream') {
 		if (type.type === 'file') {
-			return fqn(`${modelPkg}.RSDFile`);
+			rvType = fqn(`${modelPkg}.RSDFile`);
+		} else {
+			rvType = fqn(`${modelPkg}.RSDBlob`);
 		}
-		return fqn(`${modelPkg}.RSDBlob`);
 	} else if (type.variant === 'union' || type.variant === 'record') {
-		const modelType = fqn(`${modelPkg}.${type.type}`) + '.Data';
-		if (type.array) {
-			return `${fqn('java.util.List')}<${modelType}>`;
-		} else {
-			return modelType;
-		}
+		rvType = fqn(`${modelPkg}.${type.type}`) + '.Data';
+	} else if (type.variant === 'enum') {
+		rvType = fqn(`${modelPkg}.${type.type}`);
 	} else if (typeof type.type === 'string') {
-		if (type.array) {
-			return `${fqn('java.util.List')}<${resolveObjectType(type.type, artifactConfig.nativeTypeSubstitues, fqn)}>`;
-		} else {
-			return `${resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false)}`;
-		}
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, type.array);
+	} else {
+		rvType = toFirstUpper(methodName) + '_Result$';
 	}
-	return type.type;
+
+	if (type.array) {
+		rvType = `${fqn('java.util.List')}<${rvType}>`;
+	}
+
+	return rvType;
 }

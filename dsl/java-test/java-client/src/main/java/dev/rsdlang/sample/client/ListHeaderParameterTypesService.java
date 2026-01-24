@@ -176,7 +176,7 @@ public interface ListHeaderParameterTypesService extends BaseService {
 
 	public NilResult listEnumHeaderParamOptNil(List<SampleEnum> headerValue);
 
-	public ListInlineEnumHeaderParam_Result$ listInlineEnumHeaderParam(List<ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue);
+	public List<ListInlineEnumHeaderParam_Result$> listInlineEnumHeaderParam(List<ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue);
 
 	public NilResult listInlineEnumHeaderParamOpt();
 

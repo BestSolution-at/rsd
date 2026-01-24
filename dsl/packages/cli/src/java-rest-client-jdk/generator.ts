@@ -12,7 +12,8 @@ import { generateService } from './service.js';
 import { generateServiceUtils } from './service-utils.js';
 import { generateNillable } from './nillable-impl.js';
 import { generateStreamImpls } from './stream-impl.js';
-import { generateListChange } from './listchange.js';
+import { generateChangeSupport } from './listchange.js';
+import { generateFormDataPublisherBuilder } from './form-data-publisher.js';
 
 export function generate(
 	model: MResolvedRSDModel,
@@ -35,7 +36,8 @@ export function generate(
 	result.push(...model.elements.flatMap(e => generateType(e, model, artifactConfig)).filter(isDefined));
 	result.push(...model.services.map(e => generateService(e, artifactConfig)));
 	result.push(...generateStreamImpls(artifactConfig, model));
-	result.push(...generateListChange(artifactConfig));
+	result.push(...generateChangeSupport(artifactConfig));
+	result.push(...generateFormDataPublisherBuilder(artifactConfig, model));
 
 	return result;
 }

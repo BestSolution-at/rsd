@@ -17,11 +17,21 @@ export function toFirstLower(value: string) {
 	return value[0].toLowerCase() + value.substring(1);
 }
 
-export type IndentBlock = (string | IndentBlock | GeneratorNode | undefined | (() => GeneratorNode | undefined))[];
+export type IndentBlock = (
+	| string
+	| IndentBlock
+	| GeneratorNode
+	| undefined
+	| null
+	| (() => GeneratorNode | undefined | null)
+)[];
 
 export function toNode(block: IndentBlock, endWithNewLine = true) {
 	const node = new CompositeGeneratorNode();
 	block.forEach((e, idx, arr) => {
+		if (e === null) {
+			return;
+		}
 		if (e === undefined) {
 			if (endWithNewLine || idx + 1 < arr.length) {
 				node.append(NL);
@@ -31,7 +41,7 @@ export function toNode(block: IndentBlock, endWithNewLine = true) {
 			if (n) {
 				node.append(n);
 			}
-			if (endWithNewLine || idx + 1 < arr.length) {
+			if (n !== null && (endWithNewLine || idx + 1 < arr.length)) {
 				node.append(NL);
 			}
 		} else if (Array.isArray(e)) {

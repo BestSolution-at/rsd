@@ -73,7 +73,7 @@ function ChangeTypes(
 	return toNode([
 		...props
 			.filter(isMResolvedProperty)
-			.filter(p => p.readonly === false)
+			.filter(p => !p.readonly)
 			.filter(p => p.array)
 			.flatMap(p => [
 				SetChange(p, nativeTypeSubstitues, interfaceBasePackage, fqn),
@@ -93,13 +93,13 @@ function SetChange(
 
 	if (prop.variant === 'union' || prop.variant === 'record') {
 		return toNode([
-			`static class ${prefix}SetChangeImpl extends _ListChangeSupport.ObjectElementsChange<${type}> implements ${prefix}SetChange {`,
+			`static class ${prefix}SetChangeImpl extends _ChangeSupport.ObjectElementsChange<${type}> implements ${prefix}SetChange {`,
 			[`${prefix}SetChangeImpl(JsonObject data) {`, [`super(data, ${prop.type}DataImpl::of);`], '}'],
 			'}',
 		]);
 	} else {
 		return toNode([
-			`static class ${prefix}SetChangeImpl extends _ListChangeSupport.ValueElementsChange<${type}> implements ${prefix}SetChange {`,
+			`static class ${prefix}SetChangeImpl extends _ChangeSupport.ValueElementsChange<${type}> implements ${prefix}SetChange {`,
 			[`${prefix}SetChangeImpl(JsonObject data) {`, [`super(data, v -> ${lambdaBodyComputer(prop, type, fqn)});`], '}'],
 			'}',
 		]);
@@ -109,7 +109,8 @@ function SetChange(
 function lambdaBodyComputer(prop: MResolvedPropery, type: string, fqn: (type: string) => string) {
 	if (isMBuiltinType(prop.type)) {
 		if (prop.type === 'boolean') {
-			return 'v.getValueType() == ${JsonValue}.ValueType.TRUE';
+			const JsonValue = fqn('jakarta.json.JsonValue');
+			return `v.getValueType() == ${JsonValue}.ValueType.TRUE`;
 		} else if (isMBuiltinFloatType(prop.type)) {
 			const JsonNumber = fqn('jakarta.json.JsonNumber');
 			if (prop.type === 'double') {
@@ -162,7 +163,7 @@ function ListChange(
 		const type = fqn(`${interfaceBasePackage}.${prop.type}`);
 		const JsonString = fqn('jakarta.json.JsonString');
 		return toNode([
-			`static class ${prefix}MergeChangeImpl extends _ListChangeSupport.ListMergeAddRemoveUpdateImpl<${type}.Data, ${type}.Patch, String> implements ${prefix}MergeChange {`,
+			`static class ${prefix}MergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<${type}.Data, ${type}.Patch, String> implements ${prefix}MergeChange {`,
 			[
 				`${prefix}MergeChangeImpl(JsonObject data) {`,
 				[
@@ -178,7 +179,7 @@ function ListChange(
 
 		const lambdaBody = lambdaBodyComputer(prop, type, fqn);
 		return toNode([
-			`static class ${prefix}MergeChangeImpl extends _ListChangeSupport.ListMergeAddRemoveImpl<${type}, ${type}> implements ${prefix}MergeChange {`,
+			`static class ${prefix}MergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<${type}, ${type}> implements ${prefix}MergeChange {`,
 			[`${prefix}MergeChangeImpl(JsonObject data) {`, [`super(data, v -> ${lambdaBody}, v -> ${lambdaBody});`], '}'],
 			'}',
 		]);
@@ -284,7 +285,7 @@ function generatePropertyAccessors(
 	node.append(
 		...props
 			.filter(isMResolvedProperty)
-			.filter(p => p.readonly === false)
+			.filter(p => !p.readonly)
 			.flatMap(p => {
 				return [generatePatchPropertyAccessor(p, nativeTypeSubstitues, interfaceBasePackage, fqn), NL];
 			}),

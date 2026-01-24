@@ -56,13 +56,14 @@ export function isMRSDModel(value: unknown): value is MRSDModel {
 }
 
 export type MBaseProperty = MKeyProperty | MRevisionProperty | MProperty;
-export type MUserType = MUnionType | MMixinType | MRecordType | MEnumType | MScalarType;
+export type MUserType = MUnionType | MMixinType | MRecordType | MEnumType | MScalarType | MInlineEnumType;
 export type MResolvedUserType =
 	| MResolvedUnionType
 	| MResolvedMixinType
 	| MResolvedRecordType
 	| MResolvedEnumType
-	| MResolvedScalarType;
+	| MResolvedScalarType
+	| MResolvedInlineEnumType;
 
 export type MScalarType = {
 	'@type': 'ScalarType';
@@ -96,7 +97,7 @@ export type MResolvedUnionType = MUnionType & {
 export type MResolvedBaseProperty = MBaseProperty & {
 	resolved: {
 		owner: MResolvedMixinType | MResolvedRecordType;
-		resolvedObjectType: MResolvedUnionType | MResolvedRecordType | undefined;
+		resolvedObjectType: () => MResolvedUnionType | MResolvedRecordType | undefined;
 	};
 };
 
@@ -229,6 +230,7 @@ export type MEnumType = {
 };
 
 export type MResolvedEnumType = MEnumType;
+export type MResolvedInlineEnumType = MInlineEnumType;
 
 export function isMEnumType(value: unknown): value is MEnumType {
 	return isObject(value) && '@type' in value && value['@type'] === 'EnumType';
@@ -396,7 +398,7 @@ function mapToResolved(
 	} else if (isMScalarType(t)) {
 		return t;
 	}
-	throw new Error(String(t['@type']));
+	throw new Error(t['@type']);
 }
 
 function mapToResolvedMixinType(
@@ -424,7 +426,8 @@ function mapToResolvedMixinType(
 		...p,
 		resolved: {
 			owner: rv,
-			resolvedObjectType: solvedUnions.get(String(p.type)) ?? solvedRecords.get(String(p.type)),
+			resolvedObjectType: () =>
+				isMInlineEnumType(p.type) ? undefined : (solvedUnions.get(p.type) ?? solvedRecords.get(p.type)),
 		},
 	}));
 	rv.properties = rv.resolved.properties; // This is bogus and looks like a bug
@@ -464,17 +467,16 @@ function mapToResolvedRecordType(
 			properties: [],
 		},
 	};
-
+	solvedRecords.set(t.name, rv);
 	rv.resolved.properties = t.properties.map(p => ({
 		...p,
 		resolved: {
 			owner: rv,
-			resolvedObjectType: solvedUnions.get(String(p.type)) ?? solvedRecords.get(String(p.type)),
+			resolvedObjectType: () =>
+				isMInlineEnumType(p.type) ? undefined : (solvedUnions.get(p.type) ?? solvedRecords.get(p.type)),
 		},
 	}));
 	rv.properties = rv.resolved.properties;
-
-	solvedRecords.set(t.name, rv);
 
 	const resolvedMixins = model.elements
 		.filter(isMMixinType)
@@ -530,6 +532,11 @@ function mapToResolvedUnionType(
 	const groupCount = new Map<string, MResolvedBaseProperty[]>();
 
 	allProperties.forEach(p => {
+		// Inline enums can not be shared
+		if (isMInlineEnumType(p.type)) {
+			return;
+		}
+
 		const key = `${p.name}#${p.type}`;
 		const data = groupCount.get(key);
 		if (data) {
@@ -559,7 +566,7 @@ function mapToResolvedOperation(o: MOperation, model: MRSDModel): MResolvedOpera
 	return {
 		...o,
 		resolved: {
-			errors: o.errors.map(e => model.errors.find(err => err.name === e)).filter(isDefined),
+			errors: o.operationErrors.map(e => model.errors.find(err => err.name === e.error)).filter(isDefined),
 		},
 	};
 }

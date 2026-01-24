@@ -38,7 +38,7 @@ public interface HeaderParameterTypesService extends BaseService {
 
 	public NilResult simpleBooleanHeaderParamOpt(Boolean headerValue);
 
-	public NilResult simpleBooleanHeaderParamNil(boolean headerValue);
+	public NilResult simpleBooleanHeaderParamNil(Boolean headerValue);
 
 	public NilResult simpleBooleanHeaderParamOptNil();
 
@@ -50,7 +50,7 @@ public interface HeaderParameterTypesService extends BaseService {
 
 	public NilResult simpleShortHeaderParamOpt(Short headerValue);
 
-	public NilResult simpleShortHeaderParamNil(short headerValue);
+	public NilResult simpleShortHeaderParamNil(Short headerValue);
 
 	public NilResult simpleShortHeaderParamOptNil();
 
@@ -62,7 +62,7 @@ public interface HeaderParameterTypesService extends BaseService {
 
 	public NilResult simpleIntHeaderParamOpt(Integer headerValue);
 
-	public NilResult simpleIntHeaderParamNil(int headerValue);
+	public NilResult simpleIntHeaderParamNil(Integer headerValue);
 
 	public NilResult simpleIntHeaderParamOptNil();
 
@@ -74,7 +74,7 @@ public interface HeaderParameterTypesService extends BaseService {
 
 	public NilResult simpleLongHeaderParamOpt(Long headerValue);
 
-	public NilResult simpleLongHeaderParamNil(long headerValue);
+	public NilResult simpleLongHeaderParamNil(Long headerValue);
 
 	public NilResult simpleLongHeaderParamOptNil();
 
@@ -86,7 +86,7 @@ public interface HeaderParameterTypesService extends BaseService {
 
 	public NilResult simpleFloatHeaderParamOpt(Float headerValue);
 
-	public NilResult simpleFloatHeaderParamNil(float headerValue);
+	public NilResult simpleFloatHeaderParamNil(Float headerValue);
 
 	public NilResult simpleFloatHeaderParamOptNil();
 
@@ -98,7 +98,7 @@ public interface HeaderParameterTypesService extends BaseService {
 
 	public NilResult simpleDoubleHeaderParamOpt(Double headerValue);
 
-	public NilResult simpleDoubleHeaderParamNil(double headerValue);
+	public NilResult simpleDoubleHeaderParamNil(Double headerValue);
 
 	public NilResult simpleDoubleHeaderParamOptNil();
 
@@ -202,7 +202,7 @@ public interface HeaderParameterTypesService extends BaseService {
 
 	public List<NilResult> multiHeaderParamNil(
 			String valueA, 
-			int valueB);
+			Integer valueB);
 
 	public List<NilResult> multiHeaderParamOptNil();
 

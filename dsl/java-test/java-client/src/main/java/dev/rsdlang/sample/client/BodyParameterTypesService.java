@@ -39,7 +39,7 @@ public interface BodyParameterTypesService extends BaseService {
 
 	public NilResult simpleBooleanBodyParamOpt(Boolean bodyBoolean);
 
-	public NilResult simpleBooleanBodyParamNil(boolean bodyBoolean);
+	public NilResult simpleBooleanBodyParamNil(Boolean bodyBoolean);
 
 	public NilResult simpleBooleanBodyParamOptNil();
 
@@ -51,7 +51,7 @@ public interface BodyParameterTypesService extends BaseService {
 
 	public NilResult simpleShortBodyParamOpt(Short bodyShort);
 
-	public NilResult simpleShortBodyParamNil(short bodyShort);
+	public NilResult simpleShortBodyParamNil(Short bodyShort);
 
 	public NilResult simpleShortBodyParamOptNil();
 
@@ -63,7 +63,7 @@ public interface BodyParameterTypesService extends BaseService {
 
 	public NilResult simpleIntBodyParamOpt(Integer bodyInt);
 
-	public NilResult simpleIntBodyParamNil(int bodyInt);
+	public NilResult simpleIntBodyParamNil(Integer bodyInt);
 
 	public NilResult simpleIntBodyParamOptNil();
 
@@ -75,7 +75,7 @@ public interface BodyParameterTypesService extends BaseService {
 
 	public NilResult simpleLongBodyParamOpt(Long bodyLong);
 
-	public NilResult simpleLongBodyParamNil(long bodyLong);
+	public NilResult simpleLongBodyParamNil(Long bodyLong);
 
 	public NilResult simpleLongBodyParamOptNil();
 
@@ -87,7 +87,7 @@ public interface BodyParameterTypesService extends BaseService {
 
 	public NilResult simpleFloatBodyParamOpt(Float bodyFloat);
 
-	public NilResult simpleFloatBodyParamNil(float bodyFloat);
+	public NilResult simpleFloatBodyParamNil(Float bodyFloat);
 
 	public NilResult simpleFloatBodyParamOptNil();
 
@@ -99,7 +99,7 @@ public interface BodyParameterTypesService extends BaseService {
 
 	public NilResult simpleDoubleBodyParamOpt(Double bodyDouble);
 
-	public NilResult simpleDoubleBodyParamNil(double bodyDouble);
+	public NilResult simpleDoubleBodyParamNil(Double bodyDouble);
 
 	public NilResult simpleDoubleBodyParamOptNil();
 
@@ -209,7 +209,7 @@ public interface BodyParameterTypesService extends BaseService {
 
 	public String multiBodyParamNil(
 			String valueA, 
-			int valueB, 
+			Integer valueB, 
 			SimpleRecord.Data valueC);
 
 	public String multiBodyParamOptNil();

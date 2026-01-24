@@ -128,9 +128,10 @@ function generateBuilderPropertyMethods(
 			);
 			node.indent(methodBody => {
 				if (prop.variant === 'union') {
-					if (isMResolvedUnionType(prop.resolved.resolvedObjectType)) {
+					const resolvedObjectType = prop.resolved.resolvedObjectType();
+					if (isMResolvedUnionType(resolvedObjectType)) {
 						methodBody.append(`${fqn(interfaceBasePackage + '.' + prop.type)}.DataBuilder b;`, NL);
-						prop.resolved.resolvedObjectType.types.forEach((t, idx) => {
+						resolvedObjectType.types.forEach((t, idx) => {
 							const Type = fqn(`${interfaceBasePackage}.${t}`);
 							if (idx === 0) {
 								methodBody.append(`if (clazz == ${Type}.DataBuilder.class) {`, NL);
@@ -147,6 +148,7 @@ function generateBuilderPropertyMethods(
 						});
 						methodBody.append('}', NL);
 					} else {
+						console.error('RESOLVE FAILURE', prop);
 						methodBody.append('RESOLVE FAILURE');
 					}
 				} else {
@@ -225,7 +227,7 @@ function builtinBuilderArrayJSONAccess(property: { type: MBuiltinType; name: str
 		case 'local-date':
 			return `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
 		case 'local-date-time':
-			return `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name})::toString))`;
+			return `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
 		case 'long':
 			return `$builder.add("${property.name}", _JsonUtils.toJsonLongArray(${property.name}))`;
 		case 'short':

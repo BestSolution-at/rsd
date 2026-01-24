@@ -73,7 +73,7 @@ export function generatePatchPropertyAccessor(
 				const Optional = fqn('java.util.OptionalLong');
 				node.append(`public ${Optional} ${property.name}();`, NL);
 			} else if (type === 'Double') {
-				const Optional = fqn('java.util.OptionalLong');
+				const Optional = fqn('java.util.OptionalDouble');
 				node.append(`public ${Optional} ${property.name}();`, NL);
 			} else {
 				const Optional = fqn('java.util.Optional');

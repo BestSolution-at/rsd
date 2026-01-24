@@ -8,13 +8,14 @@ import {
 	isMResolvedUnionType,
 	isMRevisionProperty,
 	MBuiltinType,
+	MPropertyNoneInlineProperty,
 	MResolvedBaseProperty,
 	MResolvedPropery,
 	MResolvedRecordType,
 } from '../model.js';
 import { computeAPIType, primitiveToObject } from '../java-gen-utils.js';
 import { BuiltinType } from 'remote-service-description-language';
-import { toFirstUpper, toNode } from '../util.js';
+import { toFirstUpper, toNode, toNodeTree } from '../util.js';
 
 export function generatePropertyNG(
 	owner: MResolvedRecordType,
@@ -210,7 +211,7 @@ export function builtinBuilderArrayJSONAccess(
 		case 'local-date':
 			return `${builderName}.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
 		case 'local-date-time':
-			return `${builderName}.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name})::toString))`;
+			return `${builderName}.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
 		case 'long':
 			return `${builderName}.add("${property.name}", _JsonUtils.toJsonLongArray(${property.name}))`;
 		case 'short':
@@ -317,9 +318,9 @@ function generatePatchPropertyAccessor_NoRecord(
 			const Type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true);
 			node.indent(methodBody => {
 				if (property.array) {
-					methodBody.append(`return _JsonUtils.mapNilLiterals(data, "${property.name}", ${Type}::valueOf)`, NL);
+					methodBody.append(`return _JsonUtils.mapNilLiterals(data, "${property.name}", ${Type}::valueOf);`, NL);
 				} else {
-					methodBody.append(`return _JsonUtils.mapNilLiteral(data, "${property.name}", ${Type}::valueOf)`, NL);
+					methodBody.append(`return _JsonUtils.mapNilLiteral(data, "${property.name}", ${Type}::valueOf);`, NL);
 				}
 			});
 		}
@@ -411,12 +412,14 @@ function generatePatchPropertyAccessor_Array(
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
-	const Optional = fqn('java.util.Optional');
+	const Optional =
+		property.nullable || property.optional ? fqn(`${basePackageName}._Base`) + '.Nillable' : fqn('java.util.Optional');
+	const mapFunction = property.nullable || property.optional ? 'mapNilObject' : 'mapOptObject';
 	const prefix = toFirstUpper(property.name);
 	return toNode([
 		`public ${Optional}<${prefix}Change> ${property.name}() {`,
 		[
-			`return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ListChangeSupport.of(o, "@type", ${prefix}SetChangeImpl::new, ${prefix}MergeChangeImpl::new));`,
+			`return _JsonUtils.${mapFunction}(data, "${property.name}", o -> _ChangeSupport.of(o, "@type", ${prefix}SetChangeImpl::new, ${prefix}MergeChangeImpl::new));`,
 		],
 		'}',
 	]);
@@ -436,37 +439,35 @@ function generatePatchPropertyAccessor_Scalar(
 		property.variant === 'scalar'
 	) {
 		node.append(generatePatchPropertyAccessor_NoRecord(property, nativeTypeSubstitues, basePackageName, fqn));
+	} else if (property.optional || property.nullable) {
+		const _Base = fqn(basePackageName + '._Base');
+		const BaseType = fqn(`${basePackageName}.${property.type}`);
+		node.append(`public ${_Base}.Nillable<${BaseType}> ${property.name}() {`, NL);
+		node.indent(methodBody => {
+			methodBody.append(
+				`return _JsonUtils.mapNilObject(data, "${property.name}", o -> _ChangeSupport.of(o, "@type", ${property.type}DataImpl::of, ${property.type}PatchImpl::of));`,
+				NL,
+			);
+		});
+		node.append('}', NL);
 	} else {
-		const type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn);
-		if (property.optional || property.nullable) {
-			const _Base = fqn(basePackageName + '._Base');
-			const BaseType = fqn(`${basePackageName}.${property.type}`);
-			node.append(`public ${_Base}.Nillable<${BaseType}> ${property.name}() {`, NL);
-			node.indent(methodBody => {
+		const BaseType = fqn(`${basePackageName}.${property.type}`);
+		const Optional = fqn('java.util.Optional');
+		node.append(`public ${Optional}<${BaseType}> ${property.name}() {`, NL);
+		node.indent(methodBody => {
+			if (property.array) {
 				methodBody.append(
-					`return _JsonUtils.mapNilObject(data, "${property.name}", o -> ${property.type}DataImpl.isSupportedType(o) ? ${property.type}DataImpl.of(o) : ${property.type}PatchImpl.of(o));`,
+					`return _JsonUtils.mapOptObjects(data, "${property.name}", o -> _ChangeSupport.of(o, "@type", ${property.type}DataImpl::of, ${property.type}PatchImpl::of));`,
 					NL,
 				);
-			});
-			node.append('}', NL);
-		} else {
-			const Optional = fqn('java.util.Optional');
-			node.append(`public ${Optional}<${type}> ${property.name}() {`, NL);
-			node.indent(methodBody => {
-				if (property.array) {
-					methodBody.append(
-						`return _JsonUtils.mapOptObjects(data, "${property.name}", ${property.type}DataImpl::of);`,
-						NL,
-					);
-				} else {
-					methodBody.append(
-						`return _JsonUtils.mapOptObject(data, "${property.name}", ${property.type}DataImpl::of);`,
-						NL,
-					);
-				}
-			});
-			node.append('}', NL);
-		}
+			} else {
+				methodBody.append(
+					`return _JsonUtils.mapOptObject(data, "${property.name}", o -> _ChangeSupport.of(o, "@type", ${property.type}DataImpl::of, ${property.type}PatchImpl::of));`,
+					NL,
+				);
+			}
+		});
+		node.append('}', NL);
 	}
 
 	return node;
@@ -539,7 +540,7 @@ function generatePatchBuilderPropertyAccessor_Array(
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
-	let type = primitiveToObject(computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true));
+	const type = primitiveToObject(computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true));
 	const node = new CompositeGeneratorNode();
 
 	if (
@@ -598,13 +599,13 @@ function generatePatchBuilderPropertyAccessor_Array(
 								return '$changeBuilder.add("elements", _JsonUtils.toJsonIntArray(elements));';
 							} else if (property.type === 'long') {
 								return '$changeBuilder.add("elements", _JsonUtils.toJsonLongArray(elements));';
-							} else if (property.type === 'short') {
+							} else {
 								return '$changeBuilder.add("elements", _JsonUtils.toJsonShortArray(elements));';
 							}
 						} else if (isMBuiltinFloatType(property.type)) {
 							if (property.type === 'double') {
 								return '$changeBuilder.add("elements", _JsonUtils.toJsonDoubleArray(elements));';
-							} else if (property.type === 'float') {
+							} else {
 								return '$changeBuilder.add("elements", _JsonUtils.toJsonFloatArray(elements));';
 							}
 						}
@@ -706,31 +707,22 @@ export function generatePatchBuilderPropertyAccessor_Scalar(
 
 function RecordPatchBuilderMethods(
 	t: MResolvedRecordType,
-	property: MResolvedPropery,
+	property: MResolvedPropery & MPropertyNoneInlineProperty,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
 	const type = fqn(`${basePackageName}.${property.type}`);
-	const nullSupport = () => {
-		if (property.optional || property.nullable) {
-			return toNode([
-				`if (${property.name} == null) {`,
-				[`$builder.addNull("${property.name}");`, 'return this;'],
-				'}',
-			]);
-		}
-		return undefined;
-	};
 	const withContent = () => {
-		if (isMResolvedUnionType(property.resolved.resolvedObjectType)) {
-			const dataBuilders = property.resolved.resolvedObjectType.types.flatMap((e, idx) => {
+		const resolvedObjectType = property.resolved.resolvedObjectType();
+		if (isMResolvedUnionType(resolvedObjectType)) {
+			const dataBuilders = resolvedObjectType.types.flatMap((e, idx) => {
 				const Type = fqn(`${basePackageName}.${e}`);
 				const start =
 					idx === 0 ? `if (clazz == ${Type}.DataBuilder.class) {` : `} else if (clazz == ${Type}.DataBuilder.class) {`;
 				return [start, [`b = ${e}DataImpl.builder();`]];
 			});
 
-			const patchBuilders = property.resolved.resolvedObjectType.types.flatMap(e => {
+			const patchBuilders = resolvedObjectType.types.flatMap(e => {
 				const Type = fqn(`${basePackageName}.${e}`);
 				return [`} else if (clazz == ${Type}.PatchBuilder.class) {`, [`b = ${e}PatchImpl.builder();`]];
 			});
@@ -743,26 +735,55 @@ function RecordPatchBuilderMethods(
 				'}',
 			]);
 		}
-		return toNode([
-			`if(clazz == ${property.type}.DataBuilder ) {`,
-			[`b = ${property.type}DataImpl.builder();`],
-			`} else if (clazz == ${property.type}.PatchBuilder ) {`,
-			[`b = ${property.type}PatchImpl.builder();`],
-			'} else {',
-			['throw new IllegalArgumentException("Unsupported builder type %s".formatted(clazz));'],
-			'}',
-		]);
+		return toNodeTree(`
+			if(clazz == ${property.type}.DataBuilder.class ) {
+				b = ${property.type}DataImpl.builder();
+			} else if (clazz == ${property.type}.PatchBuilder.class ) {
+				b = ${property.type}PatchImpl.builder();
+			} else {
+				throw new IllegalArgumentException("Unsupported builder type %s".formatted(clazz));
+			}`);
 	};
+
+	const nullSupport = () => {
+		if (property.optional || property.nullable) {
+			return toNodeTree(`
+				if (${property.name} == null) {
+					$builder.addNull("${property.name}");
+					return this;
+				}`);
+		}
+		return null;
+	};
+
+	const methodContent = toNodeTree(`
+		var $changeBuilder = Json.createObjectBuilder(((_BaseDataImpl) ${property.name}).data);
+		if (${property.name} instanceof ${property.type}.Data) {
+			$changeBuilder.add("@type", "replace");
+		} else {
+			$changeBuilder.add("@type", "merge");
+		}
+		$builder.add("${property.name}", $changeBuilder.build());
+		return this;`);
 
 	const Function = fqn('java.util.function.Function');
 	return toNode([
 		'@Override',
 		`public ${t.name}.PatchBuilder ${property.name}(${type} ${property.name}) {`,
-		[nullSupport, `$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data);`, 'return this;'],
+		[
+			//
+			nullSupport,
+			methodContent,
+		],
 		'}',
 		'',
 		`public <T extends ${type}.Builder> ${t.name}.PatchBuilder with${toFirstUpper(property.name)}(Class<T> clazz, ${Function}<T, ${type}> block) {`,
-		[`${property.type}.Builder b;`, withContent, `return repeat(block.apply(clazz.cast(b)));`],
+		[
+			//
+			`${property.type}.Builder b;`,
+			withContent,
+			`return ${property.name}(block.apply(clazz.cast(b)));`,
+		],
 		'}',
 	]);
 }

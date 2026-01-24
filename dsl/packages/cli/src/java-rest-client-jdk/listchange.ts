@@ -6,23 +6,22 @@ import {
 	JavaRestClientJDKGeneratorConfig,
 	toPath,
 } from '../java-gen-utils.js';
-import { generateListChangeContent } from '../java-model-json/listchange-impl.js';
+import { generateChangeSupportContent } from '../java-model-json/listchange-impl.js';
 
-export function generateListChange(artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact[] {
+export function generateChangeSupport(artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact[] {
 	const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
 	const rv: Artifact[] = [];
 
 	{
 		const importCollector = new JavaImportsCollector(packageName);
-		const fqn = importCollector.importType.bind(importCollector);
 
 		rv.push({
-			name: `_ListChangeSupport.java`,
+			name: `_ChangeSupport.java`,
 			content: toString(
 				generateCompilationUnit(
 					packageName,
 					importCollector,
-					generateListChangeContent(`${artifactConfig.rootPackageName}.model`, fqn),
+					generateChangeSupportContent(`${artifactConfig.rootPackageName}.model`),
 				),
 				'\t',
 			),

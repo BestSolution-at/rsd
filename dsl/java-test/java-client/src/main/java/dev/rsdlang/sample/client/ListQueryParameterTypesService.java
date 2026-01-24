@@ -43,7 +43,7 @@ public interface ListQueryParameterTypesService extends BaseService {
 
 	public List<SampleEnum> listEnumQueryParam(List<SampleEnum> queryValue);
 
-	public ListInlineEnumQueryParam_Result$ listInlineEnumQueryParam(List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue);
+	public List<ListInlineEnumQueryParam_Result$> listInlineEnumQueryParam(List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue);
 
 	public String listMultiQueryParam(
 			List<String> valueA, 

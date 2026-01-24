@@ -6,23 +6,22 @@ import {
 	JavaServerJakartaWSGeneratorConfig,
 	toPath,
 } from '../java-gen-utils.js';
-import { generateListChangeContent } from '../java-model-json/listchange-impl.js';
+import { generateChangeSupportContent } from '../java-model-json/listchange-impl.js';
 
-export function generateListChange(artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact[] {
+export function generateChangeSupport(artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact[] {
 	const packageName = `${artifactConfig.rootPackageName}.rest.model`;
 	const rv: Artifact[] = [];
 
 	{
 		const importCollector = new JavaImportsCollector(packageName);
-		const fqn = importCollector.importType.bind(importCollector);
 
 		rv.push({
-			name: `_ListChangeSupport.java`,
+			name: `_ChangeSupport.java`,
 			content: toString(
 				generateCompilationUnit(
 					packageName,
 					importCollector,
-					generateListChangeContent(`${artifactConfig.rootPackageName}.service.model`, fqn),
+					generateChangeSupportContent(`${artifactConfig.rootPackageName}.service.model`),
 				),
 				'\t',
 			),

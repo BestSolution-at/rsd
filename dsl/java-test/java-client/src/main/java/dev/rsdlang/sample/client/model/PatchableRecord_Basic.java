@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.OptionalInt;
 import java.util.OptionalLong;
 
@@ -80,7 +81,7 @@ public interface PatchableRecord_Basic {
 
 		public Optional<Float> valueFloat();
 
-		public OptionalLong valueDouble();
+		public OptionalDouble valueDouble();
 
 		public Optional<String> valueString();
 
