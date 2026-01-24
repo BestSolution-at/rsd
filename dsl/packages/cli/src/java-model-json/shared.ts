@@ -756,15 +756,20 @@ function RecordPatchBuilderMethods(
 		return null;
 	};
 
-	const methodContent = toNodeTree(`
-		var $changeBuilder = Json.createObjectBuilder(((_BaseDataImpl) ${property.name}).data);
-		if (${property.name} instanceof ${property.type}.Data) {
-			$changeBuilder.add("@type", "replace");
-		} else {
-			$changeBuilder.add("@type", "merge");
-		}
-		$builder.add("${property.name}", $changeBuilder.build());
-		return this;`);
+	const methodContent =
+		property.variant === 'union'
+			? toNodeTree(`
+				$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data);
+				return this;`)
+			: toNodeTree(`
+					var $changeBuilder = Json.createObjectBuilder(((_BaseDataImpl) ${property.name}).data);
+					if (${property.name} instanceof ${property.type}.Data) {
+						$changeBuilder.add("@type", "replace");
+					} else {
+						$changeBuilder.add("@type", "merge");
+					}
+					$builder.add("${property.name}", $changeBuilder.build());
+					return this;`);
 
 	const Function = fqn('java.util.function.Function');
 	return toNode([

@@ -126,13 +126,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 
 		@Override
 		public PatchableRecordWithUnion.PatchBuilder value(PatchableUnion value) {
-			var $changeBuilder = Json.createObjectBuilder(((_BaseDataImpl) value).data);
-			if (value instanceof PatchableUnion.Data) {
-				$changeBuilder.add("@type", "replace");
-			} else {
-				$changeBuilder.add("@type", "merge");
-			}
-			$builder.add("value", $changeBuilder.build());
+			$builder.add("value", ((_BaseDataImpl) value).data);
 			return this;
 		}
 
@@ -159,13 +153,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 				$builder.addNull("value_Null");
 				return this;
 			}
-			var $changeBuilder = Json.createObjectBuilder(((_BaseDataImpl) value_Null).data);
-			if (value_Null instanceof PatchableUnion.Data) {
-				$changeBuilder.add("@type", "replace");
-			} else {
-				$changeBuilder.add("@type", "merge");
-			}
-			$builder.add("value_Null", $changeBuilder.build());
+			$builder.add("value_Null", ((_BaseDataImpl) value_Null).data);
 			return this;
 		}
 
@@ -192,13 +180,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 				$builder.addNull("value_Opt");
 				return this;
 			}
-			var $changeBuilder = Json.createObjectBuilder(((_BaseDataImpl) value_Opt).data);
-			if (value_Opt instanceof PatchableUnion.Data) {
-				$changeBuilder.add("@type", "replace");
-			} else {
-				$changeBuilder.add("@type", "merge");
-			}
-			$builder.add("value_Opt", $changeBuilder.build());
+			$builder.add("value_Opt", ((_BaseDataImpl) value_Opt).data);
 			return this;
 		}
 
@@ -225,13 +207,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 				$builder.addNull("value_Opt_Null");
 				return this;
 			}
-			var $changeBuilder = Json.createObjectBuilder(((_BaseDataImpl) value_Opt_Null).data);
-			if (value_Opt_Null instanceof PatchableUnion.Data) {
-				$changeBuilder.add("@type", "replace");
-			} else {
-				$changeBuilder.add("@type", "merge");
-			}
-			$builder.add("value_Opt_Null", $changeBuilder.build());
+			$builder.add("value_Opt_Null", ((_BaseDataImpl) value_Opt_Null).data);
 			return this;
 		}
 
