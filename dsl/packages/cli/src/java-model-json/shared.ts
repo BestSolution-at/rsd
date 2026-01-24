@@ -444,10 +444,17 @@ function generatePatchPropertyAccessor_Scalar(
 		const BaseType = fqn(`${basePackageName}.${property.type}`);
 		node.append(`public ${_Base}.Nillable<${BaseType}> ${property.name}() {`, NL);
 		node.indent(methodBody => {
-			methodBody.append(
-				`return _JsonUtils.mapNilObject(data, "${property.name}", o -> _ChangeSupport.of(o, "@type", ${property.type}DataImpl::of, ${property.type}PatchImpl::of));`,
-				NL,
-			);
+			if (property.variant === 'union') {
+				methodBody.append(
+					`return _JsonUtils.mapNilObject(data, "${property.name}", o -> ${property.type}DataImpl.isSupportedType(o) ? ${property.type}DataImpl.of(o) : ${property.type}PatchImpl.of(o));`,
+					NL,
+				);
+			} else {
+				methodBody.append(
+					`return _JsonUtils.mapNilObject(data, "${property.name}", o -> _ChangeSupport.of(o, "@type", ${property.type}DataImpl::of, ${property.type}PatchImpl::of));`,
+					NL,
+				);
+			}
 		});
 		node.append('}', NL);
 	} else {
@@ -455,9 +462,9 @@ function generatePatchPropertyAccessor_Scalar(
 		const Optional = fqn('java.util.Optional');
 		node.append(`public ${Optional}<${BaseType}> ${property.name}() {`, NL);
 		node.indent(methodBody => {
-			if (property.array) {
+			if (property.variant === 'union') {
 				methodBody.append(
-					`return _JsonUtils.mapOptObjects(data, "${property.name}", o -> _ChangeSupport.of(o, "@type", ${property.type}DataImpl::of, ${property.type}PatchImpl::of));`,
+					`return _JsonUtils.mapOptObject(data, "${property.name}", o -> ${property.type}DataImpl.isSupportedType(o) ? ${property.type}DataImpl.of(o) : ${property.type}PatchImpl.of(o));`,
 					NL,
 				);
 			} else {

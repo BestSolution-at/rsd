@@ -80,19 +80,19 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 	}
 
 	public Optional<PatchableUnion> value() {
-		return _JsonUtils.mapOptObject(data, "value", o -> _ChangeSupport.of(o, "@type", PatchableUnionDataImpl::of, PatchableUnionPatchImpl::of));
+		return _JsonUtils.mapOptObject(data, "value", o -> PatchableUnionDataImpl.isSupportedType(o) ? PatchableUnionDataImpl.of(o) : PatchableUnionPatchImpl.of(o));
 	}
 
 	public _Base.Nillable<PatchableUnion> value_Null() {
-		return _JsonUtils.mapNilObject(data, "value_Null", o -> _ChangeSupport.of(o, "@type", PatchableUnionDataImpl::of, PatchableUnionPatchImpl::of));
+		return _JsonUtils.mapNilObject(data, "value_Null", o -> PatchableUnionDataImpl.isSupportedType(o) ? PatchableUnionDataImpl.of(o) : PatchableUnionPatchImpl.of(o));
 	}
 
 	public _Base.Nillable<PatchableUnion> value_Opt() {
-		return _JsonUtils.mapNilObject(data, "value_Opt", o -> _ChangeSupport.of(o, "@type", PatchableUnionDataImpl::of, PatchableUnionPatchImpl::of));
+		return _JsonUtils.mapNilObject(data, "value_Opt", o -> PatchableUnionDataImpl.isSupportedType(o) ? PatchableUnionDataImpl.of(o) : PatchableUnionPatchImpl.of(o));
 	}
 
 	public _Base.Nillable<PatchableUnion> value_Opt_Null() {
-		return _JsonUtils.mapNilObject(data, "value_Opt_Null", o -> _ChangeSupport.of(o, "@type", PatchableUnionDataImpl::of, PatchableUnionPatchImpl::of));
+		return _JsonUtils.mapNilObject(data, "value_Opt_Null", o -> PatchableUnionDataImpl.isSupportedType(o) ? PatchableUnionDataImpl.of(o) : PatchableUnionPatchImpl.of(o));
 	}
 
 	public Optional<ListChange> list() {
