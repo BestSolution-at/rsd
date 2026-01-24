@@ -5,11 +5,11 @@ import {
 	generateCompilationUnit,
 	JavaImportsCollector,
 	JavaServerGeneratorConfig,
-	resolveObjectType,
 	resolveType,
 	toPath,
 } from '../java-gen-utils.js';
 import { MOperation, MParameter, MReturnType, MService } from '../model.js';
+import { toFirstUpper } from '../util.js';
 
 export function generateService(s: MService, artifactConfig: JavaServerGeneratorConfig): Artifact {
 	const packageName = `${artifactConfig.rootPackageName}.service`;
@@ -30,6 +30,36 @@ export function generateService(s: MService, artifactConfig: JavaServerGenerator
 function generateServiceContent(s: MService, artifactConfig: JavaServerGeneratorConfig, fqn: (type: string) => string) {
 	const node = new CompositeGeneratorNode();
 	node.append(`public interface ${s.name}Service {`, NL);
+	for (const o of s.operations) {
+		const resultType = o.resultType;
+		if (resultType?.variant === 'inline-enum') {
+			const enumName = toFirstUpper(o.name) + '_Result$';
+			node.indent(child => {
+				child.append(`public enum ${enumName} {`, NL);
+				child.indent(grandChild => {
+					resultType.type.entries.forEach(v => {
+						grandChild.append(`${v.name},`, NL);
+					});
+				});
+				child.append('}', NL);
+			});
+		}
+		for (const p of o.parameters) {
+			if (p.variant === 'inline-enum') {
+				const paramType = p.type;
+				const enumName = toFirstUpper(o.name) + '_' + toFirstUpper(p.name) + '_Param$';
+				node.indent(child => {
+					child.append(`public enum ${enumName} {`, NL);
+					child.indent(grandChild => {
+						paramType.entries.forEach(v => {
+							grandChild.append(`${v.name},`, NL);
+						});
+					});
+					child.append('}', NL);
+				});
+			}
+		}
+	}
 	node.indent(child => {
 		s.operations.forEach(o => {
 			toMethod(child, o, o.parameters, artifactConfig, fqn);
@@ -62,24 +92,24 @@ export function generateServiceSignature(
 	const parameters = [
 		'BuilderFactory _factory',
 		...scopeValues,
-		...allParameters.map(p => toParameter(p, artifactConfig, fqn)),
+		...allParameters.map(p => toParameter(p, artifactConfig, fqn, o.name)),
 	].join(', ');
-	child.append(`public ${toResultType(o.resultType, artifactConfig, fqn)} ${o.name}(${parameters})`);
-	if (o.errors.length > 0) {
+	child.append(`public ${toResultType(o.resultType, artifactConfig, fqn, o.name)} ${o.name}(${parameters})`);
+	if (o.operationErrors.length > 0) {
 		child.appendNewLine();
 		child.indent(outer => {
 			outer.indent(throwBody => {
 				throwBody.append(
 					'throws ',
-					fqn(`${artifactConfig.rootPackageName}.service.${o.errors[0]}Exception`),
-					o.errors.length > 1 ? ',' : '',
+					fqn(`${artifactConfig.rootPackageName}.service.${o.operationErrors[0].error}Exception`),
+					o.operationErrors.length > 1 ? ',' : '',
 				);
-				if (o.errors.length > 1) {
+				if (o.operationErrors.length > 1) {
 					throwBody.appendNewLine();
 				}
-				o.errors.slice(1).forEach((e, idx, arr) => {
+				o.operationErrors.slice(1).forEach((e, idx, arr) => {
 					throwBody.append(
-						fqn(`${artifactConfig.rootPackageName}.service.${e}Exception`),
+						fqn(`${artifactConfig.rootPackageName}.service.${e.error}Exception`),
 						arr.length !== idx + 1 ? ',' : '',
 					);
 					if (arr.length !== idx + 1) {
@@ -92,12 +122,19 @@ export function generateServiceSignature(
 	return child;
 }
 
-function toParameter(parameter: MParameter, artifactConfig: JavaServerGeneratorConfig, fqn: (type: string) => string) {
+function toParameter(
+	parameter: MParameter,
+	artifactConfig: JavaServerGeneratorConfig,
+	fqn: (type: string) => string,
+	methodName: string,
+) {
 	const type = computeParameterAPIType(
 		parameter,
 		artifactConfig.nativeTypeSubstitues,
 		`${artifactConfig.rootPackageName}.service.model`,
 		fqn,
+		false,
+		methodName,
 	);
 	return `${type} ${parameter.name}`;
 }
@@ -106,30 +143,33 @@ function toResultType(
 	type: MReturnType | undefined,
 	artifactConfig: JavaServerGeneratorConfig,
 	fqn: (type: string) => string,
+	methodName: string,
 ) {
 	const dtoPkg = `${artifactConfig.rootPackageName}.service.model`;
 	if (type === undefined) {
 		return 'void';
 	}
 
+	let rvType: string;
 	if (type.variant === 'stream') {
 		if (type.type === 'file') {
-			return fqn(`${dtoPkg}.RSDFile`);
+			rvType = fqn(`${dtoPkg}.RSDFile`);
+		} else {
+			rvType = fqn(`${dtoPkg}.RSDBlob`);
 		}
-		return fqn(`${dtoPkg}.RSDBlob`);
 	} else if (type.variant === 'union' || type.variant === 'record') {
-		const dtoType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
-		if (type.array) {
-			return `${fqn('java.util.List')}<${dtoType}>`;
-		} else {
-			return dtoType;
-		}
+		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
+	} else if (type.variant === 'enum') {
+		rvType = fqn(`${dtoPkg}.${type.type}`);
 	} else if (typeof type.type === 'string') {
-		if (type.array) {
-			return `${fqn('java.util.List')}<${resolveObjectType(type.type, artifactConfig.nativeTypeSubstitues, fqn)}>`;
-		} else {
-			return `${resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false)}`;
-		}
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, type.array);
+	} else {
+		rvType = toFirstUpper(methodName) + '_Result$';
 	}
-	return type.type;
+
+	if (type.array) {
+		rvType = `${fqn('java.util.List')}<${rvType}>`;
+	}
+
+	return rvType;
 }
