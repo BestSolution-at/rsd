@@ -1,0 +1,16 @@
+package dev.rsdlang.sample.server.service.handler.sample;
+
+import java.time.ZoneId;
+
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import dev.rsdlang.sample.server.service.impl.SampleServiceServiceImpl;
+
+public class GetScalarHandlerImpl implements SampleServiceServiceImpl.GetScalarHandler {
+
+	@Override
+	public ZoneId getScalar(BuilderFactory _factory) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getScalar'");
+	}
+
+}
