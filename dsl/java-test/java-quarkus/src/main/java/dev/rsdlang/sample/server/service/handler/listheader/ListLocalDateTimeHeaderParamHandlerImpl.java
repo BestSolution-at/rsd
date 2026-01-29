@@ -1,0 +1,18 @@
+package dev.rsdlang.sample.server.service.handler.listheader;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
+
+public class ListLocalDateTimeHeaderParamHandlerImpl
+		implements ListHeaderParameterTypesServiceImpl.ListLocalDateTimeHeaderParamHandler {
+
+	@Override
+	public List<LocalDateTime> listLocalDateTimeHeaderParam(BuilderFactory _factory, List<LocalDateTime> headerValue) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'listLocalDateTimeHeaderParam'");
+	}
+
+}
