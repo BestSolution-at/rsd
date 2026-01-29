@@ -1,0 +1,17 @@
+package dev.rsdlang.sample.server.service.handler.path;
+
+import java.time.LocalDate;
+
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import dev.rsdlang.sample.server.service.impl.PathParameterTypeServiceServiceImpl;
+
+public class SimpleLocalDatePathParamHandlerImpl
+		implements PathParameterTypeServiceServiceImpl.SimpleLocalDatePathParamHandler {
+
+	@Override
+	public LocalDate simpleLocalDatePathParam(BuilderFactory _factory, LocalDate pathLocalDate) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'simpleLocalDatePathParam'");
+	}
+
+}
