@@ -15,6 +15,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.PUT;
 
 import dev.rsdlang.sample.server.service.BinaryTypesService;
+import dev.rsdlang.sample.server.service.model.SimpleRecord;
 import org.jboss.resteasy.reactive.multipart.FileUpload;
 import org.jboss.resteasy.reactive.RestForm;
 
@@ -51,100 +52,188 @@ public class BinaryTypesResource {
 	@Path("uploadFile")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFile(@RestForm("data") FileUpload _data) {
+		var data = builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName());
+		var result = service.uploadFile(builderFactory, data);
+		return responseBuilder.uploadFile(result, data).build();
 	}
 	@POST
 	@Path("uploadFileOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFileOpt(@RestForm("data") FileUpload _data) {
+		var data = builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName());
+		var result = service.uploadFileOpt(builderFactory, data);
+		return responseBuilder.uploadFileOpt(result, data).build();
 	}
 	@POST
 	@Path("uploadFileNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFileNil(@RestForm("data") FileUpload _data) {
+		var data = builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName());
+		var result = service.uploadFileNil(builderFactory, data);
+		return responseBuilder.uploadFileNil(result, data).build();
 	}
 	@POST
 	@Path("uploadFileOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFileOptNil(@RestForm("data") FileUpload _data) {
+		var data = builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName());
+		var result = service.uploadFileOptNil(builderFactory, data);
+		return responseBuilder.uploadFileOptNil(result, data).build();
 	}
 	@POST
 	@Path("uploadBlob")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadBlob(@RestForm("data") FileUpload _data) {
+		var data = builderFactory.createBlob(_data.filePath(), _data.contentType());
+		var result = service.uploadBlob(builderFactory, data);
+		return responseBuilder.uploadBlob(result, data).build();
 	}
 	@POST
 	@Path("uploadBlobOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadBlobOpt(@RestForm("data") FileUpload _data) {
+		var data = builderFactory.createBlob(_data.filePath(), _data.contentType());
+		var result = service.uploadBlobOpt(builderFactory, data);
+		return responseBuilder.uploadBlobOpt(result, data).build();
 	}
 	@POST
 	@Path("uploadBlobNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadBlobNil(@RestForm("data") FileUpload _data) {
+		var data = builderFactory.createBlob(_data.filePath(), _data.contentType());
+		var result = service.uploadBlobNil(builderFactory, data);
+		return responseBuilder.uploadBlobNil(result, data).build();
 	}
 	@POST
 	@Path("uploadBlobOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadBlobOptNil(@RestForm("data") FileUpload _data) {
+		var data = builderFactory.createBlob(_data.filePath(), _data.contentType());
+		var result = service.uploadBlobOptNil(builderFactory, data);
+		return responseBuilder.uploadBlobOptNil(result, data).build();
 	}
 	@PUT
 	@Path("uploadFileList")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFileList(@RestForm("data") List<FileUpload> _data) {
+		var data = _data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList();
+		var result = service.uploadFileList(builderFactory, data);
+		return responseBuilder.uploadFileList(result, data).build();
 	}
 	@PUT
 	@Path("uploadFileListOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFileListOpt(@RestForm("data") List<FileUpload> _data) {
+		var data = _data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList();
+		var result = service.uploadFileListOpt(builderFactory, data);
+		return responseBuilder.uploadFileListOpt(result, data).build();
 	}
 	@PUT
 	@Path("uploadFileListNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFileListNil(@RestForm("data") List<FileUpload> _data) {
+		var data = _data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList();
+		var result = service.uploadFileListNil(builderFactory, data);
+		return responseBuilder.uploadFileListNil(result, data).build();
 	}
 	@PUT
 	@Path("uploadFileListOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFileListOptNil(@RestForm("data") List<FileUpload> _data) {
+		var data = _data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList();
+		var result = service.uploadFileListOptNil(builderFactory, data);
+		return responseBuilder.uploadFileListOptNil(result, data).build();
 	}
 	@PUT
 	@Path("uploadBlobList")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadBlobList(@RestForm("data") List<FileUpload> _data) {
+		var data = _data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList();
+		var result = service.uploadBlobList(builderFactory, data);
+		return responseBuilder.uploadBlobList(result, data).build();
 	}
 	@PUT
 	@Path("uploadBlobListOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadBlobListOpt(@RestForm("data") List<FileUpload> _data) {
+		var data = _data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList();
+		var result = service.uploadBlobListOpt(builderFactory, data);
+		return responseBuilder.uploadBlobListOpt(result, data).build();
 	}
 	@PUT
 	@Path("uploadBlobListNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadBlobListNil(@RestForm("data") List<FileUpload> _data) {
+		var data = _data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList();
+		var result = service.uploadBlobListNil(builderFactory, data);
+		return responseBuilder.uploadBlobListNil(result, data).build();
 	}
 	@PUT
 	@Path("uploadBlobListOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadBlobListOptNil(@RestForm("data") List<FileUpload> _data) {
+		var data = _data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList();
+		var result = service.uploadBlobListOptNil(builderFactory, data);
+		return responseBuilder.uploadBlobListOptNil(result, data).build();
 	}
 	@PUT
 	@Path("uploadMixed")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadMixed(@RestForm("text") String _text, @RestForm("number") int _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<Integer> _numberList, @RestForm("recList") String _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+		var text = _text;
+		var number = _number;
+		var rec = builderFactory.of(SimpleRecord.Data.class, _rec);
+		var textList = _textList;
+		var numberList = _numberList;
+		var recList = builderFactory.listOf(SimpleRecord.Data.class, _recList);
+		var dataFile = builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName());
+		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
+		var result = service.uploadMixed(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
+		return responseBuilder.uploadMixed(result, text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
 	}
 	@PUT
 	@Path("uploadMixedOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadMixedOpt(@RestForm("text") String _text, @RestForm("number") Integer _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<Integer> _numberList, @RestForm("recList") String _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+		var text = _text;
+		var number = _number;
+		var rec = builderFactory.of(SimpleRecord.Data.class, _rec);
+		var textList = _textList;
+		var numberList = _numberList;
+		var recList = builderFactory.listOf(SimpleRecord.Data.class, _recList);
+		var dataFile = builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName());
+		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
+		var result = service.uploadMixedOpt(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
+		return responseBuilder.uploadMixedOpt(result, text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
 	}
 	@PUT
 	@Path("uploadMixedNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadMixedNil(@RestForm("text") String _text, @RestForm("number") Integer _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<Integer> _numberList, @RestForm("recList") String _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+		var text = _text;
+		var number = _number;
+		var rec = builderFactory.of(SimpleRecord.Data.class, _rec);
+		var textList = _textList;
+		var numberList = _numberList;
+		var recList = builderFactory.listOf(SimpleRecord.Data.class, _recList);
+		var dataFile = builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName());
+		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
+		var result = service.uploadMixedNil(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
+		return responseBuilder.uploadMixedNil(result, text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
 	}
 	@PUT
 	@Path("uploadMixedOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadMixedOptNil(@RestForm("text") String _text, @RestForm("number") Integer _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<Integer> _numberList, @RestForm("recList") String _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+		var text = _text;
+		var number = _number;
+		var rec = builderFactory.of(SimpleRecord.Data.class, _rec);
+		var textList = _textList;
+		var numberList = _numberList;
+		var recList = builderFactory.listOf(SimpleRecord.Data.class, _recList);
+		var dataFile = builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName());
+		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
+		var result = service.uploadMixedOptNil(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
+		return responseBuilder.uploadMixedOptNil(result, text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
 	}
 }

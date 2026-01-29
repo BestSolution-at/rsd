@@ -459,7 +459,7 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("valueC") String _valueC) {
 		var valueA = _valueA;
 		var valueB = _valueB;
-		var valueC = builderFactory.of(List<SimpleRecord.Data>.class, _valueC);
+		var valueC = builderFactory.listOf(SimpleRecord.Data.class, _valueC);
 		var result = service.listMultiHeaderParam(builderFactory, valueA, valueB, valueC);
 		return responseBuilder.listMultiHeaderParam(result, valueA, valueB, valueC).build();
 	}
@@ -472,7 +472,7 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("valueC") String _valueC) {
 		var valueA = _valueA;
 		var valueB = _valueB;
-		var valueC = builderFactory.of(List<SimpleRecord.Data>.class, _valueC);
+		var valueC = builderFactory.listOf(SimpleRecord.Data.class, _valueC);
 		var result = service.listMultiHeaderParamOpt(builderFactory, valueA, valueB, valueC);
 		return responseBuilder.listMultiHeaderParamOpt(result, valueA, valueB, valueC).build();
 	}
@@ -485,7 +485,7 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("valueC") String _valueC) {
 		var valueA = _valueA;
 		var valueB = _valueB;
-		var valueC = builderFactory.of(List<SimpleRecord.Data>.class, _valueC);
+		var valueC = builderFactory.listOf(SimpleRecord.Data.class, _valueC);
 		var result = service.listMultiHeaderParamNil(builderFactory, valueA, valueB, valueC);
 		return responseBuilder.listMultiHeaderParamNil(result, valueA, valueB, valueC).build();
 	}
@@ -498,7 +498,7 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("valueC") String _valueC) {
 		var valueA = _valueA;
 		var valueB = _valueB;
-		var valueC = builderFactory.of(List<SimpleRecord.Data>.class, _valueC);
+		var valueC = builderFactory.listOf(SimpleRecord.Data.class, _valueC);
 		var result = service.listMultiHeaderParamOptNil(builderFactory, valueA, valueB, valueC);
 		return responseBuilder.listMultiHeaderParamOptNil(result, valueA, valueB, valueC).build();
 	}
@@ -506,7 +506,7 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listRecordHeaderParam")
 	public Response listRecordHeaderParam(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = builderFactory.of(List<SimpleRecord.Data>.class, _headerValue);
+		var headerValue = builderFactory.listOf(SimpleRecord.Data.class, _headerValue);
 		var result = service.listRecordHeaderParam(builderFactory, headerValue);
 		return responseBuilder.listRecordHeaderParam(result, headerValue).build();
 	}
@@ -514,7 +514,7 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listRecordHeaderParamOpt")
 	public Response listRecordHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = builderFactory.of(List<SimpleRecord.Data>.class, _headerValue);
+		var headerValue = builderFactory.listOf(SimpleRecord.Data.class, _headerValue);
 		var result = service.listRecordHeaderParamOpt(builderFactory, headerValue);
 		return responseBuilder.listRecordHeaderParamOpt(result, headerValue).build();
 	}
@@ -522,7 +522,7 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listRecordHeaderParamNil")
 	public Response listRecordHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = builderFactory.of(List<SimpleRecord.Data>.class, _headerValue);
+		var headerValue = builderFactory.listOf(SimpleRecord.Data.class, _headerValue);
 		var result = service.listRecordHeaderParamNil(builderFactory, headerValue);
 		return responseBuilder.listRecordHeaderParamNil(result, headerValue).build();
 	}
@@ -530,7 +530,7 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listRecordHeaderParamOptNil")
 	public Response listRecordHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = builderFactory.of(List<SimpleRecord.Data>.class, _headerValue);
+		var headerValue = builderFactory.listOf(SimpleRecord.Data.class, _headerValue);
 		var result = service.listRecordHeaderParamOptNil(builderFactory, headerValue);
 		return responseBuilder.listRecordHeaderParamOptNil(result, headerValue).build();
 	}

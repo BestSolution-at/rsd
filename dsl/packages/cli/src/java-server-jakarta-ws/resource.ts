@@ -167,8 +167,14 @@ function _generateResource(
 								artifactConfig.nativeTypeSubstitues,
 								`${artifactConfig.rootPackageName}.service.model`,
 								fqn,
+								true,
 							);
-							mBody.append(`var ${p.name} = builderFactory.of(${type}.class, _${p.name});`, NL);
+							if (p.array) {
+								mBody.append(`var ${p.name} = builderFactory.listOf(${type}.class, _${p.name});`, NL);
+								return;
+							} else {
+								mBody.append(`var ${p.name} = builderFactory.of(${type}.class, _${p.name});`, NL);
+							}
 						} else if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum') {
 							mBody.append(`var ${p.name} = _${p.name};`, NL);
 						} else if (p.variant === 'scalar') {
@@ -239,64 +245,79 @@ function _generateResource(
 
 				cBody.append(`public ${fqn('jakarta.ws.rs.core.Response')} ${o.name}(${params.join(', ')}) {`, NL);
 				cBody.indent(mBody => {
-					if (artifactConfig.scopeValues) {
-						o.parameters.forEach(p => {
-							if (p.variant === 'stream') {
-								if (p.type === 'file') {
+					o.parameters.forEach(p => {
+						if (p.variant === 'stream') {
+							if (p.type === 'file') {
+								if (p.array) {
 									mBody.append(
-										`var ${p.name} = ${fqn(
-											`${artifactConfig.rootPackageName}.rest.model._FileImpl`,
-										)}.of(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName());`,
+										`var ${p.name} = _data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList();`,
 										NL,
 									);
 								} else {
 									mBody.append(
-										`var ${p.name} = ${fqn(
-											`${artifactConfig.rootPackageName}.rest.model._BlobImpl`,
-										)}.of(_${p.name}.filePath(), _${p.name}.contentType());`,
+										`var ${p.name} = builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName());`,
 										NL,
 									);
 								}
 							} else {
-								if (p.variant === 'record' || p.variant === 'union') {
-									const type = computeParameterAPIType(
-										p,
-										artifactConfig.nativeTypeSubstitues,
-										`${artifactConfig.rootPackageName}.service.model`,
-										fqn,
+								if (p.array) {
+									mBody.append(
+										`var ${p.name} = _data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList();`,
+										NL,
 									);
-									mBody.append(`var ${p.name} = builderFactory.of(${type}.class, _${p.name});`, NL);
-								} else if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum') {
-									mBody.append(`var ${p.name} = _${p.name};`, NL);
 								} else {
-									const type = p.type;
-									if (typeof type === 'string') {
-										const t = resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, false);
-										mBody.append(`var ${p.name} = _${p.name} == null ? null : ${t}.of(_${p.name});`, NL);
-									}
+									mBody.append(
+										`var ${p.name} = builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType());`,
+										NL,
+									);
 								}
 							}
-						});
+						} else {
+							if (p.variant === 'record' || p.variant === 'union') {
+								const type = computeParameterAPIType(
+									p,
+									artifactConfig.nativeTypeSubstitues,
+									`${artifactConfig.rootPackageName}.service.model`,
+									fqn,
+									true,
+								);
+								if (p.array) {
+									mBody.append(`var ${p.name} = builderFactory.listOf(${type}.class, _${p.name});`, NL);
+								} else {
+									mBody.append(`var ${p.name} = builderFactory.of(${type}.class, _${p.name});`, NL);
+								}
+							} else if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum') {
+								mBody.append(`var ${p.name} = _${p.name};`, NL);
+							} else {
+								const type = p.type;
+								if (typeof type === 'string') {
+									const t = resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, false);
+									mBody.append(`var ${p.name} = _${p.name} == null ? null : ${t}.of(_${p.name});`, NL);
+								}
+							}
+						}
+					});
+					if (artifactConfig.scopeValues) {
 						artifactConfig.scopeValues.forEach(v => {
 							mBody.append(`var $${v.name} = this.${v.name}Provider.${v.name}();`, NL);
 						});
-						const errors = o.meta?.rest?.results.filter(e => e.error);
-						if (errors && errors.length > 0) {
-							mBody.append('try {', NL);
+					}
+					const errors = o.meta?.rest?.results.filter(e => e.error);
+					if (errors && errors.length > 0) {
+						mBody.append('try {', NL);
+						mBody.indent(inner => {
+							inner.append(okResultContent(o, serviceParams));
+						});
+						errors.forEach(e => {
+							const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
+							mBody.append(`} catch (${Type} e) {`, NL);
 							mBody.indent(inner => {
-								inner.append(okResultContent(o, serviceParams));
+								inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
 							});
-							errors.forEach(e => {
-								const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
-								mBody.append(`} catch (${Type} e) {`, NL);
-								mBody.indent(inner => {
-									inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
-								});
-							});
-							mBody.append('}', NL);
-						} else {
-							mBody.append(okResultContent(o, serviceParams));
-						}
+						});
+						mBody.append('}', NL);
+					} else {
+						mBody.append(okResultContent(o, serviceParams));
 					}
 				});
 				cBody.append('}', NL);
@@ -322,7 +343,11 @@ function okResultContent(o: MOperation, serviceParams: string[]) {
 			node.append(`var result = service.${o.name}(builderFactory, ${serviceParams.join(', ')});`, NL);
 		}
 	} else {
-		node.append(`service.${o.name}(builderFactory, ${serviceParams.join(', ')});`, NL);
+		if (serviceParams.length === 0) {
+			node.append(`service.${o.name}(builderFactory);`, NL);
+		} else {
+			node.append(`service.${o.name}(builderFactory, ${serviceParams.join(', ')});`, NL);
+		}
 	}
 	if (o.resultType) {
 		if (serviceParams.length === 0) {

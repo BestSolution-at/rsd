@@ -147,7 +147,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("valueC") String _valueC) {
 		var valueA = _valueA;
 		var valueB = _valueB;
-		var valueC = builderFactory.of(List<SimpleRecord.Data>.class, _valueC);
+		var valueC = builderFactory.listOf(SimpleRecord.Data.class, _valueC);
 		var result = service.listMultiQueryParam(builderFactory, valueA, valueB, valueC);
 		return responseBuilder.listMultiQueryParam(result, valueA, valueB, valueC).build();
 	}
@@ -155,7 +155,7 @@ public class ListQueryParameterTypesResource {
 	@GET
 	@Path("listRecordQueryParam")
 	public Response listRecordQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = builderFactory.of(List<SimpleRecord.Data>.class, _queryValue);
+		var queryValue = builderFactory.listOf(SimpleRecord.Data.class, _queryValue);
 		var result = service.listRecordQueryParam(builderFactory, queryValue);
 		return responseBuilder.listRecordQueryParam(result, queryValue).build();
 	}

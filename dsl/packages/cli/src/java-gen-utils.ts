@@ -275,7 +275,7 @@ export class JavaImportsCollector {
 	constructor(private sourcePackage: string) {}
 
 	public appendImportGroups(node: CompositeGeneratorNode) {
-		this.importGroups().forEach((g, idx) => {
+		this.importGroups().forEach(g => {
 			g.imports.forEach(i => {
 				node.append(`import ${i};`, NL);
 			});

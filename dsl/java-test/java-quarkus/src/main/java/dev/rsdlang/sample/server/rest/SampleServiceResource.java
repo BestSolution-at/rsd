@@ -116,7 +116,7 @@ public class SampleServiceResource {
 	@GET
 	@Path("voidoperation")
 	public Response voidOperation() {
-		service.voidOperation(builderFactory, );
+		service.voidOperation(builderFactory);
 		return responseBuilder.voidOperation().build();
 	}
 
@@ -124,7 +124,7 @@ public class SampleServiceResource {
 	@Path("erroroperation")
 	public Response errorOperation() {
 		try {
-			service.errorOperation(builderFactory, );
+			service.errorOperation(builderFactory);
 			return responseBuilder.errorOperation().build();
 		} catch (SampleErrorException e) {
 			return _RestUtils.toResponse(400, e);
@@ -135,7 +135,7 @@ public class SampleServiceResource {
 	@Path("multierroroperation")
 	public Response multiErrorOperation() {
 		try {
-			service.multiErrorOperation(builderFactory, );
+			service.multiErrorOperation(builderFactory);
 			return responseBuilder.multiErrorOperation().build();
 		} catch (SampleErrorException e) {
 			return _RestUtils.toResponse(400, e);

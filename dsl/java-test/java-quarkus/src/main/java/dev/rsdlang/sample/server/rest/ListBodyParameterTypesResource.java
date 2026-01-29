@@ -490,7 +490,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listRecordBodyParam")
 	public Response listRecordBodyParam(String _bodyRecord) {
-		var bodyRecord = builderFactory.of(List<SimpleRecord.Data>.class, _bodyRecord);
+		var bodyRecord = builderFactory.listOf(SimpleRecord.Data.class, _bodyRecord);
 		var result = service.listRecordBodyParam(builderFactory, bodyRecord);
 		return responseBuilder.listRecordBodyParam(result, bodyRecord).build();
 	}
@@ -498,7 +498,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listRecordBodyParamOpt")
 	public Response listRecordBodyParamOpt(String _bodyRecord) {
-		var bodyRecord = builderFactory.of(List<SimpleRecord.Data>.class, _bodyRecord);
+		var bodyRecord = builderFactory.listOf(SimpleRecord.Data.class, _bodyRecord);
 		var result = service.listRecordBodyParamOpt(builderFactory, bodyRecord);
 		return responseBuilder.listRecordBodyParamOpt(result, bodyRecord).build();
 	}
@@ -506,7 +506,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listRecordBodyParamNil")
 	public Response listRecordBodyParamNil(String _bodyRecord) {
-		var bodyRecord = builderFactory.of(List<SimpleRecord.Data>.class, _bodyRecord);
+		var bodyRecord = builderFactory.listOf(SimpleRecord.Data.class, _bodyRecord);
 		var result = service.listRecordBodyParamNil(builderFactory, bodyRecord);
 		return responseBuilder.listRecordBodyParamNil(result, bodyRecord).build();
 	}
@@ -514,7 +514,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listRecordBodyParamOptNil")
 	public Response listRecordBodyParamOptNil(String _bodyRecord) {
-		var bodyRecord = builderFactory.of(List<SimpleRecord.Data>.class, _bodyRecord);
+		var bodyRecord = builderFactory.listOf(SimpleRecord.Data.class, _bodyRecord);
 		var result = service.listRecordBodyParamOptNil(builderFactory, bodyRecord);
 		return responseBuilder.listRecordBodyParamOptNil(result, bodyRecord).build();
 	}

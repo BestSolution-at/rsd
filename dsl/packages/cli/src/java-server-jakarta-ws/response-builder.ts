@@ -64,9 +64,9 @@ function generateContent(
 				if (o.resultType) {
 					if (o.resultType.variant === 'stream') {
 						if (o.resultType.type === 'file') {
-							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()},$result);`, NL);
+							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
 						} else {
-							methodBody.append(`return ${Response}.status(${code.toFixed()}).entity();`, NL);
+							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
 						}
 					} else if (o.resultType.variant === 'record' || o.resultType.variant === 'union') {
 						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.rest.model._JsonUtils`);

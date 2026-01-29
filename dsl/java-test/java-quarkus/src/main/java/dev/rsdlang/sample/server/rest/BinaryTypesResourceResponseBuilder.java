@@ -96,11 +96,11 @@ public class BinaryTypesResourceResponseBuilder {
 	}
 
 	public ResponseBuilder downloadFile(RSDFile $result) {
-		return _RestUtils.toStreamResponse(200,$result);
+		return _RestUtils.toStreamResponse(200, $result);
 	}
 
 	public ResponseBuilder downloadBlob(RSDBlob $result) {
-		return Response.status(200).entity();
+		return _RestUtils.toStreamResponse(200, $result);
 	}
 
 }
