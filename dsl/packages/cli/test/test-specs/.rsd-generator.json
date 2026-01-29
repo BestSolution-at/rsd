@@ -36,6 +36,14 @@
             "nativeTypeSubstitues": {
                 "ZoneId": "java.time.ZoneId"
             }
+        },
+        {
+            "name": "java-server-jakarta-ws",
+            "targetFolder": "../../../../java-test/java-quarkus/src/main/java",
+            "rootPackageName": "dev.rsdlang.sample.server",
+            "nativeTypeSubstitues": {
+                "ZoneId": "java.time.ZoneId"
+            }
         }
     ]
 }
