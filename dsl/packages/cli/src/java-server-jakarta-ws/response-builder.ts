@@ -5,11 +5,11 @@ import {
 	generateCompilationUnit,
 	JavaImportsCollector,
 	JavaServerJakartaWSGeneratorConfig,
-	resolveObjectType,
 	resolveType,
 	toPath,
 } from '../java-gen-utils.js';
 import { isMBuiltinType, MParameter, MResolvedRSDModel, MResolvedService, MReturnType } from '../model.js';
+import { toFirstUpper } from '../util.js';
 
 export function generateResponseBuilder(
 	s: MResolvedService,
@@ -50,13 +50,13 @@ function generateContent(
 	node.append(`public class ${s.name}ResourceResponseBuilder {`, NL);
 	node.indent(classBody => {
 		s.operations.forEach(o => {
-			const params = o.parameters.map(p => toParameter(p, artifactConfig, fqn));
+			const params = o.parameters.map(p => toParameter(p, artifactConfig, fqn, o.name, s.name));
 			if (artifactConfig.scopeValues) {
 				params.unshift(...artifactConfig.scopeValues.map(v => `${fqn(v.type)} $${v.name}`));
 			}
 
 			if (o.resultType !== undefined) {
-				params.unshift(`${toResultType(o.resultType, artifactConfig, fqn)} $result`);
+				params.unshift(`${toResultType(o.resultType, artifactConfig, fqn, o.name, s.name)} $result`);
 			}
 			classBody.append(`public ${ResponseBuilder} ${o.name}(${params.join(', ')}) {`, NL);
 			classBody.indent(methodBody => {
@@ -64,29 +64,29 @@ function generateContent(
 				if (o.resultType) {
 					if (o.resultType.variant === 'stream') {
 						if (o.resultType.type === 'file') {
-							methodBody.append(`return _RestUtils.toStreamResponse(${code},$result);`, NL);
+							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()},$result);`, NL);
 						} else {
-							methodBody.append(`return ${Response}.status(${code}).entity();`, NL);
+							methodBody.append(`return ${Response}.status(${code.toFixed()}).entity();`, NL);
 						}
 					} else if (o.resultType.variant === 'record' || o.resultType.variant === 'union') {
 						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.rest.model._JsonUtils`);
 						methodBody.append(
-							`return ${Response}.status(${code}).entity(${JsonUtils}.toJsonString($result, false));`,
+							`return ${Response}.status(${code.toFixed()}).entity(${JsonUtils}.toJsonString($result, false));`,
 							NL,
 						);
 					} else {
-						if (isMBuiltinType(o.resultType.type) && o.resultType.type === 'string') {
+						if (!o.resultType.array && isMBuiltinType(o.resultType.type) && o.resultType.type === 'string') {
 							const JsonUtils = fqn(`${artifactConfig.rootPackageName}.rest.model._JsonUtils`);
 							methodBody.append(
-								`return ${Response}.status(${code}).entity(${JsonUtils}.encodeAsJsonString($result));`,
+								`return ${Response}.status(${code.toFixed()}).entity(${JsonUtils}.encodeAsJsonString($result));`,
 								NL,
 							);
 						} else {
-							methodBody.append(`return ${Response}.status(${code}).entity($result);`, NL);
+							methodBody.append(`return ${Response}.status(${code.toFixed()}).entity($result);`, NL);
 						}
 					}
 				} else {
-					methodBody.append(`return ${Response}.status(${code});`, NL);
+					methodBody.append(`return ${Response}.status(${code.toFixed()});`, NL);
 				}
 			});
 			classBody.append('}', NL, NL);
@@ -100,12 +100,26 @@ function toParameter(
 	parameter: MParameter,
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	fqn: (type: string) => string,
+	methodName: string,
+	serviceName: string,
 ) {
+	if (parameter.variant === 'inline-enum') {
+		const Service = fqn(`${artifactConfig.rootPackageName}.service.${serviceName}Service`);
+		const t = `${Service}.${toFirstUpper(methodName)}_${toFirstUpper(parameter.name)}_Param$`;
+		if (parameter.array) {
+			const List = fqn('java.util.List');
+			return `${List}<${t}> ${parameter.name}`;
+		}
+		return `${t} ${parameter.name}`;
+	}
+
 	const type = computeParameterAPIType(
 		parameter,
 		artifactConfig.nativeTypeSubstitues,
 		`${artifactConfig.rootPackageName}.service.model`,
 		fqn,
+		false,
+		methodName,
 	);
 	return `${type} ${parameter.name}`;
 }
@@ -114,27 +128,35 @@ function toResultType(
 	type: MReturnType | undefined,
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	fqn: (type: string) => string,
+	methodName: string,
+	serviceName: string,
 ) {
 	const dtoPkg = `${artifactConfig.rootPackageName}.service.model`;
 	if (type === undefined) {
 		return 'void';
 	}
 
+	let rvType: string;
 	if (type.variant === 'stream') {
-		return fqn(type.type === 'file' ? `${dtoPkg}.RSDFile` : `${dtoPkg}.RSDBlob`);
+		if (type.type === 'file') {
+			rvType = fqn(`${dtoPkg}.RSDFile`);
+		} else {
+			rvType = fqn(`${dtoPkg}.RSDBlob`);
+		}
 	} else if (type.variant === 'union' || type.variant === 'record') {
-		const dtoType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
-		if (type.array) {
-			return `${fqn('java.util.List')}<${dtoType}>`;
-		} else {
-			return dtoType;
-		}
+		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
+	} else if (type.variant === 'enum') {
+		rvType = fqn(`${dtoPkg}.${type.type}`);
 	} else if (typeof type.type === 'string') {
-		if (type.array) {
-			return `${fqn('java.util.List')}<${resolveObjectType(type.type, artifactConfig.nativeTypeSubstitues, fqn)}>`;
-		} else {
-			return `${resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false)}`;
-		}
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, type.array);
+	} else {
+		const Service = fqn(`${artifactConfig.rootPackageName}.service.${serviceName}Service`);
+		rvType = Service + '.' + toFirstUpper(methodName) + '_Result$';
 	}
-	return type.type;
+
+	if (type.array) {
+		rvType = `${fqn('java.util.List')}<${rvType}>`;
+	}
+
+	return rvType;
 }

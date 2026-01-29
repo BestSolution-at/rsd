@@ -114,7 +114,7 @@ function _generateResource(
 						...o.parameters
 							.filter(p => p.meta?.rest !== undefined)
 							.filter(p => p.meta?.rest?.source !== undefined)
-							.map(p => toParameter(p, false, artifactConfig, fqn)),
+							.map(p => toParameter(p, false, artifactConfig, fqn, o.name, Service)),
 					);
 
 					params.push(`String data`);
@@ -127,7 +127,7 @@ function _generateResource(
 						}),
 					);
 				} else {
-					params.push(...o.parameters.map(p => toParameter(p, false, artifactConfig, fqn)));
+					params.push(...o.parameters.map(p => toParameter(p, false, artifactConfig, fqn, o.name, Service)));
 					serviceParams.push(...o.parameters.map(p => p.name));
 				}
 
@@ -141,7 +141,7 @@ function _generateResource(
 						cBody.indent(tmp =>
 							tmp.indent(paramIndent => {
 								params.forEach((p, idx, arr) => {
-									paramIndent.append(`${p}`);
+									paramIndent.append(p);
 									if (idx + 1 < arr.length) {
 										paramIndent.append(',', NL);
 									} else {
@@ -169,12 +169,14 @@ function _generateResource(
 								fqn,
 							);
 							mBody.append(`var ${p.name} = builderFactory.of(${type}.class, _${p.name});`, NL);
-						} else if (p.variant === 'builtin') {
+						} else if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum') {
 							mBody.append(`var ${p.name} = _${p.name};`, NL);
 						} else if (p.variant === 'scalar') {
 							const type = p.type;
-							if (typeof type === 'string') {
-								const t = resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, false);
+							const t = resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, false);
+							if (p.array) {
+								mBody.append(`var ${p.name} = _${p.name}.stream().map(${t}::of).toList();`, NL);
+							} else {
 								mBody.append(`var ${p.name} = _${p.name} == null ? null : ${t}.of(_${p.name});`, NL);
 							}
 						}
@@ -182,7 +184,7 @@ function _generateResource(
 					if (multiBody) {
 						const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
 						const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
-						mBody.append(`var dto = ${_JsonUtils}.fromString(data, ${Type}::new);`, NL);
+						mBody.append(`var dto = ${_JsonUtils}.parseJsonObject(data, ${Type}::new);`, NL);
 					}
 					if (artifactConfig.scopeValues) {
 						artifactConfig.scopeValues.forEach(v => {
@@ -197,10 +199,10 @@ function _generateResource(
 							inner.append(okResultContent(o, serviceParams));
 						});
 						errors.forEach(e => {
-							const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error}Exception`);
+							const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
 							mBody.append(`} catch (${Type} e) {`, NL);
 							mBody.indent(inner => {
-								inner.append(`return _RestUtils.toResponse(${e.statusCode}, e);`, NL);
+								inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
 							});
 						});
 						mBody.append('}', NL);
@@ -227,7 +229,7 @@ function _generateResource(
 					`@${fqn('jakarta.ws.rs.Consumes')}(${fqn('jakarta.ws.rs.core.MediaType')}.MULTIPART_FORM_DATA)`,
 					NL,
 				);
-				const params: string[] = o.parameters.map(p => toParameter(p, true, artifactConfig, fqn));
+				const params: string[] = o.parameters.map(p => toParameter(p, true, artifactConfig, fqn, o.name, Service));
 				const serviceParams: string[] = [];
 
 				serviceParams.push(...o.parameters.map(p => p.name));
@@ -264,9 +266,9 @@ function _generateResource(
 										fqn,
 									);
 									mBody.append(`var ${p.name} = builderFactory.of(${type}.class, _${p.name});`, NL);
-								} else if (p.variant === 'builtin') {
+								} else if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum') {
 									mBody.append(`var ${p.name} = _${p.name};`, NL);
-								} else if (p.variant === 'scalar') {
+								} else {
 									const type = p.type;
 									if (typeof type === 'string') {
 										const t = resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, false);
@@ -285,10 +287,10 @@ function _generateResource(
 								inner.append(okResultContent(o, serviceParams));
 							});
 							errors.forEach(e => {
-								const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error}Exception`);
+								const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
 								mBody.append(`} catch (${Type} e) {`, NL);
 								mBody.indent(inner => {
-									inner.append(`return _RestUtils.toResponse(${e.statusCode}, e);`, NL);
+									inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
 								});
 							});
 							mBody.append('}', NL);
@@ -339,9 +341,11 @@ function toParameter(
 	form: boolean,
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	fqn: (type: string) => string,
+	methodName: string,
+	ServiceType: string,
 ): string {
 	const annotation = computeParameterAnnotation(p, form, fqn);
-	const type = computeParameterType(p, artifactConfig, fqn);
+	const type = computeParameterType(p, artifactConfig, fqn, methodName, ServiceType);
 
 	return `${annotation}${type} _${p.name}`;
 }
@@ -350,20 +354,34 @@ function computeParameterType(
 	p: MParameter,
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	fqn: (type: string) => string,
+	methodName: string,
+	ServiceType: string,
 ): string {
 	if (p.variant === 'stream') {
-		let t = fqn('org.jboss.resteasy.reactive.multipart.FileUpload');
+		const t = fqn('org.jboss.resteasy.reactive.multipart.FileUpload');
 		if (p.array) {
 			const List = fqn('java.util.List');
 			return `${List}<${t}>`;
 		}
 		return t;
-	} else if (p.variant === 'record' || p.variant === 'union' || p.variant === 'scalar') {
+	} else if (p.variant === 'record' || p.variant === 'union') {
 		return 'String';
+	} else if (p.variant === 'scalar') {
+		return p.array ? fqn('java.util.List') + '<String>' : 'String';
 	} else if (p.variant === 'enum') {
-		return 'DummyEnum';
+		const t = fqn(artifactConfig.rootPackageName + '.service.model.' + p.type);
+		if (p.array) {
+			const List = fqn('java.util.List');
+			return `${List}<${t}>`;
+		}
+		return t;
 	} else if (p.variant === 'inline-enum') {
-		return 'InlineDummyEnum';
+		const t = toFirstUpper(methodName) + '_' + toFirstUpper(p.name) + '_Param$';
+		if (p.array) {
+			const List = fqn('java.util.List');
+			return `${List}<${ServiceType}.${t}>`;
+		}
+		return `${ServiceType}.${t}`;
 	} else {
 		const type = p.type;
 		if (isMBuiltinType(type)) {

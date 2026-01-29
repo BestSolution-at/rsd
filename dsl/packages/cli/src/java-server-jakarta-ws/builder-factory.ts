@@ -42,6 +42,7 @@ function generateDTOBuilderFactoryContent(
 	const Singleton = fqn('jakarta.inject.Singleton');
 	const DTOBuilderFactory = fqn(`${artifactConfig.rootPackageName}.service.BuilderFactory`);
 	const Base = fqn(`${artifactConfig.rootPackageName}.service.model._Base`);
+	const List = fqn('java.util.List');
 
 	node.append(`@${Singleton}`, NL);
 	node.append(`public class RestBuilderFactory implements ${DTOBuilderFactory} {`, NL);
@@ -57,6 +58,12 @@ function generateDTOBuilderFactoryContent(
 			mBody.append(generateOfMethodBody(model, artifactConfig, fqn));
 		});
 		body.append('}', NL);
+		body.append(`public <T extends _Base.BaseData> ${List}<T> listOf(Class<T> type, String data) {`, NL);
+		body.indent(mBody => {
+			mBody.append(generateListOfMethodBody(model, artifactConfig, fqn));
+		});
+		body.append('}', NL);
+
 		if (hasStream(model)) {
 			body.appendNewLine();
 			body.append(
@@ -132,7 +139,7 @@ function generateOfMethodBody(
 			const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${t.name}DataImpl`);
 			mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
 			mBody.indent(block => {
-				block.append(`return type.cast(${_JsonUtils}.fromString(data, ${ImplType}::of));`, NL);
+				block.append(`return type.cast(${_JsonUtils}.parseJsonObject(data, ${ImplType}::of));`, NL);
 			});
 			mBody.append('}', NL);
 			if (t.patchable) {
@@ -140,7 +147,7 @@ function generateOfMethodBody(
 				const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${t.name}PatchImpl`);
 				mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
 				mBody.indent(block => {
-					block.append(`return type.cast(${_JsonUtils}.fromString(data, ${ImplType}::of));`, NL);
+					block.append(`return type.cast(${_JsonUtils}.parseJsonObject(data, ${ImplType}::of));`, NL);
 				});
 				mBody.append('}', NL);
 			}
@@ -150,7 +157,7 @@ function generateOfMethodBody(
 		const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${u.name}DataImpl`);
 		mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
 		mBody.indent(block => {
-			block.append(`return type.cast(${_JsonUtils}.fromString(data, ${ImplType}::of));`, NL);
+			block.append(`return type.cast(${_JsonUtils}.parseJsonObject(data, ${ImplType}::of));`, NL);
 		});
 		mBody.append('}', NL);
 		if (u.resolved.records.find(r => r.patchable)) {
@@ -158,7 +165,58 @@ function generateOfMethodBody(
 			const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${u.name}PatchImpl`);
 			mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
 			mBody.indent(block => {
-				block.append(`return type.cast(${_JsonUtils}.fromString(data, ${ImplType}::of));`, NL);
+				block.append(`return type.cast(${_JsonUtils}.parseJsonObject(data, ${ImplType}::of));`, NL);
+			});
+			mBody.append('}', NL);
+		}
+	});
+	mBody.append(NL);
+	mBody.append('throw new IllegalArgumentException("Unsupported Builder \'%s\'".formatted(type));', NL);
+	return mBody;
+}
+
+function generateListOfMethodBody(
+	model: MResolvedRSDModel,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
+	fqn: (type: string) => string,
+) {
+	const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.rest.model._JsonUtils`);
+	const mBody = new CompositeGeneratorNode();
+	model.elements
+		.filter(isMResolvedRecordType)
+		//.filter(t => t.resolved.unions.length !== 1)
+		.forEach(t => {
+			const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${t.name}`);
+			const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${t.name}DataImpl`);
+			mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
+			mBody.indent(block => {
+				block.append(`return (List<T>) ${_JsonUtils}.parseJsonArray(data, ${ImplType}::of);`, NL);
+			});
+			mBody.append('}', NL);
+			if (t.patchable) {
+				const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${t.name}`);
+				const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${t.name}PatchImpl`);
+				mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
+				mBody.indent(block => {
+					block.append(`return (List<T>) ${_JsonUtils}.parseJsonArray(data, ${ImplType}::of);`, NL);
+				});
+				mBody.append('}', NL);
+			}
+		});
+	model.elements.filter(isMResolvedUnionType).forEach(u => {
+		const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${u.name}`);
+		const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${u.name}DataImpl`);
+		mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
+		mBody.indent(block => {
+			block.append(`return (List<T>) ${_JsonUtils}.parseJsonArray(data, ${ImplType}::of);`, NL);
+		});
+		mBody.append('}', NL);
+		if (u.resolved.records.find(r => r.patchable)) {
+			const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${u.name}`);
+			const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${u.name}PatchImpl`);
+			mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
+			mBody.indent(block => {
+				block.append(`return (List<T>) ${_JsonUtils}.parseJsonArray(data, ${ImplType}::of);`, NL);
 			});
 			mBody.append('}', NL);
 		}

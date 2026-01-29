@@ -694,15 +694,26 @@ public class _JsonUtils {
 		return writer.toString();
 	}
 
-	public static JsonObject fromString(String data) {
+	public static JsonObject parseJsonObject(String data) {
 		try (var reader = Json.createReader(new StringReader(data))) {
 			return reader.readObject();
 		}
 	}
 
-	public static <T> T fromString(String data, Function<JsonObject, T> constructor) {
-		return constructor.apply(fromString(data));
+	public static <T> T parseJsonObject(String data, Function<JsonObject, T> constructor) {
+		return constructor.apply(parseJsonObject(data));
 	}
+
+	public static JsonArray parseJsonArray(String data) {
+		try (var reader = Json.createReader(new StringReader(data))) {
+			return reader.readArray();
+		}
+	}
+
+	public static <T> List<T> parseJsonArray(String data, Function<JsonObject, T> constructor) {
+		return parseJsonArray(data).getValuesAs(JsonObject.class).stream().map(constructor).toList();
+	}
+
 	public static String encodeAsJsonString(String text) {
 		StringBuilder b = new StringBuilder(text.length() + 2);
 		b.append('"');
