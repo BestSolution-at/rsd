@@ -57,7 +57,8 @@ function generateDTOBuilderFactoryContent(
 		body.indent(mBody => {
 			mBody.append(generateOfMethodBody(model, artifactConfig, fqn));
 		});
-		body.append('}', NL);
+		body.append('}', NL, NL);
+		body.append('@SuppressWarnings("unchecked")', NL);
 		body.append(`public <T extends _Base.BaseData> ${List}<T> listOf(Class<T> type, String data) {`, NL);
 		body.indent(mBody => {
 			mBody.append(generateListOfMethodBody(model, artifactConfig, fqn));

@@ -439,6 +439,8 @@ public class RestBuilderFactory implements BuilderFactory {
 
 		throw new IllegalArgumentException("Unsupported Builder '%s'".formatted(type));
 	}
+
+	@SuppressWarnings("unchecked")
 	public <T extends _Base.BaseData> List<T> listOf(Class<T> type, String data) {
 		if (type == SimpleRecord_KeyVersion.Data.class) {
 			return (List<T>) _JsonUtils.parseJsonArray(data, SimpleRecord_KeyVersionDataImpl::of);
