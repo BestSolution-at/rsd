@@ -1,0 +1,17 @@
+package dev.rsdlang.sample.server.service.handler.header;
+
+import java.time.ZoneId;
+
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import dev.rsdlang.sample.server.service.impl.HeaderParameterTypesServiceImpl;
+
+public class SimpleScalarHeaderParamHandlerImpl
+		implements HeaderParameterTypesServiceImpl.SimpleScalarHeaderParamHandler {
+
+	@Override
+	public ZoneId simpleScalarHeaderParam(BuilderFactory _factory, ZoneId headerValue) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'simpleScalarHeaderParam'");
+	}
+
+}

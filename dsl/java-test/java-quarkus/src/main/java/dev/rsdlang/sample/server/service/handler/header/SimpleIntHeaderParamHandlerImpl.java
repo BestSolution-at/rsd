@@ -1,0 +1,14 @@
+package dev.rsdlang.sample.server.service.handler.header;
+
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import dev.rsdlang.sample.server.service.impl.HeaderParameterTypesServiceImpl;
+
+public class SimpleIntHeaderParamHandlerImpl implements HeaderParameterTypesServiceImpl.SimpleIntHeaderParamHandler {
+
+	@Override
+	public int simpleIntHeaderParam(BuilderFactory _factory, int headerValue) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'simpleIntHeaderParam'");
+	}
+
+}

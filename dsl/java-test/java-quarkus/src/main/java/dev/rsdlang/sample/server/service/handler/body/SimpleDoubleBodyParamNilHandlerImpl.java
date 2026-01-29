@@ -1,0 +1,16 @@
+package dev.rsdlang.sample.server.service.handler.body;
+
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import dev.rsdlang.sample.server.service.impl.BodyParameterTypesServiceImpl;
+import dev.rsdlang.sample.server.service.model.NilResult;
+
+public class SimpleDoubleBodyParamNilHandlerImpl
+		implements BodyParameterTypesServiceImpl.SimpleDoubleBodyParamNilHandler {
+
+	@Override
+	public NilResult simpleDoubleBodyParamNil(BuilderFactory _factory, Double bodyDouble) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'simpleDoubleBodyParamNil'");
+	}
+
+}

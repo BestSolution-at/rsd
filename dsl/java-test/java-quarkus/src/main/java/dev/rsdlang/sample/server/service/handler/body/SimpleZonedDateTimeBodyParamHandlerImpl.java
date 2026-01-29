@@ -1,0 +1,17 @@
+package dev.rsdlang.sample.server.service.handler.body;
+
+import java.time.ZonedDateTime;
+
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import dev.rsdlang.sample.server.service.impl.BodyParameterTypesServiceImpl;
+
+public class SimpleZonedDateTimeBodyParamHandlerImpl
+		implements BodyParameterTypesServiceImpl.SimpleZonedDateTimeBodyParamHandler {
+
+	@Override
+	public ZonedDateTime simpleZonedDateTimeBodyParam(BuilderFactory _factory, ZonedDateTime bodyZonedDateTime) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'simpleZonedDateTimeBodyParam'");
+	}
+
+}
