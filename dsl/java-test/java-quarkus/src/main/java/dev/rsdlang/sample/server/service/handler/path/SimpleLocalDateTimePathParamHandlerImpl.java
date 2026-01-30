@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.PathParameterTypeServiceServiceImpl;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class SimpleLocalDateTimePathParamHandlerImpl
 		implements PathParameterTypeServiceServiceImpl.SimpleLocalDateTimePathParamHandler {
 

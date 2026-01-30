@@ -6,7 +6,9 @@ import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.ListHeaderParameterTypesService.ListInlineEnumHeaderParam_HeaderValue_Param$;
 import dev.rsdlang.sample.server.service.ListHeaderParameterTypesService.ListInlineEnumHeaderParam_Result$;
 import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class ListInlineEnumHeaderParamHandlerImpl
 		implements ListHeaderParameterTypesServiceImpl.ListInlineEnumHeaderParamHandler {
 

@@ -4,7 +4,9 @@ import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.QueryParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class SimpleEnumQueryParamOptHandlerImpl
 		implements QueryParameterTypesServiceImpl.SimpleEnumQueryParamOptHandler {
 

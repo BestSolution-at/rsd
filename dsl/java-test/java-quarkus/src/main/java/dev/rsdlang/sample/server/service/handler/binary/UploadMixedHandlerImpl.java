@@ -7,7 +7,9 @@ import dev.rsdlang.sample.server.service.impl.BinaryTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.RSDBlob;
 import dev.rsdlang.sample.server.service.model.RSDFile;
 import dev.rsdlang.sample.server.service.model.UploadMixedResult.Data;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class UploadMixedHandlerImpl implements BinaryTypesServiceImpl.UploadMixedHandler {
 
 	@Override

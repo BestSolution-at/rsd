@@ -4,7 +4,9 @@ import java.util.List;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListSampleServiceServiceImpl;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class ListBooleanHandlerImpl implements ListSampleServiceServiceImpl.ListBooleanHandler {
 
 	@Override

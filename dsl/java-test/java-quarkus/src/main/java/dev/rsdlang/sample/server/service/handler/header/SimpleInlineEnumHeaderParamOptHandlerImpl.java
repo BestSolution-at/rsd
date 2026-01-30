@@ -4,7 +4,9 @@ import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.HeaderParameterTypesService.SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$;
 import dev.rsdlang.sample.server.service.impl.HeaderParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class SimpleInlineEnumHeaderParamOptHandlerImpl
 		implements HeaderParameterTypesServiceImpl.SimpleInlineEnumHeaderParamOptHandler {
 

@@ -6,7 +6,9 @@ import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListBodyParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class ListEnumBodyParamOptNilHandlerImpl
 		implements ListBodyParameterTypesServiceImpl.ListEnumBodyParamOptNilHandler {
 

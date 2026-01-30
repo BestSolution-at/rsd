@@ -4,7 +4,9 @@ import java.time.LocalDate;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.SampleServiceServiceImpl;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class GetLocalDateHandlerImpl implements SampleServiceServiceImpl.GetLocalDateHandler {
 
 	@Override

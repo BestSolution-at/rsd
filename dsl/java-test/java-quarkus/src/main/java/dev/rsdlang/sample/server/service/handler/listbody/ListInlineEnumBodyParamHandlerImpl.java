@@ -6,7 +6,9 @@ import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.ListBodyParameterTypesService.ListInlineEnumBodyParam_BodyEnum_Param$;
 import dev.rsdlang.sample.server.service.ListBodyParameterTypesService.ListInlineEnumBodyParam_Result$;
 import dev.rsdlang.sample.server.service.impl.ListBodyParameterTypesServiceImpl;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class ListInlineEnumBodyParamHandlerImpl
 		implements ListBodyParameterTypesServiceImpl.ListInlineEnumBodyParamHandler {
 

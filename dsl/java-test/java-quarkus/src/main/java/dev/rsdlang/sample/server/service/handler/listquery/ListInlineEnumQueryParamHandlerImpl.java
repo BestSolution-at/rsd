@@ -6,7 +6,9 @@ import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$;
 import dev.rsdlang.sample.server.service.ListQueryParameterTypesService.ListInlineEnumQueryParam_Result$;
 import dev.rsdlang.sample.server.service.impl.ListQueryParameterTypesServiceImpl;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class ListInlineEnumQueryParamHandlerImpl
 		implements ListQueryParameterTypesServiceImpl.ListInlineEnumQueryParamHandler {
 

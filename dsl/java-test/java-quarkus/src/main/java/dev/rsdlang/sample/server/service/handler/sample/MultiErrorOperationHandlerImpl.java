@@ -4,7 +4,9 @@ import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.SampleError2Exception;
 import dev.rsdlang.sample.server.service.SampleErrorException;
 import dev.rsdlang.sample.server.service.impl.SampleServiceServiceImpl;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class MultiErrorOperationHandlerImpl implements SampleServiceServiceImpl.MultiErrorOperationHandler {
 
 	@Override

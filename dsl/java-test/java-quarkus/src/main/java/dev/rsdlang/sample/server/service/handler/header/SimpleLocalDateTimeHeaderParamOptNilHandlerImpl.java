@@ -5,7 +5,9 @@ import java.time.LocalDateTime;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.HeaderParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class SimpleLocalDateTimeHeaderParamOptNilHandlerImpl
 		implements HeaderParameterTypesServiceImpl.SimpleLocalDateTimeHeaderParamOptNilHandler {
 

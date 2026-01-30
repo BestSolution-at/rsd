@@ -4,7 +4,9 @@ import java.time.ZonedDateTime;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.SampleServiceServiceImpl;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class GetZonedDateTimeHandlerImpl implements SampleServiceServiceImpl.GetZonedDateTimeHandler {
 
 	@Override

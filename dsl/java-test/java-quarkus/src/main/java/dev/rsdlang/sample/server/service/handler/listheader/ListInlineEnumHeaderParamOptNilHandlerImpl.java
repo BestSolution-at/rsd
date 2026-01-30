@@ -6,7 +6,9 @@ import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.ListHeaderParameterTypesService.ListInlineEnumHeaderParamOptNil_HeaderValue_Param$;
 import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class ListInlineEnumHeaderParamOptNilHandlerImpl
 		implements ListHeaderParameterTypesServiceImpl.ListInlineEnumHeaderParamOptNilHandler {
 
