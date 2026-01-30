@@ -66,7 +66,7 @@ function _generateResource(
 
 	const node = new CompositeGeneratorNode();
 	node.append(`@${ApplicationScoped}`, NL);
-	node.append(`@${Path}("${s.meta.rest.path.replace('$', '')}")`, NL);
+	node.append(`@${Path}("${s.meta.rest.path.replaceAll('$', '')}")`, NL);
 	node.append(`@${Produces}(${MediaType}.APPLICATION_JSON)`, NL);
 	node.append(`public class ${s.name}Resource {`, NL);
 	node.indent(cBody => {
@@ -102,7 +102,7 @@ function _generateResource(
 
 				cBody.append(`@${fqn(`jakarta.ws.rs.${o.meta.rest.method}`)}`, NL);
 				if (o.meta.rest.path) {
-					cBody.append(`@${Path}("${o.meta.rest.path.replace('$', '')}")`, NL);
+					cBody.append(`@${Path}("${o.meta.rest.path.replaceAll('$', '')}")`, NL);
 				}
 
 				const multiBody = o.parameters.filter(p => p.meta?.rest?.source === undefined).length > 1;
