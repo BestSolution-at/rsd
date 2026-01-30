@@ -10,6 +10,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.POST;
@@ -36,7 +37,8 @@ public class BodyParameterTypesResource {
 	private final BodyParameterTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public BodyParameterTypesResource(BodyParameterTypesService service, BodyParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public BodyParameterTypesResource(BodyParameterTypesService service,
+			BodyParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -68,8 +70,9 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleBooleanBodyParamOptNil")
-	public Response simpleBooleanBodyParamOptNil(Boolean _bodyBoolean) {
-		var bodyBoolean = _bodyBoolean;
+	public Response simpleBooleanBodyParamOptNil(String foo) {
+		System.err.println("foo: '" + foo + "'");
+		var bodyBoolean = true;
 		var result = service.simpleBooleanBodyParamOptNil(builderFactory, bodyBoolean);
 		return responseBuilder.simpleBooleanBodyParamOptNil(result, bodyBoolean).build();
 	}
@@ -237,6 +240,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("simpleStringBodyParam")
 	public Response simpleStringBodyParam(String _bodyString) {
+		System.err.println("====> DATA: '" + _bodyString + "'");
 		var bodyString = _bodyString;
 		var result = service.simpleStringBodyParam(builderFactory, bodyString);
 		return responseBuilder.simpleStringBodyParam(result, bodyString).build();
@@ -245,6 +249,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("simpleStringBodyParamOpt")
 	public Response simpleStringBodyParamOpt(String _bodyString) {
+		System.err.println("====> STRING OPT DATA: '" + _bodyString + "'");
 		var bodyString = _bodyString;
 		var result = service.simpleStringBodyParamOpt(builderFactory, bodyString);
 		return responseBuilder.simpleStringBodyParamOpt(result, bodyString).build();
@@ -253,6 +258,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("simpleStringBodyParamNil")
 	public Response simpleStringBodyParamNil(String _bodyString) {
+		System.err.println("====> STRING NULL DATA: '" + (_bodyString == null) + "'");
 		var bodyString = _bodyString;
 		var result = service.simpleStringBodyParamNil(builderFactory, bodyString);
 		return responseBuilder.simpleStringBodyParamNil(result, bodyString).build();
@@ -269,6 +275,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("simpleLocalDateBodyParam")
 	public Response simpleLocalDateBodyParam(LocalDate _bodyLocalDate) {
+		System.err.println("====> DATA: '" + _bodyLocalDate + "'");
 		var bodyLocalDate = _bodyLocalDate;
 		var result = service.simpleLocalDateBodyParam(builderFactory, bodyLocalDate);
 		return responseBuilder.simpleLocalDateBodyParam(result, bodyLocalDate).build();
@@ -277,6 +284,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("simpleLocalDateBodyParamOpt")
 	public Response simpleLocalDateBodyParamOpt(LocalDate _bodyLocalDate) {
+		System.err.println("====> DATA: '" + _bodyLocalDate + "'");
 		var bodyLocalDate = _bodyLocalDate;
 		var result = service.simpleLocalDateBodyParamOpt(builderFactory, bodyLocalDate);
 		return responseBuilder.simpleLocalDateBodyParamOpt(result, bodyLocalDate).build();
@@ -285,6 +293,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("simpleLocalDateBodyParamNil")
 	public Response simpleLocalDateBodyParamNil(LocalDate _bodyLocalDate) {
+		System.err.println("====> DATA: '" + _bodyLocalDate + "'");
 		var bodyLocalDate = _bodyLocalDate;
 		var result = service.simpleLocalDateBodyParamNil(builderFactory, bodyLocalDate);
 		return responseBuilder.simpleLocalDateBodyParamNil(result, bodyLocalDate).build();
@@ -428,7 +437,8 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleInlineEnumBodyParam")
-	public Response simpleInlineEnumBodyParam(BodyParameterTypesService.SimpleInlineEnumBodyParam_BodyEnum_Param$ _bodyEnum) {
+	public Response simpleInlineEnumBodyParam(
+			BodyParameterTypesService.SimpleInlineEnumBodyParam_BodyEnum_Param$ _bodyEnum) {
 		var bodyEnum = _bodyEnum;
 		var result = service.simpleInlineEnumBodyParam(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParam(result, bodyEnum).build();
@@ -436,7 +446,8 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleInlineEnumBodyParamOpt")
-	public Response simpleInlineEnumBodyParamOpt(BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$ _bodyEnum) {
+	public Response simpleInlineEnumBodyParamOpt(
+			BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$ _bodyEnum) {
 		var bodyEnum = _bodyEnum;
 		var result = service.simpleInlineEnumBodyParamOpt(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParamOpt(result, bodyEnum).build();
@@ -444,7 +455,8 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleInlineEnumBodyParamNil")
-	public Response simpleInlineEnumBodyParamNil(BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$ _bodyEnum) {
+	public Response simpleInlineEnumBodyParamNil(
+			BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$ _bodyEnum) {
 		var bodyEnum = _bodyEnum;
 		var result = service.simpleInlineEnumBodyParamNil(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParamNil(result, bodyEnum).build();
@@ -452,7 +464,8 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleInlineEnumBodyParamOptNil")
-	public Response simpleInlineEnumBodyParamOptNil(BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$ _bodyEnum) {
+	public Response simpleInlineEnumBodyParamOptNil(
+			BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$ _bodyEnum) {
 		var bodyEnum = _bodyEnum;
 		var result = service.simpleInlineEnumBodyParamOptNil(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParamOptNil(result, bodyEnum).build();

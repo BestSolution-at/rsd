@@ -20,6 +20,11 @@ describe('BodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('simpleBooleanBodyParamOpt', () => {
+		test('success - defined', async () => {
+			const [result, error] = await service.simpleBooleanBodyParamOpt(false);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 		test('success - undefined', async () => {
 			const [result, error] = await service.simpleBooleanBodyParamOpt();
 			expect(error).toBeNull();
@@ -27,6 +32,11 @@ describe('BodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('simpleBooleanBodyParamOptNil', () => {
+		test('success - defined', async () => {
+			const [result, error] = await service.simpleBooleanBodyParamOptNil(true);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 		test('success - undefined', async () => {
 			const [result, error] = await service.simpleBooleanBodyParamOptNil();
 			expect(error).toBeNull();

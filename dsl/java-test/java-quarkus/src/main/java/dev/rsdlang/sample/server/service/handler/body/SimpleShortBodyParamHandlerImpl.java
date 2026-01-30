@@ -9,8 +9,7 @@ public class SimpleShortBodyParamHandlerImpl implements BodyParameterTypesServic
 
 	@Override
 	public short simpleShortBodyParam(BuilderFactory _factory, short bodyShort) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleShortBodyParam'");
+		return bodyShort;
 	}
 
 }

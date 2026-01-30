@@ -11,8 +11,7 @@ public class SimpleBooleanBodyParamNilHandlerImpl
 
 	@Override
 	public NilResult simpleBooleanBodyParamNil(BuilderFactory _factory, Boolean bodyBoolean) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleBooleanBodyParamNil'");
+		return bodyBoolean != null ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

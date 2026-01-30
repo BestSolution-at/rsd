@@ -27,8 +27,7 @@ public class PathParameterTypeServiceResource {
 	private final PathParameterTypeServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public PathParameterTypeServiceResource(PathParameterTypeServiceService service,
-			PathParameterTypeServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public PathParameterTypeServiceResource(PathParameterTypeServiceService service, PathParameterTypeServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;

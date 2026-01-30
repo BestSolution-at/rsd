@@ -9,8 +9,7 @@ public class SimpleBooleanBodyParamHandlerImpl implements BodyParameterTypesServ
 
 	@Override
 	public boolean simpleBooleanBodyParam(BuilderFactory _factory, boolean bodyBoolean) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleBooleanBodyParam'");
+		return bodyBoolean;
 	}
 
 }
