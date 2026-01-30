@@ -9,8 +9,7 @@ public class GetIntHandlerImpl implements SampleServiceServiceImpl.GetIntHandler
 
 	@Override
 	public int getInt(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getInt'");
+		return 123456;
 	}
 
 }

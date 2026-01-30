@@ -11,8 +11,7 @@ public class GetZonedDateTimeHandlerImpl implements SampleServiceServiceImpl.Get
 
 	@Override
 	public ZonedDateTime getZonedDateTime(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getZonedDateTime'");
+		return ZonedDateTime.parse("2025-01-01T10:00:00Z");
 	}
 
 }

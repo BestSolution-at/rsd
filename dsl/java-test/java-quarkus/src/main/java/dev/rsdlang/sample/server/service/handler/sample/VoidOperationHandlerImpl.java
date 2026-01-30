@@ -9,8 +9,7 @@ public class VoidOperationHandlerImpl implements SampleServiceServiceImpl.VoidOp
 
 	@Override
 	public void voidOperation(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'voidOperation'");
+
 	}
 
 }

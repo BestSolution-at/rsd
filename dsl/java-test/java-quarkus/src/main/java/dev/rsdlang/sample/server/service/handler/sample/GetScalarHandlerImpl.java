@@ -11,8 +11,7 @@ public class GetScalarHandlerImpl implements SampleServiceServiceImpl.GetScalarH
 
 	@Override
 	public ZoneId getScalar(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getScalar'");
+		return ZoneId.of("Europe/Vienna");
 	}
 
 }

@@ -9,8 +9,7 @@ public class GetFloatHandlerImpl implements SampleServiceServiceImpl.GetFloatHan
 
 	@Override
 	public float getFloat(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getFloat'");
+		return 123.45f;
 	}
 
 }

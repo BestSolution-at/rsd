@@ -61,7 +61,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 				baseUrl: 'http://localhost:3000',
 				lifecycleHandlers: {
 					preFetch: () => {
-						const newInit = { headers: { 'X-Fail-Invalid-Json': 'true' } };
+						const newInit = { headers: { 'X-Fail-Invalid-Json': 'true', 'X-Fail-Invalid-Encoded-Data': 'true' } };
 						return newInit;
 					},
 				},
@@ -77,13 +77,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 		});
 		test('fail - network error', async () => {
 			const serviceFail = createSampleServiceService({
-				baseUrl: 'http://localhost:3000',
-				lifecycleHandlers: {
-					preFetch: () => {
-						const newInit = { headers: { 'X-Fail-Network-Error': 'true' } };
-						return newInit;
-					},
-				},
+				baseUrl: 'http://localhost:3001',
 			});
 
 			const [result, error] = await serviceFail.getBoolean();

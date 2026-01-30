@@ -9,8 +9,7 @@ public class GetLongHandlerImpl implements SampleServiceServiceImpl.GetLongHandl
 
 	@Override
 	public long getLong(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getLong'");
+		return 1234567890123L;
 	}
 
 }

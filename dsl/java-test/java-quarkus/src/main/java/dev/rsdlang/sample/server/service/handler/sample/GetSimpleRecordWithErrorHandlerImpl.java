@@ -11,8 +11,7 @@ public class GetSimpleRecordWithErrorHandlerImpl implements SampleServiceService
 
 	@Override
 	public Data getSimpleRecordWithError(BuilderFactory _factory, String key) throws SampleErrorException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getSimpleRecordWithError'");
+		throw new SampleErrorException("This is a sample error from the server");
 	}
 
 }

@@ -10,8 +10,7 @@ public class GetEnumHandlerImpl implements SampleServiceServiceImpl.GetEnumHandl
 
 	@Override
 	public SampleEnum getEnum(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getEnum'");
+		return SampleEnum.A;
 	}
 
 }

@@ -9,8 +9,7 @@ public class GetStringHandlerImpl implements SampleServiceServiceImpl.GetStringH
 
 	@Override
 	public String getString(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getString'");
+		return "sample string";
 	}
 
 }

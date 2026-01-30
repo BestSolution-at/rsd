@@ -9,8 +9,7 @@ public class GetDoubleHandlerImpl implements SampleServiceServiceImpl.GetDoubleH
 
 	@Override
 	public double getDouble(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getDouble'");
+		return 123.456789d;
 	}
 
 }

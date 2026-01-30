@@ -11,8 +11,7 @@ public class GetLocalDateHandlerImpl implements SampleServiceServiceImpl.GetLoca
 
 	@Override
 	public LocalDate getLocalDate(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getLocalDate'");
+		return LocalDate.parse("2020-01-01");
 	}
 
 }

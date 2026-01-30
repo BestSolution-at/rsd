@@ -9,8 +9,7 @@ public class GetShortHandlerImpl implements SampleServiceServiceImpl.GetShortHan
 
 	@Override
 	public short getShort(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getShort'");
+		return 123;
 	}
 
 }
