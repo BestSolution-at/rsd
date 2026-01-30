@@ -27,7 +27,8 @@ public class PathParameterTypeServiceResource {
 	private final PathParameterTypeServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public PathParameterTypeServiceResource(PathParameterTypeServiceService service, PathParameterTypeServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public PathParameterTypeServiceResource(PathParameterTypeServiceService service,
+			PathParameterTypeServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -130,7 +131,7 @@ public class PathParameterTypeServiceResource {
 	}
 
 	@GET
-	@Path("multipathparam/{valueA}/${valueB}")
+	@Path("multipathparam/{valueA}/{valueB}")
 	public Response multiPathParam(
 			@PathParam("valueA") String _valueA,
 			@PathParam("valueB") int _valueB) {

@@ -9,8 +9,7 @@ public class SimpleIntPathParamHandlerImpl implements PathParameterTypeServiceSe
 
 	@Override
 	public int simpleIntPathParam(BuilderFactory _factory, int pathInt) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleIntPathParam'");
+		return pathInt;
 	}
 
 }

@@ -10,8 +10,7 @@ public class SimpleBooleanPathParamHandlerImpl
 
 	@Override
 	public boolean simpleBooleanPathParam(BuilderFactory _factory, boolean pathBoolean) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleBooleanPathParam'");
+		return pathBoolean;
 	}
 
 }

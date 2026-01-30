@@ -10,8 +10,7 @@ public class SimpleFloatPathParamHandlerImpl
 
 	@Override
 	public float simpleFloatPathParam(BuilderFactory _factory, float pathFloat) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleFloatPathParam'");
+		return pathFloat;
 	}
 
 }

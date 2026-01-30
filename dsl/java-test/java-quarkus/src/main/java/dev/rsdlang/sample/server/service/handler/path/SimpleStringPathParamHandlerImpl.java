@@ -10,8 +10,7 @@ public class SimpleStringPathParamHandlerImpl
 
 	@Override
 	public String simpleStringPathParam(BuilderFactory _factory, String pathString) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleStringPathParam'");
+		return pathString;
 	}
 
 }

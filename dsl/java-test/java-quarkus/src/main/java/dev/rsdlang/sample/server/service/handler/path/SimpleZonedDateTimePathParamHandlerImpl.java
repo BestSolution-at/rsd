@@ -12,8 +12,7 @@ public class SimpleZonedDateTimePathParamHandlerImpl
 
 	@Override
 	public ZonedDateTime simpleZonedDateTimePathParam(BuilderFactory _factory, ZonedDateTime pathZonedDateTime) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleZonedDateTimePathParam'");
+		return pathZonedDateTime;
 	}
 
 }

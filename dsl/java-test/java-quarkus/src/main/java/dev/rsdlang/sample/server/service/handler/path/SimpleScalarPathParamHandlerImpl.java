@@ -12,8 +12,7 @@ public class SimpleScalarPathParamHandlerImpl
 
 	@Override
 	public ZoneId simpleScalarPathParam(BuilderFactory _factory, ZoneId pathScalar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleScalarPathParam'");
+		return pathScalar;
 	}
 
 }

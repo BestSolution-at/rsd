@@ -9,8 +9,7 @@ public class MultiPathParamHandlerImpl implements PathParameterTypeServiceServic
 
 	@Override
 	public String multiPathParam(BuilderFactory _factory, String valueA, int valueB) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'multiPathParam'");
+		return valueA + "-" + valueB;
 	}
 
 }

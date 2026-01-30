@@ -12,8 +12,7 @@ public class SimpleLocalDateTimePathParamHandlerImpl
 
 	@Override
 	public LocalDateTime simpleLocalDateTimePathParam(BuilderFactory _factory, LocalDateTime pathLocalDateTime) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLocalDateTimePathParam'");
+		return pathLocalDateTime;
 	}
 
 }

@@ -10,8 +10,7 @@ public class SimpleEnumPathParamHandlerImpl implements PathParameterTypeServiceS
 
 	@Override
 	public SampleEnum simpleEnumPathParam(BuilderFactory _factory, SampleEnum pathEnum) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleEnumPathParam'");
+		return pathEnum;
 	}
 
 }

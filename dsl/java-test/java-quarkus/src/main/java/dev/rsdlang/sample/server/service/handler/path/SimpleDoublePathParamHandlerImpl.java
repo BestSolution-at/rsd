@@ -10,8 +10,7 @@ public class SimpleDoublePathParamHandlerImpl
 
 	@Override
 	public double simpleDoublePathParam(BuilderFactory _factory, double pathDouble) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleDoublePathParam'");
+		return pathDouble;
 	}
 
 }

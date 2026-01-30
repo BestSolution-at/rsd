@@ -9,8 +9,7 @@ public class SimpleLongPathParamHandlerImpl implements PathParameterTypeServiceS
 
 	@Override
 	public long simpleLongPathParam(BuilderFactory _factory, long pathLong) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLongPathParam'");
+		return pathLong;
 	}
 
 }

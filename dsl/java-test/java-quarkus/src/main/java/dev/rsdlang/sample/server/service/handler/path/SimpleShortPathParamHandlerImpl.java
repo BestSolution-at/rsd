@@ -10,8 +10,7 @@ public class SimpleShortPathParamHandlerImpl
 
 	@Override
 	public short simpleShortPathParam(BuilderFactory _factory, short pathShort) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleShortPathParam'");
+		return pathShort;
 	}
 
 }
