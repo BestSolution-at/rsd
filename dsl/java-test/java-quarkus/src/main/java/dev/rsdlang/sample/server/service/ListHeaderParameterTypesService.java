@@ -6,7 +6,12 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
+import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.NilResult;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
@@ -34,122 +39,122 @@ public interface ListHeaderParameterTypesService {
 	}
 	public List<Boolean> listBooleanHeaderParam(BuilderFactory _factory, List<Boolean> headerValue);
 
-	public NilResult listBooleanHeaderParamOpt(BuilderFactory _factory, List<Boolean> headerValue);
+	public NilResult listBooleanHeaderParamOpt(BuilderFactory _factory, Optional<List<Boolean>> headerValue);
 
-	public NilResult listBooleanHeaderParamNil(BuilderFactory _factory, List<Boolean> headerValue);
+	public NilResult listBooleanHeaderParamNil(BuilderFactory _factory, Optional<List<Boolean>> headerValue);
 
-	public NilResult listBooleanHeaderParamOptNil(BuilderFactory _factory, List<Boolean> headerValue);
+	public NilResult listBooleanHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Boolean>> headerValue);
 
 	public List<Short> listShortHeaderParam(BuilderFactory _factory, List<Short> headerValue);
 
-	public NilResult listShortHeaderParamOpt(BuilderFactory _factory, List<Short> headerValue);
+	public NilResult listShortHeaderParamOpt(BuilderFactory _factory, Optional<List<Short>> headerValue);
 
-	public NilResult listShortHeaderParamNil(BuilderFactory _factory, List<Short> headerValue);
+	public NilResult listShortHeaderParamNil(BuilderFactory _factory, Optional<List<Short>> headerValue);
 
-	public NilResult listShortHeaderParamOptNil(BuilderFactory _factory, List<Short> headerValue);
+	public NilResult listShortHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Short>> headerValue);
 
 	public List<Integer> listIntHeaderParam(BuilderFactory _factory, List<Integer> headerValue);
 
-	public NilResult listIntHeaderParamOpt(BuilderFactory _factory, List<Integer> headerValue);
+	public NilResult listIntHeaderParamOpt(BuilderFactory _factory, OptionalInt headerValue);
 
-	public NilResult listIntHeaderParamNil(BuilderFactory _factory, List<Integer> headerValue);
+	public NilResult listIntHeaderParamNil(BuilderFactory _factory, OptionalInt headerValue);
 
-	public NilResult listIntHeaderParamOptNil(BuilderFactory _factory, List<Integer> headerValue);
+	public NilResult listIntHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Integer>> headerValue);
 
 	public List<Long> listLongHeaderParam(BuilderFactory _factory, List<Long> headerValue);
 
-	public NilResult listLongHeaderParamOpt(BuilderFactory _factory, List<Long> headerValue);
+	public NilResult listLongHeaderParamOpt(BuilderFactory _factory, OptionalLong headerValue);
 
-	public NilResult listLongHeaderParamNil(BuilderFactory _factory, List<Long> headerValue);
+	public NilResult listLongHeaderParamNil(BuilderFactory _factory, OptionalLong headerValue);
 
-	public NilResult listLongHeaderParamOptNil(BuilderFactory _factory, List<Long> headerValue);
+	public NilResult listLongHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Long>> headerValue);
 
 	public List<Float> listFloatHeaderParam(BuilderFactory _factory, List<Float> headerValue);
 
-	public NilResult listFloatHeaderParamOpt(BuilderFactory _factory, List<Float> headerValue);
+	public NilResult listFloatHeaderParamOpt(BuilderFactory _factory, Optional<List<Float>> headerValue);
 
-	public NilResult listFloatHeaderParamNil(BuilderFactory _factory, List<Float> headerValue);
+	public NilResult listFloatHeaderParamNil(BuilderFactory _factory, Optional<List<Float>> headerValue);
 
-	public NilResult listFloatHeaderParamOptNil(BuilderFactory _factory, List<Float> headerValue);
+	public NilResult listFloatHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Float>> headerValue);
 
 	public List<Double> listDoubleHeaderParam(BuilderFactory _factory, List<Double> headerValue);
 
-	public NilResult listDoubleHeaderParamOpt(BuilderFactory _factory, List<Double> headerValue);
+	public NilResult listDoubleHeaderParamOpt(BuilderFactory _factory, OptionalDouble headerValue);
 
-	public NilResult listDoubleHeaderParamNil(BuilderFactory _factory, List<Double> headerValue);
+	public NilResult listDoubleHeaderParamNil(BuilderFactory _factory, OptionalDouble headerValue);
 
-	public NilResult listDoubleHeaderParamOptNil(BuilderFactory _factory, List<Double> headerValue);
+	public NilResult listDoubleHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Double>> headerValue);
 
 	public List<String> listStringHeaderParam(BuilderFactory _factory, List<String> headerValue);
 
-	public NilResult listStringHeaderParamOpt(BuilderFactory _factory, List<String> headerValue);
+	public NilResult listStringHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> headerValue);
 
-	public NilResult listStringHeaderParamNil(BuilderFactory _factory, List<String> headerValue);
+	public NilResult listStringHeaderParamNil(BuilderFactory _factory, Optional<List<String>> headerValue);
 
-	public NilResult listStringHeaderParamOptNil(BuilderFactory _factory, List<String> headerValue);
+	public NilResult listStringHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> headerValue);
 
 	public List<LocalDate> listLocalDateHeaderParam(BuilderFactory _factory, List<LocalDate> headerValue);
 
-	public NilResult listLocalDateHeaderParamOpt(BuilderFactory _factory, List<LocalDate> headerValue);
+	public NilResult listLocalDateHeaderParamOpt(BuilderFactory _factory, Optional<List<LocalDate>> headerValue);
 
-	public NilResult listLocalDateHeaderParamNil(BuilderFactory _factory, List<LocalDate> headerValue);
+	public NilResult listLocalDateHeaderParamNil(BuilderFactory _factory, Optional<List<LocalDate>> headerValue);
 
-	public NilResult listLocalDateHeaderParamOptNil(BuilderFactory _factory, List<LocalDate> headerValue);
+	public NilResult listLocalDateHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDate>> headerValue);
 
 	public List<LocalDateTime> listLocalDateTimeHeaderParam(BuilderFactory _factory, List<LocalDateTime> headerValue);
 
-	public NilResult listLocalDateTimeHeaderParamOpt(BuilderFactory _factory, List<LocalDateTime> headerValue);
+	public NilResult listLocalDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<LocalDateTime>> headerValue);
 
-	public NilResult listLocalDateTimeHeaderParamNil(BuilderFactory _factory, List<LocalDateTime> headerValue);
+	public NilResult listLocalDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<LocalDateTime>> headerValue);
 
-	public NilResult listLocalDateTimeHeaderParamOptNil(BuilderFactory _factory, List<LocalDateTime> headerValue);
+	public NilResult listLocalDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDateTime>> headerValue);
 
 	public List<ZonedDateTime> listZonedDateTimeHeaderParam(BuilderFactory _factory, List<ZonedDateTime> headerValue);
 
-	public NilResult listZonedDateTimeHeaderParamOpt(BuilderFactory _factory, List<ZonedDateTime> headerValue);
+	public NilResult listZonedDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<ZonedDateTime>> headerValue);
 
-	public NilResult listZonedDateTimeHeaderParamNil(BuilderFactory _factory, List<ZonedDateTime> headerValue);
+	public NilResult listZonedDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<ZonedDateTime>> headerValue);
 
-	public NilResult listZonedDateTimeHeaderParamOptNil(BuilderFactory _factory, List<ZonedDateTime> headerValue);
+	public NilResult listZonedDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ZonedDateTime>> headerValue);
 
 	public List<ZoneId> listScalarHeaderParam(BuilderFactory _factory, List<ZoneId> headerValue);
 
-	public NilResult listScalarHeaderParamOpt(BuilderFactory _factory, List<ZoneId> headerValue);
+	public NilResult listScalarHeaderParamOpt(BuilderFactory _factory, Optional<List<ZoneId>> headerValue);
 
-	public NilResult listScalarHeaderParamNil(BuilderFactory _factory, List<ZoneId> headerValue);
+	public NilResult listScalarHeaderParamNil(BuilderFactory _factory, Optional<List<ZoneId>> headerValue);
 
-	public NilResult listScalarHeaderParamOptNil(BuilderFactory _factory, List<ZoneId> headerValue);
+	public NilResult listScalarHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ZoneId>> headerValue);
 
 	public List<SampleEnum> listEnumHeaderParam(BuilderFactory _factory, List<SampleEnum> headerValue);
 
-	public NilResult listEnumHeaderParamOpt(BuilderFactory _factory, List<SampleEnum> headerValue);
+	public NilResult listEnumHeaderParamOpt(BuilderFactory _factory, Optional<List<SampleEnum>> headerValue);
 
-	public NilResult listEnumHeaderParamNil(BuilderFactory _factory, List<SampleEnum> headerValue);
+	public NilResult listEnumHeaderParamNil(BuilderFactory _factory, Optional<List<SampleEnum>> headerValue);
 
-	public NilResult listEnumHeaderParamOptNil(BuilderFactory _factory, List<SampleEnum> headerValue);
+	public NilResult listEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<SampleEnum>> headerValue);
 
 	public List<ListInlineEnumHeaderParam_Result$> listInlineEnumHeaderParam(BuilderFactory _factory, List<ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue);
 
-	public NilResult listInlineEnumHeaderParamOpt(BuilderFactory _factory, List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue);
+	public NilResult listInlineEnumHeaderParamOpt(BuilderFactory _factory, Optional<List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$>> headerValue);
 
-	public NilResult listInlineEnumHeaderParamNil(BuilderFactory _factory, List<ListInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue);
+	public NilResult listInlineEnumHeaderParamNil(BuilderFactory _factory, Optional<List<ListInlineEnumHeaderParamNil_HeaderValue_Param$>> headerValue);
 
-	public NilResult listInlineEnumHeaderParamOptNil(BuilderFactory _factory, List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue);
+	public NilResult listInlineEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$>> headerValue);
 
 	public String listMultiHeaderParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
 
-	public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
+	public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC);
 
-	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
+	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC);
 
-	public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
+	public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC);
 
 	public List<SimpleRecord.Data> listRecordHeaderParam(BuilderFactory _factory, List<SimpleRecord.Data> headerValue);
 
-	public NilResult listRecordHeaderParamOpt(BuilderFactory _factory, List<SimpleRecord.Data> headerValue);
+	public NilResult listRecordHeaderParamOpt(BuilderFactory _factory, Optional<List<SimpleRecord.Data>> headerValue);
 
-	public NilResult listRecordHeaderParamNil(BuilderFactory _factory, List<SimpleRecord.Data> headerValue);
+	public NilResult listRecordHeaderParamNil(BuilderFactory _factory, Optional<List<SimpleRecord.Data>> headerValue);
 
-	public NilResult listRecordHeaderParamOptNil(BuilderFactory _factory, List<SimpleRecord.Data> headerValue);
+	public NilResult listRecordHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<SimpleRecord.Data>> headerValue);
 
 }

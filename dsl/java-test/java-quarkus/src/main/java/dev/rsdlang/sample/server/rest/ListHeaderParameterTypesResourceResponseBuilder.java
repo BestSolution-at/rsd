@@ -6,6 +6,10 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
@@ -13,6 +17,7 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.rest.model._JsonUtils;
 import dev.rsdlang.sample.server.service.ListHeaderParameterTypesService;
+import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.NilResult;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
@@ -23,15 +28,15 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listBooleanHeaderParamOpt(NilResult $result, List<Boolean> headerValue) {
+	public ResponseBuilder listBooleanHeaderParamOpt(NilResult $result, Optional<List<Boolean>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listBooleanHeaderParamNil(NilResult $result, List<Boolean> headerValue) {
+	public ResponseBuilder listBooleanHeaderParamNil(NilResult $result, Optional<List<Boolean>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listBooleanHeaderParamOptNil(NilResult $result, List<Boolean> headerValue) {
+	public ResponseBuilder listBooleanHeaderParamOptNil(NilResult $result, _Base.Nillable<List<Boolean>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -39,15 +44,15 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listShortHeaderParamOpt(NilResult $result, List<Short> headerValue) {
+	public ResponseBuilder listShortHeaderParamOpt(NilResult $result, Optional<List<Short>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listShortHeaderParamNil(NilResult $result, List<Short> headerValue) {
+	public ResponseBuilder listShortHeaderParamNil(NilResult $result, Optional<List<Short>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listShortHeaderParamOptNil(NilResult $result, List<Short> headerValue) {
+	public ResponseBuilder listShortHeaderParamOptNil(NilResult $result, _Base.Nillable<List<Short>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -55,15 +60,15 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listIntHeaderParamOpt(NilResult $result, List<Integer> headerValue) {
+	public ResponseBuilder listIntHeaderParamOpt(NilResult $result, OptionalInt headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listIntHeaderParamNil(NilResult $result, List<Integer> headerValue) {
+	public ResponseBuilder listIntHeaderParamNil(NilResult $result, OptionalInt headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listIntHeaderParamOptNil(NilResult $result, List<Integer> headerValue) {
+	public ResponseBuilder listIntHeaderParamOptNil(NilResult $result, _Base.Nillable<List<Integer>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -71,15 +76,15 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLongHeaderParamOpt(NilResult $result, List<Long> headerValue) {
+	public ResponseBuilder listLongHeaderParamOpt(NilResult $result, OptionalLong headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLongHeaderParamNil(NilResult $result, List<Long> headerValue) {
+	public ResponseBuilder listLongHeaderParamNil(NilResult $result, OptionalLong headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLongHeaderParamOptNil(NilResult $result, List<Long> headerValue) {
+	public ResponseBuilder listLongHeaderParamOptNil(NilResult $result, _Base.Nillable<List<Long>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -87,15 +92,15 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listFloatHeaderParamOpt(NilResult $result, List<Float> headerValue) {
+	public ResponseBuilder listFloatHeaderParamOpt(NilResult $result, Optional<List<Float>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listFloatHeaderParamNil(NilResult $result, List<Float> headerValue) {
+	public ResponseBuilder listFloatHeaderParamNil(NilResult $result, Optional<List<Float>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listFloatHeaderParamOptNil(NilResult $result, List<Float> headerValue) {
+	public ResponseBuilder listFloatHeaderParamOptNil(NilResult $result, _Base.Nillable<List<Float>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -103,15 +108,15 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listDoubleHeaderParamOpt(NilResult $result, List<Double> headerValue) {
+	public ResponseBuilder listDoubleHeaderParamOpt(NilResult $result, OptionalDouble headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listDoubleHeaderParamNil(NilResult $result, List<Double> headerValue) {
+	public ResponseBuilder listDoubleHeaderParamNil(NilResult $result, OptionalDouble headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listDoubleHeaderParamOptNil(NilResult $result, List<Double> headerValue) {
+	public ResponseBuilder listDoubleHeaderParamOptNil(NilResult $result, _Base.Nillable<List<Double>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -119,15 +124,15 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listStringHeaderParamOpt(NilResult $result, List<String> headerValue) {
+	public ResponseBuilder listStringHeaderParamOpt(NilResult $result, Optional<List<String>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listStringHeaderParamNil(NilResult $result, List<String> headerValue) {
+	public ResponseBuilder listStringHeaderParamNil(NilResult $result, Optional<List<String>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listStringHeaderParamOptNil(NilResult $result, List<String> headerValue) {
+	public ResponseBuilder listStringHeaderParamOptNil(NilResult $result, _Base.Nillable<List<String>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -135,15 +140,15 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLocalDateHeaderParamOpt(NilResult $result, List<LocalDate> headerValue) {
+	public ResponseBuilder listLocalDateHeaderParamOpt(NilResult $result, Optional<List<LocalDate>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLocalDateHeaderParamNil(NilResult $result, List<LocalDate> headerValue) {
+	public ResponseBuilder listLocalDateHeaderParamNil(NilResult $result, Optional<List<LocalDate>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLocalDateHeaderParamOptNil(NilResult $result, List<LocalDate> headerValue) {
+	public ResponseBuilder listLocalDateHeaderParamOptNil(NilResult $result, _Base.Nillable<List<LocalDate>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -151,15 +156,15 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLocalDateTimeHeaderParamOpt(NilResult $result, List<LocalDateTime> headerValue) {
+	public ResponseBuilder listLocalDateTimeHeaderParamOpt(NilResult $result, Optional<List<LocalDateTime>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLocalDateTimeHeaderParamNil(NilResult $result, List<LocalDateTime> headerValue) {
+	public ResponseBuilder listLocalDateTimeHeaderParamNil(NilResult $result, Optional<List<LocalDateTime>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLocalDateTimeHeaderParamOptNil(NilResult $result, List<LocalDateTime> headerValue) {
+	public ResponseBuilder listLocalDateTimeHeaderParamOptNil(NilResult $result, _Base.Nillable<List<LocalDateTime>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -167,15 +172,15 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listZonedDateTimeHeaderParamOpt(NilResult $result, List<ZonedDateTime> headerValue) {
+	public ResponseBuilder listZonedDateTimeHeaderParamOpt(NilResult $result, Optional<List<ZonedDateTime>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listZonedDateTimeHeaderParamNil(NilResult $result, List<ZonedDateTime> headerValue) {
+	public ResponseBuilder listZonedDateTimeHeaderParamNil(NilResult $result, Optional<List<ZonedDateTime>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listZonedDateTimeHeaderParamOptNil(NilResult $result, List<ZonedDateTime> headerValue) {
+	public ResponseBuilder listZonedDateTimeHeaderParamOptNil(NilResult $result, _Base.Nillable<List<ZonedDateTime>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -183,15 +188,15 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listScalarHeaderParamOpt(NilResult $result, List<ZoneId> headerValue) {
+	public ResponseBuilder listScalarHeaderParamOpt(NilResult $result, Optional<List<ZoneId>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listScalarHeaderParamNil(NilResult $result, List<ZoneId> headerValue) {
+	public ResponseBuilder listScalarHeaderParamNil(NilResult $result, Optional<List<ZoneId>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listScalarHeaderParamOptNil(NilResult $result, List<ZoneId> headerValue) {
+	public ResponseBuilder listScalarHeaderParamOptNil(NilResult $result, _Base.Nillable<List<ZoneId>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -199,31 +204,31 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listEnumHeaderParamOpt(NilResult $result, List<SampleEnum> headerValue) {
+	public ResponseBuilder listEnumHeaderParamOpt(NilResult $result, Optional<List<SampleEnum>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listEnumHeaderParamNil(NilResult $result, List<SampleEnum> headerValue) {
+	public ResponseBuilder listEnumHeaderParamNil(NilResult $result, Optional<List<SampleEnum>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listEnumHeaderParamOptNil(NilResult $result, List<SampleEnum> headerValue) {
+	public ResponseBuilder listEnumHeaderParamOptNil(NilResult $result, _Base.Nillable<List<SampleEnum>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listInlineEnumHeaderParam(List<ListHeaderParameterTypesService.ListInlineEnumHeaderParam_Result$> $result, List<ListHeaderParameterTypesService.ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue) {
+	public ResponseBuilder listInlineEnumHeaderParam(List<ListHeaderParameterTypesService.ListInlineEnumHeaderParam_Result$> $result, List<ListHeaderParameterTypesService.ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listInlineEnumHeaderParamOpt(NilResult $result, List<ListHeaderParameterTypesService.ListInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue) {
+	public ResponseBuilder listInlineEnumHeaderParamOpt(NilResult $result, Optional<List<ListHeaderParameterTypesService.ListInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listInlineEnumHeaderParamNil(NilResult $result, List<ListHeaderParameterTypesService.ListInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue) {
+	public ResponseBuilder listInlineEnumHeaderParamNil(NilResult $result, Optional<List<ListHeaderParameterTypesService.ListInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listInlineEnumHeaderParamOptNil(NilResult $result, List<ListHeaderParameterTypesService.ListInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue) {
+	public ResponseBuilder listInlineEnumHeaderParamOptNil(NilResult $result, _Base.Nillable<List<ListHeaderParameterTypesService.ListInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -231,15 +236,15 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
 	}
 
-	public ResponseBuilder listMultiHeaderParamOpt(List<NilResult> $result, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public ResponseBuilder listMultiHeaderParamOpt(List<NilResult> $result, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listMultiHeaderParamNil(List<NilResult> $result, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public ResponseBuilder listMultiHeaderParamNil(List<NilResult> $result, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listMultiHeaderParamOptNil(List<NilResult> $result, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public ResponseBuilder listMultiHeaderParamOptNil(List<NilResult> $result, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
 		return Response.status(200).entity($result);
 	}
 
@@ -247,15 +252,15 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 
-	public ResponseBuilder listRecordHeaderParamOpt(NilResult $result, List<SimpleRecord.Data> headerValue) {
+	public ResponseBuilder listRecordHeaderParamOpt(NilResult $result, Optional<List<SimpleRecord.Data>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listRecordHeaderParamNil(NilResult $result, List<SimpleRecord.Data> headerValue) {
+	public ResponseBuilder listRecordHeaderParamNil(NilResult $result, Optional<List<SimpleRecord.Data>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listRecordHeaderParamOptNil(NilResult $result, List<SimpleRecord.Data> headerValue) {
+	public ResponseBuilder listRecordHeaderParamOptNil(NilResult $result, _Base.Nillable<List<SimpleRecord.Data>> headerValue) {
 		return Response.status(200).entity($result);
 	}
 

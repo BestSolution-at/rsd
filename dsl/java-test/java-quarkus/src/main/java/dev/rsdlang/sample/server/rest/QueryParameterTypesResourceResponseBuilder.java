@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
@@ -21,7 +25,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleBooleanQueryParamOpt(NilResult $result, Boolean queryValue) {
+	public ResponseBuilder simpleBooleanQueryParamOpt(NilResult $result, Optional<Boolean> queryValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -29,7 +33,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleShortQueryParamOpt(NilResult $result, Short queryValue) {
+	public ResponseBuilder simpleShortQueryParamOpt(NilResult $result, Optional<Short> queryValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -37,7 +41,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleIntQueryParamOpt(NilResult $result, Integer queryValue) {
+	public ResponseBuilder simpleIntQueryParamOpt(NilResult $result, OptionalInt queryValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -45,7 +49,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLongQueryParamOpt(NilResult $result, Long queryValue) {
+	public ResponseBuilder simpleLongQueryParamOpt(NilResult $result, OptionalLong queryValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -53,7 +57,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleFloatQueryParamOpt(NilResult $result, Float queryValue) {
+	public ResponseBuilder simpleFloatQueryParamOpt(NilResult $result, Optional<Float> queryValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -61,7 +65,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleDoubleQueryParamOpt(NilResult $result, Double queryValue) {
+	public ResponseBuilder simpleDoubleQueryParamOpt(NilResult $result, OptionalDouble queryValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -69,7 +73,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
 	}
 
-	public ResponseBuilder simpleStringQueryParamOpt(NilResult $result, String queryValue) {
+	public ResponseBuilder simpleStringQueryParamOpt(NilResult $result, Optional<String> queryValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -77,7 +81,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateQueryParamOpt(NilResult $result, LocalDate queryValue) {
+	public ResponseBuilder simpleLocalDateQueryParamOpt(NilResult $result, Optional<LocalDate> queryValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -85,7 +89,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateTimeQueryParamOpt(NilResult $result, LocalDateTime queryValue) {
+	public ResponseBuilder simpleLocalDateTimeQueryParamOpt(NilResult $result, Optional<LocalDateTime> queryValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -93,7 +97,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleZonedDateTimeQueryParamOpt(NilResult $result, ZonedDateTime queryValue) {
+	public ResponseBuilder simpleZonedDateTimeQueryParamOpt(NilResult $result, Optional<ZonedDateTime> queryValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -101,7 +105,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleScalarQueryParamOpt(NilResult $result, ZoneId queryValue) {
+	public ResponseBuilder simpleScalarQueryParamOpt(NilResult $result, Optional<ZoneId> queryValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -109,7 +113,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleEnumQueryParamOpt(NilResult $result, SampleEnum queryValue) {
+	public ResponseBuilder simpleEnumQueryParamOpt(NilResult $result, Optional<SampleEnum> queryValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -117,7 +121,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
 	}
 
-	public ResponseBuilder multiQueryParamOpt(String $result, String valueA, Integer valueB) {
+	public ResponseBuilder multiQueryParamOpt(String $result, Optional<String> valueA, OptionalInt valueB) {
 		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
 	}
 
@@ -125,7 +129,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 
-	public ResponseBuilder recordQueryParamOpt(NilResult $result, SimpleRecord.Data queryValue) {
+	public ResponseBuilder recordQueryParamOpt(NilResult $result, Optional<SimpleRecord.Data> queryValue) {
 		return Response.status(200).entity($result);
 	}
 

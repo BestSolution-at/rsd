@@ -6,6 +6,10 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
@@ -13,6 +17,7 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.rest.model._JsonUtils;
 import dev.rsdlang.sample.server.service.HeaderParameterTypesService;
+import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.NilResult;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
@@ -23,15 +28,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleBooleanHeaderParamOpt(NilResult $result, Boolean headerValue) {
+	public ResponseBuilder simpleBooleanHeaderParamOpt(NilResult $result, Optional<Boolean> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleBooleanHeaderParamNil(NilResult $result, Boolean headerValue) {
+	public ResponseBuilder simpleBooleanHeaderParamNil(NilResult $result, Optional<Boolean> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleBooleanHeaderParamOptNil(NilResult $result, Boolean headerValue) {
+	public ResponseBuilder simpleBooleanHeaderParamOptNil(NilResult $result, _Base.Nillable<Boolean> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -39,15 +44,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleShortHeaderParamOpt(NilResult $result, Short headerValue) {
+	public ResponseBuilder simpleShortHeaderParamOpt(NilResult $result, Optional<Short> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleShortHeaderParamNil(NilResult $result, Short headerValue) {
+	public ResponseBuilder simpleShortHeaderParamNil(NilResult $result, Optional<Short> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleShortHeaderParamOptNil(NilResult $result, Short headerValue) {
+	public ResponseBuilder simpleShortHeaderParamOptNil(NilResult $result, _Base.Nillable<Short> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -55,15 +60,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleIntHeaderParamOpt(NilResult $result, Integer headerValue) {
+	public ResponseBuilder simpleIntHeaderParamOpt(NilResult $result, OptionalInt headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleIntHeaderParamNil(NilResult $result, Integer headerValue) {
+	public ResponseBuilder simpleIntHeaderParamNil(NilResult $result, OptionalInt headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleIntHeaderParamOptNil(NilResult $result, Integer headerValue) {
+	public ResponseBuilder simpleIntHeaderParamOptNil(NilResult $result, _Base.Nillable<Integer> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -71,15 +76,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLongHeaderParamOpt(NilResult $result, Long headerValue) {
+	public ResponseBuilder simpleLongHeaderParamOpt(NilResult $result, OptionalLong headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLongHeaderParamNil(NilResult $result, Long headerValue) {
+	public ResponseBuilder simpleLongHeaderParamNil(NilResult $result, OptionalLong headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLongHeaderParamOptNil(NilResult $result, Long headerValue) {
+	public ResponseBuilder simpleLongHeaderParamOptNil(NilResult $result, _Base.Nillable<Long> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -87,15 +92,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleFloatHeaderParamOpt(NilResult $result, Float headerValue) {
+	public ResponseBuilder simpleFloatHeaderParamOpt(NilResult $result, Optional<Float> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleFloatHeaderParamNil(NilResult $result, Float headerValue) {
+	public ResponseBuilder simpleFloatHeaderParamNil(NilResult $result, Optional<Float> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleFloatHeaderParamOptNil(NilResult $result, Float headerValue) {
+	public ResponseBuilder simpleFloatHeaderParamOptNil(NilResult $result, _Base.Nillable<Float> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -103,15 +108,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleDoubleHeaderParamOpt(NilResult $result, Double headerValue) {
+	public ResponseBuilder simpleDoubleHeaderParamOpt(NilResult $result, OptionalDouble headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleDoubleHeaderParamNil(NilResult $result, Double headerValue) {
+	public ResponseBuilder simpleDoubleHeaderParamNil(NilResult $result, OptionalDouble headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleDoubleHeaderParamOptNil(NilResult $result, Double headerValue) {
+	public ResponseBuilder simpleDoubleHeaderParamOptNil(NilResult $result, _Base.Nillable<Double> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -119,15 +124,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
 	}
 
-	public ResponseBuilder simpleStringHeaderParamOpt(NilResult $result, String headerValue) {
+	public ResponseBuilder simpleStringHeaderParamOpt(NilResult $result, Optional<String> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleStringHeaderParamNil(NilResult $result, String headerValue) {
+	public ResponseBuilder simpleStringHeaderParamNil(NilResult $result, Optional<String> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleStringHeaderParamOptNil(NilResult $result, String headerValue) {
+	public ResponseBuilder simpleStringHeaderParamOptNil(NilResult $result, _Base.Nillable<String> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -135,15 +140,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateHeaderParamOpt(NilResult $result, LocalDate headerValue) {
+	public ResponseBuilder simpleLocalDateHeaderParamOpt(NilResult $result, Optional<LocalDate> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateHeaderParamNil(NilResult $result, LocalDate headerValue) {
+	public ResponseBuilder simpleLocalDateHeaderParamNil(NilResult $result, Optional<LocalDate> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateHeaderParamOptNil(NilResult $result, LocalDate headerValue) {
+	public ResponseBuilder simpleLocalDateHeaderParamOptNil(NilResult $result, _Base.Nillable<LocalDate> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -151,15 +156,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateTimeHeaderParamOpt(NilResult $result, LocalDateTime headerValue) {
+	public ResponseBuilder simpleLocalDateTimeHeaderParamOpt(NilResult $result, Optional<LocalDateTime> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateTimeHeaderParamNil(NilResult $result, LocalDateTime headerValue) {
+	public ResponseBuilder simpleLocalDateTimeHeaderParamNil(NilResult $result, Optional<LocalDateTime> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateTimeHeaderParamOptNil(NilResult $result, LocalDateTime headerValue) {
+	public ResponseBuilder simpleLocalDateTimeHeaderParamOptNil(NilResult $result, _Base.Nillable<LocalDateTime> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -167,15 +172,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleZonedDateTimeHeaderParamOpt(NilResult $result, ZonedDateTime headerValue) {
+	public ResponseBuilder simpleZonedDateTimeHeaderParamOpt(NilResult $result, Optional<ZonedDateTime> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleZonedDateTimeHeaderParamNil(NilResult $result, ZonedDateTime headerValue) {
+	public ResponseBuilder simpleZonedDateTimeHeaderParamNil(NilResult $result, Optional<ZonedDateTime> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleZonedDateTimeHeaderParamOptNil(NilResult $result, ZonedDateTime headerValue) {
+	public ResponseBuilder simpleZonedDateTimeHeaderParamOptNil(NilResult $result, _Base.Nillable<ZonedDateTime> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -183,15 +188,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleScalarHeaderParamOpt(NilResult $result, ZoneId headerValue) {
+	public ResponseBuilder simpleScalarHeaderParamOpt(NilResult $result, Optional<ZoneId> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleScalarHeaderParamNil(NilResult $result, ZoneId headerValue) {
+	public ResponseBuilder simpleScalarHeaderParamNil(NilResult $result, Optional<ZoneId> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleScalarHeaderParamOptNil(NilResult $result, ZoneId headerValue) {
+	public ResponseBuilder simpleScalarHeaderParamOptNil(NilResult $result, _Base.Nillable<ZoneId> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -199,15 +204,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleEnumHeaderParamOpt(NilResult $result, SampleEnum headerValue) {
+	public ResponseBuilder simpleEnumHeaderParamOpt(NilResult $result, Optional<SampleEnum> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleEnumHeaderParamNil(NilResult $result, SampleEnum headerValue) {
+	public ResponseBuilder simpleEnumHeaderParamNil(NilResult $result, Optional<SampleEnum> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleEnumHeaderParamOptNil(NilResult $result, SampleEnum headerValue) {
+	public ResponseBuilder simpleEnumHeaderParamOptNil(NilResult $result, _Base.Nillable<SampleEnum> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -215,15 +220,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleInlineEnumHeaderParamOpt(NilResult $result, HeaderParameterTypesService.SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$ headerValue) {
+	public ResponseBuilder simpleInlineEnumHeaderParamOpt(NilResult $result, Optional<HeaderParameterTypesService.SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleInlineEnumHeaderParamNil(NilResult $result, HeaderParameterTypesService.SimpleInlineEnumHeaderParamNil_HeaderValue_Param$ headerValue) {
+	public ResponseBuilder simpleInlineEnumHeaderParamNil(NilResult $result, Optional<HeaderParameterTypesService.SimpleInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleInlineEnumHeaderParamOptNil(NilResult $result, HeaderParameterTypesService.SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$ headerValue) {
+	public ResponseBuilder simpleInlineEnumHeaderParamOptNil(NilResult $result, _Base.Nillable<HeaderParameterTypesService.SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
@@ -231,15 +236,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
 	}
 
-	public ResponseBuilder multiHeaderParamOpt(List<NilResult> $result, String valueA, Integer valueB) {
+	public ResponseBuilder multiHeaderParamOpt(List<NilResult> $result, Optional<String> valueA, OptionalInt valueB) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder multiHeaderParamNil(List<NilResult> $result, String valueA, Integer valueB) {
+	public ResponseBuilder multiHeaderParamNil(List<NilResult> $result, Optional<String> valueA, OptionalInt valueB) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder multiHeaderParamOptNil(List<NilResult> $result, String valueA, Integer valueB) {
+	public ResponseBuilder multiHeaderParamOptNil(List<NilResult> $result, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB) {
 		return Response.status(200).entity($result);
 	}
 
@@ -247,15 +252,15 @@ public class HeaderParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 
-	public ResponseBuilder recordHeaderParamOpt(NilResult $result, SimpleRecord.Data headerValue) {
+	public ResponseBuilder recordHeaderParamOpt(NilResult $result, Optional<SimpleRecord.Data> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder recordHeaderParamNil(NilResult $result, SimpleRecord.Data headerValue) {
+	public ResponseBuilder recordHeaderParamNil(NilResult $result, Optional<SimpleRecord.Data> headerValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder recordHeaderParamOptNil(NilResult $result, SimpleRecord.Data headerValue) {
+	public ResponseBuilder recordHeaderParamOptNil(NilResult $result, _Base.Nillable<SimpleRecord.Data> headerValue) {
 		return Response.status(200).entity($result);
 	}
 

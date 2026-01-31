@@ -147,7 +147,7 @@ public class SampleServiceResource {
 	@GET
 	@Path("simplerecord/{key}")
 	public Response getSimpleRecord(@PathParam("key") String _key) {
-		var key = _key;
+		var key = _RestUtils.parseString(_key);
 		var result = service.getSimpleRecord(builderFactory, key);
 		return responseBuilder.getSimpleRecord(result, key).build();
 	}
@@ -155,7 +155,7 @@ public class SampleServiceResource {
 	@GET
 	@Path("simplerecordwitherror/{key}")
 	public Response getSimpleRecordWithError(@PathParam("key") String _key) {
-		var key = _key;
+		var key = _RestUtils.parseString(_key);
 		try {
 			var result = service.getSimpleRecordWithError(builderFactory, key);
 			return responseBuilder.getSimpleRecordWithError(result, key).build();

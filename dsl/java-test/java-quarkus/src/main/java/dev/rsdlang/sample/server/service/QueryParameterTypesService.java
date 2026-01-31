@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 import dev.rsdlang.sample.server.service.model.NilResult;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
@@ -13,58 +17,58 @@ import dev.rsdlang.sample.server.service.model.SimpleRecord;
 public interface QueryParameterTypesService {
 	public boolean simpleBooleanQueryParam(BuilderFactory _factory, boolean queryValue);
 
-	public NilResult simpleBooleanQueryParamOpt(BuilderFactory _factory, Boolean queryValue);
+	public NilResult simpleBooleanQueryParamOpt(BuilderFactory _factory, Optional<Boolean> queryValue);
 
 	public short simpleShortQueryParam(BuilderFactory _factory, short queryValue);
 
-	public NilResult simpleShortQueryParamOpt(BuilderFactory _factory, Short queryValue);
+	public NilResult simpleShortQueryParamOpt(BuilderFactory _factory, Optional<Short> queryValue);
 
 	public int simpleIntQueryParam(BuilderFactory _factory, int queryValue);
 
-	public NilResult simpleIntQueryParamOpt(BuilderFactory _factory, Integer queryValue);
+	public NilResult simpleIntQueryParamOpt(BuilderFactory _factory, OptionalInt queryValue);
 
 	public long simpleLongQueryParam(BuilderFactory _factory, long queryValue);
 
-	public NilResult simpleLongQueryParamOpt(BuilderFactory _factory, Long queryValue);
+	public NilResult simpleLongQueryParamOpt(BuilderFactory _factory, OptionalLong queryValue);
 
 	public float simpleFloatQueryParam(BuilderFactory _factory, float queryValue);
 
-	public NilResult simpleFloatQueryParamOpt(BuilderFactory _factory, Float queryValue);
+	public NilResult simpleFloatQueryParamOpt(BuilderFactory _factory, Optional<Float> queryValue);
 
 	public double simpleDoubleQueryParam(BuilderFactory _factory, double queryValue);
 
-	public NilResult simpleDoubleQueryParamOpt(BuilderFactory _factory, Double queryValue);
+	public NilResult simpleDoubleQueryParamOpt(BuilderFactory _factory, OptionalDouble queryValue);
 
 	public String simpleStringQueryParam(BuilderFactory _factory, String queryValue);
 
-	public NilResult simpleStringQueryParamOpt(BuilderFactory _factory, String queryValue);
+	public NilResult simpleStringQueryParamOpt(BuilderFactory _factory, Optional<String> queryValue);
 
 	public LocalDate simpleLocalDateQueryParam(BuilderFactory _factory, LocalDate queryValue);
 
-	public NilResult simpleLocalDateQueryParamOpt(BuilderFactory _factory, LocalDate queryValue);
+	public NilResult simpleLocalDateQueryParamOpt(BuilderFactory _factory, Optional<LocalDate> queryValue);
 
 	public LocalDateTime simpleLocalDateTimeQueryParam(BuilderFactory _factory, LocalDateTime queryValue);
 
-	public NilResult simpleLocalDateTimeQueryParamOpt(BuilderFactory _factory, LocalDateTime queryValue);
+	public NilResult simpleLocalDateTimeQueryParamOpt(BuilderFactory _factory, Optional<LocalDateTime> queryValue);
 
 	public ZonedDateTime simpleZonedDateTimeQueryParam(BuilderFactory _factory, ZonedDateTime queryValue);
 
-	public NilResult simpleZonedDateTimeQueryParamOpt(BuilderFactory _factory, ZonedDateTime queryValue);
+	public NilResult simpleZonedDateTimeQueryParamOpt(BuilderFactory _factory, Optional<ZonedDateTime> queryValue);
 
 	public ZoneId simpleScalarQueryParam(BuilderFactory _factory, ZoneId queryValue);
 
-	public NilResult simpleScalarQueryParamOpt(BuilderFactory _factory, ZoneId queryValue);
+	public NilResult simpleScalarQueryParamOpt(BuilderFactory _factory, Optional<ZoneId> queryValue);
 
 	public SampleEnum simpleEnumQueryParam(BuilderFactory _factory, SampleEnum queryValue);
 
-	public NilResult simpleEnumQueryParamOpt(BuilderFactory _factory, SampleEnum queryValue);
+	public NilResult simpleEnumQueryParamOpt(BuilderFactory _factory, Optional<SampleEnum> queryValue);
 
 	public String multiQueryParam(BuilderFactory _factory, String valueA, int valueB);
 
-	public String multiQueryParamOpt(BuilderFactory _factory, String valueA, Integer valueB);
+	public String multiQueryParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB);
 
 	public SimpleRecord.Data recordQueryParam(BuilderFactory _factory, SimpleRecord.Data queryValue);
 
-	public NilResult recordQueryParamOpt(BuilderFactory _factory, SimpleRecord.Data queryValue);
+	public NilResult recordQueryParamOpt(BuilderFactory _factory, Optional<SimpleRecord.Data> queryValue);
 
 }

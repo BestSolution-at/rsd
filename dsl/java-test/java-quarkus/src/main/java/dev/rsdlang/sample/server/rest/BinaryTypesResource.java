@@ -15,7 +15,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.PUT;
 
 import dev.rsdlang.sample.server.service.BinaryTypesService;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
 import org.jboss.resteasy.reactive.multipart.FileUpload;
 import org.jboss.resteasy.reactive.RestForm;
 
@@ -179,13 +178,11 @@ public class BinaryTypesResource {
 	@PUT
 	@Path("uploadMixed")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadMixed(@RestForm("text") String _text, @RestForm("number") int _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<Integer> _numberList, @RestForm("recList") String _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+	public Response uploadMixed(@RestForm("text") String _text, @RestForm("number") String _number, @RestForm("rec") String _rec, @RestForm("textList") String _textList, @RestForm("numberList") String _numberList, @RestForm("recList") String _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
 		var text = _text;
 		var number = _number;
-		var rec = builderFactory.of(SimpleRecord.Data.class, _rec);
 		var textList = _textList;
 		var numberList = _numberList;
-		var recList = builderFactory.listOf(SimpleRecord.Data.class, _recList);
 		var dataFile = builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName());
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
 		var result = service.uploadMixed(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
@@ -194,13 +191,11 @@ public class BinaryTypesResource {
 	@PUT
 	@Path("uploadMixedOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadMixedOpt(@RestForm("text") String _text, @RestForm("number") Integer _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<Integer> _numberList, @RestForm("recList") String _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+	public Response uploadMixedOpt(@RestForm("text") String _text, @RestForm("number") String _number, @RestForm("rec") String _rec, @RestForm("textList") String _textList, @RestForm("numberList") String _numberList, @RestForm("recList") String _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
 		var text = _text;
 		var number = _number;
-		var rec = builderFactory.of(SimpleRecord.Data.class, _rec);
 		var textList = _textList;
 		var numberList = _numberList;
-		var recList = builderFactory.listOf(SimpleRecord.Data.class, _recList);
 		var dataFile = builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName());
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
 		var result = service.uploadMixedOpt(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
@@ -209,13 +204,11 @@ public class BinaryTypesResource {
 	@PUT
 	@Path("uploadMixedNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadMixedNil(@RestForm("text") String _text, @RestForm("number") Integer _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<Integer> _numberList, @RestForm("recList") String _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+	public Response uploadMixedNil(@RestForm("text") String _text, @RestForm("number") String _number, @RestForm("rec") String _rec, @RestForm("textList") String _textList, @RestForm("numberList") String _numberList, @RestForm("recList") String _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
 		var text = _text;
 		var number = _number;
-		var rec = builderFactory.of(SimpleRecord.Data.class, _rec);
 		var textList = _textList;
 		var numberList = _numberList;
-		var recList = builderFactory.listOf(SimpleRecord.Data.class, _recList);
 		var dataFile = builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName());
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
 		var result = service.uploadMixedNil(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
@@ -224,13 +217,11 @@ public class BinaryTypesResource {
 	@PUT
 	@Path("uploadMixedOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadMixedOptNil(@RestForm("text") String _text, @RestForm("number") Integer _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<Integer> _numberList, @RestForm("recList") String _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+	public Response uploadMixedOptNil(@RestForm("text") String _text, @RestForm("number") String _number, @RestForm("rec") String _rec, @RestForm("textList") String _textList, @RestForm("numberList") String _numberList, @RestForm("recList") String _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
 		var text = _text;
 		var number = _number;
-		var rec = builderFactory.of(SimpleRecord.Data.class, _rec);
 		var textList = _textList;
 		var numberList = _numberList;
-		var recList = builderFactory.listOf(SimpleRecord.Data.class, _recList);
 		var dataFile = builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName());
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
 		var result = service.uploadMixedOptNil(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);

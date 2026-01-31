@@ -520,6 +520,10 @@ public class _JsonUtils {
 		return _NillableImpl.undefined();
 	}
 
+	public static List<LocalDate> mapLocalDates(JsonArray array) {
+		return mapLiterals(array, v -> LocalDate.parse(v));
+	}
+
 	public static LocalDate parseLocalDate(String data) {
 		return parseLiteral(data, LocalDate::parse);
 	}
@@ -577,6 +581,10 @@ public class _JsonUtils {
 		return parseNilLiteral(data, LocalDateTime::parse);
 	}
 
+	public static List<LocalDateTime> mapLocalDateTimes(JsonArray array) {
+		return mapLiterals(array, v -> LocalDateTime.parse(v));
+	}
+
 	public static ZonedDateTime mapZonedDateTime(JsonObject object, String property) {
 		return mapLiteral(object, property, ZonedDateTime::parse);
 	}
@@ -616,6 +624,10 @@ public class _JsonUtils {
 
 	public static _Base.Nillable<ZonedDateTime> parseNilZonedDateTime(String data) {
 		return parseNilLiteral(data, ZonedDateTime::parse);
+	}
+
+	public static List<ZonedDateTime> mapZonedDateTimes(JsonArray array) {
+		return mapLiterals(array, v -> ZonedDateTime.parse(v));
 	}
 
 	public static <T> T mapObject(JsonObject object, String property, Function<JsonObject, T> converter) {
@@ -1006,76 +1018,76 @@ public class _JsonUtils {
 		return writer.toString();
 	}
 
-	public static JsonObject parseJsonObject(String data) {
+	public static JsonObject parseObject(String data) {
 		try (var reader = Json.createReader(new StringReader(data))) {
 			return reader.readObject();
 		}
 	}
 
-	public static Optional<JsonObject> parseOptJsonObject(String data) {
+	public static Optional<JsonObject> parseOptObject(String data) {
 		if (data.isEmpty()) {
 			return Optional.empty();
 		} else {
-			return Optional.of(parseJsonObject(data));
+			return Optional.of(parseObject(data));
 		}
 	}
 
-	public static Optional<JsonObject> parseNullJsonObject(String data) {
+	public static Optional<JsonObject> parseNullObject(String data) {
 		if (data.equals("null")) {
 			return Optional.empty();
 		} else {
-			return Optional.of(parseJsonObject(data));
+			return Optional.of(parseObject(data));
 		}
 	}
 
-	public static _Base.Nillable<JsonObject> parseNilJsonObject(String data) {
+	public static _Base.Nillable<JsonObject> parseNilObject(String data) {
 		if (data.isEmpty()) {
 			return _NillableImpl.undefined();
 		} else if (data.equals("null")) {
 			return _NillableImpl.nill();
 		} else {
-			return _NillableImpl.of(parseJsonObject(data));
+			return _NillableImpl.of(parseObject(data));
 		}
 	}
 
-	public static <T> T parseJsonObject(String data, Function<JsonObject, T> constructor) {
-		return constructor.apply(parseJsonObject(data));
+	public static <T> T parseObject(String data, Function<JsonObject, T> constructor) {
+		return constructor.apply(parseObject(data));
 	}
 
-	public static <T> Optional<T> parseOptJsonObject(String data, Function<JsonObject, T> constructor) {
+	public static <T> Optional<T> parseOptObject(String data, Function<JsonObject, T> constructor) {
 		if (data.isEmpty()) {
 			return Optional.empty();
 		} else {
-			return Optional.of(parseJsonObject(data, constructor));
+			return Optional.of(parseObject(data, constructor));
 		}
 	}
 
-	public static <T> Optional<T> parseNullJsonObject(String data, Function<JsonObject, T> constructor) {
+	public static <T> Optional<T> parseNullObject(String data, Function<JsonObject, T> constructor) {
 		if (data.equals("null")) {
 			return Optional.empty();
 		} else {
-			return Optional.of(parseJsonObject(data, constructor));
+			return Optional.of(parseObject(data, constructor));
 		}
 	}
 
-	public static <T> _Base.Nillable<T> parseNilJsonObject(String data, Function<JsonObject, T> constructor) {
+	public static <T> _Base.Nillable<T> parseNilObject(String data, Function<JsonObject, T> constructor) {
 		if (data.isEmpty()) {
 			return _NillableImpl.undefined();
 		} else if (data.equals("null")) {
 			return _NillableImpl.nill();
 		} else {
-			return _NillableImpl.of(parseJsonObject(data, constructor));
+			return _NillableImpl.of(parseObject(data, constructor));
 		}
 	}
 
-	public static JsonArray parseJsonArray(String data) {
+	public static JsonArray parseArray(String data) {
 		try (var reader = Json.createReader(new StringReader(data))) {
 			return reader.readArray();
 		}
 	}
 
-	public static <T> List<T> parseJsonArray(String data, Function<JsonObject, T> constructor) {
-		return parseJsonArray(data).getValuesAs(JsonObject.class).stream().map(constructor).toList();
+	public static <T> List<T> parseObjectArray(String data, Function<JsonObject, T> constructor) {
+		return parseArray(data).getValuesAs(JsonObject.class).stream().map(constructor).toList();
 	}
 
 	public static String encodeAsJsonString(String text) {

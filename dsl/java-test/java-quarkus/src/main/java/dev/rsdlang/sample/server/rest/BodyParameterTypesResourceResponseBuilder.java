@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
@@ -12,6 +16,7 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.rest.model._JsonUtils;
 import dev.rsdlang.sample.server.service.BodyParameterTypesService;
+import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.NilResult;
 import dev.rsdlang.sample.server.service.model.PatchableRecord;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
@@ -24,15 +29,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleBooleanBodyParamOpt(NilResult $result, Boolean bodyBoolean) {
+	public ResponseBuilder simpleBooleanBodyParamOpt(NilResult $result, Optional<Boolean> bodyBoolean) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleBooleanBodyParamNil(NilResult $result, Boolean bodyBoolean) {
+	public ResponseBuilder simpleBooleanBodyParamNil(NilResult $result, Optional<Boolean> bodyBoolean) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleBooleanBodyParamOptNil(NilResult $result, Boolean bodyBoolean) {
+	public ResponseBuilder simpleBooleanBodyParamOptNil(NilResult $result, _Base.Nillable<Boolean> bodyBoolean) {
 		return Response.status(200).entity($result);
 	}
 
@@ -40,15 +45,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleShortBodyParamOpt(NilResult $result, Short bodyShort) {
+	public ResponseBuilder simpleShortBodyParamOpt(NilResult $result, Optional<Short> bodyShort) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleShortBodyParamNil(NilResult $result, Short bodyShort) {
+	public ResponseBuilder simpleShortBodyParamNil(NilResult $result, Optional<Short> bodyShort) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleShortBodyParamOptNil(NilResult $result, Short bodyShort) {
+	public ResponseBuilder simpleShortBodyParamOptNil(NilResult $result, _Base.Nillable<Short> bodyShort) {
 		return Response.status(200).entity($result);
 	}
 
@@ -56,15 +61,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleIntBodyParamOpt(NilResult $result, Integer bodyInt) {
+	public ResponseBuilder simpleIntBodyParamOpt(NilResult $result, OptionalInt bodyInt) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleIntBodyParamNil(NilResult $result, Integer bodyInt) {
+	public ResponseBuilder simpleIntBodyParamNil(NilResult $result, OptionalInt bodyInt) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleIntBodyParamOptNil(NilResult $result, Integer bodyInt) {
+	public ResponseBuilder simpleIntBodyParamOptNil(NilResult $result, _Base.Nillable<Integer> bodyInt) {
 		return Response.status(200).entity($result);
 	}
 
@@ -72,15 +77,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLongBodyParamOpt(NilResult $result, Long bodyLong) {
+	public ResponseBuilder simpleLongBodyParamOpt(NilResult $result, OptionalLong bodyLong) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLongBodyParamNil(NilResult $result, Long bodyLong) {
+	public ResponseBuilder simpleLongBodyParamNil(NilResult $result, OptionalLong bodyLong) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLongBodyParamOptNil(NilResult $result, Long bodyLong) {
+	public ResponseBuilder simpleLongBodyParamOptNil(NilResult $result, _Base.Nillable<Long> bodyLong) {
 		return Response.status(200).entity($result);
 	}
 
@@ -88,15 +93,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleFloatBodyParamOpt(NilResult $result, Float bodyFloat) {
+	public ResponseBuilder simpleFloatBodyParamOpt(NilResult $result, Optional<Float> bodyFloat) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleFloatBodyParamNil(NilResult $result, Float bodyFloat) {
+	public ResponseBuilder simpleFloatBodyParamNil(NilResult $result, Optional<Float> bodyFloat) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleFloatBodyParamOptNil(NilResult $result, Float bodyFloat) {
+	public ResponseBuilder simpleFloatBodyParamOptNil(NilResult $result, _Base.Nillable<Float> bodyFloat) {
 		return Response.status(200).entity($result);
 	}
 
@@ -104,15 +109,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleDoubleBodyParamOpt(NilResult $result, Double bodyDouble) {
+	public ResponseBuilder simpleDoubleBodyParamOpt(NilResult $result, OptionalDouble bodyDouble) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleDoubleBodyParamNil(NilResult $result, Double bodyDouble) {
+	public ResponseBuilder simpleDoubleBodyParamNil(NilResult $result, OptionalDouble bodyDouble) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleDoubleBodyParamOptNil(NilResult $result, Double bodyDouble) {
+	public ResponseBuilder simpleDoubleBodyParamOptNil(NilResult $result, _Base.Nillable<Double> bodyDouble) {
 		return Response.status(200).entity($result);
 	}
 
@@ -120,15 +125,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
 	}
 
-	public ResponseBuilder simpleStringBodyParamOpt(NilResult $result, String bodyString) {
+	public ResponseBuilder simpleStringBodyParamOpt(NilResult $result, Optional<String> bodyString) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleStringBodyParamNil(NilResult $result, String bodyString) {
+	public ResponseBuilder simpleStringBodyParamNil(NilResult $result, Optional<String> bodyString) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleStringBodyParamOptNil(NilResult $result, String bodyString) {
+	public ResponseBuilder simpleStringBodyParamOptNil(NilResult $result, _Base.Nillable<String> bodyString) {
 		return Response.status(200).entity($result);
 	}
 
@@ -136,15 +141,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateBodyParamOpt(NilResult $result, LocalDate bodyLocalDate) {
+	public ResponseBuilder simpleLocalDateBodyParamOpt(NilResult $result, Optional<LocalDate> bodyLocalDate) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateBodyParamNil(NilResult $result, LocalDate bodyLocalDate) {
+	public ResponseBuilder simpleLocalDateBodyParamNil(NilResult $result, Optional<LocalDate> bodyLocalDate) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateBodyParamOptNil(NilResult $result, LocalDate bodyLocalDate) {
+	public ResponseBuilder simpleLocalDateBodyParamOptNil(NilResult $result, _Base.Nillable<LocalDate> bodyLocalDate) {
 		return Response.status(200).entity($result);
 	}
 
@@ -152,15 +157,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateTimeBodyParamOpt(NilResult $result, LocalDateTime bodyLocalDateTime) {
+	public ResponseBuilder simpleLocalDateTimeBodyParamOpt(NilResult $result, Optional<LocalDateTime> bodyLocalDateTime) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateTimeBodyParamNil(NilResult $result, LocalDateTime bodyLocalDateTime) {
+	public ResponseBuilder simpleLocalDateTimeBodyParamNil(NilResult $result, Optional<LocalDateTime> bodyLocalDateTime) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateTimeBodyParamOptNil(NilResult $result, LocalDateTime bodyLocalDateTime) {
+	public ResponseBuilder simpleLocalDateTimeBodyParamOptNil(NilResult $result, _Base.Nillable<LocalDateTime> bodyLocalDateTime) {
 		return Response.status(200).entity($result);
 	}
 
@@ -168,15 +173,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleZonedDateTimeBodyParamOpt(NilResult $result, ZonedDateTime bodyZonedDateTime) {
+	public ResponseBuilder simpleZonedDateTimeBodyParamOpt(NilResult $result, Optional<ZonedDateTime> bodyZonedDateTime) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleZonedDateTimeBodyParamNil(NilResult $result, ZonedDateTime bodyZonedDateTime) {
+	public ResponseBuilder simpleZonedDateTimeBodyParamNil(NilResult $result, Optional<ZonedDateTime> bodyZonedDateTime) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleZonedDateTimeBodyParamOptNil(NilResult $result, ZonedDateTime bodyZonedDateTime) {
+	public ResponseBuilder simpleZonedDateTimeBodyParamOptNil(NilResult $result, _Base.Nillable<ZonedDateTime> bodyZonedDateTime) {
 		return Response.status(200).entity($result);
 	}
 
@@ -184,15 +189,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleScalarBodyParamOpt(NilResult $result, ZoneId bodyScalar) {
+	public ResponseBuilder simpleScalarBodyParamOpt(NilResult $result, Optional<ZoneId> bodyScalar) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleScalarBodyParamNil(NilResult $result, ZoneId bodyScalar) {
+	public ResponseBuilder simpleScalarBodyParamNil(NilResult $result, Optional<ZoneId> bodyScalar) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleScalarBodyParamOptNil(NilResult $result, ZoneId bodyScalar) {
+	public ResponseBuilder simpleScalarBodyParamOptNil(NilResult $result, _Base.Nillable<ZoneId> bodyScalar) {
 		return Response.status(200).entity($result);
 	}
 
@@ -200,15 +205,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleEnumBodyParamOpt(NilResult $result, SampleEnum bodyEnum) {
+	public ResponseBuilder simpleEnumBodyParamOpt(NilResult $result, Optional<SampleEnum> bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleEnumBodyParamNil(NilResult $result, SampleEnum bodyEnum) {
+	public ResponseBuilder simpleEnumBodyParamNil(NilResult $result, Optional<SampleEnum> bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleEnumBodyParamOptNil(NilResult $result, SampleEnum bodyEnum) {
+	public ResponseBuilder simpleEnumBodyParamOptNil(NilResult $result, _Base.Nillable<SampleEnum> bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
@@ -216,15 +221,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleInlineEnumBodyParamOpt(NilResult $result, BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$ bodyEnum) {
+	public ResponseBuilder simpleInlineEnumBodyParamOpt(NilResult $result, Optional<BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$> bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleInlineEnumBodyParamNil(NilResult $result, BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$ bodyEnum) {
+	public ResponseBuilder simpleInlineEnumBodyParamNil(NilResult $result, Optional<BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$> bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleInlineEnumBodyParamOptNil(NilResult $result, BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$ bodyEnum) {
+	public ResponseBuilder simpleInlineEnumBodyParamOptNil(NilResult $result, _Base.Nillable<BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$> bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
@@ -232,19 +237,19 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
 	}
 
-	public ResponseBuilder multiBodyParamOpt(String $result, String valueA, Integer valueB, SimpleRecord.Data valueC) {
+	public ResponseBuilder multiBodyParamOpt(String $result, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC) {
 		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
 	}
 
-	public ResponseBuilder multiBodyParamNil(String $result, String valueA, Integer valueB, SimpleRecord.Data valueC) {
+	public ResponseBuilder multiBodyParamNil(String $result, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC) {
 		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
 	}
 
-	public ResponseBuilder multiBodyParamOptNil(String $result, String valueA, Integer valueB, SimpleRecord.Data valueC) {
+	public ResponseBuilder multiBodyParamOptNil(String $result, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC) {
 		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
 	}
 
-	public ResponseBuilder multiBodyParamFirst(String $result, String valueA, int valueB, SimpleRecord.Data valueC) {
+	public ResponseBuilder multiBodyParamFirst(String $result, Optional<String> valueA, int valueB, SimpleRecord.Data valueC) {
 		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
 	}
 
@@ -252,15 +257,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 
-	public ResponseBuilder recordBodyParamOpt(NilResult $result, SimpleRecord.Data bodyRecord) {
+	public ResponseBuilder recordBodyParamOpt(NilResult $result, Optional<SimpleRecord.Data> bodyRecord) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder recordBodyParamNil(NilResult $result, SimpleRecord.Data bodyRecord) {
+	public ResponseBuilder recordBodyParamNil(NilResult $result, Optional<SimpleRecord.Data> bodyRecord) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder recordBodyParamOptNil(NilResult $result, SimpleRecord.Data bodyRecord) {
+	public ResponseBuilder recordBodyParamOptNil(NilResult $result, _Base.Nillable<SimpleRecord.Data> bodyRecord) {
 		return Response.status(200).entity($result);
 	}
 
@@ -268,15 +273,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 
-	public ResponseBuilder unionBodyParamOpt(NilResult $result, Union.Data bodyUnion) {
+	public ResponseBuilder unionBodyParamOpt(NilResult $result, Optional<Union.Data> bodyUnion) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder unionBodyParamNil(NilResult $result, Union.Data bodyUnion) {
+	public ResponseBuilder unionBodyParamNil(NilResult $result, Optional<Union.Data> bodyUnion) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder unionBodyParamOptNil(NilResult $result, Union.Data bodyUnion) {
+	public ResponseBuilder unionBodyParamOptNil(NilResult $result, _Base.Nillable<Union.Data> bodyUnion) {
 		return Response.status(200).entity($result);
 	}
 
@@ -284,15 +289,15 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 
-	public ResponseBuilder patchableRecordBodyParamOpt(PatchableRecord.Data $result, PatchableRecord.Patch bodyRecord) {
+	public ResponseBuilder patchableRecordBodyParamOpt(PatchableRecord.Data $result, Optional<PatchableRecord.Patch> bodyRecord) {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 
-	public ResponseBuilder patchableRecordBodyParamNil(PatchableRecord.Data $result, PatchableRecord.Patch bodyRecord) {
+	public ResponseBuilder patchableRecordBodyParamNil(PatchableRecord.Data $result, Optional<PatchableRecord.Patch> bodyRecord) {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 
-	public ResponseBuilder patchableRecordBodyParamOptNil(PatchableRecord.Data $result, PatchableRecord.Patch bodyRecord) {
+	public ResponseBuilder patchableRecordBodyParamOptNil(PatchableRecord.Data $result, _Base.Nillable<PatchableRecord.Patch> bodyRecord) {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 

@@ -105,15 +105,22 @@ function toParameter(
 ) {
 	if (parameter.variant === 'inline-enum') {
 		const Service = fqn(`${artifactConfig.rootPackageName}.service.${serviceName}Service`);
-		const t = `${Service}.${toFirstUpper(methodName)}_${toFirstUpper(parameter.name)}_Param$`;
+		let t = `${Service}.${toFirstUpper(methodName)}_${toFirstUpper(parameter.name)}_Param$`;
 		if (parameter.array) {
 			const List = fqn('java.util.List');
-			return `${List}<${t}> ${parameter.name}`;
+			t = `${List}<${t}> ${parameter.name}`;
 		}
+
+		if (parameter.optional && parameter.nullable) {
+			t = fqn(`${artifactConfig.rootPackageName}.service.model._Base`) + `.Nillable<${t}>`;
+		} else if (parameter.optional || parameter.nullable) {
+			t = fqn('java.util.Optional') + `<${t}>`;
+		}
+
 		return `${t} ${parameter.name}`;
 	}
 
-	const type = computeParameterAPIType(
+	let type = computeParameterAPIType(
 		parameter,
 		artifactConfig.nativeTypeSubstitues,
 		`${artifactConfig.rootPackageName}.service.model`,
@@ -121,6 +128,21 @@ function toParameter(
 		false,
 		methodName,
 	);
+
+	if (parameter.optional && parameter.nullable) {
+		type = fqn(`${artifactConfig.rootPackageName}.service.model._Base`) + `.Nillable<${type}>`;
+	} else if (parameter.optional || parameter.nullable) {
+		if (parameter.type === 'int') {
+			type = fqn('java.util.OptionalInt');
+		} else if (parameter.type === 'long') {
+			type = fqn('java.util.OptionalLong');
+		} else if (parameter.type === 'double') {
+			type = fqn('java.util.OptionalDouble');
+		} else {
+			type = fqn('java.util.Optional') + `<${type}>`;
+		}
+	}
+
 	return `${type} ${parameter.name}`;
 }
 

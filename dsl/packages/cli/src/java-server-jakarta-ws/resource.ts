@@ -1,8 +1,6 @@
 import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
 import {
-	builtinToJavaObjectType,
-	builtinToJavaType,
 	computeParameterAPIType,
 	generateCompilationUnit,
 	JavaImportsCollector,
@@ -15,10 +13,12 @@ import {
 	isMInlineEnumType,
 	MOperation,
 	MParameter,
+	MParameterInlineEnumType,
+	MParameterNoneInlineEnumType,
 	MResolvedOperation,
 	MResolvedService,
 } from '../model.js';
-import { toFirstUpper } from '../util.js';
+import { toCamelCaseIdentifier, toFirstUpper } from '../util.js';
 import {
 	builtinOptionalJSONAccessNG,
 	builtinSimpleJSONAccessNG,
@@ -114,7 +114,7 @@ function _generateResource(
 						...o.parameters
 							.filter(p => p.meta?.rest !== undefined)
 							.filter(p => p.meta?.rest?.source !== undefined)
-							.map(p => toParameter(p, false, artifactConfig, fqn, o.name, Service)),
+							.map(p => toParameter(p, false, artifactConfig, fqn)),
 					);
 
 					params.push(`String data`);
@@ -127,7 +127,7 @@ function _generateResource(
 						}),
 					);
 				} else {
-					params.push(...o.parameters.map(p => toParameter(p, false, artifactConfig, fqn, o.name, Service)));
+					params.push(...o.parameters.map(p => toParameter(p, false, artifactConfig, fqn)));
 					serviceParams.push(...o.parameters.map(p => p.name));
 				}
 
@@ -162,35 +162,21 @@ function _generateResource(
 							return;
 						}
 						if (p.variant === 'record' || p.variant === 'union') {
-							const type = computeParameterAPIType(
-								p,
-								artifactConfig.nativeTypeSubstitues,
-								`${artifactConfig.rootPackageName}.service.model`,
-								fqn,
-								true,
-							);
-							if (p.array) {
-								mBody.append(`var ${p.name} = builderFactory.listOf(${type}.class, _${p.name});`, NL);
-								return;
-							} else {
-								mBody.append(`var ${p.name} = builderFactory.of(${type}.class, _${p.name});`, NL);
-							}
-						} else if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum') {
-							mBody.append(`var ${p.name} = _${p.name};`, NL);
+							mBody.append(recordUnionParameter(p, artifactConfig, fqn, packageName));
+						} else if (p.variant === 'builtin') {
+							mBody.append(builtinParameter(p, fqn, packageName, p.meta?.rest?.source === undefined));
+						} else if (p.variant === 'enum') {
+							mBody.append(enumParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined));
+						} else if (p.variant === 'inline-enum') {
+							mBody.append(inlineEnumParameter(p, o, Service, fqn, packageName, p.meta?.rest?.source === undefined));
 						} else if (p.variant === 'scalar') {
-							const type = p.type;
-							const t = resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, false);
-							if (p.array) {
-								mBody.append(`var ${p.name} = _${p.name}.stream().map(${t}::of).toList();`, NL);
-							} else {
-								mBody.append(`var ${p.name} = _${p.name} == null ? null : ${t}.of(_${p.name});`, NL);
-							}
+							mBody.append(scalarParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined));
 						}
 					});
 					if (multiBody) {
 						const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
 						const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
-						mBody.append(`var dto = ${_JsonUtils}.parseJsonObject(data, ${Type}::new);`, NL);
+						mBody.append(`var dto = ${_JsonUtils}.parseObject(data, ${Type}::new);`, NL);
 					}
 					if (artifactConfig.scopeValues) {
 						artifactConfig.scopeValues.forEach(v => {
@@ -235,7 +221,7 @@ function _generateResource(
 					`@${fqn('jakarta.ws.rs.Consumes')}(${fqn('jakarta.ws.rs.core.MediaType')}.MULTIPART_FORM_DATA)`,
 					NL,
 				);
-				const params: string[] = o.parameters.map(p => toParameter(p, true, artifactConfig, fqn, o.name, Service));
+				const params: string[] = o.parameters.map(p => toParameter(p, true, artifactConfig, fqn));
 				const serviceParams: string[] = [];
 
 				serviceParams.push(...o.parameters.map(p => p.name));
@@ -274,18 +260,14 @@ function _generateResource(
 							}
 						} else {
 							if (p.variant === 'record' || p.variant === 'union') {
-								const type = computeParameterAPIType(
+								/*const type = computeParameterAPIType(
 									p,
 									artifactConfig.nativeTypeSubstitues,
 									`${artifactConfig.rootPackageName}.service.model`,
 									fqn,
 									true,
-								);
-								if (p.array) {
-									mBody.append(`var ${p.name} = builderFactory.listOf(${type}.class, _${p.name});`, NL);
-								} else {
-									mBody.append(`var ${p.name} = builderFactory.of(${type}.class, _${p.name});`, NL);
-								}
+								);*/
+								// TODO Implement
 							} else if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum') {
 								mBody.append(`var ${p.name} = _${p.name};`, NL);
 							} else {
@@ -333,6 +315,160 @@ function _generateResource(
 	};
 }
 
+function enumParameter(
+	p: MParameterNoneInlineEnumType,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
+	fqn: (type: string) => string,
+	packageName: string,
+	asJSON: boolean,
+) {
+	const t = fqn(`${artifactConfig.rootPackageName}.service.model.${p.type}`);
+	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
+	const node = new CompositeGeneratorNode();
+	if (p.array) {
+		node.append(`var ${p.name} = ${_Util}.mapLiterals(${_Util}.parseArray(_${p.name}), ${t}::valueOf);`, NL);
+	} else {
+		if (p.optional && p.nullable) {
+			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}, ${t}::valueOf);`, NL);
+		} else if (p.optional) {
+			node.append(`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}, ${t}::valueOf);`, NL);
+		} else if (p.nullable) {
+			node.append(`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}, ${t}::valueOf);`, NL);
+		} else {
+			node.append(`var ${p.name} = ${_Util}.parseLiteral(_${p.name}, ${t}::valueOf);`, NL);
+		}
+	}
+	return node;
+}
+
+function builtinParameter(
+	p: MParameterNoneInlineEnumType,
+	fqn: (type: string) => string,
+	packageName: string,
+	asJSON: boolean,
+) {
+	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
+	const node = new CompositeGeneratorNode();
+	if (p.array) {
+		if (p.optional && p.nullable) {
+			// FIXME
+		} else if (p.optional) {
+			// FIXME
+		} else if (p.nullable) {
+			// FIXME
+		} else {
+			node.append(
+				`var ${p.name} = ${_Util}.map${toFirstUpper(toCamelCaseIdentifier(p.type))}s(${_Util}.parseArray(_${p.name}));`,
+				NL,
+			);
+		}
+	} else {
+		if (p.optional && p.nullable) {
+			node.append(`var ${p.name} = ${_Util}.parseNil${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name});`, NL);
+		} else if (p.optional) {
+			node.append(`var ${p.name} = ${_Util}.parseOpt${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name});`, NL);
+		} else if (p.nullable) {
+			node.append(`var ${p.name} = ${_Util}.parseNull${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name});`, NL);
+		} else {
+			node.append(`var ${p.name} = ${_Util}.parse${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name});`, NL);
+		}
+	}
+	return node;
+}
+
+function recordUnionParameter(
+	p: MParameterNoneInlineEnumType,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
+	fqn: (type: string) => string,
+	packageName: string,
+) {
+	const type = computeParameterAPIType(
+		p,
+		artifactConfig.nativeTypeSubstitues,
+		`${artifactConfig.rootPackageName}.service.model`,
+		fqn,
+		true,
+	);
+	const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
+	const node = new CompositeGeneratorNode();
+	if (p.optional && p.nullable) {
+		node.append(
+			`var ${p.name} = ${_JsonUtils}.parseNilObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+			NL,
+		);
+	} else if (p.optional) {
+		node.append(
+			`var ${p.name} = ${_JsonUtils}.parseOptObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+			NL,
+		);
+	} else if (p.nullable) {
+		node.append(
+			`var ${p.name} = ${_JsonUtils}.parseNullObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+			NL,
+		);
+	} else {
+		node.append(
+			`var ${p.name} = ${_JsonUtils}.parseObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+			NL,
+		);
+	}
+	return node;
+}
+
+function inlineEnumParameter(
+	p: MParameterInlineEnumType,
+	o: MOperation,
+	Service: string,
+	fqn: (type: string) => string,
+	packageName: string,
+	asJSON: boolean,
+) {
+	const t = `${Service}.` + toFirstUpper(o.name) + '_' + toFirstUpper(p.name) + '_Param$';
+	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
+	const node = new CompositeGeneratorNode();
+	if (p.array) {
+		node.append(`var ${p.name} = ${_Util}.mapLiterals(${_Util}.parseArray(_${p.name}), ${t}::valueOf);`, NL);
+	} else {
+		if (p.optional && p.nullable) {
+			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}, ${t}::valueOf);`, NL);
+		} else if (p.optional) {
+			node.append(`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}, ${t}::valueOf);`, NL);
+		} else if (p.nullable) {
+			node.append(`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}, ${t}::valueOf);`, NL);
+		} else {
+			node.append(`var ${p.name} = ${_Util}.parseLiteral(_${p.name}, ${t}::valueOf);`, NL);
+		}
+	}
+	return node;
+}
+
+function scalarParameter(
+	p: MParameterNoneInlineEnumType,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
+	fqn: (type: string) => string,
+	packageName: string,
+	asJSON: boolean,
+) {
+	const type = p.type;
+	const t = resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, false);
+	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
+	const node = new CompositeGeneratorNode();
+	if (p.array) {
+		node.append(`var ${p.name} = ${_Util}.mapLiterals(${_Util}.parseArray(_${p.name}), ${t}::of);`, NL);
+	} else {
+		if (p.optional && p.nullable) {
+			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}, ${t}::of);`, NL);
+		} else if (p.optional) {
+			node.append(`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}, ${t}::of);`, NL);
+		} else if (p.nullable) {
+			node.append(`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}, ${t}::of);`, NL);
+		} else {
+			node.append(`var ${p.name} = ${_Util}.parseLiteral(_${p.name}, ${t}::of);`, NL);
+		}
+	}
+	return node;
+}
+
 function okResultContent(o: MOperation, serviceParams: string[]) {
 	const node = new CompositeGeneratorNode();
 
@@ -366,11 +502,9 @@ function toParameter(
 	form: boolean,
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	fqn: (type: string) => string,
-	methodName: string,
-	ServiceType: string,
 ): string {
 	const annotation = computeParameterAnnotation(p, form, fqn);
-	const type = computeParameterType(p, artifactConfig, fqn, methodName, ServiceType);
+	const type = computeParameterType(p, artifactConfig, fqn);
 
 	return `${annotation}${type} _${p.name}`;
 }
@@ -379,8 +513,6 @@ function computeParameterType(
 	p: MParameter,
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	fqn: (type: string) => string,
-	methodName: string,
-	ServiceType: string,
 ): string {
 	if (p.variant === 'stream') {
 		const t = fqn('org.jboss.resteasy.reactive.multipart.FileUpload');
@@ -389,39 +521,8 @@ function computeParameterType(
 			return `${List}<${t}>`;
 		}
 		return t;
-	} else if (p.variant === 'record' || p.variant === 'union') {
-		return 'String';
-	} else if (p.variant === 'scalar') {
-		return p.array ? fqn('java.util.List') + '<String>' : 'String';
-	} else if (p.variant === 'enum') {
-		const t = fqn(artifactConfig.rootPackageName + '.service.model.' + p.type);
-		if (p.array) {
-			const List = fqn('java.util.List');
-			return `${List}<${t}>`;
-		}
-		return t;
-	} else if (p.variant === 'inline-enum') {
-		const t = toFirstUpper(methodName) + '_' + toFirstUpper(p.name) + '_Param$';
-		if (p.array) {
-			const List = fqn('java.util.List');
-			return `${List}<${ServiceType}.${t}>`;
-		}
-		return `${ServiceType}.${t}`;
-	} else {
-		const type = p.type;
-		if (isMBuiltinType(type)) {
-			if (p.array) {
-				const t = builtinToJavaObjectType(type, fqn);
-				const List = fqn('java.util.List');
-				return `${List}<${t}>`;
-			} else if (p.optional || p.nullable) {
-				return builtinToJavaObjectType(type, fqn);
-			} else {
-				return builtinToJavaType(type, fqn);
-			}
-		}
-		return 'String';
 	}
+	return 'String';
 }
 
 function computeParameterAnnotation(p: MParameter, form: boolean, fqn: (type: string) => string): string {

@@ -2,12 +2,15 @@
 package dev.rsdlang.sample.server.rest;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
 
 import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.rest.model._JsonUtils;
+import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.RSDBlob;
 import dev.rsdlang.sample.server.service.model.RSDFile;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
@@ -19,15 +22,15 @@ public class BinaryTypesResourceResponseBuilder {
 		return Response.status(201).entity($result);
 	}
 
-	public ResponseBuilder uploadFileOpt(int $result, RSDFile data) {
+	public ResponseBuilder uploadFileOpt(int $result, Optional<RSDFile> data) {
 		return Response.status(201).entity($result);
 	}
 
-	public ResponseBuilder uploadFileNil(int $result, RSDFile data) {
+	public ResponseBuilder uploadFileNil(int $result, Optional<RSDFile> data) {
 		return Response.status(201).entity($result);
 	}
 
-	public ResponseBuilder uploadFileOptNil(int $result, RSDFile data) {
+	public ResponseBuilder uploadFileOptNil(int $result, _Base.Nillable<RSDFile> data) {
 		return Response.status(201).entity($result);
 	}
 
@@ -35,15 +38,15 @@ public class BinaryTypesResourceResponseBuilder {
 		return Response.status(201).entity($result);
 	}
 
-	public ResponseBuilder uploadBlobOpt(int $result, RSDBlob data) {
+	public ResponseBuilder uploadBlobOpt(int $result, Optional<RSDBlob> data) {
 		return Response.status(201).entity($result);
 	}
 
-	public ResponseBuilder uploadBlobNil(int $result, RSDBlob data) {
+	public ResponseBuilder uploadBlobNil(int $result, Optional<RSDBlob> data) {
 		return Response.status(201).entity($result);
 	}
 
-	public ResponseBuilder uploadBlobOptNil(int $result, RSDBlob data) {
+	public ResponseBuilder uploadBlobOptNil(int $result, _Base.Nillable<RSDBlob> data) {
 		return Response.status(201).entity($result);
 	}
 
@@ -51,15 +54,15 @@ public class BinaryTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder uploadFileListOpt(int $result, List<RSDFile> data) {
+	public ResponseBuilder uploadFileListOpt(int $result, Optional<List<RSDFile>> data) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder uploadFileListNil(int $result, List<RSDFile> data) {
+	public ResponseBuilder uploadFileListNil(int $result, Optional<List<RSDFile>> data) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder uploadFileListOptNil(int $result, List<RSDFile> data) {
+	public ResponseBuilder uploadFileListOptNil(int $result, _Base.Nillable<List<RSDFile>> data) {
 		return Response.status(200).entity($result);
 	}
 
@@ -67,15 +70,15 @@ public class BinaryTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder uploadBlobListOpt(int $result, List<RSDBlob> data) {
+	public ResponseBuilder uploadBlobListOpt(int $result, Optional<List<RSDBlob>> data) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder uploadBlobListNil(int $result, List<RSDBlob> data) {
+	public ResponseBuilder uploadBlobListNil(int $result, Optional<List<RSDBlob>> data) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder uploadBlobListOptNil(int $result, List<RSDBlob> data) {
+	public ResponseBuilder uploadBlobListOptNil(int $result, _Base.Nillable<List<RSDBlob>> data) {
 		return Response.status(200).entity($result);
 	}
 
@@ -83,15 +86,15 @@ public class BinaryTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 
-	public ResponseBuilder uploadMixedOpt(UploadMixedResult.Data $result, String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+	public ResponseBuilder uploadMixedOpt(UploadMixedResult.Data $result, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, OptionalInt numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 
-	public ResponseBuilder uploadMixedNil(UploadMixedResult.Data $result, String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+	public ResponseBuilder uploadMixedNil(UploadMixedResult.Data $result, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, OptionalInt numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 
-	public ResponseBuilder uploadMixedOptNil(UploadMixedResult.Data $result, String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+	public ResponseBuilder uploadMixedOptNil(UploadMixedResult.Data $result, _Base.Nillable<String> text, _Base.Nillable<Integer> number, _Base.Nillable<SimpleRecord.Data> rec, _Base.Nillable<List<String>> textList, _Base.Nillable<List<Integer>> numberList, _Base.Nillable<List<SimpleRecord.Data>> recList, _Base.Nillable<RSDFile> dataFile, _Base.Nillable<RSDBlob> dataBlob) {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 

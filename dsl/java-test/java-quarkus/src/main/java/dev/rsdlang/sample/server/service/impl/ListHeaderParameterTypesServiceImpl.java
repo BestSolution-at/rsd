@@ -6,11 +6,16 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.ListHeaderParameterTypesService;
+import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.NilResult;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
@@ -147,17 +152,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listBooleanHeaderParamOpt(BuilderFactory _factory, List<Boolean> headerValue) {
+	public NilResult listBooleanHeaderParamOpt(BuilderFactory _factory, Optional<List<Boolean>> headerValue) {
 		return listBooleanHeaderParamOptHandler.listBooleanHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listBooleanHeaderParamNil(BuilderFactory _factory, List<Boolean> headerValue) {
+	public NilResult listBooleanHeaderParamNil(BuilderFactory _factory, Optional<List<Boolean>> headerValue) {
 		return listBooleanHeaderParamNilHandler.listBooleanHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listBooleanHeaderParamOptNil(BuilderFactory _factory, List<Boolean> headerValue) {
+	public NilResult listBooleanHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Boolean>> headerValue) {
 		return listBooleanHeaderParamOptNilHandler.listBooleanHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -167,17 +172,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listShortHeaderParamOpt(BuilderFactory _factory, List<Short> headerValue) {
+	public NilResult listShortHeaderParamOpt(BuilderFactory _factory, Optional<List<Short>> headerValue) {
 		return listShortHeaderParamOptHandler.listShortHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listShortHeaderParamNil(BuilderFactory _factory, List<Short> headerValue) {
+	public NilResult listShortHeaderParamNil(BuilderFactory _factory, Optional<List<Short>> headerValue) {
 		return listShortHeaderParamNilHandler.listShortHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listShortHeaderParamOptNil(BuilderFactory _factory, List<Short> headerValue) {
+	public NilResult listShortHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Short>> headerValue) {
 		return listShortHeaderParamOptNilHandler.listShortHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -187,17 +192,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listIntHeaderParamOpt(BuilderFactory _factory, List<Integer> headerValue) {
+	public NilResult listIntHeaderParamOpt(BuilderFactory _factory, OptionalInt headerValue) {
 		return listIntHeaderParamOptHandler.listIntHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listIntHeaderParamNil(BuilderFactory _factory, List<Integer> headerValue) {
+	public NilResult listIntHeaderParamNil(BuilderFactory _factory, OptionalInt headerValue) {
 		return listIntHeaderParamNilHandler.listIntHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listIntHeaderParamOptNil(BuilderFactory _factory, List<Integer> headerValue) {
+	public NilResult listIntHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Integer>> headerValue) {
 		return listIntHeaderParamOptNilHandler.listIntHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -207,17 +212,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listLongHeaderParamOpt(BuilderFactory _factory, List<Long> headerValue) {
+	public NilResult listLongHeaderParamOpt(BuilderFactory _factory, OptionalLong headerValue) {
 		return listLongHeaderParamOptHandler.listLongHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listLongHeaderParamNil(BuilderFactory _factory, List<Long> headerValue) {
+	public NilResult listLongHeaderParamNil(BuilderFactory _factory, OptionalLong headerValue) {
 		return listLongHeaderParamNilHandler.listLongHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listLongHeaderParamOptNil(BuilderFactory _factory, List<Long> headerValue) {
+	public NilResult listLongHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Long>> headerValue) {
 		return listLongHeaderParamOptNilHandler.listLongHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -227,17 +232,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listFloatHeaderParamOpt(BuilderFactory _factory, List<Float> headerValue) {
+	public NilResult listFloatHeaderParamOpt(BuilderFactory _factory, Optional<List<Float>> headerValue) {
 		return listFloatHeaderParamOptHandler.listFloatHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listFloatHeaderParamNil(BuilderFactory _factory, List<Float> headerValue) {
+	public NilResult listFloatHeaderParamNil(BuilderFactory _factory, Optional<List<Float>> headerValue) {
 		return listFloatHeaderParamNilHandler.listFloatHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listFloatHeaderParamOptNil(BuilderFactory _factory, List<Float> headerValue) {
+	public NilResult listFloatHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Float>> headerValue) {
 		return listFloatHeaderParamOptNilHandler.listFloatHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -247,17 +252,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listDoubleHeaderParamOpt(BuilderFactory _factory, List<Double> headerValue) {
+	public NilResult listDoubleHeaderParamOpt(BuilderFactory _factory, OptionalDouble headerValue) {
 		return listDoubleHeaderParamOptHandler.listDoubleHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listDoubleHeaderParamNil(BuilderFactory _factory, List<Double> headerValue) {
+	public NilResult listDoubleHeaderParamNil(BuilderFactory _factory, OptionalDouble headerValue) {
 		return listDoubleHeaderParamNilHandler.listDoubleHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listDoubleHeaderParamOptNil(BuilderFactory _factory, List<Double> headerValue) {
+	public NilResult listDoubleHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Double>> headerValue) {
 		return listDoubleHeaderParamOptNilHandler.listDoubleHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -267,17 +272,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listStringHeaderParamOpt(BuilderFactory _factory, List<String> headerValue) {
+	public NilResult listStringHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> headerValue) {
 		return listStringHeaderParamOptHandler.listStringHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listStringHeaderParamNil(BuilderFactory _factory, List<String> headerValue) {
+	public NilResult listStringHeaderParamNil(BuilderFactory _factory, Optional<List<String>> headerValue) {
 		return listStringHeaderParamNilHandler.listStringHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listStringHeaderParamOptNil(BuilderFactory _factory, List<String> headerValue) {
+	public NilResult listStringHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> headerValue) {
 		return listStringHeaderParamOptNilHandler.listStringHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -287,17 +292,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listLocalDateHeaderParamOpt(BuilderFactory _factory, List<LocalDate> headerValue) {
+	public NilResult listLocalDateHeaderParamOpt(BuilderFactory _factory, Optional<List<LocalDate>> headerValue) {
 		return listLocalDateHeaderParamOptHandler.listLocalDateHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listLocalDateHeaderParamNil(BuilderFactory _factory, List<LocalDate> headerValue) {
+	public NilResult listLocalDateHeaderParamNil(BuilderFactory _factory, Optional<List<LocalDate>> headerValue) {
 		return listLocalDateHeaderParamNilHandler.listLocalDateHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listLocalDateHeaderParamOptNil(BuilderFactory _factory, List<LocalDate> headerValue) {
+	public NilResult listLocalDateHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDate>> headerValue) {
 		return listLocalDateHeaderParamOptNilHandler.listLocalDateHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -307,17 +312,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listLocalDateTimeHeaderParamOpt(BuilderFactory _factory, List<LocalDateTime> headerValue) {
+	public NilResult listLocalDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<LocalDateTime>> headerValue) {
 		return listLocalDateTimeHeaderParamOptHandler.listLocalDateTimeHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listLocalDateTimeHeaderParamNil(BuilderFactory _factory, List<LocalDateTime> headerValue) {
+	public NilResult listLocalDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<LocalDateTime>> headerValue) {
 		return listLocalDateTimeHeaderParamNilHandler.listLocalDateTimeHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listLocalDateTimeHeaderParamOptNil(BuilderFactory _factory, List<LocalDateTime> headerValue) {
+	public NilResult listLocalDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDateTime>> headerValue) {
 		return listLocalDateTimeHeaderParamOptNilHandler.listLocalDateTimeHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -327,17 +332,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listZonedDateTimeHeaderParamOpt(BuilderFactory _factory, List<ZonedDateTime> headerValue) {
+	public NilResult listZonedDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<ZonedDateTime>> headerValue) {
 		return listZonedDateTimeHeaderParamOptHandler.listZonedDateTimeHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listZonedDateTimeHeaderParamNil(BuilderFactory _factory, List<ZonedDateTime> headerValue) {
+	public NilResult listZonedDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<ZonedDateTime>> headerValue) {
 		return listZonedDateTimeHeaderParamNilHandler.listZonedDateTimeHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listZonedDateTimeHeaderParamOptNil(BuilderFactory _factory, List<ZonedDateTime> headerValue) {
+	public NilResult listZonedDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ZonedDateTime>> headerValue) {
 		return listZonedDateTimeHeaderParamOptNilHandler.listZonedDateTimeHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -347,17 +352,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listScalarHeaderParamOpt(BuilderFactory _factory, List<ZoneId> headerValue) {
+	public NilResult listScalarHeaderParamOpt(BuilderFactory _factory, Optional<List<ZoneId>> headerValue) {
 		return listScalarHeaderParamOptHandler.listScalarHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listScalarHeaderParamNil(BuilderFactory _factory, List<ZoneId> headerValue) {
+	public NilResult listScalarHeaderParamNil(BuilderFactory _factory, Optional<List<ZoneId>> headerValue) {
 		return listScalarHeaderParamNilHandler.listScalarHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listScalarHeaderParamOptNil(BuilderFactory _factory, List<ZoneId> headerValue) {
+	public NilResult listScalarHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ZoneId>> headerValue) {
 		return listScalarHeaderParamOptNilHandler.listScalarHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -367,17 +372,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listEnumHeaderParamOpt(BuilderFactory _factory, List<SampleEnum> headerValue) {
+	public NilResult listEnumHeaderParamOpt(BuilderFactory _factory, Optional<List<SampleEnum>> headerValue) {
 		return listEnumHeaderParamOptHandler.listEnumHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listEnumHeaderParamNil(BuilderFactory _factory, List<SampleEnum> headerValue) {
+	public NilResult listEnumHeaderParamNil(BuilderFactory _factory, Optional<List<SampleEnum>> headerValue) {
 		return listEnumHeaderParamNilHandler.listEnumHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listEnumHeaderParamOptNil(BuilderFactory _factory, List<SampleEnum> headerValue) {
+	public NilResult listEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<SampleEnum>> headerValue) {
 		return listEnumHeaderParamOptNilHandler.listEnumHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -387,17 +392,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listInlineEnumHeaderParamOpt(BuilderFactory _factory, List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue) {
+	public NilResult listInlineEnumHeaderParamOpt(BuilderFactory _factory, Optional<List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$>> headerValue) {
 		return listInlineEnumHeaderParamOptHandler.listInlineEnumHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listInlineEnumHeaderParamNil(BuilderFactory _factory, List<ListInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue) {
+	public NilResult listInlineEnumHeaderParamNil(BuilderFactory _factory, Optional<List<ListInlineEnumHeaderParamNil_HeaderValue_Param$>> headerValue) {
 		return listInlineEnumHeaderParamNilHandler.listInlineEnumHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listInlineEnumHeaderParamOptNil(BuilderFactory _factory, List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue) {
+	public NilResult listInlineEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$>> headerValue) {
 		return listInlineEnumHeaderParamOptNilHandler.listInlineEnumHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -407,17 +412,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return listMultiHeaderParamOptHandler.listMultiHeaderParamOpt(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return listMultiHeaderParamNilHandler.listMultiHeaderParamNil(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
 		return listMultiHeaderParamOptNilHandler.listMultiHeaderParamOptNil(_factory, valueA, valueB, valueC);
 	}
 
@@ -427,17 +432,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listRecordHeaderParamOpt(BuilderFactory _factory, List<SimpleRecord.Data> headerValue) {
+	public NilResult listRecordHeaderParamOpt(BuilderFactory _factory, Optional<List<SimpleRecord.Data>> headerValue) {
 		return listRecordHeaderParamOptHandler.listRecordHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listRecordHeaderParamNil(BuilderFactory _factory, List<SimpleRecord.Data> headerValue) {
+	public NilResult listRecordHeaderParamNil(BuilderFactory _factory, Optional<List<SimpleRecord.Data>> headerValue) {
 		return listRecordHeaderParamNilHandler.listRecordHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listRecordHeaderParamOptNil(BuilderFactory _factory, List<SimpleRecord.Data> headerValue) {
+	public NilResult listRecordHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<SimpleRecord.Data>> headerValue) {
 		return listRecordHeaderParamOptNilHandler.listRecordHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -446,15 +451,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListBooleanHeaderParamOptHandler {
-		public NilResult listBooleanHeaderParamOpt(BuilderFactory _factory, List<Boolean> headerValue);
+		public NilResult listBooleanHeaderParamOpt(BuilderFactory _factory, Optional<List<Boolean>> headerValue);
 	}
 
 	public interface ListBooleanHeaderParamNilHandler {
-		public NilResult listBooleanHeaderParamNil(BuilderFactory _factory, List<Boolean> headerValue);
+		public NilResult listBooleanHeaderParamNil(BuilderFactory _factory, Optional<List<Boolean>> headerValue);
 	}
 
 	public interface ListBooleanHeaderParamOptNilHandler {
-		public NilResult listBooleanHeaderParamOptNil(BuilderFactory _factory, List<Boolean> headerValue);
+		public NilResult listBooleanHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Boolean>> headerValue);
 	}
 
 	public interface ListShortHeaderParamHandler {
@@ -462,15 +467,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListShortHeaderParamOptHandler {
-		public NilResult listShortHeaderParamOpt(BuilderFactory _factory, List<Short> headerValue);
+		public NilResult listShortHeaderParamOpt(BuilderFactory _factory, Optional<List<Short>> headerValue);
 	}
 
 	public interface ListShortHeaderParamNilHandler {
-		public NilResult listShortHeaderParamNil(BuilderFactory _factory, List<Short> headerValue);
+		public NilResult listShortHeaderParamNil(BuilderFactory _factory, Optional<List<Short>> headerValue);
 	}
 
 	public interface ListShortHeaderParamOptNilHandler {
-		public NilResult listShortHeaderParamOptNil(BuilderFactory _factory, List<Short> headerValue);
+		public NilResult listShortHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Short>> headerValue);
 	}
 
 	public interface ListIntHeaderParamHandler {
@@ -478,15 +483,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListIntHeaderParamOptHandler {
-		public NilResult listIntHeaderParamOpt(BuilderFactory _factory, List<Integer> headerValue);
+		public NilResult listIntHeaderParamOpt(BuilderFactory _factory, OptionalInt headerValue);
 	}
 
 	public interface ListIntHeaderParamNilHandler {
-		public NilResult listIntHeaderParamNil(BuilderFactory _factory, List<Integer> headerValue);
+		public NilResult listIntHeaderParamNil(BuilderFactory _factory, OptionalInt headerValue);
 	}
 
 	public interface ListIntHeaderParamOptNilHandler {
-		public NilResult listIntHeaderParamOptNil(BuilderFactory _factory, List<Integer> headerValue);
+		public NilResult listIntHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Integer>> headerValue);
 	}
 
 	public interface ListLongHeaderParamHandler {
@@ -494,15 +499,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListLongHeaderParamOptHandler {
-		public NilResult listLongHeaderParamOpt(BuilderFactory _factory, List<Long> headerValue);
+		public NilResult listLongHeaderParamOpt(BuilderFactory _factory, OptionalLong headerValue);
 	}
 
 	public interface ListLongHeaderParamNilHandler {
-		public NilResult listLongHeaderParamNil(BuilderFactory _factory, List<Long> headerValue);
+		public NilResult listLongHeaderParamNil(BuilderFactory _factory, OptionalLong headerValue);
 	}
 
 	public interface ListLongHeaderParamOptNilHandler {
-		public NilResult listLongHeaderParamOptNil(BuilderFactory _factory, List<Long> headerValue);
+		public NilResult listLongHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Long>> headerValue);
 	}
 
 	public interface ListFloatHeaderParamHandler {
@@ -510,15 +515,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListFloatHeaderParamOptHandler {
-		public NilResult listFloatHeaderParamOpt(BuilderFactory _factory, List<Float> headerValue);
+		public NilResult listFloatHeaderParamOpt(BuilderFactory _factory, Optional<List<Float>> headerValue);
 	}
 
 	public interface ListFloatHeaderParamNilHandler {
-		public NilResult listFloatHeaderParamNil(BuilderFactory _factory, List<Float> headerValue);
+		public NilResult listFloatHeaderParamNil(BuilderFactory _factory, Optional<List<Float>> headerValue);
 	}
 
 	public interface ListFloatHeaderParamOptNilHandler {
-		public NilResult listFloatHeaderParamOptNil(BuilderFactory _factory, List<Float> headerValue);
+		public NilResult listFloatHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Float>> headerValue);
 	}
 
 	public interface ListDoubleHeaderParamHandler {
@@ -526,15 +531,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListDoubleHeaderParamOptHandler {
-		public NilResult listDoubleHeaderParamOpt(BuilderFactory _factory, List<Double> headerValue);
+		public NilResult listDoubleHeaderParamOpt(BuilderFactory _factory, OptionalDouble headerValue);
 	}
 
 	public interface ListDoubleHeaderParamNilHandler {
-		public NilResult listDoubleHeaderParamNil(BuilderFactory _factory, List<Double> headerValue);
+		public NilResult listDoubleHeaderParamNil(BuilderFactory _factory, OptionalDouble headerValue);
 	}
 
 	public interface ListDoubleHeaderParamOptNilHandler {
-		public NilResult listDoubleHeaderParamOptNil(BuilderFactory _factory, List<Double> headerValue);
+		public NilResult listDoubleHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Double>> headerValue);
 	}
 
 	public interface ListStringHeaderParamHandler {
@@ -542,15 +547,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListStringHeaderParamOptHandler {
-		public NilResult listStringHeaderParamOpt(BuilderFactory _factory, List<String> headerValue);
+		public NilResult listStringHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> headerValue);
 	}
 
 	public interface ListStringHeaderParamNilHandler {
-		public NilResult listStringHeaderParamNil(BuilderFactory _factory, List<String> headerValue);
+		public NilResult listStringHeaderParamNil(BuilderFactory _factory, Optional<List<String>> headerValue);
 	}
 
 	public interface ListStringHeaderParamOptNilHandler {
-		public NilResult listStringHeaderParamOptNil(BuilderFactory _factory, List<String> headerValue);
+		public NilResult listStringHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> headerValue);
 	}
 
 	public interface ListLocalDateHeaderParamHandler {
@@ -558,15 +563,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListLocalDateHeaderParamOptHandler {
-		public NilResult listLocalDateHeaderParamOpt(BuilderFactory _factory, List<LocalDate> headerValue);
+		public NilResult listLocalDateHeaderParamOpt(BuilderFactory _factory, Optional<List<LocalDate>> headerValue);
 	}
 
 	public interface ListLocalDateHeaderParamNilHandler {
-		public NilResult listLocalDateHeaderParamNil(BuilderFactory _factory, List<LocalDate> headerValue);
+		public NilResult listLocalDateHeaderParamNil(BuilderFactory _factory, Optional<List<LocalDate>> headerValue);
 	}
 
 	public interface ListLocalDateHeaderParamOptNilHandler {
-		public NilResult listLocalDateHeaderParamOptNil(BuilderFactory _factory, List<LocalDate> headerValue);
+		public NilResult listLocalDateHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDate>> headerValue);
 	}
 
 	public interface ListLocalDateTimeHeaderParamHandler {
@@ -574,15 +579,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListLocalDateTimeHeaderParamOptHandler {
-		public NilResult listLocalDateTimeHeaderParamOpt(BuilderFactory _factory, List<LocalDateTime> headerValue);
+		public NilResult listLocalDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<LocalDateTime>> headerValue);
 	}
 
 	public interface ListLocalDateTimeHeaderParamNilHandler {
-		public NilResult listLocalDateTimeHeaderParamNil(BuilderFactory _factory, List<LocalDateTime> headerValue);
+		public NilResult listLocalDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<LocalDateTime>> headerValue);
 	}
 
 	public interface ListLocalDateTimeHeaderParamOptNilHandler {
-		public NilResult listLocalDateTimeHeaderParamOptNil(BuilderFactory _factory, List<LocalDateTime> headerValue);
+		public NilResult listLocalDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDateTime>> headerValue);
 	}
 
 	public interface ListZonedDateTimeHeaderParamHandler {
@@ -590,15 +595,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListZonedDateTimeHeaderParamOptHandler {
-		public NilResult listZonedDateTimeHeaderParamOpt(BuilderFactory _factory, List<ZonedDateTime> headerValue);
+		public NilResult listZonedDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<ZonedDateTime>> headerValue);
 	}
 
 	public interface ListZonedDateTimeHeaderParamNilHandler {
-		public NilResult listZonedDateTimeHeaderParamNil(BuilderFactory _factory, List<ZonedDateTime> headerValue);
+		public NilResult listZonedDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<ZonedDateTime>> headerValue);
 	}
 
 	public interface ListZonedDateTimeHeaderParamOptNilHandler {
-		public NilResult listZonedDateTimeHeaderParamOptNil(BuilderFactory _factory, List<ZonedDateTime> headerValue);
+		public NilResult listZonedDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ZonedDateTime>> headerValue);
 	}
 
 	public interface ListScalarHeaderParamHandler {
@@ -606,15 +611,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListScalarHeaderParamOptHandler {
-		public NilResult listScalarHeaderParamOpt(BuilderFactory _factory, List<ZoneId> headerValue);
+		public NilResult listScalarHeaderParamOpt(BuilderFactory _factory, Optional<List<ZoneId>> headerValue);
 	}
 
 	public interface ListScalarHeaderParamNilHandler {
-		public NilResult listScalarHeaderParamNil(BuilderFactory _factory, List<ZoneId> headerValue);
+		public NilResult listScalarHeaderParamNil(BuilderFactory _factory, Optional<List<ZoneId>> headerValue);
 	}
 
 	public interface ListScalarHeaderParamOptNilHandler {
-		public NilResult listScalarHeaderParamOptNil(BuilderFactory _factory, List<ZoneId> headerValue);
+		public NilResult listScalarHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ZoneId>> headerValue);
 	}
 
 	public interface ListEnumHeaderParamHandler {
@@ -622,15 +627,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListEnumHeaderParamOptHandler {
-		public NilResult listEnumHeaderParamOpt(BuilderFactory _factory, List<SampleEnum> headerValue);
+		public NilResult listEnumHeaderParamOpt(BuilderFactory _factory, Optional<List<SampleEnum>> headerValue);
 	}
 
 	public interface ListEnumHeaderParamNilHandler {
-		public NilResult listEnumHeaderParamNil(BuilderFactory _factory, List<SampleEnum> headerValue);
+		public NilResult listEnumHeaderParamNil(BuilderFactory _factory, Optional<List<SampleEnum>> headerValue);
 	}
 
 	public interface ListEnumHeaderParamOptNilHandler {
-		public NilResult listEnumHeaderParamOptNil(BuilderFactory _factory, List<SampleEnum> headerValue);
+		public NilResult listEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<SampleEnum>> headerValue);
 	}
 
 	public interface ListInlineEnumHeaderParamHandler {
@@ -638,15 +643,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListInlineEnumHeaderParamOptHandler {
-		public NilResult listInlineEnumHeaderParamOpt(BuilderFactory _factory, List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue);
+		public NilResult listInlineEnumHeaderParamOpt(BuilderFactory _factory, Optional<List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$>> headerValue);
 	}
 
 	public interface ListInlineEnumHeaderParamNilHandler {
-		public NilResult listInlineEnumHeaderParamNil(BuilderFactory _factory, List<ListInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue);
+		public NilResult listInlineEnumHeaderParamNil(BuilderFactory _factory, Optional<List<ListInlineEnumHeaderParamNil_HeaderValue_Param$>> headerValue);
 	}
 
 	public interface ListInlineEnumHeaderParamOptNilHandler {
-		public NilResult listInlineEnumHeaderParamOptNil(BuilderFactory _factory, List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue);
+		public NilResult listInlineEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$>> headerValue);
 	}
 
 	public interface ListMultiHeaderParamHandler {
@@ -654,15 +659,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListMultiHeaderParamOptHandler {
-		public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
+		public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC);
 	}
 
 	public interface ListMultiHeaderParamNilHandler {
-		public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
+		public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC);
 	}
 
 	public interface ListMultiHeaderParamOptNilHandler {
-		public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
+		public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC);
 	}
 
 	public interface ListRecordHeaderParamHandler {
@@ -670,15 +675,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListRecordHeaderParamOptHandler {
-		public NilResult listRecordHeaderParamOpt(BuilderFactory _factory, List<SimpleRecord.Data> headerValue);
+		public NilResult listRecordHeaderParamOpt(BuilderFactory _factory, Optional<List<SimpleRecord.Data>> headerValue);
 	}
 
 	public interface ListRecordHeaderParamNilHandler {
-		public NilResult listRecordHeaderParamNil(BuilderFactory _factory, List<SimpleRecord.Data> headerValue);
+		public NilResult listRecordHeaderParamNil(BuilderFactory _factory, Optional<List<SimpleRecord.Data>> headerValue);
 	}
 
 	public interface ListRecordHeaderParamOptNilHandler {
-		public NilResult listRecordHeaderParamOptNil(BuilderFactory _factory, List<SimpleRecord.Data> headerValue);
+		public NilResult listRecordHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<SimpleRecord.Data>> headerValue);
 	}
 
 }

@@ -5,7 +5,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
+import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.NilResult;
 import dev.rsdlang.sample.server.service.model.PatchableRecord;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
@@ -35,140 +40,140 @@ public interface BodyParameterTypesService {
 	}
 	public boolean simpleBooleanBodyParam(BuilderFactory _factory, boolean bodyBoolean);
 
-	public NilResult simpleBooleanBodyParamOpt(BuilderFactory _factory, Boolean bodyBoolean);
+	public NilResult simpleBooleanBodyParamOpt(BuilderFactory _factory, Optional<Boolean> bodyBoolean);
 
-	public NilResult simpleBooleanBodyParamNil(BuilderFactory _factory, Boolean bodyBoolean);
+	public NilResult simpleBooleanBodyParamNil(BuilderFactory _factory, Optional<Boolean> bodyBoolean);
 
-	public NilResult simpleBooleanBodyParamOptNil(BuilderFactory _factory, Boolean bodyBoolean);
+	public NilResult simpleBooleanBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<Boolean> bodyBoolean);
 
 	public short simpleShortBodyParam(BuilderFactory _factory, short bodyShort);
 
-	public NilResult simpleShortBodyParamOpt(BuilderFactory _factory, Short bodyShort);
+	public NilResult simpleShortBodyParamOpt(BuilderFactory _factory, Optional<Short> bodyShort);
 
-	public NilResult simpleShortBodyParamNil(BuilderFactory _factory, Short bodyShort);
+	public NilResult simpleShortBodyParamNil(BuilderFactory _factory, Optional<Short> bodyShort);
 
-	public NilResult simpleShortBodyParamOptNil(BuilderFactory _factory, Short bodyShort);
+	public NilResult simpleShortBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<Short> bodyShort);
 
 	public int simpleIntBodyParam(BuilderFactory _factory, int bodyInt);
 
-	public NilResult simpleIntBodyParamOpt(BuilderFactory _factory, Integer bodyInt);
+	public NilResult simpleIntBodyParamOpt(BuilderFactory _factory, OptionalInt bodyInt);
 
-	public NilResult simpleIntBodyParamNil(BuilderFactory _factory, Integer bodyInt);
+	public NilResult simpleIntBodyParamNil(BuilderFactory _factory, OptionalInt bodyInt);
 
-	public NilResult simpleIntBodyParamOptNil(BuilderFactory _factory, Integer bodyInt);
+	public NilResult simpleIntBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<Integer> bodyInt);
 
 	public long simpleLongBodyParam(BuilderFactory _factory, long bodyLong);
 
-	public NilResult simpleLongBodyParamOpt(BuilderFactory _factory, Long bodyLong);
+	public NilResult simpleLongBodyParamOpt(BuilderFactory _factory, OptionalLong bodyLong);
 
-	public NilResult simpleLongBodyParamNil(BuilderFactory _factory, Long bodyLong);
+	public NilResult simpleLongBodyParamNil(BuilderFactory _factory, OptionalLong bodyLong);
 
-	public NilResult simpleLongBodyParamOptNil(BuilderFactory _factory, Long bodyLong);
+	public NilResult simpleLongBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<Long> bodyLong);
 
 	public float simpleFloatBodyParam(BuilderFactory _factory, float bodyFloat);
 
-	public NilResult simpleFloatBodyParamOpt(BuilderFactory _factory, Float bodyFloat);
+	public NilResult simpleFloatBodyParamOpt(BuilderFactory _factory, Optional<Float> bodyFloat);
 
-	public NilResult simpleFloatBodyParamNil(BuilderFactory _factory, Float bodyFloat);
+	public NilResult simpleFloatBodyParamNil(BuilderFactory _factory, Optional<Float> bodyFloat);
 
-	public NilResult simpleFloatBodyParamOptNil(BuilderFactory _factory, Float bodyFloat);
+	public NilResult simpleFloatBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<Float> bodyFloat);
 
 	public double simpleDoubleBodyParam(BuilderFactory _factory, double bodyDouble);
 
-	public NilResult simpleDoubleBodyParamOpt(BuilderFactory _factory, Double bodyDouble);
+	public NilResult simpleDoubleBodyParamOpt(BuilderFactory _factory, OptionalDouble bodyDouble);
 
-	public NilResult simpleDoubleBodyParamNil(BuilderFactory _factory, Double bodyDouble);
+	public NilResult simpleDoubleBodyParamNil(BuilderFactory _factory, OptionalDouble bodyDouble);
 
-	public NilResult simpleDoubleBodyParamOptNil(BuilderFactory _factory, Double bodyDouble);
+	public NilResult simpleDoubleBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<Double> bodyDouble);
 
 	public String simpleStringBodyParam(BuilderFactory _factory, String bodyString);
 
-	public NilResult simpleStringBodyParamOpt(BuilderFactory _factory, String bodyString);
+	public NilResult simpleStringBodyParamOpt(BuilderFactory _factory, Optional<String> bodyString);
 
-	public NilResult simpleStringBodyParamNil(BuilderFactory _factory, String bodyString);
+	public NilResult simpleStringBodyParamNil(BuilderFactory _factory, Optional<String> bodyString);
 
-	public NilResult simpleStringBodyParamOptNil(BuilderFactory _factory, String bodyString);
+	public NilResult simpleStringBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<String> bodyString);
 
 	public LocalDate simpleLocalDateBodyParam(BuilderFactory _factory, LocalDate bodyLocalDate);
 
-	public NilResult simpleLocalDateBodyParamOpt(BuilderFactory _factory, LocalDate bodyLocalDate);
+	public NilResult simpleLocalDateBodyParamOpt(BuilderFactory _factory, Optional<LocalDate> bodyLocalDate);
 
-	public NilResult simpleLocalDateBodyParamNil(BuilderFactory _factory, LocalDate bodyLocalDate);
+	public NilResult simpleLocalDateBodyParamNil(BuilderFactory _factory, Optional<LocalDate> bodyLocalDate);
 
-	public NilResult simpleLocalDateBodyParamOptNil(BuilderFactory _factory, LocalDate bodyLocalDate);
+	public NilResult simpleLocalDateBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<LocalDate> bodyLocalDate);
 
 	public LocalDateTime simpleLocalDateTimeBodyParam(BuilderFactory _factory, LocalDateTime bodyLocalDateTime);
 
-	public NilResult simpleLocalDateTimeBodyParamOpt(BuilderFactory _factory, LocalDateTime bodyLocalDateTime);
+	public NilResult simpleLocalDateTimeBodyParamOpt(BuilderFactory _factory, Optional<LocalDateTime> bodyLocalDateTime);
 
-	public NilResult simpleLocalDateTimeBodyParamNil(BuilderFactory _factory, LocalDateTime bodyLocalDateTime);
+	public NilResult simpleLocalDateTimeBodyParamNil(BuilderFactory _factory, Optional<LocalDateTime> bodyLocalDateTime);
 
-	public NilResult simpleLocalDateTimeBodyParamOptNil(BuilderFactory _factory, LocalDateTime bodyLocalDateTime);
+	public NilResult simpleLocalDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<LocalDateTime> bodyLocalDateTime);
 
 	public ZonedDateTime simpleZonedDateTimeBodyParam(BuilderFactory _factory, ZonedDateTime bodyZonedDateTime);
 
-	public NilResult simpleZonedDateTimeBodyParamOpt(BuilderFactory _factory, ZonedDateTime bodyZonedDateTime);
+	public NilResult simpleZonedDateTimeBodyParamOpt(BuilderFactory _factory, Optional<ZonedDateTime> bodyZonedDateTime);
 
-	public NilResult simpleZonedDateTimeBodyParamNil(BuilderFactory _factory, ZonedDateTime bodyZonedDateTime);
+	public NilResult simpleZonedDateTimeBodyParamNil(BuilderFactory _factory, Optional<ZonedDateTime> bodyZonedDateTime);
 
-	public NilResult simpleZonedDateTimeBodyParamOptNil(BuilderFactory _factory, ZonedDateTime bodyZonedDateTime);
+	public NilResult simpleZonedDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<ZonedDateTime> bodyZonedDateTime);
 
 	public ZoneId simpleScalarBodyParam(BuilderFactory _factory, ZoneId bodyScalar);
 
-	public NilResult simpleScalarBodyParamOpt(BuilderFactory _factory, ZoneId bodyScalar);
+	public NilResult simpleScalarBodyParamOpt(BuilderFactory _factory, Optional<ZoneId> bodyScalar);
 
-	public NilResult simpleScalarBodyParamNil(BuilderFactory _factory, ZoneId bodyScalar);
+	public NilResult simpleScalarBodyParamNil(BuilderFactory _factory, Optional<ZoneId> bodyScalar);
 
-	public NilResult simpleScalarBodyParamOptNil(BuilderFactory _factory, ZoneId bodyScalar);
+	public NilResult simpleScalarBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<ZoneId> bodyScalar);
 
 	public SampleEnum simpleEnumBodyParam(BuilderFactory _factory, SampleEnum bodyEnum);
 
-	public NilResult simpleEnumBodyParamOpt(BuilderFactory _factory, SampleEnum bodyEnum);
+	public NilResult simpleEnumBodyParamOpt(BuilderFactory _factory, Optional<SampleEnum> bodyEnum);
 
-	public NilResult simpleEnumBodyParamNil(BuilderFactory _factory, SampleEnum bodyEnum);
+	public NilResult simpleEnumBodyParamNil(BuilderFactory _factory, Optional<SampleEnum> bodyEnum);
 
-	public NilResult simpleEnumBodyParamOptNil(BuilderFactory _factory, SampleEnum bodyEnum);
+	public NilResult simpleEnumBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<SampleEnum> bodyEnum);
 
 	public SimpleInlineEnumBodyParam_Result$ simpleInlineEnumBodyParam(BuilderFactory _factory, SimpleInlineEnumBodyParam_BodyEnum_Param$ bodyEnum);
 
-	public NilResult simpleInlineEnumBodyParamOpt(BuilderFactory _factory, SimpleInlineEnumBodyParamOpt_BodyEnum_Param$ bodyEnum);
+	public NilResult simpleInlineEnumBodyParamOpt(BuilderFactory _factory, Optional<SimpleInlineEnumBodyParamOpt_BodyEnum_Param$> bodyEnum);
 
-	public NilResult simpleInlineEnumBodyParamNil(BuilderFactory _factory, SimpleInlineEnumBodyParamNil_BodyEnum_Param$ bodyEnum);
+	public NilResult simpleInlineEnumBodyParamNil(BuilderFactory _factory, Optional<SimpleInlineEnumBodyParamNil_BodyEnum_Param$> bodyEnum);
 
-	public NilResult simpleInlineEnumBodyParamOptNil(BuilderFactory _factory, SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$ bodyEnum);
+	public NilResult simpleInlineEnumBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$> bodyEnum);
 
 	public String multiBodyParam(BuilderFactory _factory, String valueA, int valueB, SimpleRecord.Data valueC);
 
-	public String multiBodyParamOpt(BuilderFactory _factory, String valueA, Integer valueB, SimpleRecord.Data valueC);
+	public String multiBodyParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC);
 
-	public String multiBodyParamNil(BuilderFactory _factory, String valueA, Integer valueB, SimpleRecord.Data valueC);
+	public String multiBodyParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC);
 
-	public String multiBodyParamOptNil(BuilderFactory _factory, String valueA, Integer valueB, SimpleRecord.Data valueC);
+	public String multiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC);
 
-	public String multiBodyParamFirst(BuilderFactory _factory, String valueA, int valueB, SimpleRecord.Data valueC);
+	public String multiBodyParamFirst(BuilderFactory _factory, Optional<String> valueA, int valueB, SimpleRecord.Data valueC);
 
 	public SimpleRecord.Data recordBodyParam(BuilderFactory _factory, SimpleRecord.Data bodyRecord);
 
-	public NilResult recordBodyParamOpt(BuilderFactory _factory, SimpleRecord.Data bodyRecord);
+	public NilResult recordBodyParamOpt(BuilderFactory _factory, Optional<SimpleRecord.Data> bodyRecord);
 
-	public NilResult recordBodyParamNil(BuilderFactory _factory, SimpleRecord.Data bodyRecord);
+	public NilResult recordBodyParamNil(BuilderFactory _factory, Optional<SimpleRecord.Data> bodyRecord);
 
-	public NilResult recordBodyParamOptNil(BuilderFactory _factory, SimpleRecord.Data bodyRecord);
+	public NilResult recordBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<SimpleRecord.Data> bodyRecord);
 
 	public Union.Data unionBodyParam(BuilderFactory _factory, Union.Data bodyUnion);
 
-	public NilResult unionBodyParamOpt(BuilderFactory _factory, Union.Data bodyUnion);
+	public NilResult unionBodyParamOpt(BuilderFactory _factory, Optional<Union.Data> bodyUnion);
 
-	public NilResult unionBodyParamNil(BuilderFactory _factory, Union.Data bodyUnion);
+	public NilResult unionBodyParamNil(BuilderFactory _factory, Optional<Union.Data> bodyUnion);
 
-	public NilResult unionBodyParamOptNil(BuilderFactory _factory, Union.Data bodyUnion);
+	public NilResult unionBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<Union.Data> bodyUnion);
 
 	public PatchableRecord.Data patchableRecordBodyParam(BuilderFactory _factory, PatchableRecord.Patch bodyRecord);
 
-	public PatchableRecord.Data patchableRecordBodyParamOpt(BuilderFactory _factory, PatchableRecord.Patch bodyRecord);
+	public PatchableRecord.Data patchableRecordBodyParamOpt(BuilderFactory _factory, Optional<PatchableRecord.Patch> bodyRecord);
 
-	public PatchableRecord.Data patchableRecordBodyParamNil(BuilderFactory _factory, PatchableRecord.Patch bodyRecord);
+	public PatchableRecord.Data patchableRecordBodyParamNil(BuilderFactory _factory, Optional<PatchableRecord.Patch> bodyRecord);
 
-	public PatchableRecord.Data patchableRecordBodyParamOptNil(BuilderFactory _factory, PatchableRecord.Patch bodyRecord);
+	public PatchableRecord.Data patchableRecordBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<PatchableRecord.Patch> bodyRecord);
 
 }

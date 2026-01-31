@@ -128,7 +128,7 @@ function toParameter(
 	fqn: (type: string) => string,
 	methodName: string,
 ) {
-	const type = computeParameterAPIType(
+	let type = computeParameterAPIType(
 		parameter,
 		artifactConfig.nativeTypeSubstitues,
 		`${artifactConfig.rootPackageName}.service.model`,
@@ -136,6 +136,21 @@ function toParameter(
 		false,
 		methodName,
 	);
+
+	if (parameter.optional && parameter.nullable) {
+		type = fqn(`${artifactConfig.rootPackageName}.service.model._Base`) + `.Nillable<${type}>`;
+	} else if (parameter.optional || parameter.nullable) {
+		if (parameter.type === 'int') {
+			type = fqn('java.util.OptionalInt');
+		} else if (parameter.type === 'long') {
+			type = fqn('java.util.OptionalLong');
+		} else if (parameter.type === 'double') {
+			type = fqn('java.util.OptionalDouble');
+		} else {
+			type = fqn('java.util.Optional') + `<${type}>`;
+		}
+	}
+
 	return `${type} ${parameter.name}`;
 }
 

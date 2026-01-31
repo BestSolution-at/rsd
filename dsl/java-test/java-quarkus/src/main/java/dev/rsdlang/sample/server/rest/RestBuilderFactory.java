@@ -5,6 +5,8 @@ import java.nio.file.Path;
 import java.util.List;
 
 import jakarta.inject.Singleton;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
 
 import dev.rsdlang.sample.server.rest.model._BlobImpl;
 import dev.rsdlang.sample.server.rest.model._FileImpl;
@@ -270,342 +272,342 @@ public class RestBuilderFactory implements BuilderFactory {
 		throw new IllegalArgumentException("Unsupported Builder '%s'".formatted(type));
 	}
 
-	public <T extends _Base.BaseData> T of(Class<T> type, String data) {
+	public <T extends _Base.BaseData> T of(Class<T> type, JsonObject data) {
 		if (type == SimpleRecord_KeyVersion.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, SimpleRecord_KeyVersionDataImpl::of));
+			return type.cast(SimpleRecord_KeyVersionDataImpl.of(data));
 		}
 		if (type == SimpleRecord_KeyVersion_Int_Int.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, SimpleRecord_KeyVersion_Int_IntDataImpl::of));
+			return type.cast(SimpleRecord_KeyVersion_Int_IntDataImpl.of(data));
 		}
 		if (type == SimpleRecord.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, SimpleRecordDataImpl::of));
+			return type.cast(SimpleRecordDataImpl.of(data));
 		}
 		if (type == SimpleRecord_Basic.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, SimpleRecord_BasicDataImpl::of));
+			return type.cast(SimpleRecord_BasicDataImpl.of(data));
 		}
 		if (type == SimpleRecord_Basic_Optional.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, SimpleRecord_Basic_OptionalDataImpl::of));
+			return type.cast(SimpleRecord_Basic_OptionalDataImpl.of(data));
 		}
 		if (type == SimpleRecord_Basic_Null.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, SimpleRecord_Basic_NullDataImpl::of));
+			return type.cast(SimpleRecord_Basic_NullDataImpl.of(data));
 		}
 		if (type == SimpleRecord_Basic_Optional_Null.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, SimpleRecord_Basic_Optional_NullDataImpl::of));
+			return type.cast(SimpleRecord_Basic_Optional_NullDataImpl.of(data));
 		}
 		if (type == SimpleRecord_Basic_List.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, SimpleRecord_Basic_ListDataImpl::of));
+			return type.cast(SimpleRecord_Basic_ListDataImpl.of(data));
 		}
 		if (type == SimpleRecord_Basic_List_Optional.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, SimpleRecord_Basic_List_OptionalDataImpl::of));
+			return type.cast(SimpleRecord_Basic_List_OptionalDataImpl.of(data));
 		}
 		if (type == SimpleRecord_Basic_List_Null.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, SimpleRecord_Basic_List_NullDataImpl::of));
+			return type.cast(SimpleRecord_Basic_List_NullDataImpl.of(data));
 		}
 		if (type == SimpleRecord_Basic_List_Optional_Null.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, SimpleRecord_Basic_List_Optional_NullDataImpl::of));
+			return type.cast(SimpleRecord_Basic_List_Optional_NullDataImpl.of(data));
 		}
 		if (type == EnumRecord.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, EnumRecordDataImpl::of));
+			return type.cast(EnumRecordDataImpl.of(data));
 		}
 		if (type == EnumInlineRecord.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, EnumInlineRecordDataImpl::of));
+			return type.cast(EnumInlineRecordDataImpl.of(data));
 		}
 		if (type == ScalarRecord.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, ScalarRecordDataImpl::of));
+			return type.cast(ScalarRecordDataImpl.of(data));
 		}
 		if (type == RecordOfRecords.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, RecordOfRecordsDataImpl::of));
+			return type.cast(RecordOfRecordsDataImpl.of(data));
 		}
 		if (type == RecordWithUnions.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, RecordWithUnionsDataImpl::of));
+			return type.cast(RecordWithUnionsDataImpl.of(data));
 		}
 		if (type == UnionA.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, UnionADataImpl::of));
+			return type.cast(UnionADataImpl.of(data));
 		}
 		if (type == UnionB.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, UnionBDataImpl::of));
+			return type.cast(UnionBDataImpl.of(data));
 		}
 		if (type == PatchableRecord.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecordDataImpl::of));
+			return type.cast(PatchableRecordDataImpl.of(data));
 		}
 		if (type == PatchableRecord.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecordPatchImpl::of));
+			return type.cast(PatchableRecordPatchImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_BasicDataImpl::of));
+			return type.cast(PatchableRecord_BasicDataImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_BasicPatchImpl::of));
+			return type.cast(PatchableRecord_BasicPatchImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_Optional.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_OptionalDataImpl::of));
+			return type.cast(PatchableRecord_Basic_OptionalDataImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_Optional.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_OptionalPatchImpl::of));
+			return type.cast(PatchableRecord_Basic_OptionalPatchImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_Null.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_NullDataImpl::of));
+			return type.cast(PatchableRecord_Basic_NullDataImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_Null.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_NullPatchImpl::of));
+			return type.cast(PatchableRecord_Basic_NullPatchImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_Optional_Null.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_Optional_NullDataImpl::of));
+			return type.cast(PatchableRecord_Basic_Optional_NullDataImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_Optional_Null.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_Optional_NullPatchImpl::of));
+			return type.cast(PatchableRecord_Basic_Optional_NullPatchImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_List.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_ListDataImpl::of));
+			return type.cast(PatchableRecord_Basic_ListDataImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_List.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_ListPatchImpl::of));
+			return type.cast(PatchableRecord_Basic_ListPatchImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_List_Optional.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_List_OptionalDataImpl::of));
+			return type.cast(PatchableRecord_Basic_List_OptionalDataImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_List_Optional.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_List_OptionalPatchImpl::of));
+			return type.cast(PatchableRecord_Basic_List_OptionalPatchImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_List_Null.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_List_NullDataImpl::of));
+			return type.cast(PatchableRecord_Basic_List_NullDataImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_List_Null.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_List_NullPatchImpl::of));
+			return type.cast(PatchableRecord_Basic_List_NullPatchImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_List_Optional_Null.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_List_Optional_NullDataImpl::of));
+			return type.cast(PatchableRecord_Basic_List_Optional_NullDataImpl.of(data));
 		}
 		if (type == PatchableRecord_Basic_List_Optional_Null.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecord_Basic_List_Optional_NullPatchImpl::of));
+			return type.cast(PatchableRecord_Basic_List_Optional_NullPatchImpl.of(data));
 		}
 		if (type == PatchableEnumRecord.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableEnumRecordDataImpl::of));
+			return type.cast(PatchableEnumRecordDataImpl.of(data));
 		}
 		if (type == PatchableEnumRecord.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableEnumRecordPatchImpl::of));
+			return type.cast(PatchableEnumRecordPatchImpl.of(data));
 		}
 		if (type == PatchableEnumInlineRecord.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableEnumInlineRecordDataImpl::of));
+			return type.cast(PatchableEnumInlineRecordDataImpl.of(data));
 		}
 		if (type == PatchableEnumInlineRecord.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableEnumInlineRecordPatchImpl::of));
+			return type.cast(PatchableEnumInlineRecordPatchImpl.of(data));
 		}
 		if (type == PatchableScalarRecord.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableScalarRecordDataImpl::of));
+			return type.cast(PatchableScalarRecordDataImpl.of(data));
 		}
 		if (type == PatchableScalarRecord.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableScalarRecordPatchImpl::of));
+			return type.cast(PatchableScalarRecordPatchImpl.of(data));
 		}
 		if (type == PatchableRecordOfRecords.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecordOfRecordsDataImpl::of));
+			return type.cast(PatchableRecordOfRecordsDataImpl.of(data));
 		}
 		if (type == PatchableRecordOfRecords.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecordOfRecordsPatchImpl::of));
+			return type.cast(PatchableRecordOfRecordsPatchImpl.of(data));
 		}
 		if (type == PatchableRecordWithUnion.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecordWithUnionDataImpl::of));
+			return type.cast(PatchableRecordWithUnionDataImpl.of(data));
 		}
 		if (type == PatchableRecordWithUnion.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableRecordWithUnionPatchImpl::of));
+			return type.cast(PatchableRecordWithUnionPatchImpl.of(data));
 		}
 		if (type == PatchableUnionA.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableUnionADataImpl::of));
+			return type.cast(PatchableUnionADataImpl.of(data));
 		}
 		if (type == PatchableUnionA.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableUnionAPatchImpl::of));
+			return type.cast(PatchableUnionAPatchImpl.of(data));
 		}
 		if (type == PatchableUnionB.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableUnionBDataImpl::of));
+			return type.cast(PatchableUnionBDataImpl.of(data));
 		}
 		if (type == PatchableUnionB.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableUnionBPatchImpl::of));
+			return type.cast(PatchableUnionBPatchImpl.of(data));
 		}
 		if (type == MixinRecord.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, MixinRecordDataImpl::of));
+			return type.cast(MixinRecordDataImpl.of(data));
 		}
 		if (type == UploadMixedResult.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, UploadMixedResultDataImpl::of));
+			return type.cast(UploadMixedResultDataImpl.of(data));
 		}
 		if (type == Union.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, UnionDataImpl::of));
+			return type.cast(UnionDataImpl.of(data));
 		}
 		if (type == PatchableUnion.Data.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableUnionDataImpl::of));
+			return type.cast(PatchableUnionDataImpl.of(data));
 		}
 		if (type == PatchableUnion.Patch.class) {
-			return type.cast(_JsonUtils.parseJsonObject(data, PatchableUnionPatchImpl::of));
+			return type.cast(PatchableUnionPatchImpl.of(data));
 		}
 
 		throw new IllegalArgumentException("Unsupported Builder '%s'".formatted(type));
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends _Base.BaseData> List<T> listOf(Class<T> type, String data) {
+	public <T extends _Base.BaseData> List<T> of(Class<T> type, JsonArray data) {
 		if (type == SimpleRecord_KeyVersion.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, SimpleRecord_KeyVersionDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  SimpleRecord_KeyVersionDataImpl::of);
 		}
 		if (type == SimpleRecord_KeyVersion_Int_Int.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, SimpleRecord_KeyVersion_Int_IntDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  SimpleRecord_KeyVersion_Int_IntDataImpl::of);
 		}
 		if (type == SimpleRecord.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, SimpleRecordDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  SimpleRecordDataImpl::of);
 		}
 		if (type == SimpleRecord_Basic.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, SimpleRecord_BasicDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  SimpleRecord_BasicDataImpl::of);
 		}
 		if (type == SimpleRecord_Basic_Optional.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, SimpleRecord_Basic_OptionalDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  SimpleRecord_Basic_OptionalDataImpl::of);
 		}
 		if (type == SimpleRecord_Basic_Null.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, SimpleRecord_Basic_NullDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  SimpleRecord_Basic_NullDataImpl::of);
 		}
 		if (type == SimpleRecord_Basic_Optional_Null.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, SimpleRecord_Basic_Optional_NullDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  SimpleRecord_Basic_Optional_NullDataImpl::of);
 		}
 		if (type == SimpleRecord_Basic_List.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, SimpleRecord_Basic_ListDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  SimpleRecord_Basic_ListDataImpl::of);
 		}
 		if (type == SimpleRecord_Basic_List_Optional.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, SimpleRecord_Basic_List_OptionalDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  SimpleRecord_Basic_List_OptionalDataImpl::of);
 		}
 		if (type == SimpleRecord_Basic_List_Null.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, SimpleRecord_Basic_List_NullDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  SimpleRecord_Basic_List_NullDataImpl::of);
 		}
 		if (type == SimpleRecord_Basic_List_Optional_Null.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, SimpleRecord_Basic_List_Optional_NullDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  SimpleRecord_Basic_List_Optional_NullDataImpl::of);
 		}
 		if (type == EnumRecord.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, EnumRecordDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  EnumRecordDataImpl::of);
 		}
 		if (type == EnumInlineRecord.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, EnumInlineRecordDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  EnumInlineRecordDataImpl::of);
 		}
 		if (type == ScalarRecord.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, ScalarRecordDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  ScalarRecordDataImpl::of);
 		}
 		if (type == RecordOfRecords.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, RecordOfRecordsDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  RecordOfRecordsDataImpl::of);
 		}
 		if (type == RecordWithUnions.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, RecordWithUnionsDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  RecordWithUnionsDataImpl::of);
 		}
 		if (type == UnionA.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, UnionADataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  UnionADataImpl::of);
 		}
 		if (type == UnionB.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, UnionBDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  UnionBDataImpl::of);
 		}
 		if (type == PatchableRecord.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecordDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecordDataImpl::of);
 		}
 		if (type == PatchableRecord.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecordPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecordPatchImpl::of);
 		}
 		if (type == PatchableRecord_Basic.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_BasicDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_BasicDataImpl::of);
 		}
 		if (type == PatchableRecord_Basic.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_BasicPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_BasicPatchImpl::of);
 		}
 		if (type == PatchableRecord_Basic_Optional.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_OptionalDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_OptionalDataImpl::of);
 		}
 		if (type == PatchableRecord_Basic_Optional.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_OptionalPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_OptionalPatchImpl::of);
 		}
 		if (type == PatchableRecord_Basic_Null.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_NullDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_NullDataImpl::of);
 		}
 		if (type == PatchableRecord_Basic_Null.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_NullPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_NullPatchImpl::of);
 		}
 		if (type == PatchableRecord_Basic_Optional_Null.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_Optional_NullDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_Optional_NullDataImpl::of);
 		}
 		if (type == PatchableRecord_Basic_Optional_Null.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_Optional_NullPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_Optional_NullPatchImpl::of);
 		}
 		if (type == PatchableRecord_Basic_List.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_ListDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_ListDataImpl::of);
 		}
 		if (type == PatchableRecord_Basic_List.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_ListPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_ListPatchImpl::of);
 		}
 		if (type == PatchableRecord_Basic_List_Optional.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_List_OptionalDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_List_OptionalDataImpl::of);
 		}
 		if (type == PatchableRecord_Basic_List_Optional.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_List_OptionalPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_List_OptionalPatchImpl::of);
 		}
 		if (type == PatchableRecord_Basic_List_Null.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_List_NullDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_List_NullDataImpl::of);
 		}
 		if (type == PatchableRecord_Basic_List_Null.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_List_NullPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_List_NullPatchImpl::of);
 		}
 		if (type == PatchableRecord_Basic_List_Optional_Null.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_List_Optional_NullDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_List_Optional_NullDataImpl::of);
 		}
 		if (type == PatchableRecord_Basic_List_Optional_Null.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecord_Basic_List_Optional_NullPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecord_Basic_List_Optional_NullPatchImpl::of);
 		}
 		if (type == PatchableEnumRecord.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableEnumRecordDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableEnumRecordDataImpl::of);
 		}
 		if (type == PatchableEnumRecord.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableEnumRecordPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableEnumRecordPatchImpl::of);
 		}
 		if (type == PatchableEnumInlineRecord.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableEnumInlineRecordDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableEnumInlineRecordDataImpl::of);
 		}
 		if (type == PatchableEnumInlineRecord.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableEnumInlineRecordPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableEnumInlineRecordPatchImpl::of);
 		}
 		if (type == PatchableScalarRecord.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableScalarRecordDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableScalarRecordDataImpl::of);
 		}
 		if (type == PatchableScalarRecord.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableScalarRecordPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableScalarRecordPatchImpl::of);
 		}
 		if (type == PatchableRecordOfRecords.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecordOfRecordsDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecordOfRecordsDataImpl::of);
 		}
 		if (type == PatchableRecordOfRecords.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecordOfRecordsPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecordOfRecordsPatchImpl::of);
 		}
 		if (type == PatchableRecordWithUnion.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecordWithUnionDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecordWithUnionDataImpl::of);
 		}
 		if (type == PatchableRecordWithUnion.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableRecordWithUnionPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableRecordWithUnionPatchImpl::of);
 		}
 		if (type == PatchableUnionA.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableUnionADataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableUnionADataImpl::of);
 		}
 		if (type == PatchableUnionA.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableUnionAPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableUnionAPatchImpl::of);
 		}
 		if (type == PatchableUnionB.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableUnionBDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableUnionBDataImpl::of);
 		}
 		if (type == PatchableUnionB.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableUnionBPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableUnionBPatchImpl::of);
 		}
 		if (type == MixinRecord.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, MixinRecordDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  MixinRecordDataImpl::of);
 		}
 		if (type == UploadMixedResult.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, UploadMixedResultDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  UploadMixedResultDataImpl::of);
 		}
 		if (type == Union.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, UnionDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  UnionDataImpl::of);
 		}
 		if (type == PatchableUnion.Data.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableUnionDataImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableUnionDataImpl::of);
 		}
 		if (type == PatchableUnion.Patch.class) {
-			return (List<T>) _JsonUtils.parseJsonArray(data, PatchableUnionPatchImpl::of);
+			return (List<T>) _JsonUtils.mapObjects(data,  PatchableUnionPatchImpl::of);
 		}
 
 		throw new IllegalArgumentException("Unsupported Builder '%s'".formatted(type));

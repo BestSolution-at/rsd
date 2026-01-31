@@ -3,6 +3,14 @@ package dev.rsdlang.sample.server.rest;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.function.Function;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -10,11 +18,195 @@ import jakarta.ws.rs.core.StreamingOutput;
 import jakarta.ws.rs.WebApplicationException;
 
 import dev.rsdlang.sample.server.rest.model._JsonUtils;
+import dev.rsdlang.sample.server.rest.model._NillableImpl;
+import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.RSDBlob;
 import dev.rsdlang.sample.server.service.model.RSDFile;
 import dev.rsdlang.sample.server.service.RSDException;
 
 public class _RestUtils {
+	public static <T> T parseLiteral(String value, Function<String, T> parser) {
+		return parser.apply(value);
+	}
+
+	public static <T> Optional<T> parseOptLiteral(String value, Function<String, T> parser) {
+		return value != null ? Optional.of(parser.apply(value)) : Optional.empty();
+	}
+
+	public static <T> Optional<T> parseNullLiteral(String value, Function<String, T> parser) {
+		return "null".equals(value) ? Optional.empty() : Optional.of(parser.apply(value));
+	}
+
+	public static <T> _Base.Nillable<T> parseNilLiteral(String value, Function<String, T> parser) {
+		if (value == null) {
+			return _NillableImpl.undefined();
+		} else if ("null".equals(value)) {
+			return _NillableImpl.nill();
+		} else {
+			return _NillableImpl.of(parser.apply(value));
+		}
+	}
+
+	public static String parseString(String value) {
+		return value;
+	}
+
+	public static Optional<String> parseOptString(String value) {
+		return parseOptLiteral(value, Function.identity());
+	}
+
+	public static String parseNullString(String value) {
+		return "null".equals(value) ? null : value;
+	}
+
+	public static _Base.Nillable<String> parseNilableString(String value) {
+		return parseNilLiteral(value, Function.identity());
+	}
+
+	public static short parseShort(String value) {
+		return Short.parseShort(value);
+	}
+
+	public static Optional<Short> parseOptShort(String value) {
+		return parseOptLiteral(value, Short::valueOf);
+	}
+
+	public static Optional<Short> parseNullShort(String value) {
+		return parseNullLiteral(value, Short::valueOf);
+	}
+
+	public static _Base.Nillable<Short> parseNilableShort(String value) {
+		return parseNilLiteral(value, Short::valueOf);
+	}
+
+	public static int parseInt(String value) {
+		return Integer.parseInt(value);
+	}
+
+	public static OptionalInt parseOptInt(String value) {
+		return value != null ? OptionalInt.of(Integer.parseInt(value)) : OptionalInt.empty();
+	}
+
+	public static OptionalInt parseNullInt(String value) {
+		return "null".equals(value) ? OptionalInt.empty() : OptionalInt.of(Integer.parseInt(value));
+	}
+
+	public static _Base.Nillable<Integer> parseNilableInt(String value) {
+		return parseNilLiteral(value, Integer::valueOf);
+	}
+
+	public static long parseLong(String value) {
+		return Long.parseLong(value);
+	}
+
+	public static OptionalLong parseOptLong(String value) {
+		return value != null ? OptionalLong.of(Long.parseLong(value)) : OptionalLong.empty();
+	}
+
+	public static OptionalLong parseNullLong(String value) {
+		return "null".equals(value) ? OptionalLong.empty() : OptionalLong.of(Long.parseLong(value));
+	}
+
+	public static _Base.Nillable<Long> parseNilableLong(String value) {
+		return parseNilLiteral(value, Long::valueOf);
+	}
+
+	public static boolean parseBoolean(String value) {
+		return Boolean.parseBoolean(value);
+	}
+
+	public static Optional<Boolean> parseOptBoolean(String value) {
+		return parseOptLiteral(value, Boolean::valueOf);
+	}
+
+	public static Optional<Boolean> parseNullBoolean(String value) {
+		return parseNullLiteral(value, Boolean::valueOf);
+	}
+
+	public static _Base.Nillable<Boolean> parseNilableBoolean(String value) {
+		return parseNilLiteral(value, Boolean::valueOf);
+	}
+
+	public static float parseFloat(String value) {
+		return Float.parseFloat(value);
+	}
+
+	public static Optional<Float> parseOptFloat(String value) {
+		return parseOptLiteral(value, Float::valueOf);
+	}
+
+	public static Optional<Float> parseNullFloat(String value) {
+		return parseNullLiteral(value, Float::valueOf);
+	}
+
+	public static _Base.Nillable<Float> parseNilableFloat(String value) {
+		return parseNilLiteral(value, Float::valueOf);
+	}
+
+	public static double parseDouble(String value) {
+		return Double.parseDouble(value);
+	}
+
+	public static OptionalDouble parseOptDouble(String value) {
+		return value != null ? OptionalDouble.of(Double.parseDouble(value)) : OptionalDouble.empty();
+	}
+
+	public static OptionalDouble parseNullDouble(String value) {
+		return "null".equals(value) ? OptionalDouble.empty() : OptionalDouble.of(Double.parseDouble(value));
+	}
+
+	public static _Base.Nillable<Double> parseNilableDouble(String value) {
+		return parseNilLiteral(value, Double::valueOf);
+	}
+
+	public static LocalDate parseLocalDate(String value) {
+		return parseLiteral(value, LocalDate::parse);
+	}
+
+	public static Optional<LocalDate> parseOptLocalDate(String value) {
+		return parseOptLiteral(value, LocalDate::parse);
+	}
+
+	public static Optional<LocalDate> parseNullLocalDate(String value) {
+		return parseNullLiteral(value, LocalDate::parse);
+	}
+
+	public static _Base.Nillable<LocalDate> parseNilableLocalDate(String value) {
+		return parseNilLiteral(value, LocalDate::parse);
+	}
+
+	public static LocalDateTime parseLocalDateTime(String value) {
+		return parseLiteral(value, LocalDateTime::parse);
+	}
+
+	public static Optional<LocalDateTime> parseOptLocalDateTime(String value) {
+		return parseOptLiteral(value, LocalDateTime::parse);
+	}
+
+	public static Optional<LocalDateTime> parseNullLocalDateTime(String value) {
+		return parseNullLiteral(value, LocalDateTime::parse);
+	}
+
+	public static _Base.Nillable<LocalDateTime> parseNilableLocalDateTime(String value) {
+		return parseNilLiteral(value, LocalDateTime::parse);
+	}
+
+	public static ZonedDateTime parseZonedDateTime(String value) {
+		return parseLiteral(value, ZonedDateTime::parse);
+	}
+
+	public static Optional<ZonedDateTime> parseOptZonedDateTime(String value) {
+		return parseOptLiteral(value, ZonedDateTime::parse);
+	}
+
+	public static Optional<ZonedDateTime> parseNullZonedDateTime(String value) {
+		return parseNullLiteral(value, ZonedDateTime::parse);
+	}
+
+	public static _Base.Nillable<ZonedDateTime> parseNilableZonedDateTime(String value) {
+		return parseNilLiteral(value, ZonedDateTime::parse);
+	}
+
 	public static Response toResponse(int status, RSDException e) {
 		if (e instanceof RSDException.RSDStructuredDataException s) {
 			return Response.status(status)
@@ -27,6 +219,7 @@ public class _RestUtils {
 				.header("X-RSD-Error-Message", e.getMessage())
 				.entity(_JsonUtils.encodeAsJsonString(e.getMessage())).build();
 	}
+
 	public static Response.ResponseBuilder toStreamResponse(int status, RSDBlob blob) {
 		class FileStreamingOutput implements StreamingOutput {
 			@Override

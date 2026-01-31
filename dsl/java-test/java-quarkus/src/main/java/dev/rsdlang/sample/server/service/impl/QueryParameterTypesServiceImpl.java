@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -82,7 +86,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public NilResult simpleBooleanQueryParamOpt(BuilderFactory _factory, Boolean queryValue) {
+	public NilResult simpleBooleanQueryParamOpt(BuilderFactory _factory, Optional<Boolean> queryValue) {
 		return simpleBooleanQueryParamOptHandler.simpleBooleanQueryParamOpt(_factory, queryValue);
 	}
 
@@ -92,7 +96,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public NilResult simpleShortQueryParamOpt(BuilderFactory _factory, Short queryValue) {
+	public NilResult simpleShortQueryParamOpt(BuilderFactory _factory, Optional<Short> queryValue) {
 		return simpleShortQueryParamOptHandler.simpleShortQueryParamOpt(_factory, queryValue);
 	}
 
@@ -102,7 +106,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public NilResult simpleIntQueryParamOpt(BuilderFactory _factory, Integer queryValue) {
+	public NilResult simpleIntQueryParamOpt(BuilderFactory _factory, OptionalInt queryValue) {
 		return simpleIntQueryParamOptHandler.simpleIntQueryParamOpt(_factory, queryValue);
 	}
 
@@ -112,7 +116,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public NilResult simpleLongQueryParamOpt(BuilderFactory _factory, Long queryValue) {
+	public NilResult simpleLongQueryParamOpt(BuilderFactory _factory, OptionalLong queryValue) {
 		return simpleLongQueryParamOptHandler.simpleLongQueryParamOpt(_factory, queryValue);
 	}
 
@@ -122,7 +126,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public NilResult simpleFloatQueryParamOpt(BuilderFactory _factory, Float queryValue) {
+	public NilResult simpleFloatQueryParamOpt(BuilderFactory _factory, Optional<Float> queryValue) {
 		return simpleFloatQueryParamOptHandler.simpleFloatQueryParamOpt(_factory, queryValue);
 	}
 
@@ -132,7 +136,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public NilResult simpleDoubleQueryParamOpt(BuilderFactory _factory, Double queryValue) {
+	public NilResult simpleDoubleQueryParamOpt(BuilderFactory _factory, OptionalDouble queryValue) {
 		return simpleDoubleQueryParamOptHandler.simpleDoubleQueryParamOpt(_factory, queryValue);
 	}
 
@@ -142,7 +146,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public NilResult simpleStringQueryParamOpt(BuilderFactory _factory, String queryValue) {
+	public NilResult simpleStringQueryParamOpt(BuilderFactory _factory, Optional<String> queryValue) {
 		return simpleStringQueryParamOptHandler.simpleStringQueryParamOpt(_factory, queryValue);
 	}
 
@@ -152,7 +156,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public NilResult simpleLocalDateQueryParamOpt(BuilderFactory _factory, LocalDate queryValue) {
+	public NilResult simpleLocalDateQueryParamOpt(BuilderFactory _factory, Optional<LocalDate> queryValue) {
 		return simpleLocalDateQueryParamOptHandler.simpleLocalDateQueryParamOpt(_factory, queryValue);
 	}
 
@@ -162,7 +166,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public NilResult simpleLocalDateTimeQueryParamOpt(BuilderFactory _factory, LocalDateTime queryValue) {
+	public NilResult simpleLocalDateTimeQueryParamOpt(BuilderFactory _factory, Optional<LocalDateTime> queryValue) {
 		return simpleLocalDateTimeQueryParamOptHandler.simpleLocalDateTimeQueryParamOpt(_factory, queryValue);
 	}
 
@@ -172,7 +176,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public NilResult simpleZonedDateTimeQueryParamOpt(BuilderFactory _factory, ZonedDateTime queryValue) {
+	public NilResult simpleZonedDateTimeQueryParamOpt(BuilderFactory _factory, Optional<ZonedDateTime> queryValue) {
 		return simpleZonedDateTimeQueryParamOptHandler.simpleZonedDateTimeQueryParamOpt(_factory, queryValue);
 	}
 
@@ -182,7 +186,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public NilResult simpleScalarQueryParamOpt(BuilderFactory _factory, ZoneId queryValue) {
+	public NilResult simpleScalarQueryParamOpt(BuilderFactory _factory, Optional<ZoneId> queryValue) {
 		return simpleScalarQueryParamOptHandler.simpleScalarQueryParamOpt(_factory, queryValue);
 	}
 
@@ -192,7 +196,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public NilResult simpleEnumQueryParamOpt(BuilderFactory _factory, SampleEnum queryValue) {
+	public NilResult simpleEnumQueryParamOpt(BuilderFactory _factory, Optional<SampleEnum> queryValue) {
 		return simpleEnumQueryParamOptHandler.simpleEnumQueryParamOpt(_factory, queryValue);
 	}
 
@@ -202,7 +206,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public String multiQueryParamOpt(BuilderFactory _factory, String valueA, Integer valueB) {
+	public String multiQueryParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB) {
 		return multiQueryParamOptHandler.multiQueryParamOpt(_factory, valueA, valueB);
 	}
 
@@ -212,7 +216,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public NilResult recordQueryParamOpt(BuilderFactory _factory, SimpleRecord.Data queryValue) {
+	public NilResult recordQueryParamOpt(BuilderFactory _factory, Optional<SimpleRecord.Data> queryValue) {
 		return recordQueryParamOptHandler.recordQueryParamOpt(_factory, queryValue);
 	}
 
@@ -221,7 +225,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface SimpleBooleanQueryParamOptHandler {
-		public NilResult simpleBooleanQueryParamOpt(BuilderFactory _factory, Boolean queryValue);
+		public NilResult simpleBooleanQueryParamOpt(BuilderFactory _factory, Optional<Boolean> queryValue);
 	}
 
 	public interface SimpleShortQueryParamHandler {
@@ -229,7 +233,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface SimpleShortQueryParamOptHandler {
-		public NilResult simpleShortQueryParamOpt(BuilderFactory _factory, Short queryValue);
+		public NilResult simpleShortQueryParamOpt(BuilderFactory _factory, Optional<Short> queryValue);
 	}
 
 	public interface SimpleIntQueryParamHandler {
@@ -237,7 +241,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface SimpleIntQueryParamOptHandler {
-		public NilResult simpleIntQueryParamOpt(BuilderFactory _factory, Integer queryValue);
+		public NilResult simpleIntQueryParamOpt(BuilderFactory _factory, OptionalInt queryValue);
 	}
 
 	public interface SimpleLongQueryParamHandler {
@@ -245,7 +249,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface SimpleLongQueryParamOptHandler {
-		public NilResult simpleLongQueryParamOpt(BuilderFactory _factory, Long queryValue);
+		public NilResult simpleLongQueryParamOpt(BuilderFactory _factory, OptionalLong queryValue);
 	}
 
 	public interface SimpleFloatQueryParamHandler {
@@ -253,7 +257,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface SimpleFloatQueryParamOptHandler {
-		public NilResult simpleFloatQueryParamOpt(BuilderFactory _factory, Float queryValue);
+		public NilResult simpleFloatQueryParamOpt(BuilderFactory _factory, Optional<Float> queryValue);
 	}
 
 	public interface SimpleDoubleQueryParamHandler {
@@ -261,7 +265,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface SimpleDoubleQueryParamOptHandler {
-		public NilResult simpleDoubleQueryParamOpt(BuilderFactory _factory, Double queryValue);
+		public NilResult simpleDoubleQueryParamOpt(BuilderFactory _factory, OptionalDouble queryValue);
 	}
 
 	public interface SimpleStringQueryParamHandler {
@@ -269,7 +273,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface SimpleStringQueryParamOptHandler {
-		public NilResult simpleStringQueryParamOpt(BuilderFactory _factory, String queryValue);
+		public NilResult simpleStringQueryParamOpt(BuilderFactory _factory, Optional<String> queryValue);
 	}
 
 	public interface SimpleLocalDateQueryParamHandler {
@@ -277,7 +281,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface SimpleLocalDateQueryParamOptHandler {
-		public NilResult simpleLocalDateQueryParamOpt(BuilderFactory _factory, LocalDate queryValue);
+		public NilResult simpleLocalDateQueryParamOpt(BuilderFactory _factory, Optional<LocalDate> queryValue);
 	}
 
 	public interface SimpleLocalDateTimeQueryParamHandler {
@@ -285,7 +289,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface SimpleLocalDateTimeQueryParamOptHandler {
-		public NilResult simpleLocalDateTimeQueryParamOpt(BuilderFactory _factory, LocalDateTime queryValue);
+		public NilResult simpleLocalDateTimeQueryParamOpt(BuilderFactory _factory, Optional<LocalDateTime> queryValue);
 	}
 
 	public interface SimpleZonedDateTimeQueryParamHandler {
@@ -293,7 +297,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface SimpleZonedDateTimeQueryParamOptHandler {
-		public NilResult simpleZonedDateTimeQueryParamOpt(BuilderFactory _factory, ZonedDateTime queryValue);
+		public NilResult simpleZonedDateTimeQueryParamOpt(BuilderFactory _factory, Optional<ZonedDateTime> queryValue);
 	}
 
 	public interface SimpleScalarQueryParamHandler {
@@ -301,7 +305,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface SimpleScalarQueryParamOptHandler {
-		public NilResult simpleScalarQueryParamOpt(BuilderFactory _factory, ZoneId queryValue);
+		public NilResult simpleScalarQueryParamOpt(BuilderFactory _factory, Optional<ZoneId> queryValue);
 	}
 
 	public interface SimpleEnumQueryParamHandler {
@@ -309,7 +313,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface SimpleEnumQueryParamOptHandler {
-		public NilResult simpleEnumQueryParamOpt(BuilderFactory _factory, SampleEnum queryValue);
+		public NilResult simpleEnumQueryParamOpt(BuilderFactory _factory, Optional<SampleEnum> queryValue);
 	}
 
 	public interface MultiQueryParamHandler {
@@ -317,7 +321,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface MultiQueryParamOptHandler {
-		public String multiQueryParamOpt(BuilderFactory _factory, String valueA, Integer valueB);
+		public String multiQueryParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB);
 	}
 
 	public interface RecordQueryParamHandler {
@@ -325,7 +329,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface RecordQueryParamOptHandler {
-		public NilResult recordQueryParamOpt(BuilderFactory _factory, SimpleRecord.Data queryValue);
+		public NilResult recordQueryParamOpt(BuilderFactory _factory, Optional<SimpleRecord.Data> queryValue);
 	}
 
 }

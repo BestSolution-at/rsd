@@ -43,6 +43,8 @@ function generateDTOBuilderFactoryContent(
 	const DTOBuilderFactory = fqn(`${artifactConfig.rootPackageName}.service.BuilderFactory`);
 	const Base = fqn(`${artifactConfig.rootPackageName}.service.model._Base`);
 	const List = fqn('java.util.List');
+	const JsonObject = fqn('jakarta.json.JsonObject');
+	const JsonArray = fqn('jakarta.json.JsonArray');
 
 	node.append(`@${Singleton}`, NL);
 	node.append(`public class RestBuilderFactory implements ${DTOBuilderFactory} {`, NL);
@@ -53,13 +55,13 @@ function generateDTOBuilderFactoryContent(
 			mBody.append(generateBuilderMethodBody(model, artifactConfig, fqn));
 		});
 		body.append('}', NL, NL);
-		body.append('public <T extends _Base.BaseData> T of(Class<T> type, String data) {', NL);
+		body.append(`public <T extends _Base.BaseData> T of(Class<T> type, ${JsonObject} data) {`, NL);
 		body.indent(mBody => {
 			mBody.append(generateOfMethodBody(model, artifactConfig, fqn));
 		});
 		body.append('}', NL, NL);
 		body.append('@SuppressWarnings("unchecked")', NL);
-		body.append(`public <T extends _Base.BaseData> ${List}<T> listOf(Class<T> type, String data) {`, NL);
+		body.append(`public <T extends _Base.BaseData> ${List}<T> of(Class<T> type, ${JsonArray} data) {`, NL);
 		body.indent(mBody => {
 			mBody.append(generateListOfMethodBody(model, artifactConfig, fqn));
 		});
@@ -130,7 +132,6 @@ function generateOfMethodBody(
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	fqn: (type: string) => string,
 ) {
-	const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.rest.model._JsonUtils`);
 	const mBody = new CompositeGeneratorNode();
 	model.elements
 		.filter(isMResolvedRecordType)
@@ -140,7 +141,7 @@ function generateOfMethodBody(
 			const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${t.name}DataImpl`);
 			mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
 			mBody.indent(block => {
-				block.append(`return type.cast(${_JsonUtils}.parseJsonObject(data, ${ImplType}::of));`, NL);
+				block.append(`return type.cast(${ImplType}.of(data));`, NL);
 			});
 			mBody.append('}', NL);
 			if (t.patchable) {
@@ -148,7 +149,7 @@ function generateOfMethodBody(
 				const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${t.name}PatchImpl`);
 				mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
 				mBody.indent(block => {
-					block.append(`return type.cast(${_JsonUtils}.parseJsonObject(data, ${ImplType}::of));`, NL);
+					block.append(`return type.cast(${ImplType}.of(data));`, NL);
 				});
 				mBody.append('}', NL);
 			}
@@ -158,7 +159,7 @@ function generateOfMethodBody(
 		const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${u.name}DataImpl`);
 		mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
 		mBody.indent(block => {
-			block.append(`return type.cast(${_JsonUtils}.parseJsonObject(data, ${ImplType}::of));`, NL);
+			block.append(`return type.cast(${ImplType}.of(data));`, NL);
 		});
 		mBody.append('}', NL);
 		if (u.resolved.records.find(r => r.patchable)) {
@@ -166,7 +167,7 @@ function generateOfMethodBody(
 			const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${u.name}PatchImpl`);
 			mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
 			mBody.indent(block => {
-				block.append(`return type.cast(${_JsonUtils}.parseJsonObject(data, ${ImplType}::of));`, NL);
+				block.append(`return type.cast(${ImplType}.of(data));`, NL);
 			});
 			mBody.append('}', NL);
 		}
@@ -191,7 +192,7 @@ function generateListOfMethodBody(
 			const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${t.name}DataImpl`);
 			mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
 			mBody.indent(block => {
-				block.append(`return (List<T>) ${_JsonUtils}.parseJsonArray(data, ${ImplType}::of);`, NL);
+				block.append(`return (List<T>) ${_JsonUtils}.mapObjects(data,  ${ImplType}::of);`, NL);
 			});
 			mBody.append('}', NL);
 			if (t.patchable) {
@@ -199,7 +200,7 @@ function generateListOfMethodBody(
 				const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${t.name}PatchImpl`);
 				mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
 				mBody.indent(block => {
-					block.append(`return (List<T>) ${_JsonUtils}.parseJsonArray(data, ${ImplType}::of);`, NL);
+					block.append(`return (List<T>) ${_JsonUtils}.mapObjects(data,  ${ImplType}::of);`, NL);
 				});
 				mBody.append('}', NL);
 			}
@@ -209,7 +210,7 @@ function generateListOfMethodBody(
 		const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${u.name}DataImpl`);
 		mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
 		mBody.indent(block => {
-			block.append(`return (List<T>) ${_JsonUtils}.parseJsonArray(data, ${ImplType}::of);`, NL);
+			block.append(`return (List<T>) ${_JsonUtils}.mapObjects(data,  ${ImplType}::of);`, NL);
 		});
 		mBody.append('}', NL);
 		if (u.resolved.records.find(r => r.patchable)) {
@@ -217,7 +218,7 @@ function generateListOfMethodBody(
 			const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${u.name}PatchImpl`);
 			mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
 			mBody.indent(block => {
-				block.append(`return (List<T>) ${_JsonUtils}.parseJsonArray(data, ${ImplType}::of);`, NL);
+				block.append(`return (List<T>) ${_JsonUtils}.mapObjects(data,  ${ImplType}::of);`, NL);
 			});
 			mBody.append('}', NL);
 		}
