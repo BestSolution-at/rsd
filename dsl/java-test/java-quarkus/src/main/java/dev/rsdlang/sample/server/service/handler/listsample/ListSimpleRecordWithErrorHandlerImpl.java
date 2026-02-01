@@ -14,8 +14,7 @@ public class ListSimpleRecordWithErrorHandlerImpl
 
 	@Override
 	public List<Data> listSimpleRecordWithError(BuilderFactory _factory) throws SampleErrorException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listSimpleRecordWithError'");
+		throw new SampleErrorException("My error");
 	}
 
 }

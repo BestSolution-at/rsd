@@ -46,7 +46,7 @@ function generateRestUtilsContent(
 			classBody.append(toResponse(artifactConfig, packageName, fqn));
 		}
 		if (hasStreamResult(model)) {
-			classBody.append(NL);
+			classBody.append(NL, NL);
 			classBody.append(generateStreamResultHelper(artifactConfig, model, fqn));
 		}
 	});
@@ -114,35 +114,21 @@ function toResponse(
 	fqn(`${artifactConfig.rootPackageName}.service.RSDException`);
 	fqn('jakarta.ws.rs.core.Response');
 
-	const node = new CompositeGeneratorNode();
-	node.append('public static Response toResponse(int status, RSDException e) {', NL);
-	node.indent(methodBody => {
-		methodBody.append('if (e instanceof RSDException.RSDStructuredDataException s) {', NL);
-		methodBody.indent(block => {
-			block.append('return Response.status(status)', NL);
-			block.indent(t =>
-				t.indent(chain => {
-					chain.append('.header("X-RSD-Error-Type", e.type)', NL);
-					chain.append('.header("X-RSD-Error-Message", e.getMessage())', NL);
-					chain.append('.entity(_JsonUtils.toJsonString(s.data, false)).build();', NL);
-				}),
-			);
-		});
-		methodBody.append('}', NL);
-		methodBody.append('return Response.status(status)', NL);
-		methodBody.indent(t =>
-			t.indent(chain => {
-				chain.append('.header("X-RSD-Error-Type", e.type)', NL);
-				chain.append('.header("X-RSD-Error-Message", e.getMessage())', NL);
-				chain.append('.entity(_JsonUtils.encodeAsJsonString(e.getMessage())).build();', NL);
-				chain.append();
-			}),
-		);
-	});
-
-	node.append('}', NL);
-
-	return node;
+	return toNodeTree(`
+public static Response toResponse(int status, RSDException e) {
+	if (e instanceof RSDException.RSDStructuredDataException s) {
+		return Response.status(status)
+				.header("X-RSD-Error-Type", e.type)
+				.header("X-RSD-Error-Message", e.getMessage())
+				.type(MediaType.APPLICATION_JSON_TYPE)
+				.entity(_JsonUtils.toJsonString(s.data, false)).build();
+	}
+	return Response.status(status)
+			.header("X-RSD-Error-Type", e.type)
+			.header("X-RSD-Error-Message", e.getMessage())
+			.type(MediaType.TEXT_PLAIN_TYPE)
+			.entity(e.getMessage()).build();
+}`);
 }
 
 function parseFunctions(artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn: (type: string) => string) {

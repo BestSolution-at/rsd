@@ -12,8 +12,7 @@ public class ListLocalDateHandlerImpl implements ListSampleServiceServiceImpl.Li
 
 	@Override
 	public List<LocalDate> listLocalDate(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLocalDate'");
+		return List.of(LocalDate.parse("2020-01-01"), LocalDate.parse("2021-02-02"), LocalDate.parse("2022-03-03"));
 	}
 
 }

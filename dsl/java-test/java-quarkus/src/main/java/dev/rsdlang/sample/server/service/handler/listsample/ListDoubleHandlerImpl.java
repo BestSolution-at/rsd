@@ -11,8 +11,7 @@ public class ListDoubleHandlerImpl implements ListSampleServiceServiceImpl.ListD
 
 	@Override
 	public List<Double> listDouble(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listDouble'");
+		return List.of(12.3456789, 98.7654321, 54.3210987);
 	}
 
 }

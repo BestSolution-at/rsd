@@ -11,8 +11,7 @@ public class ListIntHandlerImpl implements ListSampleServiceServiceImpl.ListIntH
 
 	@Override
 	public List<Integer> listInt(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listInt'");
+		return List.of(123456, 789012, 345678);
 	}
 
 }

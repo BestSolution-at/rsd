@@ -11,8 +11,7 @@ public class ListShortHandlerImpl implements ListSampleServiceServiceImpl.ListSh
 
 	@Override
 	public List<Short> listShort(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listShort'");
+		return List.of((short) 123, (short) 456, (short) 789);
 	}
 
 }

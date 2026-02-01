@@ -11,8 +11,7 @@ public class ListFloatHandlerImpl implements ListSampleServiceServiceImpl.ListFl
 
 	@Override
 	public List<Float> listFloat(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listFloat'");
+		return List.of(12.34f, 56.78f, 90.12f);
 	}
 
 }

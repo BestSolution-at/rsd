@@ -11,8 +11,7 @@ public class ListStringHandlerImpl implements ListSampleServiceServiceImpl.ListS
 
 	@Override
 	public List<String> listString(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listString'");
+		return List.of("first", "second", "third");
 	}
 
 }

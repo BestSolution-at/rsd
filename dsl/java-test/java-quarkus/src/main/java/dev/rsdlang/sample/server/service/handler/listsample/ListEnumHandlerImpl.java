@@ -12,8 +12,7 @@ public class ListEnumHandlerImpl implements ListSampleServiceServiceImpl.ListEnu
 
 	@Override
 	public List<SampleEnum> listEnum(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listEnum'");
+		return List.of(SampleEnum.A, SampleEnum.B);
 	}
 
 }

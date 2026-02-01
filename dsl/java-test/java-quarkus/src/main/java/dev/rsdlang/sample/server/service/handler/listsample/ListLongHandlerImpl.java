@@ -11,8 +11,7 @@ public class ListLongHandlerImpl implements ListSampleServiceServiceImpl.ListLon
 
 	@Override
 	public List<Long> listLong(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLong'");
+		return List.of(1234567890123L, 2345678901234L, 3456789012345L);
 	}
 
 }

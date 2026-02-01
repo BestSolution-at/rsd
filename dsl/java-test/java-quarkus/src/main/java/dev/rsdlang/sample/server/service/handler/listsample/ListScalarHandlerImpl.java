@@ -12,8 +12,7 @@ public class ListScalarHandlerImpl implements ListSampleServiceServiceImpl.ListS
 
 	@Override
 	public List<ZoneId> listScalar(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listScalar'");
+		return List.of(ZoneId.of("Europe/Vienna"), ZoneId.of("America/New_York"), ZoneId.of("Asia/Tokyo"));
 	}
 
 }

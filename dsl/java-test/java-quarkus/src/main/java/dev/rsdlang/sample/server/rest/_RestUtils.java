@@ -433,12 +433,14 @@ public class _RestUtils {
 			return Response.status(status)
 					.header("X-RSD-Error-Type", e.type)
 					.header("X-RSD-Error-Message", e.getMessage())
+					.type(MediaType.APPLICATION_JSON_TYPE)
 					.entity(_JsonUtils.toJsonString(s.data, false)).build();
 		}
 		return Response.status(status)
 				.header("X-RSD-Error-Type", e.type)
 				.header("X-RSD-Error-Message", e.getMessage())
-				.entity(_JsonUtils.encodeAsJsonString(e.getMessage())).build();
+				.type(MediaType.TEXT_PLAIN_TYPE)
+				.entity(e.getMessage()).build();
 	}
 
 	public static Response.ResponseBuilder toStreamResponse(int status, RSDBlob blob) {

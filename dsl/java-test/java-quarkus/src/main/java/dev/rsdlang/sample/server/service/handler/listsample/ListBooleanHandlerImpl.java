@@ -11,8 +11,7 @@ public class ListBooleanHandlerImpl implements ListSampleServiceServiceImpl.List
 
 	@Override
 	public List<Boolean> listBoolean(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listBoolean'");
+		return List.of(true, false, true);
 	}
 
 }

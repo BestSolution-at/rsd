@@ -12,8 +12,8 @@ public class ListLocalDateTimeHandlerImpl implements ListSampleServiceServiceImp
 
 	@Override
 	public List<LocalDateTime> listLocalDateTime(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLocalDateTime'");
+		return List.of(LocalDateTime.parse("2020-01-01T10:00:00"), LocalDateTime.parse("2021-02-02T11:30:00"),
+				LocalDateTime.parse("2022-03-03T12:45:00"));
 	}
 
 }
