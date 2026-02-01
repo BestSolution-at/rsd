@@ -9,8 +9,7 @@ public class MultiQueryParamHandlerImpl implements QueryParameterTypesServiceImp
 
 	@Override
 	public String multiQueryParam(BuilderFactory _factory, String valueA, int valueB) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'multiQueryParam'");
+		return valueA + "-" + valueB;
 	}
 
 }

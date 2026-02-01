@@ -12,8 +12,7 @@ public class SimpleZonedDateTimeQueryParamHandlerImpl
 
 	@Override
 	public ZonedDateTime simpleZonedDateTimeQueryParam(BuilderFactory _factory, ZonedDateTime queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleZonedDateTimeQueryParam'");
+		return queryValue;
 	}
 
 }

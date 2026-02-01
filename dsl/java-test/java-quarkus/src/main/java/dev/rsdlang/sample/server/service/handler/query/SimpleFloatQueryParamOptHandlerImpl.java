@@ -13,8 +13,7 @@ public class SimpleFloatQueryParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleFloatQueryParamOpt(BuilderFactory _factory, Optional<Float> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleFloatQueryParamOpt'");
+		return queryValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

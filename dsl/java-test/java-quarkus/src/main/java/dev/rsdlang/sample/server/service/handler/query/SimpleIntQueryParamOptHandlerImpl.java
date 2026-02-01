@@ -12,8 +12,7 @@ public class SimpleIntQueryParamOptHandlerImpl implements QueryParameterTypesSer
 
 	@Override
 	public NilResult simpleIntQueryParamOpt(BuilderFactory _factory, OptionalInt queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleIntQueryParamOpt'");
+		return queryValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

@@ -10,8 +10,7 @@ public class SimpleBooleanQueryParamHandlerImpl
 
 	@Override
 	public boolean simpleBooleanQueryParam(BuilderFactory _factory, boolean queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleBooleanQueryParam'");
+		return queryValue;
 	}
 
 }

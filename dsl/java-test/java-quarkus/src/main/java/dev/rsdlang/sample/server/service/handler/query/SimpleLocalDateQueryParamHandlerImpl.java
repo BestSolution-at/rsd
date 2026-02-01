@@ -12,8 +12,7 @@ public class SimpleLocalDateQueryParamHandlerImpl
 
 	@Override
 	public LocalDate simpleLocalDateQueryParam(BuilderFactory _factory, LocalDate queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLocalDateQueryParam'");
+		return queryValue;
 	}
 
 }

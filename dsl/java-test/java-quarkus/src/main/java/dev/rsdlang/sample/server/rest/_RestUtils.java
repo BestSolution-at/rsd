@@ -412,6 +412,22 @@ public class _RestUtils {
 		return _NillableImpl.of(data.stream().map(mapper).toList());
 	}
 
+	public static <T> T parseObject(String value, Function<String, T> parser) {
+		return parseLiteral(value, parser);
+	}
+
+	public static <T> Optional<T> parseOptObject(String value, Function<String, T> parser) {
+		return parseOptLiteral(value, parser);
+	}
+
+	public static <T> Optional<T> parseNullObject(String value, Function<String, T> parser) {
+		return parseNullLiteral(value, parser);
+	}
+
+	public static <T> _Base.Nillable<T> parseNilObject(String value, Function<String, T> parser) {
+		return parseNilLiteral(value, parser);
+	}
+
 	public static Response toResponse(int status, RSDException e) {
 		if (e instanceof RSDException.RSDStructuredDataException s) {
 			return Response.status(status)

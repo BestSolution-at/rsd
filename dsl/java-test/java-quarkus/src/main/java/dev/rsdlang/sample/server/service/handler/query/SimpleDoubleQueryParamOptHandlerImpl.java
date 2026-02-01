@@ -13,8 +13,7 @@ public class SimpleDoubleQueryParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleDoubleQueryParamOpt(BuilderFactory _factory, OptionalDouble queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleDoubleQueryParamOpt'");
+		return queryValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

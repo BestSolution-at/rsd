@@ -13,8 +13,7 @@ public class SimpleStringQueryParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleStringQueryParamOpt(BuilderFactory _factory, Optional<String> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleStringQueryParamOpt'");
+		return queryValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

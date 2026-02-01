@@ -7,7 +7,7 @@ const service = createQueryParameterTypesService({
 });
 
 describe('QueryParameterTypesService', () => {
-	describe('simpleBooleanBodyParam', () => {
+	describe('simpleBooleanQueryParam', () => {
 		test('success - true', async () => {
 			const [result, error] = await service.simpleBooleanQueryParam(true);
 			expect(error).toBeNull();
@@ -18,17 +18,37 @@ describe('QueryParameterTypesService', () => {
 			expect(error).toBeNull();
 			expect(result).toBe(false);
 		});
+	});
+	describe('simpleBooleanQueryParamOpt', () => {
+		test('success - true', async () => {
+			const [result, error] = await service.simpleBooleanQueryParamOpt(true);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
+		test('success - false', async () => {
+			const [result, error] = await service.simpleBooleanQueryParamOpt(false);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 		test('success - optional', async () => {
 			const [result, error] = await service.simpleBooleanQueryParamOpt();
 			expect(error).toBeNull();
 			expect(result).toBe('UNDEFINED');
 		});
 	});
+
 	describe('simpleShortQueryParam', () => {
 		test('success - 12345', async () => {
 			const [result, error] = await service.simpleShortQueryParam(12345);
 			expect(error).toBeNull();
 			expect(result).toBe(12345);
+		});
+	});
+	describe('simpleShortQueryParamOpt', () => {
+		test('success - 12345', async () => {
+			const [result, error] = await service.simpleShortQueryParamOpt(12345);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
 		});
 		test('success - optional', async () => {
 			const [result, error] = await service.simpleShortQueryParamOpt();
@@ -42,6 +62,13 @@ describe('QueryParameterTypesService', () => {
 			expect(error).toBeNull();
 			expect(result).toBe(123456789);
 		});
+	});
+	describe('simpleIntQueryParamOpt', () => {
+		test('success - 123456789', async () => {
+			const [result, error] = await service.simpleIntQueryParamOpt(123456789);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
 		test('success - optional', async () => {
 			const [result, error] = await service.simpleIntQueryParamOpt();
 			expect(error).toBeNull();
@@ -53,6 +80,13 @@ describe('QueryParameterTypesService', () => {
 			const [result, error] = await service.simpleLongQueryParam(1234567890123);
 			expect(error).toBeNull();
 			expect(result).toBe(1234567890123);
+		});
+	});
+	describe('simpleLongQueryParamOpt', () => {
+		test('success - 1234567890123', async () => {
+			const [result, error] = await service.simpleLongQueryParamOpt(1234567890123);
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
 		});
 		test('success - optional', async () => {
 			const [result, error] = await service.simpleLongQueryParamOpt();
@@ -158,10 +192,22 @@ describe('QueryParameterTypesService', () => {
 		});
 	});
 	describe('multiQueryParam', () => {
-		test('success - ["value1","value2","value3"]', async () => {
+		test('success - ["Hello","1"]', async () => {
 			const [result, error] = await service.multiQueryParam('Hello', 1);
 			expect(error).toBeNull();
 			expect(result).toEqual('Hello-1');
+		});
+	});
+	describe('multiQueryParamOpt', () => {
+		test('success - ["Hello","1"]', async () => {
+			const [result, error] = await service.multiQueryParamOpt('Hello', 1);
+			expect(error).toBeNull();
+			expect(result).toEqual('Hello-1');
+		});
+		test('success - ["hello"]', async () => {
+			const [result, error] = await service.multiQueryParamOpt('Hello');
+			expect(error).toBeNull();
+			expect(result).toEqual('Hello-undefined');
 		});
 		test('success - optional', async () => {
 			const [result, error] = await service.multiQueryParamOpt();
@@ -170,10 +216,17 @@ describe('QueryParameterTypesService', () => {
 		});
 	});
 	describe('recordQueryParam', () => {
-		test('success - {"key1":"value1","key2":"value2"}', async () => {
+		test("success - { key: '1', version: '1', value: 'x' }", async () => {
 			const [result, error] = await service.recordQueryParam({ key: '1', version: '1', value: 'x' });
 			expect(error).toBeNull();
 			expect(result).toEqual({ key: '1', version: '1', value: 'x' });
+		});
+	});
+	describe('recordQueryParamOpt', () => {
+		test("success - { key: '1', version: '1', value: 'x' }", async () => {
+			const [result, error] = await service.recordQueryParamOpt({ key: '1', version: '1', value: 'x' });
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
 		});
 		test('success - optional', async () => {
 			const [result, error] = await service.recordQueryParamOpt();

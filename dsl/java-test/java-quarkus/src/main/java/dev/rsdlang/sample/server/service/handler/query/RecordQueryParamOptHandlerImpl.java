@@ -13,8 +13,7 @@ public class RecordQueryParamOptHandlerImpl implements QueryParameterTypesServic
 
 	@Override
 	public NilResult recordQueryParamOpt(BuilderFactory _factory, Optional<Data> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'recordQueryParamOpt'");
+		return queryValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

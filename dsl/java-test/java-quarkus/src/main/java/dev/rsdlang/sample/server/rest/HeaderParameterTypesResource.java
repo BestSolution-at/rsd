@@ -495,7 +495,7 @@ public class HeaderParameterTypesResource {
 	@GET
 	@Path("recordHeaderParam")
 	public Response recordHeaderParam(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _JsonUtils.parseObject(_headerValue, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var headerValue = _RestUtils.parseObject(_headerValue, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.recordHeaderParam(builderFactory, headerValue);
 		return responseBuilder.recordHeaderParam(result, headerValue).build();
 	}
@@ -503,7 +503,7 @@ public class HeaderParameterTypesResource {
 	@GET
 	@Path("recordHeaderParamOpt")
 	public Response recordHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _JsonUtils.parseOptObject(_headerValue, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var headerValue = _RestUtils.parseOptObject(_headerValue, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.recordHeaderParamOpt(builderFactory, headerValue);
 		return responseBuilder.recordHeaderParamOpt(result, headerValue).build();
 	}
@@ -511,7 +511,7 @@ public class HeaderParameterTypesResource {
 	@GET
 	@Path("recordHeaderParamNil")
 	public Response recordHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _JsonUtils.parseNullObject(_headerValue, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var headerValue = _RestUtils.parseNullObject(_headerValue, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.recordHeaderParamNil(builderFactory, headerValue);
 		return responseBuilder.recordHeaderParamNil(result, headerValue).build();
 	}
@@ -519,7 +519,7 @@ public class HeaderParameterTypesResource {
 	@GET
 	@Path("recordHeaderParamOptNil")
 	public Response recordHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _JsonUtils.parseNilObject(_headerValue, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var headerValue = _RestUtils.parseNilObject(_headerValue, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.recordHeaderParamOptNil(builderFactory, headerValue);
 		return responseBuilder.recordHeaderParamOptNil(result, headerValue).build();
 	}

@@ -11,8 +11,7 @@ public class SimpleScalarQueryParamHandlerImpl implements QueryParameterTypesSer
 
 	@Override
 	public ZoneId simpleScalarQueryParam(BuilderFactory _factory, ZoneId queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleScalarQueryParam'");
+		return queryValue;
 	}
 
 }

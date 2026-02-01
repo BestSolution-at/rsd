@@ -9,8 +9,7 @@ public class SimpleShortQueryParamHandlerImpl implements QueryParameterTypesServ
 
 	@Override
 	public short simpleShortQueryParam(BuilderFactory _factory, short queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleShortQueryParam'");
+		return queryValue;
 	}
 
 }

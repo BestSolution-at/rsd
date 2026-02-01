@@ -14,8 +14,7 @@ public class SimpleLocalDateQueryParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleLocalDateQueryParamOpt(BuilderFactory _factory, Optional<LocalDate> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLocalDateQueryParamOpt'");
+		return queryValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

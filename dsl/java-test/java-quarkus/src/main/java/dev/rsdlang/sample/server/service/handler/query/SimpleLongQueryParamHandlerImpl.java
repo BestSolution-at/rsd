@@ -9,8 +9,7 @@ public class SimpleLongQueryParamHandlerImpl implements QueryParameterTypesServi
 
 	@Override
 	public long simpleLongQueryParam(BuilderFactory _factory, long queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLongQueryParam'");
+		return queryValue;
 	}
 
 }

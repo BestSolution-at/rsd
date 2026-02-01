@@ -187,7 +187,7 @@ public class BinaryTypesResource {
 	public Response uploadMixed(@RestForm("text") String _text, @RestForm("number") String _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<String> _numberList, @RestForm("recList") List<String> _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
 		var text = _RestUtils.parseString(_text);
 		var number = _RestUtils.parseInt(_number);
-		var rec = _JsonUtils.parseObject(_rec, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var rec = _RestUtils.parseObject(_rec, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var textList = _RestUtils.mapStrings(_textList);
 		var numberList = _RestUtils.mapInts(_numberList);
 		var recList = _RestUtils.mapObjects(_recList, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
@@ -202,7 +202,7 @@ public class BinaryTypesResource {
 	public Response uploadMixedOpt(@RestForm("text") String _text, @RestForm("number") String _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<String> _numberList, @RestForm("recList") List<String> _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
 		var text = _RestUtils.parseOptString(_text);
 		var number = _RestUtils.parseOptInt(_number);
-		var rec = _JsonUtils.parseOptObject(_rec, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var rec = _RestUtils.parseOptObject(_rec, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var textList = _RestUtils.mapOptStrings(_textList);
 		var numberList = _RestUtils.mapOptInts(_numberList);
 		var recList = _RestUtils.mapOptObjects(_recList, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
@@ -217,7 +217,7 @@ public class BinaryTypesResource {
 	public Response uploadMixedNil(@RestForm("text") String _text, @RestForm("number") String _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<String> _numberList, @RestForm("recList") List<String> _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
 		var text = _RestUtils.parseNullString(_text);
 		var number = _RestUtils.parseNullInt(_number);
-		var rec = _JsonUtils.parseNullObject(_rec, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var rec = _RestUtils.parseNullObject(_rec, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var textList = _RestUtils.mapNullStrings(_textList);
 		var numberList = _RestUtils.mapNullInts(_numberList);
 		var recList = _RestUtils.mapNullObjects(_recList, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
@@ -232,7 +232,7 @@ public class BinaryTypesResource {
 	public Response uploadMixedOptNil(@RestForm("text") String _text, @RestForm("number") String _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<String> _numberList, @RestForm("recList") List<String> _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
 		var text = _RestUtils.parseNilString(_text);
 		var number = _RestUtils.parseNilInt(_number);
-		var rec = _JsonUtils.parseNilObject(_rec, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var rec = _RestUtils.parseNilObject(_rec, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var textList = _RestUtils.mapNilStrings(_textList);
 		var numberList = _RestUtils.mapNilInts(_numberList);
 		var recList = _RestUtils.mapNilObjects(_recList, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));

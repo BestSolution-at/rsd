@@ -13,8 +13,7 @@ public class SimpleLongQueryParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleLongQueryParamOpt(BuilderFactory _factory, OptionalLong queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLongQueryParamOpt'");
+		return queryValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

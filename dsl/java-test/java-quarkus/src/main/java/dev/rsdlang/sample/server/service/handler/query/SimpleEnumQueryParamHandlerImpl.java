@@ -10,8 +10,7 @@ public class SimpleEnumQueryParamHandlerImpl implements QueryParameterTypesServi
 
 	@Override
 	public SampleEnum simpleEnumQueryParam(BuilderFactory _factory, SampleEnum queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleEnumQueryParam'");
+		return queryValue;
 	}
 
 }

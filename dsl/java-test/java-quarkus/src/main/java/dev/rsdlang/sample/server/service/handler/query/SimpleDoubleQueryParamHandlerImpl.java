@@ -9,8 +9,7 @@ public class SimpleDoubleQueryParamHandlerImpl implements QueryParameterTypesSer
 
 	@Override
 	public double simpleDoubleQueryParam(BuilderFactory _factory, double queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleDoubleQueryParam'");
+		return queryValue;
 	}
 
 }

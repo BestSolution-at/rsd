@@ -9,8 +9,7 @@ public class SimpleIntQueryParamHandlerImpl implements QueryParameterTypesServic
 
 	@Override
 	public int simpleIntQueryParam(BuilderFactory _factory, int queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleIntQueryParam'");
+		return queryValue;
 	}
 
 }

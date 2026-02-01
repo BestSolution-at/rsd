@@ -9,8 +9,7 @@ public class SimpleStringQueryParamHandlerImpl implements QueryParameterTypesSer
 
 	@Override
 	public String simpleStringQueryParam(BuilderFactory _factory, String queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleStringQueryParam'");
+		return queryValue;
 	}
 
 }

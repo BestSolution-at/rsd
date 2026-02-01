@@ -9,8 +9,7 @@ public class SimpleFloatQueryParamHandlerImpl implements QueryParameterTypesServ
 
 	@Override
 	public float simpleFloatQueryParam(BuilderFactory _factory, float queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleFloatQueryParam'");
+		return queryValue;
 	}
 
 }

@@ -517,26 +517,50 @@ function recordUnionParameter(
 			}
 		}
 	} else {
-		if (p.optional && p.nullable) {
-			node.append(
-				`var ${p.name} = ${_JsonUtils}.parseNilObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
-				NL,
-			);
-		} else if (p.optional) {
-			node.append(
-				`var ${p.name} = ${_JsonUtils}.parseOptObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
-				NL,
-			);
-		} else if (p.nullable) {
-			node.append(
-				`var ${p.name} = ${_JsonUtils}.parseNullObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
-				NL,
-			);
+		if (asJSON) {
+			if (p.optional && p.nullable) {
+				node.append(
+					`var ${p.name} = ${_JsonUtils}.parseNilObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+					NL,
+				);
+			} else if (p.optional) {
+				node.append(
+					`var ${p.name} = ${_JsonUtils}.parseOptObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+					NL,
+				);
+			} else if (p.nullable) {
+				node.append(
+					`var ${p.name} = ${_JsonUtils}.parseNullObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+					NL,
+				);
+			} else {
+				node.append(
+					`var ${p.name} = ${_JsonUtils}.parseObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+					NL,
+				);
+			}
 		} else {
-			node.append(
-				`var ${p.name} = ${_JsonUtils}.parseObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
-				NL,
-			);
+			if (p.optional && p.nullable) {
+				node.append(
+					`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(${type}.class, $j)));`,
+					NL,
+				);
+			} else if (p.optional) {
+				node.append(
+					`var ${p.name} = _RestUtils.parseOptObject(_${p.name}, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(${type}.class, $j)));`,
+					NL,
+				);
+			} else if (p.nullable) {
+				node.append(
+					`var ${p.name} = _RestUtils.parseNullObject(_${p.name}, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(${type}.class, $j)));`,
+					NL,
+				);
+			} else {
+				node.append(
+					`var ${p.name} = _RestUtils.parseObject(_${p.name}, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(${type}.class, $j)));`,
+					NL,
+				);
+			}
 		}
 	}
 	return node;

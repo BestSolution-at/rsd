@@ -13,8 +13,7 @@ public class SimpleBooleanQueryParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleBooleanQueryParamOpt(BuilderFactory _factory, Optional<Boolean> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleBooleanQueryParamOpt'");
+		return queryValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

@@ -12,8 +12,9 @@ public class MultiQueryParamOptHandlerImpl implements QueryParameterTypesService
 
 	@Override
 	public String multiQueryParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'multiQueryParamOpt'");
+		var valA = valueA.orElse("undefined");
+		var valB = valueB.isPresent() ? Integer.toString(valueB.getAsInt()) : "undefined";
+		return valA + "-" + valB;
 	}
 
 }
