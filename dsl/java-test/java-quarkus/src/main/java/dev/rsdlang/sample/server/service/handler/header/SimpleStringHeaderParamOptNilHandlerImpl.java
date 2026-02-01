@@ -12,8 +12,13 @@ public class SimpleStringHeaderParamOptNilHandlerImpl
 
 	@Override
 	public NilResult simpleStringHeaderParamOptNil(BuilderFactory _factory, Nillable<String> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleStringHeaderParamOptNil'");
+		if (headerValue.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else if (headerValue.isNull()) {
+			return NilResult.NULL;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

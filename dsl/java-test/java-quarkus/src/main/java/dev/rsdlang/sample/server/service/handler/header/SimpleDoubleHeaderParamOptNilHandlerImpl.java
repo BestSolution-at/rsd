@@ -12,8 +12,13 @@ public class SimpleDoubleHeaderParamOptNilHandlerImpl
 
 	@Override
 	public NilResult simpleDoubleHeaderParamOptNil(BuilderFactory _factory, Nillable<Double> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleDoubleHeaderParamOptNil'");
+		if (headerValue.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else if (headerValue.isNull()) {
+			return NilResult.NULL;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

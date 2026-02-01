@@ -13,8 +13,7 @@ public class RecordHeaderParamOptHandlerImpl implements HeaderParameterTypesServ
 
 	@Override
 	public NilResult recordHeaderParamOpt(BuilderFactory _factory, Optional<Data> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'recordHeaderParamOpt'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

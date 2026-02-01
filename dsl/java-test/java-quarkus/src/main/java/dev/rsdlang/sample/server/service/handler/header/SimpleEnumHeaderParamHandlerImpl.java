@@ -10,8 +10,7 @@ public class SimpleEnumHeaderParamHandlerImpl implements HeaderParameterTypesSer
 
 	@Override
 	public SampleEnum simpleEnumHeaderParam(BuilderFactory _factory, SampleEnum headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleEnumHeaderParam'");
+		return headerValue;
 	}
 
 }

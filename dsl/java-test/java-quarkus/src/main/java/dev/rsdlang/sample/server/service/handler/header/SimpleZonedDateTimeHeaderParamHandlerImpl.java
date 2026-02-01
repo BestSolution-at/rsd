@@ -12,8 +12,7 @@ public class SimpleZonedDateTimeHeaderParamHandlerImpl
 
 	@Override
 	public ZonedDateTime simpleZonedDateTimeHeaderParam(BuilderFactory _factory, ZonedDateTime headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleZonedDateTimeHeaderParam'");
+		return headerValue;
 	}
 
 }

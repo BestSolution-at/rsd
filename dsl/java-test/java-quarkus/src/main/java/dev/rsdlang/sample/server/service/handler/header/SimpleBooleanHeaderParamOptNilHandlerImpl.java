@@ -12,8 +12,13 @@ public class SimpleBooleanHeaderParamOptNilHandlerImpl
 
 	@Override
 	public NilResult simpleBooleanHeaderParamOptNil(BuilderFactory _factory, Nillable<Boolean> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleBooleanHeaderParamOptNil'");
+		if (headerValue.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else if (headerValue.isNull()) {
+			return NilResult.NULL;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

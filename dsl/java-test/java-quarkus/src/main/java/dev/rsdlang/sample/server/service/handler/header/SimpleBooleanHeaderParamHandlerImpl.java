@@ -10,8 +10,7 @@ public class SimpleBooleanHeaderParamHandlerImpl
 
 	@Override
 	public boolean simpleBooleanHeaderParam(BuilderFactory _factory, boolean headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleBooleanHeaderParam'");
+		return headerValue;
 	}
 
 }

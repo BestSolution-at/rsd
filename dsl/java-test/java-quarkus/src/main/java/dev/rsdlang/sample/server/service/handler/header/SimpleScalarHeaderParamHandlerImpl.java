@@ -12,8 +12,7 @@ public class SimpleScalarHeaderParamHandlerImpl
 
 	@Override
 	public ZoneId simpleScalarHeaderParam(BuilderFactory _factory, ZoneId headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleScalarHeaderParam'");
+		return headerValue;
 	}
 
 }

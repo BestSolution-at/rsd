@@ -14,8 +14,7 @@ public class SimpleZonedDateTimeHeaderParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleZonedDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<ZonedDateTime> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleZonedDateTimeHeaderParamOpt'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

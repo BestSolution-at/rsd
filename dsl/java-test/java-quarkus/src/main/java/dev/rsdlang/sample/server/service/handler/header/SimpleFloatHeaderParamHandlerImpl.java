@@ -10,8 +10,7 @@ public class SimpleFloatHeaderParamHandlerImpl
 
 	@Override
 	public float simpleFloatHeaderParam(BuilderFactory _factory, float headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleFloatHeaderParam'");
+		return headerValue;
 	}
 
 }

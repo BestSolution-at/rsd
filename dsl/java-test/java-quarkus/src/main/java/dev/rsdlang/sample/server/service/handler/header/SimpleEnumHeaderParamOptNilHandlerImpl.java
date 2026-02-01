@@ -13,8 +13,13 @@ public class SimpleEnumHeaderParamOptNilHandlerImpl
 
 	@Override
 	public NilResult simpleEnumHeaderParamOptNil(BuilderFactory _factory, Nillable<SampleEnum> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleEnumHeaderParamOptNil'");
+		if (headerValue.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else if (headerValue.isNull()) {
+			return NilResult.NULL;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

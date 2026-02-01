@@ -10,8 +10,7 @@ public class SimpleShortHeaderParamHandlerImpl
 
 	@Override
 	public short simpleShortHeaderParam(BuilderFactory _factory, short headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleShortHeaderParam'");
+		return headerValue;
 	}
 
 }

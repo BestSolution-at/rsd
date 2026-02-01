@@ -10,8 +10,7 @@ public class SimpleDoubleHeaderParamHandlerImpl
 
 	@Override
 	public double simpleDoubleHeaderParam(BuilderFactory _factory, double headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleDoubleHeaderParam'");
+		return headerValue;
 	}
 
 }

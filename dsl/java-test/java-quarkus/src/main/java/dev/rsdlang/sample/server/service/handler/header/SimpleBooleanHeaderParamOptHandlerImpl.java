@@ -13,8 +13,7 @@ public class SimpleBooleanHeaderParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleBooleanHeaderParamOpt(BuilderFactory _factory, Optional<Boolean> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleBooleanHeaderParamOpt'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

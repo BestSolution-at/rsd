@@ -13,8 +13,7 @@ public class SimpleShortHeaderParamNilHandlerImpl
 
 	@Override
 	public NilResult simpleShortHeaderParamNil(BuilderFactory _factory, Optional<Short> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleShortHeaderParamNil'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

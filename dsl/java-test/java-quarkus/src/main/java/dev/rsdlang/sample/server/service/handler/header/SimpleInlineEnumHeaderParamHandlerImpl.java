@@ -11,10 +11,9 @@ public class SimpleInlineEnumHeaderParamHandlerImpl
 		implements HeaderParameterTypesServiceImpl.SimpleInlineEnumHeaderParamHandler {
 
 	@Override
-	public SimpleInlineEnumHeaderParam_Result$ simpleInlineEnumHeaderParam(BuilderFactory arg0,
-			SimpleInlineEnumHeaderParam_HeaderValue_Param$ arg1) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleInlineEnumHeaderParam'");
+	public SimpleInlineEnumHeaderParam_Result$ simpleInlineEnumHeaderParam(BuilderFactory _factory,
+			SimpleInlineEnumHeaderParam_HeaderValue_Param$ headerValue) {
+		return SimpleInlineEnumHeaderParam_Result$.valueOf(headerValue.name());
 	}
 
 }

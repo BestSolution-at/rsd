@@ -15,8 +15,9 @@ public class MultiHeaderParamOptNilHandlerImpl
 	@Override
 	public List<NilResult> multiHeaderParamOptNil(BuilderFactory _factory, Nillable<String> valueA,
 			Nillable<Integer> valueB) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'multiHeaderParamOptNil'");
+		var resultA = valueA.isNull() ? NilResult.NULL : (valueA.isUndefined() ? NilResult.UNDEFINED : NilResult.DEFINED);
+		var resultB = valueB.isNull() ? NilResult.NULL : (valueB.isUndefined() ? NilResult.UNDEFINED : NilResult.DEFINED);
+		return List.of(resultA, resultB);
 	}
 
 }

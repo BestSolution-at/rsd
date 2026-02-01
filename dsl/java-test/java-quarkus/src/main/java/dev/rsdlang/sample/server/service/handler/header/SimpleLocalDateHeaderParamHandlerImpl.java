@@ -12,8 +12,7 @@ public class SimpleLocalDateHeaderParamHandlerImpl
 
 	@Override
 	public LocalDate simpleLocalDateHeaderParam(BuilderFactory _factory, LocalDate headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLocalDateHeaderParam'");
+		return headerValue;
 	}
 
 }

@@ -13,8 +13,7 @@ public class SimpleFloatHeaderParamNilHandlerImpl
 
 	@Override
 	public NilResult simpleFloatHeaderParamNil(BuilderFactory _factory, Optional<Float> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleFloatHeaderParamNil'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

@@ -14,8 +14,13 @@ public class SimpleLocalDateTimeHeaderParamOptNilHandlerImpl
 
 	@Override
 	public NilResult simpleLocalDateTimeHeaderParamOptNil(BuilderFactory _factory, Nillable<LocalDateTime> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLocalDateTimeHeaderParamOptNil'");
+		if (headerValue.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else if (headerValue.isNull()) {
+			return NilResult.NULL;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

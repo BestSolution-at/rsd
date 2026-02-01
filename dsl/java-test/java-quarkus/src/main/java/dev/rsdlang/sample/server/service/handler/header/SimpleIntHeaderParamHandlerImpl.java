@@ -9,8 +9,7 @@ public class SimpleIntHeaderParamHandlerImpl implements HeaderParameterTypesServ
 
 	@Override
 	public int simpleIntHeaderParam(BuilderFactory _factory, int headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleIntHeaderParam'");
+		return headerValue;
 	}
 
 }

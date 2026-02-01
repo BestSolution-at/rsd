@@ -13,8 +13,7 @@ public class RecordHeaderParamNilHandlerImpl implements HeaderParameterTypesServ
 
 	@Override
 	public NilResult recordHeaderParamNil(BuilderFactory _factory, Optional<Data> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'recordHeaderParamNil'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

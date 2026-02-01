@@ -12,8 +12,13 @@ public class SimpleLongHeaderParamOptNilHandlerImpl
 
 	@Override
 	public NilResult simpleLongHeaderParamOptNil(BuilderFactory _factory, Nillable<Long> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLongHeaderParamOptNil'");
+		if (headerValue.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else if (headerValue.isNull()) {
+			return NilResult.NULL;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

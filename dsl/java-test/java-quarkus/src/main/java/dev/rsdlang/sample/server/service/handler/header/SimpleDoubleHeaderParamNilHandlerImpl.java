@@ -13,8 +13,7 @@ public class SimpleDoubleHeaderParamNilHandlerImpl
 
 	@Override
 	public NilResult simpleDoubleHeaderParamNil(BuilderFactory _factory, OptionalDouble headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleDoubleHeaderParamNil'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

@@ -14,8 +14,9 @@ public class MultiHeaderParamNilHandlerImpl implements HeaderParameterTypesServi
 
 	@Override
 	public List<NilResult> multiHeaderParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'multiHeaderParamNil'");
+		var resultA = valueA.isPresent() ? NilResult.DEFINED : NilResult.NULL;
+		var resultB = valueB.isPresent() ? NilResult.DEFINED : NilResult.NULL;
+		return List.of(resultA, resultB);
 	}
 
 }

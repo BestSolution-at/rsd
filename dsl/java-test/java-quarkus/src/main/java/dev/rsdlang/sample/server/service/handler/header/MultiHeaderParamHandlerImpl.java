@@ -9,8 +9,7 @@ public class MultiHeaderParamHandlerImpl implements HeaderParameterTypesServiceI
 
 	@Override
 	public String multiHeaderParam(BuilderFactory _factory, String valueA, int valueB) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'multiHeaderParam'");
+		return valueA + "-" + valueB;
 	}
 
 }

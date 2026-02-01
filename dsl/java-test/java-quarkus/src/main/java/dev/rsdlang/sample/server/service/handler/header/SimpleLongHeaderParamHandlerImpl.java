@@ -9,8 +9,7 @@ public class SimpleLongHeaderParamHandlerImpl implements HeaderParameterTypesSer
 
 	@Override
 	public long simpleLongHeaderParam(BuilderFactory _factory, long headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLongHeaderParam'");
+		return headerValue;
 	}
 
 }

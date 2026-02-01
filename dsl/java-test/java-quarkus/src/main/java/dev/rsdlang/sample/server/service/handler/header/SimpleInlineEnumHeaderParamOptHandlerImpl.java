@@ -15,8 +15,7 @@ public class SimpleInlineEnumHeaderParamOptHandlerImpl
 	@Override
 	public NilResult simpleInlineEnumHeaderParamOpt(BuilderFactory _factory,
 			Optional<SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleInlineEnumHeaderParamOpt'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

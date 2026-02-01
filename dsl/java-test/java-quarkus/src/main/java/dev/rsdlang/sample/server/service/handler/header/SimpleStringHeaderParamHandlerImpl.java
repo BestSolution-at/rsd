@@ -10,8 +10,7 @@ public class SimpleStringHeaderParamHandlerImpl
 
 	@Override
 	public String simpleStringHeaderParam(BuilderFactory _factory, String headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleStringHeaderParam'");
+		return headerValue;
 	}
 
 }

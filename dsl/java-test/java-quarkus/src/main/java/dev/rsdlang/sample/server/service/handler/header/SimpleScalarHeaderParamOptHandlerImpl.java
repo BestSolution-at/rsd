@@ -14,8 +14,7 @@ public class SimpleScalarHeaderParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleScalarHeaderParamOpt(BuilderFactory _factory, Optional<ZoneId> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleScalarHeaderParamOpt'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

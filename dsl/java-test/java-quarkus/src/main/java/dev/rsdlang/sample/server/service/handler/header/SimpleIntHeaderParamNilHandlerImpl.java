@@ -13,8 +13,7 @@ public class SimpleIntHeaderParamNilHandlerImpl
 
 	@Override
 	public NilResult simpleIntHeaderParamNil(BuilderFactory _factory, OptionalInt headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleIntHeaderParamNil'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

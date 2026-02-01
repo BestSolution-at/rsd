@@ -13,8 +13,7 @@ public class SimpleLongHeaderParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleLongHeaderParamOpt(BuilderFactory _factory, OptionalLong headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLongHeaderParamOpt'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

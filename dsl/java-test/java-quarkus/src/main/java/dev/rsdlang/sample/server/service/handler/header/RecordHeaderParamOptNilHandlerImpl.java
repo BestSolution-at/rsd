@@ -13,8 +13,12 @@ public class RecordHeaderParamOptNilHandlerImpl
 
 	@Override
 	public NilResult recordHeaderParamOptNil(BuilderFactory _factory, Nillable<Data> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'recordHeaderParamOptNil'");
+		if (headerValue.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else if (headerValue.isNull()) {
+			return NilResult.NULL;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
-
 }
