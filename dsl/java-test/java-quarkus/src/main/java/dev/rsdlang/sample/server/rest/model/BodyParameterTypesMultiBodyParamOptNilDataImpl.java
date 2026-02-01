@@ -3,6 +3,7 @@ package dev.rsdlang.sample.server.rest.model;
 
 import jakarta.json.JsonObject;
 
+import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
 
 public class BodyParameterTypesMultiBodyParamOptNilDataImpl extends _BaseDataImpl {
@@ -10,16 +11,16 @@ public class BodyParameterTypesMultiBodyParamOptNilDataImpl extends _BaseDataImp
 		super(data);
 	}
 
-	public String valueA() {
-		return _JsonUtils.mapString(data, "valueA", null);
+	public _Base.Nillable<String> valueA() {
+		return _JsonUtils.mapNilString(data, "valueA");
 	}
 
-	public Integer valueB() {
-		return _JsonUtils.mapInt(data, "valueB", 0);
+	public _Base.Nillable<Integer> valueB() {
+		return _JsonUtils.mapNilInt(data, "valueB");
 	}
 
-	public SimpleRecord.Data valueC() {
-		return _JsonUtils.mapObject(data, "valueC", SimpleRecordDataImpl::of, null);
+	public _Base.Nillable<SimpleRecord.Data> valueC() {
+		return _JsonUtils.mapNilObject(data, "valueC", SimpleRecordDataImpl::of);
 	}
 
 }

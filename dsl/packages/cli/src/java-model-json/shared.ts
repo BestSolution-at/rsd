@@ -15,7 +15,7 @@ import {
 } from '../model.js';
 import { computeAPIType, primitiveToObject } from '../java-gen-utils.js';
 import { BuiltinType } from 'remote-service-description-language';
-import { toFirstUpper, toNode, toNodeTree } from '../util.js';
+import { toCamelCaseIdentifier, toFirstUpper, toNode, toNodeTree } from '../util.js';
 
 export function generatePropertyNG(
 	owner: MResolvedRecordType,
@@ -142,6 +142,9 @@ export function builtinSimpleJSONAccessNG(property: { type: MBuiltinType; name: 
 	}
 }
 
+/**
+ * @deprecated Use `builtinSimpleJSONAccessNG` instead
+ */
 export function builtinSimpleJSONArrayAccess(property: { type: MBuiltinType; name: string }): string {
 	switch (property.type) {
 		case 'boolean':
@@ -167,6 +170,22 @@ export function builtinSimpleJSONArrayAccess(property: { type: MBuiltinType; nam
 	}
 }
 
+export function builtinSimpleJSONArrayAccessNG(property: {
+	type: MBuiltinType;
+	name: string;
+	optional: boolean;
+	nullable: boolean;
+}): string {
+	if (property.optional && property.nullable) {
+		return `_JsonUtils.mapNil${toFirstUpper(toCamelCaseIdentifier(property.type))}s(data, "${property.name}")`;
+	} else if (property.optional) {
+		return `_JsonUtils.mapOpt${toFirstUpper(toCamelCaseIdentifier(property.type))}s(data, "${property.name}")`;
+	} else if (property.nullable) {
+		return `_JsonUtils.mapNull${toFirstUpper(toCamelCaseIdentifier(property.type))}s(data, "${property.name}")`;
+	}
+	return `_JsonUtils.map${toFirstUpper(toCamelCaseIdentifier(property.type))}s(data, "${property.name}")`;
+}
+
 export function builtinOptionalJSONAccessNG(property: { type: MBuiltinType; name: string }): string {
 	switch (property.type) {
 		case 'boolean':
@@ -190,6 +209,23 @@ export function builtinOptionalJSONAccessNG(property: { type: MBuiltinType; name
 		case 'zoned-date-time':
 			return `_JsonUtils.mapZonedDateTime(data, "${property.name}", null)`;
 	}
+}
+
+export function builtinJSONAccess(property: {
+	type: MBuiltinType;
+	name: string;
+	optional: boolean;
+	nullable: boolean;
+}): string {
+	if (property.optional && property.nullable) {
+		return `_JsonUtils.mapNil${toFirstUpper(toCamelCaseIdentifier(property.type))}(data, "${property.name}")`;
+	} else if (property.optional) {
+		return `_JsonUtils.mapOpt${toFirstUpper(toCamelCaseIdentifier(property.type))}(data, "${property.name}")`;
+	} else if (property.nullable) {
+		return `_JsonUtils.mapNull${toFirstUpper(toCamelCaseIdentifier(property.type))}(data, "${property.name}")`;
+	}
+
+	return `_JsonUtils.map${toFirstUpper(toCamelCaseIdentifier(property.type))}(data, "${property.name}")`;
 }
 
 export function builtinBuilderArrayJSONAccess(

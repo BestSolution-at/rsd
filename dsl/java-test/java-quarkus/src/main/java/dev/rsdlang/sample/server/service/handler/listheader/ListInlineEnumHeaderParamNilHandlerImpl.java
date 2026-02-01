@@ -1,6 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.listheader;
 
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.ListHeaderParameterTypesService.ListInlineEnumHeaderParamNil_HeaderValue_Param$;
@@ -14,7 +15,7 @@ public class ListInlineEnumHeaderParamNilHandlerImpl
 
 	@Override
 	public NilResult listInlineEnumHeaderParamNil(BuilderFactory _factory,
-			List<ListInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue) {
+			Optional<List<ListInlineEnumHeaderParamNil_HeaderValue_Param$>> headerValue) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listInlineEnumHeaderParamNil'");
 	}

@@ -1,6 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.header;
 
 import java.time.ZoneId;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.HeaderParameterTypesServiceImpl;
@@ -12,7 +13,7 @@ public class SimpleScalarHeaderParamNilHandlerImpl
 		implements HeaderParameterTypesServiceImpl.SimpleScalarHeaderParamNilHandler {
 
 	@Override
-	public NilResult simpleScalarHeaderParamNil(BuilderFactory _factory, ZoneId headerValue) {
+	public NilResult simpleScalarHeaderParamNil(BuilderFactory _factory, Optional<ZoneId> headerValue) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'simpleScalarHeaderParamNil'");
 	}

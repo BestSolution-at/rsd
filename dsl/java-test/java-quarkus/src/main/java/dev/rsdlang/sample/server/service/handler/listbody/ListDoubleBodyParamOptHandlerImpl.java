@@ -1,6 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.listbody;
 
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListBodyParameterTypesServiceImpl;
@@ -12,7 +13,7 @@ public class ListDoubleBodyParamOptHandlerImpl
 		implements ListBodyParameterTypesServiceImpl.ListDoubleBodyParamOptHandler {
 
 	@Override
-	public NilResult listDoubleBodyParamOpt(BuilderFactory _factory, List<Double> bodyDouble) {
+	public NilResult listDoubleBodyParamOpt(BuilderFactory _factory, Optional<List<Double>> bodyDouble) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listDoubleBodyParamOpt'");
 	}

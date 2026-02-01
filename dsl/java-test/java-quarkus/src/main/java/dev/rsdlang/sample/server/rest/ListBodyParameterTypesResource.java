@@ -38,7 +38,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listBooleanBodyParam")
 	public Response listBooleanBodyParam(String _bodyBoolean) {
-		var bodyBoolean = _JsonUtils.mapBooleans(_JsonUtils.parseArray(_bodyBoolean));
+		var bodyBoolean = _JsonUtils.parseBooleans(_bodyBoolean);
 		var result = service.listBooleanBodyParam(builderFactory, bodyBoolean);
 		return responseBuilder.listBooleanBodyParam(result, bodyBoolean).build();
 	}
@@ -46,6 +46,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listBooleanBodyParamOpt")
 	public Response listBooleanBodyParamOpt(String _bodyBoolean) {
+		var bodyBoolean = _JsonUtils.parseOptBooleans(_bodyBoolean);
 		var result = service.listBooleanBodyParamOpt(builderFactory, bodyBoolean);
 		return responseBuilder.listBooleanBodyParamOpt(result, bodyBoolean).build();
 	}
@@ -53,6 +54,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listBooleanBodyParamNil")
 	public Response listBooleanBodyParamNil(String _bodyBoolean) {
+		var bodyBoolean = _JsonUtils.parseNullBooleans(_bodyBoolean);
 		var result = service.listBooleanBodyParamNil(builderFactory, bodyBoolean);
 		return responseBuilder.listBooleanBodyParamNil(result, bodyBoolean).build();
 	}
@@ -60,6 +62,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listBooleanBodyParamOptNil")
 	public Response listBooleanBodyParamOptNil(String _bodyBoolean) {
+		var bodyBoolean = _JsonUtils.parseNilBooleans(_bodyBoolean);
 		var result = service.listBooleanBodyParamOptNil(builderFactory, bodyBoolean);
 		return responseBuilder.listBooleanBodyParamOptNil(result, bodyBoolean).build();
 	}
@@ -67,7 +70,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listShortBodyParam")
 	public Response listShortBodyParam(String _bodyShort) {
-		var bodyShort = _JsonUtils.mapShorts(_JsonUtils.parseArray(_bodyShort));
+		var bodyShort = _JsonUtils.parseShorts(_bodyShort);
 		var result = service.listShortBodyParam(builderFactory, bodyShort);
 		return responseBuilder.listShortBodyParam(result, bodyShort).build();
 	}
@@ -75,6 +78,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listShortBodyParamOpt")
 	public Response listShortBodyParamOpt(String _bodyShort) {
+		var bodyShort = _JsonUtils.parseOptShorts(_bodyShort);
 		var result = service.listShortBodyParamOpt(builderFactory, bodyShort);
 		return responseBuilder.listShortBodyParamOpt(result, bodyShort).build();
 	}
@@ -82,6 +86,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listShortBodyParamNil")
 	public Response listShortBodyParamNil(String _bodyShort) {
+		var bodyShort = _JsonUtils.parseNullShorts(_bodyShort);
 		var result = service.listShortBodyParamNil(builderFactory, bodyShort);
 		return responseBuilder.listShortBodyParamNil(result, bodyShort).build();
 	}
@@ -89,6 +94,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listShortBodyParamOptNil")
 	public Response listShortBodyParamOptNil(String _bodyShort) {
+		var bodyShort = _JsonUtils.parseNilShorts(_bodyShort);
 		var result = service.listShortBodyParamOptNil(builderFactory, bodyShort);
 		return responseBuilder.listShortBodyParamOptNil(result, bodyShort).build();
 	}
@@ -96,7 +102,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listIntBodyParam")
 	public Response listIntBodyParam(String _bodyInt) {
-		var bodyInt = _JsonUtils.mapInts(_JsonUtils.parseArray(_bodyInt));
+		var bodyInt = _JsonUtils.parseInts(_bodyInt);
 		var result = service.listIntBodyParam(builderFactory, bodyInt);
 		return responseBuilder.listIntBodyParam(result, bodyInt).build();
 	}
@@ -104,6 +110,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listIntBodyParamOpt")
 	public Response listIntBodyParamOpt(String _bodyInt) {
+		var bodyInt = _JsonUtils.parseOptInts(_bodyInt);
 		var result = service.listIntBodyParamOpt(builderFactory, bodyInt);
 		return responseBuilder.listIntBodyParamOpt(result, bodyInt).build();
 	}
@@ -111,6 +118,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listIntBodyParamNil")
 	public Response listIntBodyParamNil(String _bodyInt) {
+		var bodyInt = _JsonUtils.parseNullInts(_bodyInt);
 		var result = service.listIntBodyParamNil(builderFactory, bodyInt);
 		return responseBuilder.listIntBodyParamNil(result, bodyInt).build();
 	}
@@ -118,6 +126,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listIntBodyParamOptNil")
 	public Response listIntBodyParamOptNil(String _bodyInt) {
+		var bodyInt = _JsonUtils.parseNilInts(_bodyInt);
 		var result = service.listIntBodyParamOptNil(builderFactory, bodyInt);
 		return responseBuilder.listIntBodyParamOptNil(result, bodyInt).build();
 	}
@@ -125,7 +134,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listLongBodyParam")
 	public Response listLongBodyParam(String _bodyLong) {
-		var bodyLong = _JsonUtils.mapLongs(_JsonUtils.parseArray(_bodyLong));
+		var bodyLong = _JsonUtils.parseLongs(_bodyLong);
 		var result = service.listLongBodyParam(builderFactory, bodyLong);
 		return responseBuilder.listLongBodyParam(result, bodyLong).build();
 	}
@@ -133,6 +142,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listLongBodyParamOpt")
 	public Response listLongBodyParamOpt(String _bodyLong) {
+		var bodyLong = _JsonUtils.parseOptLongs(_bodyLong);
 		var result = service.listLongBodyParamOpt(builderFactory, bodyLong);
 		return responseBuilder.listLongBodyParamOpt(result, bodyLong).build();
 	}
@@ -140,6 +150,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listLongBodyParamNil")
 	public Response listLongBodyParamNil(String _bodyLong) {
+		var bodyLong = _JsonUtils.parseNullLongs(_bodyLong);
 		var result = service.listLongBodyParamNil(builderFactory, bodyLong);
 		return responseBuilder.listLongBodyParamNil(result, bodyLong).build();
 	}
@@ -147,6 +158,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listLongBodyParamOptNil")
 	public Response listLongBodyParamOptNil(String _bodyLong) {
+		var bodyLong = _JsonUtils.parseNilLongs(_bodyLong);
 		var result = service.listLongBodyParamOptNil(builderFactory, bodyLong);
 		return responseBuilder.listLongBodyParamOptNil(result, bodyLong).build();
 	}
@@ -154,7 +166,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listFloatBodyParam")
 	public Response listFloatBodyParam(String _bodyFloat) {
-		var bodyFloat = _JsonUtils.mapFloats(_JsonUtils.parseArray(_bodyFloat));
+		var bodyFloat = _JsonUtils.parseFloats(_bodyFloat);
 		var result = service.listFloatBodyParam(builderFactory, bodyFloat);
 		return responseBuilder.listFloatBodyParam(result, bodyFloat).build();
 	}
@@ -162,6 +174,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listFloatBodyParamOpt")
 	public Response listFloatBodyParamOpt(String _bodyFloat) {
+		var bodyFloat = _JsonUtils.parseOptFloats(_bodyFloat);
 		var result = service.listFloatBodyParamOpt(builderFactory, bodyFloat);
 		return responseBuilder.listFloatBodyParamOpt(result, bodyFloat).build();
 	}
@@ -169,6 +182,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listFloatBodyParamNil")
 	public Response listFloatBodyParamNil(String _bodyFloat) {
+		var bodyFloat = _JsonUtils.parseNullFloats(_bodyFloat);
 		var result = service.listFloatBodyParamNil(builderFactory, bodyFloat);
 		return responseBuilder.listFloatBodyParamNil(result, bodyFloat).build();
 	}
@@ -176,6 +190,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listFloatBodyParamOptNil")
 	public Response listFloatBodyParamOptNil(String _bodyFloat) {
+		var bodyFloat = _JsonUtils.parseNilFloats(_bodyFloat);
 		var result = service.listFloatBodyParamOptNil(builderFactory, bodyFloat);
 		return responseBuilder.listFloatBodyParamOptNil(result, bodyFloat).build();
 	}
@@ -183,7 +198,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listDoubleBodyParam")
 	public Response listDoubleBodyParam(String _bodyDouble) {
-		var bodyDouble = _JsonUtils.mapDoubles(_JsonUtils.parseArray(_bodyDouble));
+		var bodyDouble = _JsonUtils.parseDoubles(_bodyDouble);
 		var result = service.listDoubleBodyParam(builderFactory, bodyDouble);
 		return responseBuilder.listDoubleBodyParam(result, bodyDouble).build();
 	}
@@ -191,6 +206,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listDoubleBodyParamOpt")
 	public Response listDoubleBodyParamOpt(String _bodyDouble) {
+		var bodyDouble = _JsonUtils.parseOptDoubles(_bodyDouble);
 		var result = service.listDoubleBodyParamOpt(builderFactory, bodyDouble);
 		return responseBuilder.listDoubleBodyParamOpt(result, bodyDouble).build();
 	}
@@ -198,6 +214,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listDoubleBodyParamNil")
 	public Response listDoubleBodyParamNil(String _bodyDouble) {
+		var bodyDouble = _JsonUtils.parseNullDoubles(_bodyDouble);
 		var result = service.listDoubleBodyParamNil(builderFactory, bodyDouble);
 		return responseBuilder.listDoubleBodyParamNil(result, bodyDouble).build();
 	}
@@ -205,6 +222,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listDoubleBodyParamOptNil")
 	public Response listDoubleBodyParamOptNil(String _bodyDouble) {
+		var bodyDouble = _JsonUtils.parseNilDoubles(_bodyDouble);
 		var result = service.listDoubleBodyParamOptNil(builderFactory, bodyDouble);
 		return responseBuilder.listDoubleBodyParamOptNil(result, bodyDouble).build();
 	}
@@ -212,7 +230,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listStringBodyParam")
 	public Response listStringBodyParam(String _bodyString) {
-		var bodyString = _JsonUtils.mapStrings(_JsonUtils.parseArray(_bodyString));
+		var bodyString = _JsonUtils.parseStrings(_bodyString);
 		var result = service.listStringBodyParam(builderFactory, bodyString);
 		return responseBuilder.listStringBodyParam(result, bodyString).build();
 	}
@@ -220,6 +238,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listStringBodyParamOpt")
 	public Response listStringBodyParamOpt(String _bodyString) {
+		var bodyString = _JsonUtils.parseOptStrings(_bodyString);
 		var result = service.listStringBodyParamOpt(builderFactory, bodyString);
 		return responseBuilder.listStringBodyParamOpt(result, bodyString).build();
 	}
@@ -227,6 +246,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listStringBodyParamNil")
 	public Response listStringBodyParamNil(String _bodyString) {
+		var bodyString = _JsonUtils.parseNullStrings(_bodyString);
 		var result = service.listStringBodyParamNil(builderFactory, bodyString);
 		return responseBuilder.listStringBodyParamNil(result, bodyString).build();
 	}
@@ -234,6 +254,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listStringBodyParamOptNil")
 	public Response listStringBodyParamOptNil(String _bodyString) {
+		var bodyString = _JsonUtils.parseNilStrings(_bodyString);
 		var result = service.listStringBodyParamOptNil(builderFactory, bodyString);
 		return responseBuilder.listStringBodyParamOptNil(result, bodyString).build();
 	}
@@ -241,7 +262,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listLocalDateBodyParam")
 	public Response listLocalDateBodyParam(String _bodyLocalDate) {
-		var bodyLocalDate = _JsonUtils.mapLocalDates(_JsonUtils.parseArray(_bodyLocalDate));
+		var bodyLocalDate = _JsonUtils.parseLocalDates(_bodyLocalDate);
 		var result = service.listLocalDateBodyParam(builderFactory, bodyLocalDate);
 		return responseBuilder.listLocalDateBodyParam(result, bodyLocalDate).build();
 	}
@@ -249,6 +270,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listLocalDateBodyParamOpt")
 	public Response listLocalDateBodyParamOpt(String _bodyLocalDate) {
+		var bodyLocalDate = _JsonUtils.parseOptLocalDates(_bodyLocalDate);
 		var result = service.listLocalDateBodyParamOpt(builderFactory, bodyLocalDate);
 		return responseBuilder.listLocalDateBodyParamOpt(result, bodyLocalDate).build();
 	}
@@ -256,6 +278,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listLocalDateBodyParamNil")
 	public Response listLocalDateBodyParamNil(String _bodyLocalDate) {
+		var bodyLocalDate = _JsonUtils.parseNullLocalDates(_bodyLocalDate);
 		var result = service.listLocalDateBodyParamNil(builderFactory, bodyLocalDate);
 		return responseBuilder.listLocalDateBodyParamNil(result, bodyLocalDate).build();
 	}
@@ -263,6 +286,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listLocalDateBodyParamOptNil")
 	public Response listLocalDateBodyParamOptNil(String _bodyLocalDate) {
+		var bodyLocalDate = _JsonUtils.parseNilLocalDates(_bodyLocalDate);
 		var result = service.listLocalDateBodyParamOptNil(builderFactory, bodyLocalDate);
 		return responseBuilder.listLocalDateBodyParamOptNil(result, bodyLocalDate).build();
 	}
@@ -270,7 +294,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listLocalDateTimeBodyParam")
 	public Response listLocalDateTimeBodyParam(String _bodyLocalDateTime) {
-		var bodyLocalDateTime = _JsonUtils.mapLocalDateTimes(_JsonUtils.parseArray(_bodyLocalDateTime));
+		var bodyLocalDateTime = _JsonUtils.parseLocalDateTimes(_bodyLocalDateTime);
 		var result = service.listLocalDateTimeBodyParam(builderFactory, bodyLocalDateTime);
 		return responseBuilder.listLocalDateTimeBodyParam(result, bodyLocalDateTime).build();
 	}
@@ -278,6 +302,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listLocalDateTimeBodyParamOpt")
 	public Response listLocalDateTimeBodyParamOpt(String _bodyLocalDateTime) {
+		var bodyLocalDateTime = _JsonUtils.parseOptLocalDateTimes(_bodyLocalDateTime);
 		var result = service.listLocalDateTimeBodyParamOpt(builderFactory, bodyLocalDateTime);
 		return responseBuilder.listLocalDateTimeBodyParamOpt(result, bodyLocalDateTime).build();
 	}
@@ -285,6 +310,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listLocalDateTimeBodyParamNil")
 	public Response listLocalDateTimeBodyParamNil(String _bodyLocalDateTime) {
+		var bodyLocalDateTime = _JsonUtils.parseNullLocalDateTimes(_bodyLocalDateTime);
 		var result = service.listLocalDateTimeBodyParamNil(builderFactory, bodyLocalDateTime);
 		return responseBuilder.listLocalDateTimeBodyParamNil(result, bodyLocalDateTime).build();
 	}
@@ -292,6 +318,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listLocalDateTimeBodyParamOptNil")
 	public Response listLocalDateTimeBodyParamOptNil(String _bodyLocalDateTime) {
+		var bodyLocalDateTime = _JsonUtils.parseNilLocalDateTimes(_bodyLocalDateTime);
 		var result = service.listLocalDateTimeBodyParamOptNil(builderFactory, bodyLocalDateTime);
 		return responseBuilder.listLocalDateTimeBodyParamOptNil(result, bodyLocalDateTime).build();
 	}
@@ -299,7 +326,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listZonedDateTimeBodyParam")
 	public Response listZonedDateTimeBodyParam(String _bodyZonedDateTime) {
-		var bodyZonedDateTime = _JsonUtils.mapZonedDateTimes(_JsonUtils.parseArray(_bodyZonedDateTime));
+		var bodyZonedDateTime = _JsonUtils.parseZonedDateTimes(_bodyZonedDateTime);
 		var result = service.listZonedDateTimeBodyParam(builderFactory, bodyZonedDateTime);
 		return responseBuilder.listZonedDateTimeBodyParam(result, bodyZonedDateTime).build();
 	}
@@ -307,6 +334,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listZonedDateTimeBodyParamOpt")
 	public Response listZonedDateTimeBodyParamOpt(String _bodyZonedDateTime) {
+		var bodyZonedDateTime = _JsonUtils.parseOptZonedDateTimes(_bodyZonedDateTime);
 		var result = service.listZonedDateTimeBodyParamOpt(builderFactory, bodyZonedDateTime);
 		return responseBuilder.listZonedDateTimeBodyParamOpt(result, bodyZonedDateTime).build();
 	}
@@ -314,6 +342,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listZonedDateTimeBodyParamNil")
 	public Response listZonedDateTimeBodyParamNil(String _bodyZonedDateTime) {
+		var bodyZonedDateTime = _JsonUtils.parseNullZonedDateTimes(_bodyZonedDateTime);
 		var result = service.listZonedDateTimeBodyParamNil(builderFactory, bodyZonedDateTime);
 		return responseBuilder.listZonedDateTimeBodyParamNil(result, bodyZonedDateTime).build();
 	}
@@ -321,6 +350,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listZonedDateTimeBodyParamOptNil")
 	public Response listZonedDateTimeBodyParamOptNil(String _bodyZonedDateTime) {
+		var bodyZonedDateTime = _JsonUtils.parseNilZonedDateTimes(_bodyZonedDateTime);
 		var result = service.listZonedDateTimeBodyParamOptNil(builderFactory, bodyZonedDateTime);
 		return responseBuilder.listZonedDateTimeBodyParamOptNil(result, bodyZonedDateTime).build();
 	}
@@ -328,7 +358,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listScalarBodyParam")
 	public Response listScalarBodyParam(String _bodyScalar) {
-		var bodyScalar = _JsonUtils.mapLiterals(_JsonUtils.parseArray(_bodyScalar), ZoneId::of);
+		var bodyScalar = _JsonUtils.parseLiterals(_bodyScalar, ZoneId::of);
 		var result = service.listScalarBodyParam(builderFactory, bodyScalar);
 		return responseBuilder.listScalarBodyParam(result, bodyScalar).build();
 	}
@@ -336,7 +366,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listScalarBodyParamOpt")
 	public Response listScalarBodyParamOpt(String _bodyScalar) {
-		var bodyScalar = _JsonUtils.mapLiterals(_JsonUtils.parseArray(_bodyScalar), ZoneId::of);
+		var bodyScalar = _JsonUtils.parseOptLiterals(_bodyScalar, ZoneId::of);
 		var result = service.listScalarBodyParamOpt(builderFactory, bodyScalar);
 		return responseBuilder.listScalarBodyParamOpt(result, bodyScalar).build();
 	}
@@ -344,7 +374,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listScalarBodyParamNil")
 	public Response listScalarBodyParamNil(String _bodyScalar) {
-		var bodyScalar = _JsonUtils.mapLiterals(_JsonUtils.parseArray(_bodyScalar), ZoneId::of);
+		var bodyScalar = _JsonUtils.parseNullLiterals(_bodyScalar, ZoneId::of);
 		var result = service.listScalarBodyParamNil(builderFactory, bodyScalar);
 		return responseBuilder.listScalarBodyParamNil(result, bodyScalar).build();
 	}
@@ -352,7 +382,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listScalarBodyParamOptNil")
 	public Response listScalarBodyParamOptNil(String _bodyScalar) {
-		var bodyScalar = _JsonUtils.mapLiterals(_JsonUtils.parseArray(_bodyScalar), ZoneId::of);
+		var bodyScalar = _JsonUtils.parseNilLiterals(_bodyScalar, ZoneId::of);
 		var result = service.listScalarBodyParamOptNil(builderFactory, bodyScalar);
 		return responseBuilder.listScalarBodyParamOptNil(result, bodyScalar).build();
 	}
@@ -360,7 +390,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listEnumBodyParam")
 	public Response listEnumBodyParam(String _bodyEnum) {
-		var bodyEnum = _JsonUtils.mapLiterals(_JsonUtils.parseArray(_bodyEnum), SampleEnum::valueOf);
+		var bodyEnum = _JsonUtils.parseLiterals(_bodyEnum, SampleEnum::valueOf);
 		var result = service.listEnumBodyParam(builderFactory, bodyEnum);
 		return responseBuilder.listEnumBodyParam(result, bodyEnum).build();
 	}
@@ -368,7 +398,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listEnumBodyParamOpt")
 	public Response listEnumBodyParamOpt(String _bodyEnum) {
-		var bodyEnum = _JsonUtils.mapLiterals(_JsonUtils.parseArray(_bodyEnum), SampleEnum::valueOf);
+		var bodyEnum = _JsonUtils.parseOptLiterals(_bodyEnum, SampleEnum::valueOf);
 		var result = service.listEnumBodyParamOpt(builderFactory, bodyEnum);
 		return responseBuilder.listEnumBodyParamOpt(result, bodyEnum).build();
 	}
@@ -376,7 +406,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listEnumBodyParamNil")
 	public Response listEnumBodyParamNil(String _bodyEnum) {
-		var bodyEnum = _JsonUtils.mapLiterals(_JsonUtils.parseArray(_bodyEnum), SampleEnum::valueOf);
+		var bodyEnum = _JsonUtils.parseNullLiterals(_bodyEnum, SampleEnum::valueOf);
 		var result = service.listEnumBodyParamNil(builderFactory, bodyEnum);
 		return responseBuilder.listEnumBodyParamNil(result, bodyEnum).build();
 	}
@@ -384,7 +414,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listEnumBodyParamOptNil")
 	public Response listEnumBodyParamOptNil(String _bodyEnum) {
-		var bodyEnum = _JsonUtils.mapLiterals(_JsonUtils.parseArray(_bodyEnum), SampleEnum::valueOf);
+		var bodyEnum = _JsonUtils.parseNilLiterals(_bodyEnum, SampleEnum::valueOf);
 		var result = service.listEnumBodyParamOptNil(builderFactory, bodyEnum);
 		return responseBuilder.listEnumBodyParamOptNil(result, bodyEnum).build();
 	}
@@ -392,7 +422,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listInlineEnumBodyParam")
 	public Response listInlineEnumBodyParam(String _bodyEnum) {
-		var bodyEnum = _JsonUtils.mapLiterals(_JsonUtils.parseArray(_bodyEnum), ListBodyParameterTypesService.ListInlineEnumBodyParam_BodyEnum_Param$::valueOf);
+		var bodyEnum = _JsonUtils.parseLiterals(_bodyEnum, ListBodyParameterTypesService.ListInlineEnumBodyParam_BodyEnum_Param$::valueOf);
 		var result = service.listInlineEnumBodyParam(builderFactory, bodyEnum);
 		return responseBuilder.listInlineEnumBodyParam(result, bodyEnum).build();
 	}
@@ -400,7 +430,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listInlineEnumBodyParamOpt")
 	public Response listInlineEnumBodyParamOpt(String _bodyEnum) {
-		var bodyEnum = _JsonUtils.mapLiterals(_JsonUtils.parseArray(_bodyEnum), ListBodyParameterTypesService.ListInlineEnumBodyParamOpt_BodyEnum_Param$::valueOf);
+		var bodyEnum = _JsonUtils.parseOptLiterals(_bodyEnum, ListBodyParameterTypesService.ListInlineEnumBodyParamOpt_BodyEnum_Param$::valueOf);
 		var result = service.listInlineEnumBodyParamOpt(builderFactory, bodyEnum);
 		return responseBuilder.listInlineEnumBodyParamOpt(result, bodyEnum).build();
 	}
@@ -408,7 +438,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listInlineEnumBodyParamNil")
 	public Response listInlineEnumBodyParamNil(String _bodyEnum) {
-		var bodyEnum = _JsonUtils.mapLiterals(_JsonUtils.parseArray(_bodyEnum), ListBodyParameterTypesService.ListInlineEnumBodyParamNil_BodyEnum_Param$::valueOf);
+		var bodyEnum = _JsonUtils.parseNullLiterals(_bodyEnum, ListBodyParameterTypesService.ListInlineEnumBodyParamNil_BodyEnum_Param$::valueOf);
 		var result = service.listInlineEnumBodyParamNil(builderFactory, bodyEnum);
 		return responseBuilder.listInlineEnumBodyParamNil(result, bodyEnum).build();
 	}
@@ -416,7 +446,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listInlineEnumBodyParamOptNil")
 	public Response listInlineEnumBodyParamOptNil(String _bodyEnum) {
-		var bodyEnum = _JsonUtils.mapLiterals(_JsonUtils.parseArray(_bodyEnum), ListBodyParameterTypesService.ListInlineEnumBodyParamOptNil_BodyEnum_Param$::valueOf);
+		var bodyEnum = _JsonUtils.parseNilLiterals(_bodyEnum, ListBodyParameterTypesService.ListInlineEnumBodyParamOptNil_BodyEnum_Param$::valueOf);
 		var result = service.listInlineEnumBodyParamOptNil(builderFactory, bodyEnum);
 		return responseBuilder.listInlineEnumBodyParamOptNil(result, bodyEnum).build();
 	}
@@ -456,7 +486,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listRecordBodyParam")
 	public Response listRecordBodyParam(String _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseObject(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var bodyRecord = _JsonUtils.parseObjects(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.listRecordBodyParam(builderFactory, bodyRecord);
 		return responseBuilder.listRecordBodyParam(result, bodyRecord).build();
 	}
@@ -464,7 +494,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listRecordBodyParamOpt")
 	public Response listRecordBodyParamOpt(String _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseOptObject(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var bodyRecord = _JsonUtils.parseOptObjects(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.listRecordBodyParamOpt(builderFactory, bodyRecord);
 		return responseBuilder.listRecordBodyParamOpt(result, bodyRecord).build();
 	}
@@ -472,7 +502,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listRecordBodyParamNil")
 	public Response listRecordBodyParamNil(String _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNullObject(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var bodyRecord = _JsonUtils.parseNullObjects(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.listRecordBodyParamNil(builderFactory, bodyRecord);
 		return responseBuilder.listRecordBodyParamNil(result, bodyRecord).build();
 	}
@@ -480,7 +510,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listRecordBodyParamOptNil")
 	public Response listRecordBodyParamOptNil(String _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNilObject(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var bodyRecord = _JsonUtils.parseNilObjects(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.listRecordBodyParamOptNil(builderFactory, bodyRecord);
 		return responseBuilder.listRecordBodyParamOptNil(result, bodyRecord).build();
 	}

@@ -1,6 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.listheader;
 
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
@@ -12,7 +13,7 @@ public class ListStringHeaderParamNilHandlerImpl
 		implements ListHeaderParameterTypesServiceImpl.ListStringHeaderParamNilHandler {
 
 	@Override
-	public NilResult listStringHeaderParamNil(BuilderFactory _factory, List<String> headerValue) {
+	public NilResult listStringHeaderParamNil(BuilderFactory _factory, Optional<List<String>> headerValue) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listStringHeaderParamNil'");
 	}

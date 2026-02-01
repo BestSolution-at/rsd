@@ -1,6 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.header;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.HeaderParameterTypesServiceImpl;
@@ -12,7 +13,7 @@ public class SimpleLocalDateTimeHeaderParamOptHandlerImpl
 		implements HeaderParameterTypesServiceImpl.SimpleLocalDateTimeHeaderParamOptHandler {
 
 	@Override
-	public NilResult simpleLocalDateTimeHeaderParamOpt(BuilderFactory _factory, LocalDateTime headerValue) {
+	public NilResult simpleLocalDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<LocalDateTime> headerValue) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'simpleLocalDateTimeHeaderParamOpt'");
 	}

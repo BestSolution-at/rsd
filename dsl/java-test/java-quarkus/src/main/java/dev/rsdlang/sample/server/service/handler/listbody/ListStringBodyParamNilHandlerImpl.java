@@ -1,6 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.listbody;
 
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListBodyParameterTypesServiceImpl;
@@ -12,7 +13,7 @@ public class ListStringBodyParamNilHandlerImpl
 		implements ListBodyParameterTypesServiceImpl.ListStringBodyParamNilHandler {
 
 	@Override
-	public NilResult listStringBodyParamNil(BuilderFactory _factory, List<String> bodyString) {
+	public NilResult listStringBodyParamNil(BuilderFactory _factory, Optional<List<String>> bodyString) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listStringBodyParamNil'");
 	}

@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.body;
 
+import java.util.Optional;
+
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BodyParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
@@ -10,8 +12,9 @@ public class SimpleBooleanBodyParamNilHandlerImpl
 		implements BodyParameterTypesServiceImpl.SimpleBooleanBodyParamNilHandler {
 
 	@Override
-	public NilResult simpleBooleanBodyParamNil(BuilderFactory _factory, Boolean bodyBoolean) {
-		return bodyBoolean != null ? NilResult.DEFINED : NilResult.NULL;
+	public NilResult simpleBooleanBodyParamNil(BuilderFactory _factory, Optional<Boolean> bodyBoolean) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'simpleBooleanBodyParamNil'");
 	}
 
 }

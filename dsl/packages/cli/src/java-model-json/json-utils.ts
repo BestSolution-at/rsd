@@ -29,7 +29,6 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 
 import ${modelApiPackage}._Base;
-import ${modelApiPackage}._Base.Nillable;
 
 public class _JsonUtils {
 	public static boolean hasValue(JsonObject object, String property) {
@@ -49,6 +48,13 @@ public class _JsonUtils {
 			return Optional.of(mapString(object, property));
 		}
 		return Optional.empty();
+	}
+
+	public static Optional<String> mapNullString(JsonObject object, String property) {
+		if (object.isNull(property)) {
+			return Optional.empty();
+		}
+		return Optional.of(mapString(object, property));
 	}
 
 	public static _Base.Nillable<String> mapNilString(JsonObject object, String property) {
@@ -91,6 +97,22 @@ public class _JsonUtils {
 		}
 	}
 
+	public static List<String> parseStrings(String data) {
+		return parseLiterals(data, Function.identity());
+	}
+
+	public static Optional<List<String>> parseOptStrings(String data) {
+		return parseOptLiterals(data, Function.identity());
+	}
+
+	public static Optional<List<String>> parseNullStrings(String data) {
+		return parseNullLiterals(data, Function.identity());
+	}
+
+	public static _Base.Nillable<List<String>> parseNilStrings(String data) {
+		return parseNilLiterals(data, Function.identity());
+	}
+
 	public static boolean mapBoolean(JsonObject object, String property) {
 		return object.getBoolean(property);
 	}
@@ -109,6 +131,13 @@ public class _JsonUtils {
 			return object.getBoolean(property) ? OPTIONAL_TRUE : OPTIONAL_FALSE;
 		}
 		return Optional.empty();
+	}
+
+	public static Optional<Boolean> mapNullBoolean(JsonObject object, String property) {
+		if (object.isNull(property)) {
+			return Optional.empty();
+		}
+		return object.getBoolean(property) ? OPTIONAL_TRUE : OPTIONAL_FALSE;
 	}
 
 	public static _Base.Nillable<Boolean> mapNilBoolean(JsonObject object, String property) {
@@ -165,6 +194,22 @@ public class _JsonUtils {
 		throw new ClassCastException("Cannot parse boolean from: " + data);
 	}
 
+	public static List<Boolean> parseBooleans(String data) {
+		return parseLiterals(data, _JsonUtils::parseBoolean);
+	}
+
+	public static Optional<List<Boolean>> parseOptBooleans(String data) {
+		return parseOptLiterals(data, _JsonUtils::parseBoolean);
+	}
+
+	public static Optional<List<Boolean>> parseNullBooleans(String data) {
+		return parseNullLiterals(data, _JsonUtils::parseBoolean);
+	}
+
+	public static _Base.Nillable<List<Boolean>> parseNilBooleans(String data) {
+		return parseNilLiterals(data, _JsonUtils::parseBoolean);
+	}
+
 	public static short mapShort(JsonObject object, String property) {
 		return (short) object.getInt(property);
 	}
@@ -178,6 +223,13 @@ public class _JsonUtils {
 			return Optional.of(mapShort(object, property));
 		}
 		return Optional.empty();
+	}
+
+	public static Optional<Short> mapNullShort(JsonObject object, String property) {
+		if (object.isNull(property)) {
+			return Optional.empty();
+		}
+		return Optional.of(mapShort(object, property));
 	}
 
 	public static _Base.Nillable<Short> mapNilShort(JsonObject object, String property) {
@@ -220,6 +272,22 @@ public class _JsonUtils {
 		}
 	}
 
+	public static List<Short> parseShorts(String data) {
+		return parseLiterals(data, Short::valueOf);
+	}
+
+	public static Optional<List<Short>> parseOptShorts(String data) {
+		return parseOptLiterals(data, Short::valueOf);
+	}
+
+	public static Optional<List<Short>> parseNullShorts(String data) {
+		return parseNullLiterals(data, Short::valueOf);
+	}
+
+	public static _Base.Nillable<List<Short>> parseNilShorts(String data) {
+		return parseNilLiterals(data, Short::valueOf);
+	}
+
 	public static int mapInt(JsonObject object, String property) {
 		return object.getInt(property);
 	}
@@ -233,6 +301,13 @@ public class _JsonUtils {
 			return OptionalInt.of(mapInt(object, property));
 		}
 		return OptionalInt.empty();
+	}
+
+	public static OptionalInt mapNullInt(JsonObject object, String property) {
+		if (object.isNull(property)) {
+			return OptionalInt.empty();
+		}
+		return OptionalInt.of(mapInt(object, property));
 	}
 
 	public static _Base.Nillable<Integer> mapNilInt(JsonObject object, String property) {
@@ -275,6 +350,22 @@ public class _JsonUtils {
 		}
 	}
 
+	public static List<Integer> parseInts(String data) {
+		return parseLiterals(data, Integer::valueOf);
+	}
+
+	public static Optional<List<Integer>> parseOptInts(String data) {
+		return parseOptLiterals(data, Integer::valueOf);
+	}
+
+	public static Optional<List<Integer>> parseNullInts(String data) {
+		return parseNullLiterals(data, Integer::valueOf);
+	}
+
+	public static _Base.Nillable<List<Integer>> parseNilInts(String data) {
+		return parseNilLiterals(data, Integer::valueOf);
+	}
+
 	public static long mapLong(JsonObject object, String property) {
 		return object.getJsonNumber(property).longValue();
 	}
@@ -288,6 +379,13 @@ public class _JsonUtils {
 			return OptionalLong.of(mapLong(object, property));
 		}
 		return OptionalLong.empty();
+	}
+
+	public static OptionalLong mapNullLong(JsonObject object, String property) {
+		if (object.isNull(property)) {
+			return OptionalLong.empty();
+		}
+		return OptionalLong.of(mapLong(object, property));
 	}
 
 	public static _Base.Nillable<Long> mapNilLong(JsonObject object, String property) {
@@ -330,6 +428,22 @@ public class _JsonUtils {
 		}
 	}
 
+	public static List<Long> parseLongs(String data) {
+		return parseLiterals(data, Long::valueOf);
+	}
+
+	public static Optional<List<Long>> parseOptLongs(String data) {
+		return parseOptLiterals(data, Long::valueOf);
+	}
+
+	public static Optional<List<Long>> parseNullLongs(String data) {
+		return parseNullLiterals(data, Long::valueOf);
+	}
+
+	public static _Base.Nillable<List<Long>> parseNilLongs(String data) {
+		return parseNilLiterals(data, Long::valueOf);
+	}
+
 	public static double mapDouble(JsonObject object, String property) {
 		return object.getJsonNumber(property).doubleValue();
 	}
@@ -343,6 +457,13 @@ public class _JsonUtils {
 			return OptionalDouble.of(mapDouble(object, property));
 		}
 		return OptionalDouble.empty();
+	}
+
+	public static OptionalDouble mapNullDouble(JsonObject object, String property) {
+		if (object.isNull(property)) {
+			return OptionalDouble.empty();
+		}
+		return OptionalDouble.of(mapDouble(object, property));
 	}
 
 	public static _Base.Nillable<Double> mapNilDouble(JsonObject object, String property) {
@@ -385,6 +506,22 @@ public class _JsonUtils {
 		}
 	}
 
+	public static List<Double> parseDoubles(String data) {
+		return parseLiterals(data, Double::valueOf);
+	}
+
+	public static Optional<List<Double>> parseOptDoubles(String data) {
+		return parseOptLiterals(data, Double::valueOf);
+	}
+
+	public static Optional<List<Double>> parseNullDoubles(String data) {
+		return parseNullLiterals(data, Double::valueOf);
+	}
+
+	public static _Base.Nillable<List<Double>> parseNilDoubles(String data) {
+		return parseNilLiterals(data, Double::valueOf);
+	}
+
 	public static float mapFloat(JsonObject object, String property) {
 		return (float) object.getJsonNumber(property).doubleValue();
 	}
@@ -398,6 +535,13 @@ public class _JsonUtils {
 			return Optional.of(mapFloat(object, property));
 		}
 		return Optional.empty();
+	}
+
+	public static Optional<Float> mapNullFloat(JsonObject object, String property) {
+		if (object.isNull(property)) {
+			return Optional.empty();
+		}
+		return Optional.of(mapFloat(object, property));
 	}
 
 	public static _Base.Nillable<Float> mapNilFloat(JsonObject object, String property) {
@@ -440,6 +584,22 @@ public class _JsonUtils {
 		}
 	}
 
+	public static List<Float> parseFloats(String data) {
+		return parseLiterals(data, Float::valueOf);
+	}
+
+	public static Optional<List<Float>> parseOptFloats(String data) {
+		return parseOptLiterals(data, Float::valueOf);
+	}
+
+	public static Optional<List<Float>> parseNullFloats(String data) {
+		return parseNullLiterals(data, Float::valueOf);
+	}
+
+	public static _Base.Nillable<List<Float>> parseNilFloats(String data) {
+		return parseNilLiterals(data, Float::valueOf);
+	}
+
 	public static <T> T mapLiteral(JsonObject object, String property, Function<String, T> converter) {
 		return converter.apply(object.getString(property));
 	}
@@ -453,6 +613,13 @@ public class _JsonUtils {
 			return Optional.of(mapLiteral(object, property, converter));
 		}
 		return Optional.empty();
+	}
+
+	public static <T> Optional<T> mapNullLiteral(JsonObject object, String property, Function<String, T> converter) {
+		if (object.isNull(property)) {
+			return Optional.empty();
+		}
+		return Optional.of(mapLiteral(object, property, converter));
 	}
 
 	public static <T> _Base.Nillable<T> mapNilLiteral(JsonObject object, String property, Function<String, T> converter) {
@@ -496,6 +663,38 @@ public class _JsonUtils {
 		}
 	}
 
+	public static <T> List<T> parseLiterals(String data, Function<String, T> converter) {
+		return parseArray(data)
+				.getValuesAs(JsonString.class)
+				.stream()
+				.map(v -> converter.apply(v.getString()))
+				.toList();
+	}
+
+	public static <T> Optional<List<T>> parseOptLiterals(String data, Function<String, T> converter) {
+		if (data.isEmpty()) {
+			return Optional.empty();
+		}
+		return Optional.of(parseLiterals(data, converter));
+	}
+
+	public static <T> Optional<List<T>> parseNullLiterals(String data, Function<String, T> converter) {
+		if (data.equals("null")) {
+			return Optional.empty();
+		}
+		return Optional.of(parseLiterals(data, converter));
+	}
+
+	public static <T> _Base.Nillable<List<T>> parseNilLiterals(String data, Function<String, T> converter) {
+		if (data.isEmpty()) {
+			return _NillableImpl.undefined();
+		} else if (data.equals("null")) {
+			return _NillableImpl.nill();
+		} else {
+			return _NillableImpl.of(parseLiterals(data, converter));
+		}
+	}
+
 	public static LocalDate mapLocalDate(JsonObject object, String property) {
 		return mapLiteral(object, property, LocalDate::parse);
 	}
@@ -505,20 +704,15 @@ public class _JsonUtils {
 	}
 
 	public static Optional<LocalDate> mapOptLocalDate(JsonObject object, String property) {
-		if (object.containsKey(property)) {
-			return Optional.of(mapLocalDate(object, property));
-		}
-		return Optional.empty();
+		return mapOptLiteral(object, property, LocalDate::parse);
+	}
+
+	public static Optional<LocalDate> mapNullLocalDate(JsonObject object, String property) {
+		return mapNullLiteral(object, property, LocalDate::parse);
 	}
 
 	public static _Base.Nillable<LocalDate> mapNilLocalDate(JsonObject object, String property) {
-		if (object.containsKey(property)) {
-			if (object.isNull(property)) {
-				return _NillableImpl.nill();
-			}
-			return _NillableImpl.of(mapLocalDate(object, property));
-		}
-		return _NillableImpl.undefined();
+		return mapNilLiteral(object, property, LocalDate::parse);
 	}
 
 	public static List<LocalDate> mapLocalDates(JsonArray array) {
@@ -541,6 +735,22 @@ public class _JsonUtils {
 		return parseNilLiteral(data, LocalDate::parse);
 	}
 
+	public static List<LocalDate> parseLocalDates(String data) {
+		return parseLiterals(data, LocalDate::parse);
+	}
+
+	public static Optional<List<LocalDate>> parseOptLocalDates(String data) {
+		return parseOptLiterals(data, LocalDate::parse);
+	}
+
+	public static Optional<List<LocalDate>> parseNullLocalDates(String data) {
+		return parseNullLiterals(data, LocalDate::parse);
+	}
+
+	public static _Base.Nillable<List<LocalDate>> parseNilLocalDates(String data) {
+		return parseNilLiterals(data, LocalDate::parse);
+	}
+
 	public static LocalDateTime mapLocalDateTime(JsonObject object, String property) {
 		return mapLiteral(object, property, LocalDateTime::parse);
 	}
@@ -550,20 +760,15 @@ public class _JsonUtils {
 	}
 
 	public static Optional<LocalDateTime> mapOptLocalDateTime(JsonObject object, String property) {
-		if (object.containsKey(property)) {
-			return Optional.of(mapLocalDateTime(object, property));
-		}
-		return Optional.empty();
+		return mapOptLiteral(object, property, LocalDateTime::parse);
+	}
+
+	public static Optional<LocalDateTime> mapNullLocalDateTime(JsonObject object, String property) {
+		return mapNullLiteral(object, property, LocalDateTime::parse);
 	}
 
 	public static _Base.Nillable<LocalDateTime> mapNilLocalDateTime(JsonObject object, String property) {
-		if (object.containsKey(property)) {
-			if (object.isNull(property)) {
-				return _NillableImpl.nill();
-			}
-			return _NillableImpl.of(mapLocalDateTime(object, property));
-		}
-		return _NillableImpl.undefined();
+		return mapNilLiteral(object, property, LocalDateTime::parse);
 	}
 
 	public static LocalDateTime parseLocalDateTime(String data) {
@@ -582,8 +787,24 @@ public class _JsonUtils {
 		return parseNilLiteral(data, LocalDateTime::parse);
 	}
 
+	public static List<LocalDateTime> parseLocalDateTimes(String data) {
+		return parseLiterals(data, LocalDateTime::parse);
+	}
+
+	public static Optional<List<LocalDateTime>> parseOptLocalDateTimes(String data) {
+		return parseOptLiterals(data, LocalDateTime::parse);
+	}
+
+	public static Optional<List<LocalDateTime>> parseNullLocalDateTimes(String data) {
+		return parseNullLiterals(data, LocalDateTime::parse);
+	}
+
+	public static _Base.Nillable<List<LocalDateTime>> parseNilLocalDateTimes(String data) {
+		return parseNilLiterals(data, LocalDateTime::parse);
+	}
+
 	public static List<LocalDateTime> mapLocalDateTimes(JsonArray array) {
-		return mapLiterals(array, v -> LocalDateTime.parse(v));
+		return mapLiterals(array, LocalDateTime::parse);
 	}
 
 	public static ZonedDateTime mapZonedDateTime(JsonObject object, String property) {
@@ -595,20 +816,15 @@ public class _JsonUtils {
 	}
 
 	public static Optional<ZonedDateTime> mapOptZonedDateTime(JsonObject object, String property) {
-		if (object.containsKey(property)) {
-			return Optional.of(mapZonedDateTime(object, property));
-		}
-		return Optional.empty();
+		return mapOptLiteral(object, property, ZonedDateTime::parse);
+	}
+
+	public static Optional<ZonedDateTime> mapNullZonedDateTime(JsonObject object, String property) {
+		return mapNullLiteral(object, property, ZonedDateTime::parse);
 	}
 
 	public static _Base.Nillable<ZonedDateTime> mapNilZonedDateTime(JsonObject object, String property) {
-		if (object.containsKey(property)) {
-			if (object.isNull(property)) {
-				return _NillableImpl.nill();
-			}
-			return _NillableImpl.of(mapZonedDateTime(object, property));
-		}
-		return _NillableImpl.undefined();
+		return mapNilLiteral(object, property, ZonedDateTime::parse);
 	}
 
 	public static ZonedDateTime parseZonedDateTime(String data) {
@@ -627,8 +843,24 @@ public class _JsonUtils {
 		return parseNilLiteral(data, ZonedDateTime::parse);
 	}
 
+	public static List<ZonedDateTime> parseZonedDateTimes(String data) {
+		return parseLiterals(data, ZonedDateTime::parse);
+	}
+
+	public static Optional<List<ZonedDateTime>> parseOptZonedDateTimes(String data) {
+		return parseOptLiterals(data, ZonedDateTime::parse);
+	}
+
+	public static Optional<List<ZonedDateTime>> parseNullZonedDateTimes(String data) {
+		return parseNullLiterals(data, ZonedDateTime::parse);
+	}
+
+	public static _Base.Nillable<List<ZonedDateTime>> parseNilZonedDateTimes(String data) {
+		return parseNilLiterals(data, ZonedDateTime::parse);
+	}
+
 	public static List<ZonedDateTime> mapZonedDateTimes(JsonArray array) {
-		return mapLiterals(array, v -> ZonedDateTime.parse(v));
+		return mapLiterals(array, ZonedDateTime::parse);
 	}
 
 	public static <T> T mapObject(JsonObject object, String property, Function<JsonObject, T> converter) {
@@ -644,6 +876,14 @@ public class _JsonUtils {
 			return Optional.of(mapObject(object, property, converter));
 		}
 		return Optional.empty();
+	}
+
+	public static <T> Optional<T> mapNullObject(JsonObject object, String property,
+			Function<JsonObject, T> converter) {
+		if (object.isNull(property)) {
+			return Optional.empty();
+		}
+		return Optional.of(mapObject(object, property, converter));
 	}
 
 	public static <T> _Base.Nillable<T> mapNilObject(JsonObject object, String property,
@@ -675,6 +915,14 @@ public class _JsonUtils {
 	public static <J extends JsonValue, T> Optional<Stream<T>> mapToOptStream(JsonObject object, String property,
 			Class<J> clazz, Function<J, T> mapper) {
 		if (object.containsKey(property)) {
+			return Optional.of(mapToStream(object, property, clazz, mapper));
+		}
+		return Optional.empty();
+	}
+
+	public static <J extends JsonValue, T> Optional<Stream<T>> mapToNullStream(JsonObject object, String property,
+			Class<J> clazz, Function<J, T> mapper) {
+		if (!object.isNull(property)) {
 			return Optional.of(mapToStream(object, property, clazz, mapper));
 		}
 		return Optional.empty();
@@ -733,6 +981,10 @@ public class _JsonUtils {
 
 	public static Optional<List<Integer>> mapOptInts(JsonObject object, String property) {
 		return mapToOptStream(object, property, JsonNumber.class, JsonNumber::intValue).map(Stream::toList);
+	}
+
+	public static Optional<List<Integer>> mapNullInts(JsonObject object, String property) {
+		return mapToNullStream(object, property, JsonNumber.class, JsonNumber::intValue).map(Stream::toList);
 	}
 
 	public static _Base.Nillable<List<Integer>> mapNilInts(JsonObject object, String property) {
@@ -799,6 +1051,10 @@ public class _JsonUtils {
 		return mapToOptStream(object, property, JsonString.class, JsonString::getString).map(Stream::toList);
 	}
 
+	public static Optional<List<String>> mapNullStrings(JsonObject object, String property) {
+		return mapToNullStream(object, property, JsonString.class, JsonString::getString).map(Stream::toList);
+	}
+
 	public static _Base.Nillable<List<String>> mapNilStrings(JsonObject object, String property) {
 		return mapToNilStream(object, property, JsonString.class, JsonString::getString).map(Stream::toList);
 	}
@@ -814,6 +1070,11 @@ public class _JsonUtils {
 	public static <T> Optional<List<T>> mapOptObjects(JsonObject object, String property,
 			Function<JsonObject, T> converter) {
 		return mapToOptStream(object, property, JsonObject.class, converter).map(Stream::toList);
+	}
+
+	public static <T> Optional<List<T>> mapNullObjects(JsonObject object, String property,
+			Function<JsonObject, T> converter) {
+		return mapToNullStream(object, property, JsonObject.class, converter).map(Stream::toList);
 	}
 
 	public static <T> _Base.Nillable<List<T>> mapNilObjects(JsonObject object, String property,
@@ -1078,6 +1339,36 @@ public class _JsonUtils {
 			return _NillableImpl.nill();
 		} else {
 			return _NillableImpl.of(parseObject(data, constructor));
+		}
+	}
+
+	public static <T> List<T> parseObjects(String data, Function<JsonObject, T> constructor) {
+		return parseArray(data).getValuesAs(JsonObject.class).stream().map(constructor).toList();
+	}
+
+	public static <T> Optional<List<T>> parseOptObjects(String data, Function<JsonObject, T> constructor) {
+		if (data.isEmpty()) {
+			return Optional.empty();
+		} else {
+			return Optional.of(parseObjects(data, constructor));
+		}
+	}
+
+	public static <T> Optional<List<T>> parseNullObjects(String data, Function<JsonObject, T> constructor) {
+		if (data.equals("null")) {
+			return Optional.empty();
+		} else {
+			return Optional.of(parseObjects(data, constructor));
+		}
+	}
+
+	public static <T> _Base.Nillable<List<T>> parseNilObjects(String data, Function<JsonObject, T> constructor) {
+		if (data.isEmpty()) {
+			return _NillableImpl.undefined();
+		} else if (data.equals("null")) {
+			return _NillableImpl.nill();
+		} else {
+			return _NillableImpl.of(parseObjects(data, constructor));
 		}
 	}
 

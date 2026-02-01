@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.body;
 
+import java.util.Optional;
+
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BodyParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
@@ -10,7 +12,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class RecordBodyParamNilHandlerImpl implements BodyParameterTypesServiceImpl.RecordBodyParamNilHandler {
 
 	@Override
-	public NilResult recordBodyParamNil(BuilderFactory _factory, Data bodyRecord) {
+	public NilResult recordBodyParamNil(BuilderFactory _factory, Optional<Data> bodyRecord) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'recordBodyParamNil'");
 	}

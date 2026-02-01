@@ -1,6 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.listheader;
 
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
@@ -13,8 +14,8 @@ public class ListMultiHeaderParamNilHandlerImpl
 		implements ListHeaderParameterTypesServiceImpl.ListMultiHeaderParamNilHandler {
 
 	@Override
-	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, List<String> valueA, List<Integer> valueB,
-			List<Data> valueC) {
+	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA,
+			Optional<List<Integer>> valueB, Optional<List<Data>> valueC) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listMultiHeaderParamNil'");
 	}

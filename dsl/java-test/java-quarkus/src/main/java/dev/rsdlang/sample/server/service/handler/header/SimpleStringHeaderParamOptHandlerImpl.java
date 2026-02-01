@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.header;
 
+import java.util.Optional;
+
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.HeaderParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
@@ -10,7 +12,7 @@ public class SimpleStringHeaderParamOptHandlerImpl
 		implements HeaderParameterTypesServiceImpl.SimpleStringHeaderParamOptHandler {
 
 	@Override
-	public NilResult simpleStringHeaderParamOpt(BuilderFactory _factory, String headerValue) {
+	public NilResult simpleStringHeaderParamOpt(BuilderFactory _factory, Optional<String> headerValue) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'simpleStringHeaderParamOpt'");
 	}

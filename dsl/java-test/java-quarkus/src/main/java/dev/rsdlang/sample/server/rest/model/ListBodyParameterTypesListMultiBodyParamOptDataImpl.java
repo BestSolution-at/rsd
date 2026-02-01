@@ -2,6 +2,7 @@
 package dev.rsdlang.sample.server.rest.model;
 
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.json.JsonObject;
 
@@ -12,16 +13,16 @@ public class ListBodyParameterTypesListMultiBodyParamOptDataImpl extends _BaseDa
 		super(data);
 	}
 
-	public List<String> valueA() {
-		return _JsonUtils.mapStrings(data, "valueA");
+	public Optional<List<String>> valueA() {
+		return _JsonUtils.mapOptStrings(data, "valueA");
 	}
 
-	public List<Integer> valueB() {
-		return _JsonUtils.mapInts(data, "valueB");
+	public Optional<List<Integer>> valueB() {
+		return _JsonUtils.mapOptInts(data, "valueB");
 	}
 
-	public List<SimpleRecord.Data> valueC() {
-		return _JsonUtils.mapObjects(data, "valueC", SimpleRecordDataImpl::of);
+	public Optional<List<SimpleRecord.Data>> valueC() {
+		return _JsonUtils.mapOptObjects(data, "valueC", SimpleRecordDataImpl::of);
 	}
 
 }

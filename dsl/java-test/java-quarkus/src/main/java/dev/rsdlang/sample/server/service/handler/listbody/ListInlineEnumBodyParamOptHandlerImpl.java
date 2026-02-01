@@ -1,6 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.listbody;
 
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.ListBodyParameterTypesService.ListInlineEnumBodyParamOpt_BodyEnum_Param$;
@@ -14,7 +15,7 @@ public class ListInlineEnumBodyParamOptHandlerImpl
 
 	@Override
 	public NilResult listInlineEnumBodyParamOpt(BuilderFactory _factory,
-			List<ListInlineEnumBodyParamOpt_BodyEnum_Param$> bodyEnum) {
+			Optional<List<ListInlineEnumBodyParamOpt_BodyEnum_Param$>> bodyEnum) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listInlineEnumBodyParamOpt'");
 	}

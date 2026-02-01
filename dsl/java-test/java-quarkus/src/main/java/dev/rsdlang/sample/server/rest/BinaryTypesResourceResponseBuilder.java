@@ -86,11 +86,11 @@ public class BinaryTypesResourceResponseBuilder {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 
-	public ResponseBuilder uploadMixedOpt(UploadMixedResult.Data $result, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, OptionalInt numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
+	public ResponseBuilder uploadMixedOpt(UploadMixedResult.Data $result, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 
-	public ResponseBuilder uploadMixedNil(UploadMixedResult.Data $result, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, OptionalInt numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
+	public ResponseBuilder uploadMixedNil(UploadMixedResult.Data $result, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
 		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
 	}
 

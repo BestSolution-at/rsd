@@ -2,6 +2,8 @@ import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
 import {
 	computeParameterAPIType,
+	computeParameterAPITypeNG,
+	computeParameterValueType,
 	generateCompilationUnit,
 	JavaImportsCollector,
 	JavaServerJakartaWSGeneratorConfig,
@@ -10,7 +12,6 @@ import {
 } from '../java-gen-utils.js';
 import {
 	isMBuiltinType,
-	isMInlineEnumType,
 	MOperation,
 	MParameter,
 	MParameterInlineEnumType,
@@ -19,11 +20,7 @@ import {
 	MResolvedService,
 } from '../model.js';
 import { toCamelCaseIdentifier, toFirstUpper } from '../util.js';
-import {
-	builtinOptionalJSONAccessNG,
-	builtinSimpleJSONAccessNG,
-	builtinSimpleJSONArrayAccess,
-} from '../java-model-json/shared.js';
+import { builtinJSONAccess, builtinSimpleJSONArrayAccessNG } from '../java-model-json/shared.js';
 
 export function generateResource(s: MResolvedService, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact[] {
 	const result: Artifact[] = [];
@@ -114,7 +111,7 @@ function _generateResource(
 						...o.parameters
 							.filter(p => p.meta?.rest !== undefined)
 							.filter(p => p.meta?.rest?.source !== undefined)
-							.map(p => toParameter(p, false, artifactConfig, fqn)),
+							.map(p => toParameter(p, false, artifactConfig, fqn, false)),
 					);
 
 					params.push(`String data`);
@@ -127,7 +124,7 @@ function _generateResource(
 						}),
 					);
 				} else {
-					params.push(...o.parameters.map(p => toParameter(p, false, artifactConfig, fqn)));
+					params.push(...o.parameters.map(p => toParameter(p, false, artifactConfig, fqn, false)));
 					serviceParams.push(...o.parameters.map(p => p.name));
 				}
 
@@ -162,7 +159,9 @@ function _generateResource(
 							return;
 						}
 						if (p.variant === 'record' || p.variant === 'union') {
-							mBody.append(recordUnionParameter(p, artifactConfig, fqn, packageName));
+							mBody.append(
+								recordUnionParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined),
+							);
 						} else if (p.variant === 'builtin') {
 							mBody.append(builtinParameter(p, fqn, packageName, p.meta?.rest?.source === undefined));
 						} else if (p.variant === 'enum') {
@@ -221,7 +220,7 @@ function _generateResource(
 					`@${fqn('jakarta.ws.rs.Consumes')}(${fqn('jakarta.ws.rs.core.MediaType')}.MULTIPART_FORM_DATA)`,
 					NL,
 				);
-				const params: string[] = o.parameters.map(p => toParameter(p, true, artifactConfig, fqn));
+				const params: string[] = o.parameters.map(p => toParameter(p, true, artifactConfig, fqn, true));
 				const serviceParams: string[] = [];
 
 				serviceParams.push(...o.parameters.map(p => p.name));
@@ -235,47 +234,88 @@ function _generateResource(
 						if (p.variant === 'stream') {
 							if (p.type === 'file') {
 								if (p.array) {
-									mBody.append(
-										`var ${p.name} = _data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList();`,
-										NL,
-									);
+									if (p.optional && p.nullable) {
+										mBody.append(
+											`var ${p.name} = _data == null ? ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)}>>undefined() : ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
+											NL,
+										);
+									} else if (p.optional || p.nullable) {
+										mBody.append(
+											`var ${p.name} = _data == null ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
+											NL,
+										);
+									} else {
+										mBody.append(
+											`var ${p.name} = _data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList();`,
+											NL,
+										);
+									}
 								} else {
-									mBody.append(
-										`var ${p.name} = builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName());`,
-										NL,
-									);
+									if (p.optional && p.nullable) {
+										mBody.append(
+											`var ${p.name} = _${p.name} != null ? ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.of(builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName())) : ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)}>undefined();`,
+											NL,
+										);
+									} else if (p.optional || p.nullable) {
+										mBody.append(
+											`var ${p.name} = _${p.name} != null ? ${fqn('java.util.Optional')}.of(builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName())) : Optional.<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)}>empty();`,
+											NL,
+										);
+									} else {
+										mBody.append(
+											`var ${p.name} = builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName());`,
+											NL,
+										);
+									}
 								}
 							} else {
 								if (p.array) {
-									mBody.append(
-										`var ${p.name} = _data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList();`,
-										NL,
-									);
+									if (p.optional && p.nullable) {
+										mBody.append(
+											`var ${p.name} = _data == null ? ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)}>>undefined() : ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
+											NL,
+										);
+									} else if (p.optional || p.nullable) {
+										mBody.append(
+											`var ${p.name} = _data == null ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
+											NL,
+										);
+									} else {
+										mBody.append(
+											`var ${p.name} = _data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList();`,
+											NL,
+										);
+									}
 								} else {
-									mBody.append(
-										`var ${p.name} = builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType());`,
-										NL,
-									);
+									if (p.optional && p.nullable) {
+										mBody.append(
+											`var ${p.name} = _${p.name} != null ? ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.of(builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType())) : ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)}>undefined();`,
+											NL,
+										);
+									} else if (p.optional || p.nullable) {
+										mBody.append(
+											`var ${p.name} = _${p.name} != null ? ${fqn('java.util.Optional')}.of(builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType())) : Optional.<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)}>empty();`,
+											NL,
+										);
+									} else {
+										mBody.append(
+											`var ${p.name} = builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType());`,
+											NL,
+										);
+									}
 								}
 							}
 						} else {
 							if (p.variant === 'record' || p.variant === 'union') {
-								/*const type = computeParameterAPIType(
-									p,
-									artifactConfig.nativeTypeSubstitues,
-									`${artifactConfig.rootPackageName}.service.model`,
-									fqn,
-									true,
-								);*/
-								// TODO Implement
-							} else if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum') {
-								mBody.append(`var ${p.name} = _${p.name};`, NL);
-							} else {
-								const type = p.type;
-								if (typeof type === 'string') {
-									const t = resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, false);
-									mBody.append(`var ${p.name} = _${p.name} == null ? null : ${t}.of(_${p.name});`, NL);
-								}
+								mBody.append(recordUnionParameter(p, artifactConfig, fqn, packageName, false));
+							} else if (p.variant === 'builtin') {
+								mBody.append(builtinParameter(p, fqn, packageName, false));
+							} else if (p.variant === 'enum') {
+								mBody.append(enumParameter(p, artifactConfig, fqn, packageName, false));
+							} else if (p.variant === 'inline-enum') {
+								mBody.append(inlineEnumParameter(p, o, Service, fqn, packageName, false));
+							} /* else if (p.variant === 'scalar')*/ else {
+								mBody.append(scalarParameter(p, artifactConfig, fqn, packageName, false));
 							}
 						}
 					});
@@ -326,7 +366,27 @@ function enumParameter(
 	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
-		node.append(`var ${p.name} = ${_Util}.mapLiterals(${_Util}.parseArray(_${p.name}), ${t}::valueOf);`, NL);
+		if (asJSON) {
+			if (p.optional && p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			} else if (p.optional) {
+				node.append(`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			} else if (p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			} else {
+				node.append(`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			}
+		} else {
+			if (p.optional && p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.mapNilLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			} else if (p.optional) {
+				node.append(`var ${p.name} = ${_Util}.mapOptLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			} else if (p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.mapNullLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			} else {
+				node.append(`var ${p.name} = ${_Util}.mapLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			}
+		}
 	} else {
 		if (p.optional && p.nullable) {
 			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}, ${t}::valueOf);`, NL);
@@ -350,17 +410,35 @@ function builtinParameter(
 	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
-		if (p.optional && p.nullable) {
-			// FIXME
-		} else if (p.optional) {
-			// FIXME
-		} else if (p.nullable) {
-			// FIXME
+		if (asJSON) {
+			if (p.optional && p.nullable) {
+				node.append(
+					`var ${p.name} = ${_Util}.parseNil${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name});`,
+					NL,
+				);
+			} else if (p.optional) {
+				node.append(
+					`var ${p.name} = ${_Util}.parseOpt${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name});`,
+					NL,
+				);
+			} else if (p.nullable) {
+				node.append(
+					`var ${p.name} = ${_Util}.parseNull${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name});`,
+					NL,
+				);
+			} else {
+				node.append(`var ${p.name} = ${_Util}.parse${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name});`, NL);
+			}
 		} else {
-			node.append(
-				`var ${p.name} = ${_Util}.map${toFirstUpper(toCamelCaseIdentifier(p.type))}s(${_Util}.parseArray(_${p.name}));`,
-				NL,
-			);
+			if (p.optional && p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.mapNil${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name});`, NL);
+			} else if (p.optional) {
+				node.append(`var ${p.name} = ${_Util}.mapOpt${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name});`, NL);
+			} else if (p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.mapNull${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name});`, NL);
+			} else {
+				node.append(`var ${p.name} = ${_Util}.map${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name});`, NL);
+			}
 		}
 	} else {
 		if (p.optional && p.nullable) {
@@ -381,6 +459,7 @@ function recordUnionParameter(
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	fqn: (type: string) => string,
 	packageName: string,
+	asJSON: boolean,
 ) {
 	const type = computeParameterAPIType(
 		p,
@@ -391,26 +470,74 @@ function recordUnionParameter(
 	);
 	const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
 	const node = new CompositeGeneratorNode();
-	if (p.optional && p.nullable) {
-		node.append(
-			`var ${p.name} = ${_JsonUtils}.parseNilObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
-			NL,
-		);
-	} else if (p.optional) {
-		node.append(
-			`var ${p.name} = ${_JsonUtils}.parseOptObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
-			NL,
-		);
-	} else if (p.nullable) {
-		node.append(
-			`var ${p.name} = ${_JsonUtils}.parseNullObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
-			NL,
-		);
+	if (p.array) {
+		if (asJSON) {
+			if (p.optional && p.nullable) {
+				node.append(
+					`var ${p.name} = ${_JsonUtils}.parseNilObjects(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+					NL,
+				);
+			} else if (p.optional) {
+				node.append(
+					`var ${p.name} = ${_JsonUtils}.parseOptObjects(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+					NL,
+				);
+			} else if (p.nullable) {
+				node.append(
+					`var ${p.name} = ${_JsonUtils}.parseNullObjects(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+					NL,
+				);
+			} else {
+				node.append(
+					`var ${p.name} = ${_JsonUtils}.parseObjects(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+					NL,
+				);
+			}
+		} else {
+			if (p.optional && p.nullable) {
+				node.append(
+					`var ${p.name} = _RestUtils.mapNilObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, $j -> builderFactory.of(${type}.class, $j)));`,
+					NL,
+				);
+			} else if (p.optional) {
+				node.append(
+					`var ${p.name} = _RestUtils.mapOptObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, $j -> builderFactory.of(${type}.class, $j)));`,
+					NL,
+				);
+			} else if (p.nullable) {
+				node.append(
+					`var ${p.name} = _RestUtils.mapNullObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, $j -> builderFactory.of(${type}.class, $j)));`,
+					NL,
+				);
+			} else {
+				node.append(
+					`var ${p.name} = _RestUtils.mapObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, $j -> builderFactory.of(${type}.class, $j)));`,
+					NL,
+				);
+			}
+		}
 	} else {
-		node.append(
-			`var ${p.name} = ${_JsonUtils}.parseObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
-			NL,
-		);
+		if (p.optional && p.nullable) {
+			node.append(
+				`var ${p.name} = ${_JsonUtils}.parseNilObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+				NL,
+			);
+		} else if (p.optional) {
+			node.append(
+				`var ${p.name} = ${_JsonUtils}.parseOptObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+				NL,
+			);
+		} else if (p.nullable) {
+			node.append(
+				`var ${p.name} = ${_JsonUtils}.parseNullObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+				NL,
+			);
+		} else {
+			node.append(
+				`var ${p.name} = ${_JsonUtils}.parseObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+				NL,
+			);
+		}
 	}
 	return node;
 }
@@ -427,7 +554,27 @@ function inlineEnumParameter(
 	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
-		node.append(`var ${p.name} = ${_Util}.mapLiterals(${_Util}.parseArray(_${p.name}), ${t}::valueOf);`, NL);
+		if (asJSON) {
+			if (p.optional && p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			} else if (p.optional) {
+				node.append(`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			} else if (p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			} else {
+				node.append(`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			}
+		} else {
+			if (p.optional && p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.mapNilLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			} else if (p.optional) {
+				node.append(`var ${p.name} = ${_Util}.mapOptLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			} else if (p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.mapNullLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			} else {
+				node.append(`var ${p.name} = ${_Util}.mapLiterals(_${p.name}, ${t}::valueOf);`, NL);
+			}
+		}
 	} else {
 		if (p.optional && p.nullable) {
 			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}, ${t}::valueOf);`, NL);
@@ -454,7 +601,27 @@ function scalarParameter(
 	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
-		node.append(`var ${p.name} = ${_Util}.mapLiterals(${_Util}.parseArray(_${p.name}), ${t}::of);`, NL);
+		if (asJSON) {
+			if (p.optional && p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, ${t}::of);`, NL);
+			} else if (p.optional) {
+				node.append(`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, ${t}::of);`, NL);
+			} else if (p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, ${t}::of);`, NL);
+			} else {
+				node.append(`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, ${t}::of);`, NL);
+			}
+		} else {
+			if (p.optional && p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.mapNilLiterals(_${p.name}, ${t}::of);`, NL);
+			} else if (p.optional) {
+				node.append(`var ${p.name} = ${_Util}.mapOptLiterals(_${p.name}, ${t}::of);`, NL);
+			} else if (p.nullable) {
+				node.append(`var ${p.name} = ${_Util}.mapNullLiterals(_${p.name}, ${t}::of);`, NL);
+			} else {
+				node.append(`var ${p.name} = ${_Util}.mapLiterals(_${p.name}, ${t}::of);`, NL);
+			}
+		}
 	} else {
 		if (p.optional && p.nullable) {
 			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}, ${t}::of);`, NL);
@@ -502,9 +669,10 @@ function toParameter(
 	form: boolean,
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	fqn: (type: string) => string,
+	multiForm: boolean,
 ): string {
 	const annotation = computeParameterAnnotation(p, form, fqn);
-	const type = computeParameterType(p, artifactConfig, fqn);
+	const type = computeParameterType(p, artifactConfig, fqn, multiForm);
 
 	return `${annotation}${type} _${p.name}`;
 }
@@ -513,6 +681,7 @@ function computeParameterType(
 	p: MParameter,
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	fqn: (type: string) => string,
+	multiForm: boolean,
 ): string {
 	if (p.variant === 'stream') {
 		const t = fqn('org.jboss.resteasy.reactive.multipart.FileUpload');
@@ -521,6 +690,13 @@ function computeParameterType(
 			return `${List}<${t}>`;
 		}
 		return t;
+	}
+	if (p.array) {
+		if (!multiForm && p.meta?.rest?.source === undefined) {
+			return 'String';
+		} else {
+			return fqn('java.util.List') + '<String>';
+		}
 	}
 	return 'String';
 }
@@ -563,12 +739,21 @@ function generateServiceData(
 		o.parameters
 			.filter(p => p.meta?.rest?.source === undefined)
 			.forEach(p => {
-				const type = computeParameterAPIType(
-					p,
-					artifactConfig.nativeTypeSubstitues,
-					`${artifactConfig.rootPackageName}.service.model`,
-					fqn,
-				);
+				const type =
+					p.variant === 'inline-enum'
+						? computeParameterAPITypeNG(
+								p,
+								artifactConfig.nativeTypeSubstitues,
+								`${artifactConfig.rootPackageName}.service.model`,
+								fqn,
+								o.name,
+							)
+						: computeParameterAPITypeNG(
+								p,
+								artifactConfig.nativeTypeSubstitues,
+								`${artifactConfig.rootPackageName}.service.model`,
+								fqn,
+							);
 				classBody.append(`public ${type} ${p.name}() {`, NL);
 				classBody.indent(methodBody => {
 					methodBody.append(
@@ -577,6 +762,7 @@ function generateServiceData(
 							artifactConfig.nativeTypeSubstitues,
 							`${artifactConfig.rootPackageName}.service.model`,
 							fqn,
+							o,
 						),
 					);
 				});
@@ -598,65 +784,115 @@ function generateParameterContent(
 	nativeTypeSubstitues: Record<string, string> | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
+	o: MResolvedOperation,
 ) {
 	let mapper: string;
 	const array = prop.array;
 
 	if (isMBuiltinType(prop.type)) {
 		if (array) {
-			mapper = builtinSimpleJSONArrayAccess({
+			mapper = builtinSimpleJSONArrayAccessNG({
 				type: prop.type,
 				name: prop.name,
+				optional: prop.optional,
+				nullable: prop.nullable,
 			});
 		} else {
-			if (!prop.optional && !prop.nullable) {
-				mapper = builtinSimpleJSONAccessNG({
-					name: prop.name,
-					type: prop.type,
-				});
-			} else {
-				mapper = builtinOptionalJSONAccessNG({
-					name: prop.name,
-					type: prop.type,
-				});
-			}
+			mapper = builtinJSONAccess({
+				type: prop.type,
+				name: prop.name,
+				optional: prop.optional,
+				nullable: prop.nullable,
+			});
 		}
-	} else if (isMInlineEnumType(prop.type)) {
-		const Type = computeParameterAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, true);
+	} else if (prop.variant === 'inline-enum') {
+		const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, o.name);
 		if (array) {
-			mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+			if (prop.optional && prop.nullable) {
+				mapper = `_JsonUtils.mapNilLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+			} else if (prop.optional) {
+				mapper = `_JsonUtils.mapOptLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+			} else if (prop.nullable) {
+				mapper = `_JsonUtils.mapNullLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+			} else {
+				mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+			}
 		} else {
-			mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+			if (prop.optional && prop.nullable) {
+				mapper = `_JsonUtils.mapNilLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+			} else if (prop.optional) {
+				mapper = `_JsonUtils.mapOptLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+			} else if (prop.nullable) {
+				mapper = `_JsonUtils.mapNullLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+			} else {
+				mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+			}
 		}
 	} else {
 		if (prop.variant === 'enum') {
 			if (array) {
-				mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+				if (prop.optional && prop.nullable) {
+					mapper = `_JsonUtils.mapNilLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+				} else if (prop.optional) {
+					mapper = `_JsonUtils.mapOptLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+				} else if (prop.nullable) {
+					mapper = `_JsonUtils.mapNullLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+				} else {
+					mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+				}
 			} else {
-				mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+				if (prop.optional && prop.nullable) {
+					mapper = `_JsonUtils.mapNilLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+				} else if (prop.optional) {
+					mapper = `_JsonUtils.mapOptLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+				} else if (prop.nullable) {
+					mapper = `_JsonUtils.mapNullLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+				} else {
+					mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+				}
 			}
 		} else if (prop.variant === 'scalar') {
-			const Type = computeParameterAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, true);
+			const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
 			if (array) {
-				mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::of)`;
+				if (prop.optional && prop.nullable) {
+					mapper = `_JsonUtils.mapNilLiterals(data, "${prop.name}", ${Type}::of)`;
+				} else if (prop.optional) {
+					mapper = `_JsonUtils.mapOptLiterals(data, "${prop.name}", ${Type}::of)`;
+				} else if (prop.nullable) {
+					mapper = `_JsonUtils.mapNullLiterals(data, "${prop.name}", ${Type}::of)`;
+				} else {
+					mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::of)`;
+				}
 			} else {
-				mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::of)`;
+				if (prop.optional && prop.nullable) {
+					mapper = `_JsonUtils.mapNilLiteral(data, "${prop.name}", ${Type}::of)`;
+				} else if (prop.optional) {
+					mapper = `_JsonUtils.mapOptLiteral(data, "${prop.name}", ${Type}::of)`;
+				} else if (prop.nullable) {
+					mapper = `_JsonUtils.mapNullLiteral(data, "${prop.name}", ${Type}::of)`;
+				} else {
+					mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::of)`;
+				}
 			}
 		} else {
-			/*const Type = computeAPIType(
-          owner,
-          prop,
-          nativeTypeSubstitues,
-          interfaceBasePackage,
-          fqn,
-          true
-        );*/
 			const type = prop.patch ? `${prop.type}PatchImpl` : `${prop.type}DataImpl`;
 			if (array) {
-				mapper = `_JsonUtils.mapObjects(data, "${prop.name}", ${type}::of)`;
+				if (prop.optional && prop.nullable) {
+					mapper = `_JsonUtils.mapNilObjects(data, "${prop.name}", ${type}::of)`;
+				} else if (prop.optional) {
+					mapper = `_JsonUtils.mapOptObjects(data, "${prop.name}", ${type}::of)`;
+				} else if (prop.nullable) {
+					mapper = `_JsonUtils.mapNullObjects(data, "${prop.name}", ${type}::of)`;
+				} else {
+					mapper = `_JsonUtils.mapObjects(data, "${prop.name}", ${type}::of)`;
+				}
 			} else {
-				if (prop.optional) {
-					mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${type}::of, null)`;
+				if (prop.nullable && prop.optional) {
+					mapper = `_JsonUtils.mapNilObject(data, "${prop.name}", ${type}::of)`;
+				} else if (prop.optional) {
+					mapper = `_JsonUtils.mapOptObject(data, "${prop.name}", ${type}::of)`;
+				} else if (prop.nullable) {
+					mapper = `_JsonUtils.mapNullObject(data, "${prop.name}", ${type}::of)`;
 				} else {
 					mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${type}::of)`;
 				}

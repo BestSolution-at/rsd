@@ -2,6 +2,7 @@ package dev.rsdlang.sample.server.service.handler.listbody;
 
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListBodyParameterTypesServiceImpl;
@@ -13,7 +14,7 @@ public class ListScalarBodyParamOptHandlerImpl
 		implements ListBodyParameterTypesServiceImpl.ListScalarBodyParamOptHandler {
 
 	@Override
-	public NilResult listScalarBodyParamOpt(BuilderFactory _factory, List<ZoneId> bodyScalar) {
+	public NilResult listScalarBodyParamOpt(BuilderFactory _factory, Optional<List<ZoneId>> bodyScalar) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listScalarBodyParamOpt'");
 	}

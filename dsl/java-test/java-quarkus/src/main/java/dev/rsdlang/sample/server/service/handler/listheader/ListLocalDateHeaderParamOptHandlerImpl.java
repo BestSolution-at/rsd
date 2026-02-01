@@ -2,6 +2,7 @@ package dev.rsdlang.sample.server.service.handler.listheader;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
@@ -13,7 +14,7 @@ public class ListLocalDateHeaderParamOptHandlerImpl
 		implements ListHeaderParameterTypesServiceImpl.ListLocalDateHeaderParamOptHandler {
 
 	@Override
-	public NilResult listLocalDateHeaderParamOpt(BuilderFactory _factory, List<LocalDate> headerValue) {
+	public NilResult listLocalDateHeaderParamOpt(BuilderFactory _factory, Optional<List<LocalDate>> headerValue) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listLocalDateHeaderParamOpt'");
 	}

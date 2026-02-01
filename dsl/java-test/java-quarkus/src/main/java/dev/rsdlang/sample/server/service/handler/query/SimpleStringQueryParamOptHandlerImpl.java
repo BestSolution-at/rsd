@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.query;
 
+import java.util.Optional;
+
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.QueryParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
@@ -10,7 +12,7 @@ public class SimpleStringQueryParamOptHandlerImpl
 		implements QueryParameterTypesServiceImpl.SimpleStringQueryParamOptHandler {
 
 	@Override
-	public NilResult simpleStringQueryParamOpt(BuilderFactory _factory, String queryValue) {
+	public NilResult simpleStringQueryParamOpt(BuilderFactory _factory, Optional<String> queryValue) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'simpleStringQueryParamOpt'");
 	}

@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.body;
 
+import java.util.Optional;
+
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BodyParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
@@ -10,7 +12,7 @@ public class SimpleFloatBodyParamOptHandlerImpl
 		implements BodyParameterTypesServiceImpl.SimpleFloatBodyParamOptHandler {
 
 	@Override
-	public NilResult simpleFloatBodyParamOpt(BuilderFactory _factory, Float bodyFloat) {
+	public NilResult simpleFloatBodyParamOpt(BuilderFactory _factory, Optional<Float> bodyFloat) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'simpleFloatBodyParamOpt'");
 	}

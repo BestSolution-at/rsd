@@ -7,9 +7,6 @@ import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
-import java.util.OptionalLong;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -192,12 +189,12 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	@Override
-	public NilResult listIntBodyParamOpt(BuilderFactory _factory, OptionalInt bodyInt) {
+	public NilResult listIntBodyParamOpt(BuilderFactory _factory, Optional<List<Integer>> bodyInt) {
 		return listIntBodyParamOptHandler.listIntBodyParamOpt(_factory, bodyInt);
 	}
 
 	@Override
-	public NilResult listIntBodyParamNil(BuilderFactory _factory, OptionalInt bodyInt) {
+	public NilResult listIntBodyParamNil(BuilderFactory _factory, Optional<List<Integer>> bodyInt) {
 		return listIntBodyParamNilHandler.listIntBodyParamNil(_factory, bodyInt);
 	}
 
@@ -212,12 +209,12 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	@Override
-	public NilResult listLongBodyParamOpt(BuilderFactory _factory, OptionalLong bodyLong) {
+	public NilResult listLongBodyParamOpt(BuilderFactory _factory, Optional<List<Long>> bodyLong) {
 		return listLongBodyParamOptHandler.listLongBodyParamOpt(_factory, bodyLong);
 	}
 
 	@Override
-	public NilResult listLongBodyParamNil(BuilderFactory _factory, OptionalLong bodyLong) {
+	public NilResult listLongBodyParamNil(BuilderFactory _factory, Optional<List<Long>> bodyLong) {
 		return listLongBodyParamNilHandler.listLongBodyParamNil(_factory, bodyLong);
 	}
 
@@ -252,12 +249,12 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	@Override
-	public NilResult listDoubleBodyParamOpt(BuilderFactory _factory, OptionalDouble bodyDouble) {
+	public NilResult listDoubleBodyParamOpt(BuilderFactory _factory, Optional<List<Double>> bodyDouble) {
 		return listDoubleBodyParamOptHandler.listDoubleBodyParamOpt(_factory, bodyDouble);
 	}
 
 	@Override
-	public NilResult listDoubleBodyParamNil(BuilderFactory _factory, OptionalDouble bodyDouble) {
+	public NilResult listDoubleBodyParamNil(BuilderFactory _factory, Optional<List<Double>> bodyDouble) {
 		return listDoubleBodyParamNilHandler.listDoubleBodyParamNil(_factory, bodyDouble);
 	}
 
@@ -412,12 +409,12 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	@Override
-	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return listMultiBodyParamOptHandler.listMultiBodyParamOpt(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return listMultiBodyParamNilHandler.listMultiBodyParamNil(_factory, valueA, valueB, valueC);
 	}
 
@@ -483,11 +480,11 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public interface ListIntBodyParamOptHandler {
-		public NilResult listIntBodyParamOpt(BuilderFactory _factory, OptionalInt bodyInt);
+		public NilResult listIntBodyParamOpt(BuilderFactory _factory, Optional<List<Integer>> bodyInt);
 	}
 
 	public interface ListIntBodyParamNilHandler {
-		public NilResult listIntBodyParamNil(BuilderFactory _factory, OptionalInt bodyInt);
+		public NilResult listIntBodyParamNil(BuilderFactory _factory, Optional<List<Integer>> bodyInt);
 	}
 
 	public interface ListIntBodyParamOptNilHandler {
@@ -499,11 +496,11 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public interface ListLongBodyParamOptHandler {
-		public NilResult listLongBodyParamOpt(BuilderFactory _factory, OptionalLong bodyLong);
+		public NilResult listLongBodyParamOpt(BuilderFactory _factory, Optional<List<Long>> bodyLong);
 	}
 
 	public interface ListLongBodyParamNilHandler {
-		public NilResult listLongBodyParamNil(BuilderFactory _factory, OptionalLong bodyLong);
+		public NilResult listLongBodyParamNil(BuilderFactory _factory, Optional<List<Long>> bodyLong);
 	}
 
 	public interface ListLongBodyParamOptNilHandler {
@@ -531,11 +528,11 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public interface ListDoubleBodyParamOptHandler {
-		public NilResult listDoubleBodyParamOpt(BuilderFactory _factory, OptionalDouble bodyDouble);
+		public NilResult listDoubleBodyParamOpt(BuilderFactory _factory, Optional<List<Double>> bodyDouble);
 	}
 
 	public interface ListDoubleBodyParamNilHandler {
-		public NilResult listDoubleBodyParamNil(BuilderFactory _factory, OptionalDouble bodyDouble);
+		public NilResult listDoubleBodyParamNil(BuilderFactory _factory, Optional<List<Double>> bodyDouble);
 	}
 
 	public interface ListDoubleBodyParamOptNilHandler {
@@ -659,11 +656,11 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public interface ListMultiBodyParamOptHandler {
-		public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
 	}
 
 	public interface ListMultiBodyParamNilHandler {
-		public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
 	}
 
 	public interface ListMultiBodyParamOptNilHandler {

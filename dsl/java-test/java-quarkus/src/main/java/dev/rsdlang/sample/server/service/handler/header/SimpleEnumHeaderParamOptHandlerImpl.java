@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.header;
 
+import java.util.Optional;
+
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.HeaderParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
@@ -11,7 +13,7 @@ public class SimpleEnumHeaderParamOptHandlerImpl
 		implements HeaderParameterTypesServiceImpl.SimpleEnumHeaderParamOptHandler {
 
 	@Override
-	public NilResult simpleEnumHeaderParamOpt(BuilderFactory _factory, SampleEnum headerValue) {
+	public NilResult simpleEnumHeaderParamOpt(BuilderFactory _factory, Optional<SampleEnum> headerValue) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'simpleEnumHeaderParamOpt'");
 	}

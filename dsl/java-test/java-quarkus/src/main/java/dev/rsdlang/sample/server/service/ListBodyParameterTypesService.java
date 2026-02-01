@@ -7,9 +7,6 @@ import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
-import java.util.OptionalLong;
 
 import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.NilResult;
@@ -55,17 +52,17 @@ public interface ListBodyParameterTypesService {
 
 	public List<Integer> listIntBodyParam(BuilderFactory _factory, List<Integer> bodyInt);
 
-	public NilResult listIntBodyParamOpt(BuilderFactory _factory, OptionalInt bodyInt);
+	public NilResult listIntBodyParamOpt(BuilderFactory _factory, Optional<List<Integer>> bodyInt);
 
-	public NilResult listIntBodyParamNil(BuilderFactory _factory, OptionalInt bodyInt);
+	public NilResult listIntBodyParamNil(BuilderFactory _factory, Optional<List<Integer>> bodyInt);
 
 	public NilResult listIntBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Integer>> bodyInt);
 
 	public List<Long> listLongBodyParam(BuilderFactory _factory, List<Long> bodyLong);
 
-	public NilResult listLongBodyParamOpt(BuilderFactory _factory, OptionalLong bodyLong);
+	public NilResult listLongBodyParamOpt(BuilderFactory _factory, Optional<List<Long>> bodyLong);
 
-	public NilResult listLongBodyParamNil(BuilderFactory _factory, OptionalLong bodyLong);
+	public NilResult listLongBodyParamNil(BuilderFactory _factory, Optional<List<Long>> bodyLong);
 
 	public NilResult listLongBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Long>> bodyLong);
 
@@ -79,9 +76,9 @@ public interface ListBodyParameterTypesService {
 
 	public List<Double> listDoubleBodyParam(BuilderFactory _factory, List<Double> bodyDouble);
 
-	public NilResult listDoubleBodyParamOpt(BuilderFactory _factory, OptionalDouble bodyDouble);
+	public NilResult listDoubleBodyParamOpt(BuilderFactory _factory, Optional<List<Double>> bodyDouble);
 
-	public NilResult listDoubleBodyParamNil(BuilderFactory _factory, OptionalDouble bodyDouble);
+	public NilResult listDoubleBodyParamNil(BuilderFactory _factory, Optional<List<Double>> bodyDouble);
 
 	public NilResult listDoubleBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Double>> bodyDouble);
 
@@ -143,9 +140,9 @@ public interface ListBodyParameterTypesService {
 
 	public String listMultiBodyParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
 
-	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC);
+	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
 
-	public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC);
+	public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
 
 	public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC);
 

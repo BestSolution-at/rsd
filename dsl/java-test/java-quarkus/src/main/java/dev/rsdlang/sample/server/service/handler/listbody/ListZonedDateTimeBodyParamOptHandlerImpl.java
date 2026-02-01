@@ -2,6 +2,7 @@ package dev.rsdlang.sample.server.service.handler.listbody;
 
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListBodyParameterTypesServiceImpl;
@@ -13,7 +14,8 @@ public class ListZonedDateTimeBodyParamOptHandlerImpl
 		implements ListBodyParameterTypesServiceImpl.ListZonedDateTimeBodyParamOptHandler {
 
 	@Override
-	public NilResult listZonedDateTimeBodyParamOpt(BuilderFactory _factory, List<ZonedDateTime> bodyZonedDateTime) {
+	public NilResult listZonedDateTimeBodyParamOpt(BuilderFactory _factory,
+			Optional<List<ZonedDateTime>> bodyZonedDateTime) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listZonedDateTimeBodyParamOpt'");
 	}

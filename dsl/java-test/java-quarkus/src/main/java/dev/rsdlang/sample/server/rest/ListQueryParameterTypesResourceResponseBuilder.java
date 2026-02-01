@@ -66,7 +66,7 @@ public class ListQueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listInlineEnumQueryParam(List<ListQueryParameterTypesService.ListInlineEnumQueryParam_Result$> $result, List<ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$> queryValue queryValue) {
+	public ResponseBuilder listInlineEnumQueryParam(List<ListQueryParameterTypesService.ListInlineEnumQueryParam_Result$> $result, List<ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$> queryValue) {
 		return Response.status(200).entity($result);
 	}
 

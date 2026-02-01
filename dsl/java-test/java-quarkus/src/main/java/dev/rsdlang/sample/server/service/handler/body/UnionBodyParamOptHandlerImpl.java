@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.body;
 
+import java.util.Optional;
+
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BodyParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
@@ -10,7 +12,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class UnionBodyParamOptHandlerImpl implements BodyParameterTypesServiceImpl.UnionBodyParamOptHandler {
 
 	@Override
-	public NilResult unionBodyParamOpt(BuilderFactory _factory, Data bodyUnion) {
+	public NilResult unionBodyParamOpt(BuilderFactory _factory, Optional<Data> bodyUnion) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'unionBodyParamOpt'");
 	}

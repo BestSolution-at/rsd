@@ -3,6 +3,8 @@ import { ArtifactGeneratorConfig } from './artifact-generator.js';
 import {
 	MBuiltinType,
 	MParameter,
+	MParameterInlineEnumType,
+	MParameterNoneInlineEnumType,
 	MResolvedBaseProperty,
 	isMBuiltinType,
 	isMInlineEnumType,
@@ -92,6 +94,139 @@ export function resolveObjectType(
 	return type;
 }
 
+export function computeParameterValueType(
+	parameter: MParameterNoneInlineEnumType,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+): string;
+export function computeParameterValueType(
+	parameter: MParameterInlineEnumType,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+	methodName: string,
+): string;
+export function computeParameterValueType(
+	parameter: MParameter,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+	methodName?: string,
+) {
+	let type: string;
+	if (parameter.variant === 'stream') {
+		if (parameter.type === 'file') {
+			type = fqn(`${basePackageName}.RSDFile`);
+		} else {
+			type = fqn(`${basePackageName}.RSDBlob`);
+		}
+	} else if (isMBuiltinType(parameter.type)) {
+		if (parameter.array || parameter.optional || parameter.nullable) {
+			type = builtinToJavaObjectType(parameter.type, fqn);
+		} else {
+			type = builtinToJavaType(parameter.type, fqn);
+		}
+	} else if (isMInlineEnumType(parameter.type)) {
+		if (methodName !== undefined) {
+			type = toFirstUpper(methodName) + '_' + toFirstUpper(parameter.name) + '_Param$';
+		} else {
+			type = 'UNKNOWN';
+			console.error('Internal error: methodName is required for inline-enum parameter types');
+		}
+	} else if (parameter.variant === 'enum' || parameter.variant === 'scalar') {
+		if (nativeTypeSubstitues !== undefined && parameter.type in nativeTypeSubstitues) {
+			type = fqn(nativeTypeSubstitues[parameter.type]);
+		} else {
+			type = fqn(`${basePackageName}.${parameter.type}`);
+		}
+	} else if (parameter.variant === 'record' || parameter.variant === 'union') {
+		type = fqn(`${basePackageName}.${parameter.type}`) + (parameter.patch ? '.Patch' : '.Data');
+	} else {
+		throw new Error('Should not get here');
+	}
+
+	return type;
+}
+
+export function computeParameterAPITypeNG(
+	parameter: MParameterNoneInlineEnumType,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+): string;
+export function computeParameterAPITypeNG(
+	parameter: MParameterInlineEnumType,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+	methodName: string,
+): string;
+export function computeParameterAPITypeNG(
+	parameter: MParameter,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+	methodName?: string,
+) {
+	let type: string;
+	if (parameter.variant === 'stream') {
+		if (parameter.type === 'file') {
+			type = fqn(`${basePackageName}.RSDFile`);
+		} else {
+			type = fqn(`${basePackageName}.RSDBlob`);
+		}
+	} else if (isMBuiltinType(parameter.type)) {
+		if (parameter.array || parameter.optional || parameter.nullable) {
+			type = builtinToJavaObjectType(parameter.type, fqn);
+		} else {
+			type = builtinToJavaType(parameter.type, fqn);
+		}
+	} else if (isMInlineEnumType(parameter.type)) {
+		if (methodName !== undefined) {
+			type = toFirstUpper(methodName) + '_' + toFirstUpper(parameter.name) + '_Param$';
+		} else {
+			type = 'UNKNOWN';
+			console.error('Internal error: methodName is required for inline-enum parameter types');
+		}
+	} else if (parameter.variant === 'enum' || parameter.variant === 'scalar') {
+		if (nativeTypeSubstitues !== undefined && parameter.type in nativeTypeSubstitues) {
+			type = fqn(nativeTypeSubstitues[parameter.type]);
+		} else {
+			type = fqn(`${basePackageName}.${parameter.type}`);
+		}
+	} else if (parameter.variant === 'record' || parameter.variant === 'union') {
+		type = fqn(`${basePackageName}.${parameter.type}`) + (parameter.patch ? '.Patch' : '.Data');
+	} else {
+		throw new Error('Should not get here');
+	}
+
+	if (parameter.array) {
+		type = `${fqn('java.util.List')}<${type}>`;
+	}
+
+	if (parameter.optional && parameter.nullable) {
+		type = fqn(`${basePackageName}._Base`) + `.Nillable<${type}>`;
+	} else if (parameter.optional || parameter.nullable) {
+		if (parameter.array) {
+			type = fqn('java.util.Optional') + `<${type}>`;
+		} else if (parameter.type === 'int') {
+			type = fqn('java.util.OptionalInt');
+		} else if (parameter.type === 'long') {
+			type = fqn('java.util.OptionalLong');
+		} else if (parameter.type === 'double') {
+			type = fqn('java.util.OptionalDouble');
+		} else {
+			type = fqn('java.util.Optional') + `<${type}>`;
+		}
+	}
+
+	return type;
+}
+
+/**
+ * @deprecated use computeParameterTypeNG
+ */
 export function computeParameterAPIType(
 	parameter: MParameter,
 	nativeTypeSubstitues: Record<string, string> | undefined,

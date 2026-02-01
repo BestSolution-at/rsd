@@ -1,6 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.body;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BodyParameterTypesServiceImpl;
@@ -12,7 +13,7 @@ public class SimpleLocalDateTimeBodyParamNilHandlerImpl
 		implements BodyParameterTypesServiceImpl.SimpleLocalDateTimeBodyParamNilHandler {
 
 	@Override
-	public NilResult simpleLocalDateTimeBodyParamNil(BuilderFactory _factory, LocalDateTime bodyLocalDateTime) {
+	public NilResult simpleLocalDateTimeBodyParamNil(BuilderFactory _factory, Optional<LocalDateTime> bodyLocalDateTime) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'simpleLocalDateTimeBodyParamNil'");
 	}

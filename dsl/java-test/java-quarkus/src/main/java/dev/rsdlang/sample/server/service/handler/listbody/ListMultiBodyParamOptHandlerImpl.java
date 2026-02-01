@@ -1,6 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.listbody;
 
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListBodyParameterTypesServiceImpl;
@@ -13,8 +14,8 @@ public class ListMultiBodyParamOptHandlerImpl
 		implements ListBodyParameterTypesServiceImpl.ListMultiBodyParamOptHandler {
 
 	@Override
-	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, List<String> valueA, List<Integer> valueB,
-			List<Data> valueC) {
+	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA,
+			Optional<List<Integer>> valueB, Optional<List<Data>> valueC) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listMultiBodyParamOpt'");
 	}

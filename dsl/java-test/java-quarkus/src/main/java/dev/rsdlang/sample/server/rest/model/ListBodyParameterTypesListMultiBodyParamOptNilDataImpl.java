@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.json.JsonObject;
 
+import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
 
 public class ListBodyParameterTypesListMultiBodyParamOptNilDataImpl extends _BaseDataImpl {
@@ -12,16 +13,16 @@ public class ListBodyParameterTypesListMultiBodyParamOptNilDataImpl extends _Bas
 		super(data);
 	}
 
-	public List<String> valueA() {
-		return _JsonUtils.mapStrings(data, "valueA");
+	public _Base.Nillable<List<String>> valueA() {
+		return _JsonUtils.mapNilStrings(data, "valueA");
 	}
 
-	public List<Integer> valueB() {
-		return _JsonUtils.mapInts(data, "valueB");
+	public _Base.Nillable<List<Integer>> valueB() {
+		return _JsonUtils.mapNilInts(data, "valueB");
 	}
 
-	public List<SimpleRecord.Data> valueC() {
-		return _JsonUtils.mapObjects(data, "valueC", SimpleRecordDataImpl::of);
+	public _Base.Nillable<List<SimpleRecord.Data>> valueC() {
+		return _JsonUtils.mapNilObjects(data, "valueC", SimpleRecordDataImpl::of);
 	}
 
 }

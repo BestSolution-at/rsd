@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.body;
 
+import java.util.Optional;
+
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BodyParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
@@ -10,8 +12,9 @@ public class SimpleShortBodyParamOptHandlerImpl
 		implements BodyParameterTypesServiceImpl.SimpleShortBodyParamOptHandler {
 
 	@Override
-	public NilResult simpleShortBodyParamOpt(BuilderFactory _factory, Short bodyShort) {
-		return bodyShort == null ? NilResult.UNDEFINED : NilResult.DEFINED;
+	public NilResult simpleShortBodyParamOpt(BuilderFactory _factory, Optional<Short> bodyShort) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'simpleShortBodyParamOpt'");
 	}
 
 }

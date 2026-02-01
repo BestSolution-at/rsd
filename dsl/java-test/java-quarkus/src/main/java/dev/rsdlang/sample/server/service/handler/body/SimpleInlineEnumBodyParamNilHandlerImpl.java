@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.body;
 
+import java.util.Optional;
+
 import dev.rsdlang.sample.server.service.BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BodyParameterTypesServiceImpl;
@@ -11,8 +13,8 @@ public class SimpleInlineEnumBodyParamNilHandlerImpl
 		implements BodyParameterTypesServiceImpl.SimpleInlineEnumBodyParamNilHandler {
 
 	@Override
-	public NilResult simpleInlineEnumBodyParamNil(BuilderFactory arg0,
-			SimpleInlineEnumBodyParamNil_BodyEnum_Param$ arg1) {
+	public NilResult simpleInlineEnumBodyParamNil(BuilderFactory _factory,
+			Optional<SimpleInlineEnumBodyParamNil_BodyEnum_Param$> bodyEnum) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'simpleInlineEnumBodyParamNil'");
 	}

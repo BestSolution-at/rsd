@@ -7,9 +7,6 @@ import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
-import java.util.OptionalLong;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -192,12 +189,12 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listIntHeaderParamOpt(BuilderFactory _factory, OptionalInt headerValue) {
+	public NilResult listIntHeaderParamOpt(BuilderFactory _factory, Optional<List<Integer>> headerValue) {
 		return listIntHeaderParamOptHandler.listIntHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listIntHeaderParamNil(BuilderFactory _factory, OptionalInt headerValue) {
+	public NilResult listIntHeaderParamNil(BuilderFactory _factory, Optional<List<Integer>> headerValue) {
 		return listIntHeaderParamNilHandler.listIntHeaderParamNil(_factory, headerValue);
 	}
 
@@ -212,12 +209,12 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listLongHeaderParamOpt(BuilderFactory _factory, OptionalLong headerValue) {
+	public NilResult listLongHeaderParamOpt(BuilderFactory _factory, Optional<List<Long>> headerValue) {
 		return listLongHeaderParamOptHandler.listLongHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listLongHeaderParamNil(BuilderFactory _factory, OptionalLong headerValue) {
+	public NilResult listLongHeaderParamNil(BuilderFactory _factory, Optional<List<Long>> headerValue) {
 		return listLongHeaderParamNilHandler.listLongHeaderParamNil(_factory, headerValue);
 	}
 
@@ -252,12 +249,12 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listDoubleHeaderParamOpt(BuilderFactory _factory, OptionalDouble headerValue) {
+	public NilResult listDoubleHeaderParamOpt(BuilderFactory _factory, Optional<List<Double>> headerValue) {
 		return listDoubleHeaderParamOptHandler.listDoubleHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listDoubleHeaderParamNil(BuilderFactory _factory, OptionalDouble headerValue) {
+	public NilResult listDoubleHeaderParamNil(BuilderFactory _factory, Optional<List<Double>> headerValue) {
 		return listDoubleHeaderParamNilHandler.listDoubleHeaderParamNil(_factory, headerValue);
 	}
 
@@ -412,12 +409,12 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return listMultiHeaderParamOptHandler.listMultiHeaderParamOpt(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return listMultiHeaderParamNilHandler.listMultiHeaderParamNil(_factory, valueA, valueB, valueC);
 	}
 
@@ -483,11 +480,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListIntHeaderParamOptHandler {
-		public NilResult listIntHeaderParamOpt(BuilderFactory _factory, OptionalInt headerValue);
+		public NilResult listIntHeaderParamOpt(BuilderFactory _factory, Optional<List<Integer>> headerValue);
 	}
 
 	public interface ListIntHeaderParamNilHandler {
-		public NilResult listIntHeaderParamNil(BuilderFactory _factory, OptionalInt headerValue);
+		public NilResult listIntHeaderParamNil(BuilderFactory _factory, Optional<List<Integer>> headerValue);
 	}
 
 	public interface ListIntHeaderParamOptNilHandler {
@@ -499,11 +496,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListLongHeaderParamOptHandler {
-		public NilResult listLongHeaderParamOpt(BuilderFactory _factory, OptionalLong headerValue);
+		public NilResult listLongHeaderParamOpt(BuilderFactory _factory, Optional<List<Long>> headerValue);
 	}
 
 	public interface ListLongHeaderParamNilHandler {
-		public NilResult listLongHeaderParamNil(BuilderFactory _factory, OptionalLong headerValue);
+		public NilResult listLongHeaderParamNil(BuilderFactory _factory, Optional<List<Long>> headerValue);
 	}
 
 	public interface ListLongHeaderParamOptNilHandler {
@@ -531,11 +528,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListDoubleHeaderParamOptHandler {
-		public NilResult listDoubleHeaderParamOpt(BuilderFactory _factory, OptionalDouble headerValue);
+		public NilResult listDoubleHeaderParamOpt(BuilderFactory _factory, Optional<List<Double>> headerValue);
 	}
 
 	public interface ListDoubleHeaderParamNilHandler {
-		public NilResult listDoubleHeaderParamNil(BuilderFactory _factory, OptionalDouble headerValue);
+		public NilResult listDoubleHeaderParamNil(BuilderFactory _factory, Optional<List<Double>> headerValue);
 	}
 
 	public interface ListDoubleHeaderParamOptNilHandler {
@@ -659,11 +656,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListMultiHeaderParamOptHandler {
-		public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
 	}
 
 	public interface ListMultiHeaderParamNilHandler {
-		public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, OptionalInt valueB, Optional<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
 	}
 
 	public interface ListMultiHeaderParamOptNilHandler {

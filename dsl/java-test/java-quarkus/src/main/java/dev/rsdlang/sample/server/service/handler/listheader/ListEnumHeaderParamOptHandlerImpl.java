@@ -1,6 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.listheader;
 
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
@@ -13,7 +14,7 @@ public class ListEnumHeaderParamOptHandlerImpl
 		implements ListHeaderParameterTypesServiceImpl.ListEnumHeaderParamOptHandler {
 
 	@Override
-	public NilResult listEnumHeaderParamOpt(BuilderFactory _factory, List<SampleEnum> headerValue) {
+	public NilResult listEnumHeaderParamOpt(BuilderFactory _factory, Optional<List<SampleEnum>> headerValue) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listEnumHeaderParamOpt'");
 	}

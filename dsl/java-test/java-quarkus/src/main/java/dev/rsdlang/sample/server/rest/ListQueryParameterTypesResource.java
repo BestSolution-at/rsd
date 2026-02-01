@@ -2,6 +2,7 @@
 package dev.rsdlang.sample.server.rest;
 
 import java.time.ZoneId;
+import java.util.List;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -34,104 +35,104 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listBooleanQueryParam")
-	public Response listBooleanQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.mapBooleans(_RestUtils.parseArray(_queryValue));
+	public Response listBooleanQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapBooleans(_queryValue);
 		var result = service.listBooleanQueryParam(builderFactory, queryValue);
 		return responseBuilder.listBooleanQueryParam(result, queryValue).build();
 	}
 
 	@GET
 	@Path("listShortQueryParam")
-	public Response listShortQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.mapShorts(_RestUtils.parseArray(_queryValue));
+	public Response listShortQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapShorts(_queryValue);
 		var result = service.listShortQueryParam(builderFactory, queryValue);
 		return responseBuilder.listShortQueryParam(result, queryValue).build();
 	}
 
 	@GET
 	@Path("listIntQueryParam")
-	public Response listIntQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.mapInts(_RestUtils.parseArray(_queryValue));
+	public Response listIntQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapInts(_queryValue);
 		var result = service.listIntQueryParam(builderFactory, queryValue);
 		return responseBuilder.listIntQueryParam(result, queryValue).build();
 	}
 
 	@GET
 	@Path("listLongQueryParam")
-	public Response listLongQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.mapLongs(_RestUtils.parseArray(_queryValue));
+	public Response listLongQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapLongs(_queryValue);
 		var result = service.listLongQueryParam(builderFactory, queryValue);
 		return responseBuilder.listLongQueryParam(result, queryValue).build();
 	}
 
 	@GET
 	@Path("listFloatQueryParam")
-	public Response listFloatQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.mapFloats(_RestUtils.parseArray(_queryValue));
+	public Response listFloatQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapFloats(_queryValue);
 		var result = service.listFloatQueryParam(builderFactory, queryValue);
 		return responseBuilder.listFloatQueryParam(result, queryValue).build();
 	}
 
 	@GET
 	@Path("listDoubleQueryParam")
-	public Response listDoubleQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.mapDoubles(_RestUtils.parseArray(_queryValue));
+	public Response listDoubleQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapDoubles(_queryValue);
 		var result = service.listDoubleQueryParam(builderFactory, queryValue);
 		return responseBuilder.listDoubleQueryParam(result, queryValue).build();
 	}
 
 	@GET
 	@Path("listStringQueryParam")
-	public Response listStringQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.mapStrings(_RestUtils.parseArray(_queryValue));
+	public Response listStringQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapStrings(_queryValue);
 		var result = service.listStringQueryParam(builderFactory, queryValue);
 		return responseBuilder.listStringQueryParam(result, queryValue).build();
 	}
 
 	@GET
 	@Path("listLocalDateQueryParam")
-	public Response listLocalDateQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.mapLocalDates(_RestUtils.parseArray(_queryValue));
+	public Response listLocalDateQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapLocalDates(_queryValue);
 		var result = service.listLocalDateQueryParam(builderFactory, queryValue);
 		return responseBuilder.listLocalDateQueryParam(result, queryValue).build();
 	}
 
 	@GET
 	@Path("listLocalDateTimeQueryParam")
-	public Response listLocalDateTimeQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.mapLocalDateTimes(_RestUtils.parseArray(_queryValue));
+	public Response listLocalDateTimeQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapLocalDateTimes(_queryValue);
 		var result = service.listLocalDateTimeQueryParam(builderFactory, queryValue);
 		return responseBuilder.listLocalDateTimeQueryParam(result, queryValue).build();
 	}
 
 	@GET
 	@Path("listZonedDateTimeQueryParam")
-	public Response listZonedDateTimeQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.mapZonedDateTimes(_RestUtils.parseArray(_queryValue));
+	public Response listZonedDateTimeQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapZonedDateTimes(_queryValue);
 		var result = service.listZonedDateTimeQueryParam(builderFactory, queryValue);
 		return responseBuilder.listZonedDateTimeQueryParam(result, queryValue).build();
 	}
 
 	@GET
 	@Path("listScalarQueryParam")
-	public Response listScalarQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.mapLiterals(_RestUtils.parseArray(_queryValue), ZoneId::of);
+	public Response listScalarQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapLiterals(_queryValue, ZoneId::of);
 		var result = service.listScalarQueryParam(builderFactory, queryValue);
 		return responseBuilder.listScalarQueryParam(result, queryValue).build();
 	}
 
 	@GET
 	@Path("listEnumQueryParam")
-	public Response listEnumQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.mapLiterals(_RestUtils.parseArray(_queryValue), SampleEnum::valueOf);
+	public Response listEnumQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapLiterals(_queryValue, SampleEnum::valueOf);
 		var result = service.listEnumQueryParam(builderFactory, queryValue);
 		return responseBuilder.listEnumQueryParam(result, queryValue).build();
 	}
 
 	@GET
 	@Path("listInlineEnumQueryParam")
-	public Response listInlineEnumQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.mapLiterals(_RestUtils.parseArray(_queryValue), ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$::valueOf);
+	public Response listInlineEnumQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapLiterals(_queryValue, ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$::valueOf);
 		var result = service.listInlineEnumQueryParam(builderFactory, queryValue);
 		return responseBuilder.listInlineEnumQueryParam(result, queryValue).build();
 	}
@@ -139,20 +140,20 @@ public class ListQueryParameterTypesResource {
 	@GET
 	@Path("listMultiQueryParam")
 	public Response listMultiQueryParam(
-			@QueryParam("valueA") String _valueA,
-			@QueryParam("valueB") String _valueB,
-			@QueryParam("valueC") String _valueC) {
-		var valueA = _RestUtils.mapStrings(_RestUtils.parseArray(_valueA));
-		var valueB = _RestUtils.mapInts(_RestUtils.parseArray(_valueB));
-		var valueC = _JsonUtils.parseObject(_valueC, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+			@QueryParam("valueA") List<String> _valueA,
+			@QueryParam("valueB") List<String> _valueB,
+			@QueryParam("valueC") List<String> _valueC) {
+		var valueA = _RestUtils.mapStrings(_valueA);
+		var valueB = _RestUtils.mapInts(_valueB);
+		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listMultiQueryParam(builderFactory, valueA, valueB, valueC);
 		return responseBuilder.listMultiQueryParam(result, valueA, valueB, valueC).build();
 	}
 
 	@GET
 	@Path("listRecordQueryParam")
-	public Response listRecordQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _JsonUtils.parseObject(_queryValue, $j -> builderFactory.of(SimpleRecord.Data.class, $j));
+	public Response listRecordQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapObjects(_queryValue, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listRecordQueryParam(builderFactory, queryValue);
 		return responseBuilder.listRecordQueryParam(result, queryValue).build();
 	}

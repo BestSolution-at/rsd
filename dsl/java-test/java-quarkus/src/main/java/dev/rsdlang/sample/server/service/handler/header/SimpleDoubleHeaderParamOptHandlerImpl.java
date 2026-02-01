@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.header;
 
+import java.util.OptionalDouble;
+
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.HeaderParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
@@ -10,7 +12,7 @@ public class SimpleDoubleHeaderParamOptHandlerImpl
 		implements HeaderParameterTypesServiceImpl.SimpleDoubleHeaderParamOptHandler {
 
 	@Override
-	public NilResult simpleDoubleHeaderParamOpt(BuilderFactory _factory, Double headerValue) {
+	public NilResult simpleDoubleHeaderParamOpt(BuilderFactory _factory, OptionalDouble headerValue) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'simpleDoubleHeaderParamOpt'");
 	}

@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.body;
 
+import java.util.OptionalDouble;
+
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BodyParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.NilResult;
@@ -10,7 +12,7 @@ public class SimpleDoubleBodyParamOptHandlerImpl
 		implements BodyParameterTypesServiceImpl.SimpleDoubleBodyParamOptHandler {
 
 	@Override
-	public NilResult simpleDoubleBodyParamOpt(BuilderFactory _factory, Double bodyDouble) {
+	public NilResult simpleDoubleBodyParamOpt(BuilderFactory _factory, OptionalDouble bodyDouble) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'simpleDoubleBodyParamOpt'");
 	}

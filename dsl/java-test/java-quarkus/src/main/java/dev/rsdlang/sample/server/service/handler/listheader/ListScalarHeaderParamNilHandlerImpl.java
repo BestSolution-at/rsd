@@ -2,6 +2,7 @@ package dev.rsdlang.sample.server.service.handler.listheader;
 
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
@@ -13,7 +14,7 @@ public class ListScalarHeaderParamNilHandlerImpl
 		implements ListHeaderParameterTypesServiceImpl.ListScalarHeaderParamNilHandler {
 
 	@Override
-	public NilResult listScalarHeaderParamNil(BuilderFactory _factory, List<ZoneId> headerValue) {
+	public NilResult listScalarHeaderParamNil(BuilderFactory _factory, Optional<List<ZoneId>> headerValue) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listScalarHeaderParamNil'");
 	}

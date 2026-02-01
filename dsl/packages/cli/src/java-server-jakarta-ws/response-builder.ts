@@ -108,7 +108,7 @@ function toParameter(
 		let t = `${Service}.${toFirstUpper(methodName)}_${toFirstUpper(parameter.name)}_Param$`;
 		if (parameter.array) {
 			const List = fqn('java.util.List');
-			t = `${List}<${t}> ${parameter.name}`;
+			t = `${List}<${t}>`;
 		}
 
 		if (parameter.optional && parameter.nullable) {
@@ -132,11 +132,11 @@ function toParameter(
 	if (parameter.optional && parameter.nullable) {
 		type = fqn(`${artifactConfig.rootPackageName}.service.model._Base`) + `.Nillable<${type}>`;
 	} else if (parameter.optional || parameter.nullable) {
-		if (parameter.type === 'int') {
+		if (!parameter.array && parameter.type === 'int') {
 			type = fqn('java.util.OptionalInt');
-		} else if (parameter.type === 'long') {
+		} else if (!parameter.array && parameter.type === 'long') {
 			type = fqn('java.util.OptionalLong');
-		} else if (parameter.type === 'double') {
+		} else if (!parameter.array && parameter.type === 'double') {
 			type = fqn('java.util.OptionalDouble');
 		} else {
 			type = fqn('java.util.Optional') + `<${type}>`;

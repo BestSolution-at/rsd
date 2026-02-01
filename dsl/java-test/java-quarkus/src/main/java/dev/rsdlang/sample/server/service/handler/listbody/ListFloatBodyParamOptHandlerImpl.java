@@ -1,6 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.listbody;
 
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListBodyParameterTypesServiceImpl;
@@ -12,7 +13,7 @@ public class ListFloatBodyParamOptHandlerImpl
 		implements ListBodyParameterTypesServiceImpl.ListFloatBodyParamOptHandler {
 
 	@Override
-	public NilResult listFloatBodyParamOpt(BuilderFactory _factory, List<Float> bodyFloat) {
+	public NilResult listFloatBodyParamOpt(BuilderFactory _factory, Optional<List<Float>> bodyFloat) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listFloatBodyParamOpt'");
 	}

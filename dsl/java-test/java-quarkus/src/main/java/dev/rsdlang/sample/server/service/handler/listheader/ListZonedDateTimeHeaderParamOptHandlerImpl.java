@@ -2,6 +2,7 @@ package dev.rsdlang.sample.server.service.handler.listheader;
 
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
@@ -13,7 +14,7 @@ public class ListZonedDateTimeHeaderParamOptHandlerImpl
 		implements ListHeaderParameterTypesServiceImpl.ListZonedDateTimeHeaderParamOptHandler {
 
 	@Override
-	public NilResult listZonedDateTimeHeaderParamOpt(BuilderFactory _factory, List<ZonedDateTime> headerValue) {
+	public NilResult listZonedDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<ZonedDateTime>> headerValue) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'listZonedDateTimeHeaderParamOpt'");
 	}
