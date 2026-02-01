@@ -116,4 +116,17 @@ describe('ListQueryParameterTypesServiceFetchImpl', () => {
 			expect(result).toEqual('one,two,three-1,2,3-a,b,c');
 		});
 	});
+	describe('listRecordQueryParam', () => {
+		test('success', async () => {
+			const [result, error] = await service.listRecordQueryParam([
+				{ key: 'key1', version: '1', value: 'value1' },
+				{ key: 'key2', version: '2', value: 'value2' },
+			]);
+			expect(error).toBeNull();
+			expect(result).toStrictEqual([
+				{ key: 'key1', version: '1', value: 'value1' },
+				{ key: 'key2', version: '2', value: 'value2' },
+			]);
+		});
+	});
 });

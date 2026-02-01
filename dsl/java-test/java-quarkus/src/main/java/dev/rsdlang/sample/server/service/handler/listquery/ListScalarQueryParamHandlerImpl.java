@@ -12,8 +12,7 @@ public class ListScalarQueryParamHandlerImpl implements ListQueryParameterTypesS
 
 	@Override
 	public List<ZoneId> listScalarQueryParam(BuilderFactory _factory, List<ZoneId> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listScalarQueryParam'");
+		return queryValue;
 	}
 
 }

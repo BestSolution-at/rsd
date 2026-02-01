@@ -13,8 +13,7 @@ public class ListLocalDateQueryParamHandlerImpl
 
 	@Override
 	public List<LocalDate> listLocalDateQueryParam(BuilderFactory _factory, List<LocalDate> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLocalDateQueryParam'");
+		return queryValue;
 	}
 
 }

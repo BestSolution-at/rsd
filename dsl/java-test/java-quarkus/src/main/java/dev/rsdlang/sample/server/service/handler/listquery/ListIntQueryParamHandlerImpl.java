@@ -12,8 +12,7 @@ public class ListIntQueryParamHandlerImpl
 
 	@Override
 	public List<Integer> listIntQueryParam(BuilderFactory _factory, List<Integer> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listIntQueryParam'");
+		return queryValue;
 	}
 
 }

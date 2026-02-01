@@ -11,8 +11,7 @@ public class ListStringQueryParamHandlerImpl implements ListQueryParameterTypesS
 
 	@Override
 	public List<String> listStringQueryParam(BuilderFactory _factory, List<String> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listStringQueryParam'");
+		return queryValue;
 	}
 
 }

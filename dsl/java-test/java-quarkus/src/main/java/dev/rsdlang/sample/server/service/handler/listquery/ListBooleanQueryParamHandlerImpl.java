@@ -12,8 +12,7 @@ public class ListBooleanQueryParamHandlerImpl
 
 	@Override
 	public List<Boolean> listBooleanQueryParam(BuilderFactory _factory, List<Boolean> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listBooleanQueryParam'");
+		return queryValue;
 	}
 
 }

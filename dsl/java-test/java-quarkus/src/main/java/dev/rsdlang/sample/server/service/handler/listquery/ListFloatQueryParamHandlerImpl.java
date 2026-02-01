@@ -12,8 +12,7 @@ public class ListFloatQueryParamHandlerImpl
 
 	@Override
 	public List<Float> listFloatQueryParam(BuilderFactory _factory, List<Float> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listFloatQueryParam'");
+		return queryValue;
 	}
 
 }

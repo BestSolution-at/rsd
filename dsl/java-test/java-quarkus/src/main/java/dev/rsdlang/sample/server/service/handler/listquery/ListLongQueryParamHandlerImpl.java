@@ -12,8 +12,7 @@ public class ListLongQueryParamHandlerImpl
 
 	@Override
 	public List<Long> listLongQueryParam(BuilderFactory _factory, List<Long> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLongQueryParam'");
+		return queryValue;
 	}
 
 }

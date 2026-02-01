@@ -11,8 +11,7 @@ public class ListShortQueryParamHandlerImpl implements ListQueryParameterTypesSe
 
 	@Override
 	public List<Short> listShortQueryParam(BuilderFactory _factory, List<Short> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listShortQueryParam'");
+		return queryValue;
 	}
 
 }

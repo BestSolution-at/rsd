@@ -13,8 +13,7 @@ public class ListEnumQueryParamHandlerImpl
 
 	@Override
 	public List<SampleEnum> listEnumQueryParam(BuilderFactory _factory, List<SampleEnum> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listEnumQueryParam'");
+		return queryValue;
 	}
 
 }

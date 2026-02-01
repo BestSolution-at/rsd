@@ -12,8 +12,7 @@ public class ListDoubleQueryParamHandlerImpl
 
 	@Override
 	public List<Double> listDoubleQueryParam(BuilderFactory _factory, List<Double> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listDoubleQueryParam'");
+		return queryValue;
 	}
 
 }

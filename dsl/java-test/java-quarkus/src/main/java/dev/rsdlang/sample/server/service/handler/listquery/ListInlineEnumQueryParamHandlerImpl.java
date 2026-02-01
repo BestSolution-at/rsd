@@ -15,8 +15,9 @@ public class ListInlineEnumQueryParamHandlerImpl
 	@Override
 	public List<ListInlineEnumQueryParam_Result$> listInlineEnumQueryParam(BuilderFactory _factory,
 			List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listInlineEnumQueryParam'");
+		return queryValue.stream()
+				.map(v -> ListInlineEnumQueryParam_Result$.valueOf(v.name()))
+				.toList();
 	}
 
 }

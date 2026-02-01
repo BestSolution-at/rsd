@@ -13,8 +13,7 @@ public class ListZonedDateTimeQueryParamHandlerImpl
 
 	@Override
 	public List<ZonedDateTime> listZonedDateTimeQueryParam(BuilderFactory _factory, List<ZonedDateTime> queryValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listZonedDateTimeQueryParam'");
+		return queryValue;
 	}
 
 }
