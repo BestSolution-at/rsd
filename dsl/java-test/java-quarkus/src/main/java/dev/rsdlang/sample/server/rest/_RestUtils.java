@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
@@ -26,6 +27,15 @@ import dev.rsdlang.sample.server.service.model.RSDFile;
 import dev.rsdlang.sample.server.service.RSDException;
 
 public class _RestUtils {
+	public static String fromEscapedAscii(String value) {
+		var p = Pattern.compile("\\\\u([0-9a-fA-F]{4})").matcher(value);
+		while (p.find()) {
+			String ch = String.valueOf((char) Integer.parseInt(p.group(1), 16));
+			value = value.replace(p.group(0), ch);
+		}
+		return value;
+	}
+
 	public static <T> T parseLiteral(String value, Function<String, T> parser) {
 		return parser.apply(value);
 	}
