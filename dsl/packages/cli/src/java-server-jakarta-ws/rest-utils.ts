@@ -142,9 +142,19 @@ function parseFunctions(artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn:
 	fqn('java.util.OptionalDouble');
 	fqn('java.util.function.Function');
 	fqn('java.util.List');
+	fqn('java.util.regex.Pattern');
 	fqn(`${artifactConfig.rootPackageName}.service.model._Base`);
 	fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`);
 	return toNodeTree(`
+public static String fromEscapedAscii(String value) {
+	var p = Pattern.compile("\\\\\\\\u([0-9a-fA-F]{4})").matcher(value);
+	while (p.find()) {
+		String ch = String.valueOf((char) Integer.parseInt(p.group(1), 16));
+		value = value.replace(p.group(0), ch);
+	}
+	return value;
+}
+
 public static <T> T parseLiteral(String value, Function<String, T> parser) {
 	return parser.apply(value);
 }
