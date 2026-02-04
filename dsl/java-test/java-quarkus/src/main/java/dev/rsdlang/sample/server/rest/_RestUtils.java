@@ -27,13 +27,19 @@ import dev.rsdlang.sample.server.service.model.RSDFile;
 import dev.rsdlang.sample.server.service.RSDException;
 
 public class _RestUtils {
+	private static Pattern UNESCAPE_PATTERN = Pattern.compile("\\\\u([0-9a-fA-F]{4})");
+
 	public static String fromEscapedAscii(String value) {
-		var p = Pattern.compile("\\\\u([0-9a-fA-F]{4})").matcher(value);
+		var p = UNESCAPE_PATTERN.matcher(value);
 		while (p.find()) {
 			String ch = String.valueOf((char) Integer.parseInt(p.group(1), 16));
 			value = value.replace(p.group(0), ch);
 		}
 		return value;
+	}
+
+	public static <T> Function<String, T> preprocessEscapedAscii(Function<String, T> parser) {
+		return value -> parser.apply(fromEscapedAscii(value));
 	}
 
 	public static <T> T parseLiteral(String value, Function<String, T> parser) {
@@ -72,6 +78,22 @@ public class _RestUtils {
 
 	public static _Base.Nillable<String> parseNilString(String value) {
 		return parseNilLiteral(value, Function.identity());
+	}
+
+	public static String parseString(String value, Function<String, String> decoder) {
+		return decoder.apply(value);
+	}
+
+	public static Optional<String> parseOptString(String value, Function<String, String> decoder) {
+		return parseOptLiteral(value, decoder);
+	}
+
+	public static Optional<String> parseNullString(String value, Function<String, String> decoder) {
+		return parseNullLiteral(value, decoder);
+	}
+
+	public static _Base.Nillable<String> parseNilString(String value, Function<String, String> decoder) {
+		return parseNilLiteral(value, decoder);
 	}
 
 	public static short parseShort(String value) {

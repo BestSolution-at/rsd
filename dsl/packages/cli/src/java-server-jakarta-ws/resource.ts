@@ -441,14 +441,27 @@ function builtinParameter(
 			}
 		}
 	} else {
+		const transformer = p.type === 'string' && p.meta?.rest?.source === 'header' ? `, ${_Util}::fromEscapedAscii` : '';
 		if (p.optional && p.nullable) {
-			node.append(`var ${p.name} = ${_Util}.parseNil${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name});`, NL);
+			node.append(
+				`var ${p.name} = ${_Util}.parseNil${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name}${transformer});`,
+				NL,
+			);
 		} else if (p.optional) {
-			node.append(`var ${p.name} = ${_Util}.parseOpt${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name});`, NL);
+			node.append(
+				`var ${p.name} = ${_Util}.parseOpt${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name}${transformer});`,
+				NL,
+			);
 		} else if (p.nullable) {
-			node.append(`var ${p.name} = ${_Util}.parseNull${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name});`, NL);
+			node.append(
+				`var ${p.name} = ${_Util}.parseNull${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name}${transformer});`,
+				NL,
+			);
 		} else {
-			node.append(`var ${p.name} = ${_Util}.parse${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name});`, NL);
+			node.append(
+				`var ${p.name} = ${_Util}.parse${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name}${transformer});`,
+				NL,
+			);
 		}
 	}
 	return node;
@@ -647,14 +660,28 @@ function scalarParameter(
 			}
 		}
 	} else {
+		const transformerPre = p.meta?.rest?.source === 'header' ? `${_Util}.preprocessEscapedAscii(` : '';
+		const transformerPost = p.meta?.rest?.source === 'header' ? `)` : '';
 		if (p.optional && p.nullable) {
-			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}, ${t}::of);`, NL);
+			node.append(
+				`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+				NL,
+			);
 		} else if (p.optional) {
-			node.append(`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}, ${t}::of);`, NL);
+			node.append(
+				`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+				NL,
+			);
 		} else if (p.nullable) {
-			node.append(`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}, ${t}::of);`, NL);
+			node.append(
+				`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+				NL,
+			);
 		} else {
-			node.append(`var ${p.name} = ${_Util}.parseLiteral(_${p.name}, ${t}::of);`, NL);
+			node.append(
+				`var ${p.name} = ${_Util}.parseLiteral(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+				NL,
+			);
 		}
 	}
 	return node;

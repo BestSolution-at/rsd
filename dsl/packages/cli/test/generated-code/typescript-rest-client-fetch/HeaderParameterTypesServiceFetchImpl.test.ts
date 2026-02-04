@@ -216,11 +216,40 @@ describe('HeaderParameterTypesService', () => {
 		});
 	});
 
+	/*
+describe('simpleStringHeaderParam', () => {
+		test('success - Hello, World!', async () => {
+			let text = 'a Ā 𐀀 文 🦄';
+			// text = '\\uffff-supi';
+			const [result, error] = await service.simpleStringHeaderParam(text);
+			//const [result, error] = await service.simpleStringHeaderParam(`föö`);
+			expect(error).toBeNull();
+			expect(result).toBe(text);
+			// expect(result).toBe('foo\nsample');
+		});
+	});
+*/
+
 	describe('simpleStringHeaderParam', () => {
 		test('success - Hello, World!', async () => {
 			const [result, error] = await service.simpleStringHeaderParam('Hello, World!');
 			expect(error).toBeNull();
 			expect(result).toBe('Hello, World!');
+		});
+		test('success - none ascii chars', async () => {
+			const [result, error] = await service.simpleStringHeaderParam('a Ā 𐀀 文 🦄');
+			expect(error).toBeNull();
+			expect(result).toBe('a Ā 𐀀 文 🦄');
+		});
+		test('success - multi-line', async () => {
+			const [result, error] = await service.simpleStringHeaderParam('line1\nline2\nline3');
+			expect(error).toBeNull();
+			expect(result).toBe('line1\nline2\nline3');
+		});
+		test('success - \\u escaping', async () => {
+			const [result, error] = await service.simpleStringHeaderParam('pre-\\uffff-post');
+			expect(error).toBeNull();
+			expect(result).toBe('pre-\\uffff-post');
 		});
 	});
 	describe('simpleStringHeaderParamOpt', () => {

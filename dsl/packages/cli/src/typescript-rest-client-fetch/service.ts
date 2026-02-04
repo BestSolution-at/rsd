@@ -130,16 +130,26 @@ function numericOrBooleanHeaderQueryCode(target: string, p: MParameter) {
 	return node;
 }
 
-function stringHeaderQueryCode(target: string, p: MParameter) {
+function stringHeaderQueryCode(target: string, p: MParameter, fqn: (type: string, typeOnly: boolean) => string) {
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		node.append(`${p.name}.forEach($entry => {`, NL);
 		node.indent(mBody => {
-			mBody.append(`${target}.append('${p.name}', $entry);`, NL);
+			if (p.meta?.rest?.source === 'header' && (p.type === 'string' || p.type === 'scalar')) {
+				const encodeAsciiString = fqn('encodeAsciiString:./_fetch-type-utils.ts', false);
+				mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}($entry));`, NL);
+			} else {
+				mBody.append(`${target}.append('${p.name}', $entry);`, NL);
+			}
 		});
 		node.append('});', NL);
 	} else {
-		node.append(`${target}.append('${p.name}', ${p.name});`, NL);
+		if (p.meta?.rest?.source === 'header' && (p.type === 'string' || p.type === 'scalar')) {
+			const encodeAsciiString = fqn('encodeAsciiString:./_fetch-type-utils.ts', false);
+			node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${p.name}));`, NL);
+		} else {
+			node.append(`${target}.append('${p.name}', ${p.name});`, NL);
+		}
 	}
 	return node;
 }
@@ -179,7 +189,7 @@ function headerQueryCodeBlock(
 	if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum' || p.variant === 'scalar') {
 		return isMBuiltinNumericType(p.type) || p.type === 'boolean'
 			? numericOrBooleanHeaderQueryCode(target, p)
-			: stringHeaderQueryCode(target, p);
+			: stringHeaderQueryCode(target, p, fqn);
 	}
 	return recordHeaderQueryCode(target, p, config, fqn);
 }

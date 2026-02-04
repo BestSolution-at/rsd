@@ -227,7 +227,7 @@ public class HeaderParameterTypesResource {
 	@GET
 	@Path("simpleStringHeaderParam")
 	public Response simpleStringHeaderParam(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseString(_headerValue);
+		var headerValue = _RestUtils.parseString(_headerValue, _RestUtils::fromEscapedAscii);
 		var result = service.simpleStringHeaderParam(builderFactory, headerValue);
 		return responseBuilder.simpleStringHeaderParam(result, headerValue).build();
 	}
@@ -235,7 +235,7 @@ public class HeaderParameterTypesResource {
 	@GET
 	@Path("simpleStringHeaderParamOpt")
 	public Response simpleStringHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseOptString(_headerValue);
+		var headerValue = _RestUtils.parseOptString(_headerValue, _RestUtils::fromEscapedAscii);
 		var result = service.simpleStringHeaderParamOpt(builderFactory, headerValue);
 		return responseBuilder.simpleStringHeaderParamOpt(result, headerValue).build();
 	}
@@ -243,7 +243,7 @@ public class HeaderParameterTypesResource {
 	@GET
 	@Path("simpleStringHeaderParamNil")
 	public Response simpleStringHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNullString(_headerValue);
+		var headerValue = _RestUtils.parseNullString(_headerValue, _RestUtils::fromEscapedAscii);
 		var result = service.simpleStringHeaderParamNil(builderFactory, headerValue);
 		return responseBuilder.simpleStringHeaderParamNil(result, headerValue).build();
 	}
@@ -251,7 +251,7 @@ public class HeaderParameterTypesResource {
 	@GET
 	@Path("simpleStringHeaderParamOptNil")
 	public Response simpleStringHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNilString(_headerValue);
+		var headerValue = _RestUtils.parseNilString(_headerValue, _RestUtils::fromEscapedAscii);
 		var result = service.simpleStringHeaderParamOptNil(builderFactory, headerValue);
 		return responseBuilder.simpleStringHeaderParamOptNil(result, headerValue).build();
 	}
@@ -355,7 +355,7 @@ public class HeaderParameterTypesResource {
 	@GET
 	@Path("simpleScalarHeaderParam")
 	public Response simpleScalarHeaderParam(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseLiteral(_headerValue, ZoneId::of);
+		var headerValue = _RestUtils.parseLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
 		var result = service.simpleScalarHeaderParam(builderFactory, headerValue);
 		return responseBuilder.simpleScalarHeaderParam(result, headerValue).build();
 	}
@@ -363,7 +363,7 @@ public class HeaderParameterTypesResource {
 	@GET
 	@Path("simpleScalarHeaderParamOpt")
 	public Response simpleScalarHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseOptLiteral(_headerValue, ZoneId::of);
+		var headerValue = _RestUtils.parseOptLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
 		var result = service.simpleScalarHeaderParamOpt(builderFactory, headerValue);
 		return responseBuilder.simpleScalarHeaderParamOpt(result, headerValue).build();
 	}
@@ -371,7 +371,7 @@ public class HeaderParameterTypesResource {
 	@GET
 	@Path("simpleScalarHeaderParamNil")
 	public Response simpleScalarHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNullLiteral(_headerValue, ZoneId::of);
+		var headerValue = _RestUtils.parseNullLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
 		var result = service.simpleScalarHeaderParamNil(builderFactory, headerValue);
 		return responseBuilder.simpleScalarHeaderParamNil(result, headerValue).build();
 	}
@@ -379,7 +379,7 @@ public class HeaderParameterTypesResource {
 	@GET
 	@Path("simpleScalarHeaderParamOptNil")
 	public Response simpleScalarHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNilLiteral(_headerValue, ZoneId::of);
+		var headerValue = _RestUtils.parseNilLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
 		var result = service.simpleScalarHeaderParamOptNil(builderFactory, headerValue);
 		return responseBuilder.simpleScalarHeaderParamOptNil(result, headerValue).build();
 	}
@@ -453,7 +453,7 @@ public class HeaderParameterTypesResource {
 	public Response multiHeaderParam(
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB) {
-		var valueA = _RestUtils.parseString(_valueA);
+		var valueA = _RestUtils.parseString(_valueA, _RestUtils::fromEscapedAscii);
 		var valueB = _RestUtils.parseInt(_valueB);
 		var result = service.multiHeaderParam(builderFactory, valueA, valueB);
 		return responseBuilder.multiHeaderParam(result, valueA, valueB).build();
@@ -464,7 +464,7 @@ public class HeaderParameterTypesResource {
 	public Response multiHeaderParamOpt(
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB) {
-		var valueA = _RestUtils.parseOptString(_valueA);
+		var valueA = _RestUtils.parseOptString(_valueA, _RestUtils::fromEscapedAscii);
 		var valueB = _RestUtils.parseOptInt(_valueB);
 		var result = service.multiHeaderParamOpt(builderFactory, valueA, valueB);
 		return responseBuilder.multiHeaderParamOpt(result, valueA, valueB).build();
@@ -475,7 +475,7 @@ public class HeaderParameterTypesResource {
 	public Response multiHeaderParamNil(
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB) {
-		var valueA = _RestUtils.parseNullString(_valueA);
+		var valueA = _RestUtils.parseNullString(_valueA, _RestUtils::fromEscapedAscii);
 		var valueB = _RestUtils.parseNullInt(_valueB);
 		var result = service.multiHeaderParamNil(builderFactory, valueA, valueB);
 		return responseBuilder.multiHeaderParamNil(result, valueA, valueB).build();
@@ -486,7 +486,7 @@ public class HeaderParameterTypesResource {
 	public Response multiHeaderParamOptNil(
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB) {
-		var valueA = _RestUtils.parseNilString(_valueA);
+		var valueA = _RestUtils.parseNilString(_valueA, _RestUtils::fromEscapedAscii);
 		var valueB = _RestUtils.parseNilInt(_valueB);
 		var result = service.multiHeaderParamOptNil(builderFactory, valueA, valueB);
 		return responseBuilder.multiHeaderParamOptNil(result, valueA, valueB).build();
