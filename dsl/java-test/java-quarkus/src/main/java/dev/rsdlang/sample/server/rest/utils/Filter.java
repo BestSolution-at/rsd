@@ -13,6 +13,7 @@ public class Filter {
 
 	@ServerRequestFilter
 	public void filter(ContainerRequestContext requestContext) {
+		System.err.println(requestContext.getHeaders());
 		headers.unknownStatus = "true".equalsIgnoreCase(requestContext.getHeaders().getFirst("X-Fail-Unknown-Status"));
 		headers.invalidData = "true".equalsIgnoreCase(requestContext.getHeaders().getFirst("X-Fail-Invalid-Data"));
 		headers.invalidEncodedData = "true"

@@ -12,8 +12,7 @@ public class ListBooleanHeaderParamHandlerImpl
 
 	@Override
 	public List<Boolean> listBooleanHeaderParam(BuilderFactory _factory, List<Boolean> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listBooleanHeaderParam'");
+		return headerValue;
 	}
 
 }

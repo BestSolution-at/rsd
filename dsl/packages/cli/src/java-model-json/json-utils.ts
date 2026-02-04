@@ -31,6 +31,10 @@ import jakarta.json.stream.JsonGenerator;
 import ${modelApiPackage}._Base;
 
 public class _JsonUtils {
+	private static boolean isNull(byte[] data) {
+		return data.length == 4 && data[0] == 'n' && data[1] == 'u' && data[2] == 'l' && data[3] == 'l';
+	}
+
 	public static boolean hasValue(JsonObject object, String property) {
 		return object.containsKey(property) && !object.isNull(property);
 	}
