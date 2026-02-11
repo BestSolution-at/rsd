@@ -42,7 +42,8 @@ export function encodeAsciiString(text: string): string {
 	const l = text.length;
 	for (let i = 0; i < l; i++) {
 		const c = text.charCodeAt(i);
-		if (c < 32 || c > 126) {
+		// Escape non-printable characters, comma and all non-ASCII characters
+		if (c < 32 || c > 126 || c === 44) {
 			b += `\\u${c.toString(16).padStart(4, '0')}`;
 		} else {
 			b += text.charAt(i);
@@ -81,4 +82,3 @@ async function decodeJsonBody<T>(response: Response, guard: (value: unknown) => 
 	}
 	return data;
 }
-
