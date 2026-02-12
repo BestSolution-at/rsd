@@ -15,8 +15,13 @@ public class ListRecordHeaderParamOptNilHandlerImpl
 
 	@Override
 	public NilResult listRecordHeaderParamOptNil(BuilderFactory _factory, Nillable<List<Data>> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listRecordHeaderParamOptNil'");
+		if (headerValue.isNull()) {
+			return NilResult.NULL;
+		} else if (headerValue.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

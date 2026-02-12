@@ -668,7 +668,7 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 		});
 	});
 
-	/*describe('listMultiHeaderParam', () => {
+	describe('listMultiHeaderParam', () => {
 		test('success', async () => {
 			const [result, error] = await service.listMultiHeaderParam(
 				['one', 'two', 'three'],
@@ -755,5 +755,5 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe('NULL');
 		});
-	});*/
+	});
 });

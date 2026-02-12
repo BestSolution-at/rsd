@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.function.Function;
 import java.util.List;
 import java.util.Optional;
@@ -28,8 +29,12 @@ import dev.rsdlang.sample.server.service.model.RSDFile;
 import dev.rsdlang.sample.server.service.RSDException;
 
 public class _RestUtils {
-	private static final Pattern SPLIT_SEMICOLON_PATTERN = Pattern.compile(", ");
+	private static final Pattern SPLIT_COMMA_PATTERN = Pattern.compile(",");
 	private static final Pattern UNESCAPE_PATTERN = Pattern.compile("\\\\u([0-9a-fA-F]{4})");
+
+	public static String decodeBase64(String value) {
+		return new String(Base64.getDecoder().decode(value));
+	}
 
 	public static String fromEscapedAscii(String value) {
 		var p = UNESCAPE_PATTERN.matcher(value);
@@ -265,7 +270,7 @@ public class _RestUtils {
 	}
 
 	public static <T> List<T> mapLiterals(String data, Function<String, T> mapper) {
-		return Arrays.stream(SPLIT_SEMICOLON_PATTERN.split(data)).map(mapper).toList();
+		return Arrays.stream(SPLIT_COMMA_PATTERN.split(data)).map(String::trim).map(mapper).toList();
 	}
 
 	public static <T> Optional<List<T>> mapOptLiterals(String data, Function<String, T> mapper) {

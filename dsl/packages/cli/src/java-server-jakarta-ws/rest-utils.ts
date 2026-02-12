@@ -136,6 +136,7 @@ function parseFunctions(artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn:
 	fqn('java.time.LocalDateTime');
 	fqn('java.time.LocalDate');
 	fqn('java.util.Arrays');
+	fqn('java.util.Base64');
 	fqn('java.util.Optional');
 	fqn('java.util.OptionalLong');
 	fqn('java.util.OptionalInt');
@@ -147,8 +148,12 @@ function parseFunctions(artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn:
 	fqn(`${artifactConfig.rootPackageName}.service.model._Base`);
 	fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`);
 	return toNodeTree(`
-private static final Pattern SPLIT_SEMICOLON_PATTERN = Pattern.compile(", ");
+private static final Pattern SPLIT_COMMA_PATTERN = Pattern.compile(",");
 private static final Pattern UNESCAPE_PATTERN = Pattern.compile("\\\\\\\\u([0-9a-fA-F]{4})");
+
+public static String decodeBase64(String value) {
+	return new String(Base64.getDecoder().decode(value));
+}
 
 public static String fromEscapedAscii(String value) {
 	var p = UNESCAPE_PATTERN.matcher(value);
@@ -384,7 +389,7 @@ public static <T> _Base.Nillable<List<T>> mapNilLiterals(List<String> data, Func
 }
 
 public static <T> List<T> mapLiterals(String data, Function<String, T> mapper) {
-	return Arrays.stream(SPLIT_SEMICOLON_PATTERN.split(data)).map(mapper).toList();
+	return Arrays.stream(SPLIT_COMMA_PATTERN.split(data)).map(String::trim).map(mapper).toList();
 }
 
 public static <T> Optional<List<T>> mapOptLiterals(String data, Function<String, T> mapper) {

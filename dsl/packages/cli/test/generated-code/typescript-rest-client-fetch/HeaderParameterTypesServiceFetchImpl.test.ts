@@ -216,20 +216,6 @@ describe('HeaderParameterTypesService', () => {
 		});
 	});
 
-	/*
-describe('simpleStringHeaderParam', () => {
-		test('success - Hello, World!', async () => {
-			let text = 'a Ā 𐀀 文 🦄';
-			// text = '\\uffff-supi';
-			const [result, error] = await service.simpleStringHeaderParam(text);
-			//const [result, error] = await service.simpleStringHeaderParam(`föö`);
-			expect(error).toBeNull();
-			expect(result).toBe(text);
-			// expect(result).toBe('foo\nsample');
-		});
-	});
-*/
-
 	describe('simpleStringHeaderParam', () => {
 		test('success - Hello, World!', async () => {
 			const [result, error] = await service.simpleStringHeaderParam('Hello, World!');
@@ -250,6 +236,11 @@ describe('simpleStringHeaderParam', () => {
 			const [result, error] = await service.simpleStringHeaderParam('pre-\\uffff-post');
 			expect(error).toBeNull();
 			expect(result).toBe('pre-\\uffff-post');
+		});
+		test('success - whitespace prefix/suffix', async () => {
+			const [result, error] = await service.simpleStringHeaderParam('  Hello, World!  ');
+			expect(error).toBeNull();
+			expect(result).toBe('  Hello, World!  ');
 		});
 	});
 	describe('simpleStringHeaderParamOpt', () => {

@@ -16,8 +16,10 @@ public class ListMultiHeaderParamOptHandlerImpl
 	@Override
 	public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA,
 			Optional<List<Integer>> valueB, Optional<List<Data>> valueC) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listMultiHeaderParamOpt'");
+		return List.of(
+				valueA.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED,
+				valueB.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED,
+				valueC.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED);
 	}
 
 }

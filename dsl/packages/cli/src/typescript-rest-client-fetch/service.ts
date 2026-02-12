@@ -137,7 +137,11 @@ function stringHeaderQueryCode(target: string, p: MParameter, fqn: (type: string
 		node.indent(mBody => {
 			if (p.meta?.rest?.source === 'header' && (p.type === 'string' || p.type === 'scalar')) {
 				const encodeAsciiString = fqn('encodeAsciiString:./_fetch-type-utils.ts', false);
-				mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}($entry));`, NL);
+				if (p.type === 'string') {
+					mBody.append(`${target}.append('${p.name}', '"' + ${encodeAsciiString}($entry) + '"');`, NL);
+				} else {
+					mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}($entry));`, NL);
+				}
 			} else {
 				mBody.append(`${target}.append('${p.name}', $entry);`, NL);
 			}
@@ -146,7 +150,11 @@ function stringHeaderQueryCode(target: string, p: MParameter, fqn: (type: string
 	} else {
 		if (p.meta?.rest?.source === 'header' && (p.type === 'string' || p.type === 'scalar')) {
 			const encodeAsciiString = fqn('encodeAsciiString:./_fetch-type-utils.ts', false);
-			node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${p.name}));`, NL);
+			if (p.type === 'string') {
+				node.append(`${target}.append('${p.name}', '"' + ${encodeAsciiString}(${p.name}) + '"');`, NL);
+			} else {
+				node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${p.name}));`, NL);
+			}
 		} else {
 			node.append(`${target}.append('${p.name}', ${p.name});`, NL);
 		}
@@ -162,20 +170,37 @@ function recordHeaderQueryCode(
 ) {
 	const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
 	const node = new CompositeGeneratorNode();
-	if (p.array) {
-		node.append(`${p.name}.forEach($entry => {`, NL);
-		node.indent(mBody => {
-			mBody.append(
-				`${target}.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}($entry)));`,
+	if (p.meta?.rest?.source === 'header') {
+		const encodeBase64 = fqn('encodeBase64:./_fetch-type-utils.ts', false);
+		const encodeValue = fqn('encodeValue:./_fetch-type-utils.ts', false);
+		const encodingType = fqn('encodingType:./_fetch-type-utils.ts', false);
+		if (p.array) {
+			node.append(`${p.name}.forEach($entry => {`, NL);
+			node.indent(mBody => {
+				mBody.append(
+					`${target}.append('${p.name}', ${encodeBase64}(${encodeValue}(${encodingType}(props), ${toJSON}($entry))));`,
+					NL,
+				);
+			});
+			node.append('});', NL);
+		} else {
+			node.append(
+				`${target}.append('${p.name}', ${encodeBase64}(${encodeValue}(${encodingType}(props), ${toJSON}(${p.name}))));`,
 				NL,
 			);
-		});
-		node.append('});', NL);
+		}
 	} else {
-		node.append(
-			`${target}.append('${p.name}', ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(${p.name})));`,
-			NL,
-		);
+		const encodeValue = fqn('encodeValue:./_fetch-type-utils.ts', false);
+		const encodingType = fqn('encodingType:./_fetch-type-utils.ts', false);
+		if (p.array) {
+			node.append(`${p.name}.forEach($entry => {`, NL);
+			node.indent(mBody => {
+				mBody.append(`${target}.append('${p.name}', ${encodeValue}(${encodingType}(props), ${toJSON}($entry)));`, NL);
+			});
+			node.append('});', NL);
+		} else {
+			node.append(`${target}.append('${p.name}', ${encodeValue}(${encodingType}(props), ${toJSON}(${p.name})));`, NL);
+		}
 	}
 	return node;
 }
@@ -297,7 +322,7 @@ function generateRemoteInvoke(
 				node.indent(mBody => {
 					mBody.append(codeBlock);
 				});
-				node.append('} else if(' + p.name + ' === null) {', NL);
+				node.append('} else if (' + p.name + ' === null) {', NL);
 				node.indent(mBody => {
 					mBody.append(`$headers.append('${p.name}', 'null');`, NL);
 				});

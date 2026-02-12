@@ -13,8 +13,7 @@ public class ListRecordHeaderParamHandlerImpl
 
 	@Override
 	public List<Data> listRecordHeaderParam(BuilderFactory _factory, List<Data> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listRecordHeaderParam'");
+		return headerValue;
 	}
 
 }
