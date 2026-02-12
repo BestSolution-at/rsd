@@ -15,8 +15,7 @@ public class ListInlineEnumHeaderParamHandlerImpl
 	@Override
 	public List<ListInlineEnumHeaderParam_Result$> listInlineEnumHeaderParam(BuilderFactory _factory,
 			List<ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listInlineEnumHeaderParam'");
+		return headerValue.stream().map(v -> ListInlineEnumHeaderParam_Result$.valueOf(v.name())).toList();
 	}
 
 }

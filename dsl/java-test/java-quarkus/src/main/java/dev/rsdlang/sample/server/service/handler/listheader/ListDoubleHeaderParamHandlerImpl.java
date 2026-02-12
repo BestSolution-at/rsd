@@ -12,8 +12,7 @@ public class ListDoubleHeaderParamHandlerImpl
 
 	@Override
 	public List<Double> listDoubleHeaderParam(BuilderFactory _factory, List<Double> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listDoubleHeaderParam'");
+		return headerValue;
 	}
 
 }

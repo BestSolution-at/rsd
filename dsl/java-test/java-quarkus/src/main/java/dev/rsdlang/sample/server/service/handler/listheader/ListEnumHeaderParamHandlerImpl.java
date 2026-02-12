@@ -12,8 +12,7 @@ public class ListEnumHeaderParamHandlerImpl implements ListHeaderParameterTypesS
 
 	@Override
 	public List<SampleEnum> listEnumHeaderParam(BuilderFactory _factory, List<SampleEnum> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listEnumHeaderParam'");
+		return headerValue;
 	}
 
 }

@@ -14,8 +14,7 @@ public class ListDoubleHeaderParamOptHandlerImpl
 
 	@Override
 	public NilResult listDoubleHeaderParamOpt(BuilderFactory _factory, Optional<List<Double>> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listDoubleHeaderParamOpt'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

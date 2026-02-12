@@ -13,8 +13,7 @@ public class ListLocalDateTimeHeaderParamHandlerImpl
 
 	@Override
 	public List<LocalDateTime> listLocalDateTimeHeaderParam(BuilderFactory _factory, List<LocalDateTime> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLocalDateTimeHeaderParam'");
+		return headerValue;
 	}
 
 }

@@ -13,8 +13,7 @@ public class ListScalarHeaderParamHandlerImpl
 
 	@Override
 	public List<ZoneId> listScalarHeaderParam(BuilderFactory _factory, List<ZoneId> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listScalarHeaderParam'");
+		return headerValue;
 	}
 
 }

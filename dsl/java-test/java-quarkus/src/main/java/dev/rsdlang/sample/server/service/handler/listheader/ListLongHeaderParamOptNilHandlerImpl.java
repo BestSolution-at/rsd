@@ -14,8 +14,13 @@ public class ListLongHeaderParamOptNilHandlerImpl
 
 	@Override
 	public NilResult listLongHeaderParamOptNil(BuilderFactory _factory, Nillable<List<Long>> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLongHeaderParamOptNil'");
+		if (headerValue.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else if (headerValue.isNull()) {
+			return NilResult.NULL;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

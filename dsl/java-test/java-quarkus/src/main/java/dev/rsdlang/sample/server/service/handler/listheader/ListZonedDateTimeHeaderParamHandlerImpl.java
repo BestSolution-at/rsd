@@ -13,8 +13,7 @@ public class ListZonedDateTimeHeaderParamHandlerImpl
 
 	@Override
 	public List<ZonedDateTime> listZonedDateTimeHeaderParam(BuilderFactory _factory, List<ZonedDateTime> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listZonedDateTimeHeaderParam'");
+		return headerValue;
 	}
 
 }

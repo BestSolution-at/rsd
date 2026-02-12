@@ -82,3 +82,4 @@ async function decodeJsonBody<T>(response: Response, guard: (value: unknown) => 
 	}
 	return data;
 }
+

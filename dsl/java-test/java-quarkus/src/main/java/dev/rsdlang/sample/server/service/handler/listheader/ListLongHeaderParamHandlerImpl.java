@@ -11,8 +11,7 @@ public class ListLongHeaderParamHandlerImpl implements ListHeaderParameterTypesS
 
 	@Override
 	public List<Long> listLongHeaderParam(BuilderFactory _factory, List<Long> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLongHeaderParam'");
+		return headerValue;
 	}
 
 }

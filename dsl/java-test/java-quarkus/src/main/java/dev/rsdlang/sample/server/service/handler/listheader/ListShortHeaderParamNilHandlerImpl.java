@@ -14,8 +14,7 @@ public class ListShortHeaderParamNilHandlerImpl
 
 	@Override
 	public NilResult listShortHeaderParamNil(BuilderFactory _factory, Optional<List<Short>> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listShortHeaderParamNil'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

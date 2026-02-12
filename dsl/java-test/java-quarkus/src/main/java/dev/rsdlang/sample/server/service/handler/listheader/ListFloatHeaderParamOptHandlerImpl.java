@@ -14,8 +14,7 @@ public class ListFloatHeaderParamOptHandlerImpl
 
 	@Override
 	public NilResult listFloatHeaderParamOpt(BuilderFactory _factory, Optional<List<Float>> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listFloatHeaderParamOpt'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

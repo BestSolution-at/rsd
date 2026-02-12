@@ -135,6 +135,7 @@ function parseFunctions(artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn:
 	fqn('java.time.ZonedDateTime');
 	fqn('java.time.LocalDateTime');
 	fqn('java.time.LocalDate');
+	fqn('java.util.Arrays');
 	fqn('java.util.Optional');
 	fqn('java.util.OptionalLong');
 	fqn('java.util.OptionalInt');
@@ -146,7 +147,8 @@ function parseFunctions(artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn:
 	fqn(`${artifactConfig.rootPackageName}.service.model._Base`);
 	fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`);
 	return toNodeTree(`
-private static Pattern UNESCAPE_PATTERN = Pattern.compile("\\\\\\\\u([0-9a-fA-F]{4})");
+private static final Pattern SPLIT_SEMICOLON_PATTERN = Pattern.compile(", ");
+private static final Pattern UNESCAPE_PATTERN = Pattern.compile("\\\\\\\\u([0-9a-fA-F]{4})");
 
 public static String fromEscapedAscii(String value) {
 	var p = UNESCAPE_PATTERN.matcher(value);
@@ -381,6 +383,27 @@ public static <T> _Base.Nillable<List<T>> mapNilLiterals(List<String> data, Func
 	return _NillableImpl.of(data.stream().map(mapper).toList());
 }
 
+public static <T> List<T> mapLiterals(String data, Function<String, T> mapper) {
+	return Arrays.stream(SPLIT_SEMICOLON_PATTERN.split(data)).map(mapper).toList();
+}
+
+public static <T> Optional<List<T>> mapOptLiterals(String data, Function<String, T> mapper) {
+	return data != null ? Optional.of(mapLiterals(data, mapper)) : Optional.empty();
+}
+
+public static <T> Optional<List<T>> mapNullLiterals(String data, Function<String, T> mapper) {
+	return "null".equals(data) ? Optional.empty() : Optional.of(mapLiterals(data, mapper));
+}
+
+public static <T> _Base.Nillable<List<T>> mapNilLiterals(String data, Function<String, T> mapper) {
+	if (data == null) {
+		return _NillableImpl.undefined();
+	} else if ("null".equals(data)) {
+		return _NillableImpl.nill();
+	}
+	return _NillableImpl.of(mapLiterals(data, mapper));
+}
+
 public static List<Boolean> mapBooleans(List<String> data) {
 	return mapLiterals(data, Boolean::valueOf);
 }
@@ -394,6 +417,22 @@ public static Optional<List<Boolean>> mapNullBooleans(List<String> data) {
 }
 
 public static _Base.Nillable<List<Boolean>> mapNilBooleans(List<String> data) {
+	return mapNilLiterals(data, Boolean::valueOf);
+}
+
+public static List<Boolean> mapBooleans(String data) {
+	return mapLiterals(data, Boolean::valueOf);
+}
+
+public static Optional<List<Boolean>> mapOptBooleans(String data) {
+	return mapOptLiterals(data, Boolean::valueOf);
+}
+
+public static Optional<List<Boolean>> mapNullBooleans(String data) {
+	return mapNullLiterals(data, Boolean::valueOf);
+}
+
+public static _Base.Nillable<List<Boolean>> mapNilBooleans(String data) {
 	return mapNilLiterals(data, Boolean::valueOf);
 }
 
@@ -413,6 +452,22 @@ public static _Base.Nillable<List<Short>> mapNilShorts(List<String> data) {
 	return mapNilLiterals(data, Short::valueOf);
 }
 
+public static List<Short> mapShorts(String data) {
+	return mapLiterals(data, Short::valueOf);
+}
+
+public static Optional<List<Short>> mapOptShorts(String data) {
+	return mapOptLiterals(data, Short::valueOf);
+}
+
+public static Optional<List<Short>> mapNullShorts(String data) {
+	return mapNullLiterals(data, Short::valueOf);
+}
+
+public static _Base.Nillable<List<Short>> mapNilShorts(String data) {
+	return mapNilLiterals(data, Short::valueOf);
+}
+
 public static List<Integer> mapInts(List<String> data) {
 	return mapLiterals(data, Integer::valueOf);
 }
@@ -426,6 +481,22 @@ public static Optional<List<Integer>> mapNullInts(List<String> data) {
 }
 
 public static _Base.Nillable<List<Integer>> mapNilInts(List<String> data) {
+	return mapNilLiterals(data, Integer::valueOf);
+}
+
+public static List<Integer> mapInts(String data) {
+	return mapLiterals(data, Integer::valueOf);
+}
+
+public static Optional<List<Integer>> mapOptInts(String data) {
+	return mapOptLiterals(data, Integer::valueOf);
+}
+
+public static Optional<List<Integer>> mapNullInts(String data) {
+	return mapNullLiterals(data, Integer::valueOf);
+}
+
+public static _Base.Nillable<List<Integer>> mapNilInts(String data) {
 	return mapNilLiterals(data, Integer::valueOf);
 }
 
@@ -445,6 +516,22 @@ public static _Base.Nillable<List<Long>> mapNilLongs(List<String> data) {
 	return mapNilLiterals(data, Long::valueOf);
 }
 
+public static List<Long> mapLongs(String data) {
+	return mapLiterals(data, Long::valueOf);
+}
+
+public static Optional<List<Long>> mapOptLongs(String data) {
+	return mapOptLiterals(data, Long::valueOf);
+}
+
+public static Optional<List<Long>> mapNullLongs(String data) {
+	return mapNullLiterals(data, Long::valueOf);
+}
+
+public static _Base.Nillable<List<Long>> mapNilLongs(String data) {
+	return mapNilLiterals(data, Long::valueOf);
+}
+
 public static List<Float> mapFloats(List<String> data) {
 	return mapLiterals(data, Float::valueOf);
 }
@@ -458,6 +545,22 @@ public static Optional<List<Float>> mapNullFloats(List<String> data) {
 }
 
 public static _Base.Nillable<List<Float>> mapNilFloats(List<String> data) {
+	return mapNilLiterals(data, Float::valueOf);
+}
+
+public static List<Float> mapFloats(String data) {
+	return mapLiterals(data, Float::valueOf);
+}
+
+public static Optional<List<Float>> mapOptFloats(String data) {
+	return mapOptLiterals(data, Float::valueOf);
+}
+
+public static Optional<List<Float>> mapNullFloats(String data) {
+	return mapNullLiterals(data, Float::valueOf);
+}
+
+public static _Base.Nillable<List<Float>> mapNilFloats(String data) {
 	return mapNilLiterals(data, Float::valueOf);
 }
 
@@ -477,6 +580,22 @@ public static _Base.Nillable<List<Double>> mapNilDoubles(List<String> data) {
 	return mapNilLiterals(data, Double::valueOf);
 }
 
+public static List<Double> mapDoubles(String data) {
+	return mapLiterals(data, Double::valueOf);
+}
+
+public static Optional<List<Double>> mapOptDoubles(String data) {
+	return mapOptLiterals(data, Double::valueOf);
+}
+
+public static Optional<List<Double>> mapNullDoubles(String data) {
+	return mapNullLiterals(data, Double::valueOf);
+}
+
+public static _Base.Nillable<List<Double>> mapNilDoubles(String data) {
+	return mapNilLiterals(data, Double::valueOf);
+}
+
 public static List<String> mapStrings(List<String> data) {
 	return mapLiterals(data, Function.identity());
 }
@@ -493,6 +612,22 @@ public static _Base.Nillable<List<String>> mapNilStrings(List<String> data) {
 	return mapNilLiterals(data, Function.identity());
 }
 
+public static List<String> mapStrings(String data, Function<String, String> decoder) {
+	return mapLiterals(data, decoder);
+}
+
+public static Optional<List<String>> mapOptStrings(String data, Function<String, String> decoder) {
+	return mapOptLiterals(data, decoder);
+}
+
+public static Optional<List<String>> mapNullStrings(String data, Function<String, String> decoder) {
+	return mapNullLiterals(data, decoder);
+}
+
+public static _Base.Nillable<List<String>> mapNilStrings(String data, Function<String, String> decoder) {
+	return mapNilLiterals(data, decoder);
+}
+
 public static List<LocalDate> mapLocalDates(List<String> data) {
 	return mapLiterals(data, LocalDate::parse);
 }
@@ -506,6 +641,22 @@ public static Optional<List<LocalDate>> mapNullLocalDates(List<String> data) {
 }
 
 public static _Base.Nillable<List<LocalDate>> mapNilLocalDates(List<String> data) {
+	return mapNilLiterals(data, LocalDate::parse);
+}
+
+public static List<LocalDate> mapLocalDates(String data) {
+	return mapLiterals(data, LocalDate::parse);
+}
+
+public static Optional<List<LocalDate>> mapOptLocalDates(String data) {
+	return mapOptLiterals(data, LocalDate::parse);
+}
+
+public static Optional<List<LocalDate>> mapNullLocalDates(String data) {
+	return mapNullLiterals(data, LocalDate::parse);
+}
+
+public static _Base.Nillable<List<LocalDate>> mapNilLocalDates(String data) {
 	return mapNilLiterals(data, LocalDate::parse);
 }
 
@@ -525,6 +676,22 @@ public static _Base.Nillable<List<LocalDateTime>> mapNilLocalDateTimes(List<Stri
 	return mapNilLiterals(data, LocalDateTime::parse);
 }
 
+public static List<LocalDateTime> mapLocalDateTimes(String data) {
+	return mapLiterals(data, LocalDateTime::parse);
+}
+
+public static Optional<List<LocalDateTime>> mapOptLocalDateTimes(String data) {
+	return mapOptLiterals(data, LocalDateTime::parse);
+}
+
+public static Optional<List<LocalDateTime>> mapNullLocalDateTimes(String data) {
+	return mapNullLiterals(data, LocalDateTime::parse);
+}
+
+public static _Base.Nillable<List<LocalDateTime>> mapNilLocalDateTimes(String data) {
+	return mapNilLiterals(data, LocalDateTime::parse);
+}
+
 public static List<ZonedDateTime> mapZonedDateTimes(List<String> data) {
 	return mapLiterals(data, ZonedDateTime::parse);
 }
@@ -538,6 +705,22 @@ public static Optional<List<ZonedDateTime>> mapNullZonedDateTimes(List<String> d
 }
 
 public static _Base.Nillable<List<ZonedDateTime>> mapNilZonedDateTimes(List<String> data) {
+	return mapNilLiterals(data, ZonedDateTime::parse);
+}
+
+public static List<ZonedDateTime> mapZonedDateTimes(String data) {
+	return mapLiterals(data, ZonedDateTime::parse);
+}
+
+public static Optional<List<ZonedDateTime>> mapOptZonedDateTimes(String data) {
+	return mapOptLiterals(data, ZonedDateTime::parse);
+}
+
+public static Optional<List<ZonedDateTime>> mapNullZonedDateTimes(String data) {
+	return mapNullLiterals(data, ZonedDateTime::parse);
+}
+
+public static _Base.Nillable<List<ZonedDateTime>> mapNilZonedDateTimes(String data) {
 	return mapNilLiterals(data, ZonedDateTime::parse);
 }
 
@@ -561,6 +744,22 @@ public static <T> _Base.Nillable<List<T>> mapNilObjects(List<String> data, Funct
 		return _NillableImpl.undefined();
 	}
 	return _NillableImpl.of(data.stream().map(mapper).toList());
+}
+
+public static <T> List<T> mapObjects(String data, Function<String, T> mapper) {
+	return mapLiterals(data, mapper);
+}
+
+public static <T> Optional<List<T>> mapOptObjects(String data, Function<String, T> mapper) {
+	return mapOptLiterals(data, mapper);
+}
+
+public static <T> Optional<List<T>> mapNullObjects(String data, Function<String, T> mapper) {
+	return mapNullLiterals(data, mapper);
+}
+
+public static <T> _Base.Nillable<List<T>> mapNilObjects(String data, Function<String, T> mapper) {
+	return mapNilLiterals(data, mapper);
 }
 
 public static <T> T parseObject(String value, Function<String, T> parser) {

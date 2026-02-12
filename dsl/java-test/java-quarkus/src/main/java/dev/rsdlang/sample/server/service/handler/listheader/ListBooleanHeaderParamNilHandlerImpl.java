@@ -14,8 +14,7 @@ public class ListBooleanHeaderParamNilHandlerImpl
 
 	@Override
 	public NilResult listBooleanHeaderParamNil(BuilderFactory _factory, Optional<List<Boolean>> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listBooleanHeaderParamNil'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

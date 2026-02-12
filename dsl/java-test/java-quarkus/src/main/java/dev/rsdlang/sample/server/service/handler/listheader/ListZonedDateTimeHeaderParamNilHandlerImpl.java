@@ -15,8 +15,7 @@ public class ListZonedDateTimeHeaderParamNilHandlerImpl
 
 	@Override
 	public NilResult listZonedDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<ZonedDateTime>> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listZonedDateTimeHeaderParamNil'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

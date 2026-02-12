@@ -15,8 +15,7 @@ public class ListLocalDateTimeHeaderParamNilHandlerImpl
 
 	@Override
 	public NilResult listLocalDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<LocalDateTime>> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLocalDateTimeHeaderParamNil'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

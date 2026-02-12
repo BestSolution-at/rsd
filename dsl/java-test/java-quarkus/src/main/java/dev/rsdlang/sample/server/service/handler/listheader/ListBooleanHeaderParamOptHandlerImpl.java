@@ -14,8 +14,7 @@ public class ListBooleanHeaderParamOptHandlerImpl
 
 	@Override
 	public NilResult listBooleanHeaderParamOpt(BuilderFactory _factory, Optional<List<Boolean>> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listBooleanHeaderParamOpt'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

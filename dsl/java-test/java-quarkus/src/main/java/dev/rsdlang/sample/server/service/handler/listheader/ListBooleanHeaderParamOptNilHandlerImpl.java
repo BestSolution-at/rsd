@@ -14,8 +14,12 @@ public class ListBooleanHeaderParamOptNilHandlerImpl
 
 	@Override
 	public NilResult listBooleanHeaderParamOptNil(BuilderFactory _factory, Nillable<List<Boolean>> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listBooleanHeaderParamOptNil'");
+		if (headerValue.isNull()) {
+			return NilResult.NULL;
+		} else if (headerValue.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
-
 }

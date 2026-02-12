@@ -15,8 +15,7 @@ public class ListScalarHeaderParamOptHandlerImpl
 
 	@Override
 	public NilResult listScalarHeaderParamOpt(BuilderFactory _factory, Optional<List<ZoneId>> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listScalarHeaderParamOpt'");
+		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

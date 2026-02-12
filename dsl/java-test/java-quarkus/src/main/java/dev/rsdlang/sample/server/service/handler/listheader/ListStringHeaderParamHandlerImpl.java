@@ -12,8 +12,7 @@ public class ListStringHeaderParamHandlerImpl
 
 	@Override
 	public List<String> listStringHeaderParam(BuilderFactory _factory, List<String> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listStringHeaderParam'");
+		return headerValue;
 	}
 
 }

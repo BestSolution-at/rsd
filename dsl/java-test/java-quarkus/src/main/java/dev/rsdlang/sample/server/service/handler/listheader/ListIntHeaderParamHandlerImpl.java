@@ -12,8 +12,7 @@ public class ListIntHeaderParamHandlerImpl
 
 	@Override
 	public List<Integer> listIntHeaderParam(BuilderFactory _factory, List<Integer> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listIntHeaderParam'");
+		return headerValue;
 	}
 
 }

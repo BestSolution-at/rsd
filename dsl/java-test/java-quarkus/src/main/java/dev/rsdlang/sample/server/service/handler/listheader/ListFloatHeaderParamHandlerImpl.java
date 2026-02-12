@@ -12,8 +12,7 @@ public class ListFloatHeaderParamHandlerImpl
 
 	@Override
 	public List<Float> listFloatHeaderParam(BuilderFactory _factory, List<Float> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listFloatHeaderParam'");
+		return headerValue;
 	}
 
 }

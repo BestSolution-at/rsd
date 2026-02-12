@@ -12,8 +12,7 @@ public class ListShortHeaderParamHandlerImpl
 
 	@Override
 	public List<Short> listShortHeaderParam(BuilderFactory _factory, List<Short> headerValue) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listShortHeaderParam'");
+		return headerValue;
 	}
 
 }
