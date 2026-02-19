@@ -16,8 +16,7 @@ public class ListInlineEnumBodyParamNilHandlerImpl
 	@Override
 	public NilResult listInlineEnumBodyParamNil(BuilderFactory _factory,
 			Optional<List<ListInlineEnumBodyParamNil_BodyEnum_Param$>> bodyEnum) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listInlineEnumBodyParamNil'");
+		return bodyEnum.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

@@ -13,8 +13,7 @@ public class ListIntBodyParamOptHandlerImpl implements ListBodyParameterTypesSer
 
 	@Override
 	public NilResult listIntBodyParamOpt(BuilderFactory _factory, Optional<List<Integer>> bodyInt) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listIntBodyParamOpt'");
+		return bodyInt.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

@@ -11,8 +11,7 @@ public class ListFloatBodyParamHandlerImpl implements ListBodyParameterTypesServ
 
 	@Override
 	public List<Float> listFloatBodyParam(BuilderFactory _factory, List<Float> bodyFloat) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listFloatBodyParam'");
+		return bodyFloat;
 	}
 
 }

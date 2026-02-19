@@ -15,8 +15,9 @@ public class ListInlineEnumBodyParamHandlerImpl
 	@Override
 	public List<ListInlineEnumBodyParam_Result$> listInlineEnumBodyParam(BuilderFactory _factory,
 			List<ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listInlineEnumBodyParam'");
+		return bodyEnum.stream()
+				.map(param -> ListInlineEnumBodyParam_Result$.valueOf(param.name()))
+				.toList();
 	}
 
 }

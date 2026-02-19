@@ -6,7 +6,7 @@ const service = createHeaderParameterTypesService({
 	baseUrl: 'http://localhost:3000',
 });
 
-describe('HeaderParameterTypesService', () => {
+describe('SingleHeaderParameterTypesService', () => {
 	describe('simpleBooleanHeaderParam', () => {
 		test('success - true', async () => {
 			const [result, error] = await service.simpleBooleanHeaderParam(true);

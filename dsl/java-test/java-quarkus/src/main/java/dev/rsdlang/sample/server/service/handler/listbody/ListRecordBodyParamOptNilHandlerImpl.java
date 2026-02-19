@@ -15,8 +15,13 @@ public class ListRecordBodyParamOptNilHandlerImpl
 
 	@Override
 	public NilResult listRecordBodyParamOptNil(BuilderFactory _factory, Nillable<List<Data>> bodyRecord) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listRecordBodyParamOptNil'");
+		if (bodyRecord.isNull()) {
+			return NilResult.NULL;
+		} else if (bodyRecord.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

@@ -6,7 +6,7 @@ const service = createBodyParameterTypesService({
 	baseUrl: 'http://localhost:3000',
 });
 
-describe('BodyParameterTypesServiceFetchImpl', () => {
+describe('SingleBodyParameterTypesServiceFetchImpl', () => {
 	describe('simpleBooleanBodyParam', () => {
 		test('success - true', async () => {
 			const [result, error] = await service.simpleBooleanBodyParam(true);

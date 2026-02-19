@@ -14,8 +14,7 @@ public class ListShortBodyParamOptHandlerImpl
 
 	@Override
 	public NilResult listShortBodyParamOpt(BuilderFactory _factory, Optional<List<Short>> bodyShort) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listShortBodyParamOpt'");
+		return bodyShort.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

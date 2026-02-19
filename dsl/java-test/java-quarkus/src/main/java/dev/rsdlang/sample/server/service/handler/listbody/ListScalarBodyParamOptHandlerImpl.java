@@ -15,8 +15,7 @@ public class ListScalarBodyParamOptHandlerImpl
 
 	@Override
 	public NilResult listScalarBodyParamOpt(BuilderFactory _factory, Optional<List<ZoneId>> bodyScalar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listScalarBodyParamOpt'");
+		return bodyScalar.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

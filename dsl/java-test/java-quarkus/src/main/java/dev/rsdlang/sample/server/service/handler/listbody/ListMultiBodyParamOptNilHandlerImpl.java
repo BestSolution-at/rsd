@@ -16,8 +16,10 @@ public class ListMultiBodyParamOptNilHandlerImpl
 	@Override
 	public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, Nillable<List<String>> valueA,
 			Nillable<List<Integer>> valueB, Nillable<List<Data>> valueC) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listMultiBodyParamOptNil'");
+		var a = valueA.isNull() ? NilResult.NULL : valueA.isUndefined() ? NilResult.UNDEFINED : NilResult.DEFINED;
+		var b = valueB.isNull() ? NilResult.NULL : valueB.isUndefined() ? NilResult.UNDEFINED : NilResult.DEFINED;
+		var c = valueC.isNull() ? NilResult.NULL : valueC.isUndefined() ? NilResult.UNDEFINED : NilResult.DEFINED;
+		return List.of(a, b, c);
 	}
 
 }

@@ -15,8 +15,7 @@ public class ListLocalDateBodyParamOptHandlerImpl
 
 	@Override
 	public NilResult listLocalDateBodyParamOpt(BuilderFactory _factory, Optional<List<LocalDate>> bodyLocalDate) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLocalDateBodyParamOpt'");
+		return bodyLocalDate.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

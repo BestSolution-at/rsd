@@ -13,8 +13,7 @@ public class ListLocalDateBodyParamHandlerImpl
 
 	@Override
 	public List<LocalDate> listLocalDateBodyParam(BuilderFactory _factory, List<LocalDate> bodyLocalDate) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLocalDateBodyParam'");
+		return bodyLocalDate;
 	}
 
 }

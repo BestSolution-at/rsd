@@ -12,8 +12,7 @@ public class ListEnumBodyParamHandlerImpl implements ListBodyParameterTypesServi
 
 	@Override
 	public List<SampleEnum> listEnumBodyParam(BuilderFactory _factory, List<SampleEnum> bodyEnum) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listEnumBodyParam'");
+		return bodyEnum;
 	}
 
 }

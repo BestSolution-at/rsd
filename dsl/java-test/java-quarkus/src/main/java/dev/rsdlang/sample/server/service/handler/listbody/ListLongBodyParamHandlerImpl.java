@@ -11,8 +11,7 @@ public class ListLongBodyParamHandlerImpl implements ListBodyParameterTypesServi
 
 	@Override
 	public List<Long> listLongBodyParam(BuilderFactory _factory, List<Long> bodyLong) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLongBodyParam'");
+		return bodyLong;
 	}
 
 }

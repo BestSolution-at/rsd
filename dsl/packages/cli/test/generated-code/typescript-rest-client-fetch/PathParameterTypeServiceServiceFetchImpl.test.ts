@@ -6,7 +6,7 @@ const service = createPathParameterTypeServiceService({
 	baseUrl: 'http://localhost:3000',
 });
 
-describe('PathParameterTypeServiceServiceFetchImpl', () => {
+describe('SinglePathParameterTypeServiceServiceFetchImpl', () => {
 	describe('simpleBooleanPathParam', () => {
 		test('success - true', async () => {
 			const [result, error] = await service.simpleBooleanPathParam(true);

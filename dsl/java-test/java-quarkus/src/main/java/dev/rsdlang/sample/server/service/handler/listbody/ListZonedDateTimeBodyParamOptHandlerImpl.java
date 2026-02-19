@@ -16,8 +16,7 @@ public class ListZonedDateTimeBodyParamOptHandlerImpl
 	@Override
 	public NilResult listZonedDateTimeBodyParamOpt(BuilderFactory _factory,
 			Optional<List<ZonedDateTime>> bodyZonedDateTime) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listZonedDateTimeBodyParamOpt'");
+		return bodyZonedDateTime.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

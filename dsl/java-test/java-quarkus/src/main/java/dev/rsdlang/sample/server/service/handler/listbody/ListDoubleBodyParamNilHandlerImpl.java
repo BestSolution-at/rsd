@@ -14,8 +14,7 @@ public class ListDoubleBodyParamNilHandlerImpl
 
 	@Override
 	public NilResult listDoubleBodyParamNil(BuilderFactory _factory, Optional<List<Double>> bodyDouble) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listDoubleBodyParamNil'");
+		return bodyDouble.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

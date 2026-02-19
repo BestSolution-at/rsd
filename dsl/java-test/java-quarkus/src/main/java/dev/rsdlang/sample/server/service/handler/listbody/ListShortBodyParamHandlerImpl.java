@@ -11,8 +11,7 @@ public class ListShortBodyParamHandlerImpl implements ListBodyParameterTypesServ
 
 	@Override
 	public List<Short> listShortBodyParam(BuilderFactory _factory, List<Short> bodyShort) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listShortBodyParam'");
+		return bodyShort;
 	}
 
 }

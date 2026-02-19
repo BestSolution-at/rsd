@@ -11,8 +11,7 @@ public class ListBooleanBodyParamHandlerImpl implements ListBodyParameterTypesSe
 
 	@Override
 	public List<Boolean> listBooleanBodyParam(BuilderFactory _factory, List<Boolean> bodyBoolean) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listBooleanBodyParam'");
+		return bodyBoolean;
 	}
 
 }

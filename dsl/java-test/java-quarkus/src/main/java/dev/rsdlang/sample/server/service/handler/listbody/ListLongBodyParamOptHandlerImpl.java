@@ -13,8 +13,7 @@ public class ListLongBodyParamOptHandlerImpl implements ListBodyParameterTypesSe
 
 	@Override
 	public NilResult listLongBodyParamOpt(BuilderFactory _factory, Optional<List<Long>> bodyLong) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLongBodyParamOpt'");
+		return bodyLong.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

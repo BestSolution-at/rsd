@@ -6,7 +6,7 @@ const service = createQueryParameterTypesService({
 	baseUrl: 'http://localhost:3000',
 });
 
-describe('QueryParameterTypesService', () => {
+describe('SingleQueryParameterTypesService', () => {
 	describe('simpleBooleanQueryParam', () => {
 		test('success - true', async () => {
 			const [result, error] = await service.simpleBooleanQueryParam(true);

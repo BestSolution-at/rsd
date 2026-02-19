@@ -14,8 +14,7 @@ public class ListFloatBodyParamNilHandlerImpl
 
 	@Override
 	public NilResult listFloatBodyParamNil(BuilderFactory _factory, Optional<List<Float>> bodyFloat) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listFloatBodyParamNil'");
+		return bodyFloat.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

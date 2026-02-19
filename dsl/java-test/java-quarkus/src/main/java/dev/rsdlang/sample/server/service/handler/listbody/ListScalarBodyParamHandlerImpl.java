@@ -12,8 +12,7 @@ public class ListScalarBodyParamHandlerImpl implements ListBodyParameterTypesSer
 
 	@Override
 	public List<ZoneId> listScalarBodyParam(BuilderFactory _factory, List<ZoneId> bodyScalar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listScalarBodyParam'");
+		return bodyScalar;
 	}
 
 }

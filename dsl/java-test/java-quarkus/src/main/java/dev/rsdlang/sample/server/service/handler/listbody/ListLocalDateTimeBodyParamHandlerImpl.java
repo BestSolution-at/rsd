@@ -14,8 +14,7 @@ public class ListLocalDateTimeBodyParamHandlerImpl
 	@Override
 	public List<LocalDateTime> listLocalDateTimeBodyParam(BuilderFactory _factory,
 			List<LocalDateTime> bodyLocalDateTime) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLocalDateTimeBodyParam'");
+		return bodyLocalDateTime;
 	}
 
 }

@@ -11,8 +11,7 @@ public class ListIntBodyParamHandlerImpl implements ListBodyParameterTypesServic
 
 	@Override
 	public List<Integer> listIntBodyParam(BuilderFactory _factory, List<Integer> bodyInt) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listIntBodyParam'");
+		return bodyInt;
 	}
 
 }

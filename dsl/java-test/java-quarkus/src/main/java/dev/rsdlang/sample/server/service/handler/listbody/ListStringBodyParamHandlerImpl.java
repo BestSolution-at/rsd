@@ -11,8 +11,7 @@ public class ListStringBodyParamHandlerImpl implements ListBodyParameterTypesSer
 
 	@Override
 	public List<String> listStringBodyParam(BuilderFactory _factory, List<String> bodyString) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listStringBodyParam'");
+		return bodyString;
 	}
 
 }

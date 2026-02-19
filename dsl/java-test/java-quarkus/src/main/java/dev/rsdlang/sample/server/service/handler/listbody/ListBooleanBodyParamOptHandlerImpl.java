@@ -14,8 +14,7 @@ public class ListBooleanBodyParamOptHandlerImpl
 
 	@Override
 	public NilResult listBooleanBodyParamOpt(BuilderFactory _factory, Optional<List<Boolean>> bodyBoolean) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listBooleanBodyParamOpt'");
+		return bodyBoolean.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

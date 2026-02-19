@@ -13,8 +13,7 @@ public class ListIntBodyParamNilHandlerImpl implements ListBodyParameterTypesSer
 
 	@Override
 	public NilResult listIntBodyParamNil(BuilderFactory _factory, Optional<List<Integer>> bodyInt) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listIntBodyParamNil'");
+		return bodyInt.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

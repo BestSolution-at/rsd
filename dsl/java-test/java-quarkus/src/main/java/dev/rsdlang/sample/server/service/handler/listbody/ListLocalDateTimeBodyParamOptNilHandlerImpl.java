@@ -16,8 +16,13 @@ public class ListLocalDateTimeBodyParamOptNilHandlerImpl
 	@Override
 	public NilResult listLocalDateTimeBodyParamOptNil(BuilderFactory _factory,
 			Nillable<List<LocalDateTime>> bodyLocalDateTime) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listLocalDateTimeBodyParamOptNil'");
+		if (bodyLocalDateTime.isNull()) {
+			return NilResult.NULL;
+		} else if (bodyLocalDateTime.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

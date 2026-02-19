@@ -16,8 +16,13 @@ public class ListInlineEnumBodyParamOptNilHandlerImpl
 	@Override
 	public NilResult listInlineEnumBodyParamOptNil(BuilderFactory _factory,
 			Nillable<List<ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listInlineEnumBodyParamOptNil'");
+		if (bodyEnum.isNull()) {
+			return NilResult.NULL;
+		} else if (bodyEnum.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

@@ -14,8 +14,7 @@ public class ListEnumBodyParamOptHandlerImpl implements ListBodyParameterTypesSe
 
 	@Override
 	public NilResult listEnumBodyParamOpt(BuilderFactory _factory, Optional<List<SampleEnum>> bodyEnum) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listEnumBodyParamOpt'");
+		return bodyEnum.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

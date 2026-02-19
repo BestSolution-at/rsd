@@ -14,8 +14,7 @@ public class ListZonedDateTimeBodyParamHandlerImpl
 	@Override
 	public List<ZonedDateTime> listZonedDateTimeBodyParam(BuilderFactory _factory,
 			List<ZonedDateTime> bodyZonedDateTime) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listZonedDateTimeBodyParam'");
+		return bodyZonedDateTime;
 	}
 
 }

@@ -11,8 +11,7 @@ public class ListDoubleBodyParamHandlerImpl implements ListBodyParameterTypesSer
 
 	@Override
 	public List<Double> listDoubleBodyParam(BuilderFactory _factory, List<Double> bodyDouble) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'listDoubleBodyParam'");
+		return bodyDouble;
 	}
 
 }
