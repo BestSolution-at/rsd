@@ -13,8 +13,7 @@ public class SimpleBooleanBodyParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleBooleanBodyParamOpt(BuilderFactory _factory, Optional<Boolean> bodyBoolean) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleBooleanBodyParamOpt'");
+		return bodyBoolean.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

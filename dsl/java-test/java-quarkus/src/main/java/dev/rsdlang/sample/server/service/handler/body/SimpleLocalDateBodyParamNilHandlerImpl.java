@@ -14,8 +14,7 @@ public class SimpleLocalDateBodyParamNilHandlerImpl
 
 	@Override
 	public NilResult simpleLocalDateBodyParamNil(BuilderFactory _factory, Optional<LocalDate> bodyLocalDate) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLocalDateBodyParamNil'");
+		return bodyLocalDate.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

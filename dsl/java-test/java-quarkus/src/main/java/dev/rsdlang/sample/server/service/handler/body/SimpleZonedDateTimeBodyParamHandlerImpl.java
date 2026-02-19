@@ -12,8 +12,7 @@ public class SimpleZonedDateTimeBodyParamHandlerImpl
 
 	@Override
 	public ZonedDateTime simpleZonedDateTimeBodyParam(BuilderFactory _factory, ZonedDateTime bodyZonedDateTime) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleZonedDateTimeBodyParam'");
+		return bodyZonedDateTime;
 	}
 
 }

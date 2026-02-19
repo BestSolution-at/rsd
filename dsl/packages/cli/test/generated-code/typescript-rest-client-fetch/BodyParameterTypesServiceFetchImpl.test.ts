@@ -468,6 +468,18 @@ describe('BodyParameterTypesServiceFetchImpl', () => {
 			expect(result).toBe('Hello-1-a');
 		});
 	});
+	describe('multiBodyParamFirst', () => {
+		test('success - valueA: undefined, valueB: World', async () => {
+			const [result, error] = await service.multiBodyParamFirst(undefined, 1, { key: 'a', version: '1', value: 'foo' });
+			expect(error).toBeNull();
+			expect(result).toBe('undefined-1-a');
+		});
+		test('success - valueA: Hello, valueB: World', async () => {
+			const [result, error] = await service.multiBodyParamFirst('Hello', 1, { key: 'a', version: '1', value: 'foo' });
+			expect(error).toBeNull();
+			expect(result).toBe('Hello-1-a');
+		});
+	});
 	describe('multiBodyParamOpt', () => {
 		test('success - valueA: Hello, valueB: undefined', async () => {
 			const [result, error] = await service.multiBodyParamOpt('Hello', undefined, undefined);
@@ -568,10 +580,83 @@ describe('BodyParameterTypesServiceFetchImpl', () => {
 	});
 
 	describe('patchableRecordBodyParam', () => {
-		test('success - valueA: foo, valueB: 42', async () => {
+		test('success - key: 1, version: 1, value: patchedValue', async () => {
 			const [result, error] = await service.patchableRecordBodyParam({ key: '1', version: '1', value: 'patchedValue' });
 			expect(error).toBeNull();
 			expect(result).toEqual({ key: '1', version: '1', value: 'patchedValue' });
+		});
+		test('success - key: 1, version: 1, value: undefined', async () => {
+			const [result, error] = await service.patchableRecordBodyParam({ key: '1', version: '1' });
+			expect(error).toBeNull();
+			expect(result).toEqual({ key: '1', version: '1', value: 'undefined' });
+		});
+	});
+	describe('patchableRecordBodyParamNil', () => {
+		test('success - key: 1, version: 1, value: patchedValue', async () => {
+			const [result, error] = await service.patchableRecordBodyParamNil({
+				key: '1',
+				version: '1',
+				value: 'patchedValue',
+			});
+			expect(error).toBeNull();
+			expect(result).toEqual({ key: '1', version: '1', value: 'patchedValue' });
+		});
+		test('success - key: 1, version: 1, value: undefined', async () => {
+			const [result, error] = await service.patchableRecordBodyParamNil({ key: '1', version: '1' });
+			expect(error).toBeNull();
+			expect(result).toEqual({ key: '1', version: '1', value: 'undefined' });
+		});
+		test('success - null', async () => {
+			const [result, error] = await service.patchableRecordBodyParamNil(null);
+			expect(error).toBeNull();
+			expect(result).toEqual({ key: 'null', version: 'null', value: 'null' });
+		});
+	});
+	describe('patchableRecordBodyParamOpt', () => {
+		test('success - key: 1, version: 1, value: patchedValue', async () => {
+			const [result, error] = await service.patchableRecordBodyParamOpt({
+				key: '1',
+				version: '1',
+				value: 'patchedValue',
+			});
+			expect(error).toBeNull();
+			expect(result).toEqual({ key: '1', version: '1', value: 'patchedValue' });
+		});
+		test('success - key: 1, version: 1, value: undefined', async () => {
+			const [result, error] = await service.patchableRecordBodyParamOpt({ key: '1', version: '1' });
+			expect(error).toBeNull();
+			expect(result).toEqual({ key: '1', version: '1', value: 'undefined' });
+		});
+		test('success - undefined', async () => {
+			const [result, error] = await service.patchableRecordBodyParamOpt();
+			expect(error).toBeNull();
+			expect(result).toEqual({ key: 'undefined', version: 'undefined', value: 'undefined' });
+		});
+	});
+	describe('patchableRecordBodyParamOptNil', () => {
+		test('success - key: 1, version: 1, value: patchedValue', async () => {
+			const [result, error] = await service.patchableRecordBodyParamOptNil({
+				key: '1',
+				version: '1',
+				value: 'patchedValue',
+			});
+			expect(error).toBeNull();
+			expect(result).toEqual({ key: '1', version: '1', value: 'patchedValue' });
+		});
+		test('success - key: 1, version: 1, value: undefined', async () => {
+			const [result, error] = await service.patchableRecordBodyParamOptNil({ key: '1', version: '1' });
+			expect(error).toBeNull();
+			expect(result).toEqual({ key: '1', version: '1', value: 'undefined' });
+		});
+		test('success - undefined', async () => {
+			const [result, error] = await service.patchableRecordBodyParamOptNil();
+			expect(error).toBeNull();
+			expect(result).toEqual({ key: 'undefined', version: 'undefined', value: 'undefined' });
+		});
+		test('success - null', async () => {
+			const [result, error] = await service.patchableRecordBodyParamOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toEqual({ key: 'null', version: 'null', value: 'null' });
 		});
 	});
 });

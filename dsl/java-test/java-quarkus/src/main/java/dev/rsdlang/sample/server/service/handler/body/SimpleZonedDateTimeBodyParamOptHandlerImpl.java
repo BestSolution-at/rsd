@@ -14,8 +14,7 @@ public class SimpleZonedDateTimeBodyParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleZonedDateTimeBodyParamOpt(BuilderFactory _factory, Optional<ZonedDateTime> bodyZonedDateTime) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleZonedDateTimeBodyParamOpt'");
+		return bodyZonedDateTime.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

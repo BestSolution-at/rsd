@@ -12,8 +12,13 @@ public class SimpleIntBodyParamOptNilHandlerImpl
 
 	@Override
 	public NilResult simpleIntBodyParamOptNil(BuilderFactory _factory, Nillable<Integer> bodyInt) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleIntBodyParamOptNil'");
+		if (bodyInt.isNull()) {
+			return NilResult.NULL;
+		} else if (bodyInt.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

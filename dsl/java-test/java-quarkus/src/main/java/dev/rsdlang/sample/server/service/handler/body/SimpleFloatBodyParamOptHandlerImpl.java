@@ -13,8 +13,7 @@ public class SimpleFloatBodyParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleFloatBodyParamOpt(BuilderFactory _factory, Optional<Float> bodyFloat) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleFloatBodyParamOpt'");
+		return bodyFloat.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

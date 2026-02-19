@@ -15,8 +15,7 @@ public class SimpleInlineEnumBodyParamOptHandlerImpl
 	@Override
 	public NilResult simpleInlineEnumBodyParamOpt(BuilderFactory _factory,
 			Optional<SimpleInlineEnumBodyParamOpt_BodyEnum_Param$> bodyEnum) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleInlineEnumBodyParamOpt'");
+		return bodyEnum.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

@@ -13,8 +13,7 @@ public class SimpleDoubleBodyParamNilHandlerImpl
 
 	@Override
 	public NilResult simpleDoubleBodyParamNil(BuilderFactory _factory, OptionalDouble bodyDouble) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleDoubleBodyParamNil'");
+		return bodyDouble.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

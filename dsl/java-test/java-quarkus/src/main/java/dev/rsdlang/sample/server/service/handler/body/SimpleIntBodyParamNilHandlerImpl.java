@@ -12,8 +12,6 @@ public class SimpleIntBodyParamNilHandlerImpl implements BodyParameterTypesServi
 
 	@Override
 	public NilResult simpleIntBodyParamNil(BuilderFactory _factory, OptionalInt bodyInt) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleIntBodyParamNil'");
+		return bodyInt.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
-
 }

@@ -14,8 +14,9 @@ public class MultiBodyParamOptHandlerImpl implements BodyParameterTypesServiceIm
 	@Override
 	public String multiBodyParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB,
 			Optional<Data> valueC) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'multiBodyParamOpt'");
+		return valueA.orElse("undefined")
+				+ "-" + (valueB.isPresent() ? valueB.getAsInt() : "undefined")
+				+ "-" + (valueC.isPresent() ? valueC.get().key() : "undefined");
 	}
 
 }

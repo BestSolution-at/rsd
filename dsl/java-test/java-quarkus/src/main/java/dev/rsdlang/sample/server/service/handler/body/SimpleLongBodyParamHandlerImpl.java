@@ -9,8 +9,7 @@ public class SimpleLongBodyParamHandlerImpl implements BodyParameterTypesService
 
 	@Override
 	public long simpleLongBodyParam(BuilderFactory _factory, long bodyLong) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLongBodyParam'");
+		return bodyLong;
 	}
 
 }

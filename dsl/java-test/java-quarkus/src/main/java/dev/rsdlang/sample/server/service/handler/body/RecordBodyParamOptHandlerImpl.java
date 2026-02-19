@@ -13,8 +13,7 @@ public class RecordBodyParamOptHandlerImpl implements BodyParameterTypesServiceI
 
 	@Override
 	public NilResult recordBodyParamOpt(BuilderFactory _factory, Optional<Data> bodyRecord) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'recordBodyParamOpt'");
+		return bodyRecord.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

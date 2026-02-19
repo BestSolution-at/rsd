@@ -12,8 +12,13 @@ public class SimpleBooleanBodyParamOptNilHandlerImpl
 
 	@Override
 	public NilResult simpleBooleanBodyParamOptNil(BuilderFactory _factory, Nillable<Boolean> bodyBoolean) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleBooleanBodyParamOptNil'");
+		if (bodyBoolean.isNull()) {
+			return NilResult.NULL;
+		} else if (bodyBoolean.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

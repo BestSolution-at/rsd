@@ -12,8 +12,7 @@ public class SimpleLongBodyParamOptHandlerImpl implements BodyParameterTypesServ
 
 	@Override
 	public NilResult simpleLongBodyParamOpt(BuilderFactory _factory, OptionalLong bodyLong) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLongBodyParamOpt'");
+		return bodyLong.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

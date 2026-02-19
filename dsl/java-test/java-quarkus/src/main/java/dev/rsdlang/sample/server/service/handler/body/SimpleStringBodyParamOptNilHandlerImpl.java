@@ -12,8 +12,13 @@ public class SimpleStringBodyParamOptNilHandlerImpl
 
 	@Override
 	public NilResult simpleStringBodyParamOptNil(BuilderFactory _factory, Nillable<String> bodyString) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleStringBodyParamOptNil'");
+		if (bodyString.isNull()) {
+			return NilResult.NULL;
+		} else if (bodyString.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

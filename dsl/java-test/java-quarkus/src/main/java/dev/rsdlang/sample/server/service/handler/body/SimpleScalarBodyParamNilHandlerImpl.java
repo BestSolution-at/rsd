@@ -14,8 +14,7 @@ public class SimpleScalarBodyParamNilHandlerImpl
 
 	@Override
 	public NilResult simpleScalarBodyParamNil(BuilderFactory _factory, Optional<ZoneId> bodyScalar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleScalarBodyParamNil'");
+		return bodyScalar.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

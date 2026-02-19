@@ -12,8 +12,7 @@ public class SimpleIntBodyParamOptHandlerImpl implements BodyParameterTypesServi
 
 	@Override
 	public NilResult simpleIntBodyParamOpt(BuilderFactory _factory, OptionalInt bodyInt) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleIntBodyParamOpt'");
+		return bodyInt.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

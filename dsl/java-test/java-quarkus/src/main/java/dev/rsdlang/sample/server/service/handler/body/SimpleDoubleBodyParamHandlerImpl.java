@@ -9,8 +9,7 @@ public class SimpleDoubleBodyParamHandlerImpl implements BodyParameterTypesServi
 
 	@Override
 	public double simpleDoubleBodyParam(BuilderFactory _factory, double bodyDouble) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleDoubleBodyParam'");
+		return bodyDouble;
 	}
 
 }

@@ -13,8 +13,7 @@ public class UnionBodyParamOptHandlerImpl implements BodyParameterTypesServiceIm
 
 	@Override
 	public NilResult unionBodyParamOpt(BuilderFactory _factory, Optional<Data> bodyUnion) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'unionBodyParamOpt'");
+		return bodyUnion.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

@@ -12,8 +12,13 @@ public class SimpleLongBodyParamOptNilHandlerImpl
 
 	@Override
 	public NilResult simpleLongBodyParamOptNil(BuilderFactory _factory, Nillable<Long> bodyLong) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLongBodyParamOptNil'");
+		if (bodyLong.isNull()) {
+			return NilResult.NULL;
+		} else if (bodyLong.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

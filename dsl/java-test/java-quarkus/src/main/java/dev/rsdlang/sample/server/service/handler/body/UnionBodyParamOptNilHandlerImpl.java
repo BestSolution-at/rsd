@@ -12,8 +12,13 @@ public class UnionBodyParamOptNilHandlerImpl implements BodyParameterTypesServic
 
 	@Override
 	public NilResult unionBodyParamOptNil(BuilderFactory _factory, Nillable<Data> bodyUnion) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'unionBodyParamOptNil'");
+		if (bodyUnion.isNull()) {
+			return NilResult.NULL;
+		} else if (bodyUnion.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

@@ -13,8 +13,7 @@ public class SimpleShortBodyParamOptHandlerImpl
 
 	@Override
 	public NilResult simpleShortBodyParamOpt(BuilderFactory _factory, Optional<Short> bodyShort) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleShortBodyParamOpt'");
+		return bodyShort.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

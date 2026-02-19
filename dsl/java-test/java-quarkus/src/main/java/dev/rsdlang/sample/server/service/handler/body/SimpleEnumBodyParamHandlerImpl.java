@@ -10,8 +10,7 @@ public class SimpleEnumBodyParamHandlerImpl implements BodyParameterTypesService
 
 	@Override
 	public SampleEnum simpleEnumBodyParam(BuilderFactory _factory, SampleEnum bodyEnum) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleEnumBodyParam'");
+		return bodyEnum;
 	}
 
 }

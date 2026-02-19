@@ -13,8 +13,7 @@ public class RecordBodyParamNilHandlerImpl implements BodyParameterTypesServiceI
 
 	@Override
 	public NilResult recordBodyParamNil(BuilderFactory _factory, Optional<Data> bodyRecord) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'recordBodyParamNil'");
+		return bodyRecord.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

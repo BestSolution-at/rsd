@@ -9,8 +9,7 @@ public class SimpleIntBodyParamHandlerImpl implements BodyParameterTypesServiceI
 
 	@Override
 	public int simpleIntBodyParam(BuilderFactory _factory, int bodyInt) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleIntBodyParam'");
+		return bodyInt;
 	}
 
 }

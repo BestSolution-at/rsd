@@ -13,8 +13,7 @@ public class SimpleShortBodyParamNilHandlerImpl
 
 	@Override
 	public NilResult simpleShortBodyParamNil(BuilderFactory _factory, Optional<Short> bodyShort) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleShortBodyParamNil'");
+		return bodyShort.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 
 }

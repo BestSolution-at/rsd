@@ -13,8 +13,7 @@ public class SimpleEnumBodyParamOptHandlerImpl implements BodyParameterTypesServ
 
 	@Override
 	public NilResult simpleEnumBodyParamOpt(BuilderFactory _factory, Optional<SampleEnum> bodyEnum) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleEnumBodyParamOpt'");
+		return bodyEnum.isPresent() ? NilResult.DEFINED : NilResult.UNDEFINED;
 	}
 
 }

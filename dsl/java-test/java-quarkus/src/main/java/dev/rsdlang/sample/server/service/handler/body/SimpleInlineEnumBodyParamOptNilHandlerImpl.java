@@ -14,8 +14,13 @@ public class SimpleInlineEnumBodyParamOptNilHandlerImpl
 	@Override
 	public NilResult simpleInlineEnumBodyParamOptNil(BuilderFactory _factory,
 			Nillable<SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$> bodyEnum) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleInlineEnumBodyParamOptNil'");
+		if (bodyEnum.isNull()) {
+			return NilResult.NULL;
+		} else if (bodyEnum.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else {
+			return NilResult.DEFINED;
+		}
 	}
 
 }

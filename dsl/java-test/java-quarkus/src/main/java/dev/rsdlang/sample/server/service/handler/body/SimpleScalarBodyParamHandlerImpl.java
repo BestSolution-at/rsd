@@ -11,8 +11,7 @@ public class SimpleScalarBodyParamHandlerImpl implements BodyParameterTypesServi
 
 	@Override
 	public ZoneId simpleScalarBodyParam(BuilderFactory _factory, ZoneId bodyScalar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleScalarBodyParam'");
+		return bodyScalar;
 	}
 
 }

@@ -12,8 +12,12 @@ public class RecordBodyParamOptNilHandlerImpl implements BodyParameterTypesServi
 
 	@Override
 	public NilResult recordBodyParamOptNil(BuilderFactory _factory, Nillable<Data> bodyRecord) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'recordBodyParamOptNil'");
+		if (bodyRecord.isNull()) {
+			return NilResult.NULL;
+		} else if (bodyRecord.isUndefined()) {
+			return NilResult.UNDEFINED;
+		}
+		return NilResult.DEFINED;
 	}
 
 }

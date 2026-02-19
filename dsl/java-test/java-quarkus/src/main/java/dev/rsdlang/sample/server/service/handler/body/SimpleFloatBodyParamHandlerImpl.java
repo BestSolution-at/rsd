@@ -9,8 +9,7 @@ public class SimpleFloatBodyParamHandlerImpl implements BodyParameterTypesServic
 
 	@Override
 	public float simpleFloatBodyParam(BuilderFactory _factory, float bodyFloat) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleFloatBodyParam'");
+		return bodyFloat;
 	}
 
 }

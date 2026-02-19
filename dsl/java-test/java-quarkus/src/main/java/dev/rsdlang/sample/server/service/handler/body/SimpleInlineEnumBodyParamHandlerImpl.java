@@ -13,8 +13,7 @@ public class SimpleInlineEnumBodyParamHandlerImpl
 	@Override
 	public SimpleInlineEnumBodyParam_Result$ simpleInlineEnumBodyParam(BuilderFactory arg0,
 			SimpleInlineEnumBodyParam_BodyEnum_Param$ arg1) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleInlineEnumBodyParam'");
+		return SimpleInlineEnumBodyParam_Result$.valueOf(arg1.name());
 	}
 
 }

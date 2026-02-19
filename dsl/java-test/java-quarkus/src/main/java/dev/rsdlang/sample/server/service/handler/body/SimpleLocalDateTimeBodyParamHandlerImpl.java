@@ -12,8 +12,7 @@ public class SimpleLocalDateTimeBodyParamHandlerImpl
 
 	@Override
 	public LocalDateTime simpleLocalDateTimeBodyParam(BuilderFactory _factory, LocalDateTime bodyLocalDateTime) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'simpleLocalDateTimeBodyParam'");
+		return bodyLocalDateTime;
 	}
 
 }
