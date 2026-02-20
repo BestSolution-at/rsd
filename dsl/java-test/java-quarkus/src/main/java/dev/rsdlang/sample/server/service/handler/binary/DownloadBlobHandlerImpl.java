@@ -1,5 +1,8 @@
 package dev.rsdlang.sample.server.service.handler.binary;
 
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
+
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BinaryTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.RSDBlob;
@@ -10,8 +13,8 @@ public class DownloadBlobHandlerImpl implements BinaryTypesServiceImpl.DownloadB
 
 	@Override
 	public RSDBlob downloadBlob(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'downloadBlob'");
+		return _factory.createBlob(new ByteArrayInputStream("Hello World".getBytes(StandardCharsets.UTF_8)),
+				"text/plain; charset=UTF-8");
 	}
 
 }

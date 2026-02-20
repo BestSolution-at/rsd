@@ -1,93 +1,183 @@
-import { CompositeGeneratorNode, NL } from 'langium/generate';
+import { CompositeGeneratorNode } from 'langium/generate';
+import { toNodeTree } from '../util.js';
 
-export function generateBlobImpl(interfaceBasePackage: string): CompositeGeneratorNode {
-	const rv = new CompositeGeneratorNode();
-	rv.append('import java.io.IOException;', NL);
-	rv.append('import java.io.InputStream;', NL);
-	rv.append('import java.nio.file.Files;', NL);
-	rv.append('import java.nio.file.Path;', NL);
-	rv.append('import java.util.Optional;', NL);
-	rv.appendNewLine();
-	rv.append(`import ${interfaceBasePackage}.RSDBlob;`, NL);
-	rv.appendNewLine();
-	rv.append('public class _BlobImpl implements RSDBlob {', NL);
-	rv.indent(cBody => {
-		cBody.append('private final Path file;', NL);
-		cBody.append('private final String mimeType;', NL);
-		cBody.appendNewLine();
-		cBody.append('_BlobImpl(Path file, String mimeType) {', NL);
-		cBody.indent(mBody => {
-			mBody.append('this.file = file;', NL);
-			mBody.append('this.mimeType = mimeType;', NL);
-		});
-		cBody.append('}', NL);
-		cBody.appendNewLine();
-		cBody.append('@Override', NL);
-		cBody.append('public InputStream stream() {', NL);
-		cBody.indent(mBody => {
-			mBody.append('try {', NL);
-			mBody.indent(block => {
-				block.append('return Files.newInputStream(file);', NL);
-			});
-			mBody.append('} catch(IOException e) {', NL);
-			mBody.indent(block => {
-				block.append('throw new IllegalStateException(e);', NL);
-			});
-			mBody.append('}', NL);
-		});
-		cBody.append('}', NL);
-		cBody.appendNewLine();
+export function generateBlobImpl(interfaceBasePackage: string, fqn: (type: string) => string): CompositeGeneratorNode {
+	fqn('java.io.InputStream');
+	fqn('java.util.Optional');
+	fqn('java.util.function.Consumer');
+	fqn('java.nio.file.Path');
+	fqn('java.nio.file.Files');
+	fqn('java.io.IOException');
 
-		cBody.append('@Override', NL);
-		cBody.append('public Optional<String> mimeType() {', NL);
-		cBody.indent(mBody => {
-			mBody.append('return Optional.ofNullable(mimeType);', NL);
-		});
-		cBody.append('}', NL);
-		cBody.appendNewLine();
+	fqn(`${interfaceBasePackage}.RSDBlob`);
 
-		cBody.append('public static RSDBlob of(Path file, String mimeType) {', NL);
-		cBody.indent(mBody => {
-			mBody.append('return new _BlobImpl(file, mimeType);', NL);
-		});
-		cBody.append('}', NL);
-	});
-	rv.append('}', NL);
-	return rv;
+	return toNodeTree(`
+public class _BlobImpl implements RSDBlob {
+	private final Path file;
+	private final String mimeType;
+	protected boolean disposed = false;
+	private boolean consumed = false;
+	private final Consumer<Path> disposer;
+
+	_BlobImpl(Path file, String mimeType, Consumer<Path> disposer) {
+		this.file = file;
+		this.mimeType = mimeType;
+		this.disposer = disposer;
+	}
+
+	@Override
+	public InputStream stream() {
+		if (disposed) {
+			throw new IllegalStateException("Blob has been disposed");
+		}
+		if (consumed) {
+			throw new IllegalStateException("Stream has already been consumed");
+		}
+		consumed = true;
+		try {
+			return Files.newInputStream(file);
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	@Override
+	public Optional<String> mimeType() {
+		if (disposed) {
+			throw new IllegalStateException("Blob has been disposed");
+		}
+		return Optional.ofNullable(mimeType);
+	}
+
+	public static RSDBlob of(Path file, String mimeType) {
+		return new _BlobImpl(file, mimeType, null);
+	}
+
+	public static RSDBlob of(Path file, String mimeType, Consumer<Path> disposer) {
+		return new _BlobImpl(file, mimeType, disposer);
+	}
+
+	@Override
+	public void dispose() {
+		disposed = true;
+		if (disposer != null) {
+			disposer.accept(file);
+		}
+	}
+}`);
 }
 
-export function generateFileImpl(interfaceBasePackage: string) {
-	const rv = new CompositeGeneratorNode();
-	rv.append('import java.nio.file.Path;', NL);
-	rv.append('import java.util.Objects;', NL);
-	rv.appendNewLine();
-	rv.append(`import ${interfaceBasePackage}.RSDFile;`, NL);
-	rv.appendNewLine();
-	rv.append('public class _FileImpl extends _BlobImpl implements RSDFile {', NL);
-	rv.indent(cBody => {
-		cBody.append('private final String filename;', NL);
-		cBody.appendNewLine();
-		cBody.append('_FileImpl(Path file, String mimeType, String filename) {', NL);
-		cBody.indent(mBody => {
-			mBody.append('super(file, mimeType);', NL);
-			mBody.append('this.filename = Objects.requireNonNull(filename);', NL);
-		});
-		cBody.append('}', NL);
-		cBody.appendNewLine();
-		cBody.append('@Override', NL);
-		cBody.append('public String filename() {', NL);
-		cBody.indent(mBody => {
-			mBody.append('return filename;', NL);
-		});
-		cBody.append('}', NL);
-		cBody.appendNewLine();
+export function generateFileImpl(interfaceBasePackage: string, fqn: (type: string) => string) {
+	fqn('java.util.Objects');
+	fqn('java.nio.file.Path');
+	fqn('java.util.function.Consumer');
+	fqn(`${interfaceBasePackage}.RSDFile`);
 
-		cBody.append('public static final RSDFile of(Path file, String mimeType, String filename) {', NL);
-		cBody.indent(mBody => {
-			mBody.append('return new _FileImpl(file, mimeType, filename);', NL);
-		});
-		cBody.append('}', NL);
-	});
-	rv.append('}', NL);
-	return rv;
+	return toNodeTree(`
+public class _FileImpl extends _BlobImpl implements RSDFile {
+	private final String filename;
+
+	_FileImpl(Path file, String mimeType, String filename, Consumer<Path> disposer) {
+		super(file, mimeType, disposer);
+		this.filename = Objects.requireNonNull(filename);
+	}
+
+	@Override
+	public String filename() {
+		if (disposed) {
+			throw new IllegalStateException("File has been disposed");
+		}
+		return filename;
+	}
+
+	public static final RSDFile of(Path file, String mimeType, String filename) {
+		return new _FileImpl(file, mimeType, filename, null);
+	}
+
+	public static final RSDFile of(Path file, String mimeType, String filename, Consumer<Path> disposer) {
+		return new _FileImpl(file, mimeType, filename, disposer);
+	}
+}`);
+}
+
+export function generateStreamBlobImpl(
+	interfaceBasePackage: string,
+	fqn: (type: string) => string,
+): CompositeGeneratorNode {
+	fqn('java.io.InputStream');
+	fqn('java.util.Optional');
+	fqn(`${interfaceBasePackage}.RSDBlob`);
+
+	return toNodeTree(`
+public class _StreamBlobImpl implements RSDBlob {
+	private final String mimeType;
+	private final InputStream stream;
+	private boolean consumed = false;
+	private boolean disposed = false;
+
+	public _StreamBlobImpl(InputStream stream, String mimeType) {
+		this.mimeType = mimeType;
+		this.stream = stream;
+	}
+
+	@Override
+	public InputStream stream() {
+		if (disposed) {
+			throw new IllegalStateException("Blob has been disposed");
+		}
+
+		if (consumed) {
+			throw new IllegalStateException("Stream has already been consumed");
+		}
+		consumed = true;
+		return stream;
+	}
+
+	@Override
+	public Optional<String> mimeType() {
+		if (disposed) {
+			throw new IllegalStateException("Blob has been disposed");
+		}
+		return Optional.ofNullable(mimeType);
+	}
+
+	public static RSDBlob of(InputStream stream, String mimeType) {
+		return new _StreamBlobImpl(stream, mimeType);
+	}
+
+	@Override
+	public void dispose() {
+		disposed = true;
+	}
+}`);
+}
+
+export function generateStreamFileImpl(interfaceBasePackage: string, fqn: (type: string) => string) {
+	fqn('java.io.InputStream');
+	fqn('java.util.Objects');
+	fqn(`${interfaceBasePackage}.RSDFile`);
+
+	return toNodeTree(`
+public class _StreamFileImpl extends _StreamBlobImpl implements RSDFile {
+	private final String filename;
+	private boolean disposed = false;
+
+	public _StreamFileImpl(InputStream stream, String mimeType, String filename) {
+		super(stream, mimeType);
+		this.filename = Objects.requireNonNull(filename);
+	}
+
+	@Override
+	public String filename() {
+		if (disposed) {
+			throw new IllegalStateException("File has been disposed");
+		}
+		return filename;
+	}
+
+	public static RSDFile of(InputStream stream, String mimeType, String filename) {
+		return new _StreamFileImpl(stream, mimeType, filename);
+	}
+
+}`);
 }

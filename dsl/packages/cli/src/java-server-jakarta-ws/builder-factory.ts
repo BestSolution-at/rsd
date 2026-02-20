@@ -79,6 +79,17 @@ function generateDTOBuilderFactoryContent(
 			});
 			body.append('}', NL);
 
+			body.appendNewLine();
+			body.append(
+				`public ${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)} createBlob(${fqn('java.io.InputStream')} stream, String mimeType) {`,
+				NL,
+			);
+			body.indent(mBody => {
+				const StreamBlobImpl = fqn(`${artifactConfig.rootPackageName}.rest.model._StreamBlobImpl`);
+				mBody.append(`return ${StreamBlobImpl}.of(stream, mimeType);`, NL);
+			});
+			body.append('}', NL);
+
 			if (hasFileStream(model)) {
 				body.appendNewLine();
 				body.append(

@@ -45,6 +45,10 @@ function generateDTOBuilderFactoryContent(
 				`public ${fqn(`${packageName}.model.RSDBlob`)} createBlob(${fqn('java.nio.file.Path')} file, String mimeType);`,
 				NL,
 			);
+			classBody.append(
+				`public ${fqn(`${packageName}.model.RSDBlob`)} createBlob(${fqn('java.io.InputStream')} stream, String mimeType);`,
+				NL,
+			);
 			if (hasFileStream(model)) {
 				classBody.appendNewLine();
 				classBody.append(
