@@ -113,6 +113,7 @@ function toResponse(
 	fqn(`${packageName}.model._JsonUtils`);
 	fqn(`${artifactConfig.rootPackageName}.service.RSDException`);
 	fqn('jakarta.ws.rs.core.Response');
+	fqn('jakarta.ws.rs.core.MediaType');
 
 	return toNodeTree(`
 public static Response toResponse(int status, RSDException e) {
