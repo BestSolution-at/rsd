@@ -103,6 +103,18 @@ function generateDTOBuilderFactoryContent(
 					mBody.append(`return ${FileImpl}.of(file, mimeType, filename);`, NL);
 				});
 				body.append('}', NL);
+				body.appendNewLine();
+				body.append(
+					`public ${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)} createFile(${fqn(
+						'java.io.InputStream',
+					)} data, String mimeType, String filename) {`,
+					NL,
+				);
+				body.indent(mBody => {
+					const StreamFileImpl = fqn(`${artifactConfig.rootPackageName}.rest.model._StreamFileImpl`);
+					mBody.append(`return ${StreamFileImpl}.of(data, mimeType, filename);`, NL);
+				});
+				body.append('}', NL);
 			}
 		}
 	});

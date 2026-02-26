@@ -1,0 +1,38 @@
+package dev.rsdlang.sample.server.rest.utils;
+
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
+
+import org.jboss.resteasy.reactive.server.ServerRequestFilter;
+
+import io.smallrye.mutiny.Uni;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.container.ResourceInfo;
+
+@ApplicationScoped
+public class InspectContentFilter {
+	@ServerRequestFilter
+	public Uni<Void> captureAndInspect(ContainerRequestContext context, ResourceInfo resourceInfo) {
+		return Uni.createFrom().item(() -> {
+			byte[] originalBytes = null;
+			try {
+				var entityStream = context.getEntityStream();
+				originalBytes = entityStream.readAllBytes();
+
+				String body = new String(originalBytes, StandardCharsets.UTF_8);
+				System.err.println("=====> BODY: " + body);
+
+				if (originalBytes.length == 0) {
+					return null;
+				}
+
+				context.setEntityStream(new ByteArrayInputStream(originalBytes));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return null;
+		});
+	} 
+}

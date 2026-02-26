@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.server.service.handler.binary;
 
+import java.io.ByteArrayInputStream;
+
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BinaryTypesServiceImpl;
 import dev.rsdlang.sample.server.service.model.RSDFile;
@@ -10,8 +12,8 @@ public class DownloadFileHandlerImpl implements BinaryTypesServiceImpl.DownloadF
 
 	@Override
 	public RSDFile downloadFile(BuilderFactory _factory) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'downloadFile'");
+		return _factory.createFile(new ByteArrayInputStream("Hello, World!".getBytes()), "text/plain; charset=UTF-8",
+				"hello.txt");
 	}
 
 }

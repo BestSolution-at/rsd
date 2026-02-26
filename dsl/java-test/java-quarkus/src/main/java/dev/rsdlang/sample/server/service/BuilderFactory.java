@@ -15,4 +15,6 @@ public interface BuilderFactory {
 	public RSDBlob createBlob(InputStream stream, String mimeType);
 
 	public RSDFile createFile(Path file, String mimeType, String filename);
+
+	public RSDFile createFile(InputStream data, String mimeType, String filename);
 }

@@ -13,6 +13,7 @@ import dev.rsdlang.sample.server.rest.model._BlobImpl;
 import dev.rsdlang.sample.server.rest.model._FileImpl;
 import dev.rsdlang.sample.server.rest.model._JsonUtils;
 import dev.rsdlang.sample.server.rest.model._StreamBlobImpl;
+import dev.rsdlang.sample.server.rest.model._StreamFileImpl;
 import dev.rsdlang.sample.server.rest.model.EnumInlineRecordDataImpl;
 import dev.rsdlang.sample.server.rest.model.EnumRecordDataImpl;
 import dev.rsdlang.sample.server.rest.model.MixinRecordDataImpl;
@@ -625,5 +626,9 @@ public class RestBuilderFactory implements BuilderFactory {
 
 	public RSDFile createFile(Path file, String mimeType, String filename) {
 		return _FileImpl.of(file, mimeType, filename);
+	}
+
+	public RSDFile createFile(InputStream data, String mimeType, String filename) {
+		return _StreamFileImpl.of(data, mimeType, filename);
 	}
 }

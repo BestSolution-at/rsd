@@ -13,7 +13,7 @@ public class DownloadBlobHandlerImpl implements BinaryTypesServiceImpl.DownloadB
 
 	@Override
 	public RSDBlob downloadBlob(BuilderFactory _factory) {
-		return _factory.createBlob(new ByteArrayInputStream("Hello World".getBytes(StandardCharsets.UTF_8)),
+		return _factory.createBlob(new ByteArrayInputStream("Hello, Blob!".getBytes(StandardCharsets.UTF_8)),
 				"text/plain; charset=UTF-8");
 	}
 

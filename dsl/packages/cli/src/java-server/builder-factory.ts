@@ -57,6 +57,13 @@ function generateDTOBuilderFactoryContent(
 					)} file, String mimeType, String filename);`,
 					NL,
 				);
+				classBody.appendNewLine();
+				classBody.append(
+					`public ${fqn(`${packageName}.model.RSDFile`)} createFile(${fqn(
+						'java.io.InputStream',
+					)} data, String mimeType, String filename);`,
+					NL,
+				);
 			}
 		}
 	});
