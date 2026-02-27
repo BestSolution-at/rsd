@@ -13,8 +13,10 @@ public class UploadBlobListNilHandlerImpl implements BinaryTypesServiceImpl.Uplo
 
 	@Override
 	public int uploadBlobListNil(BuilderFactory _factory, Optional<List<RSDBlob>> data) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'uploadBlobListNil'");
+		return data.map(list -> list.stream()
+				.mapToInt(e -> StreamUtils.streamLength(e.stream()))
+				.sum())
+				.orElse(-1);
 	}
 
 }

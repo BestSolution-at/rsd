@@ -13,8 +13,15 @@ public class UploadFileListOptNilHandlerImpl implements BinaryTypesServiceImpl.U
 
 	@Override
 	public int uploadFileListOptNil(BuilderFactory _factory, Nillable<List<RSDFile>> data) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'uploadFileListOptNil'");
+
+		if (data.isNull()) {
+			return -1;
+		} else if (data.isUndefined()) {
+			return 0;
+		}
+		return data.apply(list -> list.stream()
+				.mapToInt(e -> StreamUtils.streamLength(e.stream()))
+				.sum(), -1);
 	}
 
 }

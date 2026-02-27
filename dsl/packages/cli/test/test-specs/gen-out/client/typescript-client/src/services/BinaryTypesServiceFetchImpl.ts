@@ -40,6 +40,9 @@ function fnUploadFile(props: ServiceProps<api.service.ErrorType>): api.service.B
 			const $path = `${baseUrl}/api/binarytypes/uploadFile`;
 			const $body = new FormData();
 			$body.append('data', data);
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
+			}
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 201) {
 				const $data = await decodeResponse($response, api.utils.isNumber);
@@ -72,6 +75,9 @@ function fnUploadFileOpt(props: ServiceProps<api.service.ErrorType>): api.servic
 			if (data !== undefined) {
 				$body.append('data', data);
 			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
+			}
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 201) {
 				const $data = await decodeResponse($response, api.utils.isNumber);
@@ -103,8 +109,9 @@ function fnUploadFileNil(props: ServiceProps<api.service.ErrorType>): api.servic
 			const $body = new FormData();
 			if (data !== null) {
 				$body.append('data', data);
-			} else {
-				$body.append('data', 'null');
+			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 201) {
@@ -138,7 +145,10 @@ function fnUploadFileOptNil(props: ServiceProps<api.service.ErrorType>): api.ser
 			if (data !== undefined && data !== null) {
 				$body.append('data', data);
 			} else if(data === null) {
-				$body.append('data', 'null');
+				$body.append('_rsdNull-data', 'true');
+			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 201) {
@@ -170,6 +180,9 @@ function fnUploadBlob(props: ServiceProps<api.service.ErrorType>): api.service.B
 			const $path = `${baseUrl}/api/binarytypes/uploadBlob`;
 			const $body = new FormData();
 			$body.append('data', data);
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
+			}
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 201) {
 				const $data = await decodeResponse($response, api.utils.isNumber);
@@ -202,6 +215,9 @@ function fnUploadBlobOpt(props: ServiceProps<api.service.ErrorType>): api.servic
 			if (data !== undefined) {
 				$body.append('data', data);
 			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
+			}
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 201) {
 				const $data = await decodeResponse($response, api.utils.isNumber);
@@ -233,8 +249,9 @@ function fnUploadBlobNil(props: ServiceProps<api.service.ErrorType>): api.servic
 			const $body = new FormData();
 			if (data !== null) {
 				$body.append('data', data);
-			} else {
-				$body.append('data', 'null');
+			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 201) {
@@ -268,7 +285,10 @@ function fnUploadBlobOptNil(props: ServiceProps<api.service.ErrorType>): api.ser
 			if (data !== undefined && data !== null) {
 				$body.append('data', data);
 			} else if(data === null) {
-				$body.append('data', 'null');
+				$body.append('_rsdNull-data', 'true');
+			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 201) {
@@ -302,6 +322,9 @@ function fnUploadFileList(props: ServiceProps<api.service.ErrorType>): api.servi
 			data.forEach($entry => {
 				$body.append('data', $entry);
 			});
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
+			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isNumber);
@@ -336,6 +359,9 @@ function fnUploadFileListOpt(props: ServiceProps<api.service.ErrorType>): api.se
 					$body.append('data', $entry);
 				});
 			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
+			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isNumber);
@@ -369,8 +395,9 @@ function fnUploadFileListNil(props: ServiceProps<api.service.ErrorType>): api.se
 				data.forEach($entry => {
 					$body.append('data', $entry);
 				});
-			} else {
-				$body.append('data', 'null');
+			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
@@ -406,7 +433,10 @@ function fnUploadFileListOptNil(props: ServiceProps<api.service.ErrorType>): api
 					$body.append('data', $entry);
 				});
 			} else if(data === null) {
-				$body.append('data', 'null');
+				$body.append('_rsdNull-data', 'true');
+			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
@@ -440,6 +470,9 @@ function fnUploadBlobList(props: ServiceProps<api.service.ErrorType>): api.servi
 			data.forEach($entry => {
 				$body.append('data', $entry);
 			});
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
+			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isNumber);
@@ -474,6 +507,9 @@ function fnUploadBlobListOpt(props: ServiceProps<api.service.ErrorType>): api.se
 					$body.append('data', $entry);
 				});
 			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
+			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isNumber);
@@ -507,8 +543,9 @@ function fnUploadBlobListNil(props: ServiceProps<api.service.ErrorType>): api.se
 				data.forEach($entry => {
 					$body.append('data', $entry);
 				});
-			} else {
-				$body.append('data', 'null');
+			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
@@ -544,7 +581,10 @@ function fnUploadBlobListOptNil(props: ServiceProps<api.service.ErrorType>): api
 					$body.append('data', $entry);
 				});
 			} else if(data === null) {
-				$body.append('data', 'null');
+				$body.append('_rsdNull-data', 'true');
+			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
@@ -589,6 +629,9 @@ function fnUploadMixed(props: ServiceProps<api.service.ErrorType>): api.service.
 			});
 			$body.append('dataFile', dataFile);
 			$body.append('dataBlob', dataBlob);
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
+			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isRecord);
@@ -649,6 +692,9 @@ function fnUploadMixedOpt(props: ServiceProps<api.service.ErrorType>): api.servi
 			if (dataBlob !== undefined) {
 				$body.append('dataBlob', dataBlob);
 			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
+			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isRecord);
@@ -681,49 +727,36 @@ function fnUploadMixedNil(props: ServiceProps<api.service.ErrorType>): api.servi
 			const $body = new FormData();
 			if (text !== null) {
 				$body.append('text', text);
-			} else {
-				$body.append('text', 'null');
 			}
 			if (number !== null) {
 				$body.append('number', number);
-			} else {
-				$body.append('number', 'null');
 			}
 			if (rec !== null) {
 				$body.append('rec', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON(rec))], { type: encodingType(props) }));
-			} else {
-				$body.append('rec', 'null');
 			}
 			if (textList !== null) {
 				textList.forEach($entry => {
 					$body.append('textList', $entry);
 				});
-			} else {
-				$body.append('textList', 'null');
 			}
 			if (numberList !== null) {
 				numberList.forEach($entry => {
 					$body.append('numberList', $entry);
 				});
-			} else {
-				$body.append('numberList', 'null');
 			}
 			if (recList !== null) {
 				recList.forEach($entry => {
 					$body.append('recList', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))], { type: encodingType(props) }));
 				});
-			} else {
-				$body.append('recList', 'null');
 			}
 			if (dataFile !== null) {
 				$body.append('dataFile', dataFile);
-			} else {
-				$body.append('dataFile', 'null');
 			}
 			if (dataBlob !== null) {
 				$body.append('dataBlob', dataBlob);
-			} else {
-				$body.append('dataBlob', 'null');
+			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
@@ -758,48 +791,51 @@ function fnUploadMixedOptNil(props: ServiceProps<api.service.ErrorType>): api.se
 			if (text !== undefined && text !== null) {
 				$body.append('text', text);
 			} else if(text === null) {
-				$body.append('text', 'null');
+				$body.append('_rsdNull-text', 'true');
 			}
 			if (number !== undefined && number !== null) {
 				$body.append('number', number);
 			} else if(number === null) {
-				$body.append('number', 'null');
+				$body.append('_rsdNull-number', 'true');
 			}
 			if (rec !== undefined && rec !== null) {
 				$body.append('rec', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON(rec))], { type: encodingType(props) }));
 			} else if(rec === null) {
-				$body.append('rec', 'null');
+				$body.append('_rsdNull-rec', 'true');
 			}
 			if (textList !== undefined && textList !== null) {
 				textList.forEach($entry => {
 					$body.append('textList', $entry);
 				});
 			} else if(textList === null) {
-				$body.append('textList', 'null');
+				$body.append('_rsdNull-textList', 'true');
 			}
 			if (numberList !== undefined && numberList !== null) {
 				numberList.forEach($entry => {
 					$body.append('numberList', $entry);
 				});
 			} else if(numberList === null) {
-				$body.append('numberList', 'null');
+				$body.append('_rsdNull-numberList', 'true');
 			}
 			if (recList !== undefined && recList !== null) {
 				recList.forEach($entry => {
 					$body.append('recList', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))], { type: encodingType(props) }));
 				});
 			} else if(recList === null) {
-				$body.append('recList', 'null');
+				$body.append('_rsdNull-recList', 'true');
 			}
 			if (dataFile !== undefined && dataFile !== null) {
 				$body.append('dataFile', dataFile);
 			} else if(dataFile === null) {
-				$body.append('dataFile', 'null');
+				$body.append('_rsdNull-dataFile', 'true');
 			}
 			if (dataBlob !== undefined && dataBlob !== null) {
 				$body.append('dataBlob', dataBlob);
 			} else if(dataBlob === null) {
-				$body.append('dataBlob', 'null');
+				$body.append('_rsdNull-dataBlob', 'true');
+			}
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {

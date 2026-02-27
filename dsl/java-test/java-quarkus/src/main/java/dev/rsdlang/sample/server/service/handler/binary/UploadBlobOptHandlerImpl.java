@@ -12,11 +12,9 @@ public class UploadBlobOptHandlerImpl implements BinaryTypesServiceImpl.UploadBl
 
 	@Override
 	public int uploadBlobOpt(BuilderFactory _factory, Optional<RSDBlob> data) {
-		System.err.println("=====> HELLO ");
-		if (data.isEmpty()) {
-			return 0;
-		}
-		return (int) StreamUtils.streamLength(data.get().stream());
+		return data
+				.map(v -> StreamUtils.streamLength(v.stream()))
+				.orElse(0);
 	}
 
 }

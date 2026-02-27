@@ -12,8 +12,7 @@ public class UploadFileNilHandlerImpl implements BinaryTypesServiceImpl.UploadFi
 
 	@Override
 	public int uploadFileNil(BuilderFactory _factory, Optional<RSDFile> data) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'uploadFileNil'");
+		return data.map(d -> StreamUtils.streamLength(d.stream())).orElse(0);
 	}
 
 }

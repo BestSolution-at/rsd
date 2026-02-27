@@ -12,8 +12,7 @@ public class UploadFileOptHandlerImpl implements BinaryTypesServiceImpl.UploadFi
 
 	@Override
 	public int uploadFileOpt(BuilderFactory _factory, Optional<RSDFile> data) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'uploadFileOpt'");
+		return data.map(d -> StreamUtils.streamLength(d.stream())).orElse(0);
 	}
 
 }

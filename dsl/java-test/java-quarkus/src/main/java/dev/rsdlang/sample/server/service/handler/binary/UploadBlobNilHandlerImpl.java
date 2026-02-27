@@ -12,8 +12,9 @@ public class UploadBlobNilHandlerImpl implements BinaryTypesServiceImpl.UploadBl
 
 	@Override
 	public int uploadBlobNil(BuilderFactory _factory, Optional<RSDBlob> data) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'uploadBlobNil'");
+		return data
+				.map(v -> StreamUtils.streamLength(v.stream()))
+				.orElse(-1);
 	}
 
 }

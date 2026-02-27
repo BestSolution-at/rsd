@@ -221,6 +221,10 @@ function _generateResource(
 					NL,
 				);
 				const params: string[] = o.parameters.map(p => toParameter(p, true, artifactConfig, fqn, true));
+				const nullableStreamParams = o.parameters
+					.filter(p => p.variant === 'stream' && p.optional && p.nullable)
+					.map(p => `@RestForm("_rsdNull-${p.name}") boolean $is${toFirstUpper(p.name)}Null`);
+				params.push(...nullableStreamParams);
 				const serviceParams: string[] = [];
 
 				serviceParams.push(...o.parameters.map(p => p.name));
@@ -235,13 +239,14 @@ function _generateResource(
 							if (p.type === 'file') {
 								if (p.array) {
 									if (p.optional && p.nullable) {
+										const type = `${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)}>`;
 										mBody.append(
-											`var ${p.name} = _data == null ? ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)}>>undefined() : ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
+											`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? _NillableImpl.<${type}>nill() : _NillableImpl.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
 											NL,
 										);
 									} else if (p.optional || p.nullable) {
 										mBody.append(
-											`var ${p.name} = _data == null ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
+											`var ${p.name} = _data == null || _data.isEmpty() ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
 											NL,
 										);
 									} else {
@@ -252,8 +257,10 @@ function _generateResource(
 									}
 								} else {
 									if (p.optional && p.nullable) {
+										const nillType = fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`);
+										const type = fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`);
 										mBody.append(
-											`var ${p.name} = _${p.name} != null ? ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.of(builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName())) : ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)}>undefined();`,
+											`var ${p.name} = _${p.name} == null ? ($is${toFirstUpper(p.name)}Null ? ${nillType}.<${type}>nill() : ${nillType}.<${type}>undefined()) : ${nillType}.of(builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName()));`,
 											NL,
 										);
 									} else if (p.optional || p.nullable) {
@@ -271,13 +278,14 @@ function _generateResource(
 							} else {
 								if (p.array) {
 									if (p.optional && p.nullable) {
+										const type = `${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)}>`;
 										mBody.append(
-											`var ${p.name} = _data == null ? ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)}>>undefined() : ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
+											`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? _NillableImpl.<${type}>nill() : _NillableImpl.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
 											NL,
 										);
 									} else if (p.optional || p.nullable) {
 										mBody.append(
-											`var ${p.name} = _data == null ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
+											`var ${p.name} = _data == null || _data.isEmpty() ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
 											NL,
 										);
 									} else {
@@ -288,8 +296,10 @@ function _generateResource(
 									}
 								} else {
 									if (p.optional && p.nullable) {
+										const nillType = fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`);
+										const type = fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`);
 										mBody.append(
-											`var ${p.name} = _${p.name} != null ? ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.of(builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType())) : ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)}>undefined();`,
+											`var ${p.name} = _${p.name} == null ? ($is${toFirstUpper(p.name)}Null ? ${nillType}.<${type}>nill() : ${nillType}.<${type}>undefined()) : ${nillType}.of(builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType()));`,
 											NL,
 										);
 									} else if (p.optional || p.nullable) {

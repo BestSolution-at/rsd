@@ -408,7 +408,7 @@ function generateRemoteInvoke(
 					});
 					node.append('} else if(' + p.name + ' === null) {', NL);
 					node.indent(mBody => {
-						mBody.append(`$body.append('${p.name}', 'null');`, NL);
+						mBody.append(`$body.append('_rsdNull-${p.name}', 'true');`, NL);
 					});
 					node.append('}', NL);
 				} else if (p.optional) {
@@ -422,15 +422,16 @@ function generateRemoteInvoke(
 					node.indent(mBody => {
 						mBody.append(codeBlock);
 					});
-					node.append('} else {', NL);
-					node.indent(mBody => {
-						mBody.append(`$body.append('${p.name}', 'null');`, NL);
-					});
 					node.append('}', NL);
 				} else {
 					node.append(codeBlock);
 				}
 			});
+			node.append('if ($body.values().next().done) {', NL);
+			node.indent(mBody => {
+				mBody.append(`$body.append('_rsdQuarkusBugDummy', '');`, NL);
+			});
+			node.append('}', NL);
 		} else if (bodyParams.length === 1) {
 			if (bodyParams[0].variant === 'record' || bodyParams[0].variant === 'union') {
 				const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${

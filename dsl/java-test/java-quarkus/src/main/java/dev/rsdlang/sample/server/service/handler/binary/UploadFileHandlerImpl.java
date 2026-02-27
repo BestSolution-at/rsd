@@ -10,8 +10,7 @@ public class UploadFileHandlerImpl implements BinaryTypesServiceImpl.UploadFileH
 
 	@Override
 	public int uploadFile(BuilderFactory _factory, RSDFile data) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'uploadFile'");
+		return StreamUtils.streamLength(data.stream());
 	}
 
 }

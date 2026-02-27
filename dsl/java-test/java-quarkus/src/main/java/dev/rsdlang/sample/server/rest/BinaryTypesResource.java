@@ -80,8 +80,8 @@ public class BinaryTypesResource {
 	@POST
 	@Path("uploadFileOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadFileOptNil(@RestForm("data") FileUpload _data) {
-		var data = _data != null ? _NillableImpl.of(builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName())) : _NillableImpl.<RSDFile>undefined();
+	public Response uploadFileOptNil(@RestForm("data") FileUpload _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
+		var data = _data == null ? ($isDataNull ? _NillableImpl.<RSDFile>nill() : _NillableImpl.<RSDFile>undefined()) : _NillableImpl.of(builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName()));
 		var result = service.uploadFileOptNil(builderFactory, data);
 		return responseBuilder.uploadFileOptNil(result, data).build();
 	}
@@ -112,8 +112,8 @@ public class BinaryTypesResource {
 	@POST
 	@Path("uploadBlobOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadBlobOptNil(@RestForm("data") FileUpload _data) {
-		var data = _data != null ? _NillableImpl.of(builderFactory.createBlob(_data.filePath(), _data.contentType())) : _NillableImpl.<RSDBlob>undefined();
+	public Response uploadBlobOptNil(@RestForm("data") FileUpload _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
+		var data = _data == null ? ($isDataNull ? _NillableImpl.<RSDBlob>nill() : _NillableImpl.<RSDBlob>undefined()) : _NillableImpl.of(builderFactory.createBlob(_data.filePath(), _data.contentType()));
 		var result = service.uploadBlobOptNil(builderFactory, data);
 		return responseBuilder.uploadBlobOptNil(result, data).build();
 	}
@@ -129,7 +129,7 @@ public class BinaryTypesResource {
 	@Path("uploadFileListOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFileListOpt(@RestForm("data") List<FileUpload> _data) {
-		var data = _data == null ? Optional.<List<RSDFile>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
+		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDFile>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
 		var result = service.uploadFileListOpt(builderFactory, data);
 		return responseBuilder.uploadFileListOpt(result, data).build();
 	}
@@ -137,15 +137,15 @@ public class BinaryTypesResource {
 	@Path("uploadFileListNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFileListNil(@RestForm("data") List<FileUpload> _data) {
-		var data = _data == null ? Optional.<List<RSDFile>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
+		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDFile>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
 		var result = service.uploadFileListNil(builderFactory, data);
 		return responseBuilder.uploadFileListNil(result, data).build();
 	}
 	@PUT
 	@Path("uploadFileListOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadFileListOptNil(@RestForm("data") List<FileUpload> _data) {
-		var data = _data == null ? _NillableImpl.<List<RSDFile>>undefined() : _NillableImpl.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
+	public Response uploadFileListOptNil(@RestForm("data") List<FileUpload> _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
+		var data = _data == null || _data.isEmpty() ? ($isDataNull ? _NillableImpl.<List<RSDFile>>nill() : _NillableImpl.<List<RSDFile>>undefined()) : _NillableImpl.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
 		var result = service.uploadFileListOptNil(builderFactory, data);
 		return responseBuilder.uploadFileListOptNil(result, data).build();
 	}
@@ -161,7 +161,7 @@ public class BinaryTypesResource {
 	@Path("uploadBlobListOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadBlobListOpt(@RestForm("data") List<FileUpload> _data) {
-		var data = _data == null ? Optional.<List<RSDBlob>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
+		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDBlob>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
 		var result = service.uploadBlobListOpt(builderFactory, data);
 		return responseBuilder.uploadBlobListOpt(result, data).build();
 	}
@@ -169,15 +169,15 @@ public class BinaryTypesResource {
 	@Path("uploadBlobListNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadBlobListNil(@RestForm("data") List<FileUpload> _data) {
-		var data = _data == null ? Optional.<List<RSDBlob>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
+		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDBlob>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
 		var result = service.uploadBlobListNil(builderFactory, data);
 		return responseBuilder.uploadBlobListNil(result, data).build();
 	}
 	@PUT
 	@Path("uploadBlobListOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadBlobListOptNil(@RestForm("data") List<FileUpload> _data) {
-		var data = _data == null ? _NillableImpl.<List<RSDBlob>>undefined() : _NillableImpl.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
+	public Response uploadBlobListOptNil(@RestForm("data") List<FileUpload> _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
+		var data = _data == null || _data.isEmpty() ? ($isDataNull ? _NillableImpl.<List<RSDBlob>>nill() : _NillableImpl.<List<RSDBlob>>undefined()) : _NillableImpl.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
 		var result = service.uploadBlobListOptNil(builderFactory, data);
 		return responseBuilder.uploadBlobListOptNil(result, data).build();
 	}
@@ -229,15 +229,15 @@ public class BinaryTypesResource {
 	@PUT
 	@Path("uploadMixedOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadMixedOptNil(@RestForm("text") String _text, @RestForm("number") String _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<String> _numberList, @RestForm("recList") List<String> _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+	public Response uploadMixedOptNil(@RestForm("text") String _text, @RestForm("number") String _number, @RestForm("rec") String _rec, @RestForm("textList") List<String> _textList, @RestForm("numberList") List<String> _numberList, @RestForm("recList") List<String> _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob, @RestForm("_rsdNull-dataFile") boolean $isDataFileNull, @RestForm("_rsdNull-dataBlob") boolean $isDataBlobNull) {
 		var text = _RestUtils.parseNilString(_text);
 		var number = _RestUtils.parseNilInt(_number);
 		var rec = _RestUtils.parseNilObject(_rec, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var textList = _RestUtils.mapNilStrings(_textList);
 		var numberList = _RestUtils.mapNilInts(_numberList);
 		var recList = _RestUtils.mapNilObjects(_recList, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
-		var dataFile = _dataFile != null ? _NillableImpl.of(builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName())) : _NillableImpl.<RSDFile>undefined();
-		var dataBlob = _dataBlob != null ? _NillableImpl.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType())) : _NillableImpl.<RSDBlob>undefined();
+		var dataFile = _dataFile == null ? ($isDataFileNull ? _NillableImpl.<RSDFile>nill() : _NillableImpl.<RSDFile>undefined()) : _NillableImpl.of(builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName()));
+		var dataBlob = _dataBlob == null ? ($isDataBlobNull ? _NillableImpl.<RSDBlob>nill() : _NillableImpl.<RSDBlob>undefined()) : _NillableImpl.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType()));
 		var result = service.uploadMixedOptNil(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
 		return responseBuilder.uploadMixedOptNil(result, text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
 	}

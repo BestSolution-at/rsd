@@ -12,8 +12,9 @@ public class UploadFileListHandlerImpl implements BinaryTypesServiceImpl.UploadF
 
 	@Override
 	public int uploadFileList(BuilderFactory _factory, List<RSDFile> data) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'uploadFileList'");
+		return data.stream()
+				.mapToInt(e -> StreamUtils.streamLength(e.stream()))
+				.sum();
 	}
 
 }

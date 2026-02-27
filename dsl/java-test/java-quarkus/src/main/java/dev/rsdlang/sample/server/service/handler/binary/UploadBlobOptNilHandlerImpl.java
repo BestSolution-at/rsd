@@ -11,8 +11,13 @@ public class UploadBlobOptNilHandlerImpl implements BinaryTypesServiceImpl.Uploa
 
 	@Override
 	public int uploadBlobOptNil(BuilderFactory _factory, Nillable<RSDBlob> data) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'uploadBlobOptNil'");
+		if (data.isNull()) {
+			return -1;
+		} else if (data.isUndefined()) {
+			return 0;
+		} else {
+			return data.apply(v -> StreamUtils.streamLength(v.stream()), -1);
+		}
 	}
 
 }

@@ -11,8 +11,12 @@ public class UploadFileOptNilHandlerImpl implements BinaryTypesServiceImpl.Uploa
 
 	@Override
 	public int uploadFileOptNil(BuilderFactory _factory, Nillable<RSDFile> data) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'uploadFileOptNil'");
+		if (data.isNull()) {
+			return -1;
+		} else if (data.isUndefined()) {
+			return 0;
+		}
+		return data.apply(v -> StreamUtils.streamLength(v.stream()), -1);
 	}
 
 }

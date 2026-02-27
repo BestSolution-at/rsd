@@ -12,8 +12,9 @@ public class UploadBlobListHandlerImpl implements BinaryTypesServiceImpl.UploadB
 
 	@Override
 	public int uploadBlobList(BuilderFactory _factory, List<RSDBlob> data) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'uploadBlobList'");
+		return data.stream()
+				.mapToInt(e -> StreamUtils.streamLength(e.stream()))
+				.sum();
 	}
 
 }

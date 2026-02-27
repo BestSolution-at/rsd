@@ -13,8 +13,10 @@ public class UploadFileListOptHandlerImpl implements BinaryTypesServiceImpl.Uplo
 
 	@Override
 	public int uploadFileListOpt(BuilderFactory _factory, Optional<List<RSDFile>> data) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'uploadFileListOpt'");
+		return data.map(list -> list.stream()
+				.mapToInt(e -> StreamUtils.streamLength(e.stream()))
+				.sum())
+				.orElse(0);
 	}
 
 }
