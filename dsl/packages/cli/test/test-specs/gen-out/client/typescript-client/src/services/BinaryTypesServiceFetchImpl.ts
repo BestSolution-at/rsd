@@ -615,20 +615,17 @@ function fnUploadMixed(props: ServiceProps<api.service.ErrorType>): api.service.
 
 			const $path = `${baseUrl}/api/binarytypes/uploadMixed`;
 			const $body = new FormData();
-			$body.append('text', text);
-			$body.append('number', number);
-			$body.append('rec', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON(rec))], { type: encodingType(props) }));
-			textList.forEach($entry => {
-				$body.append('textList', $entry);
-			});
-			numberList.forEach($entry => {
-				$body.append('numberList', $entry);
-			});
-			recList.forEach($entry => {
-				$body.append('recList', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))], { type: encodingType(props) }));
-			});
 			$body.append('dataFile', dataFile);
 			$body.append('dataBlob', dataBlob);
+			const $jsonPayload = {
+				text,
+				number,
+				rec: api.model.SimpleRecordToJSON(rec),
+				textList,
+				numberList,
+				recList: recList.map(api.model.SimpleRecordToJSON),
+			};
+			$body.append('_rsdPayload', new Blob([encodeValue(encodingType(props), $jsonPayload)], { type: encodingType(props) }));
 			if ($body.values().next().done) {
 				$body.append('_rsdQuarkusBugDummy', '');
 			}
@@ -662,36 +659,21 @@ function fnUploadMixedOpt(props: ServiceProps<api.service.ErrorType>): api.servi
 
 			const $path = `${baseUrl}/api/binarytypes/uploadMixedOpt`;
 			const $body = new FormData();
-			if (text !== undefined) {
-				$body.append('text', text);
-			}
-			if (number !== undefined) {
-				$body.append('number', number);
-			}
-			if (rec !== undefined) {
-				$body.append('rec', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON(rec))], { type: encodingType(props) }));
-			}
-			if (textList !== undefined) {
-				textList.forEach($entry => {
-					$body.append('textList', $entry);
-				});
-			}
-			if (numberList !== undefined) {
-				numberList.forEach($entry => {
-					$body.append('numberList', $entry);
-				});
-			}
-			if (recList !== undefined) {
-				recList.forEach($entry => {
-					$body.append('recList', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))], { type: encodingType(props) }));
-				});
-			}
 			if (dataFile !== undefined) {
 				$body.append('dataFile', dataFile);
 			}
 			if (dataBlob !== undefined) {
 				$body.append('dataBlob', dataBlob);
 			}
+			const $jsonPayload = {
+				text,
+				number,
+				rec: rec ? api.model.SimpleRecordToJSON(rec) : rec,
+				textList,
+				numberList,
+				recList: recList ? recList.map(api.model.SimpleRecordToJSON) : recList,
+			};
+			$body.append('_rsdPayload', new Blob([encodeValue(encodingType(props), $jsonPayload)], { type: encodingType(props) }));
 			if ($body.values().next().done) {
 				$body.append('_rsdQuarkusBugDummy', '');
 			}
@@ -725,36 +707,21 @@ function fnUploadMixedNil(props: ServiceProps<api.service.ErrorType>): api.servi
 
 			const $path = `${baseUrl}/api/binarytypes/uploadMixedNil`;
 			const $body = new FormData();
-			if (text !== null) {
-				$body.append('text', text);
-			}
-			if (number !== null) {
-				$body.append('number', number);
-			}
-			if (rec !== null) {
-				$body.append('rec', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON(rec))], { type: encodingType(props) }));
-			}
-			if (textList !== null) {
-				textList.forEach($entry => {
-					$body.append('textList', $entry);
-				});
-			}
-			if (numberList !== null) {
-				numberList.forEach($entry => {
-					$body.append('numberList', $entry);
-				});
-			}
-			if (recList !== null) {
-				recList.forEach($entry => {
-					$body.append('recList', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))], { type: encodingType(props) }));
-				});
-			}
 			if (dataFile !== null) {
 				$body.append('dataFile', dataFile);
 			}
 			if (dataBlob !== null) {
 				$body.append('dataBlob', dataBlob);
 			}
+			const $jsonPayload = {
+				text,
+				number,
+				rec: rec ? api.model.SimpleRecordToJSON(rec) : rec,
+				textList,
+				numberList,
+				recList: recList ? recList.map(api.model.SimpleRecordToJSON) : recList,
+			};
+			$body.append('_rsdPayload', new Blob([encodeValue(encodingType(props), $jsonPayload)], { type: encodingType(props) }));
 			if ($body.values().next().done) {
 				$body.append('_rsdQuarkusBugDummy', '');
 			}
@@ -788,42 +755,6 @@ function fnUploadMixedOptNil(props: ServiceProps<api.service.ErrorType>): api.se
 
 			const $path = `${baseUrl}/api/binarytypes/uploadMixedOptNil`;
 			const $body = new FormData();
-			if (text !== undefined && text !== null) {
-				$body.append('text', text);
-			} else if(text === null) {
-				$body.append('_rsdNull-text', 'true');
-			}
-			if (number !== undefined && number !== null) {
-				$body.append('number', number);
-			} else if(number === null) {
-				$body.append('_rsdNull-number', 'true');
-			}
-			if (rec !== undefined && rec !== null) {
-				$body.append('rec', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON(rec))], { type: encodingType(props) }));
-			} else if(rec === null) {
-				$body.append('_rsdNull-rec', 'true');
-			}
-			if (textList !== undefined && textList !== null) {
-				textList.forEach($entry => {
-					$body.append('textList', $entry);
-				});
-			} else if(textList === null) {
-				$body.append('_rsdNull-textList', 'true');
-			}
-			if (numberList !== undefined && numberList !== null) {
-				numberList.forEach($entry => {
-					$body.append('numberList', $entry);
-				});
-			} else if(numberList === null) {
-				$body.append('_rsdNull-numberList', 'true');
-			}
-			if (recList !== undefined && recList !== null) {
-				recList.forEach($entry => {
-					$body.append('recList', new Blob([encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))], { type: encodingType(props) }));
-				});
-			} else if(recList === null) {
-				$body.append('_rsdNull-recList', 'true');
-			}
 			if (dataFile !== undefined && dataFile !== null) {
 				$body.append('dataFile', dataFile);
 			} else if(dataFile === null) {
@@ -834,6 +765,15 @@ function fnUploadMixedOptNil(props: ServiceProps<api.service.ErrorType>): api.se
 			} else if(dataBlob === null) {
 				$body.append('_rsdNull-dataBlob', 'true');
 			}
+			const $jsonPayload = {
+				text,
+				number,
+				rec: rec ? api.model.SimpleRecordToJSON(rec) : rec,
+				textList,
+				numberList,
+				recList: recList ? recList.map(api.model.SimpleRecordToJSON) : recList,
+			};
+			$body.append('_rsdPayload', new Blob([encodeValue(encodingType(props), $jsonPayload)], { type: encodingType(props) }));
 			if ($body.values().next().done) {
 				$body.append('_rsdQuarkusBugDummy', '');
 			}

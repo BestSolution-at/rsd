@@ -27,32 +27,32 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 	}
 
 	@Override
-	public boolean valueBoolean() {
+	public Boolean valueBoolean() {
 		return _JsonUtils.mapBoolean(data, "valueBoolean", false);
 	}
 
 	@Override
-	public short valueShort() {
+	public Short valueShort() {
 		return _JsonUtils.mapShort(data, "valueShort", (short) 0);
 	}
 
 	@Override
-	public int valueInt() {
+	public Integer valueInt() {
 		return _JsonUtils.mapInt(data, "valueInt", 0);
 	}
 
 	@Override
-	public long valueLong() {
+	public Long valueLong() {
 		return _JsonUtils.mapLong(data, "valueLong", 0);
 	}
 
 	@Override
-	public float valueFloat() {
+	public Float valueFloat() {
 		return _JsonUtils.mapFloat(data, "valueFloat", 0);
 	}
 
 	@Override
-	public double valueDouble() {
+	public Double valueDouble() {
 		return _JsonUtils.mapDouble(data, "valueDouble", 0);
 	}
 
@@ -100,37 +100,61 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 		}
 
 		@Override
-		public PatchableRecord_Basic_Optional_Null.DataBuilder valueBoolean(boolean valueBoolean) {
+		public PatchableRecord_Basic_Optional_Null.DataBuilder valueBoolean(Boolean valueBoolean) {
+			if (valueBoolean == null) {
+				$builder.addNull("valueBoolean");
+				return this;
+			}
 			$builder.add("valueBoolean", valueBoolean);
 			return this;
 		}
 
 		@Override
-		public PatchableRecord_Basic_Optional_Null.DataBuilder valueShort(short valueShort) {
+		public PatchableRecord_Basic_Optional_Null.DataBuilder valueShort(Short valueShort) {
+			if (valueShort == null) {
+				$builder.addNull("valueShort");
+				return this;
+			}
 			$builder.add("valueShort", valueShort);
 			return this;
 		}
 
 		@Override
-		public PatchableRecord_Basic_Optional_Null.DataBuilder valueInt(int valueInt) {
+		public PatchableRecord_Basic_Optional_Null.DataBuilder valueInt(Integer valueInt) {
+			if (valueInt == null) {
+				$builder.addNull("valueInt");
+				return this;
+			}
 			$builder.add("valueInt", valueInt);
 			return this;
 		}
 
 		@Override
-		public PatchableRecord_Basic_Optional_Null.DataBuilder valueLong(long valueLong) {
+		public PatchableRecord_Basic_Optional_Null.DataBuilder valueLong(Long valueLong) {
+			if (valueLong == null) {
+				$builder.addNull("valueLong");
+				return this;
+			}
 			$builder.add("valueLong", valueLong);
 			return this;
 		}
 
 		@Override
-		public PatchableRecord_Basic_Optional_Null.DataBuilder valueFloat(float valueFloat) {
+		public PatchableRecord_Basic_Optional_Null.DataBuilder valueFloat(Float valueFloat) {
+			if (valueFloat == null) {
+				$builder.addNull("valueFloat");
+				return this;
+			}
 			$builder.add("valueFloat", valueFloat);
 			return this;
 		}
 
 		@Override
-		public PatchableRecord_Basic_Optional_Null.DataBuilder valueDouble(double valueDouble) {
+		public PatchableRecord_Basic_Optional_Null.DataBuilder valueDouble(Double valueDouble) {
+			if (valueDouble == null) {
+				$builder.addNull("valueDouble");
+				return this;
+			}
 			$builder.add("valueDouble", valueDouble);
 			return this;
 		}

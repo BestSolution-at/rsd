@@ -13,17 +13,17 @@ public interface PatchableRecord_Basic_Optional {
 
 		public String version();
 
-		public boolean valueBoolean();
+		public Boolean valueBoolean();
 
-		public short valueShort();
+		public Short valueShort();
 
-		public int valueInt();
+		public Integer valueInt();
 
-		public long valueLong();
+		public Long valueLong();
 
-		public float valueFloat();
+		public Float valueFloat();
 
-		public double valueDouble();
+		public Double valueDouble();
 
 		public String valueString();
 
@@ -40,17 +40,17 @@ public interface PatchableRecord_Basic_Optional {
 
 		public DataBuilder version(String version);
 
-		public DataBuilder valueBoolean(boolean valueBoolean);
+		public DataBuilder valueBoolean(Boolean valueBoolean);
 
-		public DataBuilder valueShort(short valueShort);
+		public DataBuilder valueShort(Short valueShort);
 
-		public DataBuilder valueInt(int valueInt);
+		public DataBuilder valueInt(Integer valueInt);
 
-		public DataBuilder valueLong(long valueLong);
+		public DataBuilder valueLong(Long valueLong);
 
-		public DataBuilder valueFloat(float valueFloat);
+		public DataBuilder valueFloat(Float valueFloat);
 
-		public DataBuilder valueDouble(double valueDouble);
+		public DataBuilder valueDouble(Double valueDouble);
 
 		public DataBuilder valueString(String valueString);
 

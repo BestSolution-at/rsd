@@ -17,32 +17,32 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 	}
 
 	@Override
-	public boolean valueBoolean() {
+	public Boolean valueBoolean() {
 		return _JsonUtils.mapBoolean(data, "valueBoolean", false);
 	}
 
 	@Override
-	public short valueShort() {
+	public Short valueShort() {
 		return _JsonUtils.mapShort(data, "valueShort", (short) 0);
 	}
 
 	@Override
-	public int valueInt() {
+	public Integer valueInt() {
 		return _JsonUtils.mapInt(data, "valueInt", 0);
 	}
 
 	@Override
-	public long valueLong() {
+	public Long valueLong() {
 		return _JsonUtils.mapLong(data, "valueLong", 0);
 	}
 
 	@Override
-	public float valueFloat() {
+	public Float valueFloat() {
 		return _JsonUtils.mapFloat(data, "valueFloat", 0);
 	}
 
 	@Override
-	public double valueDouble() {
+	public Double valueDouble() {
 		return _JsonUtils.mapDouble(data, "valueDouble", 0);
 	}
 
@@ -78,37 +78,55 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 		private JsonObjectBuilder $builder = Json.createObjectBuilder();
 
 		@Override
-		public SimpleRecord_Basic_Optional.DataBuilder valueBoolean(boolean valueBoolean) {
+		public SimpleRecord_Basic_Optional.DataBuilder valueBoolean(Boolean valueBoolean) {
+			if (valueBoolean == null) {
+				return this;
+			}
 			$builder.add("valueBoolean", valueBoolean);
 			return this;
 		}
 
 		@Override
-		public SimpleRecord_Basic_Optional.DataBuilder valueShort(short valueShort) {
+		public SimpleRecord_Basic_Optional.DataBuilder valueShort(Short valueShort) {
+			if (valueShort == null) {
+				return this;
+			}
 			$builder.add("valueShort", valueShort);
 			return this;
 		}
 
 		@Override
-		public SimpleRecord_Basic_Optional.DataBuilder valueInt(int valueInt) {
+		public SimpleRecord_Basic_Optional.DataBuilder valueInt(Integer valueInt) {
+			if (valueInt == null) {
+				return this;
+			}
 			$builder.add("valueInt", valueInt);
 			return this;
 		}
 
 		@Override
-		public SimpleRecord_Basic_Optional.DataBuilder valueLong(long valueLong) {
+		public SimpleRecord_Basic_Optional.DataBuilder valueLong(Long valueLong) {
+			if (valueLong == null) {
+				return this;
+			}
 			$builder.add("valueLong", valueLong);
 			return this;
 		}
 
 		@Override
-		public SimpleRecord_Basic_Optional.DataBuilder valueFloat(float valueFloat) {
+		public SimpleRecord_Basic_Optional.DataBuilder valueFloat(Float valueFloat) {
+			if (valueFloat == null) {
+				return this;
+			}
 			$builder.add("valueFloat", valueFloat);
 			return this;
 		}
 
 		@Override
-		public SimpleRecord_Basic_Optional.DataBuilder valueDouble(double valueDouble) {
+		public SimpleRecord_Basic_Optional.DataBuilder valueDouble(Double valueDouble) {
+			if (valueDouble == null) {
+				return this;
+			}
 			$builder.add("valueDouble", valueDouble);
 			return this;
 		}

@@ -286,7 +286,7 @@ export function computeAPIType(
 	let type: string;
 
 	if (isMBuiltinType(property.type)) {
-		if (property.array) {
+		if (property.array || property.optional || property.nullable) {
 			type = builtinToJavaObjectType(property.type, fqn);
 		} else {
 			type = builtinToJavaType(property.type, fqn);

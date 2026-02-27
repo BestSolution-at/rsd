@@ -9,7 +9,7 @@ public interface UploadMixedResult {
 	public interface Data extends _Base.BaseData, UploadMixedResult {
 		public String text();
 
-		public int number();
+		public Integer number();
 
 		public SimpleRecord.Data rec();
 
@@ -28,7 +28,7 @@ public interface UploadMixedResult {
 	public interface DataBuilder extends _Base.BaseDataBuilder<UploadMixedResult.Data> {
 		public DataBuilder text(String text);
 
-		public DataBuilder number(int number);
+		public DataBuilder number(Integer number);
 
 		public DataBuilder rec(SimpleRecord.Data rec);
 

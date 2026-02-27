@@ -26,9 +26,8 @@ export function generateResource(s: MResolvedService, artifactConfig: JavaServer
 	const result: Artifact[] = [];
 	const serviceDTOs = s.operations
 		.filter(
-			o => o.parameters.find(p => p.variant === 'stream') == undefined, // If there's a stream we have to use multi-part
+			o => o.parameters.filter(p => p.variant !== 'stream').filter(p => p.meta?.rest?.source === undefined).length > 1,
 		)
-		.filter(o => o.parameters.filter(p => p.meta?.rest?.source === undefined).length > 1)
 		.map(o => generateServiceData(s, o, artifactConfig));
 	result.push(...serviceDTOs);
 
@@ -220,11 +219,16 @@ function _generateResource(
 					`@${fqn('jakarta.ws.rs.Consumes')}(${fqn('jakarta.ws.rs.core.MediaType')}.MULTIPART_FORM_DATA)`,
 					NL,
 				);
-				const params: string[] = o.parameters.map(p => toParameter(p, true, artifactConfig, fqn, true));
+				const params: string[] = o.parameters
+					.filter(p => p.variant === 'stream')
+					.map(p => toParameter(p, true, artifactConfig, fqn, true));
 				const nullableStreamParams = o.parameters
 					.filter(p => p.variant === 'stream' && p.optional && p.nullable)
 					.map(p => `@RestForm("_rsdNull-${p.name}") boolean $is${toFirstUpper(p.name)}Null`);
 				params.push(...nullableStreamParams);
+				if (o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
+					params.unshift(`@RestForm("_rsdPayload") String $_payload`);
+				}
 				const serviceParams: string[] = [];
 
 				serviceParams.push(...o.parameters.map(p => p.name));
@@ -234,6 +238,16 @@ function _generateResource(
 
 				cBody.append(`public ${fqn('jakarta.ws.rs.core.Response')} ${o.name}(${params.join(', ')}) {`, NL);
 				cBody.indent(mBody => {
+					if (o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
+						const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
+						const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
+						mBody.append(`var $payload = ${_JsonUtils}.parseObject($_payload, ${Type}::new);`, NL);
+						o.parameters
+							.filter(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)
+							.forEach(p => {
+								mBody.append(`var ${p.name} = $payload.${p.name}();`, NL);
+							});
+					}
 					o.parameters.forEach(p => {
 						if (p.variant === 'stream') {
 							if (p.type === 'file') {
@@ -314,18 +328,6 @@ function _generateResource(
 										);
 									}
 								}
-							}
-						} else {
-							if (p.variant === 'record' || p.variant === 'union') {
-								mBody.append(recordUnionParameter(p, artifactConfig, fqn, packageName, false));
-							} else if (p.variant === 'builtin') {
-								mBody.append(builtinParameter(p, fqn, packageName, false));
-							} else if (p.variant === 'enum') {
-								mBody.append(enumParameter(p, artifactConfig, fqn, packageName, false));
-							} else if (p.variant === 'inline-enum') {
-								mBody.append(inlineEnumParameter(p, o, Service, fqn, packageName, false));
-							} /* else if (p.variant === 'scalar')*/ else {
-								mBody.append(scalarParameter(p, artifactConfig, fqn, packageName, false));
 							}
 						}
 					});
@@ -897,6 +899,7 @@ function generateServiceData(
 		});
 		classBody.append('}', NL, NL);
 		o.parameters
+			.filter(p => p.variant !== 'stream')
 			.filter(p => p.meta?.rest?.source === undefined)
 			.forEach(p => {
 				const type =

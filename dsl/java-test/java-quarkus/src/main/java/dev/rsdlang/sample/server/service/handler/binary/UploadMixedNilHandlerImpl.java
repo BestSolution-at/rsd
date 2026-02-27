@@ -26,14 +26,14 @@ public class UploadMixedNilHandlerImpl implements BinaryTypesServiceImpl.UploadM
 			Optional<RSDFile> dataFile,
 			Optional<RSDBlob> dataBlob) {
 		var b = _factory.builder(UploadMixedResult.DataBuilder.class);
-		text.ifPresent(b::text);
-		number.ifPresent(b::number);
-		rec.ifPresent(b::rec);
-		textList.map(l -> l.isEmpty() ? null : l).ifPresent(b::textList);
-		numberList.map(l -> l.isEmpty() ? null : l).ifPresent(b::numberList);
-		recList.map(l -> l.isEmpty() ? null : l).ifPresent(b::recList);
-		dataFile.map(c -> StreamUtils.streamToString(c.stream())).ifPresent(b::dataFileContent);
-		dataBlob.map(c -> StreamUtils.streamToString(c.stream())).ifPresent(b::dataBlobContent);
+		b.text(text.orElse(null))
+				.number(number.isEmpty() ? null : number.orElse(-1))
+				.rec(rec.orElse(null))
+				.textList(textList.orElse(null))
+				.numberList(numberList.orElse(null))
+				.recList(recList.orElse(null))
+				.dataFileContent(dataFile.map(c -> StreamUtils.streamToString(c.stream())).orElse(null))
+				.dataBlobContent(dataBlob.map(c -> StreamUtils.streamToString(c.stream())).orElse(null));
 		return b.build();
 	}
 

@@ -22,7 +22,7 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 	}
 
 	@Override
-	public int number() {
+	public Integer number() {
 		return _JsonUtils.mapInt(data, "number", 0);
 	}
 
@@ -78,7 +78,11 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 		}
 
 		@Override
-		public UploadMixedResult.DataBuilder number(int number) {
+		public UploadMixedResult.DataBuilder number(Integer number) {
+			if (number == null) {
+				$builder.addNull("number");
+				return this;
+			}
 			$builder.add("number", number);
 			return this;
 		}

@@ -399,34 +399,71 @@ function generateRemoteInvoke(
 	} else {
 		if (hasStreamParam) {
 			node.append(`const $body = new FormData();`, NL);
-			bodyParams.forEach(p => {
-				const codeBlock = formdataCodeBlock(p, config, fqn);
-				if (p.optional && p.nullable) {
-					node.append('if (' + p.name + ' !== undefined && ' + p.name + ' !== null) {', NL);
-					node.indent(mBody => {
-						mBody.append(codeBlock);
-					});
-					node.append('} else if(' + p.name + ' === null) {', NL);
-					node.indent(mBody => {
-						mBody.append(`$body.append('_rsdNull-${p.name}', 'true');`, NL);
-					});
-					node.append('}', NL);
-				} else if (p.optional) {
-					node.append('if (' + p.name + ' !== undefined) {', NL);
-					node.indent(mBody => {
-						mBody.append(codeBlock);
-					});
-					node.append('}', NL);
-				} else if (p.nullable) {
-					node.append('if (' + p.name + ' !== null) {', NL);
-					node.indent(mBody => {
-						mBody.append(codeBlock);
-					});
-					node.append('}', NL);
-				} else {
-					node.append(codeBlock);
-				}
-			});
+			bodyParams
+				.filter(p => p.variant === 'stream')
+				.forEach(p => {
+					const codeBlock = formdataCodeBlock(p, config, fqn);
+					if (p.optional && p.nullable) {
+						node.append('if (' + p.name + ' !== undefined && ' + p.name + ' !== null) {', NL);
+						node.indent(mBody => {
+							mBody.append(codeBlock);
+						});
+						node.append('} else if(' + p.name + ' === null) {', NL);
+						node.indent(mBody => {
+							mBody.append(`$body.append('_rsdNull-${p.name}', 'true');`, NL);
+						});
+						node.append('}', NL);
+					} else if (p.optional) {
+						node.append('if (' + p.name + ' !== undefined) {', NL);
+						node.indent(mBody => {
+							mBody.append(codeBlock);
+						});
+						node.append('}', NL);
+					} else if (p.nullable) {
+						node.append('if (' + p.name + ' !== null) {', NL);
+						node.indent(mBody => {
+							mBody.append(codeBlock);
+						});
+						node.append('}', NL);
+					} else {
+						node.append(codeBlock);
+					}
+				});
+			if (bodyParams.some(p => p.variant !== 'stream')) {
+				node.append(`const $jsonPayload = {`, NL);
+				node.indent(struct => {
+					bodyParams
+						.filter(p => p.variant !== 'stream')
+						.forEach(p => {
+							if (p.variant === 'record' || p.variant === 'union') {
+								const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type + (p.patch ? 'Patch' : '')}ToJSON`;
+								if (p.array) {
+									if (p.nullable || p.optional) {
+										struct.append(`${p.name}: ${p.name} ? ${p.name}.map(${toJSON}) : ${p.name},`, NL);
+									} else {
+										struct.append(`${p.name}: ${p.name}.map(${toJSON}),`, NL);
+									}
+								} else {
+									if (p.nullable || p.optional) {
+										struct.append(`${p.name}: ${p.name} ? ${toJSON}(${p.name}) : ${p.name},`, NL);
+									} else {
+										struct.append(`${p.name}: ${toJSON}(${p.name}),`, NL);
+									}
+								}
+							} else {
+								struct.append(`${p.name},`, NL);
+							}
+						});
+				});
+				node.append('};', NL);
+				const encodeValue = fqn('encodeValue:./_fetch-type-utils.ts', false);
+				const encodingType = fqn('encodingType:./_fetch-type-utils.ts', false);
+
+				node.append(
+					`$body.append('_rsdPayload', new Blob([${encodeValue}(${encodingType}(props), $jsonPayload)], { type: ${encodingType}(props) }));`,
+					NL,
+				);
+			}
 			node.append('if ($body.values().next().done) {', NL);
 			node.indent(mBody => {
 				mBody.append(`$body.append('_rsdQuarkusBugDummy', '');`, NL);
