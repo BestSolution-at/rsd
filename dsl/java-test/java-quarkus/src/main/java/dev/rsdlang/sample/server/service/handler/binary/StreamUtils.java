@@ -15,4 +15,12 @@ public class StreamUtils {
 			throw new RuntimeException("Failed to determine stream length", e);
 		}
 	}
+
+	public static String streamToString(InputStream stream) {
+		try {
+			return new String(stream.readAllBytes());
+		} catch (IOException e) {
+			throw new RuntimeException("Failed to read stream", e);
+		}
+	}
 }

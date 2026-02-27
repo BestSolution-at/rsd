@@ -145,6 +145,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe(16);
 		});
+		//FIXME Upload empty list
 		test('success with null', async () => {
 			const [result, error] = await service.uploadFileListNil(null);
 			expect(error).toBeNull();
@@ -202,6 +203,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe(16);
 		});
+		//FIXME Upload empty list
 		test('success with null', async () => {
 			const [result, error] = await service.uploadBlobListNil(null);
 			expect(error).toBeNull();
