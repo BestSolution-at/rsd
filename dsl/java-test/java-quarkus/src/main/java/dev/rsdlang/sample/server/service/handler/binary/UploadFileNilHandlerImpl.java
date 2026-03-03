@@ -12,7 +12,7 @@ public class UploadFileNilHandlerImpl implements BinaryTypesServiceImpl.UploadFi
 
 	@Override
 	public int uploadFileNil(BuilderFactory _factory, Optional<RSDFile> data) {
-		return data.map(d -> StreamUtils.streamLength(d.stream())).orElse(0);
+		return data.map(d -> StreamUtils.streamLength(d.stream())).orElse(-1);
 	}
 
 }

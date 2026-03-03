@@ -15,7 +15,7 @@ public class MultiErrorOperationHandlerImpl implements SampleServiceServiceImpl.
 
 	@Override
 	public void multiErrorOperation(BuilderFactory _factory) throws SampleErrorException, SampleError2Exception {
-		if (headers.error401) {
+		if (headers.isError401()) {
 			throw new SampleError2Exception("This is a sample error 2 from the server");
 		}
 		throw new SampleErrorException("This is a sample error from the server");

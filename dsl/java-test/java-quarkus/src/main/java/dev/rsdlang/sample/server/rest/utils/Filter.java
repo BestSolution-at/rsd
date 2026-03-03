@@ -13,11 +13,11 @@ public class Filter {
 
 	@ServerRequestFilter
 	public void filter(ContainerRequestContext requestContext) {
-		System.err.println(requestContext.getHeaders());
-		headers.unknownStatus = "true".equalsIgnoreCase(requestContext.getHeaders().getFirst("X-Fail-Unknown-Status"));
-		headers.invalidData = "true".equalsIgnoreCase(requestContext.getHeaders().getFirst("X-Fail-Invalid-Data"));
-		headers.invalidEncodedData = "true"
-				.equalsIgnoreCase(requestContext.getHeaders().getFirst("X-Fail-Invalid-Encoded-Data"));
-		headers.error401 = "true".equalsIgnoreCase(requestContext.getHeaders().getFirst("x-with-status-401"));
+		// System.err.println(requestContext.getHeaders());
+		headers.setUnknownStatus("true".equalsIgnoreCase(requestContext.getHeaders().getFirst("X-Fail-Unknown-Status")));
+		headers.setInvalidData("true".equalsIgnoreCase(requestContext.getHeaders().getFirst("X-Fail-Invalid-Data")));
+		headers.setInvalidEncodedData("true"
+				.equalsIgnoreCase(requestContext.getHeaders().getFirst("X-Fail-Invalid-Encoded-Data")));
+		headers.setError401("true".equalsIgnoreCase(requestContext.getHeaders().getFirst("x-with-status-401")));
 	}
 }

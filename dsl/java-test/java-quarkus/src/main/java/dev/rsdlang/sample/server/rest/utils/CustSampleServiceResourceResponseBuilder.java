@@ -27,11 +27,11 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 
 	@Override
 	public ResponseBuilder getBoolean(boolean $result) {
-		if (headers.unknownStatus) {
+		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
-		} else if (headers.invalidData) {
+		} else if (headers.isInvalidData()) {
 			return Response.status(200).entity("123").type(MediaType.APPLICATION_JSON);
-		} else if (headers.invalidEncodedData) {
+		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getBoolean($result);
@@ -39,7 +39,7 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 
 	@Override
 	public ResponseBuilder getShort(short $result) {
-		if (headers.invalidData) {
+		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getShort($result);
@@ -47,7 +47,7 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 
 	@Override
 	public ResponseBuilder getInt(int $result) {
-		if (headers.invalidData) {
+		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getInt($result);
@@ -55,7 +55,7 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 
 	@Override
 	public ResponseBuilder getLong(long $result) {
-		if (headers.invalidData) {
+		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getLong($result);
@@ -63,7 +63,7 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 
 	@Override
 	public ResponseBuilder getFloat(float $result) {
-		if (headers.invalidData) {
+		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getFloat($result);
@@ -71,7 +71,7 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 
 	@Override
 	public ResponseBuilder getDouble(double $result) {
-		if (headers.invalidData) {
+		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getDouble($result);
@@ -79,7 +79,7 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 
 	@Override
 	public ResponseBuilder getString(String $result) {
-		if (headers.invalidData) {
+		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getString($result);
@@ -87,7 +87,7 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 
 	@Override
 	public ResponseBuilder getLocalDate(LocalDate $result) {
-		if (headers.invalidData) {
+		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getLocalDate($result);
@@ -95,7 +95,7 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 
 	@Override
 	public ResponseBuilder getLocalDateTime(LocalDateTime $result) {
-		if (headers.invalidData) {
+		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getLocalDateTime($result);
@@ -103,7 +103,7 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 
 	@Override
 	public ResponseBuilder getZonedDateTime(ZonedDateTime $result) {
-		if (headers.invalidData) {
+		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getZonedDateTime($result);
@@ -111,7 +111,7 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 
 	@Override
 	public ResponseBuilder getScalar(ZoneId $result) {
-		if (headers.invalidData) {
+		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getScalar($result);
@@ -119,7 +119,7 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 
 	@Override
 	public ResponseBuilder getEnum(SampleEnum $result) {
-		if (headers.invalidData) {
+		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getEnum($result);
@@ -127,7 +127,7 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 
 	@Override
 	public ResponseBuilder getSimpleRecord(Data $result, String key) {
-		if (headers.invalidData) {
+		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getSimpleRecord($result, key);
