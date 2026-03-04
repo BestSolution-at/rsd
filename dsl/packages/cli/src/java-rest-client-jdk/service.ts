@@ -357,7 +357,7 @@ function generateInvokation(
 			NL,
 		);
 	} else {
-		methodBody.append(`var $response = this.client.send($request, ${BodyHandlers}.ofString());`, NL);
+		methodBody.append(`var $response = this.client.send($request, ${BodyHandlers}.ofInputStream());`, NL);
 	}
 	if (o.meta?.rest?.results.length) {
 		o.meta.rest.results.forEach((r, idx) => {
@@ -382,7 +382,7 @@ function generateInvokation(
 	}
 
 	methodBody.append(
-		'throw new IllegalStateException(String.format("Unsupported Http-Status \'%s\':\\n%s", $response.statusCode(), $response.body()));',
+		'throw new IllegalStateException(String.format("Unsupported Http-Status \'%s\':\\n%s", $response.statusCode(), ServiceUtils.toString($response)));',
 		NL,
 	);
 
@@ -534,7 +534,7 @@ function handleErroResult(
 		);
 	} else {
 		node.append(
-			`throw new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}(ServiceUtils.mapString($response));`,
+			`throw new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}(ServiceUtils.toString($response));`,
 			NL,
 		);
 	}

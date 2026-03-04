@@ -102,9 +102,7 @@ function toMethod(
 	if (o.operationErrors.length > 0) {
 		child.append(
 			' throws ' +
-				o.operationErrors
-					.map((e, idx, arr) => fqn(`${artifactConfig.rootPackageName}.${o.operationErrors[0].error}Exception`))
-					.join(', '),
+				o.operationErrors.map((e, idx, arr) => fqn(`${artifactConfig.rootPackageName}.${e.error}Exception`)).join(', '),
 		);
 	}
 	child.append(';', NL);

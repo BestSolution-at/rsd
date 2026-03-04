@@ -38,7 +38,7 @@ public interface SampleServiceService extends BaseService {
 
 	public void errorOperation() throws SampleErrorException;
 
-	public void multiErrorOperation() throws SampleErrorException, SampleErrorException;
+	public void multiErrorOperation() throws SampleErrorException, SampleError2Exception;
 
 	public SimpleRecord.Data getSimpleRecord(String key);
 
