@@ -132,5 +132,27 @@ public class SampleServiceServiceTest {
 		} catch (SampleErrorException e) {
 			assertEquals("This is a sample error from the server", e.getMessage());
 		}
+		// FIXME Need to test error2
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void getSimpleRecord(SampleServiceService service) {
+		var result = service.getSimpleRecord("123");
+		assertEquals("123", result.key());
+		assertEquals("1", result.version());
+		assertEquals("Sample Name", result.value());
+		// FIXME Test invalid data
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void getSimpleRecordWithError(SampleServiceService service) {
+		try {
+			service.getSimpleRecordWithError("123");
+			fail("Expected SampleErrorException to be thrown");
+		} catch (SampleErrorException e) {
+			assertEquals("This is a sample error from the server", e.getMessage());
+		}
 	}
 }
