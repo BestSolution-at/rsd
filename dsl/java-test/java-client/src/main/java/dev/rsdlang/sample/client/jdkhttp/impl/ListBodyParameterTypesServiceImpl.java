@@ -2075,7 +2075,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofString("{}");
 
 			var $request = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2102,7 +2102,11 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( valueA == null ? "" : _JsonUtils.toJsonString(valueA));
+			var $builder = Json.createObjectBuilder();
+			if(valueA != null) {
+				$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
+			}
+			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
 			var $request = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2131,8 +2135,12 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		try {
 			var $contentType = "application/json";
 			var $builder = Json.createObjectBuilder();
-			$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
-			$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
+			if(valueA != null) {
+				$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
+			}
+			if(valueB != null) {
+				$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
+			}
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
 			var $request = HttpRequest.newBuilder()
@@ -2163,9 +2171,15 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		try {
 			var $contentType = "application/json";
 			var $builder = Json.createObjectBuilder();
-			$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
-			$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
-			$builder = $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
+			if(valueA != null) {
+				$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
+			}
+			if(valueB != null) {
+				$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
+			}
+			if(valueC != null) {
+				$builder = $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
+			}
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
 			var $request = HttpRequest.newBuilder()
@@ -2192,9 +2206,9 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		try {
 			var $contentType = "application/json";
 			var $builder = Json.createObjectBuilder();
-			$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
-			$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
-			$builder = $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
+			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
+			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
+			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
 			var $request = HttpRequest.newBuilder()
@@ -2220,7 +2234,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofString("{}");
 
 			var $request = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2245,7 +2259,9 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(valueA));
+			var $builder = Json.createObjectBuilder();
+			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
+			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
 			var $request = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2271,8 +2287,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		try {
 			var $contentType = "application/json";
 			var $builder = Json.createObjectBuilder();
-			$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
-			$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
+			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
+			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
 			var $request = HttpRequest.newBuilder()
@@ -2299,9 +2315,9 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		try {
 			var $contentType = "application/json";
 			var $builder = Json.createObjectBuilder();
-			$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
-			$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
-			$builder = $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
+			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
+			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
+			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
 			var $request = HttpRequest.newBuilder()

@@ -64,6 +64,7 @@ function generateOpertationMethod(
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
 	path: string,
+	multiBodyParam: boolean,
 ) {
 	const URI = fqn('java.net.URI');
 
@@ -175,7 +176,7 @@ function generateOpertationMethod(
 		}
 
 		methodBody.indent(tryBlock => {
-			tryBlock.append(generateInvokation(o, allParameters, artifactConfig, fqn, hasHeaderParams));
+			tryBlock.append(generateInvokation(o, allParameters, artifactConfig, fqn, hasHeaderParams, multiBodyParam));
 		});
 		methodBody.append(`} catch (${IOException} | InterruptedException e) {`, NL);
 		methodBody.indent(catchBlock => {
@@ -192,6 +193,7 @@ function generateInvokation(
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
 	hasHeaderParams: boolean,
+	multiBodyParam: boolean,
 ) {
 	const HttpRequest = fqn('java.net.http.HttpRequest');
 
@@ -254,8 +256,9 @@ function generateInvokation(
 			const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
 			const bodyParams = allParameters.filter(p => p.meta?.rest?.source === undefined);
 			if (bodyParams.length === 0) {
-				methodBody.append(`var $body = ${BodyPublishers}.ofString("");`, NL);
-			} else if (bodyParams.length === 1) {
+				const defaultContent = multiBodyParam ? '"{}"' : '""';
+				methodBody.append(`var $body = ${BodyPublishers}.ofString(${defaultContent});`, NL);
+			} else if (bodyParams.length === 1 && !multiBodyParam) {
 				const param = bodyParams[0];
 				if (!param.array && (isMBuiltinNumericType(param.type) || param.type === 'boolean')) {
 					if (param.optional && !param.nullable) {
@@ -285,34 +288,102 @@ function generateInvokation(
 						const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._BaseDataImpl`);
 						if (p.array) {
 							const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
-							methodBody.append(
-								`$builder = $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
-								NL,
-							);
-						} else {
-							methodBody.append(`$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`, NL);
-						}
-					} else if (p.variant === 'builtin' && isMBuiltinType(p.type)) {
-						if (p.array) {
-							methodBody.append(
-								'$builder = ' +
-									builtinBuilderArrayJSONAccess({
-										name: p.name,
-										type: p.type,
-									}) +
-									';',
-								NL,
-							);
+							if (p.nullable) {
+								methodBody.append(
+									`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
+									NL,
+								);
+							} else {
+								if (p.optional) {
+									methodBody.append('if(' + p.name + ' != null) {', NL);
+									methodBody.indent(l => {
+										l.append(
+											`$builder = $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
+											NL,
+										);
+									});
+									methodBody.append('}', NL);
+								} else {
+									methodBody.append(
+										`$builder = $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
+										NL,
+									);
+								}
+							}
 						} else {
 							if (p.nullable) {
 								methodBody.append(
+									`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`,
+									NL,
+								);
+							} else {
+								if (p.optional) {
+									methodBody.append('if(' + p.name + ' != null) {', NL);
+									methodBody.indent(l => {
+										l.append(`$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`, NL);
+									});
+									methodBody.append('}', NL);
+								} else {
+									methodBody.append(`$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`, NL);
+								}
+							}
+						}
+					} else if (p.variant === 'builtin' && isMBuiltinType(p.type)) {
+						const type = p.type;
+						if (p.array) {
+							if (p.nullable) {
+								methodBody.append(
 									`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : ` +
-										builtinBuilderAccess({ name: p.name, type: p.type }) +
+										builtinBuilderArrayJSONAccess({
+											name: p.name,
+											type,
+										}) +
 										';',
 									NL,
 								);
 							} else {
-								methodBody.append('$builder = ' + builtinBuilderAccess({ name: p.name, type: p.type }) + ';', NL);
+								if (p.optional) {
+									methodBody.append('if(' + p.name + ' != null) {', NL);
+									methodBody.indent(l => {
+										l.append(
+											`$builder = ${builtinBuilderArrayJSONAccess({
+												name: p.name,
+												type,
+											})};`,
+											NL,
+										);
+									});
+									methodBody.append('}', NL);
+								} else {
+									methodBody.append(
+										'$builder = ' +
+											builtinBuilderArrayJSONAccess({
+												name: p.name,
+												type,
+											}) +
+											';',
+										NL,
+									);
+								}
+							}
+						} else {
+							if (p.nullable) {
+								methodBody.append(
+									`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : ` +
+										builtinBuilderAccess({ name: p.name, type }) +
+										';',
+									NL,
+								);
+							} else {
+								if (p.optional) {
+									methodBody.append('if(' + p.name + ' != null) {', NL);
+									methodBody.indent(l => {
+										l.append('$builder = ' + builtinBuilderAccess({ name: p.name, type }) + ';', NL);
+									});
+									methodBody.append('}', NL);
+								} else {
+									methodBody.append('$builder = ' + builtinBuilderAccess({ name: p.name, type }) + ';', NL);
+								}
 							}
 						}
 					} else {
@@ -410,8 +481,9 @@ function generateOperation(
 	let idx = o.parameters.findIndex(p => p.optional);
 
 	if (idx === -1) {
-		generateOpertationMethod(node, o, o.parameters, artifactConfig, fqn, path);
+		generateOpertationMethod(node, o, o.parameters, artifactConfig, fqn, path, false);
 	} else {
+		const hasMultipleParams = o.parameters.filter(p => p.meta?.rest?.source === undefined).length > 1;
 		let first = true;
 		for (idx; idx <= o.parameters.length; idx++) {
 			const params = [...o.parameters];
@@ -419,7 +491,7 @@ function generateOperation(
 			if (!first) {
 				node.appendNewLine();
 			}
-			generateOpertationMethod(node, o, params, artifactConfig, fqn, path);
+			generateOpertationMethod(node, o, params, artifactConfig, fqn, path, hasMultipleParams);
 			first = false;
 		}
 	}
