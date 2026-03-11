@@ -9,6 +9,7 @@ import {
 	toPath,
 } from '../java-gen-utils.js';
 import {
+	isMBuiltinNumericType,
 	isMBuiltinType,
 	MBuiltinType,
 	MOperation,
@@ -255,17 +256,26 @@ function generateInvokation(
 			if (bodyParams.length === 0) {
 				methodBody.append(`var $body = ${BodyPublishers}.ofString("");`, NL);
 			} else if (bodyParams.length === 1) {
-				if (bodyParams[0].variant === 'record') {
-					const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
-					methodBody.append(
-						`var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString(${bodyParams[0].name}, false));`,
-						NL,
-					);
+				const param = bodyParams[0];
+				if (!param.array && (isMBuiltinNumericType(param.type) || param.type === 'boolean')) {
+					if (param.optional && !param.nullable) {
+						methodBody.append(
+							`var $body = ${BodyPublishers}.ofString(${param.name} == null ? "" : String.format("%s", ${param.name}));`,
+							NL,
+						);
+					} else {
+						methodBody.append(`var $body = ${BodyPublishers}.ofString(String.format("%s", ${param.name}));`, NL);
+					}
 				} else {
-					methodBody.append(
-						`var $body = ${BodyPublishers}.ofString(String.format("\\"%s\\"", ${bodyParams[0].name}));`,
-						NL,
-					);
+					const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+					if (param.optional && !param.nullable) {
+						methodBody.append(
+							`var $body = ${BodyPublishers}.ofString( ${param.name} == null ? "" : ${_JsonUtils}.toJsonString(${param.name}));`,
+							NL,
+						);
+					} else {
+						methodBody.append(`var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString(${param.name}));`, NL);
+					}
 				}
 			} else {
 				const Json = fqn('jakarta.json.Json');

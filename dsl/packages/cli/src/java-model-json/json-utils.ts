@@ -31,9 +31,6 @@ import jakarta.json.stream.JsonGenerator;
 import ${modelApiPackage}._Base;
 
 public class _JsonUtils {
-	private static boolean isNull(byte[] data) {
-		return data.length == 4 && data[0] == 'n' && data[1] == 'u' && data[2] == 'l' && data[3] == 'l';
-	}
 
 	public static boolean hasValue(JsonObject object, String property) {
 		return object.containsKey(property) && !object.isNull(property);
@@ -1324,6 +1321,10 @@ public class _JsonUtils {
 				JsonArrayBuilder::build);
 	}
 
+	public static String toJsonString(Object o) {
+		return toJsonString(o, false);
+	}
+
 	public static String toJsonString(Object o, boolean pretty) {
 		if (o == null) {
 			return "null";
@@ -1364,8 +1365,67 @@ public class _JsonUtils {
 		}
 		if (o instanceof _BaseDataImpl) {
 			return toJsonString(((_BaseDataImpl) o).data, pretty);
+		} else if (o instanceof Number n) {
+			return toJsonString(n);
+		} else if (o instanceof Boolean b) {
+			return toJsonString(b);
+		} else if (o instanceof String s) {
+			return toJsonString(s);
+		} else if (o instanceof LocalDate d) {
+			return toJsonString(d);
+		} else if (o instanceof LocalDateTime dt) {
+			return toJsonString(dt);
+		} else if (o instanceof ZonedDateTime zdt) {
+			return toJsonString(zdt);
 		}
-		return o.toString();
+
+		return toJsonString(o.toString());
+	}
+
+	public static String toJsonString(Number n) {
+		if (n == null) {
+			return "null";
+		} else if (n instanceof Float || n instanceof Double) {
+			return Double.toString(n.doubleValue());
+		} else if (n instanceof BigDecimal v) {
+			return v.toString();
+		} else if (n instanceof BigInteger v) {
+			return v.toString();
+		} else if (n instanceof Long) {
+			return Long.toString(n.longValue());
+		} else {
+			return Integer.toString(n.intValue());
+		}
+	}
+
+	public static String toJsonString(Boolean b) {
+		return b == null ? "null" : Boolean.toString(b);
+	}
+
+	public static String toJsonString(String s) {
+		if (s == null) {
+			return "null";
+		}
+		var writer = new StringWriter();
+		var config = Map.of(JsonGenerator.PRETTY_PRINTING, false);
+		var generator = Json
+				.createGeneratorFactory(config)
+				.createGenerator(writer);
+		generator.write(s);
+		generator.close();
+		return writer.toString();
+	}
+
+	public static String toJsonString(LocalDate date) {
+		return date == null ? "null" : String.format("\\"%s\\"", date);
+	}
+
+	public static String toJsonString(LocalDateTime dateTime) {
+		return dateTime == null ? "null" : String.format("\\"%s\\"", dateTime);
+	}
+
+	public static String toJsonString(ZonedDateTime dateTime) {
+		return dateTime == null ? "null" : String.format("\\"%s\\"", dateTime);
 	}
 
 	public static String toJsonString(JsonObject object, boolean pretty) {
