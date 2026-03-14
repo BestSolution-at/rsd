@@ -29,7 +29,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/boolean/%s".formatted(
 				this.baseURI,
-				pathBoolean);
+				ServiceUtils.encodeURIComponent(Objects.toString(pathBoolean)));
 
 		var $uri = URI.create($path);
 		try {
@@ -53,7 +53,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/short/%s".formatted(
 				this.baseURI,
-				pathShort);
+				ServiceUtils.encodeURIComponent(Objects.toString(pathShort)));
 
 		var $uri = URI.create($path);
 		try {
@@ -77,7 +77,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/int/%s".formatted(
 				this.baseURI,
-				pathInt);
+				ServiceUtils.encodeURIComponent(Objects.toString(pathInt)));
 
 		var $uri = URI.create($path);
 		try {
@@ -101,7 +101,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/long/%s".formatted(
 				this.baseURI,
-				pathLong);
+				ServiceUtils.encodeURIComponent(Objects.toString(pathLong)));
 
 		var $uri = URI.create($path);
 		try {
@@ -125,7 +125,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/float/%s".formatted(
 				this.baseURI,
-				pathFloat);
+				ServiceUtils.encodeURIComponent(Objects.toString(pathFloat)));
 
 		var $uri = URI.create($path);
 		try {
@@ -149,7 +149,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/double/%s".formatted(
 				this.baseURI,
-				pathDouble);
+				ServiceUtils.encodeURIComponent(Objects.toString(pathDouble)));
 
 		var $uri = URI.create($path);
 		try {
@@ -173,7 +173,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/string/%s".formatted(
 				this.baseURI,
-				pathString);
+				ServiceUtils.encodeURIComponent(Objects.toString(pathString)));
 
 		var $uri = URI.create($path);
 		try {
@@ -197,7 +197,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/localdate/%s".formatted(
 				this.baseURI,
-				pathLocalDate);
+				ServiceUtils.encodeURIComponent(Objects.toString(pathLocalDate)));
 
 		var $uri = URI.create($path);
 		try {
@@ -221,7 +221,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/localdatetime/%s".formatted(
 				this.baseURI,
-				pathLocalDateTime);
+				ServiceUtils.encodeURIComponent(Objects.toString(pathLocalDateTime)));
 
 		var $uri = URI.create($path);
 		try {
@@ -245,7 +245,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/zoneddatetime/%s".formatted(
 				this.baseURI,
-				pathZonedDateTime);
+				ServiceUtils.encodeURIComponent(Objects.toString(pathZonedDateTime)));
 
 		var $uri = URI.create($path);
 		try {
@@ -269,7 +269,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/scalar/%s".formatted(
 				this.baseURI,
-				pathScalar);
+				ServiceUtils.encodeURIComponent(Objects.toString(pathScalar)));
 
 		var $uri = URI.create($path);
 		try {
@@ -293,7 +293,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/enum/%s".formatted(
 				this.baseURI,
-				pathEnum);
+				ServiceUtils.encodeURIComponent(Objects.toString(pathEnum)));
 
 		var $uri = URI.create($path);
 		try {
@@ -318,8 +318,8 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/multipathparam/%s/%s".formatted(
 				this.baseURI,
-				valueA,
-				valueB);
+				ServiceUtils.encodeURIComponent(Objects.toString(valueA)),
+				ServiceUtils.encodeURIComponent(Objects.toString(valueB)));
 
 		var $uri = URI.create($path);
 		try {

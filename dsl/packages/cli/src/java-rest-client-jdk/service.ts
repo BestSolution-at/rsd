@@ -108,9 +108,17 @@ function generateOpertationMethod(
 		methodBody.append(`var $path = "${endpoint}".formatted(`, NL);
 		methodBody.indent(tmp =>
 			tmp.indent(formatted => {
-				variables.forEach((v, idx) =>
-					formatted.append(`${v}${idx + 1 < variables.length ? ',' : ''}`, idx + 1 < variables.length ? NL : ''),
-				);
+				variables.forEach((v, idx) => {
+					if (idx === 0) {
+						formatted.append(`${v}${idx + 1 < variables.length ? ',' : ''}`, idx + 1 < variables.length ? NL : '');
+					} else {
+						const Objects = fqn('java.util.Objects');
+						formatted.append(
+							`ServiceUtils.encodeURIComponent(${Objects}.toString(${v}))${idx + 1 < variables.length ? ',' : ''}`,
+							idx + 1 < variables.length ? NL : '',
+						);
+					}
+				});
 			}),
 		);
 		methodBody.append(');', NL);

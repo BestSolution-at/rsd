@@ -357,7 +357,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 		var $path = "%s/api/samplerecords/simplerecord/%s".formatted(
 				this.baseURI,
-				key);
+				ServiceUtils.encodeURIComponent(Objects.toString(key)));
 
 		var $uri = URI.create($path);
 		try {
@@ -382,7 +382,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 		var $path = "%s/api/samplerecords/simplerecordwitherror/%s".formatted(
 				this.baseURI,
-				key);
+				ServiceUtils.encodeURIComponent(Objects.toString(key)));
 
 		var $uri = URI.create($path);
 		try {
