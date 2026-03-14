@@ -140,23 +140,79 @@ function generateOpertationMethod(
 		}
 		const hasHeaderParams = allParameters.find(p => p.meta?.rest?.source === 'header') !== undefined;
 		if (hasHeaderParams) {
-			const Map = fqn('java.util.Map');
-			methodBody.append(`var $headerParams = ${Map}.of(`, NL);
-			allParameters
-				.filter(p => p.meta?.rest?.source === 'header')
-				.forEach((p, idx, arr) => {
-					const last = idx + 1 === arr.length;
-					const Objects = fqn('java.util.Objects');
-					methodBody.indent(tmp =>
-						tmp.indent(map => {
-							map.append(
-								`"${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${Objects}.toString(${p.name})${last ? '' : ','}`,
-								last ? '' : NL,
+			const headerParameters = allParameters.filter(p => p.meta?.rest?.source === 'header');
+			const HashMap = fqn('java.util.HashMap');
+			methodBody.append(`var $headerParams = new ${HashMap}<String, String>();`, NL);
+			headerParameters.forEach(p => {
+				if (p.variant === 'builtin') {
+					if (p.type !== 'string') {
+						methodBody.append(
+							`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.format("%s", ${p.name}));`,
+							NL,
+						);
+					} else {
+						if (p.nullable) {
+							methodBody.append(`if (${p.name} != null) {`, NL);
+							methodBody.indent(tmp => {
+								tmp.append(
+									`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
+									NL,
+								);
+							});
+							methodBody.append('} else {', NL);
+							methodBody.indent(tmp => {
+								tmp.append(`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
+							});
+							methodBody.append('}', NL);
+						} else if (p.optional) {
+							methodBody.append('if(' + p.name + ' != null) {', NL);
+							methodBody.indent(tmp => {
+								tmp.append(
+									`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
+									NL,
+								);
+							});
+							methodBody.append('}', NL);
+						} else {
+							methodBody.append(
+								`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
+								NL,
 							);
-						}),
+						}
+					}
+				} else if (p.variant === 'record' || p.variant === 'union') {
+					const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+					const Base64 = fqn('java.util.Base64');
+					const StandardCharsets = fqn('java.nio.charset.StandardCharsets');
+					const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${Base64}.getEncoder().encodeToString(${_JsonUtils}.toJsonString(${p.name}).getBytes(${StandardCharsets}.UTF_8)));`;
+					if (p.nullable) {
+						methodBody.append(`if(${p.name} != null) {`, NL);
+						methodBody.indent(tmp => {
+							tmp.append(codeBlock, NL);
+						});
+						methodBody.append('} else {', NL);
+						methodBody.indent(tmp => {
+							tmp.append(`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
+						});
+						methodBody.append('}', NL);
+					} else if (p.optional) {
+						methodBody.append(`if(${p.name} != null) {`, NL);
+						methodBody.indent(tmp => {
+							tmp.append(codeBlock, NL);
+						});
+						methodBody.append('}', NL);
+					} else {
+						methodBody.append(codeBlock, NL);
+					}
+				} else if (p.variant === 'stream') {
+					methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
+				} else {
+					methodBody.append(
+						`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.format("%s", ${p.name}));`,
+						NL,
 					);
-				});
-			methodBody.append(');', NL);
+				}
+			});
 			methodBody.append('var $headers = ServiceUtils.toHeaders($headerParams);', NL);
 			methodBody.appendNewLine();
 		}
@@ -400,33 +456,37 @@ function generateInvokation(
 		}
 	}
 
-	methodBody.append(`var $request = ${HttpRequest}.newBuilder()`, NL);
+	methodBody.append(`var $requestBuilder = ${HttpRequest}.newBuilder()`, NL);
 
 	methodBody.indent(tmp => {
 		tmp.indent(l => {
 			l.append(`.uri($uri)`, NL);
-			if (hasHeaderParams) {
-				l.append('.headers($headers)', NL);
-			}
 
 			if (method === 'GET') {
-				l.append('.GET()', NL);
+				l.append('.GET();', NL);
 			} else if (method === 'DELETE') {
-				l.append('.DELETE()', NL);
+				l.append('.DELETE();', NL);
 			} else if (method === 'PUT' || method === 'POST') {
-				l.append('.header("Content-Type", $contentType)', NL);
+				l.append('.header("Content-Type", $contentType);', NL);
 				if (method === 'PUT') {
-					l.append('.PUT($body)', NL);
+					l.append('.PUT($body);', NL);
 				} else {
-					l.append('.POST($body)', NL);
+					l.append('.POST($body);', NL);
 				}
 			} else if (method === 'PATCH') {
-				l.append('.header("Content-Type", $contentType)', NL);
-				l.append('.method("PATCH", $body)', NL);
+				l.append('.header("Content-Type", $contentType);', NL);
+				l.append('.method("PATCH", $body);', NL);
 			}
-			l.append('.build();', NL);
 		});
 	});
+	if (hasHeaderParams) {
+		methodBody.append('if($headers.length > 0) {', NL);
+		methodBody.indent(tmp => {
+			tmp.append('$requestBuilder = $requestBuilder.headers($headers);', NL);
+		});
+		methodBody.append('}', NL);
+	}
+	methodBody.append('var $request = $requestBuilder.build();', NL);
 	methodBody.appendNewLine();
 
 	const BodyHandlers = fqn('java.net.http.HttpResponse.BodyHandlers');

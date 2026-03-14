@@ -252,6 +252,23 @@ public class ServiceUtils {
 	public static List<ZonedDateTime> mapZonedDateTimes(HttpResponse<InputStream> response) {
 		return mapLiterals(response, ZonedDateTime::parse);
 	}
+	
+	public static String encodeAsciiString(String text) {
+		text = text.replace("\\\\u", "\\\\u005Cu"); // Escape existing \\\\u sequences
+		var b = new StringBuilder(text.length());
+		var l = text.length();
+		for (var i = 0; i < l; i++) {
+			var c = text.charAt(i);
+			// Escape non-printable characters, comma and all non-ASCII characters
+			if (c < 32 || c > 126 || c == 44) {
+				b.append(String.format("\\\\u%04x", (int) c));
+			} else {
+				b.append(c);
+			}
+		}
+
+		return b.toString();
+	}
 }`);
 
 	if (hasStreamResult(model)) {
