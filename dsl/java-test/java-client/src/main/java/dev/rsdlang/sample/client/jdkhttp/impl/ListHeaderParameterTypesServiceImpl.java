@@ -6,12 +6,10 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.net.URI;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -39,7 +37,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -90,7 +88,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -118,7 +118,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -167,7 +171,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -197,7 +205,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -248,7 +256,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -276,7 +286,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -325,7 +339,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -355,7 +373,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -406,7 +424,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -434,7 +454,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -483,7 +507,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -513,7 +541,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -564,7 +592,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -592,7 +622,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -641,7 +675,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -671,7 +709,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -722,7 +760,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -750,7 +790,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -799,7 +843,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -829,7 +877,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -880,7 +928,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -908,7 +958,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -957,7 +1011,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -987,7 +1045,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1039,7 +1097,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -1068,8 +1126,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
-			$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -1121,8 +1179,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
-			$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -1155,7 +1213,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1206,7 +1264,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1234,7 +1294,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1283,7 +1347,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1313,7 +1381,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1364,7 +1432,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1392,7 +1462,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1441,7 +1515,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1471,7 +1549,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1522,7 +1600,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1550,7 +1630,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1599,7 +1683,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1629,7 +1717,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1680,7 +1768,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1708,7 +1798,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1757,7 +1851,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1787,7 +1885,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1838,7 +1936,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1866,7 +1966,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1915,7 +2019,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1945,7 +2053,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1996,7 +2104,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2024,7 +2134,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2073,7 +2187,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2105,9 +2223,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
-		$headerParams.put("valueB", String.format("%s", valueB));
-		$headerParams.put("valueC", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(valueC).getBytes(StandardCharsets.UTF_8)));
+		$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
+		$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.toJsonString($v))).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2159,7 +2277,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if(valueA != null) {
-			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2192,9 +2310,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if(valueA != null) {
-			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		}
-		$headerParams.put("valueB", String.format("%s", valueB));
+		if(valueB != null) {
+			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2227,11 +2347,13 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if(valueA != null) {
-			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		}
-		$headerParams.put("valueB", String.format("%s", valueB));
+		if(valueB != null) {
+			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
+		}
 		if(valueC != null) {
-			$headerParams.put("valueC", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(valueC).getBytes(StandardCharsets.UTF_8)));
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.toJsonString($v))).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2260,14 +2382,18 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		if (valueA != null) {
-			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+		if(valueA != null) {
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
-		$headerParams.put("valueB", String.format("%s", valueB));
+		if(valueB != null) {
+			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("valueB", "null");
+		}
 		if(valueC != null) {
-			$headerParams.put("valueC", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(valueC).getBytes(StandardCharsets.UTF_8)));
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.toJsonString($v))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
 		}
@@ -2319,8 +2445,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		if (valueA != null) {
-			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+		if(valueA != null) {
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
@@ -2351,12 +2477,16 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		if (valueA != null) {
-			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+		if(valueA != null) {
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
-		$headerParams.put("valueB", String.format("%s", valueB));
+		if(valueB != null) {
+			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("valueB", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2384,14 +2514,18 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		if (valueA != null) {
-			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+		if(valueA != null) {
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
-		$headerParams.put("valueB", String.format("%s", valueB));
+		if(valueB != null) {
+			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("valueB", "null");
+		}
 		if(valueC != null) {
-			$headerParams.put("valueC", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(valueC).getBytes(StandardCharsets.UTF_8)));
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.toJsonString($v))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
 		}
@@ -2424,7 +2558,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(headerValue).getBytes(StandardCharsets.UTF_8)));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.toJsonString($v))).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2476,7 +2610,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(headerValue).getBytes(StandardCharsets.UTF_8)));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.toJsonString($v))).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2506,7 +2640,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(headerValue).getBytes(StandardCharsets.UTF_8)));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.toJsonString($v))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -2559,7 +2693,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(headerValue).getBytes(StandardCharsets.UTF_8)));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.toJsonString($v))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}

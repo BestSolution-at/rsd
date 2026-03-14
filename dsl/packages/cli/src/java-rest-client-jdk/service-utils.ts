@@ -49,6 +49,7 @@ export function generateServiceUtils(
 	importCollector.importType('jakarta.json.JsonObject');
 	importCollector.importType('jakarta.json.JsonString');
 	importCollector.importType('jakarta.json.JsonValue');
+	importCollector.importType('java.util.Base64');
 
 	const compilationContent = toNodeTree(`
 public class ServiceUtils {
@@ -268,6 +269,10 @@ public class ServiceUtils {
 		}
 
 		return b.toString();
+	}
+
+	public static String encodeBase64(String value) {
+		return Base64.getEncoder().encodeToString(value.getBytes(StandardCharsets.UTF_8));
 	}
 }`);
 

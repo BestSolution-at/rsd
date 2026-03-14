@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.Base64;
 import java.util.function.Function;
 import java.util.List;
 import java.util.Map;
@@ -247,6 +248,10 @@ public class ServiceUtils {
 		}
 
 		return b.toString();
+	}
+
+	public static String encodeBase64(String value) {
+		return Base64.getEncoder().encodeToString(value.getBytes(StandardCharsets.UTF_8));
 	}
 
 	public static String mapFileToString(HttpResponse<Path> response) {

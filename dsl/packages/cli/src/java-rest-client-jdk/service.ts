@@ -144,20 +144,22 @@ function generateOpertationMethod(
 			const HashMap = fqn('java.util.HashMap');
 			methodBody.append(`var $headerParams = new ${HashMap}<String, String>();`, NL);
 			headerParameters.forEach(p => {
-				if (p.variant === 'builtin') {
-					if (p.type !== 'string') {
-						methodBody.append(
-							`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.format("%s", ${p.name}));`,
-							NL,
-						);
-					} else {
+				if (p.array) {
+					if (
+						p.variant === 'builtin' ||
+						p.variant === 'enum' ||
+						p.variant === 'inline-enum' ||
+						p.variant === 'scalar'
+					) {
+						const toString =
+							p.type === 'string'
+								? '$v -> "\\"" + ServiceUtils.encodeAsciiString($v) + "\\""'
+								: `${fqn('java.util.Objects')}::toString`;
+						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
 						if (p.nullable) {
-							methodBody.append(`if (${p.name} != null) {`, NL);
+							methodBody.append(`if(${p.name} != null) {`, NL);
 							methodBody.indent(tmp => {
-								tmp.append(
-									`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
-									NL,
-								);
+								tmp.append(codeBlock, NL);
 							});
 							methodBody.append('} else {', NL);
 							methodBody.indent(tmp => {
@@ -165,52 +167,107 @@ function generateOpertationMethod(
 							});
 							methodBody.append('}', NL);
 						} else if (p.optional) {
-							methodBody.append('if(' + p.name + ' != null) {', NL);
+							methodBody.append(`if(${p.name} != null) {`, NL);
 							methodBody.indent(tmp => {
-								tmp.append(
-									`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
-									NL,
-								);
+								tmp.append(codeBlock, NL);
 							});
 							methodBody.append('}', NL);
 						} else {
-							methodBody.append(
-								`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
-								NL,
-							);
+							methodBody.append(codeBlock, NL);
+						}
+					} else if (p.variant === 'stream') {
+						methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
+					} else {
+						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+						const toString = `$v -> ServiceUtils.encodeBase64(${_JsonUtils}.toJsonString($v)`;
+						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.join(",", ${p.name}.stream().map(${toString})).toList()));`;
+						if (p.nullable) {
+							methodBody.append(`if(${p.name} != null) {`, NL);
+							methodBody.indent(tmp => {
+								tmp.append(codeBlock, NL);
+							});
+							methodBody.append('} else {', NL);
+							methodBody.indent(tmp => {
+								tmp.append(`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
+							});
+							methodBody.append('}', NL);
+						} else if (p.optional) {
+							methodBody.append(`if(${p.name} != null) {`, NL);
+							methodBody.indent(tmp => {
+								tmp.append(codeBlock, NL);
+							});
+							methodBody.append('}', NL);
+						} else {
+							methodBody.append(codeBlock, NL);
 						}
 					}
-				} else if (p.variant === 'record' || p.variant === 'union') {
-					const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
-					const Base64 = fqn('java.util.Base64');
-					const StandardCharsets = fqn('java.nio.charset.StandardCharsets');
-					const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${Base64}.getEncoder().encodeToString(${_JsonUtils}.toJsonString(${p.name}).getBytes(${StandardCharsets}.UTF_8)));`;
-					if (p.nullable) {
-						methodBody.append(`if(${p.name} != null) {`, NL);
-						methodBody.indent(tmp => {
-							tmp.append(codeBlock, NL);
-						});
-						methodBody.append('} else {', NL);
-						methodBody.indent(tmp => {
-							tmp.append(`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
-						});
-						methodBody.append('}', NL);
-					} else if (p.optional) {
-						methodBody.append(`if(${p.name} != null) {`, NL);
-						methodBody.indent(tmp => {
-							tmp.append(codeBlock, NL);
-						});
-						methodBody.append('}', NL);
-					} else {
-						methodBody.append(codeBlock, NL);
-					}
-				} else if (p.variant === 'stream') {
-					methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 				} else {
-					methodBody.append(
-						`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.format("%s", ${p.name}));`,
-						NL,
-					);
+					if (p.variant === 'builtin') {
+						if (p.type !== 'string') {
+							methodBody.append(
+								`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.format("%s", ${p.name}));`,
+								NL,
+							);
+						} else {
+							if (p.nullable) {
+								methodBody.append(`if (${p.name} != null) {`, NL);
+								methodBody.indent(tmp => {
+									tmp.append(
+										`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
+										NL,
+									);
+								});
+								methodBody.append('} else {', NL);
+								methodBody.indent(tmp => {
+									tmp.append(`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
+								});
+								methodBody.append('}', NL);
+							} else if (p.optional) {
+								methodBody.append('if(' + p.name + ' != null) {', NL);
+								methodBody.indent(tmp => {
+									tmp.append(
+										`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
+										NL,
+									);
+								});
+								methodBody.append('}', NL);
+							} else {
+								methodBody.append(
+									`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
+									NL,
+								);
+							}
+						}
+					} else if (p.variant === 'record' || p.variant === 'union') {
+						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ServiceUtils.encodeBase64(${_JsonUtils}.toJsonString(${p.name})));`;
+						if (p.nullable) {
+							methodBody.append(`if(${p.name} != null) {`, NL);
+							methodBody.indent(tmp => {
+								tmp.append(codeBlock, NL);
+							});
+							methodBody.append('} else {', NL);
+							methodBody.indent(tmp => {
+								tmp.append(`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
+							});
+							methodBody.append('}', NL);
+						} else if (p.optional) {
+							methodBody.append(`if(${p.name} != null) {`, NL);
+							methodBody.indent(tmp => {
+								tmp.append(codeBlock, NL);
+							});
+							methodBody.append('}', NL);
+						} else {
+							methodBody.append(codeBlock, NL);
+						}
+					} else if (p.variant === 'stream') {
+						methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
+					} else {
+						methodBody.append(
+							`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.format("%s", ${p.name}));`,
+							NL,
+						);
+					}
 				}
 			});
 			methodBody.append('var $headers = ServiceUtils.toHeaders($headerParams);', NL);

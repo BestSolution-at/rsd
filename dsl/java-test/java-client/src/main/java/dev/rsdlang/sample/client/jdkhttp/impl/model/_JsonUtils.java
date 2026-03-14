@@ -1330,7 +1330,7 @@ public class _JsonUtils {
 		}
 		if (o instanceof List<?> list) {
 			var writer = new StringWriter();
-			var config = Map.of(JsonGenerator.PRETTY_PRINTING, pretty);
+			var config = pretty ? Map.of(JsonGenerator.PRETTY_PRINTING, true) : Map.<String, Boolean>of();
 			var generator = Json
 					.createGeneratorFactory(config)
 					.createGenerator(writer);

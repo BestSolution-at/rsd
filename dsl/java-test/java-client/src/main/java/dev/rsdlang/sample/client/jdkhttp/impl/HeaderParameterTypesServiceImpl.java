@@ -6,12 +6,10 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.net.URI;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -2341,7 +2339,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(headerValue).getBytes(StandardCharsets.UTF_8)));
+		$headerParams.put("headerValue", ServiceUtils.encodeBase64(_JsonUtils.toJsonString(headerValue)));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2393,7 +2391,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(headerValue).getBytes(StandardCharsets.UTF_8)));
+			$headerParams.put("headerValue", ServiceUtils.encodeBase64(_JsonUtils.toJsonString(headerValue)));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2423,7 +2421,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(headerValue).getBytes(StandardCharsets.UTF_8)));
+			$headerParams.put("headerValue", ServiceUtils.encodeBase64(_JsonUtils.toJsonString(headerValue)));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -2476,7 +2474,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(headerValue).getBytes(StandardCharsets.UTF_8)));
+			$headerParams.put("headerValue", ServiceUtils.encodeBase64(_JsonUtils.toJsonString(headerValue)));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
