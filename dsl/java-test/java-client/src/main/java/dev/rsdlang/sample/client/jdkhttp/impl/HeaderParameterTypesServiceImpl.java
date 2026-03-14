@@ -6,15 +6,18 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
+import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import dev.rsdlang.sample.client.HeaderParameterTypesService;
+import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
@@ -35,17 +38,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleBooleanHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -63,10 +68,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -84,17 +89,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleBooleanHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -110,17 +117,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleBooleanHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -138,10 +147,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -157,17 +166,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleBooleanHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -185,17 +196,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleShortHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -213,10 +226,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -234,17 +247,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleShortHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -260,17 +275,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleShortHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -288,10 +305,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -307,17 +324,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleShortHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -335,17 +354,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleIntHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -363,10 +384,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -384,17 +405,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleIntHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -410,17 +433,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleIntHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -438,10 +463,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -457,17 +482,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleIntHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -485,17 +512,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleLongHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -513,10 +542,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -534,17 +563,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleLongHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -560,17 +591,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleLongHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -588,10 +621,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -607,17 +640,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleLongHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -635,17 +670,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleFloatHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -663,10 +700,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -684,17 +721,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleFloatHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -710,17 +749,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleFloatHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -738,10 +779,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -757,17 +798,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleFloatHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -785,17 +828,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleDoubleHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -813,10 +858,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -834,17 +879,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleDoubleHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -860,17 +907,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleDoubleHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -888,10 +937,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -907,17 +956,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleDoubleHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -935,17 +986,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleStringHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -963,10 +1016,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -984,17 +1037,21 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleStringHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		if(headerValue != null) {
+			$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1010,17 +1067,23 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleStringHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		if (headerValue != null) {
+			$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1038,10 +1101,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1057,17 +1120,23 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleStringHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		if (headerValue != null) {
+			$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1085,17 +1154,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleLocalDateHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1113,10 +1184,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1134,17 +1205,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleLocalDateHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1160,17 +1233,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleLocalDateHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1188,10 +1263,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1207,17 +1282,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleLocalDateHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1235,17 +1312,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleLocalDateTimeHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1263,10 +1342,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1284,17 +1363,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleLocalDateTimeHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1310,17 +1391,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleLocalDateTimeHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1338,10 +1421,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1357,17 +1440,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleLocalDateTimeHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1385,17 +1470,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleZonedDateTimeHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1413,10 +1500,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1434,17 +1521,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleZonedDateTimeHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1460,17 +1549,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleZonedDateTimeHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1488,10 +1579,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1507,17 +1598,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleZonedDateTimeHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1535,17 +1628,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleScalarHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1563,10 +1658,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1584,17 +1679,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleScalarHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1610,17 +1707,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleScalarHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1638,10 +1737,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1657,17 +1756,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleScalarHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1685,17 +1786,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleEnumHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1713,10 +1816,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1734,17 +1837,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleEnumHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1760,17 +1865,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleEnumHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1788,10 +1895,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1807,17 +1914,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleEnumHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1835,17 +1944,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleInlineEnumHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1863,10 +1974,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1884,17 +1995,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleInlineEnumHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1910,17 +2023,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleInlineEnumHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1938,10 +2053,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1957,17 +2072,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/simpleInlineEnumHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.format("%s", headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1986,18 +2103,20 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/multiHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"valueA", Objects.toString(valueA),
-				"valueB", Objects.toString(valueB));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+		$headerParams.put("valueB", String.format("%s", valueB));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2015,10 +2134,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2036,17 +2155,21 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/multiHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"valueA", Objects.toString(valueA));
+		var $headerParams = new HashMap<String, String>();
+		if(valueA != null) {
+			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2065,18 +2188,22 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/multiHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"valueA", Objects.toString(valueA),
-				"valueB", Objects.toString(valueB));
+		var $headerParams = new HashMap<String, String>();
+		if(valueA != null) {
+			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+		}
+		$headerParams.put("valueB", String.format("%s", valueB));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2092,18 +2219,24 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/multiHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"valueA", Objects.toString(valueA),
-				"valueB", Objects.toString(valueB));
+		var $headerParams = new HashMap<String, String>();
+		if (valueA != null) {
+			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+		} else {
+			$headerParams.put("valueA", "null");
+		}
+		$headerParams.put("valueB", String.format("%s", valueB));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2121,10 +2254,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2140,17 +2273,23 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/multiHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"valueA", Objects.toString(valueA));
+		var $headerParams = new HashMap<String, String>();
+		if (valueA != null) {
+			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+		} else {
+			$headerParams.put("valueA", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2166,18 +2305,24 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/multiHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"valueA", Objects.toString(valueA),
-				"valueB", Objects.toString(valueB));
+		var $headerParams = new HashMap<String, String>();
+		if (valueA != null) {
+			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+		} else {
+			$headerParams.put("valueA", "null");
+		}
+		$headerParams.put("valueB", String.format("%s", valueB));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2195,17 +2340,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/recordHeaderParam".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(headerValue).getBytes(StandardCharsets.UTF_8)));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2223,10 +2370,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2244,17 +2391,21 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/recordHeaderParamOpt".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		if(headerValue != null) {
+			$headerParams.put("headerValue", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(headerValue).getBytes(StandardCharsets.UTF_8)));
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2270,17 +2421,23 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/recordHeaderParamNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		if(headerValue != null) {
+			$headerParams.put("headerValue", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(headerValue).getBytes(StandardCharsets.UTF_8)));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2298,10 +2455,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2317,17 +2474,23 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $path = "%s/api/headerparametertypes/recordHeaderParamOptNil".formatted(
 				this.baseURI);
 
-		var $headerParams = Map.of(
-				"headerValue", Objects.toString(headerValue));
+		var $headerParams = new HashMap<String, String>();
+		if(headerValue != null) {
+			$headerParams.put("headerValue", Base64.getEncoder().encodeToString(_JsonUtils.toJsonString(headerValue).getBytes(StandardCharsets.UTF_8)));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.headers($headers)
-					.GET()
-					.build();
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {

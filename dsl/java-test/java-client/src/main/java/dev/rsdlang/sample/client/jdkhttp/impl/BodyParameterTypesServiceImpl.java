@@ -47,11 +47,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyBoolean));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -72,11 +72,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -99,11 +99,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(bodyBoolean == null ? "" : String.format("%s", bodyBoolean));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -124,11 +124,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyBoolean));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -149,11 +149,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -174,11 +174,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyBoolean));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -201,11 +201,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyShort));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -226,11 +226,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -253,11 +253,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(bodyShort == null ? "" : String.format("%s", bodyShort));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -278,11 +278,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyShort));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -303,11 +303,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -328,11 +328,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyShort));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -355,11 +355,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyInt));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -380,11 +380,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -407,11 +407,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(bodyInt == null ? "" : String.format("%s", bodyInt));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -432,11 +432,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyInt));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -457,11 +457,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -482,11 +482,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyInt));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -509,11 +509,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyLong));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -534,11 +534,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -561,11 +561,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(bodyLong == null ? "" : String.format("%s", bodyLong));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -586,11 +586,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyLong));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -611,11 +611,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -636,11 +636,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyLong));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -663,11 +663,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyFloat));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -688,11 +688,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -715,11 +715,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(bodyFloat == null ? "" : String.format("%s", bodyFloat));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -740,11 +740,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyFloat));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -765,11 +765,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -790,11 +790,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyFloat));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -817,11 +817,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyDouble));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -842,11 +842,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -869,11 +869,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(bodyDouble == null ? "" : String.format("%s", bodyDouble));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -894,11 +894,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyDouble));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -919,11 +919,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -944,11 +944,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(String.format("%s", bodyDouble));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -971,11 +971,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyString));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -996,11 +996,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1023,11 +1023,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString( bodyString == null ? "" : _JsonUtils.toJsonString(bodyString));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1048,11 +1048,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyString));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1073,11 +1073,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1098,11 +1098,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyString));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1125,11 +1125,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLocalDate));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1150,11 +1150,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1177,11 +1177,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString( bodyLocalDate == null ? "" : _JsonUtils.toJsonString(bodyLocalDate));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1202,11 +1202,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLocalDate));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1227,11 +1227,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1252,11 +1252,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLocalDate));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1279,11 +1279,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLocalDateTime));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1304,11 +1304,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1331,11 +1331,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString( bodyLocalDateTime == null ? "" : _JsonUtils.toJsonString(bodyLocalDateTime));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1356,11 +1356,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLocalDateTime));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1381,11 +1381,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1406,11 +1406,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLocalDateTime));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1433,11 +1433,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyZonedDateTime));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1458,11 +1458,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1485,11 +1485,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString( bodyZonedDateTime == null ? "" : _JsonUtils.toJsonString(bodyZonedDateTime));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1510,11 +1510,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyZonedDateTime));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1535,11 +1535,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1560,11 +1560,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyZonedDateTime));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1587,11 +1587,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyScalar));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1612,11 +1612,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1639,11 +1639,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString( bodyScalar == null ? "" : _JsonUtils.toJsonString(bodyScalar));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1664,11 +1664,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyScalar));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1689,11 +1689,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1714,11 +1714,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyScalar));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1741,11 +1741,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyEnum));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1766,11 +1766,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1793,11 +1793,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString( bodyEnum == null ? "" : _JsonUtils.toJsonString(bodyEnum));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1818,11 +1818,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyEnum));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1843,11 +1843,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1868,11 +1868,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyEnum));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1895,11 +1895,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyEnum));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1920,11 +1920,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1947,11 +1947,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString( bodyEnum == null ? "" : _JsonUtils.toJsonString(bodyEnum));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1972,11 +1972,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyEnum));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1997,11 +1997,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2022,11 +2022,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyEnum));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2055,11 +2055,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			$builder = $builder.add("valueC", ((_BaseDataImpl)valueC).data);
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2080,11 +2080,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("{}");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2111,11 +2111,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			}
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2146,11 +2146,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			}
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2185,11 +2185,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			}
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2214,11 +2214,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", ((_BaseDataImpl)valueC).data);
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2239,11 +2239,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("{}");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2266,11 +2266,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", valueA);
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2294,11 +2294,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", valueB);
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2323,11 +2323,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", ((_BaseDataImpl)valueC).data);
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2348,11 +2348,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("{}");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2379,11 +2379,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			}
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2412,11 +2412,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			$builder = $builder.add("valueB", valueB);
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2447,11 +2447,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			$builder = $builder.add("valueC", ((_BaseDataImpl)valueC).data);
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2474,11 +2474,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyRecord));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2499,11 +2499,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2526,11 +2526,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString( bodyRecord == null ? "" : _JsonUtils.toJsonString(bodyRecord));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2551,11 +2551,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyRecord));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2576,11 +2576,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2601,11 +2601,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyRecord));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2628,11 +2628,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyUnion));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2653,11 +2653,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2680,11 +2680,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString( bodyUnion == null ? "" : _JsonUtils.toJsonString(bodyUnion));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2705,11 +2705,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyUnion));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2730,11 +2730,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2755,11 +2755,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyUnion));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2782,11 +2782,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyRecord));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.method("PATCH", $body)
-					.build();
+					.header("Content-Type", $contentType);
+					.method("PATCH", $body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2807,11 +2807,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.method("PATCH", $body)
-					.build();
+					.header("Content-Type", $contentType);
+					.method("PATCH", $body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2834,11 +2834,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString( bodyRecord == null ? "" : _JsonUtils.toJsonString(bodyRecord));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.method("PATCH", $body)
-					.build();
+					.header("Content-Type", $contentType);
+					.method("PATCH", $body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2859,11 +2859,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyRecord));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.method("PATCH", $body)
-					.build();
+					.header("Content-Type", $contentType);
+					.method("PATCH", $body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2884,11 +2884,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString("");
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.method("PATCH", $body)
-					.build();
+					.header("Content-Type", $contentType);
+					.method("PATCH", $body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -2909,11 +2909,11 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = "application/json";
 			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyRecord));
 
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.method("PATCH", $body)
-					.build();
+					.header("Content-Type", $contentType);
+					.method("PATCH", $body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {

@@ -33,10 +33,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -57,10 +57,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -81,10 +81,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -105,10 +105,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -129,10 +129,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -153,10 +153,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -177,10 +177,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -201,10 +201,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -225,10 +225,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -249,10 +249,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -273,10 +273,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -297,10 +297,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -323,10 +323,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {

@@ -39,11 +39,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
@@ -64,11 +64,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
@@ -92,11 +92,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
@@ -123,11 +123,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
@@ -148,11 +148,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
@@ -179,11 +179,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
@@ -207,11 +207,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
@@ -232,11 +232,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
@@ -260,11 +260,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
@@ -291,11 +291,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
@@ -316,11 +316,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
@@ -347,11 +347,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.POST($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.POST($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
@@ -375,11 +375,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -400,11 +400,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -428,11 +428,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -459,11 +459,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -484,11 +484,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -515,11 +515,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -543,11 +543,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -568,11 +568,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -596,11 +596,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -627,11 +627,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -652,11 +652,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -683,11 +683,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -725,11 +725,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -750,11 +750,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -778,11 +778,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -808,11 +808,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -840,11 +840,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -874,11 +874,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -910,11 +910,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -948,11 +948,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -988,11 +988,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1030,11 +1030,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1103,11 +1103,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1128,11 +1128,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1159,11 +1159,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1196,11 +1196,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1239,11 +1239,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1288,11 +1288,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1343,11 +1343,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1404,11 +1404,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1471,11 +1471,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1544,11 +1544,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType)
-					.PUT($body)
-					.build();
+					.header("Content-Type", $contentType);
+					.PUT($body);
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
@@ -1566,10 +1566,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofFile(Files.createTempFile("rsd-download","tmp")));
 			if ($response.statusCode() == 200) {
@@ -1587,10 +1587,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try {
-			var $request = HttpRequest.newBuilder()
+			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.GET()
-					.build();
+					.GET();
+			var $request = $requestBuilder.build();
 
 			var $response = this.client.send($request, BodyHandlers.ofFile(Files.createTempFile("rsd-download","tmp")));
 			if ($response.statusCode() == 200) {
