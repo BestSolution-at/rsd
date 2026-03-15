@@ -46,7 +46,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -71,7 +71,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -98,7 +98,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -123,7 +123,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -148,7 +148,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -173,7 +173,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -200,7 +200,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -225,7 +225,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -252,7 +252,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -277,7 +277,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -302,7 +302,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -327,7 +327,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -354,7 +354,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -379,7 +379,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -406,7 +406,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -431,7 +431,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -456,7 +456,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -481,7 +481,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -508,7 +508,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -533,7 +533,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -560,7 +560,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -585,7 +585,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -610,7 +610,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -635,7 +635,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -662,7 +662,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -687,7 +687,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -714,7 +714,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -739,7 +739,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -764,7 +764,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -789,7 +789,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -816,7 +816,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -841,7 +841,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -868,7 +868,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -893,7 +893,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -918,7 +918,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -943,7 +943,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -970,7 +970,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -995,7 +995,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1022,7 +1022,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1047,7 +1047,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1072,7 +1072,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1097,7 +1097,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1124,7 +1124,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1149,7 +1149,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1176,7 +1176,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1201,7 +1201,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1226,7 +1226,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1251,7 +1251,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1278,7 +1278,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1303,7 +1303,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1330,7 +1330,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1355,7 +1355,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1380,7 +1380,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1405,7 +1405,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1432,7 +1432,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1457,7 +1457,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1484,7 +1484,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1509,7 +1509,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1534,7 +1534,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1559,7 +1559,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1586,7 +1586,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1611,7 +1611,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1638,7 +1638,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1663,7 +1663,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1688,7 +1688,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1713,7 +1713,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1740,7 +1740,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1765,7 +1765,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1792,7 +1792,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1817,7 +1817,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1842,7 +1842,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1867,7 +1867,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1894,7 +1894,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1919,7 +1919,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1946,7 +1946,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1971,7 +1971,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1996,7 +1996,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2021,7 +2021,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2054,7 +2054,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2079,7 +2079,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2110,7 +2110,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2145,7 +2145,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2184,7 +2184,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2213,7 +2213,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2238,7 +2238,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2265,7 +2265,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2293,7 +2293,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2322,7 +2322,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2349,7 +2349,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2374,7 +2374,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2401,7 +2401,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2426,7 +2426,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2451,7 +2451,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -2476,7 +2476,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 

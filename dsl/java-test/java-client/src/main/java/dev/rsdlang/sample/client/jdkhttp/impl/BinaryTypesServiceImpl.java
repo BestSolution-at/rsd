@@ -41,7 +41,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -66,7 +66,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -94,7 +94,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -125,7 +125,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -150,7 +150,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -181,7 +181,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -209,7 +209,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -234,7 +234,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -262,7 +262,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -293,7 +293,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -318,7 +318,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -349,7 +349,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -377,7 +377,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -402,7 +402,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -430,7 +430,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -461,7 +461,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -486,7 +486,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -517,7 +517,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -545,7 +545,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -570,7 +570,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -598,7 +598,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -629,7 +629,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -654,7 +654,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -685,7 +685,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -727,7 +727,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -752,7 +752,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -780,7 +780,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -810,7 +810,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -842,7 +842,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -876,7 +876,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -912,7 +912,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -950,7 +950,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -990,7 +990,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1032,7 +1032,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1105,7 +1105,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1130,7 +1130,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1161,7 +1161,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1198,7 +1198,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1241,7 +1241,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1290,7 +1290,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1345,7 +1345,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1406,7 +1406,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1473,7 +1473,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
@@ -1546,7 +1546,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
 

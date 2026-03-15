@@ -49,7 +49,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -74,7 +74,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -101,7 +101,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -126,7 +126,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -151,7 +151,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -176,7 +176,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -203,7 +203,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -228,7 +228,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -255,7 +255,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -280,7 +280,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -305,7 +305,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -330,7 +330,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -357,7 +357,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -382,7 +382,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -409,7 +409,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -434,7 +434,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -459,7 +459,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -484,7 +484,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -511,7 +511,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -536,7 +536,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -563,7 +563,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -588,7 +588,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -613,7 +613,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -638,7 +638,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -665,7 +665,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -690,7 +690,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -717,7 +717,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -742,7 +742,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -767,7 +767,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -792,7 +792,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -819,7 +819,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -844,7 +844,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -871,7 +871,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -896,7 +896,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -921,7 +921,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -946,7 +946,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -973,7 +973,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -998,7 +998,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1025,7 +1025,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1050,7 +1050,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1075,7 +1075,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1100,7 +1100,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1127,7 +1127,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1152,7 +1152,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1179,7 +1179,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1204,7 +1204,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1229,7 +1229,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1254,7 +1254,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1281,7 +1281,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1306,7 +1306,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1333,7 +1333,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1358,7 +1358,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1383,7 +1383,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1408,7 +1408,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1435,7 +1435,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1460,7 +1460,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1487,7 +1487,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1512,7 +1512,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1537,7 +1537,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1562,7 +1562,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1589,7 +1589,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1614,7 +1614,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1641,7 +1641,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1666,7 +1666,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1691,7 +1691,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1716,7 +1716,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1743,7 +1743,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1768,7 +1768,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1795,7 +1795,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1820,7 +1820,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1845,7 +1845,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1870,7 +1870,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1897,7 +1897,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1922,7 +1922,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1949,7 +1949,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1974,7 +1974,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -1999,7 +1999,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2024,7 +2024,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2057,7 +2057,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2082,7 +2082,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2113,7 +2113,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2148,7 +2148,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2187,7 +2187,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2216,7 +2216,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2241,7 +2241,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2268,7 +2268,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2296,7 +2296,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2325,7 +2325,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2350,7 +2350,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2381,7 +2381,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2414,7 +2414,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2449,7 +2449,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2476,7 +2476,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2501,7 +2501,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2528,7 +2528,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2553,7 +2553,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2578,7 +2578,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2603,7 +2603,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2630,7 +2630,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2655,7 +2655,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2682,7 +2682,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2707,7 +2707,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2732,7 +2732,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 
@@ -2757,7 +2757,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Content-Type", $contentType);
+					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
 

@@ -532,7 +532,7 @@ function generateInvokation(
 			} else if (method === 'DELETE') {
 				l.append('.DELETE();', NL);
 			} else if (method === 'PUT' || method === 'POST') {
-				l.append('.header("Content-Type", $contentType);', NL);
+				l.append('.header("Content-Type", $contentType)', NL);
 				if (method === 'PUT') {
 					l.append('.PUT($body);', NL);
 				} else {
