@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.function.Function;
 import java.util.HexFormat;
@@ -34,7 +35,28 @@ import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 
 public class ServiceUtils {
-	public static String toQueryString(Object value) {
+	private record SearchParam(String key, Object value) {
+
+	}
+
+	public static class URLSearchParams {
+		private List<SearchParam> params = new ArrayList<>();
+
+		public void append(String key, Object value) {
+			params.add(new SearchParam(key, value));
+		}
+
+		public String toQueryString() {
+			if(params.isEmpty()) {
+				return "";
+			}
+			return "?" + params.stream()
+					.map(e -> "%s=%s".formatted(encodeQueryString(e.key), encodeQueryString(e.value)))
+					.collect(Collectors.joining("&"));
+		}
+	}
+
+	private static String encodeQueryString(Object value) {
 		if (value == null) {
 			return "null";
 		}
@@ -68,28 +90,6 @@ public class ServiceUtils {
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
-	}
-
-	private static String toQueryStringNoEncoding(Object value) {
-		if (value == null) {
-			return null;
-		}
-		return value.toString();
-	}
-
-	public static String toQueryString(Number value) {
-		return toQueryStringNoEncoding(value);
-	}
-
-	public static String toQueryString(LocalDate date) {
-		return toQueryStringNoEncoding(date);
-	}
-
-	public static String toURLQueryPart(Map<String, String> data) {
-		var result = data.entrySet().stream()
-				.map(e -> "%s=%s".formatted(e.getKey(), e.getValue()))
-				.collect(Collectors.joining("&"));
-		return result.isEmpty() ? "" : "?" + result;
 	}
 
 	public static String[] toHeaders(Map<String, String> data) {

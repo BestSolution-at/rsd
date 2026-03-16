@@ -20,7 +20,7 @@ import {
 } from '../model.js';
 import { builtinBuilderAccess, builtinBuilderArrayJSONAccess } from '../java-model-json/shared.js';
 import { computePath } from '../rest-utils.js';
-import { toFirstUpper } from '../util.js';
+import { toFirstUpper, toNodeTree } from '../util.js';
 
 export function generateService(s: MResolvedService, artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact {
 	const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl`;
@@ -125,33 +125,57 @@ function generateOpertationMethod(
 		methodBody.appendNewLine();
 		const hasQueryParams = allParameters.find(p => p.meta?.rest?.source === 'query');
 		if (hasQueryParams) {
-			const HashMap = fqn('java.util.HashMap');
-			methodBody.append(`var $queryParams = new ${HashMap}<String, String>();`, NL);
+			methodBody.append(`var $queryParams = new ServiceUtils.URLSearchParams();`, NL);
 			allParameters
 				.filter(p => p.meta?.rest?.source === 'query')
 				.forEach(p => {
-					const codeBlock = `$queryParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ServiceUtils.toQueryString(${p.name}));`;
-					if (p.nullable) {
-						methodBody.append(`if(${p.name} != null) {`, NL);
-						methodBody.indent(tmp => {
-							tmp.append(codeBlock, NL);
-						});
-						methodBody.append('} else {', NL);
-						methodBody.indent(tmp => {
-							tmp.append(`$queryParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
-						});
-						methodBody.append('}', NL);
-					} else if (p.optional) {
-						methodBody.append(`if(${p.name} != null) {`, NL);
-						methodBody.indent(tmp => {
-							tmp.append(codeBlock, NL);
-						});
-						methodBody.append('}', NL);
+					if (p.array) {
+						const codeBlock = toNodeTree(`
+							${p.name}.stream().forEach($q -> {
+								$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", $q);
+							});`);
+						if (p.nullable) {
+							methodBody.append(`if(${p.name} != null) {`, NL);
+							methodBody.indent(tmp => {
+								tmp.append(codeBlock, NL);
+							});
+							methodBody.append('} else {', NL);
+							methodBody.indent(tmp => {
+								tmp.append(`$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
+							});
+							methodBody.append('}', NL);
+						} else if (p.optional) {
+							methodBody.append(`if(${p.name} != null) {`, NL);
+							methodBody.indent(tmp => {
+								tmp.append(codeBlock, NL);
+							});
+							methodBody.append('}', NL);
+						} else {
+							methodBody.append(codeBlock, NL);
+						}
 					} else {
-						methodBody.append(codeBlock, NL);
+						const codeBlock = `$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${p.name});`;
+						if (p.nullable) {
+							methodBody.append(`if(${p.name} != null) {`, NL);
+							methodBody.indent(tmp => {
+								tmp.append(codeBlock, NL);
+							});
+							methodBody.append('} else {', NL);
+							methodBody.indent(tmp => {
+								tmp.append(`$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
+							});
+							methodBody.append('}', NL);
+						} else if (p.optional) {
+							methodBody.append(`if(${p.name} != null) {`, NL);
+							methodBody.indent(tmp => {
+								tmp.append(codeBlock, NL);
+							});
+							methodBody.append('}', NL);
+						} else {
+							methodBody.append(codeBlock, NL);
+						}
 					}
 				});
-			methodBody.append('var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);', NL);
 			methodBody.appendNewLine();
 		}
 		const hasHeaderParams = allParameters.find(p => p.meta?.rest?.source === 'header') !== undefined;
@@ -291,7 +315,7 @@ function generateOpertationMethod(
 		}
 
 		if (hasQueryParams) {
-			methodBody.append(`var $uri = ${URI}.create($path + $queryParamString);`, NL);
+			methodBody.append(`var $uri = ${URI}.create($path + $queryParams.toQueryString());`, NL);
 		} else {
 			methodBody.append(`var $uri = ${URI}.create($path);`, NL);
 		}

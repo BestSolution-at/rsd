@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,11 +31,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listBooleanQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -57,11 +57,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listShortQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -82,11 +83,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listIntQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -107,11 +109,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listLongQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -132,11 +135,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listFloatQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -157,11 +161,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listDoubleQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -184,11 +189,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listStringQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -211,11 +217,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listLocalDateQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -238,11 +245,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listLocalDateTimeQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -265,11 +273,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listZonedDateTimeQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -292,11 +301,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listScalarQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -319,11 +329,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listEnumQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -346,11 +357,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listInlineEnumQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -374,13 +386,18 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listMultiQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("valueA", ServiceUtils.toQueryString(valueA));
-		$queryParams.put("valueB", ServiceUtils.toQueryString(valueB));
-		$queryParams.put("valueC", ServiceUtils.toQueryString(valueC));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		valueA.stream().forEach($q -> {
+			$queryParams.append("valueA", $q);
+		});
+		valueB.stream().forEach($q -> {
+			$queryParams.append("valueB", $q);
+		});
+		valueC.stream().forEach($q -> {
+			$queryParams.append("valueC", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -403,11 +420,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		var $path = "%s/api/listqueryparametertypes/listRecordQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = new HashMap<String, String>();
-		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
-		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		queryValue.stream().forEach($q -> {
+			$queryParams.append("queryValue", $q);
+		});
 
-		var $uri = URI.create($path + $queryParamString);
+		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
