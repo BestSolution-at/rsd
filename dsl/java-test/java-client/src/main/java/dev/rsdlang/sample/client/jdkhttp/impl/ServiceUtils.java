@@ -17,6 +17,7 @@ import java.util.function.Function;
 import java.util.HexFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,6 +27,7 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 
+import dev.rsdlang.sample.client.jdkhttp.impl.model._BaseDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._BlobImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._FileImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
@@ -34,11 +36,14 @@ import dev.rsdlang.sample.client.model.RSDFile;
 
 public class ServiceUtils {
 	public static String toQueryString(Object value) {
-		if (value == null) {
-			return null;
+		Objects.requireNonNull(value);
+
+		if (value instanceof _BaseDataImpl) {
+			var text = _JsonUtils.toJsonString(value);
+			return URLEncoder.encode(text, StandardCharsets.UTF_8);
 		}
-		var text = _JsonUtils.toJsonString(value, false);
-		return URLEncoder.encode(text, StandardCharsets.UTF_8);
+
+		return URLEncoder.encode(value.toString(), StandardCharsets.UTF_8);
 	}
 
 	public static String toString(HttpResponse<InputStream> response) {

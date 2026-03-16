@@ -31,8 +31,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public boolean simpleBooleanHeaderParam(boolean headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleBooleanHeaderParam".formatted(
 				this.baseURI);
 
@@ -82,8 +80,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult simpleBooleanHeaderParamOpt(Boolean headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleBooleanHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -189,8 +185,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public short simpleShortHeaderParam(short headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleShortHeaderParam".formatted(
 				this.baseURI);
 
@@ -240,8 +234,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult simpleShortHeaderParamOpt(Short headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleShortHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -347,8 +339,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public int simpleIntHeaderParam(int headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleIntHeaderParam".formatted(
 				this.baseURI);
 
@@ -398,8 +388,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult simpleIntHeaderParamOpt(Integer headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleIntHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -505,8 +493,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public long simpleLongHeaderParam(long headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleLongHeaderParam".formatted(
 				this.baseURI);
 
@@ -556,8 +542,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult simpleLongHeaderParamOpt(Long headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleLongHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -663,8 +647,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public float simpleFloatHeaderParam(float headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleFloatHeaderParam".formatted(
 				this.baseURI);
 
@@ -714,8 +696,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult simpleFloatHeaderParamOpt(Float headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleFloatHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -821,8 +801,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public double simpleDoubleHeaderParam(double headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleDoubleHeaderParam".formatted(
 				this.baseURI);
 
@@ -872,8 +850,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult simpleDoubleHeaderParamOpt(Double headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleDoubleHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -1030,8 +1006,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult simpleStringHeaderParamOpt(String headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleStringHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -1198,8 +1172,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult simpleLocalDateHeaderParamOpt(LocalDate headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleLocalDateHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -1356,8 +1328,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult simpleLocalDateTimeHeaderParamOpt(LocalDateTime headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleLocalDateTimeHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -1514,8 +1484,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult simpleZonedDateTimeHeaderParamOpt(ZonedDateTime headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleZonedDateTimeHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -1672,8 +1640,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult simpleScalarHeaderParamOpt(ZoneId headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleScalarHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -1830,8 +1796,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult simpleEnumHeaderParamOpt(SampleEnum headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleEnumHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -1988,8 +1952,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult simpleInlineEnumHeaderParamOpt(SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$ headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/simpleInlineEnumHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -2096,7 +2058,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 	public String multiHeaderParam(String valueA, int valueB) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
 
 		var $path = "%s/api/headerparametertypes/multiHeaderParam".formatted(
 				this.baseURI);
@@ -2148,8 +2109,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public List<NilResult> multiHeaderParamOpt(String valueA) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-
 		var $path = "%s/api/headerparametertypes/multiHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -2180,9 +2139,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public List<NilResult> multiHeaderParamOpt(String valueA, Integer valueB) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
-
 		var $path = "%s/api/headerparametertypes/multiHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -2384,8 +2340,6 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public NilResult recordHeaderParamOpt(SimpleRecord.Data headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/headerparametertypes/recordHeaderParamOpt".formatted(
 				this.baseURI);
 

@@ -81,8 +81,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public int uploadFileOpt(RSDFile data) {
-		Objects.requireNonNull(data, "data must not be null");
-
 		var $path = "%s/api/binarytypes/uploadFileOpt".formatted(
 				this.baseURI);
 
@@ -249,8 +247,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public int uploadBlobOpt(RSDBlob data) {
-		Objects.requireNonNull(data, "data must not be null");
-
 		var $path = "%s/api/binarytypes/uploadBlobOpt".formatted(
 				this.baseURI);
 
@@ -417,8 +413,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public int uploadFileListOpt(List<RSDFile> data) {
-		Objects.requireNonNull(data, "data must not be null");
-
 		var $path = "%s/api/binarytypes/uploadFileListOpt".formatted(
 				this.baseURI);
 
@@ -585,8 +579,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public int uploadBlobListOpt(List<RSDBlob> data) {
-		Objects.requireNonNull(data, "data must not be null");
-
 		var $path = "%s/api/binarytypes/uploadBlobListOpt".formatted(
 				this.baseURI);
 
@@ -701,10 +693,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixed(String text, int number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
 		Objects.requireNonNull(text, "text must not be null");
-		Objects.requireNonNull(number, "number must not be null");
 		Objects.requireNonNull(rec, "rec must not be null");
 		Objects.requireNonNull(textList, "textList must not be null");
-		Objects.requireNonNull(numberList, "numberList must not be null");
 		Objects.requireNonNull(recList, "recList must not be null");
 		Objects.requireNonNull(dataFile, "dataFile must not be null");
 		Objects.requireNonNull(dataBlob, "dataBlob must not be null");
@@ -767,8 +757,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public UploadMixedResult.Data uploadMixedOpt(String text) {
-		Objects.requireNonNull(text, "text must not be null");
-
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI);
 
@@ -795,9 +783,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number) {
-		Objects.requireNonNull(text, "text must not be null");
-		Objects.requireNonNull(number, "number must not be null");
-
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI);
 
@@ -825,10 +810,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec) {
-		Objects.requireNonNull(text, "text must not be null");
-		Objects.requireNonNull(number, "number must not be null");
-		Objects.requireNonNull(rec, "rec must not be null");
-
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI);
 
@@ -857,11 +838,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList) {
-		Objects.requireNonNull(text, "text must not be null");
-		Objects.requireNonNull(number, "number must not be null");
-		Objects.requireNonNull(rec, "rec must not be null");
-		Objects.requireNonNull(textList, "textList must not be null");
-
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI);
 
@@ -891,12 +867,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList) {
-		Objects.requireNonNull(text, "text must not be null");
-		Objects.requireNonNull(number, "number must not be null");
-		Objects.requireNonNull(rec, "rec must not be null");
-		Objects.requireNonNull(textList, "textList must not be null");
-		Objects.requireNonNull(numberList, "numberList must not be null");
-
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI);
 
@@ -927,13 +897,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
-		Objects.requireNonNull(text, "text must not be null");
-		Objects.requireNonNull(number, "number must not be null");
-		Objects.requireNonNull(rec, "rec must not be null");
-		Objects.requireNonNull(textList, "textList must not be null");
-		Objects.requireNonNull(numberList, "numberList must not be null");
-		Objects.requireNonNull(recList, "recList must not be null");
-
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI);
 
@@ -965,14 +928,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile) {
-		Objects.requireNonNull(text, "text must not be null");
-		Objects.requireNonNull(number, "number must not be null");
-		Objects.requireNonNull(rec, "rec must not be null");
-		Objects.requireNonNull(textList, "textList must not be null");
-		Objects.requireNonNull(numberList, "numberList must not be null");
-		Objects.requireNonNull(recList, "recList must not be null");
-		Objects.requireNonNull(dataFile, "dataFile must not be null");
-
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI);
 
@@ -1005,15 +960,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
-		Objects.requireNonNull(text, "text must not be null");
-		Objects.requireNonNull(number, "number must not be null");
-		Objects.requireNonNull(rec, "rec must not be null");
-		Objects.requireNonNull(textList, "textList must not be null");
-		Objects.requireNonNull(numberList, "numberList must not be null");
-		Objects.requireNonNull(recList, "recList must not be null");
-		Objects.requireNonNull(dataFile, "dataFile must not be null");
-		Objects.requireNonNull(dataBlob, "dataBlob must not be null");
-
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI);
 

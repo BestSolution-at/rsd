@@ -29,8 +29,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public boolean simpleBooleanQueryParam(boolean queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleBooleanQueryParam".formatted(
 				this.baseURI);
 
@@ -77,8 +75,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public NilResult simpleBooleanQueryParamOpt(Boolean queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleBooleanQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -104,8 +100,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public short simpleShortQueryParam(short queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleShortQueryParam".formatted(
 				this.baseURI);
 
@@ -152,8 +146,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public NilResult simpleShortQueryParamOpt(Short queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleShortQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -179,8 +171,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public int simpleIntQueryParam(int queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleIntQueryParam".formatted(
 				this.baseURI);
 
@@ -227,8 +217,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public NilResult simpleIntQueryParamOpt(Integer queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleIntQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -254,8 +242,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public long simpleLongQueryParam(long queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleLongQueryParam".formatted(
 				this.baseURI);
 
@@ -302,8 +288,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public NilResult simpleLongQueryParamOpt(Long queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleLongQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -329,8 +313,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public float simpleFloatQueryParam(float queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleFloatQueryParam".formatted(
 				this.baseURI);
 
@@ -377,8 +359,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public NilResult simpleFloatQueryParamOpt(Float queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleFloatQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -404,8 +384,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public double simpleDoubleQueryParam(double queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleDoubleQueryParam".formatted(
 				this.baseURI);
 
@@ -452,8 +430,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public NilResult simpleDoubleQueryParamOpt(Double queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleDoubleQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -527,8 +503,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public NilResult simpleStringQueryParamOpt(String queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleStringQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -602,8 +576,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public NilResult simpleLocalDateQueryParamOpt(LocalDate queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleLocalDateQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -677,8 +649,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public NilResult simpleLocalDateTimeQueryParamOpt(LocalDateTime queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleLocalDateTimeQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -752,8 +722,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public NilResult simpleZonedDateTimeQueryParamOpt(ZonedDateTime queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleZonedDateTimeQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -827,8 +795,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public NilResult simpleScalarQueryParamOpt(ZoneId queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleScalarQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -902,8 +868,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public NilResult simpleEnumQueryParamOpt(SampleEnum queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/simpleEnumQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -930,7 +894,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public String multiQueryParam(String valueA, int valueB) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
 
 		var $path = "%s/api/queryparametertypes/multiQueryParam".formatted(
 				this.baseURI);
@@ -979,8 +942,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public String multiQueryParamOpt(String valueA) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-
 		var $path = "%s/api/queryparametertypes/multiQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -1006,9 +967,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public String multiQueryParamOpt(String valueA, Integer valueB) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
-
 		var $path = "%s/api/queryparametertypes/multiQueryParamOpt".formatted(
 				this.baseURI);
 
@@ -1083,8 +1041,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public NilResult recordQueryParamOpt(SimpleRecord.Data queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/queryparametertypes/recordQueryParamOpt".formatted(
 				this.baseURI);
 

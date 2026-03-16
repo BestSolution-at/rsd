@@ -97,7 +97,7 @@ function generateOpertationMethod(
 		const endpoint = processedPath.path ? `%s/${processedPath.path}` : '%s';
 		const variables = ['this.baseURI', ...processedPath.variables];
 		allParameters
-			.filter(p => !p.nullable)
+			.filter(p => !p.nullable && !p.optional && !isMBuiltinNumericType(p.type) && p.type !== 'boolean')
 			.forEach((p, idx, arr) => {
 				const Objects = fqn('java.util.Objects');
 				methodBody.append(`${Objects}.requireNonNull(${p.name}, "${p.name} must not be null");`, NL);
@@ -125,22 +125,31 @@ function generateOpertationMethod(
 		methodBody.appendNewLine();
 		const hasQueryParams = allParameters.find(p => p.meta?.rest?.source === 'query');
 		if (hasQueryParams) {
-			const Map = fqn('java.util.Map');
-			methodBody.append(`var $queryParams = ${Map}.of(`, NL);
+			const HashMap = fqn('java.util.HashMap');
+			methodBody.append(`var $queryParams = new ${HashMap}<String, String>();`, NL);
 			allParameters
 				.filter(p => p.meta?.rest?.source === 'query')
-				.forEach((p, idx, arr) => {
-					const last = idx + 1 === arr.length;
-					methodBody.indent(tmp =>
-						tmp.indent(map => {
-							map.append(
-								`"${
-									p.meta?.rest?.name ?? p.name.toLowerCase()
-								}", ServiceUtils.toQueryString(${p.name})${last ? '' : ','}`,
-								last ? '' : NL,
-							);
-						}),
-					);
+				.forEach(p => {
+					const codeBlock = `$queryParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ServiceUtils.toQueryString(${p.name}));`;
+					if (p.nullable) {
+						methodBody.append(`if(${p.name} != null) {`, NL);
+						methodBody.indent(tmp => {
+							tmp.append(codeBlock, NL);
+						});
+						methodBody.append('} else {', NL);
+						methodBody.indent(tmp => {
+							tmp.append(`$queryParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
+						});
+						methodBody.append('}', NL);
+					} else if (p.optional) {
+						methodBody.append(`if(${p.name} != null) {`, NL);
+						methodBody.indent(tmp => {
+							tmp.append(codeBlock, NL);
+						});
+						methodBody.append('}', NL);
+					} else {
+						methodBody.append(codeBlock, NL);
+					}
 				});
 			methodBody.append(');', NL);
 			methodBody.append('var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);', NL);

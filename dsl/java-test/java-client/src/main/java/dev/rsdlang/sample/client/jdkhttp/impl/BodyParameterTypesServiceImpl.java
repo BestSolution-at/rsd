@@ -37,8 +37,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public boolean simpleBooleanBodyParam(boolean bodyBoolean) {
-		Objects.requireNonNull(bodyBoolean, "bodyBoolean must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParam".formatted(
 				this.baseURI);
 
@@ -89,8 +87,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult simpleBooleanBodyParamOpt(Boolean bodyBoolean) {
-		Objects.requireNonNull(bodyBoolean, "bodyBoolean must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -191,8 +187,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public short simpleShortBodyParam(short bodyShort) {
-		Objects.requireNonNull(bodyShort, "bodyShort must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParam".formatted(
 				this.baseURI);
 
@@ -243,8 +237,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult simpleShortBodyParamOpt(Short bodyShort) {
-		Objects.requireNonNull(bodyShort, "bodyShort must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -345,8 +337,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public int simpleIntBodyParam(int bodyInt) {
-		Objects.requireNonNull(bodyInt, "bodyInt must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParam".formatted(
 				this.baseURI);
 
@@ -397,8 +387,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult simpleIntBodyParamOpt(Integer bodyInt) {
-		Objects.requireNonNull(bodyInt, "bodyInt must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -499,8 +487,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public long simpleLongBodyParam(long bodyLong) {
-		Objects.requireNonNull(bodyLong, "bodyLong must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParam".formatted(
 				this.baseURI);
 
@@ -551,8 +537,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult simpleLongBodyParamOpt(Long bodyLong) {
-		Objects.requireNonNull(bodyLong, "bodyLong must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -653,8 +637,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public float simpleFloatBodyParam(float bodyFloat) {
-		Objects.requireNonNull(bodyFloat, "bodyFloat must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParam".formatted(
 				this.baseURI);
 
@@ -705,8 +687,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult simpleFloatBodyParamOpt(Float bodyFloat) {
-		Objects.requireNonNull(bodyFloat, "bodyFloat must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -807,8 +787,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public double simpleDoubleBodyParam(double bodyDouble) {
-		Objects.requireNonNull(bodyDouble, "bodyDouble must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParam".formatted(
 				this.baseURI);
 
@@ -859,8 +837,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult simpleDoubleBodyParamOpt(Double bodyDouble) {
-		Objects.requireNonNull(bodyDouble, "bodyDouble must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1013,8 +989,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult simpleStringBodyParamOpt(String bodyString) {
-		Objects.requireNonNull(bodyString, "bodyString must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleStringBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1167,8 +1141,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult simpleLocalDateBodyParamOpt(LocalDate bodyLocalDate) {
-		Objects.requireNonNull(bodyLocalDate, "bodyLocalDate must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1321,8 +1293,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult simpleLocalDateTimeBodyParamOpt(LocalDateTime bodyLocalDateTime) {
-		Objects.requireNonNull(bodyLocalDateTime, "bodyLocalDateTime must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateTimeBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1475,8 +1445,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult simpleZonedDateTimeBodyParamOpt(ZonedDateTime bodyZonedDateTime) {
-		Objects.requireNonNull(bodyZonedDateTime, "bodyZonedDateTime must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleZonedDateTimeBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1629,8 +1597,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult simpleScalarBodyParamOpt(ZoneId bodyScalar) {
-		Objects.requireNonNull(bodyScalar, "bodyScalar must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleScalarBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1783,8 +1749,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult simpleEnumBodyParamOpt(SampleEnum bodyEnum) {
-		Objects.requireNonNull(bodyEnum, "bodyEnum must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleEnumBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1937,8 +1901,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult simpleInlineEnumBodyParamOpt(SimpleInlineEnumBodyParamOpt_BodyEnum_Param$ bodyEnum) {
-		Objects.requireNonNull(bodyEnum, "bodyEnum must not be null");
-
 		var $path = "%s/api/bodyparametertypes/simpleInlineEnumBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -2040,7 +2002,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public String multiBodyParam(String valueA, int valueB, SimpleRecord.Data valueC) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
 		Objects.requireNonNull(valueC, "valueC must not be null");
 
 		var $path = "%s/api/bodyparametertypes/multiBodyParam".formatted(
@@ -2097,8 +2058,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public String multiBodyParamOpt(String valueA) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -2128,9 +2087,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public String multiBodyParamOpt(String valueA, Integer valueB) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
-
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -2163,10 +2119,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public String multiBodyParamOpt(String valueA, Integer valueB, SimpleRecord.Data valueC) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
-		Objects.requireNonNull(valueC, "valueC must not be null");
-
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -2365,8 +2317,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public String multiBodyParamFirst(String valueA) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-
 		var $path = "%s/api/bodyparametertypes/multiBodyParamFirst".formatted(
 				this.baseURI);
 
@@ -2396,9 +2346,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public String multiBodyParamFirst(String valueA, int valueB) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
-
 		var $path = "%s/api/bodyparametertypes/multiBodyParamFirst".formatted(
 				this.baseURI);
 
@@ -2429,8 +2376,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public String multiBodyParamFirst(String valueA, int valueB, SimpleRecord.Data valueC) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
 		Objects.requireNonNull(valueC, "valueC must not be null");
 
 		var $path = "%s/api/bodyparametertypes/multiBodyParamFirst".formatted(
@@ -2516,8 +2461,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult recordBodyParamOpt(SimpleRecord.Data bodyRecord) {
-		Objects.requireNonNull(bodyRecord, "bodyRecord must not be null");
-
 		var $path = "%s/api/bodyparametertypes/recordBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -2670,8 +2613,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public NilResult unionBodyParamOpt(Union.Data bodyUnion) {
-		Objects.requireNonNull(bodyUnion, "bodyUnion must not be null");
-
 		var $path = "%s/api/bodyparametertypes/unionBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -2824,8 +2765,6 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public PatchableRecord.Data patchableRecordBodyParamOpt(PatchableRecord.Patch bodyRecord) {
-		Objects.requireNonNull(bodyRecord, "bodyRecord must not be null");
-
 		var $path = "%s/api/bodyparametertypes/patchableRecordBodyParamOpt".formatted(
 				this.baseURI);
 

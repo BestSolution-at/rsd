@@ -37,6 +37,7 @@ export function generateServiceUtils(
 		importCollector.importType('java.nio.file.Files');
 		importCollector.importType('java.nio.file.Path');
 		importCollector.importType(`${packageName}.model._BlobImpl`);
+		importCollector.importType(`${packageName}.model._BaseDataImpl`);
 		importCollector.importType(`${artifactConfig.rootPackageName}.model.RSDBlob`);
 		if (hasFileStreamResult(model)) {
 			importCollector.importType(`${packageName}.model._FileImpl`);
@@ -56,10 +57,13 @@ export function generateServiceUtils(
 public class ServiceUtils {
 	public static String toQueryString(Object value) {
 		if (value == null) {
-			return null;
+			return "null";
 		}
-		var text = _JsonUtils.toJsonString(value, false);
-		return URLEncoder.encode(text, StandardCharsets.UTF_8);
+		if (value instanceof _BaseDataImpl) {
+			var text = _JsonUtils.toJsonString(value);
+			return URLEncoder.encode(text, StandardCharsets.UTF_8);
+		}
+		return URLEncoder.encode(value.toString(), StandardCharsets.UTF_8);
 	}
 
 	public static String toString(HttpResponse<InputStream> response) {

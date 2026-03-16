@@ -29,8 +29,6 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	}
 
 	public List<Boolean> listBooleanQueryParam(List<Boolean> queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/listqueryparametertypes/listBooleanQueryParam".formatted(
 				this.baseURI);
 
@@ -56,8 +54,6 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	}
 
 	public List<Short> listShortQueryParam(List<Short> queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/listqueryparametertypes/listShortQueryParam".formatted(
 				this.baseURI);
 
@@ -83,8 +79,6 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	}
 
 	public List<Integer> listIntQueryParam(List<Integer> queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/listqueryparametertypes/listIntQueryParam".formatted(
 				this.baseURI);
 
@@ -110,8 +104,6 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	}
 
 	public List<Long> listLongQueryParam(List<Long> queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/listqueryparametertypes/listLongQueryParam".formatted(
 				this.baseURI);
 
@@ -137,8 +129,6 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	}
 
 	public List<Float> listFloatQueryParam(List<Float> queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/listqueryparametertypes/listFloatQueryParam".formatted(
 				this.baseURI);
 
@@ -164,8 +154,6 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	}
 
 	public List<Double> listDoubleQueryParam(List<Double> queryValue) {
-		Objects.requireNonNull(queryValue, "queryValue must not be null");
-
 		var $path = "%s/api/listqueryparametertypes/listDoubleQueryParam".formatted(
 				this.baseURI);
 
@@ -381,7 +369,6 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 	public String listMultiQueryParam(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
 		Objects.requireNonNull(valueC, "valueC must not be null");
 
 		var $path = "%s/api/listqueryparametertypes/listMultiQueryParam".formatted(

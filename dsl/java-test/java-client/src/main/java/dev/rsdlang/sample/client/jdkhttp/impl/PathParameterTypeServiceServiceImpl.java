@@ -25,8 +25,6 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	}
 
 	public boolean simpleBooleanPathParam(boolean pathBoolean) {
-		Objects.requireNonNull(pathBoolean, "pathBoolean must not be null");
-
 		var $path = "%s/api/pathparametertype/boolean/%s".formatted(
 				this.baseURI,
 				ServiceUtils.encodeURIComponent(Objects.toString(pathBoolean)));
@@ -49,8 +47,6 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	}
 
 	public short simpleShortPathParam(short pathShort) {
-		Objects.requireNonNull(pathShort, "pathShort must not be null");
-
 		var $path = "%s/api/pathparametertype/short/%s".formatted(
 				this.baseURI,
 				ServiceUtils.encodeURIComponent(Objects.toString(pathShort)));
@@ -73,8 +69,6 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	}
 
 	public int simpleIntPathParam(int pathInt) {
-		Objects.requireNonNull(pathInt, "pathInt must not be null");
-
 		var $path = "%s/api/pathparametertype/int/%s".formatted(
 				this.baseURI,
 				ServiceUtils.encodeURIComponent(Objects.toString(pathInt)));
@@ -97,8 +91,6 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	}
 
 	public long simpleLongPathParam(long pathLong) {
-		Objects.requireNonNull(pathLong, "pathLong must not be null");
-
 		var $path = "%s/api/pathparametertype/long/%s".formatted(
 				this.baseURI,
 				ServiceUtils.encodeURIComponent(Objects.toString(pathLong)));
@@ -121,8 +113,6 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	}
 
 	public float simpleFloatPathParam(float pathFloat) {
-		Objects.requireNonNull(pathFloat, "pathFloat must not be null");
-
 		var $path = "%s/api/pathparametertype/float/%s".formatted(
 				this.baseURI,
 				ServiceUtils.encodeURIComponent(Objects.toString(pathFloat)));
@@ -145,8 +135,6 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	}
 
 	public double simpleDoublePathParam(double pathDouble) {
-		Objects.requireNonNull(pathDouble, "pathDouble must not be null");
-
 		var $path = "%s/api/pathparametertype/double/%s".formatted(
 				this.baseURI,
 				ServiceUtils.encodeURIComponent(Objects.toString(pathDouble)));
@@ -314,7 +302,6 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 	public String multiPathParam(String valueA, int valueB) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
 
 		var $path = "%s/api/pathparametertype/multipathparam/%s/%s".formatted(
 				this.baseURI,

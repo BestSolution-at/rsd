@@ -31,8 +31,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public List<Boolean> listBooleanHeaderParam(List<Boolean> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listBooleanHeaderParam".formatted(
 				this.baseURI);
 
@@ -82,8 +80,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listBooleanHeaderParamOpt(List<Boolean> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listBooleanHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -199,8 +195,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public List<Short> listShortHeaderParam(List<Short> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listShortHeaderParam".formatted(
 				this.baseURI);
 
@@ -250,8 +244,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listShortHeaderParamOpt(List<Short> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listShortHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -367,8 +359,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public List<Integer> listIntHeaderParam(List<Integer> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listIntHeaderParam".formatted(
 				this.baseURI);
 
@@ -418,8 +408,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listIntHeaderParamOpt(List<Integer> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listIntHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -535,8 +523,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public List<Long> listLongHeaderParam(List<Long> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listLongHeaderParam".formatted(
 				this.baseURI);
 
@@ -586,8 +572,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listLongHeaderParamOpt(List<Long> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listLongHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -703,8 +687,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public List<Float> listFloatHeaderParam(List<Float> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listFloatHeaderParam".formatted(
 				this.baseURI);
 
@@ -754,8 +736,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listFloatHeaderParamOpt(List<Float> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listFloatHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -871,8 +851,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public List<Double> listDoubleHeaderParam(List<Double> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listDoubleHeaderParam".formatted(
 				this.baseURI);
 
@@ -922,8 +900,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listDoubleHeaderParamOpt(List<Double> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listDoubleHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -1090,8 +1066,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listStringHeaderParamOpt(List<String> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listStringHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -1258,8 +1232,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listLocalDateHeaderParamOpt(List<LocalDate> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listLocalDateHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -1426,8 +1398,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listLocalDateTimeHeaderParamOpt(List<LocalDateTime> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listLocalDateTimeHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -1594,8 +1564,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listZonedDateTimeHeaderParamOpt(List<ZonedDateTime> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listZonedDateTimeHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -1762,8 +1730,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listScalarHeaderParamOpt(List<ZoneId> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listScalarHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -1930,8 +1896,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listEnumHeaderParamOpt(List<SampleEnum> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listEnumHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -2098,8 +2062,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listInlineEnumHeaderParamOpt(List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listInlineEnumHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -2216,7 +2178,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public String listMultiHeaderParam(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
 		Objects.requireNonNull(valueC, "valueC must not be null");
 
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParam".formatted(
@@ -2270,8 +2231,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public List<NilResult> listMultiHeaderParamOpt(List<String> valueA) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -2302,9 +2261,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public List<NilResult> listMultiHeaderParamOpt(List<String> valueA, List<Integer> valueB) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -2338,10 +2294,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public List<NilResult> listMultiHeaderParamOpt(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
-		Objects.requireNonNull(valueC, "valueC must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOpt".formatted(
 				this.baseURI);
 
@@ -2603,8 +2555,6 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public NilResult listRecordHeaderParamOpt(List<SimpleRecord.Data> headerValue) {
-		Objects.requireNonNull(headerValue, "headerValue must not be null");
-
 		var $path = "%s/api/listheaderparametertypes/listRecordHeaderParamOpt".formatted(
 				this.baseURI);
 

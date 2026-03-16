@@ -34,8 +34,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public List<Boolean> listBooleanBodyParam(List<Boolean> bodyBoolean) {
-		Objects.requireNonNull(bodyBoolean, "bodyBoolean must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParam".formatted(
 				this.baseURI);
 
@@ -86,8 +84,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listBooleanBodyParamOpt(List<Boolean> bodyBoolean) {
-		Objects.requireNonNull(bodyBoolean, "bodyBoolean must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -188,8 +184,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public List<Short> listShortBodyParam(List<Short> bodyShort) {
-		Objects.requireNonNull(bodyShort, "bodyShort must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParam".formatted(
 				this.baseURI);
 
@@ -240,8 +234,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listShortBodyParamOpt(List<Short> bodyShort) {
-		Objects.requireNonNull(bodyShort, "bodyShort must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -342,8 +334,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public List<Integer> listIntBodyParam(List<Integer> bodyInt) {
-		Objects.requireNonNull(bodyInt, "bodyInt must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParam".formatted(
 				this.baseURI);
 
@@ -394,8 +384,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listIntBodyParamOpt(List<Integer> bodyInt) {
-		Objects.requireNonNull(bodyInt, "bodyInt must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -496,8 +484,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public List<Long> listLongBodyParam(List<Long> bodyLong) {
-		Objects.requireNonNull(bodyLong, "bodyLong must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParam".formatted(
 				this.baseURI);
 
@@ -548,8 +534,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listLongBodyParamOpt(List<Long> bodyLong) {
-		Objects.requireNonNull(bodyLong, "bodyLong must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -650,8 +634,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public List<Float> listFloatBodyParam(List<Float> bodyFloat) {
-		Objects.requireNonNull(bodyFloat, "bodyFloat must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParam".formatted(
 				this.baseURI);
 
@@ -702,8 +684,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listFloatBodyParamOpt(List<Float> bodyFloat) {
-		Objects.requireNonNull(bodyFloat, "bodyFloat must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -804,8 +784,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public List<Double> listDoubleBodyParam(List<Double> bodyDouble) {
-		Objects.requireNonNull(bodyDouble, "bodyDouble must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParam".formatted(
 				this.baseURI);
 
@@ -856,8 +834,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listDoubleBodyParamOpt(List<Double> bodyDouble) {
-		Objects.requireNonNull(bodyDouble, "bodyDouble must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1010,8 +986,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listStringBodyParamOpt(List<String> bodyString) {
-		Objects.requireNonNull(bodyString, "bodyString must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listStringBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1164,8 +1138,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listLocalDateBodyParamOpt(List<LocalDate> bodyLocalDate) {
-		Objects.requireNonNull(bodyLocalDate, "bodyLocalDate must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listLocalDateBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1318,8 +1290,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listLocalDateTimeBodyParamOpt(List<LocalDateTime> bodyLocalDateTime) {
-		Objects.requireNonNull(bodyLocalDateTime, "bodyLocalDateTime must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listLocalDateTimeBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1472,8 +1442,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listZonedDateTimeBodyParamOpt(List<ZonedDateTime> bodyZonedDateTime) {
-		Objects.requireNonNull(bodyZonedDateTime, "bodyZonedDateTime must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listZonedDateTimeBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1626,8 +1594,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listScalarBodyParamOpt(List<ZoneId> bodyScalar) {
-		Objects.requireNonNull(bodyScalar, "bodyScalar must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listScalarBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1780,8 +1746,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listEnumBodyParamOpt(List<SampleEnum> bodyEnum) {
-		Objects.requireNonNull(bodyEnum, "bodyEnum must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listEnumBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -1934,8 +1898,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listInlineEnumBodyParamOpt(List<ListInlineEnumBodyParamOpt_BodyEnum_Param$> bodyEnum) {
-		Objects.requireNonNull(bodyEnum, "bodyEnum must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -2037,7 +1999,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public String listMultiBodyParam(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
 		Objects.requireNonNull(valueC, "valueC must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParam".formatted(
@@ -2094,8 +2055,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public List<NilResult> listMultiBodyParamOpt(List<String> valueA) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -2125,9 +2084,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public List<NilResult> listMultiBodyParamOpt(List<String> valueA, List<Integer> valueB) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -2160,10 +2116,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public List<NilResult> listMultiBodyParamOpt(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
-		Objects.requireNonNull(valueA, "valueA must not be null");
-		Objects.requireNonNull(valueB, "valueB must not be null");
-		Objects.requireNonNull(valueC, "valueC must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -2389,8 +2341,6 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public NilResult listRecordBodyParamOpt(List<SimpleRecord.Data> bodyRecord) {
-		Objects.requireNonNull(bodyRecord, "bodyRecord must not be null");
-
 		var $path = "%s/api/listbodyparametertypes/listRecordBodyParamOpt".formatted(
 				this.baseURI);
 
