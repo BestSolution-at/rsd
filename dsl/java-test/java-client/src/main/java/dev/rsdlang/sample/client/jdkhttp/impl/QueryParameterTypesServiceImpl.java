@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
-import java.util.Map;
+import java.util.HashMap;
 import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
@@ -32,8 +32,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleBooleanQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -78,8 +78,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleBooleanQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		if(queryValue != null) {
+			$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -103,8 +105,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleShortQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -149,8 +151,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleShortQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		if(queryValue != null) {
+			$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -174,8 +178,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleIntQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -220,8 +224,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleIntQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		if(queryValue != null) {
+			$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -245,8 +251,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLongQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -291,8 +297,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLongQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		if(queryValue != null) {
+			$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -316,8 +324,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleFloatQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -362,8 +370,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleFloatQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		if(queryValue != null) {
+			$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -387,8 +397,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleDoubleQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -433,8 +443,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleDoubleQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		if(queryValue != null) {
+			$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -460,8 +472,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleStringQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -506,8 +518,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleStringQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		if(queryValue != null) {
+			$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -533,8 +547,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLocalDateQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -579,8 +593,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLocalDateQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		if(queryValue != null) {
+			$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -606,8 +622,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLocalDateTimeQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -652,8 +668,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLocalDateTimeQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		if(queryValue != null) {
+			$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -679,8 +697,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleZonedDateTimeQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -725,8 +743,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleZonedDateTimeQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		if(queryValue != null) {
+			$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -752,8 +772,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleScalarQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -798,8 +818,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleScalarQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		if(queryValue != null) {
+			$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -825,8 +847,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleEnumQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -871,8 +893,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleEnumQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		if(queryValue != null) {
+			$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -898,9 +922,9 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/multiQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"valueA", ServiceUtils.toQueryString(valueA),
-				"valueB", ServiceUtils.toQueryString(valueB));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("valueA", ServiceUtils.toQueryString(valueA));
+		$queryParams.put("valueB", ServiceUtils.toQueryString(valueB));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -945,8 +969,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/multiQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"valueA", ServiceUtils.toQueryString(valueA));
+		var $queryParams = new HashMap<String, String>();
+		if(valueA != null) {
+			$queryParams.put("valueA", ServiceUtils.toQueryString(valueA));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -970,9 +996,13 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/multiQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"valueA", ServiceUtils.toQueryString(valueA),
-				"valueB", ServiceUtils.toQueryString(valueB));
+		var $queryParams = new HashMap<String, String>();
+		if(valueA != null) {
+			$queryParams.put("valueA", ServiceUtils.toQueryString(valueA));
+		}
+		if(valueB != null) {
+			$queryParams.put("valueB", ServiceUtils.toQueryString(valueB));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -998,8 +1028,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/recordQueryParam".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);
@@ -1044,8 +1074,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/recordQueryParamOpt".formatted(
 				this.baseURI);
 
-		var $queryParams = Map.of(
-				"queryValue", ServiceUtils.toQueryString(queryValue));
+		var $queryParams = new HashMap<String, String>();
+		if(queryValue != null) {
+			$queryParams.put("queryValue", ServiceUtils.toQueryString(queryValue));
+		}
 		var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);
 
 		var $uri = URI.create($path + $queryParamString);

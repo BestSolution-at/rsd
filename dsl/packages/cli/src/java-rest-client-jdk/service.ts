@@ -151,7 +151,6 @@ function generateOpertationMethod(
 						methodBody.append(codeBlock, NL);
 					}
 				});
-			methodBody.append(');', NL);
 			methodBody.append('var $queryParamString = ServiceUtils.toURLQueryPart($queryParams);', NL);
 			methodBody.appendNewLine();
 		}

@@ -168,7 +168,13 @@ public class QueryParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void simpleStringQueryParamOpt_defined(QueryParameterTypesService service) {
 		assertEquals(NilResult.DEFINED, service.simpleStringQueryParamOpt("hello world"));
-		assertEquals(NilResult.DEFINED, service.simpleStringQueryParamOpt(null));
+		assertEquals(NilResult.UNDEFINED, service.simpleStringQueryParamOpt(null));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleStringQueryParamOpt_null(QueryParameterTypesService service) {
+		assertEquals(NilResult.UNDEFINED, service.simpleStringQueryParamOpt(null));
 	}
 
 	// --- LocalDate ---

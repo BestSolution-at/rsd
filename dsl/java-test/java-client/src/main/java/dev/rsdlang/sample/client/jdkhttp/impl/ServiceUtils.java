@@ -17,7 +17,6 @@ import java.util.function.Function;
 import java.util.HexFormat;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -36,13 +35,13 @@ import dev.rsdlang.sample.client.model.RSDFile;
 
 public class ServiceUtils {
 	public static String toQueryString(Object value) {
-		Objects.requireNonNull(value);
-
+		if (value == null) {
+			return "null";
+		}
 		if (value instanceof _BaseDataImpl) {
 			var text = _JsonUtils.toJsonString(value);
 			return URLEncoder.encode(text, StandardCharsets.UTF_8);
 		}
-
 		return URLEncoder.encode(value.toString(), StandardCharsets.UTF_8);
 	}
 
