@@ -10,7 +10,10 @@ import java.nio.file.Files;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.json.Json;
+
 import dev.rsdlang.sample.client.BinaryTypesService;
+import dev.rsdlang.sample.client.jdkhttp.impl.model._BaseDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.UploadMixedResultDataImpl;
 import dev.rsdlang.sample.client.model.RSDBlob;
@@ -86,7 +89,9 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
-			$formDataBuilder.addBlob("data", data);
+			if (data != null) {
+				$formDataBuilder.addBlob("data", data);
+			}
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -114,10 +119,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
 			if (data != null) {
 				$formDataBuilder.addBlob("data", data);
-			} else {
-				$formDataBuilder.addString("data", "null","text/plain; charset=utf-8");
 			}
-
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -171,7 +173,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (data != null) {
 				$formDataBuilder.addBlob("data", data);
 			} else {
-				$formDataBuilder.addString("data", "null","text/plain; charset=utf-8");
+				$formDataBuilder.addString("_rsdNull-data", "true", null);
 			}
 
 			var $formData = $formDataBuilder.build();
@@ -252,7 +254,9 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
-			$formDataBuilder.addBlob("data", data);
+			if (data != null) {
+				$formDataBuilder.addBlob("data", data);
+			}
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -280,10 +284,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
 			if (data != null) {
 				$formDataBuilder.addBlob("data", data);
-			} else {
-				$formDataBuilder.addString("data", "null","text/plain; charset=utf-8");
 			}
-
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -337,7 +338,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (data != null) {
 				$formDataBuilder.addBlob("data", data);
 			} else {
-				$formDataBuilder.addString("data", "null","text/plain; charset=utf-8");
+				$formDataBuilder.addString("_rsdNull-data", "true", null);
 			}
 
 			var $formData = $formDataBuilder.build();
@@ -418,7 +419,9 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
-			data.forEach($b -> $formDataBuilder.addBlob("data", $b));
+			if (data != null) {
+				data.forEach($b -> $formDataBuilder.addBlob("data", $b));
+			}
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -446,10 +449,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
 			if (data != null) {
 				data.forEach($b -> $formDataBuilder.addBlob("data", $b));
-			} else {
-				$formDataBuilder.addString("data", "null","text/plain; charset=utf-8");
 			}
-
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -503,7 +503,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (data != null) {
 				data.forEach($b -> $formDataBuilder.addBlob("data", $b));
 			} else {
-				$formDataBuilder.addString("data", "null","text/plain; charset=utf-8");
+				$formDataBuilder.addString("_rsdNull-data", "true", null);
 			}
 
 			var $formData = $formDataBuilder.build();
@@ -584,7 +584,9 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
-			data.forEach($b -> $formDataBuilder.addBlob("data", $b));
+			if (data != null) {
+				data.forEach($b -> $formDataBuilder.addBlob("data", $b));
+			}
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -612,10 +614,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
 			if (data != null) {
 				data.forEach($b -> $formDataBuilder.addBlob("data", $b));
-			} else {
-				$formDataBuilder.addString("data", "null","text/plain; charset=utf-8");
 			}
-
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -669,7 +668,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (data != null) {
 				data.forEach($b -> $formDataBuilder.addBlob("data", $b));
 			} else {
-				$formDataBuilder.addString("data", "null","text/plain; charset=utf-8");
+				$formDataBuilder.addString("_rsdNull-data", "true", null);
 			}
 
 			var $formData = $formDataBuilder.build();
@@ -704,14 +703,16 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
-			$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
-			$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
-			$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
-			textList.forEach($v -> $formDataBuilder.addString("textList", Objects.toString($v),"text/plain; charset=utf-8"));
-			numberList.forEach($v -> $formDataBuilder.addString("numberList", Objects.toString($v),"text/plain; charset=utf-8"));
-			recList.forEach($i -> $formDataBuilder.addBlob("recList", _JsonUtils.toJsonString($i, false),"application/json"));
+			var $jsonPayload = Json.createObjectBuilder();
+			$jsonPayload.add("text", text);
+			$jsonPayload.add("number", number);
+			$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
+			$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
+			$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			$formDataBuilder.addBlob("dataFile", dataFile);
 			$formDataBuilder.addBlob("dataBlob", dataBlob);
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -737,6 +738,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+			var $jsonPayload = Json.createObjectBuilder();
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -762,7 +765,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
-			$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
+			var $jsonPayload = Json.createObjectBuilder();
+			if (text != null) {
+				$jsonPayload.add("text", text);
+			}
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -788,8 +795,14 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
-			$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
-			$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
+			var $jsonPayload = Json.createObjectBuilder();
+			if (text != null) {
+				$jsonPayload.add("text", text);
+			}
+			if (number != null) {
+				$jsonPayload.add("number", number);
+			}
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -815,9 +828,17 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
-			$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
-			$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
-			$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
+			var $jsonPayload = Json.createObjectBuilder();
+			if (text != null) {
+				$jsonPayload.add("text", text);
+			}
+			if (number != null) {
+				$jsonPayload.add("number", number);
+			}
+			if (rec != null) {
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			}
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -843,10 +864,20 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
-			$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
-			$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
-			$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
-			textList.forEach($v -> $formDataBuilder.addString("textList", Objects.toString($v),"text/plain; charset=utf-8"));
+			var $jsonPayload = Json.createObjectBuilder();
+			if (text != null) {
+				$jsonPayload.add("text", text);
+			}
+			if (number != null) {
+				$jsonPayload.add("number", number);
+			}
+			if (rec != null) {
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			}
+			if (textList != null) {
+				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
+			}
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -872,11 +903,23 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
-			$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
-			$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
-			$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
-			textList.forEach($v -> $formDataBuilder.addString("textList", Objects.toString($v),"text/plain; charset=utf-8"));
-			numberList.forEach($v -> $formDataBuilder.addString("numberList", Objects.toString($v),"text/plain; charset=utf-8"));
+			var $jsonPayload = Json.createObjectBuilder();
+			if (text != null) {
+				$jsonPayload.add("text", text);
+			}
+			if (number != null) {
+				$jsonPayload.add("number", number);
+			}
+			if (rec != null) {
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			}
+			if (textList != null) {
+				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
+			}
+			if (numberList != null) {
+				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
+			}
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -902,12 +945,26 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
-			$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
-			$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
-			$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
-			textList.forEach($v -> $formDataBuilder.addString("textList", Objects.toString($v),"text/plain; charset=utf-8"));
-			numberList.forEach($v -> $formDataBuilder.addString("numberList", Objects.toString($v),"text/plain; charset=utf-8"));
-			recList.forEach($i -> $formDataBuilder.addBlob("recList", _JsonUtils.toJsonString($i, false),"application/json"));
+			var $jsonPayload = Json.createObjectBuilder();
+			if (text != null) {
+				$jsonPayload.add("text", text);
+			}
+			if (number != null) {
+				$jsonPayload.add("number", number);
+			}
+			if (rec != null) {
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			}
+			if (textList != null) {
+				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
+			}
+			if (numberList != null) {
+				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
+			}
+			if (recList != null) {
+				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
+			}
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -933,13 +990,29 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
-			$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
-			$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
-			$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
-			textList.forEach($v -> $formDataBuilder.addString("textList", Objects.toString($v),"text/plain; charset=utf-8"));
-			numberList.forEach($v -> $formDataBuilder.addString("numberList", Objects.toString($v),"text/plain; charset=utf-8"));
-			recList.forEach($i -> $formDataBuilder.addBlob("recList", _JsonUtils.toJsonString($i, false),"application/json"));
-			$formDataBuilder.addBlob("dataFile", dataFile);
+			var $jsonPayload = Json.createObjectBuilder();
+			if (text != null) {
+				$jsonPayload.add("text", text);
+			}
+			if (number != null) {
+				$jsonPayload.add("number", number);
+			}
+			if (rec != null) {
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			}
+			if (textList != null) {
+				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
+			}
+			if (numberList != null) {
+				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
+			}
+			if (recList != null) {
+				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
+			}
+			if (dataFile != null) {
+				$formDataBuilder.addBlob("dataFile", dataFile);
+			}
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -965,14 +1038,32 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
-			$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
-			$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
-			$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
-			textList.forEach($v -> $formDataBuilder.addString("textList", Objects.toString($v),"text/plain; charset=utf-8"));
-			numberList.forEach($v -> $formDataBuilder.addString("numberList", Objects.toString($v),"text/plain; charset=utf-8"));
-			recList.forEach($i -> $formDataBuilder.addBlob("recList", _JsonUtils.toJsonString($i, false),"application/json"));
-			$formDataBuilder.addBlob("dataFile", dataFile);
-			$formDataBuilder.addBlob("dataBlob", dataBlob);
+			var $jsonPayload = Json.createObjectBuilder();
+			if (text != null) {
+				$jsonPayload.add("text", text);
+			}
+			if (number != null) {
+				$jsonPayload.add("number", number);
+			}
+			if (rec != null) {
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			}
+			if (textList != null) {
+				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
+			}
+			if (numberList != null) {
+				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
+			}
+			if (recList != null) {
+				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
+			}
+			if (dataFile != null) {
+				$formDataBuilder.addBlob("dataFile", dataFile);
+			}
+			if (dataBlob != null) {
+				$formDataBuilder.addBlob("dataBlob", dataBlob);
+			}
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -998,54 +1089,50 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
-				$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
+				$jsonPayload.add("text", text);
 			} else {
-				$formDataBuilder.addString("text", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("text");
 			}
 
 			if (number != null) {
-				$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
+				$jsonPayload.add("number", number);
 			} else {
-				$formDataBuilder.addString("number", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("number");
 			}
 
 			if (rec != null) {
-				$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
-				$formDataBuilder.addString("rec", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("rec");
 			}
 
 			if (textList != null) {
-				textList.forEach($v -> $formDataBuilder.addString("textList", Objects.toString($v),"text/plain; charset=utf-8"));
+				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
-				$formDataBuilder.addString("textList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("textList");
 			}
 
 			if (numberList != null) {
-				numberList.forEach($v -> $formDataBuilder.addString("numberList", Objects.toString($v),"text/plain; charset=utf-8"));
+				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			} else {
-				$formDataBuilder.addString("numberList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("numberList");
 			}
 
 			if (recList != null) {
-				recList.forEach($i -> $formDataBuilder.addBlob("recList", _JsonUtils.toJsonString($i, false),"application/json"));
+				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			} else {
-				$formDataBuilder.addString("recList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("recList");
 			}
 
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);
-			} else {
-				$formDataBuilder.addString("dataFile", "null","text/plain; charset=utf-8");
 			}
-
 			if (dataBlob != null) {
 				$formDataBuilder.addBlob("dataBlob", dataBlob);
-			} else {
-				$formDataBuilder.addString("dataBlob", "null","text/plain; charset=utf-8");
 			}
-
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1071,6 +1158,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+			var $jsonPayload = Json.createObjectBuilder();
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1096,12 +1185,14 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
-				$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
+				$jsonPayload.add("text", text);
 			} else {
-				$formDataBuilder.addString("text", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("text");
 			}
 
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1127,18 +1218,20 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
-				$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
+				$jsonPayload.add("text", text);
 			} else {
-				$formDataBuilder.addString("text", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("text");
 			}
 
 			if (number != null) {
-				$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
+				$jsonPayload.add("number", number);
 			} else {
-				$formDataBuilder.addString("number", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("number");
 			}
 
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1164,24 +1257,26 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
-				$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
+				$jsonPayload.add("text", text);
 			} else {
-				$formDataBuilder.addString("text", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("text");
 			}
 
 			if (number != null) {
-				$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
+				$jsonPayload.add("number", number);
 			} else {
-				$formDataBuilder.addString("number", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("number");
 			}
 
 			if (rec != null) {
-				$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
-				$formDataBuilder.addString("rec", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("rec");
 			}
 
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1207,30 +1302,32 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
-				$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
+				$jsonPayload.add("text", text);
 			} else {
-				$formDataBuilder.addString("text", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("text");
 			}
 
 			if (number != null) {
-				$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
+				$jsonPayload.add("number", number);
 			} else {
-				$formDataBuilder.addString("number", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("number");
 			}
 
 			if (rec != null) {
-				$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
-				$formDataBuilder.addString("rec", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("rec");
 			}
 
 			if (textList != null) {
-				textList.forEach($v -> $formDataBuilder.addString("textList", Objects.toString($v),"text/plain; charset=utf-8"));
+				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
-				$formDataBuilder.addString("textList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("textList");
 			}
 
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1256,36 +1353,38 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
-				$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
+				$jsonPayload.add("text", text);
 			} else {
-				$formDataBuilder.addString("text", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("text");
 			}
 
 			if (number != null) {
-				$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
+				$jsonPayload.add("number", number);
 			} else {
-				$formDataBuilder.addString("number", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("number");
 			}
 
 			if (rec != null) {
-				$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
-				$formDataBuilder.addString("rec", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("rec");
 			}
 
 			if (textList != null) {
-				textList.forEach($v -> $formDataBuilder.addString("textList", Objects.toString($v),"text/plain; charset=utf-8"));
+				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
-				$formDataBuilder.addString("textList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("textList");
 			}
 
 			if (numberList != null) {
-				numberList.forEach($v -> $formDataBuilder.addString("numberList", Objects.toString($v),"text/plain; charset=utf-8"));
+				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			} else {
-				$formDataBuilder.addString("numberList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("numberList");
 			}
 
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1311,42 +1410,44 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
-				$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
+				$jsonPayload.add("text", text);
 			} else {
-				$formDataBuilder.addString("text", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("text");
 			}
 
 			if (number != null) {
-				$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
+				$jsonPayload.add("number", number);
 			} else {
-				$formDataBuilder.addString("number", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("number");
 			}
 
 			if (rec != null) {
-				$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
-				$formDataBuilder.addString("rec", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("rec");
 			}
 
 			if (textList != null) {
-				textList.forEach($v -> $formDataBuilder.addString("textList", Objects.toString($v),"text/plain; charset=utf-8"));
+				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
-				$formDataBuilder.addString("textList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("textList");
 			}
 
 			if (numberList != null) {
-				numberList.forEach($v -> $formDataBuilder.addString("numberList", Objects.toString($v),"text/plain; charset=utf-8"));
+				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			} else {
-				$formDataBuilder.addString("numberList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("numberList");
 			}
 
 			if (recList != null) {
-				recList.forEach($i -> $formDataBuilder.addBlob("recList", _JsonUtils.toJsonString($i, false),"application/json"));
+				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			} else {
-				$formDataBuilder.addString("recList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("recList");
 			}
 
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1372,48 +1473,50 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
-				$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
+				$jsonPayload.add("text", text);
 			} else {
-				$formDataBuilder.addString("text", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("text");
 			}
 
 			if (number != null) {
-				$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
+				$jsonPayload.add("number", number);
 			} else {
-				$formDataBuilder.addString("number", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("number");
 			}
 
 			if (rec != null) {
-				$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
-				$formDataBuilder.addString("rec", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("rec");
 			}
 
 			if (textList != null) {
-				textList.forEach($v -> $formDataBuilder.addString("textList", Objects.toString($v),"text/plain; charset=utf-8"));
+				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
-				$formDataBuilder.addString("textList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("textList");
 			}
 
 			if (numberList != null) {
-				numberList.forEach($v -> $formDataBuilder.addString("numberList", Objects.toString($v),"text/plain; charset=utf-8"));
+				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			} else {
-				$formDataBuilder.addString("numberList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("numberList");
 			}
 
 			if (recList != null) {
-				recList.forEach($i -> $formDataBuilder.addBlob("recList", _JsonUtils.toJsonString($i, false),"application/json"));
+				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			} else {
-				$formDataBuilder.addString("recList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("recList");
 			}
 
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);
 			} else {
-				$formDataBuilder.addString("dataFile", "null","text/plain; charset=utf-8");
+				$formDataBuilder.addString("_rsdNull-dataFile", "true", null);
 			}
 
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1439,54 +1542,56 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
-				$formDataBuilder.addString("text",Objects.toString(text),"text/plain; charset=utf-8");
+				$jsonPayload.add("text", text);
 			} else {
-				$formDataBuilder.addString("text", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("text");
 			}
 
 			if (number != null) {
-				$formDataBuilder.addString("number",Objects.toString(number),"text/plain; charset=utf-8");
+				$jsonPayload.add("number", number);
 			} else {
-				$formDataBuilder.addString("number", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("number");
 			}
 
 			if (rec != null) {
-				$formDataBuilder.addBlob("rec",_JsonUtils.toJsonString(rec, false),"application/json");
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
-				$formDataBuilder.addString("rec", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("rec");
 			}
 
 			if (textList != null) {
-				textList.forEach($v -> $formDataBuilder.addString("textList", Objects.toString($v),"text/plain; charset=utf-8"));
+				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
-				$formDataBuilder.addString("textList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("textList");
 			}
 
 			if (numberList != null) {
-				numberList.forEach($v -> $formDataBuilder.addString("numberList", Objects.toString($v),"text/plain; charset=utf-8"));
+				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			} else {
-				$formDataBuilder.addString("numberList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("numberList");
 			}
 
 			if (recList != null) {
-				recList.forEach($i -> $formDataBuilder.addBlob("recList", _JsonUtils.toJsonString($i, false),"application/json"));
+				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			} else {
-				$formDataBuilder.addString("recList", "null","text/plain; charset=utf-8");
+				$jsonPayload.addNull("recList");
 			}
 
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);
 			} else {
-				$formDataBuilder.addString("dataFile", "null","text/plain; charset=utf-8");
+				$formDataBuilder.addString("_rsdNull-dataFile", "true", null);
 			}
 
 			if (dataBlob != null) {
 				$formDataBuilder.addBlob("dataBlob", dataBlob);
 			} else {
-				$formDataBuilder.addString("dataBlob", "null","text/plain; charset=utf-8");
+				$formDataBuilder.addString("_rsdNull-dataBlob", "true", null);
 			}
 
+			$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1521,7 +1626,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFile($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.mapFileToString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1540,9 +1645,9 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 			var $response = this.client.send($request, BodyHandlers.ofFile(Files.createTempFile("rsd-download","tmp")));
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapFile($response);
+				return ServiceUtils.mapBlob($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.mapFileToString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}

@@ -354,6 +354,10 @@ function generateInvokation(
 	const method = o.meta?.rest?.method;
 	if (method === 'PUT' || method === 'POST' || method === 'PATCH') {
 		if (o.parameters.find(p => p.variant === 'stream')) {
+			if (o.parameters.find(p => p.variant !== 'stream')) {
+				const Json = fqn('jakarta.json.Json');
+				methodBody.append(`var $jsonPayload = ${Json}.createObjectBuilder();`, NL);
+			}
 			allParameters
 				.filter(p => p.meta?.rest?.source === undefined)
 				.forEach(p => {
@@ -364,43 +368,92 @@ function generateInvokation(
 						} else {
 							codeBlock = `$formDataBuilder.addBlob("${p.meta?.rest?.name ?? p.name}", ${p.name});`;
 						}
+						if (p.nullable && p.optional) {
+							methodBody.append(`if (${p.name} != null) {`, NL);
+							methodBody.indent(tmp => {
+								tmp.append(codeBlock, NL);
+							});
+							methodBody.append('} else {', NL);
+							methodBody.indent(tmp => {
+								tmp.append(`$formDataBuilder.addString("_rsdNull-${p.meta?.rest?.name ?? p.name}", "true", null);`, NL);
+							});
+							methodBody.append('}', NL, NL);
+						} else if (p.nullable || p.optional) {
+							methodBody.append(`if (${p.name} != null) {`, NL);
+							methodBody.indent(tmp => {
+								tmp.append(codeBlock, NL);
+							});
+							methodBody.append('}', NL);
+						} else {
+							methodBody.append(codeBlock, NL);
+						}
 					} else {
-						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
-
 						if (p.variant === 'record' || p.variant === 'union') {
+							const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+							const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._BaseDataImpl`);
 							if (p.array) {
-								codeBlock = `${p.name}.forEach($i -> $formDataBuilder.addBlob("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonString($i, false),"application/json"));`;
+								codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((${_BaseDataImpl}) i).data));`;
 							} else {
-								codeBlock = `$formDataBuilder.addBlob("${p.meta?.rest?.name ?? p.name}",${_JsonUtils}.toJsonString(${
-									p.name
-								}, false),"application/json");`;
+								codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ((${_BaseDataImpl}) ${p.name}).data);`;
 							}
 						} else {
 							if (p.array) {
-								codeBlock = `${p.name}.forEach($v -> $formDataBuilder.addString("${p.meta?.rest?.name ?? p.name}", Objects.toString($v),"text/plain; charset=utf-8"));`;
+								if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
+									const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+									if (p.type === 'boolean') {
+										codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonBooleanArray(${p.name}));`;
+									} else if (p.type === 'double') {
+										codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonDoubleArray(${p.name}));`;
+									} else if (p.type === 'float') {
+										codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonFloatArray(${p.name}));`;
+									} else if (p.type === 'long') {
+										codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonLongArray(${p.name}));`;
+									} else if (p.type === 'int') {
+										codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonIntArray(${p.name}));`;
+									} else {
+										codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonShortArray(${p.name}));`;
+									}
+								} else {
+									const Objects = fqn('java.util.Objects');
+									codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", _JsonUtils.toJsonLiteralArray(${p.name}, ${Objects}::toString));`;
+								}
 							} else {
-								codeBlock = `$formDataBuilder.addString("${p.meta?.rest?.name ?? p.name}",Objects.toString(${p.name}),"text/plain; charset=utf-8");`;
+								if (isMBuiltinNumericType(p.type) || p.type === 'boolean' || p.type === 'string') {
+									codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${p.name});`;
+								} else {
+									const Objects = fqn('java.util.Objects');
+									codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${Objects}.toString(${p.name}));`;
+								}
 							}
 						}
-					}
 
-					if (p.nullable) {
-						methodBody.append(`if (${p.name} != null) {`, NL);
-						methodBody.indent(tmp => {
-							tmp.append(codeBlock, NL);
-						});
-						methodBody.append('} else {', NL);
-						methodBody.indent(tmp => {
-							tmp.append(
-								`$formDataBuilder.addString("${p.meta?.rest?.name ?? p.name}", "null","text/plain; charset=utf-8");`,
-								NL,
-							);
-						});
-						methodBody.append('}', NL, NL);
-					} else {
-						methodBody.append(codeBlock, NL);
+						if (p.nullable) {
+							methodBody.append(`if (${p.name} != null) {`, NL);
+							methodBody.indent(tmp => {
+								tmp.append(codeBlock, NL);
+							});
+							methodBody.append('} else {', NL);
+							methodBody.indent(tmp => {
+								tmp.append(`$jsonPayload.addNull("${p.meta?.rest?.name ?? p.name}");`, NL);
+							});
+							methodBody.append('}', NL, NL);
+						} else if (p.optional) {
+							methodBody.append(`if (${p.name} != null) {`, NL);
+							methodBody.indent(tmp => {
+								tmp.append(codeBlock, NL);
+							});
+							methodBody.append('}', NL);
+						} else {
+							methodBody.append(codeBlock, NL);
+						}
 					}
 				});
+			if (o.parameters.find(p => p.variant !== 'stream')) {
+				methodBody.append(
+					'$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");',
+					NL,
+				);
+			}
 			methodBody.append('var $formData = $formDataBuilder.build();', NL);
 			methodBody.append('var $body = $formData.publisher();', NL);
 			methodBody.append('var $contentType = $formData.contentType();', NL);
@@ -619,8 +672,10 @@ function generateInvokation(
 		methodBody.append('}', NL);
 	}
 
+	const toStringMethod = o.resultType?.variant === 'stream' ? 'mapFileToString' : 'toString';
+
 	methodBody.append(
-		'throw new IllegalStateException(String.format("Unsupported Http-Status \'%s\':\\n%s", $response.statusCode(), ServiceUtils.toString($response)));',
+		`throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\\n%s", $response.statusCode(), ServiceUtils.${toStringMethod}($response)));`,
 		NL,
 	);
 
@@ -667,7 +722,11 @@ function handleOkResult(
 		return;
 	}
 	if (type.variant === 'stream') {
-		node.append('return ServiceUtils.mapFile($response);', NL);
+		if (type.type === 'file') {
+			node.append('return ServiceUtils.mapFile($response);', NL);
+		} else {
+			node.append('return ServiceUtils.mapBlob($response);', NL);
+		}
 	} else if (type.variant === 'record' || type.variant === 'union') {
 		const modelPkg = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
 		const modelType = fqn(`${modelPkg}.${type.type}DataImpl`);
