@@ -571,7 +571,7 @@ function generateInvokation(
 					l.append('.POST($body);', NL);
 				}
 			} else if (method === 'PATCH') {
-				l.append('.header("Content-Type", $contentType);', NL);
+				l.append('.header("Content-Type", $contentType)', NL);
 				l.append('.method("PATCH", $body);', NL);
 			}
 		});
