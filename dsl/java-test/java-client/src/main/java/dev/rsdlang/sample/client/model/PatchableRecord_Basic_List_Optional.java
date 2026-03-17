@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface PatchableRecord_Basic_List_Optional {
 	public interface Builder {}
@@ -14,25 +15,25 @@ public interface PatchableRecord_Basic_List_Optional {
 
 		public String version();
 
-		public List<Boolean> valueBoolean();
+		public Optional<List<Boolean>> valueBoolean();
 
-		public List<Short> valueShort();
+		public Optional<List<Short>> valueShort();
 
-		public List<Integer> valueInt();
+		public Optional<List<Integer>> valueInt();
 
-		public List<Long> valueLong();
+		public Optional<List<Long>> valueLong();
 
-		public List<Float> valueFloat();
+		public Optional<List<Float>> valueFloat();
 
-		public List<Double> valueDouble();
+		public Optional<List<Double>> valueDouble();
 
-		public List<String> valueString();
+		public Optional<List<String>> valueString();
 
-		public List<LocalDate> valueLocalDate();
+		public Optional<List<LocalDate>> valueLocalDate();
 
-		public List<LocalDateTime> valueLocalDateTime();
+		public Optional<List<LocalDateTime>> valueLocalDateTime();
 
-		public List<ZonedDateTime> valueZonedDateTime();
+		public Optional<List<ZonedDateTime>> valueZonedDateTime();
 
 	}
 

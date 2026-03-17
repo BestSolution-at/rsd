@@ -3,25 +3,26 @@ package dev.rsdlang.sample.client.model;
 
 import java.util.function.Function;
 import java.util.List;
+import java.util.Optional;
 
 public interface RecordOfRecords {
 
 	public interface Data extends _Base.BaseData, RecordOfRecords {
 		public SimpleRecord_Basic.Data value();
 
-		public SimpleRecord_Basic.Data value_Null();
+		public Optional<SimpleRecord_Basic.Data> value_Null();
 
-		public SimpleRecord_Basic.Data value_Opt();
+		public Optional<SimpleRecord_Basic.Data> value_Opt();
 
-		public SimpleRecord_Basic.Data value_Opt_Null();
+		public _Base.Nillable<SimpleRecord_Basic.Data> value_Opt_Null();
 
 		public List<SimpleRecord_Basic.Data> list();
 
-		public List<SimpleRecord_Basic.Data> list_Null();
+		public Optional<List<SimpleRecord_Basic.Data>> list_Null();
 
-		public List<SimpleRecord_Basic.Data> list_Opt();
+		public Optional<List<SimpleRecord_Basic.Data>> list_Opt();
 
-		public List<SimpleRecord_Basic.Data> list_Opt_Null();
+		public _Base.Nillable<List<SimpleRecord_Basic.Data>> list_Opt_Null();
 
 	}
 

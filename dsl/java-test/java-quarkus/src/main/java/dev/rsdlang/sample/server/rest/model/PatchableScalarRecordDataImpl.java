@@ -3,11 +3,13 @@ package dev.rsdlang.sample.server.rest.model;
 
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 
+import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.PatchableScalarRecord;
 
 public class PatchableScalarRecordDataImpl extends _BaseDataImpl implements PatchableScalarRecord.Data {
@@ -31,18 +33,18 @@ public class PatchableScalarRecordDataImpl extends _BaseDataImpl implements Patc
 	}
 
 	@Override
-	public ZoneId value_Null() {
-		return _JsonUtils.mapLiteral(data, "value_Null", ZoneId::of);
+	public Optional<ZoneId> value_Null() {
+		return _JsonUtils.mapNullLiteral(data, "value_Null", ZoneId::of);
 	}
 
 	@Override
-	public ZoneId value_Opt() {
-		return _JsonUtils.mapLiteral(data, "value_Opt", ZoneId::of);
+	public Optional<ZoneId> value_Opt() {
+		return _JsonUtils.mapOptLiteral(data, "value_Opt", ZoneId::of);
 	}
 
 	@Override
-	public ZoneId value_Opt_Null() {
-		return _JsonUtils.mapLiteral(data, "value_Opt_Null", ZoneId::of);
+	public _Base.Nillable<ZoneId> value_Opt_Null() {
+		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null", ZoneId::of);
 	}
 
 	@Override
@@ -51,18 +53,18 @@ public class PatchableScalarRecordDataImpl extends _BaseDataImpl implements Patc
 	}
 
 	@Override
-	public List<ZoneId> list_Null() {
-		return _JsonUtils.mapLiterals(data, "list_Null", ZoneId::of);
+	public Optional<List<ZoneId>> list_Null() {
+		return _JsonUtils.mapNullLiterals(data, "list_Null", ZoneId::of);
 	}
 
 	@Override
-	public List<ZoneId> list_Opt() {
-		return _JsonUtils.mapLiterals(data, "list_Opt", ZoneId::of);
+	public Optional<List<ZoneId>> list_Opt() {
+		return _JsonUtils.mapOptLiterals(data, "list_Opt", ZoneId::of);
 	}
 
 	@Override
-	public List<ZoneId> list_Opt_Null() {
-		return _JsonUtils.mapLiterals(data, "list_Opt_Null", ZoneId::of);
+	public _Base.Nillable<List<ZoneId>> list_Opt_Null() {
+		return _JsonUtils.mapNilLiterals(data, "list_Opt_Null", ZoneId::of);
 	}
 
 	public static PatchableScalarRecord.Data of(JsonObject obj) {

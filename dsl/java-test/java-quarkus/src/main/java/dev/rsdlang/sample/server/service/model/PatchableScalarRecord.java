@@ -15,19 +15,19 @@ public interface PatchableScalarRecord {
 
 		public ZoneId value();
 
-		public ZoneId value_Null();
+		public Optional<ZoneId> value_Null();
 
-		public ZoneId value_Opt();
+		public Optional<ZoneId> value_Opt();
 
-		public ZoneId value_Opt_Null();
+		public _Base.Nillable<ZoneId> value_Opt_Null();
 
 		public List<ZoneId> list();
 
-		public List<ZoneId> list_Null();
+		public Optional<List<ZoneId>> list_Null();
 
-		public List<ZoneId> list_Opt();
+		public Optional<List<ZoneId>> list_Opt();
 
-		public List<ZoneId> list_Opt_Null();
+		public _Base.Nillable<List<ZoneId>> list_Opt_Null();
 
 	}
 

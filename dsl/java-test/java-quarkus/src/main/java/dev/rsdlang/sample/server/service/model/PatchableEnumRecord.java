@@ -14,19 +14,19 @@ public interface PatchableEnumRecord {
 
 		public SampleEnum value();
 
-		public SampleEnum value_Null();
+		public Optional<SampleEnum> value_Null();
 
-		public SampleEnum value_Opt();
+		public Optional<SampleEnum> value_Opt();
 
-		public SampleEnum value_Opt_Null();
+		public _Base.Nillable<SampleEnum> value_Opt_Null();
 
 		public List<SampleEnum> list();
 
-		public List<SampleEnum> list_Null();
+		public Optional<List<SampleEnum>> list_Null();
 
-		public List<SampleEnum> list_Opt();
+		public Optional<List<SampleEnum>> list_Opt();
 
-		public List<SampleEnum> list_Opt_Null();
+		public _Base.Nillable<List<SampleEnum>> list_Opt_Null();
 
 	}
 

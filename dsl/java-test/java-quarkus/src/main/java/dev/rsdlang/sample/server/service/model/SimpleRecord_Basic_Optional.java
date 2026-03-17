@@ -4,29 +4,33 @@ package dev.rsdlang.sample.server.service.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 public interface SimpleRecord_Basic_Optional {
 
 	public interface Data extends _Base.BaseData, SimpleRecord_Basic_Optional {
-		public Boolean valueBoolean();
+		public Optional<Boolean> valueBoolean();
 
-		public Short valueShort();
+		public Optional<Short> valueShort();
 
-		public Integer valueInt();
+		public OptionalInt valueInt();
 
-		public Long valueLong();
+		public OptionalLong valueLong();
 
-		public Float valueFloat();
+		public Optional<Float> valueFloat();
 
-		public Double valueDouble();
+		public OptionalDouble valueDouble();
 
-		public String valueString();
+		public Optional<String> valueString();
 
-		public LocalDate valueLocalDate();
+		public Optional<LocalDate> valueLocalDate();
 
-		public LocalDateTime valueLocalDateTime();
+		public Optional<LocalDateTime> valueLocalDateTime();
 
-		public ZonedDateTime valueZonedDateTime();
+		public Optional<ZonedDateTime> valueZonedDateTime();
 
 	}
 

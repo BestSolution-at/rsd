@@ -3,11 +3,13 @@ package dev.rsdlang.sample.client.jdkhttp.impl.model;
 
 import java.util.function.Function;
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 
+import dev.rsdlang.sample.client.model._Base;
 import dev.rsdlang.sample.client.model.RecordWithUnions;
 import dev.rsdlang.sample.client.model.Union;
 import dev.rsdlang.sample.client.model.UnionA;
@@ -24,18 +26,18 @@ public class RecordWithUnionsDataImpl extends _BaseDataImpl implements RecordWit
 	}
 
 	@Override
-	public Union.Data value_Null() {
-		return _JsonUtils.mapObject(data, "value_Null", UnionDataImpl::of);
+	public Optional<Union.Data> value_Null() {
+		return _JsonUtils.mapNullObject(data, "value_Null", UnionDataImpl::of);
 	}
 
 	@Override
-	public Union.Data value_Opt() {
-		return _JsonUtils.mapObject(data, "value_Opt", UnionDataImpl::of, null);
+	public Optional<Union.Data> value_Opt() {
+		return _JsonUtils.mapOptObject(data, "value_Opt", UnionDataImpl::of);
 	}
 
 	@Override
-	public Union.Data value_Opt_Null() {
-		return _JsonUtils.mapObject(data, "value_Opt_Null", UnionDataImpl::of, null);
+	public _Base.Nillable<Union.Data> value_Opt_Null() {
+		return _JsonUtils.mapNilObject(data, "value_Opt_Null", UnionDataImpl::of);
 	}
 
 	@Override
@@ -44,18 +46,18 @@ public class RecordWithUnionsDataImpl extends _BaseDataImpl implements RecordWit
 	}
 
 	@Override
-	public List<Union.Data> list_Null() {
-		return _JsonUtils.mapObjects(data, "list_Null", UnionDataImpl::of);
+	public Optional<List<Union.Data>> list_Null() {
+		return _JsonUtils.mapNullObjects(data, "list_Null", UnionDataImpl::of);
 	}
 
 	@Override
-	public List<Union.Data> list_Opt() {
-		return _JsonUtils.mapObjects(data, "list_Opt", UnionDataImpl::of);
+	public Optional<List<Union.Data>> list_Opt() {
+		return _JsonUtils.mapOptObjects(data, "list_Opt", UnionDataImpl::of);
 	}
 
 	@Override
-	public List<Union.Data> list_Opt_Null() {
-		return _JsonUtils.mapObjects(data, "list_Opt_Null", UnionDataImpl::of);
+	public _Base.Nillable<List<Union.Data>> list_Opt_Null() {
+		return _JsonUtils.mapNilObjects(data, "list_Opt_Null", UnionDataImpl::of);
 	}
 
 	public static RecordWithUnions.Data of(JsonObject obj) {

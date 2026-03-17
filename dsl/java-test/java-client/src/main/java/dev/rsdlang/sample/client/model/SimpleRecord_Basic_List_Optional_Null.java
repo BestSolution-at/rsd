@@ -9,25 +9,25 @@ import java.util.List;
 public interface SimpleRecord_Basic_List_Optional_Null {
 
 	public interface Data extends _Base.BaseData, SimpleRecord_Basic_List_Optional_Null {
-		public List<Boolean> valueBoolean();
+		public _Base.Nillable<List<Boolean>> valueBoolean();
 
-		public List<Short> valueShort();
+		public _Base.Nillable<List<Short>> valueShort();
 
-		public List<Integer> valueInt();
+		public _Base.Nillable<List<Integer>> valueInt();
 
-		public List<Long> valueLong();
+		public _Base.Nillable<List<Long>> valueLong();
 
-		public List<Float> valueFloat();
+		public _Base.Nillable<List<Float>> valueFloat();
 
-		public List<Double> valueDouble();
+		public _Base.Nillable<List<Double>> valueDouble();
 
-		public List<String> valueString();
+		public _Base.Nillable<List<String>> valueString();
 
-		public List<LocalDate> valueLocalDate();
+		public _Base.Nillable<List<LocalDate>> valueLocalDate();
 
-		public List<LocalDateTime> valueLocalDateTime();
+		public _Base.Nillable<List<LocalDateTime>> valueLocalDateTime();
 
-		public List<ZonedDateTime> valueZonedDateTime();
+		public _Base.Nillable<List<ZonedDateTime>> valueZonedDateTime();
 
 	}
 

@@ -3,11 +3,13 @@ package dev.rsdlang.sample.server.rest.model;
 
 import java.util.function.Function;
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 
+import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.RecordOfRecords;
 import dev.rsdlang.sample.server.service.model.SimpleRecord_Basic;
 
@@ -22,18 +24,18 @@ public class RecordOfRecordsDataImpl extends _BaseDataImpl implements RecordOfRe
 	}
 
 	@Override
-	public SimpleRecord_Basic.Data value_Null() {
-		return _JsonUtils.mapObject(data, "value_Null", SimpleRecord_BasicDataImpl::of);
+	public Optional<SimpleRecord_Basic.Data> value_Null() {
+		return _JsonUtils.mapNullObject(data, "value_Null", SimpleRecord_BasicDataImpl::of);
 	}
 
 	@Override
-	public SimpleRecord_Basic.Data value_Opt() {
-		return _JsonUtils.mapObject(data, "value_Opt", SimpleRecord_BasicDataImpl::of, null);
+	public Optional<SimpleRecord_Basic.Data> value_Opt() {
+		return _JsonUtils.mapOptObject(data, "value_Opt", SimpleRecord_BasicDataImpl::of);
 	}
 
 	@Override
-	public SimpleRecord_Basic.Data value_Opt_Null() {
-		return _JsonUtils.mapObject(data, "value_Opt_Null", SimpleRecord_BasicDataImpl::of, null);
+	public _Base.Nillable<SimpleRecord_Basic.Data> value_Opt_Null() {
+		return _JsonUtils.mapNilObject(data, "value_Opt_Null", SimpleRecord_BasicDataImpl::of);
 	}
 
 	@Override
@@ -42,18 +44,18 @@ public class RecordOfRecordsDataImpl extends _BaseDataImpl implements RecordOfRe
 	}
 
 	@Override
-	public List<SimpleRecord_Basic.Data> list_Null() {
-		return _JsonUtils.mapObjects(data, "list_Null", SimpleRecord_BasicDataImpl::of);
+	public Optional<List<SimpleRecord_Basic.Data>> list_Null() {
+		return _JsonUtils.mapNullObjects(data, "list_Null", SimpleRecord_BasicDataImpl::of);
 	}
 
 	@Override
-	public List<SimpleRecord_Basic.Data> list_Opt() {
-		return _JsonUtils.mapObjects(data, "list_Opt", SimpleRecord_BasicDataImpl::of);
+	public Optional<List<SimpleRecord_Basic.Data>> list_Opt() {
+		return _JsonUtils.mapOptObjects(data, "list_Opt", SimpleRecord_BasicDataImpl::of);
 	}
 
 	@Override
-	public List<SimpleRecord_Basic.Data> list_Opt_Null() {
-		return _JsonUtils.mapObjects(data, "list_Opt_Null", SimpleRecord_BasicDataImpl::of);
+	public _Base.Nillable<List<SimpleRecord_Basic.Data>> list_Opt_Null() {
+		return _JsonUtils.mapNilObjects(data, "list_Opt_Null", SimpleRecord_BasicDataImpl::of);
 	}
 
 	public static RecordOfRecords.Data of(JsonObject obj) {

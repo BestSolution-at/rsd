@@ -7,21 +7,21 @@ import java.util.List;
 public interface UploadMixedResult {
 
 	public interface Data extends _Base.BaseData, UploadMixedResult {
-		public String text();
+		public _Base.Nillable<String> text();
 
-		public Integer number();
+		public _Base.Nillable<Integer> number();
 
-		public SimpleRecord.Data rec();
+		public _Base.Nillable<SimpleRecord.Data> rec();
 
-		public List<String> textList();
+		public _Base.Nillable<List<String>> textList();
 
-		public List<Integer> numberList();
+		public _Base.Nillable<List<Integer>> numberList();
 
-		public List<SimpleRecord.Data> recList();
+		public _Base.Nillable<List<SimpleRecord.Data>> recList();
 
-		public String dataFileContent();
+		public _Base.Nillable<String> dataFileContent();
 
-		public String dataBlobContent();
+		public _Base.Nillable<String> dataBlobContent();
 
 	}
 

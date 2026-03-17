@@ -250,23 +250,22 @@ public class BinaryTypesServiceTest {
 				"hello", 42, rec,
 				List.of("a", "b"), List.of(1, 2), List.of(rec),
 				file("FileContent"), blob("BlobContent"));
-		assertEquals("hello", result.text());
-		assertEquals(42, result.number());
-		assertEquals("k", result.rec().key());
-		assertEquals(List.of("a", "b"), result.textList());
-		assertEquals(List.of(1, 2), result.numberList());
-		assertEquals(1, result.recList().size());
-		assertEquals("FileContent", result.dataFileContent());
-		assertEquals("BlobContent", result.dataBlobContent());
+		assertEquals("hello", result.text().orElse(null));
+		assertEquals(42, result.number().orElse(null));
+		assertEquals("k", result.rec().toOptional().map(SimpleRecord.Data::key).orElse(""));
+		assertEquals(List.of("a", "b"), result.textList().orElse(null));
+		assertEquals(List.of(1, 2), result.numberList().orElse(null));
+		assertEquals(1, result.recList().toOptional().map(List::size).orElse(0));
+		assertEquals("FileContent", result.dataFileContent().orElse(null));
+		assertEquals("BlobContent", result.dataBlobContent().orElse(null));
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadMixedOpt_allUndefined(BinaryTypesService service) {
 		var result = service.uploadMixedOpt();
-		assertEquals(null, result.text());
-		// FIXME
-		// assertEquals(null, result.number());
+		assertEquals(true, result.text().isUndefined());
+		assertEquals(true, result.number().isUndefined());
 	}
 
 	@ParameterizedTest
@@ -277,30 +276,28 @@ public class BinaryTypesServiceTest {
 				"hello", 42, rec,
 				List.of("a", "b"), List.of(1, 2), List.of(rec),
 				file("FileContent"), blob("BlobContent"));
-		assertEquals("hello", result.text());
-		assertEquals(42, result.number());
-		assertEquals("k", result.rec().key());
-		assertEquals(List.of("a", "b"), result.textList());
-		assertEquals(List.of(1, 2), result.numberList());
-		assertEquals(1, result.recList().size());
-		assertEquals("FileContent", result.dataFileContent());
-		assertEquals("BlobContent", result.dataBlobContent());
+		assertEquals("hello", result.text().orElse(null));
+		assertEquals(42, result.number().orElse(null));
+		assertEquals("k", result.rec().map(SimpleRecord.Data::key).orElse(""));
+		assertEquals(List.of("a", "b"), result.textList().orElse(null));
+		assertEquals(List.of(1, 2), result.numberList().orElse(null));
+		assertEquals(1, result.recList().map(List::size).orElse(0));
+		assertEquals("FileContent", result.dataFileContent().orElse(null));
+		assertEquals("BlobContent", result.dataBlobContent().orElse(null));
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadMixedNil_allNull(BinaryTypesService service) {
 		var result = service.uploadMixedNil(null, null, null, null, null, null, null, null);
-		assertEquals(null, result.text());
-		// FIXME
-		// assertEquals(null, result.number());
-		assertEquals(null, result.rec());
-		// FIXME
-		// assertEquals(null, result.textList());
-		// assertEquals(null, result.numberList());
-		// assertEquals(null, result.recList());
-		assertEquals(null, result.dataFileContent());
-		assertEquals(null, result.dataBlobContent());
+		assertEquals(true, result.text().isNull());
+		assertEquals(true, result.number().isNull());
+		assertEquals(true, result.rec().isNull());
+		assertEquals(true, result.textList().isNull());
+		assertEquals(true, result.numberList().isNull());
+		assertEquals(true, result.recList().isNull());
+		assertEquals(true, result.dataFileContent().isNull());
+		assertEquals(true, result.dataBlobContent().isNull());
 	}
 
 	@ParameterizedTest
@@ -311,14 +308,14 @@ public class BinaryTypesServiceTest {
 				"hello", 42, rec,
 				List.of("a", "b"), List.of(1, 2), List.of(rec),
 				file("FileContent"), blob("BlobContent"));
-		assertEquals("hello", result.text());
-		assertEquals(42, result.number());
-		assertEquals("k", result.rec().key());
-		assertEquals(List.of("a", "b"), result.textList());
-		assertEquals(List.of(1, 2), result.numberList());
-		assertEquals(1, result.recList().size());
-		assertEquals("FileContent", result.dataFileContent());
-		assertEquals("BlobContent", result.dataBlobContent());
+		assertEquals("hello", result.text().orElse(null));
+		assertEquals(42, result.number().orElse(null));
+		assertEquals("k", result.rec().map(SimpleRecord.Data::key).orElse(""));
+		assertEquals(List.of("a", "b"), result.textList().orElse(null));
+		assertEquals(List.of(1, 2), result.numberList().orElse(null));
+		assertEquals(1, result.recList().map(List::size).orElse(0));
+		assertEquals("FileContent", result.dataFileContent().orElse(null));
+		assertEquals("BlobContent", result.dataBlobContent().orElse(null));
 	}
 
 	// --- Download ---

@@ -13,25 +13,25 @@ public interface PatchableRecord_Basic_Optional_Null {
 
 		public String version();
 
-		public Boolean valueBoolean();
+		public _Base.Nillable<Boolean> valueBoolean();
 
-		public Short valueShort();
+		public _Base.Nillable<Short> valueShort();
 
-		public Integer valueInt();
+		public _Base.Nillable<Integer> valueInt();
 
-		public Long valueLong();
+		public _Base.Nillable<Long> valueLong();
 
-		public Float valueFloat();
+		public _Base.Nillable<Float> valueFloat();
 
-		public Double valueDouble();
+		public _Base.Nillable<Double> valueDouble();
 
-		public String valueString();
+		public _Base.Nillable<String> valueString();
 
-		public LocalDate valueLocalDate();
+		public _Base.Nillable<LocalDate> valueLocalDate();
 
-		public LocalDateTime valueLocalDateTime();
+		public _Base.Nillable<LocalDateTime> valueLocalDateTime();
 
-		public ZonedDateTime valueZonedDateTime();
+		public _Base.Nillable<ZonedDateTime> valueZonedDateTime();
 
 	}
 

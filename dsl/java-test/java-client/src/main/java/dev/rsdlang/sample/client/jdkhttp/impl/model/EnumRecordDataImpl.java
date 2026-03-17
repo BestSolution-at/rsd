@@ -2,11 +2,13 @@
 package dev.rsdlang.sample.client.jdkhttp.impl.model;
 
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 
+import dev.rsdlang.sample.client.model._Base;
 import dev.rsdlang.sample.client.model.EnumRecord;
 import dev.rsdlang.sample.client.model.SampleEnum;
 
@@ -21,18 +23,18 @@ public class EnumRecordDataImpl extends _BaseDataImpl implements EnumRecord.Data
 	}
 
 	@Override
-	public SampleEnum value_Null() {
-		return _JsonUtils.mapLiteral(data, "value_Null", SampleEnum::valueOf);
+	public Optional<SampleEnum> value_Null() {
+		return _JsonUtils.mapNullLiteral(data, "value_Null", SampleEnum::valueOf);
 	}
 
 	@Override
-	public SampleEnum value_Opt() {
-		return _JsonUtils.mapLiteral(data, "value_Opt", SampleEnum::valueOf);
+	public Optional<SampleEnum> value_Opt() {
+		return _JsonUtils.mapOptLiteral(data, "value_Opt", SampleEnum::valueOf);
 	}
 
 	@Override
-	public SampleEnum value_Opt_Null() {
-		return _JsonUtils.mapLiteral(data, "value_Opt_Null", SampleEnum::valueOf);
+	public _Base.Nillable<SampleEnum> value_Opt_Null() {
+		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null", SampleEnum::valueOf);
 	}
 
 	@Override
@@ -41,18 +43,18 @@ public class EnumRecordDataImpl extends _BaseDataImpl implements EnumRecord.Data
 	}
 
 	@Override
-	public List<SampleEnum> list_Null() {
-		return _JsonUtils.mapLiterals(data, "list_Null", SampleEnum::valueOf);
+	public Optional<List<SampleEnum>> list_Null() {
+		return _JsonUtils.mapNullLiterals(data, "list_Null", SampleEnum::valueOf);
 	}
 
 	@Override
-	public List<SampleEnum> list_Opt() {
-		return _JsonUtils.mapLiterals(data, "list_Opt", SampleEnum::valueOf);
+	public Optional<List<SampleEnum>> list_Opt() {
+		return _JsonUtils.mapOptLiterals(data, "list_Opt", SampleEnum::valueOf);
 	}
 
 	@Override
-	public List<SampleEnum> list_Opt_Null() {
-		return _JsonUtils.mapLiterals(data, "list_Opt_Null", SampleEnum::valueOf);
+	public _Base.Nillable<List<SampleEnum>> list_Opt_Null() {
+		return _JsonUtils.mapNilLiterals(data, "list_Opt_Null", SampleEnum::valueOf);
 	}
 
 	public static EnumRecord.Data of(JsonObject obj) {

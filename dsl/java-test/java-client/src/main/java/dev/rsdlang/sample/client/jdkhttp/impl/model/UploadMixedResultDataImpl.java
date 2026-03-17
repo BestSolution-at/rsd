@@ -8,6 +8,7 @@ import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 
+import dev.rsdlang.sample.client.model._Base;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.UploadMixedResult;
 
@@ -17,43 +18,43 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 	}
 
 	@Override
-	public String text() {
-		return _JsonUtils.mapString(data, "text", null);
+	public _Base.Nillable<String> text() {
+		return _JsonUtils.mapNilString(data, "text");
 	}
 
 	@Override
-	public Integer number() {
-		return _JsonUtils.mapInt(data, "number", 0);
+	public _Base.Nillable<Integer> number() {
+		return _JsonUtils.mapNilInt(data, "number");
 	}
 
 	@Override
-	public SimpleRecord.Data rec() {
-		return _JsonUtils.mapObject(data, "rec", SimpleRecordDataImpl::of, null);
+	public _Base.Nillable<SimpleRecord.Data> rec() {
+		return _JsonUtils.mapNilObject(data, "rec", SimpleRecordDataImpl::of);
 	}
 
 	@Override
-	public List<String> textList() {
-		return _JsonUtils.mapStrings(data, "textList");
+	public _Base.Nillable<List<String>> textList() {
+		return _JsonUtils.mapNilStrings(data, "textList");
 	}
 
 	@Override
-	public List<Integer> numberList() {
-		return _JsonUtils.mapInts(data, "numberList");
+	public _Base.Nillable<List<Integer>> numberList() {
+		return _JsonUtils.mapNilInts(data, "numberList");
 	}
 
 	@Override
-	public List<SimpleRecord.Data> recList() {
-		return _JsonUtils.mapObjects(data, "recList", SimpleRecordDataImpl::of);
+	public _Base.Nillable<List<SimpleRecord.Data>> recList() {
+		return _JsonUtils.mapNilObjects(data, "recList", SimpleRecordDataImpl::of);
 	}
 
 	@Override
-	public String dataFileContent() {
-		return _JsonUtils.mapString(data, "dataFileContent", null);
+	public _Base.Nillable<String> dataFileContent() {
+		return _JsonUtils.mapNilString(data, "dataFileContent");
 	}
 
 	@Override
-	public String dataBlobContent() {
-		return _JsonUtils.mapString(data, "dataBlobContent", null);
+	public _Base.Nillable<String> dataBlobContent() {
+		return _JsonUtils.mapNilString(data, "dataBlobContent");
 	}
 
 	public static UploadMixedResult.Data of(JsonObject obj) {

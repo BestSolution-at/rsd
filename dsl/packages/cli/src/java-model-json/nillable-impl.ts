@@ -7,6 +7,8 @@ export function generateNillableContent(
 ): CompositeGeneratorNode {
 	fqn('java.util.function.Consumer');
 	fqn('java.util.function.Function');
+	fqn('java.util.function.Supplier');
+	fqn('java.util.Optional');
 	fqn(`${modelApiPackage}._Base`);
 
 	return toNodeTree(`
@@ -70,6 +72,27 @@ export function generateNillableContent(
 					return new _NillableImpl<>(value);
 				}
 				return nill();
+			}
+
+			public T orElse(T defaultValue) {
+				if (this == UNDEFINED || this == NULL) {
+					return defaultValue;
+				}
+				return value;
+			}
+			
+			public T orElseGet(Supplier<T> defaultValueSupplier) {
+				if (this == UNDEFINED || this == NULL) {
+					return defaultValueSupplier.get();
+				}
+				return value;
+			}
+
+			public Optional<T> toOptional() {
+				if (this == UNDEFINED || this == NULL) {
+					return Optional.empty();
+				}
+				return Optional.of(value);
 			}
 		}`);
 }

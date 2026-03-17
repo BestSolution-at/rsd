@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
@@ -18,53 +19,53 @@ public class SimpleRecord_Basic_List_NullDataImpl extends _BaseDataImpl implemen
 	}
 
 	@Override
-	public List<Boolean> valueBoolean() {
-		return _JsonUtils.mapBooleans(data, "valueBoolean");
+	public Optional<List<Boolean>> valueBoolean() {
+		return _JsonUtils.mapNullBooleans(data, "valueBoolean");
 	}
 
 	@Override
-	public List<Short> valueShort() {
-		return _JsonUtils.mapShorts(data, "valueShort");
+	public Optional<List<Short>> valueShort() {
+		return _JsonUtils.mapNullShorts(data, "valueShort");
 	}
 
 	@Override
-	public List<Integer> valueInt() {
-		return _JsonUtils.mapInts(data, "valueInt");
+	public Optional<List<Integer>> valueInt() {
+		return _JsonUtils.mapNullInts(data, "valueInt");
 	}
 
 	@Override
-	public List<Long> valueLong() {
-		return _JsonUtils.mapLongs(data, "valueLong");
+	public Optional<List<Long>> valueLong() {
+		return _JsonUtils.mapNullLongs(data, "valueLong");
 	}
 
 	@Override
-	public List<Float> valueFloat() {
-		return _JsonUtils.mapFloats(data, "valueFloat");
+	public Optional<List<Float>> valueFloat() {
+		return _JsonUtils.mapNullFloats(data, "valueFloat");
 	}
 
 	@Override
-	public List<Double> valueDouble() {
-		return _JsonUtils.mapDoubles(data, "valueDouble");
+	public Optional<List<Double>> valueDouble() {
+		return _JsonUtils.mapNullDoubles(data, "valueDouble");
 	}
 
 	@Override
-	public List<String> valueString() {
-		return _JsonUtils.mapStrings(data, "valueString");
+	public Optional<List<String>> valueString() {
+		return _JsonUtils.mapNullStrings(data, "valueString");
 	}
 
 	@Override
-	public List<LocalDate> valueLocalDate() {
-		return _JsonUtils.mapLocalDates(data, "valueLocalDate");
+	public Optional<List<LocalDate>> valueLocalDate() {
+		return _JsonUtils.mapNullLocalDates(data, "valueLocalDate");
 	}
 
 	@Override
-	public List<LocalDateTime> valueLocalDateTime() {
-		return _JsonUtils.mapLocalDateTimes(data, "valueLocalDateTime");
+	public Optional<List<LocalDateTime>> valueLocalDateTime() {
+		return _JsonUtils.mapNullLocalDateTimes(data, "valueLocalDateTime");
 	}
 
 	@Override
-	public List<ZonedDateTime> valueZonedDateTime() {
-		return _JsonUtils.mapZonedDateTimes(data, "valueZonedDateTime");
+	public Optional<List<ZonedDateTime>> valueZonedDateTime() {
+		return _JsonUtils.mapNullZonedDateTimes(data, "valueZonedDateTime");
 	}
 
 	public static SimpleRecord_Basic_List_Null.Data of(JsonObject obj) {

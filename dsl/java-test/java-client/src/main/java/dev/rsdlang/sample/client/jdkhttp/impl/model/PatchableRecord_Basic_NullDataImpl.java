@@ -4,6 +4,10 @@ package dev.rsdlang.sample.client.jdkhttp.impl.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
@@ -27,53 +31,53 @@ public class PatchableRecord_Basic_NullDataImpl extends _BaseDataImpl implements
 	}
 
 	@Override
-	public Boolean valueBoolean() {
-		return _JsonUtils.mapBoolean(data, "valueBoolean", false);
+	public Optional<Boolean> valueBoolean() {
+		return _JsonUtils.mapNullBoolean(data, "valueBoolean");
 	}
 
 	@Override
-	public Short valueShort() {
-		return _JsonUtils.mapShort(data, "valueShort", (short) 0);
+	public Optional<Short> valueShort() {
+		return _JsonUtils.mapNullShort(data, "valueShort");
 	}
 
 	@Override
-	public Integer valueInt() {
-		return _JsonUtils.mapInt(data, "valueInt", 0);
+	public OptionalInt valueInt() {
+		return _JsonUtils.mapNullInt(data, "valueInt");
 	}
 
 	@Override
-	public Long valueLong() {
-		return _JsonUtils.mapLong(data, "valueLong", 0);
+	public OptionalLong valueLong() {
+		return _JsonUtils.mapNullLong(data, "valueLong");
 	}
 
 	@Override
-	public Float valueFloat() {
-		return _JsonUtils.mapFloat(data, "valueFloat", 0);
+	public Optional<Float> valueFloat() {
+		return _JsonUtils.mapNullFloat(data, "valueFloat");
 	}
 
 	@Override
-	public Double valueDouble() {
-		return _JsonUtils.mapDouble(data, "valueDouble", 0);
+	public OptionalDouble valueDouble() {
+		return _JsonUtils.mapNullDouble(data, "valueDouble");
 	}
 
 	@Override
-	public String valueString() {
-		return _JsonUtils.mapString(data, "valueString", null);
+	public Optional<String> valueString() {
+		return _JsonUtils.mapNullString(data, "valueString");
 	}
 
 	@Override
-	public LocalDate valueLocalDate() {
-		return _JsonUtils.mapLocalDate(data, "valueLocalDate", null);
+	public Optional<LocalDate> valueLocalDate() {
+		return _JsonUtils.mapNullLocalDate(data, "valueLocalDate");
 	}
 
 	@Override
-	public LocalDateTime valueLocalDateTime() {
-		return _JsonUtils.mapLocalDateTime(data, "valueLocalDateTime", null);
+	public Optional<LocalDateTime> valueLocalDateTime() {
+		return _JsonUtils.mapNullLocalDateTime(data, "valueLocalDateTime");
 	}
 
 	@Override
-	public ZonedDateTime valueZonedDateTime() {
-		return _JsonUtils.mapZonedDateTime(data, "valueZonedDateTime", null);
+	public Optional<ZonedDateTime> valueZonedDateTime() {
+		return _JsonUtils.mapNullZonedDateTime(data, "valueZonedDateTime");
 	}
 
 	public static PatchableRecord_Basic_Null.Data of(JsonObject obj) {

@@ -15,19 +15,19 @@ public interface PatchableRecordWithUnion {
 
 		public PatchableUnion.Data value();
 
-		public PatchableUnion.Data value_Null();
+		public Optional<PatchableUnion.Data> value_Null();
 
-		public PatchableUnion.Data value_Opt();
+		public Optional<PatchableUnion.Data> value_Opt();
 
-		public PatchableUnion.Data value_Opt_Null();
+		public _Base.Nillable<PatchableUnion.Data> value_Opt_Null();
 
 		public List<PatchableUnion.Data> list();
 
-		public List<PatchableUnion.Data> list_Null();
+		public Optional<List<PatchableUnion.Data>> list_Null();
 
-		public List<PatchableUnion.Data> list_Opt();
+		public Optional<List<PatchableUnion.Data>> list_Opt();
 
-		public List<PatchableUnion.Data> list_Opt_Null();
+		public _Base.Nillable<List<PatchableUnion.Data>> list_Opt_Null();
 
 	}
 

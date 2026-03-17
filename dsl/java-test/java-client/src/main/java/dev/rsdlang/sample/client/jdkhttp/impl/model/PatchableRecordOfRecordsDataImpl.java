@@ -3,11 +3,13 @@ package dev.rsdlang.sample.client.jdkhttp.impl.model;
 
 import java.util.function.Function;
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 
+import dev.rsdlang.sample.client.model._Base;
 import dev.rsdlang.sample.client.model.PatchableRecord_Basic;
 import dev.rsdlang.sample.client.model.PatchableRecordOfRecords;
 
@@ -32,18 +34,18 @@ public class PatchableRecordOfRecordsDataImpl extends _BaseDataImpl implements P
 	}
 
 	@Override
-	public PatchableRecord_Basic.Data value_Null() {
-		return _JsonUtils.mapObject(data, "value_Null", PatchableRecord_BasicDataImpl::of);
+	public Optional<PatchableRecord_Basic.Data> value_Null() {
+		return _JsonUtils.mapNullObject(data, "value_Null", PatchableRecord_BasicDataImpl::of);
 	}
 
 	@Override
-	public PatchableRecord_Basic.Data value_Opt() {
-		return _JsonUtils.mapObject(data, "value_Opt", PatchableRecord_BasicDataImpl::of, null);
+	public Optional<PatchableRecord_Basic.Data> value_Opt() {
+		return _JsonUtils.mapOptObject(data, "value_Opt", PatchableRecord_BasicDataImpl::of);
 	}
 
 	@Override
-	public PatchableRecord_Basic.Data value_Opt_Null() {
-		return _JsonUtils.mapObject(data, "value_Opt_Null", PatchableRecord_BasicDataImpl::of, null);
+	public _Base.Nillable<PatchableRecord_Basic.Data> value_Opt_Null() {
+		return _JsonUtils.mapNilObject(data, "value_Opt_Null", PatchableRecord_BasicDataImpl::of);
 	}
 
 	@Override
@@ -52,18 +54,18 @@ public class PatchableRecordOfRecordsDataImpl extends _BaseDataImpl implements P
 	}
 
 	@Override
-	public List<PatchableRecord_Basic.Data> list_Null() {
-		return _JsonUtils.mapObjects(data, "list_Null", PatchableRecord_BasicDataImpl::of);
+	public Optional<List<PatchableRecord_Basic.Data>> list_Null() {
+		return _JsonUtils.mapNullObjects(data, "list_Null", PatchableRecord_BasicDataImpl::of);
 	}
 
 	@Override
-	public List<PatchableRecord_Basic.Data> list_Opt() {
-		return _JsonUtils.mapObjects(data, "list_Opt", PatchableRecord_BasicDataImpl::of);
+	public Optional<List<PatchableRecord_Basic.Data>> list_Opt() {
+		return _JsonUtils.mapOptObjects(data, "list_Opt", PatchableRecord_BasicDataImpl::of);
 	}
 
 	@Override
-	public List<PatchableRecord_Basic.Data> list_Opt_Null() {
-		return _JsonUtils.mapObjects(data, "list_Opt_Null", PatchableRecord_BasicDataImpl::of);
+	public _Base.Nillable<List<PatchableRecord_Basic.Data>> list_Opt_Null() {
+		return _JsonUtils.mapNilObjects(data, "list_Opt_Null", PatchableRecord_BasicDataImpl::of);
 	}
 
 	public static PatchableRecordOfRecords.Data of(JsonObject obj) {

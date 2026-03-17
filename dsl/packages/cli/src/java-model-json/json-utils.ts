@@ -1043,6 +1043,10 @@ public class _JsonUtils {
 		return mapToStream(array, JsonValue.class, v -> v == JsonValue.TRUE).toList();
 	}
 
+	public static Optional<List<Boolean>> mapNullBooleans(JsonObject object, String property) {
+		return mapToNullStream(object, property, JsonValue.class, v -> v == JsonValue.TRUE).map(Stream::toList);
+	}
+
 	public static Optional<List<Boolean>> mapOptBooleans(JsonObject object, String property) {
 		return mapToOptStream(object, property, JsonValue.class, v -> v == JsonValue.TRUE).map(Stream::toList);
 	}
@@ -1057,6 +1061,10 @@ public class _JsonUtils {
 
 	public static List<Short> mapShorts(JsonArray array) {
 		return mapToStream(array, JsonNumber.class, v -> v.numberValue().shortValue()).toList();
+	}
+
+	public static Optional<List<Short>> mapNullShorts(JsonObject object, String property) {
+		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().shortValue()).map(Stream::toList);
 	}
 
 	public static Optional<List<Short>> mapOptShorts(JsonObject object, String property) {
@@ -1095,6 +1103,10 @@ public class _JsonUtils {
 		return mapToStream(array, JsonNumber.class, v -> v.numberValue().longValue()).toList();
 	}
 
+	public static Optional<List<Long>> mapNullLongs(JsonObject object, String property) {
+		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().longValue()).map(Stream::toList);
+	}
+
 	public static Optional<List<Long>> mapOptLongs(JsonObject object, String property) {
 		return mapToOptStream(object, property, JsonNumber.class, v -> v.numberValue().longValue()).map(Stream::toList);
 	}
@@ -1111,6 +1123,10 @@ public class _JsonUtils {
 		return mapToStream(array, JsonNumber.class, JsonNumber::doubleValue).toList();
 	}
 
+	public static Optional<List<Double>> mapNullDoubles(JsonObject object, String property) {
+		return mapToNullStream(object, property, JsonNumber.class, JsonNumber::doubleValue).map(Stream::toList);
+	}
+
 	public static Optional<List<Double>> mapOptDoubles(JsonObject object, String property) {
 		return mapToOptStream(object, property, JsonNumber.class, JsonNumber::doubleValue).map(Stream::toList);
 	}
@@ -1125,6 +1141,10 @@ public class _JsonUtils {
 
 	public static List<Float> mapFloats(JsonArray array) {
 		return mapToStream(array, JsonNumber.class, v -> v.numberValue().floatValue()).toList();
+	}
+
+	public static Optional<List<Float>> mapNullFloats(JsonObject object, String property) {
+		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().floatValue()).map(Stream::toList);
 	}
 
 	public static Optional<List<Float>> mapOptFloats(JsonObject object, String property) {
@@ -1186,6 +1206,10 @@ public class _JsonUtils {
 		return mapToStream(array, JsonString.class, JsonString::getString).map(mapper).toList();
 	}
 
+	public static <T> Optional<List<T>> mapNullLiterals(JsonObject object, String property, Function<String, T> mapper) {
+		return mapToNullStream(object, property, JsonString.class, JsonString::getString).map(s -> s.map(mapper)).map(Stream::toList);
+	}
+
 	public static <T> Optional<List<T>> mapOptLiterals(JsonObject object, String property, Function<String, T> mapper) {
 		return mapToOptStream(object, property, JsonString.class, JsonString::getString).map(s -> s.map(mapper))
 				.map(Stream::toList);
@@ -1201,12 +1225,48 @@ public class _JsonUtils {
 		return mapLiterals(object, property, LocalDate::parse);
 	}
 
+	public static Optional<List<LocalDate>> mapNullLocalDates(JsonObject object, String property) {
+		return mapNullLiterals(object, property, LocalDate::parse);
+	}
+
+	public static Optional<List<LocalDate>> mapOptLocalDates(JsonObject object, String property) {
+		return mapOptLiterals(object, property, LocalDate::parse);
+	}
+
+	public static _Base.Nillable<List<LocalDate>> mapNilLocalDates(JsonObject object, String property) {
+		return mapNilLiterals(object, property, LocalDate::parse);
+	}
+
 	public static List<LocalDateTime> mapLocalDateTimes(JsonObject object, String property) {
 		return mapLiterals(object, property, LocalDateTime::parse);
 	}
 
+	public static Optional<List<LocalDateTime>> mapNullLocalDateTimes(JsonObject object, String property) {
+		return mapNullLiterals(object, property, LocalDateTime::parse);
+	}
+
+	public static Optional<List<LocalDateTime>> mapOptLocalDateTimes(JsonObject object, String property) {
+		return mapOptLiterals(object, property, LocalDateTime::parse);
+	}
+
+	public static _Base.Nillable<List<LocalDateTime>> mapNilLocalDateTimes(JsonObject object, String property) {
+		return mapNilLiterals(object, property, LocalDateTime::parse);
+	}
+
 	public static List<ZonedDateTime> mapZonedDateTimes(JsonObject object, String property) {
 		return mapLiterals(object, property, ZonedDateTime::parse);
+	}
+
+	public static Optional<List<ZonedDateTime>> mapNullZonedDateTimes(JsonObject object, String property) {
+		return mapNullLiterals(object, property, ZonedDateTime::parse);
+	}
+
+	public static Optional<List<ZonedDateTime>> mapOptZonedDateTimes(JsonObject object, String property) {
+		return mapOptLiterals(object, property, ZonedDateTime::parse);
+	}
+
+	public static _Base.Nillable<List<ZonedDateTime>> mapNilZonedDateTimes(JsonObject object, String property) {
+		return mapNilLiterals(object, property, ZonedDateTime::parse);
 	}
 
 	public static Collector<String, ?, JsonArray> toStringArray() {

@@ -43,17 +43,17 @@ public interface PatchableEnumInlineRecord {
 
 		public Value$ value();
 
-		public Value_Null$ value_Null();
+		public Optional<Value_Null$> value_Null();
 
-		public Value_Opt$ value_Opt();
+		public Optional<Value_Opt$> value_Opt();
 
-		public Value_Opt_Null$ value_Opt_Null();
+		public _Base.Nillable<Value_Opt_Null$> value_Opt_Null();
 
 		public List<List$> list();
 
-		public List<List_Null$> list_Null();
+		public Optional<List<List_Null$>> list_Null();
 
-		public List<List_Opt_Null$> list_Opt_Null();
+		public _Base.Nillable<List<List_Opt_Null$>> list_Opt_Null();
 
 	}
 

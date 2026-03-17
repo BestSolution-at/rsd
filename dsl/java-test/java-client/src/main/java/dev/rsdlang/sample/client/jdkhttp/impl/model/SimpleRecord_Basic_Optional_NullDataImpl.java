@@ -9,6 +9,7 @@ import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 
+import dev.rsdlang.sample.client.model._Base;
 import dev.rsdlang.sample.client.model.SimpleRecord_Basic_Optional_Null;
 
 public class SimpleRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl implements SimpleRecord_Basic_Optional_Null.Data {
@@ -17,53 +18,53 @@ public class SimpleRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl impl
 	}
 
 	@Override
-	public Boolean valueBoolean() {
-		return _JsonUtils.mapBoolean(data, "valueBoolean", false);
+	public _Base.Nillable<Boolean> valueBoolean() {
+		return _JsonUtils.mapNilBoolean(data, "valueBoolean");
 	}
 
 	@Override
-	public Short valueShort() {
-		return _JsonUtils.mapShort(data, "valueShort", (short) 0);
+	public _Base.Nillable<Short> valueShort() {
+		return _JsonUtils.mapNilShort(data, "valueShort");
 	}
 
 	@Override
-	public Integer valueInt() {
-		return _JsonUtils.mapInt(data, "valueInt", 0);
+	public _Base.Nillable<Integer> valueInt() {
+		return _JsonUtils.mapNilInt(data, "valueInt");
 	}
 
 	@Override
-	public Long valueLong() {
-		return _JsonUtils.mapLong(data, "valueLong", 0);
+	public _Base.Nillable<Long> valueLong() {
+		return _JsonUtils.mapNilLong(data, "valueLong");
 	}
 
 	@Override
-	public Float valueFloat() {
-		return _JsonUtils.mapFloat(data, "valueFloat", 0);
+	public _Base.Nillable<Float> valueFloat() {
+		return _JsonUtils.mapNilFloat(data, "valueFloat");
 	}
 
 	@Override
-	public Double valueDouble() {
-		return _JsonUtils.mapDouble(data, "valueDouble", 0);
+	public _Base.Nillable<Double> valueDouble() {
+		return _JsonUtils.mapNilDouble(data, "valueDouble");
 	}
 
 	@Override
-	public String valueString() {
-		return _JsonUtils.mapString(data, "valueString", null);
+	public _Base.Nillable<String> valueString() {
+		return _JsonUtils.mapNilString(data, "valueString");
 	}
 
 	@Override
-	public LocalDate valueLocalDate() {
-		return _JsonUtils.mapLocalDate(data, "valueLocalDate", null);
+	public _Base.Nillable<LocalDate> valueLocalDate() {
+		return _JsonUtils.mapNilLocalDate(data, "valueLocalDate");
 	}
 
 	@Override
-	public LocalDateTime valueLocalDateTime() {
-		return _JsonUtils.mapLocalDateTime(data, "valueLocalDateTime", null);
+	public _Base.Nillable<LocalDateTime> valueLocalDateTime() {
+		return _JsonUtils.mapNilLocalDateTime(data, "valueLocalDateTime");
 	}
 
 	@Override
-	public ZonedDateTime valueZonedDateTime() {
-		return _JsonUtils.mapZonedDateTime(data, "valueZonedDateTime", null);
+	public _Base.Nillable<ZonedDateTime> valueZonedDateTime() {
+		return _JsonUtils.mapNilZonedDateTime(data, "valueZonedDateTime");
 	}
 
 	public static SimpleRecord_Basic_Optional_Null.Data of(JsonObject obj) {

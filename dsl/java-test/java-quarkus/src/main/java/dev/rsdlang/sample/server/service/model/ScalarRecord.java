@@ -3,25 +3,26 @@ package dev.rsdlang.sample.server.service.model;
 
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
 
 public interface ScalarRecord {
 
 	public interface Data extends _Base.BaseData, ScalarRecord {
 		public ZoneId value();
 
-		public ZoneId value_Null();
+		public Optional<ZoneId> value_Null();
 
-		public ZoneId value_Opt();
+		public Optional<ZoneId> value_Opt();
 
-		public ZoneId value_Opt_Null();
+		public _Base.Nillable<ZoneId> value_Opt_Null();
 
 		public List<ZoneId> list();
 
-		public List<ZoneId> list_Null();
+		public Optional<List<ZoneId>> list_Null();
 
-		public List<ZoneId> list_Opt();
+		public Optional<List<ZoneId>> list_Opt();
 
-		public List<ZoneId> list_Opt_Null();
+		public _Base.Nillable<List<ZoneId>> list_Opt_Null();
 
 	}
 

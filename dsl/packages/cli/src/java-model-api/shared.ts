@@ -1,6 +1,6 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
 import { isMKeyProperty, isMProperty, isMRevisionProperty, MResolvedBaseProperty, MResolvedPropery } from '../model.js';
-import { computeAPIType, primitiveToObject } from '../java-gen-utils.js';
+import { computeAPIType, computeAPITypeNG, primitiveToObject } from '../java-gen-utils.js';
 import { toFirstUpper } from '../util.js';
 
 export function generatePropertyAccessor(
@@ -14,7 +14,10 @@ export function generatePropertyAccessor(
 	if (inherited) {
 		node.append('@Override', NL);
 	}
-	node.append(`public ${computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn)} ${property.name}();`, NL);
+	node.append(
+		`public ${computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn)} ${property.name}();`,
+		NL,
+	);
 	return node;
 }
 

@@ -5,6 +5,7 @@ import {
 	isMBuiltinType,
 	isMInlineEnumType,
 	isMKeyProperty,
+	isMResolvedProperty,
 	isMResolvedUnionType,
 	isMRevisionProperty,
 	MBuiltinType,
@@ -13,7 +14,7 @@ import {
 	MResolvedPropery,
 	MResolvedRecordType,
 } from '../model.js';
-import { computeAPIType, primitiveToObject } from '../java-gen-utils.js';
+import { computeAPIType, computeAPITypeNG, primitiveToObject } from '../java-gen-utils.js';
 import { BuiltinType } from 'remote-service-description-language';
 import { toCamelCaseIdentifier, toFirstUpper, toNode, toNodeTree } from '../util.js';
 
@@ -24,7 +25,7 @@ export function generatePropertyNG(
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ) {
-	const type = computeAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
+	const type = computeAPITypeNG(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
 
 	const node = new CompositeGeneratorNode();
 	node.append('@Override', NL);
@@ -44,14 +45,16 @@ function generatePropertyContent(
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ) {
-	let mapper: string;
+	let mapper = '// Invalid code path';
 	const array = !isMKeyProperty(prop) && !isMRevisionProperty(prop) && prop.array;
 
 	if (isMBuiltinType(prop.type)) {
 		if (array) {
-			mapper = builtinSimpleJSONArrayAccess({
+			mapper = builtinSimpleJSONArrayAccessNG({
 				type: prop.type,
 				name: prop.name,
+				optional: prop.optional,
+				nullable: prop.nullable,
 			});
 		} else {
 			if (isMKeyProperty(prop) || isMRevisionProperty(prop) || (!prop.optional && !prop.nullable)) {
@@ -60,55 +63,72 @@ function generatePropertyContent(
 					type: prop.type,
 				});
 			} else {
-				mapper = builtinOptionalJSONAccessNG({
+				mapper = builtinJSONAccessNG({
 					name: prop.name,
 					type: prop.type,
+					optional: prop.optional,
+					nullable: prop.nullable,
 				});
 			}
 		}
 	} else if (isMInlineEnumType(prop.type)) {
-		const Type = computeAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, true);
-		if (array) {
-			mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::valueOf)`;
-		} else {
-			mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+		if (isMResolvedProperty(prop)) {
+			let nullablePart = '';
+			if (prop.optional && prop.nullable) {
+				nullablePart = 'Nil';
+			} else if (prop.nullable) {
+				nullablePart = 'Null';
+			} else if (prop.optional) {
+				nullablePart = 'Opt';
+			}
+			const Type = computeAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, true);
+			if (array) {
+				mapper = `_JsonUtils.map${nullablePart}Literals(data, "${prop.name}", ${Type}::valueOf)`;
+			} else {
+				mapper = `_JsonUtils.map${nullablePart}Literal(data, "${prop.name}", ${Type}::valueOf)`;
+			}
 		}
 	} else {
 		if (!isMKeyProperty(prop) && !isMRevisionProperty(prop)) {
+			let nullablePart = '';
+			if (prop.optional && prop.nullable) {
+				nullablePart = 'Nil';
+			} else if (prop.nullable) {
+				nullablePart = 'Null';
+			} else if (prop.optional) {
+				nullablePart = 'Opt';
+			}
+
 			if (prop.variant === 'enum') {
 				if (array) {
-					mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `_JsonUtils.map${nullablePart}Literals(data, "${prop.name}", ${prop.type}::valueOf)`;
 				} else {
-					mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `_JsonUtils.map${nullablePart}Literal(data, "${prop.name}", ${prop.type}::valueOf)`;
 				}
 			} else if (prop.variant === 'scalar') {
 				const Type = computeAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, true);
+
 				if (array) {
-					mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `_JsonUtils.map${nullablePart}Literals(data, "${prop.name}", ${Type}::of)`;
 				} else {
-					mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::of)`;
+					mapper = `_JsonUtils.map${nullablePart}Literal(data, "${prop.name}", ${Type}::of)`;
 				}
 			} else {
-				/*const Type = computeAPIType(
-          owner,
-          prop,
-          nativeTypeSubstitues,
-          interfaceBasePackage,
-          fqn,
-          true
-        );*/
+				let nullablePart = '';
+				if (prop.optional && prop.nullable) {
+					nullablePart = 'Nil';
+				} else if (prop.nullable) {
+					nullablePart = 'Null';
+				} else if (prop.optional) {
+					nullablePart = 'Opt';
+				}
+
 				if (array) {
-					mapper = `_JsonUtils.mapObjects(data, "${prop.name}", ${prop.type}DataImpl::of)`;
+					mapper = `_JsonUtils.map${nullablePart}Objects(data, "${prop.name}", ${prop.type}DataImpl::of)`;
 				} else {
-					if (prop.optional) {
-						mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${prop.type}DataImpl::of, null)`;
-					} else {
-						mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${prop.type}DataImpl::of)`;
-					}
+					mapper = `_JsonUtils.map${nullablePart}Object(data, "${prop.name}", ${prop.type}DataImpl::of)`;
 				}
 			}
-		} else {
-			mapper = 'Foo';
 		}
 	}
 
@@ -186,28 +206,42 @@ export function builtinSimpleJSONArrayAccessNG(property: {
 	return `_JsonUtils.map${toFirstUpper(toCamelCaseIdentifier(property.type))}s(data, "${property.name}")`;
 }
 
-export function builtinOptionalJSONAccessNG(property: { type: MBuiltinType; name: string }): string {
+function builtinJSONAccessNG(property: {
+	type: MBuiltinType;
+	name: string;
+	nullable: boolean;
+	optional: boolean;
+}): string {
+	let nullablePart = '';
+	if (property.nullable && property.optional) {
+		nullablePart = 'Nil';
+	} else if (property.nullable) {
+		nullablePart = 'Null';
+	} else if (property.optional) {
+		nullablePart = 'Opt';
+	}
+
 	switch (property.type) {
 		case 'boolean':
-			return `_JsonUtils.mapBoolean(data, "${property.name}", false)`;
+			return `_JsonUtils.map${nullablePart}Boolean(data, "${property.name}")`;
 		case 'double':
-			return `_JsonUtils.mapDouble(data, "${property.name}", 0)`;
+			return `_JsonUtils.map${nullablePart}Double(data, "${property.name}")`;
 		case 'float':
-			return `_JsonUtils.mapFloat(data, "${property.name}", 0)`;
+			return `_JsonUtils.map${nullablePart}Float(data, "${property.name}")`;
 		case 'int':
-			return `_JsonUtils.mapInt(data, "${property.name}", 0)`;
+			return `_JsonUtils.map${nullablePart}Int(data, "${property.name}")`;
 		case 'local-date':
-			return `_JsonUtils.mapLocalDate(data, "${property.name}", null)`;
+			return `_JsonUtils.map${nullablePart}LocalDate(data, "${property.name}")`;
 		case 'local-date-time':
-			return `_JsonUtils.mapLocalDateTime(data, "${property.name}", null)`;
+			return `_JsonUtils.map${nullablePart}LocalDateTime(data, "${property.name}")`;
 		case 'long':
-			return `_JsonUtils.mapLong(data, "${property.name}", 0)`;
+			return `_JsonUtils.map${nullablePart}Long(data, "${property.name}")`;
 		case 'short':
-			return `_JsonUtils.mapShort(data, "${property.name}", (short) 0)`;
+			return `_JsonUtils.map${nullablePart}Short(data, "${property.name}")`;
 		case 'string':
-			return `_JsonUtils.mapString(data, "${property.name}", null)`;
+			return `_JsonUtils.map${nullablePart}String(data, "${property.name}")`;
 		case 'zoned-date-time':
-			return `_JsonUtils.mapZonedDateTime(data, "${property.name}", null)`;
+			return `_JsonUtils.map${nullablePart}ZonedDateTime(data, "${property.name}")`;
 	}
 }
 

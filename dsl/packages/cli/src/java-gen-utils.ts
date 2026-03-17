@@ -318,6 +318,71 @@ export function computeAPIType(
 	return type;
 }
 
+export function computeAPITypeNG(
+	property: MResolvedBaseProperty,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+): string {
+	if (isMKeyProperty(property)) {
+		return builtinToJavaType(property.type, fqn);
+	}
+	if (isMRevisionProperty(property)) {
+		return builtinToJavaType(property.type, fqn);
+	}
+
+	let type: string;
+
+	if (isMBuiltinType(property.type)) {
+		if (property.array || property.optional || property.nullable) {
+			type = builtinToJavaObjectType(property.type, fqn);
+		} else {
+			type = builtinToJavaType(property.type, fqn);
+		}
+	} else if (isMInlineEnumType(property.type)) {
+		if (isMMixinType(property.resolved.owner)) {
+			type =
+				fqn(`${basePackageName}.mixins.${property.resolved.owner.name}Mixin`) + '.' + toFirstUpper(property.name) + '$';
+		} else {
+			type = toFirstUpper(property.name) + '$';
+		}
+	} else {
+		if (property.variant === 'enum' || property.variant === 'scalar') {
+			if (nativeTypeSubstitues !== undefined && property.type in nativeTypeSubstitues) {
+				type = fqn(nativeTypeSubstitues[property.type]);
+			} else {
+				type = fqn(`${basePackageName}.${property.type}`);
+			}
+		} else if (property.variant === 'record' || property.variant === 'union') {
+			type = fqn(`${basePackageName}.${property.type}`) + '.Data';
+		} else {
+			throw new Error('Should not get here');
+		}
+	}
+
+	if (property.array) {
+		type = `${fqn('java.util.List')}<${type}>`;
+	}
+
+	if (property.optional && property.nullable) {
+		type = fqn(`${basePackageName}._Base`) + `.Nillable<${type}>`;
+	} else if (property.optional || property.nullable) {
+		if (property.array) {
+			type = fqn('java.util.Optional') + `<${type}>`;
+		} else if (property.type === 'int') {
+			type = fqn('java.util.OptionalInt');
+		} else if (property.type === 'long') {
+			type = fqn('java.util.OptionalLong');
+		} else if (property.type === 'double') {
+			type = fqn('java.util.OptionalDouble');
+		} else {
+			type = fqn('java.util.Optional') + `<${type}>`;
+		}
+	}
+
+	return type;
+}
+
 export function toPath(targetFolder: string, packageName: string) {
 	return `${targetFolder}/${packageName.replaceAll('.', '/')}`;
 }

@@ -2,11 +2,13 @@
 package dev.rsdlang.sample.server.rest.model;
 
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 
+import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.EnumInlineRecord;
 
 public class EnumInlineRecordDataImpl extends _BaseDataImpl implements EnumInlineRecord.Data {
@@ -20,18 +22,18 @@ public class EnumInlineRecordDataImpl extends _BaseDataImpl implements EnumInlin
 	}
 
 	@Override
-	public Value_Null$ value_Null() {
-		return _JsonUtils.mapLiteral(data, "value_Null", Value_Null$::valueOf);
+	public Optional<Value_Null$> value_Null() {
+		return _JsonUtils.mapNullLiteral(data, "value_Null", Value_Null$::valueOf);
 	}
 
 	@Override
-	public Value_Opt$ value_Opt() {
-		return _JsonUtils.mapLiteral(data, "value_Opt", Value_Opt$::valueOf);
+	public Optional<Value_Opt$> value_Opt() {
+		return _JsonUtils.mapOptLiteral(data, "value_Opt", Value_Opt$::valueOf);
 	}
 
 	@Override
-	public Value_Opt_Null$ value_Opt_Null() {
-		return _JsonUtils.mapLiteral(data, "value_Opt_Null", Value_Opt_Null$::valueOf);
+	public _Base.Nillable<Value_Opt_Null$> value_Opt_Null() {
+		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null", Value_Opt_Null$::valueOf);
 	}
 
 	@Override
@@ -40,13 +42,13 @@ public class EnumInlineRecordDataImpl extends _BaseDataImpl implements EnumInlin
 	}
 
 	@Override
-	public List<List_Null$> list_Null() {
-		return _JsonUtils.mapLiterals(data, "list_Null", List_Null$::valueOf);
+	public Optional<List<List_Null$>> list_Null() {
+		return _JsonUtils.mapNullLiterals(data, "list_Null", List_Null$::valueOf);
 	}
 
 	@Override
-	public List<List_Opt_Null$> list_Opt_Null() {
-		return _JsonUtils.mapLiterals(data, "list_Opt_Null", List_Opt_Null$::valueOf);
+	public _Base.Nillable<List<List_Opt_Null$>> list_Opt_Null() {
+		return _JsonUtils.mapNilLiterals(data, "list_Opt_Null", List_Opt_Null$::valueOf);
 	}
 
 	public static EnumInlineRecord.Data of(JsonObject obj) {

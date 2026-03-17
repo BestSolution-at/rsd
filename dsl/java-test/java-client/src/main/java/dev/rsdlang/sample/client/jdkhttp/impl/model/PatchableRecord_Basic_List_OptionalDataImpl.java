@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
@@ -28,53 +29,53 @@ public class PatchableRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl i
 	}
 
 	@Override
-	public List<Boolean> valueBoolean() {
-		return _JsonUtils.mapBooleans(data, "valueBoolean");
+	public Optional<List<Boolean>> valueBoolean() {
+		return _JsonUtils.mapOptBooleans(data, "valueBoolean");
 	}
 
 	@Override
-	public List<Short> valueShort() {
-		return _JsonUtils.mapShorts(data, "valueShort");
+	public Optional<List<Short>> valueShort() {
+		return _JsonUtils.mapOptShorts(data, "valueShort");
 	}
 
 	@Override
-	public List<Integer> valueInt() {
-		return _JsonUtils.mapInts(data, "valueInt");
+	public Optional<List<Integer>> valueInt() {
+		return _JsonUtils.mapOptInts(data, "valueInt");
 	}
 
 	@Override
-	public List<Long> valueLong() {
-		return _JsonUtils.mapLongs(data, "valueLong");
+	public Optional<List<Long>> valueLong() {
+		return _JsonUtils.mapOptLongs(data, "valueLong");
 	}
 
 	@Override
-	public List<Float> valueFloat() {
-		return _JsonUtils.mapFloats(data, "valueFloat");
+	public Optional<List<Float>> valueFloat() {
+		return _JsonUtils.mapOptFloats(data, "valueFloat");
 	}
 
 	@Override
-	public List<Double> valueDouble() {
-		return _JsonUtils.mapDoubles(data, "valueDouble");
+	public Optional<List<Double>> valueDouble() {
+		return _JsonUtils.mapOptDoubles(data, "valueDouble");
 	}
 
 	@Override
-	public List<String> valueString() {
-		return _JsonUtils.mapStrings(data, "valueString");
+	public Optional<List<String>> valueString() {
+		return _JsonUtils.mapOptStrings(data, "valueString");
 	}
 
 	@Override
-	public List<LocalDate> valueLocalDate() {
-		return _JsonUtils.mapLocalDates(data, "valueLocalDate");
+	public Optional<List<LocalDate>> valueLocalDate() {
+		return _JsonUtils.mapOptLocalDates(data, "valueLocalDate");
 	}
 
 	@Override
-	public List<LocalDateTime> valueLocalDateTime() {
-		return _JsonUtils.mapLocalDateTimes(data, "valueLocalDateTime");
+	public Optional<List<LocalDateTime>> valueLocalDateTime() {
+		return _JsonUtils.mapOptLocalDateTimes(data, "valueLocalDateTime");
 	}
 
 	@Override
-	public List<ZonedDateTime> valueZonedDateTime() {
-		return _JsonUtils.mapZonedDateTimes(data, "valueZonedDateTime");
+	public Optional<List<ZonedDateTime>> valueZonedDateTime() {
+		return _JsonUtils.mapOptZonedDateTimes(data, "valueZonedDateTime");
 	}
 
 	public static PatchableRecord_Basic_List_Optional.Data of(JsonObject obj) {

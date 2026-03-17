@@ -3,6 +3,8 @@ package dev.rsdlang.sample.client.jdkhttp.impl.model;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.Optional;
 
 import dev.rsdlang.sample.client.model._Base;
 
@@ -66,5 +68,26 @@ public class _NillableImpl<T> implements _Base.Nillable<T> {
 			return new _NillableImpl<>(value);
 		}
 		return nill();
+	}
+
+	public T orElse(T defaultValue) {
+		if (this == UNDEFINED || this == NULL) {
+			return defaultValue;
+		}
+		return value;
+	}
+
+	public T orElseGet(Supplier<T> defaultValueSupplier) {
+		if (this == UNDEFINED || this == NULL) {
+			return defaultValueSupplier.get();
+		}
+		return value;
+	}
+
+	public Optional<T> toOptional() {
+		if (this == UNDEFINED || this == NULL) {
+			return Optional.empty();
+		}
+		return Optional.of(value);
 	}
 }

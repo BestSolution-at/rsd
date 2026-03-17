@@ -3,25 +3,26 @@ package dev.rsdlang.sample.server.service.model;
 
 import java.util.function.Function;
 import java.util.List;
+import java.util.Optional;
 
 public interface RecordWithUnions {
 
 	public interface Data extends _Base.BaseData, RecordWithUnions {
 		public Union.Data value();
 
-		public Union.Data value_Null();
+		public Optional<Union.Data> value_Null();
 
-		public Union.Data value_Opt();
+		public Optional<Union.Data> value_Opt();
 
-		public Union.Data value_Opt_Null();
+		public _Base.Nillable<Union.Data> value_Opt_Null();
 
 		public List<Union.Data> list();
 
-		public List<Union.Data> list_Null();
+		public Optional<List<Union.Data>> list_Null();
 
-		public List<Union.Data> list_Opt();
+		public Optional<List<Union.Data>> list_Opt();
 
-		public List<Union.Data> list_Opt_Null();
+		public _Base.Nillable<List<Union.Data>> list_Opt_Null();
 
 	}
 

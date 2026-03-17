@@ -15,19 +15,19 @@ public interface PatchableRecordOfRecords {
 
 		public PatchableRecord_Basic.Data value();
 
-		public PatchableRecord_Basic.Data value_Null();
+		public Optional<PatchableRecord_Basic.Data> value_Null();
 
-		public PatchableRecord_Basic.Data value_Opt();
+		public Optional<PatchableRecord_Basic.Data> value_Opt();
 
-		public PatchableRecord_Basic.Data value_Opt_Null();
+		public _Base.Nillable<PatchableRecord_Basic.Data> value_Opt_Null();
 
 		public List<PatchableRecord_Basic.Data> list();
 
-		public List<PatchableRecord_Basic.Data> list_Null();
+		public Optional<List<PatchableRecord_Basic.Data>> list_Null();
 
-		public List<PatchableRecord_Basic.Data> list_Opt();
+		public Optional<List<PatchableRecord_Basic.Data>> list_Opt();
 
-		public List<PatchableRecord_Basic.Data> list_Opt_Null();
+		public _Base.Nillable<List<PatchableRecord_Basic.Data>> list_Opt_Null();
 
 	}
 
