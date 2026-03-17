@@ -20,14 +20,20 @@ import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.UploadMixedResult;
+import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class BinaryTypesServiceImpl implements BinaryTypesService {
 	private final String baseURI;
 	private final HttpClient client;
+	private final SpecSamplesClient serviceClient;
 
-	public BinaryTypesServiceImpl(HttpClient client, String baseURI) {
+	public BinaryTypesServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
 		this.baseURI = baseURI;
 		this.client = client;
+		this.serviceClient = serviceClient;
+	}
+	public SpecSamplesClient client() {
+		return this.serviceClient;
 	}
 
 	public int uploadFile(RSDFile data) {

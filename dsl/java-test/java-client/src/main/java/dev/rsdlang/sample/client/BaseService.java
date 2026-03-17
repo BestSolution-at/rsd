@@ -2,4 +2,5 @@
 package dev.rsdlang.sample.client;
 
 public interface BaseService {
+    public SpecSamplesClient client();
 }

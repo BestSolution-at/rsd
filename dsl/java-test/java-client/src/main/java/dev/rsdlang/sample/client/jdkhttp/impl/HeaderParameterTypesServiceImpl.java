@@ -20,14 +20,20 @@ import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesService {
 	private final String baseURI;
 	private final HttpClient client;
+	private final SpecSamplesClient serviceClient;
 
-	public HeaderParameterTypesServiceImpl(HttpClient client, String baseURI) {
+	public HeaderParameterTypesServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
 		this.baseURI = baseURI;
 		this.client = client;
+		this.serviceClient = serviceClient;
+	}
+	public SpecSamplesClient client() {
+		return this.serviceClient;
 	}
 
 	public boolean simpleBooleanHeaderParam(boolean headerValue) {

@@ -17,14 +17,20 @@ import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.ListQueryParameterTypesService;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTypesService {
 	private final String baseURI;
 	private final HttpClient client;
+	private final SpecSamplesClient serviceClient;
 
-	public ListQueryParameterTypesServiceImpl(HttpClient client, String baseURI) {
+	public ListQueryParameterTypesServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
 		this.baseURI = baseURI;
 		this.client = client;
+		this.serviceClient = serviceClient;
+	}
+	public SpecSamplesClient client() {
+		return this.serviceClient;
 	}
 
 	public List<Boolean> listBooleanQueryParam(List<Boolean> queryValue) {

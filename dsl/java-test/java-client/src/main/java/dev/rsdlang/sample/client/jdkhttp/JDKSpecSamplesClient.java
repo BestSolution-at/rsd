@@ -4,7 +4,6 @@ package dev.rsdlang.sample.client.jdkhttp;
 import java.net.http.HttpClient;
 import java.net.URI;
 import java.nio.file.Path;
-import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.HashMap;
 import java.util.Map;
@@ -126,8 +125,11 @@ import dev.rsdlang.sample.client.SampleServiceService;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class JDKSpecSamplesClient implements SpecSamplesClient {
+	private interface ServiceConstructor {
+		Object create(SpecSamplesClient serviceClient, HttpClient client, String baseURI);
+	}
 	private static Map<Class<?>, Supplier<Object>> BUILDER_CREATOR_MAP = new HashMap<>();
-	private static Map<Class<?>, BiFunction<HttpClient, String, Object>> SERVICE_CREATOR_MAP = new HashMap<>();
+	private static Map<Class<?>, ServiceConstructor> SERVICE_CREATOR_MAP = new HashMap<>();
 
 	static {
 		registerBuilderCreator(SimpleRecord_KeyVersion.DataBuilder.class, SimpleRecord_KeyVersionDataImpl.DataBuilderImpl::new);
@@ -200,7 +202,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		BUILDER_CREATOR_MAP.put(clazz, constructor);
 	}
 
-	private static void registerServiceCreator(Class<?> clazz, BiFunction<HttpClient, String, Object> constructor) {
+	private static void registerServiceCreator(Class<?> clazz, ServiceConstructor constructor) {
 		SERVICE_CREATOR_MAP.put(clazz, constructor);
 	}
 
@@ -235,7 +237,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 	public <T extends BaseService> T service(Class<T> clazz) {
 		var serviceConstructor = SERVICE_CREATOR_MAP.get(clazz);
 		if (serviceConstructor != null) {
-			return (T) serviceConstructor.apply(this.httpClient, this.baseURI.toString());
+			return (T) serviceConstructor.create(this, this.httpClient, this.baseURI.toString());
 		}
 		throw new IllegalArgumentException(String.format("Unsupported service '%s'", clazz));
 	}

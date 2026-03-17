@@ -1,5 +1,5 @@
 import { CompositeGeneratorNode, IndentNode, NL, toString } from 'langium/generate';
-import { Artifact } from '../artifact-generator.js';
+import { Artifact, ArtifactGenerationConfig } from '../artifact-generator.js';
 import {
 	computeParameterAPIType,
 	generateCompilationUnit,
@@ -20,9 +20,13 @@ import {
 } from '../model.js';
 import { builtinBuilderAccess, builtinBuilderArrayJSONAccess } from '../java-model-json/shared.js';
 import { computePath } from '../rest-utils.js';
-import { toFirstUpper, toNodeTree } from '../util.js';
+import { toCamelCaseIdentifier, toFirstUpper, toNodeTree } from '../util.js';
 
-export function generateService(s: MResolvedService, artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact {
+export function generateService(
+	s: MResolvedService,
+	generatorConfig: ArtifactGenerationConfig,
+	artifactConfig: JavaRestClientJDKGeneratorConfig,
+): Artifact {
 	const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl`;
 
 	const importCollector = new JavaImportsCollector(packageName);
@@ -30,17 +34,30 @@ export function generateService(s: MResolvedService, artifactConfig: JavaRestCli
 
 	const ServiceInterface = fqn(`${artifactConfig.rootPackageName}.${s.name}Service`);
 	const HttpClient = fqn('java.net.http.HttpClient');
+	const ServiceClientInterface = fqn(
+		`${artifactConfig.rootPackageName}.${toFirstUpper(toCamelCaseIdentifier(generatorConfig.name))}Client`,
+	);
 
 	const node = new CompositeGeneratorNode();
 	node.append(`public class ${s.name}ServiceImpl implements ${ServiceInterface} {`, NL);
 	node.indent(classBody => {
 		classBody.append('private final String baseURI;', NL);
 		classBody.append(`private final ${HttpClient} client;`, NL);
+		classBody.append(`private final ${ServiceClientInterface} serviceClient;`, NL);
 		classBody.appendNewLine();
-		classBody.append(`public ${s.name}ServiceImpl(${HttpClient} client, String baseURI) {`, NL);
+		classBody.append(
+			`public ${s.name}ServiceImpl(${ServiceClientInterface} serviceClient, ${HttpClient} client, String baseURI) {`,
+			NL,
+		);
 		classBody.indent(initBody => {
 			initBody.append('this.baseURI = baseURI;', NL);
 			initBody.append('this.client = client;', NL);
+			initBody.append('this.serviceClient = serviceClient;', NL);
+		});
+		classBody.append('}', NL);
+		classBody.append(`public ${ServiceClientInterface} client() {`, NL);
+		classBody.indent(mBody => {
+			mBody.append('return this.serviceClient;', NL);
 		});
 		classBody.append('}', NL);
 		s.operations.forEach(o => {

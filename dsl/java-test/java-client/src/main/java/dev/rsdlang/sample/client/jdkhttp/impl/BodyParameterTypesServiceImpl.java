@@ -26,14 +26,20 @@ import dev.rsdlang.sample.client.model.PatchableRecord;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.Union;
+import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class BodyParameterTypesServiceImpl implements BodyParameterTypesService {
 	private final String baseURI;
 	private final HttpClient client;
+	private final SpecSamplesClient serviceClient;
 
-	public BodyParameterTypesServiceImpl(HttpClient client, String baseURI) {
+	public BodyParameterTypesServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
 		this.baseURI = baseURI;
 		this.client = client;
+		this.serviceClient = serviceClient;
+	}
+	public SpecSamplesClient client() {
+		return this.serviceClient;
 	}
 
 	public boolean simpleBooleanBodyParam(boolean bodyBoolean) {

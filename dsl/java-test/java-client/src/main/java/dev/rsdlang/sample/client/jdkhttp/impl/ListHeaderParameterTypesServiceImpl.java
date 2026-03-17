@@ -20,14 +20,20 @@ import dev.rsdlang.sample.client.ListHeaderParameterTypesService;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterTypesService {
 	private final String baseURI;
 	private final HttpClient client;
+	private final SpecSamplesClient serviceClient;
 
-	public ListHeaderParameterTypesServiceImpl(HttpClient client, String baseURI) {
+	public ListHeaderParameterTypesServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
 		this.baseURI = baseURI;
 		this.client = client;
+		this.serviceClient = serviceClient;
+	}
+	public SpecSamplesClient client() {
+		return this.serviceClient;
 	}
 
 	public List<Boolean> listBooleanHeaderParam(List<Boolean> headerValue) {

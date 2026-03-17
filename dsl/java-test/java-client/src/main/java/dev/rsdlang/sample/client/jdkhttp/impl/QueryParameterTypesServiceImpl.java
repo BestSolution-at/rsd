@@ -17,14 +17,20 @@ import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.QueryParameterTypesService;
+import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class QueryParameterTypesServiceImpl implements QueryParameterTypesService {
 	private final String baseURI;
 	private final HttpClient client;
+	private final SpecSamplesClient serviceClient;
 
-	public QueryParameterTypesServiceImpl(HttpClient client, String baseURI) {
+	public QueryParameterTypesServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
 		this.baseURI = baseURI;
 		this.client = client;
+		this.serviceClient = serviceClient;
+	}
+	public SpecSamplesClient client() {
+		return this.serviceClient;
 	}
 
 	public boolean simpleBooleanQueryParam(boolean queryValue) {

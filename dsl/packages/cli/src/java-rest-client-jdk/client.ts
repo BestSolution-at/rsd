@@ -25,19 +25,23 @@ export function generateClient(
 	const Map = fqn('java.util.Map');
 	const HashMap = fqn('java.util.HashMap');
 	const Supplier = fqn('java.util.function.Supplier');
-	const BiFunction = fqn('java.util.function.BiFunction');
 	const HttpClient = fqn('java.net.http.HttpClient');
 	const Base = fqn(`${basePackage}.model._Base`);
 	const BaseService = fqn(`${basePackage}.BaseService`);
 
 	const content = new CompositeGeneratorNode();
 	content.append(`public class JDK${toCamelCaseIdentifier(generatorConfig.name)}Client implements ${Client} {`, NL);
+	content.indent(classBody => {
+		classBody.append('private interface ServiceConstructor {', NL);
+		classBody.indent(constructorBody => {
+			constructorBody.append(`Object create(${Client} serviceClient, ${HttpClient} client, String baseURI);`, NL);
+		});
+		classBody.append('}', NL);
+	});
+
 	content.indent(clBody => {
 		clBody.append(`private static ${Map}<Class<?>, ${Supplier}<Object>> BUILDER_CREATOR_MAP = new ${HashMap}<>();`, NL);
-		clBody.append(
-			`private static ${Map}<Class<?>, ${BiFunction}<${HttpClient}, String, Object>> SERVICE_CREATOR_MAP = new ${HashMap}<>();`,
-			NL,
-		);
+		clBody.append(`private static ${Map}<Class<?>, ServiceConstructor> SERVICE_CREATOR_MAP = new ${HashMap}<>();`, NL);
 		clBody.appendNewLine();
 		clBody.append('static {', NL);
 		clBody.indent(staticBody => {
@@ -78,10 +82,7 @@ export function generateClient(
 		});
 		clBody.append('}', NL);
 		clBody.appendNewLine();
-		clBody.append(
-			`private static void registerServiceCreator(Class<?> clazz, ${BiFunction}<${HttpClient}, String, Object> constructor) {`,
-			NL,
-		);
+		clBody.append(`private static void registerServiceCreator(Class<?> clazz, ServiceConstructor constructor) {`, NL);
 		clBody.indent(mBody => {
 			mBody.append('SERVICE_CREATOR_MAP.put(clazz, constructor);', NL);
 		});
@@ -150,7 +151,7 @@ export function generateClient(
 			mBody.append('var serviceConstructor = SERVICE_CREATOR_MAP.get(clazz);', NL);
 			mBody.append('if (serviceConstructor != null) {', NL);
 			mBody.indent(block => {
-				block.append('return (T) serviceConstructor.apply(this.httpClient, this.baseURI.toString());', NL);
+				block.append('return (T) serviceConstructor.create(this, this.httpClient, this.baseURI.toString());', NL);
 			});
 			mBody.append('}', NL);
 			mBody.append(`throw new IllegalArgumentException(String.format("Unsupported service '%s'", clazz));`, NL);

@@ -14,14 +14,20 @@ import java.util.Objects;
 
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.PathParameterTypeServiceService;
+import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceService {
 	private final String baseURI;
 	private final HttpClient client;
+	private final SpecSamplesClient serviceClient;
 
-	public PathParameterTypeServiceServiceImpl(HttpClient client, String baseURI) {
+	public PathParameterTypeServiceServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
 		this.baseURI = baseURI;
 		this.client = client;
+		this.serviceClient = serviceClient;
+	}
+	public SpecSamplesClient client() {
+		return this.serviceClient;
 	}
 
 	public boolean simpleBooleanPathParam(boolean pathBoolean) {

@@ -41,7 +41,7 @@ function generate(
 	result.push(...generateRSDException(model.errors, artifactConfig, artifactConfig.rootPackageName));
 	result.push(...model.errors.map(e => generateError(e, artifactConfig, artifactConfig.rootPackageName)));
 	result.push(generateBase(artifactConfig));
-	result.push(generateBaseService(artifactConfig));
+	result.push(generateBaseService(generatorConfig, artifactConfig));
 	result.push(generateClient(generatorConfig, artifactConfig, model));
 	result.push(generateFactory(generatorConfig, artifactConfig));
 

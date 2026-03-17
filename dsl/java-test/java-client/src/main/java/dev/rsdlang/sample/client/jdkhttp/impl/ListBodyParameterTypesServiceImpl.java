@@ -23,14 +23,20 @@ import dev.rsdlang.sample.client.ListBodyParameterTypesService;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService {
 	private final String baseURI;
 	private final HttpClient client;
+	private final SpecSamplesClient serviceClient;
 
-	public ListBodyParameterTypesServiceImpl(HttpClient client, String baseURI) {
+	public ListBodyParameterTypesServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
 		this.baseURI = baseURI;
 		this.client = client;
+		this.serviceClient = serviceClient;
+	}
+	public SpecSamplesClient client() {
+		return this.serviceClient;
 	}
 
 	public List<Boolean> listBooleanBodyParam(List<Boolean> bodyBoolean) {

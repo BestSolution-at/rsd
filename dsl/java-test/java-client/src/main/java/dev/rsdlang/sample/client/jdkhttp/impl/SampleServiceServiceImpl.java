@@ -18,14 +18,20 @@ import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.SampleError2Exception;
 import dev.rsdlang.sample.client.SampleErrorException;
 import dev.rsdlang.sample.client.SampleServiceService;
+import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class SampleServiceServiceImpl implements SampleServiceService {
 	private final String baseURI;
 	private final HttpClient client;
+	private final SpecSamplesClient serviceClient;
 
-	public SampleServiceServiceImpl(HttpClient client, String baseURI) {
+	public SampleServiceServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
 		this.baseURI = baseURI;
 		this.client = client;
+		this.serviceClient = serviceClient;
+	}
+	public SpecSamplesClient client() {
+		return this.serviceClient;
 	}
 
 	public boolean getBoolean() {

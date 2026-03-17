@@ -1,9 +1,13 @@
 import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 
-import { Artifact } from '../artifact-generator.js';
+import { Artifact, ArtifactGenerationConfig } from '../artifact-generator.js';
 import { JavaClientAPIGeneratorConfig, toPath } from '../java-gen-utils.js';
+import { toCamelCaseIdentifier, toFirstUpper } from '../util.js';
 
-export function generateBaseService(artifactConfig: JavaClientAPIGeneratorConfig): Artifact {
+export function generateBaseService(
+	generatorConfig: ArtifactGenerationConfig,
+	artifactConfig: JavaClientAPIGeneratorConfig,
+): Artifact {
 	const packageName = artifactConfig.rootPackageName;
 
 	const node = new CompositeGeneratorNode();
@@ -11,6 +15,9 @@ export function generateBaseService(artifactConfig: JavaClientAPIGeneratorConfig
 	node.append(`package ${packageName};`, NL, NL);
 
 	node.append('public interface BaseService {', NL);
+	node.indent(classBody => {
+		classBody.append(`public ${toFirstUpper(toCamelCaseIdentifier(generatorConfig.name))}Client client();`, NL);
+	});
 	node.append('}', NL);
 
 	return {
