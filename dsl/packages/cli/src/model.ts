@@ -212,6 +212,12 @@ export function isMPropertyNoneInlineProperty(value: MProperty): value is MPrope
 	);
 }
 
+export function isMPropertyInlineResolvedProperty(
+	value: unknown,
+): value is MPropertyNoneInlineProperty & MResolvedPropery {
+	return isMResolvedProperty(value) && isMPropertyNoneInlineProperty(value);
+}
+
 export type MResolvedPropery = MProperty & MResolvedBaseProperty;
 
 export function isMProperty(value: unknown): value is MProperty {

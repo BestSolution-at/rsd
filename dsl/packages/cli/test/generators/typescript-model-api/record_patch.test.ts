@@ -2,6 +2,7 @@ import { beforeAll, beforeEach, describe, expect, test } from 'vitest';
 import { createTypescriptClientAPIGeneratorConfig, findListElement, sampleModel } from '../test-utils.js';
 import {
 	allResolvedRecordProperties,
+	isMPropertyInlineResolvedProperty,
 	isMResolvedProperty,
 	isMResolvedRecordType,
 	MResolvedRSDModel,
@@ -711,7 +712,7 @@ describe('ValueChangeTypes', () => {
 	test.each(SINGLE_CHANGE_TYPES)('$recordName - $propertyName', data => {
 		const recordModel = findListElement(model.elements, isMResolvedRecordType, r => r.name === data.recordName);
 		const allProps = allResolvedRecordProperties(recordModel);
-		const prop = findListElement(allProps, isMResolvedProperty, p => p.name === data.propertyName);
+		const prop = findListElement(allProps, isMPropertyInlineResolvedProperty, p => p.name === data.propertyName);
 		const collector = new TypescriptImportCollector(createTypescriptClientAPIGeneratorConfig());
 		const fqn = collector.importType.bind(collector);
 		const result = toString(ValueChangeTypes(prop, fqn), '\t').trim();
@@ -1070,7 +1071,7 @@ describe('ValueChangeTypeGuard', () => {
 	test.each(RECORD_PROP_TYPEGUARDS)('$recordName - $propertyName', data => {
 		const recordModel = findListElement(model.elements, isMResolvedRecordType, r => r.name === data.recordName);
 		const allProps = allResolvedRecordProperties(recordModel);
-		const prop = findListElement(allProps, isMResolvedProperty, p => p.name === data.propertyName);
+		const prop = findListElement(allProps, isMPropertyInlineResolvedProperty, p => p.name === data.propertyName);
 		const collector = new TypescriptImportCollector(createTypescriptClientAPIGeneratorConfig());
 		const fqn = collector.importType.bind(collector);
 		const result = toString(ValueChangeTypeGuard(prop, fqn), '\t').trim();
