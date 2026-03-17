@@ -19,7 +19,7 @@ public interface SpecSamplesClient {
 
 	public <T extends BaseService> T service(Class<T> clazz);
 
-	public RSDBlob creatBlob(Path file, String mimeType);
+	public RSDBlob createBlob(Path file, String mimeType);
 
-	public RSDFile creatFile(Path file, String mimeType, String filename);
+	public RSDFile createFile(Path file, String mimeType, String filename);
 }

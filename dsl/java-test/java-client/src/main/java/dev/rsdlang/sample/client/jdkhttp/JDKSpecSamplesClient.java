@@ -242,11 +242,11 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		throw new IllegalArgumentException(String.format("Unsupported service '%s'", clazz));
 	}
 
-	public RSDBlob creatBlob(Path file, String mimeType) {
+	public RSDBlob createBlob(Path file, String mimeType) {
 		return _BlobImpl.of(file, mimeType);
 	}
 
-	public RSDFile creatFile(Path file, String mimeType, String filename) {
+	public RSDFile createFile(Path file, String mimeType, String filename) {
 		return _FileImpl.of(file, mimeType, filename);
 	}
 }

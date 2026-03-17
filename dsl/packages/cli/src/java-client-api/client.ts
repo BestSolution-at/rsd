@@ -46,13 +46,13 @@ export function generateClient(
 			client.append(
 				`public ${fqn(
 					`${artifactConfig.rootPackageName}.model.RSDBlob`,
-				)} creatBlob(${fqn('java.nio.file.Path')} file, String mimeType);`,
+				)} createBlob(${fqn('java.nio.file.Path')} file, String mimeType);`,
 				NL,
 			);
 			if (hasFileStream(model)) {
 				client.appendNewLine();
 				client.append(
-					`public ${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)} creatFile(${fqn(
+					`public ${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)} createFile(${fqn(
 						'java.nio.file.Path',
 					)} file, String mimeType, String filename);`,
 					NL,

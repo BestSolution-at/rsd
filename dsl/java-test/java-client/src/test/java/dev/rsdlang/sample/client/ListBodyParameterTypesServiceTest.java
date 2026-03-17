@@ -24,11 +24,11 @@ import dev.rsdlang.sample.client.model.SimpleRecord;
 
 public class ListBodyParameterTypesServiceTest {
 
-	private static final SpecSamplesClient CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
+	private static final SpecSamplesClient JDK_CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
 
 	static ListBodyParameterTypesService[] serviceProvider() {
 		return new ListBodyParameterTypesService[] {
-				CLIENT.service(ListBodyParameterTypesService.class),
+				JDK_CLIENT.service(ListBodyParameterTypesService.class),
 		};
 	}
 
@@ -701,7 +701,7 @@ public class ListBodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParam(ListBodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals("hello-42-k", service.listMultiBodyParam(List.of("hello"), List.of(42), List.of(record)));
 	}
 
@@ -729,7 +729,7 @@ public class ListBodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamOpt_allDefined(ListBodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
 				service.listMultiBodyParamOpt(List.of("hello"), List.of(42), List.of(record)));
 	}
@@ -744,7 +744,7 @@ public class ListBodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamNil_allDefined(ListBodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
 				service.listMultiBodyParamNil(List.of("hello"), List.of(42), List.of(record)));
 	}
@@ -773,7 +773,7 @@ public class ListBodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamOptNil_allDefined(ListBodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
 				service.listMultiBodyParamOptNil(List.of("hello"), List.of(42), List.of(record)));
 	}
@@ -783,7 +783,7 @@ public class ListBodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listRecordBodyParam(ListBodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		var result = service.listRecordBodyParam(List.of(record));
 		assertEquals(1, result.size());
 		assertEquals("k", result.get(0).key());
@@ -800,7 +800,7 @@ public class ListBodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listRecordBodyParamOpt_defined(ListBodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(NilResult.DEFINED, service.listRecordBodyParamOpt(List.of(record)));
 	}
 
@@ -813,7 +813,7 @@ public class ListBodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listRecordBodyParamNil_defined(ListBodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(NilResult.DEFINED, service.listRecordBodyParamNil(List.of(record)));
 	}
 
@@ -832,7 +832,7 @@ public class ListBodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listRecordBodyParamOptNil_defined(ListBodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(NilResult.DEFINED, service.listRecordBodyParamOptNil(List.of(record)));
 	}
 

@@ -24,11 +24,11 @@ import dev.rsdlang.sample.client.model.SimpleRecord;
 
 public class HeaderParameterTypesServiceTest {
 
-	private static final SpecSamplesClient CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
+	private static final SpecSamplesClient JDK_CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
 
 	static HeaderParameterTypesService[] serviceProvider() {
 		return new HeaderParameterTypesService[] {
-				CLIENT.service(HeaderParameterTypesService.class),
+				JDK_CLIENT.service(HeaderParameterTypesService.class),
 		};
 	}
 
@@ -770,7 +770,7 @@ public class HeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordHeaderParam(HeaderParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		var result = service.recordHeaderParam(record);
 		assertEquals("k", result.key());
 		assertEquals("1", result.version());
@@ -786,7 +786,7 @@ public class HeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordHeaderParamOpt_defined(HeaderParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(NilResult.DEFINED, service.recordHeaderParamOpt(record));
 	}
 
@@ -799,7 +799,7 @@ public class HeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordHeaderParamNil_defined(HeaderParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(NilResult.DEFINED, service.recordHeaderParamNil(record));
 	}
 
@@ -818,7 +818,7 @@ public class HeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordHeaderParamOptNil_defined(HeaderParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(NilResult.DEFINED, service.recordHeaderParamOptNil(record));
 	}
 

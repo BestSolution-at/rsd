@@ -25,11 +25,11 @@ import dev.rsdlang.sample.client.model.UnionA;
 
 public class BodyParameterTypesServiceTest {
 
-	private static final SpecSamplesClient CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
+	private static final SpecSamplesClient JDK_CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
 
 	static BodyParameterTypesService[] serviceProvider() {
 		return new BodyParameterTypesService[] {
-				CLIENT.service(BodyParameterTypesService.class),
+				JDK_CLIENT.service(BodyParameterTypesService.class),
 		};
 	}
 
@@ -700,7 +700,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParam(BodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals("hello-42-k", service.multiBodyParam("hello", 42, record));
 	}
 
@@ -725,7 +725,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOpt_allDefined(BodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals("hello-42-k", service.multiBodyParamOpt("hello", 42, record));
 	}
 
@@ -738,7 +738,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamNil_allDefined(BodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals("hello-42-k", service.multiBodyParamNil("hello", 42, record));
 	}
 
@@ -764,14 +764,14 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOptNil_allDefined(BodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals("hello-42-k", service.multiBodyParamOptNil("hello", 42, record));
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamFirst_allDefined(BodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals("hello-42-k", service.multiBodyParamFirst("hello", 42, record));
 	}
 
@@ -780,7 +780,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordBodyParam(BodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		var result = service.recordBodyParam(record);
 		assertEquals("k", result.key());
 		assertEquals("1", result.version());
@@ -796,7 +796,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordBodyParamOpt_defined(BodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(NilResult.DEFINED, service.recordBodyParamOpt(record));
 	}
 
@@ -809,7 +809,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordBodyParamNil_defined(BodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(NilResult.DEFINED, service.recordBodyParamNil(record));
 	}
 
@@ -828,7 +828,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordBodyParamOptNil_defined(BodyParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(NilResult.DEFINED, service.recordBodyParamOptNil(record));
 	}
 
@@ -837,7 +837,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void unionBodyParam(BodyParameterTypesService service) {
-		var union = CLIENT.builder(UnionA.DataBuilder.class).shared("shared").valueA("valueA").build();
+		var union = service.client().builder(UnionA.DataBuilder.class).shared("shared").valueA("valueA").build();
 		var result = service.unionBodyParam(union);
 		assertEquals("shared", result.shared());
 	}
@@ -851,7 +851,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void unionBodyParamOpt_defined(BodyParameterTypesService service) {
-		var union = CLIENT.builder(UnionA.DataBuilder.class).shared("shared").valueA("valueA").build();
+		var union = service.client().builder(UnionA.DataBuilder.class).shared("shared").valueA("valueA").build();
 		assertEquals(NilResult.DEFINED, service.unionBodyParamOpt(union));
 	}
 
@@ -864,7 +864,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void unionBodyParamNil_defined(BodyParameterTypesService service) {
-		var union = CLIENT.builder(UnionA.DataBuilder.class).shared("shared").valueA("valueA").build();
+		var union = service.client().builder(UnionA.DataBuilder.class).shared("shared").valueA("valueA").build();
 		assertEquals(NilResult.DEFINED, service.unionBodyParamNil(union));
 	}
 
@@ -883,7 +883,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void unionBodyParamOptNil_defined(BodyParameterTypesService service) {
-		var union = CLIENT.builder(UnionA.DataBuilder.class).shared("shared").valueA("valueA").build();
+		var union = service.client().builder(UnionA.DataBuilder.class).shared("shared").valueA("valueA").build();
 		assertEquals(NilResult.DEFINED, service.unionBodyParamOptNil(union));
 	}
 
@@ -892,7 +892,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void patchableRecordBodyParam(BodyParameterTypesService service) {
-		var patch = CLIENT.builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v").build();
+		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v").build();
 		var result = service.patchableRecordBodyParam(patch);
 		assertEquals("k", result.key());
 		assertEquals("1", result.version());
@@ -910,7 +910,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void patchableRecordBodyParamOpt_defined(BodyParameterTypesService service) {
-		var patch = CLIENT.builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v").build();
+		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v").build();
 		var result = service.patchableRecordBodyParamOpt(patch);
 		assertEquals("k", result.key());
 		assertEquals("v", result.value());
@@ -927,7 +927,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void patchableRecordBodyParamNil_defined(BodyParameterTypesService service) {
-		var patch = CLIENT.builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v").build();
+		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v").build();
 		var result = service.patchableRecordBodyParamNil(patch);
 		assertEquals("k", result.key());
 		assertEquals("v", result.value());
@@ -952,7 +952,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void patchableRecordBodyParamOptNil_defined(BodyParameterTypesService service) {
-		var patch = CLIENT.builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v").build();
+		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v").build();
 		var result = service.patchableRecordBodyParamOptNil(patch);
 		assertEquals("k", result.key());
 		assertEquals("v", result.value());

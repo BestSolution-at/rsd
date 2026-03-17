@@ -163,7 +163,7 @@ export function generateClient(
 			clBody.append(
 				`public ${fqn(
 					`${artifactConfig.rootPackageName}.model.RSDBlob`,
-				)} creatBlob(${fqn('java.nio.file.Path')} file, String mimeType) {`,
+				)} createBlob(${fqn('java.nio.file.Path')} file, String mimeType) {`,
 				NL,
 			);
 			clBody.indent(mBody => {
@@ -173,7 +173,7 @@ export function generateClient(
 			if (hasFileStream(m)) {
 				clBody.appendNewLine();
 				clBody.append(
-					`public ${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)} creatFile(${fqn(
+					`public ${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)} createFile(${fqn(
 						'java.nio.file.Path',
 					)} file, String mimeType, String filename) {`,
 					NL,

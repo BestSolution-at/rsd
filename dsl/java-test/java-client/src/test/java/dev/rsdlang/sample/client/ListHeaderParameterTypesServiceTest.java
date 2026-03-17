@@ -24,11 +24,11 @@ import dev.rsdlang.sample.client.model.SimpleRecord;
 
 public class ListHeaderParameterTypesServiceTest {
 
-	private static final SpecSamplesClient CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
+	private static final SpecSamplesClient JDK_CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
 
 	static ListHeaderParameterTypesService[] serviceProvider() {
 		return new ListHeaderParameterTypesService[] {
-				CLIENT.service(ListHeaderParameterTypesService.class),
+				JDK_CLIENT.service(ListHeaderParameterTypesService.class),
 		};
 	}
 
@@ -702,7 +702,7 @@ public class ListHeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParam(ListHeaderParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals("hello-42-k", service.listMultiHeaderParam(List.of("hello"), List.of(42), List.of(record)));
 	}
 
@@ -730,7 +730,7 @@ public class ListHeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParamOpt_allDefined(ListHeaderParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
 				service.listMultiHeaderParamOpt(List.of("hello"), List.of(42), List.of(record)));
 	}
@@ -738,7 +738,7 @@ public class ListHeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParamNil_allDefined(ListHeaderParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
 				service.listMultiHeaderParamNil(List.of("hello"), List.of(42), List.of(record)));
 	}
@@ -774,7 +774,7 @@ public class ListHeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParamOptNil_allDefined(ListHeaderParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
 				service.listMultiHeaderParamOptNil(List.of("hello"), List.of(42), List.of(record)));
 	}
@@ -784,7 +784,7 @@ public class ListHeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listRecordHeaderParam(ListHeaderParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		var result = service.listRecordHeaderParam(List.of(record));
 		assertEquals(1, result.size());
 		assertEquals("k", result.get(0).key());
@@ -801,7 +801,7 @@ public class ListHeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listRecordHeaderParamOpt_defined(ListHeaderParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(NilResult.DEFINED, service.listRecordHeaderParamOpt(List.of(record)));
 	}
 
@@ -814,7 +814,7 @@ public class ListHeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listRecordHeaderParamNil_defined(ListHeaderParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(NilResult.DEFINED, service.listRecordHeaderParamNil(List.of(record)));
 	}
 
@@ -833,7 +833,7 @@ public class ListHeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listRecordHeaderParamOptNil_defined(ListHeaderParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(NilResult.DEFINED, service.listRecordHeaderParamOptNil(List.of(record)));
 	}
 

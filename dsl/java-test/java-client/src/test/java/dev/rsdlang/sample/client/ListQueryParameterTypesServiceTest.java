@@ -20,11 +20,11 @@ import dev.rsdlang.sample.client.model.SimpleRecord;
 
 public class ListQueryParameterTypesServiceTest {
 
-	private static final SpecSamplesClient CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
+	private static final SpecSamplesClient JDK_CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
 
 	static ListQueryParameterTypesService[] serviceProvider() {
 		return new ListQueryParameterTypesService[] {
-				CLIENT.service(ListQueryParameterTypesService.class),
+				JDK_CLIENT.service(ListQueryParameterTypesService.class),
 		};
 	}
 
@@ -143,7 +143,7 @@ public class ListQueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiQueryParam(ListQueryParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals("hello-42-k", service.listMultiQueryParam(List.of("hello"), List.of(42), List.of(record)));
 	}
 
@@ -152,7 +152,7 @@ public class ListQueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listRecordQueryParam(ListQueryParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		var result = service.listRecordQueryParam(List.of(record));
 		assertEquals(1, result.size());
 		assertEquals("k", result.get(0).key());

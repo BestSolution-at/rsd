@@ -18,26 +18,26 @@ import dev.rsdlang.sample.client.model.SimpleRecord;
 
 public class BinaryTypesServiceTest {
 
-	private static final SpecSamplesClient CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
+	private static final SpecSamplesClient JDK_CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
 
 	static BinaryTypesService[] serviceProvider() {
 		return new BinaryTypesService[] {
-				CLIENT.service(BinaryTypesService.class),
+				JDK_CLIENT.service(BinaryTypesService.class),
 		};
 	}
 
-	private static RSDFile file(String content) throws IOException {
+	private static RSDFile file(BinaryTypesService service, String content) throws IOException {
 		var tmp = Files.createTempFile("test", ".txt");
 		Files.writeString(tmp, content);
 		tmp.toFile().deleteOnExit();
-		return CLIENT.creatFile(tmp, "text/plain", tmp.getFileName().toString());
+		return service.client().createFile(tmp, "text/plain", tmp.getFileName().toString());
 	}
 
-	private static RSDBlob blob(String content) throws IOException {
+	private static RSDBlob blob(BinaryTypesService service, String content) throws IOException {
 		var tmp = Files.createTempFile("test", ".bin");
 		Files.writeString(tmp, content);
 		tmp.toFile().deleteOnExit();
-		return CLIENT.creatBlob(tmp, "application/octet-stream");
+		return service.client().createBlob(tmp, "application/octet-stream");
 	}
 
 	// --- Upload File ---
@@ -45,7 +45,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadFile(BinaryTypesService service) throws IOException {
-		assertEquals(5, service.uploadFile(file("Hello")));
+		assertEquals(5, service.uploadFile(file(service, "Hello")));
 	}
 
 	@ParameterizedTest
@@ -57,7 +57,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadFileOpt_defined(BinaryTypesService service) throws IOException {
-		assertEquals(5, service.uploadFileOpt(file("Hello")));
+		assertEquals(5, service.uploadFileOpt(file(service, "Hello")));
 	}
 
 	@ParameterizedTest
@@ -69,7 +69,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadFileNil_defined(BinaryTypesService service) throws IOException {
-		assertEquals(5, service.uploadFileNil(file("Hello")));
+		assertEquals(5, service.uploadFileNil(file(service, "Hello")));
 	}
 
 	@ParameterizedTest
@@ -87,7 +87,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadFileOptNil_defined(BinaryTypesService service) throws IOException {
-		assertEquals(5, service.uploadFileOptNil(file("Hello")));
+		assertEquals(5, service.uploadFileOptNil(file(service, "Hello")));
 	}
 
 	// --- Upload Blob ---
@@ -95,7 +95,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadBlob(BinaryTypesService service) throws IOException {
-		assertEquals(5, service.uploadBlob(blob("Hello")));
+		assertEquals(5, service.uploadBlob(blob(service, "Hello")));
 	}
 
 	@ParameterizedTest
@@ -107,7 +107,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadBlobOpt_defined(BinaryTypesService service) throws IOException {
-		assertEquals(5, service.uploadBlobOpt(blob("Hello")));
+		assertEquals(5, service.uploadBlobOpt(blob(service, "Hello")));
 	}
 
 	@ParameterizedTest
@@ -119,7 +119,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadBlobNil_defined(BinaryTypesService service) throws IOException {
-		assertEquals(5, service.uploadBlobNil(blob("Hello")));
+		assertEquals(5, service.uploadBlobNil(blob(service, "Hello")));
 	}
 
 	@ParameterizedTest
@@ -137,7 +137,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadBlobOptNil_defined(BinaryTypesService service) throws IOException {
-		assertEquals(5, service.uploadBlobOptNil(blob("Hello")));
+		assertEquals(5, service.uploadBlobOptNil(blob(service, "Hello")));
 	}
 
 	// --- Upload File List ---
@@ -145,7 +145,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadFileList(BinaryTypesService service) throws IOException {
-		assertEquals(10, service.uploadFileList(List.of(file("Hello"), file("World"))));
+		assertEquals(10, service.uploadFileList(List.of(file(service, "Hello"), file(service, "World"))));
 	}
 
 	@ParameterizedTest
@@ -157,7 +157,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadFileListOpt_defined(BinaryTypesService service) throws IOException {
-		assertEquals(10, service.uploadFileListOpt(List.of(file("Hello"), file("World"))));
+		assertEquals(10, service.uploadFileListOpt(List.of(file(service, "Hello"), file(service, "World"))));
 	}
 
 	@ParameterizedTest
@@ -169,7 +169,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadFileListNil_defined(BinaryTypesService service) throws IOException {
-		assertEquals(10, service.uploadFileListNil(List.of(file("Hello"), file("World"))));
+		assertEquals(10, service.uploadFileListNil(List.of(file(service, "Hello"), file(service, "World"))));
 	}
 
 	@ParameterizedTest
@@ -187,7 +187,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadFileListOptNil_defined(BinaryTypesService service) throws IOException {
-		assertEquals(10, service.uploadFileListOptNil(List.of(file("Hello"), file("World"))));
+		assertEquals(10, service.uploadFileListOptNil(List.of(file(service, "Hello"), file(service, "World"))));
 	}
 
 	// --- Upload Blob List ---
@@ -195,7 +195,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadBlobList(BinaryTypesService service) throws IOException {
-		assertEquals(10, service.uploadBlobList(List.of(blob("Hello"), blob("World"))));
+		assertEquals(10, service.uploadBlobList(List.of(blob(service, "Hello"), blob(service, "World"))));
 	}
 
 	@ParameterizedTest
@@ -207,7 +207,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadBlobListOpt_defined(BinaryTypesService service) throws IOException {
-		assertEquals(10, service.uploadBlobListOpt(List.of(blob("Hello"), blob("World"))));
+		assertEquals(10, service.uploadBlobListOpt(List.of(blob(service, "Hello"), blob(service, "World"))));
 	}
 
 	@ParameterizedTest
@@ -219,7 +219,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadBlobListNil_defined(BinaryTypesService service) throws IOException {
-		assertEquals(10, service.uploadBlobListNil(List.of(blob("Hello"), blob("World"))));
+		assertEquals(10, service.uploadBlobListNil(List.of(blob(service, "Hello"), blob(service, "World"))));
 	}
 
 	@ParameterizedTest
@@ -237,7 +237,7 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadBlobListOptNil_defined(BinaryTypesService service) throws IOException {
-		assertEquals(10, service.uploadBlobListOptNil(List.of(blob("Hello"), blob("World"))));
+		assertEquals(10, service.uploadBlobListOptNil(List.of(blob(service, "Hello"), blob(service, "World"))));
 	}
 
 	// --- Upload Mixed ---
@@ -245,11 +245,11 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadMixed(BinaryTypesService service) throws IOException {
-		var rec = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var rec = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		var result = service.uploadMixed(
 				"hello", 42, rec,
 				List.of("a", "b"), List.of(1, 2), List.of(rec),
-				file("FileContent"), blob("BlobContent"));
+				file(service, "FileContent"), blob(service, "BlobContent"));
 		assertEquals("hello", result.text().orElse(null));
 		assertEquals(42, result.number().orElse(null));
 		assertEquals("k", result.rec().toOptional().map(SimpleRecord.Data::key).orElse(""));
@@ -271,11 +271,11 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadMixedOpt_allDefined(BinaryTypesService service) throws IOException {
-		var rec = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var rec = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		var result = service.uploadMixedOpt(
 				"hello", 42, rec,
 				List.of("a", "b"), List.of(1, 2), List.of(rec),
-				file("FileContent"), blob("BlobContent"));
+				file(service, "FileContent"), blob(service, "BlobContent"));
 		assertEquals("hello", result.text().orElse(null));
 		assertEquals(42, result.number().orElse(null));
 		assertEquals("k", result.rec().map(SimpleRecord.Data::key).orElse(""));
@@ -303,11 +303,11 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadMixedNil_allDefined(BinaryTypesService service) throws IOException {
-		var rec = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var rec = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		var result = service.uploadMixedNil(
 				"hello", 42, rec,
 				List.of("a", "b"), List.of(1, 2), List.of(rec),
-				file("FileContent"), blob("BlobContent"));
+				file(service, "FileContent"), blob(service, "BlobContent"));
 		assertEquals("hello", result.text().orElse(null));
 		assertEquals(42, result.number().orElse(null));
 		assertEquals("k", result.rec().map(SimpleRecord.Data::key).orElse(""));
