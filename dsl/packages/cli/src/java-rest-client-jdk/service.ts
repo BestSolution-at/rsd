@@ -147,9 +147,13 @@ function generateOpertationMethod(
 				.filter(p => p.meta?.rest?.source === 'query')
 				.forEach(p => {
 					if (p.array) {
+						const param =
+							p.variant === 'union' || p.variant === 'record'
+								? `${fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`)}.encodeValue($q, "application/json")`
+								: '$q';
 						const codeBlock = toNodeTree(`
 							${p.name}.stream().forEach($q -> {
-								$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", $q);
+								$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${param});
 							});`);
 						if (p.nullable) {
 							methodBody.append(`if(${p.name} != null) {`, NL);
