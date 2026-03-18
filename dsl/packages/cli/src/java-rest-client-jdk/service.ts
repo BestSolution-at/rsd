@@ -479,28 +479,38 @@ function generateInvokation(
 			const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
 			const bodyParams = allParameters.filter(p => p.meta?.rest?.source === undefined);
 			if (bodyParams.length === 0) {
-				const defaultContent = multiBodyParam ? '"{}"' : '""';
-				methodBody.append(`var $body = ${BodyPublishers}.ofString(${defaultContent});`, NL);
+				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+				const defaultContent = multiBodyParam
+					? `${_JsonUtils}.emptyObject("application/json")`
+					: `${_JsonUtils}.emptyValue("application/json")`;
+				methodBody.append(`var $body = ${BodyPublishers}.ofByteArray(${defaultContent});`, NL);
 			} else if (bodyParams.length === 1 && !multiBodyParam) {
 				const param = bodyParams[0];
 				if (!param.array && (isMBuiltinNumericType(param.type) || param.type === 'boolean')) {
+					const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
 					if (param.optional && !param.nullable) {
 						methodBody.append(
-							`var $body = ${BodyPublishers}.ofString(${param.name} == null ? "" : String.format("%s", ${param.name}));`,
+							`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${_JsonUtils}.emptyValue("application/json") : ${_JsonUtils}.encodeValue(${param.name}, "application/json"));`,
 							NL,
 						);
 					} else {
-						methodBody.append(`var $body = ${BodyPublishers}.ofString(String.format("%s", ${param.name}));`, NL);
+						methodBody.append(
+							`var $body = ${BodyPublishers}.ofByteArray(${_JsonUtils}.encodeValue(${param.name}, "application/json"));`,
+							NL,
+						);
 					}
 				} else {
 					const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
 					if (param.optional && !param.nullable) {
 						methodBody.append(
-							`var $body = ${BodyPublishers}.ofString( ${param.name} == null ? "" : ${_JsonUtils}.toJsonString(${param.name}));`,
+							`var $body = ${BodyPublishers}.ofByteArray( ${param.name} == null ? ${_JsonUtils}.emptyValue("application/json") : ${_JsonUtils}.encodeValue(${param.name}, "application/json"));`,
 							NL,
 						);
 					} else {
-						methodBody.append(`var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString(${param.name}));`, NL);
+						methodBody.append(
+							`var $body = ${BodyPublishers}.ofByteArray(${_JsonUtils}.encodeValue(${param.name}, "application/json"));`,
+							NL,
+						);
 					}
 				}
 			} else {
@@ -615,7 +625,7 @@ function generateInvokation(
 				});
 				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
 				methodBody.append(
-					`var $body = ${BodyPublishers}.ofString(${_JsonUtils}.toJsonString($builder.build(), false));`,
+					`var $body = ${BodyPublishers}.ofByteArray(${_JsonUtils}.encodeValue($builder.build(), "application/json"));`,
 					NL,
 				);
 			}
