@@ -745,7 +745,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			$formDataBuilder.addBlob("dataFile", dataFile);
 			$formDataBuilder.addBlob("dataBlob", dataBlob);
 			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json");
+					"application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();

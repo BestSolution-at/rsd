@@ -467,7 +467,7 @@ function generateInvokation(
 				});
 			if (o.parameters.find(p => p.variant !== 'stream')) {
 				methodBody.append(
-					'$formDataBuilder.addString("_rsdPayload", _JsonUtils.toJsonString($jsonPayload.build(), false), "application/json; charset=UTF-8");',
+					'$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");',
 					NL,
 				);
 			}
