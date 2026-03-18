@@ -8,7 +8,7 @@ import {
 	resolveType,
 	toPath,
 } from '../java-gen-utils.js';
-import { isMBuiltinType, MParameter, MResolvedRSDModel, MResolvedService, MReturnType } from '../model.js';
+import { MParameter, MResolvedRSDModel, MResolvedService, MReturnType } from '../model.js';
 import { toFirstUpper } from '../util.js';
 
 export function generateResponseBuilder(
@@ -68,22 +68,12 @@ function generateContent(
 						} else {
 							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
 						}
-					} else if (o.resultType.variant === 'record' || o.resultType.variant === 'union') {
+					} else {
 						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.rest.model._JsonUtils`);
 						methodBody.append(
-							`return ${Response}.status(${code.toFixed()}).entity(${JsonUtils}.toJsonString($result, false));`,
+							`return ${Response}.status(${code.toFixed()}).entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result, "application/json")));`,
 							NL,
 						);
-					} else {
-						if (!o.resultType.array && isMBuiltinType(o.resultType.type) && o.resultType.type === 'string') {
-							const JsonUtils = fqn(`${artifactConfig.rootPackageName}.rest.model._JsonUtils`);
-							methodBody.append(
-								`return ${Response}.status(${code.toFixed()}).entity(${JsonUtils}.encodeAsJsonString($result));`,
-								NL,
-							);
-						} else {
-							methodBody.append(`return ${Response}.status(${code.toFixed()}).entity($result);`, NL);
-						}
 					}
 				} else {
 					methodBody.append(`return ${Response}.status(${code.toFixed()});`, NL);

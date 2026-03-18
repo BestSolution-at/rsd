@@ -113,7 +113,7 @@ function _generateResource(
 							.map(p => toParameter(p, false, artifactConfig, fqn, false)),
 					);
 
-					params.push(`String data`);
+					params.push(`InputStream data`);
 					serviceParams.push(
 						...o.parameters.map(p => {
 							if (p.meta?.rest?.source === undefined) {
@@ -174,7 +174,7 @@ function _generateResource(
 					if (multiBody) {
 						const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
 						const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
-						mBody.append(`var dto = ${_JsonUtils}.parseObject(data, ${Type}::new);`, NL);
+						mBody.append(`var dto = ${_JsonUtils}.parseObject(data, "application/json", ${Type}::new);`, NL);
 					}
 					if (artifactConfig.scopeValues) {
 						artifactConfig.scopeValues.forEach(v => {
@@ -227,7 +227,7 @@ function _generateResource(
 					.map(p => `@RestForm("_rsdNull-${p.name}") boolean $is${toFirstUpper(p.name)}Null`);
 				params.push(...nullableStreamParams);
 				if (o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
-					params.unshift(`@RestForm("_rsdPayload") String $_payload`);
+					params.unshift(`@RestForm("_rsdPayload") FileUpload $_payload`);
 				}
 				const serviceParams: string[] = [];
 
@@ -241,7 +241,10 @@ function _generateResource(
 					if (o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
 						const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
 						const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
-						mBody.append(`var $payload = ${_JsonUtils}.parseObject($_payload, ${Type}::new);`, NL);
+						mBody.append(
+							`var $payloadJson = ${_JsonUtils}.parseValue($_payload.filePath(), $_payload.contentType()).asJsonObject();`,
+						);
+						mBody.append(`var $payload = new ${Type}($payloadJson);`, NL);
 						o.parameters
 							.filter(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)
 							.forEach(p => {
@@ -400,14 +403,15 @@ function enumParameter(
 			}
 		}
 	} else {
+		const mimeType = p.meta?.rest?.source === 'header' ? '' : ', "application/json"';
 		if (p.optional && p.nullable) {
-			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}, ${t}::valueOf);`, NL);
+			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
 		} else if (p.optional) {
-			node.append(`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}, ${t}::valueOf);`, NL);
+			node.append(`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
 		} else if (p.nullable) {
-			node.append(`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}, ${t}::valueOf);`, NL);
+			node.append(`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
 		} else {
-			node.append(`var ${p.name} = ${_Util}.parseLiteral(_${p.name}, ${t}::valueOf);`, NL);
+			node.append(`var ${p.name} = ${_Util}.parseLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
 		}
 	}
 	return node;
@@ -442,6 +446,7 @@ function builtinParameter(
 				node.append(`var ${p.name} = ${_Util}.parse${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name});`, NL);
 			}
 		} else {
+			const mimeType = p.meta?.rest?.source === 'header' ? '' : ', "application/json"';
 			if (p.meta?.rest?.source === 'header' && p.type === 'string') {
 				if (p.optional && p.nullable) {
 					node.append(
@@ -467,21 +472,24 @@ function builtinParameter(
 			} else {
 				if (p.optional && p.nullable) {
 					node.append(
-						`var ${p.name} = ${_Util}.mapNil${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name});`,
+						`var ${p.name} = ${_Util}.mapNil${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}${mimeType});`,
 						NL,
 					);
 				} else if (p.optional) {
 					node.append(
-						`var ${p.name} = ${_Util}.mapOpt${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name});`,
+						`var ${p.name} = ${_Util}.mapOpt${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}${mimeType});`,
 						NL,
 					);
 				} else if (p.nullable) {
 					node.append(
-						`var ${p.name} = ${_Util}.mapNull${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name});`,
+						`var ${p.name} = ${_Util}.mapNull${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}${mimeType});`,
 						NL,
 					);
 				} else {
-					node.append(`var ${p.name} = ${_Util}.map${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name});`, NL);
+					node.append(
+						`var ${p.name} = ${_Util}.map${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}${mimeType});`,
+						NL,
+					);
 				}
 			}
 		}
@@ -490,24 +498,25 @@ function builtinParameter(
 			p.type === 'string' && p.meta?.rest?.source === 'header'
 				? `, $hv -> ${_Util}.fromEscapedAscii($hv.substring(1, $hv.length() - 1))`
 				: '';
+		const mimeType = p.meta?.rest?.source === 'header' ? '' : ', "application/json"';
 		if (p.optional && p.nullable) {
 			node.append(
-				`var ${p.name} = ${_Util}.parseNil${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name}${transformer});`,
+				`var ${p.name} = ${_Util}.parseNil${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name}${transformer}${mimeType});`,
 				NL,
 			);
 		} else if (p.optional) {
 			node.append(
-				`var ${p.name} = ${_Util}.parseOpt${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name}${transformer});`,
+				`var ${p.name} = ${_Util}.parseOpt${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name}${transformer}${mimeType});`,
 				NL,
 			);
 		} else if (p.nullable) {
 			node.append(
-				`var ${p.name} = ${_Util}.parseNull${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name}${transformer});`,
+				`var ${p.name} = ${_Util}.parseNull${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name}${transformer}${mimeType});`,
 				NL,
 			);
 		} else {
 			node.append(
-				`var ${p.name} = ${_Util}.parse${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name}${transformer});`,
+				`var ${p.name} = ${_Util}.parse${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name}${transformer}${mimeType});`,
 				NL,
 			);
 		}
@@ -558,22 +567,22 @@ function recordUnionParameter(
 			if (p.meta?.rest?.source === 'header') {
 				if (p.optional && p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapNilObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapNilObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else if (p.optional) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapOptObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapOptObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else if (p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapNullObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapNullObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`var ${p.name} = _RestUtils.mapObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				}
@@ -605,22 +614,22 @@ function recordUnionParameter(
 		if (asJSON) {
 			if (p.optional && p.nullable) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseNilObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseNilObject(_${p.name}, "application/json", $j -> builderFactory.of(${type}.class, $j));`,
 					NL,
 				);
 			} else if (p.optional) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseOptObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseOptObject(_${p.name}, "application/json", $j -> builderFactory.of(${type}.class, $j));`,
 					NL,
 				);
 			} else if (p.nullable) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseNullObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseNullObject(_${p.name}, "application/json", $j -> builderFactory.of(${type}.class, $j));`,
 					NL,
 				);
 			} else {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseObject(_${p.name}, $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseObject(_${p.name}, "application/json", $j -> builderFactory.of(${type}.class, $j));`,
 					NL,
 				);
 			}
@@ -628,22 +637,22 @@ function recordUnionParameter(
 			if (p.meta?.rest?.source === 'header') {
 				if (p.optional && p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else if (p.optional) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseOptObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseOptObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else if (p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseNullObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseNullObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`var ${p.name} = _RestUtils.parseObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				}
@@ -709,14 +718,15 @@ function inlineEnumParameter(
 			}
 		}
 	} else {
+		const mimeType = p.meta?.rest?.source === 'header' ? '' : ', "application/json"';
 		if (p.optional && p.nullable) {
-			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}, ${t}::valueOf);`, NL);
+			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
 		} else if (p.optional) {
-			node.append(`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}, ${t}::valueOf);`, NL);
+			node.append(`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
 		} else if (p.nullable) {
-			node.append(`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}, ${t}::valueOf);`, NL);
+			node.append(`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
 		} else {
-			node.append(`var ${p.name} = ${_Util}.parseLiteral(_${p.name}, ${t}::valueOf);`, NL);
+			node.append(`var ${p.name} = ${_Util}.parseLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
 		}
 	}
 	return node;
@@ -773,24 +783,25 @@ function scalarParameter(
 	} else {
 		const transformerPre = p.meta?.rest?.source === 'header' ? `${_Util}.preprocessEscapedAscii(` : '';
 		const transformerPost = p.meta?.rest?.source === 'header' ? `)` : '';
+		const mimeType = p.meta?.rest?.source === 'header' ? '' : ', "application/json"';
 		if (p.optional && p.nullable) {
 			node.append(
-				`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+				`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${transformerPre}${t}::of${transformerPost});`,
 				NL,
 			);
 		} else if (p.optional) {
 			node.append(
-				`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+				`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}${mimeType}, ${transformerPre}${t}::of${transformerPost});`,
 				NL,
 			);
 		} else if (p.nullable) {
 			node.append(
-				`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+				`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}${mimeType}, ${transformerPre}${t}::of${transformerPost});`,
 				NL,
 			);
 		} else {
 			node.append(
-				`var ${p.name} = ${_Util}.parseLiteral(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+				`var ${p.name} = ${_Util}.parseLiteral(_${p.name}${mimeType}, ${transformerPre}${t}::of${transformerPost});`,
 				NL,
 			);
 		}
@@ -857,10 +868,13 @@ function computeParameterType(
 		if (p.meta?.rest?.source === 'header' || (!multiForm && p.meta?.rest?.source === undefined)) {
 			return 'String';
 		} else {
-			return fqn('java.util.List') + '<String>';
+			return fqn('java.io.InputStream');
 		}
 	}
-	return 'String';
+	if (p.meta?.rest?.source === 'header') {
+		return 'String';
+	}
+	return fqn('java.io.InputStream');
 }
 
 function computeParameterAnnotation(p: MParameter, form: boolean, fqn: (type: string) => string): string {
