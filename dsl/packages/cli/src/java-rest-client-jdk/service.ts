@@ -236,8 +236,8 @@ function generateOpertationMethod(
 						methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 					} else {
 						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
-						const toString = `$v -> ServiceUtils.encodeBase64(${_JsonUtils}.toJsonString($v)`;
-						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.join(",", ${p.name}.stream().map(${toString})).toList()));`;
+						const toString = `$v -> ServiceUtils.encodeBase64(${_JsonUtils}.encodeValue($v, "application/json"))`;
+						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
 						if (p.nullable) {
 							methodBody.append(`if(${p.name} != null) {`, NL);
 							methodBody.indent(tmp => {

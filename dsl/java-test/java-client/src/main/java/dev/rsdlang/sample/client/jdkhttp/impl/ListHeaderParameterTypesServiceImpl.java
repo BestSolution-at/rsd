@@ -2406,9 +2406,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
 		}
 		if (valueC != null) {
-			$headerParams.put("valueC",
-					String.join(",", valueC.stream()
-							.map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
+			$headerParams.put("valueC", String.join(",", valueC.stream()
+					.map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2451,9 +2450,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			$headerParams.put("valueB", "null");
 		}
 		if (valueC != null) {
-			$headerParams.put("valueC",
-					String.join(",", valueC.stream()
-							.map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
+			$headerParams.put("valueC", String.join(",", valueC.stream()
+					.map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
 		}
@@ -2593,9 +2591,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			$headerParams.put("valueB", "null");
 		}
 		if (valueC != null) {
-			$headerParams.put("valueC",
-					String.join(",", valueC.stream()
-							.map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
+			$headerParams.put("valueC", String.join(",", valueC.stream()
+					.map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
 		}
@@ -2629,9 +2626,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.join(",",
-				headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json")))
-						.toList()));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream()
+				.map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2683,9 +2679,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",",
-					headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json")))
-							.toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream()
+					.map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2716,9 +2711,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",",
-					headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json")))
-							.toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream()
+					.map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -2773,9 +2767,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",",
-					headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json")))
-							.toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream()
+					.map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
