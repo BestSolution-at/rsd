@@ -49,7 +49,18 @@ function generateRestUtilsContent(
 			classBody.append(NL, NL);
 			classBody.append(generateStreamResultHelper(artifactConfig, model, fqn));
 		}
+		fqn('java.util.function.Consumer');
+		const toStreamOutput = toNodeTree(`
+
+public static StreamingOutput toStreamOutput(Consumer<OutputStream> consumer) {
+	return output -> {
+		consumer.accept(output);
+	};
+}
+`);
+		classBody.append(toStreamOutput);
 	});
+
 	node.append('}', NL);
 	return node;
 }
@@ -102,6 +113,7 @@ function generateStreamResultHelper(
 		mBody.append('return builder;', NL);
 	});
 	result.append('}', NL);
+
 	return result;
 }
 
@@ -122,7 +134,7 @@ public static Response toResponse(int status, RSDException e) {
 				.header("X-RSD-Error-Type", e.type)
 				.header("X-RSD-Error-Message", e.getMessage())
 				.type(MediaType.APPLICATION_JSON_TYPE)
-				.entity(_JsonUtils.toJsonString(s.data, false)).build();
+				.entity(_JsonUtils.encodeValue(s.data, "application/json")).build();
 	}
 	return Response.status(status)
 			.header("X-RSD-Error-Type", e.type)
@@ -146,14 +158,16 @@ function parseFunctions(artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn:
 	fqn('java.util.function.Function');
 	fqn('java.util.List');
 	fqn('java.util.regex.Pattern');
+	fqn('java.io.InputStream');
+	fqn('java.io.ByteArrayInputStream');
 	fqn(`${artifactConfig.rootPackageName}.service.model._Base`);
 	fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`);
 	return toNodeTree(`
 private static final Pattern SPLIT_COMMA_PATTERN = Pattern.compile(",");
 private static final Pattern UNESCAPE_PATTERN = Pattern.compile("\\\\\\\\u([0-9a-fA-F]{4})");
 
-public static String decodeBase64(String value) {
-	return new String(Base64.getDecoder().decode(value));
+public static InputStream decodeBase64(String value) {
+	return new ByteArrayInputStream(Base64.getDecoder().decode(value));
 }
 
 public static String fromEscapedAscii(String value) {

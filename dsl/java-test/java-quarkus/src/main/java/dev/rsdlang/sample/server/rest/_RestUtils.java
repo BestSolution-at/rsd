@@ -2,8 +2,8 @@
 package dev.rsdlang.sample.server.rest;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -703,4 +703,5 @@ public class _RestUtils {
 			consumer.accept(output);
 		};
 	}
+
 }
