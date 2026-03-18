@@ -297,7 +297,7 @@ function generateOpertationMethod(
 						}
 					} else if (p.variant === 'record' || p.variant === 'union') {
 						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
-						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ServiceUtils.encodeBase64(${_JsonUtils}.toJsonString(${p.name})));`;
+						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ServiceUtils.encodeBase64(${_JsonUtils}.encodeValue(${p.name}, "application/json")));`;
 						if (p.nullable) {
 							methodBody.append(`if(${p.name} != null) {`, NL);
 							methodBody.indent(tmp => {
