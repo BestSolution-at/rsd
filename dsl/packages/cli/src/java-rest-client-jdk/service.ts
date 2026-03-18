@@ -175,7 +175,12 @@ function generateOpertationMethod(
 							methodBody.append(codeBlock, NL);
 						}
 					} else {
-						const codeBlock = `$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${p.name});`;
+						const param =
+							p.variant === 'union' || p.variant === 'record'
+								? `${fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`)}.encodeValue(${p.name}, "application/json")`
+								: p.name;
+
+						const codeBlock = `$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${param});`;
 						if (p.nullable) {
 							methodBody.append(`if(${p.name} != null) {`, NL);
 							methodBody.indent(tmp => {
