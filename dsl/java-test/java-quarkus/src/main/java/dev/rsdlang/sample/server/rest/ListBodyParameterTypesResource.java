@@ -30,8 +30,7 @@ public class ListBodyParameterTypesResource {
 	private final ListBodyParameterTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public ListBodyParameterTypesResource(ListBodyParameterTypesService service,
-			ListBodyParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListBodyParameterTypesResource(ListBodyParameterTypesService service, ListBodyParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -424,8 +423,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listInlineEnumBodyParam")
 	public Response listInlineEnumBodyParam(InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseLiterals(_bodyEnum, "application/json",
-				ListBodyParameterTypesService.ListInlineEnumBodyParam_BodyEnum_Param$::valueOf);
+		var bodyEnum = _JsonUtils.parseLiterals(_bodyEnum, "application/json", ListBodyParameterTypesService.ListInlineEnumBodyParam_BodyEnum_Param$::valueOf);
 		var result = service.listInlineEnumBodyParam(builderFactory, bodyEnum);
 		return responseBuilder.listInlineEnumBodyParam(result, bodyEnum).build();
 	}
@@ -433,8 +431,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listInlineEnumBodyParamOpt")
 	public Response listInlineEnumBodyParamOpt(InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseOptLiterals(_bodyEnum, "application/json",
-				ListBodyParameterTypesService.ListInlineEnumBodyParamOpt_BodyEnum_Param$::valueOf);
+		var bodyEnum = _JsonUtils.parseOptLiterals(_bodyEnum, "application/json", ListBodyParameterTypesService.ListInlineEnumBodyParamOpt_BodyEnum_Param$::valueOf);
 		var result = service.listInlineEnumBodyParamOpt(builderFactory, bodyEnum);
 		return responseBuilder.listInlineEnumBodyParamOpt(result, bodyEnum).build();
 	}
@@ -442,8 +439,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listInlineEnumBodyParamNil")
 	public Response listInlineEnumBodyParamNil(InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNullLiterals(_bodyEnum, "application/json",
-				ListBodyParameterTypesService.ListInlineEnumBodyParamNil_BodyEnum_Param$::valueOf);
+		var bodyEnum = _JsonUtils.parseNullLiterals(_bodyEnum, "application/json", ListBodyParameterTypesService.ListInlineEnumBodyParamNil_BodyEnum_Param$::valueOf);
 		var result = service.listInlineEnumBodyParamNil(builderFactory, bodyEnum);
 		return responseBuilder.listInlineEnumBodyParamNil(result, bodyEnum).build();
 	}
@@ -451,8 +447,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listInlineEnumBodyParamOptNil")
 	public Response listInlineEnumBodyParamOptNil(InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNilLiterals(_bodyEnum, "application/json",
-				ListBodyParameterTypesService.ListInlineEnumBodyParamOptNil_BodyEnum_Param$::valueOf);
+		var bodyEnum = _JsonUtils.parseNilLiterals(_bodyEnum, "application/json", ListBodyParameterTypesService.ListInlineEnumBodyParamOptNil_BodyEnum_Param$::valueOf);
 		var result = service.listInlineEnumBodyParamOptNil(builderFactory, bodyEnum);
 		return responseBuilder.listInlineEnumBodyParamOptNil(result, bodyEnum).build();
 	}
@@ -468,8 +463,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listMultiBodyParamOpt")
 	public Response listMultiBodyParamOpt(InputStream data) {
-		var dto = _JsonUtils.parseObject(data, "application/json",
-				ListBodyParameterTypesListMultiBodyParamOptDataImpl::new);
+		var dto = _JsonUtils.parseObject(data, "application/json", ListBodyParameterTypesListMultiBodyParamOptDataImpl::new);
 		var result = service.listMultiBodyParamOpt(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
 		return responseBuilder.listMultiBodyParamOpt(result, dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
@@ -477,8 +471,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listMultiBodyParamNil")
 	public Response listMultiBodyParamNil(InputStream data) {
-		var dto = _JsonUtils.parseObject(data, "application/json",
-				ListBodyParameterTypesListMultiBodyParamNilDataImpl::new);
+		var dto = _JsonUtils.parseObject(data, "application/json", ListBodyParameterTypesListMultiBodyParamNilDataImpl::new);
 		var result = service.listMultiBodyParamNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
 		return responseBuilder.listMultiBodyParamNil(result, dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
@@ -486,8 +479,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listMultiBodyParamOptNil")
 	public Response listMultiBodyParamOptNil(InputStream data) {
-		var dto = _JsonUtils.parseObject(data, "application/json",
-				ListBodyParameterTypesListMultiBodyParamOptNilDataImpl::new);
+		var dto = _JsonUtils.parseObject(data, "application/json", ListBodyParameterTypesListMultiBodyParamOptNilDataImpl::new);
 		var result = service.listMultiBodyParamOptNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
 		return responseBuilder.listMultiBodyParamOptNil(result, dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
@@ -495,8 +487,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listRecordBodyParam")
 	public Response listRecordBodyParam(InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseObjects(_bodyRecord, "application/json",
-				$j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var bodyRecord = _JsonUtils.parseObjects(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.listRecordBodyParam(builderFactory, bodyRecord);
 		return responseBuilder.listRecordBodyParam(result, bodyRecord).build();
 	}
@@ -504,8 +495,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listRecordBodyParamOpt")
 	public Response listRecordBodyParamOpt(InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseOptObjects(_bodyRecord, "application/json",
-				$j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var bodyRecord = _JsonUtils.parseOptObjects(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.listRecordBodyParamOpt(builderFactory, bodyRecord);
 		return responseBuilder.listRecordBodyParamOpt(result, bodyRecord).build();
 	}
@@ -513,8 +503,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listRecordBodyParamNil")
 	public Response listRecordBodyParamNil(InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNullObjects(_bodyRecord, "application/json",
-				$j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var bodyRecord = _JsonUtils.parseNullObjects(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.listRecordBodyParamNil(builderFactory, bodyRecord);
 		return responseBuilder.listRecordBodyParamNil(result, bodyRecord).build();
 	}
@@ -522,8 +511,7 @@ public class ListBodyParameterTypesResource {
 	@PUT
 	@Path("listRecordBodyParamOptNil")
 	public Response listRecordBodyParamOptNil(InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNilObjects(_bodyRecord, "application/json",
-				$j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var bodyRecord = _JsonUtils.parseNilObjects(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.listRecordBodyParamOptNil(builderFactory, bodyRecord);
 		return responseBuilder.listRecordBodyParamOptNil(result, bodyRecord).build();
 	}

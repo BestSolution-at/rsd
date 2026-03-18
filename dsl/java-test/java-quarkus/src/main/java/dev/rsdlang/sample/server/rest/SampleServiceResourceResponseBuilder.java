@@ -17,52 +17,51 @@ import dev.rsdlang.sample.server.service.model.SimpleRecord;
 @Singleton
 public class SampleServiceResourceResponseBuilder {
 	public ResponseBuilder getBoolean(boolean $result) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getShort(short $result) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getInt(int $result) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getLong(long $result) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getFloat(float $result) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getDouble(double $result) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getString(String $result) {
-		return Response.status(200)
-				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getLocalDate(LocalDate $result) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getLocalDateTime(LocalDateTime $result) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getZonedDateTime(ZonedDateTime $result) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getScalar(ZoneId $result) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getEnum(SampleEnum $result) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder voidOperation() {
@@ -78,13 +77,11 @@ public class SampleServiceResourceResponseBuilder {
 	}
 
 	public ResponseBuilder getSimpleRecord(SimpleRecord.Data $result, String key) {
-		return Response.status(200)
-				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getSimpleRecordWithError(SimpleRecord.Data $result, String key) {
-		return Response.status(200)
-				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 }

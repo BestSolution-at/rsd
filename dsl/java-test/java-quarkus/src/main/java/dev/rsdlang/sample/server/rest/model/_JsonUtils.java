@@ -35,11 +35,27 @@ import dev.rsdlang.sample.server.service.model._Base;
 
 public class _JsonUtils {
 
-
 	private static final Optional<Boolean> OPTIONAL_FALSE = Optional.of(Boolean.FALSE);
 	private static final Optional<Boolean> OPTIONAL_TRUE = Optional.of(Boolean.TRUE);
 	private static final _Base.Nillable<Boolean> NILLABLE_FALSE = _NillableImpl.of(Boolean.FALSE);
 	private static final _Base.Nillable<Boolean> NILLABLE_TRUE = _NillableImpl.of(Boolean.TRUE);
+
+	private static final byte[] NO_BYTES = new byte[0];
+	private static final byte[] EMPTY_OBJECT_BYTES = "{}".getBytes();
+
+	public static byte[] emptyObject(String contentType) {
+		if (contentType != null && contentType.startsWith("application/json")) {
+			return EMPTY_OBJECT_BYTES;
+		}
+		throw new IllegalArgumentException("Unsupported content type: " + contentType);
+	}
+
+	public static byte[] emptyValue(String contentType) {
+		if (contentType != null && contentType.startsWith("application/json")) {
+			return NO_BYTES;
+		}
+		throw new IllegalArgumentException("Unsupported content type: " + contentType);
+	}
 
 	public static <J extends JsonValue, T> Stream<T> mapToStream(JsonObject object, String property, Class<J> clazz,
 			Function<J, T> mapper) {

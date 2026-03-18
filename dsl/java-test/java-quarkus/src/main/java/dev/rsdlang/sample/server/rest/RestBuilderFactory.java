@@ -3,15 +3,12 @@ package dev.rsdlang.sample.server.rest;
 
 import java.io.InputStream;
 import java.nio.file.Path;
-import java.util.List;
 
 import jakarta.inject.Singleton;
-import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 
 import dev.rsdlang.sample.server.rest.model._BlobImpl;
 import dev.rsdlang.sample.server.rest.model._FileImpl;
-import dev.rsdlang.sample.server.rest.model._JsonUtils;
 import dev.rsdlang.sample.server.rest.model._StreamBlobImpl;
 import dev.rsdlang.sample.server.rest.model._StreamFileImpl;
 import dev.rsdlang.sample.server.rest.model.EnumInlineRecordDataImpl;
@@ -444,6 +441,7 @@ public class RestBuilderFactory implements BuilderFactory {
 
 		throw new IllegalArgumentException("Unsupported Builder '%s'".formatted(type));
 	}
+
 
 	public RSDBlob createBlob(Path file, String mimeType) {
 		return _BlobImpl.of(file, mimeType);

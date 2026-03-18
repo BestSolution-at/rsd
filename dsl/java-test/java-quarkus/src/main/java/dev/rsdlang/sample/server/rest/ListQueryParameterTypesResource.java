@@ -27,8 +27,7 @@ public class ListQueryParameterTypesResource {
 	private final ListQueryParameterTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public ListQueryParameterTypesResource(ListQueryParameterTypesService service,
-			ListQueryParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListQueryParameterTypesResource(ListQueryParameterTypesService service, ListQueryParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -133,8 +132,7 @@ public class ListQueryParameterTypesResource {
 	@GET
 	@Path("listInlineEnumQueryParam")
 	public Response listInlineEnumQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
-		var queryValue = _RestUtils.mapLiterals(_queryValue,
-				ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$::valueOf);
+		var queryValue = _RestUtils.mapLiterals(_queryValue, ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$::valueOf);
 		var result = service.listInlineEnumQueryParam(builderFactory, queryValue);
 		return responseBuilder.listInlineEnumQueryParam(result, queryValue).build();
 	}
@@ -147,8 +145,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("valueC") List<String> _valueC) {
 		var valueA = _RestUtils.mapStrings(_valueA);
 		var valueB = _RestUtils.mapInts(_valueB);
-		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
-				"application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listMultiQueryParam(builderFactory, valueA, valueB, valueC);
 		return responseBuilder.listMultiQueryParam(result, valueA, valueB, valueC).build();
 	}
@@ -156,8 +153,7 @@ public class ListQueryParameterTypesResource {
 	@GET
 	@Path("listRecordQueryParam")
 	public Response listRecordQueryParam(@QueryParam("queryValue") List<String> _queryValue) {
-		var queryValue = _RestUtils.mapObjects(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
-				"application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var queryValue = _RestUtils.mapObjects(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listRecordQueryParam(builderFactory, queryValue);
 		return responseBuilder.listRecordQueryParam(result, queryValue).build();
 	}

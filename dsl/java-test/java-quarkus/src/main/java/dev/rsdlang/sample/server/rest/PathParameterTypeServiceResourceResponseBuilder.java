@@ -16,57 +16,55 @@ import dev.rsdlang.sample.server.service.model.SampleEnum;
 @Singleton
 public class PathParameterTypeServiceResourceResponseBuilder {
 	public ResponseBuilder simpleBooleanPathParam(boolean $result, boolean pathBoolean) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleShortPathParam(short $result, short pathShort) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleIntPathParam(int $result, int pathInt) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleLongPathParam(long $result, long pathLong) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleFloatPathParam(float $result, float pathFloat) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleDoublePathParam(double $result, double pathDouble) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleStringPathParam(String $result, String pathString) {
-		return Response.status(200)
-				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleLocalDatePathParam(LocalDate $result, LocalDate pathLocalDate) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleLocalDateTimePathParam(LocalDateTime $result, LocalDateTime pathLocalDateTime) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleZonedDateTimePathParam(ZonedDateTime $result, ZonedDateTime pathZonedDateTime) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleScalarPathParam(ZoneId $result, ZoneId pathScalar) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleEnumPathParam(SampleEnum $result, SampleEnum pathEnum) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder multiPathParam(String $result, String valueA, int valueB) {
-		return Response.status(200)
-				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 }

@@ -34,8 +34,7 @@ public class BodyParameterTypesResource {
 	private final BodyParameterTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public BodyParameterTypesResource(BodyParameterTypesService service,
-			BodyParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public BodyParameterTypesResource(BodyParameterTypesService service, BodyParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -428,8 +427,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("simpleInlineEnumBodyParam")
 	public Response simpleInlineEnumBodyParam(InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseLiteral(_bodyEnum, "application/json",
-				BodyParameterTypesService.SimpleInlineEnumBodyParam_BodyEnum_Param$::valueOf);
+		var bodyEnum = _JsonUtils.parseLiteral(_bodyEnum, "application/json", BodyParameterTypesService.SimpleInlineEnumBodyParam_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParam(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParam(result, bodyEnum).build();
 	}
@@ -437,8 +435,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("simpleInlineEnumBodyParamOpt")
 	public Response simpleInlineEnumBodyParamOpt(InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseOptLiteral(_bodyEnum, "application/json",
-				BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$::valueOf);
+		var bodyEnum = _JsonUtils.parseOptLiteral(_bodyEnum, "application/json", BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParamOpt(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParamOpt(result, bodyEnum).build();
 	}
@@ -446,8 +443,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("simpleInlineEnumBodyParamNil")
 	public Response simpleInlineEnumBodyParamNil(InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNullLiteral(_bodyEnum, "application/json",
-				BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$::valueOf);
+		var bodyEnum = _JsonUtils.parseNullLiteral(_bodyEnum, "application/json", BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParamNil(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParamNil(result, bodyEnum).build();
 	}
@@ -455,8 +451,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("simpleInlineEnumBodyParamOptNil")
 	public Response simpleInlineEnumBodyParamOptNil(InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNilLiteral(_bodyEnum, "application/json",
-				BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$::valueOf);
+		var bodyEnum = _JsonUtils.parseNilLiteral(_bodyEnum, "application/json", BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParamOptNil(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParamOptNil(result, bodyEnum).build();
 	}
@@ -504,8 +499,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("recordBodyParam")
 	public Response recordBodyParam(InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseObject(_bodyRecord, "application/json",
-				$j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var bodyRecord = _JsonUtils.parseObject(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.recordBodyParam(builderFactory, bodyRecord);
 		return responseBuilder.recordBodyParam(result, bodyRecord).build();
 	}
@@ -513,8 +507,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("recordBodyParamOpt")
 	public Response recordBodyParamOpt(InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseOptObject(_bodyRecord, "application/json",
-				$j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var bodyRecord = _JsonUtils.parseOptObject(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.recordBodyParamOpt(builderFactory, bodyRecord);
 		return responseBuilder.recordBodyParamOpt(result, bodyRecord).build();
 	}
@@ -522,8 +515,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("recordBodyParamNil")
 	public Response recordBodyParamNil(InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNullObject(_bodyRecord, "application/json",
-				$j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var bodyRecord = _JsonUtils.parseNullObject(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.recordBodyParamNil(builderFactory, bodyRecord);
 		return responseBuilder.recordBodyParamNil(result, bodyRecord).build();
 	}
@@ -531,8 +523,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("recordBodyParamOptNil")
 	public Response recordBodyParamOptNil(InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNilObject(_bodyRecord, "application/json",
-				$j -> builderFactory.of(SimpleRecord.Data.class, $j));
+		var bodyRecord = _JsonUtils.parseNilObject(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.recordBodyParamOptNil(builderFactory, bodyRecord);
 		return responseBuilder.recordBodyParamOptNil(result, bodyRecord).build();
 	}
@@ -540,8 +531,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("unionBodyParam")
 	public Response unionBodyParam(InputStream _bodyUnion) {
-		var bodyUnion = _JsonUtils.parseObject(_bodyUnion, "application/json",
-				$j -> builderFactory.of(Union.Data.class, $j));
+		var bodyUnion = _JsonUtils.parseObject(_bodyUnion, "application/json", $j -> builderFactory.of(Union.Data.class, $j));
 		var result = service.unionBodyParam(builderFactory, bodyUnion);
 		return responseBuilder.unionBodyParam(result, bodyUnion).build();
 	}
@@ -549,8 +539,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("unionBodyParamOpt")
 	public Response unionBodyParamOpt(InputStream _bodyUnion) {
-		var bodyUnion = _JsonUtils.parseOptObject(_bodyUnion, "application/json",
-				$j -> builderFactory.of(Union.Data.class, $j));
+		var bodyUnion = _JsonUtils.parseOptObject(_bodyUnion, "application/json", $j -> builderFactory.of(Union.Data.class, $j));
 		var result = service.unionBodyParamOpt(builderFactory, bodyUnion);
 		return responseBuilder.unionBodyParamOpt(result, bodyUnion).build();
 	}
@@ -558,8 +547,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("unionBodyParamNil")
 	public Response unionBodyParamNil(InputStream _bodyUnion) {
-		var bodyUnion = _JsonUtils.parseNullObject(_bodyUnion, "application/json",
-				$j -> builderFactory.of(Union.Data.class, $j));
+		var bodyUnion = _JsonUtils.parseNullObject(_bodyUnion, "application/json", $j -> builderFactory.of(Union.Data.class, $j));
 		var result = service.unionBodyParamNil(builderFactory, bodyUnion);
 		return responseBuilder.unionBodyParamNil(result, bodyUnion).build();
 	}
@@ -567,8 +555,7 @@ public class BodyParameterTypesResource {
 	@POST
 	@Path("unionBodyParamOptNil")
 	public Response unionBodyParamOptNil(InputStream _bodyUnion) {
-		var bodyUnion = _JsonUtils.parseNilObject(_bodyUnion, "application/json",
-				$j -> builderFactory.of(Union.Data.class, $j));
+		var bodyUnion = _JsonUtils.parseNilObject(_bodyUnion, "application/json", $j -> builderFactory.of(Union.Data.class, $j));
 		var result = service.unionBodyParamOptNil(builderFactory, bodyUnion);
 		return responseBuilder.unionBodyParamOptNil(result, bodyUnion).build();
 	}
@@ -576,8 +563,7 @@ public class BodyParameterTypesResource {
 	@PATCH
 	@Path("patchableRecordBodyParam")
 	public Response patchableRecordBodyParam(InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseObject(_bodyRecord, "application/json",
-				$j -> builderFactory.of(PatchableRecord.Patch.class, $j));
+		var bodyRecord = _JsonUtils.parseObject(_bodyRecord, "application/json", $j -> builderFactory.of(PatchableRecord.Patch.class, $j));
 		var result = service.patchableRecordBodyParam(builderFactory, bodyRecord);
 		return responseBuilder.patchableRecordBodyParam(result, bodyRecord).build();
 	}
@@ -585,8 +571,7 @@ public class BodyParameterTypesResource {
 	@PATCH
 	@Path("patchableRecordBodyParamOpt")
 	public Response patchableRecordBodyParamOpt(InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseOptObject(_bodyRecord, "application/json",
-				$j -> builderFactory.of(PatchableRecord.Patch.class, $j));
+		var bodyRecord = _JsonUtils.parseOptObject(_bodyRecord, "application/json", $j -> builderFactory.of(PatchableRecord.Patch.class, $j));
 		var result = service.patchableRecordBodyParamOpt(builderFactory, bodyRecord);
 		return responseBuilder.patchableRecordBodyParamOpt(result, bodyRecord).build();
 	}
@@ -594,8 +579,7 @@ public class BodyParameterTypesResource {
 	@PATCH
 	@Path("patchableRecordBodyParamNil")
 	public Response patchableRecordBodyParamNil(InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNullObject(_bodyRecord, "application/json",
-				$j -> builderFactory.of(PatchableRecord.Patch.class, $j));
+		var bodyRecord = _JsonUtils.parseNullObject(_bodyRecord, "application/json", $j -> builderFactory.of(PatchableRecord.Patch.class, $j));
 		var result = service.patchableRecordBodyParamNil(builderFactory, bodyRecord);
 		return responseBuilder.patchableRecordBodyParamNil(result, bodyRecord).build();
 	}
@@ -603,8 +587,7 @@ public class BodyParameterTypesResource {
 	@PATCH
 	@Path("patchableRecordBodyParamOptNil")
 	public Response patchableRecordBodyParamOptNil(InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNilObject(_bodyRecord, "application/json",
-				$j -> builderFactory.of(PatchableRecord.Patch.class, $j));
+		var bodyRecord = _JsonUtils.parseNilObject(_bodyRecord, "application/json", $j -> builderFactory.of(PatchableRecord.Patch.class, $j));
 		var result = service.patchableRecordBodyParamOptNil(builderFactory, bodyRecord);
 		return responseBuilder.patchableRecordBodyParamOptNil(result, bodyRecord).build();
 	}

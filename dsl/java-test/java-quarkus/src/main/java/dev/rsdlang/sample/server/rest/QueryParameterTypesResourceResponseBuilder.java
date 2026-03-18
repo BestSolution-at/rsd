@@ -22,119 +22,115 @@ import dev.rsdlang.sample.server.service.model.SimpleRecord;
 @Singleton
 public class QueryParameterTypesResourceResponseBuilder {
 	public ResponseBuilder simpleBooleanQueryParam(boolean $result, boolean queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleBooleanQueryParamOpt(NilResult $result, Optional<Boolean> queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleShortQueryParam(short $result, short queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleShortQueryParamOpt(NilResult $result, Optional<Short> queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleIntQueryParam(int $result, int queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleIntQueryParamOpt(NilResult $result, OptionalInt queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleLongQueryParam(long $result, long queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleLongQueryParamOpt(NilResult $result, OptionalLong queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleFloatQueryParam(float $result, float queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleFloatQueryParamOpt(NilResult $result, Optional<Float> queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleDoubleQueryParam(double $result, double queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleDoubleQueryParamOpt(NilResult $result, OptionalDouble queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleStringQueryParam(String $result, String queryValue) {
-		return Response.status(200)
-				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleStringQueryParamOpt(NilResult $result, Optional<String> queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleLocalDateQueryParam(LocalDate $result, LocalDate queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleLocalDateQueryParamOpt(NilResult $result, Optional<LocalDate> queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleLocalDateTimeQueryParam(LocalDateTime $result, LocalDateTime queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleLocalDateTimeQueryParamOpt(NilResult $result, Optional<LocalDateTime> queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleZonedDateTimeQueryParam(ZonedDateTime $result, ZonedDateTime queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleZonedDateTimeQueryParamOpt(NilResult $result, Optional<ZonedDateTime> queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleScalarQueryParam(ZoneId $result, ZoneId queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleScalarQueryParamOpt(NilResult $result, Optional<ZoneId> queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleEnumQueryParam(SampleEnum $result, SampleEnum queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleEnumQueryParamOpt(NilResult $result, Optional<SampleEnum> queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder multiQueryParam(String $result, String valueA, int valueB) {
-		return Response.status(200)
-				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder multiQueryParamOpt(String $result, Optional<String> valueA, OptionalInt valueB) {
-		return Response.status(200)
-				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder recordQueryParam(SimpleRecord.Data $result, SimpleRecord.Data queryValue) {
-		return Response.status(200)
-				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder recordQueryParamOpt(NilResult $result, Optional<SimpleRecord.Data> queryValue) {
-		return Response.status(200).entity($result);
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 }
