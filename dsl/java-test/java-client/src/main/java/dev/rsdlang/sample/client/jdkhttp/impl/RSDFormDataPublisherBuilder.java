@@ -66,9 +66,8 @@ public class RSDFormDataPublisherBuilder implements Closeable {
 
 	public RSDFormDataPublisherBuilder addBlob(String parameterName, RSDBlob blob) {
 		writeBoundary();
-		writeField("Content-Disposition",
-				"form-data; name=\"%s\"; filename=\"%s\"".formatted(parameterName,
-						blob instanceof RSDFile f ? f.filename() : "blob"));
+		var filename = blob instanceof RSDFile f ? f.filename() : "blob";
+		writeField("Content-Disposition", "form-data; name=\"%s\"; filename=\"%s\"".formatted(parameterName, filename));
 		blob.mimeType().ifPresent(m -> {
 			writeField("Content-Type", m);
 		});
@@ -147,3 +146,4 @@ public class RSDFormDataPublisherBuilder implements Closeable {
 		}
 	}
 }
+

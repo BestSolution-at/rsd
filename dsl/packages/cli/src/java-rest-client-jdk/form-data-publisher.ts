@@ -52,10 +52,10 @@ public class RSDFormDataPublisherBuilder implements Closeable {
 
 	private RSDFormDataPublisherBuilder() {
 		try {
-				tempFile = Files.createTempFile("multi-form-data", "tmp");
-				stream = Files.newOutputStream(tempFile);
+			tempFile = Files.createTempFile("multi-form-data", "tmp");
+			stream = Files.newOutputStream(tempFile);
 		} catch (IOException e) {
-				throw new IllegalStateException(e);
+			throw new IllegalStateException(e);
 		}
 	}
 
@@ -67,7 +67,7 @@ public class RSDFormDataPublisherBuilder implements Closeable {
 		writeBoundary();
 		writeField("Content-Disposition", "form-data; name=\\"%s\\"".formatted(parameterName));
 		if (contentType != null && !contentType.isBlank()) {
-				writeField("Content-Type", contentType);
+			writeField("Content-Type", contentType);
 		}
 		write(CR_LF);
 		write(content.getBytes());
@@ -75,19 +75,31 @@ public class RSDFormDataPublisherBuilder implements Closeable {
 		return this;
 	}
 
+	public RSDFormDataPublisherBuilder addBytes(String parameterName, byte[] content, String contentType) {
+		writeBoundary();
+		writeField("Content-Disposition", "form-data; name=\\"%s\\"".formatted(parameterName));
+		if (contentType != null && !contentType.isBlank()) {
+			writeField("Content-Type", contentType);
+		}
+		write(CR_LF);
+		write(content);
+		write(CR_LF);
+		return this;
+	}
+
 	public RSDFormDataPublisherBuilder addBlob(String parameterName, RSDBlob blob) {
 		writeBoundary();
-		writeField("Content-Disposition",
-						"form-data; name=\\"%s\\"; filename=\\"%s\\"".formatted(parameterName, blob instanceof RSDFile f ? f.filename() : "blob"));
+		var filename = blob instanceof RSDFile f ? f.filename() : "blob";
+		writeField("Content-Disposition", "form-data; name=\\"%s\\"; filename=\\"%s\\"".formatted(parameterName, filename));
 		blob.mimeType().ifPresent(m -> {
-				writeField("Content-Type", m);
+			writeField("Content-Type", m);
 		});
 
 		write(CR_LF);
 		try {
-				blob.stream().transferTo(stream);
+			blob.stream().transferTo(stream);
 		} catch (IOException e) {
-				throw new IllegalStateException(e);
+			throw new IllegalStateException(e);
 		}
 		write(CR_LF);
 		return this;
@@ -117,9 +129,9 @@ public class RSDFormDataPublisherBuilder implements Closeable {
 			writeEndBoundary();
 			stream.close();
 			return new RSDFormData(BodyPublishers.ofFile(tempFile),
-							"multipart/form-data; boundary=%s".formatted(boundary));
+					"multipart/form-data; boundary=%s".formatted(boundary));
 		} catch (IOException e) {
-				throw new IllegalStateException(e);
+			throw new IllegalStateException(e);
 		}
 	}
 
@@ -151,9 +163,9 @@ public class RSDFormDataPublisherBuilder implements Closeable {
 
 	private void write(byte[] bytes) {
 		try {
-				stream.write(bytes);
+			stream.write(bytes);
 		} catch (IOException e) {
-				throw new IllegalStateException(e);
+			throw new IllegalStateException(e);
 		}
 	}
 }
