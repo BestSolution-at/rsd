@@ -100,7 +100,7 @@ public class BinaryTypesResourceResponseBuilder {
 			Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList,
 			Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
 		return Response.status(200)
-				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, dataBlob, "application/json")));
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadMixedOptNil(
