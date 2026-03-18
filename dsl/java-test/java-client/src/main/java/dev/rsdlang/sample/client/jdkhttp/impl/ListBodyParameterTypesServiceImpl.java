@@ -35,6 +35,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		this.client = client;
 		this.serviceClient = serviceClient;
 	}
+
 	public SpecSamplesClient client() {
 		return this.serviceClient;
 	}
@@ -46,7 +47,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyBoolean));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyBoolean, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -58,7 +59,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBooleans($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -83,7 +85,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -96,7 +99,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyBoolean == null ? "" : _JsonUtils.toJsonString(bodyBoolean));
+			var $body = BodyPublishers
+					.ofByteArray(bodyBoolean == null ? new byte[0] : _JsonUtils.encodeValue(bodyBoolean, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -108,7 +112,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -121,7 +126,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyBoolean));
+			var $body = BodyPublishers
+					.ofByteArray(_JsonUtils.encodeValue(bodyBoolean, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -133,7 +139,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -146,7 +153,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -158,7 +165,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -171,7 +179,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyBoolean));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyBoolean, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -183,7 +191,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -196,7 +205,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyShort));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyShort, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -208,7 +217,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapShorts($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -221,7 +231,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -233,7 +243,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -246,7 +257,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyShort == null ? "" : _JsonUtils.toJsonString(bodyShort));
+			var $body = BodyPublishers
+					.ofByteArray(bodyShort == null ? new byte[0] : _JsonUtils.encodeValue(bodyShort, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -258,7 +270,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -271,7 +284,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyShort));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyShort, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -283,7 +296,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -296,7 +310,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -308,7 +322,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -321,7 +336,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyShort));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyShort, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -333,7 +348,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -346,7 +362,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyInt));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyInt, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -358,7 +374,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInts($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -371,7 +388,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -383,7 +400,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -396,7 +414,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyInt == null ? "" : _JsonUtils.toJsonString(bodyInt));
+			var $body = BodyPublishers
+					.ofByteArray(bodyInt == null ? new byte[0] : _JsonUtils.encodeValue(bodyInt, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -408,7 +427,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -421,7 +441,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyInt));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyInt, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -433,7 +453,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -446,7 +467,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -458,7 +479,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -471,7 +493,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyInt));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyInt, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -483,7 +505,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -496,7 +519,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLong));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLong, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -508,7 +531,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLongs($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -521,7 +545,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -533,7 +557,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -546,7 +571,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyLong == null ? "" : _JsonUtils.toJsonString(bodyLong));
+			var $body = BodyPublishers
+					.ofByteArray(bodyLong == null ? new byte[0] : _JsonUtils.encodeValue(bodyLong, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -558,7 +584,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -571,7 +598,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLong));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLong, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -583,7 +610,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -596,7 +624,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -608,7 +636,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -621,7 +650,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLong));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLong, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -633,7 +662,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -646,7 +676,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyFloat));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyFloat, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -658,7 +688,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFloats($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -671,7 +702,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -683,7 +714,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -696,7 +728,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyFloat == null ? "" : _JsonUtils.toJsonString(bodyFloat));
+			var $body = BodyPublishers
+					.ofByteArray(bodyFloat == null ? new byte[0] : _JsonUtils.encodeValue(bodyFloat, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -708,7 +741,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -721,7 +755,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyFloat));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyFloat, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -733,7 +767,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -746,7 +781,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -758,7 +793,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -771,7 +807,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyFloat));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyFloat, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -783,7 +819,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -796,7 +833,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyDouble));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyDouble, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -808,7 +845,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapDoubles($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -821,7 +859,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -833,7 +871,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -846,7 +885,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyDouble == null ? "" : _JsonUtils.toJsonString(bodyDouble));
+			var $body = BodyPublishers
+					.ofByteArray(bodyDouble == null ? new byte[0] : _JsonUtils.encodeValue(bodyDouble, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -858,7 +898,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -871,7 +912,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyDouble));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyDouble, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -883,7 +924,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -896,7 +938,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -908,7 +950,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -921,7 +964,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyDouble));
+			var $body = BodyPublishers
+					.ofByteArray(_JsonUtils.encodeValue(bodyDouble, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -933,7 +977,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -948,7 +993,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyString));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyString, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -960,7 +1005,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapStrings($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -973,7 +1019,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -985,7 +1031,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -998,7 +1045,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyString == null ? "" : _JsonUtils.toJsonString(bodyString));
+			var $body = BodyPublishers
+					.ofByteArray(bodyString == null ? new byte[0] : _JsonUtils.encodeValue(bodyString, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1010,7 +1058,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1023,7 +1072,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyString));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyString, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1035,7 +1084,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1060,7 +1110,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1073,7 +1124,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyString));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyString, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1085,7 +1136,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1100,7 +1152,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLocalDate));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLocalDate, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1112,7 +1164,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDates($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1137,7 +1190,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1150,7 +1204,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyLocalDate == null ? "" : _JsonUtils.toJsonString(bodyLocalDate));
+			var $body = BodyPublishers
+					.ofByteArray(bodyLocalDate == null ? new byte[0] : _JsonUtils.encodeValue(bodyLocalDate, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1162,7 +1217,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1175,7 +1231,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLocalDate));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLocalDate, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1187,7 +1243,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1200,7 +1257,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1212,7 +1269,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1225,7 +1283,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLocalDate));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLocalDate, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1237,7 +1295,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1252,7 +1311,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLocalDateTime));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLocalDateTime, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1264,7 +1323,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDateTimes($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1277,7 +1337,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1289,7 +1349,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1302,7 +1363,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyLocalDateTime == null ? "" : _JsonUtils.toJsonString(bodyLocalDateTime));
+			var $body = BodyPublishers.ofByteArray(
+					bodyLocalDateTime == null ? new byte[0] : _JsonUtils.encodeValue(bodyLocalDateTime, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1314,7 +1376,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1327,7 +1390,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLocalDateTime));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLocalDateTime, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1339,7 +1402,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1364,7 +1428,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1377,7 +1442,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyLocalDateTime));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLocalDateTime, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1389,7 +1454,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1404,7 +1470,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyZonedDateTime));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyZonedDateTime, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1416,7 +1482,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapZonedDateTimes($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1441,7 +1508,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1454,7 +1522,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyZonedDateTime == null ? "" : _JsonUtils.toJsonString(bodyZonedDateTime));
+			var $body = BodyPublishers.ofByteArray(
+					bodyZonedDateTime == null ? new byte[0] : _JsonUtils.encodeValue(bodyZonedDateTime, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1466,7 +1535,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1479,7 +1549,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyZonedDateTime));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyZonedDateTime, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1491,7 +1561,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1516,7 +1587,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1529,7 +1601,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyZonedDateTime));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyZonedDateTime, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1541,7 +1613,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1556,7 +1629,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyScalar));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyScalar, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1568,7 +1641,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, ZoneId::of);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1593,7 +1667,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1606,7 +1681,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyScalar == null ? "" : _JsonUtils.toJsonString(bodyScalar));
+			var $body = BodyPublishers
+					.ofByteArray(bodyScalar == null ? new byte[0] : _JsonUtils.encodeValue(bodyScalar, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1618,7 +1694,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1631,7 +1708,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyScalar));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyScalar, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1643,7 +1720,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1668,7 +1746,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1681,7 +1760,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyScalar));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyScalar, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1693,7 +1772,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1708,7 +1788,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyEnum));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyEnum, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1720,7 +1800,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, SampleEnum::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1745,7 +1826,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1758,7 +1840,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyEnum == null ? "" : _JsonUtils.toJsonString(bodyEnum));
+			var $body = BodyPublishers
+					.ofByteArray(bodyEnum == null ? new byte[0] : _JsonUtils.encodeValue(bodyEnum, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1770,7 +1853,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1783,7 +1867,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyEnum));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyEnum, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1795,7 +1879,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1820,7 +1905,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1833,7 +1919,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyEnum));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyEnum, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1845,13 +1931,15 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public List<ListInlineEnumBodyParam_Result$> listInlineEnumBodyParam(List<ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum) {
+	public List<ListInlineEnumBodyParam_Result$> listInlineEnumBodyParam(
+			List<ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum) {
 		Objects.requireNonNull(bodyEnum, "bodyEnum must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParam".formatted(
@@ -1860,7 +1948,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyEnum));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyEnum, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1872,7 +1960,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, ListInlineEnumBodyParam_Result$::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1897,7 +1986,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1910,7 +2000,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyEnum == null ? "" : _JsonUtils.toJsonString(bodyEnum));
+			var $body = BodyPublishers
+					.ofByteArray(bodyEnum == null ? new byte[0] : _JsonUtils.encodeValue(bodyEnum, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1922,7 +2013,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1935,7 +2027,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyEnum));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyEnum, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1947,7 +2039,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1972,7 +2065,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1985,7 +2079,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyEnum));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyEnum, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1997,7 +2091,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2017,7 +2112,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
 			$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
 			$builder = $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2029,7 +2124,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2054,7 +2150,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2068,10 +2165,10 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		try {
 			var $contentType = "application/json";
 			var $builder = Json.createObjectBuilder();
-			if(valueA != null) {
+			if (valueA != null) {
 				$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
 			}
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2083,7 +2180,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2097,13 +2195,13 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		try {
 			var $contentType = "application/json";
 			var $builder = Json.createObjectBuilder();
-			if(valueA != null) {
+			if (valueA != null) {
 				$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
 			}
-			if(valueB != null) {
+			if (valueB != null) {
 				$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
 			}
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2115,13 +2213,15 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public List<NilResult> listMultiBodyParamOpt(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public List<NilResult> listMultiBodyParamOpt(List<String> valueA, List<Integer> valueB,
+			List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOpt".formatted(
 				this.baseURI);
 
@@ -2129,16 +2229,16 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		try {
 			var $contentType = "application/json";
 			var $builder = Json.createObjectBuilder();
-			if(valueA != null) {
+			if (valueA != null) {
 				$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
 			}
-			if(valueB != null) {
+			if (valueB != null) {
 				$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
 			}
-			if(valueC != null) {
+			if (valueC != null) {
 				$builder = $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
 			}
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2150,13 +2250,15 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public List<NilResult> listMultiBodyParamNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public List<NilResult> listMultiBodyParamNil(List<String> valueA, List<Integer> valueB,
+			List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamNil".formatted(
 				this.baseURI);
 
@@ -2164,10 +2266,13 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		try {
 			var $contentType = "application/json";
 			var $builder = Json.createObjectBuilder();
-			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
-			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
-			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
+			$builder = valueA == null ? $builder.addNull("valueA")
+					: $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
+			$builder = valueB == null ? $builder.addNull("valueB")
+					: $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
+			$builder = valueC == null ? $builder.addNull("valueC")
+					: $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2179,7 +2284,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2192,7 +2298,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("{}");
+			var $body = BodyPublishers.ofByteArray("{}".getBytes());
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2204,7 +2310,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2218,8 +2325,9 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		try {
 			var $contentType = "application/json";
 			var $builder = Json.createObjectBuilder();
-			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
+			$builder = valueA == null ? $builder.addNull("valueA")
+					: $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2231,7 +2339,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2245,9 +2354,11 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		try {
 			var $contentType = "application/json";
 			var $builder = Json.createObjectBuilder();
-			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
-			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
+			$builder = valueA == null ? $builder.addNull("valueA")
+					: $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
+			$builder = valueB == null ? $builder.addNull("valueB")
+					: $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2259,13 +2370,15 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public List<NilResult> listMultiBodyParamOptNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public List<NilResult> listMultiBodyParamOptNil(List<String> valueA, List<Integer> valueB,
+			List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOptNil".formatted(
 				this.baseURI);
 
@@ -2273,10 +2386,13 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		try {
 			var $contentType = "application/json";
 			var $builder = Json.createObjectBuilder();
-			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
-			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
-			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString($builder.build(), false));
+			$builder = valueA == null ? $builder.addNull("valueA")
+					: $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
+			$builder = valueB == null ? $builder.addNull("valueB")
+					: $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
+			$builder = valueC == null ? $builder.addNull("valueC")
+					: $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2288,7 +2404,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2303,7 +2420,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyRecord));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyRecord, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2315,7 +2432,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2328,7 +2446,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2340,7 +2458,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2353,7 +2472,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString( bodyRecord == null ? "" : _JsonUtils.toJsonString(bodyRecord));
+			var $body = BodyPublishers
+					.ofByteArray(bodyRecord == null ? new byte[0] : _JsonUtils.encodeValue(bodyRecord, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2365,7 +2485,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2378,7 +2499,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyRecord));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyRecord, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2390,7 +2511,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2403,7 +2525,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString("");
+			var $body = BodyPublishers.ofByteArray(new byte[0]);
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2415,7 +2537,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2428,7 +2551,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try {
 			var $contentType = "application/json";
-			var $body = BodyPublishers.ofString(_JsonUtils.toJsonString(bodyRecord));
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyRecord, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2440,7 +2563,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}

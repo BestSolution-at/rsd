@@ -32,6 +32,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		this.client = client;
 		this.serviceClient = serviceClient;
 	}
+
 	public SpecSamplesClient client() {
 		return this.serviceClient;
 	}
@@ -49,7 +50,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -58,7 +59,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBoolean($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -79,7 +81,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -98,7 +101,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -107,7 +110,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -126,7 +130,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -135,7 +139,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -156,7 +161,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -175,7 +181,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -184,7 +190,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -203,7 +210,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -212,7 +219,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapShort($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -233,7 +241,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -252,7 +261,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -261,7 +270,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -280,7 +290,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -289,7 +299,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -310,7 +321,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -329,7 +341,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -338,7 +350,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -357,7 +370,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -366,7 +379,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -387,7 +401,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -406,7 +421,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -415,7 +430,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -434,7 +450,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -443,7 +459,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -464,7 +481,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -483,7 +501,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -492,7 +510,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -511,7 +530,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -520,7 +539,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLong($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -541,7 +561,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -560,7 +581,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -569,7 +590,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -588,7 +610,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -597,7 +619,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -618,7 +641,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -637,7 +661,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -646,7 +670,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -665,7 +690,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -674,7 +699,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFloat($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -695,7 +721,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -714,7 +741,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -723,7 +750,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -742,7 +770,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -751,7 +779,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -772,7 +801,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -791,7 +821,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -800,7 +830,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -819,7 +850,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -828,7 +859,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapDouble($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -849,7 +881,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -868,7 +901,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -877,7 +910,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -896,7 +930,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -905,7 +939,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -926,7 +961,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -945,7 +981,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -954,7 +990,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -975,7 +1012,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -984,7 +1021,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1005,7 +1043,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1016,7 +1055,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		if(headerValue != null) {
+		if (headerValue != null) {
 			$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -1026,7 +1065,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1035,7 +1074,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1058,7 +1098,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1067,7 +1107,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1088,7 +1129,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1111,7 +1153,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1120,7 +1162,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1141,7 +1184,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1150,7 +1193,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDate($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1171,7 +1215,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1190,7 +1235,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1199,7 +1244,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1218,7 +1264,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1227,7 +1273,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1248,7 +1295,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1267,7 +1315,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1276,7 +1324,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1297,7 +1346,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1306,7 +1355,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDateTime($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1327,7 +1377,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1346,7 +1397,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1355,7 +1406,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1374,7 +1426,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1383,7 +1435,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1404,7 +1457,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1423,7 +1477,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1432,7 +1486,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1453,7 +1508,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1462,7 +1517,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapZonedDateTime($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1483,7 +1539,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1502,7 +1559,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1511,7 +1568,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1530,7 +1588,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1539,7 +1597,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1560,7 +1619,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1579,7 +1639,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1588,7 +1648,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1609,7 +1670,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1618,7 +1679,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, ZoneId::of);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1639,7 +1701,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1658,7 +1721,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1667,7 +1730,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1686,7 +1750,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1695,7 +1759,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1716,7 +1781,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1735,7 +1801,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1744,7 +1810,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1765,7 +1832,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1774,7 +1841,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, SampleEnum::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1795,7 +1863,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1814,7 +1883,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1823,7 +1892,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1842,7 +1912,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1851,7 +1921,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1872,7 +1943,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1891,7 +1963,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1900,13 +1972,15 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public SimpleInlineEnumHeaderParam_Result$ simpleInlineEnumHeaderParam(SimpleInlineEnumHeaderParam_HeaderValue_Param$ headerValue) {
+	public SimpleInlineEnumHeaderParam_Result$ simpleInlineEnumHeaderParam(
+			SimpleInlineEnumHeaderParam_HeaderValue_Param$ headerValue) {
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/headerparametertypes/simpleInlineEnumHeaderParam".formatted(
@@ -1921,7 +1995,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1930,7 +2004,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, SimpleInlineEnumHeaderParam_Result$::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1951,7 +2026,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1970,7 +2046,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1979,7 +2055,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1998,7 +2075,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2007,7 +2084,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2028,7 +2106,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2047,7 +2126,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2056,7 +2135,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2078,7 +2158,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2087,7 +2167,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2108,7 +2189,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2119,7 +2201,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		if(valueA != null) {
+		if (valueA != null) {
 			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -2129,7 +2211,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2138,7 +2220,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2149,7 +2232,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		if(valueA != null) {
+		if (valueA != null) {
 			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
 		}
 		$headerParams.put("valueB", String.format("%s", valueB));
@@ -2160,7 +2243,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2169,7 +2252,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2193,7 +2277,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2202,7 +2286,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2223,7 +2308,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2246,7 +2332,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2255,7 +2341,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2279,7 +2366,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2288,7 +2375,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2301,7 +2389,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", ServiceUtils.encodeBase64(_JsonUtils.toJsonString(headerValue)));
+		$headerParams.put("headerValue",
+				ServiceUtils.encodeBase64(_JsonUtils.encodeValue(headerValue, "application/json")));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2309,7 +2398,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2318,7 +2407,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, SimpleRecordDataImpl::of);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2339,7 +2429,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2350,8 +2441,9 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		if(headerValue != null) {
-			$headerParams.put("headerValue", ServiceUtils.encodeBase64(_JsonUtils.toJsonString(headerValue)));
+		if (headerValue != null) {
+			$headerParams.put("headerValue",
+					ServiceUtils.encodeBase64(_JsonUtils.encodeValue(headerValue, "application/json")));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2360,7 +2452,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2369,7 +2461,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2380,8 +2473,9 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		if(headerValue != null) {
-			$headerParams.put("headerValue", ServiceUtils.encodeBase64(_JsonUtils.toJsonString(headerValue)));
+		if (headerValue != null) {
+			$headerParams.put("headerValue",
+					ServiceUtils.encodeBase64(_JsonUtils.encodeValue(headerValue, "application/json")));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -2392,7 +2486,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2401,7 +2495,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2422,7 +2517,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2433,8 +2529,9 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI);
 
 		var $headerParams = new HashMap<String, String>();
-		if(headerValue != null) {
-			$headerParams.put("headerValue", ServiceUtils.encodeBase64(_JsonUtils.toJsonString(headerValue)));
+		if (headerValue != null) {
+			$headerParams.put("headerValue",
+					ServiceUtils.encodeBase64(_JsonUtils.encodeValue(headerValue, "application/json")));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -2445,7 +2542,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.GET();
-			if($headers.length > 0) {
+			if ($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2454,7 +2551,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}

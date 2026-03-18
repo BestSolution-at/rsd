@@ -66,11 +66,13 @@ public class ListSampleServiceResourceResponseBuilder {
 	}
 
 	public ResponseBuilder listSimpleRecord(List<SimpleRecord.Data> $result) {
-		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder listSimpleRecordWithError(List<SimpleRecord.Data> $result) {
-		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 }

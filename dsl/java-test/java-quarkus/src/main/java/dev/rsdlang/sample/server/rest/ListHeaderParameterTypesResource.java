@@ -26,7 +26,8 @@ public class ListHeaderParameterTypesResource {
 	private final ListHeaderParameterTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public ListHeaderParameterTypesResource(ListHeaderParameterTypesService service, ListHeaderParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListHeaderParameterTypesResource(ListHeaderParameterTypesService service,
+			ListHeaderParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -227,7 +228,8 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listStringHeaderParam")
 	public Response listStringHeaderParam(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapStrings(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var headerValue = _RestUtils.mapStrings(_headerValue,
+				$hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var result = service.listStringHeaderParam(builderFactory, headerValue);
 		return responseBuilder.listStringHeaderParam(result, headerValue).build();
 	}
@@ -235,7 +237,8 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listStringHeaderParamOpt")
 	public Response listStringHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapOptStrings(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var headerValue = _RestUtils.mapOptStrings(_headerValue,
+				$hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var result = service.listStringHeaderParamOpt(builderFactory, headerValue);
 		return responseBuilder.listStringHeaderParamOpt(result, headerValue).build();
 	}
@@ -243,7 +246,8 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listStringHeaderParamNil")
 	public Response listStringHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapNullStrings(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var headerValue = _RestUtils.mapNullStrings(_headerValue,
+				$hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var result = service.listStringHeaderParamNil(builderFactory, headerValue);
 		return responseBuilder.listStringHeaderParamNil(result, headerValue).build();
 	}
@@ -251,7 +255,8 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listStringHeaderParamOptNil")
 	public Response listStringHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapNilStrings(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var headerValue = _RestUtils.mapNilStrings(_headerValue,
+				$hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var result = service.listStringHeaderParamOptNil(builderFactory, headerValue);
 		return responseBuilder.listStringHeaderParamOptNil(result, headerValue).build();
 	}
@@ -419,7 +424,8 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listInlineEnumHeaderParam")
 	public Response listInlineEnumHeaderParam(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapLiterals(_headerValue, ListHeaderParameterTypesService.ListInlineEnumHeaderParam_HeaderValue_Param$::valueOf);
+		var headerValue = _RestUtils.mapLiterals(_headerValue,
+				ListHeaderParameterTypesService.ListInlineEnumHeaderParam_HeaderValue_Param$::valueOf);
 		var result = service.listInlineEnumHeaderParam(builderFactory, headerValue);
 		return responseBuilder.listInlineEnumHeaderParam(result, headerValue).build();
 	}
@@ -427,7 +433,8 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listInlineEnumHeaderParamOpt")
 	public Response listInlineEnumHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapOptLiterals(_headerValue, ListHeaderParameterTypesService.ListInlineEnumHeaderParamOpt_HeaderValue_Param$::valueOf);
+		var headerValue = _RestUtils.mapOptLiterals(_headerValue,
+				ListHeaderParameterTypesService.ListInlineEnumHeaderParamOpt_HeaderValue_Param$::valueOf);
 		var result = service.listInlineEnumHeaderParamOpt(builderFactory, headerValue);
 		return responseBuilder.listInlineEnumHeaderParamOpt(result, headerValue).build();
 	}
@@ -435,7 +442,8 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listInlineEnumHeaderParamNil")
 	public Response listInlineEnumHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapNullLiterals(_headerValue, ListHeaderParameterTypesService.ListInlineEnumHeaderParamNil_HeaderValue_Param$::valueOf);
+		var headerValue = _RestUtils.mapNullLiterals(_headerValue,
+				ListHeaderParameterTypesService.ListInlineEnumHeaderParamNil_HeaderValue_Param$::valueOf);
 		var result = service.listInlineEnumHeaderParamNil(builderFactory, headerValue);
 		return responseBuilder.listInlineEnumHeaderParamNil(result, headerValue).build();
 	}
@@ -443,7 +451,8 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listInlineEnumHeaderParamOptNil")
 	public Response listInlineEnumHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapNilLiterals(_headerValue, ListHeaderParameterTypesService.ListInlineEnumHeaderParamOptNil_HeaderValue_Param$::valueOf);
+		var headerValue = _RestUtils.mapNilLiterals(_headerValue,
+				ListHeaderParameterTypesService.ListInlineEnumHeaderParamOptNil_HeaderValue_Param$::valueOf);
 		var result = service.listInlineEnumHeaderParamOptNil(builderFactory, headerValue);
 		return responseBuilder.listInlineEnumHeaderParamOptNil(result, headerValue).build();
 	}
@@ -456,7 +465,8 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("valueC") String _valueC) {
 		var valueA = _RestUtils.mapStrings(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var valueB = _RestUtils.mapInts(_valueB);
-		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+				"application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listMultiHeaderParam(builderFactory, valueA, valueB, valueC);
 		return responseBuilder.listMultiHeaderParam(result, valueA, valueB, valueC).build();
 	}
@@ -467,9 +477,11 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB,
 			@HeaderParam("valueC") String _valueC) {
-		var valueA = _RestUtils.mapOptStrings(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var valueA = _RestUtils.mapOptStrings(_valueA,
+				$hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var valueB = _RestUtils.mapOptInts(_valueB);
-		var valueC = _RestUtils.mapOptObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var valueC = _RestUtils.mapOptObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+				"application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listMultiHeaderParamOpt(builderFactory, valueA, valueB, valueC);
 		return responseBuilder.listMultiHeaderParamOpt(result, valueA, valueB, valueC).build();
 	}
@@ -480,9 +492,11 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB,
 			@HeaderParam("valueC") String _valueC) {
-		var valueA = _RestUtils.mapNullStrings(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var valueA = _RestUtils.mapNullStrings(_valueA,
+				$hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var valueB = _RestUtils.mapNullInts(_valueB);
-		var valueC = _RestUtils.mapNullObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var valueC = _RestUtils.mapNullObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+				"application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listMultiHeaderParamNil(builderFactory, valueA, valueB, valueC);
 		return responseBuilder.listMultiHeaderParamNil(result, valueA, valueB, valueC).build();
 	}
@@ -493,9 +507,11 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB,
 			@HeaderParam("valueC") String _valueC) {
-		var valueA = _RestUtils.mapNilStrings(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var valueA = _RestUtils.mapNilStrings(_valueA,
+				$hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var valueB = _RestUtils.mapNilInts(_valueB);
-		var valueC = _RestUtils.mapNilObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var valueC = _RestUtils.mapNilObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+				"application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listMultiHeaderParamOptNil(builderFactory, valueA, valueB, valueC);
 		return responseBuilder.listMultiHeaderParamOptNil(result, valueA, valueB, valueC).build();
 	}
@@ -503,7 +519,8 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listRecordHeaderParam")
 	public Response listRecordHeaderParam(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var headerValue = _RestUtils.mapObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+				"application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listRecordHeaderParam(builderFactory, headerValue);
 		return responseBuilder.listRecordHeaderParam(result, headerValue).build();
 	}
@@ -511,7 +528,8 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listRecordHeaderParamOpt")
 	public Response listRecordHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapOptObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var headerValue = _RestUtils.mapOptObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+				"application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listRecordHeaderParamOpt(builderFactory, headerValue);
 		return responseBuilder.listRecordHeaderParamOpt(result, headerValue).build();
 	}
@@ -519,7 +537,8 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listRecordHeaderParamNil")
 	public Response listRecordHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapNullObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var headerValue = _RestUtils.mapNullObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+				"application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listRecordHeaderParamNil(builderFactory, headerValue);
 		return responseBuilder.listRecordHeaderParamNil(result, headerValue).build();
 	}
@@ -527,7 +546,8 @@ public class ListHeaderParameterTypesResource {
 	@GET
 	@Path("listRecordHeaderParamOptNil")
 	public Response listRecordHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapNilObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var headerValue = _RestUtils.mapNilObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+				"application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listRecordHeaderParamOptNil(builderFactory, headerValue);
 		return responseBuilder.listRecordHeaderParamOptNil(result, headerValue).build();
 	}

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.ListQueryParameterTypesService;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
@@ -29,6 +30,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		this.client = client;
 		this.serviceClient = serviceClient;
 	}
+
 	public SpecSamplesClient client() {
 		return this.serviceClient;
 	}
@@ -53,7 +55,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBooleans($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -79,7 +82,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapShorts($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -105,7 +109,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInts($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -131,7 +136,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLongs($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -157,7 +163,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFloats($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -183,7 +190,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapDoubles($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -211,7 +219,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapStrings($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -239,7 +248,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDates($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -267,7 +277,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDateTimes($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -295,7 +306,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapZonedDateTimes($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -323,7 +335,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, ZoneId::of);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -351,13 +364,15 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, SampleEnum::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public List<ListInlineEnumQueryParam_Result$> listInlineEnumQueryParam(List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue) {
+	public List<ListInlineEnumQueryParam_Result$> listInlineEnumQueryParam(
+			List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue) {
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/listqueryparametertypes/listInlineEnumQueryParam".formatted(
@@ -379,7 +394,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, ListInlineEnumQueryParam_Result$::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -400,7 +416,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			$queryParams.append("valueB", $q);
 		});
 		valueC.stream().forEach($q -> {
-			$queryParams.append("valueC", $q);
+			$queryParams.append("valueC", _JsonUtils.encodeValue($q, "application/json"));
 		});
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -414,7 +430,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -428,7 +445,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
-			$queryParams.append("queryValue", $q);
+			$queryParams.append("queryValue", _JsonUtils.encodeValue($q, "application/json"));
 		});
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -442,7 +459,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(
+					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}

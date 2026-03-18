@@ -41,7 +41,8 @@ public class SampleServiceResourceResponseBuilder {
 	}
 
 	public ResponseBuilder getString(String $result) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getLocalDate(LocalDate $result) {
@@ -77,11 +78,13 @@ public class SampleServiceResourceResponseBuilder {
 	}
 
 	public ResponseBuilder getSimpleRecord(SimpleRecord.Data $result, String key) {
-		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder getSimpleRecordWithError(SimpleRecord.Data $result, String key) {
-		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 }

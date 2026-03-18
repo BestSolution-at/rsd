@@ -122,7 +122,8 @@ public class BodyParameterTypesResourceResponseBuilder {
 	}
 
 	public ResponseBuilder simpleStringBodyParam(String $result, String bodyString) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleStringBodyParamOpt(NilResult $result, Optional<String> bodyString) {
@@ -165,7 +166,8 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleLocalDateTimeBodyParamOptNil(NilResult $result, _Base.Nillable<LocalDateTime> bodyLocalDateTime) {
+	public ResponseBuilder simpleLocalDateTimeBodyParamOptNil(NilResult $result,
+			_Base.Nillable<LocalDateTime> bodyLocalDateTime) {
 		return Response.status(200).entity($result);
 	}
 
@@ -181,7 +183,8 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleZonedDateTimeBodyParamOptNil(NilResult $result, _Base.Nillable<ZonedDateTime> bodyZonedDateTime) {
+	public ResponseBuilder simpleZonedDateTimeBodyParamOptNil(NilResult $result,
+			_Base.Nillable<ZonedDateTime> bodyZonedDateTime) {
 		return Response.status(200).entity($result);
 	}
 
@@ -217,44 +220,58 @@ public class BodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleInlineEnumBodyParam(BodyParameterTypesService.SimpleInlineEnumBodyParam_Result$ $result, BodyParameterTypesService.SimpleInlineEnumBodyParam_BodyEnum_Param$ bodyEnum) {
+	public ResponseBuilder simpleInlineEnumBodyParam(BodyParameterTypesService.SimpleInlineEnumBodyParam_Result$ $result,
+			BodyParameterTypesService.SimpleInlineEnumBodyParam_BodyEnum_Param$ bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleInlineEnumBodyParamOpt(NilResult $result, Optional<BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$> bodyEnum) {
+	public ResponseBuilder simpleInlineEnumBodyParamOpt(NilResult $result,
+			Optional<BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$> bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleInlineEnumBodyParamNil(NilResult $result, Optional<BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$> bodyEnum) {
+	public ResponseBuilder simpleInlineEnumBodyParamNil(NilResult $result,
+			Optional<BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$> bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder simpleInlineEnumBodyParamOptNil(NilResult $result, _Base.Nillable<BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$> bodyEnum) {
+	public ResponseBuilder simpleInlineEnumBodyParamOptNil(NilResult $result,
+			_Base.Nillable<BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$> bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
 	public ResponseBuilder multiBodyParam(String $result, String valueA, int valueB, SimpleRecord.Data valueC) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
-	public ResponseBuilder multiBodyParamOpt(String $result, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+	public ResponseBuilder multiBodyParamOpt(String $result, Optional<String> valueA, OptionalInt valueB,
+			Optional<SimpleRecord.Data> valueC) {
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
-	public ResponseBuilder multiBodyParamNil(String $result, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+	public ResponseBuilder multiBodyParamNil(String $result, Optional<String> valueA, OptionalInt valueB,
+			Optional<SimpleRecord.Data> valueC) {
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
-	public ResponseBuilder multiBodyParamOptNil(String $result, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+	public ResponseBuilder multiBodyParamOptNil(String $result, _Base.Nillable<String> valueA,
+			_Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC) {
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
-	public ResponseBuilder multiBodyParamFirst(String $result, Optional<String> valueA, int valueB, SimpleRecord.Data valueC) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+	public ResponseBuilder multiBodyParamFirst(String $result, Optional<String> valueA, int valueB,
+			SimpleRecord.Data valueC) {
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder recordBodyParam(SimpleRecord.Data $result, SimpleRecord.Data bodyRecord) {
-		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder recordBodyParamOpt(NilResult $result, Optional<SimpleRecord.Data> bodyRecord) {
@@ -270,7 +287,8 @@ public class BodyParameterTypesResourceResponseBuilder {
 	}
 
 	public ResponseBuilder unionBodyParam(Union.Data $result, Union.Data bodyUnion) {
-		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder unionBodyParamOpt(NilResult $result, Optional<Union.Data> bodyUnion) {
@@ -286,19 +304,26 @@ public class BodyParameterTypesResourceResponseBuilder {
 	}
 
 	public ResponseBuilder patchableRecordBodyParam(PatchableRecord.Data $result, PatchableRecord.Patch bodyRecord) {
-		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
-	public ResponseBuilder patchableRecordBodyParamOpt(PatchableRecord.Data $result, Optional<PatchableRecord.Patch> bodyRecord) {
-		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
+	public ResponseBuilder patchableRecordBodyParamOpt(PatchableRecord.Data $result,
+			Optional<PatchableRecord.Patch> bodyRecord) {
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
-	public ResponseBuilder patchableRecordBodyParamNil(PatchableRecord.Data $result, Optional<PatchableRecord.Patch> bodyRecord) {
-		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
+	public ResponseBuilder patchableRecordBodyParamNil(PatchableRecord.Data $result,
+			Optional<PatchableRecord.Patch> bodyRecord) {
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
-	public ResponseBuilder patchableRecordBodyParamOptNil(PatchableRecord.Data $result, _Base.Nillable<PatchableRecord.Patch> bodyRecord) {
-		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
+	public ResponseBuilder patchableRecordBodyParamOptNil(PatchableRecord.Data $result,
+			_Base.Nillable<PatchableRecord.Patch> bodyRecord) {
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 }

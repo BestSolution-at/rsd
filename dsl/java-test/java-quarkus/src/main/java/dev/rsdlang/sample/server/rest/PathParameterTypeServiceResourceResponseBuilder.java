@@ -40,7 +40,8 @@ public class PathParameterTypeServiceResourceResponseBuilder {
 	}
 
 	public ResponseBuilder simpleStringPathParam(String $result, String pathString) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleLocalDatePathParam(LocalDate $result, LocalDate pathLocalDate) {
@@ -64,7 +65,8 @@ public class PathParameterTypeServiceResourceResponseBuilder {
 	}
 
 	public ResponseBuilder multiPathParam(String $result, String valueA, int valueB) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 }

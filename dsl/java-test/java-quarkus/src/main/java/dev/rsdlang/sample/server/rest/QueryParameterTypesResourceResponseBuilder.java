@@ -70,7 +70,8 @@ public class QueryParameterTypesResourceResponseBuilder {
 	}
 
 	public ResponseBuilder simpleStringQueryParam(String $result, String queryValue) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder simpleStringQueryParamOpt(NilResult $result, Optional<String> queryValue) {
@@ -118,15 +119,18 @@ public class QueryParameterTypesResourceResponseBuilder {
 	}
 
 	public ResponseBuilder multiQueryParam(String $result, String valueA, int valueB) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder multiQueryParamOpt(String $result, Optional<String> valueA, OptionalInt valueB) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder recordQueryParam(SimpleRecord.Data $result, SimpleRecord.Data queryValue) {
-		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder recordQueryParamOpt(NilResult $result, Optional<SimpleRecord.Data> queryValue) {

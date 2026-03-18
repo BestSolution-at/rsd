@@ -66,16 +66,21 @@ public class ListQueryParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listInlineEnumQueryParam(List<ListQueryParameterTypesService.ListInlineEnumQueryParam_Result$> $result, List<ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$> queryValue) {
+	public ResponseBuilder listInlineEnumQueryParam(
+			List<ListQueryParameterTypesService.ListInlineEnumQueryParam_Result$> $result,
+			List<ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$> queryValue) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listMultiQueryParam(String $result, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+	public ResponseBuilder listMultiQueryParam(String $result, List<String> valueA, List<Integer> valueB,
+			List<SimpleRecord.Data> valueC) {
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder listRecordQueryParam(List<SimpleRecord.Data> $result, List<SimpleRecord.Data> queryValue) {
-		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 }

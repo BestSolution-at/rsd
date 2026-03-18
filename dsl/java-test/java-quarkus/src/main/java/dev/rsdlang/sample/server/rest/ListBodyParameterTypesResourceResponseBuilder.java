@@ -145,39 +145,48 @@ public class ListBodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLocalDateBodyParamOptNil(NilResult $result, _Base.Nillable<List<LocalDate>> bodyLocalDate) {
+	public ResponseBuilder listLocalDateBodyParamOptNil(NilResult $result,
+			_Base.Nillable<List<LocalDate>> bodyLocalDate) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLocalDateTimeBodyParam(List<LocalDateTime> $result, List<LocalDateTime> bodyLocalDateTime) {
+	public ResponseBuilder listLocalDateTimeBodyParam(List<LocalDateTime> $result,
+			List<LocalDateTime> bodyLocalDateTime) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLocalDateTimeBodyParamOpt(NilResult $result, Optional<List<LocalDateTime>> bodyLocalDateTime) {
+	public ResponseBuilder listLocalDateTimeBodyParamOpt(NilResult $result,
+			Optional<List<LocalDateTime>> bodyLocalDateTime) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLocalDateTimeBodyParamNil(NilResult $result, Optional<List<LocalDateTime>> bodyLocalDateTime) {
+	public ResponseBuilder listLocalDateTimeBodyParamNil(NilResult $result,
+			Optional<List<LocalDateTime>> bodyLocalDateTime) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listLocalDateTimeBodyParamOptNil(NilResult $result, _Base.Nillable<List<LocalDateTime>> bodyLocalDateTime) {
+	public ResponseBuilder listLocalDateTimeBodyParamOptNil(NilResult $result,
+			_Base.Nillable<List<LocalDateTime>> bodyLocalDateTime) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listZonedDateTimeBodyParam(List<ZonedDateTime> $result, List<ZonedDateTime> bodyZonedDateTime) {
+	public ResponseBuilder listZonedDateTimeBodyParam(List<ZonedDateTime> $result,
+			List<ZonedDateTime> bodyZonedDateTime) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listZonedDateTimeBodyParamOpt(NilResult $result, Optional<List<ZonedDateTime>> bodyZonedDateTime) {
+	public ResponseBuilder listZonedDateTimeBodyParamOpt(NilResult $result,
+			Optional<List<ZonedDateTime>> bodyZonedDateTime) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listZonedDateTimeBodyParamNil(NilResult $result, Optional<List<ZonedDateTime>> bodyZonedDateTime) {
+	public ResponseBuilder listZonedDateTimeBodyParamNil(NilResult $result,
+			Optional<List<ZonedDateTime>> bodyZonedDateTime) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listZonedDateTimeBodyParamOptNil(NilResult $result, _Base.Nillable<List<ZonedDateTime>> bodyZonedDateTime) {
+	public ResponseBuilder listZonedDateTimeBodyParamOptNil(NilResult $result,
+			_Base.Nillable<List<ZonedDateTime>> bodyZonedDateTime) {
 		return Response.status(200).entity($result);
 	}
 
@@ -213,40 +222,51 @@ public class ListBodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listInlineEnumBodyParam(List<ListBodyParameterTypesService.ListInlineEnumBodyParam_Result$> $result, List<ListBodyParameterTypesService.ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum) {
+	public ResponseBuilder listInlineEnumBodyParam(
+			List<ListBodyParameterTypesService.ListInlineEnumBodyParam_Result$> $result,
+			List<ListBodyParameterTypesService.ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listInlineEnumBodyParamOpt(NilResult $result, Optional<List<ListBodyParameterTypesService.ListInlineEnumBodyParamOpt_BodyEnum_Param$>> bodyEnum) {
+	public ResponseBuilder listInlineEnumBodyParamOpt(NilResult $result,
+			Optional<List<ListBodyParameterTypesService.ListInlineEnumBodyParamOpt_BodyEnum_Param$>> bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listInlineEnumBodyParamNil(NilResult $result, Optional<List<ListBodyParameterTypesService.ListInlineEnumBodyParamNil_BodyEnum_Param$>> bodyEnum) {
+	public ResponseBuilder listInlineEnumBodyParamNil(NilResult $result,
+			Optional<List<ListBodyParameterTypesService.ListInlineEnumBodyParamNil_BodyEnum_Param$>> bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listInlineEnumBodyParamOptNil(NilResult $result, _Base.Nillable<List<ListBodyParameterTypesService.ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum) {
+	public ResponseBuilder listInlineEnumBodyParamOptNil(NilResult $result,
+			_Base.Nillable<List<ListBodyParameterTypesService.ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listMultiBodyParam(String $result, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
-		return Response.status(200).entity(_JsonUtils.encodeAsJsonString($result));
+	public ResponseBuilder listMultiBodyParam(String $result, List<String> valueA, List<Integer> valueB,
+			List<SimpleRecord.Data> valueC) {
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
-	public ResponseBuilder listMultiBodyParamOpt(List<NilResult> $result, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public ResponseBuilder listMultiBodyParamOpt(List<NilResult> $result, Optional<List<String>> valueA,
+			Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listMultiBodyParamNil(List<NilResult> $result, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public ResponseBuilder listMultiBodyParamNil(List<NilResult> $result, Optional<List<String>> valueA,
+			Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listMultiBodyParamOptNil(List<NilResult> $result, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
+	public ResponseBuilder listMultiBodyParamOptNil(List<NilResult> $result, _Base.Nillable<List<String>> valueA,
+			_Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
 		return Response.status(200).entity($result);
 	}
 
 	public ResponseBuilder listRecordBodyParam(List<SimpleRecord.Data> $result, List<SimpleRecord.Data> bodyRecord) {
-		return Response.status(200).entity(_JsonUtils.toJsonString($result, false));
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder listRecordBodyParamOpt(NilResult $result, Optional<List<SimpleRecord.Data>> bodyRecord) {
@@ -257,7 +277,8 @@ public class ListBodyParameterTypesResourceResponseBuilder {
 		return Response.status(200).entity($result);
 	}
 
-	public ResponseBuilder listRecordBodyParamOptNil(NilResult $result, _Base.Nillable<List<SimpleRecord.Data>> bodyRecord) {
+	public ResponseBuilder listRecordBodyParamOptNil(NilResult $result,
+			_Base.Nillable<List<SimpleRecord.Data>> bodyRecord) {
 		return Response.status(200).entity($result);
 	}
 

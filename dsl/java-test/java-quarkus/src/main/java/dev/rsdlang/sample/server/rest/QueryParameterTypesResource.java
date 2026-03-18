@@ -26,7 +26,8 @@ public class QueryParameterTypesResource {
 	private final QueryParameterTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public QueryParameterTypesResource(QueryParameterTypesService service, QueryParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public QueryParameterTypesResource(QueryParameterTypesService service,
+			QueryParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -249,7 +250,9 @@ public class QueryParameterTypesResource {
 	@GET
 	@Path("recordQueryParam")
 	public Response recordQueryParam(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.parseObject(_queryValue, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var queryValue = _RestUtils.parseObject(_queryValue,
+				$o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json",
+						$j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.recordQueryParam(builderFactory, queryValue);
 		return responseBuilder.recordQueryParam(result, queryValue).build();
 	}
@@ -257,7 +260,8 @@ public class QueryParameterTypesResource {
 	@GET
 	@Path("recordQueryParamOpt")
 	public Response recordQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.parseOptObject(_queryValue, $o -> _JsonUtils.parseObject($o, $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var queryValue = _RestUtils.parseOptObject(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+				"application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.recordQueryParamOpt(builderFactory, queryValue);
 		return responseBuilder.recordQueryParamOpt(result, queryValue).build();
 	}
