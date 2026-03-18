@@ -32,7 +32,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		this.client = client;
 		this.serviceClient = serviceClient;
 	}
-
 	public SpecSamplesClient client() {
 		return this.serviceClient;
 	}
@@ -59,8 +58,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -85,8 +83,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -114,8 +111,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -143,8 +139,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -169,8 +164,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -201,8 +195,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -230,8 +223,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -256,8 +248,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -285,8 +276,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -314,8 +304,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -340,8 +329,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -372,8 +360,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -401,8 +388,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -427,8 +413,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -456,8 +441,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -485,8 +469,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -511,8 +494,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -543,8 +525,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -572,8 +553,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -598,8 +578,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -627,8 +606,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -656,8 +634,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -682,8 +659,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -714,15 +690,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixed(String text, int number, SimpleRecord.Data rec, List<String> textList,
-			List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+	public UploadMixedResult.Data uploadMixed(String text, int number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
 		Objects.requireNonNull(text, "text must not be null");
 		Objects.requireNonNull(rec, "rec must not be null");
 		Objects.requireNonNull(textList, "textList must not be null");
@@ -744,8 +718,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			$formDataBuilder.addBlob("dataFile", dataFile);
 			$formDataBuilder.addBlob("dataBlob", dataBlob);
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -759,8 +732,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -773,8 +745,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
 			var $jsonPayload = Json.createObjectBuilder();
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -788,8 +759,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -805,8 +775,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (text != null) {
 				$jsonPayload.add("text", text);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -820,8 +789,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -840,8 +808,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (number != null) {
 				$jsonPayload.add("number", number);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -855,8 +822,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -878,8 +844,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -893,15 +858,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec,
-			List<String> textList) {
+	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI);
 
@@ -920,8 +883,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -935,15 +897,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec,
-			List<String> textList, List<Integer> numberList) {
+	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI);
 
@@ -965,8 +925,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (numberList != null) {
 				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -980,15 +939,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec,
-			List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
+	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI);
 
@@ -1013,8 +970,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (recList != null) {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1028,15 +984,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec,
-			List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile) {
+	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI);
 
@@ -1064,8 +1018,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1079,16 +1032,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec,
-			List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile,
-			RSDBlob dataBlob) {
+	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI);
 
@@ -1119,8 +1069,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (dataBlob != null) {
 				$formDataBuilder.addBlob("dataBlob", dataBlob);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1134,16 +1083,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedNil(String text, Integer number, SimpleRecord.Data rec,
-			List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile,
-			RSDBlob dataBlob) {
+	public UploadMixedResult.Data uploadMixedNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
 		var $path = "%s/api/binarytypes/uploadMixedNil".formatted(
 				this.baseURI);
 
@@ -1192,8 +1138,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (dataBlob != null) {
 				$formDataBuilder.addBlob("dataBlob", dataBlob);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1207,8 +1152,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1221,8 +1165,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
 			var $jsonPayload = Json.createObjectBuilder();
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1236,8 +1179,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1256,8 +1198,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("text");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1271,8 +1212,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1297,8 +1237,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("number");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1312,8 +1251,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1344,8 +1282,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("rec");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1359,15 +1296,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec,
-			List<String> textList) {
+	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI);
 
@@ -1398,8 +1333,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("textList");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1413,15 +1347,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec,
-			List<String> textList, List<Integer> numberList) {
+	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI);
 
@@ -1458,8 +1390,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("numberList");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1473,15 +1404,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec,
-			List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
+	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI);
 
@@ -1524,8 +1453,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("recList");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1539,15 +1467,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec,
-			List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile) {
+	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI);
 
@@ -1596,8 +1522,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$formDataBuilder.addString("_rsdNull-dataFile", "true", null);
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1611,16 +1536,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec,
-			List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile,
-			RSDBlob dataBlob) {
+	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI);
 
@@ -1675,8 +1597,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$formDataBuilder.addString("_rsdNull-dataBlob", "true", null);
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"),
-					"application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1690,8 +1611,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1708,12 +1628,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofFile(Files.createTempFile("rsd-download", "tmp")));
+			var $response = this.client.send($request, BodyHandlers.ofFile(Files.createTempFile("rsd-download","tmp")));
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFile($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.mapFileToString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.mapFileToString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1730,12 +1649,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofFile(Files.createTempFile("rsd-download", "tmp")));
+			var $response = this.client.send($request, BodyHandlers.ofFile(Files.createTempFile("rsd-download","tmp")));
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBlob($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.mapFileToString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.mapFileToString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}

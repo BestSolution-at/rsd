@@ -30,7 +30,6 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		this.client = client;
 		this.serviceClient = serviceClient;
 	}
-
 	public SpecSamplesClient client() {
 		return this.serviceClient;
 	}
@@ -53,8 +52,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBoolean($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -75,8 +73,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -87,7 +84,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (queryValue != null) {
+		if(queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -102,8 +99,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -127,8 +123,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapShort($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -149,8 +144,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -161,7 +155,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (queryValue != null) {
+		if(queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -176,8 +170,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -201,8 +194,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -223,8 +215,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -235,7 +226,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (queryValue != null) {
+		if(queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -250,8 +241,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -275,8 +265,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLong($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -297,8 +286,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -309,7 +297,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (queryValue != null) {
+		if(queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -324,8 +312,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -349,8 +336,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFloat($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -371,8 +357,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -383,7 +368,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (queryValue != null) {
+		if(queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -398,8 +383,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -423,8 +407,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapDouble($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -445,8 +428,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -457,7 +439,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (queryValue != null) {
+		if(queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -472,8 +454,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -499,8 +480,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -521,8 +501,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -533,7 +512,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (queryValue != null) {
+		if(queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -548,8 +527,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -575,8 +553,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDate($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -597,8 +574,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -609,7 +585,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (queryValue != null) {
+		if(queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -624,8 +600,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -651,8 +626,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDateTime($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -673,8 +647,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -685,7 +658,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (queryValue != null) {
+		if(queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -700,8 +673,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -727,8 +699,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapZonedDateTime($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -749,8 +720,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -761,7 +731,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (queryValue != null) {
+		if(queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -776,8 +746,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -803,8 +772,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, ZoneId::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -825,8 +793,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -837,7 +804,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (queryValue != null) {
+		if(queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -852,8 +819,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -879,8 +845,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, SampleEnum::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -901,8 +866,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -913,7 +877,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (queryValue != null) {
+		if(queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -928,8 +892,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -956,8 +919,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -978,8 +940,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -990,7 +951,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (valueA != null) {
+		if(valueA != null) {
 			$queryParams.append("valueA", valueA);
 		}
 
@@ -1005,8 +966,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1017,10 +977,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (valueA != null) {
+		if(valueA != null) {
 			$queryParams.append("valueA", valueA);
 		}
-		if (valueB != null) {
+		if(valueB != null) {
 			$queryParams.append("valueB", valueB);
 		}
 
@@ -1035,8 +995,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1062,8 +1021,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, SimpleRecordDataImpl::of);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1084,8 +1042,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1096,7 +1053,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI);
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if (queryValue != null) {
+		if(queryValue != null) {
 			$queryParams.append("queryValue", _JsonUtils.encodeValue(queryValue, "application/json"));
 		}
 
@@ -1111,8 +1068,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(
-					String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
