@@ -24,17 +24,17 @@ import java.util.stream.Stream;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
-import jakarta.json.JsonException;
 import jakarta.json.JsonNumber;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.JsonException;
 
 import dev.rsdlang.sample.server.service.model._Base;
-import dev.rsdlang.sample.server.service.model._Base.Nillable;
 
 public class _JsonUtils {
+
 
 	private static final Optional<Boolean> OPTIONAL_FALSE = Optional.of(Boolean.FALSE);
 	private static final Optional<Boolean> OPTIONAL_TRUE = Optional.of(Boolean.TRUE);
@@ -861,7 +861,7 @@ public class _JsonUtils {
 		}
 	}
 
-	private static <T> Nillable<T> parseNilStream(InputStream inputStream, Function<InputStream, Nillable<T>> parser) {
+	private static <T> _Base.Nillable<T> parseNilStream(InputStream inputStream, Function<InputStream, _Base.Nillable<T>> parser) {
 		var state = streamState(inputStream);
 		if (state == StreamState.EMPTY) {
 			return _NillableImpl.undefined();
@@ -1784,5 +1784,4 @@ public class _JsonUtils {
 	private static JsonValue parseJsonValue(InputStream inputStream) {
 		return Json.createReader(inputStream).readValue();
 	}
-
 }
