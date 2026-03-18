@@ -229,8 +229,7 @@ public class BinaryTypesResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadMixed(@RestForm("_rsdPayload") FileUpload $_payload, @RestForm("dataFile") FileUpload _dataFile,
 			@RestForm("dataBlob") FileUpload _dataBlob) {
-		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType())
-				.asJsonObject();
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType()).asJsonObject();
 		var $payload = new BinaryTypesUploadMixedDataImpl($payloadJson);
 		var text = $payload.text();
 		var number = $payload.number();
@@ -250,10 +249,8 @@ public class BinaryTypesResource {
 	@Path("uploadMixedOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadMixedOpt(@RestForm("_rsdPayload") FileUpload $_payload,
-			@RestForm("dataFile") FileUpload _dataFile,
-			@RestForm("dataBlob") FileUpload _dataBlob) {
-		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType())
-				.asJsonObject();
+			@RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType()).asJsonObject();
 		var $payload = new BinaryTypesUploadMixedOptDataImpl($payloadJson);
 		var text = $payload.text();
 		var number = $payload.number();
@@ -277,10 +274,8 @@ public class BinaryTypesResource {
 	@Path("uploadMixedNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadMixedNil(@RestForm("_rsdPayload") FileUpload $_payload,
-			@RestForm("dataFile") FileUpload _dataFile,
-			@RestForm("dataBlob") FileUpload _dataBlob) {
-		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType())
-				.asJsonObject();
+			@RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType()).asJsonObject();
 		var $payload = new BinaryTypesUploadMixedNilDataImpl($payloadJson);
 		var text = $payload.text();
 		var number = $payload.number();
@@ -306,9 +301,7 @@ public class BinaryTypesResource {
 	public Response uploadMixedOptNil(@RestForm("_rsdPayload") FileUpload $_payload,
 			@RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob,
 			@RestForm("_rsdNull-dataFile") boolean $isDataFileNull, @RestForm("_rsdNull-dataBlob") boolean $isDataBlobNull) {
-		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType())
-				.asJsonObject();
-
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType()).asJsonObject();
 		var $payload = new BinaryTypesUploadMixedOptNilDataImpl($payloadJson);
 		var text = $payload.text();
 		var number = $payload.number();

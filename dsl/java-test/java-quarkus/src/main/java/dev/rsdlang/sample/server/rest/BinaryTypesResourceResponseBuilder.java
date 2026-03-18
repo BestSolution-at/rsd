@@ -19,67 +19,83 @@ import dev.rsdlang.sample.server.service.model.UploadMixedResult;
 @Singleton
 public class BinaryTypesResourceResponseBuilder {
 	public ResponseBuilder uploadFile(int $result, RSDFile data) {
-		return Response.status(201).entity($result);
+		return Response.status(201)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadFileOpt(int $result, Optional<RSDFile> data) {
-		return Response.status(201).entity($result);
+		return Response.status(201)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadFileNil(int $result, Optional<RSDFile> data) {
-		return Response.status(201).entity($result);
+		return Response.status(201)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadFileOptNil(int $result, _Base.Nillable<RSDFile> data) {
-		return Response.status(201).entity($result);
+		return Response.status(201)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadBlob(int $result, RSDBlob data) {
-		return Response.status(201).entity($result);
+		return Response.status(201)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadBlobOpt(int $result, Optional<RSDBlob> data) {
-		return Response.status(201).entity($result);
+		return Response.status(201)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadBlobNil(int $result, Optional<RSDBlob> data) {
-		return Response.status(201).entity($result);
+		return Response.status(201)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadBlobOptNil(int $result, _Base.Nillable<RSDBlob> data) {
-		return Response.status(201).entity($result);
+		return Response.status(201)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadFileList(int $result, List<RSDFile> data) {
-		return Response.status(200).entity($result);
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadFileListOpt(int $result, Optional<List<RSDFile>> data) {
-		return Response.status(200).entity($result);
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadFileListNil(int $result, Optional<List<RSDFile>> data) {
-		return Response.status(200).entity($result);
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadFileListOptNil(int $result, _Base.Nillable<List<RSDFile>> data) {
-		return Response.status(200).entity($result);
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadBlobList(int $result, List<RSDBlob> data) {
-		return Response.status(200).entity($result);
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadBlobListOpt(int $result, Optional<List<RSDBlob>> data) {
-		return Response.status(200).entity($result);
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadBlobListNil(int $result, Optional<List<RSDBlob>> data) {
-		return Response.status(200).entity($result);
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadBlobListOptNil(int $result, _Base.Nillable<List<RSDBlob>> data) {
-		return Response.status(200).entity($result);
+		return Response.status(200)
+				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
 	public ResponseBuilder uploadMixed(UploadMixedResult.Data $result, String text, int number, SimpleRecord.Data rec,
@@ -103,14 +119,9 @@ public class BinaryTypesResourceResponseBuilder {
 				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
 	}
 
-	public ResponseBuilder uploadMixedOptNil(
-			UploadMixedResult.Data $result,
-			_Base.Nillable<String> text,
-			_Base.Nillable<Integer> number,
-			_Base.Nillable<SimpleRecord.Data> rec,
-			_Base.Nillable<List<String>> textList,
-			_Base.Nillable<List<Integer>> numberList,
-			_Base.Nillable<List<SimpleRecord.Data>> recList,
+	public ResponseBuilder uploadMixedOptNil(UploadMixedResult.Data $result, _Base.Nillable<String> text,
+			_Base.Nillable<Integer> number, _Base.Nillable<SimpleRecord.Data> rec, _Base.Nillable<List<String>> textList,
+			_Base.Nillable<List<Integer>> numberList, _Base.Nillable<List<SimpleRecord.Data>> recList,
 			_Base.Nillable<RSDFile> dataFile, _Base.Nillable<RSDBlob> dataBlob) {
 		return Response.status(200)
 				.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
