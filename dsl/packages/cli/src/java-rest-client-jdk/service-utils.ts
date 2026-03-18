@@ -31,14 +31,12 @@ export function generateServiceUtils(
 	importCollector.importType('java.util.stream.Collectors');
 	importCollector.importType('java.util.stream.Stream');
 	importCollector.importType('java.util.ArrayList');
-	importCollector.importType(`${packageName}.model._JsonUtils`);
 
 	if (hasStreamResult(model)) {
 		importCollector.importType('java.io.IOException');
 		importCollector.importType('java.nio.file.Files');
 		importCollector.importType('java.nio.file.Path');
 		importCollector.importType(`${packageName}.model._BlobImpl`);
-		importCollector.importType(`${packageName}.model._BaseDataImpl`);
 		importCollector.importType(`${artifactConfig.rootPackageName}.model.RSDBlob`);
 		if (hasFileStreamResult(model)) {
 			importCollector.importType(`${packageName}.model._FileImpl`);
@@ -68,7 +66,7 @@ public class ServiceUtils {
 		}
 
 		public String toQueryString() {
-			if(params.isEmpty()) {
+			if (params.isEmpty()) {
 				return "";
 			}
 			return "?" + params.stream()
@@ -81,10 +79,11 @@ public class ServiceUtils {
 		if (value == null) {
 			return "null";
 		}
-		if (value instanceof _BaseDataImpl) {
-			var text = _JsonUtils.toJsonString(value);
-			return URLEncoder.encode(text, StandardCharsets.UTF_8);
+
+		if (value instanceof byte[] bytes) {
+			return encodeBase64(bytes);
 		}
+
 		return URLEncoder.encode(value.toString(), StandardCharsets.UTF_8);
 	}
 
@@ -276,8 +275,8 @@ public class ServiceUtils {
 		return b.toString();
 	}
 
-	public static String encodeBase64(String value) {
-		return Base64.getEncoder().encodeToString(value.getBytes(StandardCharsets.UTF_8));
+	public static String encodeBase64(byte[] value) {
+		return Base64.getEncoder().encodeToString(value);
 	}
 
 	public static String encodeURIComponent(String value) {
