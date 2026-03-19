@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
 import java.util.List;
 import java.util.Optional;
@@ -42,6 +43,33 @@ public class _JsonUtils {
 
 	private static final byte[] NO_BYTES = new byte[0];
 	private static final byte[] EMPTY_OBJECT_BYTES = "{}".getBytes();
+
+	public static String toString(Object value) {
+		if (value == null) {
+			return null;
+		}
+
+		if (value instanceof LocalDate d) {
+			return toString(d);
+		} else if (value instanceof LocalDateTime dt) {
+			return toString(dt);
+		} else if (value instanceof ZonedDateTime zdt) {
+			return toString(zdt);
+		}
+		return value.toString();
+	}
+
+	public static String toString(LocalDateTime value) {
+		return DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(value);
+	}
+
+	public static String toString(LocalDate value) {
+		return DateTimeFormatter.ISO_DATE.format(value);
+	}
+
+	public static String toString(ZonedDateTime value) {
+		return DateTimeFormatter.ISO_ZONED_DATE_TIME.format(value);
+	}
 
 	public static byte[] emptyObject(String contentType) {
 		if (contentType != null && contentType.startsWith("application/json")) {
@@ -832,7 +860,7 @@ public class _JsonUtils {
 			}
 			generator.writeEnd();
 		} else {
-			generator.write(data.toString());
+			generator.write(toString(data));
 		}
 	}
 
