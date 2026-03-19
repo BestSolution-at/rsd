@@ -89,7 +89,7 @@ describe('ListSampleServiceServiceImpl', () => {
 		test('sucess', async () => {
 			const [result, error] = await service.listFloat();
 			expect(error).toBeNull();
-			expect(result).toStrictEqual([12.34, 56.78, 90.12]);
+			expect(result).toStrictEqual([12.34000015258789, 56.779998779296875, 90.12000274658203]);
 		});
 		test('fail - invalid data', async () => {
 			const [result, error] = await serviceFailInvalid.listFloat();

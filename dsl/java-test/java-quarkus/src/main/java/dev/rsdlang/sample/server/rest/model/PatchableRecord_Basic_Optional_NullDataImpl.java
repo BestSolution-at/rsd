@@ -176,7 +176,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.addNull("valueLocalDate");
 				return this;
 			}
-			$builder.add("valueLocalDate", valueLocalDate.toString());
+			$builder.add("valueLocalDate", _JsonUtils.toString(valueLocalDate));
 			return this;
 		}
 
@@ -186,7 +186,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.addNull("valueLocalDateTime");
 				return this;
 			}
-			$builder.add("valueLocalDateTime", valueLocalDateTime.toString());
+			$builder.add("valueLocalDateTime", _JsonUtils.toString(valueLocalDateTime));
 			return this;
 		}
 
@@ -196,7 +196,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.addNull("valueZonedDateTime");
 				return this;
 			}
-			$builder.add("valueZonedDateTime", valueZonedDateTime.toString());
+			$builder.add("valueZonedDateTime", _JsonUtils.toString(valueZonedDateTime));
 			return this;
 		}
 

@@ -191,7 +191,7 @@ function generateJSONBuilder(prop: MResolvedBaseProperty): string {
 	if (isMBuiltinType(prop.type)) {
 		return builtinBuilderAccess({ type: prop.type, name: prop.name });
 	} else if (prop.variant === 'enum' || prop.variant === 'inline-enum' || prop.variant === 'scalar') {
-		return `$builder.add("${prop.name}", ${prop.name}.toString())`;
+		return `$builder.add("${prop.name}", _JsonUtils.toString(${prop.name}))`;
 	} else {
 		return `$builder.add("${prop.name}", ((_BaseDataImpl) ${prop.name}).data)`;
 	}
@@ -210,7 +210,7 @@ function builtinBuilderAccess(property: { type: MBuiltinType; name: string }): s
 		case 'local-date':
 		case 'local-date-time':
 		case 'zoned-date-time':
-			return `$builder.add("${property.name}", ${property.name}.toString())`;
+			return `$builder.add("${property.name}", _JsonUtils.toString(${property.name}))`;
 	}
 }
 

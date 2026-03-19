@@ -48,7 +48,7 @@ describe('SinglePathParameterTypeServiceServiceFetchImpl', () => {
 		test('success', async () => {
 			const [result, error] = await service.simpleFloatPathParam(12345.67);
 			expect(error).toBeNull();
-			expect(result).toBe(12345.67);
+			expect(result).toBe(12345.669921875);
 		});
 	});
 

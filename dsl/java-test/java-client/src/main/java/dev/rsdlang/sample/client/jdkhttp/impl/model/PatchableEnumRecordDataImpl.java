@@ -95,7 +95,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 			if (value == null) {
 				return this;
 			}
-			$builder.add("value", value.toString());
+			$builder.add("value", _JsonUtils.toString(value));
 			return this;
 		}
 
@@ -105,7 +105,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 				$builder.addNull("value_Null");
 				return this;
 			}
-			$builder.add("value_Null", value_Null.toString());
+			$builder.add("value_Null", _JsonUtils.toString(value_Null));
 			return this;
 		}
 
@@ -114,7 +114,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 			if (value_Opt == null) {
 				return this;
 			}
-			$builder.add("value_Opt", value_Opt.toString());
+			$builder.add("value_Opt", _JsonUtils.toString(value_Opt));
 			return this;
 		}
 
@@ -124,7 +124,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 				$builder.addNull("value_Opt_Null");
 				return this;
 			}
-			$builder.add("value_Opt_Null", value_Opt_Null.toString());
+			$builder.add("value_Opt_Null", _JsonUtils.toString(value_Opt_Null));
 			return this;
 		}
 

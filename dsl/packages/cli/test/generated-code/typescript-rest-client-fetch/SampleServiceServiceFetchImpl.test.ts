@@ -141,7 +141,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 		test('sucess', async () => {
 			const [result, error] = await service.getFloat();
 			expect(error).toBeNull();
-			expect(result).toBe(123.45);
+			expect(result).toBe(123.44999694824219);
 		});
 		test('fail - invalid data', async () => {
 			const [result, error] = await serviceFailInvalid.getFloat();

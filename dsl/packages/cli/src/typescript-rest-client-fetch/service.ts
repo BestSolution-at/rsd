@@ -170,37 +170,23 @@ function recordHeaderQueryCode(
 ) {
 	const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
 	const node = new CompositeGeneratorNode();
-	if (p.meta?.rest?.source === 'header') {
-		const encodeBase64 = fqn('encodeBase64:./_fetch-type-utils.ts', false);
-		const encodeValue = fqn('encodeValue:./_fetch-type-utils.ts', false);
-		const encodingType = fqn('encodingType:./_fetch-type-utils.ts', false);
-		if (p.array) {
-			node.append(`${p.name}.forEach($entry => {`, NL);
-			node.indent(mBody => {
-				mBody.append(
-					`${target}.append('${p.name}', ${encodeBase64}(${encodeValue}(${encodingType}(props), ${toJSON}($entry))));`,
-					NL,
-				);
-			});
-			node.append('});', NL);
-		} else {
-			node.append(
-				`${target}.append('${p.name}', ${encodeBase64}(${encodeValue}(${encodingType}(props), ${toJSON}(${p.name}))));`,
+	const encodeBase64 = fqn('encodeBase64:./_fetch-type-utils.ts', false);
+	const encodeValue = fqn('encodeValue:./_fetch-type-utils.ts', false);
+	const encodingType = fqn('encodingType:./_fetch-type-utils.ts', false);
+	if (p.array) {
+		node.append(`${p.name}.forEach($entry => {`, NL);
+		node.indent(mBody => {
+			mBody.append(
+				`${target}.append('${p.name}', ${encodeBase64}(${encodeValue}(${encodingType}(props), ${toJSON}($entry))));`,
 				NL,
 			);
-		}
+		});
+		node.append('});', NL);
 	} else {
-		const encodeValue = fqn('encodeValue:./_fetch-type-utils.ts', false);
-		const encodingType = fqn('encodingType:./_fetch-type-utils.ts', false);
-		if (p.array) {
-			node.append(`${p.name}.forEach($entry => {`, NL);
-			node.indent(mBody => {
-				mBody.append(`${target}.append('${p.name}', ${encodeValue}(${encodingType}(props), ${toJSON}($entry)));`, NL);
-			});
-			node.append('});', NL);
-		} else {
-			node.append(`${target}.append('${p.name}', ${encodeValue}(${encodingType}(props), ${toJSON}(${p.name})));`, NL);
-		}
+		node.append(
+			`${target}.append('${p.name}', ${encodeBase64}(${encodeValue}(${encodingType}(props), ${toJSON}(${p.name}))));`,
+			NL,
+		);
 	}
 	return node;
 }

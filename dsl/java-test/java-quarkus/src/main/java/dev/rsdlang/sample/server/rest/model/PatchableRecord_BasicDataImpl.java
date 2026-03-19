@@ -149,7 +149,7 @@ public class PatchableRecord_BasicDataImpl extends _BaseDataImpl implements Patc
 			if (valueLocalDate == null) {
 				return this;
 			}
-			$builder.add("valueLocalDate", valueLocalDate.toString());
+			$builder.add("valueLocalDate", _JsonUtils.toString(valueLocalDate));
 			return this;
 		}
 
@@ -158,7 +158,7 @@ public class PatchableRecord_BasicDataImpl extends _BaseDataImpl implements Patc
 			if (valueLocalDateTime == null) {
 				return this;
 			}
-			$builder.add("valueLocalDateTime", valueLocalDateTime.toString());
+			$builder.add("valueLocalDateTime", _JsonUtils.toString(valueLocalDateTime));
 			return this;
 		}
 
@@ -167,7 +167,7 @@ public class PatchableRecord_BasicDataImpl extends _BaseDataImpl implements Patc
 			if (valueZonedDateTime == null) {
 				return this;
 			}
-			$builder.add("valueZonedDateTime", valueZonedDateTime.toString());
+			$builder.add("valueZonedDateTime", _JsonUtils.toString(valueZonedDateTime));
 			return this;
 		}
 

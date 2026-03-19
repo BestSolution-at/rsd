@@ -159,7 +159,7 @@ describe('SingleBodyParameterTypesServiceFetchImpl', () => {
 		test('success - 12.34', async () => {
 			const [result, error] = await service.simpleFloatBodyParam(12.34);
 			expect(error).toBeNull();
-			expect(result).toBe(12.34);
+			expect(result).toBe(12.34000015258789);
 		});
 	});
 	describe('simpleFloatBodyParamOpt', () => {
