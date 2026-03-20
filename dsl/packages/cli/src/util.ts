@@ -88,11 +88,16 @@ export function toNodeTree(block: string): CompositeGeneratorNode {
 				nodeStack[nodeStack.length - 1].indent(c => c.append(node));
 			}
 		}
-
 		nodeStack[nodeStack.length - 1].append(l.replace(/\t*/, ''), lineIndex + 1 < lines.length ? NL : '');
 		currentIdent = ident;
 	}
 
+	if (nodeStack.length > 1) {
+		while (nodeStack.length > 1) {
+			const node = nodeStack.pop();
+			nodeStack[nodeStack.length - 1].indent(c => c.append(node));
+		}
+	}
 	return nodeStack[0];
 }
 
