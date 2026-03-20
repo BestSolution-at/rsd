@@ -26,7 +26,7 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 	public Headers headers;
 
 	@Override
-	public ResponseBuilder getBoolean(boolean $result) {
+	public ResponseBuilder getBoolean(boolean $result, String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -34,102 +34,102 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.getBoolean($result);
+		return super.getBoolean($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder getShort(short $result) {
+	public ResponseBuilder getShort(short $result, String contentType) {
 		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
-		return super.getShort($result);
+		return super.getShort($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder getInt(int $result) {
+	public ResponseBuilder getInt(int $result, String contentType) {
 		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
-		return super.getInt($result);
+		return super.getInt($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder getLong(long $result) {
+	public ResponseBuilder getLong(long $result, String contentType) {
 		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
-		return super.getLong($result);
+		return super.getLong($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder getFloat(float $result) {
+	public ResponseBuilder getFloat(float $result, String contentType) {
 		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
-		return super.getFloat($result);
+		return super.getFloat($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder getDouble(double $result) {
+	public ResponseBuilder getDouble(double $result, String contentType) {
 		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
-		return super.getDouble($result);
+		return super.getDouble($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder getString(String $result) {
+	public ResponseBuilder getString(String $result, String contentType) {
 		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
-		return super.getString($result);
+		return super.getString($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder getLocalDate(LocalDate $result) {
+	public ResponseBuilder getLocalDate(LocalDate $result, String contentType) {
 		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
-		return super.getLocalDate($result);
+		return super.getLocalDate($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder getLocalDateTime(LocalDateTime $result) {
+	public ResponseBuilder getLocalDateTime(LocalDateTime $result, String contentType) {
 		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
-		return super.getLocalDateTime($result);
+		return super.getLocalDateTime($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder getZonedDateTime(ZonedDateTime $result) {
+	public ResponseBuilder getZonedDateTime(ZonedDateTime $result, String contentType) {
 		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
-		return super.getZonedDateTime($result);
+		return super.getZonedDateTime($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder getScalar(ZoneId $result) {
+	public ResponseBuilder getScalar(ZoneId $result, String contentType) {
 		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
-		return super.getScalar($result);
+		return super.getScalar($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder getEnum(SampleEnum $result) {
+	public ResponseBuilder getEnum(SampleEnum $result, String contentType) {
 		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
-		return super.getEnum($result);
+		return super.getEnum($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder getSimpleRecord(Data $result, String key) {
+	public ResponseBuilder getSimpleRecord(Data $result, String key, String contentType) {
 		if (headers.isInvalidData()) {
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
-		return super.getSimpleRecord($result, key);
+		return super.getSimpleRecord($result, key, contentType);
 	}
 }

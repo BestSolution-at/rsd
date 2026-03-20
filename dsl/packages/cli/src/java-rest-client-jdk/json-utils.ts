@@ -14,7 +14,11 @@ export function generateJsonUtils(artifactConfig: JavaRestClientJDKGeneratorConf
 	const importCollector = new JavaImportsCollector(packageName);
 	const fqn = importCollector.importType.bind(importCollector);
 
-	const node = generateJsonUtilsContent(fqn, `${artifactConfig.rootPackageName}.model`);
+	const node = generateJsonUtilsContent(
+		fqn,
+		`${artifactConfig.rootPackageName}.model`,
+		artifactConfig.contentTypeEncodings,
+	);
 
 	return {
 		name: '_JsonUtils.java',

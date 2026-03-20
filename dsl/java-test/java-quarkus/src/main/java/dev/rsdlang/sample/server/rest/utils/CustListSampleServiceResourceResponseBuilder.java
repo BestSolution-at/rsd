@@ -20,7 +20,7 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 	public Headers headers;
 
 	@Override
-	public ResponseBuilder listBoolean(List<Boolean> $result) {
+	public ResponseBuilder listBoolean(List<Boolean> $result, String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -28,11 +28,11 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.listBoolean($result);
+		return super.listBoolean($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder listShort(List<Short> $result) {
+	public ResponseBuilder listShort(List<Short> $result, String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -40,11 +40,11 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.listShort($result);
+		return super.listShort($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder listInt(List<Integer> $result) {
+	public ResponseBuilder listInt(List<Integer> $result, String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -52,11 +52,11 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.listInt($result);
+		return super.listInt($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder listLong(List<Long> $result) {
+	public ResponseBuilder listLong(List<Long> $result, String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -64,11 +64,11 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.listLong($result);
+		return super.listLong($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder listFloat(List<Float> $result) {
+	public ResponseBuilder listFloat(List<Float> $result, String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -76,11 +76,11 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.listFloat($result);
+		return super.listFloat($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder listDouble(List<Double> $result) {
+	public ResponseBuilder listDouble(List<Double> $result, String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -88,11 +88,11 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.listDouble($result);
+		return super.listDouble($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder listString(List<String> $result) {
+	public ResponseBuilder listString(List<String> $result, String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -100,11 +100,11 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.listString($result);
+		return super.listString($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder listLocalDate(List<java.time.LocalDate> $result) {
+	public ResponseBuilder listLocalDate(List<java.time.LocalDate> $result, String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -112,11 +112,11 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.listLocalDate($result);
+		return super.listLocalDate($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder listLocalDateTime(List<java.time.LocalDateTime> $result) {
+	public ResponseBuilder listLocalDateTime(List<java.time.LocalDateTime> $result, String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -124,11 +124,11 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.listLocalDateTime($result);
+		return super.listLocalDateTime($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder listZonedDateTime(List<java.time.ZonedDateTime> $result) {
+	public ResponseBuilder listZonedDateTime(List<java.time.ZonedDateTime> $result, String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -136,11 +136,11 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.listZonedDateTime($result);
+		return super.listZonedDateTime($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder listScalar(List<java.time.ZoneId> $result) {
+	public ResponseBuilder listScalar(List<java.time.ZoneId> $result, String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -148,11 +148,12 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.listScalar($result);
+		return super.listScalar($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder listEnum(List<dev.rsdlang.sample.server.service.model.SampleEnum> $result) {
+	public ResponseBuilder listEnum(List<dev.rsdlang.sample.server.service.model.SampleEnum> $result,
+			String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -160,11 +161,12 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.listEnum($result);
+		return super.listEnum($result, contentType);
 	}
 
 	@Override
-	public ResponseBuilder listSimpleRecord(List<dev.rsdlang.sample.server.service.model.SimpleRecord.Data> $result) {
+	public ResponseBuilder listSimpleRecord(List<dev.rsdlang.sample.server.service.model.SimpleRecord.Data> $result,
+			String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
 		} else if (headers.isInvalidData()) {
@@ -173,6 +175,6 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 		} else if (headers.isInvalidEncodedData()) {
 			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
 		}
-		return super.listSimpleRecord($result);
+		return super.listSimpleRecord($result, contentType);
 	}
 }

@@ -397,6 +397,7 @@ export type JavaRestClientJDKGeneratorConfig = ArtifactGeneratorConfig & {
 	targetFolder: string;
 	rootPackageName: string;
 	nativeTypeSubstitues?: Record<string, string>;
+	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack')[];
 };
 
 export type JavaServerJakartaWSGeneratorConfig = ArtifactGeneratorConfig & {
@@ -404,6 +405,7 @@ export type JavaServerJakartaWSGeneratorConfig = ArtifactGeneratorConfig & {
 	rootPackageName: string;
 	nativeTypeSubstitues?: Record<string, string>;
 	scopeValues?: { type: string; name: string }[];
+	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack')[];
 };
 
 export type JavaServerGeneratorConfig = ArtifactGeneratorConfig & {

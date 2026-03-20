@@ -23,8 +23,7 @@ public class SampleServiceResource {
 	private final SampleServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public SampleServiceResource(SampleServiceService service, SampleServiceResourceResponseBuilder responseBuilder,
-			RestBuilderFactory builderFactory) {
+	public SampleServiceResource(SampleServiceService service, SampleServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -147,20 +146,10 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("simplerecord/{key}")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response getSimpleRecord(@PathParam("key") String _key) {
 		var key = _RestUtils.parseString(_key);
 		var result = service.getSimpleRecord(builderFactory, key);
 		return responseBuilder.getSimpleRecord(result, "application/json", key).build();
-	}
-
-	@GET
-	@Path("simplerecord/{key}")
-	@Produces("application/vnd.msgpack")
-	public Response getSimpleRecordMsgPack(@PathParam("key") String _key) {
-		var key = _RestUtils.parseString(_key);
-		var result = service.getSimpleRecord(builderFactory, key);
-		return responseBuilder.getSimpleRecord(result, "application/vnd.msgpack", key).build();
 	}
 
 	@GET

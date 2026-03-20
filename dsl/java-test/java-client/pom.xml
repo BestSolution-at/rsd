@@ -41,6 +41,10 @@
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>at.bestsolution</groupId>
+			<artifactId>msgpack-jakarta-json</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 	</dependencies>
 </project>

@@ -1,40 +1,244 @@
+import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import { toNodeTree } from '../util.js';
 
-export function generateJsonUtilsContent(fqn: (type: string) => string, modelApiPackage: string) {
+type EncodingPlugin = {
+	encodeFunction: (fqn: (t: string) => string) => CompositeGeneratorNode;
+	decodeFunction: (fqn: (t: string) => string) => CompositeGeneratorNode;
+	encodingFunctionName: string;
+	decodingFunctionName: string;
+};
+
+const encodingPlugins: Record<string, EncodingPlugin> = {
+	'application/vnd.msgpack': {
+		encodeFunction: generateMsgPackEncodeValueFunction,
+		decodeFunction: generateMsgPackDecodeValueFunction,
+		encodingFunctionName: 'encodeMsgPackValue',
+		decodingFunctionName: 'decodeMsgPackValue',
+	},
+	'application/json': {
+		encodeFunction: generateJsonEncodeValueFunction,
+		decodeFunction: generateJsonDecodeValueFunction,
+		encodingFunctionName: 'encodeJsonValue',
+		decodingFunctionName: 'decodeJsonValue',
+	},
+};
+
+function generateJsonDecodeValueFunction(fqn: (t: string) => string): CompositeGeneratorNode {
+	return new CompositeGeneratorNode();
+}
+
+function generateJsonEncodeValueFunction(fqn: (t: string) => string): CompositeGeneratorNode {
 	return toNodeTree(`
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.StringWriter;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.function.Function;
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
-import java.util.OptionalLong;
-import java.util.stream.Collector;
-import java.util.stream.Stream;
+private static byte[] encodeJsonValue(Object data) {
+	StringWriter stringWriter = new StringWriter();
+	try (JsonGenerator generator = Json.createGenerator(stringWriter)) {
+		encodeJsonValue(generator, data);
+	}
+	return stringWriter.toString().getBytes();
+}
 
-import jakarta.json.Json;
-import jakarta.json.JsonArray;
-import jakarta.json.JsonArrayBuilder;
-import jakarta.json.JsonNumber;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonString;
-import jakarta.json.JsonValue;
-import jakarta.json.stream.JsonGenerator;
-import jakarta.json.JsonException;
+private static void encodeJsonValue(OutputStream stream, Object data) {
+	try (JsonGenerator generator = Json.createGenerator(stream)) {
+		encodeJsonValue(generator, data);
+	}
+}
 
-import ${modelApiPackage}._Base;
+private static void encodeJsonValue(JsonGenerator generator, Object data) {
+	if (data == null) {
+		generator.writeNull();
+	} else if (data instanceof JsonValue jsonValue) {
+		generator.write(jsonValue);
+	} else if (data instanceof String s) {
+		generator.write(s);
+	} else if (data instanceof Number n) {
+		if (data instanceof Byte || data instanceof Short || data instanceof Integer || data instanceof Character) {
+			generator.write(n.intValue());
+		} else if (data instanceof Long) {
+			generator.write(n.longValue());
+		} else if (data instanceof Float || data instanceof Double) {
+			generator.write(n.doubleValue());
+		} else if (data instanceof BigInteger) {
+			generator.write(((BigInteger) n).longValue());
+		} else if (data instanceof BigDecimal) {
+			generator.write(((BigDecimal) n).doubleValue());
+		} else {
+			throw new IllegalArgumentException("Unsupported number type: " + data.getClass());
+		}
+	} else if (data instanceof Boolean b) {
+		generator.write(b);
+	} else if (data instanceof _BaseDataImpl baseData) {
+		encodeJsonValue(generator, baseData.data);
+	} else if (data instanceof List<?> list) {
+		generator.writeStartArray();
+		for (Object item : list) {
+			encodeJsonValue(generator, item);
+		}
+		generator.writeEnd();
+	} else {
+		generator.write(toString(data));
+	}
+}`);
+}
 
+function generateMsgPackDecodeValueFunction(fqn: (t: string) => string): CompositeGeneratorNode {
+	return new CompositeGeneratorNode();
+}
+
+function generateMsgPackEncodeValueFunction(fqn: (t: string) => string): CompositeGeneratorNode {
+	fqn('org.msgpack.core.MessagePack');
+	fqn('org.msgpack.core.MessagePacker');
+	fqn('at.bestsolution.msgpack.json.MsgpackJson');
+	return toNodeTree(`
+// -----------------
+private static byte[] encodeMsgPackValue(Object data) {
+	try {
+		var msgpackJson = MsgpackJson.builder()
+				.build();
+		var value = Json.createValue("test string");
+		var packer = MessagePack.newDefaultBufferPacker();
+		encodeMsgPackValue(msgpackJson, packer, value);
+		packer.flush();
+		var result = packer.toByteArray();
+		packer.close();
+		return result;
+	} catch (IOException e) {
+		throw new IllegalStateException(e);
+	}
+}
+
+private static void encodeMsgPackValue(OutputStream stream, Object data) {
+	try {
+		var msgpackJson = MsgpackJson.builder()
+				.build();
+		var value = Json.createValue("test string");
+		var packer = MessagePack.newDefaultPacker(stream);
+		encodeMsgPackValue(msgpackJson, packer, value);
+		packer.flush();
+	} catch (IOException e) {
+		throw new IllegalStateException(e);
+	}
+
+}
+
+private static void encodeMsgPackValue(MsgpackJson generator, MessagePacker packer, Object data) throws IOException {
+	generator.encode(packer, createJsonValue(data));
+}
+`);
+}
+
+export function generateJsonUtilsContent(
+	fqn: (type: string) => string,
+	modelApiPackage: string,
+	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack')[],
+) {
+	contentTypeEncodings =
+		contentTypeEncodings === undefined || contentTypeEncodings.length === 0
+			? ['application/json']
+			: contentTypeEncodings;
+	const encodeValueMethods = new CompositeGeneratorNode();
+	encodeValueMethods.append(
+		'public static void encodeValue(OutputStream stream, Object data, String contentType) {',
+		NL,
+	);
+	encodeValueMethods.indent(mBody => {
+		if (contentTypeEncodings.length > 1) {
+			mBody.append('switch (contentType) {', NL);
+			mBody.indent(switchBody => {
+				contentTypeEncodings.forEach(enc => {
+					switchBody.append(`case "${enc}":`, NL);
+					switchBody.indent(casBody => {
+						casBody.append(`${encodingPlugins[enc].encodingFunctionName}(stream, data);`, NL);
+						casBody.append('break;', NL);
+					});
+				});
+				switchBody.append('default:', NL);
+				switchBody.indent(defBody => {
+					defBody.append(
+						`throw new IllegalArgumentException("Unsupported content type: %".formatted(contentType));`,
+						NL,
+					);
+				});
+			});
+			mBody.append('}', NL);
+		} else {
+			mBody.append(`if ("${contentTypeEncodings[0]}".equals(contentType)) {`, NL);
+			mBody.indent(blockBody => {
+				blockBody.append(`${encodingPlugins[contentTypeEncodings[0]].encodingFunctionName}(stream, data);`, NL);
+				blockBody.append('return;', NL);
+			});
+			mBody.append('}', NL);
+			mBody.append(`throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));`, NL);
+		}
+	});
+	encodeValueMethods.append('}', NL, NL);
+	encodeValueMethods.append('public static byte[] encodeValue(Object data, String contentType) {', NL);
+	encodeValueMethods.indent(mBody => {
+		if (contentTypeEncodings.length > 1) {
+			mBody.append('return switch (contentType) {', NL);
+			mBody.indent(switchBody => {
+				contentTypeEncodings.forEach(enc => {
+					switchBody.append(`case "${enc}" -> ${encodingPlugins[enc].encodingFunctionName}(data);`, NL);
+				});
+				switchBody.append(
+					'default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));',
+					NL,
+				);
+			});
+			mBody.append('}', NL);
+		} else {
+			mBody.append(`if ("${contentTypeEncodings[0]}".equals(contentType)) {`, NL);
+			mBody.indent(blockBody => {
+				blockBody.append(`return ${encodingPlugins[contentTypeEncodings[0]].encodingFunctionName}(data);`, NL);
+			});
+			mBody.append('}', NL);
+			mBody.append(`throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));`, NL);
+		}
+	});
+	encodeValueMethods.append('}', NL);
+
+	const encodeFunctions = new CompositeGeneratorNode();
+	encodeFunctions.indent(content => {
+		content.append(encodeValueMethods, NL);
+		contentTypeEncodings.forEach(enc => {
+			content.append(encodingPlugins[enc].encodeFunction(fqn), NL, NL);
+		});
+	});
+
+	fqn('java.io.IOException');
+	fqn('java.io.IOException');
+	fqn('java.io.InputStream');
+	fqn('java.io.OutputStream');
+	fqn('java.io.StringWriter');
+	fqn('java.math.BigDecimal');
+	fqn('java.math.BigInteger');
+	fqn('java.nio.file.Files');
+	fqn('java.nio.file.Path');
+	fqn('java.time.LocalDate');
+	fqn('java.time.LocalDateTime');
+	fqn('java.time.ZonedDateTime');
+	fqn('java.time.format.DateTimeFormatter');
+	fqn('java.util.function.Function');
+	fqn('java.util.List');
+	fqn('java.util.Optional');
+	fqn('java.util.OptionalDouble');
+	fqn('java.util.OptionalInt');
+	fqn('java.util.OptionalLong');
+	fqn('java.util.stream.Collector');
+	fqn('java.util.stream.Stream');
+
+	fqn('jakarta.json.Json');
+	fqn('jakarta.json.JsonArray');
+	fqn('jakarta.json.JsonArrayBuilder');
+	fqn('jakarta.json.JsonNumber');
+	fqn('jakarta.json.JsonObject');
+	fqn('jakarta.json.JsonString');
+	fqn('jakarta.json.JsonValue');
+	fqn('jakarta.json.stream.JsonGenerator');
+	fqn('jakarta.json.JsonException');
+
+	fqn(`${modelApiPackage}._Base`);
+
+	return toNodeTree(`
 public class _JsonUtils {
 
 	private static final Optional<Boolean> OPTIONAL_FALSE = Optional.of(Boolean.FALSE);
@@ -800,68 +1004,38 @@ public class _JsonUtils {
 	}
 
 	// ----------------
-	public static void encodeValue(OutputStream stream, Object data, String contentType) {
-		if (contentType != null && contentType.startsWith("application/json")) {
-			encodeJsonValue(stream, data);
-			return;
-		}
-		throw new IllegalArgumentException("Unsupported content type: " + contentType);
-	}
-
-	public static byte[] encodeValue(Object data, String contentType) {
-		if (contentType != null && contentType.startsWith("application/json")) {
-			return encodeJsonValue(data);
-		}
-		throw new IllegalArgumentException("Unsupported content type: " + contentType);
-	}
-
-	private static byte[] encodeJsonValue(Object data) {
-		StringWriter stringWriter = new StringWriter();
-		try (JsonGenerator generator = Json.createGenerator(stringWriter)) {
-			encodeJsonValue(generator, data);
-		}
-		return stringWriter.toString().getBytes();
-	}
-
-	private static void encodeJsonValue(OutputStream stream, Object data) {
-		try (JsonGenerator generator = Json.createGenerator(stream)) {
-			encodeJsonValue(generator, data);
-		}
-	}
-
-	private static void encodeJsonValue(JsonGenerator generator, Object data) {
+${toString(encodeFunctions, '\t')}
+	public static JsonValue createJsonValue(Object data) {
 		if (data == null) {
-			generator.writeNull();
+			return JsonValue.NULL;
 		} else if (data instanceof JsonValue jsonValue) {
-			generator.write(jsonValue);
+			return jsonValue;
 		} else if (data instanceof String s) {
-			generator.write(s);
+			return Json.createValue(s);
 		} else if (data instanceof Number n) {
 			if (data instanceof Byte || data instanceof Short || data instanceof Integer || data instanceof Character) {
-				generator.write(n.intValue());
-			} else if (data instanceof Byte || data instanceof Short || data instanceof Integer || data instanceof Long) {
-				generator.write(n.longValue());
+				return Json.createValue(n.intValue());
+			} else if (data instanceof Long) {
+				return Json.createValue(n.longValue());
 			} else if (data instanceof Float || data instanceof Double) {
-				generator.write(n.doubleValue());
+				return Json.createValue(n.doubleValue());
 			} else if (data instanceof BigInteger) {
-				generator.write(((BigInteger) n).longValue());
+				return Json.createValue((BigInteger) n);
 			} else if (data instanceof BigDecimal) {
-				generator.write(((BigDecimal) n).doubleValue());
+				return Json.createValue((BigDecimal) n);
 			} else {
 				throw new IllegalArgumentException("Unsupported number type: " + data.getClass());
 			}
 		} else if (data instanceof Boolean b) {
-			generator.write(b);
+			return b ? JsonValue.TRUE : JsonValue.FALSE;
 		} else if (data instanceof _BaseDataImpl baseData) {
-			encodeJsonValue(generator, baseData.data);
+			return baseData.data;
 		} else if (data instanceof List<?> list) {
-			generator.writeStartArray();
-			for (Object item : list) {
-				encodeJsonValue(generator, item);
-			}
-			generator.writeEnd();
+			var arrayBuilder = Json.createArrayBuilder();
+			list.stream().map(v -> createJsonValue(v)).forEach(arrayBuilder::add);
+			return arrayBuilder.build();
 		} else {
-			generator.write(toString(data));
+			return Json.createValue(toString(data));
 		}
 	}
 

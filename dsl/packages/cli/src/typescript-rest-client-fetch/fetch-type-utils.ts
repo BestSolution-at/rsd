@@ -20,7 +20,7 @@ const encodingPlugins: Record<string, EncodingPlugin> = {
 		encodingFunctionName: 'encodeJsonBody',
 		decodingFunctionName: 'decodeJsonBody',
 	},
-	'application/x-msgpack': {
+	'application/vnd.msgpack': {
 		encodeFunction: generateMsgPackEncodeValueFunction,
 		decodeFunction: generateMsgPackDecodeResponseFunction,
 		encodingFunctionName: 'encodeMsgPackBody',

@@ -14,7 +14,11 @@ export function generateJsonUtils(artifactConfig: JavaServerJakartaWSGeneratorCo
 	const importCollector = new JavaImportsCollector(packageName);
 	const fqn = importCollector.importType.bind(importCollector);
 
-	const node = generateJsonUtilsContent(fqn, `${artifactConfig.rootPackageName}.service.model`);
+	const node = generateJsonUtilsContent(
+		fqn,
+		`${artifactConfig.rootPackageName}.service.model`,
+		artifactConfig.contentTypeEncodings,
+	);
 
 	return {
 		name: '_JsonUtils.java',
