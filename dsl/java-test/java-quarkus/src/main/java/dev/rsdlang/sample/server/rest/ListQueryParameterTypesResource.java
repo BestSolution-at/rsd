@@ -46,6 +46,15 @@ public class ListQueryParameterTypesResource {
 				.orElse("application/json");
 	}
 
+	static String computeRequestContentType(String contentTypeHeader) {
+		return switch (contentTypeHeader) {
+			case null -> "application/json";
+			case "application/json" -> "application/json";
+			case "application/vnd.msgpack" -> "application/vnd.msgpack";
+			default -> "application/json";
+		};
+	}
+
 	@GET
 	@Path("listBooleanQueryParam")
 	public Response listBooleanQueryParam(
@@ -180,12 +189,13 @@ public class ListQueryParameterTypesResource {
 	@Path("listMultiQueryParam")
 	public Response listMultiQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@QueryParam("valueA") List<String> _valueA,
 			@QueryParam("valueB") List<String> _valueB,
 			@QueryParam("valueC") List<String> _valueC) {
 		var valueA = _RestUtils.mapStrings(_valueA);
 		var valueB = _RestUtils.mapInts(_valueB);
-		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listMultiQueryParam(builderFactory, valueA, valueB, valueC);
 		return responseBuilder.listMultiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
@@ -194,8 +204,9 @@ public class ListQueryParameterTypesResource {
 	@Path("listRecordQueryParam")
 	public Response listRecordQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@QueryParam("queryValue") List<String> _queryValue) {
-		var queryValue = _RestUtils.mapObjects(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var queryValue = _RestUtils.mapObjects(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listRecordQueryParam(builderFactory, queryValue);
 		return responseBuilder.listRecordQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}

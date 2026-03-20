@@ -46,6 +46,15 @@ public class QueryParameterTypesResource {
 				.orElse("application/json");
 	}
 
+	static String computeRequestContentType(String contentTypeHeader) {
+		return switch (contentTypeHeader) {
+			case null -> "application/json";
+			case "application/json" -> "application/json";
+			case "application/vnd.msgpack" -> "application/vnd.msgpack";
+			default -> "application/json";
+		};
+	}
+
 	@GET
 	@Path("simpleBooleanQueryParam")
 	public Response simpleBooleanQueryParam(
@@ -314,8 +323,9 @@ public class QueryParameterTypesResource {
 	@Path("recordQueryParam")
 	public Response recordQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.parseObject(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var queryValue = _RestUtils.parseObject(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.recordQueryParam(builderFactory, queryValue);
 		return responseBuilder.recordQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
@@ -324,8 +334,9 @@ public class QueryParameterTypesResource {
 	@Path("recordQueryParamOpt")
 	public Response recordQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.parseOptObject(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var queryValue = _RestUtils.parseOptObject(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.recordQueryParamOpt(builderFactory, queryValue);
 		return responseBuilder.recordQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}

@@ -42,6 +42,15 @@ public class ListSampleServiceResource {
 				.orElse("application/json");
 	}
 
+	static String computeRequestContentType(String contentTypeHeader) {
+		return switch (contentTypeHeader) {
+			case null -> "application/json";
+			case "application/json" -> "application/json";
+			case "application/vnd.msgpack" -> "application/vnd.msgpack";
+			default -> "application/json";
+		};
+	}
+
 	@GET
 	@Path("boolean")
 	public Response listBoolean(@HeaderParam("Accept") List<String> $acceptHeaders) {

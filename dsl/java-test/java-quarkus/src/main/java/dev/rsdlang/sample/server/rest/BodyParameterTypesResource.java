@@ -56,6 +56,7 @@ public class BodyParameterTypesResource {
 
 	static String computeRequestContentType(String contentTypeHeader) {
 		return switch (contentTypeHeader) {
+			case null -> "application/json";
 			case "application/json" -> "application/json";
 			case "application/vnd.msgpack" -> "application/vnd.msgpack";
 			default -> "application/json";

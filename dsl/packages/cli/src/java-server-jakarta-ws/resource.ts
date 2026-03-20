@@ -119,25 +119,19 @@ function _generateResource(
 			});
 			cBody.append('}', NL, NL);
 
-			if (
-				s.operations
-					.flatMap(o => o.parameters)
-					.filter(p => p.variant !== 'stream')
-					.some(p => p.meta?.rest?.source === undefined)
-			) {
-				cBody.append('static String computeRequestContentType(String contentTypeHeader) {', NL);
-				cBody.indent(mBody => {
-					mBody.append('return switch (contentTypeHeader) {', NL);
-					mBody.indent(switchBody => {
-						contentTypeEncodings.forEach(e => {
-							switchBody.append(`case "${e}" -> "${e}";`, NL);
-						});
-						switchBody.append(`default -> "${contentTypeEncodings[0]}";`, NL);
+			cBody.append('static String computeRequestContentType(String contentTypeHeader) {', NL);
+			cBody.indent(mBody => {
+				mBody.append('return switch (contentTypeHeader) {', NL);
+				mBody.indent(switchBody => {
+					switchBody.append(`case null -> "${contentTypeEncodings[0]}";`, NL);
+					contentTypeEncodings.forEach(e => {
+						switchBody.append(`case "${e}" -> "${e}";`, NL);
 					});
-					mBody.append('};', NL);
+					switchBody.append(`default -> "${contentTypeEncodings[0]}";`, NL);
 				});
-				cBody.append('}', NL, NL);
-			}
+				mBody.append('};', NL);
+			});
+			cBody.append('}', NL, NL);
 		}
 
 		s.operations
@@ -179,9 +173,20 @@ function _generateResource(
 				if (o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
 					params.unshift(`@RestForm("_rsdPayload") FileUpload $_payload`);
 				}
+				let headerQueryContentType = `"${contentTypeEncodings[0]}"`;
 				if (contentTypeEncodings.length > 1) {
 					const HeaderParam = fqn('jakarta.ws.rs.HeaderParam');
 					const List = fqn('java.util.List');
+					if (
+						o.parameters.some(
+							p =>
+								(p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'query') &&
+								(p.variant === 'record' || p.variant === 'union'),
+						)
+					) {
+						params.unshift(`@${HeaderParam}("X-RSD-Param-Content-Type") String $headerQueryContentType`);
+						headerQueryContentType = 'computeRequestContentType($headerQueryContentType)';
+					}
 					params.unshift(`@${HeaderParam}("Accept") ${List}<String> $acceptHeaders`);
 				}
 				const serviceParams: string[] = [];
@@ -293,7 +298,17 @@ function _generateResource(
 							if (p.meta?.rest?.source === undefined) {
 								mBody.append(`var ${p.name} = $payload.${p.name}();`, NL);
 							} else if (p.variant === 'record' || p.variant === 'union') {
-								mBody.append(recordUnionParameter(p, artifactConfig, fqn, packageName, false, `"application/json"`));
+								mBody.append(
+									recordUnionParameter(
+										p,
+										artifactConfig,
+										fqn,
+										packageName,
+										false,
+										`"application/json"`,
+										headerQueryContentType,
+									),
+								);
 							} else if (p.variant === 'builtin') {
 								mBody.append(builtinParameter(p, fqn, packageName, false, `"application/json"`));
 							} else if (p.variant === 'enum') {
@@ -382,9 +397,21 @@ function generateResourceMethod(
 		serviceParams.unshift(...artifactConfig.scopeValues.map(v => `$${v.name}`));
 	}
 	let contentTypeText = `"${contentEncodings[0]}"`;
+	let heaerQueryContentType = `"${contentEncodings[0]}"`;
 	if (contentEncodings.length > 1) {
 		const HeaderParam = fqn('jakarta.ws.rs.HeaderParam');
 		const List = fqn('java.util.List');
+
+		if (
+			o.parameters.some(
+				p =>
+					(p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'query') &&
+					(p.variant === 'record' || p.variant === 'union'),
+			)
+		) {
+			params.unshift(`@${HeaderParam}("X-RSD-Param-Content-Type") String $headerQueryContentType`);
+			heaerQueryContentType = 'computeRequestContentType($headerQueryContentType)';
+		}
 		params.unshift(`@${HeaderParam}("Accept") ${List}<String> $acceptHeaders`);
 		if (o.parameters.some(p => p.meta?.rest?.source === undefined)) {
 			params.unshift(`@${HeaderParam}("Content-Type") String $contentTypeHeader`);
@@ -429,6 +456,7 @@ function generateResourceMethod(
 						packageName,
 						p.meta?.rest?.source === undefined,
 						contentTypeText,
+						heaerQueryContentType,
 					),
 				);
 			} else if (p.variant === 'builtin') {
@@ -662,6 +690,7 @@ function recordUnionParameter(
 	packageName: string,
 	asJSON: boolean,
 	contentTypeText: string,
+	headerQueryContentType: string,
 ) {
 	const type = computeParameterAPIType(
 		p,
@@ -699,22 +728,22 @@ function recordUnionParameter(
 			if (p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'query') {
 				if (p.optional && p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapNilObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapNilObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else if (p.optional) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapOptObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapOptObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else if (p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapNullObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapNullObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`var ${p.name} = _RestUtils.mapObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				}
@@ -769,22 +798,22 @@ function recordUnionParameter(
 			if (p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'query') {
 				if (p.optional && p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else if (p.optional) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseOptObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseOptObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else if (p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseNullObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseNullObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`var ${p.name} = _RestUtils.parseObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				}

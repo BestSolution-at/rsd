@@ -61,6 +61,7 @@ public class BinaryTypesResource {
 
 	static String computeRequestContentType(String contentTypeHeader) {
 		return switch (contentTypeHeader) {
+			case null -> "application/json";
 			case "application/json" -> "application/json";
 			case "application/vnd.msgpack" -> "application/vnd.msgpack";
 			default -> "application/json";
@@ -280,15 +281,15 @@ public class BinaryTypesResource {
 	@POST
 	@Path("mixed/{pathString}/{pathNumber}")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response mixed(@HeaderParam("Accept") List<String> $acceptHeaders, @PathParam("pathString") String _pathString, @PathParam("pathNumber") String _pathNumber, @HeaderParam("headerString") String _headerString, @HeaderParam("headerNumber") String _headerNumber, @HeaderParam("headerRecord") String _headerRecord, @QueryParam("queryString") String _queryString, @QueryParam("queryNumber") String _queryNumber, @QueryParam("queryRecord") String _queryRecord, @RestForm("dataBlob") FileUpload _dataBlob) {
+	public Response mixed(@HeaderParam("Accept") List<String> $acceptHeaders, @HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType, @PathParam("pathString") String _pathString, @PathParam("pathNumber") String _pathNumber, @HeaderParam("headerString") String _headerString, @HeaderParam("headerNumber") String _headerNumber, @HeaderParam("headerRecord") String _headerRecord, @QueryParam("queryString") String _queryString, @QueryParam("queryNumber") String _queryNumber, @QueryParam("queryRecord") String _queryRecord, @RestForm("dataBlob") FileUpload _dataBlob) {
 		var pathString = _RestUtils.parseString(_pathString);
 		var pathNumber = _RestUtils.parseInt(_pathNumber);
 		var headerString = _RestUtils.parseString(_headerString, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var headerNumber = _RestUtils.parseInt(_headerNumber);
-		var headerRecord = _RestUtils.parseObject(_headerRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var headerRecord = _RestUtils.parseObject(_headerRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var queryString = _RestUtils.parseString(_queryString);
 		var queryNumber = _RestUtils.parseInt(_queryNumber);
-		var queryRecord = _RestUtils.parseObject(_queryRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var queryRecord = _RestUtils.parseObject(_queryRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
 		service.mixed(builderFactory, pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob);
 		return responseBuilder.mixed(pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob).build();
