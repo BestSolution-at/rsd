@@ -22,6 +22,10 @@ import java.util.OptionalLong;
 import java.util.stream.Collector;
 import java.util.stream.Stream;
 
+import org.msgpack.core.MessagePack;
+import org.msgpack.core.MessagePacker;
+
+import at.bestsolution.msgpack.json.MsgpackJson;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
@@ -803,6 +807,9 @@ public class _JsonUtils {
 		if (contentType != null && contentType.startsWith("application/json")) {
 			encodeJsonValue(stream, data);
 			return;
+		} else if (contentType != null && contentType.startsWith("application/vnd.msgpack")) {
+			encodeMsgPackValue(stream, data);
+			return;
 		}
 		throw new IllegalArgumentException("Unsupported content type: " + contentType);
 	}
@@ -810,6 +817,8 @@ public class _JsonUtils {
 	public static byte[] encodeValue(Object data, String contentType) {
 		if (contentType != null && contentType.startsWith("application/json")) {
 			return encodeJsonValue(data);
+		} else if (contentType != null && contentType.startsWith("application/vnd.msgpack")) {
+			return encodeMsgPackValue(data);
 		}
 		throw new IllegalArgumentException("Unsupported content type: " + contentType);
 	}
@@ -838,7 +847,7 @@ public class _JsonUtils {
 		} else if (data instanceof Number n) {
 			if (data instanceof Byte || data instanceof Short || data instanceof Integer || data instanceof Character) {
 				generator.write(n.intValue());
-			} else if (data instanceof Byte || data instanceof Short || data instanceof Integer || data instanceof Long) {
+			} else if (data instanceof Long) {
 				generator.write(n.longValue());
 			} else if (data instanceof Float || data instanceof Double) {
 				generator.write(n.doubleValue());
@@ -861,6 +870,75 @@ public class _JsonUtils {
 			generator.writeEnd();
 		} else {
 			generator.write(toString(data));
+		}
+	}
+
+	// -----------------
+	private static byte[] encodeMsgPackValue(Object data) {
+		try {
+			var msgpackJson = MsgpackJson.builder()
+					.build();
+			var value = Json.createValue("test string");
+			var packer = MessagePack.newDefaultBufferPacker();
+			encodeMsgPackValue(msgpackJson, packer, value);
+			packer.flush();
+			var result = packer.toByteArray();
+			packer.close();
+			return result;
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	private static void encodeMsgPackValue(OutputStream stream, Object data) {
+		try {
+			var msgpackJson = MsgpackJson.builder()
+					.build();
+			var value = Json.createValue("test string");
+			var packer = MessagePack.newDefaultPacker(stream);
+			encodeMsgPackValue(msgpackJson, packer, value);
+			packer.flush();
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
+
+	}
+
+	private static void encodeMsgPackValue(MsgpackJson generator, MessagePacker packer, Object data) throws IOException {
+		generator.encode(packer, createValue(data));
+	}
+
+	private static JsonValue createValue(Object data) {
+		if (data == null) {
+			return JsonValue.NULL;
+		} else if (data instanceof JsonValue jsonValue) {
+			return jsonValue;
+		} else if (data instanceof String s) {
+			return Json.createValue(s);
+		} else if (data instanceof Number n) {
+			if (data instanceof Byte || data instanceof Short || data instanceof Integer || data instanceof Character) {
+				return Json.createValue(n.intValue());
+			} else if (data instanceof Long) {
+				return Json.createValue(n.longValue());
+			} else if (data instanceof Float || data instanceof Double) {
+				return Json.createValue(n.doubleValue());
+			} else if (data instanceof BigInteger) {
+				return Json.createValue((BigInteger) n);
+			} else if (data instanceof BigDecimal) {
+				return Json.createValue((BigDecimal) n);
+			} else {
+				throw new IllegalArgumentException("Unsupported number type: " + data.getClass());
+			}
+		} else if (data instanceof Boolean b) {
+			return b ? JsonValue.TRUE : JsonValue.FALSE;
+		} else if (data instanceof _BaseDataImpl baseData) {
+			return createValue(baseData.data);
+		} else if (data instanceof List<?> list) {
+			var arrayBuilder = Json.createArrayBuilder();
+			list.stream().map(v -> createValue(v)).forEach(arrayBuilder::add);
+			return arrayBuilder.build();
+		} else {
+			return Json.createValue(toString(data));
 		}
 	}
 
@@ -905,7 +983,8 @@ public class _JsonUtils {
 		}
 	}
 
-	private static <T> _Base.Nillable<T> parseNilStream(InputStream inputStream, Function<InputStream, _Base.Nillable<T>> parser) {
+	private static <T> _Base.Nillable<T> parseNilStream(InputStream inputStream,
+			Function<InputStream, _Base.Nillable<T>> parser) {
 		var state = streamState(inputStream);
 		if (state == StreamState.EMPTY) {
 			return _NillableImpl.undefined();
