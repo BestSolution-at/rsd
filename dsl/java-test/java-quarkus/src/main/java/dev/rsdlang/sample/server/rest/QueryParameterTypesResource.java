@@ -2,12 +2,15 @@
 package dev.rsdlang.sample.server.rest;
 
 import java.time.ZoneId;
+import java.util.List;
+import java.util.regex.Pattern;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
@@ -21,6 +24,8 @@ import dev.rsdlang.sample.server.service.QueryParameterTypesService;
 @Path("/api/queryparametertypes")
 @Produces(MediaType.APPLICATION_JSON)
 public class QueryParameterTypesResource {
+	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
+
 	private final RestBuilderFactory builderFactory;
 	private final QueryParameterTypesService service;
 	private final QueryParameterTypesResourceResponseBuilder responseBuilder;
@@ -32,234 +37,297 @@ public class QueryParameterTypesResource {
 		this.responseBuilder = responseBuilder;
 	}
 
+	public static String computeResponseContentType(List<String> acceptHeader) {
+		return acceptHeader.stream()
+				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
+				.map(String::trim)
+				.filter(e -> "application/vnd.msgpack".equals(e) || "application/json".equals(e))
+				.findFirst()
+				.orElse("application/json");
+	}
+
 	@GET
 	@Path("simpleBooleanQueryParam")
-	public Response simpleBooleanQueryParam(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleBooleanQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseBoolean(_queryValue);
 		var result = service.simpleBooleanQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleBooleanQueryParam(result, "application/json", queryValue).build();
+		return responseBuilder.simpleBooleanQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleBooleanQueryParamOpt")
-	public Response simpleBooleanQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleBooleanQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptBoolean(_queryValue);
 		var result = service.simpleBooleanQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleBooleanQueryParamOpt(result, "application/json", queryValue).build();
+		return responseBuilder.simpleBooleanQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleShortQueryParam")
-	public Response simpleShortQueryParam(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleShortQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseShort(_queryValue);
 		var result = service.simpleShortQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleShortQueryParam(result, "application/json", queryValue).build();
+		return responseBuilder.simpleShortQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleShortQueryParamOpt")
-	public Response simpleShortQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleShortQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptShort(_queryValue);
 		var result = service.simpleShortQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleShortQueryParamOpt(result, "application/json", queryValue).build();
+		return responseBuilder.simpleShortQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleIntQueryParam")
-	public Response simpleIntQueryParam(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleIntQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseInt(_queryValue);
 		var result = service.simpleIntQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleIntQueryParam(result, "application/json", queryValue).build();
+		return responseBuilder.simpleIntQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleIntQueryParamOpt")
-	public Response simpleIntQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleIntQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptInt(_queryValue);
 		var result = service.simpleIntQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleIntQueryParamOpt(result, "application/json", queryValue).build();
+		return responseBuilder.simpleIntQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleLongQueryParam")
-	public Response simpleLongQueryParam(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleLongQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseLong(_queryValue);
 		var result = service.simpleLongQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleLongQueryParam(result, "application/json", queryValue).build();
+		return responseBuilder.simpleLongQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleLongQueryParamOpt")
-	public Response simpleLongQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleLongQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptLong(_queryValue);
 		var result = service.simpleLongQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleLongQueryParamOpt(result, "application/json", queryValue).build();
+		return responseBuilder.simpleLongQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleFloatQueryParam")
-	public Response simpleFloatQueryParam(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleFloatQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseFloat(_queryValue);
 		var result = service.simpleFloatQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleFloatQueryParam(result, "application/json", queryValue).build();
+		return responseBuilder.simpleFloatQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleFloatQueryParamOpt")
-	public Response simpleFloatQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleFloatQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptFloat(_queryValue);
 		var result = service.simpleFloatQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleFloatQueryParamOpt(result, "application/json", queryValue).build();
+		return responseBuilder.simpleFloatQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleDoubleQueryParam")
-	public Response simpleDoubleQueryParam(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleDoubleQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseDouble(_queryValue);
 		var result = service.simpleDoubleQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleDoubleQueryParam(result, "application/json", queryValue).build();
+		return responseBuilder.simpleDoubleQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleDoubleQueryParamOpt")
-	public Response simpleDoubleQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleDoubleQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptDouble(_queryValue);
 		var result = service.simpleDoubleQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleDoubleQueryParamOpt(result, "application/json", queryValue).build();
+		return responseBuilder.simpleDoubleQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleStringQueryParam")
-	public Response simpleStringQueryParam(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleStringQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseString(_queryValue);
 		var result = service.simpleStringQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleStringQueryParam(result, "application/json", queryValue).build();
+		return responseBuilder.simpleStringQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleStringQueryParamOpt")
-	public Response simpleStringQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleStringQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptString(_queryValue);
 		var result = service.simpleStringQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleStringQueryParamOpt(result, "application/json", queryValue).build();
+		return responseBuilder.simpleStringQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleLocalDateQueryParam")
-	public Response simpleLocalDateQueryParam(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleLocalDateQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseLocalDate(_queryValue);
 		var result = service.simpleLocalDateQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleLocalDateQueryParam(result, "application/json", queryValue).build();
+		return responseBuilder.simpleLocalDateQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleLocalDateQueryParamOpt")
-	public Response simpleLocalDateQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleLocalDateQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptLocalDate(_queryValue);
 		var result = service.simpleLocalDateQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleLocalDateQueryParamOpt(result, "application/json", queryValue).build();
+		return responseBuilder.simpleLocalDateQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleLocalDateTimeQueryParam")
-	public Response simpleLocalDateTimeQueryParam(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleLocalDateTimeQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseLocalDateTime(_queryValue);
 		var result = service.simpleLocalDateTimeQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleLocalDateTimeQueryParam(result, "application/json", queryValue).build();
+		return responseBuilder.simpleLocalDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleLocalDateTimeQueryParamOpt")
-	public Response simpleLocalDateTimeQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleLocalDateTimeQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptLocalDateTime(_queryValue);
 		var result = service.simpleLocalDateTimeQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleLocalDateTimeQueryParamOpt(result, "application/json", queryValue).build();
+		return responseBuilder.simpleLocalDateTimeQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleZonedDateTimeQueryParam")
-	public Response simpleZonedDateTimeQueryParam(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleZonedDateTimeQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseZonedDateTime(_queryValue);
 		var result = service.simpleZonedDateTimeQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleZonedDateTimeQueryParam(result, "application/json", queryValue).build();
+		return responseBuilder.simpleZonedDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleZonedDateTimeQueryParamOpt")
-	public Response simpleZonedDateTimeQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleZonedDateTimeQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptZonedDateTime(_queryValue);
 		var result = service.simpleZonedDateTimeQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleZonedDateTimeQueryParamOpt(result, "application/json", queryValue).build();
+		return responseBuilder.simpleZonedDateTimeQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleScalarQueryParam")
-	public Response simpleScalarQueryParam(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleScalarQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseLiteral(_queryValue, ZoneId::of);
 		var result = service.simpleScalarQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleScalarQueryParam(result, "application/json", queryValue).build();
+		return responseBuilder.simpleScalarQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleScalarQueryParamOpt")
-	public Response simpleScalarQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleScalarQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptLiteral(_queryValue, ZoneId::of);
 		var result = service.simpleScalarQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleScalarQueryParamOpt(result, "application/json", queryValue).build();
+		return responseBuilder.simpleScalarQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleEnumQueryParam")
-	public Response simpleEnumQueryParam(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleEnumQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseLiteral(_queryValue, SampleEnum::valueOf);
 		var result = service.simpleEnumQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleEnumQueryParam(result, "application/json", queryValue).build();
+		return responseBuilder.simpleEnumQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("simpleEnumQueryParamOpt")
-	public Response simpleEnumQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
+	public Response simpleEnumQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptLiteral(_queryValue, SampleEnum::valueOf);
 		var result = service.simpleEnumQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleEnumQueryParamOpt(result, "application/json", queryValue).build();
+		return responseBuilder.simpleEnumQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("multiQueryParam")
 	public Response multiQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("valueA") String _valueA,
 			@QueryParam("valueB") String _valueB) {
 		var valueA = _RestUtils.parseString(_valueA);
 		var valueB = _RestUtils.parseInt(_valueB);
 		var result = service.multiQueryParam(builderFactory, valueA, valueB);
-		return responseBuilder.multiQueryParam(result, "application/json", valueA, valueB).build();
+		return responseBuilder.multiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
 	}
 
 	@GET
 	@Path("multiQueryParamOpt")
 	public Response multiQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("valueA") String _valueA,
 			@QueryParam("valueB") String _valueB) {
 		var valueA = _RestUtils.parseOptString(_valueA);
 		var valueB = _RestUtils.parseOptInt(_valueB);
 		var result = service.multiQueryParamOpt(builderFactory, valueA, valueB);
-		return responseBuilder.multiQueryParamOpt(result, "application/json", valueA, valueB).build();
+		return responseBuilder.multiQueryParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
 	}
 
 	@GET
 	@Path("recordQueryParam")
-	public Response recordQueryParam(@QueryParam("queryValue") String _queryValue) {
+	public Response recordQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseObject(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.recordQueryParam(builderFactory, queryValue);
-		return responseBuilder.recordQueryParam(result, "application/json", queryValue).build();
+		return responseBuilder.recordQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
 	@Path("recordQueryParamOpt")
-	public Response recordQueryParamOpt(@QueryParam("queryValue") String _queryValue) {
+	public Response recordQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptObject(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.recordQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.recordQueryParamOpt(result, "application/json", queryValue).build();
+		return responseBuilder.recordQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 }

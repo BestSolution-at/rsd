@@ -39,6 +39,9 @@ export function generateResource(s: MResolvedService, artifactConfig: JavaServer
 	return result;
 }
 
+type ArrayElement<A> = A extends readonly (infer T)[] ? T : never;
+type ContentTypeEncoding = readonly ArrayElement<JavaServerJakartaWSGeneratorConfig['contentTypeEncodings']>[];
+
 function _generateResource(
 	s: MResolvedService,
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
@@ -58,7 +61,11 @@ function _generateResource(
 	const MediaType = fqn('jakarta.ws.rs.core.MediaType');
 	const Service = fqn(`${artifactConfig.rootPackageName}.service.${s.name}Service`);
 	const Inject = fqn('jakarta.inject.Inject');
-	const Response = fqn('jakarta.ws.rs.core.Response');
+
+	const contentTypeEncodings =
+		artifactConfig.contentTypeEncodings === undefined || artifactConfig.contentTypeEncodings.length === 0
+			? (['application/json'] as const)
+			: artifactConfig.contentTypeEncodings;
 
 	const node = new CompositeGeneratorNode();
 	node.append(`@${ApplicationScoped}`, NL);
@@ -66,6 +73,12 @@ function _generateResource(
 	node.append(`@${Produces}(${MediaType}.APPLICATION_JSON)`, NL);
 	node.append(`public class ${s.name}Resource {`, NL);
 	node.indent(cBody => {
+		if (contentTypeEncodings.length > 1) {
+			const Pattern = fqn('java.util.regex.Pattern');
+			cBody.append(`private static final ${Pattern} HEADER_SPLIT_PATTERN = ${Pattern}.compile(",");`, NL);
+			cBody.appendNewLine();
+		}
+
 		cBody.append('private final RestBuilderFactory builderFactory;', NL);
 		cBody.append(`private final ${Service} service;`, NL);
 		cBody.append(`private final ${s.name}ResourceResponseBuilder responseBuilder;`, NL);
@@ -89,6 +102,24 @@ function _generateResource(
 		cBody.append('}', NL);
 		cBody.appendNewLine();
 
+		if (contentTypeEncodings.length > 1) {
+			cBody.append('public static String computeResponseContentType(List<String> acceptHeader) {', NL);
+
+			cBody.indent(mBody => {
+				mBody.append('return acceptHeader.stream()', NL);
+				mBody.indent(tmp => {
+					tmp.indent(inner => {
+						inner.append('.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)', NL);
+						inner.append('.map(String::trim)', NL);
+						inner.append('.filter(e -> "application/vnd.msgpack".equals(e) || "application/json".equals(e))', NL);
+						inner.append('.findFirst()', NL);
+						inner.append('.orElse("application/json");', NL);
+					});
+				});
+			});
+			cBody.append('}', NL, NL);
+		}
+
 		s.operations
 			.filter(o => o.parameters.find(p => p.variant === 'stream') === undefined)
 			.forEach(o => {
@@ -96,112 +127,13 @@ function _generateResource(
 					return;
 				}
 
-				cBody.append(`@${fqn(`jakarta.ws.rs.${o.meta.rest.method}`)}`, NL);
-				if (o.meta.rest.path) {
-					cBody.append(`@${Path}("${o.meta.rest.path.replaceAll('$', '')}")`, NL);
+				const meta = o.meta.rest;
+				cBody.append(`@${fqn(`jakarta.ws.rs.${meta.method}`)}`, NL);
+				if (meta.path) {
+					cBody.append(`@${Path}("${meta.path.replaceAll('$', '')}")`, NL);
 				}
 
-				const multiBody = o.parameters.filter(p => p.meta?.rest?.source === undefined).length > 1;
-				const params: string[] = [];
-				const serviceParams: string[] = [];
-
-				if (multiBody) {
-					params.push(
-						...o.parameters
-							.filter(p => p.meta?.rest !== undefined)
-							.filter(p => p.meta?.rest?.source !== undefined)
-							.map(p => toParameter(p, false, artifactConfig, fqn, false)),
-					);
-
-					params.push(`InputStream data`);
-					serviceParams.push(
-						...o.parameters.map(p => {
-							if (p.meta?.rest?.source === undefined) {
-								return `dto.${p.name}()`;
-							}
-							return p.name;
-						}),
-					);
-				} else {
-					params.push(...o.parameters.map(p => toParameter(p, false, artifactConfig, fqn, false)));
-					serviceParams.push(...o.parameters.map(p => p.name));
-				}
-
-				if (artifactConfig.scopeValues) {
-					serviceParams.unshift(...artifactConfig.scopeValues.map(v => `$${v.name}`));
-				}
-
-				if (params.length > 0) {
-					if (params.length > 1) {
-						cBody.append(`public ${Response} ${o.name}(`, NL);
-						cBody.indent(tmp =>
-							tmp.indent(paramIndent => {
-								params.forEach((p, idx, arr) => {
-									paramIndent.append(p);
-									if (idx + 1 < arr.length) {
-										paramIndent.append(',', NL);
-									} else {
-										paramIndent.append(') {', NL);
-									}
-								});
-							}),
-						);
-					} else {
-						cBody.append(`public ${Response} ${o.name}(${params[0]}) {`, NL);
-					}
-				} else {
-					cBody.append(`public ${Response} ${o.name}() {`, NL);
-				}
-				cBody.indent(mBody => {
-					o.parameters.forEach(p => {
-						if (multiBody && p.meta?.rest?.source === undefined) {
-							return;
-						}
-						if (p.variant === 'record' || p.variant === 'union') {
-							mBody.append(
-								recordUnionParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined),
-							);
-						} else if (p.variant === 'builtin') {
-							mBody.append(builtinParameter(p, fqn, packageName, p.meta?.rest?.source === undefined));
-						} else if (p.variant === 'enum') {
-							mBody.append(enumParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined));
-						} else if (p.variant === 'inline-enum') {
-							mBody.append(inlineEnumParameter(p, o, Service, fqn, packageName, p.meta?.rest?.source === undefined));
-						} else if (p.variant === 'scalar') {
-							mBody.append(scalarParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined));
-						}
-					});
-					if (multiBody) {
-						const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
-						const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
-						mBody.append(`var dto = ${_JsonUtils}.parseObject(data, "application/json", ${Type}::new);`, NL);
-					}
-					if (artifactConfig.scopeValues) {
-						artifactConfig.scopeValues.forEach(v => {
-							mBody.append(`var $${v.name} = this.${v.name}Provider.${v.name}();`, NL);
-						});
-					}
-
-					const errors = o.meta?.rest?.results.filter(e => e.error);
-					if (errors && errors.length > 0) {
-						mBody.append('try {', NL);
-						mBody.indent(inner => {
-							inner.append(okResultContent(o, serviceParams));
-						});
-						errors.forEach(e => {
-							const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
-							mBody.append(`} catch (${Type} e) {`, NL);
-							mBody.indent(inner => {
-								inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
-							});
-						});
-						mBody.append('}', NL);
-					} else {
-						mBody.append(okResultContent(o, serviceParams));
-					}
-				});
-				cBody.append('}', NL);
-				cBody.appendNewLine();
+				cBody.append(generateResourceMethod(o, s, artifactConfig, fqn, packageName, contentTypeEncodings));
 			});
 
 		s.operations
@@ -228,6 +160,11 @@ function _generateResource(
 				params.push(...nullableStreamParams);
 				if (o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
 					params.unshift(`@RestForm("_rsdPayload") FileUpload $_payload`);
+				}
+				if (contentTypeEncodings.length > 1) {
+					const HeaderParam = fqn('jakarta.ws.rs.HeaderParam');
+					const List = fqn('java.util.List');
+					params.unshift(`@${HeaderParam}("Accept") ${List}<String> $acceptHeaders`);
 				}
 				const serviceParams: string[] = [];
 
@@ -343,7 +280,7 @@ function _generateResource(
 					if (errors && errors.length > 0) {
 						mBody.append('try {', NL);
 						mBody.indent(inner => {
-							inner.append(okResultContent(o, serviceParams));
+							inner.append(okResultContent(o, serviceParams, contentTypeEncodings));
 						});
 						errors.forEach(e => {
 							const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
@@ -354,7 +291,7 @@ function _generateResource(
 						});
 						mBody.append('}', NL);
 					} else {
-						mBody.append(okResultContent(o, serviceParams));
+						mBody.append(okResultContent(o, serviceParams, contentTypeEncodings));
 					}
 				});
 				cBody.append('}', NL);
@@ -368,6 +305,128 @@ function _generateResource(
 		content: toString(generateCompilationUnit(packageName, importCollector, node), '\t'),
 		path: toPath(artifactConfig.targetFolder, packageName),
 	};
+}
+
+function generateResourceMethod(
+	o: MResolvedOperation,
+	s: MResolvedService,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
+	fqn: (type: string) => string,
+	packageName: string,
+	contentEncodings: ContentTypeEncoding,
+) {
+	const Response = fqn('jakarta.ws.rs.core.Response');
+	const Service = fqn(`${artifactConfig.rootPackageName}.service.${s.name}Service`);
+
+	const multiBody = o.parameters.filter(p => p.meta?.rest?.source === undefined).length > 1;
+	const params: string[] = [];
+	const serviceParams: string[] = [];
+
+	if (multiBody) {
+		params.push(
+			...o.parameters
+				.filter(p => p.meta?.rest !== undefined)
+				.filter(p => p.meta?.rest?.source !== undefined)
+				.map(p => toParameter(p, false, artifactConfig, fqn, false)),
+		);
+
+		params.push(`InputStream data`);
+		serviceParams.push(
+			...o.parameters.map(p => {
+				if (p.meta?.rest?.source === undefined) {
+					return `dto.${p.name}()`;
+				}
+				return p.name;
+			}),
+		);
+	} else {
+		params.push(...o.parameters.map(p => toParameter(p, false, artifactConfig, fqn, false)));
+		serviceParams.push(...o.parameters.map(p => p.name));
+	}
+
+	if (artifactConfig.scopeValues) {
+		serviceParams.unshift(...artifactConfig.scopeValues.map(v => `$${v.name}`));
+	}
+
+	if (contentEncodings.length > 1) {
+		const HeaderParam = fqn('jakarta.ws.rs.HeaderParam');
+		const List = fqn('java.util.List');
+		params.unshift(`@${HeaderParam}("Accept") ${List}<String> $acceptHeaders`);
+	}
+
+	const cBody = new CompositeGeneratorNode();
+
+	if (params.length > 0) {
+		if (params.length > 1) {
+			cBody.append(`public ${Response} ${o.name}(`, NL);
+			cBody.indent(tmp =>
+				tmp.indent(paramIndent => {
+					params.forEach((p, idx, arr) => {
+						paramIndent.append(p);
+						if (idx + 1 < arr.length) {
+							paramIndent.append(',', NL);
+						} else {
+							paramIndent.append(') {', NL);
+						}
+					});
+				}),
+			);
+		} else {
+			cBody.append(`public ${Response} ${o.name}(${params[0]}) {`, NL);
+		}
+	} else {
+		cBody.append(`public ${Response} ${o.name}() {`, NL);
+	}
+	cBody.indent(mBody => {
+		o.parameters.forEach(p => {
+			if (multiBody && p.meta?.rest?.source === undefined) {
+				return;
+			}
+			if (p.variant === 'record' || p.variant === 'union') {
+				mBody.append(recordUnionParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined));
+			} else if (p.variant === 'builtin') {
+				mBody.append(builtinParameter(p, fqn, packageName, p.meta?.rest?.source === undefined));
+			} else if (p.variant === 'enum') {
+				mBody.append(enumParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined));
+			} else if (p.variant === 'inline-enum') {
+				mBody.append(inlineEnumParameter(p, o, Service, fqn, packageName, p.meta?.rest?.source === undefined));
+			} else if (p.variant === 'scalar') {
+				mBody.append(scalarParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined));
+			}
+		});
+		if (multiBody) {
+			const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
+			const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
+			mBody.append(`var dto = ${_JsonUtils}.parseObject(data, "application/json", ${Type}::new);`, NL);
+		}
+		if (artifactConfig.scopeValues) {
+			artifactConfig.scopeValues.forEach(v => {
+				mBody.append(`var $${v.name} = this.${v.name}Provider.${v.name}();`, NL);
+			});
+		}
+
+		const errors = o.meta?.rest?.results.filter(e => e.error);
+		if (errors && errors.length > 0) {
+			mBody.append('try {', NL);
+			mBody.indent(inner => {
+				inner.append(okResultContent(o, serviceParams, contentEncodings));
+			});
+			errors.forEach(e => {
+				const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
+				mBody.append(`} catch (${Type} e) {`, NL);
+				mBody.indent(inner => {
+					inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
+				});
+			});
+			mBody.append('}', NL);
+		} else {
+			mBody.append(okResultContent(o, serviceParams, contentEncodings));
+		}
+	});
+	cBody.append('}', NL);
+	cBody.appendNewLine();
+
+	return cBody;
 }
 
 function enumParameter(
@@ -820,8 +879,15 @@ function scalarParameter(
 	return node;
 }
 
-function okResultContent(o: MOperation, serviceParams: string[]) {
+function okResultContent(
+	o: MOperation,
+	serviceParams: string[],
+	contentEncodings: ContentTypeEncoding,
+): CompositeGeneratorNode {
 	const node = new CompositeGeneratorNode();
+
+	const contentEncoding =
+		contentEncodings.length > 1 ? 'computeResponseContentType($acceptHeaders)' : `"${contentEncodings[0]}"`;
 
 	if (o.resultType) {
 		if (serviceParams.length === 0) {
@@ -838,10 +904,10 @@ function okResultContent(o: MOperation, serviceParams: string[]) {
 	}
 	if (o.resultType) {
 		if (serviceParams.length === 0) {
-			node.append(`return responseBuilder.${o.name}(result, "application/json").build();`, NL);
+			node.append(`return responseBuilder.${o.name}(result, ${contentEncoding}).build();`, NL);
 		} else {
 			node.append(
-				`return responseBuilder.${o.name}(result, "application/json", ${serviceParams.join(', ')}).build();`,
+				`return responseBuilder.${o.name}(result, ${contentEncoding}, ${serviceParams.join(', ')}).build();`,
 				NL,
 			);
 		}

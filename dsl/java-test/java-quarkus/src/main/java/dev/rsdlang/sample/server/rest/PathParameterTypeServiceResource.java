@@ -2,12 +2,15 @@
 package dev.rsdlang.sample.server.rest;
 
 import java.time.ZoneId;
+import java.util.List;
+import java.util.regex.Pattern;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -19,6 +22,8 @@ import dev.rsdlang.sample.server.service.PathParameterTypeServiceService;
 @Path("/api/pathparametertype")
 @Produces(MediaType.APPLICATION_JSON)
 public class PathParameterTypeServiceResource {
+	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
+
 	private final RestBuilderFactory builderFactory;
 	private final PathParameterTypeServiceService service;
 	private final PathParameterTypeServiceResourceResponseBuilder responseBuilder;
@@ -30,111 +35,145 @@ public class PathParameterTypeServiceResource {
 		this.responseBuilder = responseBuilder;
 	}
 
+	public static String computeResponseContentType(List<String> acceptHeader) {
+		return acceptHeader.stream()
+				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
+				.map(String::trim)
+				.filter(e -> "application/vnd.msgpack".equals(e) || "application/json".equals(e))
+				.findFirst()
+				.orElse("application/json");
+	}
+
 	@GET
 	@Path("boolean/{pathBoolean}")
-	public Response simpleBooleanPathParam(@PathParam("pathBoolean") String _pathBoolean) {
+	public Response simpleBooleanPathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathBoolean") String _pathBoolean) {
 		var pathBoolean = _RestUtils.parseBoolean(_pathBoolean);
 		var result = service.simpleBooleanPathParam(builderFactory, pathBoolean);
-		return responseBuilder.simpleBooleanPathParam(result, "application/json", pathBoolean).build();
+		return responseBuilder.simpleBooleanPathParam(result, computeResponseContentType($acceptHeaders), pathBoolean).build();
 	}
 
 	@GET
 	@Path("short/{pathShort}")
-	public Response simpleShortPathParam(@PathParam("pathShort") String _pathShort) {
+	public Response simpleShortPathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathShort") String _pathShort) {
 		var pathShort = _RestUtils.parseShort(_pathShort);
 		var result = service.simpleShortPathParam(builderFactory, pathShort);
-		return responseBuilder.simpleShortPathParam(result, "application/json", pathShort).build();
+		return responseBuilder.simpleShortPathParam(result, computeResponseContentType($acceptHeaders), pathShort).build();
 	}
 
 	@GET
 	@Path("int/{pathInt}")
-	public Response simpleIntPathParam(@PathParam("pathInt") String _pathInt) {
+	public Response simpleIntPathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathInt") String _pathInt) {
 		var pathInt = _RestUtils.parseInt(_pathInt);
 		var result = service.simpleIntPathParam(builderFactory, pathInt);
-		return responseBuilder.simpleIntPathParam(result, "application/json", pathInt).build();
+		return responseBuilder.simpleIntPathParam(result, computeResponseContentType($acceptHeaders), pathInt).build();
 	}
 
 	@GET
 	@Path("long/{pathLong}")
-	public Response simpleLongPathParam(@PathParam("pathLong") String _pathLong) {
+	public Response simpleLongPathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathLong") String _pathLong) {
 		var pathLong = _RestUtils.parseLong(_pathLong);
 		var result = service.simpleLongPathParam(builderFactory, pathLong);
-		return responseBuilder.simpleLongPathParam(result, "application/json", pathLong).build();
+		return responseBuilder.simpleLongPathParam(result, computeResponseContentType($acceptHeaders), pathLong).build();
 	}
 
 	@GET
 	@Path("float/{pathFloat}")
-	public Response simpleFloatPathParam(@PathParam("pathFloat") String _pathFloat) {
+	public Response simpleFloatPathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathFloat") String _pathFloat) {
 		var pathFloat = _RestUtils.parseFloat(_pathFloat);
 		var result = service.simpleFloatPathParam(builderFactory, pathFloat);
-		return responseBuilder.simpleFloatPathParam(result, "application/json", pathFloat).build();
+		return responseBuilder.simpleFloatPathParam(result, computeResponseContentType($acceptHeaders), pathFloat).build();
 	}
 
 	@GET
 	@Path("double/{pathDouble}")
-	public Response simpleDoublePathParam(@PathParam("pathDouble") String _pathDouble) {
+	public Response simpleDoublePathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathDouble") String _pathDouble) {
 		var pathDouble = _RestUtils.parseDouble(_pathDouble);
 		var result = service.simpleDoublePathParam(builderFactory, pathDouble);
-		return responseBuilder.simpleDoublePathParam(result, "application/json", pathDouble).build();
+		return responseBuilder.simpleDoublePathParam(result, computeResponseContentType($acceptHeaders), pathDouble).build();
 	}
 
 	@GET
 	@Path("string/{pathString}")
-	public Response simpleStringPathParam(@PathParam("pathString") String _pathString) {
+	public Response simpleStringPathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathString") String _pathString) {
 		var pathString = _RestUtils.parseString(_pathString);
 		var result = service.simpleStringPathParam(builderFactory, pathString);
-		return responseBuilder.simpleStringPathParam(result, "application/json", pathString).build();
+		return responseBuilder.simpleStringPathParam(result, computeResponseContentType($acceptHeaders), pathString).build();
 	}
 
 	@GET
 	@Path("localdate/{pathLocalDate}")
-	public Response simpleLocalDatePathParam(@PathParam("pathLocalDate") String _pathLocalDate) {
+	public Response simpleLocalDatePathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathLocalDate") String _pathLocalDate) {
 		var pathLocalDate = _RestUtils.parseLocalDate(_pathLocalDate);
 		var result = service.simpleLocalDatePathParam(builderFactory, pathLocalDate);
-		return responseBuilder.simpleLocalDatePathParam(result, "application/json", pathLocalDate).build();
+		return responseBuilder.simpleLocalDatePathParam(result, computeResponseContentType($acceptHeaders), pathLocalDate).build();
 	}
 
 	@GET
 	@Path("localdatetime/{pathLocalDateTime}")
-	public Response simpleLocalDateTimePathParam(@PathParam("pathLocalDateTime") String _pathLocalDateTime) {
+	public Response simpleLocalDateTimePathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathLocalDateTime") String _pathLocalDateTime) {
 		var pathLocalDateTime = _RestUtils.parseLocalDateTime(_pathLocalDateTime);
 		var result = service.simpleLocalDateTimePathParam(builderFactory, pathLocalDateTime);
-		return responseBuilder.simpleLocalDateTimePathParam(result, "application/json", pathLocalDateTime).build();
+		return responseBuilder.simpleLocalDateTimePathParam(result, computeResponseContentType($acceptHeaders), pathLocalDateTime).build();
 	}
 
 	@GET
 	@Path("zoneddatetime/{pathZonedDateTime}")
-	public Response simpleZonedDateTimePathParam(@PathParam("pathZonedDateTime") String _pathZonedDateTime) {
+	public Response simpleZonedDateTimePathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathZonedDateTime") String _pathZonedDateTime) {
 		var pathZonedDateTime = _RestUtils.parseZonedDateTime(_pathZonedDateTime);
 		var result = service.simpleZonedDateTimePathParam(builderFactory, pathZonedDateTime);
-		return responseBuilder.simpleZonedDateTimePathParam(result, "application/json", pathZonedDateTime).build();
+		return responseBuilder.simpleZonedDateTimePathParam(result, computeResponseContentType($acceptHeaders), pathZonedDateTime).build();
 	}
 
 	@GET
 	@Path("scalar/{pathScalar}")
-	public Response simpleScalarPathParam(@PathParam("pathScalar") String _pathScalar) {
+	public Response simpleScalarPathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathScalar") String _pathScalar) {
 		var pathScalar = _RestUtils.parseLiteral(_pathScalar, ZoneId::of);
 		var result = service.simpleScalarPathParam(builderFactory, pathScalar);
-		return responseBuilder.simpleScalarPathParam(result, "application/json", pathScalar).build();
+		return responseBuilder.simpleScalarPathParam(result, computeResponseContentType($acceptHeaders), pathScalar).build();
 	}
 
 	@GET
 	@Path("enum/{pathEnum}")
-	public Response simpleEnumPathParam(@PathParam("pathEnum") String _pathEnum) {
+	public Response simpleEnumPathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathEnum") String _pathEnum) {
 		var pathEnum = _RestUtils.parseLiteral(_pathEnum, SampleEnum::valueOf);
 		var result = service.simpleEnumPathParam(builderFactory, pathEnum);
-		return responseBuilder.simpleEnumPathParam(result, "application/json", pathEnum).build();
+		return responseBuilder.simpleEnumPathParam(result, computeResponseContentType($acceptHeaders), pathEnum).build();
 	}
 
 	@GET
 	@Path("multipathparam/{valueA}/{valueB}")
 	public Response multiPathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("valueA") String _valueA,
 			@PathParam("valueB") String _valueB) {
 		var valueA = _RestUtils.parseString(_valueA);
 		var valueB = _RestUtils.parseInt(_valueB);
 		var result = service.multiPathParam(builderFactory, valueA, valueB);
-		return responseBuilder.multiPathParam(result, "application/json", valueA, valueB).build();
+		return responseBuilder.multiPathParam(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
 	}
 
 }

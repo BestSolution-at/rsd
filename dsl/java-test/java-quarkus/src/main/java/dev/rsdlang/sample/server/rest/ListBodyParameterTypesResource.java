@@ -3,11 +3,14 @@ package dev.rsdlang.sample.server.rest;
 
 import java.io.InputStream;
 import java.time.ZoneId;
+import java.util.List;
+import java.util.regex.Pattern;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.PUT;
@@ -25,6 +28,8 @@ import dev.rsdlang.sample.server.service.model.SimpleRecord;
 @Path("/api/listbodyparametertypes")
 @Produces(MediaType.APPLICATION_JSON)
 public class ListBodyParameterTypesResource {
+	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
+
 	private final RestBuilderFactory builderFactory;
 	private final ListBodyParameterTypesService service;
 	private final ListBodyParameterTypesResourceResponseBuilder responseBuilder;
@@ -36,484 +41,613 @@ public class ListBodyParameterTypesResource {
 		this.responseBuilder = responseBuilder;
 	}
 
+	public static String computeResponseContentType(List<String> acceptHeader) {
+		return acceptHeader.stream()
+				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
+				.map(String::trim)
+				.filter(e -> "application/vnd.msgpack".equals(e) || "application/json".equals(e))
+				.findFirst()
+				.orElse("application/json");
+	}
+
 	@PUT
 	@Path("listBooleanBodyParam")
-	public Response listBooleanBodyParam(InputStream _bodyBoolean) {
+	public Response listBooleanBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyBoolean) {
 		var bodyBoolean = _JsonUtils.parseBooleans(_bodyBoolean, "application/json");
 		var result = service.listBooleanBodyParam(builderFactory, bodyBoolean);
-		return responseBuilder.listBooleanBodyParam(result, "application/json", bodyBoolean).build();
+		return responseBuilder.listBooleanBodyParam(result, computeResponseContentType($acceptHeaders), bodyBoolean).build();
 	}
 
 	@PUT
 	@Path("listBooleanBodyParamOpt")
-	public Response listBooleanBodyParamOpt(InputStream _bodyBoolean) {
+	public Response listBooleanBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyBoolean) {
 		var bodyBoolean = _JsonUtils.parseOptBooleans(_bodyBoolean, "application/json");
 		var result = service.listBooleanBodyParamOpt(builderFactory, bodyBoolean);
-		return responseBuilder.listBooleanBodyParamOpt(result, "application/json", bodyBoolean).build();
+		return responseBuilder.listBooleanBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyBoolean).build();
 	}
 
 	@PUT
 	@Path("listBooleanBodyParamNil")
-	public Response listBooleanBodyParamNil(InputStream _bodyBoolean) {
+	public Response listBooleanBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyBoolean) {
 		var bodyBoolean = _JsonUtils.parseNullBooleans(_bodyBoolean, "application/json");
 		var result = service.listBooleanBodyParamNil(builderFactory, bodyBoolean);
-		return responseBuilder.listBooleanBodyParamNil(result, "application/json", bodyBoolean).build();
+		return responseBuilder.listBooleanBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyBoolean).build();
 	}
 
 	@PUT
 	@Path("listBooleanBodyParamOptNil")
-	public Response listBooleanBodyParamOptNil(InputStream _bodyBoolean) {
+	public Response listBooleanBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyBoolean) {
 		var bodyBoolean = _JsonUtils.parseNilBooleans(_bodyBoolean, "application/json");
 		var result = service.listBooleanBodyParamOptNil(builderFactory, bodyBoolean);
-		return responseBuilder.listBooleanBodyParamOptNil(result, "application/json", bodyBoolean).build();
+		return responseBuilder.listBooleanBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyBoolean).build();
 	}
 
 	@PUT
 	@Path("listShortBodyParam")
-	public Response listShortBodyParam(InputStream _bodyShort) {
+	public Response listShortBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyShort) {
 		var bodyShort = _JsonUtils.parseShorts(_bodyShort, "application/json");
 		var result = service.listShortBodyParam(builderFactory, bodyShort);
-		return responseBuilder.listShortBodyParam(result, "application/json", bodyShort).build();
+		return responseBuilder.listShortBodyParam(result, computeResponseContentType($acceptHeaders), bodyShort).build();
 	}
 
 	@PUT
 	@Path("listShortBodyParamOpt")
-	public Response listShortBodyParamOpt(InputStream _bodyShort) {
+	public Response listShortBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyShort) {
 		var bodyShort = _JsonUtils.parseOptShorts(_bodyShort, "application/json");
 		var result = service.listShortBodyParamOpt(builderFactory, bodyShort);
-		return responseBuilder.listShortBodyParamOpt(result, "application/json", bodyShort).build();
+		return responseBuilder.listShortBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyShort).build();
 	}
 
 	@PUT
 	@Path("listShortBodyParamNil")
-	public Response listShortBodyParamNil(InputStream _bodyShort) {
+	public Response listShortBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyShort) {
 		var bodyShort = _JsonUtils.parseNullShorts(_bodyShort, "application/json");
 		var result = service.listShortBodyParamNil(builderFactory, bodyShort);
-		return responseBuilder.listShortBodyParamNil(result, "application/json", bodyShort).build();
+		return responseBuilder.listShortBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyShort).build();
 	}
 
 	@PUT
 	@Path("listShortBodyParamOptNil")
-	public Response listShortBodyParamOptNil(InputStream _bodyShort) {
+	public Response listShortBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyShort) {
 		var bodyShort = _JsonUtils.parseNilShorts(_bodyShort, "application/json");
 		var result = service.listShortBodyParamOptNil(builderFactory, bodyShort);
-		return responseBuilder.listShortBodyParamOptNil(result, "application/json", bodyShort).build();
+		return responseBuilder.listShortBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyShort).build();
 	}
 
 	@PUT
 	@Path("listIntBodyParam")
-	public Response listIntBodyParam(InputStream _bodyInt) {
+	public Response listIntBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyInt) {
 		var bodyInt = _JsonUtils.parseInts(_bodyInt, "application/json");
 		var result = service.listIntBodyParam(builderFactory, bodyInt);
-		return responseBuilder.listIntBodyParam(result, "application/json", bodyInt).build();
+		return responseBuilder.listIntBodyParam(result, computeResponseContentType($acceptHeaders), bodyInt).build();
 	}
 
 	@PUT
 	@Path("listIntBodyParamOpt")
-	public Response listIntBodyParamOpt(InputStream _bodyInt) {
+	public Response listIntBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyInt) {
 		var bodyInt = _JsonUtils.parseOptInts(_bodyInt, "application/json");
 		var result = service.listIntBodyParamOpt(builderFactory, bodyInt);
-		return responseBuilder.listIntBodyParamOpt(result, "application/json", bodyInt).build();
+		return responseBuilder.listIntBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyInt).build();
 	}
 
 	@PUT
 	@Path("listIntBodyParamNil")
-	public Response listIntBodyParamNil(InputStream _bodyInt) {
+	public Response listIntBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyInt) {
 		var bodyInt = _JsonUtils.parseNullInts(_bodyInt, "application/json");
 		var result = service.listIntBodyParamNil(builderFactory, bodyInt);
-		return responseBuilder.listIntBodyParamNil(result, "application/json", bodyInt).build();
+		return responseBuilder.listIntBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyInt).build();
 	}
 
 	@PUT
 	@Path("listIntBodyParamOptNil")
-	public Response listIntBodyParamOptNil(InputStream _bodyInt) {
+	public Response listIntBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyInt) {
 		var bodyInt = _JsonUtils.parseNilInts(_bodyInt, "application/json");
 		var result = service.listIntBodyParamOptNil(builderFactory, bodyInt);
-		return responseBuilder.listIntBodyParamOptNil(result, "application/json", bodyInt).build();
+		return responseBuilder.listIntBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyInt).build();
 	}
 
 	@PUT
 	@Path("listLongBodyParam")
-	public Response listLongBodyParam(InputStream _bodyLong) {
+	public Response listLongBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLong) {
 		var bodyLong = _JsonUtils.parseLongs(_bodyLong, "application/json");
 		var result = service.listLongBodyParam(builderFactory, bodyLong);
-		return responseBuilder.listLongBodyParam(result, "application/json", bodyLong).build();
+		return responseBuilder.listLongBodyParam(result, computeResponseContentType($acceptHeaders), bodyLong).build();
 	}
 
 	@PUT
 	@Path("listLongBodyParamOpt")
-	public Response listLongBodyParamOpt(InputStream _bodyLong) {
+	public Response listLongBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLong) {
 		var bodyLong = _JsonUtils.parseOptLongs(_bodyLong, "application/json");
 		var result = service.listLongBodyParamOpt(builderFactory, bodyLong);
-		return responseBuilder.listLongBodyParamOpt(result, "application/json", bodyLong).build();
+		return responseBuilder.listLongBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyLong).build();
 	}
 
 	@PUT
 	@Path("listLongBodyParamNil")
-	public Response listLongBodyParamNil(InputStream _bodyLong) {
+	public Response listLongBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLong) {
 		var bodyLong = _JsonUtils.parseNullLongs(_bodyLong, "application/json");
 		var result = service.listLongBodyParamNil(builderFactory, bodyLong);
-		return responseBuilder.listLongBodyParamNil(result, "application/json", bodyLong).build();
+		return responseBuilder.listLongBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyLong).build();
 	}
 
 	@PUT
 	@Path("listLongBodyParamOptNil")
-	public Response listLongBodyParamOptNil(InputStream _bodyLong) {
+	public Response listLongBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLong) {
 		var bodyLong = _JsonUtils.parseNilLongs(_bodyLong, "application/json");
 		var result = service.listLongBodyParamOptNil(builderFactory, bodyLong);
-		return responseBuilder.listLongBodyParamOptNil(result, "application/json", bodyLong).build();
+		return responseBuilder.listLongBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyLong).build();
 	}
 
 	@PUT
 	@Path("listFloatBodyParam")
-	public Response listFloatBodyParam(InputStream _bodyFloat) {
+	public Response listFloatBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyFloat) {
 		var bodyFloat = _JsonUtils.parseFloats(_bodyFloat, "application/json");
 		var result = service.listFloatBodyParam(builderFactory, bodyFloat);
-		return responseBuilder.listFloatBodyParam(result, "application/json", bodyFloat).build();
+		return responseBuilder.listFloatBodyParam(result, computeResponseContentType($acceptHeaders), bodyFloat).build();
 	}
 
 	@PUT
 	@Path("listFloatBodyParamOpt")
-	public Response listFloatBodyParamOpt(InputStream _bodyFloat) {
+	public Response listFloatBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyFloat) {
 		var bodyFloat = _JsonUtils.parseOptFloats(_bodyFloat, "application/json");
 		var result = service.listFloatBodyParamOpt(builderFactory, bodyFloat);
-		return responseBuilder.listFloatBodyParamOpt(result, "application/json", bodyFloat).build();
+		return responseBuilder.listFloatBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyFloat).build();
 	}
 
 	@PUT
 	@Path("listFloatBodyParamNil")
-	public Response listFloatBodyParamNil(InputStream _bodyFloat) {
+	public Response listFloatBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyFloat) {
 		var bodyFloat = _JsonUtils.parseNullFloats(_bodyFloat, "application/json");
 		var result = service.listFloatBodyParamNil(builderFactory, bodyFloat);
-		return responseBuilder.listFloatBodyParamNil(result, "application/json", bodyFloat).build();
+		return responseBuilder.listFloatBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyFloat).build();
 	}
 
 	@PUT
 	@Path("listFloatBodyParamOptNil")
-	public Response listFloatBodyParamOptNil(InputStream _bodyFloat) {
+	public Response listFloatBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyFloat) {
 		var bodyFloat = _JsonUtils.parseNilFloats(_bodyFloat, "application/json");
 		var result = service.listFloatBodyParamOptNil(builderFactory, bodyFloat);
-		return responseBuilder.listFloatBodyParamOptNil(result, "application/json", bodyFloat).build();
+		return responseBuilder.listFloatBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyFloat).build();
 	}
 
 	@PUT
 	@Path("listDoubleBodyParam")
-	public Response listDoubleBodyParam(InputStream _bodyDouble) {
+	public Response listDoubleBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyDouble) {
 		var bodyDouble = _JsonUtils.parseDoubles(_bodyDouble, "application/json");
 		var result = service.listDoubleBodyParam(builderFactory, bodyDouble);
-		return responseBuilder.listDoubleBodyParam(result, "application/json", bodyDouble).build();
+		return responseBuilder.listDoubleBodyParam(result, computeResponseContentType($acceptHeaders), bodyDouble).build();
 	}
 
 	@PUT
 	@Path("listDoubleBodyParamOpt")
-	public Response listDoubleBodyParamOpt(InputStream _bodyDouble) {
+	public Response listDoubleBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyDouble) {
 		var bodyDouble = _JsonUtils.parseOptDoubles(_bodyDouble, "application/json");
 		var result = service.listDoubleBodyParamOpt(builderFactory, bodyDouble);
-		return responseBuilder.listDoubleBodyParamOpt(result, "application/json", bodyDouble).build();
+		return responseBuilder.listDoubleBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyDouble).build();
 	}
 
 	@PUT
 	@Path("listDoubleBodyParamNil")
-	public Response listDoubleBodyParamNil(InputStream _bodyDouble) {
+	public Response listDoubleBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyDouble) {
 		var bodyDouble = _JsonUtils.parseNullDoubles(_bodyDouble, "application/json");
 		var result = service.listDoubleBodyParamNil(builderFactory, bodyDouble);
-		return responseBuilder.listDoubleBodyParamNil(result, "application/json", bodyDouble).build();
+		return responseBuilder.listDoubleBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyDouble).build();
 	}
 
 	@PUT
 	@Path("listDoubleBodyParamOptNil")
-	public Response listDoubleBodyParamOptNil(InputStream _bodyDouble) {
+	public Response listDoubleBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyDouble) {
 		var bodyDouble = _JsonUtils.parseNilDoubles(_bodyDouble, "application/json");
 		var result = service.listDoubleBodyParamOptNil(builderFactory, bodyDouble);
-		return responseBuilder.listDoubleBodyParamOptNil(result, "application/json", bodyDouble).build();
+		return responseBuilder.listDoubleBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyDouble).build();
 	}
 
 	@PUT
 	@Path("listStringBodyParam")
-	public Response listStringBodyParam(InputStream _bodyString) {
+	public Response listStringBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyString) {
 		var bodyString = _JsonUtils.parseStrings(_bodyString, "application/json");
 		var result = service.listStringBodyParam(builderFactory, bodyString);
-		return responseBuilder.listStringBodyParam(result, "application/json", bodyString).build();
+		return responseBuilder.listStringBodyParam(result, computeResponseContentType($acceptHeaders), bodyString).build();
 	}
 
 	@PUT
 	@Path("listStringBodyParamOpt")
-	public Response listStringBodyParamOpt(InputStream _bodyString) {
+	public Response listStringBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyString) {
 		var bodyString = _JsonUtils.parseOptStrings(_bodyString, "application/json");
 		var result = service.listStringBodyParamOpt(builderFactory, bodyString);
-		return responseBuilder.listStringBodyParamOpt(result, "application/json", bodyString).build();
+		return responseBuilder.listStringBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyString).build();
 	}
 
 	@PUT
 	@Path("listStringBodyParamNil")
-	public Response listStringBodyParamNil(InputStream _bodyString) {
+	public Response listStringBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyString) {
 		var bodyString = _JsonUtils.parseNullStrings(_bodyString, "application/json");
 		var result = service.listStringBodyParamNil(builderFactory, bodyString);
-		return responseBuilder.listStringBodyParamNil(result, "application/json", bodyString).build();
+		return responseBuilder.listStringBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyString).build();
 	}
 
 	@PUT
 	@Path("listStringBodyParamOptNil")
-	public Response listStringBodyParamOptNil(InputStream _bodyString) {
+	public Response listStringBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyString) {
 		var bodyString = _JsonUtils.parseNilStrings(_bodyString, "application/json");
 		var result = service.listStringBodyParamOptNil(builderFactory, bodyString);
-		return responseBuilder.listStringBodyParamOptNil(result, "application/json", bodyString).build();
+		return responseBuilder.listStringBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyString).build();
 	}
 
 	@PUT
 	@Path("listLocalDateBodyParam")
-	public Response listLocalDateBodyParam(InputStream _bodyLocalDate) {
+	public Response listLocalDateBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalDate) {
 		var bodyLocalDate = _JsonUtils.parseLocalDates(_bodyLocalDate, "application/json");
 		var result = service.listLocalDateBodyParam(builderFactory, bodyLocalDate);
-		return responseBuilder.listLocalDateBodyParam(result, "application/json", bodyLocalDate).build();
+		return responseBuilder.listLocalDateBodyParam(result, computeResponseContentType($acceptHeaders), bodyLocalDate).build();
 	}
 
 	@PUT
 	@Path("listLocalDateBodyParamOpt")
-	public Response listLocalDateBodyParamOpt(InputStream _bodyLocalDate) {
+	public Response listLocalDateBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalDate) {
 		var bodyLocalDate = _JsonUtils.parseOptLocalDates(_bodyLocalDate, "application/json");
 		var result = service.listLocalDateBodyParamOpt(builderFactory, bodyLocalDate);
-		return responseBuilder.listLocalDateBodyParamOpt(result, "application/json", bodyLocalDate).build();
+		return responseBuilder.listLocalDateBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyLocalDate).build();
 	}
 
 	@PUT
 	@Path("listLocalDateBodyParamNil")
-	public Response listLocalDateBodyParamNil(InputStream _bodyLocalDate) {
+	public Response listLocalDateBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalDate) {
 		var bodyLocalDate = _JsonUtils.parseNullLocalDates(_bodyLocalDate, "application/json");
 		var result = service.listLocalDateBodyParamNil(builderFactory, bodyLocalDate);
-		return responseBuilder.listLocalDateBodyParamNil(result, "application/json", bodyLocalDate).build();
+		return responseBuilder.listLocalDateBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyLocalDate).build();
 	}
 
 	@PUT
 	@Path("listLocalDateBodyParamOptNil")
-	public Response listLocalDateBodyParamOptNil(InputStream _bodyLocalDate) {
+	public Response listLocalDateBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalDate) {
 		var bodyLocalDate = _JsonUtils.parseNilLocalDates(_bodyLocalDate, "application/json");
 		var result = service.listLocalDateBodyParamOptNil(builderFactory, bodyLocalDate);
-		return responseBuilder.listLocalDateBodyParamOptNil(result, "application/json", bodyLocalDate).build();
+		return responseBuilder.listLocalDateBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyLocalDate).build();
 	}
 
 	@PUT
 	@Path("listLocalDateTimeBodyParam")
-	public Response listLocalDateTimeBodyParam(InputStream _bodyLocalDateTime) {
+	public Response listLocalDateTimeBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalDateTime) {
 		var bodyLocalDateTime = _JsonUtils.parseLocalDateTimes(_bodyLocalDateTime, "application/json");
 		var result = service.listLocalDateTimeBodyParam(builderFactory, bodyLocalDateTime);
-		return responseBuilder.listLocalDateTimeBodyParam(result, "application/json", bodyLocalDateTime).build();
+		return responseBuilder.listLocalDateTimeBodyParam(result, computeResponseContentType($acceptHeaders), bodyLocalDateTime).build();
 	}
 
 	@PUT
 	@Path("listLocalDateTimeBodyParamOpt")
-	public Response listLocalDateTimeBodyParamOpt(InputStream _bodyLocalDateTime) {
+	public Response listLocalDateTimeBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalDateTime) {
 		var bodyLocalDateTime = _JsonUtils.parseOptLocalDateTimes(_bodyLocalDateTime, "application/json");
 		var result = service.listLocalDateTimeBodyParamOpt(builderFactory, bodyLocalDateTime);
-		return responseBuilder.listLocalDateTimeBodyParamOpt(result, "application/json", bodyLocalDateTime).build();
+		return responseBuilder.listLocalDateTimeBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyLocalDateTime).build();
 	}
 
 	@PUT
 	@Path("listLocalDateTimeBodyParamNil")
-	public Response listLocalDateTimeBodyParamNil(InputStream _bodyLocalDateTime) {
+	public Response listLocalDateTimeBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalDateTime) {
 		var bodyLocalDateTime = _JsonUtils.parseNullLocalDateTimes(_bodyLocalDateTime, "application/json");
 		var result = service.listLocalDateTimeBodyParamNil(builderFactory, bodyLocalDateTime);
-		return responseBuilder.listLocalDateTimeBodyParamNil(result, "application/json", bodyLocalDateTime).build();
+		return responseBuilder.listLocalDateTimeBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyLocalDateTime).build();
 	}
 
 	@PUT
 	@Path("listLocalDateTimeBodyParamOptNil")
-	public Response listLocalDateTimeBodyParamOptNil(InputStream _bodyLocalDateTime) {
+	public Response listLocalDateTimeBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalDateTime) {
 		var bodyLocalDateTime = _JsonUtils.parseNilLocalDateTimes(_bodyLocalDateTime, "application/json");
 		var result = service.listLocalDateTimeBodyParamOptNil(builderFactory, bodyLocalDateTime);
-		return responseBuilder.listLocalDateTimeBodyParamOptNil(result, "application/json", bodyLocalDateTime).build();
+		return responseBuilder.listLocalDateTimeBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyLocalDateTime).build();
 	}
 
 	@PUT
 	@Path("listZonedDateTimeBodyParam")
-	public Response listZonedDateTimeBodyParam(InputStream _bodyZonedDateTime) {
+	public Response listZonedDateTimeBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyZonedDateTime) {
 		var bodyZonedDateTime = _JsonUtils.parseZonedDateTimes(_bodyZonedDateTime, "application/json");
 		var result = service.listZonedDateTimeBodyParam(builderFactory, bodyZonedDateTime);
-		return responseBuilder.listZonedDateTimeBodyParam(result, "application/json", bodyZonedDateTime).build();
+		return responseBuilder.listZonedDateTimeBodyParam(result, computeResponseContentType($acceptHeaders), bodyZonedDateTime).build();
 	}
 
 	@PUT
 	@Path("listZonedDateTimeBodyParamOpt")
-	public Response listZonedDateTimeBodyParamOpt(InputStream _bodyZonedDateTime) {
+	public Response listZonedDateTimeBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyZonedDateTime) {
 		var bodyZonedDateTime = _JsonUtils.parseOptZonedDateTimes(_bodyZonedDateTime, "application/json");
 		var result = service.listZonedDateTimeBodyParamOpt(builderFactory, bodyZonedDateTime);
-		return responseBuilder.listZonedDateTimeBodyParamOpt(result, "application/json", bodyZonedDateTime).build();
+		return responseBuilder.listZonedDateTimeBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyZonedDateTime).build();
 	}
 
 	@PUT
 	@Path("listZonedDateTimeBodyParamNil")
-	public Response listZonedDateTimeBodyParamNil(InputStream _bodyZonedDateTime) {
+	public Response listZonedDateTimeBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyZonedDateTime) {
 		var bodyZonedDateTime = _JsonUtils.parseNullZonedDateTimes(_bodyZonedDateTime, "application/json");
 		var result = service.listZonedDateTimeBodyParamNil(builderFactory, bodyZonedDateTime);
-		return responseBuilder.listZonedDateTimeBodyParamNil(result, "application/json", bodyZonedDateTime).build();
+		return responseBuilder.listZonedDateTimeBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyZonedDateTime).build();
 	}
 
 	@PUT
 	@Path("listZonedDateTimeBodyParamOptNil")
-	public Response listZonedDateTimeBodyParamOptNil(InputStream _bodyZonedDateTime) {
+	public Response listZonedDateTimeBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyZonedDateTime) {
 		var bodyZonedDateTime = _JsonUtils.parseNilZonedDateTimes(_bodyZonedDateTime, "application/json");
 		var result = service.listZonedDateTimeBodyParamOptNil(builderFactory, bodyZonedDateTime);
-		return responseBuilder.listZonedDateTimeBodyParamOptNil(result, "application/json", bodyZonedDateTime).build();
+		return responseBuilder.listZonedDateTimeBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyZonedDateTime).build();
 	}
 
 	@PUT
 	@Path("listScalarBodyParam")
-	public Response listScalarBodyParam(InputStream _bodyScalar) {
+	public Response listScalarBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyScalar) {
 		var bodyScalar = _JsonUtils.parseLiterals(_bodyScalar, "application/json", ZoneId::of);
 		var result = service.listScalarBodyParam(builderFactory, bodyScalar);
-		return responseBuilder.listScalarBodyParam(result, "application/json", bodyScalar).build();
+		return responseBuilder.listScalarBodyParam(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
 
 	@PUT
 	@Path("listScalarBodyParamOpt")
-	public Response listScalarBodyParamOpt(InputStream _bodyScalar) {
+	public Response listScalarBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyScalar) {
 		var bodyScalar = _JsonUtils.parseOptLiterals(_bodyScalar, "application/json", ZoneId::of);
 		var result = service.listScalarBodyParamOpt(builderFactory, bodyScalar);
-		return responseBuilder.listScalarBodyParamOpt(result, "application/json", bodyScalar).build();
+		return responseBuilder.listScalarBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
 
 	@PUT
 	@Path("listScalarBodyParamNil")
-	public Response listScalarBodyParamNil(InputStream _bodyScalar) {
+	public Response listScalarBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyScalar) {
 		var bodyScalar = _JsonUtils.parseNullLiterals(_bodyScalar, "application/json", ZoneId::of);
 		var result = service.listScalarBodyParamNil(builderFactory, bodyScalar);
-		return responseBuilder.listScalarBodyParamNil(result, "application/json", bodyScalar).build();
+		return responseBuilder.listScalarBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
 
 	@PUT
 	@Path("listScalarBodyParamOptNil")
-	public Response listScalarBodyParamOptNil(InputStream _bodyScalar) {
+	public Response listScalarBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyScalar) {
 		var bodyScalar = _JsonUtils.parseNilLiterals(_bodyScalar, "application/json", ZoneId::of);
 		var result = service.listScalarBodyParamOptNil(builderFactory, bodyScalar);
-		return responseBuilder.listScalarBodyParamOptNil(result, "application/json", bodyScalar).build();
+		return responseBuilder.listScalarBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
 
 	@PUT
 	@Path("listEnumBodyParam")
-	public Response listEnumBodyParam(InputStream _bodyEnum) {
+	public Response listEnumBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseLiterals(_bodyEnum, "application/json", SampleEnum::valueOf);
 		var result = service.listEnumBodyParam(builderFactory, bodyEnum);
-		return responseBuilder.listEnumBodyParam(result, "application/json", bodyEnum).build();
+		return responseBuilder.listEnumBodyParam(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@PUT
 	@Path("listEnumBodyParamOpt")
-	public Response listEnumBodyParamOpt(InputStream _bodyEnum) {
+	public Response listEnumBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseOptLiterals(_bodyEnum, "application/json", SampleEnum::valueOf);
 		var result = service.listEnumBodyParamOpt(builderFactory, bodyEnum);
-		return responseBuilder.listEnumBodyParamOpt(result, "application/json", bodyEnum).build();
+		return responseBuilder.listEnumBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@PUT
 	@Path("listEnumBodyParamNil")
-	public Response listEnumBodyParamNil(InputStream _bodyEnum) {
+	public Response listEnumBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseNullLiterals(_bodyEnum, "application/json", SampleEnum::valueOf);
 		var result = service.listEnumBodyParamNil(builderFactory, bodyEnum);
-		return responseBuilder.listEnumBodyParamNil(result, "application/json", bodyEnum).build();
+		return responseBuilder.listEnumBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@PUT
 	@Path("listEnumBodyParamOptNil")
-	public Response listEnumBodyParamOptNil(InputStream _bodyEnum) {
+	public Response listEnumBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseNilLiterals(_bodyEnum, "application/json", SampleEnum::valueOf);
 		var result = service.listEnumBodyParamOptNil(builderFactory, bodyEnum);
-		return responseBuilder.listEnumBodyParamOptNil(result, "application/json", bodyEnum).build();
+		return responseBuilder.listEnumBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@PUT
 	@Path("listInlineEnumBodyParam")
-	public Response listInlineEnumBodyParam(InputStream _bodyEnum) {
+	public Response listInlineEnumBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseLiterals(_bodyEnum, "application/json", ListBodyParameterTypesService.ListInlineEnumBodyParam_BodyEnum_Param$::valueOf);
 		var result = service.listInlineEnumBodyParam(builderFactory, bodyEnum);
-		return responseBuilder.listInlineEnumBodyParam(result, "application/json", bodyEnum).build();
+		return responseBuilder.listInlineEnumBodyParam(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@PUT
 	@Path("listInlineEnumBodyParamOpt")
-	public Response listInlineEnumBodyParamOpt(InputStream _bodyEnum) {
+	public Response listInlineEnumBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseOptLiterals(_bodyEnum, "application/json", ListBodyParameterTypesService.ListInlineEnumBodyParamOpt_BodyEnum_Param$::valueOf);
 		var result = service.listInlineEnumBodyParamOpt(builderFactory, bodyEnum);
-		return responseBuilder.listInlineEnumBodyParamOpt(result, "application/json", bodyEnum).build();
+		return responseBuilder.listInlineEnumBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@PUT
 	@Path("listInlineEnumBodyParamNil")
-	public Response listInlineEnumBodyParamNil(InputStream _bodyEnum) {
+	public Response listInlineEnumBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseNullLiterals(_bodyEnum, "application/json", ListBodyParameterTypesService.ListInlineEnumBodyParamNil_BodyEnum_Param$::valueOf);
 		var result = service.listInlineEnumBodyParamNil(builderFactory, bodyEnum);
-		return responseBuilder.listInlineEnumBodyParamNil(result, "application/json", bodyEnum).build();
+		return responseBuilder.listInlineEnumBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@PUT
 	@Path("listInlineEnumBodyParamOptNil")
-	public Response listInlineEnumBodyParamOptNil(InputStream _bodyEnum) {
+	public Response listInlineEnumBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseNilLiterals(_bodyEnum, "application/json", ListBodyParameterTypesService.ListInlineEnumBodyParamOptNil_BodyEnum_Param$::valueOf);
 		var result = service.listInlineEnumBodyParamOptNil(builderFactory, bodyEnum);
-		return responseBuilder.listInlineEnumBodyParamOptNil(result, "application/json", bodyEnum).build();
+		return responseBuilder.listInlineEnumBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@PUT
 	@Path("listMultiBodyParam")
-	public Response listMultiBodyParam(InputStream data) {
+	public Response listMultiBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream data) {
 		var dto = _JsonUtils.parseObject(data, "application/json", ListBodyParameterTypesListMultiBodyParamDataImpl::new);
 		var result = service.listMultiBodyParam(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.listMultiBodyParam(result, "application/json", dto.valueA(), dto.valueB(), dto.valueC()).build();
+		return responseBuilder.listMultiBodyParam(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
 
 	@PUT
 	@Path("listMultiBodyParamOpt")
-	public Response listMultiBodyParamOpt(InputStream data) {
+	public Response listMultiBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream data) {
 		var dto = _JsonUtils.parseObject(data, "application/json", ListBodyParameterTypesListMultiBodyParamOptDataImpl::new);
 		var result = service.listMultiBodyParamOpt(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.listMultiBodyParamOpt(result, "application/json", dto.valueA(), dto.valueB(), dto.valueC()).build();
+		return responseBuilder.listMultiBodyParamOpt(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
 
 	@PUT
 	@Path("listMultiBodyParamNil")
-	public Response listMultiBodyParamNil(InputStream data) {
+	public Response listMultiBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream data) {
 		var dto = _JsonUtils.parseObject(data, "application/json", ListBodyParameterTypesListMultiBodyParamNilDataImpl::new);
 		var result = service.listMultiBodyParamNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.listMultiBodyParamNil(result, "application/json", dto.valueA(), dto.valueB(), dto.valueC()).build();
+		return responseBuilder.listMultiBodyParamNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
 
 	@PUT
 	@Path("listMultiBodyParamOptNil")
-	public Response listMultiBodyParamOptNil(InputStream data) {
+	public Response listMultiBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream data) {
 		var dto = _JsonUtils.parseObject(data, "application/json", ListBodyParameterTypesListMultiBodyParamOptNilDataImpl::new);
 		var result = service.listMultiBodyParamOptNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.listMultiBodyParamOptNil(result, "application/json", dto.valueA(), dto.valueB(), dto.valueC()).build();
+		return responseBuilder.listMultiBodyParamOptNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
 
 	@PUT
 	@Path("listRecordBodyParam")
-	public Response listRecordBodyParam(InputStream _bodyRecord) {
+	public Response listRecordBodyParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyRecord) {
 		var bodyRecord = _JsonUtils.parseObjects(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.listRecordBodyParam(builderFactory, bodyRecord);
-		return responseBuilder.listRecordBodyParam(result, "application/json", bodyRecord).build();
+		return responseBuilder.listRecordBodyParam(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
 
 	@PUT
 	@Path("listRecordBodyParamOpt")
-	public Response listRecordBodyParamOpt(InputStream _bodyRecord) {
+	public Response listRecordBodyParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyRecord) {
 		var bodyRecord = _JsonUtils.parseOptObjects(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.listRecordBodyParamOpt(builderFactory, bodyRecord);
-		return responseBuilder.listRecordBodyParamOpt(result, "application/json", bodyRecord).build();
+		return responseBuilder.listRecordBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
 
 	@PUT
 	@Path("listRecordBodyParamNil")
-	public Response listRecordBodyParamNil(InputStream _bodyRecord) {
+	public Response listRecordBodyParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyRecord) {
 		var bodyRecord = _JsonUtils.parseNullObjects(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.listRecordBodyParamNil(builderFactory, bodyRecord);
-		return responseBuilder.listRecordBodyParamNil(result, "application/json", bodyRecord).build();
+		return responseBuilder.listRecordBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
 
 	@PUT
 	@Path("listRecordBodyParamOptNil")
-	public Response listRecordBodyParamOptNil(InputStream _bodyRecord) {
+	public Response listRecordBodyParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyRecord) {
 		var bodyRecord = _JsonUtils.parseNilObjects(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.listRecordBodyParamOptNil(builderFactory, bodyRecord);
-		return responseBuilder.listRecordBodyParamOptNil(result, "application/json", bodyRecord).build();
+		return responseBuilder.listRecordBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
 
 }

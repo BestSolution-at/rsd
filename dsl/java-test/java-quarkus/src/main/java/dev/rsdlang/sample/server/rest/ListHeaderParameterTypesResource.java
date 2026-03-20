@@ -2,6 +2,8 @@
 package dev.rsdlang.sample.server.rest;
 
 import java.time.ZoneId;
+import java.util.List;
+import java.util.regex.Pattern;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -21,6 +23,8 @@ import dev.rsdlang.sample.server.service.model.SimpleRecord;
 @Path("/api/listheaderparametertypes")
 @Produces(MediaType.APPLICATION_JSON)
 public class ListHeaderParameterTypesResource {
+	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
+
 	private final RestBuilderFactory builderFactory;
 	private final ListHeaderParameterTypesService service;
 	private final ListHeaderParameterTypesResourceResponseBuilder responseBuilder;
@@ -32,425 +36,539 @@ public class ListHeaderParameterTypesResource {
 		this.responseBuilder = responseBuilder;
 	}
 
+	public static String computeResponseContentType(List<String> acceptHeader) {
+		return acceptHeader.stream()
+				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
+				.map(String::trim)
+				.filter(e -> "application/vnd.msgpack".equals(e) || "application/json".equals(e))
+				.findFirst()
+				.orElse("application/json");
+	}
+
 	@GET
 	@Path("listBooleanHeaderParam")
-	public Response listBooleanHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listBooleanHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapBooleans(_headerValue);
 		var result = service.listBooleanHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listBooleanHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listBooleanHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listBooleanHeaderParamOpt")
-	public Response listBooleanHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listBooleanHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptBooleans(_headerValue);
 		var result = service.listBooleanHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listBooleanHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listBooleanHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listBooleanHeaderParamNil")
-	public Response listBooleanHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listBooleanHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullBooleans(_headerValue);
 		var result = service.listBooleanHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listBooleanHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listBooleanHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listBooleanHeaderParamOptNil")
-	public Response listBooleanHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listBooleanHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilBooleans(_headerValue);
 		var result = service.listBooleanHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listBooleanHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listBooleanHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listShortHeaderParam")
-	public Response listShortHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listShortHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapShorts(_headerValue);
 		var result = service.listShortHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listShortHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listShortHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listShortHeaderParamOpt")
-	public Response listShortHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listShortHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptShorts(_headerValue);
 		var result = service.listShortHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listShortHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listShortHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listShortHeaderParamNil")
-	public Response listShortHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listShortHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullShorts(_headerValue);
 		var result = service.listShortHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listShortHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listShortHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listShortHeaderParamOptNil")
-	public Response listShortHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listShortHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilShorts(_headerValue);
 		var result = service.listShortHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listShortHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listShortHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listIntHeaderParam")
-	public Response listIntHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listIntHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapInts(_headerValue);
 		var result = service.listIntHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listIntHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listIntHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listIntHeaderParamOpt")
-	public Response listIntHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listIntHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptInts(_headerValue);
 		var result = service.listIntHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listIntHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listIntHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listIntHeaderParamNil")
-	public Response listIntHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listIntHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullInts(_headerValue);
 		var result = service.listIntHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listIntHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listIntHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listIntHeaderParamOptNil")
-	public Response listIntHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listIntHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilInts(_headerValue);
 		var result = service.listIntHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listIntHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listIntHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listLongHeaderParam")
-	public Response listLongHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listLongHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapLongs(_headerValue);
 		var result = service.listLongHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listLongHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listLongHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listLongHeaderParamOpt")
-	public Response listLongHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listLongHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptLongs(_headerValue);
 		var result = service.listLongHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listLongHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listLongHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listLongHeaderParamNil")
-	public Response listLongHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listLongHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullLongs(_headerValue);
 		var result = service.listLongHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listLongHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listLongHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listLongHeaderParamOptNil")
-	public Response listLongHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listLongHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilLongs(_headerValue);
 		var result = service.listLongHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listLongHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listLongHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listFloatHeaderParam")
-	public Response listFloatHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listFloatHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapFloats(_headerValue);
 		var result = service.listFloatHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listFloatHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listFloatHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listFloatHeaderParamOpt")
-	public Response listFloatHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listFloatHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptFloats(_headerValue);
 		var result = service.listFloatHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listFloatHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listFloatHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listFloatHeaderParamNil")
-	public Response listFloatHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listFloatHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullFloats(_headerValue);
 		var result = service.listFloatHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listFloatHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listFloatHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listFloatHeaderParamOptNil")
-	public Response listFloatHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listFloatHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilFloats(_headerValue);
 		var result = service.listFloatHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listFloatHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listFloatHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listDoubleHeaderParam")
-	public Response listDoubleHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listDoubleHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapDoubles(_headerValue);
 		var result = service.listDoubleHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listDoubleHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listDoubleHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listDoubleHeaderParamOpt")
-	public Response listDoubleHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listDoubleHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptDoubles(_headerValue);
 		var result = service.listDoubleHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listDoubleHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listDoubleHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listDoubleHeaderParamNil")
-	public Response listDoubleHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listDoubleHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullDoubles(_headerValue);
 		var result = service.listDoubleHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listDoubleHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listDoubleHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listDoubleHeaderParamOptNil")
-	public Response listDoubleHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listDoubleHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilDoubles(_headerValue);
 		var result = service.listDoubleHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listDoubleHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listDoubleHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listStringHeaderParam")
-	public Response listStringHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listStringHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapStrings(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var result = service.listStringHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listStringHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listStringHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listStringHeaderParamOpt")
-	public Response listStringHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listStringHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptStrings(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var result = service.listStringHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listStringHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listStringHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listStringHeaderParamNil")
-	public Response listStringHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listStringHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullStrings(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var result = service.listStringHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listStringHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listStringHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listStringHeaderParamOptNil")
-	public Response listStringHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listStringHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilStrings(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var result = service.listStringHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listStringHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listStringHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listLocalDateHeaderParam")
-	public Response listLocalDateHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listLocalDateHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapLocalDates(_headerValue);
 		var result = service.listLocalDateHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listLocalDateHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listLocalDateHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listLocalDateHeaderParamOpt")
-	public Response listLocalDateHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listLocalDateHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptLocalDates(_headerValue);
 		var result = service.listLocalDateHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listLocalDateHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listLocalDateHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listLocalDateHeaderParamNil")
-	public Response listLocalDateHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listLocalDateHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullLocalDates(_headerValue);
 		var result = service.listLocalDateHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listLocalDateHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listLocalDateHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listLocalDateHeaderParamOptNil")
-	public Response listLocalDateHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listLocalDateHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilLocalDates(_headerValue);
 		var result = service.listLocalDateHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listLocalDateHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listLocalDateHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listLocalDateTimeHeaderParam")
-	public Response listLocalDateTimeHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listLocalDateTimeHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapLocalDateTimes(_headerValue);
 		var result = service.listLocalDateTimeHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listLocalDateTimeHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listLocalDateTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listLocalDateTimeHeaderParamOpt")
-	public Response listLocalDateTimeHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listLocalDateTimeHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptLocalDateTimes(_headerValue);
 		var result = service.listLocalDateTimeHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listLocalDateTimeHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listLocalDateTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listLocalDateTimeHeaderParamNil")
-	public Response listLocalDateTimeHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listLocalDateTimeHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullLocalDateTimes(_headerValue);
 		var result = service.listLocalDateTimeHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listLocalDateTimeHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listLocalDateTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listLocalDateTimeHeaderParamOptNil")
-	public Response listLocalDateTimeHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listLocalDateTimeHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilLocalDateTimes(_headerValue);
 		var result = service.listLocalDateTimeHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listLocalDateTimeHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listLocalDateTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listZonedDateTimeHeaderParam")
-	public Response listZonedDateTimeHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listZonedDateTimeHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapZonedDateTimes(_headerValue);
 		var result = service.listZonedDateTimeHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listZonedDateTimeHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listZonedDateTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listZonedDateTimeHeaderParamOpt")
-	public Response listZonedDateTimeHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listZonedDateTimeHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptZonedDateTimes(_headerValue);
 		var result = service.listZonedDateTimeHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listZonedDateTimeHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listZonedDateTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listZonedDateTimeHeaderParamNil")
-	public Response listZonedDateTimeHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listZonedDateTimeHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullZonedDateTimes(_headerValue);
 		var result = service.listZonedDateTimeHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listZonedDateTimeHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listZonedDateTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listZonedDateTimeHeaderParamOptNil")
-	public Response listZonedDateTimeHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listZonedDateTimeHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilZonedDateTimes(_headerValue);
 		var result = service.listZonedDateTimeHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listZonedDateTimeHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listZonedDateTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listScalarHeaderParam")
-	public Response listScalarHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listScalarHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapLiterals(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
 		var result = service.listScalarHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listScalarHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listScalarHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listScalarHeaderParamOpt")
-	public Response listScalarHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listScalarHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptLiterals(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
 		var result = service.listScalarHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listScalarHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listScalarHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listScalarHeaderParamNil")
-	public Response listScalarHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listScalarHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullLiterals(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
 		var result = service.listScalarHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listScalarHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listScalarHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listScalarHeaderParamOptNil")
-	public Response listScalarHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listScalarHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilLiterals(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
 		var result = service.listScalarHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listScalarHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listScalarHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listEnumHeaderParam")
-	public Response listEnumHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listEnumHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapLiterals(_headerValue, SampleEnum::valueOf);
 		var result = service.listEnumHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listEnumHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listEnumHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listEnumHeaderParamOpt")
-	public Response listEnumHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listEnumHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptLiterals(_headerValue, SampleEnum::valueOf);
 		var result = service.listEnumHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listEnumHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listEnumHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listEnumHeaderParamNil")
-	public Response listEnumHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listEnumHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullLiterals(_headerValue, SampleEnum::valueOf);
 		var result = service.listEnumHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listEnumHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listEnumHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listEnumHeaderParamOptNil")
-	public Response listEnumHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listEnumHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilLiterals(_headerValue, SampleEnum::valueOf);
 		var result = service.listEnumHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listEnumHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listEnumHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listInlineEnumHeaderParam")
-	public Response listInlineEnumHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listInlineEnumHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapLiterals(_headerValue, ListHeaderParameterTypesService.ListInlineEnumHeaderParam_HeaderValue_Param$::valueOf);
 		var result = service.listInlineEnumHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listInlineEnumHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listInlineEnumHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listInlineEnumHeaderParamOpt")
-	public Response listInlineEnumHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listInlineEnumHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptLiterals(_headerValue, ListHeaderParameterTypesService.ListInlineEnumHeaderParamOpt_HeaderValue_Param$::valueOf);
 		var result = service.listInlineEnumHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listInlineEnumHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listInlineEnumHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listInlineEnumHeaderParamNil")
-	public Response listInlineEnumHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listInlineEnumHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullLiterals(_headerValue, ListHeaderParameterTypesService.ListInlineEnumHeaderParamNil_HeaderValue_Param$::valueOf);
 		var result = service.listInlineEnumHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listInlineEnumHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listInlineEnumHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listInlineEnumHeaderParamOptNil")
-	public Response listInlineEnumHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listInlineEnumHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilLiterals(_headerValue, ListHeaderParameterTypesService.ListInlineEnumHeaderParamOptNil_HeaderValue_Param$::valueOf);
 		var result = service.listInlineEnumHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listInlineEnumHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listInlineEnumHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listMultiHeaderParam")
 	public Response listMultiHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB,
 			@HeaderParam("valueC") String _valueC) {
@@ -458,12 +576,13 @@ public class ListHeaderParameterTypesResource {
 		var valueB = _RestUtils.mapInts(_valueB);
 		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listMultiHeaderParam(builderFactory, valueA, valueB, valueC);
-		return responseBuilder.listMultiHeaderParam(result, "application/json", valueA, valueB, valueC).build();
+		return responseBuilder.listMultiHeaderParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET
 	@Path("listMultiHeaderParamOpt")
 	public Response listMultiHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB,
 			@HeaderParam("valueC") String _valueC) {
@@ -471,12 +590,13 @@ public class ListHeaderParameterTypesResource {
 		var valueB = _RestUtils.mapOptInts(_valueB);
 		var valueC = _RestUtils.mapOptObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listMultiHeaderParamOpt(builderFactory, valueA, valueB, valueC);
-		return responseBuilder.listMultiHeaderParamOpt(result, "application/json", valueA, valueB, valueC).build();
+		return responseBuilder.listMultiHeaderParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET
 	@Path("listMultiHeaderParamNil")
 	public Response listMultiHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB,
 			@HeaderParam("valueC") String _valueC) {
@@ -484,12 +604,13 @@ public class ListHeaderParameterTypesResource {
 		var valueB = _RestUtils.mapNullInts(_valueB);
 		var valueC = _RestUtils.mapNullObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listMultiHeaderParamNil(builderFactory, valueA, valueB, valueC);
-		return responseBuilder.listMultiHeaderParamNil(result, "application/json", valueA, valueB, valueC).build();
+		return responseBuilder.listMultiHeaderParamNil(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET
 	@Path("listMultiHeaderParamOptNil")
 	public Response listMultiHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB,
 			@HeaderParam("valueC") String _valueC) {
@@ -497,39 +618,47 @@ public class ListHeaderParameterTypesResource {
 		var valueB = _RestUtils.mapNilInts(_valueB);
 		var valueC = _RestUtils.mapNilObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listMultiHeaderParamOptNil(builderFactory, valueA, valueB, valueC);
-		return responseBuilder.listMultiHeaderParamOptNil(result, "application/json", valueA, valueB, valueC).build();
+		return responseBuilder.listMultiHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET
 	@Path("listRecordHeaderParam")
-	public Response listRecordHeaderParam(@HeaderParam("headerValue") String _headerValue) {
+	public Response listRecordHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listRecordHeaderParam(builderFactory, headerValue);
-		return responseBuilder.listRecordHeaderParam(result, "application/json", headerValue).build();
+		return responseBuilder.listRecordHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listRecordHeaderParamOpt")
-	public Response listRecordHeaderParamOpt(@HeaderParam("headerValue") String _headerValue) {
+	public Response listRecordHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapOptObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listRecordHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.listRecordHeaderParamOpt(result, "application/json", headerValue).build();
+		return responseBuilder.listRecordHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listRecordHeaderParamNil")
-	public Response listRecordHeaderParamNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listRecordHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNullObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listRecordHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.listRecordHeaderParamNil(result, "application/json", headerValue).build();
+		return responseBuilder.listRecordHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
 	@Path("listRecordHeaderParamOptNil")
-	public Response listRecordHeaderParamOptNil(@HeaderParam("headerValue") String _headerValue) {
+	public Response listRecordHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.mapNilObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
 		var result = service.listRecordHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.listRecordHeaderParamOptNil(result, "application/json", headerValue).build();
+		return responseBuilder.listRecordHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 }
