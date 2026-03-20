@@ -18,64 +18,64 @@ import dev.rsdlang.sample.server.service.model.SimpleRecord;
 
 @Singleton
 public class ListQueryParameterTypesResourceResponseBuilder {
-	public ResponseBuilder listBooleanQueryParam(List<Boolean> $result, List<Boolean> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listBooleanQueryParam(List<Boolean> $result, String $contentType, List<Boolean> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listShortQueryParam(List<Short> $result, List<Short> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listShortQueryParam(List<Short> $result, String $contentType, List<Short> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listIntQueryParam(List<Integer> $result, List<Integer> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listIntQueryParam(List<Integer> $result, String $contentType, List<Integer> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLongQueryParam(List<Long> $result, List<Long> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLongQueryParam(List<Long> $result, String $contentType, List<Long> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listFloatQueryParam(List<Float> $result, List<Float> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listFloatQueryParam(List<Float> $result, String $contentType, List<Float> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listDoubleQueryParam(List<Double> $result, List<Double> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listDoubleQueryParam(List<Double> $result, String $contentType, List<Double> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listStringQueryParam(List<String> $result, List<String> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listStringQueryParam(List<String> $result, String $contentType, List<String> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLocalDateQueryParam(List<LocalDate> $result, List<LocalDate> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLocalDateQueryParam(List<LocalDate> $result, String $contentType, List<LocalDate> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLocalDateTimeQueryParam(List<LocalDateTime> $result, List<LocalDateTime> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLocalDateTimeQueryParam(List<LocalDateTime> $result, String $contentType, List<LocalDateTime> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listZonedDateTimeQueryParam(List<ZonedDateTime> $result, List<ZonedDateTime> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listZonedDateTimeQueryParam(List<ZonedDateTime> $result, String $contentType, List<ZonedDateTime> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listScalarQueryParam(List<ZoneId> $result, List<ZoneId> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listScalarQueryParam(List<ZoneId> $result, String $contentType, List<ZoneId> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listEnumQueryParam(List<SampleEnum> $result, List<SampleEnum> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listEnumQueryParam(List<SampleEnum> $result, String $contentType, List<SampleEnum> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listInlineEnumQueryParam(List<ListQueryParameterTypesService.ListInlineEnumQueryParam_Result$> $result, List<ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listInlineEnumQueryParam(List<ListQueryParameterTypesService.ListInlineEnumQueryParam_Result$> $result, String $contentType, List<ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listMultiQueryParam(String $result, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listMultiQueryParam(String $result, String $contentType, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listRecordQueryParam(List<SimpleRecord.Data> $result, List<SimpleRecord.Data> queryValue) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listRecordQueryParam(List<SimpleRecord.Data> $result, String $contentType, List<SimpleRecord.Data> queryValue) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
 }

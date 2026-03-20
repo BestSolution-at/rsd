@@ -46,14 +46,14 @@ public class BinaryTypesResource {
 	@Path("downloadFile")
 	public Response downloadFile() {
 		var result = service.downloadFile(builderFactory);
-		return responseBuilder.downloadFile(result).build();
+		return responseBuilder.downloadFile(result, "application/json").build();
 	}
 
 	@GET
 	@Path("downloadBlob")
 	public Response downloadBlob() {
 		var result = service.downloadBlob(builderFactory);
-		return responseBuilder.downloadBlob(result).build();
+		return responseBuilder.downloadBlob(result, "application/json").build();
 	}
 
 	@POST
@@ -62,7 +62,7 @@ public class BinaryTypesResource {
 	public Response uploadFile(@RestForm("data") FileUpload _data) {
 		var data = builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName());
 		var result = service.uploadFile(builderFactory, data);
-		return responseBuilder.uploadFile(result, data).build();
+		return responseBuilder.uploadFile(result, "application/json", data).build();
 	}
 	@POST
 	@Path("uploadFileOpt")
@@ -70,7 +70,7 @@ public class BinaryTypesResource {
 	public Response uploadFileOpt(@RestForm("data") FileUpload _data) {
 		var data = _data != null ? Optional.of(builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName())) : Optional.<RSDFile>empty();
 		var result = service.uploadFileOpt(builderFactory, data);
-		return responseBuilder.uploadFileOpt(result, data).build();
+		return responseBuilder.uploadFileOpt(result, "application/json", data).build();
 	}
 	@POST
 	@Path("uploadFileNil")
@@ -78,7 +78,7 @@ public class BinaryTypesResource {
 	public Response uploadFileNil(@RestForm("data") FileUpload _data) {
 		var data = _data != null ? Optional.of(builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName())) : Optional.<RSDFile>empty();
 		var result = service.uploadFileNil(builderFactory, data);
-		return responseBuilder.uploadFileNil(result, data).build();
+		return responseBuilder.uploadFileNil(result, "application/json", data).build();
 	}
 	@POST
 	@Path("uploadFileOptNil")
@@ -86,7 +86,7 @@ public class BinaryTypesResource {
 	public Response uploadFileOptNil(@RestForm("data") FileUpload _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
 		var data = _data == null ? ($isDataNull ? _NillableImpl.<RSDFile>nill() : _NillableImpl.<RSDFile>undefined()) : _NillableImpl.of(builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName()));
 		var result = service.uploadFileOptNil(builderFactory, data);
-		return responseBuilder.uploadFileOptNil(result, data).build();
+		return responseBuilder.uploadFileOptNil(result, "application/json", data).build();
 	}
 	@POST
 	@Path("uploadBlob")
@@ -94,7 +94,7 @@ public class BinaryTypesResource {
 	public Response uploadBlob(@RestForm("data") FileUpload _data) {
 		var data = builderFactory.createBlob(_data.filePath(), _data.contentType());
 		var result = service.uploadBlob(builderFactory, data);
-		return responseBuilder.uploadBlob(result, data).build();
+		return responseBuilder.uploadBlob(result, "application/json", data).build();
 	}
 	@POST
 	@Path("uploadBlobOpt")
@@ -102,7 +102,7 @@ public class BinaryTypesResource {
 	public Response uploadBlobOpt(@RestForm("data") FileUpload _data) {
 		var data = _data != null ? Optional.of(builderFactory.createBlob(_data.filePath(), _data.contentType())) : Optional.<RSDBlob>empty();
 		var result = service.uploadBlobOpt(builderFactory, data);
-		return responseBuilder.uploadBlobOpt(result, data).build();
+		return responseBuilder.uploadBlobOpt(result, "application/json", data).build();
 	}
 	@POST
 	@Path("uploadBlobNil")
@@ -110,7 +110,7 @@ public class BinaryTypesResource {
 	public Response uploadBlobNil(@RestForm("data") FileUpload _data) {
 		var data = _data != null ? Optional.of(builderFactory.createBlob(_data.filePath(), _data.contentType())) : Optional.<RSDBlob>empty();
 		var result = service.uploadBlobNil(builderFactory, data);
-		return responseBuilder.uploadBlobNil(result, data).build();
+		return responseBuilder.uploadBlobNil(result, "application/json", data).build();
 	}
 	@POST
 	@Path("uploadBlobOptNil")
@@ -118,7 +118,7 @@ public class BinaryTypesResource {
 	public Response uploadBlobOptNil(@RestForm("data") FileUpload _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
 		var data = _data == null ? ($isDataNull ? _NillableImpl.<RSDBlob>nill() : _NillableImpl.<RSDBlob>undefined()) : _NillableImpl.of(builderFactory.createBlob(_data.filePath(), _data.contentType()));
 		var result = service.uploadBlobOptNil(builderFactory, data);
-		return responseBuilder.uploadBlobOptNil(result, data).build();
+		return responseBuilder.uploadBlobOptNil(result, "application/json", data).build();
 	}
 	@PUT
 	@Path("uploadFileList")
@@ -126,7 +126,7 @@ public class BinaryTypesResource {
 	public Response uploadFileList(@RestForm("data") List<FileUpload> _data) {
 		var data = _data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList();
 		var result = service.uploadFileList(builderFactory, data);
-		return responseBuilder.uploadFileList(result, data).build();
+		return responseBuilder.uploadFileList(result, "application/json", data).build();
 	}
 	@PUT
 	@Path("uploadFileListOpt")
@@ -134,7 +134,7 @@ public class BinaryTypesResource {
 	public Response uploadFileListOpt(@RestForm("data") List<FileUpload> _data) {
 		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDFile>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
 		var result = service.uploadFileListOpt(builderFactory, data);
-		return responseBuilder.uploadFileListOpt(result, data).build();
+		return responseBuilder.uploadFileListOpt(result, "application/json", data).build();
 	}
 	@PUT
 	@Path("uploadFileListNil")
@@ -142,7 +142,7 @@ public class BinaryTypesResource {
 	public Response uploadFileListNil(@RestForm("data") List<FileUpload> _data) {
 		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDFile>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
 		var result = service.uploadFileListNil(builderFactory, data);
-		return responseBuilder.uploadFileListNil(result, data).build();
+		return responseBuilder.uploadFileListNil(result, "application/json", data).build();
 	}
 	@PUT
 	@Path("uploadFileListOptNil")
@@ -150,7 +150,7 @@ public class BinaryTypesResource {
 	public Response uploadFileListOptNil(@RestForm("data") List<FileUpload> _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
 		var data = _data == null || _data.isEmpty() ? ($isDataNull ? _NillableImpl.<List<RSDFile>>nill() : _NillableImpl.<List<RSDFile>>undefined()) : _NillableImpl.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
 		var result = service.uploadFileListOptNil(builderFactory, data);
-		return responseBuilder.uploadFileListOptNil(result, data).build();
+		return responseBuilder.uploadFileListOptNil(result, "application/json", data).build();
 	}
 	@PUT
 	@Path("uploadBlobList")
@@ -158,7 +158,7 @@ public class BinaryTypesResource {
 	public Response uploadBlobList(@RestForm("data") List<FileUpload> _data) {
 		var data = _data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList();
 		var result = service.uploadBlobList(builderFactory, data);
-		return responseBuilder.uploadBlobList(result, data).build();
+		return responseBuilder.uploadBlobList(result, "application/json", data).build();
 	}
 	@PUT
 	@Path("uploadBlobListOpt")
@@ -166,7 +166,7 @@ public class BinaryTypesResource {
 	public Response uploadBlobListOpt(@RestForm("data") List<FileUpload> _data) {
 		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDBlob>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
 		var result = service.uploadBlobListOpt(builderFactory, data);
-		return responseBuilder.uploadBlobListOpt(result, data).build();
+		return responseBuilder.uploadBlobListOpt(result, "application/json", data).build();
 	}
 	@PUT
 	@Path("uploadBlobListNil")
@@ -174,7 +174,7 @@ public class BinaryTypesResource {
 	public Response uploadBlobListNil(@RestForm("data") List<FileUpload> _data) {
 		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDBlob>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
 		var result = service.uploadBlobListNil(builderFactory, data);
-		return responseBuilder.uploadBlobListNil(result, data).build();
+		return responseBuilder.uploadBlobListNil(result, "application/json", data).build();
 	}
 	@PUT
 	@Path("uploadBlobListOptNil")
@@ -182,7 +182,7 @@ public class BinaryTypesResource {
 	public Response uploadBlobListOptNil(@RestForm("data") List<FileUpload> _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
 		var data = _data == null || _data.isEmpty() ? ($isDataNull ? _NillableImpl.<List<RSDBlob>>nill() : _NillableImpl.<List<RSDBlob>>undefined()) : _NillableImpl.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
 		var result = service.uploadBlobListOptNil(builderFactory, data);
-		return responseBuilder.uploadBlobListOptNil(result, data).build();
+		return responseBuilder.uploadBlobListOptNil(result, "application/json", data).build();
 	}
 	@PUT
 	@Path("uploadMixed")
@@ -198,7 +198,7 @@ public class BinaryTypesResource {
 		var dataFile = builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName());
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
 		var result = service.uploadMixed(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
-		return responseBuilder.uploadMixed(result, text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
+		return responseBuilder.uploadMixed(result, "application/json", text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
 	}
 	@PUT
 	@Path("uploadMixedOpt")
@@ -214,7 +214,7 @@ public class BinaryTypesResource {
 		var dataFile = _dataFile != null ? Optional.of(builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName())) : Optional.<RSDFile>empty();
 		var dataBlob = _dataBlob != null ? Optional.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType())) : Optional.<RSDBlob>empty();
 		var result = service.uploadMixedOpt(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
-		return responseBuilder.uploadMixedOpt(result, text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
+		return responseBuilder.uploadMixedOpt(result, "application/json", text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
 	}
 	@PUT
 	@Path("uploadMixedNil")
@@ -230,7 +230,7 @@ public class BinaryTypesResource {
 		var dataFile = _dataFile != null ? Optional.of(builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName())) : Optional.<RSDFile>empty();
 		var dataBlob = _dataBlob != null ? Optional.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType())) : Optional.<RSDBlob>empty();
 		var result = service.uploadMixedNil(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
-		return responseBuilder.uploadMixedNil(result, text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
+		return responseBuilder.uploadMixedNil(result, "application/json", text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
 	}
 	@PUT
 	@Path("uploadMixedOptNil")
@@ -246,6 +246,6 @@ public class BinaryTypesResource {
 		var dataFile = _dataFile == null ? ($isDataFileNull ? _NillableImpl.<RSDFile>nill() : _NillableImpl.<RSDFile>undefined()) : _NillableImpl.of(builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName()));
 		var dataBlob = _dataBlob == null ? ($isDataBlobNull ? _NillableImpl.<RSDBlob>nill() : _NillableImpl.<RSDBlob>undefined()) : _NillableImpl.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType()));
 		var result = service.uploadMixedOptNil(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
-		return responseBuilder.uploadMixedOptNil(result, text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
+		return responseBuilder.uploadMixedOptNil(result, "application/json", text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
 	}
 }

@@ -45,7 +45,7 @@ public class BodyParameterTypesResource {
 	public Response simpleBooleanBodyParam(InputStream _bodyBoolean) {
 		var bodyBoolean = _JsonUtils.parseBoolean(_bodyBoolean, "application/json");
 		var result = service.simpleBooleanBodyParam(builderFactory, bodyBoolean);
-		return responseBuilder.simpleBooleanBodyParam(result, bodyBoolean).build();
+		return responseBuilder.simpleBooleanBodyParam(result, "application/json", bodyBoolean).build();
 	}
 
 	@POST
@@ -53,7 +53,7 @@ public class BodyParameterTypesResource {
 	public Response simpleBooleanBodyParamOpt(InputStream _bodyBoolean) {
 		var bodyBoolean = _JsonUtils.parseOptBoolean(_bodyBoolean, "application/json");
 		var result = service.simpleBooleanBodyParamOpt(builderFactory, bodyBoolean);
-		return responseBuilder.simpleBooleanBodyParamOpt(result, bodyBoolean).build();
+		return responseBuilder.simpleBooleanBodyParamOpt(result, "application/json", bodyBoolean).build();
 	}
 
 	@POST
@@ -61,7 +61,7 @@ public class BodyParameterTypesResource {
 	public Response simpleBooleanBodyParamNil(InputStream _bodyBoolean) {
 		var bodyBoolean = _JsonUtils.parseNullBoolean(_bodyBoolean, "application/json");
 		var result = service.simpleBooleanBodyParamNil(builderFactory, bodyBoolean);
-		return responseBuilder.simpleBooleanBodyParamNil(result, bodyBoolean).build();
+		return responseBuilder.simpleBooleanBodyParamNil(result, "application/json", bodyBoolean).build();
 	}
 
 	@POST
@@ -69,7 +69,7 @@ public class BodyParameterTypesResource {
 	public Response simpleBooleanBodyParamOptNil(InputStream _bodyBoolean) {
 		var bodyBoolean = _JsonUtils.parseNilBoolean(_bodyBoolean, "application/json");
 		var result = service.simpleBooleanBodyParamOptNil(builderFactory, bodyBoolean);
-		return responseBuilder.simpleBooleanBodyParamOptNil(result, bodyBoolean).build();
+		return responseBuilder.simpleBooleanBodyParamOptNil(result, "application/json", bodyBoolean).build();
 	}
 
 	@POST
@@ -77,7 +77,7 @@ public class BodyParameterTypesResource {
 	public Response simpleShortBodyParam(InputStream _bodyShort) {
 		var bodyShort = _JsonUtils.parseShort(_bodyShort, "application/json");
 		var result = service.simpleShortBodyParam(builderFactory, bodyShort);
-		return responseBuilder.simpleShortBodyParam(result, bodyShort).build();
+		return responseBuilder.simpleShortBodyParam(result, "application/json", bodyShort).build();
 	}
 
 	@POST
@@ -85,7 +85,7 @@ public class BodyParameterTypesResource {
 	public Response simpleShortBodyParamOpt(InputStream _bodyShort) {
 		var bodyShort = _JsonUtils.parseOptShort(_bodyShort, "application/json");
 		var result = service.simpleShortBodyParamOpt(builderFactory, bodyShort);
-		return responseBuilder.simpleShortBodyParamOpt(result, bodyShort).build();
+		return responseBuilder.simpleShortBodyParamOpt(result, "application/json", bodyShort).build();
 	}
 
 	@POST
@@ -93,7 +93,7 @@ public class BodyParameterTypesResource {
 	public Response simpleShortBodyParamNil(InputStream _bodyShort) {
 		var bodyShort = _JsonUtils.parseNullShort(_bodyShort, "application/json");
 		var result = service.simpleShortBodyParamNil(builderFactory, bodyShort);
-		return responseBuilder.simpleShortBodyParamNil(result, bodyShort).build();
+		return responseBuilder.simpleShortBodyParamNil(result, "application/json", bodyShort).build();
 	}
 
 	@POST
@@ -101,7 +101,7 @@ public class BodyParameterTypesResource {
 	public Response simpleShortBodyParamOptNil(InputStream _bodyShort) {
 		var bodyShort = _JsonUtils.parseNilShort(_bodyShort, "application/json");
 		var result = service.simpleShortBodyParamOptNil(builderFactory, bodyShort);
-		return responseBuilder.simpleShortBodyParamOptNil(result, bodyShort).build();
+		return responseBuilder.simpleShortBodyParamOptNil(result, "application/json", bodyShort).build();
 	}
 
 	@POST
@@ -109,7 +109,7 @@ public class BodyParameterTypesResource {
 	public Response simpleIntBodyParam(InputStream _bodyInt) {
 		var bodyInt = _JsonUtils.parseInt(_bodyInt, "application/json");
 		var result = service.simpleIntBodyParam(builderFactory, bodyInt);
-		return responseBuilder.simpleIntBodyParam(result, bodyInt).build();
+		return responseBuilder.simpleIntBodyParam(result, "application/json", bodyInt).build();
 	}
 
 	@POST
@@ -117,7 +117,7 @@ public class BodyParameterTypesResource {
 	public Response simpleIntBodyParamOpt(InputStream _bodyInt) {
 		var bodyInt = _JsonUtils.parseOptInt(_bodyInt, "application/json");
 		var result = service.simpleIntBodyParamOpt(builderFactory, bodyInt);
-		return responseBuilder.simpleIntBodyParamOpt(result, bodyInt).build();
+		return responseBuilder.simpleIntBodyParamOpt(result, "application/json", bodyInt).build();
 	}
 
 	@POST
@@ -125,7 +125,7 @@ public class BodyParameterTypesResource {
 	public Response simpleIntBodyParamNil(InputStream _bodyInt) {
 		var bodyInt = _JsonUtils.parseNullInt(_bodyInt, "application/json");
 		var result = service.simpleIntBodyParamNil(builderFactory, bodyInt);
-		return responseBuilder.simpleIntBodyParamNil(result, bodyInt).build();
+		return responseBuilder.simpleIntBodyParamNil(result, "application/json", bodyInt).build();
 	}
 
 	@POST
@@ -133,7 +133,7 @@ public class BodyParameterTypesResource {
 	public Response simpleIntBodyParamOptNil(InputStream _bodyInt) {
 		var bodyInt = _JsonUtils.parseNilInt(_bodyInt, "application/json");
 		var result = service.simpleIntBodyParamOptNil(builderFactory, bodyInt);
-		return responseBuilder.simpleIntBodyParamOptNil(result, bodyInt).build();
+		return responseBuilder.simpleIntBodyParamOptNil(result, "application/json", bodyInt).build();
 	}
 
 	@POST
@@ -141,7 +141,7 @@ public class BodyParameterTypesResource {
 	public Response simpleLongBodyParam(InputStream _bodyLong) {
 		var bodyLong = _JsonUtils.parseLong(_bodyLong, "application/json");
 		var result = service.simpleLongBodyParam(builderFactory, bodyLong);
-		return responseBuilder.simpleLongBodyParam(result, bodyLong).build();
+		return responseBuilder.simpleLongBodyParam(result, "application/json", bodyLong).build();
 	}
 
 	@POST
@@ -149,7 +149,7 @@ public class BodyParameterTypesResource {
 	public Response simpleLongBodyParamOpt(InputStream _bodyLong) {
 		var bodyLong = _JsonUtils.parseOptLong(_bodyLong, "application/json");
 		var result = service.simpleLongBodyParamOpt(builderFactory, bodyLong);
-		return responseBuilder.simpleLongBodyParamOpt(result, bodyLong).build();
+		return responseBuilder.simpleLongBodyParamOpt(result, "application/json", bodyLong).build();
 	}
 
 	@POST
@@ -157,7 +157,7 @@ public class BodyParameterTypesResource {
 	public Response simpleLongBodyParamNil(InputStream _bodyLong) {
 		var bodyLong = _JsonUtils.parseNullLong(_bodyLong, "application/json");
 		var result = service.simpleLongBodyParamNil(builderFactory, bodyLong);
-		return responseBuilder.simpleLongBodyParamNil(result, bodyLong).build();
+		return responseBuilder.simpleLongBodyParamNil(result, "application/json", bodyLong).build();
 	}
 
 	@POST
@@ -165,7 +165,7 @@ public class BodyParameterTypesResource {
 	public Response simpleLongBodyParamOptNil(InputStream _bodyLong) {
 		var bodyLong = _JsonUtils.parseNilLong(_bodyLong, "application/json");
 		var result = service.simpleLongBodyParamOptNil(builderFactory, bodyLong);
-		return responseBuilder.simpleLongBodyParamOptNil(result, bodyLong).build();
+		return responseBuilder.simpleLongBodyParamOptNil(result, "application/json", bodyLong).build();
 	}
 
 	@POST
@@ -173,7 +173,7 @@ public class BodyParameterTypesResource {
 	public Response simpleFloatBodyParam(InputStream _bodyFloat) {
 		var bodyFloat = _JsonUtils.parseFloat(_bodyFloat, "application/json");
 		var result = service.simpleFloatBodyParam(builderFactory, bodyFloat);
-		return responseBuilder.simpleFloatBodyParam(result, bodyFloat).build();
+		return responseBuilder.simpleFloatBodyParam(result, "application/json", bodyFloat).build();
 	}
 
 	@POST
@@ -181,7 +181,7 @@ public class BodyParameterTypesResource {
 	public Response simpleFloatBodyParamOpt(InputStream _bodyFloat) {
 		var bodyFloat = _JsonUtils.parseOptFloat(_bodyFloat, "application/json");
 		var result = service.simpleFloatBodyParamOpt(builderFactory, bodyFloat);
-		return responseBuilder.simpleFloatBodyParamOpt(result, bodyFloat).build();
+		return responseBuilder.simpleFloatBodyParamOpt(result, "application/json", bodyFloat).build();
 	}
 
 	@POST
@@ -189,7 +189,7 @@ public class BodyParameterTypesResource {
 	public Response simpleFloatBodyParamNil(InputStream _bodyFloat) {
 		var bodyFloat = _JsonUtils.parseNullFloat(_bodyFloat, "application/json");
 		var result = service.simpleFloatBodyParamNil(builderFactory, bodyFloat);
-		return responseBuilder.simpleFloatBodyParamNil(result, bodyFloat).build();
+		return responseBuilder.simpleFloatBodyParamNil(result, "application/json", bodyFloat).build();
 	}
 
 	@POST
@@ -197,7 +197,7 @@ public class BodyParameterTypesResource {
 	public Response simpleFloatBodyParamOptNil(InputStream _bodyFloat) {
 		var bodyFloat = _JsonUtils.parseNilFloat(_bodyFloat, "application/json");
 		var result = service.simpleFloatBodyParamOptNil(builderFactory, bodyFloat);
-		return responseBuilder.simpleFloatBodyParamOptNil(result, bodyFloat).build();
+		return responseBuilder.simpleFloatBodyParamOptNil(result, "application/json", bodyFloat).build();
 	}
 
 	@POST
@@ -205,7 +205,7 @@ public class BodyParameterTypesResource {
 	public Response simpleDoubleBodyParam(InputStream _bodyDouble) {
 		var bodyDouble = _JsonUtils.parseDouble(_bodyDouble, "application/json");
 		var result = service.simpleDoubleBodyParam(builderFactory, bodyDouble);
-		return responseBuilder.simpleDoubleBodyParam(result, bodyDouble).build();
+		return responseBuilder.simpleDoubleBodyParam(result, "application/json", bodyDouble).build();
 	}
 
 	@POST
@@ -213,7 +213,7 @@ public class BodyParameterTypesResource {
 	public Response simpleDoubleBodyParamOpt(InputStream _bodyDouble) {
 		var bodyDouble = _JsonUtils.parseOptDouble(_bodyDouble, "application/json");
 		var result = service.simpleDoubleBodyParamOpt(builderFactory, bodyDouble);
-		return responseBuilder.simpleDoubleBodyParamOpt(result, bodyDouble).build();
+		return responseBuilder.simpleDoubleBodyParamOpt(result, "application/json", bodyDouble).build();
 	}
 
 	@POST
@@ -221,7 +221,7 @@ public class BodyParameterTypesResource {
 	public Response simpleDoubleBodyParamNil(InputStream _bodyDouble) {
 		var bodyDouble = _JsonUtils.parseNullDouble(_bodyDouble, "application/json");
 		var result = service.simpleDoubleBodyParamNil(builderFactory, bodyDouble);
-		return responseBuilder.simpleDoubleBodyParamNil(result, bodyDouble).build();
+		return responseBuilder.simpleDoubleBodyParamNil(result, "application/json", bodyDouble).build();
 	}
 
 	@POST
@@ -229,7 +229,7 @@ public class BodyParameterTypesResource {
 	public Response simpleDoubleBodyParamOptNil(InputStream _bodyDouble) {
 		var bodyDouble = _JsonUtils.parseNilDouble(_bodyDouble, "application/json");
 		var result = service.simpleDoubleBodyParamOptNil(builderFactory, bodyDouble);
-		return responseBuilder.simpleDoubleBodyParamOptNil(result, bodyDouble).build();
+		return responseBuilder.simpleDoubleBodyParamOptNil(result, "application/json", bodyDouble).build();
 	}
 
 	@POST
@@ -237,7 +237,7 @@ public class BodyParameterTypesResource {
 	public Response simpleStringBodyParam(InputStream _bodyString) {
 		var bodyString = _JsonUtils.parseString(_bodyString, "application/json");
 		var result = service.simpleStringBodyParam(builderFactory, bodyString);
-		return responseBuilder.simpleStringBodyParam(result, bodyString).build();
+		return responseBuilder.simpleStringBodyParam(result, "application/json", bodyString).build();
 	}
 
 	@POST
@@ -245,7 +245,7 @@ public class BodyParameterTypesResource {
 	public Response simpleStringBodyParamOpt(InputStream _bodyString) {
 		var bodyString = _JsonUtils.parseOptString(_bodyString, "application/json");
 		var result = service.simpleStringBodyParamOpt(builderFactory, bodyString);
-		return responseBuilder.simpleStringBodyParamOpt(result, bodyString).build();
+		return responseBuilder.simpleStringBodyParamOpt(result, "application/json", bodyString).build();
 	}
 
 	@POST
@@ -253,7 +253,7 @@ public class BodyParameterTypesResource {
 	public Response simpleStringBodyParamNil(InputStream _bodyString) {
 		var bodyString = _JsonUtils.parseNullString(_bodyString, "application/json");
 		var result = service.simpleStringBodyParamNil(builderFactory, bodyString);
-		return responseBuilder.simpleStringBodyParamNil(result, bodyString).build();
+		return responseBuilder.simpleStringBodyParamNil(result, "application/json", bodyString).build();
 	}
 
 	@POST
@@ -261,7 +261,7 @@ public class BodyParameterTypesResource {
 	public Response simpleStringBodyParamOptNil(InputStream _bodyString) {
 		var bodyString = _JsonUtils.parseNilString(_bodyString, "application/json");
 		var result = service.simpleStringBodyParamOptNil(builderFactory, bodyString);
-		return responseBuilder.simpleStringBodyParamOptNil(result, bodyString).build();
+		return responseBuilder.simpleStringBodyParamOptNil(result, "application/json", bodyString).build();
 	}
 
 	@POST
@@ -269,7 +269,7 @@ public class BodyParameterTypesResource {
 	public Response simpleLocalDateBodyParam(InputStream _bodyLocalDate) {
 		var bodyLocalDate = _JsonUtils.parseLocalDate(_bodyLocalDate, "application/json");
 		var result = service.simpleLocalDateBodyParam(builderFactory, bodyLocalDate);
-		return responseBuilder.simpleLocalDateBodyParam(result, bodyLocalDate).build();
+		return responseBuilder.simpleLocalDateBodyParam(result, "application/json", bodyLocalDate).build();
 	}
 
 	@POST
@@ -277,7 +277,7 @@ public class BodyParameterTypesResource {
 	public Response simpleLocalDateBodyParamOpt(InputStream _bodyLocalDate) {
 		var bodyLocalDate = _JsonUtils.parseOptLocalDate(_bodyLocalDate, "application/json");
 		var result = service.simpleLocalDateBodyParamOpt(builderFactory, bodyLocalDate);
-		return responseBuilder.simpleLocalDateBodyParamOpt(result, bodyLocalDate).build();
+		return responseBuilder.simpleLocalDateBodyParamOpt(result, "application/json", bodyLocalDate).build();
 	}
 
 	@POST
@@ -285,7 +285,7 @@ public class BodyParameterTypesResource {
 	public Response simpleLocalDateBodyParamNil(InputStream _bodyLocalDate) {
 		var bodyLocalDate = _JsonUtils.parseNullLocalDate(_bodyLocalDate, "application/json");
 		var result = service.simpleLocalDateBodyParamNil(builderFactory, bodyLocalDate);
-		return responseBuilder.simpleLocalDateBodyParamNil(result, bodyLocalDate).build();
+		return responseBuilder.simpleLocalDateBodyParamNil(result, "application/json", bodyLocalDate).build();
 	}
 
 	@POST
@@ -293,7 +293,7 @@ public class BodyParameterTypesResource {
 	public Response simpleLocalDateBodyParamOptNil(InputStream _bodyLocalDate) {
 		var bodyLocalDate = _JsonUtils.parseNilLocalDate(_bodyLocalDate, "application/json");
 		var result = service.simpleLocalDateBodyParamOptNil(builderFactory, bodyLocalDate);
-		return responseBuilder.simpleLocalDateBodyParamOptNil(result, bodyLocalDate).build();
+		return responseBuilder.simpleLocalDateBodyParamOptNil(result, "application/json", bodyLocalDate).build();
 	}
 
 	@POST
@@ -301,7 +301,7 @@ public class BodyParameterTypesResource {
 	public Response simpleLocalDateTimeBodyParam(InputStream _bodyLocalDateTime) {
 		var bodyLocalDateTime = _JsonUtils.parseLocalDateTime(_bodyLocalDateTime, "application/json");
 		var result = service.simpleLocalDateTimeBodyParam(builderFactory, bodyLocalDateTime);
-		return responseBuilder.simpleLocalDateTimeBodyParam(result, bodyLocalDateTime).build();
+		return responseBuilder.simpleLocalDateTimeBodyParam(result, "application/json", bodyLocalDateTime).build();
 	}
 
 	@POST
@@ -309,7 +309,7 @@ public class BodyParameterTypesResource {
 	public Response simpleLocalDateTimeBodyParamOpt(InputStream _bodyLocalDateTime) {
 		var bodyLocalDateTime = _JsonUtils.parseOptLocalDateTime(_bodyLocalDateTime, "application/json");
 		var result = service.simpleLocalDateTimeBodyParamOpt(builderFactory, bodyLocalDateTime);
-		return responseBuilder.simpleLocalDateTimeBodyParamOpt(result, bodyLocalDateTime).build();
+		return responseBuilder.simpleLocalDateTimeBodyParamOpt(result, "application/json", bodyLocalDateTime).build();
 	}
 
 	@POST
@@ -317,7 +317,7 @@ public class BodyParameterTypesResource {
 	public Response simpleLocalDateTimeBodyParamNil(InputStream _bodyLocalDateTime) {
 		var bodyLocalDateTime = _JsonUtils.parseNullLocalDateTime(_bodyLocalDateTime, "application/json");
 		var result = service.simpleLocalDateTimeBodyParamNil(builderFactory, bodyLocalDateTime);
-		return responseBuilder.simpleLocalDateTimeBodyParamNil(result, bodyLocalDateTime).build();
+		return responseBuilder.simpleLocalDateTimeBodyParamNil(result, "application/json", bodyLocalDateTime).build();
 	}
 
 	@POST
@@ -325,7 +325,7 @@ public class BodyParameterTypesResource {
 	public Response simpleLocalDateTimeBodyParamOptNil(InputStream _bodyLocalDateTime) {
 		var bodyLocalDateTime = _JsonUtils.parseNilLocalDateTime(_bodyLocalDateTime, "application/json");
 		var result = service.simpleLocalDateTimeBodyParamOptNil(builderFactory, bodyLocalDateTime);
-		return responseBuilder.simpleLocalDateTimeBodyParamOptNil(result, bodyLocalDateTime).build();
+		return responseBuilder.simpleLocalDateTimeBodyParamOptNil(result, "application/json", bodyLocalDateTime).build();
 	}
 
 	@POST
@@ -333,7 +333,7 @@ public class BodyParameterTypesResource {
 	public Response simpleZonedDateTimeBodyParam(InputStream _bodyZonedDateTime) {
 		var bodyZonedDateTime = _JsonUtils.parseZonedDateTime(_bodyZonedDateTime, "application/json");
 		var result = service.simpleZonedDateTimeBodyParam(builderFactory, bodyZonedDateTime);
-		return responseBuilder.simpleZonedDateTimeBodyParam(result, bodyZonedDateTime).build();
+		return responseBuilder.simpleZonedDateTimeBodyParam(result, "application/json", bodyZonedDateTime).build();
 	}
 
 	@POST
@@ -341,7 +341,7 @@ public class BodyParameterTypesResource {
 	public Response simpleZonedDateTimeBodyParamOpt(InputStream _bodyZonedDateTime) {
 		var bodyZonedDateTime = _JsonUtils.parseOptZonedDateTime(_bodyZonedDateTime, "application/json");
 		var result = service.simpleZonedDateTimeBodyParamOpt(builderFactory, bodyZonedDateTime);
-		return responseBuilder.simpleZonedDateTimeBodyParamOpt(result, bodyZonedDateTime).build();
+		return responseBuilder.simpleZonedDateTimeBodyParamOpt(result, "application/json", bodyZonedDateTime).build();
 	}
 
 	@POST
@@ -349,7 +349,7 @@ public class BodyParameterTypesResource {
 	public Response simpleZonedDateTimeBodyParamNil(InputStream _bodyZonedDateTime) {
 		var bodyZonedDateTime = _JsonUtils.parseNullZonedDateTime(_bodyZonedDateTime, "application/json");
 		var result = service.simpleZonedDateTimeBodyParamNil(builderFactory, bodyZonedDateTime);
-		return responseBuilder.simpleZonedDateTimeBodyParamNil(result, bodyZonedDateTime).build();
+		return responseBuilder.simpleZonedDateTimeBodyParamNil(result, "application/json", bodyZonedDateTime).build();
 	}
 
 	@POST
@@ -357,7 +357,7 @@ public class BodyParameterTypesResource {
 	public Response simpleZonedDateTimeBodyParamOptNil(InputStream _bodyZonedDateTime) {
 		var bodyZonedDateTime = _JsonUtils.parseNilZonedDateTime(_bodyZonedDateTime, "application/json");
 		var result = service.simpleZonedDateTimeBodyParamOptNil(builderFactory, bodyZonedDateTime);
-		return responseBuilder.simpleZonedDateTimeBodyParamOptNil(result, bodyZonedDateTime).build();
+		return responseBuilder.simpleZonedDateTimeBodyParamOptNil(result, "application/json", bodyZonedDateTime).build();
 	}
 
 	@POST
@@ -365,7 +365,7 @@ public class BodyParameterTypesResource {
 	public Response simpleScalarBodyParam(InputStream _bodyScalar) {
 		var bodyScalar = _JsonUtils.parseLiteral(_bodyScalar, "application/json", ZoneId::of);
 		var result = service.simpleScalarBodyParam(builderFactory, bodyScalar);
-		return responseBuilder.simpleScalarBodyParam(result, bodyScalar).build();
+		return responseBuilder.simpleScalarBodyParam(result, "application/json", bodyScalar).build();
 	}
 
 	@POST
@@ -373,7 +373,7 @@ public class BodyParameterTypesResource {
 	public Response simpleScalarBodyParamOpt(InputStream _bodyScalar) {
 		var bodyScalar = _JsonUtils.parseOptLiteral(_bodyScalar, "application/json", ZoneId::of);
 		var result = service.simpleScalarBodyParamOpt(builderFactory, bodyScalar);
-		return responseBuilder.simpleScalarBodyParamOpt(result, bodyScalar).build();
+		return responseBuilder.simpleScalarBodyParamOpt(result, "application/json", bodyScalar).build();
 	}
 
 	@POST
@@ -381,7 +381,7 @@ public class BodyParameterTypesResource {
 	public Response simpleScalarBodyParamNil(InputStream _bodyScalar) {
 		var bodyScalar = _JsonUtils.parseNullLiteral(_bodyScalar, "application/json", ZoneId::of);
 		var result = service.simpleScalarBodyParamNil(builderFactory, bodyScalar);
-		return responseBuilder.simpleScalarBodyParamNil(result, bodyScalar).build();
+		return responseBuilder.simpleScalarBodyParamNil(result, "application/json", bodyScalar).build();
 	}
 
 	@POST
@@ -389,7 +389,7 @@ public class BodyParameterTypesResource {
 	public Response simpleScalarBodyParamOptNil(InputStream _bodyScalar) {
 		var bodyScalar = _JsonUtils.parseNilLiteral(_bodyScalar, "application/json", ZoneId::of);
 		var result = service.simpleScalarBodyParamOptNil(builderFactory, bodyScalar);
-		return responseBuilder.simpleScalarBodyParamOptNil(result, bodyScalar).build();
+		return responseBuilder.simpleScalarBodyParamOptNil(result, "application/json", bodyScalar).build();
 	}
 
 	@POST
@@ -397,7 +397,7 @@ public class BodyParameterTypesResource {
 	public Response simpleEnumBodyParam(InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseLiteral(_bodyEnum, "application/json", SampleEnum::valueOf);
 		var result = service.simpleEnumBodyParam(builderFactory, bodyEnum);
-		return responseBuilder.simpleEnumBodyParam(result, bodyEnum).build();
+		return responseBuilder.simpleEnumBodyParam(result, "application/json", bodyEnum).build();
 	}
 
 	@POST
@@ -405,7 +405,7 @@ public class BodyParameterTypesResource {
 	public Response simpleEnumBodyParamOpt(InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseOptLiteral(_bodyEnum, "application/json", SampleEnum::valueOf);
 		var result = service.simpleEnumBodyParamOpt(builderFactory, bodyEnum);
-		return responseBuilder.simpleEnumBodyParamOpt(result, bodyEnum).build();
+		return responseBuilder.simpleEnumBodyParamOpt(result, "application/json", bodyEnum).build();
 	}
 
 	@POST
@@ -413,7 +413,7 @@ public class BodyParameterTypesResource {
 	public Response simpleEnumBodyParamNil(InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseNullLiteral(_bodyEnum, "application/json", SampleEnum::valueOf);
 		var result = service.simpleEnumBodyParamNil(builderFactory, bodyEnum);
-		return responseBuilder.simpleEnumBodyParamNil(result, bodyEnum).build();
+		return responseBuilder.simpleEnumBodyParamNil(result, "application/json", bodyEnum).build();
 	}
 
 	@POST
@@ -421,7 +421,7 @@ public class BodyParameterTypesResource {
 	public Response simpleEnumBodyParamOptNil(InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseNilLiteral(_bodyEnum, "application/json", SampleEnum::valueOf);
 		var result = service.simpleEnumBodyParamOptNil(builderFactory, bodyEnum);
-		return responseBuilder.simpleEnumBodyParamOptNil(result, bodyEnum).build();
+		return responseBuilder.simpleEnumBodyParamOptNil(result, "application/json", bodyEnum).build();
 	}
 
 	@POST
@@ -429,7 +429,7 @@ public class BodyParameterTypesResource {
 	public Response simpleInlineEnumBodyParam(InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseLiteral(_bodyEnum, "application/json", BodyParameterTypesService.SimpleInlineEnumBodyParam_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParam(builderFactory, bodyEnum);
-		return responseBuilder.simpleInlineEnumBodyParam(result, bodyEnum).build();
+		return responseBuilder.simpleInlineEnumBodyParam(result, "application/json", bodyEnum).build();
 	}
 
 	@POST
@@ -437,7 +437,7 @@ public class BodyParameterTypesResource {
 	public Response simpleInlineEnumBodyParamOpt(InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseOptLiteral(_bodyEnum, "application/json", BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParamOpt(builderFactory, bodyEnum);
-		return responseBuilder.simpleInlineEnumBodyParamOpt(result, bodyEnum).build();
+		return responseBuilder.simpleInlineEnumBodyParamOpt(result, "application/json", bodyEnum).build();
 	}
 
 	@POST
@@ -445,7 +445,7 @@ public class BodyParameterTypesResource {
 	public Response simpleInlineEnumBodyParamNil(InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseNullLiteral(_bodyEnum, "application/json", BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParamNil(builderFactory, bodyEnum);
-		return responseBuilder.simpleInlineEnumBodyParamNil(result, bodyEnum).build();
+		return responseBuilder.simpleInlineEnumBodyParamNil(result, "application/json", bodyEnum).build();
 	}
 
 	@POST
@@ -453,7 +453,7 @@ public class BodyParameterTypesResource {
 	public Response simpleInlineEnumBodyParamOptNil(InputStream _bodyEnum) {
 		var bodyEnum = _JsonUtils.parseNilLiteral(_bodyEnum, "application/json", BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParamOptNil(builderFactory, bodyEnum);
-		return responseBuilder.simpleInlineEnumBodyParamOptNil(result, bodyEnum).build();
+		return responseBuilder.simpleInlineEnumBodyParamOptNil(result, "application/json", bodyEnum).build();
 	}
 
 	@POST
@@ -461,7 +461,7 @@ public class BodyParameterTypesResource {
 	public Response multiBodyParam(InputStream data) {
 		var dto = _JsonUtils.parseObject(data, "application/json", BodyParameterTypesMultiBodyParamDataImpl::new);
 		var result = service.multiBodyParam(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.multiBodyParam(result, dto.valueA(), dto.valueB(), dto.valueC()).build();
+		return responseBuilder.multiBodyParam(result, "application/json", dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
 
 	@POST
@@ -469,7 +469,7 @@ public class BodyParameterTypesResource {
 	public Response multiBodyParamOpt(InputStream data) {
 		var dto = _JsonUtils.parseObject(data, "application/json", BodyParameterTypesMultiBodyParamOptDataImpl::new);
 		var result = service.multiBodyParamOpt(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.multiBodyParamOpt(result, dto.valueA(), dto.valueB(), dto.valueC()).build();
+		return responseBuilder.multiBodyParamOpt(result, "application/json", dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
 
 	@POST
@@ -477,7 +477,7 @@ public class BodyParameterTypesResource {
 	public Response multiBodyParamNil(InputStream data) {
 		var dto = _JsonUtils.parseObject(data, "application/json", BodyParameterTypesMultiBodyParamNilDataImpl::new);
 		var result = service.multiBodyParamNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.multiBodyParamNil(result, dto.valueA(), dto.valueB(), dto.valueC()).build();
+		return responseBuilder.multiBodyParamNil(result, "application/json", dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
 
 	@POST
@@ -485,7 +485,7 @@ public class BodyParameterTypesResource {
 	public Response multiBodyParamOptNil(InputStream data) {
 		var dto = _JsonUtils.parseObject(data, "application/json", BodyParameterTypesMultiBodyParamOptNilDataImpl::new);
 		var result = service.multiBodyParamOptNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.multiBodyParamOptNil(result, dto.valueA(), dto.valueB(), dto.valueC()).build();
+		return responseBuilder.multiBodyParamOptNil(result, "application/json", dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
 
 	@POST
@@ -493,7 +493,7 @@ public class BodyParameterTypesResource {
 	public Response multiBodyParamFirst(InputStream data) {
 		var dto = _JsonUtils.parseObject(data, "application/json", BodyParameterTypesMultiBodyParamFirstDataImpl::new);
 		var result = service.multiBodyParamFirst(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.multiBodyParamFirst(result, dto.valueA(), dto.valueB(), dto.valueC()).build();
+		return responseBuilder.multiBodyParamFirst(result, "application/json", dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
 
 	@POST
@@ -501,7 +501,7 @@ public class BodyParameterTypesResource {
 	public Response recordBodyParam(InputStream _bodyRecord) {
 		var bodyRecord = _JsonUtils.parseObject(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.recordBodyParam(builderFactory, bodyRecord);
-		return responseBuilder.recordBodyParam(result, bodyRecord).build();
+		return responseBuilder.recordBodyParam(result, "application/json", bodyRecord).build();
 	}
 
 	@POST
@@ -509,7 +509,7 @@ public class BodyParameterTypesResource {
 	public Response recordBodyParamOpt(InputStream _bodyRecord) {
 		var bodyRecord = _JsonUtils.parseOptObject(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.recordBodyParamOpt(builderFactory, bodyRecord);
-		return responseBuilder.recordBodyParamOpt(result, bodyRecord).build();
+		return responseBuilder.recordBodyParamOpt(result, "application/json", bodyRecord).build();
 	}
 
 	@POST
@@ -517,7 +517,7 @@ public class BodyParameterTypesResource {
 	public Response recordBodyParamNil(InputStream _bodyRecord) {
 		var bodyRecord = _JsonUtils.parseNullObject(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.recordBodyParamNil(builderFactory, bodyRecord);
-		return responseBuilder.recordBodyParamNil(result, bodyRecord).build();
+		return responseBuilder.recordBodyParamNil(result, "application/json", bodyRecord).build();
 	}
 
 	@POST
@@ -525,7 +525,7 @@ public class BodyParameterTypesResource {
 	public Response recordBodyParamOptNil(InputStream _bodyRecord) {
 		var bodyRecord = _JsonUtils.parseNilObject(_bodyRecord, "application/json", $j -> builderFactory.of(SimpleRecord.Data.class, $j));
 		var result = service.recordBodyParamOptNil(builderFactory, bodyRecord);
-		return responseBuilder.recordBodyParamOptNil(result, bodyRecord).build();
+		return responseBuilder.recordBodyParamOptNil(result, "application/json", bodyRecord).build();
 	}
 
 	@POST
@@ -533,7 +533,7 @@ public class BodyParameterTypesResource {
 	public Response unionBodyParam(InputStream _bodyUnion) {
 		var bodyUnion = _JsonUtils.parseObject(_bodyUnion, "application/json", $j -> builderFactory.of(Union.Data.class, $j));
 		var result = service.unionBodyParam(builderFactory, bodyUnion);
-		return responseBuilder.unionBodyParam(result, bodyUnion).build();
+		return responseBuilder.unionBodyParam(result, "application/json", bodyUnion).build();
 	}
 
 	@POST
@@ -541,7 +541,7 @@ public class BodyParameterTypesResource {
 	public Response unionBodyParamOpt(InputStream _bodyUnion) {
 		var bodyUnion = _JsonUtils.parseOptObject(_bodyUnion, "application/json", $j -> builderFactory.of(Union.Data.class, $j));
 		var result = service.unionBodyParamOpt(builderFactory, bodyUnion);
-		return responseBuilder.unionBodyParamOpt(result, bodyUnion).build();
+		return responseBuilder.unionBodyParamOpt(result, "application/json", bodyUnion).build();
 	}
 
 	@POST
@@ -549,7 +549,7 @@ public class BodyParameterTypesResource {
 	public Response unionBodyParamNil(InputStream _bodyUnion) {
 		var bodyUnion = _JsonUtils.parseNullObject(_bodyUnion, "application/json", $j -> builderFactory.of(Union.Data.class, $j));
 		var result = service.unionBodyParamNil(builderFactory, bodyUnion);
-		return responseBuilder.unionBodyParamNil(result, bodyUnion).build();
+		return responseBuilder.unionBodyParamNil(result, "application/json", bodyUnion).build();
 	}
 
 	@POST
@@ -557,7 +557,7 @@ public class BodyParameterTypesResource {
 	public Response unionBodyParamOptNil(InputStream _bodyUnion) {
 		var bodyUnion = _JsonUtils.parseNilObject(_bodyUnion, "application/json", $j -> builderFactory.of(Union.Data.class, $j));
 		var result = service.unionBodyParamOptNil(builderFactory, bodyUnion);
-		return responseBuilder.unionBodyParamOptNil(result, bodyUnion).build();
+		return responseBuilder.unionBodyParamOptNil(result, "application/json", bodyUnion).build();
 	}
 
 	@PATCH
@@ -565,7 +565,7 @@ public class BodyParameterTypesResource {
 	public Response patchableRecordBodyParam(InputStream _bodyRecord) {
 		var bodyRecord = _JsonUtils.parseObject(_bodyRecord, "application/json", $j -> builderFactory.of(PatchableRecord.Patch.class, $j));
 		var result = service.patchableRecordBodyParam(builderFactory, bodyRecord);
-		return responseBuilder.patchableRecordBodyParam(result, bodyRecord).build();
+		return responseBuilder.patchableRecordBodyParam(result, "application/json", bodyRecord).build();
 	}
 
 	@PATCH
@@ -573,7 +573,7 @@ public class BodyParameterTypesResource {
 	public Response patchableRecordBodyParamOpt(InputStream _bodyRecord) {
 		var bodyRecord = _JsonUtils.parseOptObject(_bodyRecord, "application/json", $j -> builderFactory.of(PatchableRecord.Patch.class, $j));
 		var result = service.patchableRecordBodyParamOpt(builderFactory, bodyRecord);
-		return responseBuilder.patchableRecordBodyParamOpt(result, bodyRecord).build();
+		return responseBuilder.patchableRecordBodyParamOpt(result, "application/json", bodyRecord).build();
 	}
 
 	@PATCH
@@ -581,7 +581,7 @@ public class BodyParameterTypesResource {
 	public Response patchableRecordBodyParamNil(InputStream _bodyRecord) {
 		var bodyRecord = _JsonUtils.parseNullObject(_bodyRecord, "application/json", $j -> builderFactory.of(PatchableRecord.Patch.class, $j));
 		var result = service.patchableRecordBodyParamNil(builderFactory, bodyRecord);
-		return responseBuilder.patchableRecordBodyParamNil(result, bodyRecord).build();
+		return responseBuilder.patchableRecordBodyParamNil(result, "application/json", bodyRecord).build();
 	}
 
 	@PATCH
@@ -589,7 +589,7 @@ public class BodyParameterTypesResource {
 	public Response patchableRecordBodyParamOptNil(InputStream _bodyRecord) {
 		var bodyRecord = _JsonUtils.parseNilObject(_bodyRecord, "application/json", $j -> builderFactory.of(PatchableRecord.Patch.class, $j));
 		var result = service.patchableRecordBodyParamOptNil(builderFactory, bodyRecord);
-		return responseBuilder.patchableRecordBodyParamOptNil(result, bodyRecord).build();
+		return responseBuilder.patchableRecordBodyParamOptNil(result, "application/json", bodyRecord).build();
 	}
 
 }

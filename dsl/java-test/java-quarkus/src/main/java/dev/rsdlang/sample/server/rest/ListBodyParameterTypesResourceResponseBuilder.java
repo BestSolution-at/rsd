@@ -21,244 +21,244 @@ import dev.rsdlang.sample.server.service.model.SimpleRecord;
 
 @Singleton
 public class ListBodyParameterTypesResourceResponseBuilder {
-	public ResponseBuilder listBooleanBodyParam(List<Boolean> $result, List<Boolean> bodyBoolean) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listBooleanBodyParam(List<Boolean> $result, String $contentType, List<Boolean> bodyBoolean) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listBooleanBodyParamOpt(NilResult $result, Optional<List<Boolean>> bodyBoolean) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listBooleanBodyParamOpt(NilResult $result, String $contentType, Optional<List<Boolean>> bodyBoolean) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listBooleanBodyParamNil(NilResult $result, Optional<List<Boolean>> bodyBoolean) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listBooleanBodyParamNil(NilResult $result, String $contentType, Optional<List<Boolean>> bodyBoolean) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listBooleanBodyParamOptNil(NilResult $result, _Base.Nillable<List<Boolean>> bodyBoolean) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listBooleanBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Boolean>> bodyBoolean) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listShortBodyParam(List<Short> $result, List<Short> bodyShort) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listShortBodyParam(List<Short> $result, String $contentType, List<Short> bodyShort) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listShortBodyParamOpt(NilResult $result, Optional<List<Short>> bodyShort) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listShortBodyParamOpt(NilResult $result, String $contentType, Optional<List<Short>> bodyShort) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listShortBodyParamNil(NilResult $result, Optional<List<Short>> bodyShort) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listShortBodyParamNil(NilResult $result, String $contentType, Optional<List<Short>> bodyShort) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listShortBodyParamOptNil(NilResult $result, _Base.Nillable<List<Short>> bodyShort) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listShortBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Short>> bodyShort) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listIntBodyParam(List<Integer> $result, List<Integer> bodyInt) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listIntBodyParam(List<Integer> $result, String $contentType, List<Integer> bodyInt) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listIntBodyParamOpt(NilResult $result, Optional<List<Integer>> bodyInt) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listIntBodyParamOpt(NilResult $result, String $contentType, Optional<List<Integer>> bodyInt) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listIntBodyParamNil(NilResult $result, Optional<List<Integer>> bodyInt) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listIntBodyParamNil(NilResult $result, String $contentType, Optional<List<Integer>> bodyInt) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listIntBodyParamOptNil(NilResult $result, _Base.Nillable<List<Integer>> bodyInt) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listIntBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Integer>> bodyInt) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLongBodyParam(List<Long> $result, List<Long> bodyLong) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLongBodyParam(List<Long> $result, String $contentType, List<Long> bodyLong) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLongBodyParamOpt(NilResult $result, Optional<List<Long>> bodyLong) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLongBodyParamOpt(NilResult $result, String $contentType, Optional<List<Long>> bodyLong) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLongBodyParamNil(NilResult $result, Optional<List<Long>> bodyLong) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLongBodyParamNil(NilResult $result, String $contentType, Optional<List<Long>> bodyLong) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLongBodyParamOptNil(NilResult $result, _Base.Nillable<List<Long>> bodyLong) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLongBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Long>> bodyLong) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listFloatBodyParam(List<Float> $result, List<Float> bodyFloat) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listFloatBodyParam(List<Float> $result, String $contentType, List<Float> bodyFloat) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listFloatBodyParamOpt(NilResult $result, Optional<List<Float>> bodyFloat) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listFloatBodyParamOpt(NilResult $result, String $contentType, Optional<List<Float>> bodyFloat) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listFloatBodyParamNil(NilResult $result, Optional<List<Float>> bodyFloat) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listFloatBodyParamNil(NilResult $result, String $contentType, Optional<List<Float>> bodyFloat) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listFloatBodyParamOptNil(NilResult $result, _Base.Nillable<List<Float>> bodyFloat) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listFloatBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Float>> bodyFloat) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listDoubleBodyParam(List<Double> $result, List<Double> bodyDouble) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listDoubleBodyParam(List<Double> $result, String $contentType, List<Double> bodyDouble) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listDoubleBodyParamOpt(NilResult $result, Optional<List<Double>> bodyDouble) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listDoubleBodyParamOpt(NilResult $result, String $contentType, Optional<List<Double>> bodyDouble) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listDoubleBodyParamNil(NilResult $result, Optional<List<Double>> bodyDouble) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listDoubleBodyParamNil(NilResult $result, String $contentType, Optional<List<Double>> bodyDouble) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listDoubleBodyParamOptNil(NilResult $result, _Base.Nillable<List<Double>> bodyDouble) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listDoubleBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Double>> bodyDouble) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listStringBodyParam(List<String> $result, List<String> bodyString) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listStringBodyParam(List<String> $result, String $contentType, List<String> bodyString) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listStringBodyParamOpt(NilResult $result, Optional<List<String>> bodyString) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listStringBodyParamOpt(NilResult $result, String $contentType, Optional<List<String>> bodyString) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listStringBodyParamNil(NilResult $result, Optional<List<String>> bodyString) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listStringBodyParamNil(NilResult $result, String $contentType, Optional<List<String>> bodyString) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listStringBodyParamOptNil(NilResult $result, _Base.Nillable<List<String>> bodyString) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listStringBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<String>> bodyString) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLocalDateBodyParam(List<LocalDate> $result, List<LocalDate> bodyLocalDate) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLocalDateBodyParam(List<LocalDate> $result, String $contentType, List<LocalDate> bodyLocalDate) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLocalDateBodyParamOpt(NilResult $result, Optional<List<LocalDate>> bodyLocalDate) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLocalDateBodyParamOpt(NilResult $result, String $contentType, Optional<List<LocalDate>> bodyLocalDate) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLocalDateBodyParamNil(NilResult $result, Optional<List<LocalDate>> bodyLocalDate) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLocalDateBodyParamNil(NilResult $result, String $contentType, Optional<List<LocalDate>> bodyLocalDate) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLocalDateBodyParamOptNil(NilResult $result, _Base.Nillable<List<LocalDate>> bodyLocalDate) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLocalDateBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<LocalDate>> bodyLocalDate) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLocalDateTimeBodyParam(List<LocalDateTime> $result, List<LocalDateTime> bodyLocalDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLocalDateTimeBodyParam(List<LocalDateTime> $result, String $contentType, List<LocalDateTime> bodyLocalDateTime) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLocalDateTimeBodyParamOpt(NilResult $result, Optional<List<LocalDateTime>> bodyLocalDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLocalDateTimeBodyParamOpt(NilResult $result, String $contentType, Optional<List<LocalDateTime>> bodyLocalDateTime) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLocalDateTimeBodyParamNil(NilResult $result, Optional<List<LocalDateTime>> bodyLocalDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLocalDateTimeBodyParamNil(NilResult $result, String $contentType, Optional<List<LocalDateTime>> bodyLocalDateTime) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listLocalDateTimeBodyParamOptNil(NilResult $result, _Base.Nillable<List<LocalDateTime>> bodyLocalDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listLocalDateTimeBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<LocalDateTime>> bodyLocalDateTime) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listZonedDateTimeBodyParam(List<ZonedDateTime> $result, List<ZonedDateTime> bodyZonedDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listZonedDateTimeBodyParam(List<ZonedDateTime> $result, String $contentType, List<ZonedDateTime> bodyZonedDateTime) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listZonedDateTimeBodyParamOpt(NilResult $result, Optional<List<ZonedDateTime>> bodyZonedDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listZonedDateTimeBodyParamOpt(NilResult $result, String $contentType, Optional<List<ZonedDateTime>> bodyZonedDateTime) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listZonedDateTimeBodyParamNil(NilResult $result, Optional<List<ZonedDateTime>> bodyZonedDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listZonedDateTimeBodyParamNil(NilResult $result, String $contentType, Optional<List<ZonedDateTime>> bodyZonedDateTime) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listZonedDateTimeBodyParamOptNil(NilResult $result, _Base.Nillable<List<ZonedDateTime>> bodyZonedDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listZonedDateTimeBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<ZonedDateTime>> bodyZonedDateTime) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listScalarBodyParam(List<ZoneId> $result, List<ZoneId> bodyScalar) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listScalarBodyParam(List<ZoneId> $result, String $contentType, List<ZoneId> bodyScalar) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listScalarBodyParamOpt(NilResult $result, Optional<List<ZoneId>> bodyScalar) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listScalarBodyParamOpt(NilResult $result, String $contentType, Optional<List<ZoneId>> bodyScalar) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listScalarBodyParamNil(NilResult $result, Optional<List<ZoneId>> bodyScalar) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listScalarBodyParamNil(NilResult $result, String $contentType, Optional<List<ZoneId>> bodyScalar) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listScalarBodyParamOptNil(NilResult $result, _Base.Nillable<List<ZoneId>> bodyScalar) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listScalarBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<ZoneId>> bodyScalar) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listEnumBodyParam(List<SampleEnum> $result, List<SampleEnum> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listEnumBodyParam(List<SampleEnum> $result, String $contentType, List<SampleEnum> bodyEnum) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listEnumBodyParamOpt(NilResult $result, Optional<List<SampleEnum>> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listEnumBodyParamOpt(NilResult $result, String $contentType, Optional<List<SampleEnum>> bodyEnum) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listEnumBodyParamNil(NilResult $result, Optional<List<SampleEnum>> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listEnumBodyParamNil(NilResult $result, String $contentType, Optional<List<SampleEnum>> bodyEnum) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listEnumBodyParamOptNil(NilResult $result, _Base.Nillable<List<SampleEnum>> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listEnumBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<SampleEnum>> bodyEnum) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listInlineEnumBodyParam(List<ListBodyParameterTypesService.ListInlineEnumBodyParam_Result$> $result, List<ListBodyParameterTypesService.ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listInlineEnumBodyParam(List<ListBodyParameterTypesService.ListInlineEnumBodyParam_Result$> $result, String $contentType, List<ListBodyParameterTypesService.ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listInlineEnumBodyParamOpt(NilResult $result, Optional<List<ListBodyParameterTypesService.ListInlineEnumBodyParamOpt_BodyEnum_Param$>> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listInlineEnumBodyParamOpt(NilResult $result, String $contentType, Optional<List<ListBodyParameterTypesService.ListInlineEnumBodyParamOpt_BodyEnum_Param$>> bodyEnum) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listInlineEnumBodyParamNil(NilResult $result, Optional<List<ListBodyParameterTypesService.ListInlineEnumBodyParamNil_BodyEnum_Param$>> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listInlineEnumBodyParamNil(NilResult $result, String $contentType, Optional<List<ListBodyParameterTypesService.ListInlineEnumBodyParamNil_BodyEnum_Param$>> bodyEnum) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listInlineEnumBodyParamOptNil(NilResult $result, _Base.Nillable<List<ListBodyParameterTypesService.ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listInlineEnumBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<ListBodyParameterTypesService.ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listMultiBodyParam(String $result, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listMultiBodyParam(String $result, String $contentType, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listMultiBodyParamOpt(List<NilResult> $result, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listMultiBodyParamOpt(List<NilResult> $result, String $contentType, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listMultiBodyParamNil(List<NilResult> $result, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listMultiBodyParamNil(List<NilResult> $result, String $contentType, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listMultiBodyParamOptNil(List<NilResult> $result, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listMultiBodyParamOptNil(List<NilResult> $result, String $contentType, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listRecordBodyParam(List<SimpleRecord.Data> $result, List<SimpleRecord.Data> bodyRecord) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listRecordBodyParam(List<SimpleRecord.Data> $result, String $contentType, List<SimpleRecord.Data> bodyRecord) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listRecordBodyParamOpt(NilResult $result, Optional<List<SimpleRecord.Data>> bodyRecord) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listRecordBodyParamOpt(NilResult $result, String $contentType, Optional<List<SimpleRecord.Data>> bodyRecord) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listRecordBodyParamNil(NilResult $result, Optional<List<SimpleRecord.Data>> bodyRecord) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listRecordBodyParamNil(NilResult $result, String $contentType, Optional<List<SimpleRecord.Data>> bodyRecord) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
-	public ResponseBuilder listRecordBodyParamOptNil(NilResult $result, _Base.Nillable<List<SimpleRecord.Data>> bodyRecord) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, "application/json")));
+	public ResponseBuilder listRecordBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<SimpleRecord.Data>> bodyRecord) {
+		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
 	}
 
 }

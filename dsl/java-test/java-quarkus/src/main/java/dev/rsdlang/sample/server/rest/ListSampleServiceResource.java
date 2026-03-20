@@ -31,91 +31,91 @@ public class ListSampleServiceResource {
 	@Path("boolean")
 	public Response listBoolean() {
 		var result = service.listBoolean(builderFactory);
-		return responseBuilder.listBoolean(result).build();
+		return responseBuilder.listBoolean(result, "application/json").build();
 	}
 
 	@GET
 	@Path("short")
 	public Response listShort() {
 		var result = service.listShort(builderFactory);
-		return responseBuilder.listShort(result).build();
+		return responseBuilder.listShort(result, "application/json").build();
 	}
 
 	@GET
 	@Path("int")
 	public Response listInt() {
 		var result = service.listInt(builderFactory);
-		return responseBuilder.listInt(result).build();
+		return responseBuilder.listInt(result, "application/json").build();
 	}
 
 	@GET
 	@Path("long")
 	public Response listLong() {
 		var result = service.listLong(builderFactory);
-		return responseBuilder.listLong(result).build();
+		return responseBuilder.listLong(result, "application/json").build();
 	}
 
 	@GET
 	@Path("float")
 	public Response listFloat() {
 		var result = service.listFloat(builderFactory);
-		return responseBuilder.listFloat(result).build();
+		return responseBuilder.listFloat(result, "application/json").build();
 	}
 
 	@GET
 	@Path("double")
 	public Response listDouble() {
 		var result = service.listDouble(builderFactory);
-		return responseBuilder.listDouble(result).build();
+		return responseBuilder.listDouble(result, "application/json").build();
 	}
 
 	@GET
 	@Path("string")
 	public Response listString() {
 		var result = service.listString(builderFactory);
-		return responseBuilder.listString(result).build();
+		return responseBuilder.listString(result, "application/json").build();
 	}
 
 	@GET
 	@Path("localdate")
 	public Response listLocalDate() {
 		var result = service.listLocalDate(builderFactory);
-		return responseBuilder.listLocalDate(result).build();
+		return responseBuilder.listLocalDate(result, "application/json").build();
 	}
 
 	@GET
 	@Path("localdatetime")
 	public Response listLocalDateTime() {
 		var result = service.listLocalDateTime(builderFactory);
-		return responseBuilder.listLocalDateTime(result).build();
+		return responseBuilder.listLocalDateTime(result, "application/json").build();
 	}
 
 	@GET
 	@Path("zoneddatetime")
 	public Response listZonedDateTime() {
 		var result = service.listZonedDateTime(builderFactory);
-		return responseBuilder.listZonedDateTime(result).build();
+		return responseBuilder.listZonedDateTime(result, "application/json").build();
 	}
 
 	@GET
 	@Path("scalar")
 	public Response listScalar() {
 		var result = service.listScalar(builderFactory);
-		return responseBuilder.listScalar(result).build();
+		return responseBuilder.listScalar(result, "application/json").build();
 	}
 
 	@GET
 	@Path("enum")
 	public Response listEnum() {
 		var result = service.listEnum(builderFactory);
-		return responseBuilder.listEnum(result).build();
+		return responseBuilder.listEnum(result, "application/json").build();
 	}
 
 	@GET
 	@Path("simplerecord")
 	public Response listSimpleRecord() {
 		var result = service.listSimpleRecord(builderFactory);
-		return responseBuilder.listSimpleRecord(result).build();
+		return responseBuilder.listSimpleRecord(result, "application/json").build();
 	}
 
 	@GET
@@ -123,7 +123,7 @@ public class ListSampleServiceResource {
 	public Response listSimpleRecordWithError() {
 		try {
 			var result = service.listSimpleRecordWithError(builderFactory);
-			return responseBuilder.listSimpleRecordWithError(result).build();
+			return responseBuilder.listSimpleRecordWithError(result, "application/json").build();
 		} catch (SampleErrorException e) {
 			return _RestUtils.toResponse(400, e);
 		}

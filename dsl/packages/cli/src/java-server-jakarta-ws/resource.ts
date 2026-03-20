@@ -838,9 +838,12 @@ function okResultContent(o: MOperation, serviceParams: string[]) {
 	}
 	if (o.resultType) {
 		if (serviceParams.length === 0) {
-			node.append(`return responseBuilder.${o.name}(result).build();`, NL);
+			node.append(`return responseBuilder.${o.name}(result, "application/json").build();`, NL);
 		} else {
-			node.append(`return responseBuilder.${o.name}(result, ${serviceParams.join(', ')}).build();`, NL);
+			node.append(
+				`return responseBuilder.${o.name}(result, "application/json", ${serviceParams.join(', ')}).build();`,
+				NL,
+			);
 		}
 	} else {
 		node.append(`return responseBuilder.${o.name}(${serviceParams.join(', ')}).build();`, NL);

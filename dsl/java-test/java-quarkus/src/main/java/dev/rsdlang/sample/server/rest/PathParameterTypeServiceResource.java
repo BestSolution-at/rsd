@@ -35,7 +35,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleBooleanPathParam(@PathParam("pathBoolean") String _pathBoolean) {
 		var pathBoolean = _RestUtils.parseBoolean(_pathBoolean);
 		var result = service.simpleBooleanPathParam(builderFactory, pathBoolean);
-		return responseBuilder.simpleBooleanPathParam(result, pathBoolean).build();
+		return responseBuilder.simpleBooleanPathParam(result, "application/json", pathBoolean).build();
 	}
 
 	@GET
@@ -43,7 +43,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleShortPathParam(@PathParam("pathShort") String _pathShort) {
 		var pathShort = _RestUtils.parseShort(_pathShort);
 		var result = service.simpleShortPathParam(builderFactory, pathShort);
-		return responseBuilder.simpleShortPathParam(result, pathShort).build();
+		return responseBuilder.simpleShortPathParam(result, "application/json", pathShort).build();
 	}
 
 	@GET
@@ -51,7 +51,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleIntPathParam(@PathParam("pathInt") String _pathInt) {
 		var pathInt = _RestUtils.parseInt(_pathInt);
 		var result = service.simpleIntPathParam(builderFactory, pathInt);
-		return responseBuilder.simpleIntPathParam(result, pathInt).build();
+		return responseBuilder.simpleIntPathParam(result, "application/json", pathInt).build();
 	}
 
 	@GET
@@ -59,7 +59,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleLongPathParam(@PathParam("pathLong") String _pathLong) {
 		var pathLong = _RestUtils.parseLong(_pathLong);
 		var result = service.simpleLongPathParam(builderFactory, pathLong);
-		return responseBuilder.simpleLongPathParam(result, pathLong).build();
+		return responseBuilder.simpleLongPathParam(result, "application/json", pathLong).build();
 	}
 
 	@GET
@@ -67,7 +67,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleFloatPathParam(@PathParam("pathFloat") String _pathFloat) {
 		var pathFloat = _RestUtils.parseFloat(_pathFloat);
 		var result = service.simpleFloatPathParam(builderFactory, pathFloat);
-		return responseBuilder.simpleFloatPathParam(result, pathFloat).build();
+		return responseBuilder.simpleFloatPathParam(result, "application/json", pathFloat).build();
 	}
 
 	@GET
@@ -75,7 +75,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleDoublePathParam(@PathParam("pathDouble") String _pathDouble) {
 		var pathDouble = _RestUtils.parseDouble(_pathDouble);
 		var result = service.simpleDoublePathParam(builderFactory, pathDouble);
-		return responseBuilder.simpleDoublePathParam(result, pathDouble).build();
+		return responseBuilder.simpleDoublePathParam(result, "application/json", pathDouble).build();
 	}
 
 	@GET
@@ -83,7 +83,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleStringPathParam(@PathParam("pathString") String _pathString) {
 		var pathString = _RestUtils.parseString(_pathString);
 		var result = service.simpleStringPathParam(builderFactory, pathString);
-		return responseBuilder.simpleStringPathParam(result, pathString).build();
+		return responseBuilder.simpleStringPathParam(result, "application/json", pathString).build();
 	}
 
 	@GET
@@ -91,7 +91,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleLocalDatePathParam(@PathParam("pathLocalDate") String _pathLocalDate) {
 		var pathLocalDate = _RestUtils.parseLocalDate(_pathLocalDate);
 		var result = service.simpleLocalDatePathParam(builderFactory, pathLocalDate);
-		return responseBuilder.simpleLocalDatePathParam(result, pathLocalDate).build();
+		return responseBuilder.simpleLocalDatePathParam(result, "application/json", pathLocalDate).build();
 	}
 
 	@GET
@@ -99,7 +99,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleLocalDateTimePathParam(@PathParam("pathLocalDateTime") String _pathLocalDateTime) {
 		var pathLocalDateTime = _RestUtils.parseLocalDateTime(_pathLocalDateTime);
 		var result = service.simpleLocalDateTimePathParam(builderFactory, pathLocalDateTime);
-		return responseBuilder.simpleLocalDateTimePathParam(result, pathLocalDateTime).build();
+		return responseBuilder.simpleLocalDateTimePathParam(result, "application/json", pathLocalDateTime).build();
 	}
 
 	@GET
@@ -107,7 +107,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleZonedDateTimePathParam(@PathParam("pathZonedDateTime") String _pathZonedDateTime) {
 		var pathZonedDateTime = _RestUtils.parseZonedDateTime(_pathZonedDateTime);
 		var result = service.simpleZonedDateTimePathParam(builderFactory, pathZonedDateTime);
-		return responseBuilder.simpleZonedDateTimePathParam(result, pathZonedDateTime).build();
+		return responseBuilder.simpleZonedDateTimePathParam(result, "application/json", pathZonedDateTime).build();
 	}
 
 	@GET
@@ -115,7 +115,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleScalarPathParam(@PathParam("pathScalar") String _pathScalar) {
 		var pathScalar = _RestUtils.parseLiteral(_pathScalar, ZoneId::of);
 		var result = service.simpleScalarPathParam(builderFactory, pathScalar);
-		return responseBuilder.simpleScalarPathParam(result, pathScalar).build();
+		return responseBuilder.simpleScalarPathParam(result, "application/json", pathScalar).build();
 	}
 
 	@GET
@@ -123,7 +123,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleEnumPathParam(@PathParam("pathEnum") String _pathEnum) {
 		var pathEnum = _RestUtils.parseLiteral(_pathEnum, SampleEnum::valueOf);
 		var result = service.simpleEnumPathParam(builderFactory, pathEnum);
-		return responseBuilder.simpleEnumPathParam(result, pathEnum).build();
+		return responseBuilder.simpleEnumPathParam(result, "application/json", pathEnum).build();
 	}
 
 	@GET
@@ -134,7 +134,7 @@ public class PathParameterTypeServiceResource {
 		var valueA = _RestUtils.parseString(_valueA);
 		var valueB = _RestUtils.parseInt(_valueB);
 		var result = service.multiPathParam(builderFactory, valueA, valueB);
-		return responseBuilder.multiPathParam(result, valueA, valueB).build();
+		return responseBuilder.multiPathParam(result, "application/json", valueA, valueB).build();
 	}
 
 }

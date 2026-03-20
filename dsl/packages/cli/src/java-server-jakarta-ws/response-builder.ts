@@ -56,6 +56,7 @@ function generateContent(
 			}
 
 			if (o.resultType !== undefined) {
+				params.unshift('String $contentType');
 				params.unshift(`${toResultType(o.resultType, artifactConfig, fqn, o.name, s.name)} $result`);
 			}
 			classBody.append(`public ${ResponseBuilder} ${o.name}(${params.join(', ')}) {`, NL);
@@ -71,7 +72,7 @@ function generateContent(
 					} else {
 						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.rest.model._JsonUtils`);
 						methodBody.append(
-							`return ${Response}.status(${code.toFixed()}).entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result, "application/json")));`,
+							`return ${Response}.status(${code.toFixed()}).entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result, $contentType)));`,
 							NL,
 						);
 					}
