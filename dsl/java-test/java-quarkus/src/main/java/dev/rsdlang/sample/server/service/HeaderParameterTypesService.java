@@ -157,4 +157,6 @@ public interface HeaderParameterTypesService {
 
 	public NilResult recordHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<SimpleRecord.Data> headerValue);
 
+	public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, SimpleRecord.Data body, String queryString, double queryNumber, SimpleRecord.Data queryRecord);
+
 }

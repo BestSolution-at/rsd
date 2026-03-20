@@ -401,6 +401,16 @@ resource HeaderParameterTypes at '/api/headerparametertypes' {
 		header-param headerValue
 	GET recordHeaderParamOptNil at 'recordHeaderParamOptNil'
 		header-param headerValue
+
+	POST mixed at 'mixed/${pathString}/${pathNumber}'
+		
+		header-param headerString
+		header-param headerNumber
+		header-param headerRecord
+
+		query-param queryString
+		query-param queryNumber
+		query-param queryRecord
 }
 
 resource QueryParameterTypes at '/api/queryparametertypes' {
@@ -781,4 +791,13 @@ resource BinaryTypes at '/api/binarytypes' {
 	PUT uploadMixedOpt at 'uploadMixedOpt'
 	PUT uploadMixedNil at 'uploadMixedNil'
 	PUT uploadMixedOptNil at 'uploadMixedOptNil'
+
+	POST mixed at 'mixed/${pathString}/${pathNumber}'
+		header-param headerString
+		header-param headerNumber
+		header-param headerRecord
+
+		query-param queryString
+		query-param queryNumber
+		query-param queryRecord
 }

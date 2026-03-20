@@ -68,6 +68,7 @@ export function createHeaderParameterTypesService(props: ServiceProps<api.servic
 		recordHeaderParamOpt: fnRecordHeaderParamOpt(props),
 		recordHeaderParamNil: fnRecordHeaderParamNil(props),
 		recordHeaderParamOptNil: fnRecordHeaderParamOptNil(props),
+		mixed: fnMixed(props),
 	};
 }
 function fnSimpleBooleanHeaderParam(props: ServiceProps<api.service.ErrorType>): api.service.HeaderParameterTypesService['simpleBooleanHeaderParam'] {
@@ -2091,6 +2092,42 @@ function fnRecordHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): 
 			return api.result.ERR(err);
 		} finally {
 			final?.('recordHeaderParamOptNil');
+		}
+	};
+}
+
+function fnMixed(props: ServiceProps<api.service.ErrorType>): api.service.HeaderParameterTypesService['mixed'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (pathString: string, pathNumber: number, headerString: string, headerNumber: number, headerRecord: api.model.SimpleRecord, body: api.model.SimpleRecord, queryString: string, queryNumber: number, queryRecord: api.model.SimpleRecord) => {
+		try {
+			const $init = (await preFetch?.('mixed')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Content-Type', 'application/json');
+			$headers.append('headerString', '"' + encodeAsciiString(headerString) + '"');
+			$headers.append('headerNumber', String(headerNumber));
+			$headers.append('headerRecord', encodeBase64(encodeValue(encodingType(props), api.model.SimpleRecordToJSON(headerRecord))));
+			$init.headers = $headers;
+
+			const $param = new URLSearchParams();
+			$param.append('queryString', queryString);
+			$param.append('queryNumber', String(queryNumber));
+			$param.append('queryRecord', encodeBase64(encodeValue(encodingType(props), api.model.SimpleRecordToJSON(queryRecord))));
+			const $path = `${baseUrl}/api/headerparametertypes/mixed/${encodeURIComponent(pathString)}/${encodeURIComponent(pathNumber)}?${$param.toString()}`;
+			const $body = encodeValue(encodingType(props), api.model.SimpleRecordToJSON(body));
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('mixed', api.result.Void));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('mixed', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('mixed');
 		}
 	};
 }

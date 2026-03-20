@@ -7,6 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.net.URI;
 import java.nio.file.Files;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -1610,6 +1611,57 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public void mixed(String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob) {
+		Objects.requireNonNull(pathString, "pathString must not be null");
+		Objects.requireNonNull(headerString, "headerString must not be null");
+		Objects.requireNonNull(headerRecord, "headerRecord must not be null");
+		Objects.requireNonNull(queryString, "queryString must not be null");
+		Objects.requireNonNull(queryRecord, "queryRecord must not be null");
+		Objects.requireNonNull(dataBlob, "dataBlob must not be null");
+
+		var $path = "%s/api/binarytypes/mixed/%s/%s".formatted(
+				this.baseURI,
+				ServiceUtils.encodeURIComponent(Objects.toString(pathString)),
+				ServiceUtils.encodeURIComponent(Objects.toString(pathNumber)));
+
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		$queryParams.append("queryString", queryString);
+		$queryParams.append("queryNumber", queryNumber);
+		$queryParams.append("queryRecord", _JsonUtils.encodeValue(queryRecord, "application/json"));
+
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerString", "\"" + ServiceUtils.encodeAsciiString(headerString) + "\"");
+		$headerParams.put("headerNumber", String.format("%s", headerNumber));
+		$headerParams.put("headerRecord", ServiceUtils.encodeBase64(_JsonUtils.encodeValue(headerRecord, "application/json")));
+		var $headers = ServiceUtils.toHeaders($headerParams);
+
+		var $uri = URI.create($path + $queryParams.toQueryString());
+		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+			var $jsonPayload = Json.createObjectBuilder();
+			$formDataBuilder.addBlob("dataBlob", dataBlob);
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			var $formData = $formDataBuilder.build();
+			var $body = $formData.publisher();
+			var $contentType = $formData.contentType();
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Content-Type", $contentType)
+					.POST($body);
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
+
+			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 204) {
+				return;
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {

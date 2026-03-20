@@ -224,4 +224,15 @@ public interface HeaderParameterTypesService extends BaseService {
 
 	public NilResult recordHeaderParamOptNil(SimpleRecord.Data headerValue);
 
+	public void mixed(
+			String pathString, 
+			int pathNumber, 
+			String headerString, 
+			int headerNumber, 
+			SimpleRecord.Data headerRecord, 
+			SimpleRecord.Data body, 
+			String queryString, 
+			double queryNumber, 
+			SimpleRecord.Data queryRecord);
+
 }

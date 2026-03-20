@@ -37,11 +37,11 @@ public class ListQueryParameterTypesResource {
 		this.responseBuilder = responseBuilder;
 	}
 
-	public static String computeResponseContentType(List<String> acceptHeader) {
+	static String computeResponseContentType(List<String> acceptHeader) {
 		return acceptHeader.stream()
 				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
 				.map(String::trim)
-				.filter(e -> "application/vnd.msgpack".equals(e) || "application/json".equals(e))
+				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e))
 				.findFirst()
 				.orElse("application/json");
 	}

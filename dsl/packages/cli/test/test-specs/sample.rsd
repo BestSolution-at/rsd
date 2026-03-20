@@ -959,6 +959,17 @@ service HeaderParameterTypes {
 	operation recordHeaderParamOptNil(
 		headerValue?: SimpleRecord?
 	): NilResult;
+
+	operation mixed(
+		pathString: string,
+		pathNumber: int,
+		headerString: string, 
+		headerNumber: int, 
+		headerRecord: SimpleRecord, 
+		body: SimpleRecord, 
+		queryString: string,
+		queryNumber: double,
+		queryRecord: SimpleRecord);
 }
 
 // TODO Add Nil variants to Query Params
@@ -1576,6 +1587,21 @@ service BinaryTypes {
 		dataFile?: file?,
 		dataBlob?: blob?
 	): UploadMixedResult;
+
+	operation mixed(
+		pathString: string,
+		pathNumber: int,
+
+		headerString: string,
+		headerNumber: int,
+		headerRecord: SimpleRecord,
+
+		queryString: string,
+		queryNumber: int,
+		queryRecord: SimpleRecord,
+
+		dataBlob: blob
+	);
 	
 	operation downloadFile(): file;
 	operation downloadBlob(): blob;

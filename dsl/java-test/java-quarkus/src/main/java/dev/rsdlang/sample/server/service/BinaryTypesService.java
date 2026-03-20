@@ -52,6 +52,8 @@ public interface BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOptNil(BuilderFactory _factory, _Base.Nillable<String> text, _Base.Nillable<Integer> number, _Base.Nillable<SimpleRecord.Data> rec, _Base.Nillable<List<String>> textList, _Base.Nillable<List<Integer>> numberList, _Base.Nillable<List<SimpleRecord.Data>> recList, _Base.Nillable<RSDFile> dataFile, _Base.Nillable<RSDBlob> dataBlob);
 
+	public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob);
+
 	public RSDFile downloadFile(BuilderFactory _factory);
 
 	public RSDBlob downloadBlob(BuilderFactory _factory);

@@ -118,6 +118,10 @@ public class BinaryTypesResourceResponseBuilder {
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
+	public ResponseBuilder mixed(String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob) {
+		return Response.status(204);
+	}
+
 	public ResponseBuilder downloadFile(RSDFile $result, String $contentType) {
 		return _RestUtils.toStreamResponse(200, $result);
 	}

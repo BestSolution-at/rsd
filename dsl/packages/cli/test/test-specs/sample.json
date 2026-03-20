@@ -10276,6 +10276,169 @@
               "results": []
             }
           }
+        },
+        {
+          "@type": "Operation",
+          "name": "mixed",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathString",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathString",
+                  "source": "path"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "pathNumber",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathNumber",
+                  "source": "path"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "headerString",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerString",
+                  "source": "header"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "headerNumber",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerNumber",
+                  "source": "header"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "headerRecord",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerRecord",
+                  "source": "header"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "body",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "queryString",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "queryString",
+                  "source": "query"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "queryNumber",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "double",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "queryNumber",
+                  "source": "query"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "queryRecord",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "queryRecord",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "mixed/${pathString}/${pathNumber}",
+              "results": []
+            }
+          }
         }
       ],
       "meta": {
@@ -17949,6 +18112,169 @@
             "rest": {
               "method": "PUT",
               "path": "uploadMixedOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "mixed",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathString",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathString",
+                  "source": "path"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "pathNumber",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathNumber",
+                  "source": "path"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "headerString",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerString",
+                  "source": "header"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "headerNumber",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerNumber",
+                  "source": "header"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "headerRecord",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerRecord",
+                  "source": "header"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "queryString",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "queryString",
+                  "source": "query"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "queryNumber",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "int",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "queryNumber",
+                  "source": "query"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "queryRecord",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "SimpleRecord",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "queryRecord",
+                  "source": "query"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "dataBlob",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "stream",
+              "type": "blob",
+              "doc": ""
+            }
+          ],
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "mixed/${pathString}/${pathNumber}",
               "results": []
             }
           }

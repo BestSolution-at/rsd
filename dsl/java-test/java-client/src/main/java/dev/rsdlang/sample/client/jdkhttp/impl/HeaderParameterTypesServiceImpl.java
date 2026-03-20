@@ -4,6 +4,7 @@ package dev.rsdlang.sample.client.jdkhttp.impl;
 import java.io.IOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.net.URI;
 import java.time.LocalDate;
@@ -2453,6 +2454,54 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $response = this.client.send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public void mixed(String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, SimpleRecord.Data body, String queryString, double queryNumber, SimpleRecord.Data queryRecord) {
+		Objects.requireNonNull(pathString, "pathString must not be null");
+		Objects.requireNonNull(headerString, "headerString must not be null");
+		Objects.requireNonNull(headerRecord, "headerRecord must not be null");
+		Objects.requireNonNull(body, "body must not be null");
+		Objects.requireNonNull(queryString, "queryString must not be null");
+		Objects.requireNonNull(queryRecord, "queryRecord must not be null");
+
+		var $path = "%s/api/headerparametertypes/mixed/%s/%s".formatted(
+				this.baseURI,
+				ServiceUtils.encodeURIComponent(Objects.toString(pathString)),
+				ServiceUtils.encodeURIComponent(Objects.toString(pathNumber)));
+
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		$queryParams.append("queryString", queryString);
+		$queryParams.append("queryNumber", queryNumber);
+		$queryParams.append("queryRecord", _JsonUtils.encodeValue(queryRecord, "application/json"));
+
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerString", "\"" + ServiceUtils.encodeAsciiString(headerString) + "\"");
+		$headerParams.put("headerNumber", String.format("%s", headerNumber));
+		$headerParams.put("headerRecord", ServiceUtils.encodeBase64(_JsonUtils.encodeValue(headerRecord, "application/json")));
+		var $headers = ServiceUtils.toHeaders($headerParams);
+
+		var $uri = URI.create($path + $queryParams.toQueryString());
+		try {
+			var $contentType = "application/json";
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(body, "application/json"));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Content-Type", $contentType)
+					.POST($body);
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
+
+			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 204) {
+				return;
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {

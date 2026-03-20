@@ -37,10 +37,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	private final UploadMixedOptHandler uploadMixedOptHandler;
 	private final UploadMixedNilHandler uploadMixedNilHandler;
 	private final UploadMixedOptNilHandler uploadMixedOptNilHandler;
+	private final MixedHandler mixedHandler;
 	private final DownloadFileHandler downloadFileHandler;
 	private final DownloadBlobHandler downloadBlobHandler;
 
-	public BinaryTypesServiceImpl(UploadFileHandler uploadFileHandler, UploadFileOptHandler uploadFileOptHandler, UploadFileNilHandler uploadFileNilHandler, UploadFileOptNilHandler uploadFileOptNilHandler, UploadBlobHandler uploadBlobHandler, UploadBlobOptHandler uploadBlobOptHandler, UploadBlobNilHandler uploadBlobNilHandler, UploadBlobOptNilHandler uploadBlobOptNilHandler, UploadFileListHandler uploadFileListHandler, UploadFileListOptHandler uploadFileListOptHandler, UploadFileListNilHandler uploadFileListNilHandler, UploadFileListOptNilHandler uploadFileListOptNilHandler, UploadBlobListHandler uploadBlobListHandler, UploadBlobListOptHandler uploadBlobListOptHandler, UploadBlobListNilHandler uploadBlobListNilHandler, UploadBlobListOptNilHandler uploadBlobListOptNilHandler, UploadMixedHandler uploadMixedHandler, UploadMixedOptHandler uploadMixedOptHandler, UploadMixedNilHandler uploadMixedNilHandler, UploadMixedOptNilHandler uploadMixedOptNilHandler, DownloadFileHandler downloadFileHandler, DownloadBlobHandler downloadBlobHandler) {
+	public BinaryTypesServiceImpl(UploadFileHandler uploadFileHandler, UploadFileOptHandler uploadFileOptHandler, UploadFileNilHandler uploadFileNilHandler, UploadFileOptNilHandler uploadFileOptNilHandler, UploadBlobHandler uploadBlobHandler, UploadBlobOptHandler uploadBlobOptHandler, UploadBlobNilHandler uploadBlobNilHandler, UploadBlobOptNilHandler uploadBlobOptNilHandler, UploadFileListHandler uploadFileListHandler, UploadFileListOptHandler uploadFileListOptHandler, UploadFileListNilHandler uploadFileListNilHandler, UploadFileListOptNilHandler uploadFileListOptNilHandler, UploadBlobListHandler uploadBlobListHandler, UploadBlobListOptHandler uploadBlobListOptHandler, UploadBlobListNilHandler uploadBlobListNilHandler, UploadBlobListOptNilHandler uploadBlobListOptNilHandler, UploadMixedHandler uploadMixedHandler, UploadMixedOptHandler uploadMixedOptHandler, UploadMixedNilHandler uploadMixedNilHandler, UploadMixedOptNilHandler uploadMixedOptNilHandler, MixedHandler mixedHandler, DownloadFileHandler downloadFileHandler, DownloadBlobHandler downloadBlobHandler) {
 		this.uploadFileHandler = uploadFileHandler;
 		this.uploadFileOptHandler = uploadFileOptHandler;
 		this.uploadFileNilHandler = uploadFileNilHandler;
@@ -61,6 +62,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		this.uploadMixedOptHandler = uploadMixedOptHandler;
 		this.uploadMixedNilHandler = uploadMixedNilHandler;
 		this.uploadMixedOptNilHandler = uploadMixedOptNilHandler;
+		this.mixedHandler = mixedHandler;
 		this.downloadFileHandler = downloadFileHandler;
 		this.downloadBlobHandler = downloadBlobHandler;
 	}
@@ -166,6 +168,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	@Override
+	public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob) {
+		mixedHandler.mixed(_factory, pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob);
+	}
+
+	@Override
 	public RSDFile downloadFile(BuilderFactory _factory) {
 		return downloadFileHandler.downloadFile(_factory);
 	}
@@ -253,6 +260,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public interface UploadMixedOptNilHandler {
 		public UploadMixedResult.Data uploadMixedOptNil(BuilderFactory _factory, _Base.Nillable<String> text, _Base.Nillable<Integer> number, _Base.Nillable<SimpleRecord.Data> rec, _Base.Nillable<List<String>> textList, _Base.Nillable<List<Integer>> numberList, _Base.Nillable<List<SimpleRecord.Data>> recList, _Base.Nillable<RSDFile> dataFile, _Base.Nillable<RSDBlob> dataBlob);
+	}
+
+	public interface MixedHandler {
+		public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob);
 	}
 
 	public interface DownloadFileHandler {

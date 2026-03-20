@@ -103,7 +103,7 @@ function _generateResource(
 		cBody.appendNewLine();
 
 		if (contentTypeEncodings.length > 1) {
-			cBody.append('public static String computeResponseContentType(List<String> acceptHeader) {', NL);
+			cBody.append('static String computeResponseContentType(List<String> acceptHeader) {', NL);
 
 			cBody.indent(mBody => {
 				mBody.append('return acceptHeader.stream()', NL);
@@ -111,13 +111,33 @@ function _generateResource(
 					tmp.indent(inner => {
 						inner.append('.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)', NL);
 						inner.append('.map(String::trim)', NL);
-						inner.append('.filter(e -> "application/vnd.msgpack".equals(e) || "application/json".equals(e))', NL);
+						inner.append(`.filter(e -> ${contentTypeEncodings.map(e => `"${e}".equals(e)`).join(' || ')})`, NL);
 						inner.append('.findFirst()', NL);
-						inner.append('.orElse("application/json");', NL);
+						inner.append(`.orElse("${contentTypeEncodings[0]}");`, NL);
 					});
 				});
 			});
 			cBody.append('}', NL, NL);
+
+			if (
+				s.operations
+					.flatMap(o => o.parameters)
+					.filter(p => p.variant !== 'stream')
+					.some(p => p.meta?.rest?.source === undefined)
+			) {
+				cBody.append('static String computeRequestContentType(String contentTypeHeader) {', NL);
+				cBody.indent(mBody => {
+					mBody.append('return switch (contentTypeHeader) {', NL);
+					mBody.indent(switchBody => {
+						contentTypeEncodings.forEach(e => {
+							switchBody.append(`case "${e}" -> "${e}";`, NL);
+						});
+						switchBody.append(`default -> "${contentTypeEncodings[0]}";`, NL);
+					});
+					mBody.append('};', NL);
+				});
+				cBody.append('}', NL, NL);
+			}
 		}
 
 		s.operations
@@ -145,15 +165,13 @@ function _generateResource(
 
 				cBody.append(`@${fqn(`jakarta.ws.rs.${o.meta.rest.method}`)}`, NL);
 				if (o.meta.rest.path) {
-					cBody.append(`@${Path}("${o.meta.rest.path.replace('$', '')}")`, NL);
+					cBody.append(`@${Path}("${o.meta.rest.path.replaceAll('$', '')}")`, NL);
 				}
 				cBody.append(
 					`@${fqn('jakarta.ws.rs.Consumes')}(${fqn('jakarta.ws.rs.core.MediaType')}.MULTIPART_FORM_DATA)`,
 					NL,
 				);
-				const params: string[] = o.parameters
-					.filter(p => p.variant === 'stream')
-					.map(p => toParameter(p, true, artifactConfig, fqn, true));
+				const params: string[] = o.parameters.map(p => toParameter(p, true, artifactConfig, fqn, true));
 				const nullableStreamParams = o.parameters
 					.filter(p => p.variant === 'stream' && p.optional && p.nullable)
 					.map(p => `@RestForm("_rsdNull-${p.name}") boolean $is${toFirstUpper(p.name)}Null`);
@@ -180,14 +198,16 @@ function _generateResource(
 						const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
 						mBody.append(
 							`var $payloadJson = ${_JsonUtils}.parseValue($_payload.filePath(), $_payload.contentType()).asJsonObject();`,
+							NL,
 						);
 						mBody.append(`var $payload = new ${Type}($payloadJson);`, NL);
-						o.parameters
+						/*o.parameters
 							.filter(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)
 							.forEach(p => {
 								mBody.append(`var ${p.name} = $payload.${p.name}();`, NL);
-							});
+							});*/
 					}
+
 					o.parameters.forEach(p => {
 						if (p.variant === 'stream') {
 							if (p.type === 'file') {
@@ -269,6 +289,20 @@ function _generateResource(
 									}
 								}
 							}
+						} else {
+							if (p.meta?.rest?.source === undefined) {
+								mBody.append(`var ${p.name} = $payload.${p.name}();`, NL);
+							} else if (p.variant === 'record' || p.variant === 'union') {
+								mBody.append(recordUnionParameter(p, artifactConfig, fqn, packageName, false, `"application/json"`));
+							} else if (p.variant === 'builtin') {
+								mBody.append(builtinParameter(p, fqn, packageName, false, `"application/json"`));
+							} else if (p.variant === 'enum') {
+								mBody.append(enumParameter(p, artifactConfig, fqn, packageName, false, `"application/json"`));
+							} else if (p.variant === 'inline-enum') {
+								mBody.append(inlineEnumParameter(p, o, Service, fqn, packageName, false, `"application/json"`));
+							} else {
+								mBody.append(scalarParameter(p, artifactConfig, fqn, packageName, false, `"application/json"`));
+							}
 						}
 					});
 					if (artifactConfig.scopeValues) {
@@ -347,11 +381,15 @@ function generateResourceMethod(
 	if (artifactConfig.scopeValues) {
 		serviceParams.unshift(...artifactConfig.scopeValues.map(v => `$${v.name}`));
 	}
-
+	let contentTypeText = `"${contentEncodings[0]}"`;
 	if (contentEncodings.length > 1) {
 		const HeaderParam = fqn('jakarta.ws.rs.HeaderParam');
 		const List = fqn('java.util.List');
 		params.unshift(`@${HeaderParam}("Accept") ${List}<String> $acceptHeaders`);
+		if (o.parameters.some(p => p.meta?.rest?.source === undefined)) {
+			params.unshift(`@${HeaderParam}("Content-Type") String $contentTypeHeader`);
+			contentTypeText = 'computeRequestContentType($contentTypeHeader)';
+		}
 	}
 
 	const cBody = new CompositeGeneratorNode();
@@ -383,21 +421,36 @@ function generateResourceMethod(
 				return;
 			}
 			if (p.variant === 'record' || p.variant === 'union') {
-				mBody.append(recordUnionParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined));
+				mBody.append(
+					recordUnionParameter(
+						p,
+						artifactConfig,
+						fqn,
+						packageName,
+						p.meta?.rest?.source === undefined,
+						contentTypeText,
+					),
+				);
 			} else if (p.variant === 'builtin') {
-				mBody.append(builtinParameter(p, fqn, packageName, p.meta?.rest?.source === undefined));
+				mBody.append(builtinParameter(p, fqn, packageName, p.meta?.rest?.source === undefined, contentTypeText));
 			} else if (p.variant === 'enum') {
-				mBody.append(enumParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined));
+				mBody.append(
+					enumParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined, contentTypeText),
+				);
 			} else if (p.variant === 'inline-enum') {
-				mBody.append(inlineEnumParameter(p, o, Service, fqn, packageName, p.meta?.rest?.source === undefined));
+				mBody.append(
+					inlineEnumParameter(p, o, Service, fqn, packageName, p.meta?.rest?.source === undefined, contentTypeText),
+				);
 			} else if (p.variant === 'scalar') {
-				mBody.append(scalarParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined));
+				mBody.append(
+					scalarParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined, contentTypeText),
+				);
 			}
 		});
 		if (multiBody) {
 			const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
 			const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
-			mBody.append(`var dto = ${_JsonUtils}.parseObject(data, "application/json", ${Type}::new);`, NL);
+			mBody.append(`var dto = ${_JsonUtils}.parseObject(data, ${contentTypeText}, ${Type}::new);`, NL);
 		}
 		if (artifactConfig.scopeValues) {
 			artifactConfig.scopeValues.forEach(v => {
@@ -435,6 +488,7 @@ function enumParameter(
 	fqn: (type: string) => string,
 	packageName: string,
 	asJSON: boolean,
+	contentTypeText: string,
 ) {
 	const t = fqn(`${artifactConfig.rootPackageName}.service.model.${p.type}`);
 	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
@@ -442,13 +496,25 @@ function enumParameter(
 	if (p.array) {
 		if (asJSON) {
 			if (p.optional && p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, "application/json", ${t}::valueOf);`, NL);
+				node.append(
+					`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, computeRequestContentType($contentTypeHeader), ${t}::valueOf);`,
+					NL,
+				);
 			} else if (p.optional) {
-				node.append(`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, "application/json", ${t}::valueOf);`, NL);
+				node.append(
+					`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, computeRequestContentType($contentTypeHeader), ${t}::valueOf);`,
+					NL,
+				);
 			} else if (p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, "application/json", ${t}::valueOf);`, NL);
+				node.append(
+					`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, computeRequestContentType($contentTypeHeader), ${t}::valueOf);`,
+					NL,
+				);
 			} else {
-				node.append(`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, "application/json", ${t}::valueOf);`, NL);
+				node.append(
+					`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, computeRequestContentType($contentTypeHeader), ${t}::valueOf);`,
+					NL,
+				);
 			}
 		} else {
 			if (p.optional && p.nullable) {
@@ -465,7 +531,7 @@ function enumParameter(
 		const mimeType =
 			p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'path' || p.meta?.rest?.source === 'query'
 				? ''
-				: ', "application/json"';
+				: `, ${contentTypeText}`;
 		if (p.optional && p.nullable) {
 			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
 		} else if (p.optional) {
@@ -484,6 +550,7 @@ function builtinParameter(
 	fqn: (type: string) => string,
 	packageName: string,
 	asJSON: boolean,
+	contentTypeText: string,
 ) {
 	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
@@ -562,7 +629,7 @@ function builtinParameter(
 		const mimeType =
 			p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'path' || p.meta?.rest?.source === 'query'
 				? ''
-				: ', "application/json"';
+				: `, ${contentTypeText}`;
 		if (p.optional && p.nullable) {
 			node.append(
 				`var ${p.name} = ${_Util}.parseNil${toFirstUpper(toCamelCaseIdentifier(p.type))}(_${p.name}${transformer}${mimeType});`,
@@ -594,6 +661,7 @@ function recordUnionParameter(
 	fqn: (type: string) => string,
 	packageName: string,
 	asJSON: boolean,
+	contentTypeText: string,
 ) {
 	const type = computeParameterAPIType(
 		p,
@@ -608,22 +676,22 @@ function recordUnionParameter(
 		if (asJSON) {
 			if (p.optional && p.nullable) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseNilObjects(_${p.name}, "application/json", $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseNilObjects(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
 					NL,
 				);
 			} else if (p.optional) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseOptObjects(_${p.name}, "application/json", $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseOptObjects(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
 					NL,
 				);
 			} else if (p.nullable) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseNullObjects(_${p.name}, "application/json", $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseNullObjects(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
 					NL,
 				);
 			} else {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseObjects(_${p.name}, "application/json", $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseObjects(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
 					NL,
 				);
 			}
@@ -653,22 +721,22 @@ function recordUnionParameter(
 			} else {
 				if (p.optional && p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapNilObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapNilObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else if (p.optional) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapOptObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapOptObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else if (p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapNullObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapNullObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`var ${p.name} = _RestUtils.mapObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				}
@@ -678,22 +746,22 @@ function recordUnionParameter(
 		if (asJSON) {
 			if (p.optional && p.nullable) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseNilObject(_${p.name}, "application/json", $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseNilObject(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
 					NL,
 				);
 			} else if (p.optional) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseOptObject(_${p.name}, "application/json", $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseOptObject(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
 					NL,
 				);
 			} else if (p.nullable) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseNullObject(_${p.name}, "application/json", $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseNullObject(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
 					NL,
 				);
 			} else {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseObject(_${p.name}, "application/json", $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseObject(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
 					NL,
 				);
 			}
@@ -723,22 +791,22 @@ function recordUnionParameter(
 			} else {
 				if (p.optional && p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> _JsonUtils.parseObject($o, "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> _JsonUtils.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else if (p.optional) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseOptObject(_${p.name}, $o -> _JsonUtils.parseObject($o, "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseOptObject(_${p.name}, $o -> _JsonUtils.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else if (p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseNullObject(_${p.name}, $o -> _JsonUtils.parseObject($o, "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseNullObject(_${p.name}, $o -> _JsonUtils.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`var ${p.name} = _RestUtils.parseObject(_${p.name}, $o -> _JsonUtils.parseObject($o, "application/json", $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseObject(_${p.name}, $o -> _JsonUtils.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
 						NL,
 					);
 				}
@@ -755,6 +823,7 @@ function inlineEnumParameter(
 	fqn: (type: string) => string,
 	packageName: string,
 	asJSON: boolean,
+	contentTypeText: string,
 ) {
 	const t = `${Service}.` + toFirstUpper(o.name) + '_' + toFirstUpper(p.name) + '_Param$';
 	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
@@ -762,13 +831,13 @@ function inlineEnumParameter(
 	if (p.array) {
 		if (asJSON) {
 			if (p.optional && p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, "application/json", ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, ${contentTypeText}, ${t}::valueOf);`, NL);
 			} else if (p.optional) {
-				node.append(`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, "application/json", ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, ${contentTypeText}, ${t}::valueOf);`, NL);
 			} else if (p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, "application/json", ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, ${contentTypeText}, ${t}::valueOf);`, NL);
 			} else {
-				node.append(`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, "application/json", ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, ${contentTypeText}, ${t}::valueOf);`, NL);
 			}
 		} else {
 			if (p.optional && p.nullable) {
@@ -785,7 +854,7 @@ function inlineEnumParameter(
 		const mimeType =
 			p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'path' || p.meta?.rest?.source === 'query'
 				? ''
-				: ', "application/json"';
+				: `, ${contentTypeText}`;
 		if (p.optional && p.nullable) {
 			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
 		} else if (p.optional) {
@@ -805,6 +874,7 @@ function scalarParameter(
 	fqn: (type: string) => string,
 	packageName: string,
 	asJSON: boolean,
+	contentTypeText: string,
 ) {
 	const type = p.type;
 	const t = resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, false);
@@ -813,13 +883,13 @@ function scalarParameter(
 	if (p.array) {
 		if (asJSON) {
 			if (p.optional && p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, "application/json", ${t}::of);`, NL);
+				node.append(`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, ${contentTypeText}, ${t}::of);`, NL);
 			} else if (p.optional) {
-				node.append(`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, "application/json", ${t}::of);`, NL);
+				node.append(`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, ${contentTypeText}, ${t}::of);`, NL);
 			} else if (p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, "application/json", ${t}::of);`, NL);
+				node.append(`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, ${contentTypeText}, ${t}::of);`, NL);
 			} else {
-				node.append(`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, "application/json", ${t}::of);`, NL);
+				node.append(`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, ${contentTypeText}, ${t}::of);`, NL);
 			}
 		} else {
 			const transformerPre = p.meta?.rest?.source === 'header' ? `${_Util}.preprocessEscapedAscii(` : '';
@@ -853,7 +923,7 @@ function scalarParameter(
 		const mimeType =
 			p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'path' || p.meta?.rest?.source === 'query'
 				? ''
-				: ', "application/json"';
+				: `, ${contentTypeText}`;
 		if (p.optional && p.nullable) {
 			node.append(
 				`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${transformerPre}${t}::of${transformerPost});`,

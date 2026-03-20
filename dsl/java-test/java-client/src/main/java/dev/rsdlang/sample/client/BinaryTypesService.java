@@ -183,6 +183,17 @@ public interface BinaryTypesService extends BaseService {
 			RSDFile dataFile, 
 			RSDBlob dataBlob);
 
+	public void mixed(
+			String pathString, 
+			int pathNumber, 
+			String headerString, 
+			int headerNumber, 
+			SimpleRecord.Data headerRecord, 
+			String queryString, 
+			int queryNumber, 
+			SimpleRecord.Data queryRecord, 
+			RSDBlob dataBlob);
+
 	public RSDFile downloadFile();
 
 	public RSDBlob downloadBlob();
