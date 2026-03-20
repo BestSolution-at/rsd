@@ -305,18 +305,18 @@ function _generateResource(
 										fqn,
 										packageName,
 										false,
-										`"application/json"`,
+										'/*WILL NOT BE USED*/',
 										headerQueryContentType,
 									),
 								);
 							} else if (p.variant === 'builtin') {
-								mBody.append(builtinParameter(p, fqn, packageName, false, `"application/json"`));
+								mBody.append(builtinParameter(p, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
 							} else if (p.variant === 'enum') {
-								mBody.append(enumParameter(p, artifactConfig, fqn, packageName, false, `"application/json"`));
+								mBody.append(enumParameter(p, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
 							} else if (p.variant === 'inline-enum') {
-								mBody.append(inlineEnumParameter(p, o, Service, fqn, packageName, false, `"application/json"`));
+								mBody.append(inlineEnumParameter(p, o, Service, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
 							} else {
-								mBody.append(scalarParameter(p, artifactConfig, fqn, packageName, false, `"application/json"`));
+								mBody.append(scalarParameter(p, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
 							}
 						}
 					});
@@ -586,22 +586,22 @@ function builtinParameter(
 		if (asJSON) {
 			if (p.optional && p.nullable) {
 				node.append(
-					`var ${p.name} = ${_Util}.parseNil${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, "application/json");`,
+					`var ${p.name} = ${_Util}.parseNil${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, ${contentTypeText});`,
 					NL,
 				);
 			} else if (p.optional) {
 				node.append(
-					`var ${p.name} = ${_Util}.parseOpt${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, "application/json");`,
+					`var ${p.name} = ${_Util}.parseOpt${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, ${contentTypeText});`,
 					NL,
 				);
 			} else if (p.nullable) {
 				node.append(
-					`var ${p.name} = ${_Util}.parseNull${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, "application/json");`,
+					`var ${p.name} = ${_Util}.parseNull${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, ${contentTypeText});`,
 					NL,
 				);
 			} else {
 				node.append(
-					`var ${p.name} = ${_Util}.parse${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, "application/json");`,
+					`var ${p.name} = ${_Util}.parse${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, ${contentTypeText});`,
 					NL,
 				);
 			}

@@ -65,7 +65,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyBoolean) {
-		var bodyBoolean = _JsonUtils.parseBooleans(_bodyBoolean, "application/json");
+		var bodyBoolean = _JsonUtils.parseBooleans(_bodyBoolean, computeRequestContentType($contentTypeHeader));
 		var result = service.listBooleanBodyParam(builderFactory, bodyBoolean);
 		return responseBuilder.listBooleanBodyParam(result, computeResponseContentType($acceptHeaders), bodyBoolean).build();
 	}
@@ -76,7 +76,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyBoolean) {
-		var bodyBoolean = _JsonUtils.parseOptBooleans(_bodyBoolean, "application/json");
+		var bodyBoolean = _JsonUtils.parseOptBooleans(_bodyBoolean, computeRequestContentType($contentTypeHeader));
 		var result = service.listBooleanBodyParamOpt(builderFactory, bodyBoolean);
 		return responseBuilder.listBooleanBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyBoolean).build();
 	}
@@ -87,7 +87,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyBoolean) {
-		var bodyBoolean = _JsonUtils.parseNullBooleans(_bodyBoolean, "application/json");
+		var bodyBoolean = _JsonUtils.parseNullBooleans(_bodyBoolean, computeRequestContentType($contentTypeHeader));
 		var result = service.listBooleanBodyParamNil(builderFactory, bodyBoolean);
 		return responseBuilder.listBooleanBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyBoolean).build();
 	}
@@ -98,7 +98,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyBoolean) {
-		var bodyBoolean = _JsonUtils.parseNilBooleans(_bodyBoolean, "application/json");
+		var bodyBoolean = _JsonUtils.parseNilBooleans(_bodyBoolean, computeRequestContentType($contentTypeHeader));
 		var result = service.listBooleanBodyParamOptNil(builderFactory, bodyBoolean);
 		return responseBuilder.listBooleanBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyBoolean).build();
 	}
@@ -109,7 +109,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyShort) {
-		var bodyShort = _JsonUtils.parseShorts(_bodyShort, "application/json");
+		var bodyShort = _JsonUtils.parseShorts(_bodyShort, computeRequestContentType($contentTypeHeader));
 		var result = service.listShortBodyParam(builderFactory, bodyShort);
 		return responseBuilder.listShortBodyParam(result, computeResponseContentType($acceptHeaders), bodyShort).build();
 	}
@@ -120,7 +120,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyShort) {
-		var bodyShort = _JsonUtils.parseOptShorts(_bodyShort, "application/json");
+		var bodyShort = _JsonUtils.parseOptShorts(_bodyShort, computeRequestContentType($contentTypeHeader));
 		var result = service.listShortBodyParamOpt(builderFactory, bodyShort);
 		return responseBuilder.listShortBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyShort).build();
 	}
@@ -131,7 +131,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyShort) {
-		var bodyShort = _JsonUtils.parseNullShorts(_bodyShort, "application/json");
+		var bodyShort = _JsonUtils.parseNullShorts(_bodyShort, computeRequestContentType($contentTypeHeader));
 		var result = service.listShortBodyParamNil(builderFactory, bodyShort);
 		return responseBuilder.listShortBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyShort).build();
 	}
@@ -142,7 +142,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyShort) {
-		var bodyShort = _JsonUtils.parseNilShorts(_bodyShort, "application/json");
+		var bodyShort = _JsonUtils.parseNilShorts(_bodyShort, computeRequestContentType($contentTypeHeader));
 		var result = service.listShortBodyParamOptNil(builderFactory, bodyShort);
 		return responseBuilder.listShortBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyShort).build();
 	}
@@ -153,7 +153,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyInt) {
-		var bodyInt = _JsonUtils.parseInts(_bodyInt, "application/json");
+		var bodyInt = _JsonUtils.parseInts(_bodyInt, computeRequestContentType($contentTypeHeader));
 		var result = service.listIntBodyParam(builderFactory, bodyInt);
 		return responseBuilder.listIntBodyParam(result, computeResponseContentType($acceptHeaders), bodyInt).build();
 	}
@@ -164,7 +164,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyInt) {
-		var bodyInt = _JsonUtils.parseOptInts(_bodyInt, "application/json");
+		var bodyInt = _JsonUtils.parseOptInts(_bodyInt, computeRequestContentType($contentTypeHeader));
 		var result = service.listIntBodyParamOpt(builderFactory, bodyInt);
 		return responseBuilder.listIntBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyInt).build();
 	}
@@ -175,7 +175,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyInt) {
-		var bodyInt = _JsonUtils.parseNullInts(_bodyInt, "application/json");
+		var bodyInt = _JsonUtils.parseNullInts(_bodyInt, computeRequestContentType($contentTypeHeader));
 		var result = service.listIntBodyParamNil(builderFactory, bodyInt);
 		return responseBuilder.listIntBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyInt).build();
 	}
@@ -186,7 +186,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyInt) {
-		var bodyInt = _JsonUtils.parseNilInts(_bodyInt, "application/json");
+		var bodyInt = _JsonUtils.parseNilInts(_bodyInt, computeRequestContentType($contentTypeHeader));
 		var result = service.listIntBodyParamOptNil(builderFactory, bodyInt);
 		return responseBuilder.listIntBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyInt).build();
 	}
@@ -197,7 +197,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLong) {
-		var bodyLong = _JsonUtils.parseLongs(_bodyLong, "application/json");
+		var bodyLong = _JsonUtils.parseLongs(_bodyLong, computeRequestContentType($contentTypeHeader));
 		var result = service.listLongBodyParam(builderFactory, bodyLong);
 		return responseBuilder.listLongBodyParam(result, computeResponseContentType($acceptHeaders), bodyLong).build();
 	}
@@ -208,7 +208,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLong) {
-		var bodyLong = _JsonUtils.parseOptLongs(_bodyLong, "application/json");
+		var bodyLong = _JsonUtils.parseOptLongs(_bodyLong, computeRequestContentType($contentTypeHeader));
 		var result = service.listLongBodyParamOpt(builderFactory, bodyLong);
 		return responseBuilder.listLongBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyLong).build();
 	}
@@ -219,7 +219,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLong) {
-		var bodyLong = _JsonUtils.parseNullLongs(_bodyLong, "application/json");
+		var bodyLong = _JsonUtils.parseNullLongs(_bodyLong, computeRequestContentType($contentTypeHeader));
 		var result = service.listLongBodyParamNil(builderFactory, bodyLong);
 		return responseBuilder.listLongBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyLong).build();
 	}
@@ -230,7 +230,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLong) {
-		var bodyLong = _JsonUtils.parseNilLongs(_bodyLong, "application/json");
+		var bodyLong = _JsonUtils.parseNilLongs(_bodyLong, computeRequestContentType($contentTypeHeader));
 		var result = service.listLongBodyParamOptNil(builderFactory, bodyLong);
 		return responseBuilder.listLongBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyLong).build();
 	}
@@ -241,7 +241,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyFloat) {
-		var bodyFloat = _JsonUtils.parseFloats(_bodyFloat, "application/json");
+		var bodyFloat = _JsonUtils.parseFloats(_bodyFloat, computeRequestContentType($contentTypeHeader));
 		var result = service.listFloatBodyParam(builderFactory, bodyFloat);
 		return responseBuilder.listFloatBodyParam(result, computeResponseContentType($acceptHeaders), bodyFloat).build();
 	}
@@ -252,7 +252,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyFloat) {
-		var bodyFloat = _JsonUtils.parseOptFloats(_bodyFloat, "application/json");
+		var bodyFloat = _JsonUtils.parseOptFloats(_bodyFloat, computeRequestContentType($contentTypeHeader));
 		var result = service.listFloatBodyParamOpt(builderFactory, bodyFloat);
 		return responseBuilder.listFloatBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyFloat).build();
 	}
@@ -263,7 +263,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyFloat) {
-		var bodyFloat = _JsonUtils.parseNullFloats(_bodyFloat, "application/json");
+		var bodyFloat = _JsonUtils.parseNullFloats(_bodyFloat, computeRequestContentType($contentTypeHeader));
 		var result = service.listFloatBodyParamNil(builderFactory, bodyFloat);
 		return responseBuilder.listFloatBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyFloat).build();
 	}
@@ -274,7 +274,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyFloat) {
-		var bodyFloat = _JsonUtils.parseNilFloats(_bodyFloat, "application/json");
+		var bodyFloat = _JsonUtils.parseNilFloats(_bodyFloat, computeRequestContentType($contentTypeHeader));
 		var result = service.listFloatBodyParamOptNil(builderFactory, bodyFloat);
 		return responseBuilder.listFloatBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyFloat).build();
 	}
@@ -285,7 +285,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyDouble) {
-		var bodyDouble = _JsonUtils.parseDoubles(_bodyDouble, "application/json");
+		var bodyDouble = _JsonUtils.parseDoubles(_bodyDouble, computeRequestContentType($contentTypeHeader));
 		var result = service.listDoubleBodyParam(builderFactory, bodyDouble);
 		return responseBuilder.listDoubleBodyParam(result, computeResponseContentType($acceptHeaders), bodyDouble).build();
 	}
@@ -296,7 +296,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyDouble) {
-		var bodyDouble = _JsonUtils.parseOptDoubles(_bodyDouble, "application/json");
+		var bodyDouble = _JsonUtils.parseOptDoubles(_bodyDouble, computeRequestContentType($contentTypeHeader));
 		var result = service.listDoubleBodyParamOpt(builderFactory, bodyDouble);
 		return responseBuilder.listDoubleBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyDouble).build();
 	}
@@ -307,7 +307,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyDouble) {
-		var bodyDouble = _JsonUtils.parseNullDoubles(_bodyDouble, "application/json");
+		var bodyDouble = _JsonUtils.parseNullDoubles(_bodyDouble, computeRequestContentType($contentTypeHeader));
 		var result = service.listDoubleBodyParamNil(builderFactory, bodyDouble);
 		return responseBuilder.listDoubleBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyDouble).build();
 	}
@@ -318,7 +318,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyDouble) {
-		var bodyDouble = _JsonUtils.parseNilDoubles(_bodyDouble, "application/json");
+		var bodyDouble = _JsonUtils.parseNilDoubles(_bodyDouble, computeRequestContentType($contentTypeHeader));
 		var result = service.listDoubleBodyParamOptNil(builderFactory, bodyDouble);
 		return responseBuilder.listDoubleBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyDouble).build();
 	}
@@ -329,7 +329,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyString) {
-		var bodyString = _JsonUtils.parseStrings(_bodyString, "application/json");
+		var bodyString = _JsonUtils.parseStrings(_bodyString, computeRequestContentType($contentTypeHeader));
 		var result = service.listStringBodyParam(builderFactory, bodyString);
 		return responseBuilder.listStringBodyParam(result, computeResponseContentType($acceptHeaders), bodyString).build();
 	}
@@ -340,7 +340,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyString) {
-		var bodyString = _JsonUtils.parseOptStrings(_bodyString, "application/json");
+		var bodyString = _JsonUtils.parseOptStrings(_bodyString, computeRequestContentType($contentTypeHeader));
 		var result = service.listStringBodyParamOpt(builderFactory, bodyString);
 		return responseBuilder.listStringBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyString).build();
 	}
@@ -351,7 +351,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyString) {
-		var bodyString = _JsonUtils.parseNullStrings(_bodyString, "application/json");
+		var bodyString = _JsonUtils.parseNullStrings(_bodyString, computeRequestContentType($contentTypeHeader));
 		var result = service.listStringBodyParamNil(builderFactory, bodyString);
 		return responseBuilder.listStringBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyString).build();
 	}
@@ -362,7 +362,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyString) {
-		var bodyString = _JsonUtils.parseNilStrings(_bodyString, "application/json");
+		var bodyString = _JsonUtils.parseNilStrings(_bodyString, computeRequestContentType($contentTypeHeader));
 		var result = service.listStringBodyParamOptNil(builderFactory, bodyString);
 		return responseBuilder.listStringBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyString).build();
 	}
@@ -373,7 +373,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDate) {
-		var bodyLocalDate = _JsonUtils.parseLocalDates(_bodyLocalDate, "application/json");
+		var bodyLocalDate = _JsonUtils.parseLocalDates(_bodyLocalDate, computeRequestContentType($contentTypeHeader));
 		var result = service.listLocalDateBodyParam(builderFactory, bodyLocalDate);
 		return responseBuilder.listLocalDateBodyParam(result, computeResponseContentType($acceptHeaders), bodyLocalDate).build();
 	}
@@ -384,7 +384,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDate) {
-		var bodyLocalDate = _JsonUtils.parseOptLocalDates(_bodyLocalDate, "application/json");
+		var bodyLocalDate = _JsonUtils.parseOptLocalDates(_bodyLocalDate, computeRequestContentType($contentTypeHeader));
 		var result = service.listLocalDateBodyParamOpt(builderFactory, bodyLocalDate);
 		return responseBuilder.listLocalDateBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyLocalDate).build();
 	}
@@ -395,7 +395,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDate) {
-		var bodyLocalDate = _JsonUtils.parseNullLocalDates(_bodyLocalDate, "application/json");
+		var bodyLocalDate = _JsonUtils.parseNullLocalDates(_bodyLocalDate, computeRequestContentType($contentTypeHeader));
 		var result = service.listLocalDateBodyParamNil(builderFactory, bodyLocalDate);
 		return responseBuilder.listLocalDateBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyLocalDate).build();
 	}
@@ -406,7 +406,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDate) {
-		var bodyLocalDate = _JsonUtils.parseNilLocalDates(_bodyLocalDate, "application/json");
+		var bodyLocalDate = _JsonUtils.parseNilLocalDates(_bodyLocalDate, computeRequestContentType($contentTypeHeader));
 		var result = service.listLocalDateBodyParamOptNil(builderFactory, bodyLocalDate);
 		return responseBuilder.listLocalDateBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyLocalDate).build();
 	}
@@ -417,7 +417,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDateTime) {
-		var bodyLocalDateTime = _JsonUtils.parseLocalDateTimes(_bodyLocalDateTime, "application/json");
+		var bodyLocalDateTime = _JsonUtils.parseLocalDateTimes(_bodyLocalDateTime, computeRequestContentType($contentTypeHeader));
 		var result = service.listLocalDateTimeBodyParam(builderFactory, bodyLocalDateTime);
 		return responseBuilder.listLocalDateTimeBodyParam(result, computeResponseContentType($acceptHeaders), bodyLocalDateTime).build();
 	}
@@ -428,7 +428,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDateTime) {
-		var bodyLocalDateTime = _JsonUtils.parseOptLocalDateTimes(_bodyLocalDateTime, "application/json");
+		var bodyLocalDateTime = _JsonUtils.parseOptLocalDateTimes(_bodyLocalDateTime, computeRequestContentType($contentTypeHeader));
 		var result = service.listLocalDateTimeBodyParamOpt(builderFactory, bodyLocalDateTime);
 		return responseBuilder.listLocalDateTimeBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyLocalDateTime).build();
 	}
@@ -439,7 +439,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDateTime) {
-		var bodyLocalDateTime = _JsonUtils.parseNullLocalDateTimes(_bodyLocalDateTime, "application/json");
+		var bodyLocalDateTime = _JsonUtils.parseNullLocalDateTimes(_bodyLocalDateTime, computeRequestContentType($contentTypeHeader));
 		var result = service.listLocalDateTimeBodyParamNil(builderFactory, bodyLocalDateTime);
 		return responseBuilder.listLocalDateTimeBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyLocalDateTime).build();
 	}
@@ -450,7 +450,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDateTime) {
-		var bodyLocalDateTime = _JsonUtils.parseNilLocalDateTimes(_bodyLocalDateTime, "application/json");
+		var bodyLocalDateTime = _JsonUtils.parseNilLocalDateTimes(_bodyLocalDateTime, computeRequestContentType($contentTypeHeader));
 		var result = service.listLocalDateTimeBodyParamOptNil(builderFactory, bodyLocalDateTime);
 		return responseBuilder.listLocalDateTimeBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyLocalDateTime).build();
 	}
@@ -461,7 +461,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyZonedDateTime) {
-		var bodyZonedDateTime = _JsonUtils.parseZonedDateTimes(_bodyZonedDateTime, "application/json");
+		var bodyZonedDateTime = _JsonUtils.parseZonedDateTimes(_bodyZonedDateTime, computeRequestContentType($contentTypeHeader));
 		var result = service.listZonedDateTimeBodyParam(builderFactory, bodyZonedDateTime);
 		return responseBuilder.listZonedDateTimeBodyParam(result, computeResponseContentType($acceptHeaders), bodyZonedDateTime).build();
 	}
@@ -472,7 +472,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyZonedDateTime) {
-		var bodyZonedDateTime = _JsonUtils.parseOptZonedDateTimes(_bodyZonedDateTime, "application/json");
+		var bodyZonedDateTime = _JsonUtils.parseOptZonedDateTimes(_bodyZonedDateTime, computeRequestContentType($contentTypeHeader));
 		var result = service.listZonedDateTimeBodyParamOpt(builderFactory, bodyZonedDateTime);
 		return responseBuilder.listZonedDateTimeBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyZonedDateTime).build();
 	}
@@ -483,7 +483,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyZonedDateTime) {
-		var bodyZonedDateTime = _JsonUtils.parseNullZonedDateTimes(_bodyZonedDateTime, "application/json");
+		var bodyZonedDateTime = _JsonUtils.parseNullZonedDateTimes(_bodyZonedDateTime, computeRequestContentType($contentTypeHeader));
 		var result = service.listZonedDateTimeBodyParamNil(builderFactory, bodyZonedDateTime);
 		return responseBuilder.listZonedDateTimeBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyZonedDateTime).build();
 	}
@@ -494,7 +494,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyZonedDateTime) {
-		var bodyZonedDateTime = _JsonUtils.parseNilZonedDateTimes(_bodyZonedDateTime, "application/json");
+		var bodyZonedDateTime = _JsonUtils.parseNilZonedDateTimes(_bodyZonedDateTime, computeRequestContentType($contentTypeHeader));
 		var result = service.listZonedDateTimeBodyParamOptNil(builderFactory, bodyZonedDateTime);
 		return responseBuilder.listZonedDateTimeBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyZonedDateTime).build();
 	}
