@@ -26,279 +26,348 @@ import dev.rsdlang.sample.server.service.model.Union;
 @Singleton
 public class BodyParameterTypesResourceResponseBuilder {
 	public ResponseBuilder simpleBooleanBodyParam(boolean $result, String $contentType, boolean bodyBoolean) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleBooleanBodyParamOpt(NilResult $result, String $contentType, Optional<Boolean> bodyBoolean) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleBooleanBodyParamNil(NilResult $result, String $contentType, Optional<Boolean> bodyBoolean) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleBooleanBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<Boolean> bodyBoolean) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleShortBodyParam(short $result, String $contentType, short bodyShort) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleShortBodyParamOpt(NilResult $result, String $contentType, Optional<Short> bodyShort) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleShortBodyParamNil(NilResult $result, String $contentType, Optional<Short> bodyShort) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleShortBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<Short> bodyShort) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleIntBodyParam(int $result, String $contentType, int bodyInt) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleIntBodyParamOpt(NilResult $result, String $contentType, OptionalInt bodyInt) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleIntBodyParamNil(NilResult $result, String $contentType, OptionalInt bodyInt) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleIntBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<Integer> bodyInt) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleLongBodyParam(long $result, String $contentType, long bodyLong) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleLongBodyParamOpt(NilResult $result, String $contentType, OptionalLong bodyLong) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleLongBodyParamNil(NilResult $result, String $contentType, OptionalLong bodyLong) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleLongBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<Long> bodyLong) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleFloatBodyParam(float $result, String $contentType, float bodyFloat) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleFloatBodyParamOpt(NilResult $result, String $contentType, Optional<Float> bodyFloat) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleFloatBodyParamNil(NilResult $result, String $contentType, Optional<Float> bodyFloat) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleFloatBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<Float> bodyFloat) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleDoubleBodyParam(double $result, String $contentType, double bodyDouble) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleDoubleBodyParamOpt(NilResult $result, String $contentType, OptionalDouble bodyDouble) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleDoubleBodyParamNil(NilResult $result, String $contentType, OptionalDouble bodyDouble) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleDoubleBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<Double> bodyDouble) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleStringBodyParam(String $result, String $contentType, String bodyString) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleStringBodyParamOpt(NilResult $result, String $contentType, Optional<String> bodyString) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleStringBodyParamNil(NilResult $result, String $contentType, Optional<String> bodyString) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleStringBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<String> bodyString) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleLocalDateBodyParam(LocalDate $result, String $contentType, LocalDate bodyLocalDate) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleLocalDateBodyParamOpt(NilResult $result, String $contentType, Optional<LocalDate> bodyLocalDate) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleLocalDateBodyParamNil(NilResult $result, String $contentType, Optional<LocalDate> bodyLocalDate) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleLocalDateBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<LocalDate> bodyLocalDate) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleLocalDateTimeBodyParam(LocalDateTime $result, String $contentType, LocalDateTime bodyLocalDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleLocalDateTimeBodyParamOpt(NilResult $result, String $contentType, Optional<LocalDateTime> bodyLocalDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleLocalDateTimeBodyParamNil(NilResult $result, String $contentType, Optional<LocalDateTime> bodyLocalDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleLocalDateTimeBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<LocalDateTime> bodyLocalDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleZonedDateTimeBodyParam(ZonedDateTime $result, String $contentType, ZonedDateTime bodyZonedDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleZonedDateTimeBodyParamOpt(NilResult $result, String $contentType, Optional<ZonedDateTime> bodyZonedDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleZonedDateTimeBodyParamNil(NilResult $result, String $contentType, Optional<ZonedDateTime> bodyZonedDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleZonedDateTimeBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<ZonedDateTime> bodyZonedDateTime) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleScalarBodyParam(ZoneId $result, String $contentType, ZoneId bodyScalar) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleScalarBodyParamOpt(NilResult $result, String $contentType, Optional<ZoneId> bodyScalar) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleScalarBodyParamNil(NilResult $result, String $contentType, Optional<ZoneId> bodyScalar) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleScalarBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<ZoneId> bodyScalar) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleEnumBodyParam(SampleEnum $result, String $contentType, SampleEnum bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleEnumBodyParamOpt(NilResult $result, String $contentType, Optional<SampleEnum> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleEnumBodyParamNil(NilResult $result, String $contentType, Optional<SampleEnum> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleEnumBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<SampleEnum> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleInlineEnumBodyParam(BodyParameterTypesService.SimpleInlineEnumBodyParam_Result$ $result, String $contentType, BodyParameterTypesService.SimpleInlineEnumBodyParam_BodyEnum_Param$ bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleInlineEnumBodyParamOpt(NilResult $result, String $contentType, Optional<BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleInlineEnumBodyParamNil(NilResult $result, String $contentType, Optional<BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder simpleInlineEnumBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$> bodyEnum) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder multiBodyParam(String $result, String $contentType, String valueA, int valueB, SimpleRecord.Data valueC) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder multiBodyParamOpt(String $result, String $contentType, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder multiBodyParamNil(String $result, String $contentType, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder multiBodyParamOptNil(String $result, String $contentType, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder multiBodyParamFirst(String $result, String $contentType, Optional<String> valueA, int valueB, SimpleRecord.Data valueC) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder recordBodyParam(SimpleRecord.Data $result, String $contentType, SimpleRecord.Data bodyRecord) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder recordBodyParamOpt(NilResult $result, String $contentType, Optional<SimpleRecord.Data> bodyRecord) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder recordBodyParamNil(NilResult $result, String $contentType, Optional<SimpleRecord.Data> bodyRecord) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder recordBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<SimpleRecord.Data> bodyRecord) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder unionBodyParam(Union.Data $result, String $contentType, Union.Data bodyUnion) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder unionBodyParamOpt(NilResult $result, String $contentType, Optional<Union.Data> bodyUnion) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder unionBodyParamNil(NilResult $result, String $contentType, Optional<Union.Data> bodyUnion) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder unionBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<Union.Data> bodyUnion) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder patchableRecordBodyParam(PatchableRecord.Data $result, String $contentType, PatchableRecord.Patch bodyRecord) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder patchableRecordBodyParamOpt(PatchableRecord.Data $result, String $contentType, Optional<PatchableRecord.Patch> bodyRecord) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder patchableRecordBodyParamNil(PatchableRecord.Data $result, String $contentType, Optional<PatchableRecord.Patch> bodyRecord) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder patchableRecordBodyParamOptNil(PatchableRecord.Data $result, String $contentType, _Base.Nillable<PatchableRecord.Patch> bodyRecord) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 }

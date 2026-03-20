@@ -184,7 +184,7 @@ export function generateJsonUtilsContent(
 					NL,
 				);
 			});
-			mBody.append('}', NL);
+			mBody.append('};', NL);
 		} else {
 			mBody.append(`if ("${contentTypeEncodings[0]}".equals(contentType)) {`, NL);
 			mBody.indent(blockBody => {

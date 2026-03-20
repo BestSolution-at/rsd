@@ -799,7 +799,6 @@ public class _JsonUtils {
 	}
 
 	// ----------------
-	// FIXME HERE IS THE ENCODEING STUFF
 	public static void encodeValue(OutputStream stream, Object data, String contentType) {
 		if ("application/json".equals(contentType)) {
 			encodeJsonValue(stream, data);

@@ -18,59 +18,73 @@ import dev.rsdlang.sample.server.service.model.SimpleRecord;
 @Singleton
 public class ListSampleServiceResourceResponseBuilder {
 	public ResponseBuilder listBoolean(List<Boolean> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder listShort(List<Short> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder listInt(List<Integer> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder listLong(List<Long> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder listFloat(List<Float> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder listDouble(List<Double> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder listString(List<String> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder listLocalDate(List<LocalDate> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder listLocalDateTime(List<LocalDateTime> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder listZonedDateTime(List<ZonedDateTime> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder listScalar(List<ZoneId> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder listEnum(List<SampleEnum> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder listSimpleRecord(List<SimpleRecord.Data> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 	public ResponseBuilder listSimpleRecordWithError(List<SimpleRecord.Data> $result, String $contentType) {
-		return Response.status(200).entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));
-	}
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType)));}
 
 }

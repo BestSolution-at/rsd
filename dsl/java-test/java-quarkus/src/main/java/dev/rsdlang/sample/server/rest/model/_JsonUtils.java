@@ -32,7 +32,10 @@ import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 
+import at.bestsolution.msgpack.json.MsgpackJson;
 import dev.rsdlang.sample.server.service.model._Base;
+import org.msgpack.core.MessagePack;
+import org.msgpack.core.MessagePacker;
 
 public class _JsonUtils {
 
@@ -799,20 +802,25 @@ public class _JsonUtils {
 	}
 
 	// ----------------
-	// FIXME HERE IS THE ENCODEING STUFF
 	public static void encodeValue(OutputStream stream, Object data, String contentType) {
-		if ("application/json".equals(contentType)) {
-			encodeJsonValue(stream, data);
-			return;
+		switch (contentType) {
+			case "application/json":
+				encodeJsonValue(stream, data);
+				break;
+			case "application/vnd.msgpack":
+				encodeMsgPackValue(stream, data);
+				break;
+			default:
+				throw new IllegalArgumentException("Unsupported content type: %".formatted(contentType));
 		}
-		throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));
 	}
 
 	public static byte[] encodeValue(Object data, String contentType) {
-		if ("application/json".equals(contentType)) {
-			return encodeJsonValue(data);
-		}
-		throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));
+		return switch (contentType) {
+			case "application/json" -> encodeJsonValue(data);
+			case "application/vnd.msgpack" -> encodeMsgPackValue(data);
+			default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));
+		};
 	}
 
 	private static byte[] encodeJsonValue(Object data) {
@@ -864,6 +872,43 @@ public class _JsonUtils {
 			generator.write(toString(data));
 		}
 	}
+
+	// -----------------
+	private static byte[] encodeMsgPackValue(Object data) {
+		try {
+			var msgpackJson = MsgpackJson.builder()
+					.build();
+			var value = Json.createValue("test string");
+			var packer = MessagePack.newDefaultBufferPacker();
+			encodeMsgPackValue(msgpackJson, packer, value);
+			packer.flush();
+			var result = packer.toByteArray();
+			packer.close();
+			return result;
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	private static void encodeMsgPackValue(OutputStream stream, Object data) {
+		try {
+			var msgpackJson = MsgpackJson.builder()
+					.build();
+			var value = Json.createValue("test string");
+			var packer = MessagePack.newDefaultPacker(stream);
+			encodeMsgPackValue(msgpackJson, packer, value);
+			packer.flush();
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
+
+	}
+
+	private static void encodeMsgPackValue(MsgpackJson generator, MessagePacker packer, Object data) throws IOException {
+		generator.encode(packer, createJsonValue(data));
+	}
+
+
 
 
 	public static JsonValue createJsonValue(Object data) {

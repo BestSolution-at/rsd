@@ -9,7 +9,7 @@ import {
 	toPath,
 } from '../java-gen-utils.js';
 import { MParameter, MResolvedRSDModel, MResolvedService, MReturnType } from '../model.js';
-import { toFirstUpper } from '../util.js';
+import { toFirstUpper, toNodeTree } from '../util.js';
 
 export function generateResponseBuilder(
 	s: MResolvedService,
@@ -71,10 +71,11 @@ function generateContent(
 						}
 					} else {
 						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.rest.model._JsonUtils`);
-						methodBody.append(
-							`return ${Response}.status(${code.toFixed()}).entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result, $contentType)));`,
-							NL,
-						);
+						const content = toNodeTree(`
+							return ${Response}.status(${code.toFixed()})
+								.type($contentType)
+								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result, $contentType)));`);
+						methodBody.append(content);
 					}
 				} else {
 					methodBody.append(`return ${Response}.status(${code.toFixed()});`, NL);
