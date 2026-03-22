@@ -10,7 +10,7 @@ import { isMResolvedRecordType, MResolvedRSDModel } from '../model.js';
 import { hasFileStream, hasStream, toCamelCaseIdentifier, toNodeTree } from '../util.js';
 
 function toEnumLiteral(value: string): string {
-	return value.toLocaleUpperCase().replace('/', '_').replace('-', '_');
+	return value.toLocaleUpperCase().replaceAll('/', '_').replaceAll('-', '_').replaceAll('.', '_');
 }
 
 export function generateClient(

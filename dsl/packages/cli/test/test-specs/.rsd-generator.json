@@ -27,7 +27,8 @@
             "rootPackageName": "dev.rsdlang.sample.client",
             "nativeTypeSubstitues": {
                 "ZoneId": "java.time.ZoneId"
-            }
+            },
+						"contentTypeEncodings": ["application/json", "application/vnd.msgpack"]
         },
         {
             "name": "java-server-base",
