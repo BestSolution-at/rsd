@@ -35,6 +35,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		return this.client.httpClient();
 	}
 
+	private String contentType() {
+		return this.client.contentTypeEncoding().contentType;
+	}
+
 	public boolean simpleBooleanPathParam(boolean pathBoolean) {
 		var $path = "%s/api/pathparametertype/boolean/%s".formatted(
 				this.baseURI(),
@@ -44,6 +48,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -66,6 +71,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -88,6 +94,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -110,6 +117,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -132,6 +140,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -154,6 +163,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -178,6 +188,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -202,6 +213,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -226,6 +238,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -250,6 +263,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -274,6 +288,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -298,6 +313,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -323,6 +339,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 

@@ -17,6 +17,7 @@ import dev.rsdlang.sample.client.BodyParameterTypesService.SimpleInlineEnumBodyP
 import dev.rsdlang.sample.client.BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$;
 import dev.rsdlang.sample.client.BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncoding;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.PatchableRecord;
 import dev.rsdlang.sample.client.model.SampleEnum;
@@ -25,11 +26,13 @@ import dev.rsdlang.sample.client.model.UnionA;
 
 public class BodyParameterTypesServiceTest {
 
-	private static final SpecSamplesClient JDK_CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
-
 	static BodyParameterTypesService[] serviceProvider() {
+		var baseBuilder = JDKSpecSamplesClient.builder().baseURI(URI.create("http://localhost:3000"));
+		var JSON = baseBuilder.build();
+		var MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
 		return new BodyParameterTypesService[] {
-				JDK_CLIENT.service(BodyParameterTypesService.class),
+				JSON.service(BodyParameterTypesService.class),
+				MSGPACK.service(BodyParameterTypesService.class),
 		};
 	}
 

@@ -42,6 +42,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		return this.client.httpClient();
 	}
 
+	private String contentType() {
+		return this.client.contentTypeEncoding().contentType;
+	}
+
 	public int uploadFile(RSDFile data) {
 		Objects.requireNonNull(data, "data must not be null");
 
@@ -56,6 +60,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
@@ -81,6 +86,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
@@ -109,6 +115,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
@@ -137,6 +144,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
@@ -162,6 +170,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
@@ -193,6 +202,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
@@ -221,6 +231,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
@@ -246,6 +257,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
@@ -274,6 +286,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
@@ -302,6 +315,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
@@ -327,6 +341,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
@@ -358,6 +373,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			var $request = $requestBuilder.build();
@@ -386,6 +402,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -411,6 +428,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -439,6 +457,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -467,6 +486,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -492,6 +512,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -523,6 +544,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -551,6 +573,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -576,6 +599,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -604,6 +628,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -632,6 +657,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -657,6 +683,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -688,6 +715,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -724,12 +752,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			$formDataBuilder.addBlob("dataFile", dataFile);
 			$formDataBuilder.addBlob("dataBlob", dataBlob);
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -751,12 +780,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
 			var $jsonPayload = Json.createObjectBuilder();
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -781,12 +811,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (text != null) {
 				$jsonPayload.add("text", text);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -814,12 +845,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (number != null) {
 				$jsonPayload.add("number", number);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -850,12 +882,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -889,12 +922,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -931,12 +965,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (numberList != null) {
 				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -976,12 +1011,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (recList != null) {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -1024,12 +1060,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -1075,12 +1112,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (dataBlob != null) {
 				$formDataBuilder.addBlob("dataBlob", dataBlob);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -1144,12 +1182,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (dataBlob != null) {
 				$formDataBuilder.addBlob("dataBlob", dataBlob);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -1171,12 +1210,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
 			var $jsonPayload = Json.createObjectBuilder();
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -1204,12 +1244,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("text");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -1243,12 +1284,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("number");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -1288,12 +1330,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("rec");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -1339,12 +1382,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("textList");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -1396,12 +1440,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("numberList");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -1459,12 +1504,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("recList");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -1528,12 +1574,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$formDataBuilder.addString("_rsdNull-dataFile", "true", null);
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -1603,12 +1650,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$formDataBuilder.addString("_rsdNull-dataBlob", "true", null);
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.PUT($body);
 			var $request = $requestBuilder.build();
@@ -1639,24 +1687,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryString", queryString);
 		$queryParams.append("queryNumber", queryNumber);
-		$queryParams.append("queryRecord", _JsonUtils.encodeValue(queryRecord, "application/json"));
+		$queryParams.append("queryRecord", _JsonUtils.encodeValue(queryRecord, this.contentType()));
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerString", "\"" + ServiceUtils.encodeAsciiString(headerString) + "\"");
 		$headerParams.put("headerNumber", String.format("%s", headerNumber));
-		$headerParams.put("headerRecord", ServiceUtils.encodeBase64(_JsonUtils.encodeValue(headerRecord, "application/json")));
+		$headerParams.put("headerRecord", ServiceUtils.encodeBase64(_JsonUtils.encodeValue(headerRecord, this.contentType())));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
 			var $jsonPayload = Json.createObjectBuilder();
 			$formDataBuilder.addBlob("dataBlob", dataBlob);
-			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");
+			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			if($headers.length > 0) {
@@ -1682,6 +1731,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1703,6 +1753,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 

@@ -41,6 +41,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		return this.client.httpClient();
 	}
 
+	private String contentType() {
+		return this.client.contentTypeEncoding().contentType;
+	}
+
 	public List<Boolean> listBooleanHeaderParam(List<Boolean> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listBooleanHeaderParam".formatted(
 				this.baseURI());
@@ -53,6 +57,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -77,6 +82,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -104,6 +110,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -136,6 +143,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -160,6 +168,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -189,6 +198,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -217,6 +227,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -241,6 +252,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -268,6 +280,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -300,6 +313,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -324,6 +338,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -353,6 +368,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -381,6 +397,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -405,6 +422,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -432,6 +450,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -464,6 +483,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -488,6 +508,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -517,6 +538,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -545,6 +567,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -569,6 +592,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -596,6 +620,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -628,6 +653,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -652,6 +678,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -681,6 +708,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -709,6 +737,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -733,6 +762,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -760,6 +790,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -792,6 +823,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -816,6 +848,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -845,6 +878,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -873,6 +907,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -897,6 +932,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -924,6 +960,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -956,6 +993,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -980,6 +1018,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1009,6 +1048,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1039,6 +1079,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1063,6 +1104,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1090,6 +1132,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1122,6 +1165,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1146,6 +1190,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1175,6 +1220,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1205,6 +1251,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1229,6 +1276,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1256,6 +1304,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1288,6 +1337,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1312,6 +1362,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1341,6 +1392,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1371,6 +1423,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1395,6 +1448,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1422,6 +1476,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1454,6 +1509,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1478,6 +1534,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1507,6 +1564,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1537,6 +1595,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1561,6 +1620,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1588,6 +1648,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1620,6 +1681,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1644,6 +1706,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1673,6 +1736,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1703,6 +1767,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1727,6 +1792,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1754,6 +1820,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1786,6 +1853,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1810,6 +1878,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1839,6 +1908,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1869,6 +1939,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1893,6 +1964,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1920,6 +1992,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1952,6 +2025,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -1976,6 +2050,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -2005,6 +2080,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2035,6 +2111,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2059,6 +2136,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -2086,6 +2164,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2118,6 +2197,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2142,6 +2222,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -2171,6 +2252,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2197,13 +2279,14 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
-		$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
+		$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2228,6 +2311,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -2255,6 +2339,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2288,6 +2373,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2316,7 +2402,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
 		}
 		if(valueC != null) {
-			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2324,6 +2410,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2356,7 +2443,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			$headerParams.put("valueB", "null");
 		}
 		if(valueC != null) {
-			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
 		}
@@ -2366,6 +2453,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2390,6 +2478,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -2419,6 +2508,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2456,6 +2546,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2488,7 +2579,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			$headerParams.put("valueB", "null");
 		}
 		if(valueC != null) {
-			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
 		}
@@ -2498,6 +2589,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2521,13 +2613,14 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2552,6 +2645,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -2571,7 +2665,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2579,6 +2673,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2601,7 +2696,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -2611,6 +2706,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2635,6 +2731,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -2654,7 +2751,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -2664,6 +2761,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);

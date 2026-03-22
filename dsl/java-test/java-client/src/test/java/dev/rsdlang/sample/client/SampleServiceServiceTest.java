@@ -14,12 +14,18 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncoding;
 import dev.rsdlang.sample.client.model.SampleEnum;
 
 public class SampleServiceServiceTest {
 	static SampleServiceService[] serviceProvider() {
+		var baseBuilder = JDKSpecSamplesClient.builder().baseURI(URI.create("http://localhost:3000"));
+		var JSON = baseBuilder.build();
+		var MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
+
 		return new SampleServiceService[] {
-				JDKSpecSamplesClient.create(URI.create("http://localhost:3000")).service(SampleServiceService.class),
+				JSON.service(SampleServiceService.class),
+				MSGPACK.service(SampleServiceService.class),
 		};
 	}
 

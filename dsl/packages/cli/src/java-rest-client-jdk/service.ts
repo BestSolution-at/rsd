@@ -58,12 +58,21 @@ export function generateService(
 			baseUriBody.append('return this.client.baseURI().toString();', NL);
 		});
 		classBody.append('}', NL);
+
 		classBody.appendNewLine();
 		classBody.append(`private ${fqn('java.net.http.HttpClient')} httpClient() {`, NL);
 		classBody.indent(httpClientBody => {
 			httpClientBody.append('return this.client.httpClient();', NL);
 		});
 		classBody.append('}', NL);
+
+		classBody.appendNewLine();
+		classBody.append(`private String contentType() {`, NL);
+		classBody.indent(httpClientBody => {
+			httpClientBody.append('return this.client.contentTypeEncoding().contentType;', NL);
+		});
+		classBody.append('}', NL);
+
 		s.operations.forEach(o => {
 			classBody.appendNewLine();
 			generateOperation(classBody, o, artifactConfig, fqn, s.meta?.rest?.path ?? s.name.toLowerCase());
@@ -153,7 +162,7 @@ function generateOpertationMethod(
 					if (p.array) {
 						const param =
 							p.variant === 'union' || p.variant === 'record'
-								? `${fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`)}.encodeValue($q, "application/json")`
+								? `${fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`)}.encodeValue($q, this.contentType())`
 								: '$q';
 						const codeBlock = toNodeTree(`
 							${p.name}.stream().forEach($q -> {
@@ -181,7 +190,7 @@ function generateOpertationMethod(
 					} else {
 						const param =
 							p.variant === 'union' || p.variant === 'record'
-								? `${fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`)}.encodeValue(${p.name}, "application/json")`
+								? `${fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`)}.encodeValue(${p.name}, this.contentType())`
 								: p.name;
 
 						const codeBlock = `$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${param});`;
@@ -249,7 +258,7 @@ function generateOpertationMethod(
 						methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 					} else {
 						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
-						const toString = `$v -> ServiceUtils.encodeBase64(${_JsonUtils}.encodeValue($v, "application/json"))`;
+						const toString = `$v -> ServiceUtils.encodeBase64(${_JsonUtils}.encodeValue($v, this.contentType()))`;
 						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
 						if (p.nullable) {
 							methodBody.append(`if(${p.name} != null) {`, NL);
@@ -310,7 +319,7 @@ function generateOpertationMethod(
 						}
 					} else if (p.variant === 'record' || p.variant === 'union') {
 						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
-						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ServiceUtils.encodeBase64(${_JsonUtils}.encodeValue(${p.name}, "application/json")));`;
+						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ServiceUtils.encodeBase64(${_JsonUtils}.encodeValue(${p.name}, this.contentType())));`;
 						if (p.nullable) {
 							methodBody.append(`if(${p.name} != null) {`, NL);
 							methodBody.indent(tmp => {
@@ -480,7 +489,7 @@ function generateInvokation(
 				});
 			if (o.parameters.find(p => p.variant !== 'stream')) {
 				methodBody.append(
-					'$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), "application/json"), "application/json; charset=UTF-8");',
+					'$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());',
 					NL,
 				);
 			}
@@ -488,14 +497,14 @@ function generateInvokation(
 			methodBody.append('var $body = $formData.publisher();', NL);
 			methodBody.append('var $contentType = $formData.contentType();', NL);
 		} else {
-			methodBody.append('var $contentType = "application/json";', NL);
+			methodBody.append('var $contentType = this.contentType();', NL);
 			const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
 			const bodyParams = allParameters.filter(p => p.meta?.rest?.source === undefined);
 			if (bodyParams.length === 0) {
 				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
 				const defaultContent = multiBodyParam
-					? `${_JsonUtils}.emptyObject("application/json")`
-					: `${_JsonUtils}.emptyValue("application/json")`;
+					? `${_JsonUtils}.encodeEmptyObject($contentType)`
+					: `${_JsonUtils}.encodeEmptyValue($contentType)`;
 				methodBody.append(`var $body = ${BodyPublishers}.ofByteArray(${defaultContent});`, NL);
 			} else if (bodyParams.length === 1 && !multiBodyParam) {
 				const param = bodyParams[0];
@@ -503,12 +512,12 @@ function generateInvokation(
 					const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
 					if (param.optional && !param.nullable) {
 						methodBody.append(
-							`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${_JsonUtils}.emptyValue("application/json") : ${_JsonUtils}.encodeValue(${param.name}, "application/json"));`,
+							`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${_JsonUtils}.encodeEmptyValue($contentType) : ${_JsonUtils}.encodeValue(${param.name}, $contentType));`,
 							NL,
 						);
 					} else {
 						methodBody.append(
-							`var $body = ${BodyPublishers}.ofByteArray(${_JsonUtils}.encodeValue(${param.name}, "application/json"));`,
+							`var $body = ${BodyPublishers}.ofByteArray(${_JsonUtils}.encodeValue(${param.name}, $contentType));`,
 							NL,
 						);
 					}
@@ -516,12 +525,12 @@ function generateInvokation(
 					const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
 					if (param.optional && !param.nullable) {
 						methodBody.append(
-							`var $body = ${BodyPublishers}.ofByteArray( ${param.name} == null ? ${_JsonUtils}.emptyValue("application/json") : ${_JsonUtils}.encodeValue(${param.name}, "application/json"));`,
+							`var $body = ${BodyPublishers}.ofByteArray( ${param.name} == null ? ${_JsonUtils}.encodeEmptyValue($contentType) : ${_JsonUtils}.encodeValue(${param.name}, $contentType));`,
 							NL,
 						);
 					} else {
 						methodBody.append(
-							`var $body = ${BodyPublishers}.ofByteArray(${_JsonUtils}.encodeValue(${param.name}, "application/json"));`,
+							`var $body = ${BodyPublishers}.ofByteArray(${_JsonUtils}.encodeValue(${param.name}, $contentType));`,
 							NL,
 						);
 					}
@@ -638,7 +647,7 @@ function generateInvokation(
 				});
 				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
 				methodBody.append(
-					`var $body = ${BodyPublishers}.ofByteArray(${_JsonUtils}.encodeValue($builder.build(), "application/json"));`,
+					`var $body = ${BodyPublishers}.ofByteArray(${_JsonUtils}.encodeValue($builder.build(), this.contentType()));`,
 					NL,
 				);
 			}
@@ -651,6 +660,7 @@ function generateInvokation(
 	methodBody.indent(tmp => {
 		tmp.indent(l => {
 			l.append(`.uri($uri)`, NL);
+			l.append(`.header("Accept", this.contentType())`, NL);
 
 			if (method === 'GET') {
 				l.append('.GET();', NL);

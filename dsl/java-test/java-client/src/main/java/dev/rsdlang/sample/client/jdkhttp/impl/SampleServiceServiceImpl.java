@@ -39,6 +39,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		return this.client.httpClient();
 	}
 
+	private String contentType() {
+		return this.client.contentTypeEncoding().contentType;
+	}
+
 	public boolean getBoolean() {
 		var $path = "%s/api/samplerecords/boolean".formatted(
 				this.baseURI());
@@ -47,6 +51,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -68,6 +73,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -89,6 +95,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -110,6 +117,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -131,6 +139,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -152,6 +161,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -173,6 +183,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -194,6 +205,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -215,6 +227,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -236,6 +249,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -257,6 +271,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -278,6 +293,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -299,6 +315,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -321,6 +338,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -346,6 +364,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -374,6 +393,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -399,6 +419,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 

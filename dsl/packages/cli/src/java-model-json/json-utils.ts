@@ -6,6 +6,9 @@ type EncodingPlugin = {
 	decodeFunction: (fqn: (t: string) => string) => CompositeGeneratorNode;
 	encodingFunctionName: string;
 	decodingFunctionName: string;
+	emptyObjectBytes: number[];
+	encodeEmptyValueFunctionName: string;
+	encodeEmptyObjectFunctionName: string;
 };
 
 const encodingPlugins: Record<string, EncodingPlugin> = {
@@ -14,12 +17,18 @@ const encodingPlugins: Record<string, EncodingPlugin> = {
 		decodeFunction: generateMsgPackDecodeValueFunction,
 		encodingFunctionName: 'encodeMsgPackValue',
 		decodingFunctionName: 'decodeMsgPackValue',
+		emptyObjectBytes: [-128],
+		encodeEmptyValueFunctionName: 'encodeEmptyMsgpackValue',
+		encodeEmptyObjectFunctionName: 'encodeEmptyMsgpackObject',
 	},
 	'application/json': {
 		encodeFunction: generateJsonEncodeValueFunction,
 		decodeFunction: generateJsonDecodeValueFunction,
 		encodingFunctionName: 'encodeJsonValue',
 		decodingFunctionName: 'decodeJsonValue',
+		emptyObjectBytes: [123, 125],
+		encodeEmptyValueFunctionName: 'encodeEmptyJsonValue',
+		encodeEmptyObjectFunctionName: 'encodeEmptyJsonObject',
 	},
 };
 
@@ -43,6 +52,14 @@ function generateJsonEncodeValueFunction(fqn: (t: string) => string): CompositeG
 	const JsonGenerator = fqn('jakarta.json.stream.JsonGenerator');
 	const JsonValue = fqn('jakarta.json.JsonValue');
 	return toNodeTree(`
+private static byte[] encodeEmptyJsonValue() {
+	return EMPTY_VALUE_BYTES;
+}
+
+private static byte[] encodeEmptyJsonObject() {
+	return APPLICATION_JSON_EMPTY_OBJECT_BYTES;
+}
+
 private static byte[] encodeJsonValue(Object data) {
 	${StringWriter} stringWriter = new ${StringWriter}();
 	try (var generator = ${Json}.createGenerator(stringWriter)) {
@@ -100,6 +117,8 @@ function generateMsgPackDecodeValueFunction(fqn: (t: string) => string): Composi
 	const JsonValue = fqn('jakarta.json.JsonValue');
 	const MsgpackJson = fqn('at.bestsolution.msgpack.json.MsgpackJson');
 	const MessagePack = fqn('org.msgpack.core.MessagePack');
+	const MessagePackException = fqn('org.msgpack.core.MessagePackException');
+	const JsonException = fqn('jakarta.json.JsonException');
 	return toNodeTree(`
 private static ${JsonValue} decodeMsgPackValue(${InputStream} stream) {
 	try {
@@ -107,6 +126,8 @@ private static ${JsonValue} decodeMsgPackValue(${InputStream} stream) {
 				.build();
 		var unpacker = ${MessagePack}.newDefaultUnpacker(stream);
 		return msgpackJson.decode(unpacker);
+	} catch (${MessagePackException} e) {
+		throw new ${JsonException}(e.getMessage(), e);
 	} catch (${IOException} e) {
 		throw new IllegalStateException(e);
 	}
@@ -119,6 +140,14 @@ function generateMsgPackEncodeValueFunction(fqn: (t: string) => string): Composi
 	fqn('at.bestsolution.msgpack.json.MsgpackJson');
 	return toNodeTree(`
 // -----------------
+private static byte[] encodeEmptyMsgpackValue() {
+	return EMPTY_VALUE_BYTES;
+}
+
+private static byte[] encodeEmptyMsgpackObject() {
+	return APPLICATION_VND_MSGPACK_EMPTY_OBJECT_BYTES;
+}
+
 private static byte[] encodeMsgPackValue(Object data) {
 	try {
 		var msgpackJson = MsgpackJson.builder()
@@ -224,12 +253,72 @@ export function generateJsonUtilsContent(
 		}
 	});
 	encodeValueMethods.append('}', NL);
+	encodeValueMethods.appendNewLine();
+	encodeValueMethods.append(`public static byte[] encodeEmptyValue(String contentType) {`, NL);
+	encodeValueMethods.indent(mBody => {
+		if (contentTypeEncodings.length > 1) {
+			mBody.append('return switch (contentType) {', NL);
+			mBody.indent(switchBody => {
+				contentTypeEncodings.forEach(enc => {
+					switchBody.append(`case "${enc}" -> ${encodingPlugins[enc].encodeEmptyValueFunctionName}();`, NL);
+				});
+				switchBody.append(
+					'default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));',
+					NL,
+				);
+			});
+			mBody.append('};', NL);
+		} else {
+			mBody.append(`if ("${contentTypeEncodings[0]}".equals(contentType)) {`, NL);
+			mBody.indent(blockBody => {
+				blockBody.append(`return ${encodingPlugins[contentTypeEncodings[0]].encodeEmptyValueFunctionName}();`, NL);
+			});
+			mBody.append('}', NL);
+			mBody.append(`throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));`, NL);
+		}
+	});
+	encodeValueMethods.append('}', NL);
+	encodeValueMethods.appendNewLine();
+	encodeValueMethods.append(`public static byte[] encodeEmptyObject(String contentType) {`, NL);
+	encodeValueMethods.indent(mBody => {
+		if (contentTypeEncodings.length > 1) {
+			mBody.append('return switch (contentType) {', NL);
+			mBody.indent(switchBody => {
+				contentTypeEncodings.forEach(enc => {
+					switchBody.append(`case "${enc}" -> ${encodingPlugins[enc].encodeEmptyObjectFunctionName}();`, NL);
+				});
+				switchBody.append(
+					'default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));',
+					NL,
+				);
+			});
+			mBody.append('};', NL);
+		} else {
+			mBody.append(`if ("${contentTypeEncodings[0]}".equals(contentType)) {`, NL);
+			mBody.indent(blockBody => {
+				blockBody.append(`return ${encodingPlugins[contentTypeEncodings[0]].encodeEmptyObjectFunctionName}();`, NL);
+			});
+			mBody.append('}', NL);
+			mBody.append(`throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));`, NL);
+		}
+	});
+	encodeValueMethods.append('}', NL);
 
 	const encodeFunctions = new CompositeGeneratorNode();
 	encodeFunctions.indent(content => {
 		content.append(encodeValueMethods, NL);
 		contentTypeEncodings.forEach(enc => {
 			content.append(encodingPlugins[enc].encodeFunction(fqn), NL, NL);
+		});
+	});
+
+	const emptyObjectValues = new CompositeGeneratorNode();
+	emptyObjectValues.indent(content => {
+		contentTypeEncodings.forEach(enc => {
+			content.append(
+				`private static byte[] ${enc.replaceAll('/', '_').replaceAll('.', '_').toUpperCase()}_EMPTY_OBJECT_BYTES = new byte[] { ${encodingPlugins[enc].emptyObjectBytes.join(', ')} };`,
+				NL,
+			);
 		});
 	});
 
@@ -312,8 +401,8 @@ public class _JsonUtils {
 	private static final _Base.Nillable<Boolean> NILLABLE_FALSE = _NillableImpl.of(Boolean.FALSE);
 	private static final _Base.Nillable<Boolean> NILLABLE_TRUE = _NillableImpl.of(Boolean.TRUE);
 	
-	private static final byte[] NO_BYTES = new byte[0];
-	private static final byte[] EMPTY_OBJECT_BYTES = "{}".getBytes();
+	private static final byte[] EMPTY_VALUE_BYTES = new byte[0];
+${toString(emptyObjectValues, '\t')}
 
 	public static String toString(Object value) {
 		if (value == null) {
@@ -340,20 +429,6 @@ public class _JsonUtils {
 
 	public static String toString(ZonedDateTime value) {
 		return DateTimeFormatter.ISO_ZONED_DATE_TIME.format(value);
-	}
-
-	public static byte[] emptyObject(String contentType) {
-		if (contentType != null && contentType.startsWith("application/json")) {
-			return EMPTY_OBJECT_BYTES;
-		}
-		throw new IllegalArgumentException("Unsupported content type: " + contentType);
-	}
-
-	public static byte[] emptyValue(String contentType) {
-		if (contentType != null && contentType.startsWith("application/json")) {
-			return NO_BYTES;
-		}
-		throw new IllegalArgumentException("Unsupported content type: " + contentType);
 	}
 
 	public static <J extends JsonValue, T> Stream<T> mapToStream(JsonObject object, String property, Class<J> clazz,

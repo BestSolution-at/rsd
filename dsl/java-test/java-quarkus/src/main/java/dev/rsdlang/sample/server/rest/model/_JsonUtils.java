@@ -36,6 +36,7 @@ import at.bestsolution.msgpack.json.MsgpackJson;
 import dev.rsdlang.sample.server.service.model._Base;
 import org.msgpack.core.MessagePack;
 import org.msgpack.core.MessagePacker;
+import org.msgpack.core.MessagePackException;
 
 public class _JsonUtils {
 
@@ -44,8 +45,10 @@ public class _JsonUtils {
 	private static final _Base.Nillable<Boolean> NILLABLE_FALSE = _NillableImpl.of(Boolean.FALSE);
 	private static final _Base.Nillable<Boolean> NILLABLE_TRUE = _NillableImpl.of(Boolean.TRUE);
 
-	private static final byte[] NO_BYTES = new byte[0];
-	private static final byte[] EMPTY_OBJECT_BYTES = "{}".getBytes();
+	private static final byte[] EMPTY_VALUE_BYTES = new byte[0];
+	private static byte[] APPLICATION_JSON_EMPTY_OBJECT_BYTES = new byte[] { 123, 125 };
+	private static byte[] APPLICATION_VND_MSGPACK_EMPTY_OBJECT_BYTES = new byte[] { -128 };
+
 
 	public static String toString(Object value) {
 		if (value == null) {
@@ -72,20 +75,6 @@ public class _JsonUtils {
 
 	public static String toString(ZonedDateTime value) {
 		return DateTimeFormatter.ISO_ZONED_DATE_TIME.format(value);
-	}
-
-	public static byte[] emptyObject(String contentType) {
-		if (contentType != null && contentType.startsWith("application/json")) {
-			return EMPTY_OBJECT_BYTES;
-		}
-		throw new IllegalArgumentException("Unsupported content type: " + contentType);
-	}
-
-	public static byte[] emptyValue(String contentType) {
-		if (contentType != null && contentType.startsWith("application/json")) {
-			return NO_BYTES;
-		}
-		throw new IllegalArgumentException("Unsupported content type: " + contentType);
 	}
 
 	public static <J extends JsonValue, T> Stream<T> mapToStream(JsonObject object, String property, Class<J> clazz,
@@ -823,6 +812,30 @@ public class _JsonUtils {
 		};
 	}
 
+	public static byte[] encodeEmptyValue(String contentType) {
+		return switch (contentType) {
+			case "application/json" -> encodeEmptyJsonValue();
+			case "application/vnd.msgpack" -> encodeEmptyMsgpackValue();
+			default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));
+		};
+	}
+
+	public static byte[] encodeEmptyObject(String contentType) {
+		return switch (contentType) {
+			case "application/json" -> encodeEmptyJsonObject();
+			case "application/vnd.msgpack" -> encodeEmptyMsgpackObject();
+			default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));
+		};
+	}
+
+	private static byte[] encodeEmptyJsonValue() {
+		return EMPTY_VALUE_BYTES;
+	}
+
+	private static byte[] encodeEmptyJsonObject() {
+		return APPLICATION_JSON_EMPTY_OBJECT_BYTES;
+	}
+
 	private static byte[] encodeJsonValue(Object data) {
 		StringWriter stringWriter = new StringWriter();
 		try (var generator = Json.createGenerator(stringWriter)) {
@@ -874,6 +887,14 @@ public class _JsonUtils {
 	}
 
 	// -----------------
+	private static byte[] encodeEmptyMsgpackValue() {
+		return EMPTY_VALUE_BYTES;
+	}
+
+	private static byte[] encodeEmptyMsgpackObject() {
+		return APPLICATION_VND_MSGPACK_EMPTY_OBJECT_BYTES;
+	}
+
 	private static byte[] encodeMsgPackValue(Object data) {
 		try {
 			var msgpackJson = MsgpackJson.builder()
@@ -1921,6 +1942,8 @@ public class _JsonUtils {
 					.build();
 			var unpacker = MessagePack.newDefaultUnpacker(stream);
 			return msgpackJson.decode(unpacker);
+		} catch (MessagePackException e) {
+			throw new JsonException(e.getMessage(), e);
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}

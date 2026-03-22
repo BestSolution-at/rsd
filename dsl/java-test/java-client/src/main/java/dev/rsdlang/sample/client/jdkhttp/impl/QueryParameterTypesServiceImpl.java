@@ -39,6 +39,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		return this.client.httpClient();
 	}
 
+	private String contentType() {
+		return this.client.contentTypeEncoding().contentType;
+	}
+
 	public boolean simpleBooleanQueryParam(boolean queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleBooleanQueryParam".formatted(
 				this.baseURI());
@@ -50,6 +54,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -71,6 +76,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -97,6 +103,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -121,6 +128,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -142,6 +150,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -168,6 +177,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -192,6 +202,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -213,6 +224,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -239,6 +251,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -263,6 +276,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -284,6 +298,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -310,6 +325,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -334,6 +350,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -355,6 +372,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -381,6 +399,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -405,6 +424,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -426,6 +446,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -452,6 +473,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -478,6 +500,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -499,6 +522,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -525,6 +549,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -551,6 +576,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -572,6 +598,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -598,6 +625,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -624,6 +652,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -645,6 +674,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -671,6 +701,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -697,6 +728,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -718,6 +750,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -744,6 +777,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -770,6 +804,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -791,6 +826,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -817,6 +853,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -843,6 +880,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -864,6 +902,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -890,6 +929,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -917,6 +957,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -938,6 +979,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -964,6 +1006,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -993,6 +1036,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1013,12 +1057,13 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		$queryParams.append("queryValue", _JsonUtils.encodeValue(queryValue, "application/json"));
+		$queryParams.append("queryValue", _JsonUtils.encodeValue(queryValue, this.contentType()));
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1040,6 +1085,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1059,13 +1105,14 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
-			$queryParams.append("queryValue", _JsonUtils.encodeValue(queryValue, "application/json"));
+			$queryParams.append("queryValue", _JsonUtils.encodeValue(queryValue, this.contentType()));
 		}
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 

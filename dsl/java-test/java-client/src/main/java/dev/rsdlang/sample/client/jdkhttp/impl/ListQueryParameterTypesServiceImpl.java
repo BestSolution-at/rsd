@@ -39,6 +39,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		return this.client.httpClient();
 	}
 
+	private String contentType() {
+		return this.client.contentTypeEncoding().contentType;
+	}
+
 	public List<Boolean> listBooleanQueryParam(List<Boolean> queryValue) {
 		var $path = "%s/api/listqueryparametertypes/listBooleanQueryParam".formatted(
 				this.baseURI());
@@ -52,6 +56,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -78,6 +83,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -104,6 +110,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -130,6 +137,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -156,6 +164,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -182,6 +191,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -210,6 +220,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -238,6 +249,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -266,6 +278,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -294,6 +307,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -322,6 +336,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -350,6 +365,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -378,6 +394,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -406,13 +423,14 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			$queryParams.append("valueB", $q);
 		});
 		valueC.stream().forEach($q -> {
-			$queryParams.append("valueC", _JsonUtils.encodeValue($q, "application/json"));
+			$queryParams.append("valueC", _JsonUtils.encodeValue($q, this.contentType()));
 		});
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -434,13 +452,14 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
-			$queryParams.append("queryValue", _JsonUtils.encodeValue($q, "application/json"));
+			$queryParams.append("queryValue", _JsonUtils.encodeValue($q, this.contentType()));
 		});
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
+					.header("Accept", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
