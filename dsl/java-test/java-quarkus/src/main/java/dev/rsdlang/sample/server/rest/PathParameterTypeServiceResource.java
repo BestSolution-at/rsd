@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.HeaderParam;
@@ -20,7 +20,8 @@ import dev.rsdlang.sample.server.service.PathParameterTypeServiceService;
 
 @ApplicationScoped
 @Path("/api/pathparametertype")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack"})
 public class PathParameterTypeServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 

@@ -35,7 +35,8 @@ import org.jboss.resteasy.reactive.RestForm;
 
 @ApplicationScoped
 @Path("/api/binarytypes")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack"})
 public class BinaryTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 

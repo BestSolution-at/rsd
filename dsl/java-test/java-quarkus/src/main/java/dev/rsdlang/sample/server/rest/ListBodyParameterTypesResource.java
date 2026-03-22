@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.Path;
@@ -26,7 +26,8 @@ import dev.rsdlang.sample.server.service.model.SimpleRecord;
 
 @ApplicationScoped
 @Path("/api/listbodyparametertypes")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack"})
 public class ListBodyParameterTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 

@@ -2,7 +2,6 @@
 package dev.rsdlang.sample.client.jdkhttp.impl;
 
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.IOException;
 import java.net.http.HttpResponse;
 import java.net.URLEncoder;
@@ -21,14 +20,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import jakarta.json.Json;
-import jakarta.json.JsonNumber;
 import jakarta.json.JsonObject;
-import jakarta.json.JsonString;
-import jakarta.json.JsonValue;
 
 import dev.rsdlang.sample.client.jdkhttp.impl.model._BlobImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._FileImpl;
+import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 
@@ -74,167 +70,111 @@ public class ServiceUtils {
 		}
 	}
 
-	private static JsonValue decodeResponse(HttpResponse<InputStream> response) {
-		var contentType = response.headers().firstValue("Content-Type")
-				.orElseThrow(() -> new IllegalStateException("Response is missing Content-Type header"));
-		if (contentType.startsWith("application/json")) {
-			return decodeJsonResponse(response);
-		}
-		throw new Error("Unsupported response content type: " + contentType);
-	}
-
-	private static JsonValue decodeJsonResponse(HttpResponse<InputStream> response) {
-		try (var is = response.body()) {
-			return Json.createReader(new InputStreamReader(is, StandardCharsets.UTF_8)).readValue();
-		} catch (IOException e) {
-			throw new IllegalStateException(e);
-		}
-	}
-
 	public static String[] toHeaders(Map<String, String> data) {
 		return data.entrySet().stream()
 				.flatMap(e -> Stream.of(e.getKey(), e.getValue()))
 				.toArray(String[]::new);
 	}
 
+	private static String contentType(HttpResponse<InputStream> response) {
+		return response.headers().firstValue("Content-Type")
+				.orElseThrow(() -> new IllegalStateException("Response is missing Content-Type header"));
+	}
+
 	public static <T> T mapObject(HttpResponse<InputStream> response, Function<JsonObject, T> factory) {
-		var data = decodeResponse(response).asJsonObject();
-		return factory.apply(data);
+		return _JsonUtils.parseObject(response.body(), contentType(response), factory);
 	}
 
 	public static String mapString(HttpResponse<InputStream> response) {
-		var value = decodeResponse(response);
-		return ((JsonString) value).getString();
+		return _JsonUtils.parseString(response.body(), contentType(response));
 	}
 
 	public static boolean mapBoolean(HttpResponse<InputStream> response) {
-		var value = decodeResponse(response);
-		return ((JsonValue.TRUE.equals(value)) ? true : false);
+		return _JsonUtils.parseBoolean(response.body(), contentType(response));
 	}
 
 	public static short mapShort(HttpResponse<InputStream> response) {
-		var value = decodeResponse(response);
-		return (short) ((JsonNumber) value).intValue();
+		return _JsonUtils.parseShort(response.body(), contentType(response));
 	}
 
 	public static int mapInt(HttpResponse<InputStream> response) {
-		var value = decodeResponse(response);
-		return ((JsonNumber) value).intValue();
+		return _JsonUtils.parseInt(response.body(), contentType(response));
 	}
 
 	public static long mapLong(HttpResponse<InputStream> response) {
-		var value = decodeResponse(response);
-		return ((JsonNumber) value).longValue();
+		return _JsonUtils.parseLong(response.body(), contentType(response));
 	}
 
 	public static double mapDouble(HttpResponse<InputStream> response) {
-		var value = decodeResponse(response);
-		return ((JsonNumber) value).doubleValue();
+		return _JsonUtils.parseDouble(response.body(), contentType(response));
 	}
 
 	public static float mapFloat(HttpResponse<InputStream> response) {
-		var value = decodeResponse(response);
-		return (float) ((JsonNumber) value).doubleValue();
+		return _JsonUtils.parseFloat(response.body(), contentType(response));
 	}
 
 	public static <T> T mapLiteral(HttpResponse<InputStream> response, Function<String, T> factory) {
-		return factory.apply(mapString(response));
+		return _JsonUtils.parseLiteral(response.body(), contentType(response), factory);
 	}
 
 	public static LocalDate mapLocalDate(HttpResponse<InputStream> response) {
-		return mapLiteral(response, LocalDate::parse);
+		return _JsonUtils.parseLocalDate(response.body(), contentType(response));
 	}
 
 	public static LocalDateTime mapLocalDateTime(HttpResponse<InputStream> response) {
-		return mapLiteral(response, LocalDateTime::parse);
+		return _JsonUtils.parseLocalDateTime(response.body(), contentType(response));
 	}
 
 	public static ZonedDateTime mapZonedDateTime(HttpResponse<InputStream> response) {
-		return mapLiteral(response, ZonedDateTime::parse);
+		return _JsonUtils.parseZonedDateTime(response.body(), contentType(response));
 	}
 
 	public static <T> List<T> mapObjects(HttpResponse<InputStream> response, Function<JsonObject, T> factory) {
-		var data = decodeResponse(response).asJsonArray();
-		return data.getValuesAs(JsonObject.class)
-				.stream()
-				.map(factory)
-				.toList();
+		return _JsonUtils.parseObjects(response.body(), contentType(response), factory);
 	}
 
 	public static List<String> mapStrings(HttpResponse<InputStream> response) {
-		var data = decodeResponse(response).asJsonArray();
-		return data.getValuesAs(JsonString.class)
-				.stream()
-				.map(JsonString::getString)
-				.toList();
+		return _JsonUtils.parseStrings(response.body(), contentType(response));
 	}
 
 	public static List<Boolean> mapBooleans(HttpResponse<InputStream> response) {
-		var data = decodeResponse(response).asJsonArray();
-		return data.getValuesAs(v -> v == JsonValue.TRUE)
-				.stream()
-				.toList();
+		return _JsonUtils.parseBooleans(response.body(), contentType(response));
 	}
 
 	public static List<Short> mapShorts(HttpResponse<InputStream> response) {
-		var data = decodeResponse(response).asJsonArray();
-		return data
-				.getValuesAs(JsonNumber.class)
-				.stream()
-				.map(v -> (short) v.intValue())
-				.toList();
+		return _JsonUtils.parseShorts(response.body(), contentType(response));
 	}
 
 	public static List<Integer> mapInts(HttpResponse<InputStream> response) {
-		var data = decodeResponse(response).asJsonArray();
-		return data
-				.getValuesAs(JsonNumber.class)
-				.stream()
-				.map(v -> v.intValue())
-				.toList();
+		return _JsonUtils.parseInts(response.body(), contentType(response));
 	}
 
 	public static List<Long> mapLongs(HttpResponse<InputStream> response) {
-		var data = decodeResponse(response).asJsonArray();
-		return data
-				.getValuesAs(JsonNumber.class)
-				.stream()
-				.map(v -> v.longValue())
-				.toList();
+		return _JsonUtils.parseLongs(response.body(), contentType(response));
 	}
 
 	public static List<Double> mapDoubles(HttpResponse<InputStream> response) {
-		var data = decodeResponse(response).asJsonArray();
-		return data
-				.getValuesAs(JsonNumber.class)
-				.stream()
-				.map(v -> v.doubleValue())
-				.toList();
+		return _JsonUtils.parseDoubles(response.body(), contentType(response));
 	}
 
 	public static List<Float> mapFloats(HttpResponse<InputStream> response) {
-		var data = decodeResponse(response).asJsonArray();
-		return data
-				.getValuesAs(JsonNumber.class)
-				.stream()
-				.map(v -> (float) v.doubleValue())
-				.toList();
+		return _JsonUtils.parseFloats(response.body(), contentType(response));
 	}
 
 	public static <T> List<T> mapLiterals(HttpResponse<InputStream> response, Function<String, T> factory) {
-		return mapStrings(response).stream().map(factory).toList();
+		return _JsonUtils.parseLiterals(response.body(), contentType(response), factory);
 	}
 
 	public static List<LocalDate> mapLocalDates(HttpResponse<InputStream> response) {
-		return mapLiterals(response, LocalDate::parse);
+		return _JsonUtils.parseLiterals(response.body(), contentType(response), LocalDate::parse);
 	}
 
 	public static List<LocalDateTime> mapLocalDateTimes(HttpResponse<InputStream> response) {
-		return mapLiterals(response, LocalDateTime::parse);
+		return _JsonUtils.parseLiterals(response.body(), contentType(response), LocalDateTime::parse);
 	}
 
 	public static List<ZonedDateTime> mapZonedDateTimes(HttpResponse<InputStream> response) {
-		return mapLiterals(response, ZonedDateTime::parse);
+		return _JsonUtils.parseLiterals(response.body(), contentType(response), ZonedDateTime::parse);
 	}
 
 	public static String encodeAsciiString(String text) {

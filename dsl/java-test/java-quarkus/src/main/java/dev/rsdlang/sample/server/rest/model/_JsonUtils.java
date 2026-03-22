@@ -878,7 +878,7 @@ public class _JsonUtils {
 		try {
 			var msgpackJson = MsgpackJson.builder()
 					.build();
-			var value = Json.createValue("test string");
+			var value = createJsonValue(data);
 			var packer = MessagePack.newDefaultBufferPacker();
 			encodeMsgPackValue(msgpackJson, packer, value);
 			packer.flush();
@@ -894,7 +894,7 @@ public class _JsonUtils {
 		try {
 			var msgpackJson = MsgpackJson.builder()
 					.build();
-			var value = Json.createValue("test string");
+			var value = createJsonValue(data);
 			var packer = MessagePack.newDefaultPacker(stream);
 			encodeMsgPackValue(msgpackJson, packer, value);
 			packer.flush();

@@ -123,7 +123,7 @@ private static byte[] encodeMsgPackValue(Object data) {
 	try {
 		var msgpackJson = MsgpackJson.builder()
 				.build();
-		var value = Json.createValue("test string");
+		var value = createJsonValue(data);
 		var packer = MessagePack.newDefaultBufferPacker();
 		encodeMsgPackValue(msgpackJson, packer, value);
 		packer.flush();
@@ -139,7 +139,7 @@ private static void encodeMsgPackValue(OutputStream stream, Object data) {
 	try {
 		var msgpackJson = MsgpackJson.builder()
 				.build();
-		var value = Json.createValue("test string");
+		var value = createJsonValue(data);
 		var packer = MessagePack.newDefaultPacker(stream);
 		encodeMsgPackValue(msgpackJson, packer, value);
 		packer.flush();

@@ -58,7 +58,7 @@ function _generateResource(
 	const ApplicationScoped = fqn('jakarta.enterprise.context.ApplicationScoped');
 	const Path = fqn('jakarta.ws.rs.Path');
 	const Produces = fqn('jakarta.ws.rs.Produces');
-	const MediaType = fqn('jakarta.ws.rs.core.MediaType');
+	const Consumes = fqn('jakarta.ws.rs.Consumes');
 	const Service = fqn(`${artifactConfig.rootPackageName}.service.${s.name}Service`);
 	const Inject = fqn('jakarta.inject.Inject');
 
@@ -70,7 +70,8 @@ function _generateResource(
 	const node = new CompositeGeneratorNode();
 	node.append(`@${ApplicationScoped}`, NL);
 	node.append(`@${Path}("${s.meta.rest.path.replaceAll('$', '')}")`, NL);
-	node.append(`@${Produces}(${MediaType}.APPLICATION_JSON)`, NL);
+	node.append(`@${Produces}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
+	node.append(`@${Consumes}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
 	node.append(`public class ${s.name}Resource {`, NL);
 	node.indent(cBody => {
 		if (contentTypeEncodings.length > 1) {
