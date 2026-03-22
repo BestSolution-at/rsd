@@ -17,31 +17,36 @@ import dev.rsdlang.sample.client.BinaryTypesService;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._BaseDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.UploadMixedResultDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.UploadMixedResult;
-import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class BinaryTypesServiceImpl implements BinaryTypesService {
-	private final String baseURI;
-	private final HttpClient client;
-	private final SpecSamplesClient serviceClient;
+	private final JDKSpecSamplesClient client;
 
-	public BinaryTypesServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
-		this.baseURI = baseURI;
+	public BinaryTypesServiceImpl(JDKSpecSamplesClient client) {
 		this.client = client;
-		this.serviceClient = serviceClient;
 	}
-	public SpecSamplesClient client() {
-		return this.serviceClient;
+
+	public JDKSpecSamplesClient client() {
+		return this.client;
+	}
+
+	private String baseURI() {
+		return this.client.baseURI().toString();
+	}
+
+	private HttpClient httpClient() {
+		return this.client.httpClient();
 	}
 
 	public int uploadFile(RSDFile data) {
 		Objects.requireNonNull(data, "data must not be null");
 
 		var $path = "%s/api/binarytypes/uploadFile".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -55,7 +60,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -67,7 +72,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadFileOpt() {
 		var $path = "%s/api/binarytypes/uploadFileOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -80,7 +85,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -92,7 +97,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadFileOpt(RSDFile data) {
 		var $path = "%s/api/binarytypes/uploadFileOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -108,7 +113,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -120,7 +125,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadFileNil(RSDFile data) {
 		var $path = "%s/api/binarytypes/uploadFileNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -136,7 +141,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -148,7 +153,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadFileOptNil() {
 		var $path = "%s/api/binarytypes/uploadFileOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -161,7 +166,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -173,7 +178,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadFileOptNil(RSDFile data) {
 		var $path = "%s/api/binarytypes/uploadFileOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -192,7 +197,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -206,7 +211,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		Objects.requireNonNull(data, "data must not be null");
 
 		var $path = "%s/api/binarytypes/uploadBlob".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -220,7 +225,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -232,7 +237,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadBlobOpt() {
 		var $path = "%s/api/binarytypes/uploadBlobOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -245,7 +250,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -257,7 +262,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadBlobOpt(RSDBlob data) {
 		var $path = "%s/api/binarytypes/uploadBlobOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -273,7 +278,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -285,7 +290,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadBlobNil(RSDBlob data) {
 		var $path = "%s/api/binarytypes/uploadBlobNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -301,7 +306,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -313,7 +318,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadBlobOptNil() {
 		var $path = "%s/api/binarytypes/uploadBlobOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -326,7 +331,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -338,7 +343,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadBlobOptNil(RSDBlob data) {
 		var $path = "%s/api/binarytypes/uploadBlobOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -357,7 +362,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 201) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -371,7 +376,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		Objects.requireNonNull(data, "data must not be null");
 
 		var $path = "%s/api/binarytypes/uploadFileList".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -385,7 +390,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -397,7 +402,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadFileListOpt() {
 		var $path = "%s/api/binarytypes/uploadFileListOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -410,7 +415,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -422,7 +427,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadFileListOpt(List<RSDFile> data) {
 		var $path = "%s/api/binarytypes/uploadFileListOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -438,7 +443,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -450,7 +455,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadFileListNil(List<RSDFile> data) {
 		var $path = "%s/api/binarytypes/uploadFileListNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -466,7 +471,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -478,7 +483,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadFileListOptNil() {
 		var $path = "%s/api/binarytypes/uploadFileListOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -491,7 +496,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -503,7 +508,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadFileListOptNil(List<RSDFile> data) {
 		var $path = "%s/api/binarytypes/uploadFileListOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -522,7 +527,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -536,7 +541,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		Objects.requireNonNull(data, "data must not be null");
 
 		var $path = "%s/api/binarytypes/uploadBlobList".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -550,7 +555,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -562,7 +567,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadBlobListOpt() {
 		var $path = "%s/api/binarytypes/uploadBlobListOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -575,7 +580,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -587,7 +592,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadBlobListOpt(List<RSDBlob> data) {
 		var $path = "%s/api/binarytypes/uploadBlobListOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -603,7 +608,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -615,7 +620,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadBlobListNil(List<RSDBlob> data) {
 		var $path = "%s/api/binarytypes/uploadBlobListNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -631,7 +636,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -643,7 +648,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadBlobListOptNil() {
 		var $path = "%s/api/binarytypes/uploadBlobListOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -656,7 +661,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -668,7 +673,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public int uploadBlobListOptNil(List<RSDBlob> data) {
 		var $path = "%s/api/binarytypes/uploadBlobListOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -687,7 +692,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -706,7 +711,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		Objects.requireNonNull(dataBlob, "dataBlob must not be null");
 
 		var $path = "%s/api/binarytypes/uploadMixed".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -729,7 +734,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -741,7 +746,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOpt() {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -756,7 +761,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -768,7 +773,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOpt(String text) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -786,7 +791,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -798,7 +803,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -819,7 +824,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -831,7 +836,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -855,7 +860,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -867,7 +872,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -894,7 +899,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -906,7 +911,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -936,7 +941,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -948,7 +953,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -981,7 +986,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -993,7 +998,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -1029,7 +1034,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -1041,7 +1046,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -1080,7 +1085,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -1092,7 +1097,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
 		var $path = "%s/api/binarytypes/uploadMixedNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -1149,7 +1154,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -1161,7 +1166,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOptNil() {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -1176,7 +1181,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -1188,7 +1193,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOptNil(String text) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -1209,7 +1214,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -1221,7 +1226,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -1248,7 +1253,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -1260,7 +1265,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -1293,7 +1298,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -1305,7 +1310,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -1344,7 +1349,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -1356,7 +1361,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -1401,7 +1406,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -1413,7 +1418,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -1464,7 +1469,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -1476,7 +1481,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -1533,7 +1538,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -1545,7 +1550,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
@@ -1608,7 +1613,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UploadMixedResultDataImpl::of);
 			}
@@ -1627,7 +1632,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		Objects.requireNonNull(dataBlob, "dataBlob must not be null");
 
 		var $path = "%s/api/binarytypes/mixed/%s/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathString)),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathNumber)));
 
@@ -1659,7 +1664,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 204) {
 				return;
 			}
@@ -1671,7 +1676,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public RSDFile downloadFile() {
 		var $path = "%s/api/binarytypes/downloadFile".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1680,7 +1685,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofFile(Files.createTempFile("rsd-download","tmp")));
+			var $response = this.httpClient().send($request, BodyHandlers.ofFile(Files.createTempFile("rsd-download","tmp")));
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFile($response);
 			}
@@ -1692,7 +1697,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public RSDBlob downloadBlob() {
 		var $path = "%s/api/binarytypes/downloadBlob".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1701,7 +1706,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofFile(Files.createTempFile("rsd-download","tmp")));
+			var $response = this.httpClient().send($request, BodyHandlers.ofFile(Files.createTempFile("rsd-download","tmp")));
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBlob($response);
 			}

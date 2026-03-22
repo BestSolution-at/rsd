@@ -16,29 +16,34 @@ import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListHeaderParameterTypesService;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
-import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterTypesService {
-	private final String baseURI;
-	private final HttpClient client;
-	private final SpecSamplesClient serviceClient;
+	private final JDKSpecSamplesClient client;
 
-	public ListHeaderParameterTypesServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
-		this.baseURI = baseURI;
+	public ListHeaderParameterTypesServiceImpl(JDKSpecSamplesClient client) {
 		this.client = client;
-		this.serviceClient = serviceClient;
 	}
-	public SpecSamplesClient client() {
-		return this.serviceClient;
+
+	public JDKSpecSamplesClient client() {
+		return this.client;
+	}
+
+	private String baseURI() {
+		return this.client.baseURI().toString();
+	}
+
+	private HttpClient httpClient() {
+		return this.client.httpClient();
 	}
 
 	public List<Boolean> listBooleanHeaderParam(List<Boolean> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listBooleanHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
@@ -54,7 +59,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBooleans($response);
 			}
@@ -66,7 +71,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listBooleanHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listBooleanHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -75,7 +80,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -87,7 +92,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listBooleanHeaderParamOpt(List<Boolean> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listBooleanHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -105,7 +110,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -117,7 +122,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listBooleanHeaderParamNil(List<Boolean> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listBooleanHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -137,7 +142,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -149,7 +154,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listBooleanHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listBooleanHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -158,7 +163,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -170,7 +175,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listBooleanHeaderParamOptNil(List<Boolean> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listBooleanHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -190,7 +195,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -202,7 +207,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<Short> listShortHeaderParam(List<Short> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listShortHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
@@ -218,7 +223,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapShorts($response);
 			}
@@ -230,7 +235,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listShortHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listShortHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -239,7 +244,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -251,7 +256,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listShortHeaderParamOpt(List<Short> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listShortHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -269,7 +274,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -281,7 +286,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listShortHeaderParamNil(List<Short> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listShortHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -301,7 +306,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -313,7 +318,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listShortHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listShortHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -322,7 +327,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -334,7 +339,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listShortHeaderParamOptNil(List<Short> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listShortHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -354,7 +359,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -366,7 +371,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<Integer> listIntHeaderParam(List<Integer> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listIntHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
@@ -382,7 +387,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInts($response);
 			}
@@ -394,7 +399,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listIntHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listIntHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -403,7 +408,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -415,7 +420,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listIntHeaderParamOpt(List<Integer> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listIntHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -433,7 +438,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -445,7 +450,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listIntHeaderParamNil(List<Integer> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listIntHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -465,7 +470,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -477,7 +482,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listIntHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listIntHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -486,7 +491,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -498,7 +503,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listIntHeaderParamOptNil(List<Integer> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listIntHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -518,7 +523,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -530,7 +535,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<Long> listLongHeaderParam(List<Long> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listLongHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
@@ -546,7 +551,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLongs($response);
 			}
@@ -558,7 +563,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLongHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listLongHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -567,7 +572,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -579,7 +584,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLongHeaderParamOpt(List<Long> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listLongHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -597,7 +602,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -609,7 +614,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLongHeaderParamNil(List<Long> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listLongHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -629,7 +634,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -641,7 +646,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLongHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listLongHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -650,7 +655,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -662,7 +667,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLongHeaderParamOptNil(List<Long> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listLongHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -682,7 +687,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -694,7 +699,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<Float> listFloatHeaderParam(List<Float> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listFloatHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
@@ -710,7 +715,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFloats($response);
 			}
@@ -722,7 +727,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listFloatHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listFloatHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -731,7 +736,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -743,7 +748,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listFloatHeaderParamOpt(List<Float> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listFloatHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -761,7 +766,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -773,7 +778,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listFloatHeaderParamNil(List<Float> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listFloatHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -793,7 +798,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -805,7 +810,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listFloatHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listFloatHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -814,7 +819,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -826,7 +831,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listFloatHeaderParamOptNil(List<Float> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listFloatHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -846,7 +851,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -858,7 +863,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<Double> listDoubleHeaderParam(List<Double> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listDoubleHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
@@ -874,7 +879,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapDoubles($response);
 			}
@@ -886,7 +891,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listDoubleHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listDoubleHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -895,7 +900,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -907,7 +912,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listDoubleHeaderParamOpt(List<Double> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listDoubleHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -925,7 +930,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -937,7 +942,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listDoubleHeaderParamNil(List<Double> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listDoubleHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -957,7 +962,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -969,7 +974,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listDoubleHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listDoubleHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -978,7 +983,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -990,7 +995,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listDoubleHeaderParamOptNil(List<Double> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listDoubleHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1010,7 +1015,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1024,7 +1029,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/listheaderparametertypes/listStringHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
@@ -1040,7 +1045,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapStrings($response);
 			}
@@ -1052,7 +1057,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listStringHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listStringHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1061,7 +1066,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1073,7 +1078,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listStringHeaderParamOpt(List<String> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listStringHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1091,7 +1096,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1103,7 +1108,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listStringHeaderParamNil(List<String> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listStringHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1123,7 +1128,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1135,7 +1140,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listStringHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listStringHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1144,7 +1149,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1156,7 +1161,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listStringHeaderParamOptNil(List<String> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listStringHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1176,7 +1181,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1190,7 +1195,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/listheaderparametertypes/listLocalDateHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
@@ -1206,7 +1211,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDates($response);
 			}
@@ -1218,7 +1223,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLocalDateHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listLocalDateHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1227,7 +1232,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1239,7 +1244,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLocalDateHeaderParamOpt(List<LocalDate> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listLocalDateHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1257,7 +1262,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1269,7 +1274,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLocalDateHeaderParamNil(List<LocalDate> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listLocalDateHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1289,7 +1294,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1301,7 +1306,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLocalDateHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listLocalDateHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1310,7 +1315,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1322,7 +1327,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLocalDateHeaderParamOptNil(List<LocalDate> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listLocalDateHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1342,7 +1347,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1356,7 +1361,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/listheaderparametertypes/listLocalDateTimeHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
@@ -1372,7 +1377,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDateTimes($response);
 			}
@@ -1384,7 +1389,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLocalDateTimeHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listLocalDateTimeHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1393,7 +1398,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1405,7 +1410,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLocalDateTimeHeaderParamOpt(List<LocalDateTime> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listLocalDateTimeHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1423,7 +1428,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1435,7 +1440,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLocalDateTimeHeaderParamNil(List<LocalDateTime> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listLocalDateTimeHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1455,7 +1460,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1467,7 +1472,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLocalDateTimeHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listLocalDateTimeHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1476,7 +1481,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1488,7 +1493,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLocalDateTimeHeaderParamOptNil(List<LocalDateTime> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listLocalDateTimeHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1508,7 +1513,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1522,7 +1527,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/listheaderparametertypes/listZonedDateTimeHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
@@ -1538,7 +1543,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapZonedDateTimes($response);
 			}
@@ -1550,7 +1555,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listZonedDateTimeHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listZonedDateTimeHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1559,7 +1564,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1571,7 +1576,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listZonedDateTimeHeaderParamOpt(List<ZonedDateTime> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listZonedDateTimeHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1589,7 +1594,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1601,7 +1606,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listZonedDateTimeHeaderParamNil(List<ZonedDateTime> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listZonedDateTimeHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1621,7 +1626,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1633,7 +1638,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listZonedDateTimeHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listZonedDateTimeHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1642,7 +1647,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1654,7 +1659,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listZonedDateTimeHeaderParamOptNil(List<ZonedDateTime> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listZonedDateTimeHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1674,7 +1679,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1688,7 +1693,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/listheaderparametertypes/listScalarHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
@@ -1704,7 +1709,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, ZoneId::of);
 			}
@@ -1716,7 +1721,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listScalarHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listScalarHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1725,7 +1730,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1737,7 +1742,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listScalarHeaderParamOpt(List<ZoneId> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listScalarHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1755,7 +1760,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1767,7 +1772,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listScalarHeaderParamNil(List<ZoneId> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listScalarHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1787,7 +1792,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1799,7 +1804,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listScalarHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listScalarHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1808,7 +1813,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1820,7 +1825,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listScalarHeaderParamOptNil(List<ZoneId> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listScalarHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1840,7 +1845,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1854,7 +1859,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/listheaderparametertypes/listEnumHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
@@ -1870,7 +1875,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, SampleEnum::valueOf);
 			}
@@ -1882,7 +1887,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listEnumHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listEnumHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1891,7 +1896,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1903,7 +1908,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listEnumHeaderParamOpt(List<SampleEnum> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listEnumHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1921,7 +1926,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1933,7 +1938,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listEnumHeaderParamNil(List<SampleEnum> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listEnumHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -1953,7 +1958,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1965,7 +1970,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listEnumHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listEnumHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1974,7 +1979,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1986,7 +1991,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listEnumHeaderParamOptNil(List<SampleEnum> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listEnumHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -2006,7 +2011,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2020,7 +2025,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/listheaderparametertypes/listInlineEnumHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
@@ -2036,7 +2041,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, ListInlineEnumHeaderParam_Result$::valueOf);
 			}
@@ -2048,7 +2053,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listInlineEnumHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listInlineEnumHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2057,7 +2062,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2069,7 +2074,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listInlineEnumHeaderParamOpt(List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listInlineEnumHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -2087,7 +2092,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2099,7 +2104,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listInlineEnumHeaderParamNil(List<ListInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listInlineEnumHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -2119,7 +2124,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2131,7 +2136,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listInlineEnumHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listInlineEnumHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2140,7 +2145,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2152,7 +2157,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listInlineEnumHeaderParamOptNil(List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listInlineEnumHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -2172,7 +2177,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2187,7 +2192,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		Objects.requireNonNull(valueC, "valueC must not be null");
 
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
@@ -2205,7 +2210,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2217,7 +2222,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<NilResult> listMultiHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2226,7 +2231,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2238,7 +2243,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<NilResult> listMultiHeaderParamOpt(List<String> valueA) {
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(valueA != null) {
@@ -2256,7 +2261,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2268,7 +2273,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<NilResult> listMultiHeaderParamOpt(List<String> valueA, List<Integer> valueB) {
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(valueA != null) {
@@ -2289,7 +2294,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2301,7 +2306,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<NilResult> listMultiHeaderParamOpt(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(valueA != null) {
@@ -2325,7 +2330,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2337,7 +2342,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<NilResult> listMultiHeaderParamNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(valueA != null) {
@@ -2367,7 +2372,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2379,7 +2384,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<NilResult> listMultiHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2388,7 +2393,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2400,7 +2405,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<NilResult> listMultiHeaderParamOptNil(List<String> valueA) {
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(valueA != null) {
@@ -2420,7 +2425,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2432,7 +2437,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<NilResult> listMultiHeaderParamOptNil(List<String> valueA, List<Integer> valueB) {
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(valueA != null) {
@@ -2457,7 +2462,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2469,7 +2474,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public List<NilResult> listMultiHeaderParamOptNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(valueA != null) {
@@ -2499,7 +2504,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2513,7 +2518,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/listheaderparametertypes/listRecordHeaderParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, "application/json"))).toList()));
@@ -2529,7 +2534,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of);
 			}
@@ -2541,7 +2546,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listRecordHeaderParamOpt() {
 		var $path = "%s/api/listheaderparametertypes/listRecordHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2550,7 +2555,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2562,7 +2567,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listRecordHeaderParamOpt(List<SimpleRecord.Data> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listRecordHeaderParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -2580,7 +2585,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2592,7 +2597,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listRecordHeaderParamNil(List<SimpleRecord.Data> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listRecordHeaderParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -2612,7 +2617,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2624,7 +2629,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listRecordHeaderParamOptNil() {
 		var $path = "%s/api/listheaderparametertypes/listRecordHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2633,7 +2638,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2645,7 +2650,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listRecordHeaderParamOptNil(List<SimpleRecord.Data> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listRecordHeaderParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
@@ -2665,7 +2670,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			}
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}

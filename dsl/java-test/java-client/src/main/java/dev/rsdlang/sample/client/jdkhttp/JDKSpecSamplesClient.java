@@ -4,6 +4,7 @@ package dev.rsdlang.sample.client.jdkhttp;
 import java.net.http.HttpClient;
 import java.net.URI;
 import java.nio.file.Path;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.HashMap;
 import java.util.Map;
@@ -125,11 +126,51 @@ import dev.rsdlang.sample.client.SampleServiceService;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class JDKSpecSamplesClient implements SpecSamplesClient {
-	private interface ServiceConstructor {
-		Object create(SpecSamplesClient serviceClient, HttpClient client, String baseURI);
+	public enum ContentTypeEncoding {
+		APPLICATION_JSON("application/json");
+
+		public final String contentType;
+
+		ContentTypeEncoding(String contentType) {
+			this.contentType = contentType;
+		}
+	}
+
+	public static class Builder {
+		private URI baseURI;
+		private HttpClient httpClient;
+		private ContentTypeEncoding contentTypeEncoding;
+
+		public Builder baseURI(URI baseURI) {
+			this.baseURI = baseURI;
+			return this;
+		}
+
+		public Builder httpClient(HttpClient httpClient) {
+			this.httpClient = httpClient;
+			return this;
+		}
+
+		public Builder contentTypeEncoding(ContentTypeEncoding contentTypeEncoding) {
+			this.contentTypeEncoding = contentTypeEncoding;
+			return this;
+		}
+
+		public SpecSamplesClient build() {
+			if (baseURI == null) {
+				throw new IllegalStateException("baseURI must be set");
+			}
+			if (httpClient == null) {
+				httpClient = HttpClient.newHttpClient();
+			}
+			if (contentTypeEncoding == null) {
+				contentTypeEncoding = ContentTypeEncoding.APPLICATION_JSON;
+			}
+			return new JDKSpecSamplesClient(baseURI, httpClient, contentTypeEncoding);
+		}
 	}
 	private static Map<Class<?>, Supplier<Object>> BUILDER_CREATOR_MAP = new HashMap<>();
-	private static Map<Class<?>, ServiceConstructor> SERVICE_CREATOR_MAP = new HashMap<>();
+	private static Map<Class<?>, Function<JDKSpecSamplesClient, Object>> SERVICE_CREATOR_MAP = new HashMap<>();
 
 	static {
 		registerBuilderCreator(SimpleRecord_KeyVersion.DataBuilder.class, SimpleRecord_KeyVersionDataImpl.DataBuilderImpl::new);
@@ -202,24 +243,41 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		BUILDER_CREATOR_MAP.put(clazz, constructor);
 	}
 
-	private static void registerServiceCreator(Class<?> clazz, ServiceConstructor constructor) {
+	private static void registerServiceCreator(Class<?> clazz, Function<JDKSpecSamplesClient, Object> constructor) {
 		SERVICE_CREATOR_MAP.put(clazz, constructor);
 	}
 
 	private final URI baseURI;
 	private final HttpClient httpClient;
+	private final ContentTypeEncoding contentTypeEncoding;
 
-	JDKSpecSamplesClient(URI baseURI, Supplier<HttpClient> httpClientSupplier) {
+	JDKSpecSamplesClient(URI baseURI, HttpClient httpClient, ContentTypeEncoding contentTypeEncoding) {
 		this.baseURI = baseURI;
-		this.httpClient = httpClientSupplier.get();
+		this.httpClient = httpClient;
+		this.contentTypeEncoding = contentTypeEncoding;
+	}
+
+	public ContentTypeEncoding contentTypeEncoding() {
+		return this.contentTypeEncoding;
+	}
+
+	public HttpClient httpClient() {
+		return this.httpClient;
+	}
+
+	public URI baseURI() {
+		return this.baseURI;
 	}
 
 	public static SpecSamplesClient create(URI baseURI) {
-		return new JDKSpecSamplesClient(baseURI, HttpClient::newHttpClient);
+		return builder().baseURI(baseURI).build();
 	}
 
-	public static SpecSamplesClient create(URI baseURI, Supplier<HttpClient> httpClientSupplier) {
-		return new JDKSpecSamplesClient(baseURI, httpClientSupplier);
+	public static SpecSamplesClient create(URI baseURI, HttpClient httpClient) {
+		return builder().baseURI(baseURI).httpClient(httpClient).build();
+	}
+	public static Builder builder() {
+		return new Builder();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -237,7 +295,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 	public <T extends BaseService> T service(Class<T> clazz) {
 		var serviceConstructor = SERVICE_CREATOR_MAP.get(clazz);
 		if (serviceConstructor != null) {
-			return (T) serviceConstructor.create(this, this.httpClient, this.baseURI.toString());
+			return (T) serviceConstructor.apply(this);
 		}
 		throw new IllegalArgumentException(String.format("Unsupported service '%s'", clazz));
 	}

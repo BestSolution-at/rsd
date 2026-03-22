@@ -19,29 +19,34 @@ import jakarta.json.Json;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._BaseDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListBodyParameterTypesService;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
-import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService {
-	private final String baseURI;
-	private final HttpClient client;
-	private final SpecSamplesClient serviceClient;
+	private final JDKSpecSamplesClient client;
 
-	public ListBodyParameterTypesServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
-		this.baseURI = baseURI;
+	public ListBodyParameterTypesServiceImpl(JDKSpecSamplesClient client) {
 		this.client = client;
-		this.serviceClient = serviceClient;
 	}
-	public SpecSamplesClient client() {
-		return this.serviceClient;
+
+	public JDKSpecSamplesClient client() {
+		return this.client;
+	}
+
+	private String baseURI() {
+		return this.client.baseURI().toString();
+	}
+
+	private HttpClient httpClient() {
+		return this.client.httpClient();
 	}
 
 	public List<Boolean> listBooleanBodyParam(List<Boolean> bodyBoolean) {
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -54,7 +59,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBooleans($response);
 			}
@@ -66,7 +71,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listBooleanBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -79,7 +84,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -91,7 +96,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listBooleanBodyParamOpt(List<Boolean> bodyBoolean) {
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -104,7 +109,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -116,7 +121,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listBooleanBodyParamNil(List<Boolean> bodyBoolean) {
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -129,7 +134,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -141,7 +146,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listBooleanBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -154,7 +159,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -166,7 +171,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listBooleanBodyParamOptNil(List<Boolean> bodyBoolean) {
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -179,7 +184,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -191,7 +196,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<Short> listShortBodyParam(List<Short> bodyShort) {
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -204,7 +209,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapShorts($response);
 			}
@@ -216,7 +221,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listShortBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -229,7 +234,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -241,7 +246,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listShortBodyParamOpt(List<Short> bodyShort) {
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -254,7 +259,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -266,7 +271,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listShortBodyParamNil(List<Short> bodyShort) {
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -279,7 +284,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -291,7 +296,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listShortBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -304,7 +309,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -316,7 +321,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listShortBodyParamOptNil(List<Short> bodyShort) {
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -329,7 +334,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -341,7 +346,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<Integer> listIntBodyParam(List<Integer> bodyInt) {
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -354,7 +359,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInts($response);
 			}
@@ -366,7 +371,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listIntBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -379,7 +384,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -391,7 +396,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listIntBodyParamOpt(List<Integer> bodyInt) {
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -404,7 +409,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -416,7 +421,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listIntBodyParamNil(List<Integer> bodyInt) {
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -429,7 +434,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -441,7 +446,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listIntBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -454,7 +459,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -466,7 +471,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listIntBodyParamOptNil(List<Integer> bodyInt) {
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -479,7 +484,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -491,7 +496,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<Long> listLongBodyParam(List<Long> bodyLong) {
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -504,7 +509,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLongs($response);
 			}
@@ -516,7 +521,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLongBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -529,7 +534,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -541,7 +546,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLongBodyParamOpt(List<Long> bodyLong) {
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -554,7 +559,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -566,7 +571,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLongBodyParamNil(List<Long> bodyLong) {
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -579,7 +584,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -591,7 +596,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLongBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -604,7 +609,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -616,7 +621,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLongBodyParamOptNil(List<Long> bodyLong) {
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -629,7 +634,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -641,7 +646,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<Float> listFloatBodyParam(List<Float> bodyFloat) {
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -654,7 +659,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFloats($response);
 			}
@@ -666,7 +671,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listFloatBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -679,7 +684,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -691,7 +696,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listFloatBodyParamOpt(List<Float> bodyFloat) {
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -704,7 +709,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -716,7 +721,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listFloatBodyParamNil(List<Float> bodyFloat) {
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -729,7 +734,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -741,7 +746,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listFloatBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -754,7 +759,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -766,7 +771,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listFloatBodyParamOptNil(List<Float> bodyFloat) {
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -779,7 +784,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -791,7 +796,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<Double> listDoubleBodyParam(List<Double> bodyDouble) {
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -804,7 +809,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapDoubles($response);
 			}
@@ -816,7 +821,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listDoubleBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -829,7 +834,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -841,7 +846,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listDoubleBodyParamOpt(List<Double> bodyDouble) {
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -854,7 +859,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -866,7 +871,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listDoubleBodyParamNil(List<Double> bodyDouble) {
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -879,7 +884,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -891,7 +896,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listDoubleBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -904,7 +909,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -916,7 +921,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listDoubleBodyParamOptNil(List<Double> bodyDouble) {
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -929,7 +934,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -943,7 +948,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		Objects.requireNonNull(bodyString, "bodyString must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listStringBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -956,7 +961,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapStrings($response);
 			}
@@ -968,7 +973,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listStringBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listStringBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -981,7 +986,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -993,7 +998,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listStringBodyParamOpt(List<String> bodyString) {
 		var $path = "%s/api/listbodyparametertypes/listStringBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1006,7 +1011,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1018,7 +1023,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listStringBodyParamNil(List<String> bodyString) {
 		var $path = "%s/api/listbodyparametertypes/listStringBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1031,7 +1036,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1043,7 +1048,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listStringBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listStringBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1056,7 +1061,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1068,7 +1073,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listStringBodyParamOptNil(List<String> bodyString) {
 		var $path = "%s/api/listbodyparametertypes/listStringBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1081,7 +1086,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1095,7 +1100,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		Objects.requireNonNull(bodyLocalDate, "bodyLocalDate must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listLocalDateBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1108,7 +1113,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDates($response);
 			}
@@ -1120,7 +1125,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLocalDateBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1133,7 +1138,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1145,7 +1150,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLocalDateBodyParamOpt(List<LocalDate> bodyLocalDate) {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1158,7 +1163,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1170,7 +1175,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLocalDateBodyParamNil(List<LocalDate> bodyLocalDate) {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1183,7 +1188,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1195,7 +1200,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLocalDateBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1208,7 +1213,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1220,7 +1225,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLocalDateBodyParamOptNil(List<LocalDate> bodyLocalDate) {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1233,7 +1238,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1247,7 +1252,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		Objects.requireNonNull(bodyLocalDateTime, "bodyLocalDateTime must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listLocalDateTimeBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1260,7 +1265,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDateTimes($response);
 			}
@@ -1272,7 +1277,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLocalDateTimeBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateTimeBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1285,7 +1290,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1297,7 +1302,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLocalDateTimeBodyParamOpt(List<LocalDateTime> bodyLocalDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateTimeBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1310,7 +1315,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1322,7 +1327,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLocalDateTimeBodyParamNil(List<LocalDateTime> bodyLocalDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateTimeBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1335,7 +1340,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1347,7 +1352,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLocalDateTimeBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateTimeBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1360,7 +1365,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1372,7 +1377,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listLocalDateTimeBodyParamOptNil(List<LocalDateTime> bodyLocalDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateTimeBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1385,7 +1390,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1399,7 +1404,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		Objects.requireNonNull(bodyZonedDateTime, "bodyZonedDateTime must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listZonedDateTimeBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1412,7 +1417,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapZonedDateTimes($response);
 			}
@@ -1424,7 +1429,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listZonedDateTimeBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listZonedDateTimeBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1437,7 +1442,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1449,7 +1454,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listZonedDateTimeBodyParamOpt(List<ZonedDateTime> bodyZonedDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listZonedDateTimeBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1462,7 +1467,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1474,7 +1479,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listZonedDateTimeBodyParamNil(List<ZonedDateTime> bodyZonedDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listZonedDateTimeBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1487,7 +1492,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1499,7 +1504,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listZonedDateTimeBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listZonedDateTimeBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1512,7 +1517,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1524,7 +1529,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listZonedDateTimeBodyParamOptNil(List<ZonedDateTime> bodyZonedDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listZonedDateTimeBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1537,7 +1542,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1551,7 +1556,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		Objects.requireNonNull(bodyScalar, "bodyScalar must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listScalarBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1564,7 +1569,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, ZoneId::of);
 			}
@@ -1576,7 +1581,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listScalarBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listScalarBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1589,7 +1594,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1601,7 +1606,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listScalarBodyParamOpt(List<ZoneId> bodyScalar) {
 		var $path = "%s/api/listbodyparametertypes/listScalarBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1614,7 +1619,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1626,7 +1631,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listScalarBodyParamNil(List<ZoneId> bodyScalar) {
 		var $path = "%s/api/listbodyparametertypes/listScalarBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1639,7 +1644,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1651,7 +1656,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listScalarBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listScalarBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1664,7 +1669,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1676,7 +1681,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listScalarBodyParamOptNil(List<ZoneId> bodyScalar) {
 		var $path = "%s/api/listbodyparametertypes/listScalarBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1689,7 +1694,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1703,7 +1708,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		Objects.requireNonNull(bodyEnum, "bodyEnum must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listEnumBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1716,7 +1721,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, SampleEnum::valueOf);
 			}
@@ -1728,7 +1733,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listEnumBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listEnumBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1741,7 +1746,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1753,7 +1758,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listEnumBodyParamOpt(List<SampleEnum> bodyEnum) {
 		var $path = "%s/api/listbodyparametertypes/listEnumBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1766,7 +1771,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1778,7 +1783,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listEnumBodyParamNil(List<SampleEnum> bodyEnum) {
 		var $path = "%s/api/listbodyparametertypes/listEnumBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1791,7 +1796,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1803,7 +1808,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listEnumBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listEnumBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1816,7 +1821,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1828,7 +1833,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listEnumBodyParamOptNil(List<SampleEnum> bodyEnum) {
 		var $path = "%s/api/listbodyparametertypes/listEnumBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1841,7 +1846,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1855,7 +1860,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		Objects.requireNonNull(bodyEnum, "bodyEnum must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1868,7 +1873,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, ListInlineEnumBodyParam_Result$::valueOf);
 			}
@@ -1880,7 +1885,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listInlineEnumBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1893,7 +1898,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1905,7 +1910,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listInlineEnumBodyParamOpt(List<ListInlineEnumBodyParamOpt_BodyEnum_Param$> bodyEnum) {
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1918,7 +1923,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1930,7 +1935,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listInlineEnumBodyParamNil(List<ListInlineEnumBodyParamNil_BodyEnum_Param$> bodyEnum) {
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1943,7 +1948,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1955,7 +1960,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listInlineEnumBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1968,7 +1973,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1980,7 +1985,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listInlineEnumBodyParamOptNil(List<ListInlineEnumBodyParamOptNil_BodyEnum_Param$> bodyEnum) {
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1993,7 +1998,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2008,7 +2013,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		Objects.requireNonNull(valueC, "valueC must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2025,7 +2030,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2037,7 +2042,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<NilResult> listMultiBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2050,7 +2055,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2062,7 +2067,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<NilResult> listMultiBodyParamOpt(List<String> valueA) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2079,7 +2084,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2091,7 +2096,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<NilResult> listMultiBodyParamOpt(List<String> valueA, List<Integer> valueB) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2111,7 +2116,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2123,7 +2128,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<NilResult> listMultiBodyParamOpt(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2146,7 +2151,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2158,7 +2163,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<NilResult> listMultiBodyParamNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2175,7 +2180,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2187,7 +2192,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<NilResult> listMultiBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2200,7 +2205,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2212,7 +2217,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<NilResult> listMultiBodyParamOptNil(List<String> valueA) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2227,7 +2232,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2239,7 +2244,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<NilResult> listMultiBodyParamOptNil(List<String> valueA, List<Integer> valueB) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2255,7 +2260,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2267,7 +2272,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public List<NilResult> listMultiBodyParamOptNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2284,7 +2289,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
@@ -2298,7 +2303,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		Objects.requireNonNull(bodyRecord, "bodyRecord must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listRecordBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2311,7 +2316,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of);
 			}
@@ -2323,7 +2328,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listRecordBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listRecordBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2336,7 +2341,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2348,7 +2353,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listRecordBodyParamOpt(List<SimpleRecord.Data> bodyRecord) {
 		var $path = "%s/api/listbodyparametertypes/listRecordBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2361,7 +2366,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2373,7 +2378,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listRecordBodyParamNil(List<SimpleRecord.Data> bodyRecord) {
 		var $path = "%s/api/listbodyparametertypes/listRecordBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2386,7 +2391,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2398,7 +2403,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listRecordBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listRecordBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2411,7 +2416,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2423,7 +2428,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 	public NilResult listRecordBodyParamOptNil(List<SimpleRecord.Data> bodyRecord) {
 		var $path = "%s/api/listbodyparametertypes/listRecordBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2436,7 +2441,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 					.PUT($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}

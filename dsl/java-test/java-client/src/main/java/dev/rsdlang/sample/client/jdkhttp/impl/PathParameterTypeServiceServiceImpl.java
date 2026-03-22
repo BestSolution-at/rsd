@@ -12,27 +12,32 @@ import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.Objects;
 
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.PathParameterTypeServiceService;
-import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceService {
-	private final String baseURI;
-	private final HttpClient client;
-	private final SpecSamplesClient serviceClient;
+	private final JDKSpecSamplesClient client;
 
-	public PathParameterTypeServiceServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
-		this.baseURI = baseURI;
+	public PathParameterTypeServiceServiceImpl(JDKSpecSamplesClient client) {
 		this.client = client;
-		this.serviceClient = serviceClient;
 	}
-	public SpecSamplesClient client() {
-		return this.serviceClient;
+
+	public JDKSpecSamplesClient client() {
+		return this.client;
+	}
+
+	private String baseURI() {
+		return this.client.baseURI().toString();
+	}
+
+	private HttpClient httpClient() {
+		return this.client.httpClient();
 	}
 
 	public boolean simpleBooleanPathParam(boolean pathBoolean) {
 		var $path = "%s/api/pathparametertype/boolean/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathBoolean)));
 
 		var $uri = URI.create($path);
@@ -42,7 +47,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBoolean($response);
 			}
@@ -54,7 +59,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 	public short simpleShortPathParam(short pathShort) {
 		var $path = "%s/api/pathparametertype/short/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathShort)));
 
 		var $uri = URI.create($path);
@@ -64,7 +69,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapShort($response);
 			}
@@ -76,7 +81,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 	public int simpleIntPathParam(int pathInt) {
 		var $path = "%s/api/pathparametertype/int/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathInt)));
 
 		var $uri = URI.create($path);
@@ -86,7 +91,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -98,7 +103,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 	public long simpleLongPathParam(long pathLong) {
 		var $path = "%s/api/pathparametertype/long/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathLong)));
 
 		var $uri = URI.create($path);
@@ -108,7 +113,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLong($response);
 			}
@@ -120,7 +125,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 	public float simpleFloatPathParam(float pathFloat) {
 		var $path = "%s/api/pathparametertype/float/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathFloat)));
 
 		var $uri = URI.create($path);
@@ -130,7 +135,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFloat($response);
 			}
@@ -142,7 +147,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 	public double simpleDoublePathParam(double pathDouble) {
 		var $path = "%s/api/pathparametertype/double/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathDouble)));
 
 		var $uri = URI.create($path);
@@ -152,7 +157,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapDouble($response);
 			}
@@ -166,7 +171,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		Objects.requireNonNull(pathString, "pathString must not be null");
 
 		var $path = "%s/api/pathparametertype/string/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathString)));
 
 		var $uri = URI.create($path);
@@ -176,7 +181,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -190,7 +195,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		Objects.requireNonNull(pathLocalDate, "pathLocalDate must not be null");
 
 		var $path = "%s/api/pathparametertype/localdate/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathLocalDate)));
 
 		var $uri = URI.create($path);
@@ -200,7 +205,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDate($response);
 			}
@@ -214,7 +219,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		Objects.requireNonNull(pathLocalDateTime, "pathLocalDateTime must not be null");
 
 		var $path = "%s/api/pathparametertype/localdatetime/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathLocalDateTime)));
 
 		var $uri = URI.create($path);
@@ -224,7 +229,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDateTime($response);
 			}
@@ -238,7 +243,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		Objects.requireNonNull(pathZonedDateTime, "pathZonedDateTime must not be null");
 
 		var $path = "%s/api/pathparametertype/zoneddatetime/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathZonedDateTime)));
 
 		var $uri = URI.create($path);
@@ -248,7 +253,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapZonedDateTime($response);
 			}
@@ -262,7 +267,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		Objects.requireNonNull(pathScalar, "pathScalar must not be null");
 
 		var $path = "%s/api/pathparametertype/scalar/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathScalar)));
 
 		var $uri = URI.create($path);
@@ -272,7 +277,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, ZoneId::of);
 			}
@@ -286,7 +291,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		Objects.requireNonNull(pathEnum, "pathEnum must not be null");
 
 		var $path = "%s/api/pathparametertype/enum/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(pathEnum)));
 
 		var $uri = URI.create($path);
@@ -296,7 +301,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, SampleEnum::valueOf);
 			}
@@ -310,7 +315,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		Objects.requireNonNull(valueA, "valueA must not be null");
 
 		var $path = "%s/api/pathparametertype/multipathparam/%s/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(valueA)),
 				ServiceUtils.encodeURIComponent(Objects.toString(valueB)));
 
@@ -321,7 +326,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}

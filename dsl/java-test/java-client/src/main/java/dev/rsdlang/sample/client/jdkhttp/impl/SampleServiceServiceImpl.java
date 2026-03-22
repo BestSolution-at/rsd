@@ -13,30 +13,35 @@ import java.time.ZoneId;
 import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.SampleError2Exception;
 import dev.rsdlang.sample.client.SampleErrorException;
 import dev.rsdlang.sample.client.SampleServiceService;
-import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class SampleServiceServiceImpl implements SampleServiceService {
-	private final String baseURI;
-	private final HttpClient client;
-	private final SpecSamplesClient serviceClient;
+	private final JDKSpecSamplesClient client;
 
-	public SampleServiceServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
-		this.baseURI = baseURI;
+	public SampleServiceServiceImpl(JDKSpecSamplesClient client) {
 		this.client = client;
-		this.serviceClient = serviceClient;
 	}
-	public SpecSamplesClient client() {
-		return this.serviceClient;
+
+	public JDKSpecSamplesClient client() {
+		return this.client;
+	}
+
+	private String baseURI() {
+		return this.client.baseURI().toString();
+	}
+
+	private HttpClient httpClient() {
+		return this.client.httpClient();
 	}
 
 	public boolean getBoolean() {
 		var $path = "%s/api/samplerecords/boolean".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -45,7 +50,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBoolean($response);
 			}
@@ -57,7 +62,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 	public short getShort() {
 		var $path = "%s/api/samplerecords/short".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -66,7 +71,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapShort($response);
 			}
@@ -78,7 +83,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 	public int getInt() {
 		var $path = "%s/api/samplerecords/int".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -87,7 +92,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -99,7 +104,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 	public long getLong() {
 		var $path = "%s/api/samplerecords/long".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -108,7 +113,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLong($response);
 			}
@@ -120,7 +125,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 	public float getFloat() {
 		var $path = "%s/api/samplerecords/float".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -129,7 +134,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFloat($response);
 			}
@@ -141,7 +146,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 	public double getDouble() {
 		var $path = "%s/api/samplerecords/double".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -150,7 +155,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapDouble($response);
 			}
@@ -162,7 +167,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 	public String getString() {
 		var $path = "%s/api/samplerecords/string".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -171,7 +176,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -183,7 +188,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 	public LocalDate getLocalDate() {
 		var $path = "%s/api/samplerecords/localdate".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -192,7 +197,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDate($response);
 			}
@@ -204,7 +209,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 	public LocalDateTime getLocalDateTime() {
 		var $path = "%s/api/samplerecords/localdatetime".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -213,7 +218,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDateTime($response);
 			}
@@ -225,7 +230,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 	public ZonedDateTime getZonedDateTime() {
 		var $path = "%s/api/samplerecords/zoneddatetime".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -234,7 +239,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapZonedDateTime($response);
 			}
@@ -246,7 +251,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 	public ZoneId getScalar() {
 		var $path = "%s/api/samplerecords/scalar".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -255,7 +260,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, ZoneId::of);
 			}
@@ -267,7 +272,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 	public SampleEnum getEnum() {
 		var $path = "%s/api/samplerecords/enum".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -276,7 +281,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, SampleEnum::valueOf);
 			}
@@ -288,7 +293,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 	public void voidOperation() {
 		var $path = "%s/api/samplerecords/voidoperation".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -297,7 +302,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 204) {
 				return;
 			}
@@ -310,7 +315,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 	public void errorOperation()
 			throws SampleErrorException {
 		var $path = "%s/api/samplerecords/erroroperation".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -319,7 +324,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return;
 			} else if ($response.statusCode() == 400) {
@@ -335,7 +340,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			throws SampleErrorException,
 			SampleError2Exception {
 		var $path = "%s/api/samplerecords/multierroroperation".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -344,7 +349,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return;
 			} else if ($response.statusCode() == 400) {
@@ -362,7 +367,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		Objects.requireNonNull(key, "key must not be null");
 
 		var $path = "%s/api/samplerecords/simplerecord/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(key)));
 
 		var $uri = URI.create($path);
@@ -372,7 +377,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, SimpleRecordDataImpl::of);
 			}
@@ -387,7 +392,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		Objects.requireNonNull(key, "key must not be null");
 
 		var $path = "%s/api/samplerecords/simplerecordwitherror/%s".formatted(
-				this.baseURI,
+				this.baseURI(),
 				ServiceUtils.encodeURIComponent(Objects.toString(key)));
 
 		var $uri = URI.create($path);
@@ -397,7 +402,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, SimpleRecordDataImpl::of);
 			} else if ($response.statusCode() == 400) {

@@ -15,28 +15,33 @@ import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListQueryParameterTypesService;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
-import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTypesService {
-	private final String baseURI;
-	private final HttpClient client;
-	private final SpecSamplesClient serviceClient;
+	private final JDKSpecSamplesClient client;
 
-	public ListQueryParameterTypesServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
-		this.baseURI = baseURI;
+	public ListQueryParameterTypesServiceImpl(JDKSpecSamplesClient client) {
 		this.client = client;
-		this.serviceClient = serviceClient;
 	}
-	public SpecSamplesClient client() {
-		return this.serviceClient;
+
+	public JDKSpecSamplesClient client() {
+		return this.client;
+	}
+
+	private String baseURI() {
+		return this.client.baseURI().toString();
+	}
+
+	private HttpClient httpClient() {
+		return this.client.httpClient();
 	}
 
 	public List<Boolean> listBooleanQueryParam(List<Boolean> queryValue) {
 		var $path = "%s/api/listqueryparametertypes/listBooleanQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -50,7 +55,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBooleans($response);
 			}
@@ -62,7 +67,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 	public List<Short> listShortQueryParam(List<Short> queryValue) {
 		var $path = "%s/api/listqueryparametertypes/listShortQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -76,7 +81,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapShorts($response);
 			}
@@ -88,7 +93,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 	public List<Integer> listIntQueryParam(List<Integer> queryValue) {
 		var $path = "%s/api/listqueryparametertypes/listIntQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -102,7 +107,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInts($response);
 			}
@@ -114,7 +119,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 	public List<Long> listLongQueryParam(List<Long> queryValue) {
 		var $path = "%s/api/listqueryparametertypes/listLongQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -128,7 +133,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLongs($response);
 			}
@@ -140,7 +145,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 	public List<Float> listFloatQueryParam(List<Float> queryValue) {
 		var $path = "%s/api/listqueryparametertypes/listFloatQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -154,7 +159,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFloats($response);
 			}
@@ -166,7 +171,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 	public List<Double> listDoubleQueryParam(List<Double> queryValue) {
 		var $path = "%s/api/listqueryparametertypes/listDoubleQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -180,7 +185,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapDoubles($response);
 			}
@@ -194,7 +199,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/listqueryparametertypes/listStringQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -208,7 +213,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapStrings($response);
 			}
@@ -222,7 +227,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/listqueryparametertypes/listLocalDateQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -236,7 +241,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDates($response);
 			}
@@ -250,7 +255,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/listqueryparametertypes/listLocalDateTimeQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -264,7 +269,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDateTimes($response);
 			}
@@ -278,7 +283,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/listqueryparametertypes/listZonedDateTimeQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -292,7 +297,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapZonedDateTimes($response);
 			}
@@ -306,7 +311,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/listqueryparametertypes/listScalarQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -320,7 +325,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, ZoneId::of);
 			}
@@ -334,7 +339,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/listqueryparametertypes/listEnumQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -348,7 +353,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, SampleEnum::valueOf);
 			}
@@ -362,7 +367,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/listqueryparametertypes/listInlineEnumQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -376,7 +381,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, ListInlineEnumQueryParam_Result$::valueOf);
 			}
@@ -391,7 +396,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		Objects.requireNonNull(valueC, "valueC must not be null");
 
 		var $path = "%s/api/listqueryparametertypes/listMultiQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		valueA.stream().forEach($q -> {
@@ -411,7 +416,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -425,7 +430,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/listqueryparametertypes/listRecordQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
@@ -439,7 +444,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of);
 			}

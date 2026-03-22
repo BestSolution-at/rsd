@@ -14,29 +14,34 @@ import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.QueryParameterTypesService;
-import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class QueryParameterTypesServiceImpl implements QueryParameterTypesService {
-	private final String baseURI;
-	private final HttpClient client;
-	private final SpecSamplesClient serviceClient;
+	private final JDKSpecSamplesClient client;
 
-	public QueryParameterTypesServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
-		this.baseURI = baseURI;
+	public QueryParameterTypesServiceImpl(JDKSpecSamplesClient client) {
 		this.client = client;
-		this.serviceClient = serviceClient;
 	}
-	public SpecSamplesClient client() {
-		return this.serviceClient;
+
+	public JDKSpecSamplesClient client() {
+		return this.client;
+	}
+
+	private String baseURI() {
+		return this.client.baseURI().toString();
+	}
+
+	private HttpClient httpClient() {
+		return this.client.httpClient();
 	}
 
 	public boolean simpleBooleanQueryParam(boolean queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleBooleanQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
@@ -48,7 +53,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBoolean($response);
 			}
@@ -60,7 +65,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleBooleanQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleBooleanQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -69,7 +74,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -81,7 +86,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleBooleanQueryParamOpt(Boolean queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleBooleanQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
@@ -95,7 +100,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -107,7 +112,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public short simpleShortQueryParam(short queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleShortQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
@@ -119,7 +124,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapShort($response);
 			}
@@ -131,7 +136,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleShortQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleShortQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -140,7 +145,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -152,7 +157,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleShortQueryParamOpt(Short queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleShortQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
@@ -166,7 +171,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -178,7 +183,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public int simpleIntQueryParam(int queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleIntQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
@@ -190,7 +195,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -202,7 +207,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleIntQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleIntQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -211,7 +216,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -223,7 +228,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleIntQueryParamOpt(Integer queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleIntQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
@@ -237,7 +242,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -249,7 +254,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public long simpleLongQueryParam(long queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleLongQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
@@ -261,7 +266,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLong($response);
 			}
@@ -273,7 +278,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleLongQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleLongQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -282,7 +287,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -294,7 +299,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleLongQueryParamOpt(Long queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleLongQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
@@ -308,7 +313,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -320,7 +325,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public float simpleFloatQueryParam(float queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleFloatQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
@@ -332,7 +337,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFloat($response);
 			}
@@ -344,7 +349,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleFloatQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleFloatQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -353,7 +358,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -365,7 +370,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleFloatQueryParamOpt(Float queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleFloatQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
@@ -379,7 +384,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -391,7 +396,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public double simpleDoubleQueryParam(double queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleDoubleQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
@@ -403,7 +408,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapDouble($response);
 			}
@@ -415,7 +420,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleDoubleQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleDoubleQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -424,7 +429,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -436,7 +441,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleDoubleQueryParamOpt(Double queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleDoubleQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
@@ -450,7 +455,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -464,7 +469,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleStringQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
@@ -476,7 +481,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -488,7 +493,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleStringQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleStringQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -497,7 +502,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -509,7 +514,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleStringQueryParamOpt(String queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleStringQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
@@ -523,7 +528,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -537,7 +542,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleLocalDateQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
@@ -549,7 +554,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDate($response);
 			}
@@ -561,7 +566,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleLocalDateQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleLocalDateQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -570,7 +575,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -582,7 +587,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleLocalDateQueryParamOpt(LocalDate queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleLocalDateQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
@@ -596,7 +601,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -610,7 +615,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleLocalDateTimeQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
@@ -622,7 +627,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDateTime($response);
 			}
@@ -634,7 +639,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleLocalDateTimeQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleLocalDateTimeQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -643,7 +648,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -655,7 +660,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleLocalDateTimeQueryParamOpt(LocalDateTime queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleLocalDateTimeQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
@@ -669,7 +674,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -683,7 +688,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleZonedDateTimeQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
@@ -695,7 +700,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapZonedDateTime($response);
 			}
@@ -707,7 +712,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleZonedDateTimeQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleZonedDateTimeQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -716,7 +721,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -728,7 +733,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleZonedDateTimeQueryParamOpt(ZonedDateTime queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleZonedDateTimeQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
@@ -742,7 +747,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -756,7 +761,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleScalarQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
@@ -768,7 +773,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, ZoneId::of);
 			}
@@ -780,7 +785,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleScalarQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleScalarQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -789,7 +794,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -801,7 +806,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleScalarQueryParamOpt(ZoneId queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleScalarQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
@@ -815,7 +820,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -829,7 +834,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleEnumQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
@@ -841,7 +846,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, SampleEnum::valueOf);
 			}
@@ -853,7 +858,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleEnumQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleEnumQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -862,7 +867,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -874,7 +879,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleEnumQueryParamOpt(SampleEnum queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleEnumQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
@@ -888,7 +893,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -902,7 +907,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		Objects.requireNonNull(valueA, "valueA must not be null");
 
 		var $path = "%s/api/queryparametertypes/multiQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("valueA", valueA);
@@ -915,7 +920,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -927,7 +932,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public String multiQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/multiQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -936,7 +941,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -948,7 +953,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public String multiQueryParamOpt(String valueA) {
 		var $path = "%s/api/queryparametertypes/multiQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(valueA != null) {
@@ -962,7 +967,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -974,7 +979,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public String multiQueryParamOpt(String valueA, Integer valueB) {
 		var $path = "%s/api/queryparametertypes/multiQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(valueA != null) {
@@ -991,7 +996,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -1005,7 +1010,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/recordQueryParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryValue", _JsonUtils.encodeValue(queryValue, "application/json"));
@@ -1017,7 +1022,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, SimpleRecordDataImpl::of);
 			}
@@ -1029,7 +1034,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult recordQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/recordQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1038,7 +1043,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1050,7 +1055,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult recordQueryParamOpt(SimpleRecord.Data queryValue) {
 		var $path = "%s/api/queryparametertypes/recordQueryParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
@@ -1064,7 +1069,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 					.GET();
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}

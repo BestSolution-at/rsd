@@ -33,31 +33,35 @@ export function generateService(
 	const fqn = importCollector.importType.bind(importCollector);
 
 	const ServiceInterface = fqn(`${artifactConfig.rootPackageName}.${s.name}Service`);
-	const HttpClient = fqn('java.net.http.HttpClient');
-	const ServiceClientInterface = fqn(
-		`${artifactConfig.rootPackageName}.${toFirstUpper(toCamelCaseIdentifier(generatorConfig.name))}Client`,
+	const JDKClient = fqn(
+		`${artifactConfig.rootPackageName}.jdkhttp.JDK${toCamelCaseIdentifier(generatorConfig.name)}Client`,
 	);
 
 	const node = new CompositeGeneratorNode();
 	node.append(`public class ${s.name}ServiceImpl implements ${ServiceInterface} {`, NL);
 	node.indent(classBody => {
-		classBody.append('private final String baseURI;', NL);
-		classBody.append(`private final ${HttpClient} client;`, NL);
-		classBody.append(`private final ${ServiceClientInterface} serviceClient;`, NL);
+		classBody.append(`private final ${JDKClient} client;`, NL);
 		classBody.appendNewLine();
-		classBody.append(
-			`public ${s.name}ServiceImpl(${ServiceClientInterface} serviceClient, ${HttpClient} client, String baseURI) {`,
-			NL,
-		);
+		classBody.append(`public ${s.name}ServiceImpl(${JDKClient} client) {`, NL);
 		classBody.indent(initBody => {
-			initBody.append('this.baseURI = baseURI;', NL);
 			initBody.append('this.client = client;', NL);
-			initBody.append('this.serviceClient = serviceClient;', NL);
+		});
+		classBody.append('}', NL, NL);
+		classBody.append(`public ${JDKClient} client() {`, NL);
+		classBody.indent(mBody => {
+			mBody.append('return this.client;', NL);
 		});
 		classBody.append('}', NL);
-		classBody.append(`public ${ServiceClientInterface} client() {`, NL);
-		classBody.indent(mBody => {
-			mBody.append('return this.serviceClient;', NL);
+		classBody.appendNewLine();
+		classBody.append('private String baseURI() {', NL);
+		classBody.indent(baseUriBody => {
+			baseUriBody.append('return this.client.baseURI().toString();', NL);
+		});
+		classBody.append('}', NL);
+		classBody.appendNewLine();
+		classBody.append(`private ${fqn('java.net.http.HttpClient')} httpClient() {`, NL);
+		classBody.indent(httpClientBody => {
+			httpClientBody.append('return this.client.httpClient();', NL);
 		});
 		classBody.append('}', NL);
 		s.operations.forEach(o => {
@@ -112,7 +116,7 @@ function generateOpertationMethod(
 	node.indent(methodBody => {
 		const processedPath = computePath(`${path.replace(/^\//, '')}/${o.meta?.rest?.path ?? ''}`);
 		const endpoint = processedPath.path ? `%s/${processedPath.path}` : '%s';
-		const variables = ['this.baseURI', ...processedPath.variables];
+		const variables = ['this.baseURI()', ...processedPath.variables];
 		allParameters
 			.filter(p => !p.nullable && !p.optional && !isMBuiltinNumericType(p.type) && p.type !== 'boolean')
 			.forEach((p, idx, arr) => {
@@ -678,13 +682,13 @@ function generateInvokation(
 	const BodyHandlers = fqn('java.net.http.HttpResponse.BodyHandlers');
 	if (o.resultType?.variant === 'stream') {
 		methodBody.append(
-			`var $response = this.client.send($request, ${BodyHandlers}.ofFile(${fqn(
+			`var $response = this.httpClient().send($request, ${BodyHandlers}.ofFile(${fqn(
 				'java.nio.file.Files',
 			)}.createTempFile("rsd-download","tmp")));`,
 			NL,
 		);
 	} else {
-		methodBody.append(`var $response = this.client.send($request, ${BodyHandlers}.ofInputStream());`, NL);
+		methodBody.append(`var $response = this.httpClient().send($request, ${BodyHandlers}.ofInputStream());`, NL);
 	}
 	if (o.meta?.rest?.results.length) {
 		o.meta.rest.results.forEach((r, idx) => {

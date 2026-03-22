@@ -21,30 +21,35 @@ import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecordDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.UnionDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.PatchableRecord;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.Union;
-import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class BodyParameterTypesServiceImpl implements BodyParameterTypesService {
-	private final String baseURI;
-	private final HttpClient client;
-	private final SpecSamplesClient serviceClient;
+	private final JDKSpecSamplesClient client;
 
-	public BodyParameterTypesServiceImpl(SpecSamplesClient serviceClient, HttpClient client, String baseURI) {
-		this.baseURI = baseURI;
+	public BodyParameterTypesServiceImpl(JDKSpecSamplesClient client) {
 		this.client = client;
-		this.serviceClient = serviceClient;
 	}
-	public SpecSamplesClient client() {
-		return this.serviceClient;
+
+	public JDKSpecSamplesClient client() {
+		return this.client;
+	}
+
+	private String baseURI() {
+		return this.client.baseURI().toString();
+	}
+
+	private HttpClient httpClient() {
+		return this.client.httpClient();
 	}
 
 	public boolean simpleBooleanBodyParam(boolean bodyBoolean) {
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -57,7 +62,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBoolean($response);
 			}
@@ -69,7 +74,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleBooleanBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -82,7 +87,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -94,7 +99,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleBooleanBodyParamOpt(Boolean bodyBoolean) {
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -107,7 +112,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -119,7 +124,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleBooleanBodyParamNil(Boolean bodyBoolean) {
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -132,7 +137,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -144,7 +149,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleBooleanBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -157,7 +162,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -169,7 +174,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleBooleanBodyParamOptNil(Boolean bodyBoolean) {
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -182,7 +187,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -194,7 +199,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public short simpleShortBodyParam(short bodyShort) {
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -207,7 +212,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapShort($response);
 			}
@@ -219,7 +224,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleShortBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -232,7 +237,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -244,7 +249,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleShortBodyParamOpt(Short bodyShort) {
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -257,7 +262,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -269,7 +274,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleShortBodyParamNil(Short bodyShort) {
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -282,7 +287,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -294,7 +299,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleShortBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -307,7 +312,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -319,7 +324,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleShortBodyParamOptNil(Short bodyShort) {
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -332,7 +337,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -344,7 +349,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public int simpleIntBodyParam(int bodyInt) {
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -357,7 +362,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInt($response);
 			}
@@ -369,7 +374,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleIntBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -382,7 +387,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -394,7 +399,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleIntBodyParamOpt(Integer bodyInt) {
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -407,7 +412,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -419,7 +424,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleIntBodyParamNil(Integer bodyInt) {
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -432,7 +437,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -444,7 +449,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleIntBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -457,7 +462,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -469,7 +474,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleIntBodyParamOptNil(Integer bodyInt) {
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -482,7 +487,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -494,7 +499,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public long simpleLongBodyParam(long bodyLong) {
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -507,7 +512,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLong($response);
 			}
@@ -519,7 +524,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLongBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -532,7 +537,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -544,7 +549,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLongBodyParamOpt(Long bodyLong) {
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -557,7 +562,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -569,7 +574,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLongBodyParamNil(Long bodyLong) {
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -582,7 +587,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -594,7 +599,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLongBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -607,7 +612,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -619,7 +624,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLongBodyParamOptNil(Long bodyLong) {
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -632,7 +637,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -644,7 +649,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public float simpleFloatBodyParam(float bodyFloat) {
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -657,7 +662,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFloat($response);
 			}
@@ -669,7 +674,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleFloatBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -682,7 +687,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -694,7 +699,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleFloatBodyParamOpt(Float bodyFloat) {
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -707,7 +712,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -719,7 +724,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleFloatBodyParamNil(Float bodyFloat) {
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -732,7 +737,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -744,7 +749,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleFloatBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -757,7 +762,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -769,7 +774,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleFloatBodyParamOptNil(Float bodyFloat) {
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -782,7 +787,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -794,7 +799,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public double simpleDoubleBodyParam(double bodyDouble) {
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -807,7 +812,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapDouble($response);
 			}
@@ -819,7 +824,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleDoubleBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -832,7 +837,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -844,7 +849,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleDoubleBodyParamOpt(Double bodyDouble) {
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -857,7 +862,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -869,7 +874,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleDoubleBodyParamNil(Double bodyDouble) {
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -882,7 +887,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -894,7 +899,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleDoubleBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -907,7 +912,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -919,7 +924,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleDoubleBodyParamOptNil(Double bodyDouble) {
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -932,7 +937,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -946,7 +951,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		Objects.requireNonNull(bodyString, "bodyString must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleStringBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -959,7 +964,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -971,7 +976,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleStringBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleStringBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -984,7 +989,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -996,7 +1001,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleStringBodyParamOpt(String bodyString) {
 		var $path = "%s/api/bodyparametertypes/simpleStringBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1009,7 +1014,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1021,7 +1026,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleStringBodyParamNil(String bodyString) {
 		var $path = "%s/api/bodyparametertypes/simpleStringBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1034,7 +1039,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1046,7 +1051,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleStringBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleStringBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1059,7 +1064,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1071,7 +1076,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleStringBodyParamOptNil(String bodyString) {
 		var $path = "%s/api/bodyparametertypes/simpleStringBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1084,7 +1089,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1098,7 +1103,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		Objects.requireNonNull(bodyLocalDate, "bodyLocalDate must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1111,7 +1116,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDate($response);
 			}
@@ -1123,7 +1128,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLocalDateBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1136,7 +1141,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1148,7 +1153,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLocalDateBodyParamOpt(LocalDate bodyLocalDate) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1161,7 +1166,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1173,7 +1178,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLocalDateBodyParamNil(LocalDate bodyLocalDate) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1186,7 +1191,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1198,7 +1203,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLocalDateBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1211,7 +1216,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1223,7 +1228,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLocalDateBodyParamOptNil(LocalDate bodyLocalDate) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1236,7 +1241,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1250,7 +1255,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		Objects.requireNonNull(bodyLocalDateTime, "bodyLocalDateTime must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateTimeBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1263,7 +1268,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDateTime($response);
 			}
@@ -1275,7 +1280,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLocalDateTimeBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateTimeBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1288,7 +1293,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1300,7 +1305,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLocalDateTimeBodyParamOpt(LocalDateTime bodyLocalDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateTimeBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1313,7 +1318,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1325,7 +1330,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLocalDateTimeBodyParamNil(LocalDateTime bodyLocalDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateTimeBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1338,7 +1343,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1350,7 +1355,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLocalDateTimeBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateTimeBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1363,7 +1368,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1375,7 +1380,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleLocalDateTimeBodyParamOptNil(LocalDateTime bodyLocalDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateTimeBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1388,7 +1393,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1402,7 +1407,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		Objects.requireNonNull(bodyZonedDateTime, "bodyZonedDateTime must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleZonedDateTimeBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1415,7 +1420,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapZonedDateTime($response);
 			}
@@ -1427,7 +1432,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleZonedDateTimeBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleZonedDateTimeBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1440,7 +1445,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1452,7 +1457,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleZonedDateTimeBodyParamOpt(ZonedDateTime bodyZonedDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleZonedDateTimeBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1465,7 +1470,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1477,7 +1482,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleZonedDateTimeBodyParamNil(ZonedDateTime bodyZonedDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleZonedDateTimeBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1490,7 +1495,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1502,7 +1507,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleZonedDateTimeBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleZonedDateTimeBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1515,7 +1520,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1527,7 +1532,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleZonedDateTimeBodyParamOptNil(ZonedDateTime bodyZonedDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleZonedDateTimeBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1540,7 +1545,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1554,7 +1559,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		Objects.requireNonNull(bodyScalar, "bodyScalar must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleScalarBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1567,7 +1572,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, ZoneId::of);
 			}
@@ -1579,7 +1584,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleScalarBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleScalarBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1592,7 +1597,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1604,7 +1609,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleScalarBodyParamOpt(ZoneId bodyScalar) {
 		var $path = "%s/api/bodyparametertypes/simpleScalarBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1617,7 +1622,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1629,7 +1634,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleScalarBodyParamNil(ZoneId bodyScalar) {
 		var $path = "%s/api/bodyparametertypes/simpleScalarBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1642,7 +1647,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1654,7 +1659,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleScalarBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleScalarBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1667,7 +1672,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1679,7 +1684,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleScalarBodyParamOptNil(ZoneId bodyScalar) {
 		var $path = "%s/api/bodyparametertypes/simpleScalarBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1692,7 +1697,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1706,7 +1711,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		Objects.requireNonNull(bodyEnum, "bodyEnum must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleEnumBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1719,7 +1724,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, SampleEnum::valueOf);
 			}
@@ -1731,7 +1736,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleEnumBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleEnumBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1744,7 +1749,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1756,7 +1761,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleEnumBodyParamOpt(SampleEnum bodyEnum) {
 		var $path = "%s/api/bodyparametertypes/simpleEnumBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1769,7 +1774,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1781,7 +1786,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleEnumBodyParamNil(SampleEnum bodyEnum) {
 		var $path = "%s/api/bodyparametertypes/simpleEnumBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1794,7 +1799,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1806,7 +1811,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleEnumBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleEnumBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1819,7 +1824,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1831,7 +1836,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleEnumBodyParamOptNil(SampleEnum bodyEnum) {
 		var $path = "%s/api/bodyparametertypes/simpleEnumBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1844,7 +1849,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1858,7 +1863,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		Objects.requireNonNull(bodyEnum, "bodyEnum must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleInlineEnumBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1871,7 +1876,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, SimpleInlineEnumBodyParam_Result$::valueOf);
 			}
@@ -1883,7 +1888,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleInlineEnumBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleInlineEnumBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1896,7 +1901,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1908,7 +1913,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleInlineEnumBodyParamOpt(SimpleInlineEnumBodyParamOpt_BodyEnum_Param$ bodyEnum) {
 		var $path = "%s/api/bodyparametertypes/simpleInlineEnumBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1921,7 +1926,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1933,7 +1938,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleInlineEnumBodyParamNil(SimpleInlineEnumBodyParamNil_BodyEnum_Param$ bodyEnum) {
 		var $path = "%s/api/bodyparametertypes/simpleInlineEnumBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1946,7 +1951,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1958,7 +1963,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleInlineEnumBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleInlineEnumBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1971,7 +1976,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -1983,7 +1988,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult simpleInlineEnumBodyParamOptNil(SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$ bodyEnum) {
 		var $path = "%s/api/bodyparametertypes/simpleInlineEnumBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -1996,7 +2001,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2011,7 +2016,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		Objects.requireNonNull(valueC, "valueC must not be null");
 
 		var $path = "%s/api/bodyparametertypes/multiBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2028,7 +2033,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2040,7 +2045,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public String multiBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2053,7 +2058,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2065,7 +2070,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public String multiBodyParamOpt(String valueA) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2082,7 +2087,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2094,7 +2099,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public String multiBodyParamOpt(String valueA, Integer valueB) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2114,7 +2119,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2126,7 +2131,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public String multiBodyParamOpt(String valueA, Integer valueB, SimpleRecord.Data valueC) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2149,7 +2154,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2161,7 +2166,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public String multiBodyParamNil(String valueA, Integer valueB, SimpleRecord.Data valueC) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2178,7 +2183,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2190,7 +2195,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public String multiBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2203,7 +2208,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2215,7 +2220,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public String multiBodyParamOptNil(String valueA) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2230,7 +2235,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2242,7 +2247,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public String multiBodyParamOptNil(String valueA, Integer valueB) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2258,7 +2263,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2270,7 +2275,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public String multiBodyParamOptNil(String valueA, Integer valueB, SimpleRecord.Data valueC) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2287,7 +2292,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2299,7 +2304,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public String multiBodyParamFirst() {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamFirst".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2312,7 +2317,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2324,7 +2329,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public String multiBodyParamFirst(String valueA) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamFirst".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2341,7 +2346,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2353,7 +2358,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public String multiBodyParamFirst(String valueA, int valueB) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamFirst".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2371,7 +2376,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2385,7 +2390,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		Objects.requireNonNull(valueC, "valueC must not be null");
 
 		var $path = "%s/api/bodyparametertypes/multiBodyParamFirst".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2404,7 +2409,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
@@ -2418,7 +2423,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		Objects.requireNonNull(bodyRecord, "bodyRecord must not be null");
 
 		var $path = "%s/api/bodyparametertypes/recordBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2431,7 +2436,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, SimpleRecordDataImpl::of);
 			}
@@ -2443,7 +2448,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult recordBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/recordBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2456,7 +2461,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2468,7 +2473,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult recordBodyParamOpt(SimpleRecord.Data bodyRecord) {
 		var $path = "%s/api/bodyparametertypes/recordBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2481,7 +2486,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2493,7 +2498,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult recordBodyParamNil(SimpleRecord.Data bodyRecord) {
 		var $path = "%s/api/bodyparametertypes/recordBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2506,7 +2511,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2518,7 +2523,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult recordBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/recordBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2531,7 +2536,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2543,7 +2548,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult recordBodyParamOptNil(SimpleRecord.Data bodyRecord) {
 		var $path = "%s/api/bodyparametertypes/recordBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2556,7 +2561,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2570,7 +2575,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		Objects.requireNonNull(bodyUnion, "bodyUnion must not be null");
 
 		var $path = "%s/api/bodyparametertypes/unionBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2583,7 +2588,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, UnionDataImpl::of);
 			}
@@ -2595,7 +2600,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult unionBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/unionBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2608,7 +2613,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2620,7 +2625,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult unionBodyParamOpt(Union.Data bodyUnion) {
 		var $path = "%s/api/bodyparametertypes/unionBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2633,7 +2638,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2645,7 +2650,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult unionBodyParamNil(Union.Data bodyUnion) {
 		var $path = "%s/api/bodyparametertypes/unionBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2658,7 +2663,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2670,7 +2675,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult unionBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/unionBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2683,7 +2688,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2695,7 +2700,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public NilResult unionBodyParamOptNil(Union.Data bodyUnion) {
 		var $path = "%s/api/bodyparametertypes/unionBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2708,7 +2713,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.POST($body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
@@ -2722,7 +2727,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		Objects.requireNonNull(bodyRecord, "bodyRecord must not be null");
 
 		var $path = "%s/api/bodyparametertypes/patchableRecordBodyParam".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2735,7 +2740,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.method("PATCH", $body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of);
 			}
@@ -2747,7 +2752,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public PatchableRecord.Data patchableRecordBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/patchableRecordBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2760,7 +2765,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.method("PATCH", $body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of);
 			}
@@ -2772,7 +2777,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public PatchableRecord.Data patchableRecordBodyParamOpt(PatchableRecord.Patch bodyRecord) {
 		var $path = "%s/api/bodyparametertypes/patchableRecordBodyParamOpt".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2785,7 +2790,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.method("PATCH", $body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of);
 			}
@@ -2797,7 +2802,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public PatchableRecord.Data patchableRecordBodyParamNil(PatchableRecord.Patch bodyRecord) {
 		var $path = "%s/api/bodyparametertypes/patchableRecordBodyParamNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2810,7 +2815,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.method("PATCH", $body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of);
 			}
@@ -2822,7 +2827,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public PatchableRecord.Data patchableRecordBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/patchableRecordBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2835,7 +2840,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.method("PATCH", $body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of);
 			}
@@ -2847,7 +2852,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 	public PatchableRecord.Data patchableRecordBodyParamOptNil(PatchableRecord.Patch bodyRecord) {
 		var $path = "%s/api/bodyparametertypes/patchableRecordBodyParamOptNil".formatted(
-				this.baseURI);
+				this.baseURI());
 
 		var $uri = URI.create($path);
 		try {
@@ -2860,7 +2865,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 					.method("PATCH", $body);
 			var $request = $requestBuilder.build();
 
-			var $response = this.client.send($request, BodyHandlers.ofInputStream());
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of);
 			}
