@@ -222,6 +222,11 @@ function generateOpertationMethod(
 			const headerParameters = allParameters.filter(p => p.meta?.rest?.source === 'header');
 			const HashMap = fqn('java.util.HashMap');
 			methodBody.append(`var $headerParams = new ${HashMap}<String, String>();`, NL);
+			if (
+				allParameters.some(p => p.meta?.rest?.source === 'header' && (p.variant === 'record' || p.variant === 'union'))
+			) {
+				methodBody.append(`$headerParams.put("X-RSD-Param-Content-Type", this.contentType());`, NL);
+			}
 			headerParameters.forEach(p => {
 				if (p.array) {
 					if (
