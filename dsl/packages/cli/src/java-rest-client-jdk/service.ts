@@ -222,11 +222,6 @@ function generateOpertationMethod(
 			const headerParameters = allParameters.filter(p => p.meta?.rest?.source === 'header');
 			const HashMap = fqn('java.util.HashMap');
 			methodBody.append(`var $headerParams = new ${HashMap}<String, String>();`, NL);
-			if (
-				allParameters.some(p => p.meta?.rest?.source === 'header' && (p.variant === 'record' || p.variant === 'union'))
-			) {
-				methodBody.append(`$headerParams.put("X-RSD-Param-Content-Type", this.contentType());`, NL);
-			}
 			headerParameters.forEach(p => {
 				if (p.array) {
 					if (
@@ -667,6 +662,15 @@ function generateInvokation(
 			l.append(`.uri($uri)`, NL);
 			l.append(`.header("Accept", this.contentType())`, NL);
 
+			if (
+				allParameters.some(
+					p =>
+						(p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'query') &&
+						(p.variant === 'record' || p.variant === 'union'),
+				)
+			) {
+				l.append(`.header("X-RSD-Param-Content-Type", this.contentType())`, NL);
+			}
 			if (method === 'GET') {
 				l.append('.GET();', NL);
 			} else if (method === 'DELETE') {

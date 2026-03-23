@@ -1706,6 +1706,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
+					.header("X-RSD-Param-Content-Type", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			if($headers.length > 0) {

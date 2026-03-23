@@ -1064,6 +1064,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
+					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 
@@ -1113,6 +1114,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
+					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
 			var $request = $requestBuilder.build();
 

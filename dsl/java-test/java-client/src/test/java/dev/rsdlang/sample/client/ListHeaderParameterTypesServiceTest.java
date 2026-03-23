@@ -18,17 +18,20 @@ import dev.rsdlang.sample.client.ListHeaderParameterTypesService.ListInlineEnumH
 import dev.rsdlang.sample.client.ListHeaderParameterTypesService.ListInlineEnumHeaderParamOpt_HeaderValue_Param$;
 import dev.rsdlang.sample.client.ListHeaderParameterTypesService.ListInlineEnumHeaderParamOptNil_HeaderValue_Param$;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncoding;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 
 public class ListHeaderParameterTypesServiceTest {
 
-	private static final SpecSamplesClient JDK_CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
-
 	static ListHeaderParameterTypesService[] serviceProvider() {
+		var baseBuilder = JDKSpecSamplesClient.builder().baseURI(URI.create("http://localhost:3000"));
+		var JSON = baseBuilder.build();
+		var MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
 		return new ListHeaderParameterTypesService[] {
-				JDK_CLIENT.service(ListHeaderParameterTypesService.class),
+				JSON.service(ListHeaderParameterTypesService.class),
+				MSGPACK.service(ListHeaderParameterTypesService.class),
 		};
 	}
 

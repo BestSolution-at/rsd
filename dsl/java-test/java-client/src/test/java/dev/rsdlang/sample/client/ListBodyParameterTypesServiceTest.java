@@ -18,17 +18,20 @@ import dev.rsdlang.sample.client.ListBodyParameterTypesService.ListInlineEnumBod
 import dev.rsdlang.sample.client.ListBodyParameterTypesService.ListInlineEnumBodyParamOpt_BodyEnum_Param$;
 import dev.rsdlang.sample.client.ListBodyParameterTypesService.ListInlineEnumBodyParamOptNil_BodyEnum_Param$;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncoding;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 
 public class ListBodyParameterTypesServiceTest {
 
-	private static final SpecSamplesClient JDK_CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
-
 	static ListBodyParameterTypesService[] serviceProvider() {
+		var baseBuilder = JDKSpecSamplesClient.builder().baseURI(URI.create("http://localhost:3000"));
+		var JSON = baseBuilder.build();
+		var MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
 		return new ListBodyParameterTypesService[] {
-				JDK_CLIENT.service(ListBodyParameterTypesService.class),
+				JSON.service(ListBodyParameterTypesService.class),
+				MSGPACK.service(ListBodyParameterTypesService.class),
 		};
 	}
 

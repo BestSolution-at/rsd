@@ -15,16 +15,20 @@ import org.junit.jupiter.params.provider.MethodSource;
 import dev.rsdlang.sample.client.ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$;
 import dev.rsdlang.sample.client.ListQueryParameterTypesService.ListInlineEnumQueryParam_Result$;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncoding;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 
 public class ListQueryParameterTypesServiceTest {
 
-	private static final SpecSamplesClient JDK_CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
-
 	static ListQueryParameterTypesService[] serviceProvider() {
+		var baseBuilder = JDKSpecSamplesClient.builder().baseURI(URI.create("http://localhost:3000"));
+		var JSON = baseBuilder.build();
+		var MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
+
 		return new ListQueryParameterTypesService[] {
-				JDK_CLIENT.service(ListQueryParameterTypesService.class),
+				JSON.service(ListQueryParameterTypesService.class),
+				MSGPACK.service(ListQueryParameterTypesService.class),
 		};
 	}
 

@@ -2405,6 +2405,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
+					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2458,6 +2459,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
+					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2491,6 +2493,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
+					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2546,6 +2549,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
+					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
@@ -2594,6 +2598,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
+					.header("X-RSD-Param-Content-Type", this.contentType())
 					.header("Content-Type", $contentType)
 					.POST($body);
 			if($headers.length > 0) {
