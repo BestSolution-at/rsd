@@ -36,6 +36,7 @@ function fnUploadFile(props: ServiceProps<api.service.ErrorType>): api.service.B
 		try {
 			const $init = (await preFetch?.('uploadFile')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadFile`;
@@ -69,6 +70,7 @@ function fnUploadFileOpt(props: ServiceProps<api.service.ErrorType>): api.servic
 		try {
 			const $init = (await preFetch?.('uploadFileOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadFileOpt`;
@@ -104,6 +106,7 @@ function fnUploadFileNil(props: ServiceProps<api.service.ErrorType>): api.servic
 		try {
 			const $init = (await preFetch?.('uploadFileNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadFileNil`;
@@ -139,6 +142,7 @@ function fnUploadFileOptNil(props: ServiceProps<api.service.ErrorType>): api.ser
 		try {
 			const $init = (await preFetch?.('uploadFileOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadFileOptNil`;
@@ -176,6 +180,7 @@ function fnUploadBlob(props: ServiceProps<api.service.ErrorType>): api.service.B
 		try {
 			const $init = (await preFetch?.('uploadBlob')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadBlob`;
@@ -209,6 +214,7 @@ function fnUploadBlobOpt(props: ServiceProps<api.service.ErrorType>): api.servic
 		try {
 			const $init = (await preFetch?.('uploadBlobOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadBlobOpt`;
@@ -244,6 +250,7 @@ function fnUploadBlobNil(props: ServiceProps<api.service.ErrorType>): api.servic
 		try {
 			const $init = (await preFetch?.('uploadBlobNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadBlobNil`;
@@ -279,6 +286,7 @@ function fnUploadBlobOptNil(props: ServiceProps<api.service.ErrorType>): api.ser
 		try {
 			const $init = (await preFetch?.('uploadBlobOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadBlobOptNil`;
@@ -316,6 +324,7 @@ function fnUploadFileList(props: ServiceProps<api.service.ErrorType>): api.servi
 		try {
 			const $init = (await preFetch?.('uploadFileList')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadFileList`;
@@ -351,6 +360,7 @@ function fnUploadFileListOpt(props: ServiceProps<api.service.ErrorType>): api.se
 		try {
 			const $init = (await preFetch?.('uploadFileListOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadFileListOpt`;
@@ -388,6 +398,7 @@ function fnUploadFileListNil(props: ServiceProps<api.service.ErrorType>): api.se
 		try {
 			const $init = (await preFetch?.('uploadFileListNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadFileListNil`;
@@ -425,6 +436,7 @@ function fnUploadFileListOptNil(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('uploadFileListOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadFileListOptNil`;
@@ -464,6 +476,7 @@ function fnUploadBlobList(props: ServiceProps<api.service.ErrorType>): api.servi
 		try {
 			const $init = (await preFetch?.('uploadBlobList')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadBlobList`;
@@ -499,6 +512,7 @@ function fnUploadBlobListOpt(props: ServiceProps<api.service.ErrorType>): api.se
 		try {
 			const $init = (await preFetch?.('uploadBlobListOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadBlobListOpt`;
@@ -536,6 +550,7 @@ function fnUploadBlobListNil(props: ServiceProps<api.service.ErrorType>): api.se
 		try {
 			const $init = (await preFetch?.('uploadBlobListNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadBlobListNil`;
@@ -573,6 +588,7 @@ function fnUploadBlobListOptNil(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('uploadBlobListOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadBlobListOptNil`;
@@ -612,6 +628,7 @@ function fnUploadMixed(props: ServiceProps<api.service.ErrorType>): api.service.
 		try {
 			const $init = (await preFetch?.('uploadMixed')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadMixed`;
@@ -656,6 +673,7 @@ function fnUploadMixedOpt(props: ServiceProps<api.service.ErrorType>): api.servi
 		try {
 			const $init = (await preFetch?.('uploadMixedOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadMixedOpt`;
@@ -704,6 +722,7 @@ function fnUploadMixedNil(props: ServiceProps<api.service.ErrorType>): api.servi
 		try {
 			const $init = (await preFetch?.('uploadMixedNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadMixedNil`;
@@ -752,6 +771,7 @@ function fnUploadMixedOptNil(props: ServiceProps<api.service.ErrorType>): api.se
 		try {
 			const $init = (await preFetch?.('uploadMixedOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/uploadMixedOptNil`;
@@ -804,6 +824,8 @@ function fnMixed(props: ServiceProps<api.service.ErrorType>): api.service.Binary
 		try {
 			const $init = (await preFetch?.('mixed')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			$headers.append('headerString', '"' + encodeAsciiString(headerString) + '"');
 			$headers.append('headerNumber', String(headerNumber));
 			$headers.append('headerRecord', encodeBase64(encodeValue(encodingType(props), api.model.SimpleRecordToJSON(headerRecord))));
@@ -843,7 +865,8 @@ function fnDownloadFile(props: ServiceProps<api.service.ErrorType>): api.service
 		try {
 			const $init = (await preFetch?.('downloadFile')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/downloadFile`;
@@ -880,7 +903,8 @@ function fnDownloadBlob(props: ServiceProps<api.service.ErrorType>): api.service
 		try {
 			const $init = (await preFetch?.('downloadBlob')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/binarytypes/downloadBlob`;

@@ -3,9 +3,18 @@ import { describe, expect, test } from 'vitest';
 import { api, createListSampleServiceService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
 import { isSampleErrorError } from '../../test-specs/gen-out/client/typescript-client/src/Errors.js';
 
-const service = createListSampleServiceService({
+const jsonService = createListSampleServiceService({
 	baseUrl: 'http://localhost:3000',
 });
+
+const msgpackService = createListSampleServiceService({
+	baseUrl: 'http://localhost:3000',
+	encoding: 'application/vnd.msgpack',
+});
+
+const json = { service: jsonService, encoding: 'application/json' as const };
+const msgpack = { service: msgpackService, encoding: 'application/vnd.msgpack' as const };
+
 const serviceFailInvalid = createListSampleServiceService({
 	baseUrl: 'http://localhost:3000',
 	lifecycleHandlers: {
@@ -18,7 +27,7 @@ const serviceFailInvalid = createListSampleServiceService({
 
 describe('ListSampleServiceServiceImpl', () => {
 	describe('listBoolean', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listBoolean();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual([true, false, true]);
@@ -35,7 +44,7 @@ describe('ListSampleServiceServiceImpl', () => {
 	});
 
 	describe('listShort', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listShort();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual([123, 456, 789]);
@@ -52,7 +61,7 @@ describe('ListSampleServiceServiceImpl', () => {
 	});
 
 	describe('listInt', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listInt();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual([123456, 789012, 345678]);
@@ -69,7 +78,7 @@ describe('ListSampleServiceServiceImpl', () => {
 	});
 
 	describe('listLong', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listLong();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual([1234567890123, 2345678901234, 3456789012345]);
@@ -86,7 +95,7 @@ describe('ListSampleServiceServiceImpl', () => {
 	});
 
 	describe('listFloat', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listFloat();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual([12.34000015258789, 56.779998779296875, 90.12000274658203]);
@@ -103,7 +112,7 @@ describe('ListSampleServiceServiceImpl', () => {
 	});
 
 	describe('listDouble', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listDouble();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual([12.3456789, 98.7654321, 54.3210987]);
@@ -120,7 +129,7 @@ describe('ListSampleServiceServiceImpl', () => {
 	});
 
 	describe('listString', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listString();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual(['first', 'second', 'third']);
@@ -137,7 +146,7 @@ describe('ListSampleServiceServiceImpl', () => {
 	});
 
 	describe('listLocalDate', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listLocalDate();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual(['2020-01-01', '2021-02-02', '2022-03-03']);
@@ -154,7 +163,7 @@ describe('ListSampleServiceServiceImpl', () => {
 	});
 
 	describe('listLocalDateTime', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listLocalDateTime();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual(['2020-01-01T10:00:00', '2021-02-02T11:30:00', '2022-03-03T12:45:00']);
@@ -171,7 +180,7 @@ describe('ListSampleServiceServiceImpl', () => {
 	});
 
 	describe('listZonedDateTime', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listZonedDateTime();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual(['2020-01-01T10:00:00Z', '2021-02-02T11:30:00Z', '2022-03-03T12:45:00Z']);
@@ -188,7 +197,7 @@ describe('ListSampleServiceServiceImpl', () => {
 	});
 
 	describe('listScalar', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listScalar();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual(['Europe/Vienna', 'America/New_York', 'Asia/Tokyo']);
@@ -205,7 +214,7 @@ describe('ListSampleServiceServiceImpl', () => {
 	});
 
 	describe('listEnum', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listEnum();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual(['A', 'B']);
@@ -222,7 +231,7 @@ describe('ListSampleServiceServiceImpl', () => {
 	});
 
 	describe('listSimpleRecord', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listSimpleRecord();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual([
@@ -245,7 +254,7 @@ describe('ListSampleServiceServiceImpl', () => {
 	});
 
 	describe('listSimpleRecordWithError', () => {
-		test('error case - SampleErrorError', async () => {
+		test.each([json, msgpack])('error case - SampleErrorError - $encoding', async ({ service }) => {
 			const [result, error] = await service.listSimpleRecordWithError();
 			expect(result).toBeUndefined();
 			expect(error).not.toBeNull();

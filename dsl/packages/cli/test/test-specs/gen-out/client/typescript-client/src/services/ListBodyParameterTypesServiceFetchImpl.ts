@@ -77,7 +77,8 @@ function fnListBooleanBodyParam(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('listBooleanBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listBooleanBodyParam`;
@@ -107,7 +108,8 @@ function fnListBooleanBodyParamOpt(props: ServiceProps<api.service.ErrorType>): 
 		try {
 			const $init = (await preFetch?.('listBooleanBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listBooleanBodyParamOpt`;
@@ -137,7 +139,8 @@ function fnListBooleanBodyParamNil(props: ServiceProps<api.service.ErrorType>): 
 		try {
 			const $init = (await preFetch?.('listBooleanBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listBooleanBodyParamNil`;
@@ -167,7 +170,8 @@ function fnListBooleanBodyParamOptNil(props: ServiceProps<api.service.ErrorType>
 		try {
 			const $init = (await preFetch?.('listBooleanBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listBooleanBodyParamOptNil`;
@@ -197,7 +201,8 @@ function fnListShortBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 		try {
 			const $init = (await preFetch?.('listShortBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listShortBodyParam`;
@@ -227,7 +232,8 @@ function fnListShortBodyParamOpt(props: ServiceProps<api.service.ErrorType>): ap
 		try {
 			const $init = (await preFetch?.('listShortBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listShortBodyParamOpt`;
@@ -257,7 +263,8 @@ function fnListShortBodyParamNil(props: ServiceProps<api.service.ErrorType>): ap
 		try {
 			const $init = (await preFetch?.('listShortBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listShortBodyParamNil`;
@@ -287,7 +294,8 @@ function fnListShortBodyParamOptNil(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listShortBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listShortBodyParamOptNil`;
@@ -317,7 +325,8 @@ function fnListIntBodyParam(props: ServiceProps<api.service.ErrorType>): api.ser
 		try {
 			const $init = (await preFetch?.('listIntBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listIntBodyParam`;
@@ -347,7 +356,8 @@ function fnListIntBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.
 		try {
 			const $init = (await preFetch?.('listIntBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listIntBodyParamOpt`;
@@ -377,7 +387,8 @@ function fnListIntBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.
 		try {
 			const $init = (await preFetch?.('listIntBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listIntBodyParamNil`;
@@ -407,7 +418,8 @@ function fnListIntBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listIntBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listIntBodyParamOptNil`;
@@ -437,7 +449,8 @@ function fnListLongBodyParam(props: ServiceProps<api.service.ErrorType>): api.se
 		try {
 			const $init = (await preFetch?.('listLongBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLongBodyParam`;
@@ -467,7 +480,8 @@ function fnListLongBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('listLongBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLongBodyParamOpt`;
@@ -497,7 +511,8 @@ function fnListLongBodyParamNil(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('listLongBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLongBodyParamNil`;
@@ -527,7 +542,8 @@ function fnListLongBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): 
 		try {
 			const $init = (await preFetch?.('listLongBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLongBodyParamOptNil`;
@@ -557,7 +573,8 @@ function fnListFloatBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 		try {
 			const $init = (await preFetch?.('listFloatBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listFloatBodyParam`;
@@ -587,7 +604,8 @@ function fnListFloatBodyParamOpt(props: ServiceProps<api.service.ErrorType>): ap
 		try {
 			const $init = (await preFetch?.('listFloatBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listFloatBodyParamOpt`;
@@ -617,7 +635,8 @@ function fnListFloatBodyParamNil(props: ServiceProps<api.service.ErrorType>): ap
 		try {
 			const $init = (await preFetch?.('listFloatBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listFloatBodyParamNil`;
@@ -647,7 +666,8 @@ function fnListFloatBodyParamOptNil(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listFloatBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listFloatBodyParamOptNil`;
@@ -677,7 +697,8 @@ function fnListDoubleBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 		try {
 			const $init = (await preFetch?.('listDoubleBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listDoubleBodyParam`;
@@ -707,7 +728,8 @@ function fnListDoubleBodyParamOpt(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listDoubleBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listDoubleBodyParamOpt`;
@@ -737,7 +759,8 @@ function fnListDoubleBodyParamNil(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listDoubleBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listDoubleBodyParamNil`;
@@ -767,7 +790,8 @@ function fnListDoubleBodyParamOptNil(props: ServiceProps<api.service.ErrorType>)
 		try {
 			const $init = (await preFetch?.('listDoubleBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listDoubleBodyParamOptNil`;
@@ -797,7 +821,8 @@ function fnListStringBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 		try {
 			const $init = (await preFetch?.('listStringBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listStringBodyParam`;
@@ -827,7 +852,8 @@ function fnListStringBodyParamOpt(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listStringBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listStringBodyParamOpt`;
@@ -857,7 +883,8 @@ function fnListStringBodyParamNil(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listStringBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listStringBodyParamNil`;
@@ -887,7 +914,8 @@ function fnListStringBodyParamOptNil(props: ServiceProps<api.service.ErrorType>)
 		try {
 			const $init = (await preFetch?.('listStringBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listStringBodyParamOptNil`;
@@ -917,7 +945,8 @@ function fnListLocalDateBodyParam(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listLocalDateBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateBodyParam`;
@@ -947,7 +976,8 @@ function fnListLocalDateBodyParamOpt(props: ServiceProps<api.service.ErrorType>)
 		try {
 			const $init = (await preFetch?.('listLocalDateBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateBodyParamOpt`;
@@ -977,7 +1007,8 @@ function fnListLocalDateBodyParamNil(props: ServiceProps<api.service.ErrorType>)
 		try {
 			const $init = (await preFetch?.('listLocalDateBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateBodyParamNil`;
@@ -1007,7 +1038,8 @@ function fnListLocalDateBodyParamOptNil(props: ServiceProps<api.service.ErrorTyp
 		try {
 			const $init = (await preFetch?.('listLocalDateBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateBodyParamOptNil`;
@@ -1037,7 +1069,8 @@ function fnListLocalDateTimeBodyParam(props: ServiceProps<api.service.ErrorType>
 		try {
 			const $init = (await preFetch?.('listLocalDateTimeBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateTimeBodyParam`;
@@ -1067,7 +1100,8 @@ function fnListLocalDateTimeBodyParamOpt(props: ServiceProps<api.service.ErrorTy
 		try {
 			const $init = (await preFetch?.('listLocalDateTimeBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateTimeBodyParamOpt`;
@@ -1097,7 +1131,8 @@ function fnListLocalDateTimeBodyParamNil(props: ServiceProps<api.service.ErrorTy
 		try {
 			const $init = (await preFetch?.('listLocalDateTimeBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateTimeBodyParamNil`;
@@ -1127,7 +1162,8 @@ function fnListLocalDateTimeBodyParamOptNil(props: ServiceProps<api.service.Erro
 		try {
 			const $init = (await preFetch?.('listLocalDateTimeBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalDateTimeBodyParamOptNil`;
@@ -1157,7 +1193,8 @@ function fnListZonedDateTimeBodyParam(props: ServiceProps<api.service.ErrorType>
 		try {
 			const $init = (await preFetch?.('listZonedDateTimeBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listZonedDateTimeBodyParam`;
@@ -1187,7 +1224,8 @@ function fnListZonedDateTimeBodyParamOpt(props: ServiceProps<api.service.ErrorTy
 		try {
 			const $init = (await preFetch?.('listZonedDateTimeBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listZonedDateTimeBodyParamOpt`;
@@ -1217,7 +1255,8 @@ function fnListZonedDateTimeBodyParamNil(props: ServiceProps<api.service.ErrorTy
 		try {
 			const $init = (await preFetch?.('listZonedDateTimeBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listZonedDateTimeBodyParamNil`;
@@ -1247,7 +1286,8 @@ function fnListZonedDateTimeBodyParamOptNil(props: ServiceProps<api.service.Erro
 		try {
 			const $init = (await preFetch?.('listZonedDateTimeBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listZonedDateTimeBodyParamOptNil`;
@@ -1277,7 +1317,8 @@ function fnListScalarBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 		try {
 			const $init = (await preFetch?.('listScalarBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listScalarBodyParam`;
@@ -1307,7 +1348,8 @@ function fnListScalarBodyParamOpt(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listScalarBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listScalarBodyParamOpt`;
@@ -1337,7 +1379,8 @@ function fnListScalarBodyParamNil(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listScalarBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listScalarBodyParamNil`;
@@ -1367,7 +1410,8 @@ function fnListScalarBodyParamOptNil(props: ServiceProps<api.service.ErrorType>)
 		try {
 			const $init = (await preFetch?.('listScalarBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listScalarBodyParamOptNil`;
@@ -1397,7 +1441,8 @@ function fnListEnumBodyParam(props: ServiceProps<api.service.ErrorType>): api.se
 		try {
 			const $init = (await preFetch?.('listEnumBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listEnumBodyParam`;
@@ -1427,7 +1472,8 @@ function fnListEnumBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('listEnumBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listEnumBodyParamOpt`;
@@ -1457,7 +1503,8 @@ function fnListEnumBodyParamNil(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('listEnumBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listEnumBodyParamNil`;
@@ -1487,7 +1534,8 @@ function fnListEnumBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): 
 		try {
 			const $init = (await preFetch?.('listEnumBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listEnumBodyParamOptNil`;
@@ -1517,7 +1565,8 @@ function fnListInlineEnumBodyParam(props: ServiceProps<api.service.ErrorType>): 
 		try {
 			const $init = (await preFetch?.('listInlineEnumBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listInlineEnumBodyParam`;
@@ -1547,7 +1596,8 @@ function fnListInlineEnumBodyParamOpt(props: ServiceProps<api.service.ErrorType>
 		try {
 			const $init = (await preFetch?.('listInlineEnumBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listInlineEnumBodyParamOpt`;
@@ -1577,7 +1627,8 @@ function fnListInlineEnumBodyParamNil(props: ServiceProps<api.service.ErrorType>
 		try {
 			const $init = (await preFetch?.('listInlineEnumBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listInlineEnumBodyParamNil`;
@@ -1607,7 +1658,8 @@ function fnListInlineEnumBodyParamOptNil(props: ServiceProps<api.service.ErrorTy
 		try {
 			const $init = (await preFetch?.('listInlineEnumBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listInlineEnumBodyParamOptNil`;
@@ -1637,7 +1689,8 @@ function fnListMultiBodyParam(props: ServiceProps<api.service.ErrorType>): api.s
 		try {
 			const $init = (await preFetch?.('listMultiBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listMultiBodyParam`;
@@ -1671,7 +1724,8 @@ function fnListMultiBodyParamOpt(props: ServiceProps<api.service.ErrorType>): ap
 		try {
 			const $init = (await preFetch?.('listMultiBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listMultiBodyParamOpt`;
@@ -1705,7 +1759,8 @@ function fnListMultiBodyParamNil(props: ServiceProps<api.service.ErrorType>): ap
 		try {
 			const $init = (await preFetch?.('listMultiBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listMultiBodyParamNil`;
@@ -1739,7 +1794,8 @@ function fnListMultiBodyParamOptNil(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listMultiBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listMultiBodyParamOptNil`;
@@ -1773,7 +1829,8 @@ function fnListRecordBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 		try {
 			const $init = (await preFetch?.('listRecordBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listRecordBodyParam`;
@@ -1804,7 +1861,8 @@ function fnListRecordBodyParamOpt(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listRecordBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listRecordBodyParamOpt`;
@@ -1834,7 +1892,8 @@ function fnListRecordBodyParamNil(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listRecordBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listRecordBodyParamNil`;
@@ -1864,7 +1923,8 @@ function fnListRecordBodyParamOptNil(props: ServiceProps<api.service.ErrorType>)
 		try {
 			const $init = (await preFetch?.('listRecordBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listRecordBodyParamOptNil`;

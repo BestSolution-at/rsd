@@ -6,8 +6,13 @@ import {
 	isSampleErrorError,
 } from '../../test-specs/gen-out/client/typescript-client/src/Errors.js';
 
-const service = createSampleServiceService({
+const jsonService = createSampleServiceService({
 	baseUrl: 'http://localhost:3000',
+});
+
+const msgpackService = createSampleServiceService({
+	baseUrl: 'http://localhost:3000',
+	encoding: 'application/vnd.msgpack',
 });
 
 const serviceFailInvalid = createSampleServiceService({
@@ -20,9 +25,19 @@ const serviceFailInvalid = createSampleServiceService({
 	},
 });
 
+const json = {
+	encoding: 'application/json' as const,
+	service: jsonService,
+};
+
+const msgpack = {
+	encoding: 'application/vnd.msgpack' as const,
+	service: msgpackService,
+};
+
 describe('SampleServiceServiceFetchImpl', () => {
 	describe('getBoolean', () => {
-		test('sucess getBoolean', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getBoolean();
 			expect(error).toBeNull();
 			expect(result).toBe(true);
@@ -87,7 +102,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 		});
 	});
 	describe('getShort', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getShort();
 			expect(error).toBeNull();
 			expect(result).toBe(123);
@@ -104,7 +119,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getInt', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getInt();
 			expect(error).toBeNull();
 			expect(result).toBe(123456);
@@ -121,7 +136,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getLong', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getLong();
 			expect(error).toBeNull();
 			expect(result).toBe(1234567890123);
@@ -138,7 +153,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getFloat', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getFloat();
 			expect(error).toBeNull();
 			expect(result).toBe(123.44999694824219);
@@ -155,7 +170,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getDouble', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getDouble();
 			expect(error).toBeNull();
 			expect(result).toBe(123.456789);
@@ -172,7 +187,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getString', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getString();
 			expect(error).toBeNull();
 			expect(result).toBe('sample string');
@@ -189,7 +204,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getLocalDate', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getLocalDate();
 			expect(error).toBeNull();
 			expect(result).toBe('2020-01-01');
@@ -206,7 +221,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getLocalDateTime', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getLocalDateTime();
 			expect(error).toBeNull();
 			expect(result).toBe('2020-01-01T10:00:00');
@@ -223,7 +238,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getZonedDateTime', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getZonedDateTime();
 			expect(error).toBeNull();
 			expect(result).toBe('2025-01-01T10:00:00Z');
@@ -240,7 +255,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getScalar', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getScalar();
 			expect(error).toBeNull();
 			expect(result).toBe('Europe/Vienna');
@@ -257,7 +272,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getEnum', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getEnum();
 			expect(error).toBeNull();
 			expect(result).toBe('A');
@@ -274,7 +289,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('voidOperation', () => {
-		test('sucess', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.voidOperation();
 			expect(error).toBeNull();
 			expect(result).toBe(api.result.Void);
@@ -282,7 +297,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('errorOperation', () => {
-		test('fail - SampleError', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.errorOperation();
 			expect(error).not.toBeNull();
 			expect(result).toBeUndefined();
@@ -291,7 +306,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('multierroroperation', () => {
-		test('fail - SampleError', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.multiErrorOperation();
 			expect(error).not.toBeNull();
 			expect(result).toBeUndefined();
@@ -315,7 +330,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 		});
 	});
 	describe('getSimpleRecord', () => {
-		test('success', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getSimpleRecord('123');
 			expect(error).toBeNull();
 			expect(result).toEqual({
@@ -333,7 +348,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getSimpleRecordWithError', () => {
-		test('fail - SampleError', async () => {
+		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getSimpleRecordWithError('123');
 			expect(error).not.toBeNull();
 			expect(result).toBeUndefined();

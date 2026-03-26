@@ -280,6 +280,8 @@ function generateRemoteInvoke(
 	if (o.meta?.rest === undefined) {
 		throw new Error(`No rest meta data available for operation ${s.name}.${o.name}`);
 	}
+	const encodingType = fqn('encodingType:./_fetch-type-utils.ts', false);
+	const encodingTypeCall = `${encodingType}(props)`;
 	const path = s.meta.rest.path;
 	const processedPath = `${path.replace(/^\//, '')}/${o.meta.rest.path}`.replace(
 		/\${(\w+)}/g,
@@ -295,8 +297,18 @@ function generateRemoteInvoke(
 
 	node.append(`const $headers = new Headers($init.headers ?? {});`, NL);
 	const hasStreamParam = o.parameters.some(p => p.variant === 'stream');
+	node.append(`$headers.append('Accept', ${encodingTypeCall});`, NL);
 	if (!hasStreamParam) {
-		node.append(`$headers.append('Content-Type', 'application/json');`, NL);
+		node.append(`$headers.append('Content-Type', ${encodingTypeCall});`, NL);
+	}
+	if (
+		o.parameters.some(
+			p =>
+				(p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'query') &&
+				(p.variant === 'record' || p.variant === 'union'),
+		)
+	) {
+		node.append(`$headers.append('X-RSD-Param-Content-Type', ${encodingTypeCall});`, NL);
 	}
 
 	if (headerParams.length) {

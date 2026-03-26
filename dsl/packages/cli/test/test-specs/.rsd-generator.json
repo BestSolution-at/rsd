@@ -9,7 +9,8 @@
             "name": "typescript-rest-client-fetch",
             "targetFolder": "./gen-out/client/typescript-client/src",
             "allowImportingTsExtensions": false,
-            "apiNamespacePath": "../index.ts"
+            "apiNamespacePath": "../index.ts",
+						"contentTypeEncodings": ["application/json", "application/vnd.msgpack"]
         },
 				{
             "name": "java-client-api",
@@ -46,6 +47,11 @@
                 "ZoneId": "java.time.ZoneId"
             },
 						"contentTypeEncodings": ["application/json", "application/vnd.msgpack"]
-        }
+        },
+				{
+					"name": "openapi",
+					"targetFolder": "./gen-out/openapi",
+					"specFileName": "openapi.json"
+				}
     ]
 }

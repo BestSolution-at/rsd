@@ -79,8 +79,8 @@ function generateFetchTypeUtilsContent(
 			return value;
 		}
 
-		export function encodeBase64(value: string): string {
-			const bytes = new TextEncoder().encode(value);
+		export function encodeBase64(value: string | Uint8Array): string {
+			const bytes = typeof value === 'string' ? new TextEncoder().encode(value) : value;
 			const binString = Array.from(bytes, byte => String.fromCodePoint(byte)).join('');
 			return btoa(binString);
 		}
@@ -175,14 +175,20 @@ function generateFetchTypeUtilsContent(
 function generateJsonEncodeValueFunction() {
 	return toNodeTree(`
 		function encodeJsonBody(body: unknown): string {
+			if (body === undefined) {
+				return '';
+			}
 			return JSON.stringify(body);
 		}`);
 }
 
 function generateMsgPackEncodeValueFunction(fqn: (t: string, typeOnly: boolean) => string) {
 	return toNodeTree(`
-		const encoder = new ${fqn('Encoder:@msgpack/msgpack', false)}();
+		const encoder = new ${fqn('Encoder:@msgpack/msgpack', false)}({ ignoreUndefined: true });
 		function encodeMsgPackBody(body: unknown): Uint8Array {
+			if (body === undefined) {
+				return new Uint8Array();
+			}
 			return encoder.encodeSharedRef(body);
 		}`);
 }

@@ -77,7 +77,8 @@ function fnListBooleanHeaderParam(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listBooleanHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', String($entry));
 			});
@@ -110,7 +111,8 @@ function fnListBooleanHeaderParamOpt(props: ServiceProps<api.service.ErrorType>)
 		try {
 			const $init = (await preFetch?.('listBooleanHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -145,7 +147,8 @@ function fnListBooleanHeaderParamNil(props: ServiceProps<api.service.ErrorType>)
 		try {
 			const $init = (await preFetch?.('listBooleanHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -182,7 +185,8 @@ function fnListBooleanHeaderParamOptNil(props: ServiceProps<api.service.ErrorTyp
 		try {
 			const $init = (await preFetch?.('listBooleanHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -219,7 +223,8 @@ function fnListShortHeaderParam(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('listShortHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', String($entry));
 			});
@@ -252,7 +257,8 @@ function fnListShortHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): 
 		try {
 			const $init = (await preFetch?.('listShortHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -287,7 +293,8 @@ function fnListShortHeaderParamNil(props: ServiceProps<api.service.ErrorType>): 
 		try {
 			const $init = (await preFetch?.('listShortHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -324,7 +331,8 @@ function fnListShortHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>
 		try {
 			const $init = (await preFetch?.('listShortHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -361,7 +369,8 @@ function fnListIntHeaderParam(props: ServiceProps<api.service.ErrorType>): api.s
 		try {
 			const $init = (await preFetch?.('listIntHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', String($entry));
 			});
@@ -394,7 +403,8 @@ function fnListIntHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): ap
 		try {
 			const $init = (await preFetch?.('listIntHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -429,7 +439,8 @@ function fnListIntHeaderParamNil(props: ServiceProps<api.service.ErrorType>): ap
 		try {
 			const $init = (await preFetch?.('listIntHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -466,7 +477,8 @@ function fnListIntHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listIntHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -503,7 +515,8 @@ function fnListLongHeaderParam(props: ServiceProps<api.service.ErrorType>): api.
 		try {
 			const $init = (await preFetch?.('listLongHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', String($entry));
 			});
@@ -536,7 +549,8 @@ function fnListLongHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listLongHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -571,7 +585,8 @@ function fnListLongHeaderParamNil(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listLongHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -608,7 +623,8 @@ function fnListLongHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>)
 		try {
 			const $init = (await preFetch?.('listLongHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -645,7 +661,8 @@ function fnListFloatHeaderParam(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('listFloatHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', String($entry));
 			});
@@ -678,7 +695,8 @@ function fnListFloatHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): 
 		try {
 			const $init = (await preFetch?.('listFloatHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -713,7 +731,8 @@ function fnListFloatHeaderParamNil(props: ServiceProps<api.service.ErrorType>): 
 		try {
 			const $init = (await preFetch?.('listFloatHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -750,7 +769,8 @@ function fnListFloatHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>
 		try {
 			const $init = (await preFetch?.('listFloatHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -787,7 +807,8 @@ function fnListDoubleHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 		try {
 			const $init = (await preFetch?.('listDoubleHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', String($entry));
 			});
@@ -820,7 +841,8 @@ function fnListDoubleHeaderParamOpt(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listDoubleHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -855,7 +877,8 @@ function fnListDoubleHeaderParamNil(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listDoubleHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -892,7 +915,8 @@ function fnListDoubleHeaderParamOptNil(props: ServiceProps<api.service.ErrorType
 		try {
 			const $init = (await preFetch?.('listDoubleHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', String($entry));
@@ -929,7 +953,8 @@ function fnListStringHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 		try {
 			const $init = (await preFetch?.('listStringHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', '"' + encodeAsciiString($entry) + '"');
 			});
@@ -962,7 +987,8 @@ function fnListStringHeaderParamOpt(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listStringHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', '"' + encodeAsciiString($entry) + '"');
@@ -997,7 +1023,8 @@ function fnListStringHeaderParamNil(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listStringHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', '"' + encodeAsciiString($entry) + '"');
@@ -1034,7 +1061,8 @@ function fnListStringHeaderParamOptNil(props: ServiceProps<api.service.ErrorType
 		try {
 			const $init = (await preFetch?.('listStringHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', '"' + encodeAsciiString($entry) + '"');
@@ -1071,7 +1099,8 @@ function fnListLocalDateHeaderParam(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listLocalDateHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', $entry);
 			});
@@ -1104,7 +1133,8 @@ function fnListLocalDateHeaderParamOpt(props: ServiceProps<api.service.ErrorType
 		try {
 			const $init = (await preFetch?.('listLocalDateHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1139,7 +1169,8 @@ function fnListLocalDateHeaderParamNil(props: ServiceProps<api.service.ErrorType
 		try {
 			const $init = (await preFetch?.('listLocalDateHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1176,7 +1207,8 @@ function fnListLocalDateHeaderParamOptNil(props: ServiceProps<api.service.ErrorT
 		try {
 			const $init = (await preFetch?.('listLocalDateHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1213,7 +1245,8 @@ function fnListLocalDateTimeHeaderParam(props: ServiceProps<api.service.ErrorTyp
 		try {
 			const $init = (await preFetch?.('listLocalDateTimeHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', $entry);
 			});
@@ -1246,7 +1279,8 @@ function fnListLocalDateTimeHeaderParamOpt(props: ServiceProps<api.service.Error
 		try {
 			const $init = (await preFetch?.('listLocalDateTimeHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1281,7 +1315,8 @@ function fnListLocalDateTimeHeaderParamNil(props: ServiceProps<api.service.Error
 		try {
 			const $init = (await preFetch?.('listLocalDateTimeHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1318,7 +1353,8 @@ function fnListLocalDateTimeHeaderParamOptNil(props: ServiceProps<api.service.Er
 		try {
 			const $init = (await preFetch?.('listLocalDateTimeHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1355,7 +1391,8 @@ function fnListZonedDateTimeHeaderParam(props: ServiceProps<api.service.ErrorTyp
 		try {
 			const $init = (await preFetch?.('listZonedDateTimeHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', $entry);
 			});
@@ -1388,7 +1425,8 @@ function fnListZonedDateTimeHeaderParamOpt(props: ServiceProps<api.service.Error
 		try {
 			const $init = (await preFetch?.('listZonedDateTimeHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1423,7 +1461,8 @@ function fnListZonedDateTimeHeaderParamNil(props: ServiceProps<api.service.Error
 		try {
 			const $init = (await preFetch?.('listZonedDateTimeHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1460,7 +1499,8 @@ function fnListZonedDateTimeHeaderParamOptNil(props: ServiceProps<api.service.Er
 		try {
 			const $init = (await preFetch?.('listZonedDateTimeHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1497,7 +1537,8 @@ function fnListScalarHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 		try {
 			const $init = (await preFetch?.('listScalarHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', $entry);
 			});
@@ -1530,7 +1571,8 @@ function fnListScalarHeaderParamOpt(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listScalarHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1565,7 +1607,8 @@ function fnListScalarHeaderParamNil(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listScalarHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1602,7 +1645,8 @@ function fnListScalarHeaderParamOptNil(props: ServiceProps<api.service.ErrorType
 		try {
 			const $init = (await preFetch?.('listScalarHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1639,7 +1683,8 @@ function fnListEnumHeaderParam(props: ServiceProps<api.service.ErrorType>): api.
 		try {
 			const $init = (await preFetch?.('listEnumHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', $entry);
 			});
@@ -1672,7 +1717,8 @@ function fnListEnumHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listEnumHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1707,7 +1753,8 @@ function fnListEnumHeaderParamNil(props: ServiceProps<api.service.ErrorType>): a
 		try {
 			const $init = (await preFetch?.('listEnumHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1744,7 +1791,8 @@ function fnListEnumHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>)
 		try {
 			const $init = (await preFetch?.('listEnumHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1781,7 +1829,8 @@ function fnListInlineEnumHeaderParam(props: ServiceProps<api.service.ErrorType>)
 		try {
 			const $init = (await preFetch?.('listInlineEnumHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', $entry);
 			});
@@ -1814,7 +1863,8 @@ function fnListInlineEnumHeaderParamOpt(props: ServiceProps<api.service.ErrorTyp
 		try {
 			const $init = (await preFetch?.('listInlineEnumHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1849,7 +1899,8 @@ function fnListInlineEnumHeaderParamNil(props: ServiceProps<api.service.ErrorTyp
 		try {
 			const $init = (await preFetch?.('listInlineEnumHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1886,7 +1937,8 @@ function fnListInlineEnumHeaderParamOptNil(props: ServiceProps<api.service.Error
 		try {
 			const $init = (await preFetch?.('listInlineEnumHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', $entry);
@@ -1923,7 +1975,9 @@ function fnListMultiHeaderParam(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('listMultiHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			valueA.forEach($entry => {
 				$headers.append('valueA', '"' + encodeAsciiString($entry) + '"');
 			});
@@ -1962,7 +2016,9 @@ function fnListMultiHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): 
 		try {
 			const $init = (await preFetch?.('listMultiHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			if (valueA !== undefined) {
 				valueA.forEach($entry => {
 					$headers.append('valueA', '"' + encodeAsciiString($entry) + '"');
@@ -2007,7 +2063,9 @@ function fnListMultiHeaderParamNil(props: ServiceProps<api.service.ErrorType>): 
 		try {
 			const $init = (await preFetch?.('listMultiHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			if (valueA !== null) {
 				valueA.forEach($entry => {
 					$headers.append('valueA', '"' + encodeAsciiString($entry) + '"');
@@ -2058,7 +2116,9 @@ function fnListMultiHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>
 		try {
 			const $init = (await preFetch?.('listMultiHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			if (valueA !== undefined && valueA !== null) {
 				valueA.forEach($entry => {
 					$headers.append('valueA', '"' + encodeAsciiString($entry) + '"');
@@ -2109,7 +2169,9 @@ function fnListRecordHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 		try {
 			const $init = (await preFetch?.('listRecordHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
 				$headers.append('headerValue', encodeBase64(encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))));
 			});
@@ -2143,7 +2205,9 @@ function fnListRecordHeaderParamOpt(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listRecordHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', encodeBase64(encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))));
@@ -2178,7 +2242,9 @@ function fnListRecordHeaderParamNil(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listRecordHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', encodeBase64(encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))));
@@ -2215,7 +2281,9 @@ function fnListRecordHeaderParamOptNil(props: ServiceProps<api.service.ErrorType
 		try {
 			const $init = (await preFetch?.('listRecordHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
 					$headers.append('headerValue', encodeBase64(encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))));

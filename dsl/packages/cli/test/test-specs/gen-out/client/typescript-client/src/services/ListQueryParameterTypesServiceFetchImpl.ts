@@ -32,7 +32,8 @@ function fnListBooleanQueryParam(props: ServiceProps<api.service.ErrorType>): ap
 		try {
 			const $init = (await preFetch?.('listBooleanQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -66,7 +67,8 @@ function fnListShortQueryParam(props: ServiceProps<api.service.ErrorType>): api.
 		try {
 			const $init = (await preFetch?.('listShortQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -100,7 +102,8 @@ function fnListIntQueryParam(props: ServiceProps<api.service.ErrorType>): api.se
 		try {
 			const $init = (await preFetch?.('listIntQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -134,7 +137,8 @@ function fnListLongQueryParam(props: ServiceProps<api.service.ErrorType>): api.s
 		try {
 			const $init = (await preFetch?.('listLongQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -168,7 +172,8 @@ function fnListFloatQueryParam(props: ServiceProps<api.service.ErrorType>): api.
 		try {
 			const $init = (await preFetch?.('listFloatQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -202,7 +207,8 @@ function fnListDoubleQueryParam(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('listDoubleQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -236,7 +242,8 @@ function fnListStringQueryParam(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('listStringQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -270,7 +277,8 @@ function fnListLocalDateQueryParam(props: ServiceProps<api.service.ErrorType>): 
 		try {
 			const $init = (await preFetch?.('listLocalDateQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -304,7 +312,8 @@ function fnListLocalDateTimeQueryParam(props: ServiceProps<api.service.ErrorType
 		try {
 			const $init = (await preFetch?.('listLocalDateTimeQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -338,7 +347,8 @@ function fnListZonedDateTimeQueryParam(props: ServiceProps<api.service.ErrorType
 		try {
 			const $init = (await preFetch?.('listZonedDateTimeQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -372,7 +382,8 @@ function fnListScalarQueryParam(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('listScalarQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -406,7 +417,8 @@ function fnListEnumQueryParam(props: ServiceProps<api.service.ErrorType>): api.s
 		try {
 			const $init = (await preFetch?.('listEnumQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -440,7 +452,8 @@ function fnListInlineEnumQueryParam(props: ServiceProps<api.service.ErrorType>):
 		try {
 			const $init = (await preFetch?.('listInlineEnumQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -474,7 +487,9 @@ function fnListMultiQueryParam(props: ServiceProps<api.service.ErrorType>): api.
 		try {
 			const $init = (await preFetch?.('listMultiQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
@@ -514,7 +529,9 @@ function fnListRecordQueryParam(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('listRecordQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Content-Type', 'application/json');
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
