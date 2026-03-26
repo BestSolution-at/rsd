@@ -51,7 +51,7 @@
 				{
 					"name": "openapi",
 					"targetFolder": "./gen-out/openapi",
-					"specFileName": "openapi.json"
+					"specFileName": "openapi"
 				}
     ]
 }
