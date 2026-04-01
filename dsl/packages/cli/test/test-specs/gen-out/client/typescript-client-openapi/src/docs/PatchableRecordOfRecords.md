@@ -1,0 +1,52 @@
+
+# PatchableRecordOfRecords
+
+
+## Properties
+
+Name | Type
+------------ | -------------
+`key` | string
+`version` | string
+`value` | [PatchableRecordBasic](PatchableRecordBasic.md)
+`valueNull` | [PatchableRecordBasic](PatchableRecordBasic.md)
+`valueOpt` | [PatchableRecordBasic](PatchableRecordBasic.md)
+`valueOptNull` | [PatchableRecordBasic](PatchableRecordBasic.md)
+`list` | [Array&lt;PatchableRecordBasic&gt;](PatchableRecordBasic.md)
+`listNull` | [Array&lt;PatchableRecordBasic&gt;](PatchableRecordBasic.md)
+`listOpt` | [Array&lt;PatchableRecordBasic&gt;](PatchableRecordBasic.md)
+`listOptNull` | [Array&lt;PatchableRecordBasic&gt;](PatchableRecordBasic.md)
+
+## Example
+
+```typescript
+import type { PatchableRecordOfRecords } from ''
+
+// TODO: Update the object below with actual values
+const example = {
+  "key": null,
+  "version": null,
+  "value": null,
+  "valueNull": null,
+  "valueOpt": null,
+  "valueOptNull": null,
+  "list": null,
+  "listNull": null,
+  "listOpt": null,
+  "listOptNull": null,
+} satisfies PatchableRecordOfRecords
+
+console.log(example)
+
+// Convert the instance to a JSON string
+const exampleJSON: string = JSON.stringify(example)
+console.log(exampleJSON)
+
+// Parse the JSON string back to an object
+const exampleParsed = JSON.parse(exampleJSON) as PatchableRecordOfRecords
+console.log(exampleParsed)
+```
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
