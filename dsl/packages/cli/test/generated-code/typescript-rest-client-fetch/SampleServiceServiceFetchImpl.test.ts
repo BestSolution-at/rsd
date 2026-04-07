@@ -5,6 +5,7 @@ import {
 	isSampleError2Error,
 	isSampleErrorError,
 } from '../../test-specs/gen-out/client/typescript-client/src/Errors.js';
+import { createOpenAPISampleServiceService } from '../../test-specs/gen-out/client/typescript-client-openapi/src/adapter/SampleServiceService.adapter.js';
 
 const jsonService = createSampleServiceService({
 	baseUrl: 'http://localhost:3000',
@@ -13,6 +14,10 @@ const jsonService = createSampleServiceService({
 const msgpackService = createSampleServiceService({
 	baseUrl: 'http://localhost:3000',
 	encoding: 'application/vnd.msgpack',
+});
+
+const openApiService = createOpenAPISampleServiceService({
+	baseUrl: 'http://localhost:3000',
 });
 
 const serviceFailInvalid = createSampleServiceService({
@@ -30,6 +35,11 @@ const json = {
 	service: jsonService,
 };
 
+const jsonOpenApi = {
+	encoding: 'application/json via openAPI' as const,
+	service: openApiService,
+};
+
 const msgpack = {
 	encoding: 'application/vnd.msgpack' as const,
 	service: msgpackService,
@@ -37,7 +47,7 @@ const msgpack = {
 
 describe('SampleServiceServiceFetchImpl', () => {
 	describe('getBoolean', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getBoolean();
 			expect(error).toBeNull();
 			expect(result).toBe(true);
@@ -102,7 +112,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 		});
 	});
 	describe('getShort', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getShort();
 			expect(error).toBeNull();
 			expect(result).toBe(123);
@@ -119,7 +129,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getInt', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getInt();
 			expect(error).toBeNull();
 			expect(result).toBe(123456);
@@ -136,7 +146,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getLong', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getLong();
 			expect(error).toBeNull();
 			expect(result).toBe(1234567890123);
@@ -153,7 +163,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getFloat', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getFloat();
 			expect(error).toBeNull();
 			expect(result).toBe(123.44999694824219);
@@ -170,7 +180,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getDouble', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getDouble();
 			expect(error).toBeNull();
 			expect(result).toBe(123.456789);
@@ -187,7 +197,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getString', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getString();
 			expect(error).toBeNull();
 			expect(result).toBe('sample string');
@@ -204,7 +214,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getLocalDate', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getLocalDate();
 			expect(error).toBeNull();
 			expect(result).toBe('2020-01-01');
@@ -221,7 +231,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getLocalDateTime', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getLocalDateTime();
 			expect(error).toBeNull();
 			expect(result).toBe('2020-01-01T10:00:00');
@@ -238,7 +248,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getZonedDateTime', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getZonedDateTime();
 			expect(error).toBeNull();
 			expect(result).toBe('2025-01-01T10:00:00Z');
@@ -255,7 +265,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getScalar', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getScalar();
 			expect(error).toBeNull();
 			expect(result).toBe('Europe/Vienna');
@@ -272,7 +282,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getEnum', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getEnum();
 			expect(error).toBeNull();
 			expect(result).toBe('A');
@@ -289,7 +299,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('voidOperation', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.voidOperation();
 			expect(error).toBeNull();
 			expect(result).toBe(api.result.Void);
@@ -297,7 +307,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('errorOperation', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.errorOperation();
 			expect(error).not.toBeNull();
 			expect(result).toBeUndefined();
@@ -306,7 +316,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('multierroroperation', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.multiErrorOperation();
 			expect(error).not.toBeNull();
 			expect(result).toBeUndefined();
@@ -330,7 +340,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 		});
 	});
 	describe('getSimpleRecord', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getSimpleRecord('123');
 			expect(error).toBeNull();
 			expect(result).toEqual({
@@ -348,7 +358,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 	});
 
 	describe('getSimpleRecordWithError', () => {
-		test.each([json, msgpack])('sucess with $encoding ', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getSimpleRecordWithError('123');
 			expect(error).not.toBeNull();
 			expect(result).toBeUndefined();

@@ -1,3 +1,4 @@
+import { type JSONSchema4Object, type JSONSchema4 } from 'json-schema';
 import {
 	allResolvedRecordProperties,
 	isMBuiltinType,
@@ -12,11 +13,11 @@ import {
 } from '../model.js';
 
 export function generateRecordContent(t: MResolvedRecordType) {
-	const rv: Record<string, unknown> = {};
+	const rv: JSONSchema4 = {};
 	const allProps = allResolvedRecordProperties(t);
 
 	{
-		const properties: Record<string, unknown> = {};
+		const properties: JSONSchema4Object = {};
 		allProps.forEach(p => {
 			properties[p.name] = generateProperty(p);
 		});
@@ -49,40 +50,48 @@ export function generateRecordContent(t: MResolvedRecordType) {
 	return rv;
 }
 
-function generatePatchProperty(p: MResolvedPropery) {
+function generatePatchProperty(p: MResolvedPropery): JSONSchema4 {
 	const rv = generateProperty(p);
 	if (p.optional) {
-		rv['nullable'] = true;
+		return nullableProcessor(rv, true);
 	}
 	return rv;
 }
 
-function generateProperty(p: MResolvedBaseProperty): Record<string, unknown> {
+function generateProperty(p: MResolvedBaseProperty): JSONSchema4 {
 	if (isMKeyProperty(p) || isMRevisionProperty(p)) {
 		return generateBuilinProperty(p.type);
 	} else if (isMBuiltinType(p.type)) {
-		return wrapToArray(generateBuilinProperty(p.type), p.array);
+		return nullableProcessor(wrapToArray(generateBuilinProperty(p.type), p.array), p.nullable);
 	} else if (p.variant === 'record' || p.variant === 'union' || p.variant === 'enum') {
 		const type = {
 			$ref: `#/components/schemas/${p.type}`,
 		};
-		return wrapToArray(type, p.array);
+		return nullableProcessor(wrapToArray(type, p.array), p.nullable);
 	} else if (p.variant === 'scalar') {
-		const type = { type: 'string' };
-		return wrapToArray(type, p.array);
+		const type = { type: 'string' } as const;
+		return nullableProcessor(wrapToArray(type, p.array), p.nullable);
 	} else if (p.variant === 'inline-enum' && isMInlineEnumType(p.type)) {
 		const type = {
 			type: 'string',
 			enum: p.type.entries.map(e => e.name),
-		};
-		return wrapToArray(type, p.array);
+		} as const;
+		return nullableProcessor(wrapToArray(type, p.array), p.nullable);
 	}
-	return {
-		type: 'err',
-	};
+	return {};
 }
 
-function wrapToArray(type: Record<string, unknown>, array: boolean) {
+function nullableProcessor(type: JSONSchema4, nullable: boolean): JSONSchema4 {
+	if (nullable) {
+		return {
+			...type,
+			nullable: true,
+		};
+	}
+	return type;
+}
+
+function wrapToArray(type: JSONSchema4, array: boolean): JSONSchema4 {
 	if (array) {
 		return {
 			type: 'array',
@@ -92,7 +101,7 @@ function wrapToArray(type: Record<string, unknown>, array: boolean) {
 	return type;
 }
 
-export function generateBuilinProperty(t: MBuiltinType) {
+export function generateBuilinProperty(t: MBuiltinType): JSONSchema4 {
 	if (t === 'string') {
 		return {
 			type: 'string',
@@ -133,6 +142,7 @@ export function generateBuilinProperty(t: MBuiltinType) {
 			pattern: '\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d',
 			format: 'local-date-time',
 		};
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	} else if (t === 'zoned-date-time') {
 		return {
 			type: 'string',

@@ -1,5 +1,9 @@
 {
   "openapi": "3.0.1",
+	"info": {
+		"title": "RSD Test",
+		"version": "1.0.0"
+	},
   "tags": [
     {
       "name": "SampleService",
@@ -12291,44 +12295,54 @@
         "type": "object",
         "properties": {
           "valueBoolean": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           },
           "valueShort": {
             "type": "number",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "valueInt": {
             "type": "number",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "valueLong": {
             "type": "number",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
           },
           "valueFloat": {
             "type": "number",
-            "format": "float"
+            "format": "float",
+            "nullable": true
           },
           "valueDouble": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "nullable": true
           },
           "valueString": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "valueLocalDate": {
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
-            "format": "date"
+            "format": "date",
+            "nullable": true
           },
           "valueLocalDateTime": {
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
-            "format": "local-date-time"
+            "format": "local-date-time",
+            "nullable": true
           },
           "valueZonedDateTime": {
             "type": "string",
-            "format": "zoned-date-time"
+            "format": "zoned-date-time",
+            "nullable": true
           }
         },
         "required": [
@@ -12348,44 +12362,54 @@
         "type": "object",
         "properties": {
           "valueBoolean": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           },
           "valueShort": {
             "type": "number",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "valueInt": {
             "type": "number",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "valueLong": {
             "type": "number",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
           },
           "valueFloat": {
             "type": "number",
-            "format": "float"
+            "format": "float",
+            "nullable": true
           },
           "valueDouble": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "nullable": true
           },
           "valueString": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "valueLocalDate": {
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
-            "format": "date"
+            "format": "date",
+            "nullable": true
           },
           "valueLocalDateTime": {
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
-            "format": "local-date-time"
+            "format": "local-date-time",
+            "nullable": true
           },
           "valueZonedDateTime": {
             "type": "string",
-            "format": "zoned-date-time"
+            "format": "zoned-date-time",
+            "nullable": true
           }
         }
       },
@@ -12558,48 +12582,55 @@
             "type": "array",
             "items": {
               "type": "boolean"
-            }
+            },
+            "nullable": true
           },
           "valueShort": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int32"
-            }
+            },
+            "nullable": true
           },
           "valueInt": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int32"
-            }
+            },
+            "nullable": true
           },
           "valueLong": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int64"
-            }
+            },
+            "nullable": true
           },
           "valueFloat": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "float"
-            }
+            },
+            "nullable": true
           },
           "valueDouble": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "double"
-            }
+            },
+            "nullable": true
           },
           "valueString": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "valueLocalDate": {
             "type": "array",
@@ -12607,7 +12638,8 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
               "format": "date"
-            }
+            },
+            "nullable": true
           },
           "valueLocalDateTime": {
             "type": "array",
@@ -12615,14 +12647,16 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
               "format": "local-date-time"
-            }
+            },
+            "nullable": true
           },
           "valueZonedDateTime": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "zoned-date-time"
-            }
+            },
+            "nullable": true
           }
         },
         "required": [
@@ -12645,48 +12679,55 @@
             "type": "array",
             "items": {
               "type": "boolean"
-            }
+            },
+            "nullable": true
           },
           "valueShort": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int32"
-            }
+            },
+            "nullable": true
           },
           "valueInt": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int32"
-            }
+            },
+            "nullable": true
           },
           "valueLong": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int64"
-            }
+            },
+            "nullable": true
           },
           "valueFloat": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "float"
-            }
+            },
+            "nullable": true
           },
           "valueDouble": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "double"
-            }
+            },
+            "nullable": true
           },
           "valueString": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "valueLocalDate": {
             "type": "array",
@@ -12694,7 +12735,8 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
               "format": "date"
-            }
+            },
+            "nullable": true
           },
           "valueLocalDateTime": {
             "type": "array",
@@ -12702,14 +12744,16 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
               "format": "local-date-time"
-            }
+            },
+            "nullable": true
           },
           "valueZonedDateTime": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "zoned-date-time"
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -12720,13 +12764,15 @@
             "$ref": "#/components/schemas/SampleEnum"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/SampleEnum"
+            "$ref": "#/components/schemas/SampleEnum",
+            "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/SampleEnum"
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/SampleEnum"
+            "$ref": "#/components/schemas/SampleEnum",
+            "nullable": true
           },
           "list": {
             "type": "array",
@@ -12738,7 +12784,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SampleEnum"
-            }
+            },
+            "nullable": true
           },
           "list_Opt": {
             "type": "array",
@@ -12750,7 +12797,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SampleEnum"
-            }
+            },
+            "nullable": true
           }
         },
         "required": [
@@ -12775,7 +12823,8 @@
             "enum": [
               "C",
               "D"
-            ]
+            ],
+            "nullable": true
           },
           "value_Opt": {
             "type": "string",
@@ -12789,7 +12838,8 @@
             "enum": [
               "G",
               "H"
-            ]
+            ],
+            "nullable": true
           },
           "list": {
             "type": "array",
@@ -12809,7 +12859,8 @@
                 "C",
                 "D"
               ]
-            }
+            },
+            "nullable": true
           },
           "list_Opt_Null": {
             "type": "array",
@@ -12819,7 +12870,8 @@
                 "G",
                 "H"
               ]
-            }
+            },
+            "nullable": true
           }
         },
         "required": [
@@ -12836,13 +12888,15 @@
             "type": "string"
           },
           "value_Null": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "value_Opt": {
             "type": "string"
           },
           "value_Opt_Null": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "list": {
             "type": "array",
@@ -12854,7 +12908,8 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "list_Opt": {
             "type": "array",
@@ -12866,7 +12921,8 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           }
         },
         "required": [
@@ -12883,13 +12939,15 @@
             "$ref": "#/components/schemas/SimpleRecord_Basic"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/SimpleRecord_Basic"
+            "$ref": "#/components/schemas/SimpleRecord_Basic",
+            "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/SimpleRecord_Basic"
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/SimpleRecord_Basic"
+            "$ref": "#/components/schemas/SimpleRecord_Basic",
+            "nullable": true
           },
           "list": {
             "type": "array",
@@ -12901,7 +12959,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SimpleRecord_Basic"
-            }
+            },
+            "nullable": true
           },
           "list_Opt": {
             "type": "array",
@@ -12913,7 +12972,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SimpleRecord_Basic"
-            }
+            },
+            "nullable": true
           }
         },
         "required": [
@@ -12930,13 +12990,15 @@
             "$ref": "#/components/schemas/Union"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/Union"
+            "$ref": "#/components/schemas/Union",
+            "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/Union"
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/Union"
+            "$ref": "#/components/schemas/Union",
+            "nullable": true
           },
           "list": {
             "type": "array",
@@ -12948,7 +13010,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Union"
-            }
+            },
+            "nullable": true
           },
           "list_Opt": {
             "type": "array",
@@ -12960,7 +13023,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Union"
-            }
+            },
+            "nullable": true
           }
         },
         "required": [
@@ -13280,44 +13344,54 @@
             "type": "string"
           },
           "valueBoolean": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           },
           "valueShort": {
             "type": "number",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "valueInt": {
             "type": "number",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "valueLong": {
             "type": "number",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
           },
           "valueFloat": {
             "type": "number",
-            "format": "float"
+            "format": "float",
+            "nullable": true
           },
           "valueDouble": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "nullable": true
           },
           "valueString": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "valueLocalDate": {
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
-            "format": "date"
+            "format": "date",
+            "nullable": true
           },
           "valueLocalDateTime": {
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
-            "format": "local-date-time"
+            "format": "local-date-time",
+            "nullable": true
           },
           "valueZonedDateTime": {
             "type": "string",
-            "format": "zoned-date-time"
+            "format": "zoned-date-time",
+            "nullable": true
           }
         },
         "required": [
@@ -13339,44 +13413,54 @@
         "type": "object",
         "properties": {
           "valueBoolean": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           },
           "valueShort": {
             "type": "number",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "valueInt": {
             "type": "number",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "valueLong": {
             "type": "number",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
           },
           "valueFloat": {
             "type": "number",
-            "format": "float"
+            "format": "float",
+            "nullable": true
           },
           "valueDouble": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "nullable": true
           },
           "valueString": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "valueLocalDate": {
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
-            "format": "date"
+            "format": "date",
+            "nullable": true
           },
           "valueLocalDateTime": {
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
-            "format": "local-date-time"
+            "format": "local-date-time",
+            "nullable": true
           },
           "valueZonedDateTime": {
             "type": "string",
-            "format": "zoned-date-time"
+            "format": "zoned-date-time",
+            "nullable": true
           }
         }
       },
@@ -13390,44 +13474,54 @@
             "type": "string"
           },
           "valueBoolean": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           },
           "valueShort": {
             "type": "number",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "valueInt": {
             "type": "number",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "valueLong": {
             "type": "number",
-            "format": "int64"
+            "format": "int64",
+            "nullable": true
           },
           "valueFloat": {
             "type": "number",
-            "format": "float"
+            "format": "float",
+            "nullable": true
           },
           "valueDouble": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "nullable": true
           },
           "valueString": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "valueLocalDate": {
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
-            "format": "date"
+            "format": "date",
+            "nullable": true
           },
           "valueLocalDateTime": {
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
-            "format": "local-date-time"
+            "format": "local-date-time",
+            "nullable": true
           },
           "valueZonedDateTime": {
             "type": "string",
-            "format": "zoned-date-time"
+            "format": "zoned-date-time",
+            "nullable": true
           }
         },
         "required": [
@@ -13843,48 +13937,55 @@
             "type": "array",
             "items": {
               "type": "boolean"
-            }
+            },
+            "nullable": true
           },
           "valueShort": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int32"
-            }
+            },
+            "nullable": true
           },
           "valueInt": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int32"
-            }
+            },
+            "nullable": true
           },
           "valueLong": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int64"
-            }
+            },
+            "nullable": true
           },
           "valueFloat": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "float"
-            }
+            },
+            "nullable": true
           },
           "valueDouble": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "double"
-            }
+            },
+            "nullable": true
           },
           "valueString": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "valueLocalDate": {
             "type": "array",
@@ -13892,7 +13993,8 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
               "format": "date"
-            }
+            },
+            "nullable": true
           },
           "valueLocalDateTime": {
             "type": "array",
@@ -13900,14 +14002,16 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
               "format": "local-date-time"
-            }
+            },
+            "nullable": true
           },
           "valueZonedDateTime": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "zoned-date-time"
-            }
+            },
+            "nullable": true
           }
         },
         "required": [
@@ -13932,48 +14036,55 @@
             "type": "array",
             "items": {
               "type": "boolean"
-            }
+            },
+            "nullable": true
           },
           "valueShort": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int32"
-            }
+            },
+            "nullable": true
           },
           "valueInt": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int32"
-            }
+            },
+            "nullable": true
           },
           "valueLong": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int64"
-            }
+            },
+            "nullable": true
           },
           "valueFloat": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "float"
-            }
+            },
+            "nullable": true
           },
           "valueDouble": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "double"
-            }
+            },
+            "nullable": true
           },
           "valueString": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "valueLocalDate": {
             "type": "array",
@@ -13981,7 +14092,8 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
               "format": "date"
-            }
+            },
+            "nullable": true
           },
           "valueLocalDateTime": {
             "type": "array",
@@ -13989,14 +14101,16 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
               "format": "local-date-time"
-            }
+            },
+            "nullable": true
           },
           "valueZonedDateTime": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "zoned-date-time"
-            }
+            },
+            "nullable": true
           }
         }
       },
@@ -14013,48 +14127,55 @@
             "type": "array",
             "items": {
               "type": "boolean"
-            }
+            },
+            "nullable": true
           },
           "valueShort": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int32"
-            }
+            },
+            "nullable": true
           },
           "valueInt": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int32"
-            }
+            },
+            "nullable": true
           },
           "valueLong": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int64"
-            }
+            },
+            "nullable": true
           },
           "valueFloat": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "float"
-            }
+            },
+            "nullable": true
           },
           "valueDouble": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "double"
-            }
+            },
+            "nullable": true
           },
           "valueString": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "valueLocalDate": {
             "type": "array",
@@ -14062,7 +14183,8 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
               "format": "date"
-            }
+            },
+            "nullable": true
           },
           "valueLocalDateTime": {
             "type": "array",
@@ -14070,14 +14192,16 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
               "format": "local-date-time"
-            }
+            },
+            "nullable": true
           },
           "valueZonedDateTime": {
             "type": "array",
             "items": {
               "type": "string",
               "format": "zoned-date-time"
-            }
+            },
+            "nullable": true
           }
         },
         "required": [
@@ -14183,13 +14307,15 @@
             "$ref": "#/components/schemas/SampleEnum"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/SampleEnum"
+            "$ref": "#/components/schemas/SampleEnum",
+            "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/SampleEnum"
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/SampleEnum"
+            "$ref": "#/components/schemas/SampleEnum",
+            "nullable": true
           },
           "list": {
             "type": "array",
@@ -14201,7 +14327,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SampleEnum"
-            }
+            },
+            "nullable": true
           },
           "list_Opt": {
             "type": "array",
@@ -14213,7 +14340,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SampleEnum"
-            }
+            },
+            "nullable": true
           }
         },
         "required": [
@@ -14232,7 +14360,8 @@
             "$ref": "#/components/schemas/SampleEnum"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/SampleEnum"
+            "$ref": "#/components/schemas/SampleEnum",
+            "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/SampleEnum",
@@ -14252,7 +14381,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SampleEnum"
-            }
+            },
+            "nullable": true
           },
           "list_Opt": {
             "type": "array",
@@ -14291,7 +14421,8 @@
             "enum": [
               "C",
               "D"
-            ]
+            ],
+            "nullable": true
           },
           "value_Opt": {
             "type": "string",
@@ -14305,7 +14436,8 @@
             "enum": [
               "G",
               "H"
-            ]
+            ],
+            "nullable": true
           },
           "list": {
             "type": "array",
@@ -14325,7 +14457,8 @@
                 "C",
                 "D"
               ]
-            }
+            },
+            "nullable": true
           },
           "list_Opt_Null": {
             "type": "array",
@@ -14335,7 +14468,8 @@
                 "G",
                 "H"
               ]
-            }
+            },
+            "nullable": true
           }
         },
         "required": [
@@ -14362,7 +14496,8 @@
             "enum": [
               "C",
               "D"
-            ]
+            ],
+            "nullable": true
           },
           "value_Opt": {
             "type": "string",
@@ -14398,7 +14533,8 @@
                 "C",
                 "D"
               ]
-            }
+            },
+            "nullable": true
           },
           "list_Opt_Null": {
             "type": "array",
@@ -14426,13 +14562,15 @@
             "type": "string"
           },
           "value_Null": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "value_Opt": {
             "type": "string"
           },
           "value_Opt_Null": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "list": {
             "type": "array",
@@ -14444,7 +14582,8 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "list_Opt": {
             "type": "array",
@@ -14456,7 +14595,8 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           }
         },
         "required": [
@@ -14475,7 +14615,8 @@
             "type": "string"
           },
           "value_Null": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "value_Opt": {
             "type": "string",
@@ -14495,7 +14636,8 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "list_Opt": {
             "type": "array",
@@ -14526,13 +14668,15 @@
             "$ref": "#/components/schemas/PatchableRecord_Basic"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/PatchableRecord_Basic"
+            "$ref": "#/components/schemas/PatchableRecord_Basic",
+            "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/PatchableRecord_Basic"
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/PatchableRecord_Basic"
+            "$ref": "#/components/schemas/PatchableRecord_Basic",
+            "nullable": true
           },
           "list": {
             "type": "array",
@@ -14544,7 +14688,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PatchableRecord_Basic"
-            }
+            },
+            "nullable": true
           },
           "list_Opt": {
             "type": "array",
@@ -14556,7 +14701,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PatchableRecord_Basic"
-            }
+            },
+            "nullable": true
           }
         },
         "required": [
@@ -14575,7 +14721,8 @@
             "$ref": "#/components/schemas/PatchableRecord_Basic"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/PatchableRecord_Basic"
+            "$ref": "#/components/schemas/PatchableRecord_Basic",
+            "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/PatchableRecord_Basic",
@@ -14595,7 +14742,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PatchableRecord_Basic"
-            }
+            },
+            "nullable": true
           },
           "list_Opt": {
             "type": "array",
@@ -14626,13 +14774,15 @@
             "$ref": "#/components/schemas/PatchableUnion"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/PatchableUnion"
+            "$ref": "#/components/schemas/PatchableUnion",
+            "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/PatchableUnion"
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/PatchableUnion"
+            "$ref": "#/components/schemas/PatchableUnion",
+            "nullable": true
           },
           "list": {
             "type": "array",
@@ -14644,7 +14794,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PatchableUnion"
-            }
+            },
+            "nullable": true
           },
           "list_Opt": {
             "type": "array",
@@ -14656,7 +14807,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PatchableUnion"
-            }
+            },
+            "nullable": true
           }
         },
         "required": [
@@ -14675,7 +14827,8 @@
             "$ref": "#/components/schemas/PatchableUnion"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/PatchableUnion"
+            "$ref": "#/components/schemas/PatchableUnion",
+            "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/PatchableUnion",
@@ -14695,7 +14848,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PatchableUnion"
-            }
+            },
+            "nullable": true
           },
           "list_Opt": {
             "type": "array",
@@ -14835,39 +14989,47 @@
         "type": "object",
         "properties": {
           "text": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "number": {
             "type": "number",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "rec": {
-            "$ref": "#/components/schemas/SimpleRecord"
+            "$ref": "#/components/schemas/SimpleRecord",
+            "nullable": true
           },
           "textList": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "numberList": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "int32"
-            }
+            },
+            "nullable": true
           },
           "recList": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SimpleRecord"
-            }
+            },
+            "nullable": true
           },
           "dataFileContent": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "dataBlobContent": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         }
       },
