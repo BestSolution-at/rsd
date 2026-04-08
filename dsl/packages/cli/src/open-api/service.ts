@@ -112,27 +112,20 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 			const parameters = o.parameters
 				.filter(p => p.meta?.rest?.source !== undefined)
 				.map(p => {
+					// Query params with record types are transferred in OpenAPI in a very special way
+					// We want them to be transferred as a base64 blob
+					const schema =
+						p.meta?.rest?.source === 'query' && p.variant === 'record'
+							? { type: 'string', format: 'base64' }
+							: toType(p);
 					return {
 						name: p.meta?.rest?.name ?? p.name,
 						description: p.doc,
 						in: p.meta?.rest?.source,
 						required: !p.optional,
-						schema: toType(p),
+						schema,
 					};
 				});
-
-			/*
-"parameters": [
-					{
-						"name": "key",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-      */
 
 			rv[p][o.meta.rest.method.toLowerCase()] = {
 				tags: [s.name],
