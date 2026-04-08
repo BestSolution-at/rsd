@@ -197,8 +197,8 @@ async function example() {
   const api = new QueryParameterTypesApi();
 
   const body = {
-    // SimpleRecord | 
-    queryValue: ...,
+    // string | 
+    queryValue: queryValue_example,
   } satisfies ApiQueryparametertypesRecordQueryParamGetRequest;
 
   try {
@@ -218,7 +218,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **queryValue** | [](.md) |  | [Defaults to `undefined`] |
+| **queryValue** | `string` |  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -264,8 +264,8 @@ async function example() {
   const api = new QueryParameterTypesApi();
 
   const body = {
-    // SimpleRecord |  (optional)
-    queryValue: ...,
+    // string |  (optional)
+    queryValue: queryValue_example,
   } satisfies ApiQueryparametertypesRecordQueryParamOptGetRequest;
 
   try {
@@ -285,7 +285,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **queryValue** | [](.md) |  | [Optional] [Defaults to `undefined`] |
+| **queryValue** | `string` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

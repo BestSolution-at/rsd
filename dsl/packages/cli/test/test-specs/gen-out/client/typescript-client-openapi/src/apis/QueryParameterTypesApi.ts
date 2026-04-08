@@ -39,11 +39,11 @@ export interface ApiQueryparametertypesMultiQueryParamOptGetRequest {
 }
 
 export interface ApiQueryparametertypesRecordQueryParamGetRequest {
-    queryValue: SimpleRecord;
+    queryValue: string;
 }
 
 export interface ApiQueryparametertypesRecordQueryParamOptGetRequest {
-    queryValue?: SimpleRecord;
+    queryValue?: string;
 }
 
 export interface ApiQueryparametertypesSimpleBooleanQueryParamGetRequest {

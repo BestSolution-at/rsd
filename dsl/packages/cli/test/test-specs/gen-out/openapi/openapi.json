@@ -1,9 +1,5 @@
 {
   "openapi": "3.0.1",
-	"info": {
-		"title": "RSD Test",
-		"version": "1.0.0"
-	},
   "tags": [
     {
       "name": "SampleService",
@@ -5437,7 +5433,8 @@
             "in": "query",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SimpleRecord"
+              "type": "string",
+              "format": "base64"
             }
           }
         ],
@@ -6326,7 +6323,8 @@
             "in": "query",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SimpleRecord"
+              "type": "string",
+              "format": "base64"
             }
           }
         ],
@@ -6357,7 +6355,8 @@
             "in": "query",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/SimpleRecord"
+              "type": "string",
+              "format": "base64"
             }
           }
         ],
@@ -9011,10 +9010,8 @@
             "in": "query",
             "required": true,
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SimpleRecord"
-              }
+              "type": "string",
+              "format": "base64"
             }
           }
         ],
@@ -9045,10 +9042,8 @@
             "in": "query",
             "required": true,
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SimpleRecord"
-              }
+              "type": "string",
+              "format": "base64"
             }
           }
         ],
@@ -12065,7 +12060,8 @@
             "in": "query",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SimpleRecord"
+              "type": "string",
+              "format": "base64"
             }
           }
         ],

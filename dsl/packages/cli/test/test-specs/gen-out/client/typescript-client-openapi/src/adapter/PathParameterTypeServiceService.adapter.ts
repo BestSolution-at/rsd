@@ -161,7 +161,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 				pathLocalDateTime,
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -177,7 +177,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 				pathZonedDateTime,
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
