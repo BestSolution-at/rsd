@@ -32,7 +32,7 @@ function toRSDError(error: unknown): api.service.NativeRSDError | api.service.St
 }
 
 class SampleServiceServiceImpl implements api.service.SampleServiceService {
-	private delegate: SampleServiceApi;
+	private readonly delegate: SampleServiceApi;
 
 	constructor(props: ServiceProps<api.service.ErrorType>) {
 		this.delegate = new SampleServiceApi(new Configuration({ basePath: props.baseUrl }));
