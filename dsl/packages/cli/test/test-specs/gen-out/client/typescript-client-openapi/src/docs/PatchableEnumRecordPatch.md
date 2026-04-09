@@ -12,10 +12,10 @@ Name | Type
 `value_Null` | [SampleEnum](SampleEnum.md)
 `value_Opt` | [SampleEnum](SampleEnum.md)
 `value_Opt_Null` | [SampleEnum](SampleEnum.md)
-`list` | [Array&lt;SampleEnum&gt;](SampleEnum.md)
-`list_Null` | [Array&lt;SampleEnum&gt;](SampleEnum.md)
-`list_Opt` | [Array&lt;SampleEnum&gt;](SampleEnum.md)
-`list_Opt_Null` | [Array&lt;SampleEnum&gt;](SampleEnum.md)
+`list` | [PatchableEnumRecordPatchList](PatchableEnumRecordPatchList.md)
+`list_Null` | [PatchableEnumRecordPatchListNull](PatchableEnumRecordPatchListNull.md)
+`list_Opt` | [PatchableEnumRecordPatchListOpt](PatchableEnumRecordPatchListOpt.md)
+`list_Opt_Null` | [PatchableEnumRecordPatchListOptNull](PatchableEnumRecordPatchListOptNull.md)
 
 ## Example
 

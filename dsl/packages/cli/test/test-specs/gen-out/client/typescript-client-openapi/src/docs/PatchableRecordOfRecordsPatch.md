@@ -12,10 +12,10 @@ Name | Type
 `value_Null` | [PatchableRecordBasic](PatchableRecordBasic.md)
 `value_Opt` | [PatchableRecordBasic](PatchableRecordBasic.md)
 `value_Opt_Null` | [PatchableRecordBasic](PatchableRecordBasic.md)
-`list` | [Array&lt;PatchableRecordBasic&gt;](PatchableRecordBasic.md)
-`list_Null` | [Array&lt;PatchableRecordBasic&gt;](PatchableRecordBasic.md)
-`list_Opt` | [Array&lt;PatchableRecordBasic&gt;](PatchableRecordBasic.md)
-`list_Opt_Null` | [Array&lt;PatchableRecordBasic&gt;](PatchableRecordBasic.md)
+`list` | [PatchableRecordOfRecordsPatchList](PatchableRecordOfRecordsPatchList.md)
+`list_Null` | [PatchableRecordOfRecordsPatchListNull](PatchableRecordOfRecordsPatchListNull.md)
+`list_Opt` | [PatchableRecordOfRecordsPatchListOpt](PatchableRecordOfRecordsPatchListOpt.md)
+`list_Opt_Null` | [PatchableRecordOfRecordsPatchListOptNull](PatchableRecordOfRecordsPatchListOptNull.md)
 
 ## Example
 

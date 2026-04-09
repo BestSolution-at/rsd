@@ -13,6 +13,35 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { PatchableScalarRecordPatchListNull } from './PatchableScalarRecordPatchListNull.js';
+import {
+    PatchableScalarRecordPatchListNullFromJSON,
+    PatchableScalarRecordPatchListNullFromJSONTyped,
+    PatchableScalarRecordPatchListNullToJSON,
+    PatchableScalarRecordPatchListNullToJSONTyped,
+} from './PatchableScalarRecordPatchListNull.js';
+import type { PatchableScalarRecordPatchListOpt } from './PatchableScalarRecordPatchListOpt.js';
+import {
+    PatchableScalarRecordPatchListOptFromJSON,
+    PatchableScalarRecordPatchListOptFromJSONTyped,
+    PatchableScalarRecordPatchListOptToJSON,
+    PatchableScalarRecordPatchListOptToJSONTyped,
+} from './PatchableScalarRecordPatchListOpt.js';
+import type { PatchableScalarRecordPatchListOptNull } from './PatchableScalarRecordPatchListOptNull.js';
+import {
+    PatchableScalarRecordPatchListOptNullFromJSON,
+    PatchableScalarRecordPatchListOptNullFromJSONTyped,
+    PatchableScalarRecordPatchListOptNullToJSON,
+    PatchableScalarRecordPatchListOptNullToJSONTyped,
+} from './PatchableScalarRecordPatchListOptNull.js';
+import type { PatchableScalarRecordPatchList } from './PatchableScalarRecordPatchList.js';
+import {
+    PatchableScalarRecordPatchListFromJSON,
+    PatchableScalarRecordPatchListFromJSONTyped,
+    PatchableScalarRecordPatchListToJSON,
+    PatchableScalarRecordPatchListToJSONTyped,
+} from './PatchableScalarRecordPatchList.js';
+
 /**
  * 
  * @export
@@ -57,28 +86,28 @@ export interface PatchableScalarRecordPatch {
     value_Opt_Null?: string | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {PatchableScalarRecordPatchList}
      * @memberof PatchableScalarRecordPatch
      */
-    list?: Array<string>;
+    list?: PatchableScalarRecordPatchList;
     /**
      * 
-     * @type {Array<string>}
+     * @type {PatchableScalarRecordPatchListNull}
      * @memberof PatchableScalarRecordPatch
      */
-    list_Null?: Array<string> | null;
+    list_Null?: PatchableScalarRecordPatchListNull;
     /**
      * 
-     * @type {Array<string>}
+     * @type {PatchableScalarRecordPatchListOpt}
      * @memberof PatchableScalarRecordPatch
      */
-    list_Opt?: Array<string> | null;
+    list_Opt?: PatchableScalarRecordPatchListOpt;
     /**
      * 
-     * @type {Array<string>}
+     * @type {PatchableScalarRecordPatchListOptNull}
      * @memberof PatchableScalarRecordPatch
      */
-    list_Opt_Null?: Array<string> | null;
+    list_Opt_Null?: PatchableScalarRecordPatchListOptNull;
 }
 
 /**
@@ -106,10 +135,10 @@ export function PatchableScalarRecordPatchFromJSONTyped(json: any, ignoreDiscrim
         'value_Null': json['value_Null'] == null ? undefined : json['value_Null'],
         'value_Opt': json['value_Opt'] == null ? undefined : json['value_Opt'],
         'value_Opt_Null': json['value_Opt_Null'] == null ? undefined : json['value_Opt_Null'],
-        'list': json['list'] == null ? undefined : json['list'],
-        'list_Null': json['list_Null'] == null ? undefined : json['list_Null'],
-        'list_Opt': json['list_Opt'] == null ? undefined : json['list_Opt'],
-        'list_Opt_Null': json['list_Opt_Null'] == null ? undefined : json['list_Opt_Null'],
+        'list': json['list'] == null ? undefined : PatchableScalarRecordPatchListFromJSON(json['list']),
+        'list_Null': json['list_Null'] == null ? undefined : PatchableScalarRecordPatchListNullFromJSON(json['list_Null']),
+        'list_Opt': json['list_Opt'] == null ? undefined : PatchableScalarRecordPatchListOptFromJSON(json['list_Opt']),
+        'list_Opt_Null': json['list_Opt_Null'] == null ? undefined : PatchableScalarRecordPatchListOptNullFromJSON(json['list_Opt_Null']),
     };
 }
 
@@ -130,10 +159,10 @@ export function PatchableScalarRecordPatchToJSONTyped(value?: PatchableScalarRec
         'value_Null': value['value_Null'],
         'value_Opt': value['value_Opt'],
         'value_Opt_Null': value['value_Opt_Null'],
-        'list': value['list'],
-        'list_Null': value['list_Null'],
-        'list_Opt': value['list_Opt'],
-        'list_Opt_Null': value['list_Opt_Null'],
+        'list': PatchableScalarRecordPatchListToJSON(value['list']),
+        'list_Null': PatchableScalarRecordPatchListNullToJSON(value['list_Null']),
+        'list_Opt': PatchableScalarRecordPatchListOptToJSON(value['list_Opt']),
+        'list_Opt_Null': PatchableScalarRecordPatchListOptNullToJSON(value['list_Opt_Null']),
     };
 }
 

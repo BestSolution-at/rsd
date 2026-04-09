@@ -8,16 +8,16 @@ Name | Type
 ------------ | -------------
 `key` | string
 `version` | string
-`valueBoolean` | Array&lt;boolean&gt;
-`valueShort` | Array&lt;number&gt;
-`valueInt` | Array&lt;number&gt;
-`valueLong` | Array&lt;number&gt;
-`valueFloat` | Array&lt;number&gt;
-`valueDouble` | Array&lt;number&gt;
-`valueString` | Array&lt;string&gt;
-`valueLocalDate` | Array&lt;Date&gt;
-`valueLocalDateTime` | Array&lt;string&gt;
-`valueZonedDateTime` | Array&lt;string&gt;
+`valueBoolean` | [PatchableRecordBasicListPatchValueBoolean](PatchableRecordBasicListPatchValueBoolean.md)
+`valueShort` | [PatchableRecordBasicListPatchValueShort](PatchableRecordBasicListPatchValueShort.md)
+`valueInt` | [PatchableRecordBasicListPatchValueInt](PatchableRecordBasicListPatchValueInt.md)
+`valueLong` | [PatchableRecordBasicListPatchValueLong](PatchableRecordBasicListPatchValueLong.md)
+`valueFloat` | [PatchableRecordBasicListPatchValueFloat](PatchableRecordBasicListPatchValueFloat.md)
+`valueDouble` | [PatchableRecordBasicListPatchValueDouble](PatchableRecordBasicListPatchValueDouble.md)
+`valueString` | [PatchableRecordBasicListPatchValueString](PatchableRecordBasicListPatchValueString.md)
+`valueLocalDate` | [PatchableRecordBasicListPatchValueLocalDate](PatchableRecordBasicListPatchValueLocalDate.md)
+`valueLocalDateTime` | [PatchableRecordBasicListPatchValueLocalDateTime](PatchableRecordBasicListPatchValueLocalDateTime.md)
+`valueZonedDateTime` | [PatchableRecordBasicListPatchValueZonedDateTime](PatchableRecordBasicListPatchValueZonedDateTime.md)
 
 ## Example
 

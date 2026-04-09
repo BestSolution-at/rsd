@@ -12,10 +12,10 @@ Name | Type
 `value_Null` | [PatchableUnion](PatchableUnion.md)
 `value_Opt` | [PatchableUnion](PatchableUnion.md)
 `value_Opt_Null` | [PatchableUnion](PatchableUnion.md)
-`list` | [Array&lt;PatchableUnion&gt;](PatchableUnion.md)
-`list_Null` | [Array&lt;PatchableUnion&gt;](PatchableUnion.md)
-`list_Opt` | [Array&lt;PatchableUnion&gt;](PatchableUnion.md)
-`list_Opt_Null` | [Array&lt;PatchableUnion&gt;](PatchableUnion.md)
+`list` | [PatchableRecordWithUnionPatchList](PatchableRecordWithUnionPatchList.md)
+`list_Null` | [PatchableRecordWithUnionPatchListNull](PatchableRecordWithUnionPatchListNull.md)
+`list_Opt` | [PatchableRecordWithUnionPatchListOpt](PatchableRecordWithUnionPatchListOpt.md)
+`list_Opt_Null` | [PatchableRecordWithUnionPatchListOptNull](PatchableRecordWithUnionPatchListOptNull.md)
 
 ## Example
 

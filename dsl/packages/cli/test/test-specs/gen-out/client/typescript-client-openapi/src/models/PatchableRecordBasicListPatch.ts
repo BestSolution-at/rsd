@@ -13,6 +13,77 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { PatchableRecordBasicListPatchValueShort } from './PatchableRecordBasicListPatchValueShort.js';
+import {
+    PatchableRecordBasicListPatchValueShortFromJSON,
+    PatchableRecordBasicListPatchValueShortFromJSONTyped,
+    PatchableRecordBasicListPatchValueShortToJSON,
+    PatchableRecordBasicListPatchValueShortToJSONTyped,
+} from './PatchableRecordBasicListPatchValueShort.js';
+import type { PatchableRecordBasicListPatchValueInt } from './PatchableRecordBasicListPatchValueInt.js';
+import {
+    PatchableRecordBasicListPatchValueIntFromJSON,
+    PatchableRecordBasicListPatchValueIntFromJSONTyped,
+    PatchableRecordBasicListPatchValueIntToJSON,
+    PatchableRecordBasicListPatchValueIntToJSONTyped,
+} from './PatchableRecordBasicListPatchValueInt.js';
+import type { PatchableRecordBasicListPatchValueLong } from './PatchableRecordBasicListPatchValueLong.js';
+import {
+    PatchableRecordBasicListPatchValueLongFromJSON,
+    PatchableRecordBasicListPatchValueLongFromJSONTyped,
+    PatchableRecordBasicListPatchValueLongToJSON,
+    PatchableRecordBasicListPatchValueLongToJSONTyped,
+} from './PatchableRecordBasicListPatchValueLong.js';
+import type { PatchableRecordBasicListPatchValueString } from './PatchableRecordBasicListPatchValueString.js';
+import {
+    PatchableRecordBasicListPatchValueStringFromJSON,
+    PatchableRecordBasicListPatchValueStringFromJSONTyped,
+    PatchableRecordBasicListPatchValueStringToJSON,
+    PatchableRecordBasicListPatchValueStringToJSONTyped,
+} from './PatchableRecordBasicListPatchValueString.js';
+import type { PatchableRecordBasicListPatchValueLocalDateTime } from './PatchableRecordBasicListPatchValueLocalDateTime.js';
+import {
+    PatchableRecordBasicListPatchValueLocalDateTimeFromJSON,
+    PatchableRecordBasicListPatchValueLocalDateTimeFromJSONTyped,
+    PatchableRecordBasicListPatchValueLocalDateTimeToJSON,
+    PatchableRecordBasicListPatchValueLocalDateTimeToJSONTyped,
+} from './PatchableRecordBasicListPatchValueLocalDateTime.js';
+import type { PatchableRecordBasicListPatchValueBoolean } from './PatchableRecordBasicListPatchValueBoolean.js';
+import {
+    PatchableRecordBasicListPatchValueBooleanFromJSON,
+    PatchableRecordBasicListPatchValueBooleanFromJSONTyped,
+    PatchableRecordBasicListPatchValueBooleanToJSON,
+    PatchableRecordBasicListPatchValueBooleanToJSONTyped,
+} from './PatchableRecordBasicListPatchValueBoolean.js';
+import type { PatchableRecordBasicListPatchValueFloat } from './PatchableRecordBasicListPatchValueFloat.js';
+import {
+    PatchableRecordBasicListPatchValueFloatFromJSON,
+    PatchableRecordBasicListPatchValueFloatFromJSONTyped,
+    PatchableRecordBasicListPatchValueFloatToJSON,
+    PatchableRecordBasicListPatchValueFloatToJSONTyped,
+} from './PatchableRecordBasicListPatchValueFloat.js';
+import type { PatchableRecordBasicListPatchValueLocalDate } from './PatchableRecordBasicListPatchValueLocalDate.js';
+import {
+    PatchableRecordBasicListPatchValueLocalDateFromJSON,
+    PatchableRecordBasicListPatchValueLocalDateFromJSONTyped,
+    PatchableRecordBasicListPatchValueLocalDateToJSON,
+    PatchableRecordBasicListPatchValueLocalDateToJSONTyped,
+} from './PatchableRecordBasicListPatchValueLocalDate.js';
+import type { PatchableRecordBasicListPatchValueZonedDateTime } from './PatchableRecordBasicListPatchValueZonedDateTime.js';
+import {
+    PatchableRecordBasicListPatchValueZonedDateTimeFromJSON,
+    PatchableRecordBasicListPatchValueZonedDateTimeFromJSONTyped,
+    PatchableRecordBasicListPatchValueZonedDateTimeToJSON,
+    PatchableRecordBasicListPatchValueZonedDateTimeToJSONTyped,
+} from './PatchableRecordBasicListPatchValueZonedDateTime.js';
+import type { PatchableRecordBasicListPatchValueDouble } from './PatchableRecordBasicListPatchValueDouble.js';
+import {
+    PatchableRecordBasicListPatchValueDoubleFromJSON,
+    PatchableRecordBasicListPatchValueDoubleFromJSONTyped,
+    PatchableRecordBasicListPatchValueDoubleToJSON,
+    PatchableRecordBasicListPatchValueDoubleToJSONTyped,
+} from './PatchableRecordBasicListPatchValueDouble.js';
+
 /**
  * 
  * @export
@@ -33,64 +104,64 @@ export interface PatchableRecordBasicListPatch {
     version: string;
     /**
      * 
-     * @type {Array<boolean>}
+     * @type {PatchableRecordBasicListPatchValueBoolean}
      * @memberof PatchableRecordBasicListPatch
      */
-    valueBoolean?: Array<boolean>;
+    valueBoolean?: PatchableRecordBasicListPatchValueBoolean;
     /**
      * 
-     * @type {Array<number>}
+     * @type {PatchableRecordBasicListPatchValueShort}
      * @memberof PatchableRecordBasicListPatch
      */
-    valueShort?: Array<number>;
+    valueShort?: PatchableRecordBasicListPatchValueShort;
     /**
      * 
-     * @type {Array<number>}
+     * @type {PatchableRecordBasicListPatchValueInt}
      * @memberof PatchableRecordBasicListPatch
      */
-    valueInt?: Array<number>;
+    valueInt?: PatchableRecordBasicListPatchValueInt;
     /**
      * 
-     * @type {Array<number>}
+     * @type {PatchableRecordBasicListPatchValueLong}
      * @memberof PatchableRecordBasicListPatch
      */
-    valueLong?: Array<number>;
+    valueLong?: PatchableRecordBasicListPatchValueLong;
     /**
      * 
-     * @type {Array<number>}
+     * @type {PatchableRecordBasicListPatchValueFloat}
      * @memberof PatchableRecordBasicListPatch
      */
-    valueFloat?: Array<number>;
+    valueFloat?: PatchableRecordBasicListPatchValueFloat;
     /**
      * 
-     * @type {Array<number>}
+     * @type {PatchableRecordBasicListPatchValueDouble}
      * @memberof PatchableRecordBasicListPatch
      */
-    valueDouble?: Array<number>;
+    valueDouble?: PatchableRecordBasicListPatchValueDouble;
     /**
      * 
-     * @type {Array<string>}
+     * @type {PatchableRecordBasicListPatchValueString}
      * @memberof PatchableRecordBasicListPatch
      */
-    valueString?: Array<string>;
+    valueString?: PatchableRecordBasicListPatchValueString;
     /**
      * 
-     * @type {Array<Date>}
+     * @type {PatchableRecordBasicListPatchValueLocalDate}
      * @memberof PatchableRecordBasicListPatch
      */
-    valueLocalDate?: Array<Date>;
+    valueLocalDate?: PatchableRecordBasicListPatchValueLocalDate;
     /**
      * 
-     * @type {Array<string>}
+     * @type {PatchableRecordBasicListPatchValueLocalDateTime}
      * @memberof PatchableRecordBasicListPatch
      */
-    valueLocalDateTime?: Array<string>;
+    valueLocalDateTime?: PatchableRecordBasicListPatchValueLocalDateTime;
     /**
      * 
-     * @type {Array<string>}
+     * @type {PatchableRecordBasicListPatchValueZonedDateTime}
      * @memberof PatchableRecordBasicListPatch
      */
-    valueZonedDateTime?: Array<string>;
+    valueZonedDateTime?: PatchableRecordBasicListPatchValueZonedDateTime;
 }
 
 /**
@@ -114,16 +185,16 @@ export function PatchableRecordBasicListPatchFromJSONTyped(json: any, ignoreDisc
         
         'key': json['key'],
         'version': json['version'],
-        'valueBoolean': json['valueBoolean'] == null ? undefined : json['valueBoolean'],
-        'valueShort': json['valueShort'] == null ? undefined : json['valueShort'],
-        'valueInt': json['valueInt'] == null ? undefined : json['valueInt'],
-        'valueLong': json['valueLong'] == null ? undefined : json['valueLong'],
-        'valueFloat': json['valueFloat'] == null ? undefined : json['valueFloat'],
-        'valueDouble': json['valueDouble'] == null ? undefined : json['valueDouble'],
-        'valueString': json['valueString'] == null ? undefined : json['valueString'],
-        'valueLocalDate': json['valueLocalDate'] == null ? undefined : json['valueLocalDate'],
-        'valueLocalDateTime': json['valueLocalDateTime'] == null ? undefined : json['valueLocalDateTime'],
-        'valueZonedDateTime': json['valueZonedDateTime'] == null ? undefined : json['valueZonedDateTime'],
+        'valueBoolean': json['valueBoolean'] == null ? undefined : PatchableRecordBasicListPatchValueBooleanFromJSON(json['valueBoolean']),
+        'valueShort': json['valueShort'] == null ? undefined : PatchableRecordBasicListPatchValueShortFromJSON(json['valueShort']),
+        'valueInt': json['valueInt'] == null ? undefined : PatchableRecordBasicListPatchValueIntFromJSON(json['valueInt']),
+        'valueLong': json['valueLong'] == null ? undefined : PatchableRecordBasicListPatchValueLongFromJSON(json['valueLong']),
+        'valueFloat': json['valueFloat'] == null ? undefined : PatchableRecordBasicListPatchValueFloatFromJSON(json['valueFloat']),
+        'valueDouble': json['valueDouble'] == null ? undefined : PatchableRecordBasicListPatchValueDoubleFromJSON(json['valueDouble']),
+        'valueString': json['valueString'] == null ? undefined : PatchableRecordBasicListPatchValueStringFromJSON(json['valueString']),
+        'valueLocalDate': json['valueLocalDate'] == null ? undefined : PatchableRecordBasicListPatchValueLocalDateFromJSON(json['valueLocalDate']),
+        'valueLocalDateTime': json['valueLocalDateTime'] == null ? undefined : PatchableRecordBasicListPatchValueLocalDateTimeFromJSON(json['valueLocalDateTime']),
+        'valueZonedDateTime': json['valueZonedDateTime'] == null ? undefined : PatchableRecordBasicListPatchValueZonedDateTimeFromJSON(json['valueZonedDateTime']),
     };
 }
 
@@ -140,16 +211,16 @@ export function PatchableRecordBasicListPatchToJSONTyped(value?: PatchableRecord
         
         'key': value['key'],
         'version': value['version'],
-        'valueBoolean': value['valueBoolean'],
-        'valueShort': value['valueShort'],
-        'valueInt': value['valueInt'],
-        'valueLong': value['valueLong'],
-        'valueFloat': value['valueFloat'],
-        'valueDouble': value['valueDouble'],
-        'valueString': value['valueString'],
-        'valueLocalDate': value['valueLocalDate'],
-        'valueLocalDateTime': value['valueLocalDateTime'],
-        'valueZonedDateTime': value['valueZonedDateTime'],
+        'valueBoolean': PatchableRecordBasicListPatchValueBooleanToJSON(value['valueBoolean']),
+        'valueShort': PatchableRecordBasicListPatchValueShortToJSON(value['valueShort']),
+        'valueInt': PatchableRecordBasicListPatchValueIntToJSON(value['valueInt']),
+        'valueLong': PatchableRecordBasicListPatchValueLongToJSON(value['valueLong']),
+        'valueFloat': PatchableRecordBasicListPatchValueFloatToJSON(value['valueFloat']),
+        'valueDouble': PatchableRecordBasicListPatchValueDoubleToJSON(value['valueDouble']),
+        'valueString': PatchableRecordBasicListPatchValueStringToJSON(value['valueString']),
+        'valueLocalDate': PatchableRecordBasicListPatchValueLocalDateToJSON(value['valueLocalDate']),
+        'valueLocalDateTime': PatchableRecordBasicListPatchValueLocalDateTimeToJSON(value['valueLocalDateTime']),
+        'valueZonedDateTime': PatchableRecordBasicListPatchValueZonedDateTimeToJSON(value['valueZonedDateTime']),
     };
 }
 

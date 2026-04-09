@@ -12,9 +12,9 @@ Name | Type
 `value_Null` | string
 `value_Opt` | string
 `value_Opt_Null` | string
-`list` | Array&lt;string&gt;
-`list_Null` | Array&lt;string&gt;
-`list_Opt_Null` | Array&lt;string&gt;
+`list` | [PatchableEnumInlineRecordPatchList](PatchableEnumInlineRecordPatchList.md)
+`list_Null` | [PatchableEnumInlineRecordPatchListNull](PatchableEnumInlineRecordPatchListNull.md)
+`list_Opt_Null` | [PatchableEnumInlineRecordPatchListOptNull](PatchableEnumInlineRecordPatchListOptNull.md)
 
 ## Example
 

@@ -45,14 +45,90 @@ export function generateRecordContent(t: MResolvedRecordType) {
 				properties[p.name] = generateProperty(p);
 			});
 		allProps.filter(isMResolvedProperty).forEach(p => {
-			properties[p.name] = generatePatchProperty(p);
+			if (p.array) {
+				properties[p.name] = generatePatchArrayProperty(t, p);
+			} else {
+				properties[p.name] = generatePatchProperty(p);
+			}
 		});
 		rv[`${t.name}Patch`] = {
 			type: 'object',
 			properties,
 			required: allProps.filter(p => isMKeyProperty(p) || isMRevisionProperty(p)).map(p => p.name),
 		};
+		allProps
+			.filter(isMResolvedProperty)
+			.filter(p => p.array)
+			.forEach(p => {
+				rv[`${t.name}_${p.name}PatchReplace`] = {
+					type: 'object',
+					properties: {
+						'@type': {
+							type: 'string',
+						},
+						elements: { ...generateProperty(p), nullable: undefined },
+					},
+					required: ['@type', 'elements'],
+				};
+				if (p.variant === 'record' || p.variant === 'union') {
+					rv[`${t.name}_${p.name}PatchMerge`] = {
+						type: 'object',
+						properties: {
+							'@type': {
+								type: 'string',
+							},
+							additions: { ...generateProperty(p), nullable: undefined },
+							updates: {
+								type: 'array',
+								items: {
+									$ref: `#/components/schemas/${p.type}Patch`,
+								},
+							},
+							removals: {
+								type: 'array',
+								items: {
+									type: 'string',
+								},
+							},
+						},
+						required: ['@type', 'additions', 'removals'],
+					};
+				} else {
+					rv[`${t.name}_${p.name}PatchMerge`] = {
+						type: 'object',
+						properties: {
+							'@type': {
+								type: 'string',
+							},
+							additions: generateProperty(p),
+							removals: generateProperty(p),
+						},
+						required: ['@type', 'additions', 'removals'],
+					};
+				}
+			});
 	}
+	return rv;
+}
+
+function generatePatchArrayProperty(t: MResolvedRecordType, p: MResolvedPropery): JSONSchema4 {
+	const rv = {
+		oneOf: [
+			{
+				$ref: `#/components/schemas/${t.name}_${p.name}PatchReplace`,
+			},
+			{
+				$ref: `#/components/schemas/${t.name}_${p.name}PatchMerge`,
+			},
+		],
+		discriminator: {
+			propertyName: '@type',
+			mapping: {
+				replace: `#/components/schemas/${t.name}_${p.name}PatchReplace`,
+				merge: `#/components/schemas/${t.name}_${p.name}PatchMerge`,
+			},
+		},
+	};
 	return rv;
 }
 

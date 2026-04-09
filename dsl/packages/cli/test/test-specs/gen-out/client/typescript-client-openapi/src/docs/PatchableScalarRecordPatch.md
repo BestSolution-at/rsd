@@ -12,10 +12,10 @@ Name | Type
 `value_Null` | string
 `value_Opt` | string
 `value_Opt_Null` | string
-`list` | Array&lt;string&gt;
-`list_Null` | Array&lt;string&gt;
-`list_Opt` | Array&lt;string&gt;
-`list_Opt_Null` | Array&lt;string&gt;
+`list` | [PatchableScalarRecordPatchList](PatchableScalarRecordPatchList.md)
+`list_Null` | [PatchableScalarRecordPatchListNull](PatchableScalarRecordPatchListNull.md)
+`list_Opt` | [PatchableScalarRecordPatchListOpt](PatchableScalarRecordPatchListOpt.md)
+`list_Opt_Null` | [PatchableScalarRecordPatchListOptNull](PatchableScalarRecordPatchListOptNull.md)
 
 ## Example
 
