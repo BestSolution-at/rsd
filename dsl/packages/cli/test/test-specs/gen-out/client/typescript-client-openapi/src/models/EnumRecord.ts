@@ -38,7 +38,7 @@ export interface EnumRecord {
      * @type {SampleEnum}
      * @memberof EnumRecord
      */
-    value_Null: SampleEnum;
+    value_Null: SampleEnum | null;
     /**
      * 
      * @type {SampleEnum}
@@ -50,7 +50,7 @@ export interface EnumRecord {
      * @type {SampleEnum}
      * @memberof EnumRecord
      */
-    value_Opt_Null?: SampleEnum;
+    value_Opt_Null?: SampleEnum | null;
     /**
      * 
      * @type {Array<SampleEnum>}

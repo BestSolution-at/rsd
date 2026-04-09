@@ -50,7 +50,7 @@ export interface PatchableEnumRecord {
      * @type {SampleEnum}
      * @memberof PatchableEnumRecord
      */
-    value_Null: SampleEnum;
+    value_Null: SampleEnum | null;
     /**
      * 
      * @type {SampleEnum}
@@ -62,7 +62,7 @@ export interface PatchableEnumRecord {
      * @type {SampleEnum}
      * @memberof PatchableEnumRecord
      */
-    value_Opt_Null?: SampleEnum;
+    value_Opt_Null?: SampleEnum | null;
     /**
      * 
      * @type {Array<SampleEnum>}

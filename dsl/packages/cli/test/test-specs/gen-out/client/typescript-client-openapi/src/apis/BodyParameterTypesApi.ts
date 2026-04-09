@@ -73,11 +73,11 @@ export interface ApiBodyparametertypesMultiBodyParamPostOperationRequest {
 }
 
 export interface ApiBodyparametertypesPatchableRecordBodyParamNilPatchRequest {
-    patchableRecordPatch: PatchableRecordPatch;
+    patchableRecordPatch: PatchableRecordPatch | null;
 }
 
 export interface ApiBodyparametertypesPatchableRecordBodyParamOptNilPatchRequest {
-    patchableRecordPatch?: PatchableRecordPatch;
+    patchableRecordPatch?: PatchableRecordPatch | null;
 }
 
 export interface ApiBodyparametertypesPatchableRecordBodyParamOptPatchRequest {
@@ -89,11 +89,11 @@ export interface ApiBodyparametertypesPatchableRecordBodyParamPatchRequest {
 }
 
 export interface ApiBodyparametertypesRecordBodyParamNilPostRequest {
-    simpleRecord: SimpleRecord;
+    simpleRecord: SimpleRecord | null;
 }
 
 export interface ApiBodyparametertypesRecordBodyParamOptNilPostRequest {
-    simpleRecord?: SimpleRecord;
+    simpleRecord?: SimpleRecord | null;
 }
 
 export interface ApiBodyparametertypesRecordBodyParamOptPostRequest {
@@ -137,11 +137,11 @@ export interface ApiBodyparametertypesSimpleDoubleBodyParamPostRequest {
 }
 
 export interface ApiBodyparametertypesSimpleEnumBodyParamNilPostRequest {
-    body: string;
+    body: string | null;
 }
 
 export interface ApiBodyparametertypesSimpleEnumBodyParamOptNilPostRequest {
-    body?: string;
+    body?: string | null;
 }
 
 export interface ApiBodyparametertypesSimpleEnumBodyParamOptPostRequest {
@@ -313,11 +313,11 @@ export interface ApiBodyparametertypesSimpleZonedDateTimeBodyParamPostRequest {
 }
 
 export interface ApiBodyparametertypesUnionBodyParamNilPostRequest {
-    union: Union;
+    union: Union | null;
 }
 
 export interface ApiBodyparametertypesUnionBodyParamOptNilPostRequest {
-    union?: Union;
+    union?: Union | null;
 }
 
 export interface ApiBodyparametertypesUnionBodyParamOptPostRequest {

@@ -38,7 +38,7 @@ export interface RecordWithUnions {
      * @type {Union}
      * @memberof RecordWithUnions
      */
-    value_Null: Union;
+    value_Null: Union | null;
     /**
      * 
      * @type {Union}
@@ -50,7 +50,7 @@ export interface RecordWithUnions {
      * @type {Union}
      * @memberof RecordWithUnions
      */
-    value_Opt_Null?: Union;
+    value_Opt_Null?: Union | null;
     /**
      * 
      * @type {Array<Union>}

@@ -78,19 +78,19 @@ export interface PatchableRecordOfRecordsPatch {
      * @type {PatchableRecordBasic}
      * @memberof PatchableRecordOfRecordsPatch
      */
-    value_Null?: PatchableRecordBasic;
+    value_Null?: PatchableRecordBasic | null;
     /**
      * 
      * @type {PatchableRecordBasic}
      * @memberof PatchableRecordOfRecordsPatch
      */
-    value_Opt?: PatchableRecordBasic;
+    value_Opt?: PatchableRecordBasic | null;
     /**
      * 
      * @type {PatchableRecordBasic}
      * @memberof PatchableRecordOfRecordsPatch
      */
-    value_Opt_Null?: PatchableRecordBasic;
+    value_Opt_Null?: PatchableRecordBasic | null;
     /**
      * 
      * @type {PatchableRecordOfRecordsPatchList}

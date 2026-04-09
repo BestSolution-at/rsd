@@ -38,7 +38,7 @@ export interface RecordOfRecords {
      * @type {SimpleRecordBasic}
      * @memberof RecordOfRecords
      */
-    value_Null: SimpleRecordBasic;
+    value_Null: SimpleRecordBasic | null;
     /**
      * 
      * @type {SimpleRecordBasic}
@@ -50,7 +50,7 @@ export interface RecordOfRecords {
      * @type {SimpleRecordBasic}
      * @memberof RecordOfRecords
      */
-    value_Opt_Null?: SimpleRecordBasic;
+    value_Opt_Null?: SimpleRecordBasic | null;
     /**
      * 
      * @type {Array<SimpleRecordBasic>}

@@ -50,7 +50,7 @@ export interface PatchableRecordOfRecords {
      * @type {PatchableRecordBasic}
      * @memberof PatchableRecordOfRecords
      */
-    value_Null: PatchableRecordBasic;
+    value_Null: PatchableRecordBasic | null;
     /**
      * 
      * @type {PatchableRecordBasic}
@@ -62,7 +62,7 @@ export interface PatchableRecordOfRecords {
      * @type {PatchableRecordBasic}
      * @memberof PatchableRecordOfRecords
      */
-    value_Opt_Null?: PatchableRecordBasic;
+    value_Opt_Null?: PatchableRecordBasic | null;
     /**
      * 
      * @type {Array<PatchableRecordBasic>}

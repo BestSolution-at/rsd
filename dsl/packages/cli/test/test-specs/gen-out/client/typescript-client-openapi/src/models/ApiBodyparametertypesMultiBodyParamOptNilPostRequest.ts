@@ -44,7 +44,7 @@ export interface ApiBodyparametertypesMultiBodyParamOptNilPostRequest {
      * @type {SimpleRecord}
      * @memberof ApiBodyparametertypesMultiBodyParamOptNilPostRequest
      */
-    valueC?: SimpleRecord;
+    valueC?: SimpleRecord | null;
 }
 
 /**

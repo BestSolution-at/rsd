@@ -65,7 +65,7 @@ export interface ApiHeaderparametertypesRecordHeaderParamGetRequest {
 }
 
 export interface ApiHeaderparametertypesRecordHeaderParamNilGetRequest {
-    headerValue: SimpleRecord;
+    headerValue: SimpleRecord | null;
 }
 
 export interface ApiHeaderparametertypesRecordHeaderParamOptGetRequest {
@@ -73,7 +73,7 @@ export interface ApiHeaderparametertypesRecordHeaderParamOptGetRequest {
 }
 
 export interface ApiHeaderparametertypesRecordHeaderParamOptNilGetRequest {
-    headerValue?: SimpleRecord;
+    headerValue?: SimpleRecord | null;
 }
 
 export interface ApiHeaderparametertypesSimpleBooleanHeaderParamGetRequest {
@@ -113,7 +113,7 @@ export interface ApiHeaderparametertypesSimpleEnumHeaderParamGetRequest {
 }
 
 export interface ApiHeaderparametertypesSimpleEnumHeaderParamNilGetRequest {
-    headerValue: SampleEnum;
+    headerValue: SampleEnum | null;
 }
 
 export interface ApiHeaderparametertypesSimpleEnumHeaderParamOptGetRequest {
@@ -121,7 +121,7 @@ export interface ApiHeaderparametertypesSimpleEnumHeaderParamOptGetRequest {
 }
 
 export interface ApiHeaderparametertypesSimpleEnumHeaderParamOptNilGetRequest {
-    headerValue?: SampleEnum;
+    headerValue?: SampleEnum | null;
 }
 
 export interface ApiHeaderparametertypesSimpleFloatHeaderParamGetRequest {

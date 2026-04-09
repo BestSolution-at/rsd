@@ -44,7 +44,7 @@ export interface ApiBinarytypesUploadMixedNilPutRequest {
      * @type {SimpleRecord}
      * @memberof ApiBinarytypesUploadMixedNilPutRequest
      */
-    rec: SimpleRecord;
+    rec: SimpleRecord | null;
     /**
      * 
      * @type {Array<string>}

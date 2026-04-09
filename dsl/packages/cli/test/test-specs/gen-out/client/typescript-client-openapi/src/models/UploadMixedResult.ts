@@ -44,7 +44,7 @@ export interface UploadMixedResult {
      * @type {SimpleRecord}
      * @memberof UploadMixedResult
      */
-    rec?: SimpleRecord;
+    rec?: SimpleRecord | null;
     /**
      * 
      * @type {Array<string>}

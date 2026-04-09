@@ -78,19 +78,19 @@ export interface PatchableRecordWithUnionPatch {
      * @type {PatchableUnion}
      * @memberof PatchableRecordWithUnionPatch
      */
-    value_Null?: PatchableUnion;
+    value_Null?: PatchableUnion | null;
     /**
      * 
      * @type {PatchableUnion}
      * @memberof PatchableRecordWithUnionPatch
      */
-    value_Opt?: PatchableUnion;
+    value_Opt?: PatchableUnion | null;
     /**
      * 
      * @type {PatchableUnion}
      * @memberof PatchableRecordWithUnionPatch
      */
-    value_Opt_Null?: PatchableUnion;
+    value_Opt_Null?: PatchableUnion | null;
     /**
      * 
      * @type {PatchableRecordWithUnionPatchList}

@@ -2748,7 +2748,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SampleEnum",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SampleEnum"
+                  }
+                ],
                 "nullable": true
               }
             }
@@ -2780,7 +2784,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SampleEnum",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SampleEnum"
+                  }
+                ],
                 "nullable": true
               }
             }
@@ -3062,7 +3070,11 @@
                     "nullable": true
                   },
                   "valueC": {
-                    "$ref": "#/components/schemas/SimpleRecord",
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/SimpleRecord"
+                      }
+                    ],
                     "nullable": true
                   }
                 },
@@ -3113,7 +3125,11 @@
                     "nullable": true
                   },
                   "valueC": {
-                    "$ref": "#/components/schemas/SimpleRecord",
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/SimpleRecord"
+                      }
+                    ],
                     "nullable": true
                   }
                 },
@@ -3257,7 +3273,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SimpleRecord",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SimpleRecord"
+                  }
+                ],
                 "nullable": true
               }
             }
@@ -3289,7 +3309,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SimpleRecord",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SimpleRecord"
+                  }
+                ],
                 "nullable": true
               }
             }
@@ -3383,7 +3407,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Union",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Union"
+                  }
+                ],
                 "nullable": true
               }
             }
@@ -3415,7 +3443,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Union",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Union"
+                  }
+                ],
                 "nullable": true
               }
             }
@@ -3509,7 +3541,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PatchableRecordPatch",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PatchableRecordPatch"
+                  }
+                ],
                 "nullable": true
               }
             }
@@ -3541,7 +3577,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PatchableRecordPatch",
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PatchableRecordPatch"
+                  }
+                ],
                 "nullable": true
               }
             }
@@ -5073,7 +5113,11 @@
             "in": "header",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SampleEnum",
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/SampleEnum"
+                }
+              ],
               "nullable": true
             }
           }
@@ -5105,7 +5149,11 @@
             "in": "header",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/SampleEnum",
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/SampleEnum"
+                }
+              ],
               "nullable": true
             }
           }
@@ -5522,7 +5570,11 @@
             "in": "header",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SimpleRecord",
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/SimpleRecord"
+                }
+              ],
               "nullable": true
             }
           }
@@ -5554,7 +5606,11 @@
             "in": "header",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/SimpleRecord",
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/SimpleRecord"
+                }
+              ],
               "nullable": true
             }
           }
@@ -12279,7 +12335,11 @@
                     "nullable": true
                   },
                   "rec": {
-                    "$ref": "#/components/schemas/SimpleRecord",
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/SimpleRecord"
+                      }
+                    ],
                     "nullable": true
                   },
                   "textList": {
@@ -12356,7 +12416,11 @@
                     "nullable": true
                   },
                   "rec": {
-                    "$ref": "#/components/schemas/SimpleRecord",
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/SimpleRecord"
+                      }
+                    ],
                     "nullable": true
                   },
                   "textList": {
@@ -13181,14 +13245,22 @@
             "$ref": "#/components/schemas/SampleEnum"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/SampleEnum",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SampleEnum"
+              }
+            ],
             "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/SampleEnum"
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/SampleEnum",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SampleEnum"
+              }
+            ],
             "nullable": true
           },
           "list": {
@@ -13356,14 +13428,22 @@
             "$ref": "#/components/schemas/SimpleRecord_Basic"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/SimpleRecord_Basic",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SimpleRecord_Basic"
+              }
+            ],
             "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/SimpleRecord_Basic"
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/SimpleRecord_Basic",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SimpleRecord_Basic"
+              }
+            ],
             "nullable": true
           },
           "list": {
@@ -13407,14 +13487,22 @@
             "$ref": "#/components/schemas/Union"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/Union",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Union"
+              }
+            ],
             "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/Union"
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/Union",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Union"
+              }
+            ],
             "nullable": true
           },
           "list": {
@@ -17064,14 +17152,22 @@
             "$ref": "#/components/schemas/SampleEnum"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/SampleEnum",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SampleEnum"
+              }
+            ],
             "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/SampleEnum"
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/SampleEnum",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SampleEnum"
+              }
+            ],
             "nullable": true
           },
           "list": {
@@ -17123,15 +17219,27 @@
             "$ref": "#/components/schemas/SampleEnum"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/SampleEnum",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SampleEnum"
+              }
+            ],
             "nullable": true
           },
           "value_Opt": {
-            "$ref": "#/components/schemas/SampleEnum",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SampleEnum"
+              }
+            ],
             "nullable": true
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/SampleEnum",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SampleEnum"
+              }
+            ],
             "nullable": true
           },
           "list": {
@@ -18077,14 +18185,22 @@
             "$ref": "#/components/schemas/PatchableRecord_Basic"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/PatchableRecord_Basic",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic"
+              }
+            ],
             "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/PatchableRecord_Basic"
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/PatchableRecord_Basic",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic"
+              }
+            ],
             "nullable": true
           },
           "list": {
@@ -18136,15 +18252,27 @@
             "$ref": "#/components/schemas/PatchableRecord_Basic"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/PatchableRecord_Basic",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic"
+              }
+            ],
             "nullable": true
           },
           "value_Opt": {
-            "$ref": "#/components/schemas/PatchableRecord_Basic",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic"
+              }
+            ],
             "nullable": true
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/PatchableRecord_Basic",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic"
+              }
+            ],
             "nullable": true
           },
           "list": {
@@ -18430,14 +18558,22 @@
             "$ref": "#/components/schemas/PatchableUnion"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/PatchableUnion",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PatchableUnion"
+              }
+            ],
             "nullable": true
           },
           "value_Opt": {
             "$ref": "#/components/schemas/PatchableUnion"
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/PatchableUnion",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PatchableUnion"
+              }
+            ],
             "nullable": true
           },
           "list": {
@@ -18489,15 +18625,27 @@
             "$ref": "#/components/schemas/PatchableUnion"
           },
           "value_Null": {
-            "$ref": "#/components/schemas/PatchableUnion",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PatchableUnion"
+              }
+            ],
             "nullable": true
           },
           "value_Opt": {
-            "$ref": "#/components/schemas/PatchableUnion",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PatchableUnion"
+              }
+            ],
             "nullable": true
           },
           "value_Opt_Null": {
-            "$ref": "#/components/schemas/PatchableUnion",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PatchableUnion"
+              }
+            ],
             "nullable": true
           },
           "list": {
@@ -18938,7 +19086,11 @@
             "nullable": true
           },
           "rec": {
-            "$ref": "#/components/schemas/SimpleRecord",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SimpleRecord"
+              }
+            ],
             "nullable": true
           },
           "textList": {

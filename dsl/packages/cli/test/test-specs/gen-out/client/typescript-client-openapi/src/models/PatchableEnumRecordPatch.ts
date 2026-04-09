@@ -78,19 +78,19 @@ export interface PatchableEnumRecordPatch {
      * @type {SampleEnum}
      * @memberof PatchableEnumRecordPatch
      */
-    value_Null?: SampleEnum;
+    value_Null?: SampleEnum | null;
     /**
      * 
      * @type {SampleEnum}
      * @memberof PatchableEnumRecordPatch
      */
-    value_Opt?: SampleEnum;
+    value_Opt?: SampleEnum | null;
     /**
      * 
      * @type {SampleEnum}
      * @memberof PatchableEnumRecordPatch
      */
-    value_Opt_Null?: SampleEnum;
+    value_Opt_Null?: SampleEnum | null;
     /**
      * 
      * @type {PatchableEnumRecordPatchList}

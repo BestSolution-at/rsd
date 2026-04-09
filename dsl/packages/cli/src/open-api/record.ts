@@ -165,10 +165,21 @@ function generateProperty(p: MResolvedBaseProperty): JSONSchema4 {
 
 export function nullableProcessor(type: JSONSchema4, nullable: boolean): JSONSchema4 {
 	if (nullable) {
-		return {
-			...type,
-			nullable: true,
-		};
+		if (type.$ref) {
+			return {
+				allOf: [
+					{
+						$ref: type.$ref,
+					},
+				],
+				nullable: true,
+			};
+		} else {
+			return {
+				...type,
+				nullable: true,
+			};
+		}
 	}
 	return type;
 }

@@ -50,7 +50,7 @@ export interface PatchableRecordWithUnion {
      * @type {PatchableUnion}
      * @memberof PatchableRecordWithUnion
      */
-    value_Null: PatchableUnion;
+    value_Null: PatchableUnion | null;
     /**
      * 
      * @type {PatchableUnion}
@@ -62,7 +62,7 @@ export interface PatchableRecordWithUnion {
      * @type {PatchableUnion}
      * @memberof PatchableRecordWithUnion
      */
-    value_Opt_Null?: PatchableUnion;
+    value_Opt_Null?: PatchableUnion | null;
     /**
      * 
      * @type {Array<PatchableUnion>}
