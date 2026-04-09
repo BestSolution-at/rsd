@@ -58,6 +58,10 @@ function generateOpenAPISpec(model: MResolvedRSDModel, artifactConfig: OpenAPIGe
 		});
 	return {
 		openapi: '3.0.1',
+		info: {
+			title: 'TBD',
+			version: '1.0.0',
+		},
 		...artifactConfig.staticSpec,
 		tags: model.services.map(s => ({
 			name: s.name,

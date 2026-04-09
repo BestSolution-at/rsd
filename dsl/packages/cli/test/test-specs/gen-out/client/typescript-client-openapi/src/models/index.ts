@@ -1,7 +1,15 @@
 /* tslint:disable */
 /* eslint-disable */
+export * from './ApiBinarytypesUploadMixedNilPutRequest.js';
+export * from './ApiBinarytypesUploadMixedOptNilPutRequest.js';
+export * from './ApiBinarytypesUploadMixedOptPutRequest.js';
 export * from './ApiBinarytypesUploadMixedPutRequest.js';
+export * from './ApiBodyparametertypesMultiBodyParamFirstPostRequest.js';
+export * from './ApiBodyparametertypesMultiBodyParamNilPostRequest.js';
+export * from './ApiBodyparametertypesMultiBodyParamOptNilPostRequest.js';
+export * from './ApiBodyparametertypesMultiBodyParamOptPostRequest.js';
 export * from './ApiBodyparametertypesMultiBodyParamPostRequest.js';
+export * from './ApiListbodyparametertypesListMultiBodyParamOptPutRequest.js';
 export * from './ApiListbodyparametertypesListMultiBodyParamPutRequest.js';
 export * from './EnumInlineRecord.js';
 export * from './EnumRecord.js';

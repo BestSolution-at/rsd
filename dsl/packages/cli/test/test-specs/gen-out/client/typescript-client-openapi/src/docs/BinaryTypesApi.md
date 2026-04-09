@@ -23,9 +23,9 @@ All URIs are relative to *http://localhost*
 | [**apiBinarytypesUploadFileOptNilPost**](BinaryTypesApi.md#apibinarytypesuploadfileoptnilpost) | **POST** /api/binarytypes/uploadFileOptNil |  |
 | [**apiBinarytypesUploadFileOptPost**](BinaryTypesApi.md#apibinarytypesuploadfileoptpost) | **POST** /api/binarytypes/uploadFileOpt |  |
 | [**apiBinarytypesUploadFilePost**](BinaryTypesApi.md#apibinarytypesuploadfilepost) | **POST** /api/binarytypes/uploadFile |  |
-| [**apiBinarytypesUploadMixedNilPut**](BinaryTypesApi.md#apibinarytypesuploadmixednilput) | **PUT** /api/binarytypes/uploadMixedNil |  |
-| [**apiBinarytypesUploadMixedOptNilPut**](BinaryTypesApi.md#apibinarytypesuploadmixedoptnilput) | **PUT** /api/binarytypes/uploadMixedOptNil |  |
-| [**apiBinarytypesUploadMixedOptPut**](BinaryTypesApi.md#apibinarytypesuploadmixedoptput) | **PUT** /api/binarytypes/uploadMixedOpt |  |
+| [**apiBinarytypesUploadMixedNilPut**](BinaryTypesApi.md#apibinarytypesuploadmixednilputoperation) | **PUT** /api/binarytypes/uploadMixedNil |  |
+| [**apiBinarytypesUploadMixedOptNilPut**](BinaryTypesApi.md#apibinarytypesuploadmixedoptnilputoperation) | **PUT** /api/binarytypes/uploadMixedOptNil |  |
+| [**apiBinarytypesUploadMixedOptPut**](BinaryTypesApi.md#apibinarytypesuploadmixedoptputoperation) | **PUT** /api/binarytypes/uploadMixedOpt |  |
 | [**apiBinarytypesUploadMixedPut**](BinaryTypesApi.md#apibinarytypesuploadmixedputoperation) | **PUT** /api/binarytypes/uploadMixed |  |
 
 
@@ -184,9 +184,9 @@ async function example() {
     queryString: queryString_example,
     // number | 
     queryNumber: 8.14,
-    // SimpleRecord | 
-    queryRecord: ...,
-    // any (optional)
+    // string | 
+    queryRecord: queryRecord_example,
+    // any
     body: ...,
   } satisfies ApiBinarytypesMixedPathStringPathNumberPostRequest;
 
@@ -214,8 +214,8 @@ example().catch(console.error);
 | **headerRecord** | [](.md) |  | [Defaults to `undefined`] |
 | **queryString** | `string` |  | [Defaults to `undefined`] |
 | **queryNumber** | `number` |  | [Defaults to `undefined`] |
-| **queryRecord** | [](.md) |  | [Defaults to `undefined`] |
-| **body** | `any` |  | [Optional] |
+| **queryRecord** | `string` |  | [Defaults to `undefined`] |
+| **body** | `any` |  | |
 
 ### Return type
 
@@ -261,7 +261,7 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
+    // any
     body: ...,
   } satisfies ApiBinarytypesUploadBlobListNilPutRequest;
 
@@ -282,7 +282,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `any` |  | |
 
 ### Return type
 
@@ -462,7 +462,7 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
+    // any
     body: ...,
   } satisfies ApiBinarytypesUploadBlobListPutRequest;
 
@@ -483,7 +483,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `any` |  | |
 
 ### Return type
 
@@ -529,7 +529,7 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
+    // any
     body: ...,
   } satisfies ApiBinarytypesUploadBlobNilPostRequest;
 
@@ -550,7 +550,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `any` |  | |
 
 ### Return type
 
@@ -730,7 +730,7 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
+    // any
     body: ...,
   } satisfies ApiBinarytypesUploadBlobPostRequest;
 
@@ -751,7 +751,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `any` |  | |
 
 ### Return type
 
@@ -797,7 +797,7 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
+    // any
     body: ...,
   } satisfies ApiBinarytypesUploadFileListNilPutRequest;
 
@@ -818,7 +818,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `any` |  | |
 
 ### Return type
 
@@ -998,7 +998,7 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
+    // any
     body: ...,
   } satisfies ApiBinarytypesUploadFileListPutRequest;
 
@@ -1019,7 +1019,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `any` |  | |
 
 ### Return type
 
@@ -1065,7 +1065,7 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
+    // any
     body: ...,
   } satisfies ApiBinarytypesUploadFileNilPostRequest;
 
@@ -1086,7 +1086,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `any` |  | |
 
 ### Return type
 
@@ -1266,7 +1266,7 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
+    // any
     body: ...,
   } satisfies ApiBinarytypesUploadFilePostRequest;
 
@@ -1287,7 +1287,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `any` |  | |
 
 ### Return type
 
@@ -1313,7 +1313,7 @@ No authorization required
 
 ## apiBinarytypesUploadMixedNilPut
 
-> UploadMixedResult apiBinarytypesUploadMixedNilPut(apiBinarytypesUploadMixedPutRequest)
+> UploadMixedResult apiBinarytypesUploadMixedNilPut(apiBinarytypesUploadMixedNilPutRequest)
 
 
 
@@ -1326,16 +1326,16 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadMixedNilPutRequest } from '';
+import type { ApiBinarytypesUploadMixedNilPutOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   const body = {
-    // ApiBinarytypesUploadMixedPutRequest (optional)
-    apiBinarytypesUploadMixedPutRequest: ...,
-  } satisfies ApiBinarytypesUploadMixedNilPutRequest;
+    // ApiBinarytypesUploadMixedNilPutRequest
+    apiBinarytypesUploadMixedNilPutRequest: ...,
+  } satisfies ApiBinarytypesUploadMixedNilPutOperationRequest;
 
   try {
     const data = await api.apiBinarytypesUploadMixedNilPut(body);
@@ -1354,7 +1354,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiBinarytypesUploadMixedPutRequest** | [ApiBinarytypesUploadMixedPutRequest](ApiBinarytypesUploadMixedPutRequest.md) |  | [Optional] |
+| **apiBinarytypesUploadMixedNilPutRequest** | [ApiBinarytypesUploadMixedNilPutRequest](ApiBinarytypesUploadMixedNilPutRequest.md) |  | |
 
 ### Return type
 
@@ -1380,7 +1380,7 @@ No authorization required
 
 ## apiBinarytypesUploadMixedOptNilPut
 
-> UploadMixedResult apiBinarytypesUploadMixedOptNilPut(apiBinarytypesUploadMixedPutRequest)
+> UploadMixedResult apiBinarytypesUploadMixedOptNilPut(apiBinarytypesUploadMixedOptNilPutRequest)
 
 
 
@@ -1393,16 +1393,16 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadMixedOptNilPutRequest } from '';
+import type { ApiBinarytypesUploadMixedOptNilPutOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   const body = {
-    // ApiBinarytypesUploadMixedPutRequest (optional)
-    apiBinarytypesUploadMixedPutRequest: ...,
-  } satisfies ApiBinarytypesUploadMixedOptNilPutRequest;
+    // ApiBinarytypesUploadMixedOptNilPutRequest
+    apiBinarytypesUploadMixedOptNilPutRequest: ...,
+  } satisfies ApiBinarytypesUploadMixedOptNilPutOperationRequest;
 
   try {
     const data = await api.apiBinarytypesUploadMixedOptNilPut(body);
@@ -1421,7 +1421,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiBinarytypesUploadMixedPutRequest** | [ApiBinarytypesUploadMixedPutRequest](ApiBinarytypesUploadMixedPutRequest.md) |  | [Optional] |
+| **apiBinarytypesUploadMixedOptNilPutRequest** | [ApiBinarytypesUploadMixedOptNilPutRequest](ApiBinarytypesUploadMixedOptNilPutRequest.md) |  | |
 
 ### Return type
 
@@ -1447,7 +1447,7 @@ No authorization required
 
 ## apiBinarytypesUploadMixedOptPut
 
-> UploadMixedResult apiBinarytypesUploadMixedOptPut(apiBinarytypesUploadMixedPutRequest)
+> UploadMixedResult apiBinarytypesUploadMixedOptPut(apiBinarytypesUploadMixedOptPutRequest)
 
 
 
@@ -1460,16 +1460,16 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadMixedOptPutRequest } from '';
+import type { ApiBinarytypesUploadMixedOptPutOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   const body = {
-    // ApiBinarytypesUploadMixedPutRequest (optional)
-    apiBinarytypesUploadMixedPutRequest: ...,
-  } satisfies ApiBinarytypesUploadMixedOptPutRequest;
+    // ApiBinarytypesUploadMixedOptPutRequest
+    apiBinarytypesUploadMixedOptPutRequest: ...,
+  } satisfies ApiBinarytypesUploadMixedOptPutOperationRequest;
 
   try {
     const data = await api.apiBinarytypesUploadMixedOptPut(body);
@@ -1488,7 +1488,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiBinarytypesUploadMixedPutRequest** | [ApiBinarytypesUploadMixedPutRequest](ApiBinarytypesUploadMixedPutRequest.md) |  | [Optional] |
+| **apiBinarytypesUploadMixedOptPutRequest** | [ApiBinarytypesUploadMixedOptPutRequest](ApiBinarytypesUploadMixedOptPutRequest.md) |  | |
 
 ### Return type
 
@@ -1534,7 +1534,7 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // ApiBinarytypesUploadMixedPutRequest (optional)
+    // ApiBinarytypesUploadMixedPutRequest
     apiBinarytypesUploadMixedPutRequest: ...,
   } satisfies ApiBinarytypesUploadMixedPutOperationRequest;
 
@@ -1555,7 +1555,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiBinarytypesUploadMixedPutRequest** | [ApiBinarytypesUploadMixedPutRequest](ApiBinarytypesUploadMixedPutRequest.md) |  | [Optional] |
+| **apiBinarytypesUploadMixedPutRequest** | [ApiBinarytypesUploadMixedPutRequest](ApiBinarytypesUploadMixedPutRequest.md) |  | |
 
 ### Return type
 

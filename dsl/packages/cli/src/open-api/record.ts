@@ -81,7 +81,7 @@ function generateProperty(p: MResolvedBaseProperty): JSONSchema4 {
 	return {};
 }
 
-function nullableProcessor(type: JSONSchema4, nullable: boolean): JSONSchema4 {
+export function nullableProcessor(type: JSONSchema4, nullable: boolean): JSONSchema4 {
 	if (nullable) {
 		return {
 			...type,

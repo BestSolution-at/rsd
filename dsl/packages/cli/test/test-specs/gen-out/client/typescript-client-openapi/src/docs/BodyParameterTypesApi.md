@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**apiBodyparametertypesMultiBodyParamFirstPost**](BodyParameterTypesApi.md#apibodyparametertypesmultibodyparamfirstpost) | **POST** /api/bodyparametertypes/multiBodyParamFirst |  |
-| [**apiBodyparametertypesMultiBodyParamNilPost**](BodyParameterTypesApi.md#apibodyparametertypesmultibodyparamnilpost) | **POST** /api/bodyparametertypes/multiBodyParamNil |  |
-| [**apiBodyparametertypesMultiBodyParamOptNilPost**](BodyParameterTypesApi.md#apibodyparametertypesmultibodyparamoptnilpost) | **POST** /api/bodyparametertypes/multiBodyParamOptNil |  |
-| [**apiBodyparametertypesMultiBodyParamOptPost**](BodyParameterTypesApi.md#apibodyparametertypesmultibodyparamoptpost) | **POST** /api/bodyparametertypes/multiBodyParamOpt |  |
+| [**apiBodyparametertypesMultiBodyParamFirstPost**](BodyParameterTypesApi.md#apibodyparametertypesmultibodyparamfirstpostoperation) | **POST** /api/bodyparametertypes/multiBodyParamFirst |  |
+| [**apiBodyparametertypesMultiBodyParamNilPost**](BodyParameterTypesApi.md#apibodyparametertypesmultibodyparamnilpostoperation) | **POST** /api/bodyparametertypes/multiBodyParamNil |  |
+| [**apiBodyparametertypesMultiBodyParamOptNilPost**](BodyParameterTypesApi.md#apibodyparametertypesmultibodyparamoptnilpostoperation) | **POST** /api/bodyparametertypes/multiBodyParamOptNil |  |
+| [**apiBodyparametertypesMultiBodyParamOptPost**](BodyParameterTypesApi.md#apibodyparametertypesmultibodyparamoptpostoperation) | **POST** /api/bodyparametertypes/multiBodyParamOpt |  |
 | [**apiBodyparametertypesMultiBodyParamPost**](BodyParameterTypesApi.md#apibodyparametertypesmultibodyparampostoperation) | **POST** /api/bodyparametertypes/multiBodyParam |  |
 | [**apiBodyparametertypesPatchableRecordBodyParamNilPatch**](BodyParameterTypesApi.md#apibodyparametertypespatchablerecordbodyparamnilpatch) | **PATCH** /api/bodyparametertypes/patchableRecordBodyParamNil |  |
 | [**apiBodyparametertypesPatchableRecordBodyParamOptNilPatch**](BodyParameterTypesApi.md#apibodyparametertypespatchablerecordbodyparamoptnilpatch) | **PATCH** /api/bodyparametertypes/patchableRecordBodyParamOptNil |  |
@@ -78,7 +78,7 @@ All URIs are relative to *http://localhost*
 
 ## apiBodyparametertypesMultiBodyParamFirstPost
 
-> string apiBodyparametertypesMultiBodyParamFirstPost(apiBodyparametertypesMultiBodyParamPostRequest)
+> string apiBodyparametertypesMultiBodyParamFirstPost(apiBodyparametertypesMultiBodyParamFirstPostRequest)
 
 
 
@@ -91,16 +91,16 @@ import {
   Configuration,
   BodyParameterTypesApi,
 } from '';
-import type { ApiBodyparametertypesMultiBodyParamFirstPostRequest } from '';
+import type { ApiBodyparametertypesMultiBodyParamFirstPostOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // ApiBodyparametertypesMultiBodyParamPostRequest (optional)
-    apiBodyparametertypesMultiBodyParamPostRequest: ...,
-  } satisfies ApiBodyparametertypesMultiBodyParamFirstPostRequest;
+    // ApiBodyparametertypesMultiBodyParamFirstPostRequest
+    apiBodyparametertypesMultiBodyParamFirstPostRequest: ...,
+  } satisfies ApiBodyparametertypesMultiBodyParamFirstPostOperationRequest;
 
   try {
     const data = await api.apiBodyparametertypesMultiBodyParamFirstPost(body);
@@ -119,7 +119,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiBodyparametertypesMultiBodyParamPostRequest** | [ApiBodyparametertypesMultiBodyParamPostRequest](ApiBodyparametertypesMultiBodyParamPostRequest.md) |  | [Optional] |
+| **apiBodyparametertypesMultiBodyParamFirstPostRequest** | [ApiBodyparametertypesMultiBodyParamFirstPostRequest](ApiBodyparametertypesMultiBodyParamFirstPostRequest.md) |  | |
 
 ### Return type
 
@@ -145,7 +145,7 @@ No authorization required
 
 ## apiBodyparametertypesMultiBodyParamNilPost
 
-> string apiBodyparametertypesMultiBodyParamNilPost(apiBodyparametertypesMultiBodyParamPostRequest)
+> string apiBodyparametertypesMultiBodyParamNilPost(apiBodyparametertypesMultiBodyParamNilPostRequest)
 
 
 
@@ -158,16 +158,16 @@ import {
   Configuration,
   BodyParameterTypesApi,
 } from '';
-import type { ApiBodyparametertypesMultiBodyParamNilPostRequest } from '';
+import type { ApiBodyparametertypesMultiBodyParamNilPostOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // ApiBodyparametertypesMultiBodyParamPostRequest (optional)
-    apiBodyparametertypesMultiBodyParamPostRequest: ...,
-  } satisfies ApiBodyparametertypesMultiBodyParamNilPostRequest;
+    // ApiBodyparametertypesMultiBodyParamNilPostRequest
+    apiBodyparametertypesMultiBodyParamNilPostRequest: ...,
+  } satisfies ApiBodyparametertypesMultiBodyParamNilPostOperationRequest;
 
   try {
     const data = await api.apiBodyparametertypesMultiBodyParamNilPost(body);
@@ -186,7 +186,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiBodyparametertypesMultiBodyParamPostRequest** | [ApiBodyparametertypesMultiBodyParamPostRequest](ApiBodyparametertypesMultiBodyParamPostRequest.md) |  | [Optional] |
+| **apiBodyparametertypesMultiBodyParamNilPostRequest** | [ApiBodyparametertypesMultiBodyParamNilPostRequest](ApiBodyparametertypesMultiBodyParamNilPostRequest.md) |  | |
 
 ### Return type
 
@@ -212,7 +212,7 @@ No authorization required
 
 ## apiBodyparametertypesMultiBodyParamOptNilPost
 
-> string apiBodyparametertypesMultiBodyParamOptNilPost(apiBodyparametertypesMultiBodyParamPostRequest)
+> string apiBodyparametertypesMultiBodyParamOptNilPost(apiBodyparametertypesMultiBodyParamOptNilPostRequest)
 
 
 
@@ -225,16 +225,16 @@ import {
   Configuration,
   BodyParameterTypesApi,
 } from '';
-import type { ApiBodyparametertypesMultiBodyParamOptNilPostRequest } from '';
+import type { ApiBodyparametertypesMultiBodyParamOptNilPostOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // ApiBodyparametertypesMultiBodyParamPostRequest (optional)
-    apiBodyparametertypesMultiBodyParamPostRequest: ...,
-  } satisfies ApiBodyparametertypesMultiBodyParamOptNilPostRequest;
+    // ApiBodyparametertypesMultiBodyParamOptNilPostRequest
+    apiBodyparametertypesMultiBodyParamOptNilPostRequest: ...,
+  } satisfies ApiBodyparametertypesMultiBodyParamOptNilPostOperationRequest;
 
   try {
     const data = await api.apiBodyparametertypesMultiBodyParamOptNilPost(body);
@@ -253,7 +253,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiBodyparametertypesMultiBodyParamPostRequest** | [ApiBodyparametertypesMultiBodyParamPostRequest](ApiBodyparametertypesMultiBodyParamPostRequest.md) |  | [Optional] |
+| **apiBodyparametertypesMultiBodyParamOptNilPostRequest** | [ApiBodyparametertypesMultiBodyParamOptNilPostRequest](ApiBodyparametertypesMultiBodyParamOptNilPostRequest.md) |  | |
 
 ### Return type
 
@@ -279,7 +279,7 @@ No authorization required
 
 ## apiBodyparametertypesMultiBodyParamOptPost
 
-> string apiBodyparametertypesMultiBodyParamOptPost(apiBodyparametertypesMultiBodyParamPostRequest)
+> string apiBodyparametertypesMultiBodyParamOptPost(apiBodyparametertypesMultiBodyParamOptPostRequest)
 
 
 
@@ -292,16 +292,16 @@ import {
   Configuration,
   BodyParameterTypesApi,
 } from '';
-import type { ApiBodyparametertypesMultiBodyParamOptPostRequest } from '';
+import type { ApiBodyparametertypesMultiBodyParamOptPostOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // ApiBodyparametertypesMultiBodyParamPostRequest (optional)
-    apiBodyparametertypesMultiBodyParamPostRequest: ...,
-  } satisfies ApiBodyparametertypesMultiBodyParamOptPostRequest;
+    // ApiBodyparametertypesMultiBodyParamOptPostRequest
+    apiBodyparametertypesMultiBodyParamOptPostRequest: ...,
+  } satisfies ApiBodyparametertypesMultiBodyParamOptPostOperationRequest;
 
   try {
     const data = await api.apiBodyparametertypesMultiBodyParamOptPost(body);
@@ -320,7 +320,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiBodyparametertypesMultiBodyParamPostRequest** | [ApiBodyparametertypesMultiBodyParamPostRequest](ApiBodyparametertypesMultiBodyParamPostRequest.md) |  | [Optional] |
+| **apiBodyparametertypesMultiBodyParamOptPostRequest** | [ApiBodyparametertypesMultiBodyParamOptPostRequest](ApiBodyparametertypesMultiBodyParamOptPostRequest.md) |  | |
 
 ### Return type
 
@@ -366,7 +366,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // ApiBodyparametertypesMultiBodyParamPostRequest (optional)
+    // ApiBodyparametertypesMultiBodyParamPostRequest
     apiBodyparametertypesMultiBodyParamPostRequest: ...,
   } satisfies ApiBodyparametertypesMultiBodyParamPostOperationRequest;
 
@@ -387,7 +387,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiBodyparametertypesMultiBodyParamPostRequest** | [ApiBodyparametertypesMultiBodyParamPostRequest](ApiBodyparametertypesMultiBodyParamPostRequest.md) |  | [Optional] |
+| **apiBodyparametertypesMultiBodyParamPostRequest** | [ApiBodyparametertypesMultiBodyParamPostRequest](ApiBodyparametertypesMultiBodyParamPostRequest.md) |  | |
 
 ### Return type
 
@@ -433,7 +433,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // PatchableRecordPatch (optional)
+    // PatchableRecordPatch
     patchableRecordPatch: ...,
   } satisfies ApiBodyparametertypesPatchableRecordBodyParamNilPatchRequest;
 
@@ -454,7 +454,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **patchableRecordPatch** | [PatchableRecordPatch](PatchableRecordPatch.md) |  | [Optional] |
+| **patchableRecordPatch** | [PatchableRecordPatch](PatchableRecordPatch.md) |  | |
 
 ### Return type
 
@@ -634,7 +634,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // PatchableRecordPatch (optional)
+    // PatchableRecordPatch
     patchableRecordPatch: ...,
   } satisfies ApiBodyparametertypesPatchableRecordBodyParamPatchRequest;
 
@@ -655,7 +655,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **patchableRecordPatch** | [PatchableRecordPatch](PatchableRecordPatch.md) |  | [Optional] |
+| **patchableRecordPatch** | [PatchableRecordPatch](PatchableRecordPatch.md) |  | |
 
 ### Return type
 
@@ -701,7 +701,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // SimpleRecord (optional)
+    // SimpleRecord
     simpleRecord: ...,
   } satisfies ApiBodyparametertypesRecordBodyParamNilPostRequest;
 
@@ -722,7 +722,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **simpleRecord** | [SimpleRecord](SimpleRecord.md) |  | [Optional] |
+| **simpleRecord** | [SimpleRecord](SimpleRecord.md) |  | |
 
 ### Return type
 
@@ -902,7 +902,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // SimpleRecord (optional)
+    // SimpleRecord
     simpleRecord: ...,
   } satisfies ApiBodyparametertypesRecordBodyParamPostRequest;
 
@@ -923,7 +923,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **simpleRecord** | [SimpleRecord](SimpleRecord.md) |  | [Optional] |
+| **simpleRecord** | [SimpleRecord](SimpleRecord.md) |  | |
 
 ### Return type
 
@@ -969,7 +969,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // boolean (optional)
+    // boolean
     body: true,
   } satisfies ApiBodyparametertypesSimpleBooleanBodyParamNilPostRequest;
 
@@ -990,7 +990,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `boolean` |  | [Optional] |
+| **body** | `boolean` |  | |
 
 ### Return type
 
@@ -1170,7 +1170,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // boolean (optional)
+    // boolean
     body: true,
   } satisfies ApiBodyparametertypesSimpleBooleanBodyParamPostRequest;
 
@@ -1191,7 +1191,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `boolean` |  | [Optional] |
+| **body** | `boolean` |  | |
 
 ### Return type
 
@@ -1237,7 +1237,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // number (optional)
+    // number
     body: 1.2,
   } satisfies ApiBodyparametertypesSimpleDoubleBodyParamNilPostRequest;
 
@@ -1258,7 +1258,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `number` |  | [Optional] |
+| **body** | `number` |  | |
 
 ### Return type
 
@@ -1438,7 +1438,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // number (optional)
+    // number
     body: 1.2,
   } satisfies ApiBodyparametertypesSimpleDoubleBodyParamPostRequest;
 
@@ -1459,7 +1459,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `number` |  | [Optional] |
+| **body** | `number` |  | |
 
 ### Return type
 
@@ -1505,7 +1505,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string (optional)
+    // string
     body: ...,
   } satisfies ApiBodyparametertypesSimpleEnumBodyParamNilPostRequest;
 
@@ -1526,7 +1526,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -1706,7 +1706,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string (optional)
+    // string
     body: ...,
   } satisfies ApiBodyparametertypesSimpleEnumBodyParamPostRequest;
 
@@ -1727,7 +1727,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -1773,7 +1773,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // number (optional)
+    // number
     body: 3.4,
   } satisfies ApiBodyparametertypesSimpleFloatBodyParamNilPostRequest;
 
@@ -1794,7 +1794,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `number` |  | [Optional] |
+| **body** | `number` |  | |
 
 ### Return type
 
@@ -1974,7 +1974,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // number (optional)
+    // number
     body: 3.4,
   } satisfies ApiBodyparametertypesSimpleFloatBodyParamPostRequest;
 
@@ -1995,7 +1995,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `number` |  | [Optional] |
+| **body** | `number` |  | |
 
 ### Return type
 
@@ -2041,8 +2041,8 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // string
+    body: body_example,
   } satisfies ApiBodyparametertypesSimpleInlineEnumBodyParamNilPostRequest;
 
   try {
@@ -2062,7 +2062,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -2108,8 +2108,8 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // string (optional)
+    body: body_example,
   } satisfies ApiBodyparametertypesSimpleInlineEnumBodyParamOptNilPostRequest;
 
   try {
@@ -2129,7 +2129,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `string` |  | [Optional] |
 
 ### Return type
 
@@ -2175,8 +2175,8 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // string (optional)
+    body: body_example,
   } satisfies ApiBodyparametertypesSimpleInlineEnumBodyParamOptPostRequest;
 
   try {
@@ -2196,7 +2196,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `string` |  | [Optional] |
 
 ### Return type
 
@@ -2222,7 +2222,7 @@ No authorization required
 
 ## apiBodyparametertypesSimpleInlineEnumBodyParamPost
 
-> any apiBodyparametertypesSimpleInlineEnumBodyParamPost(body)
+> string apiBodyparametertypesSimpleInlineEnumBodyParamPost(body)
 
 
 
@@ -2242,8 +2242,8 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // string
+    body: body_example,
   } satisfies ApiBodyparametertypesSimpleInlineEnumBodyParamPostRequest;
 
   try {
@@ -2263,11 +2263,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
-**any**
+**string**
 
 ### Authorization
 
@@ -2309,7 +2309,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // number (optional)
+    // number
     body: 8.14,
   } satisfies ApiBodyparametertypesSimpleIntBodyParamNilPostRequest;
 
@@ -2330,7 +2330,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `number` |  | [Optional] |
+| **body** | `number` |  | |
 
 ### Return type
 
@@ -2510,7 +2510,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // number (optional)
+    // number
     body: 8.14,
   } satisfies ApiBodyparametertypesSimpleIntBodyParamPostRequest;
 
@@ -2531,7 +2531,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `number` |  | [Optional] |
+| **body** | `number` |  | |
 
 ### Return type
 
@@ -2577,7 +2577,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // Date (optional)
+    // Date
     body: 2013-10-20,
   } satisfies ApiBodyparametertypesSimpleLocalDateBodyParamNilPostRequest;
 
@@ -2598,7 +2598,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `Date` |  | [Optional] |
+| **body** | `Date` |  | |
 
 ### Return type
 
@@ -2778,7 +2778,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // Date (optional)
+    // Date
     body: 2013-10-20,
   } satisfies ApiBodyparametertypesSimpleLocalDateBodyParamPostRequest;
 
@@ -2799,7 +2799,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `Date` |  | [Optional] |
+| **body** | `Date` |  | |
 
 ### Return type
 
@@ -2845,7 +2845,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string (optional)
+    // string
     body: body_example,
   } satisfies ApiBodyparametertypesSimpleLocalDateTimeBodyParamNilPostRequest;
 
@@ -2866,7 +2866,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -3046,7 +3046,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string (optional)
+    // string
     body: body_example,
   } satisfies ApiBodyparametertypesSimpleLocalDateTimeBodyParamPostRequest;
 
@@ -3067,7 +3067,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -3113,7 +3113,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // number (optional)
+    // number
     body: 8.14,
   } satisfies ApiBodyparametertypesSimpleLongBodyParamNilPostRequest;
 
@@ -3134,7 +3134,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `number` |  | [Optional] |
+| **body** | `number` |  | |
 
 ### Return type
 
@@ -3314,7 +3314,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // number (optional)
+    // number
     body: 8.14,
   } satisfies ApiBodyparametertypesSimpleLongBodyParamPostRequest;
 
@@ -3335,7 +3335,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `number` |  | [Optional] |
+| **body** | `number` |  | |
 
 ### Return type
 
@@ -3381,7 +3381,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string (optional)
+    // string
     body: body_example,
   } satisfies ApiBodyparametertypesSimpleScalarBodyParamNilPostRequest;
 
@@ -3402,7 +3402,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -3582,7 +3582,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string (optional)
+    // string
     body: body_example,
   } satisfies ApiBodyparametertypesSimpleScalarBodyParamPostRequest;
 
@@ -3603,7 +3603,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -3649,7 +3649,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // number (optional)
+    // number
     body: 8.14,
   } satisfies ApiBodyparametertypesSimpleShortBodyParamNilPostRequest;
 
@@ -3670,7 +3670,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `number` |  | [Optional] |
+| **body** | `number` |  | |
 
 ### Return type
 
@@ -3850,7 +3850,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // number (optional)
+    // number
     body: 8.14,
   } satisfies ApiBodyparametertypesSimpleShortBodyParamPostRequest;
 
@@ -3871,7 +3871,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `number` |  | [Optional] |
+| **body** | `number` |  | |
 
 ### Return type
 
@@ -3917,7 +3917,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string (optional)
+    // string
     body: body_example,
   } satisfies ApiBodyparametertypesSimpleStringBodyParamNilPostRequest;
 
@@ -3938,7 +3938,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -4118,7 +4118,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string (optional)
+    // string
     body: body_example,
   } satisfies ApiBodyparametertypesSimpleStringBodyParamPostRequest;
 
@@ -4139,7 +4139,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -4185,7 +4185,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string (optional)
+    // string
     body: body_example,
   } satisfies ApiBodyparametertypesSimpleZonedDateTimeBodyParamNilPostRequest;
 
@@ -4206,7 +4206,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -4386,7 +4386,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string (optional)
+    // string
     body: body_example,
   } satisfies ApiBodyparametertypesSimpleZonedDateTimeBodyParamPostRequest;
 
@@ -4407,7 +4407,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -4453,7 +4453,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // Union (optional)
+    // Union
     union: ...,
   } satisfies ApiBodyparametertypesUnionBodyParamNilPostRequest;
 
@@ -4474,7 +4474,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **union** | [Union](Union.md) |  | [Optional] |
+| **union** | [Union](Union.md) |  | |
 
 ### Return type
 
@@ -4654,7 +4654,7 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // Union (optional)
+    // Union
     union: ...,
   } satisfies ApiBodyparametertypesUnionBodyParamPostRequest;
 
@@ -4675,7 +4675,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **union** | [Union](Union.md) |  | [Optional] |
+| **union** | [Union](Union.md) |  | |
 
 ### Return type
 

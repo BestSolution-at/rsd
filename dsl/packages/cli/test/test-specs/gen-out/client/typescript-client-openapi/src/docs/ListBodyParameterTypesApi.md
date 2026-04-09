@@ -42,7 +42,7 @@ All URIs are relative to *http://localhost*
 | [**apiListbodyparametertypesListLongBodyParamPut**](ListBodyParameterTypesApi.md#apilistbodyparametertypeslistlongbodyparamput) | **PUT** /api/listbodyparametertypes/listLongBodyParam |  |
 | [**apiListbodyparametertypesListMultiBodyParamNilPut**](ListBodyParameterTypesApi.md#apilistbodyparametertypeslistmultibodyparamnilput) | **PUT** /api/listbodyparametertypes/listMultiBodyParamNil |  |
 | [**apiListbodyparametertypesListMultiBodyParamOptNilPut**](ListBodyParameterTypesApi.md#apilistbodyparametertypeslistmultibodyparamoptnilput) | **PUT** /api/listbodyparametertypes/listMultiBodyParamOptNil |  |
-| [**apiListbodyparametertypesListMultiBodyParamOptPut**](ListBodyParameterTypesApi.md#apilistbodyparametertypeslistmultibodyparamoptput) | **PUT** /api/listbodyparametertypes/listMultiBodyParamOpt |  |
+| [**apiListbodyparametertypesListMultiBodyParamOptPut**](ListBodyParameterTypesApi.md#apilistbodyparametertypeslistmultibodyparamoptputoperation) | **PUT** /api/listbodyparametertypes/listMultiBodyParamOpt |  |
 | [**apiListbodyparametertypesListMultiBodyParamPut**](ListBodyParameterTypesApi.md#apilistbodyparametertypeslistmultibodyparamputoperation) | **PUT** /api/listbodyparametertypes/listMultiBodyParam |  |
 | [**apiListbodyparametertypesListRecordBodyParamNilPut**](ListBodyParameterTypesApi.md#apilistbodyparametertypeslistrecordbodyparamnilput) | **PUT** /api/listbodyparametertypes/listRecordBodyParamNil |  |
 | [**apiListbodyparametertypesListRecordBodyParamOptNilPut**](ListBodyParameterTypesApi.md#apilistbodyparametertypeslistrecordbodyparamoptnilput) | **PUT** /api/listbodyparametertypes/listRecordBodyParamOptNil |  |
@@ -89,7 +89,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<boolean> (optional)
+    // Array<boolean>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListBooleanBodyParamNilPutRequest;
 
@@ -110,7 +110,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<boolean>` |  | [Optional] |
+| **requestBody** | `Array<boolean>` |  | |
 
 ### Return type
 
@@ -290,7 +290,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<boolean> (optional)
+    // Array<boolean>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListBooleanBodyParamPutRequest;
 
@@ -311,7 +311,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<boolean>` |  | [Optional] |
+| **requestBody** | `Array<boolean>` |  | |
 
 ### Return type
 
@@ -357,7 +357,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<number> (optional)
+    // Array<number>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListDoubleBodyParamNilPutRequest;
 
@@ -378,7 +378,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<number>` |  | [Optional] |
+| **requestBody** | `Array<number>` |  | |
 
 ### Return type
 
@@ -558,7 +558,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<number> (optional)
+    // Array<number>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListDoubleBodyParamPutRequest;
 
@@ -579,7 +579,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<number>` |  | [Optional] |
+| **requestBody** | `Array<number>` |  | |
 
 ### Return type
 
@@ -625,7 +625,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<SampleEnum> (optional)
+    // Array<SampleEnum>
     sampleEnum: ...,
   } satisfies ApiListbodyparametertypesListEnumBodyParamNilPutRequest;
 
@@ -646,7 +646,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **sampleEnum** | `Array<SampleEnum>` |  | [Optional] |
+| **sampleEnum** | `Array<SampleEnum>` |  | |
 
 ### Return type
 
@@ -826,7 +826,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<SampleEnum> (optional)
+    // Array<SampleEnum>
     sampleEnum: ...,
   } satisfies ApiListbodyparametertypesListEnumBodyParamPutRequest;
 
@@ -847,7 +847,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **sampleEnum** | `Array<SampleEnum>` |  | [Optional] |
+| **sampleEnum** | `Array<SampleEnum>` |  | |
 
 ### Return type
 
@@ -893,7 +893,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<number> (optional)
+    // Array<number>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListFloatBodyParamNilPutRequest;
 
@@ -914,7 +914,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<number>` |  | [Optional] |
+| **requestBody** | `Array<number>` |  | |
 
 ### Return type
 
@@ -1094,7 +1094,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<number> (optional)
+    // Array<number>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListFloatBodyParamPutRequest;
 
@@ -1115,7 +1115,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<number>` |  | [Optional] |
+| **requestBody** | `Array<number>` |  | |
 
 ### Return type
 
@@ -1161,8 +1161,8 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // string
+    body: body_example,
   } satisfies ApiListbodyparametertypesListInlineEnumBodyParamNilPutRequest;
 
   try {
@@ -1182,7 +1182,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -1228,8 +1228,8 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // string (optional)
+    body: body_example,
   } satisfies ApiListbodyparametertypesListInlineEnumBodyParamOptNilPutRequest;
 
   try {
@@ -1249,7 +1249,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `string` |  | [Optional] |
 
 ### Return type
 
@@ -1295,8 +1295,8 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // string (optional)
+    body: body_example,
   } satisfies ApiListbodyparametertypesListInlineEnumBodyParamOptPutRequest;
 
   try {
@@ -1316,7 +1316,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `string` |  | [Optional] |
 
 ### Return type
 
@@ -1342,7 +1342,7 @@ No authorization required
 
 ## apiListbodyparametertypesListInlineEnumBodyParamPut
 
-> any apiListbodyparametertypesListInlineEnumBodyParamPut(body)
+> string apiListbodyparametertypesListInlineEnumBodyParamPut(body)
 
 
 
@@ -1362,8 +1362,8 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // string
+    body: body_example,
   } satisfies ApiListbodyparametertypesListInlineEnumBodyParamPutRequest;
 
   try {
@@ -1383,11 +1383,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
-**any**
+**string**
 
 ### Authorization
 
@@ -1429,7 +1429,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<number> (optional)
+    // Array<number>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListIntBodyParamNilPutRequest;
 
@@ -1450,7 +1450,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<number>` |  | [Optional] |
+| **requestBody** | `Array<number>` |  | |
 
 ### Return type
 
@@ -1630,7 +1630,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<number> (optional)
+    // Array<number>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListIntBodyParamPutRequest;
 
@@ -1651,7 +1651,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<number>` |  | [Optional] |
+| **requestBody** | `Array<number>` |  | |
 
 ### Return type
 
@@ -1697,7 +1697,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<Date> (optional)
+    // Array<Date>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListLocalDateBodyParamNilPutRequest;
 
@@ -1718,7 +1718,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<Date>` |  | [Optional] |
+| **requestBody** | `Array<Date>` |  | |
 
 ### Return type
 
@@ -1898,7 +1898,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<Date> (optional)
+    // Array<Date>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListLocalDateBodyParamPutRequest;
 
@@ -1919,7 +1919,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<Date>` |  | [Optional] |
+| **requestBody** | `Array<Date>` |  | |
 
 ### Return type
 
@@ -1965,7 +1965,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<string> (optional)
+    // Array<string>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListLocalDateTimeBodyParamNilPutRequest;
 
@@ -1986,7 +1986,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<string>` |  | [Optional] |
+| **requestBody** | `Array<string>` |  | |
 
 ### Return type
 
@@ -2166,7 +2166,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<string> (optional)
+    // Array<string>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListLocalDateTimeBodyParamPutRequest;
 
@@ -2187,7 +2187,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<string>` |  | [Optional] |
+| **requestBody** | `Array<string>` |  | |
 
 ### Return type
 
@@ -2233,7 +2233,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<number> (optional)
+    // Array<number>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListLongBodyParamNilPutRequest;
 
@@ -2254,7 +2254,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<number>` |  | [Optional] |
+| **requestBody** | `Array<number>` |  | |
 
 ### Return type
 
@@ -2434,7 +2434,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<number> (optional)
+    // Array<number>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListLongBodyParamPutRequest;
 
@@ -2455,7 +2455,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<number>` |  | [Optional] |
+| **requestBody** | `Array<number>` |  | |
 
 ### Return type
 
@@ -2501,7 +2501,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // ApiListbodyparametertypesListMultiBodyParamPutRequest (optional)
+    // ApiListbodyparametertypesListMultiBodyParamPutRequest
     apiListbodyparametertypesListMultiBodyParamPutRequest: ...,
   } satisfies ApiListbodyparametertypesListMultiBodyParamNilPutRequest;
 
@@ -2522,7 +2522,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiListbodyparametertypesListMultiBodyParamPutRequest** | [ApiListbodyparametertypesListMultiBodyParamPutRequest](ApiListbodyparametertypesListMultiBodyParamPutRequest.md) |  | [Optional] |
+| **apiListbodyparametertypesListMultiBodyParamPutRequest** | [ApiListbodyparametertypesListMultiBodyParamPutRequest](ApiListbodyparametertypesListMultiBodyParamPutRequest.md) |  | |
 
 ### Return type
 
@@ -2548,7 +2548,7 @@ No authorization required
 
 ## apiListbodyparametertypesListMultiBodyParamOptNilPut
 
-> Array&lt;NilResult&gt; apiListbodyparametertypesListMultiBodyParamOptNilPut(apiListbodyparametertypesListMultiBodyParamPutRequest)
+> Array&lt;NilResult&gt; apiListbodyparametertypesListMultiBodyParamOptNilPut(apiListbodyparametertypesListMultiBodyParamOptPutRequest)
 
 
 
@@ -2568,8 +2568,8 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // ApiListbodyparametertypesListMultiBodyParamPutRequest (optional)
-    apiListbodyparametertypesListMultiBodyParamPutRequest: ...,
+    // ApiListbodyparametertypesListMultiBodyParamOptPutRequest
+    apiListbodyparametertypesListMultiBodyParamOptPutRequest: ...,
   } satisfies ApiListbodyparametertypesListMultiBodyParamOptNilPutRequest;
 
   try {
@@ -2589,7 +2589,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiListbodyparametertypesListMultiBodyParamPutRequest** | [ApiListbodyparametertypesListMultiBodyParamPutRequest](ApiListbodyparametertypesListMultiBodyParamPutRequest.md) |  | [Optional] |
+| **apiListbodyparametertypesListMultiBodyParamOptPutRequest** | [ApiListbodyparametertypesListMultiBodyParamOptPutRequest](ApiListbodyparametertypesListMultiBodyParamOptPutRequest.md) |  | |
 
 ### Return type
 
@@ -2615,7 +2615,7 @@ No authorization required
 
 ## apiListbodyparametertypesListMultiBodyParamOptPut
 
-> Array&lt;NilResult&gt; apiListbodyparametertypesListMultiBodyParamOptPut(apiListbodyparametertypesListMultiBodyParamPutRequest)
+> Array&lt;NilResult&gt; apiListbodyparametertypesListMultiBodyParamOptPut(apiListbodyparametertypesListMultiBodyParamOptPutRequest)
 
 
 
@@ -2628,16 +2628,16 @@ import {
   Configuration,
   ListBodyParameterTypesApi,
 } from '';
-import type { ApiListbodyparametertypesListMultiBodyParamOptPutRequest } from '';
+import type { ApiListbodyparametertypesListMultiBodyParamOptPutOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // ApiListbodyparametertypesListMultiBodyParamPutRequest (optional)
-    apiListbodyparametertypesListMultiBodyParamPutRequest: ...,
-  } satisfies ApiListbodyparametertypesListMultiBodyParamOptPutRequest;
+    // ApiListbodyparametertypesListMultiBodyParamOptPutRequest
+    apiListbodyparametertypesListMultiBodyParamOptPutRequest: ...,
+  } satisfies ApiListbodyparametertypesListMultiBodyParamOptPutOperationRequest;
 
   try {
     const data = await api.apiListbodyparametertypesListMultiBodyParamOptPut(body);
@@ -2656,7 +2656,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiListbodyparametertypesListMultiBodyParamPutRequest** | [ApiListbodyparametertypesListMultiBodyParamPutRequest](ApiListbodyparametertypesListMultiBodyParamPutRequest.md) |  | [Optional] |
+| **apiListbodyparametertypesListMultiBodyParamOptPutRequest** | [ApiListbodyparametertypesListMultiBodyParamOptPutRequest](ApiListbodyparametertypesListMultiBodyParamOptPutRequest.md) |  | |
 
 ### Return type
 
@@ -2702,7 +2702,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // ApiListbodyparametertypesListMultiBodyParamPutRequest (optional)
+    // ApiListbodyparametertypesListMultiBodyParamPutRequest
     apiListbodyparametertypesListMultiBodyParamPutRequest: ...,
   } satisfies ApiListbodyparametertypesListMultiBodyParamPutOperationRequest;
 
@@ -2723,7 +2723,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiListbodyparametertypesListMultiBodyParamPutRequest** | [ApiListbodyparametertypesListMultiBodyParamPutRequest](ApiListbodyparametertypesListMultiBodyParamPutRequest.md) |  | [Optional] |
+| **apiListbodyparametertypesListMultiBodyParamPutRequest** | [ApiListbodyparametertypesListMultiBodyParamPutRequest](ApiListbodyparametertypesListMultiBodyParamPutRequest.md) |  | |
 
 ### Return type
 
@@ -2769,7 +2769,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<SimpleRecord> (optional)
+    // Array<SimpleRecord>
     simpleRecord: ...,
   } satisfies ApiListbodyparametertypesListRecordBodyParamNilPutRequest;
 
@@ -2790,7 +2790,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **simpleRecord** | `Array<SimpleRecord>` |  | [Optional] |
+| **simpleRecord** | `Array<SimpleRecord>` |  | |
 
 ### Return type
 
@@ -2970,7 +2970,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<SimpleRecord> (optional)
+    // Array<SimpleRecord>
     simpleRecord: ...,
   } satisfies ApiListbodyparametertypesListRecordBodyParamPutRequest;
 
@@ -2991,7 +2991,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **simpleRecord** | `Array<SimpleRecord>` |  | [Optional] |
+| **simpleRecord** | `Array<SimpleRecord>` |  | |
 
 ### Return type
 
@@ -3037,7 +3037,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // string (optional)
+    // string
     body: body_example,
   } satisfies ApiListbodyparametertypesListScalarBodyParamNilPutRequest;
 
@@ -3058,7 +3058,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -3238,7 +3238,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // string (optional)
+    // string
     body: body_example,
   } satisfies ApiListbodyparametertypesListScalarBodyParamPutRequest;
 
@@ -3259,7 +3259,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `string` |  | |
 
 ### Return type
 
@@ -3305,7 +3305,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<number> (optional)
+    // Array<number>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListShortBodyParamNilPutRequest;
 
@@ -3326,7 +3326,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<number>` |  | [Optional] |
+| **requestBody** | `Array<number>` |  | |
 
 ### Return type
 
@@ -3506,7 +3506,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<number> (optional)
+    // Array<number>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListShortBodyParamPutRequest;
 
@@ -3527,7 +3527,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<number>` |  | [Optional] |
+| **requestBody** | `Array<number>` |  | |
 
 ### Return type
 
@@ -3573,7 +3573,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<string> (optional)
+    // Array<string>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListStringBodyParamNilPutRequest;
 
@@ -3594,7 +3594,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<string>` |  | [Optional] |
+| **requestBody** | `Array<string>` |  | |
 
 ### Return type
 
@@ -3774,7 +3774,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<string> (optional)
+    // Array<string>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListStringBodyParamPutRequest;
 
@@ -3795,7 +3795,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<string>` |  | [Optional] |
+| **requestBody** | `Array<string>` |  | |
 
 ### Return type
 
@@ -3841,7 +3841,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<string> (optional)
+    // Array<string>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListZonedDateTimeBodyParamNilPutRequest;
 
@@ -3862,7 +3862,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<string>` |  | [Optional] |
+| **requestBody** | `Array<string>` |  | |
 
 ### Return type
 
@@ -4042,7 +4042,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<string> (optional)
+    // Array<string>
     requestBody: ...,
   } satisfies ApiListbodyparametertypesListZonedDateTimeBodyParamPutRequest;
 
@@ -4063,7 +4063,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<string>` |  | [Optional] |
+| **requestBody** | `Array<string>` |  | |
 
 ### Return type
 

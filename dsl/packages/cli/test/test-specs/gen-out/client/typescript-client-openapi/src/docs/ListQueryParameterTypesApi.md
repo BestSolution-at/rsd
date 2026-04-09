@@ -292,7 +292,7 @@ No authorization required
 
 ## apiListqueryparametertypesListInlineEnumQueryParamGet
 
-> any apiListqueryparametertypesListInlineEnumQueryParamGet(queryValue)
+> string apiListqueryparametertypesListInlineEnumQueryParamGet(queryValue)
 
 
 
@@ -312,8 +312,8 @@ async function example() {
   const api = new ListQueryParameterTypesApi();
 
   const body = {
-    // any | 
-    queryValue: ...,
+    // 'A' | 'B' | 
+    queryValue: queryValue_example,
   } satisfies ApiListqueryparametertypesListInlineEnumQueryParamGetRequest;
 
   try {
@@ -333,11 +333,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **queryValue** | `any` |  | [Defaults to `undefined`] |
+| **queryValue** | `A`, `B` |  | [Defaults to `undefined`] [Enum: A, B] |
 
 ### Return type
 
-**any**
+**string**
 
 ### Authorization
 
@@ -651,8 +651,8 @@ async function example() {
     valueA: ...,
     // Array<number> | 
     valueB: ...,
-    // Array<SimpleRecord> | 
-    valueC: ...,
+    // string | 
+    valueC: valueC_example,
   } satisfies ApiListqueryparametertypesListMultiQueryParamGetRequest;
 
   try {
@@ -674,7 +674,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **valueA** | `Array<string>` |  | |
 | **valueB** | `Array<number>` |  | |
-| **valueC** | `Array<SimpleRecord>` |  | |
+| **valueC** | `string` |  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -720,8 +720,8 @@ async function example() {
   const api = new ListQueryParameterTypesApi();
 
   const body = {
-    // Array<SimpleRecord> | 
-    queryValue: ...,
+    // string | 
+    queryValue: queryValue_example,
   } satisfies ApiListqueryparametertypesListRecordQueryParamGetRequest;
 
   try {
@@ -741,7 +741,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **queryValue** | `Array<SimpleRecord>` |  | |
+| **queryValue** | `string` |  | [Defaults to `undefined`] |
 
 ### Return type
 

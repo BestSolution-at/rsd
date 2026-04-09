@@ -1,5 +1,9 @@
 {
   "openapi": "3.0.1",
+  "info": {
+    "title": "TBD",
+    "version": "1.0.0"
+  },
   "tags": [
     {
       "name": "SampleService",
@@ -1249,7 +1253,8 @@
                 "type": "boolean"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1279,7 +1284,8 @@
                 "type": "boolean"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -1306,10 +1312,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "boolean"
+                "type": "boolean",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1336,10 +1344,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "boolean"
+                "type": "boolean",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -1370,7 +1380,8 @@
                 "format": "int32"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1402,7 +1413,8 @@
                 "format": "int32"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -1430,10 +1442,12 @@
             "application/json": {
               "schema": {
                 "type": "number",
-                "format": "int32"
+                "format": "int32",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1461,10 +1475,12 @@
             "application/json": {
               "schema": {
                 "type": "number",
-                "format": "int32"
+                "format": "int32",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -1495,7 +1511,8 @@
                 "format": "int32"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1527,7 +1544,8 @@
                 "format": "int32"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -1555,10 +1573,12 @@
             "application/json": {
               "schema": {
                 "type": "number",
-                "format": "int32"
+                "format": "int32",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1586,10 +1606,12 @@
             "application/json": {
               "schema": {
                 "type": "number",
-                "format": "int32"
+                "format": "int32",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -1620,7 +1642,8 @@
                 "format": "int64"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1652,7 +1675,8 @@
                 "format": "int64"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -1680,10 +1704,12 @@
             "application/json": {
               "schema": {
                 "type": "number",
-                "format": "int64"
+                "format": "int64",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1711,10 +1737,12 @@
             "application/json": {
               "schema": {
                 "type": "number",
-                "format": "int64"
+                "format": "int64",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -1745,7 +1773,8 @@
                 "format": "float"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1777,7 +1806,8 @@
                 "format": "float"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -1805,10 +1835,12 @@
             "application/json": {
               "schema": {
                 "type": "number",
-                "format": "float"
+                "format": "float",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1836,10 +1868,12 @@
             "application/json": {
               "schema": {
                 "type": "number",
-                "format": "float"
+                "format": "float",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -1870,7 +1904,8 @@
                 "format": "double"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1902,7 +1937,8 @@
                 "format": "double"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -1930,10 +1966,12 @@
             "application/json": {
               "schema": {
                 "type": "number",
-                "format": "double"
+                "format": "double",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1961,10 +1999,12 @@
             "application/json": {
               "schema": {
                 "type": "number",
-                "format": "double"
+                "format": "double",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -1994,7 +2034,8 @@
                 "type": "string"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2024,7 +2065,8 @@
                 "type": "string"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2051,10 +2093,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "type": "string",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2081,10 +2125,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "type": "string",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2116,7 +2162,8 @@
                 "format": "date"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2150,7 +2197,8 @@
                 "format": "date"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2179,10 +2227,12 @@
               "schema": {
                 "type": "string",
                 "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
-                "format": "date"
+                "format": "date",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2211,10 +2261,12 @@
               "schema": {
                 "type": "string",
                 "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
-                "format": "date"
+                "format": "date",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2246,7 +2298,8 @@
                 "format": "local-date-time"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2280,7 +2333,8 @@
                 "format": "local-date-time"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2309,10 +2363,12 @@
               "schema": {
                 "type": "string",
                 "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
-                "format": "local-date-time"
+                "format": "local-date-time",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2341,10 +2397,12 @@
               "schema": {
                 "type": "string",
                 "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
-                "format": "local-date-time"
+                "format": "local-date-time",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2375,7 +2433,8 @@
                 "format": "zoned-date-time"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2407,7 +2466,8 @@
                 "format": "zoned-date-time"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2435,10 +2495,12 @@
             "application/json": {
               "schema": {
                 "type": "string",
-                "format": "zoned-date-time"
+                "format": "zoned-date-time",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2466,10 +2528,12 @@
             "application/json": {
               "schema": {
                 "type": "string",
-                "format": "zoned-date-time"
+                "format": "zoned-date-time",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2499,7 +2563,8 @@
                 "type": "string"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2529,7 +2594,8 @@
                 "type": "string"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2556,10 +2622,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "type": "string",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2586,10 +2654,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "type": "string",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2619,7 +2689,8 @@
                 "$ref": "#/components/schemas/SampleEnum"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2649,7 +2720,8 @@
                 "$ref": "#/components/schemas/SampleEnum"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2676,10 +2748,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SampleEnum"
+                "$ref": "#/components/schemas/SampleEnum",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2706,10 +2780,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SampleEnum"
+                "$ref": "#/components/schemas/SampleEnum",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2735,16 +2811,29 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B"
+                ]
+              }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
             "description": "",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "A",
+                    "B"
+                  ]
+                }
               }
             }
           }
@@ -2761,9 +2850,16 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B"
+                ]
+              }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2789,9 +2885,17 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "C",
+                  "D"
+                ],
+                "nullable": true
+              }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2817,9 +2921,17 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "C",
+                  "D"
+                ],
+                "nullable": true
+              }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -2858,10 +2970,16 @@
                   "valueC": {
                     "$ref": "#/components/schemas/SimpleRecord"
                   }
-                }
+                },
+                "required": [
+                  "valueA",
+                  "valueB",
+                  "valueC"
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2900,10 +3018,12 @@
                   "valueC": {
                     "$ref": "#/components/schemas/SimpleRecord"
                   }
-                }
+                },
+                "required": []
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2933,19 +3053,28 @@
                 "type": "object",
                 "properties": {
                   "valueA": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "valueB": {
                     "type": "number",
-                    "format": "int32"
+                    "format": "int32",
+                    "nullable": true
                   },
                   "valueC": {
-                    "$ref": "#/components/schemas/SimpleRecord"
+                    "$ref": "#/components/schemas/SimpleRecord",
+                    "nullable": true
                   }
-                }
+                },
+                "required": [
+                  "valueA",
+                  "valueB",
+                  "valueC"
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2975,19 +3104,24 @@
                 "type": "object",
                 "properties": {
                   "valueA": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "valueB": {
                     "type": "number",
-                    "format": "int32"
+                    "format": "int32",
+                    "nullable": true
                   },
                   "valueC": {
-                    "$ref": "#/components/schemas/SimpleRecord"
+                    "$ref": "#/components/schemas/SimpleRecord",
+                    "nullable": true
                   }
-                }
+                },
+                "required": []
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3026,10 +3160,15 @@
                   "valueC": {
                     "$ref": "#/components/schemas/SimpleRecord"
                   }
-                }
+                },
+                "required": [
+                  "valueB",
+                  "valueC"
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3059,7 +3198,8 @@
                 "$ref": "#/components/schemas/SimpleRecord"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3089,7 +3229,8 @@
                 "$ref": "#/components/schemas/SimpleRecord"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -3116,10 +3257,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SimpleRecord"
+                "$ref": "#/components/schemas/SimpleRecord",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3146,10 +3289,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SimpleRecord"
+                "$ref": "#/components/schemas/SimpleRecord",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -3179,7 +3324,8 @@
                 "$ref": "#/components/schemas/Union"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3209,7 +3355,8 @@
                 "$ref": "#/components/schemas/Union"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -3236,10 +3383,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Union"
+                "$ref": "#/components/schemas/Union",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3266,10 +3415,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Union"
+                "$ref": "#/components/schemas/Union",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -3299,7 +3450,8 @@
                 "$ref": "#/components/schemas/PatchableRecordPatch"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3329,7 +3481,8 @@
                 "$ref": "#/components/schemas/PatchableRecordPatch"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -3356,10 +3509,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PatchableRecordPatch"
+                "$ref": "#/components/schemas/PatchableRecordPatch",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3386,10 +3541,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PatchableRecordPatch"
+                "$ref": "#/components/schemas/PatchableRecordPatch",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -3480,7 +3637,8 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "boolean"
+              "type": "boolean",
+              "nullable": true
             }
           }
         ],
@@ -3511,7 +3669,8 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "boolean"
+              "type": "boolean",
+              "nullable": true
             }
           }
         ],
@@ -3608,7 +3767,8 @@
             "required": true,
             "schema": {
               "type": "number",
-              "format": "int32"
+              "format": "int32",
+              "nullable": true
             }
           }
         ],
@@ -3640,7 +3800,8 @@
             "required": false,
             "schema": {
               "type": "number",
-              "format": "int32"
+              "format": "int32",
+              "nullable": true
             }
           }
         ],
@@ -3737,7 +3898,8 @@
             "required": true,
             "schema": {
               "type": "number",
-              "format": "int32"
+              "format": "int32",
+              "nullable": true
             }
           }
         ],
@@ -3769,7 +3931,8 @@
             "required": false,
             "schema": {
               "type": "number",
-              "format": "int32"
+              "format": "int32",
+              "nullable": true
             }
           }
         ],
@@ -3866,7 +4029,8 @@
             "required": true,
             "schema": {
               "type": "number",
-              "format": "int64"
+              "format": "int64",
+              "nullable": true
             }
           }
         ],
@@ -3898,7 +4062,8 @@
             "required": false,
             "schema": {
               "type": "number",
-              "format": "int64"
+              "format": "int64",
+              "nullable": true
             }
           }
         ],
@@ -3995,7 +4160,8 @@
             "required": true,
             "schema": {
               "type": "number",
-              "format": "float"
+              "format": "float",
+              "nullable": true
             }
           }
         ],
@@ -4027,7 +4193,8 @@
             "required": false,
             "schema": {
               "type": "number",
-              "format": "float"
+              "format": "float",
+              "nullable": true
             }
           }
         ],
@@ -4124,7 +4291,8 @@
             "required": true,
             "schema": {
               "type": "number",
-              "format": "double"
+              "format": "double",
+              "nullable": true
             }
           }
         ],
@@ -4156,7 +4324,8 @@
             "required": false,
             "schema": {
               "type": "number",
-              "format": "double"
+              "format": "double",
+              "nullable": true
             }
           }
         ],
@@ -4249,7 +4418,8 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           }
         ],
@@ -4280,7 +4450,8 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           }
         ],
@@ -4381,7 +4552,8 @@
             "schema": {
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
-              "format": "date"
+              "format": "date",
+              "nullable": true
             }
           }
         ],
@@ -4414,7 +4586,8 @@
             "schema": {
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
-              "format": "date"
+              "format": "date",
+              "nullable": true
             }
           }
         ],
@@ -4515,7 +4688,8 @@
             "schema": {
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
-              "format": "local-date-time"
+              "format": "local-date-time",
+              "nullable": true
             }
           }
         ],
@@ -4548,7 +4722,8 @@
             "schema": {
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
-              "format": "local-date-time"
+              "format": "local-date-time",
+              "nullable": true
             }
           }
         ],
@@ -4645,7 +4820,8 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "zoned-date-time"
+              "format": "zoned-date-time",
+              "nullable": true
             }
           }
         ],
@@ -4677,7 +4853,8 @@
             "required": false,
             "schema": {
               "type": "string",
-              "format": "zoned-date-time"
+              "format": "zoned-date-time",
+              "nullable": true
             }
           }
         ],
@@ -4770,7 +4947,8 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           }
         ],
@@ -4801,7 +4979,8 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           }
         ],
@@ -4894,7 +5073,8 @@
             "in": "header",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SampleEnum"
+              "$ref": "#/components/schemas/SampleEnum",
+              "nullable": true
             }
           }
         ],
@@ -4925,7 +5105,8 @@
             "in": "header",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/SampleEnum"
+              "$ref": "#/components/schemas/SampleEnum",
+              "nullable": true
             }
           }
         ],
@@ -4955,7 +5136,13 @@
             "description": "",
             "in": "header",
             "required": true,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "enum": [
+                "A",
+                "B"
+              ]
+            }
           }
         ],
         "responses": {
@@ -4963,7 +5150,13 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "A",
+                    "B"
+                  ]
+                }
               }
             }
           }
@@ -4982,7 +5175,13 @@
             "description": "",
             "in": "header",
             "required": false,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "enum": [
+                "A",
+                "B"
+              ]
+            }
           }
         ],
         "responses": {
@@ -5011,7 +5210,14 @@
             "description": "",
             "in": "header",
             "required": true,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "enum": [
+                "C",
+                "D"
+              ],
+              "nullable": true
+            }
           }
         ],
         "responses": {
@@ -5040,7 +5246,14 @@
             "description": "",
             "in": "header",
             "required": false,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "enum": [
+                "C",
+                "D"
+              ],
+              "nullable": true
+            }
           }
         ],
         "responses": {
@@ -5155,7 +5368,8 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           },
           {
@@ -5165,7 +5379,8 @@
             "required": true,
             "schema": {
               "type": "number",
-              "format": "int32"
+              "format": "int32",
+              "nullable": true
             }
           }
         ],
@@ -5199,7 +5414,8 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           },
           {
@@ -5209,7 +5425,8 @@
             "required": false,
             "schema": {
               "type": "number",
-              "format": "int32"
+              "format": "int32",
+              "nullable": true
             }
           }
         ],
@@ -5305,7 +5522,8 @@
             "in": "header",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SimpleRecord"
+              "$ref": "#/components/schemas/SimpleRecord",
+              "nullable": true
             }
           }
         ],
@@ -5336,7 +5554,8 @@
             "in": "header",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/SimpleRecord"
+              "$ref": "#/components/schemas/SimpleRecord",
+              "nullable": true
             }
           }
         ],
@@ -5445,7 +5664,8 @@
                 "$ref": "#/components/schemas/SimpleRecord"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "204": {
@@ -6391,7 +6611,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -6427,7 +6648,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -6460,7 +6682,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -6493,7 +6716,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -6527,7 +6751,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -6565,7 +6790,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -6599,7 +6825,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -6633,7 +6860,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -6667,7 +6895,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -6705,7 +6934,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -6739,7 +6969,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -6773,7 +7004,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -6807,7 +7039,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -6845,7 +7078,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -6879,7 +7113,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -6913,7 +7148,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -6947,7 +7183,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -6985,7 +7222,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7019,7 +7257,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7053,7 +7292,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7087,7 +7327,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7125,7 +7366,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7159,7 +7401,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7193,7 +7436,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7226,7 +7470,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7262,7 +7507,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7295,7 +7541,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7328,7 +7575,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7363,7 +7611,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7403,7 +7652,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7438,7 +7688,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7473,7 +7724,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7508,7 +7760,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7548,7 +7801,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7583,7 +7837,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7618,7 +7873,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7652,7 +7908,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7690,7 +7947,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7724,7 +7982,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7758,7 +8017,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7788,7 +8048,8 @@
                 "type": "string"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7818,7 +8079,8 @@
                 "type": "string"
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7845,10 +8107,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "type": "string",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7875,10 +8139,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "type": "string",
+                "nullable": true
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7911,7 +8177,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7947,7 +8214,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -7980,7 +8248,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -8013,7 +8282,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -8039,16 +8309,29 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B"
+                ]
+              }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
             "description": "",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "A",
+                    "B"
+                  ]
+                }
               }
             }
           }
@@ -8065,9 +8348,16 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B"
+                ]
+              }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -8093,9 +8383,17 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "C",
+                  "D"
+                ],
+                "nullable": true
+              }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -8121,9 +8419,17 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "C",
+                  "D"
+                ],
+                "nullable": true
+              }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -8171,10 +8477,16 @@
                       "$ref": "#/components/schemas/SimpleRecord"
                     }
                   }
-                }
+                },
+                "required": [
+                  "valueA",
+                  "valueB",
+                  "valueC"
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -8222,10 +8534,12 @@
                       "$ref": "#/components/schemas/SimpleRecord"
                     }
                   }
-                }
+                },
+                "required": []
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -8276,10 +8590,16 @@
                       "$ref": "#/components/schemas/SimpleRecord"
                     }
                   }
-                }
+                },
+                "required": [
+                  "valueA",
+                  "valueB",
+                  "valueC"
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -8330,10 +8650,12 @@
                       "$ref": "#/components/schemas/SimpleRecord"
                     }
                   }
-                }
+                },
+                "required": []
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -8369,7 +8691,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -8405,7 +8728,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -8438,7 +8762,8 @@
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -8471,7 +8796,8 @@
                 }
               }
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -8957,7 +9283,13 @@
             "description": "",
             "in": "query",
             "required": true,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "enum": [
+                "A",
+                "B"
+              ]
+            }
           }
         ],
         "responses": {
@@ -8965,7 +9297,13 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "A",
+                    "B"
+                  ]
+                }
               }
             }
           }
@@ -10579,7 +10917,8 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           }
         ],
@@ -10610,7 +10949,8 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           }
         ],
@@ -10779,7 +11119,13 @@
             "description": "",
             "in": "header",
             "required": true,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "enum": [
+                "A",
+                "B"
+              ]
+            }
           }
         ],
         "responses": {
@@ -10787,7 +11133,13 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "A",
+                    "B"
+                  ]
+                }
               }
             }
           }
@@ -10806,7 +11158,13 @@
             "description": "",
             "in": "header",
             "required": false,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "enum": [
+                "A",
+                "B"
+              ]
+            }
           }
         ],
         "responses": {
@@ -10835,7 +11193,14 @@
             "description": "",
             "in": "header",
             "required": true,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "enum": [
+                "C",
+                "D"
+              ],
+              "nullable": true
+            }
           }
         ],
         "responses": {
@@ -10864,7 +11229,14 @@
             "description": "",
             "in": "header",
             "required": false,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "enum": [
+                "C",
+                "D"
+              ],
+              "nullable": true
+            }
           }
         ],
         "responses": {
@@ -11277,7 +11649,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
@@ -11306,7 +11679,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "201": {
@@ -11335,7 +11709,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
@@ -11364,7 +11739,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "201": {
@@ -11393,7 +11769,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
@@ -11422,7 +11799,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "201": {
@@ -11451,7 +11829,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
@@ -11480,7 +11859,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "201": {
@@ -11509,7 +11889,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -11538,7 +11919,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -11567,7 +11949,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -11596,7 +11979,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -11625,7 +12009,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -11654,7 +12039,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -11683,7 +12069,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -11712,7 +12099,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": false
         },
         "responses": {
           "200": {
@@ -11773,10 +12161,21 @@
                   },
                   "dataFile": {},
                   "dataBlob": {}
-                }
+                },
+                "required": [
+                  "text",
+                  "number",
+                  "rec",
+                  "textList",
+                  "numberList",
+                  "recList",
+                  "dataFile",
+                  "dataBlob"
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -11836,10 +12235,12 @@
                   },
                   "dataFile": {},
                   "dataBlob": {}
-                }
+                },
+                "required": []
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -11869,14 +12270,17 @@
                 "type": "object",
                 "properties": {
                   "text": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "number": {
                     "type": "number",
-                    "format": "int32"
+                    "format": "int32",
+                    "nullable": true
                   },
                   "rec": {
-                    "$ref": "#/components/schemas/SimpleRecord"
+                    "$ref": "#/components/schemas/SimpleRecord",
+                    "nullable": true
                   },
                   "textList": {
                     "type": "array",
@@ -11899,10 +12303,21 @@
                   },
                   "dataFile": {},
                   "dataBlob": {}
-                }
+                },
+                "required": [
+                  "text",
+                  "number",
+                  "rec",
+                  "textList",
+                  "numberList",
+                  "recList",
+                  "dataFile",
+                  "dataBlob"
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -11932,14 +12347,17 @@
                 "type": "object",
                 "properties": {
                   "text": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "number": {
                     "type": "number",
-                    "format": "int32"
+                    "format": "int32",
+                    "nullable": true
                   },
                   "rec": {
-                    "$ref": "#/components/schemas/SimpleRecord"
+                    "$ref": "#/components/schemas/SimpleRecord",
+                    "nullable": true
                   },
                   "textList": {
                     "type": "array",
@@ -11962,10 +12380,12 @@
                   },
                   "dataFile": {},
                   "dataBlob": {}
-                }
+                },
+                "required": []
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -12070,7 +12490,8 @@
             "application/json": {
               "schema": {}
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "204": {

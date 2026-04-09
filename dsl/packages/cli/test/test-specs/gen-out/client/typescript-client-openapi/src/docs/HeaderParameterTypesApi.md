@@ -104,9 +104,9 @@ async function example() {
     queryString: queryString_example,
     // number | 
     queryNumber: 1.2,
-    // SimpleRecord | 
-    queryRecord: ...,
-    // SimpleRecord (optional)
+    // string | 
+    queryRecord: queryRecord_example,
+    // SimpleRecord
     simpleRecord: ...,
   } satisfies ApiHeaderparametertypesMixedPathStringPathNumberPostRequest;
 
@@ -134,8 +134,8 @@ example().catch(console.error);
 | **headerRecord** | [](.md) |  | [Defaults to `undefined`] |
 | **queryString** | `string` |  | [Defaults to `undefined`] |
 | **queryNumber** | `number` |  | [Defaults to `undefined`] |
-| **queryRecord** | [](.md) |  | [Defaults to `undefined`] |
-| **simpleRecord** | [SimpleRecord](SimpleRecord.md) |  | [Optional] |
+| **queryRecord** | `string` |  | [Defaults to `undefined`] |
+| **simpleRecord** | [SimpleRecord](SimpleRecord.md) |  | |
 
 ### Return type
 
@@ -1781,7 +1781,7 @@ No authorization required
 
 ## apiHeaderparametertypesSimpleInlineEnumHeaderParamGet
 
-> any apiHeaderparametertypesSimpleInlineEnumHeaderParamGet(headerValue)
+> string apiHeaderparametertypesSimpleInlineEnumHeaderParamGet(headerValue)
 
 
 
@@ -1801,8 +1801,8 @@ async function example() {
   const api = new HeaderParameterTypesApi();
 
   const body = {
-    // any | 
-    headerValue: ...,
+    // 'A' | 'B' | 
+    headerValue: headerValue_example,
   } satisfies ApiHeaderparametertypesSimpleInlineEnumHeaderParamGetRequest;
 
   try {
@@ -1822,11 +1822,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `any` |  | [Defaults to `undefined`] |
+| **headerValue** | `A`, `B` |  | [Defaults to `undefined`] [Enum: A, B] |
 
 ### Return type
 
-**any**
+**string**
 
 ### Authorization
 
@@ -1868,8 +1868,8 @@ async function example() {
   const api = new HeaderParameterTypesApi();
 
   const body = {
-    // any | 
-    headerValue: ...,
+    // 'C' | 'D' | 
+    headerValue: headerValue_example,
   } satisfies ApiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetRequest;
 
   try {
@@ -1889,7 +1889,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `any` |  | [Defaults to `undefined`] |
+| **headerValue** | `C`, `D` |  | [Defaults to `undefined`] [Enum: C, D] |
 
 ### Return type
 
@@ -1935,8 +1935,8 @@ async function example() {
   const api = new HeaderParameterTypesApi();
 
   const body = {
-    // any |  (optional)
-    headerValue: ...,
+    // 'A' | 'B' |  (optional)
+    headerValue: headerValue_example,
   } satisfies ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetRequest;
 
   try {
@@ -1956,7 +1956,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `any` |  | [Optional] [Defaults to `undefined`] |
+| **headerValue** | `A`, `B` |  | [Optional] [Defaults to `undefined`] [Enum: A, B] |
 
 ### Return type
 
@@ -2002,8 +2002,8 @@ async function example() {
   const api = new HeaderParameterTypesApi();
 
   const body = {
-    // any |  (optional)
-    headerValue: ...,
+    // 'C' | 'D' |  (optional)
+    headerValue: headerValue_example,
   } satisfies ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetRequest;
 
   try {
@@ -2023,7 +2023,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `any` |  | [Optional] [Defaults to `undefined`] |
+| **headerValue** | `C`, `D` |  | [Optional] [Defaults to `undefined`] [Enum: C, D] |
 
 ### Return type
 

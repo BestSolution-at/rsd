@@ -1,5 +1,5 @@
 import { isMBuiltinType, MParameter, MResolvedService } from '../model.js';
-import { generateBuilinProperty } from './record.js';
+import { generateBuilinProperty, nullableProcessor } from './record.js';
 
 export function generateService(s: MResolvedService): Record<string, unknown> {
 	const rv: Record<string, Record<string, unknown>> = {};
@@ -33,6 +33,10 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 							schema['$ref'] = `#/components/schemas/${o.resultType.type}`;
 						}
 					} else if (o.resultType.variant === 'inline-enum') {
+						schema = {
+							type: 'string',
+							enum: o.resultType.type.entries.map(e => e.name),
+						};
 					} else if (o.resultType.variant === 'scalar') {
 						schema.type = 'string';
 					} else if (isMBuiltinType(o.resultType.type)) {
@@ -91,6 +95,7 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 							schema: toType(bodyParams[0]),
 						},
 					},
+					required: !bodyParams[0].optional,
 				};
 			} else if (bodyParams.length > 1) {
 				const properties: Record<string, unknown> = {};
@@ -103,9 +108,11 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 							schema: {
 								type: 'object',
 								properties,
+								required: bodyParams.filter(p => !p.optional).map(p => p.name),
 							},
 						},
 					},
+					required: true,
 				};
 			}
 
@@ -151,11 +158,18 @@ function toType(param: MParameter) {
 				},
 			};
 		} else {
-			schema['$ref'] = `#/components/schemas/${type}`;
+			schema = nullableProcessor({ $ref: `#/components/schemas/${type}` }, param.nullable);
 		}
 	} else if (param.variant === 'inline-enum') {
+		schema = nullableProcessor(
+			{
+				type: 'string',
+				enum: param.type.entries.map(e => e.name),
+			},
+			param.nullable,
+		);
 	} else if (param.variant === 'scalar') {
-		schema.type = 'string';
+		schema = nullableProcessor({ type: 'string' }, param.nullable);
 	} else if (isMBuiltinType(param.type)) {
 		if (param.array) {
 			schema = {
@@ -163,7 +177,7 @@ function toType(param: MParameter) {
 				items: generateBuilinProperty(param.type),
 			};
 		} else {
-			schema = generateBuilinProperty(param.type);
+			schema = nullableProcessor(generateBuilinProperty(param.type), param.nullable);
 		}
 	}
 	return schema;

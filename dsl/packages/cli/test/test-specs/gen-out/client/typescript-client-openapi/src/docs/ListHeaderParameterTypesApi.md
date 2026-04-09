@@ -1141,7 +1141,7 @@ No authorization required
 
 ## apiListheaderparametertypesListInlineEnumHeaderParamGet
 
-> any apiListheaderparametertypesListInlineEnumHeaderParamGet(headerValue)
+> string apiListheaderparametertypesListInlineEnumHeaderParamGet(headerValue)
 
 
 
@@ -1161,8 +1161,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // any | 
-    headerValue: ...,
+    // 'A' | 'B' | 
+    headerValue: headerValue_example,
   } satisfies ApiListheaderparametertypesListInlineEnumHeaderParamGetRequest;
 
   try {
@@ -1182,11 +1182,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `any` |  | [Defaults to `undefined`] |
+| **headerValue** | `A`, `B` |  | [Defaults to `undefined`] [Enum: A, B] |
 
 ### Return type
 
-**any**
+**string**
 
 ### Authorization
 
@@ -1228,8 +1228,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // any | 
-    headerValue: ...,
+    // 'C' | 'D' | 
+    headerValue: headerValue_example,
   } satisfies ApiListheaderparametertypesListInlineEnumHeaderParamNilGetRequest;
 
   try {
@@ -1249,7 +1249,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `any` |  | [Defaults to `undefined`] |
+| **headerValue** | `C`, `D` |  | [Defaults to `undefined`] [Enum: C, D] |
 
 ### Return type
 
@@ -1295,8 +1295,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // any |  (optional)
-    headerValue: ...,
+    // 'A' | 'B' |  (optional)
+    headerValue: headerValue_example,
   } satisfies ApiListheaderparametertypesListInlineEnumHeaderParamOptGetRequest;
 
   try {
@@ -1316,7 +1316,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `any` |  | [Optional] [Defaults to `undefined`] |
+| **headerValue** | `A`, `B` |  | [Optional] [Defaults to `undefined`] [Enum: A, B] |
 
 ### Return type
 
@@ -1362,8 +1362,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // any |  (optional)
-    headerValue: ...,
+    // 'C' | 'D' |  (optional)
+    headerValue: headerValue_example,
   } satisfies ApiListheaderparametertypesListInlineEnumHeaderParamOptNilGetRequest;
 
   try {
@@ -1383,7 +1383,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `any` |  | [Optional] [Defaults to `undefined`] |
+| **headerValue** | `C`, `D` |  | [Optional] [Defaults to `undefined`] [Enum: C, D] |
 
 ### Return type
 
