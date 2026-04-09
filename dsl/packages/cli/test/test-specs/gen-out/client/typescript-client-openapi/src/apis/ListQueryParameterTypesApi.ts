@@ -25,65 +25,65 @@ import {
     SimpleRecordToJSON,
 } from '../models/index.js';
 
-export interface ApiListqueryparametertypesListBooleanQueryParamGetRequest {
+export interface ListQueryParameterTypesListBooleanQueryParamRequest {
     queryValue: Array<boolean>;
 }
 
-export interface ApiListqueryparametertypesListDoubleQueryParamGetRequest {
+export interface ListQueryParameterTypesListDoubleQueryParamRequest {
     queryValue: Array<number>;
 }
 
-export interface ApiListqueryparametertypesListEnumQueryParamGetRequest {
+export interface ListQueryParameterTypesListEnumQueryParamRequest {
     queryValue: Array<SampleEnum>;
 }
 
-export interface ApiListqueryparametertypesListFloatQueryParamGetRequest {
+export interface ListQueryParameterTypesListFloatQueryParamRequest {
     queryValue: Array<number>;
 }
 
-export interface ApiListqueryparametertypesListInlineEnumQueryParamGetRequest {
-    queryValue: ApiListqueryparametertypesListInlineEnumQueryParamGetQueryValueEnum;
+export interface ListQueryParameterTypesListInlineEnumQueryParamRequest {
+    queryValue: ListQueryParameterTypesListInlineEnumQueryParamQueryValueEnum;
 }
 
-export interface ApiListqueryparametertypesListIntQueryParamGetRequest {
+export interface ListQueryParameterTypesListIntQueryParamRequest {
     queryValue: Array<number>;
 }
 
-export interface ApiListqueryparametertypesListLocalDateQueryParamGetRequest {
+export interface ListQueryParameterTypesListLocalDateQueryParamRequest {
     queryValue: Array<Date>;
 }
 
-export interface ApiListqueryparametertypesListLocalDateTimeQueryParamGetRequest {
+export interface ListQueryParameterTypesListLocalDateTimeQueryParamRequest {
     queryValue: Array<string>;
 }
 
-export interface ApiListqueryparametertypesListLongQueryParamGetRequest {
+export interface ListQueryParameterTypesListLongQueryParamRequest {
     queryValue: Array<number>;
 }
 
-export interface ApiListqueryparametertypesListMultiQueryParamGetRequest {
+export interface ListQueryParameterTypesListMultiQueryParamRequest {
     valueA: Array<string>;
     valueB: Array<number>;
     valueC: string;
 }
 
-export interface ApiListqueryparametertypesListRecordQueryParamGetRequest {
+export interface ListQueryParameterTypesListRecordQueryParamRequest {
     queryValue: string;
 }
 
-export interface ApiListqueryparametertypesListScalarQueryParamGetRequest {
+export interface ListQueryParameterTypesListScalarQueryParamRequest {
     queryValue: string;
 }
 
-export interface ApiListqueryparametertypesListShortQueryParamGetRequest {
+export interface ListQueryParameterTypesListShortQueryParamRequest {
     queryValue: Array<number>;
 }
 
-export interface ApiListqueryparametertypesListStringQueryParamGetRequest {
+export interface ListQueryParameterTypesListStringQueryParamRequest {
     queryValue: Array<string>;
 }
 
-export interface ApiListqueryparametertypesListZonedDateTimeQueryParamGetRequest {
+export interface ListQueryParameterTypesListZonedDateTimeQueryParamRequest {
     queryValue: Array<string>;
 }
 
@@ -93,13 +93,13 @@ export interface ApiListqueryparametertypesListZonedDateTimeQueryParamGetRequest
 export class ListQueryParameterTypesApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for apiListqueryparametertypesListBooleanQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListBooleanQueryParam without sending the request
      */
-    async apiListqueryparametertypesListBooleanQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListBooleanQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListBooleanQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListBooleanQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListBooleanQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListBooleanQueryParam().'
             );
         }
 
@@ -125,8 +125,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListBooleanQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListBooleanQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<boolean>>> {
-        const requestOptions = await this.apiListqueryparametertypesListBooleanQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListBooleanQueryParamRaw(requestParameters: ListQueryParameterTypesListBooleanQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<boolean>>> {
+        const requestOptions = await this.listQueryParameterTypesListBooleanQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -135,19 +135,19 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListBooleanQueryParamGet(requestParameters: ApiListqueryparametertypesListBooleanQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<boolean>> {
-        const response = await this.apiListqueryparametertypesListBooleanQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListBooleanQueryParam(requestParameters: ListQueryParameterTypesListBooleanQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<boolean>> {
+        const response = await this.listQueryParameterTypesListBooleanQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListDoubleQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListDoubleQueryParam without sending the request
      */
-    async apiListqueryparametertypesListDoubleQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListDoubleQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListDoubleQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListDoubleQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListDoubleQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListDoubleQueryParam().'
             );
         }
 
@@ -173,8 +173,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListDoubleQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListDoubleQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
-        const requestOptions = await this.apiListqueryparametertypesListDoubleQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListDoubleQueryParamRaw(requestParameters: ListQueryParameterTypesListDoubleQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
+        const requestOptions = await this.listQueryParameterTypesListDoubleQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -183,19 +183,19 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListDoubleQueryParamGet(requestParameters: ApiListqueryparametertypesListDoubleQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
-        const response = await this.apiListqueryparametertypesListDoubleQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListDoubleQueryParam(requestParameters: ListQueryParameterTypesListDoubleQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
+        const response = await this.listQueryParameterTypesListDoubleQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListEnumQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListEnumQueryParam without sending the request
      */
-    async apiListqueryparametertypesListEnumQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListEnumQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListEnumQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListEnumQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListEnumQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListEnumQueryParam().'
             );
         }
 
@@ -221,8 +221,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListEnumQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListEnumQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SampleEnum>>> {
-        const requestOptions = await this.apiListqueryparametertypesListEnumQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListEnumQueryParamRaw(requestParameters: ListQueryParameterTypesListEnumQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SampleEnum>>> {
+        const requestOptions = await this.listQueryParameterTypesListEnumQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SampleEnumFromJSON));
@@ -231,19 +231,19 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListEnumQueryParamGet(requestParameters: ApiListqueryparametertypesListEnumQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SampleEnum>> {
-        const response = await this.apiListqueryparametertypesListEnumQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListEnumQueryParam(requestParameters: ListQueryParameterTypesListEnumQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SampleEnum>> {
+        const response = await this.listQueryParameterTypesListEnumQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListFloatQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListFloatQueryParam without sending the request
      */
-    async apiListqueryparametertypesListFloatQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListFloatQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListFloatQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListFloatQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListFloatQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListFloatQueryParam().'
             );
         }
 
@@ -269,8 +269,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListFloatQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListFloatQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
-        const requestOptions = await this.apiListqueryparametertypesListFloatQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListFloatQueryParamRaw(requestParameters: ListQueryParameterTypesListFloatQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
+        const requestOptions = await this.listQueryParameterTypesListFloatQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -279,19 +279,19 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListFloatQueryParamGet(requestParameters: ApiListqueryparametertypesListFloatQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
-        const response = await this.apiListqueryparametertypesListFloatQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListFloatQueryParam(requestParameters: ListQueryParameterTypesListFloatQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
+        const response = await this.listQueryParameterTypesListFloatQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListInlineEnumQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListInlineEnumQueryParam without sending the request
      */
-    async apiListqueryparametertypesListInlineEnumQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListInlineEnumQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListInlineEnumQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListInlineEnumQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListInlineEnumQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListInlineEnumQueryParam().'
             );
         }
 
@@ -317,8 +317,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListInlineEnumQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListInlineEnumQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiListqueryparametertypesListInlineEnumQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListInlineEnumQueryParamRaw(requestParameters: ListQueryParameterTypesListInlineEnumQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.listQueryParameterTypesListInlineEnumQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -331,19 +331,19 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListInlineEnumQueryParamGet(requestParameters: ApiListqueryparametertypesListInlineEnumQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiListqueryparametertypesListInlineEnumQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListInlineEnumQueryParam(requestParameters: ListQueryParameterTypesListInlineEnumQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.listQueryParameterTypesListInlineEnumQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListIntQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListIntQueryParam without sending the request
      */
-    async apiListqueryparametertypesListIntQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListIntQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListIntQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListIntQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListIntQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListIntQueryParam().'
             );
         }
 
@@ -369,8 +369,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListIntQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListIntQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
-        const requestOptions = await this.apiListqueryparametertypesListIntQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListIntQueryParamRaw(requestParameters: ListQueryParameterTypesListIntQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
+        const requestOptions = await this.listQueryParameterTypesListIntQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -379,19 +379,19 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListIntQueryParamGet(requestParameters: ApiListqueryparametertypesListIntQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
-        const response = await this.apiListqueryparametertypesListIntQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListIntQueryParam(requestParameters: ListQueryParameterTypesListIntQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
+        const response = await this.listQueryParameterTypesListIntQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListLocalDateQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListLocalDateQueryParam without sending the request
      */
-    async apiListqueryparametertypesListLocalDateQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListLocalDateQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListLocalDateQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListLocalDateQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListLocalDateQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListLocalDateQueryParam().'
             );
         }
 
@@ -417,8 +417,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListLocalDateQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListLocalDateQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Date>>> {
-        const requestOptions = await this.apiListqueryparametertypesListLocalDateQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListLocalDateQueryParamRaw(requestParameters: ListQueryParameterTypesListLocalDateQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Date>>> {
+        const requestOptions = await this.listQueryParameterTypesListLocalDateQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -427,19 +427,19 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListLocalDateQueryParamGet(requestParameters: ApiListqueryparametertypesListLocalDateQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Date>> {
-        const response = await this.apiListqueryparametertypesListLocalDateQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListLocalDateQueryParam(requestParameters: ListQueryParameterTypesListLocalDateQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Date>> {
+        const response = await this.listQueryParameterTypesListLocalDateQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListLocalDateTimeQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListLocalDateTimeQueryParam without sending the request
      */
-    async apiListqueryparametertypesListLocalDateTimeQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListLocalDateTimeQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListLocalDateTimeQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListLocalDateTimeQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListLocalDateTimeQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListLocalDateTimeQueryParam().'
             );
         }
 
@@ -465,8 +465,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListLocalDateTimeQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListLocalDateTimeQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
-        const requestOptions = await this.apiListqueryparametertypesListLocalDateTimeQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListLocalDateTimeQueryParamRaw(requestParameters: ListQueryParameterTypesListLocalDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.listQueryParameterTypesListLocalDateTimeQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -475,19 +475,19 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListLocalDateTimeQueryParamGet(requestParameters: ApiListqueryparametertypesListLocalDateTimeQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
-        const response = await this.apiListqueryparametertypesListLocalDateTimeQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListLocalDateTimeQueryParam(requestParameters: ListQueryParameterTypesListLocalDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.listQueryParameterTypesListLocalDateTimeQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListLongQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListLongQueryParam without sending the request
      */
-    async apiListqueryparametertypesListLongQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListLongQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListLongQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListLongQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListLongQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListLongQueryParam().'
             );
         }
 
@@ -513,8 +513,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListLongQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListLongQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
-        const requestOptions = await this.apiListqueryparametertypesListLongQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListLongQueryParamRaw(requestParameters: ListQueryParameterTypesListLongQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
+        const requestOptions = await this.listQueryParameterTypesListLongQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -523,33 +523,33 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListLongQueryParamGet(requestParameters: ApiListqueryparametertypesListLongQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
-        const response = await this.apiListqueryparametertypesListLongQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListLongQueryParam(requestParameters: ListQueryParameterTypesListLongQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
+        const response = await this.listQueryParameterTypesListLongQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListMultiQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListMultiQueryParam without sending the request
      */
-    async apiListqueryparametertypesListMultiQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListMultiQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListMultiQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListMultiQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['valueA'] == null) {
             throw new runtime.RequiredError(
                 'valueA',
-                'Required parameter "valueA" was null or undefined when calling apiListqueryparametertypesListMultiQueryParamGet().'
+                'Required parameter "valueA" was null or undefined when calling listQueryParameterTypesListMultiQueryParam().'
             );
         }
 
         if (requestParameters['valueB'] == null) {
             throw new runtime.RequiredError(
                 'valueB',
-                'Required parameter "valueB" was null or undefined when calling apiListqueryparametertypesListMultiQueryParamGet().'
+                'Required parameter "valueB" was null or undefined when calling listQueryParameterTypesListMultiQueryParam().'
             );
         }
 
         if (requestParameters['valueC'] == null) {
             throw new runtime.RequiredError(
                 'valueC',
-                'Required parameter "valueC" was null or undefined when calling apiListqueryparametertypesListMultiQueryParamGet().'
+                'Required parameter "valueC" was null or undefined when calling listQueryParameterTypesListMultiQueryParam().'
             );
         }
 
@@ -583,8 +583,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListMultiQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListMultiQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiListqueryparametertypesListMultiQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListMultiQueryParamRaw(requestParameters: ListQueryParameterTypesListMultiQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.listQueryParameterTypesListMultiQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -597,19 +597,19 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListMultiQueryParamGet(requestParameters: ApiListqueryparametertypesListMultiQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiListqueryparametertypesListMultiQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListMultiQueryParam(requestParameters: ListQueryParameterTypesListMultiQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.listQueryParameterTypesListMultiQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListRecordQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListRecordQueryParam without sending the request
      */
-    async apiListqueryparametertypesListRecordQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListRecordQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListRecordQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListRecordQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListRecordQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListRecordQueryParam().'
             );
         }
 
@@ -635,8 +635,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListRecordQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListRecordQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SimpleRecord>>> {
-        const requestOptions = await this.apiListqueryparametertypesListRecordQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListRecordQueryParamRaw(requestParameters: ListQueryParameterTypesListRecordQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SimpleRecord>>> {
+        const requestOptions = await this.listQueryParameterTypesListRecordQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SimpleRecordFromJSON));
@@ -645,19 +645,19 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListRecordQueryParamGet(requestParameters: ApiListqueryparametertypesListRecordQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SimpleRecord>> {
-        const response = await this.apiListqueryparametertypesListRecordQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListRecordQueryParam(requestParameters: ListQueryParameterTypesListRecordQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SimpleRecord>> {
+        const response = await this.listQueryParameterTypesListRecordQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListScalarQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListScalarQueryParam without sending the request
      */
-    async apiListqueryparametertypesListScalarQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListScalarQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListScalarQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListScalarQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListScalarQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListScalarQueryParam().'
             );
         }
 
@@ -683,8 +683,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListScalarQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListScalarQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiListqueryparametertypesListScalarQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListScalarQueryParamRaw(requestParameters: ListQueryParameterTypesListScalarQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.listQueryParameterTypesListScalarQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -697,19 +697,19 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListScalarQueryParamGet(requestParameters: ApiListqueryparametertypesListScalarQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiListqueryparametertypesListScalarQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListScalarQueryParam(requestParameters: ListQueryParameterTypesListScalarQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.listQueryParameterTypesListScalarQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListShortQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListShortQueryParam without sending the request
      */
-    async apiListqueryparametertypesListShortQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListShortQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListShortQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListShortQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListShortQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListShortQueryParam().'
             );
         }
 
@@ -735,8 +735,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListShortQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListShortQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
-        const requestOptions = await this.apiListqueryparametertypesListShortQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListShortQueryParamRaw(requestParameters: ListQueryParameterTypesListShortQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
+        const requestOptions = await this.listQueryParameterTypesListShortQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -745,19 +745,19 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListShortQueryParamGet(requestParameters: ApiListqueryparametertypesListShortQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
-        const response = await this.apiListqueryparametertypesListShortQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListShortQueryParam(requestParameters: ListQueryParameterTypesListShortQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
+        const response = await this.listQueryParameterTypesListShortQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListStringQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListStringQueryParam without sending the request
      */
-    async apiListqueryparametertypesListStringQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListStringQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListStringQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListStringQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListStringQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListStringQueryParam().'
             );
         }
 
@@ -783,8 +783,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListStringQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListStringQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
-        const requestOptions = await this.apiListqueryparametertypesListStringQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListStringQueryParamRaw(requestParameters: ListQueryParameterTypesListStringQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.listQueryParameterTypesListStringQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -793,19 +793,19 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListStringQueryParamGet(requestParameters: ApiListqueryparametertypesListStringQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
-        const response = await this.apiListqueryparametertypesListStringQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListStringQueryParam(requestParameters: ListQueryParameterTypesListStringQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.listQueryParameterTypesListStringQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListqueryparametertypesListZonedDateTimeQueryParamGet without sending the request
+     * Creates request options for listQueryParameterTypesListZonedDateTimeQueryParam without sending the request
      */
-    async apiListqueryparametertypesListZonedDateTimeQueryParamGetRequestOpts(requestParameters: ApiListqueryparametertypesListZonedDateTimeQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async listQueryParameterTypesListZonedDateTimeQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListZonedDateTimeQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiListqueryparametertypesListZonedDateTimeQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListZonedDateTimeQueryParam().'
             );
         }
 
@@ -831,8 +831,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListZonedDateTimeQueryParamGetRaw(requestParameters: ApiListqueryparametertypesListZonedDateTimeQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
-        const requestOptions = await this.apiListqueryparametertypesListZonedDateTimeQueryParamGetRequestOpts(requestParameters);
+    async listQueryParameterTypesListZonedDateTimeQueryParamRaw(requestParameters: ListQueryParameterTypesListZonedDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.listQueryParameterTypesListZonedDateTimeQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -841,8 +841,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListqueryparametertypesListZonedDateTimeQueryParamGet(requestParameters: ApiListqueryparametertypesListZonedDateTimeQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
-        const response = await this.apiListqueryparametertypesListZonedDateTimeQueryParamGetRaw(requestParameters, initOverrides);
+    async listQueryParameterTypesListZonedDateTimeQueryParam(requestParameters: ListQueryParameterTypesListZonedDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.listQueryParameterTypesListZonedDateTimeQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -851,8 +851,8 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
 /**
  * @export
  */
-export const ApiListqueryparametertypesListInlineEnumQueryParamGetQueryValueEnum = {
+export const ListQueryParameterTypesListInlineEnumQueryParamQueryValueEnum = {
     A: 'A',
     B: 'B'
 } as const;
-export type ApiListqueryparametertypesListInlineEnumQueryParamGetQueryValueEnum = typeof ApiListqueryparametertypesListInlineEnumQueryParamGetQueryValueEnum[keyof typeof ApiListqueryparametertypesListInlineEnumQueryParamGetQueryValueEnum];
+export type ListQueryParameterTypesListInlineEnumQueryParamQueryValueEnum = typeof ListQueryParameterTypesListInlineEnumQueryParamQueryValueEnum[keyof typeof ListQueryParameterTypesListInlineEnumQueryParamQueryValueEnum];

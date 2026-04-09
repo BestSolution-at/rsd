@@ -4,72 +4,72 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**apiListheaderparametertypesListBooleanHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistbooleanheaderparamget) | **GET** /api/listheaderparametertypes/listBooleanHeaderParam |  |
-| [**apiListheaderparametertypesListBooleanHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistbooleanheaderparamnilget) | **GET** /api/listheaderparametertypes/listBooleanHeaderParamNil |  |
-| [**apiListheaderparametertypesListBooleanHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistbooleanheaderparamoptget) | **GET** /api/listheaderparametertypes/listBooleanHeaderParamOpt |  |
-| [**apiListheaderparametertypesListBooleanHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistbooleanheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listBooleanHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListDoubleHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistdoubleheaderparamget) | **GET** /api/listheaderparametertypes/listDoubleHeaderParam |  |
-| [**apiListheaderparametertypesListDoubleHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistdoubleheaderparamnilget) | **GET** /api/listheaderparametertypes/listDoubleHeaderParamNil |  |
-| [**apiListheaderparametertypesListDoubleHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistdoubleheaderparamoptget) | **GET** /api/listheaderparametertypes/listDoubleHeaderParamOpt |  |
-| [**apiListheaderparametertypesListDoubleHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistdoubleheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listDoubleHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListEnumHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistenumheaderparamget) | **GET** /api/listheaderparametertypes/listEnumHeaderParam |  |
-| [**apiListheaderparametertypesListEnumHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistenumheaderparamnilget) | **GET** /api/listheaderparametertypes/listEnumHeaderParamNil |  |
-| [**apiListheaderparametertypesListEnumHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistenumheaderparamoptget) | **GET** /api/listheaderparametertypes/listEnumHeaderParamOpt |  |
-| [**apiListheaderparametertypesListEnumHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistenumheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listEnumHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListFloatHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistfloatheaderparamget) | **GET** /api/listheaderparametertypes/listFloatHeaderParam |  |
-| [**apiListheaderparametertypesListFloatHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistfloatheaderparamnilget) | **GET** /api/listheaderparametertypes/listFloatHeaderParamNil |  |
-| [**apiListheaderparametertypesListFloatHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistfloatheaderparamoptget) | **GET** /api/listheaderparametertypes/listFloatHeaderParamOpt |  |
-| [**apiListheaderparametertypesListFloatHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistfloatheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listFloatHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListInlineEnumHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistinlineenumheaderparamget) | **GET** /api/listheaderparametertypes/listInlineEnumHeaderParam |  |
-| [**apiListheaderparametertypesListInlineEnumHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistinlineenumheaderparamnilget) | **GET** /api/listheaderparametertypes/listInlineEnumHeaderParamNil |  |
-| [**apiListheaderparametertypesListInlineEnumHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistinlineenumheaderparamoptget) | **GET** /api/listheaderparametertypes/listInlineEnumHeaderParamOpt |  |
-| [**apiListheaderparametertypesListInlineEnumHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistinlineenumheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listInlineEnumHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListIntHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistintheaderparamget) | **GET** /api/listheaderparametertypes/listIntHeaderParam |  |
-| [**apiListheaderparametertypesListIntHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistintheaderparamnilget) | **GET** /api/listheaderparametertypes/listIntHeaderParamNil |  |
-| [**apiListheaderparametertypesListIntHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistintheaderparamoptget) | **GET** /api/listheaderparametertypes/listIntHeaderParamOpt |  |
-| [**apiListheaderparametertypesListIntHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistintheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listIntHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListLocalDateHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistlocaldateheaderparamget) | **GET** /api/listheaderparametertypes/listLocalDateHeaderParam |  |
-| [**apiListheaderparametertypesListLocalDateHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistlocaldateheaderparamnilget) | **GET** /api/listheaderparametertypes/listLocalDateHeaderParamNil |  |
-| [**apiListheaderparametertypesListLocalDateHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistlocaldateheaderparamoptget) | **GET** /api/listheaderparametertypes/listLocalDateHeaderParamOpt |  |
-| [**apiListheaderparametertypesListLocalDateHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistlocaldateheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listLocalDateHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListLocalDateTimeHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistlocaldatetimeheaderparamget) | **GET** /api/listheaderparametertypes/listLocalDateTimeHeaderParam |  |
-| [**apiListheaderparametertypesListLocalDateTimeHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistlocaldatetimeheaderparamnilget) | **GET** /api/listheaderparametertypes/listLocalDateTimeHeaderParamNil |  |
-| [**apiListheaderparametertypesListLocalDateTimeHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistlocaldatetimeheaderparamoptget) | **GET** /api/listheaderparametertypes/listLocalDateTimeHeaderParamOpt |  |
-| [**apiListheaderparametertypesListLocalDateTimeHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistlocaldatetimeheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listLocalDateTimeHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListLongHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistlongheaderparamget) | **GET** /api/listheaderparametertypes/listLongHeaderParam |  |
-| [**apiListheaderparametertypesListLongHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistlongheaderparamnilget) | **GET** /api/listheaderparametertypes/listLongHeaderParamNil |  |
-| [**apiListheaderparametertypesListLongHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistlongheaderparamoptget) | **GET** /api/listheaderparametertypes/listLongHeaderParamOpt |  |
-| [**apiListheaderparametertypesListLongHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistlongheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listLongHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListMultiHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistmultiheaderparamget) | **GET** /api/listheaderparametertypes/listMultiHeaderParam |  |
-| [**apiListheaderparametertypesListMultiHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistmultiheaderparamnilget) | **GET** /api/listheaderparametertypes/listMultiHeaderParamNil |  |
-| [**apiListheaderparametertypesListMultiHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistmultiheaderparamoptget) | **GET** /api/listheaderparametertypes/listMultiHeaderParamOpt |  |
-| [**apiListheaderparametertypesListMultiHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistmultiheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listMultiHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListRecordHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistrecordheaderparamget) | **GET** /api/listheaderparametertypes/listRecordHeaderParam |  |
-| [**apiListheaderparametertypesListRecordHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistrecordheaderparamnilget) | **GET** /api/listheaderparametertypes/listRecordHeaderParamNil |  |
-| [**apiListheaderparametertypesListRecordHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistrecordheaderparamoptget) | **GET** /api/listheaderparametertypes/listRecordHeaderParamOpt |  |
-| [**apiListheaderparametertypesListRecordHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistrecordheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listRecordHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListScalarHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistscalarheaderparamget) | **GET** /api/listheaderparametertypes/listScalarHeaderParam |  |
-| [**apiListheaderparametertypesListScalarHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistscalarheaderparamnilget) | **GET** /api/listheaderparametertypes/listScalarHeaderParamNil |  |
-| [**apiListheaderparametertypesListScalarHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistscalarheaderparamoptget) | **GET** /api/listheaderparametertypes/listScalarHeaderParamOpt |  |
-| [**apiListheaderparametertypesListScalarHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistscalarheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listScalarHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListShortHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistshortheaderparamget) | **GET** /api/listheaderparametertypes/listShortHeaderParam |  |
-| [**apiListheaderparametertypesListShortHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistshortheaderparamnilget) | **GET** /api/listheaderparametertypes/listShortHeaderParamNil |  |
-| [**apiListheaderparametertypesListShortHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistshortheaderparamoptget) | **GET** /api/listheaderparametertypes/listShortHeaderParamOpt |  |
-| [**apiListheaderparametertypesListShortHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistshortheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listShortHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListStringHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypesliststringheaderparamget) | **GET** /api/listheaderparametertypes/listStringHeaderParam |  |
-| [**apiListheaderparametertypesListStringHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypesliststringheaderparamnilget) | **GET** /api/listheaderparametertypes/listStringHeaderParamNil |  |
-| [**apiListheaderparametertypesListStringHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypesliststringheaderparamoptget) | **GET** /api/listheaderparametertypes/listStringHeaderParamOpt |  |
-| [**apiListheaderparametertypesListStringHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypesliststringheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listStringHeaderParamOptNil |  |
-| [**apiListheaderparametertypesListZonedDateTimeHeaderParamGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistzoneddatetimeheaderparamget) | **GET** /api/listheaderparametertypes/listZonedDateTimeHeaderParam |  |
-| [**apiListheaderparametertypesListZonedDateTimeHeaderParamNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistzoneddatetimeheaderparamnilget) | **GET** /api/listheaderparametertypes/listZonedDateTimeHeaderParamNil |  |
-| [**apiListheaderparametertypesListZonedDateTimeHeaderParamOptGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistzoneddatetimeheaderparamoptget) | **GET** /api/listheaderparametertypes/listZonedDateTimeHeaderParamOpt |  |
-| [**apiListheaderparametertypesListZonedDateTimeHeaderParamOptNilGet**](ListHeaderParameterTypesApi.md#apilistheaderparametertypeslistzoneddatetimeheaderparamoptnilget) | **GET** /api/listheaderparametertypes/listZonedDateTimeHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListBooleanHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistbooleanheaderparam) | **GET** /api/listheaderparametertypes/listBooleanHeaderParam |  |
+| [**listHeaderParameterTypesListBooleanHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistbooleanheaderparamnil) | **GET** /api/listheaderparametertypes/listBooleanHeaderParamNil |  |
+| [**listHeaderParameterTypesListBooleanHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistbooleanheaderparamopt) | **GET** /api/listheaderparametertypes/listBooleanHeaderParamOpt |  |
+| [**listHeaderParameterTypesListBooleanHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistbooleanheaderparamoptnil) | **GET** /api/listheaderparametertypes/listBooleanHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListDoubleHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistdoubleheaderparam) | **GET** /api/listheaderparametertypes/listDoubleHeaderParam |  |
+| [**listHeaderParameterTypesListDoubleHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistdoubleheaderparamnil) | **GET** /api/listheaderparametertypes/listDoubleHeaderParamNil |  |
+| [**listHeaderParameterTypesListDoubleHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistdoubleheaderparamopt) | **GET** /api/listheaderparametertypes/listDoubleHeaderParamOpt |  |
+| [**listHeaderParameterTypesListDoubleHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistdoubleheaderparamoptnil) | **GET** /api/listheaderparametertypes/listDoubleHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListEnumHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistenumheaderparam) | **GET** /api/listheaderparametertypes/listEnumHeaderParam |  |
+| [**listHeaderParameterTypesListEnumHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistenumheaderparamnil) | **GET** /api/listheaderparametertypes/listEnumHeaderParamNil |  |
+| [**listHeaderParameterTypesListEnumHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistenumheaderparamopt) | **GET** /api/listheaderparametertypes/listEnumHeaderParamOpt |  |
+| [**listHeaderParameterTypesListEnumHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistenumheaderparamoptnil) | **GET** /api/listheaderparametertypes/listEnumHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListFloatHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistfloatheaderparam) | **GET** /api/listheaderparametertypes/listFloatHeaderParam |  |
+| [**listHeaderParameterTypesListFloatHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistfloatheaderparamnil) | **GET** /api/listheaderparametertypes/listFloatHeaderParamNil |  |
+| [**listHeaderParameterTypesListFloatHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistfloatheaderparamopt) | **GET** /api/listheaderparametertypes/listFloatHeaderParamOpt |  |
+| [**listHeaderParameterTypesListFloatHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistfloatheaderparamoptnil) | **GET** /api/listheaderparametertypes/listFloatHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListInlineEnumHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistinlineenumheaderparam) | **GET** /api/listheaderparametertypes/listInlineEnumHeaderParam |  |
+| [**listHeaderParameterTypesListInlineEnumHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistinlineenumheaderparamnil) | **GET** /api/listheaderparametertypes/listInlineEnumHeaderParamNil |  |
+| [**listHeaderParameterTypesListInlineEnumHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistinlineenumheaderparamopt) | **GET** /api/listheaderparametertypes/listInlineEnumHeaderParamOpt |  |
+| [**listHeaderParameterTypesListInlineEnumHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistinlineenumheaderparamoptnil) | **GET** /api/listheaderparametertypes/listInlineEnumHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListIntHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistintheaderparam) | **GET** /api/listheaderparametertypes/listIntHeaderParam |  |
+| [**listHeaderParameterTypesListIntHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistintheaderparamnil) | **GET** /api/listheaderparametertypes/listIntHeaderParamNil |  |
+| [**listHeaderParameterTypesListIntHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistintheaderparamopt) | **GET** /api/listheaderparametertypes/listIntHeaderParamOpt |  |
+| [**listHeaderParameterTypesListIntHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistintheaderparamoptnil) | **GET** /api/listheaderparametertypes/listIntHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListLocalDateHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaldateheaderparam) | **GET** /api/listheaderparametertypes/listLocalDateHeaderParam |  |
+| [**listHeaderParameterTypesListLocalDateHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaldateheaderparamnil) | **GET** /api/listheaderparametertypes/listLocalDateHeaderParamNil |  |
+| [**listHeaderParameterTypesListLocalDateHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaldateheaderparamopt) | **GET** /api/listheaderparametertypes/listLocalDateHeaderParamOpt |  |
+| [**listHeaderParameterTypesListLocalDateHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaldateheaderparamoptnil) | **GET** /api/listheaderparametertypes/listLocalDateHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListLocalDateTimeHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaldatetimeheaderparam) | **GET** /api/listheaderparametertypes/listLocalDateTimeHeaderParam |  |
+| [**listHeaderParameterTypesListLocalDateTimeHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaldatetimeheaderparamnil) | **GET** /api/listheaderparametertypes/listLocalDateTimeHeaderParamNil |  |
+| [**listHeaderParameterTypesListLocalDateTimeHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaldatetimeheaderparamopt) | **GET** /api/listheaderparametertypes/listLocalDateTimeHeaderParamOpt |  |
+| [**listHeaderParameterTypesListLocalDateTimeHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaldatetimeheaderparamoptnil) | **GET** /api/listheaderparametertypes/listLocalDateTimeHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListLongHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlongheaderparam) | **GET** /api/listheaderparametertypes/listLongHeaderParam |  |
+| [**listHeaderParameterTypesListLongHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlongheaderparamnil) | **GET** /api/listheaderparametertypes/listLongHeaderParamNil |  |
+| [**listHeaderParameterTypesListLongHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlongheaderparamopt) | **GET** /api/listheaderparametertypes/listLongHeaderParamOpt |  |
+| [**listHeaderParameterTypesListLongHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlongheaderparamoptnil) | **GET** /api/listheaderparametertypes/listLongHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListMultiHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistmultiheaderparam) | **GET** /api/listheaderparametertypes/listMultiHeaderParam |  |
+| [**listHeaderParameterTypesListMultiHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistmultiheaderparamnil) | **GET** /api/listheaderparametertypes/listMultiHeaderParamNil |  |
+| [**listHeaderParameterTypesListMultiHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistmultiheaderparamopt) | **GET** /api/listheaderparametertypes/listMultiHeaderParamOpt |  |
+| [**listHeaderParameterTypesListMultiHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistmultiheaderparamoptnil) | **GET** /api/listheaderparametertypes/listMultiHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListRecordHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistrecordheaderparam) | **GET** /api/listheaderparametertypes/listRecordHeaderParam |  |
+| [**listHeaderParameterTypesListRecordHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistrecordheaderparamnil) | **GET** /api/listheaderparametertypes/listRecordHeaderParamNil |  |
+| [**listHeaderParameterTypesListRecordHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistrecordheaderparamopt) | **GET** /api/listheaderparametertypes/listRecordHeaderParamOpt |  |
+| [**listHeaderParameterTypesListRecordHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistrecordheaderparamoptnil) | **GET** /api/listheaderparametertypes/listRecordHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListScalarHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistscalarheaderparam) | **GET** /api/listheaderparametertypes/listScalarHeaderParam |  |
+| [**listHeaderParameterTypesListScalarHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistscalarheaderparamnil) | **GET** /api/listheaderparametertypes/listScalarHeaderParamNil |  |
+| [**listHeaderParameterTypesListScalarHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistscalarheaderparamopt) | **GET** /api/listheaderparametertypes/listScalarHeaderParamOpt |  |
+| [**listHeaderParameterTypesListScalarHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistscalarheaderparamoptnil) | **GET** /api/listheaderparametertypes/listScalarHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListShortHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistshortheaderparam) | **GET** /api/listheaderparametertypes/listShortHeaderParam |  |
+| [**listHeaderParameterTypesListShortHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistshortheaderparamnil) | **GET** /api/listheaderparametertypes/listShortHeaderParamNil |  |
+| [**listHeaderParameterTypesListShortHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistshortheaderparamopt) | **GET** /api/listheaderparametertypes/listShortHeaderParamOpt |  |
+| [**listHeaderParameterTypesListShortHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistshortheaderparamoptnil) | **GET** /api/listheaderparametertypes/listShortHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListStringHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypesliststringheaderparam) | **GET** /api/listheaderparametertypes/listStringHeaderParam |  |
+| [**listHeaderParameterTypesListStringHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypesliststringheaderparamnil) | **GET** /api/listheaderparametertypes/listStringHeaderParamNil |  |
+| [**listHeaderParameterTypesListStringHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypesliststringheaderparamopt) | **GET** /api/listheaderparametertypes/listStringHeaderParamOpt |  |
+| [**listHeaderParameterTypesListStringHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypesliststringheaderparamoptnil) | **GET** /api/listheaderparametertypes/listStringHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListZonedDateTimeHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistzoneddatetimeheaderparam) | **GET** /api/listheaderparametertypes/listZonedDateTimeHeaderParam |  |
+| [**listHeaderParameterTypesListZonedDateTimeHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistzoneddatetimeheaderparamnil) | **GET** /api/listheaderparametertypes/listZonedDateTimeHeaderParamNil |  |
+| [**listHeaderParameterTypesListZonedDateTimeHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistzoneddatetimeheaderparamopt) | **GET** /api/listheaderparametertypes/listZonedDateTimeHeaderParamOpt |  |
+| [**listHeaderParameterTypesListZonedDateTimeHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistzoneddatetimeheaderparamoptnil) | **GET** /api/listheaderparametertypes/listZonedDateTimeHeaderParamOptNil |  |
 
 
 
-## apiListheaderparametertypesListBooleanHeaderParamGet
+## listHeaderParameterTypesListBooleanHeaderParam
 
-> Array&lt;boolean&gt; apiListheaderparametertypesListBooleanHeaderParamGet(headerValue)
+> Array&lt;boolean&gt; listHeaderParameterTypesListBooleanHeaderParam(headerValue)
 
 
 
@@ -82,7 +82,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListBooleanHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListBooleanHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -91,10 +91,10 @@ async function example() {
   const body = {
     // Array<boolean> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListBooleanHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListBooleanHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListBooleanHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListBooleanHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -134,9 +134,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListBooleanHeaderParamNilGet
+## listHeaderParameterTypesListBooleanHeaderParamNil
 
-> NilResult apiListheaderparametertypesListBooleanHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListBooleanHeaderParamNil(headerValue)
 
 
 
@@ -149,7 +149,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListBooleanHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListBooleanHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -158,10 +158,10 @@ async function example() {
   const body = {
     // Array<boolean> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListBooleanHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListBooleanHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListBooleanHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListBooleanHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -201,9 +201,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListBooleanHeaderParamOptGet
+## listHeaderParameterTypesListBooleanHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListBooleanHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListBooleanHeaderParamOpt(headerValue)
 
 
 
@@ -216,7 +216,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListBooleanHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListBooleanHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -225,10 +225,10 @@ async function example() {
   const body = {
     // Array<boolean> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListBooleanHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListBooleanHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListBooleanHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListBooleanHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -268,9 +268,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListBooleanHeaderParamOptNilGet
+## listHeaderParameterTypesListBooleanHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListBooleanHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListBooleanHeaderParamOptNil(headerValue)
 
 
 
@@ -283,7 +283,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListBooleanHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListBooleanHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -292,10 +292,10 @@ async function example() {
   const body = {
     // Array<boolean> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListBooleanHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListBooleanHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListBooleanHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListBooleanHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -335,9 +335,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListDoubleHeaderParamGet
+## listHeaderParameterTypesListDoubleHeaderParam
 
-> Array&lt;number&gt; apiListheaderparametertypesListDoubleHeaderParamGet(headerValue)
+> Array&lt;number&gt; listHeaderParameterTypesListDoubleHeaderParam(headerValue)
 
 
 
@@ -350,7 +350,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListDoubleHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListDoubleHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -359,10 +359,10 @@ async function example() {
   const body = {
     // Array<number> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListDoubleHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListDoubleHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListDoubleHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListDoubleHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -402,9 +402,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListDoubleHeaderParamNilGet
+## listHeaderParameterTypesListDoubleHeaderParamNil
 
-> NilResult apiListheaderparametertypesListDoubleHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListDoubleHeaderParamNil(headerValue)
 
 
 
@@ -417,7 +417,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListDoubleHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListDoubleHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -426,10 +426,10 @@ async function example() {
   const body = {
     // Array<number> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListDoubleHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListDoubleHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListDoubleHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListDoubleHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -469,9 +469,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListDoubleHeaderParamOptGet
+## listHeaderParameterTypesListDoubleHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListDoubleHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListDoubleHeaderParamOpt(headerValue)
 
 
 
@@ -484,7 +484,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListDoubleHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListDoubleHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -493,10 +493,10 @@ async function example() {
   const body = {
     // Array<number> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListDoubleHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListDoubleHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListDoubleHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListDoubleHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -536,9 +536,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListDoubleHeaderParamOptNilGet
+## listHeaderParameterTypesListDoubleHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListDoubleHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListDoubleHeaderParamOptNil(headerValue)
 
 
 
@@ -551,7 +551,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListDoubleHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListDoubleHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -560,10 +560,10 @@ async function example() {
   const body = {
     // Array<number> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListDoubleHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListDoubleHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListDoubleHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListDoubleHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -603,9 +603,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListEnumHeaderParamGet
+## listHeaderParameterTypesListEnumHeaderParam
 
-> Array&lt;SampleEnum&gt; apiListheaderparametertypesListEnumHeaderParamGet(headerValue)
+> Array&lt;SampleEnum&gt; listHeaderParameterTypesListEnumHeaderParam(headerValue)
 
 
 
@@ -618,7 +618,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListEnumHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListEnumHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -627,10 +627,10 @@ async function example() {
   const body = {
     // Array<SampleEnum> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListEnumHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListEnumHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListEnumHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListEnumHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -670,9 +670,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListEnumHeaderParamNilGet
+## listHeaderParameterTypesListEnumHeaderParamNil
 
-> NilResult apiListheaderparametertypesListEnumHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListEnumHeaderParamNil(headerValue)
 
 
 
@@ -685,7 +685,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListEnumHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListEnumHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -694,10 +694,10 @@ async function example() {
   const body = {
     // Array<SampleEnum> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListEnumHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListEnumHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListEnumHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListEnumHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -737,9 +737,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListEnumHeaderParamOptGet
+## listHeaderParameterTypesListEnumHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListEnumHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListEnumHeaderParamOpt(headerValue)
 
 
 
@@ -752,7 +752,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListEnumHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListEnumHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -761,10 +761,10 @@ async function example() {
   const body = {
     // Array<SampleEnum> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListEnumHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListEnumHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListEnumHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListEnumHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -804,9 +804,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListEnumHeaderParamOptNilGet
+## listHeaderParameterTypesListEnumHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListEnumHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListEnumHeaderParamOptNil(headerValue)
 
 
 
@@ -819,7 +819,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListEnumHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListEnumHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -828,10 +828,10 @@ async function example() {
   const body = {
     // Array<SampleEnum> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListEnumHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListEnumHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListEnumHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListEnumHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -871,9 +871,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListFloatHeaderParamGet
+## listHeaderParameterTypesListFloatHeaderParam
 
-> Array&lt;number&gt; apiListheaderparametertypesListFloatHeaderParamGet(headerValue)
+> Array&lt;number&gt; listHeaderParameterTypesListFloatHeaderParam(headerValue)
 
 
 
@@ -886,7 +886,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListFloatHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListFloatHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -895,10 +895,10 @@ async function example() {
   const body = {
     // Array<number> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListFloatHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListFloatHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListFloatHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListFloatHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -938,9 +938,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListFloatHeaderParamNilGet
+## listHeaderParameterTypesListFloatHeaderParamNil
 
-> NilResult apiListheaderparametertypesListFloatHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListFloatHeaderParamNil(headerValue)
 
 
 
@@ -953,7 +953,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListFloatHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListFloatHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -962,10 +962,10 @@ async function example() {
   const body = {
     // Array<number> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListFloatHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListFloatHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListFloatHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListFloatHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1005,9 +1005,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListFloatHeaderParamOptGet
+## listHeaderParameterTypesListFloatHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListFloatHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListFloatHeaderParamOpt(headerValue)
 
 
 
@@ -1020,7 +1020,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListFloatHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListFloatHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1029,10 +1029,10 @@ async function example() {
   const body = {
     // Array<number> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListFloatHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListFloatHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListFloatHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListFloatHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1072,9 +1072,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListFloatHeaderParamOptNilGet
+## listHeaderParameterTypesListFloatHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListFloatHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListFloatHeaderParamOptNil(headerValue)
 
 
 
@@ -1087,7 +1087,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListFloatHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListFloatHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1096,10 +1096,10 @@ async function example() {
   const body = {
     // Array<number> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListFloatHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListFloatHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListFloatHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListFloatHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1139,9 +1139,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListInlineEnumHeaderParamGet
+## listHeaderParameterTypesListInlineEnumHeaderParam
 
-> string apiListheaderparametertypesListInlineEnumHeaderParamGet(headerValue)
+> string listHeaderParameterTypesListInlineEnumHeaderParam(headerValue)
 
 
 
@@ -1154,7 +1154,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListInlineEnumHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListInlineEnumHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1163,10 +1163,10 @@ async function example() {
   const body = {
     // 'A' | 'B' | 
     headerValue: headerValue_example,
-  } satisfies ApiListheaderparametertypesListInlineEnumHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListInlineEnumHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListInlineEnumHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListInlineEnumHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1206,9 +1206,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListInlineEnumHeaderParamNilGet
+## listHeaderParameterTypesListInlineEnumHeaderParamNil
 
-> NilResult apiListheaderparametertypesListInlineEnumHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListInlineEnumHeaderParamNil(headerValue)
 
 
 
@@ -1221,7 +1221,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListInlineEnumHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListInlineEnumHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1230,10 +1230,10 @@ async function example() {
   const body = {
     // 'C' | 'D' | 
     headerValue: headerValue_example,
-  } satisfies ApiListheaderparametertypesListInlineEnumHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListInlineEnumHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListInlineEnumHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListInlineEnumHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1273,9 +1273,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListInlineEnumHeaderParamOptGet
+## listHeaderParameterTypesListInlineEnumHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListInlineEnumHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListInlineEnumHeaderParamOpt(headerValue)
 
 
 
@@ -1288,7 +1288,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListInlineEnumHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListInlineEnumHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1297,10 +1297,10 @@ async function example() {
   const body = {
     // 'A' | 'B' |  (optional)
     headerValue: headerValue_example,
-  } satisfies ApiListheaderparametertypesListInlineEnumHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListInlineEnumHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListInlineEnumHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListInlineEnumHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1340,9 +1340,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListInlineEnumHeaderParamOptNilGet
+## listHeaderParameterTypesListInlineEnumHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListInlineEnumHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListInlineEnumHeaderParamOptNil(headerValue)
 
 
 
@@ -1355,7 +1355,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListInlineEnumHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListInlineEnumHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1364,10 +1364,10 @@ async function example() {
   const body = {
     // 'C' | 'D' |  (optional)
     headerValue: headerValue_example,
-  } satisfies ApiListheaderparametertypesListInlineEnumHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListInlineEnumHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListInlineEnumHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListInlineEnumHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1407,9 +1407,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListIntHeaderParamGet
+## listHeaderParameterTypesListIntHeaderParam
 
-> Array&lt;number&gt; apiListheaderparametertypesListIntHeaderParamGet(headerValue)
+> Array&lt;number&gt; listHeaderParameterTypesListIntHeaderParam(headerValue)
 
 
 
@@ -1422,7 +1422,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListIntHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListIntHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1431,10 +1431,10 @@ async function example() {
   const body = {
     // Array<number> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListIntHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListIntHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListIntHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListIntHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1474,9 +1474,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListIntHeaderParamNilGet
+## listHeaderParameterTypesListIntHeaderParamNil
 
-> NilResult apiListheaderparametertypesListIntHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListIntHeaderParamNil(headerValue)
 
 
 
@@ -1489,7 +1489,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListIntHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListIntHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1498,10 +1498,10 @@ async function example() {
   const body = {
     // Array<number> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListIntHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListIntHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListIntHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListIntHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1541,9 +1541,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListIntHeaderParamOptGet
+## listHeaderParameterTypesListIntHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListIntHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListIntHeaderParamOpt(headerValue)
 
 
 
@@ -1556,7 +1556,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListIntHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListIntHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1565,10 +1565,10 @@ async function example() {
   const body = {
     // Array<number> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListIntHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListIntHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListIntHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListIntHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1608,9 +1608,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListIntHeaderParamOptNilGet
+## listHeaderParameterTypesListIntHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListIntHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListIntHeaderParamOptNil(headerValue)
 
 
 
@@ -1623,7 +1623,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListIntHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListIntHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1632,10 +1632,10 @@ async function example() {
   const body = {
     // Array<number> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListIntHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListIntHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListIntHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListIntHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1675,9 +1675,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListLocalDateHeaderParamGet
+## listHeaderParameterTypesListLocalDateHeaderParam
 
-> Array&lt;Date&gt; apiListheaderparametertypesListLocalDateHeaderParamGet(headerValue)
+> Array&lt;Date&gt; listHeaderParameterTypesListLocalDateHeaderParam(headerValue)
 
 
 
@@ -1690,7 +1690,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListLocalDateHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListLocalDateHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1699,10 +1699,10 @@ async function example() {
   const body = {
     // Array<Date> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListLocalDateHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListLocalDateHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListLocalDateHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListLocalDateHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1742,9 +1742,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListLocalDateHeaderParamNilGet
+## listHeaderParameterTypesListLocalDateHeaderParamNil
 
-> NilResult apiListheaderparametertypesListLocalDateHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListLocalDateHeaderParamNil(headerValue)
 
 
 
@@ -1757,7 +1757,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListLocalDateHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListLocalDateHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1766,10 +1766,10 @@ async function example() {
   const body = {
     // Array<Date> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListLocalDateHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListLocalDateHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListLocalDateHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListLocalDateHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1809,9 +1809,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListLocalDateHeaderParamOptGet
+## listHeaderParameterTypesListLocalDateHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListLocalDateHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListLocalDateHeaderParamOpt(headerValue)
 
 
 
@@ -1824,7 +1824,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListLocalDateHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListLocalDateHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1833,10 +1833,10 @@ async function example() {
   const body = {
     // Array<Date> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListLocalDateHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListLocalDateHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListLocalDateHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListLocalDateHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1876,9 +1876,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListLocalDateHeaderParamOptNilGet
+## listHeaderParameterTypesListLocalDateHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListLocalDateHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListLocalDateHeaderParamOptNil(headerValue)
 
 
 
@@ -1891,7 +1891,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListLocalDateHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListLocalDateHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1900,10 +1900,10 @@ async function example() {
   const body = {
     // Array<Date> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListLocalDateHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListLocalDateHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListLocalDateHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListLocalDateHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1943,9 +1943,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListLocalDateTimeHeaderParamGet
+## listHeaderParameterTypesListLocalDateTimeHeaderParam
 
-> Array&lt;string&gt; apiListheaderparametertypesListLocalDateTimeHeaderParamGet(headerValue)
+> Array&lt;string&gt; listHeaderParameterTypesListLocalDateTimeHeaderParam(headerValue)
 
 
 
@@ -1958,7 +1958,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListLocalDateTimeHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListLocalDateTimeHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1967,10 +1967,10 @@ async function example() {
   const body = {
     // Array<string> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListLocalDateTimeHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListLocalDateTimeHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListLocalDateTimeHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListLocalDateTimeHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2010,9 +2010,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListLocalDateTimeHeaderParamNilGet
+## listHeaderParameterTypesListLocalDateTimeHeaderParamNil
 
-> NilResult apiListheaderparametertypesListLocalDateTimeHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListLocalDateTimeHeaderParamNil(headerValue)
 
 
 
@@ -2025,7 +2025,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListLocalDateTimeHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListLocalDateTimeHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2034,10 +2034,10 @@ async function example() {
   const body = {
     // Array<string> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListLocalDateTimeHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListLocalDateTimeHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListLocalDateTimeHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListLocalDateTimeHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2077,9 +2077,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListLocalDateTimeHeaderParamOptGet
+## listHeaderParameterTypesListLocalDateTimeHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListLocalDateTimeHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListLocalDateTimeHeaderParamOpt(headerValue)
 
 
 
@@ -2092,7 +2092,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListLocalDateTimeHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListLocalDateTimeHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2101,10 +2101,10 @@ async function example() {
   const body = {
     // Array<string> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListLocalDateTimeHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListLocalDateTimeHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListLocalDateTimeHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListLocalDateTimeHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2144,9 +2144,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListLocalDateTimeHeaderParamOptNilGet
+## listHeaderParameterTypesListLocalDateTimeHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListLocalDateTimeHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListLocalDateTimeHeaderParamOptNil(headerValue)
 
 
 
@@ -2159,7 +2159,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListLocalDateTimeHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListLocalDateTimeHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2168,10 +2168,10 @@ async function example() {
   const body = {
     // Array<string> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListLocalDateTimeHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListLocalDateTimeHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListLocalDateTimeHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListLocalDateTimeHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2211,9 +2211,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListLongHeaderParamGet
+## listHeaderParameterTypesListLongHeaderParam
 
-> Array&lt;number&gt; apiListheaderparametertypesListLongHeaderParamGet(headerValue)
+> Array&lt;number&gt; listHeaderParameterTypesListLongHeaderParam(headerValue)
 
 
 
@@ -2226,7 +2226,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListLongHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListLongHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2235,10 +2235,10 @@ async function example() {
   const body = {
     // Array<number> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListLongHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListLongHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListLongHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListLongHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2278,9 +2278,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListLongHeaderParamNilGet
+## listHeaderParameterTypesListLongHeaderParamNil
 
-> NilResult apiListheaderparametertypesListLongHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListLongHeaderParamNil(headerValue)
 
 
 
@@ -2293,7 +2293,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListLongHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListLongHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2302,10 +2302,10 @@ async function example() {
   const body = {
     // Array<number> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListLongHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListLongHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListLongHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListLongHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2345,9 +2345,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListLongHeaderParamOptGet
+## listHeaderParameterTypesListLongHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListLongHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListLongHeaderParamOpt(headerValue)
 
 
 
@@ -2360,7 +2360,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListLongHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListLongHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2369,10 +2369,10 @@ async function example() {
   const body = {
     // Array<number> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListLongHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListLongHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListLongHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListLongHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2412,9 +2412,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListLongHeaderParamOptNilGet
+## listHeaderParameterTypesListLongHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListLongHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListLongHeaderParamOptNil(headerValue)
 
 
 
@@ -2427,7 +2427,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListLongHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListLongHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2436,10 +2436,10 @@ async function example() {
   const body = {
     // Array<number> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListLongHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListLongHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListLongHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListLongHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2479,9 +2479,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListMultiHeaderParamGet
+## listHeaderParameterTypesListMultiHeaderParam
 
-> string apiListheaderparametertypesListMultiHeaderParamGet(valueA, valueB, valueC)
+> string listHeaderParameterTypesListMultiHeaderParam(valueA, valueB, valueC)
 
 
 
@@ -2494,7 +2494,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListMultiHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListMultiHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2507,10 +2507,10 @@ async function example() {
     valueB: ...,
     // Array<SimpleRecord> | 
     valueC: ...,
-  } satisfies ApiListheaderparametertypesListMultiHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListMultiHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListMultiHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListMultiHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2552,9 +2552,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListMultiHeaderParamNilGet
+## listHeaderParameterTypesListMultiHeaderParamNil
 
-> Array&lt;NilResult&gt; apiListheaderparametertypesListMultiHeaderParamNilGet(valueA, valueB, valueC)
+> Array&lt;NilResult&gt; listHeaderParameterTypesListMultiHeaderParamNil(valueA, valueB, valueC)
 
 
 
@@ -2567,7 +2567,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListMultiHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListMultiHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2580,10 +2580,10 @@ async function example() {
     valueB: ...,
     // Array<SimpleRecord> | 
     valueC: ...,
-  } satisfies ApiListheaderparametertypesListMultiHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListMultiHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListMultiHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListMultiHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2625,9 +2625,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListMultiHeaderParamOptGet
+## listHeaderParameterTypesListMultiHeaderParamOpt
 
-> Array&lt;NilResult&gt; apiListheaderparametertypesListMultiHeaderParamOptGet(valueA, valueB, valueC)
+> Array&lt;NilResult&gt; listHeaderParameterTypesListMultiHeaderParamOpt(valueA, valueB, valueC)
 
 
 
@@ -2640,7 +2640,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListMultiHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListMultiHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2653,10 +2653,10 @@ async function example() {
     valueB: ...,
     // Array<SimpleRecord> |  (optional)
     valueC: ...,
-  } satisfies ApiListheaderparametertypesListMultiHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListMultiHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListMultiHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListMultiHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2698,9 +2698,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListMultiHeaderParamOptNilGet
+## listHeaderParameterTypesListMultiHeaderParamOptNil
 
-> Array&lt;NilResult&gt; apiListheaderparametertypesListMultiHeaderParamOptNilGet(valueA, valueB, valueC)
+> Array&lt;NilResult&gt; listHeaderParameterTypesListMultiHeaderParamOptNil(valueA, valueB, valueC)
 
 
 
@@ -2713,7 +2713,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListMultiHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListMultiHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2726,10 +2726,10 @@ async function example() {
     valueB: ...,
     // Array<SimpleRecord> |  (optional)
     valueC: ...,
-  } satisfies ApiListheaderparametertypesListMultiHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListMultiHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListMultiHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListMultiHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2771,9 +2771,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListRecordHeaderParamGet
+## listHeaderParameterTypesListRecordHeaderParam
 
-> Array&lt;SimpleRecord&gt; apiListheaderparametertypesListRecordHeaderParamGet(headerValue)
+> Array&lt;SimpleRecord&gt; listHeaderParameterTypesListRecordHeaderParam(headerValue)
 
 
 
@@ -2786,7 +2786,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListRecordHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListRecordHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2795,10 +2795,10 @@ async function example() {
   const body = {
     // Array<SimpleRecord> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListRecordHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListRecordHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListRecordHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListRecordHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2838,9 +2838,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListRecordHeaderParamNilGet
+## listHeaderParameterTypesListRecordHeaderParamNil
 
-> NilResult apiListheaderparametertypesListRecordHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListRecordHeaderParamNil(headerValue)
 
 
 
@@ -2853,7 +2853,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListRecordHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListRecordHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2862,10 +2862,10 @@ async function example() {
   const body = {
     // Array<SimpleRecord> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListRecordHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListRecordHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListRecordHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListRecordHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2905,9 +2905,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListRecordHeaderParamOptGet
+## listHeaderParameterTypesListRecordHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListRecordHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListRecordHeaderParamOpt(headerValue)
 
 
 
@@ -2920,7 +2920,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListRecordHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListRecordHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2929,10 +2929,10 @@ async function example() {
   const body = {
     // Array<SimpleRecord> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListRecordHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListRecordHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListRecordHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListRecordHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -2972,9 +2972,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListRecordHeaderParamOptNilGet
+## listHeaderParameterTypesListRecordHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListRecordHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListRecordHeaderParamOptNil(headerValue)
 
 
 
@@ -2987,7 +2987,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListRecordHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListRecordHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -2996,10 +2996,10 @@ async function example() {
   const body = {
     // Array<SimpleRecord> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListRecordHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListRecordHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListRecordHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListRecordHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3039,9 +3039,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListScalarHeaderParamGet
+## listHeaderParameterTypesListScalarHeaderParam
 
-> string apiListheaderparametertypesListScalarHeaderParamGet(headerValue)
+> string listHeaderParameterTypesListScalarHeaderParam(headerValue)
 
 
 
@@ -3054,7 +3054,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListScalarHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListScalarHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3063,10 +3063,10 @@ async function example() {
   const body = {
     // string | 
     headerValue: headerValue_example,
-  } satisfies ApiListheaderparametertypesListScalarHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListScalarHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListScalarHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListScalarHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3106,9 +3106,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListScalarHeaderParamNilGet
+## listHeaderParameterTypesListScalarHeaderParamNil
 
-> NilResult apiListheaderparametertypesListScalarHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListScalarHeaderParamNil(headerValue)
 
 
 
@@ -3121,7 +3121,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListScalarHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListScalarHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3130,10 +3130,10 @@ async function example() {
   const body = {
     // string | 
     headerValue: headerValue_example,
-  } satisfies ApiListheaderparametertypesListScalarHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListScalarHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListScalarHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListScalarHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3173,9 +3173,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListScalarHeaderParamOptGet
+## listHeaderParameterTypesListScalarHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListScalarHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListScalarHeaderParamOpt(headerValue)
 
 
 
@@ -3188,7 +3188,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListScalarHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListScalarHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3197,10 +3197,10 @@ async function example() {
   const body = {
     // string |  (optional)
     headerValue: headerValue_example,
-  } satisfies ApiListheaderparametertypesListScalarHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListScalarHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListScalarHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListScalarHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3240,9 +3240,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListScalarHeaderParamOptNilGet
+## listHeaderParameterTypesListScalarHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListScalarHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListScalarHeaderParamOptNil(headerValue)
 
 
 
@@ -3255,7 +3255,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListScalarHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListScalarHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3264,10 +3264,10 @@ async function example() {
   const body = {
     // string |  (optional)
     headerValue: headerValue_example,
-  } satisfies ApiListheaderparametertypesListScalarHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListScalarHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListScalarHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListScalarHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3307,9 +3307,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListShortHeaderParamGet
+## listHeaderParameterTypesListShortHeaderParam
 
-> Array&lt;number&gt; apiListheaderparametertypesListShortHeaderParamGet(headerValue)
+> Array&lt;number&gt; listHeaderParameterTypesListShortHeaderParam(headerValue)
 
 
 
@@ -3322,7 +3322,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListShortHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListShortHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3331,10 +3331,10 @@ async function example() {
   const body = {
     // Array<number> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListShortHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListShortHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListShortHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListShortHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3374,9 +3374,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListShortHeaderParamNilGet
+## listHeaderParameterTypesListShortHeaderParamNil
 
-> NilResult apiListheaderparametertypesListShortHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListShortHeaderParamNil(headerValue)
 
 
 
@@ -3389,7 +3389,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListShortHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListShortHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3398,10 +3398,10 @@ async function example() {
   const body = {
     // Array<number> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListShortHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListShortHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListShortHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListShortHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3441,9 +3441,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListShortHeaderParamOptGet
+## listHeaderParameterTypesListShortHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListShortHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListShortHeaderParamOpt(headerValue)
 
 
 
@@ -3456,7 +3456,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListShortHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListShortHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3465,10 +3465,10 @@ async function example() {
   const body = {
     // Array<number> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListShortHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListShortHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListShortHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListShortHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3508,9 +3508,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListShortHeaderParamOptNilGet
+## listHeaderParameterTypesListShortHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListShortHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListShortHeaderParamOptNil(headerValue)
 
 
 
@@ -3523,7 +3523,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListShortHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListShortHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3532,10 +3532,10 @@ async function example() {
   const body = {
     // Array<number> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListShortHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListShortHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListShortHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListShortHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3575,9 +3575,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListStringHeaderParamGet
+## listHeaderParameterTypesListStringHeaderParam
 
-> Array&lt;string&gt; apiListheaderparametertypesListStringHeaderParamGet(headerValue)
+> Array&lt;string&gt; listHeaderParameterTypesListStringHeaderParam(headerValue)
 
 
 
@@ -3590,7 +3590,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListStringHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListStringHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3599,10 +3599,10 @@ async function example() {
   const body = {
     // Array<string> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListStringHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListStringHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListStringHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListStringHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3642,9 +3642,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListStringHeaderParamNilGet
+## listHeaderParameterTypesListStringHeaderParamNil
 
-> NilResult apiListheaderparametertypesListStringHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListStringHeaderParamNil(headerValue)
 
 
 
@@ -3657,7 +3657,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListStringHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListStringHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3666,10 +3666,10 @@ async function example() {
   const body = {
     // Array<string> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListStringHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListStringHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListStringHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListStringHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3709,9 +3709,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListStringHeaderParamOptGet
+## listHeaderParameterTypesListStringHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListStringHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListStringHeaderParamOpt(headerValue)
 
 
 
@@ -3724,7 +3724,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListStringHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListStringHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3733,10 +3733,10 @@ async function example() {
   const body = {
     // Array<string> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListStringHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListStringHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListStringHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListStringHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3776,9 +3776,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListStringHeaderParamOptNilGet
+## listHeaderParameterTypesListStringHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListStringHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListStringHeaderParamOptNil(headerValue)
 
 
 
@@ -3791,7 +3791,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListStringHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListStringHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3800,10 +3800,10 @@ async function example() {
   const body = {
     // Array<string> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListStringHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListStringHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListStringHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListStringHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3843,9 +3843,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListZonedDateTimeHeaderParamGet
+## listHeaderParameterTypesListZonedDateTimeHeaderParam
 
-> Array&lt;string&gt; apiListheaderparametertypesListZonedDateTimeHeaderParamGet(headerValue)
+> Array&lt;string&gt; listHeaderParameterTypesListZonedDateTimeHeaderParam(headerValue)
 
 
 
@@ -3858,7 +3858,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListZonedDateTimeHeaderParamGetRequest } from '';
+import type { ListHeaderParameterTypesListZonedDateTimeHeaderParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3867,10 +3867,10 @@ async function example() {
   const body = {
     // Array<string> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListZonedDateTimeHeaderParamGetRequest;
+  } satisfies ListHeaderParameterTypesListZonedDateTimeHeaderParamRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListZonedDateTimeHeaderParamGet(body);
+    const data = await api.listHeaderParameterTypesListZonedDateTimeHeaderParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3910,9 +3910,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListZonedDateTimeHeaderParamNilGet
+## listHeaderParameterTypesListZonedDateTimeHeaderParamNil
 
-> NilResult apiListheaderparametertypesListZonedDateTimeHeaderParamNilGet(headerValue)
+> NilResult listHeaderParameterTypesListZonedDateTimeHeaderParamNil(headerValue)
 
 
 
@@ -3925,7 +3925,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListZonedDateTimeHeaderParamNilGetRequest } from '';
+import type { ListHeaderParameterTypesListZonedDateTimeHeaderParamNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -3934,10 +3934,10 @@ async function example() {
   const body = {
     // Array<string> | 
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListZonedDateTimeHeaderParamNilGetRequest;
+  } satisfies ListHeaderParameterTypesListZonedDateTimeHeaderParamNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListZonedDateTimeHeaderParamNilGet(body);
+    const data = await api.listHeaderParameterTypesListZonedDateTimeHeaderParamNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -3977,9 +3977,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListZonedDateTimeHeaderParamOptGet
+## listHeaderParameterTypesListZonedDateTimeHeaderParamOpt
 
-> NilResult apiListheaderparametertypesListZonedDateTimeHeaderParamOptGet(headerValue)
+> NilResult listHeaderParameterTypesListZonedDateTimeHeaderParamOpt(headerValue)
 
 
 
@@ -3992,7 +3992,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListZonedDateTimeHeaderParamOptGetRequest } from '';
+import type { ListHeaderParameterTypesListZonedDateTimeHeaderParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -4001,10 +4001,10 @@ async function example() {
   const body = {
     // Array<string> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListZonedDateTimeHeaderParamOptGetRequest;
+  } satisfies ListHeaderParameterTypesListZonedDateTimeHeaderParamOptRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListZonedDateTimeHeaderParamOptGet(body);
+    const data = await api.listHeaderParameterTypesListZonedDateTimeHeaderParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -4044,9 +4044,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListheaderparametertypesListZonedDateTimeHeaderParamOptNilGet
+## listHeaderParameterTypesListZonedDateTimeHeaderParamOptNil
 
-> NilResult apiListheaderparametertypesListZonedDateTimeHeaderParamOptNilGet(headerValue)
+> NilResult listHeaderParameterTypesListZonedDateTimeHeaderParamOptNil(headerValue)
 
 
 
@@ -4059,7 +4059,7 @@ import {
   Configuration,
   ListHeaderParameterTypesApi,
 } from '';
-import type { ApiListheaderparametertypesListZonedDateTimeHeaderParamOptNilGetRequest } from '';
+import type { ListHeaderParameterTypesListZonedDateTimeHeaderParamOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -4068,10 +4068,10 @@ async function example() {
   const body = {
     // Array<string> |  (optional)
     headerValue: ...,
-  } satisfies ApiListheaderparametertypesListZonedDateTimeHeaderParamOptNilGetRequest;
+  } satisfies ListHeaderParameterTypesListZonedDateTimeHeaderParamOptNilRequest;
 
   try {
-    const data = await api.apiListheaderparametertypesListZonedDateTimeHeaderParamOptNilGet(body);
+    const data = await api.listHeaderParameterTypesListZonedDateTimeHeaderParamOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);

@@ -24,41 +24,41 @@ import {
 /**
  * 
  * @export
- * @interface ApiBodyparametertypesMultiBodyParamOptPostRequest
+ * @interface BodyParameterTypesMultiBodyParamOptRequest
  */
-export interface ApiBodyparametertypesMultiBodyParamOptPostRequest {
+export interface BodyParameterTypesMultiBodyParamOptRequest {
     /**
      * 
      * @type {string}
-     * @memberof ApiBodyparametertypesMultiBodyParamOptPostRequest
+     * @memberof BodyParameterTypesMultiBodyParamOptRequest
      */
     valueA?: string;
     /**
      * 
      * @type {number}
-     * @memberof ApiBodyparametertypesMultiBodyParamOptPostRequest
+     * @memberof BodyParameterTypesMultiBodyParamOptRequest
      */
     valueB?: number;
     /**
      * 
      * @type {SimpleRecord}
-     * @memberof ApiBodyparametertypesMultiBodyParamOptPostRequest
+     * @memberof BodyParameterTypesMultiBodyParamOptRequest
      */
     valueC?: SimpleRecord;
 }
 
 /**
- * Check if a given object implements the ApiBodyparametertypesMultiBodyParamOptPostRequest interface.
+ * Check if a given object implements the BodyParameterTypesMultiBodyParamOptRequest interface.
  */
-export function instanceOfApiBodyparametertypesMultiBodyParamOptPostRequest(value: object): value is ApiBodyparametertypesMultiBodyParamOptPostRequest {
+export function instanceOfBodyParameterTypesMultiBodyParamOptRequest(value: object): value is BodyParameterTypesMultiBodyParamOptRequest {
     return true;
 }
 
-export function ApiBodyparametertypesMultiBodyParamOptPostRequestFromJSON(json: any): ApiBodyparametertypesMultiBodyParamOptPostRequest {
-    return ApiBodyparametertypesMultiBodyParamOptPostRequestFromJSONTyped(json, false);
+export function BodyParameterTypesMultiBodyParamOptRequestFromJSON(json: any): BodyParameterTypesMultiBodyParamOptRequest {
+    return BodyParameterTypesMultiBodyParamOptRequestFromJSONTyped(json, false);
 }
 
-export function ApiBodyparametertypesMultiBodyParamOptPostRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiBodyparametertypesMultiBodyParamOptPostRequest {
+export function BodyParameterTypesMultiBodyParamOptRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BodyParameterTypesMultiBodyParamOptRequest {
     if (json == null) {
         return json;
     }
@@ -70,11 +70,11 @@ export function ApiBodyparametertypesMultiBodyParamOptPostRequestFromJSONTyped(j
     };
 }
 
-export function ApiBodyparametertypesMultiBodyParamOptPostRequestToJSON(json: any): ApiBodyparametertypesMultiBodyParamOptPostRequest {
-    return ApiBodyparametertypesMultiBodyParamOptPostRequestToJSONTyped(json, false);
+export function BodyParameterTypesMultiBodyParamOptRequestToJSON(json: any): BodyParameterTypesMultiBodyParamOptRequest {
+    return BodyParameterTypesMultiBodyParamOptRequestToJSONTyped(json, false);
 }
 
-export function ApiBodyparametertypesMultiBodyParamOptPostRequestToJSONTyped(value?: ApiBodyparametertypesMultiBodyParamOptPostRequest | null, ignoreDiscriminator: boolean = false): any {
+export function BodyParameterTypesMultiBodyParamOptRequestToJSONTyped(value?: BodyParameterTypesMultiBodyParamOptRequest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

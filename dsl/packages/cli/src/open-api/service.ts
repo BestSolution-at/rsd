@@ -137,6 +137,7 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 			rv[p][o.meta.rest.method.toLowerCase()] = {
 				tags: [s.name],
 				description: o.doc,
+				operationId: `${s.name}_${o.name}`,
 				parameters,
 				requestBody,
 				responses,

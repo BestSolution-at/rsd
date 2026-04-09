@@ -4,27 +4,27 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**apiListqueryparametertypesListBooleanQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistbooleanqueryparamget) | **GET** /api/listqueryparametertypes/listBooleanQueryParam |  |
-| [**apiListqueryparametertypesListDoubleQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistdoublequeryparamget) | **GET** /api/listqueryparametertypes/listDoubleQueryParam |  |
-| [**apiListqueryparametertypesListEnumQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistenumqueryparamget) | **GET** /api/listqueryparametertypes/listEnumQueryParam |  |
-| [**apiListqueryparametertypesListFloatQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistfloatqueryparamget) | **GET** /api/listqueryparametertypes/listFloatQueryParam |  |
-| [**apiListqueryparametertypesListInlineEnumQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistinlineenumqueryparamget) | **GET** /api/listqueryparametertypes/listInlineEnumQueryParam |  |
-| [**apiListqueryparametertypesListIntQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistintqueryparamget) | **GET** /api/listqueryparametertypes/listIntQueryParam |  |
-| [**apiListqueryparametertypesListLocalDateQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistlocaldatequeryparamget) | **GET** /api/listqueryparametertypes/listLocalDateQueryParam |  |
-| [**apiListqueryparametertypesListLocalDateTimeQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistlocaldatetimequeryparamget) | **GET** /api/listqueryparametertypes/listLocalDateTimeQueryParam |  |
-| [**apiListqueryparametertypesListLongQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistlongqueryparamget) | **GET** /api/listqueryparametertypes/listLongQueryParam |  |
-| [**apiListqueryparametertypesListMultiQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistmultiqueryparamget) | **GET** /api/listqueryparametertypes/listMultiQueryParam |  |
-| [**apiListqueryparametertypesListRecordQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistrecordqueryparamget) | **GET** /api/listqueryparametertypes/listRecordQueryParam |  |
-| [**apiListqueryparametertypesListScalarQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistscalarqueryparamget) | **GET** /api/listqueryparametertypes/listScalarQueryParam |  |
-| [**apiListqueryparametertypesListShortQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistshortqueryparamget) | **GET** /api/listqueryparametertypes/listShortQueryParam |  |
-| [**apiListqueryparametertypesListStringQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypesliststringqueryparamget) | **GET** /api/listqueryparametertypes/listStringQueryParam |  |
-| [**apiListqueryparametertypesListZonedDateTimeQueryParamGet**](ListQueryParameterTypesApi.md#apilistqueryparametertypeslistzoneddatetimequeryparamget) | **GET** /api/listqueryparametertypes/listZonedDateTimeQueryParam |  |
+| [**listQueryParameterTypesListBooleanQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistbooleanqueryparam) | **GET** /api/listqueryparametertypes/listBooleanQueryParam |  |
+| [**listQueryParameterTypesListDoubleQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistdoublequeryparam) | **GET** /api/listqueryparametertypes/listDoubleQueryParam |  |
+| [**listQueryParameterTypesListEnumQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistenumqueryparam) | **GET** /api/listqueryparametertypes/listEnumQueryParam |  |
+| [**listQueryParameterTypesListFloatQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistfloatqueryparam) | **GET** /api/listqueryparametertypes/listFloatQueryParam |  |
+| [**listQueryParameterTypesListInlineEnumQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistinlineenumqueryparam) | **GET** /api/listqueryparametertypes/listInlineEnumQueryParam |  |
+| [**listQueryParameterTypesListIntQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistintqueryparam) | **GET** /api/listqueryparametertypes/listIntQueryParam |  |
+| [**listQueryParameterTypesListLocalDateQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistlocaldatequeryparam) | **GET** /api/listqueryparametertypes/listLocalDateQueryParam |  |
+| [**listQueryParameterTypesListLocalDateTimeQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistlocaldatetimequeryparam) | **GET** /api/listqueryparametertypes/listLocalDateTimeQueryParam |  |
+| [**listQueryParameterTypesListLongQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistlongqueryparam) | **GET** /api/listqueryparametertypes/listLongQueryParam |  |
+| [**listQueryParameterTypesListMultiQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistmultiqueryparam) | **GET** /api/listqueryparametertypes/listMultiQueryParam |  |
+| [**listQueryParameterTypesListRecordQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistrecordqueryparam) | **GET** /api/listqueryparametertypes/listRecordQueryParam |  |
+| [**listQueryParameterTypesListScalarQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistscalarqueryparam) | **GET** /api/listqueryparametertypes/listScalarQueryParam |  |
+| [**listQueryParameterTypesListShortQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistshortqueryparam) | **GET** /api/listqueryparametertypes/listShortQueryParam |  |
+| [**listQueryParameterTypesListStringQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypesliststringqueryparam) | **GET** /api/listqueryparametertypes/listStringQueryParam |  |
+| [**listQueryParameterTypesListZonedDateTimeQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistzoneddatetimequeryparam) | **GET** /api/listqueryparametertypes/listZonedDateTimeQueryParam |  |
 
 
 
-## apiListqueryparametertypesListBooleanQueryParamGet
+## listQueryParameterTypesListBooleanQueryParam
 
-> Array&lt;boolean&gt; apiListqueryparametertypesListBooleanQueryParamGet(queryValue)
+> Array&lt;boolean&gt; listQueryParameterTypesListBooleanQueryParam(queryValue)
 
 
 
@@ -37,7 +37,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListBooleanQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListBooleanQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -46,10 +46,10 @@ async function example() {
   const body = {
     // Array<boolean> | 
     queryValue: ...,
-  } satisfies ApiListqueryparametertypesListBooleanQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListBooleanQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListBooleanQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListBooleanQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -89,9 +89,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListDoubleQueryParamGet
+## listQueryParameterTypesListDoubleQueryParam
 
-> Array&lt;number&gt; apiListqueryparametertypesListDoubleQueryParamGet(queryValue)
+> Array&lt;number&gt; listQueryParameterTypesListDoubleQueryParam(queryValue)
 
 
 
@@ -104,7 +104,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListDoubleQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListDoubleQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -113,10 +113,10 @@ async function example() {
   const body = {
     // Array<number> | 
     queryValue: ...,
-  } satisfies ApiListqueryparametertypesListDoubleQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListDoubleQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListDoubleQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListDoubleQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -156,9 +156,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListEnumQueryParamGet
+## listQueryParameterTypesListEnumQueryParam
 
-> Array&lt;SampleEnum&gt; apiListqueryparametertypesListEnumQueryParamGet(queryValue)
+> Array&lt;SampleEnum&gt; listQueryParameterTypesListEnumQueryParam(queryValue)
 
 
 
@@ -171,7 +171,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListEnumQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListEnumQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -180,10 +180,10 @@ async function example() {
   const body = {
     // Array<SampleEnum> | 
     queryValue: ...,
-  } satisfies ApiListqueryparametertypesListEnumQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListEnumQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListEnumQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListEnumQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -223,9 +223,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListFloatQueryParamGet
+## listQueryParameterTypesListFloatQueryParam
 
-> Array&lt;number&gt; apiListqueryparametertypesListFloatQueryParamGet(queryValue)
+> Array&lt;number&gt; listQueryParameterTypesListFloatQueryParam(queryValue)
 
 
 
@@ -238,7 +238,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListFloatQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListFloatQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -247,10 +247,10 @@ async function example() {
   const body = {
     // Array<number> | 
     queryValue: ...,
-  } satisfies ApiListqueryparametertypesListFloatQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListFloatQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListFloatQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListFloatQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -290,9 +290,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListInlineEnumQueryParamGet
+## listQueryParameterTypesListInlineEnumQueryParam
 
-> string apiListqueryparametertypesListInlineEnumQueryParamGet(queryValue)
+> string listQueryParameterTypesListInlineEnumQueryParam(queryValue)
 
 
 
@@ -305,7 +305,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListInlineEnumQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListInlineEnumQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -314,10 +314,10 @@ async function example() {
   const body = {
     // 'A' | 'B' | 
     queryValue: queryValue_example,
-  } satisfies ApiListqueryparametertypesListInlineEnumQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListInlineEnumQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListInlineEnumQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListInlineEnumQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -357,9 +357,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListIntQueryParamGet
+## listQueryParameterTypesListIntQueryParam
 
-> Array&lt;number&gt; apiListqueryparametertypesListIntQueryParamGet(queryValue)
+> Array&lt;number&gt; listQueryParameterTypesListIntQueryParam(queryValue)
 
 
 
@@ -372,7 +372,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListIntQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListIntQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -381,10 +381,10 @@ async function example() {
   const body = {
     // Array<number> | 
     queryValue: ...,
-  } satisfies ApiListqueryparametertypesListIntQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListIntQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListIntQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListIntQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -424,9 +424,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListLocalDateQueryParamGet
+## listQueryParameterTypesListLocalDateQueryParam
 
-> Array&lt;Date&gt; apiListqueryparametertypesListLocalDateQueryParamGet(queryValue)
+> Array&lt;Date&gt; listQueryParameterTypesListLocalDateQueryParam(queryValue)
 
 
 
@@ -439,7 +439,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListLocalDateQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListLocalDateQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -448,10 +448,10 @@ async function example() {
   const body = {
     // Array<Date> | 
     queryValue: ...,
-  } satisfies ApiListqueryparametertypesListLocalDateQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListLocalDateQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListLocalDateQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListLocalDateQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -491,9 +491,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListLocalDateTimeQueryParamGet
+## listQueryParameterTypesListLocalDateTimeQueryParam
 
-> Array&lt;string&gt; apiListqueryparametertypesListLocalDateTimeQueryParamGet(queryValue)
+> Array&lt;string&gt; listQueryParameterTypesListLocalDateTimeQueryParam(queryValue)
 
 
 
@@ -506,7 +506,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListLocalDateTimeQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListLocalDateTimeQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -515,10 +515,10 @@ async function example() {
   const body = {
     // Array<string> | 
     queryValue: ...,
-  } satisfies ApiListqueryparametertypesListLocalDateTimeQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListLocalDateTimeQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListLocalDateTimeQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListLocalDateTimeQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -558,9 +558,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListLongQueryParamGet
+## listQueryParameterTypesListLongQueryParam
 
-> Array&lt;number&gt; apiListqueryparametertypesListLongQueryParamGet(queryValue)
+> Array&lt;number&gt; listQueryParameterTypesListLongQueryParam(queryValue)
 
 
 
@@ -573,7 +573,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListLongQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListLongQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -582,10 +582,10 @@ async function example() {
   const body = {
     // Array<number> | 
     queryValue: ...,
-  } satisfies ApiListqueryparametertypesListLongQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListLongQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListLongQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListLongQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -625,9 +625,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListMultiQueryParamGet
+## listQueryParameterTypesListMultiQueryParam
 
-> string apiListqueryparametertypesListMultiQueryParamGet(valueA, valueB, valueC)
+> string listQueryParameterTypesListMultiQueryParam(valueA, valueB, valueC)
 
 
 
@@ -640,7 +640,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListMultiQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListMultiQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -653,10 +653,10 @@ async function example() {
     valueB: ...,
     // string | 
     valueC: valueC_example,
-  } satisfies ApiListqueryparametertypesListMultiQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListMultiQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListMultiQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListMultiQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -698,9 +698,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListRecordQueryParamGet
+## listQueryParameterTypesListRecordQueryParam
 
-> Array&lt;SimpleRecord&gt; apiListqueryparametertypesListRecordQueryParamGet(queryValue)
+> Array&lt;SimpleRecord&gt; listQueryParameterTypesListRecordQueryParam(queryValue)
 
 
 
@@ -713,7 +713,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListRecordQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListRecordQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -722,10 +722,10 @@ async function example() {
   const body = {
     // string | 
     queryValue: queryValue_example,
-  } satisfies ApiListqueryparametertypesListRecordQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListRecordQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListRecordQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListRecordQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -765,9 +765,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListScalarQueryParamGet
+## listQueryParameterTypesListScalarQueryParam
 
-> string apiListqueryparametertypesListScalarQueryParamGet(queryValue)
+> string listQueryParameterTypesListScalarQueryParam(queryValue)
 
 
 
@@ -780,7 +780,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListScalarQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListScalarQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -789,10 +789,10 @@ async function example() {
   const body = {
     // string | 
     queryValue: queryValue_example,
-  } satisfies ApiListqueryparametertypesListScalarQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListScalarQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListScalarQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListScalarQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -832,9 +832,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListShortQueryParamGet
+## listQueryParameterTypesListShortQueryParam
 
-> Array&lt;number&gt; apiListqueryparametertypesListShortQueryParamGet(queryValue)
+> Array&lt;number&gt; listQueryParameterTypesListShortQueryParam(queryValue)
 
 
 
@@ -847,7 +847,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListShortQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListShortQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -856,10 +856,10 @@ async function example() {
   const body = {
     // Array<number> | 
     queryValue: ...,
-  } satisfies ApiListqueryparametertypesListShortQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListShortQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListShortQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListShortQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -899,9 +899,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListStringQueryParamGet
+## listQueryParameterTypesListStringQueryParam
 
-> Array&lt;string&gt; apiListqueryparametertypesListStringQueryParamGet(queryValue)
+> Array&lt;string&gt; listQueryParameterTypesListStringQueryParam(queryValue)
 
 
 
@@ -914,7 +914,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListStringQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListStringQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -923,10 +923,10 @@ async function example() {
   const body = {
     // Array<string> | 
     queryValue: ...,
-  } satisfies ApiListqueryparametertypesListStringQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListStringQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListStringQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListStringQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -966,9 +966,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListqueryparametertypesListZonedDateTimeQueryParamGet
+## listQueryParameterTypesListZonedDateTimeQueryParam
 
-> Array&lt;string&gt; apiListqueryparametertypesListZonedDateTimeQueryParamGet(queryValue)
+> Array&lt;string&gt; listQueryParameterTypesListZonedDateTimeQueryParam(queryValue)
 
 
 
@@ -981,7 +981,7 @@ import {
   Configuration,
   ListQueryParameterTypesApi,
 } from '';
-import type { ApiListqueryparametertypesListZonedDateTimeQueryParamGetRequest } from '';
+import type { ListQueryParameterTypesListZonedDateTimeQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -990,10 +990,10 @@ async function example() {
   const body = {
     // Array<string> | 
     queryValue: ...,
-  } satisfies ApiListqueryparametertypesListZonedDateTimeQueryParamGetRequest;
+  } satisfies ListQueryParameterTypesListZonedDateTimeQueryParamRequest;
 
   try {
-    const data = await api.apiListqueryparametertypesListZonedDateTimeQueryParamGet(body);
+    const data = await api.listQueryParameterTypesListZonedDateTimeQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);

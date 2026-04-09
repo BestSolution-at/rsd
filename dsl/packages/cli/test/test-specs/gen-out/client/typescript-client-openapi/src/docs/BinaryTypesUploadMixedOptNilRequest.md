@@ -1,5 +1,5 @@
 
-# ApiBinarytypesUploadMixedPutRequest
+# BinaryTypesUploadMixedOptNilRequest
 
 
 ## Properties
@@ -18,7 +18,7 @@ Name | Type
 ## Example
 
 ```typescript
-import type { ApiBinarytypesUploadMixedPutRequest } from ''
+import type { BinaryTypesUploadMixedOptNilRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
@@ -30,7 +30,7 @@ const example = {
   "recList": null,
   "dataFile": null,
   "dataBlob": null,
-} satisfies ApiBinarytypesUploadMixedPutRequest
+} satisfies BinaryTypesUploadMixedOptNilRequest
 
 console.log(example)
 
@@ -39,7 +39,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ApiBinarytypesUploadMixedPutRequest
+const exampleParsed = JSON.parse(exampleJSON) as BinaryTypesUploadMixedOptNilRequest
 console.log(exampleParsed)
 ```
 

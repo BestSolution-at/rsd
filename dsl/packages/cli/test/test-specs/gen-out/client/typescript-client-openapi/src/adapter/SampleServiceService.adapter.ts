@@ -40,7 +40,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 
 	async getBoolean(): Promise<api.result.Result<boolean, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.delegate.apiSamplerecordsBooleanGetRaw();
+			const response = await this.delegate.sampleServiceGetBooleanRaw();
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -52,7 +52,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 
 	async getShort(): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.delegate.apiSamplerecordsShortGetRaw();
+			const response = await this.delegate.sampleServiceGetShortRaw();
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -63,7 +63,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 	}
 	async getInt(): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.delegate.apiSamplerecordsIntGetRaw();
+			const response = await this.delegate.sampleServiceGetIntRaw();
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -74,7 +74,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 	}
 	async getLong(): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.delegate.apiSamplerecordsLongGetRaw();
+			const response = await this.delegate.sampleServiceGetLongRaw();
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -85,7 +85,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 	}
 	async getFloat(): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.delegate.apiSamplerecordsFloatGetRaw();
+			const response = await this.delegate.sampleServiceGetFloatRaw();
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -96,7 +96,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 	}
 	async getDouble(): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.delegate.apiSamplerecordsDoubleGetRaw();
+			const response = await this.delegate.sampleServiceGetDoubleRaw();
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -107,7 +107,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 	}
 	async getString(): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.delegate.apiSamplerecordsStringGetRaw();
+			const response = await this.delegate.sampleServiceGetStringRaw();
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -118,7 +118,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 	}
 	async getLocalDate(): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.delegate.apiSamplerecordsLocaldateGetRaw();
+			const response = await this.delegate.sampleServiceGetLocalDateRaw();
 			if (response.raw.status === 200) {
 				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			}
@@ -131,7 +131,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 		api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>
 	> {
 		try {
-			const response = await this.delegate.apiSamplerecordsLocaldatetimeGetRaw();
+			const response = await this.delegate.sampleServiceGetLocalDateTimeRaw();
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -144,7 +144,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 		api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>
 	> {
 		try {
-			const response = await this.delegate.apiSamplerecordsZoneddatetimeGetRaw();
+			const response = await this.delegate.sampleServiceGetZonedDateTimeRaw();
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -155,7 +155,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 	}
 	async getScalar(): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.delegate.apiSamplerecordsScalarGetRaw();
+			const response = await this.delegate.sampleServiceGetScalarRaw();
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -168,7 +168,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 		api.result.Result<api.model.SampleEnum, api.service.StatusRSDError | api.service.NativeRSDError>
 	> {
 		try {
-			const response = await this.delegate.apiSamplerecordsEnumGetRaw();
+			const response = await this.delegate.sampleServiceGetEnumRaw();
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -181,7 +181,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 		api.result.Result<api.result.VoidType, api.service.StatusRSDError | api.service.NativeRSDError>
 	> {
 		try {
-			const response = await this.delegate.apiSamplerecordsVoidoperationGetRaw();
+			const response = await this.delegate.sampleServiceVoidOperationRaw();
 			if (response.raw.status === 204) {
 				return api.result.OK(api.result.Void);
 			}
@@ -197,7 +197,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 		>
 	> {
 		try {
-			const response = await this.delegate.apiSamplerecordsErroroperationGetRaw();
+			const response = await this.delegate.sampleServiceErrorOperationRaw();
 			if (response.raw.status === 204) {
 				return api.result.OK(api.result.Void);
 			} else if (response.raw.status === 400) {
@@ -231,7 +231,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 		>
 	> {
 		try {
-			const response = await this.delegate.apiSamplerecordsMultierroroperationGetRaw();
+			const response = await this.delegate.sampleServiceMultiErrorOperationRaw();
 			if (response.raw.status === 204) {
 				return api.result.OK(api.result.Void);
 			}
@@ -259,7 +259,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 		key: string,
 	): Promise<api.result.Result<api.model.SimpleRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.delegate.apiSamplerecordsSimplerecordKeyGetRaw({ key });
+			const response = await this.delegate.sampleServiceGetSimpleRecordRaw({ key });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -278,7 +278,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 		>
 	> {
 		try {
-			const response = await this.delegate.apiSamplerecordsSimplerecordwitherrorKeyGetRaw({ key });
+			const response = await this.delegate.sampleServiceGetSimpleRecordWithErrorRaw({ key });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}

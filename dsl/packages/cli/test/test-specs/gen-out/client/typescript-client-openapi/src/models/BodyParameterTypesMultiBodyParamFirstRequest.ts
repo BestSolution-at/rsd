@@ -24,43 +24,43 @@ import {
 /**
  * 
  * @export
- * @interface ApiBodyparametertypesMultiBodyParamFirstPostRequest
+ * @interface BodyParameterTypesMultiBodyParamFirstRequest
  */
-export interface ApiBodyparametertypesMultiBodyParamFirstPostRequest {
+export interface BodyParameterTypesMultiBodyParamFirstRequest {
     /**
      * 
      * @type {string}
-     * @memberof ApiBodyparametertypesMultiBodyParamFirstPostRequest
+     * @memberof BodyParameterTypesMultiBodyParamFirstRequest
      */
     valueA?: string;
     /**
      * 
      * @type {number}
-     * @memberof ApiBodyparametertypesMultiBodyParamFirstPostRequest
+     * @memberof BodyParameterTypesMultiBodyParamFirstRequest
      */
     valueB: number;
     /**
      * 
      * @type {SimpleRecord}
-     * @memberof ApiBodyparametertypesMultiBodyParamFirstPostRequest
+     * @memberof BodyParameterTypesMultiBodyParamFirstRequest
      */
     valueC: SimpleRecord;
 }
 
 /**
- * Check if a given object implements the ApiBodyparametertypesMultiBodyParamFirstPostRequest interface.
+ * Check if a given object implements the BodyParameterTypesMultiBodyParamFirstRequest interface.
  */
-export function instanceOfApiBodyparametertypesMultiBodyParamFirstPostRequest(value: object): value is ApiBodyparametertypesMultiBodyParamFirstPostRequest {
+export function instanceOfBodyParameterTypesMultiBodyParamFirstRequest(value: object): value is BodyParameterTypesMultiBodyParamFirstRequest {
     if (!('valueB' in value) || value['valueB'] === undefined) return false;
     if (!('valueC' in value) || value['valueC'] === undefined) return false;
     return true;
 }
 
-export function ApiBodyparametertypesMultiBodyParamFirstPostRequestFromJSON(json: any): ApiBodyparametertypesMultiBodyParamFirstPostRequest {
-    return ApiBodyparametertypesMultiBodyParamFirstPostRequestFromJSONTyped(json, false);
+export function BodyParameterTypesMultiBodyParamFirstRequestFromJSON(json: any): BodyParameterTypesMultiBodyParamFirstRequest {
+    return BodyParameterTypesMultiBodyParamFirstRequestFromJSONTyped(json, false);
 }
 
-export function ApiBodyparametertypesMultiBodyParamFirstPostRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiBodyparametertypesMultiBodyParamFirstPostRequest {
+export function BodyParameterTypesMultiBodyParamFirstRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BodyParameterTypesMultiBodyParamFirstRequest {
     if (json == null) {
         return json;
     }
@@ -72,11 +72,11 @@ export function ApiBodyparametertypesMultiBodyParamFirstPostRequestFromJSONTyped
     };
 }
 
-export function ApiBodyparametertypesMultiBodyParamFirstPostRequestToJSON(json: any): ApiBodyparametertypesMultiBodyParamFirstPostRequest {
-    return ApiBodyparametertypesMultiBodyParamFirstPostRequestToJSONTyped(json, false);
+export function BodyParameterTypesMultiBodyParamFirstRequestToJSON(json: any): BodyParameterTypesMultiBodyParamFirstRequest {
+    return BodyParameterTypesMultiBodyParamFirstRequestToJSONTyped(json, false);
 }
 
-export function ApiBodyparametertypesMultiBodyParamFirstPostRequestToJSONTyped(value?: ApiBodyparametertypesMultiBodyParamFirstPostRequest | null, ignoreDiscriminator: boolean = false): any {
+export function BodyParameterTypesMultiBodyParamFirstRequestToJSONTyped(value?: BodyParameterTypesMultiBodyParamFirstRequest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

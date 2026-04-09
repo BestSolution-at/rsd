@@ -22,56 +22,56 @@ import {
     SampleEnumToJSON,
 } from '../models/index.js';
 
-export interface ApiPathparametertypeBooleanPathBooleanGetRequest {
-    pathBoolean: boolean;
-}
-
-export interface ApiPathparametertypeDoublePathDoubleGetRequest {
-    pathDouble: number;
-}
-
-export interface ApiPathparametertypeEnumPathEnumGetRequest {
-    pathEnum: SampleEnum;
-}
-
-export interface ApiPathparametertypeFloatPathFloatGetRequest {
-    pathFloat: number;
-}
-
-export interface ApiPathparametertypeIntPathIntGetRequest {
-    pathInt: number;
-}
-
-export interface ApiPathparametertypeLocaldatePathLocalDateGetRequest {
-    pathLocalDate: Date;
-}
-
-export interface ApiPathparametertypeLocaldatetimePathLocalDateTimeGetRequest {
-    pathLocalDateTime: string;
-}
-
-export interface ApiPathparametertypeLongPathLongGetRequest {
-    pathLong: number;
-}
-
-export interface ApiPathparametertypeMultipathparamValueAValueBGetRequest {
+export interface PathParameterTypeServiceMultiPathParamRequest {
     valueA: string;
     valueB: number;
 }
 
-export interface ApiPathparametertypeScalarPathScalarGetRequest {
+export interface PathParameterTypeServiceSimpleBooleanPathParamRequest {
+    pathBoolean: boolean;
+}
+
+export interface PathParameterTypeServiceSimpleDoublePathParamRequest {
+    pathDouble: number;
+}
+
+export interface PathParameterTypeServiceSimpleEnumPathParamRequest {
+    pathEnum: SampleEnum;
+}
+
+export interface PathParameterTypeServiceSimpleFloatPathParamRequest {
+    pathFloat: number;
+}
+
+export interface PathParameterTypeServiceSimpleIntPathParamRequest {
+    pathInt: number;
+}
+
+export interface PathParameterTypeServiceSimpleLocalDatePathParamRequest {
+    pathLocalDate: Date;
+}
+
+export interface PathParameterTypeServiceSimpleLocalDateTimePathParamRequest {
+    pathLocalDateTime: string;
+}
+
+export interface PathParameterTypeServiceSimpleLongPathParamRequest {
+    pathLong: number;
+}
+
+export interface PathParameterTypeServiceSimpleScalarPathParamRequest {
     pathScalar: string;
 }
 
-export interface ApiPathparametertypeShortPathShortGetRequest {
+export interface PathParameterTypeServiceSimpleShortPathParamRequest {
     pathShort: number;
 }
 
-export interface ApiPathparametertypeStringPathStringGetRequest {
+export interface PathParameterTypeServiceSimpleStringPathParamRequest {
     pathString: string;
 }
 
-export interface ApiPathparametertypeZoneddatetimePathZonedDateTimeGetRequest {
+export interface PathParameterTypeServiceSimpleZonedDateTimePathParamRequest {
     pathZonedDateTime: string;
 }
 
@@ -81,13 +81,70 @@ export interface ApiPathparametertypeZoneddatetimePathZonedDateTimeGetRequest {
 export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for apiPathparametertypeBooleanPathBooleanGet without sending the request
+     * Creates request options for pathParameterTypeServiceMultiPathParam without sending the request
      */
-    async apiPathparametertypeBooleanPathBooleanGetRequestOpts(requestParameters: ApiPathparametertypeBooleanPathBooleanGetRequest): Promise<runtime.RequestOpts> {
+    async pathParameterTypeServiceMultiPathParamRequestOpts(requestParameters: PathParameterTypeServiceMultiPathParamRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['valueA'] == null) {
+            throw new runtime.RequiredError(
+                'valueA',
+                'Required parameter "valueA" was null or undefined when calling pathParameterTypeServiceMultiPathParam().'
+            );
+        }
+
+        if (requestParameters['valueB'] == null) {
+            throw new runtime.RequiredError(
+                'valueB',
+                'Required parameter "valueB" was null or undefined when calling pathParameterTypeServiceMultiPathParam().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/pathparametertype/multipathparam/{valueA}/{valueB}`;
+        urlPath = urlPath.replace(`{${"valueA"}}`, encodeURIComponent(String(requestParameters['valueA'])));
+        urlPath = urlPath.replace(`{${"valueB"}}`, encodeURIComponent(String(requestParameters['valueB'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async pathParameterTypeServiceMultiPathParamRaw(requestParameters: PathParameterTypeServiceMultiPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.pathParameterTypeServiceMultiPathParamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async pathParameterTypeServiceMultiPathParam(requestParameters: PathParameterTypeServiceMultiPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.pathParameterTypeServiceMultiPathParamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for pathParameterTypeServiceSimpleBooleanPathParam without sending the request
+     */
+    async pathParameterTypeServiceSimpleBooleanPathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleBooleanPathParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathBoolean'] == null) {
             throw new runtime.RequiredError(
                 'pathBoolean',
-                'Required parameter "pathBoolean" was null or undefined when calling apiPathparametertypeBooleanPathBooleanGet().'
+                'Required parameter "pathBoolean" was null or undefined when calling pathParameterTypeServiceSimpleBooleanPathParam().'
             );
         }
 
@@ -110,8 +167,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeBooleanPathBooleanGetRaw(requestParameters: ApiPathparametertypeBooleanPathBooleanGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
-        const requestOptions = await this.apiPathparametertypeBooleanPathBooleanGetRequestOpts(requestParameters);
+    async pathParameterTypeServiceSimpleBooleanPathParamRaw(requestParameters: PathParameterTypeServiceSimpleBooleanPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleBooleanPathParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -124,19 +181,19 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeBooleanPathBooleanGet(requestParameters: ApiPathparametertypeBooleanPathBooleanGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
-        const response = await this.apiPathparametertypeBooleanPathBooleanGetRaw(requestParameters, initOverrides);
+    async pathParameterTypeServiceSimpleBooleanPathParam(requestParameters: PathParameterTypeServiceSimpleBooleanPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
+        const response = await this.pathParameterTypeServiceSimpleBooleanPathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiPathparametertypeDoublePathDoubleGet without sending the request
+     * Creates request options for pathParameterTypeServiceSimpleDoublePathParam without sending the request
      */
-    async apiPathparametertypeDoublePathDoubleGetRequestOpts(requestParameters: ApiPathparametertypeDoublePathDoubleGetRequest): Promise<runtime.RequestOpts> {
+    async pathParameterTypeServiceSimpleDoublePathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleDoublePathParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathDouble'] == null) {
             throw new runtime.RequiredError(
                 'pathDouble',
-                'Required parameter "pathDouble" was null or undefined when calling apiPathparametertypeDoublePathDoubleGet().'
+                'Required parameter "pathDouble" was null or undefined when calling pathParameterTypeServiceSimpleDoublePathParam().'
             );
         }
 
@@ -159,8 +216,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeDoublePathDoubleGetRaw(requestParameters: ApiPathparametertypeDoublePathDoubleGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiPathparametertypeDoublePathDoubleGetRequestOpts(requestParameters);
+    async pathParameterTypeServiceSimpleDoublePathParamRaw(requestParameters: PathParameterTypeServiceSimpleDoublePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleDoublePathParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -173,19 +230,19 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeDoublePathDoubleGet(requestParameters: ApiPathparametertypeDoublePathDoubleGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiPathparametertypeDoublePathDoubleGetRaw(requestParameters, initOverrides);
+    async pathParameterTypeServiceSimpleDoublePathParam(requestParameters: PathParameterTypeServiceSimpleDoublePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.pathParameterTypeServiceSimpleDoublePathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiPathparametertypeEnumPathEnumGet without sending the request
+     * Creates request options for pathParameterTypeServiceSimpleEnumPathParam without sending the request
      */
-    async apiPathparametertypeEnumPathEnumGetRequestOpts(requestParameters: ApiPathparametertypeEnumPathEnumGetRequest): Promise<runtime.RequestOpts> {
+    async pathParameterTypeServiceSimpleEnumPathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleEnumPathParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathEnum'] == null) {
             throw new runtime.RequiredError(
                 'pathEnum',
-                'Required parameter "pathEnum" was null or undefined when calling apiPathparametertypeEnumPathEnumGet().'
+                'Required parameter "pathEnum" was null or undefined when calling pathParameterTypeServiceSimpleEnumPathParam().'
             );
         }
 
@@ -208,8 +265,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeEnumPathEnumGetRaw(requestParameters: ApiPathparametertypeEnumPathEnumGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SampleEnum>> {
-        const requestOptions = await this.apiPathparametertypeEnumPathEnumGetRequestOpts(requestParameters);
+    async pathParameterTypeServiceSimpleEnumPathParamRaw(requestParameters: PathParameterTypeServiceSimpleEnumPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SampleEnum>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleEnumPathParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SampleEnumFromJSON(jsonValue));
@@ -218,19 +275,19 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeEnumPathEnumGet(requestParameters: ApiPathparametertypeEnumPathEnumGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SampleEnum> {
-        const response = await this.apiPathparametertypeEnumPathEnumGetRaw(requestParameters, initOverrides);
+    async pathParameterTypeServiceSimpleEnumPathParam(requestParameters: PathParameterTypeServiceSimpleEnumPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SampleEnum> {
+        const response = await this.pathParameterTypeServiceSimpleEnumPathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiPathparametertypeFloatPathFloatGet without sending the request
+     * Creates request options for pathParameterTypeServiceSimpleFloatPathParam without sending the request
      */
-    async apiPathparametertypeFloatPathFloatGetRequestOpts(requestParameters: ApiPathparametertypeFloatPathFloatGetRequest): Promise<runtime.RequestOpts> {
+    async pathParameterTypeServiceSimpleFloatPathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleFloatPathParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathFloat'] == null) {
             throw new runtime.RequiredError(
                 'pathFloat',
-                'Required parameter "pathFloat" was null or undefined when calling apiPathparametertypeFloatPathFloatGet().'
+                'Required parameter "pathFloat" was null or undefined when calling pathParameterTypeServiceSimpleFloatPathParam().'
             );
         }
 
@@ -253,8 +310,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeFloatPathFloatGetRaw(requestParameters: ApiPathparametertypeFloatPathFloatGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiPathparametertypeFloatPathFloatGetRequestOpts(requestParameters);
+    async pathParameterTypeServiceSimpleFloatPathParamRaw(requestParameters: PathParameterTypeServiceSimpleFloatPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleFloatPathParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -267,19 +324,19 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeFloatPathFloatGet(requestParameters: ApiPathparametertypeFloatPathFloatGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiPathparametertypeFloatPathFloatGetRaw(requestParameters, initOverrides);
+    async pathParameterTypeServiceSimpleFloatPathParam(requestParameters: PathParameterTypeServiceSimpleFloatPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.pathParameterTypeServiceSimpleFloatPathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiPathparametertypeIntPathIntGet without sending the request
+     * Creates request options for pathParameterTypeServiceSimpleIntPathParam without sending the request
      */
-    async apiPathparametertypeIntPathIntGetRequestOpts(requestParameters: ApiPathparametertypeIntPathIntGetRequest): Promise<runtime.RequestOpts> {
+    async pathParameterTypeServiceSimpleIntPathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleIntPathParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathInt'] == null) {
             throw new runtime.RequiredError(
                 'pathInt',
-                'Required parameter "pathInt" was null or undefined when calling apiPathparametertypeIntPathIntGet().'
+                'Required parameter "pathInt" was null or undefined when calling pathParameterTypeServiceSimpleIntPathParam().'
             );
         }
 
@@ -302,8 +359,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeIntPathIntGetRaw(requestParameters: ApiPathparametertypeIntPathIntGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiPathparametertypeIntPathIntGetRequestOpts(requestParameters);
+    async pathParameterTypeServiceSimpleIntPathParamRaw(requestParameters: PathParameterTypeServiceSimpleIntPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleIntPathParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -316,19 +373,19 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeIntPathIntGet(requestParameters: ApiPathparametertypeIntPathIntGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiPathparametertypeIntPathIntGetRaw(requestParameters, initOverrides);
+    async pathParameterTypeServiceSimpleIntPathParam(requestParameters: PathParameterTypeServiceSimpleIntPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.pathParameterTypeServiceSimpleIntPathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiPathparametertypeLocaldatePathLocalDateGet without sending the request
+     * Creates request options for pathParameterTypeServiceSimpleLocalDatePathParam without sending the request
      */
-    async apiPathparametertypeLocaldatePathLocalDateGetRequestOpts(requestParameters: ApiPathparametertypeLocaldatePathLocalDateGetRequest): Promise<runtime.RequestOpts> {
+    async pathParameterTypeServiceSimpleLocalDatePathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleLocalDatePathParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathLocalDate'] == null) {
             throw new runtime.RequiredError(
                 'pathLocalDate',
-                'Required parameter "pathLocalDate" was null or undefined when calling apiPathparametertypeLocaldatePathLocalDateGet().'
+                'Required parameter "pathLocalDate" was null or undefined when calling pathParameterTypeServiceSimpleLocalDatePathParam().'
             );
         }
 
@@ -355,8 +412,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeLocaldatePathLocalDateGetRaw(requestParameters: ApiPathparametertypeLocaldatePathLocalDateGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
-        const requestOptions = await this.apiPathparametertypeLocaldatePathLocalDateGetRequestOpts(requestParameters);
+    async pathParameterTypeServiceSimpleLocalDatePathParamRaw(requestParameters: PathParameterTypeServiceSimpleLocalDatePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleLocalDatePathParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -369,19 +426,19 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeLocaldatePathLocalDateGet(requestParameters: ApiPathparametertypeLocaldatePathLocalDateGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
-        const response = await this.apiPathparametertypeLocaldatePathLocalDateGetRaw(requestParameters, initOverrides);
+    async pathParameterTypeServiceSimpleLocalDatePathParam(requestParameters: PathParameterTypeServiceSimpleLocalDatePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
+        const response = await this.pathParameterTypeServiceSimpleLocalDatePathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiPathparametertypeLocaldatetimePathLocalDateTimeGet without sending the request
+     * Creates request options for pathParameterTypeServiceSimpleLocalDateTimePathParam without sending the request
      */
-    async apiPathparametertypeLocaldatetimePathLocalDateTimeGetRequestOpts(requestParameters: ApiPathparametertypeLocaldatetimePathLocalDateTimeGetRequest): Promise<runtime.RequestOpts> {
+    async pathParameterTypeServiceSimpleLocalDateTimePathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleLocalDateTimePathParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathLocalDateTime'] == null) {
             throw new runtime.RequiredError(
                 'pathLocalDateTime',
-                'Required parameter "pathLocalDateTime" was null or undefined when calling apiPathparametertypeLocaldatetimePathLocalDateTimeGet().'
+                'Required parameter "pathLocalDateTime" was null or undefined when calling pathParameterTypeServiceSimpleLocalDateTimePathParam().'
             );
         }
 
@@ -404,8 +461,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeLocaldatetimePathLocalDateTimeGetRaw(requestParameters: ApiPathparametertypeLocaldatetimePathLocalDateTimeGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiPathparametertypeLocaldatetimePathLocalDateTimeGetRequestOpts(requestParameters);
+    async pathParameterTypeServiceSimpleLocalDateTimePathParamRaw(requestParameters: PathParameterTypeServiceSimpleLocalDateTimePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleLocalDateTimePathParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -418,19 +475,19 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeLocaldatetimePathLocalDateTimeGet(requestParameters: ApiPathparametertypeLocaldatetimePathLocalDateTimeGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiPathparametertypeLocaldatetimePathLocalDateTimeGetRaw(requestParameters, initOverrides);
+    async pathParameterTypeServiceSimpleLocalDateTimePathParam(requestParameters: PathParameterTypeServiceSimpleLocalDateTimePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.pathParameterTypeServiceSimpleLocalDateTimePathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiPathparametertypeLongPathLongGet without sending the request
+     * Creates request options for pathParameterTypeServiceSimpleLongPathParam without sending the request
      */
-    async apiPathparametertypeLongPathLongGetRequestOpts(requestParameters: ApiPathparametertypeLongPathLongGetRequest): Promise<runtime.RequestOpts> {
+    async pathParameterTypeServiceSimpleLongPathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleLongPathParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathLong'] == null) {
             throw new runtime.RequiredError(
                 'pathLong',
-                'Required parameter "pathLong" was null or undefined when calling apiPathparametertypeLongPathLongGet().'
+                'Required parameter "pathLong" was null or undefined when calling pathParameterTypeServiceSimpleLongPathParam().'
             );
         }
 
@@ -453,8 +510,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeLongPathLongGetRaw(requestParameters: ApiPathparametertypeLongPathLongGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiPathparametertypeLongPathLongGetRequestOpts(requestParameters);
+    async pathParameterTypeServiceSimpleLongPathParamRaw(requestParameters: PathParameterTypeServiceSimpleLongPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleLongPathParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -467,76 +524,19 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeLongPathLongGet(requestParameters: ApiPathparametertypeLongPathLongGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiPathparametertypeLongPathLongGetRaw(requestParameters, initOverrides);
+    async pathParameterTypeServiceSimpleLongPathParam(requestParameters: PathParameterTypeServiceSimpleLongPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.pathParameterTypeServiceSimpleLongPathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiPathparametertypeMultipathparamValueAValueBGet without sending the request
+     * Creates request options for pathParameterTypeServiceSimpleScalarPathParam without sending the request
      */
-    async apiPathparametertypeMultipathparamValueAValueBGetRequestOpts(requestParameters: ApiPathparametertypeMultipathparamValueAValueBGetRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['valueA'] == null) {
-            throw new runtime.RequiredError(
-                'valueA',
-                'Required parameter "valueA" was null or undefined when calling apiPathparametertypeMultipathparamValueAValueBGet().'
-            );
-        }
-
-        if (requestParameters['valueB'] == null) {
-            throw new runtime.RequiredError(
-                'valueB',
-                'Required parameter "valueB" was null or undefined when calling apiPathparametertypeMultipathparamValueAValueBGet().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/pathparametertype/multipathparam/{valueA}/{valueB}`;
-        urlPath = urlPath.replace(`{${"valueA"}}`, encodeURIComponent(String(requestParameters['valueA'])));
-        urlPath = urlPath.replace(`{${"valueB"}}`, encodeURIComponent(String(requestParameters['valueB'])));
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     * 
-     */
-    async apiPathparametertypeMultipathparamValueAValueBGetRaw(requestParameters: ApiPathparametertypeMultipathparamValueAValueBGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiPathparametertypeMultipathparamValueAValueBGetRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * 
-     */
-    async apiPathparametertypeMultipathparamValueAValueBGet(requestParameters: ApiPathparametertypeMultipathparamValueAValueBGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiPathparametertypeMultipathparamValueAValueBGetRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for apiPathparametertypeScalarPathScalarGet without sending the request
-     */
-    async apiPathparametertypeScalarPathScalarGetRequestOpts(requestParameters: ApiPathparametertypeScalarPathScalarGetRequest): Promise<runtime.RequestOpts> {
+    async pathParameterTypeServiceSimpleScalarPathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleScalarPathParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathScalar'] == null) {
             throw new runtime.RequiredError(
                 'pathScalar',
-                'Required parameter "pathScalar" was null or undefined when calling apiPathparametertypeScalarPathScalarGet().'
+                'Required parameter "pathScalar" was null or undefined when calling pathParameterTypeServiceSimpleScalarPathParam().'
             );
         }
 
@@ -559,8 +559,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeScalarPathScalarGetRaw(requestParameters: ApiPathparametertypeScalarPathScalarGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiPathparametertypeScalarPathScalarGetRequestOpts(requestParameters);
+    async pathParameterTypeServiceSimpleScalarPathParamRaw(requestParameters: PathParameterTypeServiceSimpleScalarPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleScalarPathParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -573,19 +573,19 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeScalarPathScalarGet(requestParameters: ApiPathparametertypeScalarPathScalarGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiPathparametertypeScalarPathScalarGetRaw(requestParameters, initOverrides);
+    async pathParameterTypeServiceSimpleScalarPathParam(requestParameters: PathParameterTypeServiceSimpleScalarPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.pathParameterTypeServiceSimpleScalarPathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiPathparametertypeShortPathShortGet without sending the request
+     * Creates request options for pathParameterTypeServiceSimpleShortPathParam without sending the request
      */
-    async apiPathparametertypeShortPathShortGetRequestOpts(requestParameters: ApiPathparametertypeShortPathShortGetRequest): Promise<runtime.RequestOpts> {
+    async pathParameterTypeServiceSimpleShortPathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleShortPathParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathShort'] == null) {
             throw new runtime.RequiredError(
                 'pathShort',
-                'Required parameter "pathShort" was null or undefined when calling apiPathparametertypeShortPathShortGet().'
+                'Required parameter "pathShort" was null or undefined when calling pathParameterTypeServiceSimpleShortPathParam().'
             );
         }
 
@@ -608,8 +608,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeShortPathShortGetRaw(requestParameters: ApiPathparametertypeShortPathShortGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiPathparametertypeShortPathShortGetRequestOpts(requestParameters);
+    async pathParameterTypeServiceSimpleShortPathParamRaw(requestParameters: PathParameterTypeServiceSimpleShortPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleShortPathParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -622,19 +622,19 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeShortPathShortGet(requestParameters: ApiPathparametertypeShortPathShortGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiPathparametertypeShortPathShortGetRaw(requestParameters, initOverrides);
+    async pathParameterTypeServiceSimpleShortPathParam(requestParameters: PathParameterTypeServiceSimpleShortPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.pathParameterTypeServiceSimpleShortPathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiPathparametertypeStringPathStringGet without sending the request
+     * Creates request options for pathParameterTypeServiceSimpleStringPathParam without sending the request
      */
-    async apiPathparametertypeStringPathStringGetRequestOpts(requestParameters: ApiPathparametertypeStringPathStringGetRequest): Promise<runtime.RequestOpts> {
+    async pathParameterTypeServiceSimpleStringPathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleStringPathParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathString'] == null) {
             throw new runtime.RequiredError(
                 'pathString',
-                'Required parameter "pathString" was null or undefined when calling apiPathparametertypeStringPathStringGet().'
+                'Required parameter "pathString" was null or undefined when calling pathParameterTypeServiceSimpleStringPathParam().'
             );
         }
 
@@ -657,8 +657,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeStringPathStringGetRaw(requestParameters: ApiPathparametertypeStringPathStringGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiPathparametertypeStringPathStringGetRequestOpts(requestParameters);
+    async pathParameterTypeServiceSimpleStringPathParamRaw(requestParameters: PathParameterTypeServiceSimpleStringPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleStringPathParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -671,19 +671,19 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeStringPathStringGet(requestParameters: ApiPathparametertypeStringPathStringGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiPathparametertypeStringPathStringGetRaw(requestParameters, initOverrides);
+    async pathParameterTypeServiceSimpleStringPathParam(requestParameters: PathParameterTypeServiceSimpleStringPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.pathParameterTypeServiceSimpleStringPathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiPathparametertypeZoneddatetimePathZonedDateTimeGet without sending the request
+     * Creates request options for pathParameterTypeServiceSimpleZonedDateTimePathParam without sending the request
      */
-    async apiPathparametertypeZoneddatetimePathZonedDateTimeGetRequestOpts(requestParameters: ApiPathparametertypeZoneddatetimePathZonedDateTimeGetRequest): Promise<runtime.RequestOpts> {
+    async pathParameterTypeServiceSimpleZonedDateTimePathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleZonedDateTimePathParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathZonedDateTime'] == null) {
             throw new runtime.RequiredError(
                 'pathZonedDateTime',
-                'Required parameter "pathZonedDateTime" was null or undefined when calling apiPathparametertypeZoneddatetimePathZonedDateTimeGet().'
+                'Required parameter "pathZonedDateTime" was null or undefined when calling pathParameterTypeServiceSimpleZonedDateTimePathParam().'
             );
         }
 
@@ -706,8 +706,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeZoneddatetimePathZonedDateTimeGetRaw(requestParameters: ApiPathparametertypeZoneddatetimePathZonedDateTimeGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiPathparametertypeZoneddatetimePathZonedDateTimeGetRequestOpts(requestParameters);
+    async pathParameterTypeServiceSimpleZonedDateTimePathParamRaw(requestParameters: PathParameterTypeServiceSimpleZonedDateTimePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleZonedDateTimePathParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -720,8 +720,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiPathparametertypeZoneddatetimePathZonedDateTimeGet(requestParameters: ApiPathparametertypeZoneddatetimePathZonedDateTimeGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiPathparametertypeZoneddatetimePathZonedDateTimeGetRaw(requestParameters, initOverrides);
+    async pathParameterTypeServiceSimpleZonedDateTimePathParam(requestParameters: PathParameterTypeServiceSimpleZonedDateTimePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.pathParameterTypeServiceSimpleZonedDateTimePathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

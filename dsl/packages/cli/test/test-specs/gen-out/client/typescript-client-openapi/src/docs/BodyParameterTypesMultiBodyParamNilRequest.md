@@ -1,5 +1,5 @@
 
-# ApiBodyparametertypesMultiBodyParamOptNilPostRequest
+# BodyParameterTypesMultiBodyParamNilRequest
 
 
 ## Properties
@@ -13,14 +13,14 @@ Name | Type
 ## Example
 
 ```typescript
-import type { ApiBodyparametertypesMultiBodyParamOptNilPostRequest } from ''
+import type { BodyParameterTypesMultiBodyParamNilRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
   "valueA": null,
   "valueB": null,
   "valueC": null,
-} satisfies ApiBodyparametertypesMultiBodyParamOptNilPostRequest
+} satisfies BodyParameterTypesMultiBodyParamNilRequest
 
 console.log(example)
 
@@ -29,7 +29,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ApiBodyparametertypesMultiBodyParamOptNilPostRequest
+const exampleParsed = JSON.parse(exampleJSON) as BodyParameterTypesMultiBodyParamNilRequest
 console.log(exampleParsed)
 ```
 

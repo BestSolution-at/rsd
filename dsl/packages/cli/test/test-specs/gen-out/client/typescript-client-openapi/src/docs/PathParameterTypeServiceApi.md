@@ -4,92 +4,25 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**apiPathparametertypeBooleanPathBooleanGet**](PathParameterTypeServiceApi.md#apipathparametertypebooleanpathbooleanget) | **GET** /api/pathparametertype/boolean/{pathBoolean} |  |
-| [**apiPathparametertypeDoublePathDoubleGet**](PathParameterTypeServiceApi.md#apipathparametertypedoublepathdoubleget) | **GET** /api/pathparametertype/double/{pathDouble} |  |
-| [**apiPathparametertypeEnumPathEnumGet**](PathParameterTypeServiceApi.md#apipathparametertypeenumpathenumget) | **GET** /api/pathparametertype/enum/{pathEnum} |  |
-| [**apiPathparametertypeFloatPathFloatGet**](PathParameterTypeServiceApi.md#apipathparametertypefloatpathfloatget) | **GET** /api/pathparametertype/float/{pathFloat} |  |
-| [**apiPathparametertypeIntPathIntGet**](PathParameterTypeServiceApi.md#apipathparametertypeintpathintget) | **GET** /api/pathparametertype/int/{pathInt} |  |
-| [**apiPathparametertypeLocaldatePathLocalDateGet**](PathParameterTypeServiceApi.md#apipathparametertypelocaldatepathlocaldateget) | **GET** /api/pathparametertype/localdate/{pathLocalDate} |  |
-| [**apiPathparametertypeLocaldatetimePathLocalDateTimeGet**](PathParameterTypeServiceApi.md#apipathparametertypelocaldatetimepathlocaldatetimeget) | **GET** /api/pathparametertype/localdatetime/{pathLocalDateTime} |  |
-| [**apiPathparametertypeLongPathLongGet**](PathParameterTypeServiceApi.md#apipathparametertypelongpathlongget) | **GET** /api/pathparametertype/long/{pathLong} |  |
-| [**apiPathparametertypeMultipathparamValueAValueBGet**](PathParameterTypeServiceApi.md#apipathparametertypemultipathparamvalueavaluebget) | **GET** /api/pathparametertype/multipathparam/{valueA}/{valueB} |  |
-| [**apiPathparametertypeScalarPathScalarGet**](PathParameterTypeServiceApi.md#apipathparametertypescalarpathscalarget) | **GET** /api/pathparametertype/scalar/{pathScalar} |  |
-| [**apiPathparametertypeShortPathShortGet**](PathParameterTypeServiceApi.md#apipathparametertypeshortpathshortget) | **GET** /api/pathparametertype/short/{pathShort} |  |
-| [**apiPathparametertypeStringPathStringGet**](PathParameterTypeServiceApi.md#apipathparametertypestringpathstringget) | **GET** /api/pathparametertype/string/{pathString} |  |
-| [**apiPathparametertypeZoneddatetimePathZonedDateTimeGet**](PathParameterTypeServiceApi.md#apipathparametertypezoneddatetimepathzoneddatetimeget) | **GET** /api/pathparametertype/zoneddatetime/{pathZonedDateTime} |  |
+| [**pathParameterTypeServiceMultiPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicemultipathparam) | **GET** /api/pathparametertype/multipathparam/{valueA}/{valueB} |  |
+| [**pathParameterTypeServiceSimpleBooleanPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplebooleanpathparam) | **GET** /api/pathparametertype/boolean/{pathBoolean} |  |
+| [**pathParameterTypeServiceSimpleDoublePathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimpledoublepathparam) | **GET** /api/pathparametertype/double/{pathDouble} |  |
+| [**pathParameterTypeServiceSimpleEnumPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimpleenumpathparam) | **GET** /api/pathparametertype/enum/{pathEnum} |  |
+| [**pathParameterTypeServiceSimpleFloatPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplefloatpathparam) | **GET** /api/pathparametertype/float/{pathFloat} |  |
+| [**pathParameterTypeServiceSimpleIntPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimpleintpathparam) | **GET** /api/pathparametertype/int/{pathInt} |  |
+| [**pathParameterTypeServiceSimpleLocalDatePathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplelocaldatepathparam) | **GET** /api/pathparametertype/localdate/{pathLocalDate} |  |
+| [**pathParameterTypeServiceSimpleLocalDateTimePathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplelocaldatetimepathparam) | **GET** /api/pathparametertype/localdatetime/{pathLocalDateTime} |  |
+| [**pathParameterTypeServiceSimpleLongPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplelongpathparam) | **GET** /api/pathparametertype/long/{pathLong} |  |
+| [**pathParameterTypeServiceSimpleScalarPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplescalarpathparam) | **GET** /api/pathparametertype/scalar/{pathScalar} |  |
+| [**pathParameterTypeServiceSimpleShortPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimpleshortpathparam) | **GET** /api/pathparametertype/short/{pathShort} |  |
+| [**pathParameterTypeServiceSimpleStringPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplestringpathparam) | **GET** /api/pathparametertype/string/{pathString} |  |
+| [**pathParameterTypeServiceSimpleZonedDateTimePathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplezoneddatetimepathparam) | **GET** /api/pathparametertype/zoneddatetime/{pathZonedDateTime} |  |
 
 
 
-## apiPathparametertypeBooleanPathBooleanGet
+## pathParameterTypeServiceMultiPathParam
 
-> boolean apiPathparametertypeBooleanPathBooleanGet(pathBoolean)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  PathParameterTypeServiceApi,
-} from '';
-import type { ApiPathparametertypeBooleanPathBooleanGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new PathParameterTypeServiceApi();
-
-  const body = {
-    // boolean | 
-    pathBoolean: true,
-  } satisfies ApiPathparametertypeBooleanPathBooleanGetRequest;
-
-  try {
-    const data = await api.apiPathparametertypeBooleanPathBooleanGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **pathBoolean** | `boolean` |  | [Defaults to `undefined`] |
-
-### Return type
-
-**boolean**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiPathparametertypeDoublePathDoubleGet
-
-> number apiPathparametertypeDoublePathDoubleGet(pathDouble)
+> string pathParameterTypeServiceMultiPathParam(valueA, valueB)
 
 
 
@@ -102,476 +35,7 @@ import {
   Configuration,
   PathParameterTypeServiceApi,
 } from '';
-import type { ApiPathparametertypeDoublePathDoubleGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new PathParameterTypeServiceApi();
-
-  const body = {
-    // number | 
-    pathDouble: 1.2,
-  } satisfies ApiPathparametertypeDoublePathDoubleGetRequest;
-
-  try {
-    const data = await api.apiPathparametertypeDoublePathDoubleGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **pathDouble** | `number` |  | [Defaults to `undefined`] |
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiPathparametertypeEnumPathEnumGet
-
-> SampleEnum apiPathparametertypeEnumPathEnumGet(pathEnum)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  PathParameterTypeServiceApi,
-} from '';
-import type { ApiPathparametertypeEnumPathEnumGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new PathParameterTypeServiceApi();
-
-  const body = {
-    // SampleEnum | 
-    pathEnum: ...,
-  } satisfies ApiPathparametertypeEnumPathEnumGetRequest;
-
-  try {
-    const data = await api.apiPathparametertypeEnumPathEnumGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **pathEnum** | `SampleEnum` |  | [Defaults to `undefined`] [Enum: A, B] |
-
-### Return type
-
-[**SampleEnum**](SampleEnum.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiPathparametertypeFloatPathFloatGet
-
-> number apiPathparametertypeFloatPathFloatGet(pathFloat)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  PathParameterTypeServiceApi,
-} from '';
-import type { ApiPathparametertypeFloatPathFloatGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new PathParameterTypeServiceApi();
-
-  const body = {
-    // number | 
-    pathFloat: 3.4,
-  } satisfies ApiPathparametertypeFloatPathFloatGetRequest;
-
-  try {
-    const data = await api.apiPathparametertypeFloatPathFloatGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **pathFloat** | `number` |  | [Defaults to `undefined`] |
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiPathparametertypeIntPathIntGet
-
-> number apiPathparametertypeIntPathIntGet(pathInt)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  PathParameterTypeServiceApi,
-} from '';
-import type { ApiPathparametertypeIntPathIntGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new PathParameterTypeServiceApi();
-
-  const body = {
-    // number | 
-    pathInt: 8.14,
-  } satisfies ApiPathparametertypeIntPathIntGetRequest;
-
-  try {
-    const data = await api.apiPathparametertypeIntPathIntGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **pathInt** | `number` |  | [Defaults to `undefined`] |
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiPathparametertypeLocaldatePathLocalDateGet
-
-> Date apiPathparametertypeLocaldatePathLocalDateGet(pathLocalDate)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  PathParameterTypeServiceApi,
-} from '';
-import type { ApiPathparametertypeLocaldatePathLocalDateGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new PathParameterTypeServiceApi();
-
-  const body = {
-    // Date | 
-    pathLocalDate: 2013-10-20,
-  } satisfies ApiPathparametertypeLocaldatePathLocalDateGetRequest;
-
-  try {
-    const data = await api.apiPathparametertypeLocaldatePathLocalDateGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **pathLocalDate** | `Date` |  | [Defaults to `undefined`] |
-
-### Return type
-
-**Date**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiPathparametertypeLocaldatetimePathLocalDateTimeGet
-
-> string apiPathparametertypeLocaldatetimePathLocalDateTimeGet(pathLocalDateTime)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  PathParameterTypeServiceApi,
-} from '';
-import type { ApiPathparametertypeLocaldatetimePathLocalDateTimeGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new PathParameterTypeServiceApi();
-
-  const body = {
-    // string | 
-    pathLocalDateTime: pathLocalDateTime_example,
-  } satisfies ApiPathparametertypeLocaldatetimePathLocalDateTimeGetRequest;
-
-  try {
-    const data = await api.apiPathparametertypeLocaldatetimePathLocalDateTimeGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **pathLocalDateTime** | `string` |  | [Defaults to `undefined`] |
-
-### Return type
-
-**string**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiPathparametertypeLongPathLongGet
-
-> number apiPathparametertypeLongPathLongGet(pathLong)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  PathParameterTypeServiceApi,
-} from '';
-import type { ApiPathparametertypeLongPathLongGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new PathParameterTypeServiceApi();
-
-  const body = {
-    // number | 
-    pathLong: 8.14,
-  } satisfies ApiPathparametertypeLongPathLongGetRequest;
-
-  try {
-    const data = await api.apiPathparametertypeLongPathLongGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **pathLong** | `number` |  | [Defaults to `undefined`] |
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiPathparametertypeMultipathparamValueAValueBGet
-
-> string apiPathparametertypeMultipathparamValueAValueBGet(valueA, valueB)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  PathParameterTypeServiceApi,
-} from '';
-import type { ApiPathparametertypeMultipathparamValueAValueBGetRequest } from '';
+import type { PathParameterTypeServiceMultiPathParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -582,10 +46,10 @@ async function example() {
     valueA: valueA_example,
     // number | 
     valueB: 8.14,
-  } satisfies ApiPathparametertypeMultipathparamValueAValueBGetRequest;
+  } satisfies PathParameterTypeServiceMultiPathParamRequest;
 
   try {
-    const data = await api.apiPathparametertypeMultipathparamValueAValueBGet(body);
+    const data = await api.pathParameterTypeServiceMultiPathParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -626,9 +90,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiPathparametertypeScalarPathScalarGet
+## pathParameterTypeServiceSimpleBooleanPathParam
 
-> string apiPathparametertypeScalarPathScalarGet(pathScalar)
+> boolean pathParameterTypeServiceSimpleBooleanPathParam(pathBoolean)
 
 
 
@@ -641,7 +105,543 @@ import {
   Configuration,
   PathParameterTypeServiceApi,
 } from '';
-import type { ApiPathparametertypeScalarPathScalarGetRequest } from '';
+import type { PathParameterTypeServiceSimpleBooleanPathParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new PathParameterTypeServiceApi();
+
+  const body = {
+    // boolean | 
+    pathBoolean: true,
+  } satisfies PathParameterTypeServiceSimpleBooleanPathParamRequest;
+
+  try {
+    const data = await api.pathParameterTypeServiceSimpleBooleanPathParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pathBoolean** | `boolean` |  | [Defaults to `undefined`] |
+
+### Return type
+
+**boolean**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## pathParameterTypeServiceSimpleDoublePathParam
+
+> number pathParameterTypeServiceSimpleDoublePathParam(pathDouble)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PathParameterTypeServiceApi,
+} from '';
+import type { PathParameterTypeServiceSimpleDoublePathParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new PathParameterTypeServiceApi();
+
+  const body = {
+    // number | 
+    pathDouble: 1.2,
+  } satisfies PathParameterTypeServiceSimpleDoublePathParamRequest;
+
+  try {
+    const data = await api.pathParameterTypeServiceSimpleDoublePathParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pathDouble** | `number` |  | [Defaults to `undefined`] |
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## pathParameterTypeServiceSimpleEnumPathParam
+
+> SampleEnum pathParameterTypeServiceSimpleEnumPathParam(pathEnum)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PathParameterTypeServiceApi,
+} from '';
+import type { PathParameterTypeServiceSimpleEnumPathParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new PathParameterTypeServiceApi();
+
+  const body = {
+    // SampleEnum | 
+    pathEnum: ...,
+  } satisfies PathParameterTypeServiceSimpleEnumPathParamRequest;
+
+  try {
+    const data = await api.pathParameterTypeServiceSimpleEnumPathParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pathEnum** | `SampleEnum` |  | [Defaults to `undefined`] [Enum: A, B] |
+
+### Return type
+
+[**SampleEnum**](SampleEnum.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## pathParameterTypeServiceSimpleFloatPathParam
+
+> number pathParameterTypeServiceSimpleFloatPathParam(pathFloat)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PathParameterTypeServiceApi,
+} from '';
+import type { PathParameterTypeServiceSimpleFloatPathParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new PathParameterTypeServiceApi();
+
+  const body = {
+    // number | 
+    pathFloat: 3.4,
+  } satisfies PathParameterTypeServiceSimpleFloatPathParamRequest;
+
+  try {
+    const data = await api.pathParameterTypeServiceSimpleFloatPathParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pathFloat** | `number` |  | [Defaults to `undefined`] |
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## pathParameterTypeServiceSimpleIntPathParam
+
+> number pathParameterTypeServiceSimpleIntPathParam(pathInt)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PathParameterTypeServiceApi,
+} from '';
+import type { PathParameterTypeServiceSimpleIntPathParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new PathParameterTypeServiceApi();
+
+  const body = {
+    // number | 
+    pathInt: 8.14,
+  } satisfies PathParameterTypeServiceSimpleIntPathParamRequest;
+
+  try {
+    const data = await api.pathParameterTypeServiceSimpleIntPathParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pathInt** | `number` |  | [Defaults to `undefined`] |
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## pathParameterTypeServiceSimpleLocalDatePathParam
+
+> Date pathParameterTypeServiceSimpleLocalDatePathParam(pathLocalDate)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PathParameterTypeServiceApi,
+} from '';
+import type { PathParameterTypeServiceSimpleLocalDatePathParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new PathParameterTypeServiceApi();
+
+  const body = {
+    // Date | 
+    pathLocalDate: 2013-10-20,
+  } satisfies PathParameterTypeServiceSimpleLocalDatePathParamRequest;
+
+  try {
+    const data = await api.pathParameterTypeServiceSimpleLocalDatePathParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pathLocalDate** | `Date` |  | [Defaults to `undefined`] |
+
+### Return type
+
+**Date**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## pathParameterTypeServiceSimpleLocalDateTimePathParam
+
+> string pathParameterTypeServiceSimpleLocalDateTimePathParam(pathLocalDateTime)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PathParameterTypeServiceApi,
+} from '';
+import type { PathParameterTypeServiceSimpleLocalDateTimePathParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new PathParameterTypeServiceApi();
+
+  const body = {
+    // string | 
+    pathLocalDateTime: pathLocalDateTime_example,
+  } satisfies PathParameterTypeServiceSimpleLocalDateTimePathParamRequest;
+
+  try {
+    const data = await api.pathParameterTypeServiceSimpleLocalDateTimePathParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pathLocalDateTime** | `string` |  | [Defaults to `undefined`] |
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## pathParameterTypeServiceSimpleLongPathParam
+
+> number pathParameterTypeServiceSimpleLongPathParam(pathLong)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PathParameterTypeServiceApi,
+} from '';
+import type { PathParameterTypeServiceSimpleLongPathParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new PathParameterTypeServiceApi();
+
+  const body = {
+    // number | 
+    pathLong: 8.14,
+  } satisfies PathParameterTypeServiceSimpleLongPathParamRequest;
+
+  try {
+    const data = await api.pathParameterTypeServiceSimpleLongPathParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pathLong** | `number` |  | [Defaults to `undefined`] |
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## pathParameterTypeServiceSimpleScalarPathParam
+
+> string pathParameterTypeServiceSimpleScalarPathParam(pathScalar)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PathParameterTypeServiceApi,
+} from '';
+import type { PathParameterTypeServiceSimpleScalarPathParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -650,10 +650,10 @@ async function example() {
   const body = {
     // string | 
     pathScalar: pathScalar_example,
-  } satisfies ApiPathparametertypeScalarPathScalarGetRequest;
+  } satisfies PathParameterTypeServiceSimpleScalarPathParamRequest;
 
   try {
-    const data = await api.apiPathparametertypeScalarPathScalarGet(body);
+    const data = await api.pathParameterTypeServiceSimpleScalarPathParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -693,9 +693,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiPathparametertypeShortPathShortGet
+## pathParameterTypeServiceSimpleShortPathParam
 
-> number apiPathparametertypeShortPathShortGet(pathShort)
+> number pathParameterTypeServiceSimpleShortPathParam(pathShort)
 
 
 
@@ -708,7 +708,7 @@ import {
   Configuration,
   PathParameterTypeServiceApi,
 } from '';
-import type { ApiPathparametertypeShortPathShortGetRequest } from '';
+import type { PathParameterTypeServiceSimpleShortPathParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -717,10 +717,10 @@ async function example() {
   const body = {
     // number | 
     pathShort: 8.14,
-  } satisfies ApiPathparametertypeShortPathShortGetRequest;
+  } satisfies PathParameterTypeServiceSimpleShortPathParamRequest;
 
   try {
-    const data = await api.apiPathparametertypeShortPathShortGet(body);
+    const data = await api.pathParameterTypeServiceSimpleShortPathParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -760,9 +760,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiPathparametertypeStringPathStringGet
+## pathParameterTypeServiceSimpleStringPathParam
 
-> string apiPathparametertypeStringPathStringGet(pathString)
+> string pathParameterTypeServiceSimpleStringPathParam(pathString)
 
 
 
@@ -775,7 +775,7 @@ import {
   Configuration,
   PathParameterTypeServiceApi,
 } from '';
-import type { ApiPathparametertypeStringPathStringGetRequest } from '';
+import type { PathParameterTypeServiceSimpleStringPathParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -784,10 +784,10 @@ async function example() {
   const body = {
     // string | 
     pathString: pathString_example,
-  } satisfies ApiPathparametertypeStringPathStringGetRequest;
+  } satisfies PathParameterTypeServiceSimpleStringPathParamRequest;
 
   try {
-    const data = await api.apiPathparametertypeStringPathStringGet(body);
+    const data = await api.pathParameterTypeServiceSimpleStringPathParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -827,9 +827,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiPathparametertypeZoneddatetimePathZonedDateTimeGet
+## pathParameterTypeServiceSimpleZonedDateTimePathParam
 
-> string apiPathparametertypeZoneddatetimePathZonedDateTimeGet(pathZonedDateTime)
+> string pathParameterTypeServiceSimpleZonedDateTimePathParam(pathZonedDateTime)
 
 
 
@@ -842,7 +842,7 @@ import {
   Configuration,
   PathParameterTypeServiceApi,
 } from '';
-import type { ApiPathparametertypeZoneddatetimePathZonedDateTimeGetRequest } from '';
+import type { PathParameterTypeServiceSimpleZonedDateTimePathParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -851,10 +851,10 @@ async function example() {
   const body = {
     // string | 
     pathZonedDateTime: pathZonedDateTime_example,
-  } satisfies ApiPathparametertypeZoneddatetimePathZonedDateTimeGetRequest;
+  } satisfies PathParameterTypeServiceSimpleZonedDateTimePathParamRequest;
 
   try {
-    const data = await api.apiPathparametertypeZoneddatetimePathZonedDateTimeGet(body);
+    const data = await api.pathParameterTypeServiceSimpleZonedDateTimePathParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);

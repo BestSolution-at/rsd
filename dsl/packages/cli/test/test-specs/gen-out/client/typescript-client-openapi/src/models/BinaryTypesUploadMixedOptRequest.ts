@@ -24,71 +24,71 @@ import {
 /**
  * 
  * @export
- * @interface ApiBinarytypesUploadMixedOptNilPutRequest
+ * @interface BinaryTypesUploadMixedOptRequest
  */
-export interface ApiBinarytypesUploadMixedOptNilPutRequest {
+export interface BinaryTypesUploadMixedOptRequest {
     /**
      * 
      * @type {string}
-     * @memberof ApiBinarytypesUploadMixedOptNilPutRequest
+     * @memberof BinaryTypesUploadMixedOptRequest
      */
-    text?: string | null;
+    text?: string;
     /**
      * 
      * @type {number}
-     * @memberof ApiBinarytypesUploadMixedOptNilPutRequest
+     * @memberof BinaryTypesUploadMixedOptRequest
      */
-    number?: number | null;
+    number?: number;
     /**
      * 
      * @type {SimpleRecord}
-     * @memberof ApiBinarytypesUploadMixedOptNilPutRequest
+     * @memberof BinaryTypesUploadMixedOptRequest
      */
-    rec?: SimpleRecord | null;
+    rec?: SimpleRecord;
     /**
      * 
      * @type {Array<string>}
-     * @memberof ApiBinarytypesUploadMixedOptNilPutRequest
+     * @memberof BinaryTypesUploadMixedOptRequest
      */
     textList?: Array<string>;
     /**
      * 
      * @type {Array<number>}
-     * @memberof ApiBinarytypesUploadMixedOptNilPutRequest
+     * @memberof BinaryTypesUploadMixedOptRequest
      */
     numberList?: Array<number>;
     /**
      * 
      * @type {Array<SimpleRecord>}
-     * @memberof ApiBinarytypesUploadMixedOptNilPutRequest
+     * @memberof BinaryTypesUploadMixedOptRequest
      */
     recList?: Array<SimpleRecord>;
     /**
      * 
      * @type {any}
-     * @memberof ApiBinarytypesUploadMixedOptNilPutRequest
+     * @memberof BinaryTypesUploadMixedOptRequest
      */
     dataFile?: any | null;
     /**
      * 
      * @type {any}
-     * @memberof ApiBinarytypesUploadMixedOptNilPutRequest
+     * @memberof BinaryTypesUploadMixedOptRequest
      */
     dataBlob?: any | null;
 }
 
 /**
- * Check if a given object implements the ApiBinarytypesUploadMixedOptNilPutRequest interface.
+ * Check if a given object implements the BinaryTypesUploadMixedOptRequest interface.
  */
-export function instanceOfApiBinarytypesUploadMixedOptNilPutRequest(value: object): value is ApiBinarytypesUploadMixedOptNilPutRequest {
+export function instanceOfBinaryTypesUploadMixedOptRequest(value: object): value is BinaryTypesUploadMixedOptRequest {
     return true;
 }
 
-export function ApiBinarytypesUploadMixedOptNilPutRequestFromJSON(json: any): ApiBinarytypesUploadMixedOptNilPutRequest {
-    return ApiBinarytypesUploadMixedOptNilPutRequestFromJSONTyped(json, false);
+export function BinaryTypesUploadMixedOptRequestFromJSON(json: any): BinaryTypesUploadMixedOptRequest {
+    return BinaryTypesUploadMixedOptRequestFromJSONTyped(json, false);
 }
 
-export function ApiBinarytypesUploadMixedOptNilPutRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiBinarytypesUploadMixedOptNilPutRequest {
+export function BinaryTypesUploadMixedOptRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BinaryTypesUploadMixedOptRequest {
     if (json == null) {
         return json;
     }
@@ -105,11 +105,11 @@ export function ApiBinarytypesUploadMixedOptNilPutRequestFromJSONTyped(json: any
     };
 }
 
-export function ApiBinarytypesUploadMixedOptNilPutRequestToJSON(json: any): ApiBinarytypesUploadMixedOptNilPutRequest {
-    return ApiBinarytypesUploadMixedOptNilPutRequestToJSONTyped(json, false);
+export function BinaryTypesUploadMixedOptRequestToJSON(json: any): BinaryTypesUploadMixedOptRequest {
+    return BinaryTypesUploadMixedOptRequestToJSONTyped(json, false);
 }
 
-export function ApiBinarytypesUploadMixedOptNilPutRequestToJSONTyped(value?: ApiBinarytypesUploadMixedOptNilPutRequest | null, ignoreDiscriminator: boolean = false): any {
+export function BinaryTypesUploadMixedOptRequestToJSONTyped(value?: BinaryTypesUploadMixedOptRequest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

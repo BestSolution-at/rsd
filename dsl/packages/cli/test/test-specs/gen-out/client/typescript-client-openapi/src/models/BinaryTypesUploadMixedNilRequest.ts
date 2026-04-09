@@ -24,63 +24,63 @@ import {
 /**
  * 
  * @export
- * @interface ApiBinarytypesUploadMixedNilPutRequest
+ * @interface BinaryTypesUploadMixedNilRequest
  */
-export interface ApiBinarytypesUploadMixedNilPutRequest {
+export interface BinaryTypesUploadMixedNilRequest {
     /**
      * 
      * @type {string}
-     * @memberof ApiBinarytypesUploadMixedNilPutRequest
+     * @memberof BinaryTypesUploadMixedNilRequest
      */
     text: string | null;
     /**
      * 
      * @type {number}
-     * @memberof ApiBinarytypesUploadMixedNilPutRequest
+     * @memberof BinaryTypesUploadMixedNilRequest
      */
     number: number | null;
     /**
      * 
      * @type {SimpleRecord}
-     * @memberof ApiBinarytypesUploadMixedNilPutRequest
+     * @memberof BinaryTypesUploadMixedNilRequest
      */
     rec: SimpleRecord | null;
     /**
      * 
      * @type {Array<string>}
-     * @memberof ApiBinarytypesUploadMixedNilPutRequest
+     * @memberof BinaryTypesUploadMixedNilRequest
      */
     textList: Array<string>;
     /**
      * 
      * @type {Array<number>}
-     * @memberof ApiBinarytypesUploadMixedNilPutRequest
+     * @memberof BinaryTypesUploadMixedNilRequest
      */
     numberList: Array<number>;
     /**
      * 
      * @type {Array<SimpleRecord>}
-     * @memberof ApiBinarytypesUploadMixedNilPutRequest
+     * @memberof BinaryTypesUploadMixedNilRequest
      */
     recList: Array<SimpleRecord>;
     /**
      * 
      * @type {any}
-     * @memberof ApiBinarytypesUploadMixedNilPutRequest
+     * @memberof BinaryTypesUploadMixedNilRequest
      */
     dataFile: any | null;
     /**
      * 
      * @type {any}
-     * @memberof ApiBinarytypesUploadMixedNilPutRequest
+     * @memberof BinaryTypesUploadMixedNilRequest
      */
     dataBlob: any | null;
 }
 
 /**
- * Check if a given object implements the ApiBinarytypesUploadMixedNilPutRequest interface.
+ * Check if a given object implements the BinaryTypesUploadMixedNilRequest interface.
  */
-export function instanceOfApiBinarytypesUploadMixedNilPutRequest(value: object): value is ApiBinarytypesUploadMixedNilPutRequest {
+export function instanceOfBinaryTypesUploadMixedNilRequest(value: object): value is BinaryTypesUploadMixedNilRequest {
     if (!('text' in value) || value['text'] === undefined) return false;
     if (!('number' in value) || value['number'] === undefined) return false;
     if (!('rec' in value) || value['rec'] === undefined) return false;
@@ -92,11 +92,11 @@ export function instanceOfApiBinarytypesUploadMixedNilPutRequest(value: object):
     return true;
 }
 
-export function ApiBinarytypesUploadMixedNilPutRequestFromJSON(json: any): ApiBinarytypesUploadMixedNilPutRequest {
-    return ApiBinarytypesUploadMixedNilPutRequestFromJSONTyped(json, false);
+export function BinaryTypesUploadMixedNilRequestFromJSON(json: any): BinaryTypesUploadMixedNilRequest {
+    return BinaryTypesUploadMixedNilRequestFromJSONTyped(json, false);
 }
 
-export function ApiBinarytypesUploadMixedNilPutRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiBinarytypesUploadMixedNilPutRequest {
+export function BinaryTypesUploadMixedNilRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BinaryTypesUploadMixedNilRequest {
     if (json == null) {
         return json;
     }
@@ -113,11 +113,11 @@ export function ApiBinarytypesUploadMixedNilPutRequestFromJSONTyped(json: any, i
     };
 }
 
-export function ApiBinarytypesUploadMixedNilPutRequestToJSON(json: any): ApiBinarytypesUploadMixedNilPutRequest {
-    return ApiBinarytypesUploadMixedNilPutRequestToJSONTyped(json, false);
+export function BinaryTypesUploadMixedNilRequestToJSON(json: any): BinaryTypesUploadMixedNilRequest {
+    return BinaryTypesUploadMixedNilRequestToJSONTyped(json, false);
 }
 
-export function ApiBinarytypesUploadMixedNilPutRequestToJSONTyped(value?: ApiBinarytypesUploadMixedNilPutRequest | null, ignoreDiscriminator: boolean = false): any {
+export function BinaryTypesUploadMixedNilRequestToJSONTyped(value?: BinaryTypesUploadMixedNilRequest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

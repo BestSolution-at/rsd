@@ -1,26 +1,26 @@
 
-# ApiBodyparametertypesMultiBodyParamOptPostRequest
+# ListBodyParameterTypesListMultiBodyParamOptRequest
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`valueA` | string
-`valueB` | number
-`valueC` | [SimpleRecord](SimpleRecord.md)
+`valueA` | Array&lt;string&gt;
+`valueB` | Array&lt;number&gt;
+`valueC` | [Array&lt;SimpleRecord&gt;](SimpleRecord.md)
 
 ## Example
 
 ```typescript
-import type { ApiBodyparametertypesMultiBodyParamOptPostRequest } from ''
+import type { ListBodyParameterTypesListMultiBodyParamOptRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
   "valueA": null,
   "valueB": null,
   "valueC": null,
-} satisfies ApiBodyparametertypesMultiBodyParamOptPostRequest
+} satisfies ListBodyParameterTypesListMultiBodyParamOptRequest
 
 console.log(example)
 
@@ -29,7 +29,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ApiBodyparametertypesMultiBodyParamOptPostRequest
+const exampleParsed = JSON.parse(exampleJSON) as ListBodyParameterTypesListMultiBodyParamOptRequest
 console.log(exampleParsed)
 ```
 

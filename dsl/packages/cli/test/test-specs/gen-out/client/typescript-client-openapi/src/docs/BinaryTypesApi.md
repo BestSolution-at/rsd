@@ -4,35 +4,35 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**apiBinarytypesDownloadBlobGet**](BinaryTypesApi.md#apibinarytypesdownloadblobget) | **GET** /api/binarytypes/downloadBlob |  |
-| [**apiBinarytypesDownloadFileGet**](BinaryTypesApi.md#apibinarytypesdownloadfileget) | **GET** /api/binarytypes/downloadFile |  |
-| [**apiBinarytypesMixedPathStringPathNumberPost**](BinaryTypesApi.md#apibinarytypesmixedpathstringpathnumberpost) | **POST** /api/binarytypes/mixed/{pathString}/{pathNumber} |  |
-| [**apiBinarytypesUploadBlobListNilPut**](BinaryTypesApi.md#apibinarytypesuploadbloblistnilput) | **PUT** /api/binarytypes/uploadBlobListNil |  |
-| [**apiBinarytypesUploadBlobListOptNilPut**](BinaryTypesApi.md#apibinarytypesuploadbloblistoptnilput) | **PUT** /api/binarytypes/uploadBlobListOptNil |  |
-| [**apiBinarytypesUploadBlobListOptPut**](BinaryTypesApi.md#apibinarytypesuploadbloblistoptput) | **PUT** /api/binarytypes/uploadBlobListOpt |  |
-| [**apiBinarytypesUploadBlobListPut**](BinaryTypesApi.md#apibinarytypesuploadbloblistput) | **PUT** /api/binarytypes/uploadBlobList |  |
-| [**apiBinarytypesUploadBlobNilPost**](BinaryTypesApi.md#apibinarytypesuploadblobnilpost) | **POST** /api/binarytypes/uploadBlobNil |  |
-| [**apiBinarytypesUploadBlobOptNilPost**](BinaryTypesApi.md#apibinarytypesuploadbloboptnilpost) | **POST** /api/binarytypes/uploadBlobOptNil |  |
-| [**apiBinarytypesUploadBlobOptPost**](BinaryTypesApi.md#apibinarytypesuploadbloboptpost) | **POST** /api/binarytypes/uploadBlobOpt |  |
-| [**apiBinarytypesUploadBlobPost**](BinaryTypesApi.md#apibinarytypesuploadblobpost) | **POST** /api/binarytypes/uploadBlob |  |
-| [**apiBinarytypesUploadFileListNilPut**](BinaryTypesApi.md#apibinarytypesuploadfilelistnilput) | **PUT** /api/binarytypes/uploadFileListNil |  |
-| [**apiBinarytypesUploadFileListOptNilPut**](BinaryTypesApi.md#apibinarytypesuploadfilelistoptnilput) | **PUT** /api/binarytypes/uploadFileListOptNil |  |
-| [**apiBinarytypesUploadFileListOptPut**](BinaryTypesApi.md#apibinarytypesuploadfilelistoptput) | **PUT** /api/binarytypes/uploadFileListOpt |  |
-| [**apiBinarytypesUploadFileListPut**](BinaryTypesApi.md#apibinarytypesuploadfilelistput) | **PUT** /api/binarytypes/uploadFileList |  |
-| [**apiBinarytypesUploadFileNilPost**](BinaryTypesApi.md#apibinarytypesuploadfilenilpost) | **POST** /api/binarytypes/uploadFileNil |  |
-| [**apiBinarytypesUploadFileOptNilPost**](BinaryTypesApi.md#apibinarytypesuploadfileoptnilpost) | **POST** /api/binarytypes/uploadFileOptNil |  |
-| [**apiBinarytypesUploadFileOptPost**](BinaryTypesApi.md#apibinarytypesuploadfileoptpost) | **POST** /api/binarytypes/uploadFileOpt |  |
-| [**apiBinarytypesUploadFilePost**](BinaryTypesApi.md#apibinarytypesuploadfilepost) | **POST** /api/binarytypes/uploadFile |  |
-| [**apiBinarytypesUploadMixedNilPut**](BinaryTypesApi.md#apibinarytypesuploadmixednilputoperation) | **PUT** /api/binarytypes/uploadMixedNil |  |
-| [**apiBinarytypesUploadMixedOptNilPut**](BinaryTypesApi.md#apibinarytypesuploadmixedoptnilputoperation) | **PUT** /api/binarytypes/uploadMixedOptNil |  |
-| [**apiBinarytypesUploadMixedOptPut**](BinaryTypesApi.md#apibinarytypesuploadmixedoptputoperation) | **PUT** /api/binarytypes/uploadMixedOpt |  |
-| [**apiBinarytypesUploadMixedPut**](BinaryTypesApi.md#apibinarytypesuploadmixedputoperation) | **PUT** /api/binarytypes/uploadMixed |  |
+| [**binaryTypesDownloadBlob**](BinaryTypesApi.md#binarytypesdownloadblob) | **GET** /api/binarytypes/downloadBlob |  |
+| [**binaryTypesDownloadFile**](BinaryTypesApi.md#binarytypesdownloadfile) | **GET** /api/binarytypes/downloadFile |  |
+| [**binaryTypesMixed**](BinaryTypesApi.md#binarytypesmixed) | **POST** /api/binarytypes/mixed/{pathString}/{pathNumber} |  |
+| [**binaryTypesUploadBlob**](BinaryTypesApi.md#binarytypesuploadblob) | **POST** /api/binarytypes/uploadBlob |  |
+| [**binaryTypesUploadBlobList**](BinaryTypesApi.md#binarytypesuploadbloblist) | **PUT** /api/binarytypes/uploadBlobList |  |
+| [**binaryTypesUploadBlobListNil**](BinaryTypesApi.md#binarytypesuploadbloblistnil) | **PUT** /api/binarytypes/uploadBlobListNil |  |
+| [**binaryTypesUploadBlobListOpt**](BinaryTypesApi.md#binarytypesuploadbloblistopt) | **PUT** /api/binarytypes/uploadBlobListOpt |  |
+| [**binaryTypesUploadBlobListOptNil**](BinaryTypesApi.md#binarytypesuploadbloblistoptnil) | **PUT** /api/binarytypes/uploadBlobListOptNil |  |
+| [**binaryTypesUploadBlobNil**](BinaryTypesApi.md#binarytypesuploadblobnil) | **POST** /api/binarytypes/uploadBlobNil |  |
+| [**binaryTypesUploadBlobOpt**](BinaryTypesApi.md#binarytypesuploadblobopt) | **POST** /api/binarytypes/uploadBlobOpt |  |
+| [**binaryTypesUploadBlobOptNil**](BinaryTypesApi.md#binarytypesuploadbloboptnil) | **POST** /api/binarytypes/uploadBlobOptNil |  |
+| [**binaryTypesUploadFile**](BinaryTypesApi.md#binarytypesuploadfile) | **POST** /api/binarytypes/uploadFile |  |
+| [**binaryTypesUploadFileList**](BinaryTypesApi.md#binarytypesuploadfilelist) | **PUT** /api/binarytypes/uploadFileList |  |
+| [**binaryTypesUploadFileListNil**](BinaryTypesApi.md#binarytypesuploadfilelistnil) | **PUT** /api/binarytypes/uploadFileListNil |  |
+| [**binaryTypesUploadFileListOpt**](BinaryTypesApi.md#binarytypesuploadfilelistopt) | **PUT** /api/binarytypes/uploadFileListOpt |  |
+| [**binaryTypesUploadFileListOptNil**](BinaryTypesApi.md#binarytypesuploadfilelistoptnil) | **PUT** /api/binarytypes/uploadFileListOptNil |  |
+| [**binaryTypesUploadFileNil**](BinaryTypesApi.md#binarytypesuploadfilenil) | **POST** /api/binarytypes/uploadFileNil |  |
+| [**binaryTypesUploadFileOpt**](BinaryTypesApi.md#binarytypesuploadfileopt) | **POST** /api/binarytypes/uploadFileOpt |  |
+| [**binaryTypesUploadFileOptNil**](BinaryTypesApi.md#binarytypesuploadfileoptnil) | **POST** /api/binarytypes/uploadFileOptNil |  |
+| [**binaryTypesUploadMixed**](BinaryTypesApi.md#binarytypesuploadmixedoperation) | **PUT** /api/binarytypes/uploadMixed |  |
+| [**binaryTypesUploadMixedNil**](BinaryTypesApi.md#binarytypesuploadmixedniloperation) | **PUT** /api/binarytypes/uploadMixedNil |  |
+| [**binaryTypesUploadMixedOpt**](BinaryTypesApi.md#binarytypesuploadmixedoptoperation) | **PUT** /api/binarytypes/uploadMixedOpt |  |
+| [**binaryTypesUploadMixedOptNil**](BinaryTypesApi.md#binarytypesuploadmixedoptniloperation) | **PUT** /api/binarytypes/uploadMixedOptNil |  |
 
 
 
-## apiBinarytypesDownloadBlobGet
+## binaryTypesDownloadBlob
 
-> any apiBinarytypesDownloadBlobGet()
+> any binaryTypesDownloadBlob()
 
 
 
@@ -45,14 +45,14 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesDownloadBlobGetRequest } from '';
+import type { BinaryTypesDownloadBlobRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   try {
-    const data = await api.apiBinarytypesDownloadBlobGet();
+    const data = await api.binaryTypesDownloadBlob();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -89,9 +89,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiBinarytypesDownloadFileGet
+## binaryTypesDownloadFile
 
-> any apiBinarytypesDownloadFileGet()
+> any binaryTypesDownloadFile()
 
 
 
@@ -104,14 +104,14 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesDownloadFileGetRequest } from '';
+import type { BinaryTypesDownloadFileRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   try {
-    const data = await api.apiBinarytypesDownloadFileGet();
+    const data = await api.binaryTypesDownloadFile();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -148,9 +148,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiBinarytypesMixedPathStringPathNumberPost
+## binaryTypesMixed
 
-> apiBinarytypesMixedPathStringPathNumberPost(pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, body)
+> binaryTypesMixed(pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, body)
 
 
 
@@ -163,7 +163,7 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesMixedPathStringPathNumberPostRequest } from '';
+import type { BinaryTypesMixedRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -188,10 +188,10 @@ async function example() {
     queryRecord: queryRecord_example,
     // any
     body: ...,
-  } satisfies ApiBinarytypesMixedPathStringPathNumberPostRequest;
+  } satisfies BinaryTypesMixedRequest;
 
   try {
-    const data = await api.apiBinarytypesMixedPathStringPathNumberPost(body);
+    const data = await api.binaryTypesMixed(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -239,9 +239,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiBinarytypesUploadBlobListNilPut
+## binaryTypesUploadBlob
 
-> number apiBinarytypesUploadBlobListNilPut(body)
+> number binaryTypesUploadBlob(body)
 
 
 
@@ -254,7 +254,7 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadBlobListNilPutRequest } from '';
+import type { BinaryTypesUploadBlobRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -263,278 +263,10 @@ async function example() {
   const body = {
     // any
     body: ...,
-  } satisfies ApiBinarytypesUploadBlobListNilPutRequest;
+  } satisfies BinaryTypesUploadBlobRequest;
 
   try {
-    const data = await api.apiBinarytypesUploadBlobListNilPut(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | |
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiBinarytypesUploadBlobListOptNilPut
-
-> number apiBinarytypesUploadBlobListOptNilPut(body)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  BinaryTypesApi,
-} from '';
-import type { ApiBinarytypesUploadBlobListOptNilPutRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new BinaryTypesApi();
-
-  const body = {
-    // any (optional)
-    body: ...,
-  } satisfies ApiBinarytypesUploadBlobListOptNilPutRequest;
-
-  try {
-    const data = await api.apiBinarytypesUploadBlobListOptNilPut(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiBinarytypesUploadBlobListOptPut
-
-> number apiBinarytypesUploadBlobListOptPut(body)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  BinaryTypesApi,
-} from '';
-import type { ApiBinarytypesUploadBlobListOptPutRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new BinaryTypesApi();
-
-  const body = {
-    // any (optional)
-    body: ...,
-  } satisfies ApiBinarytypesUploadBlobListOptPutRequest;
-
-  try {
-    const data = await api.apiBinarytypesUploadBlobListOptPut(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiBinarytypesUploadBlobListPut
-
-> number apiBinarytypesUploadBlobListPut(body)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  BinaryTypesApi,
-} from '';
-import type { ApiBinarytypesUploadBlobListPutRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new BinaryTypesApi();
-
-  const body = {
-    // any
-    body: ...,
-  } satisfies ApiBinarytypesUploadBlobListPutRequest;
-
-  try {
-    const data = await api.apiBinarytypesUploadBlobListPut(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | |
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiBinarytypesUploadBlobNilPost
-
-> number apiBinarytypesUploadBlobNilPost(body)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  BinaryTypesApi,
-} from '';
-import type { ApiBinarytypesUploadBlobNilPostRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new BinaryTypesApi();
-
-  const body = {
-    // any
-    body: ...,
-  } satisfies ApiBinarytypesUploadBlobNilPostRequest;
-
-  try {
-    const data = await api.apiBinarytypesUploadBlobNilPost(body);
+    const data = await api.binaryTypesUploadBlob(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -574,76 +306,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiBinarytypesUploadBlobOptNilPost
+## binaryTypesUploadBlobList
 
-> number apiBinarytypesUploadBlobOptNilPost(body)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  BinaryTypesApi,
-} from '';
-import type { ApiBinarytypesUploadBlobOptNilPostRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new BinaryTypesApi();
-
-  const body = {
-    // any (optional)
-    body: ...,
-  } satisfies ApiBinarytypesUploadBlobOptNilPostRequest;
-
-  try {
-    const data = await api.apiBinarytypesUploadBlobOptNilPost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiBinarytypesUploadBlobOptPost
-
-> number apiBinarytypesUploadBlobOptPost(body)
+> number binaryTypesUploadBlobList(body)
 
 
 
@@ -656,74 +321,7 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadBlobOptPostRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new BinaryTypesApi();
-
-  const body = {
-    // any (optional)
-    body: ...,
-  } satisfies ApiBinarytypesUploadBlobOptPostRequest;
-
-  try {
-    const data = await api.apiBinarytypesUploadBlobOptPost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiBinarytypesUploadBlobPost
-
-> number apiBinarytypesUploadBlobPost(body)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  BinaryTypesApi,
-} from '';
-import type { ApiBinarytypesUploadBlobPostRequest } from '';
+import type { BinaryTypesUploadBlobListRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -732,77 +330,10 @@ async function example() {
   const body = {
     // any
     body: ...,
-  } satisfies ApiBinarytypesUploadBlobPostRequest;
+  } satisfies BinaryTypesUploadBlobListRequest;
 
   try {
-    const data = await api.apiBinarytypesUploadBlobPost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | |
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiBinarytypesUploadFileListNilPut
-
-> number apiBinarytypesUploadFileListNilPut(body)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  BinaryTypesApi,
-} from '';
-import type { ApiBinarytypesUploadFileListNilPutRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new BinaryTypesApi();
-
-  const body = {
-    // any
-    body: ...,
-  } satisfies ApiBinarytypesUploadFileListNilPutRequest;
-
-  try {
-    const data = await api.apiBinarytypesUploadFileListNilPut(body);
+    const data = await api.binaryTypesUploadBlobList(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -842,76 +373,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiBinarytypesUploadFileListOptNilPut
+## binaryTypesUploadBlobListNil
 
-> number apiBinarytypesUploadFileListOptNilPut(body)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  BinaryTypesApi,
-} from '';
-import type { ApiBinarytypesUploadFileListOptNilPutRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new BinaryTypesApi();
-
-  const body = {
-    // any (optional)
-    body: ...,
-  } satisfies ApiBinarytypesUploadFileListOptNilPutRequest;
-
-  try {
-    const data = await api.apiBinarytypesUploadFileListOptNilPut(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiBinarytypesUploadFileListOptPut
-
-> number apiBinarytypesUploadFileListOptPut(body)
+> number binaryTypesUploadBlobListNil(body)
 
 
 
@@ -924,74 +388,7 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadFileListOptPutRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new BinaryTypesApi();
-
-  const body = {
-    // any (optional)
-    body: ...,
-  } satisfies ApiBinarytypesUploadFileListOptPutRequest;
-
-  try {
-    const data = await api.apiBinarytypesUploadFileListOptPut(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiBinarytypesUploadFileListPut
-
-> number apiBinarytypesUploadFileListPut(body)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  BinaryTypesApi,
-} from '';
-import type { ApiBinarytypesUploadFileListPutRequest } from '';
+import type { BinaryTypesUploadBlobListNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1000,10 +397,10 @@ async function example() {
   const body = {
     // any
     body: ...,
-  } satisfies ApiBinarytypesUploadFileListPutRequest;
+  } satisfies BinaryTypesUploadBlobListNilRequest;
 
   try {
-    const data = await api.apiBinarytypesUploadFileListPut(body);
+    const data = await api.binaryTypesUploadBlobListNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1043,9 +440,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiBinarytypesUploadFileNilPost
+## binaryTypesUploadBlobListOpt
 
-> number apiBinarytypesUploadFileNilPost(body)
+> number binaryTypesUploadBlobListOpt(body)
 
 
 
@@ -1058,7 +455,141 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadFileNilPostRequest } from '';
+import type { BinaryTypesUploadBlobListOptRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BinaryTypesApi();
+
+  const body = {
+    // any (optional)
+    body: ...,
+  } satisfies BinaryTypesUploadBlobListOptRequest;
+
+  try {
+    const data = await api.binaryTypesUploadBlobListOpt(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `any` |  | [Optional] |
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## binaryTypesUploadBlobListOptNil
+
+> number binaryTypesUploadBlobListOptNil(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BinaryTypesApi,
+} from '';
+import type { BinaryTypesUploadBlobListOptNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BinaryTypesApi();
+
+  const body = {
+    // any (optional)
+    body: ...,
+  } satisfies BinaryTypesUploadBlobListOptNilRequest;
+
+  try {
+    const data = await api.binaryTypesUploadBlobListOptNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `any` |  | [Optional] |
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## binaryTypesUploadBlobNil
+
+> number binaryTypesUploadBlobNil(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BinaryTypesApi,
+} from '';
+import type { BinaryTypesUploadBlobNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1067,10 +598,10 @@ async function example() {
   const body = {
     // any
     body: ...,
-  } satisfies ApiBinarytypesUploadFileNilPostRequest;
+  } satisfies BinaryTypesUploadBlobNilRequest;
 
   try {
-    const data = await api.apiBinarytypesUploadFileNilPost(body);
+    const data = await api.binaryTypesUploadBlobNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1110,9 +641,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiBinarytypesUploadFileOptNilPost
+## binaryTypesUploadBlobOpt
 
-> number apiBinarytypesUploadFileOptNilPost(body)
+> number binaryTypesUploadBlobOpt(body)
 
 
 
@@ -1125,7 +656,7 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadFileOptNilPostRequest } from '';
+import type { BinaryTypesUploadBlobOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1134,10 +665,10 @@ async function example() {
   const body = {
     // any (optional)
     body: ...,
-  } satisfies ApiBinarytypesUploadFileOptNilPostRequest;
+  } satisfies BinaryTypesUploadBlobOptRequest;
 
   try {
-    const data = await api.apiBinarytypesUploadFileOptNilPost(body);
+    const data = await api.binaryTypesUploadBlobOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1177,9 +708,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiBinarytypesUploadFileOptPost
+## binaryTypesUploadBlobOptNil
 
-> number apiBinarytypesUploadFileOptPost(body)
+> number binaryTypesUploadBlobOptNil(body)
 
 
 
@@ -1192,7 +723,7 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadFileOptPostRequest } from '';
+import type { BinaryTypesUploadBlobOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1201,10 +732,10 @@ async function example() {
   const body = {
     // any (optional)
     body: ...,
-  } satisfies ApiBinarytypesUploadFileOptPostRequest;
+  } satisfies BinaryTypesUploadBlobOptNilRequest;
 
   try {
-    const data = await api.apiBinarytypesUploadFileOptPost(body);
+    const data = await api.binaryTypesUploadBlobOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1244,9 +775,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiBinarytypesUploadFilePost
+## binaryTypesUploadFile
 
-> number apiBinarytypesUploadFilePost(body)
+> number binaryTypesUploadFile(body)
 
 
 
@@ -1259,7 +790,7 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadFilePostRequest } from '';
+import type { BinaryTypesUploadFileRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1268,10 +799,10 @@ async function example() {
   const body = {
     // any
     body: ...,
-  } satisfies ApiBinarytypesUploadFilePostRequest;
+  } satisfies BinaryTypesUploadFileRequest;
 
   try {
-    const data = await api.apiBinarytypesUploadFilePost(body);
+    const data = await api.binaryTypesUploadFile(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1311,9 +842,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiBinarytypesUploadMixedNilPut
+## binaryTypesUploadFileList
 
-> UploadMixedResult apiBinarytypesUploadMixedNilPut(apiBinarytypesUploadMixedNilPutRequest)
+> number binaryTypesUploadFileList(body)
 
 
 
@@ -1326,19 +857,19 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadMixedNilPutOperationRequest } from '';
+import type { BinaryTypesUploadFileListRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   const body = {
-    // ApiBinarytypesUploadMixedNilPutRequest
-    apiBinarytypesUploadMixedNilPutRequest: ...,
-  } satisfies ApiBinarytypesUploadMixedNilPutOperationRequest;
+    // any
+    body: ...,
+  } satisfies BinaryTypesUploadFileListRequest;
 
   try {
-    const data = await api.apiBinarytypesUploadMixedNilPut(body);
+    const data = await api.binaryTypesUploadFileList(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1354,7 +885,476 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiBinarytypesUploadMixedNilPutRequest** | [ApiBinarytypesUploadMixedNilPutRequest](ApiBinarytypesUploadMixedNilPutRequest.md) |  | |
+| **body** | `any` |  | |
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## binaryTypesUploadFileListNil
+
+> number binaryTypesUploadFileListNil(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BinaryTypesApi,
+} from '';
+import type { BinaryTypesUploadFileListNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BinaryTypesApi();
+
+  const body = {
+    // any
+    body: ...,
+  } satisfies BinaryTypesUploadFileListNilRequest;
+
+  try {
+    const data = await api.binaryTypesUploadFileListNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `any` |  | |
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## binaryTypesUploadFileListOpt
+
+> number binaryTypesUploadFileListOpt(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BinaryTypesApi,
+} from '';
+import type { BinaryTypesUploadFileListOptRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BinaryTypesApi();
+
+  const body = {
+    // any (optional)
+    body: ...,
+  } satisfies BinaryTypesUploadFileListOptRequest;
+
+  try {
+    const data = await api.binaryTypesUploadFileListOpt(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `any` |  | [Optional] |
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## binaryTypesUploadFileListOptNil
+
+> number binaryTypesUploadFileListOptNil(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BinaryTypesApi,
+} from '';
+import type { BinaryTypesUploadFileListOptNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BinaryTypesApi();
+
+  const body = {
+    // any (optional)
+    body: ...,
+  } satisfies BinaryTypesUploadFileListOptNilRequest;
+
+  try {
+    const data = await api.binaryTypesUploadFileListOptNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `any` |  | [Optional] |
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## binaryTypesUploadFileNil
+
+> number binaryTypesUploadFileNil(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BinaryTypesApi,
+} from '';
+import type { BinaryTypesUploadFileNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BinaryTypesApi();
+
+  const body = {
+    // any
+    body: ...,
+  } satisfies BinaryTypesUploadFileNilRequest;
+
+  try {
+    const data = await api.binaryTypesUploadFileNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `any` |  | |
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## binaryTypesUploadFileOpt
+
+> number binaryTypesUploadFileOpt(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BinaryTypesApi,
+} from '';
+import type { BinaryTypesUploadFileOptRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BinaryTypesApi();
+
+  const body = {
+    // any (optional)
+    body: ...,
+  } satisfies BinaryTypesUploadFileOptRequest;
+
+  try {
+    const data = await api.binaryTypesUploadFileOpt(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `any` |  | [Optional] |
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## binaryTypesUploadFileOptNil
+
+> number binaryTypesUploadFileOptNil(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BinaryTypesApi,
+} from '';
+import type { BinaryTypesUploadFileOptNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BinaryTypesApi();
+
+  const body = {
+    // any (optional)
+    body: ...,
+  } satisfies BinaryTypesUploadFileOptNilRequest;
+
+  try {
+    const data = await api.binaryTypesUploadFileOptNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `any` |  | [Optional] |
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## binaryTypesUploadMixed
+
+> UploadMixedResult binaryTypesUploadMixed(binaryTypesUploadMixedRequest)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BinaryTypesApi,
+} from '';
+import type { BinaryTypesUploadMixedOperationRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BinaryTypesApi();
+
+  const body = {
+    // BinaryTypesUploadMixedRequest
+    binaryTypesUploadMixedRequest: ...,
+  } satisfies BinaryTypesUploadMixedOperationRequest;
+
+  try {
+    const data = await api.binaryTypesUploadMixed(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **binaryTypesUploadMixedRequest** | [BinaryTypesUploadMixedRequest](BinaryTypesUploadMixedRequest.md) |  | |
 
 ### Return type
 
@@ -1378,9 +1378,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiBinarytypesUploadMixedOptNilPut
+## binaryTypesUploadMixedNil
 
-> UploadMixedResult apiBinarytypesUploadMixedOptNilPut(apiBinarytypesUploadMixedOptNilPutRequest)
+> UploadMixedResult binaryTypesUploadMixedNil(binaryTypesUploadMixedNilRequest)
 
 
 
@@ -1393,19 +1393,19 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadMixedOptNilPutOperationRequest } from '';
+import type { BinaryTypesUploadMixedNilOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   const body = {
-    // ApiBinarytypesUploadMixedOptNilPutRequest
-    apiBinarytypesUploadMixedOptNilPutRequest: ...,
-  } satisfies ApiBinarytypesUploadMixedOptNilPutOperationRequest;
+    // BinaryTypesUploadMixedNilRequest
+    binaryTypesUploadMixedNilRequest: ...,
+  } satisfies BinaryTypesUploadMixedNilOperationRequest;
 
   try {
-    const data = await api.apiBinarytypesUploadMixedOptNilPut(body);
+    const data = await api.binaryTypesUploadMixedNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1421,7 +1421,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiBinarytypesUploadMixedOptNilPutRequest** | [ApiBinarytypesUploadMixedOptNilPutRequest](ApiBinarytypesUploadMixedOptNilPutRequest.md) |  | |
+| **binaryTypesUploadMixedNilRequest** | [BinaryTypesUploadMixedNilRequest](BinaryTypesUploadMixedNilRequest.md) |  | |
 
 ### Return type
 
@@ -1445,9 +1445,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiBinarytypesUploadMixedOptPut
+## binaryTypesUploadMixedOpt
 
-> UploadMixedResult apiBinarytypesUploadMixedOptPut(apiBinarytypesUploadMixedOptPutRequest)
+> UploadMixedResult binaryTypesUploadMixedOpt(binaryTypesUploadMixedOptRequest)
 
 
 
@@ -1460,19 +1460,19 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadMixedOptPutOperationRequest } from '';
+import type { BinaryTypesUploadMixedOptOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   const body = {
-    // ApiBinarytypesUploadMixedOptPutRequest
-    apiBinarytypesUploadMixedOptPutRequest: ...,
-  } satisfies ApiBinarytypesUploadMixedOptPutOperationRequest;
+    // BinaryTypesUploadMixedOptRequest
+    binaryTypesUploadMixedOptRequest: ...,
+  } satisfies BinaryTypesUploadMixedOptOperationRequest;
 
   try {
-    const data = await api.apiBinarytypesUploadMixedOptPut(body);
+    const data = await api.binaryTypesUploadMixedOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1488,7 +1488,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiBinarytypesUploadMixedOptPutRequest** | [ApiBinarytypesUploadMixedOptPutRequest](ApiBinarytypesUploadMixedOptPutRequest.md) |  | |
+| **binaryTypesUploadMixedOptRequest** | [BinaryTypesUploadMixedOptRequest](BinaryTypesUploadMixedOptRequest.md) |  | |
 
 ### Return type
 
@@ -1512,9 +1512,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiBinarytypesUploadMixedPut
+## binaryTypesUploadMixedOptNil
 
-> UploadMixedResult apiBinarytypesUploadMixedPut(apiBinarytypesUploadMixedPutRequest)
+> UploadMixedResult binaryTypesUploadMixedOptNil(binaryTypesUploadMixedOptNilRequest)
 
 
 
@@ -1527,19 +1527,19 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { ApiBinarytypesUploadMixedPutOperationRequest } from '';
+import type { BinaryTypesUploadMixedOptNilOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   const body = {
-    // ApiBinarytypesUploadMixedPutRequest
-    apiBinarytypesUploadMixedPutRequest: ...,
-  } satisfies ApiBinarytypesUploadMixedPutOperationRequest;
+    // BinaryTypesUploadMixedOptNilRequest
+    binaryTypesUploadMixedOptNilRequest: ...,
+  } satisfies BinaryTypesUploadMixedOptNilOperationRequest;
 
   try {
-    const data = await api.apiBinarytypesUploadMixedPut(body);
+    const data = await api.binaryTypesUploadMixedOptNil(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1555,7 +1555,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **apiBinarytypesUploadMixedPutRequest** | [ApiBinarytypesUploadMixedPutRequest](ApiBinarytypesUploadMixedPutRequest.md) |  | |
+| **binaryTypesUploadMixedOptNilRequest** | [BinaryTypesUploadMixedOptNilRequest](BinaryTypesUploadMixedOptNilRequest.md) |  | |
 
 ### Return type
 

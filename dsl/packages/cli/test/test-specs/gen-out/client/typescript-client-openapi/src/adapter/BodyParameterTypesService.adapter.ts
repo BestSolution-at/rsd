@@ -1,7 +1,7 @@
 import { api } from '../../../typescript-client/src/index.js';
 import { ServiceProps } from '../../../typescript-client/src/services/_fetch-type-utils.js';
 import { BodyParameterTypesApi } from '../apis/BodyParameterTypesApi.js';
-import { Configuration, ResponseError, Union } from '../index.js';
+import { Configuration, ResponseError } from '../index.js';
 
 export function createOpenAPIBodyParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -42,7 +42,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyBoolean: boolean,
 	): Promise<api.result.Result<boolean, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleBooleanBodyParamPostRaw({ body: bodyBoolean });
+			const response = await this.deletegate.bodyParameterTypesSimpleBooleanBodyParamRaw({ body: bodyBoolean });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -56,7 +56,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyBoolean?: boolean,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleBooleanBodyParamOptPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleBooleanBodyParamOptRaw({
 				body: bodyBoolean,
 			});
 			if (response.raw.status === 200) {
@@ -72,7 +72,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyBoolean: boolean | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleBooleanBodyParamNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleBooleanBodyParamNilRaw({
 				body: bodyBoolean,
 			});
 			if (response.raw.status === 200) {
@@ -88,7 +88,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyBoolean?: boolean | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleBooleanBodyParamOptNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleBooleanBodyParamOptNilRaw({
 				body: bodyBoolean,
 			});
 			if (response.raw.status === 200) {
@@ -104,7 +104,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyShort: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleShortBodyParamPostRaw({ body: bodyShort });
+			const response = await this.deletegate.bodyParameterTypesSimpleShortBodyParamRaw({ body: bodyShort });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -118,7 +118,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyShort?: number,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleShortBodyParamOptPostRaw({ body: bodyShort });
+			const response = await this.deletegate.bodyParameterTypesSimpleShortBodyParamOptRaw({ body: bodyShort });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -132,7 +132,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyShort: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleShortBodyParamNilPostRaw({ body: bodyShort });
+			const response = await this.deletegate.bodyParameterTypesSimpleShortBodyParamNilRaw({ body: bodyShort });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -146,7 +146,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyShort?: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleShortBodyParamOptNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleShortBodyParamOptNilRaw({
 				body: bodyShort,
 			});
 			if (response.raw.status === 200) {
@@ -161,7 +161,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyInt: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleIntBodyParamPostRaw({ body: bodyInt });
+			const response = await this.deletegate.bodyParameterTypesSimpleIntBodyParamRaw({ body: bodyInt });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -175,7 +175,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyInt?: number,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleIntBodyParamOptPostRaw({ body: bodyInt });
+			const response = await this.deletegate.bodyParameterTypesSimpleIntBodyParamOptRaw({ body: bodyInt });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -189,7 +189,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyInt: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleIntBodyParamNilPostRaw({ body: bodyInt });
+			const response = await this.deletegate.bodyParameterTypesSimpleIntBodyParamNilRaw({ body: bodyInt });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -203,7 +203,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyInt?: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleIntBodyParamOptNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleIntBodyParamOptNilRaw({
 				body: bodyInt,
 			});
 			if (response.raw.status === 200) {
@@ -219,7 +219,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyLong: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleLongBodyParamPostRaw({ body: bodyLong });
+			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamRaw({ body: bodyLong });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -233,7 +233,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyLong?: number,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleLongBodyParamOptPostRaw({ body: bodyLong });
+			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamOptRaw({ body: bodyLong });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -247,7 +247,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyLong: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleLongBodyParamNilPostRaw({ body: bodyLong });
+			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamNilRaw({ body: bodyLong });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -261,7 +261,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyLong?: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleLongBodyParamOptNilPostRaw({ body: bodyLong });
+			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamOptNilRaw({ body: bodyLong });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -275,7 +275,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyFloat: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleFloatBodyParamPostRaw({ body: bodyFloat });
+			const response = await this.deletegate.bodyParameterTypesSimpleFloatBodyParamRaw({ body: bodyFloat });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -289,7 +289,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyFloat?: number,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleFloatBodyParamOptPostRaw({ body: bodyFloat });
+			const response = await this.deletegate.bodyParameterTypesSimpleFloatBodyParamOptRaw({ body: bodyFloat });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -303,7 +303,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyFloat: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleFloatBodyParamNilPostRaw({ body: bodyFloat });
+			const response = await this.deletegate.bodyParameterTypesSimpleFloatBodyParamNilRaw({ body: bodyFloat });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -317,7 +317,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyFloat?: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleFloatBodyParamOptNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleFloatBodyParamOptNilRaw({
 				body: bodyFloat,
 			});
 			if (response.raw.status === 200) {
@@ -333,7 +333,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyDouble: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleDoubleBodyParamPostRaw({ body: bodyDouble });
+			const response = await this.deletegate.bodyParameterTypesSimpleDoubleBodyParamRaw({ body: bodyDouble });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -347,7 +347,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyDouble?: number,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleDoubleBodyParamOptPostRaw({ body: bodyDouble });
+			const response = await this.deletegate.bodyParameterTypesSimpleDoubleBodyParamOptRaw({ body: bodyDouble });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -361,7 +361,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyDouble: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleDoubleBodyParamNilPostRaw({ body: bodyDouble });
+			const response = await this.deletegate.bodyParameterTypesSimpleDoubleBodyParamNilRaw({ body: bodyDouble });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -375,7 +375,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyDouble?: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleDoubleBodyParamOptNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleDoubleBodyParamOptNilRaw({
 				body: bodyDouble,
 			});
 			if (response.raw.status === 200) {
@@ -390,7 +390,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyString: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleStringBodyParamPostRaw({ body: bodyString });
+			const response = await this.deletegate.bodyParameterTypesSimpleStringBodyParamRaw({ body: bodyString });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -403,7 +403,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyString?: string,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleStringBodyParamOptPostRaw({ body: bodyString });
+			const response = await this.deletegate.bodyParameterTypesSimpleStringBodyParamOptRaw({ body: bodyString });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -416,7 +416,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyString: string | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleStringBodyParamNilPostRaw({ body: bodyString });
+			const response = await this.deletegate.bodyParameterTypesSimpleStringBodyParamNilRaw({ body: bodyString });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -429,7 +429,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyString?: string | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleStringBodyParamOptNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleStringBodyParamOptNilRaw({
 				body: bodyString,
 			});
 			if (response.raw.status === 200) {
@@ -444,7 +444,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyLocalDate: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleLocalDateBodyParamPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateBodyParamRaw({
 				body: bodyLocalDate as unknown as Date, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
@@ -459,7 +459,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyLocalDate?: string,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleLocalDateBodyParamOptPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateBodyParamOptRaw({
 				body: bodyLocalDate ? (bodyLocalDate as unknown as Date) : undefined, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
@@ -474,7 +474,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyLocalDate: string | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleLocalDateBodyParamNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateBodyParamNilRaw({
 				body: bodyLocalDate ? (bodyLocalDate as unknown as Date) : null, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
@@ -489,8 +489,8 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyLocalDate?: string | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleLocalDateBodyParamOptNilPostRaw({
-				body: bodyLocalDate ? new Date(bodyLocalDate) : undefined,
+			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateBodyParamOptNilRaw({
+				body: bodyLocalDate ? (bodyLocalDate as unknown as Date) : undefined, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -504,7 +504,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyLocalDateTime: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleLocalDateTimeBodyParamPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateTimeBodyParamRaw({
 				body: bodyLocalDateTime,
 			});
 			if (response.raw.status === 200) {
@@ -519,7 +519,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyLocalDateTime?: string,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleLocalDateTimeBodyParamOptPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateTimeBodyParamOptRaw({
 				body: bodyLocalDateTime,
 			});
 			if (response.raw.status === 200) {
@@ -534,7 +534,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyLocalDateTime: string | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleLocalDateTimeBodyParamNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateTimeBodyParamNilRaw({
 				body: bodyLocalDateTime,
 			});
 			if (response.raw.status === 200) {
@@ -549,7 +549,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyLocalDateTime?: string | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleLocalDateTimeBodyParamOptNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateTimeBodyParamOptNilRaw({
 				body: bodyLocalDateTime,
 			});
 			if (response.raw.status === 200) {
@@ -564,7 +564,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyZonedDateTime: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleZonedDateTimeBodyParamPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleZonedDateTimeBodyParamRaw({
 				body: bodyZonedDateTime,
 			});
 			if (response.raw.status === 200) {
@@ -579,7 +579,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyZonedDateTime?: string,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleZonedDateTimeBodyParamOptPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleZonedDateTimeBodyParamOptRaw({
 				body: bodyZonedDateTime,
 			});
 			if (response.raw.status === 200) {
@@ -594,7 +594,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyZonedDateTime: string | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleZonedDateTimeBodyParamNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleZonedDateTimeBodyParamNilRaw({
 				body: bodyZonedDateTime,
 			});
 			if (response.raw.status === 200) {
@@ -609,7 +609,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyZonedDateTime?: string | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleZonedDateTimeBodyParamOptNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleZonedDateTimeBodyParamOptNilRaw({
 				body: bodyZonedDateTime,
 			});
 			if (response.raw.status === 200) {
@@ -624,7 +624,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyScalar: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleScalarBodyParamPostRaw({ body: bodyScalar });
+			const response = await this.deletegate.bodyParameterTypesSimpleScalarBodyParamRaw({ body: bodyScalar });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -637,7 +637,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyScalar?: string,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleScalarBodyParamOptPostRaw({ body: bodyScalar });
+			const response = await this.deletegate.bodyParameterTypesSimpleScalarBodyParamOptRaw({ body: bodyScalar });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -651,7 +651,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyScalar: string | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleScalarBodyParamNilPostRaw({ body: bodyScalar });
+			const response = await this.deletegate.bodyParameterTypesSimpleScalarBodyParamNilRaw({ body: bodyScalar });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -665,7 +665,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyScalar?: string | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleScalarBodyParamOptNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleScalarBodyParamOptNilRaw({
 				body: bodyScalar,
 			});
 			if (response.raw.status === 200) {
@@ -681,7 +681,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyEnum: api.model.SampleEnum,
 	): Promise<api.result.Result<api.model.SampleEnum, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleEnumBodyParamPostRaw({ body: bodyEnum });
+			const response = await this.deletegate.bodyParameterTypesSimpleEnumBodyParamRaw({ body: bodyEnum });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -695,7 +695,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyEnum?: api.model.SampleEnum,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleEnumBodyParamOptPostRaw({ body: bodyEnum });
+			const response = await this.deletegate.bodyParameterTypesSimpleEnumBodyParamOptRaw({ body: bodyEnum });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -709,7 +709,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyEnum: api.model.SampleEnum | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleEnumBodyParamNilPostRaw({ body: bodyEnum });
+			const response = await this.deletegate.bodyParameterTypesSimpleEnumBodyParamNilRaw({ body: bodyEnum });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -723,7 +723,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyEnum?: api.model.SampleEnum | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleEnumBodyParamOptNilPostRaw({ body: bodyEnum });
+			const response = await this.deletegate.bodyParameterTypesSimpleEnumBodyParamOptNilRaw({ body: bodyEnum });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -738,7 +738,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	): Promise<api.result.Result<'A' | 'B', api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			// TODO File bug report because inline enums don't work
-			const response = await this.deletegate.apiBodyparametertypesSimpleInlineEnumBodyParamPostRaw({ body: bodyEnum });
+			const response = await this.deletegate.bodyParameterTypesSimpleInlineEnumBodyParamRaw({ body: bodyEnum });
 			if (response.raw.status === 200) {
 				return api.result.OK((await response.value()) as 'A' | 'B');
 			}
@@ -752,7 +752,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyEnum?: 'A' | 'B',
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleInlineEnumBodyParamOptPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleInlineEnumBodyParamOptRaw({
 				body: bodyEnum,
 			});
 			if (response.raw.status === 200) {
@@ -768,7 +768,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyEnum: 'C' | 'D' | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleInlineEnumBodyParamNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleInlineEnumBodyParamNilRaw({
 				body: bodyEnum,
 			});
 			if (response.raw.status === 200) {
@@ -784,7 +784,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyEnum?: 'C' | 'D' | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesSimpleInlineEnumBodyParamOptNilPostRaw({
+			const response = await this.deletegate.bodyParameterTypesSimpleInlineEnumBodyParamOptNilRaw({
 				body: bodyEnum,
 			});
 			if (response.raw.status === 200) {
@@ -802,8 +802,8 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		valueC: api.model.SimpleRecord,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesMultiBodyParamPostRaw({
-				apiBodyparametertypesMultiBodyParamPostRequest: {
+			const response = await this.deletegate.bodyParameterTypesMultiBodyParamRaw({
+				bodyParameterTypesMultiBodyParamRequest: {
 					valueA,
 					valueB,
 					valueC,
@@ -824,8 +824,8 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		valueC?: api.model.SimpleRecord,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesMultiBodyParamOptPostRaw({
-				apiBodyparametertypesMultiBodyParamOptPostRequest: {
+			const response = await this.deletegate.bodyParameterTypesMultiBodyParamOptRaw({
+				bodyParameterTypesMultiBodyParamOptRequest: {
 					valueA,
 					valueB,
 					valueC,
@@ -846,8 +846,8 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		valueC: api.model.SimpleRecord | null,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesMultiBodyParamNilPostRaw({
-				apiBodyparametertypesMultiBodyParamNilPostRequest: {
+			const response = await this.deletegate.bodyParameterTypesMultiBodyParamNilRaw({
+				bodyParameterTypesMultiBodyParamNilRequest: {
 					valueA,
 					valueB,
 					valueC,
@@ -868,8 +868,8 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		valueC?: api.model.SimpleRecord | null,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesMultiBodyParamOptNilPostRaw({
-				apiBodyparametertypesMultiBodyParamOptNilPostRequest: {
+			const response = await this.deletegate.bodyParameterTypesMultiBodyParamOptNilRaw({
+				bodyParameterTypesMultiBodyParamOptNilRequest: {
 					valueA,
 					valueB,
 					valueC,
@@ -890,8 +890,8 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		valueC: api.model.SimpleRecord,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesMultiBodyParamFirstPostRaw({
-				apiBodyparametertypesMultiBodyParamFirstPostRequest: {
+			const response = await this.deletegate.bodyParameterTypesMultiBodyParamFirstRaw({
+				bodyParameterTypesMultiBodyParamFirstRequest: {
 					valueA,
 					valueB,
 					valueC,
@@ -910,7 +910,9 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyRecord: api.model.SimpleRecord,
 	): Promise<api.result.Result<api.model.SimpleRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesRecordBodyParamPostRaw({ simpleRecord: bodyRecord });
+			const response = await this.deletegate.bodyParameterTypesRecordBodyParamRaw({
+				simpleRecord: bodyRecord,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -924,7 +926,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyRecord?: api.model.SimpleRecord,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesRecordBodyParamOptPostRaw({
+			const response = await this.deletegate.bodyParameterTypesRecordBodyParamOptRaw({
 				simpleRecord: bodyRecord,
 			});
 			if (response.raw.status === 200) {
@@ -940,7 +942,9 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyRecord: api.model.SimpleRecord | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesRecordBodyParamNilPostRaw({ body: bodyRecord });
+			const response = await this.deletegate.bodyParameterTypesRecordBodyParamNilRaw({
+				simpleRecord: bodyRecord,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -954,7 +958,9 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyRecord?: api.model.SimpleRecord | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesRecordBodyParamOptNilPostRaw({ body: bodyRecord });
+			const response = await this.deletegate.bodyParameterTypesRecordBodyParamOptNilRaw({
+				simpleRecord: bodyRecord,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -968,7 +974,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyUnion: api.model.Union,
 	): Promise<api.result.Result<api.model.Union, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesUnionBodyParamPostRaw({
+			const response = await this.deletegate.bodyParameterTypesUnionBodyParamRaw({
 				union: bodyUnion['@type'] === 'union-a' ? { ...bodyUnion, type: 'union-a' } : { ...bodyUnion, type: 'union-b' },
 			});
 			if (response.raw.status === 200) {
@@ -994,7 +1000,9 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 					? ({ ...bodyUnion, type: 'union-a' } as const)
 					: ({ ...bodyUnion, type: 'union-b' } as const)
 				: undefined;
-			const response = await this.deletegate.apiBodyparametertypesUnionBodyParamOptPostRaw({ union });
+			const response = await this.deletegate.bodyParameterTypesUnionBodyParamOptRaw({
+				union,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -1013,7 +1021,9 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 					? ({ ...bodyUnion, type: 'union-a' } as const)
 					: ({ ...bodyUnion, type: 'union-b' } as const)
 				: null;
-			const response = await this.deletegate.apiBodyparametertypesUnionBodyParamNilPostRaw({ union });
+			const response = await this.deletegate.bodyParameterTypesUnionBodyParamNilRaw({
+				union,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -1034,7 +1044,9 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 				: bodyUnion === null
 					? null
 					: undefined;
-			const response = await this.deletegate.apiBodyparametertypesUnionBodyParamOptNilPostRaw({ union });
+			const response = await this.deletegate.bodyParameterTypesUnionBodyParamOptNilRaw({
+				union,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -1048,7 +1060,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyRecord: api.model.PatchableRecordPatch,
 	): Promise<api.result.Result<api.model.PatchableRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesPatchableRecordBodyParamPatchRaw({
+			const response = await this.deletegate.bodyParameterTypesPatchableRecordBodyParamRaw({
 				patchableRecordPatch: bodyRecord,
 			});
 			if (response.raw.status === 200) {
@@ -1064,7 +1076,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyRecord?: api.model.PatchableRecordPatch,
 	): Promise<api.result.Result<api.model.PatchableRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesPatchableRecordBodyParamOptPatchRaw({
+			const response = await this.deletegate.bodyParameterTypesPatchableRecordBodyParamOptRaw({
 				patchableRecordPatch: bodyRecord,
 			});
 			if (response.raw.status === 200) {
@@ -1080,7 +1092,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyRecord: api.model.PatchableRecordPatch | null,
 	): Promise<api.result.Result<api.model.PatchableRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesPatchableRecordBodyParamNilPatchRaw({
+			const response = await this.deletegate.bodyParameterTypesPatchableRecordBodyParamNilRaw({
 				patchableRecordPatch: bodyRecord,
 			});
 			if (response.raw.status === 200) {
@@ -1096,7 +1108,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyRecord?: api.model.PatchableRecordPatch | null,
 	): Promise<api.result.Result<api.model.PatchableRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesPatchableRecordBodyParamOptNilPatchRaw({
+			const response = await this.deletegate.bodyParameterTypesPatchableRecordBodyParamOptNilRaw({
 				patchableRecordPatch: bodyRecord,
 			});
 			if (response.raw.status === 200) {

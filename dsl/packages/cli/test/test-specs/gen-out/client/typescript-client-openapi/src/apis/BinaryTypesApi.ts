@@ -15,29 +15,29 @@
 
 import * as runtime from '../runtime.js';
 import type {
-  ApiBinarytypesUploadMixedNilPutRequest,
-  ApiBinarytypesUploadMixedOptNilPutRequest,
-  ApiBinarytypesUploadMixedOptPutRequest,
-  ApiBinarytypesUploadMixedPutRequest,
+  BinaryTypesUploadMixedNilRequest,
+  BinaryTypesUploadMixedOptNilRequest,
+  BinaryTypesUploadMixedOptRequest,
+  BinaryTypesUploadMixedRequest,
   SimpleRecord,
   UploadMixedResult,
 } from '../models/index.js';
 import {
-    ApiBinarytypesUploadMixedNilPutRequestFromJSON,
-    ApiBinarytypesUploadMixedNilPutRequestToJSON,
-    ApiBinarytypesUploadMixedOptNilPutRequestFromJSON,
-    ApiBinarytypesUploadMixedOptNilPutRequestToJSON,
-    ApiBinarytypesUploadMixedOptPutRequestFromJSON,
-    ApiBinarytypesUploadMixedOptPutRequestToJSON,
-    ApiBinarytypesUploadMixedPutRequestFromJSON,
-    ApiBinarytypesUploadMixedPutRequestToJSON,
+    BinaryTypesUploadMixedNilRequestFromJSON,
+    BinaryTypesUploadMixedNilRequestToJSON,
+    BinaryTypesUploadMixedOptNilRequestFromJSON,
+    BinaryTypesUploadMixedOptNilRequestToJSON,
+    BinaryTypesUploadMixedOptRequestFromJSON,
+    BinaryTypesUploadMixedOptRequestToJSON,
+    BinaryTypesUploadMixedRequestFromJSON,
+    BinaryTypesUploadMixedRequestToJSON,
     SimpleRecordFromJSON,
     SimpleRecordToJSON,
     UploadMixedResultFromJSON,
     UploadMixedResultToJSON,
 } from '../models/index.js';
 
-export interface ApiBinarytypesMixedPathStringPathNumberPostRequest {
+export interface BinaryTypesMixedRequest {
     pathString: string;
     pathNumber: number;
     headerString: string;
@@ -49,84 +49,84 @@ export interface ApiBinarytypesMixedPathStringPathNumberPostRequest {
     body: any | null;
 }
 
-export interface ApiBinarytypesUploadBlobListNilPutRequest {
+export interface BinaryTypesUploadBlobRequest {
     body: any | null;
 }
 
-export interface ApiBinarytypesUploadBlobListOptNilPutRequest {
-    body?: any | null;
-}
-
-export interface ApiBinarytypesUploadBlobListOptPutRequest {
-    body?: any | null;
-}
-
-export interface ApiBinarytypesUploadBlobListPutRequest {
+export interface BinaryTypesUploadBlobListRequest {
     body: any | null;
 }
 
-export interface ApiBinarytypesUploadBlobNilPostRequest {
+export interface BinaryTypesUploadBlobListNilRequest {
     body: any | null;
 }
 
-export interface ApiBinarytypesUploadBlobOptNilPostRequest {
+export interface BinaryTypesUploadBlobListOptRequest {
     body?: any | null;
 }
 
-export interface ApiBinarytypesUploadBlobOptPostRequest {
+export interface BinaryTypesUploadBlobListOptNilRequest {
     body?: any | null;
 }
 
-export interface ApiBinarytypesUploadBlobPostRequest {
+export interface BinaryTypesUploadBlobNilRequest {
     body: any | null;
 }
 
-export interface ApiBinarytypesUploadFileListNilPutRequest {
-    body: any | null;
-}
-
-export interface ApiBinarytypesUploadFileListOptNilPutRequest {
+export interface BinaryTypesUploadBlobOptRequest {
     body?: any | null;
 }
 
-export interface ApiBinarytypesUploadFileListOptPutRequest {
+export interface BinaryTypesUploadBlobOptNilRequest {
     body?: any | null;
 }
 
-export interface ApiBinarytypesUploadFileListPutRequest {
+export interface BinaryTypesUploadFileRequest {
     body: any | null;
 }
 
-export interface ApiBinarytypesUploadFileNilPostRequest {
+export interface BinaryTypesUploadFileListRequest {
     body: any | null;
 }
 
-export interface ApiBinarytypesUploadFileOptNilPostRequest {
+export interface BinaryTypesUploadFileListNilRequest {
+    body: any | null;
+}
+
+export interface BinaryTypesUploadFileListOptRequest {
     body?: any | null;
 }
 
-export interface ApiBinarytypesUploadFileOptPostRequest {
+export interface BinaryTypesUploadFileListOptNilRequest {
     body?: any | null;
 }
 
-export interface ApiBinarytypesUploadFilePostRequest {
+export interface BinaryTypesUploadFileNilRequest {
     body: any | null;
 }
 
-export interface ApiBinarytypesUploadMixedNilPutOperationRequest {
-    apiBinarytypesUploadMixedNilPutRequest: ApiBinarytypesUploadMixedNilPutRequest;
+export interface BinaryTypesUploadFileOptRequest {
+    body?: any | null;
 }
 
-export interface ApiBinarytypesUploadMixedOptNilPutOperationRequest {
-    apiBinarytypesUploadMixedOptNilPutRequest: ApiBinarytypesUploadMixedOptNilPutRequest;
+export interface BinaryTypesUploadFileOptNilRequest {
+    body?: any | null;
 }
 
-export interface ApiBinarytypesUploadMixedOptPutOperationRequest {
-    apiBinarytypesUploadMixedOptPutRequest: ApiBinarytypesUploadMixedOptPutRequest;
+export interface BinaryTypesUploadMixedOperationRequest {
+    binaryTypesUploadMixedRequest: BinaryTypesUploadMixedRequest;
 }
 
-export interface ApiBinarytypesUploadMixedPutOperationRequest {
-    apiBinarytypesUploadMixedPutRequest: ApiBinarytypesUploadMixedPutRequest;
+export interface BinaryTypesUploadMixedNilOperationRequest {
+    binaryTypesUploadMixedNilRequest: BinaryTypesUploadMixedNilRequest;
+}
+
+export interface BinaryTypesUploadMixedOptOperationRequest {
+    binaryTypesUploadMixedOptRequest: BinaryTypesUploadMixedOptRequest;
+}
+
+export interface BinaryTypesUploadMixedOptNilOperationRequest {
+    binaryTypesUploadMixedOptNilRequest: BinaryTypesUploadMixedOptNilRequest;
 }
 
 /**
@@ -135,9 +135,9 @@ export interface ApiBinarytypesUploadMixedPutOperationRequest {
 export class BinaryTypesApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for apiBinarytypesDownloadBlobGet without sending the request
+     * Creates request options for binaryTypesDownloadBlob without sending the request
      */
-    async apiBinarytypesDownloadBlobGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async binaryTypesDownloadBlobRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -156,8 +156,8 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesDownloadBlobGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
-        const requestOptions = await this.apiBinarytypesDownloadBlobGetRequestOpts();
+    async binaryTypesDownloadBlobRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+        const requestOptions = await this.binaryTypesDownloadBlobRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -170,15 +170,15 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesDownloadBlobGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
-        const response = await this.apiBinarytypesDownloadBlobGetRaw(initOverrides);
+    async binaryTypesDownloadBlob(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+        const response = await this.binaryTypesDownloadBlobRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiBinarytypesDownloadFileGet without sending the request
+     * Creates request options for binaryTypesDownloadFile without sending the request
      */
-    async apiBinarytypesDownloadFileGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async binaryTypesDownloadFileRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -197,8 +197,8 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesDownloadFileGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
-        const requestOptions = await this.apiBinarytypesDownloadFileGetRequestOpts();
+    async binaryTypesDownloadFileRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+        const requestOptions = await this.binaryTypesDownloadFileRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -211,75 +211,75 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesDownloadFileGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
-        const response = await this.apiBinarytypesDownloadFileGetRaw(initOverrides);
+    async binaryTypesDownloadFile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+        const response = await this.binaryTypesDownloadFileRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiBinarytypesMixedPathStringPathNumberPost without sending the request
+     * Creates request options for binaryTypesMixed without sending the request
      */
-    async apiBinarytypesMixedPathStringPathNumberPostRequestOpts(requestParameters: ApiBinarytypesMixedPathStringPathNumberPostRequest): Promise<runtime.RequestOpts> {
+    async binaryTypesMixedRequestOpts(requestParameters: BinaryTypesMixedRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathString'] == null) {
             throw new runtime.RequiredError(
                 'pathString',
-                'Required parameter "pathString" was null or undefined when calling apiBinarytypesMixedPathStringPathNumberPost().'
+                'Required parameter "pathString" was null or undefined when calling binaryTypesMixed().'
             );
         }
 
         if (requestParameters['pathNumber'] == null) {
             throw new runtime.RequiredError(
                 'pathNumber',
-                'Required parameter "pathNumber" was null or undefined when calling apiBinarytypesMixedPathStringPathNumberPost().'
+                'Required parameter "pathNumber" was null or undefined when calling binaryTypesMixed().'
             );
         }
 
         if (requestParameters['headerString'] == null) {
             throw new runtime.RequiredError(
                 'headerString',
-                'Required parameter "headerString" was null or undefined when calling apiBinarytypesMixedPathStringPathNumberPost().'
+                'Required parameter "headerString" was null or undefined when calling binaryTypesMixed().'
             );
         }
 
         if (requestParameters['headerNumber'] == null) {
             throw new runtime.RequiredError(
                 'headerNumber',
-                'Required parameter "headerNumber" was null or undefined when calling apiBinarytypesMixedPathStringPathNumberPost().'
+                'Required parameter "headerNumber" was null or undefined when calling binaryTypesMixed().'
             );
         }
 
         if (requestParameters['headerRecord'] == null) {
             throw new runtime.RequiredError(
                 'headerRecord',
-                'Required parameter "headerRecord" was null or undefined when calling apiBinarytypesMixedPathStringPathNumberPost().'
+                'Required parameter "headerRecord" was null or undefined when calling binaryTypesMixed().'
             );
         }
 
         if (requestParameters['queryString'] == null) {
             throw new runtime.RequiredError(
                 'queryString',
-                'Required parameter "queryString" was null or undefined when calling apiBinarytypesMixedPathStringPathNumberPost().'
+                'Required parameter "queryString" was null or undefined when calling binaryTypesMixed().'
             );
         }
 
         if (requestParameters['queryNumber'] == null) {
             throw new runtime.RequiredError(
                 'queryNumber',
-                'Required parameter "queryNumber" was null or undefined when calling apiBinarytypesMixedPathStringPathNumberPost().'
+                'Required parameter "queryNumber" was null or undefined when calling binaryTypesMixed().'
             );
         }
 
         if (requestParameters['queryRecord'] == null) {
             throw new runtime.RequiredError(
                 'queryRecord',
-                'Required parameter "queryRecord" was null or undefined when calling apiBinarytypesMixedPathStringPathNumberPost().'
+                'Required parameter "queryRecord" was null or undefined when calling binaryTypesMixed().'
             );
         }
 
         if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
                 'body',
-                'Required parameter "body" was null or undefined when calling apiBinarytypesMixedPathStringPathNumberPost().'
+                'Required parameter "body" was null or undefined when calling binaryTypesMixed().'
             );
         }
 
@@ -330,8 +330,8 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesMixedPathStringPathNumberPostRaw(requestParameters: ApiBinarytypesMixedPathStringPathNumberPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.apiBinarytypesMixedPathStringPathNumberPostRequestOpts(requestParameters);
+    async binaryTypesMixedRaw(requestParameters: BinaryTypesMixedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.binaryTypesMixedRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -340,347 +340,18 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesMixedPathStringPathNumberPost(requestParameters: ApiBinarytypesMixedPathStringPathNumberPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.apiBinarytypesMixedPathStringPathNumberPostRaw(requestParameters, initOverrides);
+    async binaryTypesMixed(requestParameters: BinaryTypesMixedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.binaryTypesMixedRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for apiBinarytypesUploadBlobListNilPut without sending the request
+     * Creates request options for binaryTypesUploadBlob without sending the request
      */
-    async apiBinarytypesUploadBlobListNilPutRequestOpts(requestParameters: ApiBinarytypesUploadBlobListNilPutRequest): Promise<runtime.RequestOpts> {
+    async binaryTypesUploadBlobRequestOpts(requestParameters: BinaryTypesUploadBlobRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
                 'body',
-                'Required parameter "body" was null or undefined when calling apiBinarytypesUploadBlobListNilPut().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/binarytypes/uploadBlobListNil`;
-
-        return {
-            path: urlPath,
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['body'] as any,
-        };
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobListNilPutRaw(requestParameters: ApiBinarytypesUploadBlobListNilPutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadBlobListNilPutRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<number>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobListNilPut(requestParameters: ApiBinarytypesUploadBlobListNilPutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadBlobListNilPutRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for apiBinarytypesUploadBlobListOptNilPut without sending the request
-     */
-    async apiBinarytypesUploadBlobListOptNilPutRequestOpts(requestParameters: ApiBinarytypesUploadBlobListOptNilPutRequest): Promise<runtime.RequestOpts> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/binarytypes/uploadBlobListOptNil`;
-
-        return {
-            path: urlPath,
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['body'] as any,
-        };
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobListOptNilPutRaw(requestParameters: ApiBinarytypesUploadBlobListOptNilPutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadBlobListOptNilPutRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<number>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobListOptNilPut(requestParameters: ApiBinarytypesUploadBlobListOptNilPutRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadBlobListOptNilPutRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for apiBinarytypesUploadBlobListOptPut without sending the request
-     */
-    async apiBinarytypesUploadBlobListOptPutRequestOpts(requestParameters: ApiBinarytypesUploadBlobListOptPutRequest): Promise<runtime.RequestOpts> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/binarytypes/uploadBlobListOpt`;
-
-        return {
-            path: urlPath,
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['body'] as any,
-        };
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobListOptPutRaw(requestParameters: ApiBinarytypesUploadBlobListOptPutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadBlobListOptPutRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<number>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobListOptPut(requestParameters: ApiBinarytypesUploadBlobListOptPutRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadBlobListOptPutRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for apiBinarytypesUploadBlobListPut without sending the request
-     */
-    async apiBinarytypesUploadBlobListPutRequestOpts(requestParameters: ApiBinarytypesUploadBlobListPutRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
-            throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling apiBinarytypesUploadBlobListPut().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/binarytypes/uploadBlobList`;
-
-        return {
-            path: urlPath,
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['body'] as any,
-        };
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobListPutRaw(requestParameters: ApiBinarytypesUploadBlobListPutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadBlobListPutRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<number>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobListPut(requestParameters: ApiBinarytypesUploadBlobListPutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadBlobListPutRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for apiBinarytypesUploadBlobNilPost without sending the request
-     */
-    async apiBinarytypesUploadBlobNilPostRequestOpts(requestParameters: ApiBinarytypesUploadBlobNilPostRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
-            throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling apiBinarytypesUploadBlobNilPost().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/binarytypes/uploadBlobNil`;
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['body'] as any,
-        };
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobNilPostRaw(requestParameters: ApiBinarytypesUploadBlobNilPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadBlobNilPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<number>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobNilPost(requestParameters: ApiBinarytypesUploadBlobNilPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadBlobNilPostRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for apiBinarytypesUploadBlobOptNilPost without sending the request
-     */
-    async apiBinarytypesUploadBlobOptNilPostRequestOpts(requestParameters: ApiBinarytypesUploadBlobOptNilPostRequest): Promise<runtime.RequestOpts> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/binarytypes/uploadBlobOptNil`;
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['body'] as any,
-        };
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobOptNilPostRaw(requestParameters: ApiBinarytypesUploadBlobOptNilPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadBlobOptNilPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<number>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobOptNilPost(requestParameters: ApiBinarytypesUploadBlobOptNilPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadBlobOptNilPostRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for apiBinarytypesUploadBlobOptPost without sending the request
-     */
-    async apiBinarytypesUploadBlobOptPostRequestOpts(requestParameters: ApiBinarytypesUploadBlobOptPostRequest): Promise<runtime.RequestOpts> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/binarytypes/uploadBlobOpt`;
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['body'] as any,
-        };
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobOptPostRaw(requestParameters: ApiBinarytypesUploadBlobOptPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadBlobOptPostRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<number>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadBlobOptPost(requestParameters: ApiBinarytypesUploadBlobOptPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadBlobOptPostRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for apiBinarytypesUploadBlobPost without sending the request
-     */
-    async apiBinarytypesUploadBlobPostRequestOpts(requestParameters: ApiBinarytypesUploadBlobPostRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
-            throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling apiBinarytypesUploadBlobPost().'
+                'Required parameter "body" was null or undefined when calling binaryTypesUploadBlob().'
             );
         }
 
@@ -705,8 +376,8 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadBlobPostRaw(requestParameters: ApiBinarytypesUploadBlobPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadBlobPostRequestOpts(requestParameters);
+    async binaryTypesUploadBlobRaw(requestParameters: BinaryTypesUploadBlobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadBlobRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -719,19 +390,19 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadBlobPost(requestParameters: ApiBinarytypesUploadBlobPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadBlobPostRaw(requestParameters, initOverrides);
+    async binaryTypesUploadBlob(requestParameters: BinaryTypesUploadBlobRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadBlobRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiBinarytypesUploadFileListNilPut without sending the request
+     * Creates request options for binaryTypesUploadBlobList without sending the request
      */
-    async apiBinarytypesUploadFileListNilPutRequestOpts(requestParameters: ApiBinarytypesUploadFileListNilPutRequest): Promise<runtime.RequestOpts> {
+    async binaryTypesUploadBlobListRequestOpts(requestParameters: BinaryTypesUploadBlobListRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
                 'body',
-                'Required parameter "body" was null or undefined when calling apiBinarytypesUploadFileListNilPut().'
+                'Required parameter "body" was null or undefined when calling binaryTypesUploadBlobList().'
             );
         }
 
@@ -742,7 +413,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
 
-        let urlPath = `/api/binarytypes/uploadFileListNil`;
+        let urlPath = `/api/binarytypes/uploadBlobList`;
 
         return {
             path: urlPath,
@@ -756,8 +427,8 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadFileListNilPutRaw(requestParameters: ApiBinarytypesUploadFileListNilPutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadFileListNilPutRequestOpts(requestParameters);
+    async binaryTypesUploadBlobListRaw(requestParameters: BinaryTypesUploadBlobListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadBlobListRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -770,107 +441,19 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadFileListNilPut(requestParameters: ApiBinarytypesUploadFileListNilPutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadFileListNilPutRaw(requestParameters, initOverrides);
+    async binaryTypesUploadBlobList(requestParameters: BinaryTypesUploadBlobListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadBlobListRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiBinarytypesUploadFileListOptNilPut without sending the request
+     * Creates request options for binaryTypesUploadBlobListNil without sending the request
      */
-    async apiBinarytypesUploadFileListOptNilPutRequestOpts(requestParameters: ApiBinarytypesUploadFileListOptNilPutRequest): Promise<runtime.RequestOpts> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/binarytypes/uploadFileListOptNil`;
-
-        return {
-            path: urlPath,
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['body'] as any,
-        };
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadFileListOptNilPutRaw(requestParameters: ApiBinarytypesUploadFileListOptNilPutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadFileListOptNilPutRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<number>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadFileListOptNilPut(requestParameters: ApiBinarytypesUploadFileListOptNilPutRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadFileListOptNilPutRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for apiBinarytypesUploadFileListOptPut without sending the request
-     */
-    async apiBinarytypesUploadFileListOptPutRequestOpts(requestParameters: ApiBinarytypesUploadFileListOptPutRequest): Promise<runtime.RequestOpts> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/binarytypes/uploadFileListOpt`;
-
-        return {
-            path: urlPath,
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['body'] as any,
-        };
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadFileListOptPutRaw(requestParameters: ApiBinarytypesUploadFileListOptPutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadFileListOptPutRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<number>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
-    }
-
-    /**
-     * 
-     */
-    async apiBinarytypesUploadFileListOptPut(requestParameters: ApiBinarytypesUploadFileListOptPutRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadFileListOptPutRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for apiBinarytypesUploadFileListPut without sending the request
-     */
-    async apiBinarytypesUploadFileListPutRequestOpts(requestParameters: ApiBinarytypesUploadFileListPutRequest): Promise<runtime.RequestOpts> {
+    async binaryTypesUploadBlobListNilRequestOpts(requestParameters: BinaryTypesUploadBlobListNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
                 'body',
-                'Required parameter "body" was null or undefined when calling apiBinarytypesUploadFileListPut().'
+                'Required parameter "body" was null or undefined when calling binaryTypesUploadBlobListNil().'
             );
         }
 
@@ -881,7 +464,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
 
-        let urlPath = `/api/binarytypes/uploadFileList`;
+        let urlPath = `/api/binarytypes/uploadBlobListNil`;
 
         return {
             path: urlPath,
@@ -895,8 +478,8 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadFileListPutRaw(requestParameters: ApiBinarytypesUploadFileListPutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadFileListPutRequestOpts(requestParameters);
+    async binaryTypesUploadBlobListNilRaw(requestParameters: BinaryTypesUploadBlobListNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadBlobListNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -909,19 +492,107 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadFileListPut(requestParameters: ApiBinarytypesUploadFileListPutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadFileListPutRaw(requestParameters, initOverrides);
+    async binaryTypesUploadBlobListNil(requestParameters: BinaryTypesUploadBlobListNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadBlobListNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiBinarytypesUploadFileNilPost without sending the request
+     * Creates request options for binaryTypesUploadBlobListOpt without sending the request
      */
-    async apiBinarytypesUploadFileNilPostRequestOpts(requestParameters: ApiBinarytypesUploadFileNilPostRequest): Promise<runtime.RequestOpts> {
+    async binaryTypesUploadBlobListOptRequestOpts(requestParameters: BinaryTypesUploadBlobListOptRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/binarytypes/uploadBlobListOpt`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['body'] as any,
+        };
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadBlobListOptRaw(requestParameters: BinaryTypesUploadBlobListOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadBlobListOptRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<number>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadBlobListOpt(requestParameters: BinaryTypesUploadBlobListOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadBlobListOptRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for binaryTypesUploadBlobListOptNil without sending the request
+     */
+    async binaryTypesUploadBlobListOptNilRequestOpts(requestParameters: BinaryTypesUploadBlobListOptNilRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/binarytypes/uploadBlobListOptNil`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['body'] as any,
+        };
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadBlobListOptNilRaw(requestParameters: BinaryTypesUploadBlobListOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadBlobListOptNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<number>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadBlobListOptNil(requestParameters: BinaryTypesUploadBlobListOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadBlobListOptNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for binaryTypesUploadBlobNil without sending the request
+     */
+    async binaryTypesUploadBlobNilRequestOpts(requestParameters: BinaryTypesUploadBlobNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
                 'body',
-                'Required parameter "body" was null or undefined when calling apiBinarytypesUploadFileNilPost().'
+                'Required parameter "body" was null or undefined when calling binaryTypesUploadBlobNil().'
             );
         }
 
@@ -932,7 +603,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
 
-        let urlPath = `/api/binarytypes/uploadFileNil`;
+        let urlPath = `/api/binarytypes/uploadBlobNil`;
 
         return {
             path: urlPath,
@@ -946,8 +617,8 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadFileNilPostRaw(requestParameters: ApiBinarytypesUploadFileNilPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadFileNilPostRequestOpts(requestParameters);
+    async binaryTypesUploadBlobNilRaw(requestParameters: BinaryTypesUploadBlobNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadBlobNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -960,15 +631,15 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadFileNilPost(requestParameters: ApiBinarytypesUploadFileNilPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadFileNilPostRaw(requestParameters, initOverrides);
+    async binaryTypesUploadBlobNil(requestParameters: BinaryTypesUploadBlobNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadBlobNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiBinarytypesUploadFileOptNilPost without sending the request
+     * Creates request options for binaryTypesUploadBlobOpt without sending the request
      */
-    async apiBinarytypesUploadFileOptNilPostRequestOpts(requestParameters: ApiBinarytypesUploadFileOptNilPostRequest): Promise<runtime.RequestOpts> {
+    async binaryTypesUploadBlobOptRequestOpts(requestParameters: BinaryTypesUploadBlobOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -976,7 +647,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
 
-        let urlPath = `/api/binarytypes/uploadFileOptNil`;
+        let urlPath = `/api/binarytypes/uploadBlobOpt`;
 
         return {
             path: urlPath,
@@ -990,8 +661,8 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadFileOptNilPostRaw(requestParameters: ApiBinarytypesUploadFileOptNilPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadFileOptNilPostRequestOpts(requestParameters);
+    async binaryTypesUploadBlobOptRaw(requestParameters: BinaryTypesUploadBlobOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadBlobOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -1004,15 +675,15 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadFileOptNilPost(requestParameters: ApiBinarytypesUploadFileOptNilPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadFileOptNilPostRaw(requestParameters, initOverrides);
+    async binaryTypesUploadBlobOpt(requestParameters: BinaryTypesUploadBlobOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadBlobOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiBinarytypesUploadFileOptPost without sending the request
+     * Creates request options for binaryTypesUploadBlobOptNil without sending the request
      */
-    async apiBinarytypesUploadFileOptPostRequestOpts(requestParameters: ApiBinarytypesUploadFileOptPostRequest): Promise<runtime.RequestOpts> {
+    async binaryTypesUploadBlobOptNilRequestOpts(requestParameters: BinaryTypesUploadBlobOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1020,7 +691,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
 
-        let urlPath = `/api/binarytypes/uploadFileOpt`;
+        let urlPath = `/api/binarytypes/uploadBlobOptNil`;
 
         return {
             path: urlPath,
@@ -1034,8 +705,8 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadFileOptPostRaw(requestParameters: ApiBinarytypesUploadFileOptPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadFileOptPostRequestOpts(requestParameters);
+    async binaryTypesUploadBlobOptNilRaw(requestParameters: BinaryTypesUploadBlobOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadBlobOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -1048,19 +719,19 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadFileOptPost(requestParameters: ApiBinarytypesUploadFileOptPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadFileOptPostRaw(requestParameters, initOverrides);
+    async binaryTypesUploadBlobOptNil(requestParameters: BinaryTypesUploadBlobOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadBlobOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiBinarytypesUploadFilePost without sending the request
+     * Creates request options for binaryTypesUploadFile without sending the request
      */
-    async apiBinarytypesUploadFilePostRequestOpts(requestParameters: ApiBinarytypesUploadFilePostRequest): Promise<runtime.RequestOpts> {
+    async binaryTypesUploadFileRequestOpts(requestParameters: BinaryTypesUploadFileRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
                 'body',
-                'Required parameter "body" was null or undefined when calling apiBinarytypesUploadFilePost().'
+                'Required parameter "body" was null or undefined when calling binaryTypesUploadFile().'
             );
         }
 
@@ -1085,8 +756,8 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadFilePostRaw(requestParameters: ApiBinarytypesUploadFilePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiBinarytypesUploadFilePostRequestOpts(requestParameters);
+    async binaryTypesUploadFileRaw(requestParameters: BinaryTypesUploadFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadFileRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -1099,19 +770,19 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadFilePost(requestParameters: ApiBinarytypesUploadFilePostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiBinarytypesUploadFilePostRaw(requestParameters, initOverrides);
+    async binaryTypesUploadFile(requestParameters: BinaryTypesUploadFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadFileRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiBinarytypesUploadMixedNilPut without sending the request
+     * Creates request options for binaryTypesUploadFileList without sending the request
      */
-    async apiBinarytypesUploadMixedNilPutRequestOpts(requestParameters: ApiBinarytypesUploadMixedNilPutOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['apiBinarytypesUploadMixedNilPutRequest'] == null) {
+    async binaryTypesUploadFileListRequestOpts(requestParameters: BinaryTypesUploadFileListRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
-                'apiBinarytypesUploadMixedNilPutRequest',
-                'Required parameter "apiBinarytypesUploadMixedNilPutRequest" was null or undefined when calling apiBinarytypesUploadMixedNilPut().'
+                'body',
+                'Required parameter "body" was null or undefined when calling binaryTypesUploadFileList().'
             );
         }
 
@@ -1122,43 +793,47 @@ export class BinaryTypesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
 
-        let urlPath = `/api/binarytypes/uploadMixedNil`;
+        let urlPath = `/api/binarytypes/uploadFileList`;
 
         return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: ApiBinarytypesUploadMixedNilPutRequestToJSON(requestParameters['apiBinarytypesUploadMixedNilPutRequest']),
+            body: requestParameters['body'] as any,
         };
     }
 
     /**
      * 
      */
-    async apiBinarytypesUploadMixedNilPutRaw(requestParameters: ApiBinarytypesUploadMixedNilPutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
-        const requestOptions = await this.apiBinarytypesUploadMixedNilPutRequestOpts(requestParameters);
+    async binaryTypesUploadFileListRaw(requestParameters: BinaryTypesUploadFileListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadFileListRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UploadMixedResultFromJSON(jsonValue));
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<number>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * 
      */
-    async apiBinarytypesUploadMixedNilPut(requestParameters: ApiBinarytypesUploadMixedNilPutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
-        const response = await this.apiBinarytypesUploadMixedNilPutRaw(requestParameters, initOverrides);
+    async binaryTypesUploadFileList(requestParameters: BinaryTypesUploadFileListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadFileListRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiBinarytypesUploadMixedOptNilPut without sending the request
+     * Creates request options for binaryTypesUploadFileListNil without sending the request
      */
-    async apiBinarytypesUploadMixedOptNilPutRequestOpts(requestParameters: ApiBinarytypesUploadMixedOptNilPutOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['apiBinarytypesUploadMixedOptNilPutRequest'] == null) {
+    async binaryTypesUploadFileListNilRequestOpts(requestParameters: BinaryTypesUploadFileListNilRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
-                'apiBinarytypesUploadMixedOptNilPutRequest',
-                'Required parameter "apiBinarytypesUploadMixedOptNilPutRequest" was null or undefined when calling apiBinarytypesUploadMixedOptNilPut().'
+                'body',
+                'Required parameter "body" was null or undefined when calling binaryTypesUploadFileListNil().'
             );
         }
 
@@ -1169,43 +844,135 @@ export class BinaryTypesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
 
-        let urlPath = `/api/binarytypes/uploadMixedOptNil`;
+        let urlPath = `/api/binarytypes/uploadFileListNil`;
 
         return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: ApiBinarytypesUploadMixedOptNilPutRequestToJSON(requestParameters['apiBinarytypesUploadMixedOptNilPutRequest']),
+            body: requestParameters['body'] as any,
         };
     }
 
     /**
      * 
      */
-    async apiBinarytypesUploadMixedOptNilPutRaw(requestParameters: ApiBinarytypesUploadMixedOptNilPutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
-        const requestOptions = await this.apiBinarytypesUploadMixedOptNilPutRequestOpts(requestParameters);
+    async binaryTypesUploadFileListNilRaw(requestParameters: BinaryTypesUploadFileListNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadFileListNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UploadMixedResultFromJSON(jsonValue));
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<number>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * 
      */
-    async apiBinarytypesUploadMixedOptNilPut(requestParameters: ApiBinarytypesUploadMixedOptNilPutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
-        const response = await this.apiBinarytypesUploadMixedOptNilPutRaw(requestParameters, initOverrides);
+    async binaryTypesUploadFileListNil(requestParameters: BinaryTypesUploadFileListNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadFileListNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiBinarytypesUploadMixedOptPut without sending the request
+     * Creates request options for binaryTypesUploadFileListOpt without sending the request
      */
-    async apiBinarytypesUploadMixedOptPutRequestOpts(requestParameters: ApiBinarytypesUploadMixedOptPutOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['apiBinarytypesUploadMixedOptPutRequest'] == null) {
+    async binaryTypesUploadFileListOptRequestOpts(requestParameters: BinaryTypesUploadFileListOptRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/binarytypes/uploadFileListOpt`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['body'] as any,
+        };
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadFileListOptRaw(requestParameters: BinaryTypesUploadFileListOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadFileListOptRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<number>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadFileListOpt(requestParameters: BinaryTypesUploadFileListOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadFileListOptRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for binaryTypesUploadFileListOptNil without sending the request
+     */
+    async binaryTypesUploadFileListOptNilRequestOpts(requestParameters: BinaryTypesUploadFileListOptNilRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/binarytypes/uploadFileListOptNil`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['body'] as any,
+        };
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadFileListOptNilRaw(requestParameters: BinaryTypesUploadFileListOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadFileListOptNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<number>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadFileListOptNil(requestParameters: BinaryTypesUploadFileListOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadFileListOptNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for binaryTypesUploadFileNil without sending the request
+     */
+    async binaryTypesUploadFileNilRequestOpts(requestParameters: BinaryTypesUploadFileNilRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
-                'apiBinarytypesUploadMixedOptPutRequest',
-                'Required parameter "apiBinarytypesUploadMixedOptPutRequest" was null or undefined when calling apiBinarytypesUploadMixedOptPut().'
+                'body',
+                'Required parameter "body" was null or undefined when calling binaryTypesUploadFileNil().'
             );
         }
 
@@ -1216,43 +983,135 @@ export class BinaryTypesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
 
-        let urlPath = `/api/binarytypes/uploadMixedOpt`;
+        let urlPath = `/api/binarytypes/uploadFileNil`;
 
         return {
             path: urlPath,
-            method: 'PUT',
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ApiBinarytypesUploadMixedOptPutRequestToJSON(requestParameters['apiBinarytypesUploadMixedOptPutRequest']),
+            body: requestParameters['body'] as any,
         };
     }
 
     /**
      * 
      */
-    async apiBinarytypesUploadMixedOptPutRaw(requestParameters: ApiBinarytypesUploadMixedOptPutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
-        const requestOptions = await this.apiBinarytypesUploadMixedOptPutRequestOpts(requestParameters);
+    async binaryTypesUploadFileNilRaw(requestParameters: BinaryTypesUploadFileNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadFileNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UploadMixedResultFromJSON(jsonValue));
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<number>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * 
      */
-    async apiBinarytypesUploadMixedOptPut(requestParameters: ApiBinarytypesUploadMixedOptPutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
-        const response = await this.apiBinarytypesUploadMixedOptPutRaw(requestParameters, initOverrides);
+    async binaryTypesUploadFileNil(requestParameters: BinaryTypesUploadFileNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadFileNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiBinarytypesUploadMixedPut without sending the request
+     * Creates request options for binaryTypesUploadFileOpt without sending the request
      */
-    async apiBinarytypesUploadMixedPutRequestOpts(requestParameters: ApiBinarytypesUploadMixedPutOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['apiBinarytypesUploadMixedPutRequest'] == null) {
+    async binaryTypesUploadFileOptRequestOpts(requestParameters: BinaryTypesUploadFileOptRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/binarytypes/uploadFileOpt`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['body'] as any,
+        };
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadFileOptRaw(requestParameters: BinaryTypesUploadFileOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadFileOptRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<number>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadFileOpt(requestParameters: BinaryTypesUploadFileOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadFileOptRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for binaryTypesUploadFileOptNil without sending the request
+     */
+    async binaryTypesUploadFileOptNilRequestOpts(requestParameters: BinaryTypesUploadFileOptNilRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/binarytypes/uploadFileOptNil`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['body'] as any,
+        };
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadFileOptNilRaw(requestParameters: BinaryTypesUploadFileOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.binaryTypesUploadFileOptNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<number>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadFileOptNil(requestParameters: BinaryTypesUploadFileOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.binaryTypesUploadFileOptNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for binaryTypesUploadMixed without sending the request
+     */
+    async binaryTypesUploadMixedRequestOpts(requestParameters: BinaryTypesUploadMixedOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['binaryTypesUploadMixedRequest'] == null) {
             throw new runtime.RequiredError(
-                'apiBinarytypesUploadMixedPutRequest',
-                'Required parameter "apiBinarytypesUploadMixedPutRequest" was null or undefined when calling apiBinarytypesUploadMixedPut().'
+                'binaryTypesUploadMixedRequest',
+                'Required parameter "binaryTypesUploadMixedRequest" was null or undefined when calling binaryTypesUploadMixed().'
             );
         }
 
@@ -1270,15 +1129,15 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: ApiBinarytypesUploadMixedPutRequestToJSON(requestParameters['apiBinarytypesUploadMixedPutRequest']),
+            body: BinaryTypesUploadMixedRequestToJSON(requestParameters['binaryTypesUploadMixedRequest']),
         };
     }
 
     /**
      * 
      */
-    async apiBinarytypesUploadMixedPutRaw(requestParameters: ApiBinarytypesUploadMixedPutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
-        const requestOptions = await this.apiBinarytypesUploadMixedPutRequestOpts(requestParameters);
+    async binaryTypesUploadMixedRaw(requestParameters: BinaryTypesUploadMixedOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
+        const requestOptions = await this.binaryTypesUploadMixedRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UploadMixedResultFromJSON(jsonValue));
@@ -1287,8 +1146,149 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiBinarytypesUploadMixedPut(requestParameters: ApiBinarytypesUploadMixedPutOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
-        const response = await this.apiBinarytypesUploadMixedPutRaw(requestParameters, initOverrides);
+    async binaryTypesUploadMixed(requestParameters: BinaryTypesUploadMixedOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
+        const response = await this.binaryTypesUploadMixedRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for binaryTypesUploadMixedNil without sending the request
+     */
+    async binaryTypesUploadMixedNilRequestOpts(requestParameters: BinaryTypesUploadMixedNilOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['binaryTypesUploadMixedNilRequest'] == null) {
+            throw new runtime.RequiredError(
+                'binaryTypesUploadMixedNilRequest',
+                'Required parameter "binaryTypesUploadMixedNilRequest" was null or undefined when calling binaryTypesUploadMixedNil().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/binarytypes/uploadMixedNil`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BinaryTypesUploadMixedNilRequestToJSON(requestParameters['binaryTypesUploadMixedNilRequest']),
+        };
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadMixedNilRaw(requestParameters: BinaryTypesUploadMixedNilOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
+        const requestOptions = await this.binaryTypesUploadMixedNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UploadMixedResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadMixedNil(requestParameters: BinaryTypesUploadMixedNilOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
+        const response = await this.binaryTypesUploadMixedNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for binaryTypesUploadMixedOpt without sending the request
+     */
+    async binaryTypesUploadMixedOptRequestOpts(requestParameters: BinaryTypesUploadMixedOptOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['binaryTypesUploadMixedOptRequest'] == null) {
+            throw new runtime.RequiredError(
+                'binaryTypesUploadMixedOptRequest',
+                'Required parameter "binaryTypesUploadMixedOptRequest" was null or undefined when calling binaryTypesUploadMixedOpt().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/binarytypes/uploadMixedOpt`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BinaryTypesUploadMixedOptRequestToJSON(requestParameters['binaryTypesUploadMixedOptRequest']),
+        };
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadMixedOptRaw(requestParameters: BinaryTypesUploadMixedOptOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
+        const requestOptions = await this.binaryTypesUploadMixedOptRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UploadMixedResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadMixedOpt(requestParameters: BinaryTypesUploadMixedOptOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
+        const response = await this.binaryTypesUploadMixedOptRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for binaryTypesUploadMixedOptNil without sending the request
+     */
+    async binaryTypesUploadMixedOptNilRequestOpts(requestParameters: BinaryTypesUploadMixedOptNilOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['binaryTypesUploadMixedOptNilRequest'] == null) {
+            throw new runtime.RequiredError(
+                'binaryTypesUploadMixedOptNilRequest',
+                'Required parameter "binaryTypesUploadMixedOptNilRequest" was null or undefined when calling binaryTypesUploadMixedOptNil().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/binarytypes/uploadMixedOptNil`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BinaryTypesUploadMixedOptNilRequestToJSON(requestParameters['binaryTypesUploadMixedOptNilRequest']),
+        };
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadMixedOptNilRaw(requestParameters: BinaryTypesUploadMixedOptNilOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
+        const requestOptions = await this.binaryTypesUploadMixedOptNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UploadMixedResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesUploadMixedOptNil(requestParameters: BinaryTypesUploadMixedOptNilOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
+        const response = await this.binaryTypesUploadMixedOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

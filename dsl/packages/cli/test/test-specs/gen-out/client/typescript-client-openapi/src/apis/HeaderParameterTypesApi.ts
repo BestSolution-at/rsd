@@ -28,7 +28,7 @@ import {
     SimpleRecordToJSON,
 } from '../models/index.js';
 
-export interface ApiHeaderparametertypesMixedPathStringPathNumberPostRequest {
+export interface HeaderParameterTypesMixedRequest {
     pathString: string;
     pathNumber: number;
     headerString: string;
@@ -40,247 +40,247 @@ export interface ApiHeaderparametertypesMixedPathStringPathNumberPostRequest {
     simpleRecord: SimpleRecord;
 }
 
-export interface ApiHeaderparametertypesMultiHeaderParamGetRequest {
+export interface HeaderParameterTypesMultiHeaderParamRequest {
     valueA: string;
     valueB: number;
 }
 
-export interface ApiHeaderparametertypesMultiHeaderParamNilGetRequest {
+export interface HeaderParameterTypesMultiHeaderParamNilRequest {
     valueA: string | null;
     valueB: number | null;
 }
 
-export interface ApiHeaderparametertypesMultiHeaderParamOptGetRequest {
+export interface HeaderParameterTypesMultiHeaderParamOptRequest {
     valueA?: string;
     valueB?: number;
 }
 
-export interface ApiHeaderparametertypesMultiHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesMultiHeaderParamOptNilRequest {
     valueA?: string | null;
     valueB?: number | null;
 }
 
-export interface ApiHeaderparametertypesRecordHeaderParamGetRequest {
+export interface HeaderParameterTypesRecordHeaderParamRequest {
     headerValue: SimpleRecord;
 }
 
-export interface ApiHeaderparametertypesRecordHeaderParamNilGetRequest {
+export interface HeaderParameterTypesRecordHeaderParamNilRequest {
     headerValue: SimpleRecord | null;
 }
 
-export interface ApiHeaderparametertypesRecordHeaderParamOptGetRequest {
+export interface HeaderParameterTypesRecordHeaderParamOptRequest {
     headerValue?: SimpleRecord;
 }
 
-export interface ApiHeaderparametertypesRecordHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesRecordHeaderParamOptNilRequest {
     headerValue?: SimpleRecord | null;
 }
 
-export interface ApiHeaderparametertypesSimpleBooleanHeaderParamGetRequest {
+export interface HeaderParameterTypesSimpleBooleanHeaderParamRequest {
     headerValue: boolean;
 }
 
-export interface ApiHeaderparametertypesSimpleBooleanHeaderParamNilGetRequest {
+export interface HeaderParameterTypesSimpleBooleanHeaderParamNilRequest {
     headerValue: boolean | null;
 }
 
-export interface ApiHeaderparametertypesSimpleBooleanHeaderParamOptGetRequest {
+export interface HeaderParameterTypesSimpleBooleanHeaderParamOptRequest {
     headerValue?: boolean;
 }
 
-export interface ApiHeaderparametertypesSimpleBooleanHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesSimpleBooleanHeaderParamOptNilRequest {
     headerValue?: boolean | null;
 }
 
-export interface ApiHeaderparametertypesSimpleDoubleHeaderParamGetRequest {
+export interface HeaderParameterTypesSimpleDoubleHeaderParamRequest {
     headerValue: number;
 }
 
-export interface ApiHeaderparametertypesSimpleDoubleHeaderParamNilGetRequest {
+export interface HeaderParameterTypesSimpleDoubleHeaderParamNilRequest {
     headerValue: number | null;
 }
 
-export interface ApiHeaderparametertypesSimpleDoubleHeaderParamOptGetRequest {
+export interface HeaderParameterTypesSimpleDoubleHeaderParamOptRequest {
     headerValue?: number;
 }
 
-export interface ApiHeaderparametertypesSimpleDoubleHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesSimpleDoubleHeaderParamOptNilRequest {
     headerValue?: number | null;
 }
 
-export interface ApiHeaderparametertypesSimpleEnumHeaderParamGetRequest {
+export interface HeaderParameterTypesSimpleEnumHeaderParamRequest {
     headerValue: SampleEnum;
 }
 
-export interface ApiHeaderparametertypesSimpleEnumHeaderParamNilGetRequest {
+export interface HeaderParameterTypesSimpleEnumHeaderParamNilRequest {
     headerValue: SampleEnum | null;
 }
 
-export interface ApiHeaderparametertypesSimpleEnumHeaderParamOptGetRequest {
+export interface HeaderParameterTypesSimpleEnumHeaderParamOptRequest {
     headerValue?: SampleEnum;
 }
 
-export interface ApiHeaderparametertypesSimpleEnumHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesSimpleEnumHeaderParamOptNilRequest {
     headerValue?: SampleEnum | null;
 }
 
-export interface ApiHeaderparametertypesSimpleFloatHeaderParamGetRequest {
+export interface HeaderParameterTypesSimpleFloatHeaderParamRequest {
     headerValue: number;
 }
 
-export interface ApiHeaderparametertypesSimpleFloatHeaderParamNilGetRequest {
+export interface HeaderParameterTypesSimpleFloatHeaderParamNilRequest {
     headerValue: number | null;
 }
 
-export interface ApiHeaderparametertypesSimpleFloatHeaderParamOptGetRequest {
+export interface HeaderParameterTypesSimpleFloatHeaderParamOptRequest {
     headerValue?: number;
 }
 
-export interface ApiHeaderparametertypesSimpleFloatHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesSimpleFloatHeaderParamOptNilRequest {
     headerValue?: number | null;
 }
 
-export interface ApiHeaderparametertypesSimpleInlineEnumHeaderParamGetRequest {
-    headerValue: ApiHeaderparametertypesSimpleInlineEnumHeaderParamGetHeaderValueEnum;
+export interface HeaderParameterTypesSimpleInlineEnumHeaderParamRequest {
+    headerValue: HeaderParameterTypesSimpleInlineEnumHeaderParamHeaderValueEnum;
 }
 
-export interface ApiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetRequest {
-    headerValue: ApiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetHeaderValueEnum;
+export interface HeaderParameterTypesSimpleInlineEnumHeaderParamNilRequest {
+    headerValue: HeaderParameterTypesSimpleInlineEnumHeaderParamNilHeaderValueEnum;
 }
 
-export interface ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetRequest {
-    headerValue?: ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetHeaderValueEnum;
+export interface HeaderParameterTypesSimpleInlineEnumHeaderParamOptRequest {
+    headerValue?: HeaderParameterTypesSimpleInlineEnumHeaderParamOptHeaderValueEnum;
 }
 
-export interface ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetRequest {
-    headerValue?: ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetHeaderValueEnum;
+export interface HeaderParameterTypesSimpleInlineEnumHeaderParamOptNilRequest {
+    headerValue?: HeaderParameterTypesSimpleInlineEnumHeaderParamOptNilHeaderValueEnum;
 }
 
-export interface ApiHeaderparametertypesSimpleIntHeaderParamGetRequest {
+export interface HeaderParameterTypesSimpleIntHeaderParamRequest {
     headerValue: number;
 }
 
-export interface ApiHeaderparametertypesSimpleIntHeaderParamNilGetRequest {
+export interface HeaderParameterTypesSimpleIntHeaderParamNilRequest {
     headerValue: number | null;
 }
 
-export interface ApiHeaderparametertypesSimpleIntHeaderParamOptGetRequest {
+export interface HeaderParameterTypesSimpleIntHeaderParamOptRequest {
     headerValue?: number;
 }
 
-export interface ApiHeaderparametertypesSimpleIntHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesSimpleIntHeaderParamOptNilRequest {
     headerValue?: number | null;
 }
 
-export interface ApiHeaderparametertypesSimpleLocalDateHeaderParamGetRequest {
+export interface HeaderParameterTypesSimpleLocalDateHeaderParamRequest {
     headerValue: Date;
 }
 
-export interface ApiHeaderparametertypesSimpleLocalDateHeaderParamNilGetRequest {
+export interface HeaderParameterTypesSimpleLocalDateHeaderParamNilRequest {
     headerValue: Date | null;
 }
 
-export interface ApiHeaderparametertypesSimpleLocalDateHeaderParamOptGetRequest {
+export interface HeaderParameterTypesSimpleLocalDateHeaderParamOptRequest {
     headerValue?: Date;
 }
 
-export interface ApiHeaderparametertypesSimpleLocalDateHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesSimpleLocalDateHeaderParamOptNilRequest {
     headerValue?: Date | null;
 }
 
-export interface ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamGetRequest {
+export interface HeaderParameterTypesSimpleLocalDateTimeHeaderParamRequest {
     headerValue: string;
 }
 
-export interface ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamNilGetRequest {
+export interface HeaderParameterTypesSimpleLocalDateTimeHeaderParamNilRequest {
     headerValue: string | null;
 }
 
-export interface ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptGetRequest {
+export interface HeaderParameterTypesSimpleLocalDateTimeHeaderParamOptRequest {
     headerValue?: string;
 }
 
-export interface ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesSimpleLocalDateTimeHeaderParamOptNilRequest {
     headerValue?: string | null;
 }
 
-export interface ApiHeaderparametertypesSimpleLongHeaderParamGetRequest {
+export interface HeaderParameterTypesSimpleLongHeaderParamRequest {
     headerValue: number;
 }
 
-export interface ApiHeaderparametertypesSimpleLongHeaderParamNilGetRequest {
+export interface HeaderParameterTypesSimpleLongHeaderParamNilRequest {
     headerValue: number | null;
 }
 
-export interface ApiHeaderparametertypesSimpleLongHeaderParamOptGetRequest {
+export interface HeaderParameterTypesSimpleLongHeaderParamOptRequest {
     headerValue?: number;
 }
 
-export interface ApiHeaderparametertypesSimpleLongHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesSimpleLongHeaderParamOptNilRequest {
     headerValue?: number | null;
 }
 
-export interface ApiHeaderparametertypesSimpleScalarHeaderParamGetRequest {
+export interface HeaderParameterTypesSimpleScalarHeaderParamRequest {
     headerValue: string;
 }
 
-export interface ApiHeaderparametertypesSimpleScalarHeaderParamNilGetRequest {
+export interface HeaderParameterTypesSimpleScalarHeaderParamNilRequest {
     headerValue: string | null;
 }
 
-export interface ApiHeaderparametertypesSimpleScalarHeaderParamOptGetRequest {
+export interface HeaderParameterTypesSimpleScalarHeaderParamOptRequest {
     headerValue?: string;
 }
 
-export interface ApiHeaderparametertypesSimpleScalarHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesSimpleScalarHeaderParamOptNilRequest {
     headerValue?: string | null;
 }
 
-export interface ApiHeaderparametertypesSimpleShortHeaderParamGetRequest {
+export interface HeaderParameterTypesSimpleShortHeaderParamRequest {
     headerValue: number;
 }
 
-export interface ApiHeaderparametertypesSimpleShortHeaderParamNilGetRequest {
+export interface HeaderParameterTypesSimpleShortHeaderParamNilRequest {
     headerValue: number | null;
 }
 
-export interface ApiHeaderparametertypesSimpleShortHeaderParamOptGetRequest {
+export interface HeaderParameterTypesSimpleShortHeaderParamOptRequest {
     headerValue?: number;
 }
 
-export interface ApiHeaderparametertypesSimpleShortHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesSimpleShortHeaderParamOptNilRequest {
     headerValue?: number | null;
 }
 
-export interface ApiHeaderparametertypesSimpleStringHeaderParamGetRequest {
+export interface HeaderParameterTypesSimpleStringHeaderParamRequest {
     headerValue: string;
 }
 
-export interface ApiHeaderparametertypesSimpleStringHeaderParamNilGetRequest {
+export interface HeaderParameterTypesSimpleStringHeaderParamNilRequest {
     headerValue: string | null;
 }
 
-export interface ApiHeaderparametertypesSimpleStringHeaderParamOptGetRequest {
+export interface HeaderParameterTypesSimpleStringHeaderParamOptRequest {
     headerValue?: string;
 }
 
-export interface ApiHeaderparametertypesSimpleStringHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesSimpleStringHeaderParamOptNilRequest {
     headerValue?: string | null;
 }
 
-export interface ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamGetRequest {
+export interface HeaderParameterTypesSimpleZonedDateTimeHeaderParamRequest {
     headerValue: string;
 }
 
-export interface ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamNilGetRequest {
+export interface HeaderParameterTypesSimpleZonedDateTimeHeaderParamNilRequest {
     headerValue: string | null;
 }
 
-export interface ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptGetRequest {
+export interface HeaderParameterTypesSimpleZonedDateTimeHeaderParamOptRequest {
     headerValue?: string;
 }
 
-export interface ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptNilGetRequest {
+export interface HeaderParameterTypesSimpleZonedDateTimeHeaderParamOptNilRequest {
     headerValue?: string | null;
 }
 
@@ -290,69 +290,69 @@ export interface ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptNilGetR
 export class HeaderParameterTypesApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for apiHeaderparametertypesMixedPathStringPathNumberPost without sending the request
+     * Creates request options for headerParameterTypesMixed without sending the request
      */
-    async apiHeaderparametertypesMixedPathStringPathNumberPostRequestOpts(requestParameters: ApiHeaderparametertypesMixedPathStringPathNumberPostRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesMixedRequestOpts(requestParameters: HeaderParameterTypesMixedRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['pathString'] == null) {
             throw new runtime.RequiredError(
                 'pathString',
-                'Required parameter "pathString" was null or undefined when calling apiHeaderparametertypesMixedPathStringPathNumberPost().'
+                'Required parameter "pathString" was null or undefined when calling headerParameterTypesMixed().'
             );
         }
 
         if (requestParameters['pathNumber'] == null) {
             throw new runtime.RequiredError(
                 'pathNumber',
-                'Required parameter "pathNumber" was null or undefined when calling apiHeaderparametertypesMixedPathStringPathNumberPost().'
+                'Required parameter "pathNumber" was null or undefined when calling headerParameterTypesMixed().'
             );
         }
 
         if (requestParameters['headerString'] == null) {
             throw new runtime.RequiredError(
                 'headerString',
-                'Required parameter "headerString" was null or undefined when calling apiHeaderparametertypesMixedPathStringPathNumberPost().'
+                'Required parameter "headerString" was null or undefined when calling headerParameterTypesMixed().'
             );
         }
 
         if (requestParameters['headerNumber'] == null) {
             throw new runtime.RequiredError(
                 'headerNumber',
-                'Required parameter "headerNumber" was null or undefined when calling apiHeaderparametertypesMixedPathStringPathNumberPost().'
+                'Required parameter "headerNumber" was null or undefined when calling headerParameterTypesMixed().'
             );
         }
 
         if (requestParameters['headerRecord'] == null) {
             throw new runtime.RequiredError(
                 'headerRecord',
-                'Required parameter "headerRecord" was null or undefined when calling apiHeaderparametertypesMixedPathStringPathNumberPost().'
+                'Required parameter "headerRecord" was null or undefined when calling headerParameterTypesMixed().'
             );
         }
 
         if (requestParameters['queryString'] == null) {
             throw new runtime.RequiredError(
                 'queryString',
-                'Required parameter "queryString" was null or undefined when calling apiHeaderparametertypesMixedPathStringPathNumberPost().'
+                'Required parameter "queryString" was null or undefined when calling headerParameterTypesMixed().'
             );
         }
 
         if (requestParameters['queryNumber'] == null) {
             throw new runtime.RequiredError(
                 'queryNumber',
-                'Required parameter "queryNumber" was null or undefined when calling apiHeaderparametertypesMixedPathStringPathNumberPost().'
+                'Required parameter "queryNumber" was null or undefined when calling headerParameterTypesMixed().'
             );
         }
 
         if (requestParameters['queryRecord'] == null) {
             throw new runtime.RequiredError(
                 'queryRecord',
-                'Required parameter "queryRecord" was null or undefined when calling apiHeaderparametertypesMixedPathStringPathNumberPost().'
+                'Required parameter "queryRecord" was null or undefined when calling headerParameterTypesMixed().'
             );
         }
 
         if (requestParameters['simpleRecord'] == null) {
             throw new runtime.RequiredError(
                 'simpleRecord',
-                'Required parameter "simpleRecord" was null or undefined when calling apiHeaderparametertypesMixedPathStringPathNumberPost().'
+                'Required parameter "simpleRecord" was null or undefined when calling headerParameterTypesMixed().'
             );
         }
 
@@ -403,8 +403,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesMixedPathStringPathNumberPostRaw(requestParameters: ApiHeaderparametertypesMixedPathStringPathNumberPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.apiHeaderparametertypesMixedPathStringPathNumberPostRequestOpts(requestParameters);
+    async headerParameterTypesMixedRaw(requestParameters: HeaderParameterTypesMixedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.headerParameterTypesMixedRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -413,25 +413,25 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesMixedPathStringPathNumberPost(requestParameters: ApiHeaderparametertypesMixedPathStringPathNumberPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.apiHeaderparametertypesMixedPathStringPathNumberPostRaw(requestParameters, initOverrides);
+    async headerParameterTypesMixed(requestParameters: HeaderParameterTypesMixedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.headerParameterTypesMixedRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesMultiHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesMultiHeaderParam without sending the request
      */
-    async apiHeaderparametertypesMultiHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesMultiHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesMultiHeaderParamRequestOpts(requestParameters: HeaderParameterTypesMultiHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['valueA'] == null) {
             throw new runtime.RequiredError(
                 'valueA',
-                'Required parameter "valueA" was null or undefined when calling apiHeaderparametertypesMultiHeaderParamGet().'
+                'Required parameter "valueA" was null or undefined when calling headerParameterTypesMultiHeaderParam().'
             );
         }
 
         if (requestParameters['valueB'] == null) {
             throw new runtime.RequiredError(
                 'valueB',
-                'Required parameter "valueB" was null or undefined when calling apiHeaderparametertypesMultiHeaderParamGet().'
+                'Required parameter "valueB" was null or undefined when calling headerParameterTypesMultiHeaderParam().'
             );
         }
 
@@ -461,8 +461,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesMultiHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesMultiHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiHeaderparametertypesMultiHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesMultiHeaderParamRaw(requestParameters: HeaderParameterTypesMultiHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.headerParameterTypesMultiHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -475,26 +475,26 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesMultiHeaderParamGet(requestParameters: ApiHeaderparametertypesMultiHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiHeaderparametertypesMultiHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesMultiHeaderParam(requestParameters: HeaderParameterTypesMultiHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.headerParameterTypesMultiHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesMultiHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesMultiHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesMultiHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesMultiHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesMultiHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesMultiHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['valueA'] == null) {
             throw new runtime.RequiredError(
                 'valueA',
-                'Required parameter "valueA" was null or undefined when calling apiHeaderparametertypesMultiHeaderParamNilGet().'
+                'Required parameter "valueA" was null or undefined when calling headerParameterTypesMultiHeaderParamNil().'
             );
         }
 
         if (requestParameters['valueB'] == null) {
             throw new runtime.RequiredError(
                 'valueB',
-                'Required parameter "valueB" was null or undefined when calling apiHeaderparametertypesMultiHeaderParamNilGet().'
+                'Required parameter "valueB" was null or undefined when calling headerParameterTypesMultiHeaderParamNil().'
             );
         }
 
@@ -524,8 +524,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesMultiHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesMultiHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<NilResult>>> {
-        const requestOptions = await this.apiHeaderparametertypesMultiHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesMultiHeaderParamNilRaw(requestParameters: HeaderParameterTypesMultiHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<NilResult>>> {
+        const requestOptions = await this.headerParameterTypesMultiHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(NilResultFromJSON));
@@ -534,15 +534,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesMultiHeaderParamNilGet(requestParameters: ApiHeaderparametertypesMultiHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
-        const response = await this.apiHeaderparametertypesMultiHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesMultiHeaderParamNil(requestParameters: HeaderParameterTypesMultiHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
+        const response = await this.headerParameterTypesMultiHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesMultiHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesMultiHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesMultiHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesMultiHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesMultiHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesMultiHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -569,8 +569,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesMultiHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesMultiHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<NilResult>>> {
-        const requestOptions = await this.apiHeaderparametertypesMultiHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesMultiHeaderParamOptRaw(requestParameters: HeaderParameterTypesMultiHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<NilResult>>> {
+        const requestOptions = await this.headerParameterTypesMultiHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(NilResultFromJSON));
@@ -579,15 +579,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesMultiHeaderParamOptGet(requestParameters: ApiHeaderparametertypesMultiHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
-        const response = await this.apiHeaderparametertypesMultiHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesMultiHeaderParamOpt(requestParameters: HeaderParameterTypesMultiHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
+        const response = await this.headerParameterTypesMultiHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesMultiHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesMultiHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesMultiHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesMultiHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesMultiHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesMultiHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -614,8 +614,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesMultiHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesMultiHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<NilResult>>> {
-        const requestOptions = await this.apiHeaderparametertypesMultiHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesMultiHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesMultiHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<NilResult>>> {
+        const requestOptions = await this.headerParameterTypesMultiHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(NilResultFromJSON));
@@ -624,19 +624,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesMultiHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesMultiHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
-        const response = await this.apiHeaderparametertypesMultiHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesMultiHeaderParamOptNil(requestParameters: HeaderParameterTypesMultiHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
+        const response = await this.headerParameterTypesMultiHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesRecordHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesRecordHeaderParam without sending the request
      */
-    async apiHeaderparametertypesRecordHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesRecordHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesRecordHeaderParamRequestOpts(requestParameters: HeaderParameterTypesRecordHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesRecordHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesRecordHeaderParam().'
             );
         }
 
@@ -662,8 +662,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesRecordHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesRecordHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SimpleRecord>> {
-        const requestOptions = await this.apiHeaderparametertypesRecordHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesRecordHeaderParamRaw(requestParameters: HeaderParameterTypesRecordHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SimpleRecord>> {
+        const requestOptions = await this.headerParameterTypesRecordHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SimpleRecordFromJSON(jsonValue));
@@ -672,19 +672,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesRecordHeaderParamGet(requestParameters: ApiHeaderparametertypesRecordHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SimpleRecord> {
-        const response = await this.apiHeaderparametertypesRecordHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesRecordHeaderParam(requestParameters: HeaderParameterTypesRecordHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SimpleRecord> {
+        const response = await this.headerParameterTypesRecordHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesRecordHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesRecordHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesRecordHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesRecordHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesRecordHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesRecordHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesRecordHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesRecordHeaderParamNil().'
             );
         }
 
@@ -710,8 +710,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesRecordHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesRecordHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesRecordHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesRecordHeaderParamNilRaw(requestParameters: HeaderParameterTypesRecordHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesRecordHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -720,15 +720,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesRecordHeaderParamNilGet(requestParameters: ApiHeaderparametertypesRecordHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesRecordHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesRecordHeaderParamNil(requestParameters: HeaderParameterTypesRecordHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesRecordHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesRecordHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesRecordHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesRecordHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesRecordHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesRecordHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesRecordHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -751,8 +751,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesRecordHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesRecordHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesRecordHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesRecordHeaderParamOptRaw(requestParameters: HeaderParameterTypesRecordHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesRecordHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -761,15 +761,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesRecordHeaderParamOptGet(requestParameters: ApiHeaderparametertypesRecordHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesRecordHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesRecordHeaderParamOpt(requestParameters: HeaderParameterTypesRecordHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesRecordHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesRecordHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesRecordHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesRecordHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesRecordHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesRecordHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesRecordHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -792,8 +792,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesRecordHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesRecordHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesRecordHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesRecordHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesRecordHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesRecordHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -802,19 +802,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesRecordHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesRecordHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesRecordHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesRecordHeaderParamOptNil(requestParameters: HeaderParameterTypesRecordHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesRecordHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleBooleanHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesSimpleBooleanHeaderParam without sending the request
      */
-    async apiHeaderparametertypesSimpleBooleanHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleBooleanHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleBooleanHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleBooleanHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleBooleanHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleBooleanHeaderParam().'
             );
         }
 
@@ -840,8 +840,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleBooleanHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesSimpleBooleanHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleBooleanHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleBooleanHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleBooleanHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
+        const requestOptions = await this.headerParameterTypesSimpleBooleanHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -854,19 +854,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleBooleanHeaderParamGet(requestParameters: ApiHeaderparametertypesSimpleBooleanHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
-        const response = await this.apiHeaderparametertypesSimpleBooleanHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleBooleanHeaderParam(requestParameters: HeaderParameterTypesSimpleBooleanHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
+        const response = await this.headerParameterTypesSimpleBooleanHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleBooleanHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleBooleanHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesSimpleBooleanHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleBooleanHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleBooleanHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleBooleanHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleBooleanHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleBooleanHeaderParamNil().'
             );
         }
 
@@ -892,8 +892,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleBooleanHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleBooleanHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleBooleanHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleBooleanHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleBooleanHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleBooleanHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -902,15 +902,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleBooleanHeaderParamNilGet(requestParameters: ApiHeaderparametertypesSimpleBooleanHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleBooleanHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleBooleanHeaderParamNil(requestParameters: HeaderParameterTypesSimpleBooleanHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleBooleanHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleBooleanHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesSimpleBooleanHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesSimpleBooleanHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleBooleanHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleBooleanHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleBooleanHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -933,8 +933,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleBooleanHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesSimpleBooleanHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleBooleanHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleBooleanHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleBooleanHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleBooleanHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -943,15 +943,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleBooleanHeaderParamOptGet(requestParameters: ApiHeaderparametertypesSimpleBooleanHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleBooleanHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleBooleanHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleBooleanHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleBooleanHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleBooleanHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleBooleanHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesSimpleBooleanHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleBooleanHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleBooleanHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleBooleanHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -974,8 +974,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleBooleanHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleBooleanHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleBooleanHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleBooleanHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleBooleanHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleBooleanHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -984,19 +984,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleBooleanHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesSimpleBooleanHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleBooleanHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleBooleanHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleBooleanHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleBooleanHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleDoubleHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesSimpleDoubleHeaderParam without sending the request
      */
-    async apiHeaderparametertypesSimpleDoubleHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleDoubleHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleDoubleHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleDoubleHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleDoubleHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleDoubleHeaderParam().'
             );
         }
 
@@ -1022,8 +1022,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleDoubleHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesSimpleDoubleHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleDoubleHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleDoubleHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleDoubleHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.headerParameterTypesSimpleDoubleHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -1036,19 +1036,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleDoubleHeaderParamGet(requestParameters: ApiHeaderparametertypesSimpleDoubleHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiHeaderparametertypesSimpleDoubleHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleDoubleHeaderParam(requestParameters: HeaderParameterTypesSimpleDoubleHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.headerParameterTypesSimpleDoubleHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleDoubleHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleDoubleHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesSimpleDoubleHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleDoubleHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleDoubleHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleDoubleHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleDoubleHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleDoubleHeaderParamNil().'
             );
         }
 
@@ -1074,8 +1074,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleDoubleHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleDoubleHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleDoubleHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleDoubleHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleDoubleHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleDoubleHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1084,15 +1084,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleDoubleHeaderParamNilGet(requestParameters: ApiHeaderparametertypesSimpleDoubleHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleDoubleHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleDoubleHeaderParamNil(requestParameters: HeaderParameterTypesSimpleDoubleHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleDoubleHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleDoubleHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesSimpleDoubleHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesSimpleDoubleHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleDoubleHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleDoubleHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleDoubleHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1115,8 +1115,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleDoubleHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesSimpleDoubleHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleDoubleHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleDoubleHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleDoubleHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleDoubleHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1125,15 +1125,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleDoubleHeaderParamOptGet(requestParameters: ApiHeaderparametertypesSimpleDoubleHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleDoubleHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleDoubleHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleDoubleHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleDoubleHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleDoubleHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleDoubleHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesSimpleDoubleHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleDoubleHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleDoubleHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleDoubleHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1156,8 +1156,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleDoubleHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleDoubleHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleDoubleHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleDoubleHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleDoubleHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleDoubleHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1166,19 +1166,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleDoubleHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesSimpleDoubleHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleDoubleHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleDoubleHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleDoubleHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleDoubleHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleEnumHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesSimpleEnumHeaderParam without sending the request
      */
-    async apiHeaderparametertypesSimpleEnumHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleEnumHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleEnumHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleEnumHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleEnumHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleEnumHeaderParam().'
             );
         }
 
@@ -1204,8 +1204,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleEnumHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesSimpleEnumHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SampleEnum>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleEnumHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleEnumHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleEnumHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SampleEnum>> {
+        const requestOptions = await this.headerParameterTypesSimpleEnumHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SampleEnumFromJSON(jsonValue));
@@ -1214,19 +1214,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleEnumHeaderParamGet(requestParameters: ApiHeaderparametertypesSimpleEnumHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SampleEnum> {
-        const response = await this.apiHeaderparametertypesSimpleEnumHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleEnumHeaderParam(requestParameters: HeaderParameterTypesSimpleEnumHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SampleEnum> {
+        const response = await this.headerParameterTypesSimpleEnumHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleEnumHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleEnumHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesSimpleEnumHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleEnumHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleEnumHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleEnumHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleEnumHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleEnumHeaderParamNil().'
             );
         }
 
@@ -1252,8 +1252,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleEnumHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleEnumHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleEnumHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleEnumHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleEnumHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleEnumHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1262,15 +1262,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleEnumHeaderParamNilGet(requestParameters: ApiHeaderparametertypesSimpleEnumHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleEnumHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleEnumHeaderParamNil(requestParameters: HeaderParameterTypesSimpleEnumHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleEnumHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleEnumHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesSimpleEnumHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesSimpleEnumHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleEnumHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleEnumHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleEnumHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1293,8 +1293,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleEnumHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesSimpleEnumHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleEnumHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleEnumHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleEnumHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleEnumHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1303,15 +1303,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleEnumHeaderParamOptGet(requestParameters: ApiHeaderparametertypesSimpleEnumHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleEnumHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleEnumHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleEnumHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleEnumHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleEnumHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleEnumHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesSimpleEnumHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleEnumHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleEnumHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleEnumHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1334,8 +1334,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleEnumHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleEnumHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleEnumHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleEnumHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleEnumHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleEnumHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1344,19 +1344,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleEnumHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesSimpleEnumHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleEnumHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleEnumHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleEnumHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleEnumHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleFloatHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesSimpleFloatHeaderParam without sending the request
      */
-    async apiHeaderparametertypesSimpleFloatHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleFloatHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleFloatHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleFloatHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleFloatHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleFloatHeaderParam().'
             );
         }
 
@@ -1382,8 +1382,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleFloatHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesSimpleFloatHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleFloatHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleFloatHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleFloatHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.headerParameterTypesSimpleFloatHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -1396,19 +1396,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleFloatHeaderParamGet(requestParameters: ApiHeaderparametertypesSimpleFloatHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiHeaderparametertypesSimpleFloatHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleFloatHeaderParam(requestParameters: HeaderParameterTypesSimpleFloatHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.headerParameterTypesSimpleFloatHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleFloatHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleFloatHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesSimpleFloatHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleFloatHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleFloatHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleFloatHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleFloatHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleFloatHeaderParamNil().'
             );
         }
 
@@ -1434,8 +1434,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleFloatHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleFloatHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleFloatHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleFloatHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleFloatHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleFloatHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1444,15 +1444,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleFloatHeaderParamNilGet(requestParameters: ApiHeaderparametertypesSimpleFloatHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleFloatHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleFloatHeaderParamNil(requestParameters: HeaderParameterTypesSimpleFloatHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleFloatHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleFloatHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesSimpleFloatHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesSimpleFloatHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleFloatHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleFloatHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleFloatHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1475,8 +1475,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleFloatHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesSimpleFloatHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleFloatHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleFloatHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleFloatHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleFloatHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1485,15 +1485,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleFloatHeaderParamOptGet(requestParameters: ApiHeaderparametertypesSimpleFloatHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleFloatHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleFloatHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleFloatHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleFloatHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleFloatHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleFloatHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesSimpleFloatHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleFloatHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleFloatHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleFloatHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1516,8 +1516,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleFloatHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleFloatHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleFloatHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleFloatHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleFloatHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleFloatHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1526,19 +1526,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleFloatHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesSimpleFloatHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleFloatHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleFloatHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleFloatHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleFloatHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleInlineEnumHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesSimpleInlineEnumHeaderParam without sending the request
      */
-    async apiHeaderparametertypesSimpleInlineEnumHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleInlineEnumHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleInlineEnumHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleInlineEnumHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleInlineEnumHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleInlineEnumHeaderParam().'
             );
         }
 
@@ -1564,8 +1564,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleInlineEnumHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesSimpleInlineEnumHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleInlineEnumHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleInlineEnumHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleInlineEnumHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.headerParameterTypesSimpleInlineEnumHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -1578,19 +1578,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleInlineEnumHeaderParamGet(requestParameters: ApiHeaderparametertypesSimpleInlineEnumHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiHeaderparametertypesSimpleInlineEnumHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleInlineEnumHeaderParam(requestParameters: HeaderParameterTypesSimpleInlineEnumHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.headerParameterTypesSimpleInlineEnumHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleInlineEnumHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleInlineEnumHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleInlineEnumHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleInlineEnumHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleInlineEnumHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleInlineEnumHeaderParamNil().'
             );
         }
 
@@ -1616,8 +1616,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleInlineEnumHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleInlineEnumHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleInlineEnumHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1626,15 +1626,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleInlineEnumHeaderParamNilGet(requestParameters: ApiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleInlineEnumHeaderParamNil(requestParameters: HeaderParameterTypesSimpleInlineEnumHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleInlineEnumHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleInlineEnumHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesSimpleInlineEnumHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleInlineEnumHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleInlineEnumHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1657,8 +1657,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleInlineEnumHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleInlineEnumHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleInlineEnumHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1667,15 +1667,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleInlineEnumHeaderParamOptGet(requestParameters: ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleInlineEnumHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleInlineEnumHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleInlineEnumHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleInlineEnumHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleInlineEnumHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleInlineEnumHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1698,8 +1698,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleInlineEnumHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleInlineEnumHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleInlineEnumHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1708,19 +1708,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleInlineEnumHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleInlineEnumHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleInlineEnumHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleIntHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesSimpleIntHeaderParam without sending the request
      */
-    async apiHeaderparametertypesSimpleIntHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleIntHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleIntHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleIntHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleIntHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleIntHeaderParam().'
             );
         }
 
@@ -1746,8 +1746,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleIntHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesSimpleIntHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleIntHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleIntHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleIntHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.headerParameterTypesSimpleIntHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -1760,19 +1760,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleIntHeaderParamGet(requestParameters: ApiHeaderparametertypesSimpleIntHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiHeaderparametertypesSimpleIntHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleIntHeaderParam(requestParameters: HeaderParameterTypesSimpleIntHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.headerParameterTypesSimpleIntHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleIntHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleIntHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesSimpleIntHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleIntHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleIntHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleIntHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleIntHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleIntHeaderParamNil().'
             );
         }
 
@@ -1798,8 +1798,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleIntHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleIntHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleIntHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleIntHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleIntHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleIntHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1808,15 +1808,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleIntHeaderParamNilGet(requestParameters: ApiHeaderparametertypesSimpleIntHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleIntHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleIntHeaderParamNil(requestParameters: HeaderParameterTypesSimpleIntHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleIntHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleIntHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesSimpleIntHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesSimpleIntHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleIntHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleIntHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleIntHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1839,8 +1839,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleIntHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesSimpleIntHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleIntHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleIntHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleIntHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleIntHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1849,15 +1849,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleIntHeaderParamOptGet(requestParameters: ApiHeaderparametertypesSimpleIntHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleIntHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleIntHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleIntHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleIntHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleIntHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleIntHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesSimpleIntHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleIntHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleIntHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleIntHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1880,8 +1880,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleIntHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleIntHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleIntHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleIntHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleIntHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleIntHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1890,19 +1890,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleIntHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesSimpleIntHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleIntHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleIntHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleIntHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleIntHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleLocalDateHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesSimpleLocalDateHeaderParam without sending the request
      */
-    async apiHeaderparametertypesSimpleLocalDateHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleLocalDateHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleLocalDateHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleLocalDateHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleLocalDateHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleLocalDateHeaderParam().'
             );
         }
 
@@ -1928,8 +1928,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesSimpleLocalDateHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleLocalDateHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleLocalDateHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleLocalDateHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
+        const requestOptions = await this.headerParameterTypesSimpleLocalDateHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -1942,19 +1942,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateHeaderParamGet(requestParameters: ApiHeaderparametertypesSimpleLocalDateHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
-        const response = await this.apiHeaderparametertypesSimpleLocalDateHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleLocalDateHeaderParam(requestParameters: HeaderParameterTypesSimpleLocalDateHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
+        const response = await this.headerParameterTypesSimpleLocalDateHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleLocalDateHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleLocalDateHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesSimpleLocalDateHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleLocalDateHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleLocalDateHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleLocalDateHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleLocalDateHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleLocalDateHeaderParamNil().'
             );
         }
 
@@ -1980,8 +1980,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleLocalDateHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleLocalDateHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleLocalDateHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleLocalDateHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleLocalDateHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1990,15 +1990,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateHeaderParamNilGet(requestParameters: ApiHeaderparametertypesSimpleLocalDateHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleLocalDateHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleLocalDateHeaderParamNil(requestParameters: HeaderParameterTypesSimpleLocalDateHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleLocalDateHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleLocalDateHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesSimpleLocalDateHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesSimpleLocalDateHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleLocalDateHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleLocalDateHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleLocalDateHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2021,8 +2021,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesSimpleLocalDateHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleLocalDateHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleLocalDateHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleLocalDateHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleLocalDateHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2031,15 +2031,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateHeaderParamOptGet(requestParameters: ApiHeaderparametertypesSimpleLocalDateHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleLocalDateHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleLocalDateHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleLocalDateHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleLocalDateHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleLocalDateHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleLocalDateHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesSimpleLocalDateHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleLocalDateHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleLocalDateHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleLocalDateHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2062,8 +2062,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleLocalDateHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleLocalDateHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleLocalDateHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleLocalDateHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleLocalDateHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2072,19 +2072,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesSimpleLocalDateHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleLocalDateHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleLocalDateHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleLocalDateHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleLocalDateHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleLocalDateTimeHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesSimpleLocalDateTimeHeaderParam without sending the request
      */
-    async apiHeaderparametertypesSimpleLocalDateTimeHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleLocalDateTimeHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleLocalDateTimeHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleLocalDateTimeHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleLocalDateTimeHeaderParam().'
             );
         }
 
@@ -2110,8 +2110,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateTimeHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleLocalDateTimeHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleLocalDateTimeHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleLocalDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.headerParameterTypesSimpleLocalDateTimeHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -2124,19 +2124,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateTimeHeaderParamGet(requestParameters: ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiHeaderparametertypesSimpleLocalDateTimeHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleLocalDateTimeHeaderParam(requestParameters: HeaderParameterTypesSimpleLocalDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.headerParameterTypesSimpleLocalDateTimeHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleLocalDateTimeHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleLocalDateTimeHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesSimpleLocalDateTimeHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleLocalDateTimeHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleLocalDateTimeHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleLocalDateTimeHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleLocalDateTimeHeaderParamNil().'
             );
         }
 
@@ -2162,8 +2162,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateTimeHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleLocalDateTimeHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleLocalDateTimeHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleLocalDateTimeHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleLocalDateTimeHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2172,15 +2172,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateTimeHeaderParamNilGet(requestParameters: ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleLocalDateTimeHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleLocalDateTimeHeaderParamNil(requestParameters: HeaderParameterTypesSimpleLocalDateTimeHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleLocalDateTimeHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesSimpleLocalDateTimeHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleLocalDateTimeHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleLocalDateTimeHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2203,8 +2203,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleLocalDateTimeHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleLocalDateTimeHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleLocalDateTimeHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2213,15 +2213,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptGet(requestParameters: ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleLocalDateTimeHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleLocalDateTimeHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleLocalDateTimeHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleLocalDateTimeHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleLocalDateTimeHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleLocalDateTimeHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2244,8 +2244,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleLocalDateTimeHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleLocalDateTimeHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleLocalDateTimeHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2254,19 +2254,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleLocalDateTimeHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleLocalDateTimeHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleLocalDateTimeHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleLocalDateTimeHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleLongHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesSimpleLongHeaderParam without sending the request
      */
-    async apiHeaderparametertypesSimpleLongHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleLongHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleLongHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleLongHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleLongHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleLongHeaderParam().'
             );
         }
 
@@ -2292,8 +2292,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLongHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesSimpleLongHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleLongHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleLongHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleLongHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.headerParameterTypesSimpleLongHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -2306,19 +2306,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLongHeaderParamGet(requestParameters: ApiHeaderparametertypesSimpleLongHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiHeaderparametertypesSimpleLongHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleLongHeaderParam(requestParameters: HeaderParameterTypesSimpleLongHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.headerParameterTypesSimpleLongHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleLongHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleLongHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesSimpleLongHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleLongHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleLongHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleLongHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleLongHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleLongHeaderParamNil().'
             );
         }
 
@@ -2344,8 +2344,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLongHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleLongHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleLongHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleLongHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleLongHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleLongHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2354,15 +2354,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLongHeaderParamNilGet(requestParameters: ApiHeaderparametertypesSimpleLongHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleLongHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleLongHeaderParamNil(requestParameters: HeaderParameterTypesSimpleLongHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleLongHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleLongHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesSimpleLongHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesSimpleLongHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleLongHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleLongHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleLongHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2385,8 +2385,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLongHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesSimpleLongHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleLongHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleLongHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleLongHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleLongHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2395,15 +2395,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLongHeaderParamOptGet(requestParameters: ApiHeaderparametertypesSimpleLongHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleLongHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleLongHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleLongHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleLongHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleLongHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleLongHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesSimpleLongHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleLongHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleLongHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleLongHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2426,8 +2426,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLongHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleLongHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleLongHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleLongHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleLongHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleLongHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2436,19 +2436,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleLongHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesSimpleLongHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleLongHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleLongHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleLongHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleLongHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleScalarHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesSimpleScalarHeaderParam without sending the request
      */
-    async apiHeaderparametertypesSimpleScalarHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleScalarHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleScalarHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleScalarHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleScalarHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleScalarHeaderParam().'
             );
         }
 
@@ -2474,8 +2474,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleScalarHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesSimpleScalarHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleScalarHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleScalarHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleScalarHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.headerParameterTypesSimpleScalarHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -2488,19 +2488,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleScalarHeaderParamGet(requestParameters: ApiHeaderparametertypesSimpleScalarHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiHeaderparametertypesSimpleScalarHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleScalarHeaderParam(requestParameters: HeaderParameterTypesSimpleScalarHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.headerParameterTypesSimpleScalarHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleScalarHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleScalarHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesSimpleScalarHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleScalarHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleScalarHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleScalarHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleScalarHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleScalarHeaderParamNil().'
             );
         }
 
@@ -2526,8 +2526,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleScalarHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleScalarHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleScalarHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleScalarHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleScalarHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleScalarHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2536,15 +2536,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleScalarHeaderParamNilGet(requestParameters: ApiHeaderparametertypesSimpleScalarHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleScalarHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleScalarHeaderParamNil(requestParameters: HeaderParameterTypesSimpleScalarHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleScalarHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleScalarHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesSimpleScalarHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesSimpleScalarHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleScalarHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleScalarHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleScalarHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2567,8 +2567,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleScalarHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesSimpleScalarHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleScalarHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleScalarHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleScalarHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleScalarHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2577,15 +2577,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleScalarHeaderParamOptGet(requestParameters: ApiHeaderparametertypesSimpleScalarHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleScalarHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleScalarHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleScalarHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleScalarHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleScalarHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleScalarHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesSimpleScalarHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleScalarHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleScalarHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleScalarHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2608,8 +2608,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleScalarHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleScalarHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleScalarHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleScalarHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleScalarHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleScalarHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2618,19 +2618,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleScalarHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesSimpleScalarHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleScalarHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleScalarHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleScalarHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleScalarHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleShortHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesSimpleShortHeaderParam without sending the request
      */
-    async apiHeaderparametertypesSimpleShortHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleShortHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleShortHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleShortHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleShortHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleShortHeaderParam().'
             );
         }
 
@@ -2656,8 +2656,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleShortHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesSimpleShortHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleShortHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleShortHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleShortHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.headerParameterTypesSimpleShortHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -2670,19 +2670,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleShortHeaderParamGet(requestParameters: ApiHeaderparametertypesSimpleShortHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiHeaderparametertypesSimpleShortHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleShortHeaderParam(requestParameters: HeaderParameterTypesSimpleShortHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.headerParameterTypesSimpleShortHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleShortHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleShortHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesSimpleShortHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleShortHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleShortHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleShortHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleShortHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleShortHeaderParamNil().'
             );
         }
 
@@ -2708,8 +2708,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleShortHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleShortHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleShortHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleShortHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleShortHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleShortHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2718,15 +2718,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleShortHeaderParamNilGet(requestParameters: ApiHeaderparametertypesSimpleShortHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleShortHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleShortHeaderParamNil(requestParameters: HeaderParameterTypesSimpleShortHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleShortHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleShortHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesSimpleShortHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesSimpleShortHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleShortHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleShortHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleShortHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2749,8 +2749,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleShortHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesSimpleShortHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleShortHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleShortHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleShortHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleShortHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2759,15 +2759,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleShortHeaderParamOptGet(requestParameters: ApiHeaderparametertypesSimpleShortHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleShortHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleShortHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleShortHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleShortHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleShortHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleShortHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesSimpleShortHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleShortHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleShortHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleShortHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2790,8 +2790,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleShortHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleShortHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleShortHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleShortHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleShortHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleShortHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2800,19 +2800,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleShortHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesSimpleShortHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleShortHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleShortHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleShortHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleShortHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleStringHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesSimpleStringHeaderParam without sending the request
      */
-    async apiHeaderparametertypesSimpleStringHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleStringHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleStringHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleStringHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleStringHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleStringHeaderParam().'
             );
         }
 
@@ -2838,8 +2838,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleStringHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesSimpleStringHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleStringHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleStringHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleStringHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.headerParameterTypesSimpleStringHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -2852,19 +2852,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleStringHeaderParamGet(requestParameters: ApiHeaderparametertypesSimpleStringHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiHeaderparametertypesSimpleStringHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleStringHeaderParam(requestParameters: HeaderParameterTypesSimpleStringHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.headerParameterTypesSimpleStringHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleStringHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleStringHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesSimpleStringHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleStringHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleStringHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleStringHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleStringHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleStringHeaderParamNil().'
             );
         }
 
@@ -2890,8 +2890,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleStringHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleStringHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleStringHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleStringHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleStringHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleStringHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2900,15 +2900,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleStringHeaderParamNilGet(requestParameters: ApiHeaderparametertypesSimpleStringHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleStringHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleStringHeaderParamNil(requestParameters: HeaderParameterTypesSimpleStringHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleStringHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleStringHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesSimpleStringHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesSimpleStringHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleStringHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleStringHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleStringHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2931,8 +2931,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleStringHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesSimpleStringHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleStringHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleStringHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleStringHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleStringHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2941,15 +2941,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleStringHeaderParamOptGet(requestParameters: ApiHeaderparametertypesSimpleStringHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleStringHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleStringHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleStringHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleStringHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleStringHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleStringHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesSimpleStringHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleStringHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleStringHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleStringHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2972,8 +2972,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleStringHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleStringHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleStringHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleStringHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleStringHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleStringHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -2982,19 +2982,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleStringHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesSimpleStringHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleStringHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleStringHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleStringHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleStringHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleZonedDateTimeHeaderParamGet without sending the request
+     * Creates request options for headerParameterTypesSimpleZonedDateTimeHeaderParam without sending the request
      */
-    async apiHeaderparametertypesSimpleZonedDateTimeHeaderParamGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleZonedDateTimeHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleZonedDateTimeHeaderParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleZonedDateTimeHeaderParamGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleZonedDateTimeHeaderParam().'
             );
         }
 
@@ -3020,8 +3020,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleZonedDateTimeHeaderParamGetRaw(requestParameters: ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleZonedDateTimeHeaderParamGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleZonedDateTimeHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleZonedDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.headerParameterTypesSimpleZonedDateTimeHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -3034,19 +3034,19 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleZonedDateTimeHeaderParamGet(requestParameters: ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiHeaderparametertypesSimpleZonedDateTimeHeaderParamGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleZonedDateTimeHeaderParam(requestParameters: HeaderParameterTypesSimpleZonedDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.headerParameterTypesSimpleZonedDateTimeHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleZonedDateTimeHeaderParamNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleZonedDateTimeHeaderParamNil without sending the request
      */
-    async apiHeaderparametertypesSimpleZonedDateTimeHeaderParamNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleZonedDateTimeHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleZonedDateTimeHeaderParamNilRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['headerValue'] == null) {
             throw new runtime.RequiredError(
                 'headerValue',
-                'Required parameter "headerValue" was null or undefined when calling apiHeaderparametertypesSimpleZonedDateTimeHeaderParamNilGet().'
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleZonedDateTimeHeaderParamNil().'
             );
         }
 
@@ -3072,8 +3072,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleZonedDateTimeHeaderParamNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleZonedDateTimeHeaderParamNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleZonedDateTimeHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleZonedDateTimeHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleZonedDateTimeHeaderParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -3082,15 +3082,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleZonedDateTimeHeaderParamNilGet(requestParameters: ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleZonedDateTimeHeaderParamNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleZonedDateTimeHeaderParamNil(requestParameters: HeaderParameterTypesSimpleZonedDateTimeHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleZonedDateTimeHeaderParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptGet without sending the request
+     * Creates request options for headerParameterTypesSimpleZonedDateTimeHeaderParamOpt without sending the request
      */
-    async apiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleZonedDateTimeHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleZonedDateTimeHeaderParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -3113,8 +3113,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptGetRaw(requestParameters: ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleZonedDateTimeHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleZonedDateTimeHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleZonedDateTimeHeaderParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -3123,15 +3123,15 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptGet(requestParameters: ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleZonedDateTimeHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleZonedDateTimeHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleZonedDateTimeHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptNilGet without sending the request
+     * Creates request options for headerParameterTypesSimpleZonedDateTimeHeaderParamOptNil without sending the request
      */
-    async apiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptNilGetRequestOpts(requestParameters: ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptNilGetRequest): Promise<runtime.RequestOpts> {
+    async headerParameterTypesSimpleZonedDateTimeHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleZonedDateTimeHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -3154,8 +3154,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptNilGetRaw(requestParameters: ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptNilGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptNilGetRequestOpts(requestParameters);
+    async headerParameterTypesSimpleZonedDateTimeHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleZonedDateTimeHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleZonedDateTimeHeaderParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -3164,8 +3164,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptNilGet(requestParameters: ApiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptNilGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiHeaderparametertypesSimpleZonedDateTimeHeaderParamOptNilGetRaw(requestParameters, initOverrides);
+    async headerParameterTypesSimpleZonedDateTimeHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleZonedDateTimeHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleZonedDateTimeHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3174,32 +3174,32 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
 /**
  * @export
  */
-export const ApiHeaderparametertypesSimpleInlineEnumHeaderParamGetHeaderValueEnum = {
+export const HeaderParameterTypesSimpleInlineEnumHeaderParamHeaderValueEnum = {
     A: 'A',
     B: 'B'
 } as const;
-export type ApiHeaderparametertypesSimpleInlineEnumHeaderParamGetHeaderValueEnum = typeof ApiHeaderparametertypesSimpleInlineEnumHeaderParamGetHeaderValueEnum[keyof typeof ApiHeaderparametertypesSimpleInlineEnumHeaderParamGetHeaderValueEnum];
+export type HeaderParameterTypesSimpleInlineEnumHeaderParamHeaderValueEnum = typeof HeaderParameterTypesSimpleInlineEnumHeaderParamHeaderValueEnum[keyof typeof HeaderParameterTypesSimpleInlineEnumHeaderParamHeaderValueEnum];
 /**
  * @export
  */
-export const ApiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetHeaderValueEnum = {
+export const HeaderParameterTypesSimpleInlineEnumHeaderParamNilHeaderValueEnum = {
     C: 'C',
     D: 'D'
 } as const;
-export type ApiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetHeaderValueEnum = typeof ApiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetHeaderValueEnum[keyof typeof ApiHeaderparametertypesSimpleInlineEnumHeaderParamNilGetHeaderValueEnum];
+export type HeaderParameterTypesSimpleInlineEnumHeaderParamNilHeaderValueEnum = typeof HeaderParameterTypesSimpleInlineEnumHeaderParamNilHeaderValueEnum[keyof typeof HeaderParameterTypesSimpleInlineEnumHeaderParamNilHeaderValueEnum];
 /**
  * @export
  */
-export const ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetHeaderValueEnum = {
+export const HeaderParameterTypesSimpleInlineEnumHeaderParamOptHeaderValueEnum = {
     A: 'A',
     B: 'B'
 } as const;
-export type ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetHeaderValueEnum = typeof ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetHeaderValueEnum[keyof typeof ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptGetHeaderValueEnum];
+export type HeaderParameterTypesSimpleInlineEnumHeaderParamOptHeaderValueEnum = typeof HeaderParameterTypesSimpleInlineEnumHeaderParamOptHeaderValueEnum[keyof typeof HeaderParameterTypesSimpleInlineEnumHeaderParamOptHeaderValueEnum];
 /**
  * @export
  */
-export const ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetHeaderValueEnum = {
+export const HeaderParameterTypesSimpleInlineEnumHeaderParamOptNilHeaderValueEnum = {
     C: 'C',
     D: 'D'
 } as const;
-export type ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetHeaderValueEnum = typeof ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetHeaderValueEnum[keyof typeof ApiHeaderparametertypesSimpleInlineEnumHeaderParamOptNilGetHeaderValueEnum];
+export type HeaderParameterTypesSimpleInlineEnumHeaderParamOptNilHeaderValueEnum = typeof HeaderParameterTypesSimpleInlineEnumHeaderParamOptNilHeaderValueEnum[keyof typeof HeaderParameterTypesSimpleInlineEnumHeaderParamOptNilHeaderValueEnum];

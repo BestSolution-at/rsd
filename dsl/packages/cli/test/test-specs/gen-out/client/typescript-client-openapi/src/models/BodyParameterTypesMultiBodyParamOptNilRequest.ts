@@ -24,41 +24,41 @@ import {
 /**
  * 
  * @export
- * @interface ApiBodyparametertypesMultiBodyParamOptNilPostRequest
+ * @interface BodyParameterTypesMultiBodyParamOptNilRequest
  */
-export interface ApiBodyparametertypesMultiBodyParamOptNilPostRequest {
+export interface BodyParameterTypesMultiBodyParamOptNilRequest {
     /**
      * 
      * @type {string}
-     * @memberof ApiBodyparametertypesMultiBodyParamOptNilPostRequest
+     * @memberof BodyParameterTypesMultiBodyParamOptNilRequest
      */
     valueA?: string | null;
     /**
      * 
      * @type {number}
-     * @memberof ApiBodyparametertypesMultiBodyParamOptNilPostRequest
+     * @memberof BodyParameterTypesMultiBodyParamOptNilRequest
      */
     valueB?: number | null;
     /**
      * 
      * @type {SimpleRecord}
-     * @memberof ApiBodyparametertypesMultiBodyParamOptNilPostRequest
+     * @memberof BodyParameterTypesMultiBodyParamOptNilRequest
      */
     valueC?: SimpleRecord | null;
 }
 
 /**
- * Check if a given object implements the ApiBodyparametertypesMultiBodyParamOptNilPostRequest interface.
+ * Check if a given object implements the BodyParameterTypesMultiBodyParamOptNilRequest interface.
  */
-export function instanceOfApiBodyparametertypesMultiBodyParamOptNilPostRequest(value: object): value is ApiBodyparametertypesMultiBodyParamOptNilPostRequest {
+export function instanceOfBodyParameterTypesMultiBodyParamOptNilRequest(value: object): value is BodyParameterTypesMultiBodyParamOptNilRequest {
     return true;
 }
 
-export function ApiBodyparametertypesMultiBodyParamOptNilPostRequestFromJSON(json: any): ApiBodyparametertypesMultiBodyParamOptNilPostRequest {
-    return ApiBodyparametertypesMultiBodyParamOptNilPostRequestFromJSONTyped(json, false);
+export function BodyParameterTypesMultiBodyParamOptNilRequestFromJSON(json: any): BodyParameterTypesMultiBodyParamOptNilRequest {
+    return BodyParameterTypesMultiBodyParamOptNilRequestFromJSONTyped(json, false);
 }
 
-export function ApiBodyparametertypesMultiBodyParamOptNilPostRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiBodyparametertypesMultiBodyParamOptNilPostRequest {
+export function BodyParameterTypesMultiBodyParamOptNilRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BodyParameterTypesMultiBodyParamOptNilRequest {
     if (json == null) {
         return json;
     }
@@ -70,11 +70,11 @@ export function ApiBodyparametertypesMultiBodyParamOptNilPostRequestFromJSONType
     };
 }
 
-export function ApiBodyparametertypesMultiBodyParamOptNilPostRequestToJSON(json: any): ApiBodyparametertypesMultiBodyParamOptNilPostRequest {
-    return ApiBodyparametertypesMultiBodyParamOptNilPostRequestToJSONTyped(json, false);
+export function BodyParameterTypesMultiBodyParamOptNilRequestToJSON(json: any): BodyParameterTypesMultiBodyParamOptNilRequest {
+    return BodyParameterTypesMultiBodyParamOptNilRequestToJSONTyped(json, false);
 }
 
-export function ApiBodyparametertypesMultiBodyParamOptNilPostRequestToJSONTyped(value?: ApiBodyparametertypesMultiBodyParamOptNilPostRequest | null, ignoreDiscriminator: boolean = false): any {
+export function BodyParameterTypesMultiBodyParamOptNilRequestToJSONTyped(value?: BodyParameterTypesMultiBodyParamOptNilRequest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

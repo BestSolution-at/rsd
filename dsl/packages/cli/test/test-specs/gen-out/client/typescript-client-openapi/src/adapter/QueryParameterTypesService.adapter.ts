@@ -42,7 +42,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue: boolean,
 	): Promise<api.result.Result<boolean, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleBooleanQueryParamGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleBooleanQueryParamRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -56,7 +56,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue?: boolean,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleBooleanQueryParamOptGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleBooleanQueryParamOptRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -70,7 +70,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleShortQueryParamGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleShortQueryParamRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -84,7 +84,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue?: number,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleShortQueryParamOptGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleShortQueryParamOptRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -98,7 +98,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleIntQueryParamGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleIntQueryParamRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -112,7 +112,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue?: number,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleIntQueryParamOptGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleIntQueryParamOptRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -126,7 +126,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleLongQueryParamGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleLongQueryParamRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -140,7 +140,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue?: number,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleLongQueryParamOptGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleLongQueryParamOptRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -154,7 +154,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleFloatQueryParamGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleFloatQueryParamRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -168,7 +168,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue?: number,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleFloatQueryParamOptGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleFloatQueryParamOptRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -182,7 +182,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleDoubleQueryParamGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleDoubleQueryParamRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -196,7 +196,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue?: number,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleDoubleQueryParamOptGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleDoubleQueryParamOptRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -210,7 +210,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleStringQueryParamGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleStringQueryParamRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -224,7 +224,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue?: string,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleStringQueryParamOptGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleStringQueryParamOptRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -238,7 +238,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleLocalDateQueryParamGetRaw({
+			const response = await this.deletegate.queryParameterTypesSimpleLocalDateQueryParamRaw({
 				queryValue: new Date(queryValue),
 			});
 			if (response.raw.status === 200) {
@@ -254,7 +254,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue?: string,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleLocalDateQueryParamOptGetRaw({
+			const response = await this.deletegate.queryParameterTypesSimpleLocalDateQueryParamOptRaw({
 				queryValue: queryValue ? new Date(queryValue) : undefined,
 			});
 			if (response.raw.status === 200) {
@@ -270,7 +270,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleLocalDateTimeQueryParamGetRaw({
+			const response = await this.deletegate.queryParameterTypesSimpleLocalDateTimeQueryParamRaw({
 				queryValue,
 			});
 			if (response.raw.status === 200) {
@@ -286,7 +286,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue?: string,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleLocalDateTimeQueryParamOptGetRaw({
+			const response = await this.deletegate.queryParameterTypesSimpleLocalDateTimeQueryParamOptRaw({
 				queryValue,
 			});
 			if (response.raw.status === 200) {
@@ -302,7 +302,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleZonedDateTimeQueryParamGetRaw({
+			const response = await this.deletegate.queryParameterTypesSimpleZonedDateTimeQueryParamRaw({
 				queryValue,
 			});
 			if (response.raw.status === 200) {
@@ -318,7 +318,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue?: string,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleZonedDateTimeQueryParamOptGetRaw({
+			const response = await this.deletegate.queryParameterTypesSimpleZonedDateTimeQueryParamOptRaw({
 				queryValue,
 			});
 			if (response.raw.status === 200) {
@@ -334,7 +334,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleScalarQueryParamGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleScalarQueryParamRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -348,7 +348,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue?: string,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleScalarQueryParamOptGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleScalarQueryParamOptRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -362,7 +362,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue: api.model.SampleEnum,
 	): Promise<api.result.Result<api.model.SampleEnum, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleEnumQueryParamGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleEnumQueryParamRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -376,7 +376,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue?: api.model.SampleEnum,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesSimpleEnumQueryParamOptGetRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleEnumQueryParamOptRaw({ queryValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -391,7 +391,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		valueB: number,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesMultiQueryParamGetRaw({ valueA, valueB });
+			const response = await this.deletegate.queryParameterTypesMultiQueryParamRaw({ valueA, valueB });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -406,7 +406,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		valueB?: number,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesMultiQueryParamOptGetRaw({ valueA, valueB });
+			const response = await this.deletegate.queryParameterTypesMultiQueryParamOptRaw({ valueA, valueB });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -420,7 +420,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue: api.model.SimpleRecord,
 	): Promise<api.result.Result<api.model.SimpleRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesRecordQueryParamGetRaw({
+			const response = await this.deletegate.queryParameterTypesRecordQueryParamRaw({
 				queryValue: encodeBase64(JSON.stringify(queryValue)),
 			});
 			if (response.raw.status === 200) {
@@ -436,7 +436,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		queryValue?: api.model.SimpleRecord,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiQueryparametertypesRecordQueryParamOptGetRaw({
+			const response = await this.deletegate.queryParameterTypesRecordQueryParamOptRaw({
 				queryValue: queryValue ? encodeBase64(JSON.stringify(queryValue)) : undefined,
 			});
 			if (response.raw.status === 200) {

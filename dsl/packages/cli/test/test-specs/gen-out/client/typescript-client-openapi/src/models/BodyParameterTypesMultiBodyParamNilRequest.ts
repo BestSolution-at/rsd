@@ -24,44 +24,44 @@ import {
 /**
  * 
  * @export
- * @interface ApiBodyparametertypesMultiBodyParamNilPostRequest
+ * @interface BodyParameterTypesMultiBodyParamNilRequest
  */
-export interface ApiBodyparametertypesMultiBodyParamNilPostRequest {
+export interface BodyParameterTypesMultiBodyParamNilRequest {
     /**
      * 
      * @type {string}
-     * @memberof ApiBodyparametertypesMultiBodyParamNilPostRequest
+     * @memberof BodyParameterTypesMultiBodyParamNilRequest
      */
     valueA: string | null;
     /**
      * 
      * @type {number}
-     * @memberof ApiBodyparametertypesMultiBodyParamNilPostRequest
+     * @memberof BodyParameterTypesMultiBodyParamNilRequest
      */
     valueB: number | null;
     /**
      * 
      * @type {SimpleRecord}
-     * @memberof ApiBodyparametertypesMultiBodyParamNilPostRequest
+     * @memberof BodyParameterTypesMultiBodyParamNilRequest
      */
     valueC: SimpleRecord | null;
 }
 
 /**
- * Check if a given object implements the ApiBodyparametertypesMultiBodyParamNilPostRequest interface.
+ * Check if a given object implements the BodyParameterTypesMultiBodyParamNilRequest interface.
  */
-export function instanceOfApiBodyparametertypesMultiBodyParamNilPostRequest(value: object): value is ApiBodyparametertypesMultiBodyParamNilPostRequest {
+export function instanceOfBodyParameterTypesMultiBodyParamNilRequest(value: object): value is BodyParameterTypesMultiBodyParamNilRequest {
     if (!('valueA' in value) || value['valueA'] === undefined) return false;
     if (!('valueB' in value) || value['valueB'] === undefined) return false;
     if (!('valueC' in value) || value['valueC'] === undefined) return false;
     return true;
 }
 
-export function ApiBodyparametertypesMultiBodyParamNilPostRequestFromJSON(json: any): ApiBodyparametertypesMultiBodyParamNilPostRequest {
-    return ApiBodyparametertypesMultiBodyParamNilPostRequestFromJSONTyped(json, false);
+export function BodyParameterTypesMultiBodyParamNilRequestFromJSON(json: any): BodyParameterTypesMultiBodyParamNilRequest {
+    return BodyParameterTypesMultiBodyParamNilRequestFromJSONTyped(json, false);
 }
 
-export function ApiBodyparametertypesMultiBodyParamNilPostRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiBodyparametertypesMultiBodyParamNilPostRequest {
+export function BodyParameterTypesMultiBodyParamNilRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BodyParameterTypesMultiBodyParamNilRequest {
     if (json == null) {
         return json;
     }
@@ -73,11 +73,11 @@ export function ApiBodyparametertypesMultiBodyParamNilPostRequestFromJSONTyped(j
     };
 }
 
-export function ApiBodyparametertypesMultiBodyParamNilPostRequestToJSON(json: any): ApiBodyparametertypesMultiBodyParamNilPostRequest {
-    return ApiBodyparametertypesMultiBodyParamNilPostRequestToJSONTyped(json, false);
+export function BodyParameterTypesMultiBodyParamNilRequestToJSON(json: any): BodyParameterTypesMultiBodyParamNilRequest {
+    return BodyParameterTypesMultiBodyParamNilRequestToJSONTyped(json, false);
 }
 
-export function ApiBodyparametertypesMultiBodyParamNilPostRequestToJSONTyped(value?: ApiBodyparametertypesMultiBodyParamNilPostRequest | null, ignoreDiscriminator: boolean = false): any {
+export function BodyParameterTypesMultiBodyParamNilRequestToJSONTyped(value?: BodyParameterTypesMultiBodyParamNilRequest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -4,40 +4,40 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**apiQueryparametertypesMultiQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypesmultiqueryparamget) | **GET** /api/queryparametertypes/multiQueryParam |  |
-| [**apiQueryparametertypesMultiQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypesmultiqueryparamoptget) | **GET** /api/queryparametertypes/multiQueryParamOpt |  |
-| [**apiQueryparametertypesRecordQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypesrecordqueryparamget) | **GET** /api/queryparametertypes/recordQueryParam |  |
-| [**apiQueryparametertypesRecordQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypesrecordqueryparamoptget) | **GET** /api/queryparametertypes/recordQueryParamOpt |  |
-| [**apiQueryparametertypesSimpleBooleanQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplebooleanqueryparamget) | **GET** /api/queryparametertypes/simpleBooleanQueryParam |  |
-| [**apiQueryparametertypesSimpleBooleanQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplebooleanqueryparamoptget) | **GET** /api/queryparametertypes/simpleBooleanQueryParamOpt |  |
-| [**apiQueryparametertypesSimpleDoubleQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypessimpledoublequeryparamget) | **GET** /api/queryparametertypes/simpleDoubleQueryParam |  |
-| [**apiQueryparametertypesSimpleDoubleQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypessimpledoublequeryparamoptget) | **GET** /api/queryparametertypes/simpleDoubleQueryParamOpt |  |
-| [**apiQueryparametertypesSimpleEnumQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypessimpleenumqueryparamget) | **GET** /api/queryparametertypes/simpleEnumQueryParam |  |
-| [**apiQueryparametertypesSimpleEnumQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypessimpleenumqueryparamoptget) | **GET** /api/queryparametertypes/simpleEnumQueryParamOpt |  |
-| [**apiQueryparametertypesSimpleFloatQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplefloatqueryparamget) | **GET** /api/queryparametertypes/simpleFloatQueryParam |  |
-| [**apiQueryparametertypesSimpleFloatQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplefloatqueryparamoptget) | **GET** /api/queryparametertypes/simpleFloatQueryParamOpt |  |
-| [**apiQueryparametertypesSimpleIntQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypessimpleintqueryparamget) | **GET** /api/queryparametertypes/simpleIntQueryParam |  |
-| [**apiQueryparametertypesSimpleIntQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypessimpleintqueryparamoptget) | **GET** /api/queryparametertypes/simpleIntQueryParamOpt |  |
-| [**apiQueryparametertypesSimpleLocalDateQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplelocaldatequeryparamget) | **GET** /api/queryparametertypes/simpleLocalDateQueryParam |  |
-| [**apiQueryparametertypesSimpleLocalDateQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplelocaldatequeryparamoptget) | **GET** /api/queryparametertypes/simpleLocalDateQueryParamOpt |  |
-| [**apiQueryparametertypesSimpleLocalDateTimeQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplelocaldatetimequeryparamget) | **GET** /api/queryparametertypes/simpleLocalDateTimeQueryParam |  |
-| [**apiQueryparametertypesSimpleLocalDateTimeQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplelocaldatetimequeryparamoptget) | **GET** /api/queryparametertypes/simpleLocalDateTimeQueryParamOpt |  |
-| [**apiQueryparametertypesSimpleLongQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplelongqueryparamget) | **GET** /api/queryparametertypes/simpleLongQueryParam |  |
-| [**apiQueryparametertypesSimpleLongQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplelongqueryparamoptget) | **GET** /api/queryparametertypes/simpleLongQueryParamOpt |  |
-| [**apiQueryparametertypesSimpleScalarQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplescalarqueryparamget) | **GET** /api/queryparametertypes/simpleScalarQueryParam |  |
-| [**apiQueryparametertypesSimpleScalarQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplescalarqueryparamoptget) | **GET** /api/queryparametertypes/simpleScalarQueryParamOpt |  |
-| [**apiQueryparametertypesSimpleShortQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypessimpleshortqueryparamget) | **GET** /api/queryparametertypes/simpleShortQueryParam |  |
-| [**apiQueryparametertypesSimpleShortQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypessimpleshortqueryparamoptget) | **GET** /api/queryparametertypes/simpleShortQueryParamOpt |  |
-| [**apiQueryparametertypesSimpleStringQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplestringqueryparamget) | **GET** /api/queryparametertypes/simpleStringQueryParam |  |
-| [**apiQueryparametertypesSimpleStringQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplestringqueryparamoptget) | **GET** /api/queryparametertypes/simpleStringQueryParamOpt |  |
-| [**apiQueryparametertypesSimpleZonedDateTimeQueryParamGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplezoneddatetimequeryparamget) | **GET** /api/queryparametertypes/simpleZonedDateTimeQueryParam |  |
-| [**apiQueryparametertypesSimpleZonedDateTimeQueryParamOptGet**](QueryParameterTypesApi.md#apiqueryparametertypessimplezoneddatetimequeryparamoptget) | **GET** /api/queryparametertypes/simpleZonedDateTimeQueryParamOpt |  |
+| [**queryParameterTypesMultiQueryParam**](QueryParameterTypesApi.md#queryparametertypesmultiqueryparam) | **GET** /api/queryparametertypes/multiQueryParam |  |
+| [**queryParameterTypesMultiQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypesmultiqueryparamopt) | **GET** /api/queryparametertypes/multiQueryParamOpt |  |
+| [**queryParameterTypesRecordQueryParam**](QueryParameterTypesApi.md#queryparametertypesrecordqueryparam) | **GET** /api/queryparametertypes/recordQueryParam |  |
+| [**queryParameterTypesRecordQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypesrecordqueryparamopt) | **GET** /api/queryparametertypes/recordQueryParamOpt |  |
+| [**queryParameterTypesSimpleBooleanQueryParam**](QueryParameterTypesApi.md#queryparametertypessimplebooleanqueryparam) | **GET** /api/queryparametertypes/simpleBooleanQueryParam |  |
+| [**queryParameterTypesSimpleBooleanQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimplebooleanqueryparamopt) | **GET** /api/queryparametertypes/simpleBooleanQueryParamOpt |  |
+| [**queryParameterTypesSimpleDoubleQueryParam**](QueryParameterTypesApi.md#queryparametertypessimpledoublequeryparam) | **GET** /api/queryparametertypes/simpleDoubleQueryParam |  |
+| [**queryParameterTypesSimpleDoubleQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimpledoublequeryparamopt) | **GET** /api/queryparametertypes/simpleDoubleQueryParamOpt |  |
+| [**queryParameterTypesSimpleEnumQueryParam**](QueryParameterTypesApi.md#queryparametertypessimpleenumqueryparam) | **GET** /api/queryparametertypes/simpleEnumQueryParam |  |
+| [**queryParameterTypesSimpleEnumQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimpleenumqueryparamopt) | **GET** /api/queryparametertypes/simpleEnumQueryParamOpt |  |
+| [**queryParameterTypesSimpleFloatQueryParam**](QueryParameterTypesApi.md#queryparametertypessimplefloatqueryparam) | **GET** /api/queryparametertypes/simpleFloatQueryParam |  |
+| [**queryParameterTypesSimpleFloatQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimplefloatqueryparamopt) | **GET** /api/queryparametertypes/simpleFloatQueryParamOpt |  |
+| [**queryParameterTypesSimpleIntQueryParam**](QueryParameterTypesApi.md#queryparametertypessimpleintqueryparam) | **GET** /api/queryparametertypes/simpleIntQueryParam |  |
+| [**queryParameterTypesSimpleIntQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimpleintqueryparamopt) | **GET** /api/queryparametertypes/simpleIntQueryParamOpt |  |
+| [**queryParameterTypesSimpleLocalDateQueryParam**](QueryParameterTypesApi.md#queryparametertypessimplelocaldatequeryparam) | **GET** /api/queryparametertypes/simpleLocalDateQueryParam |  |
+| [**queryParameterTypesSimpleLocalDateQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimplelocaldatequeryparamopt) | **GET** /api/queryparametertypes/simpleLocalDateQueryParamOpt |  |
+| [**queryParameterTypesSimpleLocalDateTimeQueryParam**](QueryParameterTypesApi.md#queryparametertypessimplelocaldatetimequeryparam) | **GET** /api/queryparametertypes/simpleLocalDateTimeQueryParam |  |
+| [**queryParameterTypesSimpleLocalDateTimeQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimplelocaldatetimequeryparamopt) | **GET** /api/queryparametertypes/simpleLocalDateTimeQueryParamOpt |  |
+| [**queryParameterTypesSimpleLongQueryParam**](QueryParameterTypesApi.md#queryparametertypessimplelongqueryparam) | **GET** /api/queryparametertypes/simpleLongQueryParam |  |
+| [**queryParameterTypesSimpleLongQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimplelongqueryparamopt) | **GET** /api/queryparametertypes/simpleLongQueryParamOpt |  |
+| [**queryParameterTypesSimpleScalarQueryParam**](QueryParameterTypesApi.md#queryparametertypessimplescalarqueryparam) | **GET** /api/queryparametertypes/simpleScalarQueryParam |  |
+| [**queryParameterTypesSimpleScalarQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimplescalarqueryparamopt) | **GET** /api/queryparametertypes/simpleScalarQueryParamOpt |  |
+| [**queryParameterTypesSimpleShortQueryParam**](QueryParameterTypesApi.md#queryparametertypessimpleshortqueryparam) | **GET** /api/queryparametertypes/simpleShortQueryParam |  |
+| [**queryParameterTypesSimpleShortQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimpleshortqueryparamopt) | **GET** /api/queryparametertypes/simpleShortQueryParamOpt |  |
+| [**queryParameterTypesSimpleStringQueryParam**](QueryParameterTypesApi.md#queryparametertypessimplestringqueryparam) | **GET** /api/queryparametertypes/simpleStringQueryParam |  |
+| [**queryParameterTypesSimpleStringQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimplestringqueryparamopt) | **GET** /api/queryparametertypes/simpleStringQueryParamOpt |  |
+| [**queryParameterTypesSimpleZonedDateTimeQueryParam**](QueryParameterTypesApi.md#queryparametertypessimplezoneddatetimequeryparam) | **GET** /api/queryparametertypes/simpleZonedDateTimeQueryParam |  |
+| [**queryParameterTypesSimpleZonedDateTimeQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimplezoneddatetimequeryparamopt) | **GET** /api/queryparametertypes/simpleZonedDateTimeQueryParamOpt |  |
 
 
 
-## apiQueryparametertypesMultiQueryParamGet
+## queryParameterTypesMultiQueryParam
 
-> string apiQueryparametertypesMultiQueryParamGet(valueA, valueB)
+> string queryParameterTypesMultiQueryParam(valueA, valueB)
 
 
 
@@ -50,7 +50,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesMultiQueryParamGetRequest } from '';
+import type { QueryParameterTypesMultiQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -61,10 +61,10 @@ async function example() {
     valueA: valueA_example,
     // number | 
     valueB: 8.14,
-  } satisfies ApiQueryparametertypesMultiQueryParamGetRequest;
+  } satisfies QueryParameterTypesMultiQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesMultiQueryParamGet(body);
+    const data = await api.queryParameterTypesMultiQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -105,9 +105,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesMultiQueryParamOptGet
+## queryParameterTypesMultiQueryParamOpt
 
-> string apiQueryparametertypesMultiQueryParamOptGet(valueA, valueB)
+> string queryParameterTypesMultiQueryParamOpt(valueA, valueB)
 
 
 
@@ -120,7 +120,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesMultiQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesMultiQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -131,10 +131,10 @@ async function example() {
     valueA: valueA_example,
     // number |  (optional)
     valueB: 8.14,
-  } satisfies ApiQueryparametertypesMultiQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesMultiQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesMultiQueryParamOptGet(body);
+    const data = await api.queryParameterTypesMultiQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -175,9 +175,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesRecordQueryParamGet
+## queryParameterTypesRecordQueryParam
 
-> SimpleRecord apiQueryparametertypesRecordQueryParamGet(queryValue)
+> SimpleRecord queryParameterTypesRecordQueryParam(queryValue)
 
 
 
@@ -190,7 +190,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesRecordQueryParamGetRequest } from '';
+import type { QueryParameterTypesRecordQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -199,10 +199,10 @@ async function example() {
   const body = {
     // string | 
     queryValue: queryValue_example,
-  } satisfies ApiQueryparametertypesRecordQueryParamGetRequest;
+  } satisfies QueryParameterTypesRecordQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesRecordQueryParamGet(body);
+    const data = await api.queryParameterTypesRecordQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -242,9 +242,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesRecordQueryParamOptGet
+## queryParameterTypesRecordQueryParamOpt
 
-> NilResult apiQueryparametertypesRecordQueryParamOptGet(queryValue)
+> NilResult queryParameterTypesRecordQueryParamOpt(queryValue)
 
 
 
@@ -257,7 +257,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesRecordQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesRecordQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -266,10 +266,10 @@ async function example() {
   const body = {
     // string |  (optional)
     queryValue: queryValue_example,
-  } satisfies ApiQueryparametertypesRecordQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesRecordQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesRecordQueryParamOptGet(body);
+    const data = await api.queryParameterTypesRecordQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -309,9 +309,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleBooleanQueryParamGet
+## queryParameterTypesSimpleBooleanQueryParam
 
-> boolean apiQueryparametertypesSimpleBooleanQueryParamGet(queryValue)
+> boolean queryParameterTypesSimpleBooleanQueryParam(queryValue)
 
 
 
@@ -324,7 +324,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleBooleanQueryParamGetRequest } from '';
+import type { QueryParameterTypesSimpleBooleanQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -333,10 +333,10 @@ async function example() {
   const body = {
     // boolean | 
     queryValue: true,
-  } satisfies ApiQueryparametertypesSimpleBooleanQueryParamGetRequest;
+  } satisfies QueryParameterTypesSimpleBooleanQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleBooleanQueryParamGet(body);
+    const data = await api.queryParameterTypesSimpleBooleanQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -376,9 +376,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleBooleanQueryParamOptGet
+## queryParameterTypesSimpleBooleanQueryParamOpt
 
-> NilResult apiQueryparametertypesSimpleBooleanQueryParamOptGet(queryValue)
+> NilResult queryParameterTypesSimpleBooleanQueryParamOpt(queryValue)
 
 
 
@@ -391,7 +391,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleBooleanQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesSimpleBooleanQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -400,10 +400,10 @@ async function example() {
   const body = {
     // boolean |  (optional)
     queryValue: true,
-  } satisfies ApiQueryparametertypesSimpleBooleanQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesSimpleBooleanQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleBooleanQueryParamOptGet(body);
+    const data = await api.queryParameterTypesSimpleBooleanQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -443,9 +443,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleDoubleQueryParamGet
+## queryParameterTypesSimpleDoubleQueryParam
 
-> number apiQueryparametertypesSimpleDoubleQueryParamGet(queryValue)
+> number queryParameterTypesSimpleDoubleQueryParam(queryValue)
 
 
 
@@ -458,7 +458,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleDoubleQueryParamGetRequest } from '';
+import type { QueryParameterTypesSimpleDoubleQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -467,10 +467,10 @@ async function example() {
   const body = {
     // number | 
     queryValue: 1.2,
-  } satisfies ApiQueryparametertypesSimpleDoubleQueryParamGetRequest;
+  } satisfies QueryParameterTypesSimpleDoubleQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleDoubleQueryParamGet(body);
+    const data = await api.queryParameterTypesSimpleDoubleQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -510,9 +510,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleDoubleQueryParamOptGet
+## queryParameterTypesSimpleDoubleQueryParamOpt
 
-> NilResult apiQueryparametertypesSimpleDoubleQueryParamOptGet(queryValue)
+> NilResult queryParameterTypesSimpleDoubleQueryParamOpt(queryValue)
 
 
 
@@ -525,7 +525,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleDoubleQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesSimpleDoubleQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -534,10 +534,10 @@ async function example() {
   const body = {
     // number |  (optional)
     queryValue: 1.2,
-  } satisfies ApiQueryparametertypesSimpleDoubleQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesSimpleDoubleQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleDoubleQueryParamOptGet(body);
+    const data = await api.queryParameterTypesSimpleDoubleQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -577,9 +577,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleEnumQueryParamGet
+## queryParameterTypesSimpleEnumQueryParam
 
-> SampleEnum apiQueryparametertypesSimpleEnumQueryParamGet(queryValue)
+> SampleEnum queryParameterTypesSimpleEnumQueryParam(queryValue)
 
 
 
@@ -592,7 +592,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleEnumQueryParamGetRequest } from '';
+import type { QueryParameterTypesSimpleEnumQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -601,10 +601,10 @@ async function example() {
   const body = {
     // SampleEnum | 
     queryValue: ...,
-  } satisfies ApiQueryparametertypesSimpleEnumQueryParamGetRequest;
+  } satisfies QueryParameterTypesSimpleEnumQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleEnumQueryParamGet(body);
+    const data = await api.queryParameterTypesSimpleEnumQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -644,9 +644,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleEnumQueryParamOptGet
+## queryParameterTypesSimpleEnumQueryParamOpt
 
-> NilResult apiQueryparametertypesSimpleEnumQueryParamOptGet(queryValue)
+> NilResult queryParameterTypesSimpleEnumQueryParamOpt(queryValue)
 
 
 
@@ -659,7 +659,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleEnumQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesSimpleEnumQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -668,10 +668,10 @@ async function example() {
   const body = {
     // SampleEnum |  (optional)
     queryValue: ...,
-  } satisfies ApiQueryparametertypesSimpleEnumQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesSimpleEnumQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleEnumQueryParamOptGet(body);
+    const data = await api.queryParameterTypesSimpleEnumQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -711,9 +711,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleFloatQueryParamGet
+## queryParameterTypesSimpleFloatQueryParam
 
-> number apiQueryparametertypesSimpleFloatQueryParamGet(queryValue)
+> number queryParameterTypesSimpleFloatQueryParam(queryValue)
 
 
 
@@ -726,7 +726,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleFloatQueryParamGetRequest } from '';
+import type { QueryParameterTypesSimpleFloatQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -735,10 +735,10 @@ async function example() {
   const body = {
     // number | 
     queryValue: 3.4,
-  } satisfies ApiQueryparametertypesSimpleFloatQueryParamGetRequest;
+  } satisfies QueryParameterTypesSimpleFloatQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleFloatQueryParamGet(body);
+    const data = await api.queryParameterTypesSimpleFloatQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -778,9 +778,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleFloatQueryParamOptGet
+## queryParameterTypesSimpleFloatQueryParamOpt
 
-> NilResult apiQueryparametertypesSimpleFloatQueryParamOptGet(queryValue)
+> NilResult queryParameterTypesSimpleFloatQueryParamOpt(queryValue)
 
 
 
@@ -793,7 +793,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleFloatQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesSimpleFloatQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -802,10 +802,10 @@ async function example() {
   const body = {
     // number |  (optional)
     queryValue: 3.4,
-  } satisfies ApiQueryparametertypesSimpleFloatQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesSimpleFloatQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleFloatQueryParamOptGet(body);
+    const data = await api.queryParameterTypesSimpleFloatQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -845,9 +845,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleIntQueryParamGet
+## queryParameterTypesSimpleIntQueryParam
 
-> number apiQueryparametertypesSimpleIntQueryParamGet(queryValue)
+> number queryParameterTypesSimpleIntQueryParam(queryValue)
 
 
 
@@ -860,7 +860,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleIntQueryParamGetRequest } from '';
+import type { QueryParameterTypesSimpleIntQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -869,10 +869,10 @@ async function example() {
   const body = {
     // number | 
     queryValue: 8.14,
-  } satisfies ApiQueryparametertypesSimpleIntQueryParamGetRequest;
+  } satisfies QueryParameterTypesSimpleIntQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleIntQueryParamGet(body);
+    const data = await api.queryParameterTypesSimpleIntQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -912,9 +912,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleIntQueryParamOptGet
+## queryParameterTypesSimpleIntQueryParamOpt
 
-> NilResult apiQueryparametertypesSimpleIntQueryParamOptGet(queryValue)
+> NilResult queryParameterTypesSimpleIntQueryParamOpt(queryValue)
 
 
 
@@ -927,7 +927,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleIntQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesSimpleIntQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -936,10 +936,10 @@ async function example() {
   const body = {
     // number |  (optional)
     queryValue: 8.14,
-  } satisfies ApiQueryparametertypesSimpleIntQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesSimpleIntQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleIntQueryParamOptGet(body);
+    const data = await api.queryParameterTypesSimpleIntQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -979,9 +979,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleLocalDateQueryParamGet
+## queryParameterTypesSimpleLocalDateQueryParam
 
-> Date apiQueryparametertypesSimpleLocalDateQueryParamGet(queryValue)
+> Date queryParameterTypesSimpleLocalDateQueryParam(queryValue)
 
 
 
@@ -994,7 +994,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleLocalDateQueryParamGetRequest } from '';
+import type { QueryParameterTypesSimpleLocalDateQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1003,10 +1003,10 @@ async function example() {
   const body = {
     // Date | 
     queryValue: 2013-10-20,
-  } satisfies ApiQueryparametertypesSimpleLocalDateQueryParamGetRequest;
+  } satisfies QueryParameterTypesSimpleLocalDateQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleLocalDateQueryParamGet(body);
+    const data = await api.queryParameterTypesSimpleLocalDateQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1046,9 +1046,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleLocalDateQueryParamOptGet
+## queryParameterTypesSimpleLocalDateQueryParamOpt
 
-> NilResult apiQueryparametertypesSimpleLocalDateQueryParamOptGet(queryValue)
+> NilResult queryParameterTypesSimpleLocalDateQueryParamOpt(queryValue)
 
 
 
@@ -1061,7 +1061,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleLocalDateQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesSimpleLocalDateQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1070,10 +1070,10 @@ async function example() {
   const body = {
     // Date |  (optional)
     queryValue: 2013-10-20,
-  } satisfies ApiQueryparametertypesSimpleLocalDateQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesSimpleLocalDateQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleLocalDateQueryParamOptGet(body);
+    const data = await api.queryParameterTypesSimpleLocalDateQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1113,9 +1113,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleLocalDateTimeQueryParamGet
+## queryParameterTypesSimpleLocalDateTimeQueryParam
 
-> string apiQueryparametertypesSimpleLocalDateTimeQueryParamGet(queryValue)
+> string queryParameterTypesSimpleLocalDateTimeQueryParam(queryValue)
 
 
 
@@ -1128,7 +1128,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleLocalDateTimeQueryParamGetRequest } from '';
+import type { QueryParameterTypesSimpleLocalDateTimeQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1137,10 +1137,10 @@ async function example() {
   const body = {
     // string | 
     queryValue: queryValue_example,
-  } satisfies ApiQueryparametertypesSimpleLocalDateTimeQueryParamGetRequest;
+  } satisfies QueryParameterTypesSimpleLocalDateTimeQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleLocalDateTimeQueryParamGet(body);
+    const data = await api.queryParameterTypesSimpleLocalDateTimeQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1180,9 +1180,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleLocalDateTimeQueryParamOptGet
+## queryParameterTypesSimpleLocalDateTimeQueryParamOpt
 
-> NilResult apiQueryparametertypesSimpleLocalDateTimeQueryParamOptGet(queryValue)
+> NilResult queryParameterTypesSimpleLocalDateTimeQueryParamOpt(queryValue)
 
 
 
@@ -1195,7 +1195,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleLocalDateTimeQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesSimpleLocalDateTimeQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1204,10 +1204,10 @@ async function example() {
   const body = {
     // string |  (optional)
     queryValue: queryValue_example,
-  } satisfies ApiQueryparametertypesSimpleLocalDateTimeQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesSimpleLocalDateTimeQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleLocalDateTimeQueryParamOptGet(body);
+    const data = await api.queryParameterTypesSimpleLocalDateTimeQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1247,9 +1247,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleLongQueryParamGet
+## queryParameterTypesSimpleLongQueryParam
 
-> number apiQueryparametertypesSimpleLongQueryParamGet(queryValue)
+> number queryParameterTypesSimpleLongQueryParam(queryValue)
 
 
 
@@ -1262,7 +1262,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleLongQueryParamGetRequest } from '';
+import type { QueryParameterTypesSimpleLongQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1271,10 +1271,10 @@ async function example() {
   const body = {
     // number | 
     queryValue: 8.14,
-  } satisfies ApiQueryparametertypesSimpleLongQueryParamGetRequest;
+  } satisfies QueryParameterTypesSimpleLongQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleLongQueryParamGet(body);
+    const data = await api.queryParameterTypesSimpleLongQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1314,9 +1314,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleLongQueryParamOptGet
+## queryParameterTypesSimpleLongQueryParamOpt
 
-> NilResult apiQueryparametertypesSimpleLongQueryParamOptGet(queryValue)
+> NilResult queryParameterTypesSimpleLongQueryParamOpt(queryValue)
 
 
 
@@ -1329,7 +1329,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleLongQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesSimpleLongQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1338,10 +1338,10 @@ async function example() {
   const body = {
     // number |  (optional)
     queryValue: 8.14,
-  } satisfies ApiQueryparametertypesSimpleLongQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesSimpleLongQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleLongQueryParamOptGet(body);
+    const data = await api.queryParameterTypesSimpleLongQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1381,9 +1381,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleScalarQueryParamGet
+## queryParameterTypesSimpleScalarQueryParam
 
-> string apiQueryparametertypesSimpleScalarQueryParamGet(queryValue)
+> string queryParameterTypesSimpleScalarQueryParam(queryValue)
 
 
 
@@ -1396,7 +1396,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleScalarQueryParamGetRequest } from '';
+import type { QueryParameterTypesSimpleScalarQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1405,10 +1405,10 @@ async function example() {
   const body = {
     // string | 
     queryValue: queryValue_example,
-  } satisfies ApiQueryparametertypesSimpleScalarQueryParamGetRequest;
+  } satisfies QueryParameterTypesSimpleScalarQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleScalarQueryParamGet(body);
+    const data = await api.queryParameterTypesSimpleScalarQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1448,9 +1448,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleScalarQueryParamOptGet
+## queryParameterTypesSimpleScalarQueryParamOpt
 
-> NilResult apiQueryparametertypesSimpleScalarQueryParamOptGet(queryValue)
+> NilResult queryParameterTypesSimpleScalarQueryParamOpt(queryValue)
 
 
 
@@ -1463,7 +1463,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleScalarQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesSimpleScalarQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1472,10 +1472,10 @@ async function example() {
   const body = {
     // string |  (optional)
     queryValue: queryValue_example,
-  } satisfies ApiQueryparametertypesSimpleScalarQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesSimpleScalarQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleScalarQueryParamOptGet(body);
+    const data = await api.queryParameterTypesSimpleScalarQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1515,9 +1515,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleShortQueryParamGet
+## queryParameterTypesSimpleShortQueryParam
 
-> number apiQueryparametertypesSimpleShortQueryParamGet(queryValue)
+> number queryParameterTypesSimpleShortQueryParam(queryValue)
 
 
 
@@ -1530,7 +1530,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleShortQueryParamGetRequest } from '';
+import type { QueryParameterTypesSimpleShortQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1539,10 +1539,10 @@ async function example() {
   const body = {
     // number | 
     queryValue: 8.14,
-  } satisfies ApiQueryparametertypesSimpleShortQueryParamGetRequest;
+  } satisfies QueryParameterTypesSimpleShortQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleShortQueryParamGet(body);
+    const data = await api.queryParameterTypesSimpleShortQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1582,9 +1582,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleShortQueryParamOptGet
+## queryParameterTypesSimpleShortQueryParamOpt
 
-> NilResult apiQueryparametertypesSimpleShortQueryParamOptGet(queryValue)
+> NilResult queryParameterTypesSimpleShortQueryParamOpt(queryValue)
 
 
 
@@ -1597,7 +1597,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleShortQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesSimpleShortQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1606,10 +1606,10 @@ async function example() {
   const body = {
     // number |  (optional)
     queryValue: 8.14,
-  } satisfies ApiQueryparametertypesSimpleShortQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesSimpleShortQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleShortQueryParamOptGet(body);
+    const data = await api.queryParameterTypesSimpleShortQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1649,9 +1649,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleStringQueryParamGet
+## queryParameterTypesSimpleStringQueryParam
 
-> string apiQueryparametertypesSimpleStringQueryParamGet(queryValue)
+> string queryParameterTypesSimpleStringQueryParam(queryValue)
 
 
 
@@ -1664,7 +1664,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleStringQueryParamGetRequest } from '';
+import type { QueryParameterTypesSimpleStringQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1673,10 +1673,10 @@ async function example() {
   const body = {
     // string | 
     queryValue: queryValue_example,
-  } satisfies ApiQueryparametertypesSimpleStringQueryParamGetRequest;
+  } satisfies QueryParameterTypesSimpleStringQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleStringQueryParamGet(body);
+    const data = await api.queryParameterTypesSimpleStringQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1716,9 +1716,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleStringQueryParamOptGet
+## queryParameterTypesSimpleStringQueryParamOpt
 
-> NilResult apiQueryparametertypesSimpleStringQueryParamOptGet(queryValue)
+> NilResult queryParameterTypesSimpleStringQueryParamOpt(queryValue)
 
 
 
@@ -1731,7 +1731,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleStringQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesSimpleStringQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1740,10 +1740,10 @@ async function example() {
   const body = {
     // string |  (optional)
     queryValue: queryValue_example,
-  } satisfies ApiQueryparametertypesSimpleStringQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesSimpleStringQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleStringQueryParamOptGet(body);
+    const data = await api.queryParameterTypesSimpleStringQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1783,9 +1783,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleZonedDateTimeQueryParamGet
+## queryParameterTypesSimpleZonedDateTimeQueryParam
 
-> string apiQueryparametertypesSimpleZonedDateTimeQueryParamGet(queryValue)
+> string queryParameterTypesSimpleZonedDateTimeQueryParam(queryValue)
 
 
 
@@ -1798,7 +1798,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleZonedDateTimeQueryParamGetRequest } from '';
+import type { QueryParameterTypesSimpleZonedDateTimeQueryParamRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1807,10 +1807,10 @@ async function example() {
   const body = {
     // string | 
     queryValue: queryValue_example,
-  } satisfies ApiQueryparametertypesSimpleZonedDateTimeQueryParamGetRequest;
+  } satisfies QueryParameterTypesSimpleZonedDateTimeQueryParamRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleZonedDateTimeQueryParamGet(body);
+    const data = await api.queryParameterTypesSimpleZonedDateTimeQueryParam(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -1850,9 +1850,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiQueryparametertypesSimpleZonedDateTimeQueryParamOptGet
+## queryParameterTypesSimpleZonedDateTimeQueryParamOpt
 
-> NilResult apiQueryparametertypesSimpleZonedDateTimeQueryParamOptGet(queryValue)
+> NilResult queryParameterTypesSimpleZonedDateTimeQueryParamOpt(queryValue)
 
 
 
@@ -1865,7 +1865,7 @@ import {
   Configuration,
   QueryParameterTypesApi,
 } from '';
-import type { ApiQueryparametertypesSimpleZonedDateTimeQueryParamOptGetRequest } from '';
+import type { QueryParameterTypesSimpleZonedDateTimeQueryParamOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -1874,10 +1874,10 @@ async function example() {
   const body = {
     // string |  (optional)
     queryValue: queryValue_example,
-  } satisfies ApiQueryparametertypesSimpleZonedDateTimeQueryParamOptGetRequest;
+  } satisfies QueryParameterTypesSimpleZonedDateTimeQueryParamOptRequest;
 
   try {
-    const data = await api.apiQueryparametertypesSimpleZonedDateTimeQueryParamOptGet(body);
+    const data = await api.queryParameterTypesSimpleZonedDateTimeQueryParamOpt(body);
     console.log(data);
   } catch (error) {
     console.error(error);

@@ -31,9 +31,9 @@ import {
 export class ListSampleServiceApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for apiListsamplerecordsBooleanGet without sending the request
+     * Creates request options for listSampleServiceListBoolean without sending the request
      */
-    async apiListsamplerecordsBooleanGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListBooleanRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -52,8 +52,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsBooleanGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<boolean>>> {
-        const requestOptions = await this.apiListsamplerecordsBooleanGetRequestOpts();
+    async listSampleServiceListBooleanRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<boolean>>> {
+        const requestOptions = await this.listSampleServiceListBooleanRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -62,15 +62,15 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsBooleanGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<boolean>> {
-        const response = await this.apiListsamplerecordsBooleanGetRaw(initOverrides);
+    async listSampleServiceListBoolean(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<boolean>> {
+        const response = await this.listSampleServiceListBooleanRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListsamplerecordsDoubleGet without sending the request
+     * Creates request options for listSampleServiceListDouble without sending the request
      */
-    async apiListsamplerecordsDoubleGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListDoubleRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -89,8 +89,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsDoubleGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
-        const requestOptions = await this.apiListsamplerecordsDoubleGetRequestOpts();
+    async listSampleServiceListDoubleRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
+        const requestOptions = await this.listSampleServiceListDoubleRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -99,15 +99,15 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsDoubleGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
-        const response = await this.apiListsamplerecordsDoubleGetRaw(initOverrides);
+    async listSampleServiceListDouble(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
+        const response = await this.listSampleServiceListDoubleRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListsamplerecordsEnumGet without sending the request
+     * Creates request options for listSampleServiceListEnum without sending the request
      */
-    async apiListsamplerecordsEnumGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListEnumRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -126,8 +126,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsEnumGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SampleEnum>>> {
-        const requestOptions = await this.apiListsamplerecordsEnumGetRequestOpts();
+    async listSampleServiceListEnumRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SampleEnum>>> {
+        const requestOptions = await this.listSampleServiceListEnumRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SampleEnumFromJSON));
@@ -136,15 +136,15 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsEnumGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SampleEnum>> {
-        const response = await this.apiListsamplerecordsEnumGetRaw(initOverrides);
+    async listSampleServiceListEnum(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SampleEnum>> {
+        const response = await this.listSampleServiceListEnumRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListsamplerecordsFloatGet without sending the request
+     * Creates request options for listSampleServiceListFloat without sending the request
      */
-    async apiListsamplerecordsFloatGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListFloatRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -163,8 +163,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsFloatGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
-        const requestOptions = await this.apiListsamplerecordsFloatGetRequestOpts();
+    async listSampleServiceListFloatRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
+        const requestOptions = await this.listSampleServiceListFloatRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -173,15 +173,15 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsFloatGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
-        const response = await this.apiListsamplerecordsFloatGetRaw(initOverrides);
+    async listSampleServiceListFloat(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
+        const response = await this.listSampleServiceListFloatRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListsamplerecordsIntGet without sending the request
+     * Creates request options for listSampleServiceListInt without sending the request
      */
-    async apiListsamplerecordsIntGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListIntRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -200,8 +200,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsIntGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
-        const requestOptions = await this.apiListsamplerecordsIntGetRequestOpts();
+    async listSampleServiceListIntRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
+        const requestOptions = await this.listSampleServiceListIntRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -210,15 +210,15 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsIntGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
-        const response = await this.apiListsamplerecordsIntGetRaw(initOverrides);
+    async listSampleServiceListInt(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
+        const response = await this.listSampleServiceListIntRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListsamplerecordsLocaldateGet without sending the request
+     * Creates request options for listSampleServiceListLocalDate without sending the request
      */
-    async apiListsamplerecordsLocaldateGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListLocalDateRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -237,8 +237,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsLocaldateGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Date>>> {
-        const requestOptions = await this.apiListsamplerecordsLocaldateGetRequestOpts();
+    async listSampleServiceListLocalDateRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Date>>> {
+        const requestOptions = await this.listSampleServiceListLocalDateRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -247,15 +247,15 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsLocaldateGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Date>> {
-        const response = await this.apiListsamplerecordsLocaldateGetRaw(initOverrides);
+    async listSampleServiceListLocalDate(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Date>> {
+        const response = await this.listSampleServiceListLocalDateRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListsamplerecordsLocaldatetimeGet without sending the request
+     * Creates request options for listSampleServiceListLocalDateTime without sending the request
      */
-    async apiListsamplerecordsLocaldatetimeGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListLocalDateTimeRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -274,8 +274,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsLocaldatetimeGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
-        const requestOptions = await this.apiListsamplerecordsLocaldatetimeGetRequestOpts();
+    async listSampleServiceListLocalDateTimeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.listSampleServiceListLocalDateTimeRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -284,15 +284,15 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsLocaldatetimeGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
-        const response = await this.apiListsamplerecordsLocaldatetimeGetRaw(initOverrides);
+    async listSampleServiceListLocalDateTime(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.listSampleServiceListLocalDateTimeRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListsamplerecordsLongGet without sending the request
+     * Creates request options for listSampleServiceListLong without sending the request
      */
-    async apiListsamplerecordsLongGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListLongRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -311,8 +311,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsLongGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
-        const requestOptions = await this.apiListsamplerecordsLongGetRequestOpts();
+    async listSampleServiceListLongRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
+        const requestOptions = await this.listSampleServiceListLongRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -321,15 +321,15 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsLongGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
-        const response = await this.apiListsamplerecordsLongGetRaw(initOverrides);
+    async listSampleServiceListLong(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
+        const response = await this.listSampleServiceListLongRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListsamplerecordsScalarGet without sending the request
+     * Creates request options for listSampleServiceListScalar without sending the request
      */
-    async apiListsamplerecordsScalarGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListScalarRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -348,8 +348,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsScalarGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiListsamplerecordsScalarGetRequestOpts();
+    async listSampleServiceListScalarRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.listSampleServiceListScalarRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -362,15 +362,15 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsScalarGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiListsamplerecordsScalarGetRaw(initOverrides);
+    async listSampleServiceListScalar(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.listSampleServiceListScalarRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListsamplerecordsShortGet without sending the request
+     * Creates request options for listSampleServiceListShort without sending the request
      */
-    async apiListsamplerecordsShortGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListShortRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -389,8 +389,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsShortGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
-        const requestOptions = await this.apiListsamplerecordsShortGetRequestOpts();
+    async listSampleServiceListShortRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
+        const requestOptions = await this.listSampleServiceListShortRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -399,15 +399,15 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsShortGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
-        const response = await this.apiListsamplerecordsShortGetRaw(initOverrides);
+    async listSampleServiceListShort(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
+        const response = await this.listSampleServiceListShortRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListsamplerecordsSimplerecordGet without sending the request
+     * Creates request options for listSampleServiceListSimpleRecord without sending the request
      */
-    async apiListsamplerecordsSimplerecordGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListSimpleRecordRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -426,8 +426,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsSimplerecordGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SimpleRecord>>> {
-        const requestOptions = await this.apiListsamplerecordsSimplerecordGetRequestOpts();
+    async listSampleServiceListSimpleRecordRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SimpleRecord>>> {
+        const requestOptions = await this.listSampleServiceListSimpleRecordRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SimpleRecordFromJSON));
@@ -436,15 +436,15 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsSimplerecordGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SimpleRecord>> {
-        const response = await this.apiListsamplerecordsSimplerecordGetRaw(initOverrides);
+    async listSampleServiceListSimpleRecord(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SimpleRecord>> {
+        const response = await this.listSampleServiceListSimpleRecordRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListsamplerecordsSimplerecordwitherrorGet without sending the request
+     * Creates request options for listSampleServiceListSimpleRecordWithError without sending the request
      */
-    async apiListsamplerecordsSimplerecordwitherrorGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListSimpleRecordWithErrorRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -463,8 +463,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsSimplerecordwitherrorGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SimpleRecord>>> {
-        const requestOptions = await this.apiListsamplerecordsSimplerecordwitherrorGetRequestOpts();
+    async listSampleServiceListSimpleRecordWithErrorRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SimpleRecord>>> {
+        const requestOptions = await this.listSampleServiceListSimpleRecordWithErrorRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SimpleRecordFromJSON));
@@ -473,15 +473,15 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsSimplerecordwitherrorGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SimpleRecord>> {
-        const response = await this.apiListsamplerecordsSimplerecordwitherrorGetRaw(initOverrides);
+    async listSampleServiceListSimpleRecordWithError(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SimpleRecord>> {
+        const response = await this.listSampleServiceListSimpleRecordWithErrorRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListsamplerecordsStringGet without sending the request
+     * Creates request options for listSampleServiceListString without sending the request
      */
-    async apiListsamplerecordsStringGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListStringRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -500,8 +500,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsStringGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
-        const requestOptions = await this.apiListsamplerecordsStringGetRequestOpts();
+    async listSampleServiceListStringRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.listSampleServiceListStringRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -510,15 +510,15 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsStringGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
-        const response = await this.apiListsamplerecordsStringGetRaw(initOverrides);
+    async listSampleServiceListString(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.listSampleServiceListStringRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiListsamplerecordsZoneddatetimeGet without sending the request
+     * Creates request options for listSampleServiceListZonedDateTime without sending the request
      */
-    async apiListsamplerecordsZoneddatetimeGetRequestOpts(): Promise<runtime.RequestOpts> {
+    async listSampleServiceListZonedDateTimeRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -537,8 +537,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsZoneddatetimeGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
-        const requestOptions = await this.apiListsamplerecordsZoneddatetimeGetRequestOpts();
+    async listSampleServiceListZonedDateTimeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.listSampleServiceListZonedDateTimeRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
@@ -547,8 +547,8 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiListsamplerecordsZoneddatetimeGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
-        const response = await this.apiListsamplerecordsZoneddatetimeGetRaw(initOverrides);
+    async listSampleServiceListZonedDateTime(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.listSampleServiceListZonedDateTimeRaw(initOverrides);
         return await response.value();
     }
 

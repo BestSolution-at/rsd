@@ -4,88 +4,29 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**apiSamplerecordsBooleanGet**](SampleServiceApi.md#apisamplerecordsbooleanget) | **GET** /api/samplerecords/boolean |  |
-| [**apiSamplerecordsDoubleGet**](SampleServiceApi.md#apisamplerecordsdoubleget) | **GET** /api/samplerecords/double |  |
-| [**apiSamplerecordsEnumGet**](SampleServiceApi.md#apisamplerecordsenumget) | **GET** /api/samplerecords/enum |  |
-| [**apiSamplerecordsErroroperationGet**](SampleServiceApi.md#apisamplerecordserroroperationget) | **GET** /api/samplerecords/erroroperation |  |
-| [**apiSamplerecordsFloatGet**](SampleServiceApi.md#apisamplerecordsfloatget) | **GET** /api/samplerecords/float |  |
-| [**apiSamplerecordsIntGet**](SampleServiceApi.md#apisamplerecordsintget) | **GET** /api/samplerecords/int |  |
-| [**apiSamplerecordsLocaldateGet**](SampleServiceApi.md#apisamplerecordslocaldateget) | **GET** /api/samplerecords/localdate |  |
-| [**apiSamplerecordsLocaldatetimeGet**](SampleServiceApi.md#apisamplerecordslocaldatetimeget) | **GET** /api/samplerecords/localdatetime |  |
-| [**apiSamplerecordsLongGet**](SampleServiceApi.md#apisamplerecordslongget) | **GET** /api/samplerecords/long |  |
-| [**apiSamplerecordsMultierroroperationGet**](SampleServiceApi.md#apisamplerecordsmultierroroperationget) | **GET** /api/samplerecords/multierroroperation |  |
-| [**apiSamplerecordsScalarGet**](SampleServiceApi.md#apisamplerecordsscalarget) | **GET** /api/samplerecords/scalar |  |
-| [**apiSamplerecordsShortGet**](SampleServiceApi.md#apisamplerecordsshortget) | **GET** /api/samplerecords/short |  |
-| [**apiSamplerecordsSimplerecordKeyGet**](SampleServiceApi.md#apisamplerecordssimplerecordkeyget) | **GET** /api/samplerecords/simplerecord/{key} |  |
-| [**apiSamplerecordsSimplerecordwitherrorKeyGet**](SampleServiceApi.md#apisamplerecordssimplerecordwitherrorkeyget) | **GET** /api/samplerecords/simplerecordwitherror/{key} |  |
-| [**apiSamplerecordsStringGet**](SampleServiceApi.md#apisamplerecordsstringget) | **GET** /api/samplerecords/string |  |
-| [**apiSamplerecordsVoidoperationGet**](SampleServiceApi.md#apisamplerecordsvoidoperationget) | **GET** /api/samplerecords/voidoperation |  |
-| [**apiSamplerecordsZoneddatetimeGet**](SampleServiceApi.md#apisamplerecordszoneddatetimeget) | **GET** /api/samplerecords/zoneddatetime |  |
+| [**sampleServiceErrorOperation**](SampleServiceApi.md#sampleserviceerroroperation) | **GET** /api/samplerecords/erroroperation |  |
+| [**sampleServiceGetBoolean**](SampleServiceApi.md#sampleservicegetboolean) | **GET** /api/samplerecords/boolean |  |
+| [**sampleServiceGetDouble**](SampleServiceApi.md#sampleservicegetdouble) | **GET** /api/samplerecords/double |  |
+| [**sampleServiceGetEnum**](SampleServiceApi.md#sampleservicegetenum) | **GET** /api/samplerecords/enum |  |
+| [**sampleServiceGetFloat**](SampleServiceApi.md#sampleservicegetfloat) | **GET** /api/samplerecords/float |  |
+| [**sampleServiceGetInt**](SampleServiceApi.md#sampleservicegetint) | **GET** /api/samplerecords/int |  |
+| [**sampleServiceGetLocalDate**](SampleServiceApi.md#sampleservicegetlocaldate) | **GET** /api/samplerecords/localdate |  |
+| [**sampleServiceGetLocalDateTime**](SampleServiceApi.md#sampleservicegetlocaldatetime) | **GET** /api/samplerecords/localdatetime |  |
+| [**sampleServiceGetLong**](SampleServiceApi.md#sampleservicegetlong) | **GET** /api/samplerecords/long |  |
+| [**sampleServiceGetScalar**](SampleServiceApi.md#sampleservicegetscalar) | **GET** /api/samplerecords/scalar |  |
+| [**sampleServiceGetShort**](SampleServiceApi.md#sampleservicegetshort) | **GET** /api/samplerecords/short |  |
+| [**sampleServiceGetSimpleRecord**](SampleServiceApi.md#sampleservicegetsimplerecord) | **GET** /api/samplerecords/simplerecord/{key} |  |
+| [**sampleServiceGetSimpleRecordWithError**](SampleServiceApi.md#sampleservicegetsimplerecordwitherror) | **GET** /api/samplerecords/simplerecordwitherror/{key} |  |
+| [**sampleServiceGetString**](SampleServiceApi.md#sampleservicegetstring) | **GET** /api/samplerecords/string |  |
+| [**sampleServiceGetZonedDateTime**](SampleServiceApi.md#sampleservicegetzoneddatetime) | **GET** /api/samplerecords/zoneddatetime |  |
+| [**sampleServiceMultiErrorOperation**](SampleServiceApi.md#sampleservicemultierroroperation) | **GET** /api/samplerecords/multierroroperation |  |
+| [**sampleServiceVoidOperation**](SampleServiceApi.md#sampleservicevoidoperation) | **GET** /api/samplerecords/voidoperation |  |
 
 
 
-## apiSamplerecordsBooleanGet
+## sampleServiceErrorOperation
 
-> boolean apiSamplerecordsBooleanGet()
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  SampleServiceApi,
-} from '';
-import type { ApiSamplerecordsBooleanGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new SampleServiceApi();
-
-  try {
-    const data = await api.apiSamplerecordsBooleanGet();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-**boolean**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiSamplerecordsDoubleGet
-
-> number apiSamplerecordsDoubleGet()
+> sampleServiceErrorOperation()
 
 
 
@@ -98,132 +39,14 @@ import {
   Configuration,
   SampleServiceApi,
 } from '';
-import type { ApiSamplerecordsDoubleGetRequest } from '';
+import type { SampleServiceErrorOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new SampleServiceApi();
 
   try {
-    const data = await api.apiSamplerecordsDoubleGet();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiSamplerecordsEnumGet
-
-> SampleEnum apiSamplerecordsEnumGet()
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  SampleServiceApi,
-} from '';
-import type { ApiSamplerecordsEnumGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new SampleServiceApi();
-
-  try {
-    const data = await api.apiSamplerecordsEnumGet();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**SampleEnum**](SampleEnum.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiSamplerecordsErroroperationGet
-
-> apiSamplerecordsErroroperationGet()
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  SampleServiceApi,
-} from '';
-import type { ApiSamplerecordsErroroperationGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new SampleServiceApi();
-
-  try {
-    const data = await api.apiSamplerecordsErroroperationGet();
+    const data = await api.sampleServiceErrorOperation();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -261,9 +84,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiSamplerecordsFloatGet
+## sampleServiceGetBoolean
 
-> number apiSamplerecordsFloatGet()
+> boolean sampleServiceGetBoolean()
 
 
 
@@ -276,14 +99,73 @@ import {
   Configuration,
   SampleServiceApi,
 } from '';
-import type { ApiSamplerecordsFloatGetRequest } from '';
+import type { SampleServiceGetBooleanRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new SampleServiceApi();
 
   try {
-    const data = await api.apiSamplerecordsFloatGet();
+    const data = await api.sampleServiceGetBoolean();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**boolean**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetDouble
+
+> number sampleServiceGetDouble()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetDoubleRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetDouble();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -320,9 +202,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiSamplerecordsIntGet
+## sampleServiceGetEnum
 
-> number apiSamplerecordsIntGet()
+> SampleEnum sampleServiceGetEnum()
 
 
 
@@ -335,14 +217,73 @@ import {
   Configuration,
   SampleServiceApi,
 } from '';
-import type { ApiSamplerecordsIntGetRequest } from '';
+import type { SampleServiceGetEnumRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new SampleServiceApi();
 
   try {
-    const data = await api.apiSamplerecordsIntGet();
+    const data = await api.sampleServiceGetEnum();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SampleEnum**](SampleEnum.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetFloat
+
+> number sampleServiceGetFloat()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetFloatRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetFloat();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -379,9 +320,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiSamplerecordsLocaldateGet
+## sampleServiceGetInt
 
-> Date apiSamplerecordsLocaldateGet()
+> number sampleServiceGetInt()
 
 
 
@@ -394,14 +335,73 @@ import {
   Configuration,
   SampleServiceApi,
 } from '';
-import type { ApiSamplerecordsLocaldateGetRequest } from '';
+import type { SampleServiceGetIntRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new SampleServiceApi();
 
   try {
-    const data = await api.apiSamplerecordsLocaldateGet();
+    const data = await api.sampleServiceGetInt();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetLocalDate
+
+> Date sampleServiceGetLocalDate()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetLocalDateRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetLocalDate();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -438,9 +438,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiSamplerecordsLocaldatetimeGet
+## sampleServiceGetLocalDateTime
 
-> string apiSamplerecordsLocaldatetimeGet()
+> string sampleServiceGetLocalDateTime()
 
 
 
@@ -453,14 +453,14 @@ import {
   Configuration,
   SampleServiceApi,
 } from '';
-import type { ApiSamplerecordsLocaldatetimeGetRequest } from '';
+import type { SampleServiceGetLocalDateTimeRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new SampleServiceApi();
 
   try {
-    const data = await api.apiSamplerecordsLocaldatetimeGet();
+    const data = await api.sampleServiceGetLocalDateTime();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -497,9 +497,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiSamplerecordsLongGet
+## sampleServiceGetLong
 
-> number apiSamplerecordsLongGet()
+> number sampleServiceGetLong()
 
 
 
@@ -512,14 +512,14 @@ import {
   Configuration,
   SampleServiceApi,
 } from '';
-import type { ApiSamplerecordsLongGetRequest } from '';
+import type { SampleServiceGetLongRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new SampleServiceApi();
 
   try {
-    const data = await api.apiSamplerecordsLongGet();
+    const data = await api.sampleServiceGetLong();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -556,9 +556,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiSamplerecordsMultierroroperationGet
+## sampleServiceGetScalar
 
-> apiSamplerecordsMultierroroperationGet()
+> string sampleServiceGetScalar()
 
 
 
@@ -571,14 +571,385 @@ import {
   Configuration,
   SampleServiceApi,
 } from '';
-import type { ApiSamplerecordsMultierroroperationGetRequest } from '';
+import type { SampleServiceGetScalarRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new SampleServiceApi();
 
   try {
-    const data = await api.apiSamplerecordsMultierroroperationGet();
+    const data = await api.sampleServiceGetScalar();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetShort
+
+> number sampleServiceGetShort()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetShortRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetShort();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetSimpleRecord
+
+> SimpleRecord sampleServiceGetSimpleRecord(key)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetSimpleRecordRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  const body = {
+    // string | 
+    key: key_example,
+  } satisfies SampleServiceGetSimpleRecordRequest;
+
+  try {
+    const data = await api.sampleServiceGetSimpleRecord(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **key** | `string` |  | [Defaults to `undefined`] |
+
+### Return type
+
+[**SimpleRecord**](SimpleRecord.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetSimpleRecordWithError
+
+> SimpleRecord sampleServiceGetSimpleRecordWithError(key)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetSimpleRecordWithErrorRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  const body = {
+    // string | 
+    key: key_example,
+  } satisfies SampleServiceGetSimpleRecordWithErrorRequest;
+
+  try {
+    const data = await api.sampleServiceGetSimpleRecordWithError(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **key** | `string` |  | [Defaults to `undefined`] |
+
+### Return type
+
+[**SimpleRecord**](SimpleRecord.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+| **400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetString
+
+> string sampleServiceGetString()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetStringRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetString();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetZonedDateTime
+
+> string sampleServiceGetZonedDateTime()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetZonedDateTimeRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetZonedDateTime();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceMultiErrorOperation
+
+> sampleServiceMultiErrorOperation()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceMultiErrorOperationRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceMultiErrorOperation();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -617,68 +988,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiSamplerecordsScalarGet
+## sampleServiceVoidOperation
 
-> string apiSamplerecordsScalarGet()
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  SampleServiceApi,
-} from '';
-import type { ApiSamplerecordsScalarGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new SampleServiceApi();
-
-  try {
-    const data = await api.apiSamplerecordsScalarGet();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-**string**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiSamplerecordsShortGet
-
-> number apiSamplerecordsShortGet()
+> sampleServiceVoidOperation()
 
 
 
@@ -691,267 +1003,14 @@ import {
   Configuration,
   SampleServiceApi,
 } from '';
-import type { ApiSamplerecordsShortGetRequest } from '';
+import type { SampleServiceVoidOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new SampleServiceApi();
 
   try {
-    const data = await api.apiSamplerecordsShortGet();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-**number**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiSamplerecordsSimplerecordKeyGet
-
-> SimpleRecord apiSamplerecordsSimplerecordKeyGet(key)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  SampleServiceApi,
-} from '';
-import type { ApiSamplerecordsSimplerecordKeyGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new SampleServiceApi();
-
-  const body = {
-    // string | 
-    key: key_example,
-  } satisfies ApiSamplerecordsSimplerecordKeyGetRequest;
-
-  try {
-    const data = await api.apiSamplerecordsSimplerecordKeyGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **key** | `string` |  | [Defaults to `undefined`] |
-
-### Return type
-
-[**SimpleRecord**](SimpleRecord.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiSamplerecordsSimplerecordwitherrorKeyGet
-
-> SimpleRecord apiSamplerecordsSimplerecordwitherrorKeyGet(key)
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  SampleServiceApi,
-} from '';
-import type { ApiSamplerecordsSimplerecordwitherrorKeyGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new SampleServiceApi();
-
-  const body = {
-    // string | 
-    key: key_example,
-  } satisfies ApiSamplerecordsSimplerecordwitherrorKeyGetRequest;
-
-  try {
-    const data = await api.apiSamplerecordsSimplerecordwitherrorKeyGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **key** | `string` |  | [Defaults to `undefined`] |
-
-### Return type
-
-[**SimpleRecord**](SimpleRecord.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-| **400** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiSamplerecordsStringGet
-
-> string apiSamplerecordsStringGet()
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  SampleServiceApi,
-} from '';
-import type { ApiSamplerecordsStringGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new SampleServiceApi();
-
-  try {
-    const data = await api.apiSamplerecordsStringGet();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-**string**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiSamplerecordsVoidoperationGet
-
-> apiSamplerecordsVoidoperationGet()
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  SampleServiceApi,
-} from '';
-import type { ApiSamplerecordsVoidoperationGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new SampleServiceApi();
-
-  try {
-    const data = await api.apiSamplerecordsVoidoperationGet();
+    const data = await api.sampleServiceVoidOperation();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -984,65 +1043,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | success |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## apiSamplerecordsZoneddatetimeGet
-
-> string apiSamplerecordsZoneddatetimeGet()
-
-
-
-
-
-### Example
-
-```ts
-import {
-  Configuration,
-  SampleServiceApi,
-} from '';
-import type { ApiSamplerecordsZoneddatetimeGetRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new SampleServiceApi();
-
-  try {
-    const data = await api.apiSamplerecordsZoneddatetimeGet();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-**string**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

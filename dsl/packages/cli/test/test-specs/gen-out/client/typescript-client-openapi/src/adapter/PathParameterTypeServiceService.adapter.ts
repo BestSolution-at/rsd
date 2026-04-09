@@ -43,7 +43,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		pathBoolean: boolean,
 	): Promise<api.result.Result<boolean, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiPathparametertypeBooleanPathBooleanGetRaw({ pathBoolean });
+			const response = await this.deletegate.pathParameterTypeServiceSimpleBooleanPathParamRaw({ pathBoolean });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -57,7 +57,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		pathShort: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiPathparametertypeShortPathShortGetRaw({ pathShort });
+			const response = await this.deletegate.pathParameterTypeServiceSimpleShortPathParamRaw({ pathShort });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -71,7 +71,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		pathInt: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiPathparametertypeIntPathIntGetRaw({ pathInt });
+			const response = await this.deletegate.pathParameterTypeServiceSimpleIntPathParamRaw({ pathInt });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -85,7 +85,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		pathLong: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiPathparametertypeLongPathLongGetRaw({ pathLong });
+			const response = await this.deletegate.pathParameterTypeServiceSimpleLongPathParamRaw({ pathLong });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -99,7 +99,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		pathFloat: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiPathparametertypeFloatPathFloatGetRaw({ pathFloat });
+			const response = await this.deletegate.pathParameterTypeServiceSimpleFloatPathParamRaw({ pathFloat });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -113,7 +113,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		pathDouble: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiPathparametertypeDoublePathDoubleGetRaw({ pathDouble });
+			const response = await this.deletegate.pathParameterTypeServiceSimpleDoublePathParamRaw({ pathDouble });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -127,7 +127,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		pathString: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiPathparametertypeStringPathStringGetRaw({ pathString });
+			const response = await this.deletegate.pathParameterTypeServiceSimpleStringPathParamRaw({ pathString });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -141,7 +141,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		pathLocalDate: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiPathparametertypeLocaldatePathLocalDateGetRaw({
+			const response = await this.deletegate.pathParameterTypeServiceSimpleLocalDatePathParamRaw({
 				pathLocalDate: new Date(pathLocalDate),
 			});
 			if (response.raw.status === 200) {
@@ -157,7 +157,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		pathLocalDateTime: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiPathparametertypeLocaldatetimePathLocalDateTimeGetRaw({
+			const response = await this.deletegate.pathParameterTypeServiceSimpleLocalDateTimePathParamRaw({
 				pathLocalDateTime,
 			});
 			if (response.raw.status === 200) {
@@ -173,7 +173,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		pathZonedDateTime: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiPathparametertypeZoneddatetimePathZonedDateTimeGetRaw({
+			const response = await this.deletegate.pathParameterTypeServiceSimpleZonedDateTimePathParamRaw({
 				pathZonedDateTime,
 			});
 			if (response.raw.status === 200) {
@@ -189,7 +189,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		pathScalar: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiPathparametertypeScalarPathScalarGetRaw({ pathScalar });
+			const response = await this.deletegate.pathParameterTypeServiceSimpleScalarPathParamRaw({ pathScalar });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -203,7 +203,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		pathEnum: api.model.SampleEnum,
 	): Promise<api.result.Result<api.model.SampleEnum, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiPathparametertypeEnumPathEnumGetRaw({ pathEnum });
+			const response = await this.deletegate.pathParameterTypeServiceSimpleEnumPathParamRaw({ pathEnum });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -218,7 +218,7 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		valueB: number,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiPathparametertypeMultipathparamValueAValueBGetRaw({ valueA, valueB });
+			const response = await this.deletegate.pathParameterTypeServiceMultiPathParamRaw({ valueA, valueB });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}

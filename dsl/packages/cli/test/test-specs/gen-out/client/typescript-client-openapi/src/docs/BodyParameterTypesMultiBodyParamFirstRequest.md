@@ -1,5 +1,5 @@
 
-# ApiBodyparametertypesMultiBodyParamPostRequest
+# BodyParameterTypesMultiBodyParamFirstRequest
 
 
 ## Properties
@@ -13,14 +13,14 @@ Name | Type
 ## Example
 
 ```typescript
-import type { ApiBodyparametertypesMultiBodyParamPostRequest } from ''
+import type { BodyParameterTypesMultiBodyParamFirstRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
   "valueA": null,
   "valueB": null,
   "valueC": null,
-} satisfies ApiBodyparametertypesMultiBodyParamPostRequest
+} satisfies BodyParameterTypesMultiBodyParamFirstRequest
 
 console.log(example)
 
@@ -29,7 +29,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ApiBodyparametertypesMultiBodyParamPostRequest
+const exampleParsed = JSON.parse(exampleJSON) as BodyParameterTypesMultiBodyParamFirstRequest
 console.log(exampleParsed)
 ```
 

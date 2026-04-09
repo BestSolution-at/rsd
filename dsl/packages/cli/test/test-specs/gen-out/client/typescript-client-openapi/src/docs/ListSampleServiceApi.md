@@ -4,26 +4,26 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**apiListsamplerecordsBooleanGet**](ListSampleServiceApi.md#apilistsamplerecordsbooleanget) | **GET** /api/listsamplerecords/boolean |  |
-| [**apiListsamplerecordsDoubleGet**](ListSampleServiceApi.md#apilistsamplerecordsdoubleget) | **GET** /api/listsamplerecords/double |  |
-| [**apiListsamplerecordsEnumGet**](ListSampleServiceApi.md#apilistsamplerecordsenumget) | **GET** /api/listsamplerecords/enum |  |
-| [**apiListsamplerecordsFloatGet**](ListSampleServiceApi.md#apilistsamplerecordsfloatget) | **GET** /api/listsamplerecords/float |  |
-| [**apiListsamplerecordsIntGet**](ListSampleServiceApi.md#apilistsamplerecordsintget) | **GET** /api/listsamplerecords/int |  |
-| [**apiListsamplerecordsLocaldateGet**](ListSampleServiceApi.md#apilistsamplerecordslocaldateget) | **GET** /api/listsamplerecords/localdate |  |
-| [**apiListsamplerecordsLocaldatetimeGet**](ListSampleServiceApi.md#apilistsamplerecordslocaldatetimeget) | **GET** /api/listsamplerecords/localdatetime |  |
-| [**apiListsamplerecordsLongGet**](ListSampleServiceApi.md#apilistsamplerecordslongget) | **GET** /api/listsamplerecords/long |  |
-| [**apiListsamplerecordsScalarGet**](ListSampleServiceApi.md#apilistsamplerecordsscalarget) | **GET** /api/listsamplerecords/scalar |  |
-| [**apiListsamplerecordsShortGet**](ListSampleServiceApi.md#apilistsamplerecordsshortget) | **GET** /api/listsamplerecords/short |  |
-| [**apiListsamplerecordsSimplerecordGet**](ListSampleServiceApi.md#apilistsamplerecordssimplerecordget) | **GET** /api/listsamplerecords/simplerecord |  |
-| [**apiListsamplerecordsSimplerecordwitherrorGet**](ListSampleServiceApi.md#apilistsamplerecordssimplerecordwitherrorget) | **GET** /api/listsamplerecords/simplerecordwitherror |  |
-| [**apiListsamplerecordsStringGet**](ListSampleServiceApi.md#apilistsamplerecordsstringget) | **GET** /api/listsamplerecords/string |  |
-| [**apiListsamplerecordsZoneddatetimeGet**](ListSampleServiceApi.md#apilistsamplerecordszoneddatetimeget) | **GET** /api/listsamplerecords/zoneddatetime |  |
+| [**listSampleServiceListBoolean**](ListSampleServiceApi.md#listsampleservicelistboolean) | **GET** /api/listsamplerecords/boolean |  |
+| [**listSampleServiceListDouble**](ListSampleServiceApi.md#listsampleservicelistdouble) | **GET** /api/listsamplerecords/double |  |
+| [**listSampleServiceListEnum**](ListSampleServiceApi.md#listsampleservicelistenum) | **GET** /api/listsamplerecords/enum |  |
+| [**listSampleServiceListFloat**](ListSampleServiceApi.md#listsampleservicelistfloat) | **GET** /api/listsamplerecords/float |  |
+| [**listSampleServiceListInt**](ListSampleServiceApi.md#listsampleservicelistint) | **GET** /api/listsamplerecords/int |  |
+| [**listSampleServiceListLocalDate**](ListSampleServiceApi.md#listsampleservicelistlocaldate) | **GET** /api/listsamplerecords/localdate |  |
+| [**listSampleServiceListLocalDateTime**](ListSampleServiceApi.md#listsampleservicelistlocaldatetime) | **GET** /api/listsamplerecords/localdatetime |  |
+| [**listSampleServiceListLong**](ListSampleServiceApi.md#listsampleservicelistlong) | **GET** /api/listsamplerecords/long |  |
+| [**listSampleServiceListScalar**](ListSampleServiceApi.md#listsampleservicelistscalar) | **GET** /api/listsamplerecords/scalar |  |
+| [**listSampleServiceListShort**](ListSampleServiceApi.md#listsampleservicelistshort) | **GET** /api/listsamplerecords/short |  |
+| [**listSampleServiceListSimpleRecord**](ListSampleServiceApi.md#listsampleservicelistsimplerecord) | **GET** /api/listsamplerecords/simplerecord |  |
+| [**listSampleServiceListSimpleRecordWithError**](ListSampleServiceApi.md#listsampleservicelistsimplerecordwitherror) | **GET** /api/listsamplerecords/simplerecordwitherror |  |
+| [**listSampleServiceListString**](ListSampleServiceApi.md#listsampleserviceliststring) | **GET** /api/listsamplerecords/string |  |
+| [**listSampleServiceListZonedDateTime**](ListSampleServiceApi.md#listsampleservicelistzoneddatetime) | **GET** /api/listsamplerecords/zoneddatetime |  |
 
 
 
-## apiListsamplerecordsBooleanGet
+## listSampleServiceListBoolean
 
-> Array&lt;boolean&gt; apiListsamplerecordsBooleanGet()
+> Array&lt;boolean&gt; listSampleServiceListBoolean()
 
 
 
@@ -36,14 +36,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsBooleanGetRequest } from '';
+import type { ListSampleServiceListBooleanRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsBooleanGet();
+    const data = await api.listSampleServiceListBoolean();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -80,9 +80,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListsamplerecordsDoubleGet
+## listSampleServiceListDouble
 
-> Array&lt;number&gt; apiListsamplerecordsDoubleGet()
+> Array&lt;number&gt; listSampleServiceListDouble()
 
 
 
@@ -95,14 +95,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsDoubleGetRequest } from '';
+import type { ListSampleServiceListDoubleRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsDoubleGet();
+    const data = await api.listSampleServiceListDouble();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -139,9 +139,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListsamplerecordsEnumGet
+## listSampleServiceListEnum
 
-> Array&lt;SampleEnum&gt; apiListsamplerecordsEnumGet()
+> Array&lt;SampleEnum&gt; listSampleServiceListEnum()
 
 
 
@@ -154,14 +154,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsEnumGetRequest } from '';
+import type { ListSampleServiceListEnumRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsEnumGet();
+    const data = await api.listSampleServiceListEnum();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -198,9 +198,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListsamplerecordsFloatGet
+## listSampleServiceListFloat
 
-> Array&lt;number&gt; apiListsamplerecordsFloatGet()
+> Array&lt;number&gt; listSampleServiceListFloat()
 
 
 
@@ -213,14 +213,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsFloatGetRequest } from '';
+import type { ListSampleServiceListFloatRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsFloatGet();
+    const data = await api.listSampleServiceListFloat();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -257,9 +257,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListsamplerecordsIntGet
+## listSampleServiceListInt
 
-> Array&lt;number&gt; apiListsamplerecordsIntGet()
+> Array&lt;number&gt; listSampleServiceListInt()
 
 
 
@@ -272,14 +272,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsIntGetRequest } from '';
+import type { ListSampleServiceListIntRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsIntGet();
+    const data = await api.listSampleServiceListInt();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -316,9 +316,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListsamplerecordsLocaldateGet
+## listSampleServiceListLocalDate
 
-> Array&lt;Date&gt; apiListsamplerecordsLocaldateGet()
+> Array&lt;Date&gt; listSampleServiceListLocalDate()
 
 
 
@@ -331,14 +331,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsLocaldateGetRequest } from '';
+import type { ListSampleServiceListLocalDateRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsLocaldateGet();
+    const data = await api.listSampleServiceListLocalDate();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -375,9 +375,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListsamplerecordsLocaldatetimeGet
+## listSampleServiceListLocalDateTime
 
-> Array&lt;string&gt; apiListsamplerecordsLocaldatetimeGet()
+> Array&lt;string&gt; listSampleServiceListLocalDateTime()
 
 
 
@@ -390,14 +390,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsLocaldatetimeGetRequest } from '';
+import type { ListSampleServiceListLocalDateTimeRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsLocaldatetimeGet();
+    const data = await api.listSampleServiceListLocalDateTime();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -434,9 +434,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListsamplerecordsLongGet
+## listSampleServiceListLong
 
-> Array&lt;number&gt; apiListsamplerecordsLongGet()
+> Array&lt;number&gt; listSampleServiceListLong()
 
 
 
@@ -449,14 +449,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsLongGetRequest } from '';
+import type { ListSampleServiceListLongRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsLongGet();
+    const data = await api.listSampleServiceListLong();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -493,9 +493,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListsamplerecordsScalarGet
+## listSampleServiceListScalar
 
-> string apiListsamplerecordsScalarGet()
+> string listSampleServiceListScalar()
 
 
 
@@ -508,14 +508,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsScalarGetRequest } from '';
+import type { ListSampleServiceListScalarRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsScalarGet();
+    const data = await api.listSampleServiceListScalar();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -552,9 +552,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListsamplerecordsShortGet
+## listSampleServiceListShort
 
-> Array&lt;number&gt; apiListsamplerecordsShortGet()
+> Array&lt;number&gt; listSampleServiceListShort()
 
 
 
@@ -567,14 +567,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsShortGetRequest } from '';
+import type { ListSampleServiceListShortRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsShortGet();
+    const data = await api.listSampleServiceListShort();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -611,9 +611,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListsamplerecordsSimplerecordGet
+## listSampleServiceListSimpleRecord
 
-> Array&lt;SimpleRecord&gt; apiListsamplerecordsSimplerecordGet()
+> Array&lt;SimpleRecord&gt; listSampleServiceListSimpleRecord()
 
 
 
@@ -626,14 +626,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsSimplerecordGetRequest } from '';
+import type { ListSampleServiceListSimpleRecordRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsSimplerecordGet();
+    const data = await api.listSampleServiceListSimpleRecord();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -670,9 +670,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListsamplerecordsSimplerecordwitherrorGet
+## listSampleServiceListSimpleRecordWithError
 
-> Array&lt;SimpleRecord&gt; apiListsamplerecordsSimplerecordwitherrorGet()
+> Array&lt;SimpleRecord&gt; listSampleServiceListSimpleRecordWithError()
 
 
 
@@ -685,14 +685,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsSimplerecordwitherrorGetRequest } from '';
+import type { ListSampleServiceListSimpleRecordWithErrorRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsSimplerecordwitherrorGet();
+    const data = await api.listSampleServiceListSimpleRecordWithError();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -730,9 +730,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListsamplerecordsStringGet
+## listSampleServiceListString
 
-> Array&lt;string&gt; apiListsamplerecordsStringGet()
+> Array&lt;string&gt; listSampleServiceListString()
 
 
 
@@ -745,14 +745,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsStringGetRequest } from '';
+import type { ListSampleServiceListStringRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsStringGet();
+    const data = await api.listSampleServiceListString();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -789,9 +789,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## apiListsamplerecordsZoneddatetimeGet
+## listSampleServiceListZonedDateTime
 
-> Array&lt;string&gt; apiListsamplerecordsZoneddatetimeGet()
+> Array&lt;string&gt; listSampleServiceListZonedDateTime()
 
 
 
@@ -804,14 +804,14 @@ import {
   Configuration,
   ListSampleServiceApi,
 } from '';
-import type { ApiListsamplerecordsZoneddatetimeGetRequest } from '';
+import type { ListSampleServiceListZonedDateTimeRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListSampleServiceApi();
 
   try {
-    const data = await api.apiListsamplerecordsZoneddatetimeGet();
+    const data = await api.listSampleServiceListZonedDateTime();
     console.log(data);
   } catch (error) {
     console.error(error);

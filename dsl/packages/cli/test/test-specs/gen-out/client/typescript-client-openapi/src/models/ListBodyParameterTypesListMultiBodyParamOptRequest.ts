@@ -24,41 +24,41 @@ import {
 /**
  * 
  * @export
- * @interface ApiListbodyparametertypesListMultiBodyParamOptPutRequest
+ * @interface ListBodyParameterTypesListMultiBodyParamOptRequest
  */
-export interface ApiListbodyparametertypesListMultiBodyParamOptPutRequest {
+export interface ListBodyParameterTypesListMultiBodyParamOptRequest {
     /**
      * 
      * @type {Array<string>}
-     * @memberof ApiListbodyparametertypesListMultiBodyParamOptPutRequest
+     * @memberof ListBodyParameterTypesListMultiBodyParamOptRequest
      */
     valueA?: Array<string>;
     /**
      * 
      * @type {Array<number>}
-     * @memberof ApiListbodyparametertypesListMultiBodyParamOptPutRequest
+     * @memberof ListBodyParameterTypesListMultiBodyParamOptRequest
      */
     valueB?: Array<number>;
     /**
      * 
      * @type {Array<SimpleRecord>}
-     * @memberof ApiListbodyparametertypesListMultiBodyParamOptPutRequest
+     * @memberof ListBodyParameterTypesListMultiBodyParamOptRequest
      */
     valueC?: Array<SimpleRecord>;
 }
 
 /**
- * Check if a given object implements the ApiListbodyparametertypesListMultiBodyParamOptPutRequest interface.
+ * Check if a given object implements the ListBodyParameterTypesListMultiBodyParamOptRequest interface.
  */
-export function instanceOfApiListbodyparametertypesListMultiBodyParamOptPutRequest(value: object): value is ApiListbodyparametertypesListMultiBodyParamOptPutRequest {
+export function instanceOfListBodyParameterTypesListMultiBodyParamOptRequest(value: object): value is ListBodyParameterTypesListMultiBodyParamOptRequest {
     return true;
 }
 
-export function ApiListbodyparametertypesListMultiBodyParamOptPutRequestFromJSON(json: any): ApiListbodyparametertypesListMultiBodyParamOptPutRequest {
-    return ApiListbodyparametertypesListMultiBodyParamOptPutRequestFromJSONTyped(json, false);
+export function ListBodyParameterTypesListMultiBodyParamOptRequestFromJSON(json: any): ListBodyParameterTypesListMultiBodyParamOptRequest {
+    return ListBodyParameterTypesListMultiBodyParamOptRequestFromJSONTyped(json, false);
 }
 
-export function ApiListbodyparametertypesListMultiBodyParamOptPutRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiListbodyparametertypesListMultiBodyParamOptPutRequest {
+export function ListBodyParameterTypesListMultiBodyParamOptRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListBodyParameterTypesListMultiBodyParamOptRequest {
     if (json == null) {
         return json;
     }
@@ -70,11 +70,11 @@ export function ApiListbodyparametertypesListMultiBodyParamOptPutRequestFromJSON
     };
 }
 
-export function ApiListbodyparametertypesListMultiBodyParamOptPutRequestToJSON(json: any): ApiListbodyparametertypesListMultiBodyParamOptPutRequest {
-    return ApiListbodyparametertypesListMultiBodyParamOptPutRequestToJSONTyped(json, false);
+export function ListBodyParameterTypesListMultiBodyParamOptRequestToJSON(json: any): ListBodyParameterTypesListMultiBodyParamOptRequest {
+    return ListBodyParameterTypesListMultiBodyParamOptRequestToJSONTyped(json, false);
 }
 
-export function ApiListbodyparametertypesListMultiBodyParamOptPutRequestToJSONTyped(value?: ApiListbodyparametertypesListMultiBodyParamOptPutRequest | null, ignoreDiscriminator: boolean = false): any {
+export function ListBodyParameterTypesListMultiBodyParamOptRequestToJSONTyped(value?: ListBodyParameterTypesListMultiBodyParamOptRequest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

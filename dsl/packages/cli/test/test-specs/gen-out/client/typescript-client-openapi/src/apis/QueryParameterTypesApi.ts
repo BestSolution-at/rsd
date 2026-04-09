@@ -28,117 +28,117 @@ import {
     SimpleRecordToJSON,
 } from '../models/index.js';
 
-export interface ApiQueryparametertypesMultiQueryParamGetRequest {
+export interface QueryParameterTypesMultiQueryParamRequest {
     valueA: string;
     valueB: number;
 }
 
-export interface ApiQueryparametertypesMultiQueryParamOptGetRequest {
+export interface QueryParameterTypesMultiQueryParamOptRequest {
     valueA?: string;
     valueB?: number;
 }
 
-export interface ApiQueryparametertypesRecordQueryParamGetRequest {
+export interface QueryParameterTypesRecordQueryParamRequest {
     queryValue: string;
 }
 
-export interface ApiQueryparametertypesRecordQueryParamOptGetRequest {
+export interface QueryParameterTypesRecordQueryParamOptRequest {
     queryValue?: string;
 }
 
-export interface ApiQueryparametertypesSimpleBooleanQueryParamGetRequest {
+export interface QueryParameterTypesSimpleBooleanQueryParamRequest {
     queryValue: boolean;
 }
 
-export interface ApiQueryparametertypesSimpleBooleanQueryParamOptGetRequest {
+export interface QueryParameterTypesSimpleBooleanQueryParamOptRequest {
     queryValue?: boolean;
 }
 
-export interface ApiQueryparametertypesSimpleDoubleQueryParamGetRequest {
+export interface QueryParameterTypesSimpleDoubleQueryParamRequest {
     queryValue: number;
 }
 
-export interface ApiQueryparametertypesSimpleDoubleQueryParamOptGetRequest {
+export interface QueryParameterTypesSimpleDoubleQueryParamOptRequest {
     queryValue?: number;
 }
 
-export interface ApiQueryparametertypesSimpleEnumQueryParamGetRequest {
+export interface QueryParameterTypesSimpleEnumQueryParamRequest {
     queryValue: SampleEnum;
 }
 
-export interface ApiQueryparametertypesSimpleEnumQueryParamOptGetRequest {
+export interface QueryParameterTypesSimpleEnumQueryParamOptRequest {
     queryValue?: SampleEnum;
 }
 
-export interface ApiQueryparametertypesSimpleFloatQueryParamGetRequest {
+export interface QueryParameterTypesSimpleFloatQueryParamRequest {
     queryValue: number;
 }
 
-export interface ApiQueryparametertypesSimpleFloatQueryParamOptGetRequest {
+export interface QueryParameterTypesSimpleFloatQueryParamOptRequest {
     queryValue?: number;
 }
 
-export interface ApiQueryparametertypesSimpleIntQueryParamGetRequest {
+export interface QueryParameterTypesSimpleIntQueryParamRequest {
     queryValue: number;
 }
 
-export interface ApiQueryparametertypesSimpleIntQueryParamOptGetRequest {
+export interface QueryParameterTypesSimpleIntQueryParamOptRequest {
     queryValue?: number;
 }
 
-export interface ApiQueryparametertypesSimpleLocalDateQueryParamGetRequest {
+export interface QueryParameterTypesSimpleLocalDateQueryParamRequest {
     queryValue: Date;
 }
 
-export interface ApiQueryparametertypesSimpleLocalDateQueryParamOptGetRequest {
+export interface QueryParameterTypesSimpleLocalDateQueryParamOptRequest {
     queryValue?: Date;
 }
 
-export interface ApiQueryparametertypesSimpleLocalDateTimeQueryParamGetRequest {
+export interface QueryParameterTypesSimpleLocalDateTimeQueryParamRequest {
     queryValue: string;
 }
 
-export interface ApiQueryparametertypesSimpleLocalDateTimeQueryParamOptGetRequest {
+export interface QueryParameterTypesSimpleLocalDateTimeQueryParamOptRequest {
     queryValue?: string;
 }
 
-export interface ApiQueryparametertypesSimpleLongQueryParamGetRequest {
+export interface QueryParameterTypesSimpleLongQueryParamRequest {
     queryValue: number;
 }
 
-export interface ApiQueryparametertypesSimpleLongQueryParamOptGetRequest {
+export interface QueryParameterTypesSimpleLongQueryParamOptRequest {
     queryValue?: number;
 }
 
-export interface ApiQueryparametertypesSimpleScalarQueryParamGetRequest {
+export interface QueryParameterTypesSimpleScalarQueryParamRequest {
     queryValue: string;
 }
 
-export interface ApiQueryparametertypesSimpleScalarQueryParamOptGetRequest {
+export interface QueryParameterTypesSimpleScalarQueryParamOptRequest {
     queryValue?: string;
 }
 
-export interface ApiQueryparametertypesSimpleShortQueryParamGetRequest {
+export interface QueryParameterTypesSimpleShortQueryParamRequest {
     queryValue: number;
 }
 
-export interface ApiQueryparametertypesSimpleShortQueryParamOptGetRequest {
+export interface QueryParameterTypesSimpleShortQueryParamOptRequest {
     queryValue?: number;
 }
 
-export interface ApiQueryparametertypesSimpleStringQueryParamGetRequest {
+export interface QueryParameterTypesSimpleStringQueryParamRequest {
     queryValue: string;
 }
 
-export interface ApiQueryparametertypesSimpleStringQueryParamOptGetRequest {
+export interface QueryParameterTypesSimpleStringQueryParamOptRequest {
     queryValue?: string;
 }
 
-export interface ApiQueryparametertypesSimpleZonedDateTimeQueryParamGetRequest {
+export interface QueryParameterTypesSimpleZonedDateTimeQueryParamRequest {
     queryValue: string;
 }
 
-export interface ApiQueryparametertypesSimpleZonedDateTimeQueryParamOptGetRequest {
+export interface QueryParameterTypesSimpleZonedDateTimeQueryParamOptRequest {
     queryValue?: string;
 }
 
@@ -148,20 +148,20 @@ export interface ApiQueryparametertypesSimpleZonedDateTimeQueryParamOptGetReques
 export class QueryParameterTypesApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for apiQueryparametertypesMultiQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesMultiQueryParam without sending the request
      */
-    async apiQueryparametertypesMultiQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesMultiQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesMultiQueryParamRequestOpts(requestParameters: QueryParameterTypesMultiQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['valueA'] == null) {
             throw new runtime.RequiredError(
                 'valueA',
-                'Required parameter "valueA" was null or undefined when calling apiQueryparametertypesMultiQueryParamGet().'
+                'Required parameter "valueA" was null or undefined when calling queryParameterTypesMultiQueryParam().'
             );
         }
 
         if (requestParameters['valueB'] == null) {
             throw new runtime.RequiredError(
                 'valueB',
-                'Required parameter "valueB" was null or undefined when calling apiQueryparametertypesMultiQueryParamGet().'
+                'Required parameter "valueB" was null or undefined when calling queryParameterTypesMultiQueryParam().'
             );
         }
 
@@ -191,8 +191,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesMultiQueryParamGetRaw(requestParameters: ApiQueryparametertypesMultiQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiQueryparametertypesMultiQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesMultiQueryParamRaw(requestParameters: QueryParameterTypesMultiQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.queryParameterTypesMultiQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -205,15 +205,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesMultiQueryParamGet(requestParameters: ApiQueryparametertypesMultiQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiQueryparametertypesMultiQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesMultiQueryParam(requestParameters: QueryParameterTypesMultiQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.queryParameterTypesMultiQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesMultiQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesMultiQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesMultiQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesMultiQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesMultiQueryParamOptRequestOpts(requestParameters: QueryParameterTypesMultiQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['valueA'] != null) {
@@ -240,8 +240,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesMultiQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesMultiQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiQueryparametertypesMultiQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesMultiQueryParamOptRaw(requestParameters: QueryParameterTypesMultiQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.queryParameterTypesMultiQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -254,19 +254,19 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesMultiQueryParamOptGet(requestParameters: ApiQueryparametertypesMultiQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiQueryparametertypesMultiQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesMultiQueryParamOpt(requestParameters: QueryParameterTypesMultiQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.queryParameterTypesMultiQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesRecordQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesRecordQueryParam without sending the request
      */
-    async apiQueryparametertypesRecordQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesRecordQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesRecordQueryParamRequestOpts(requestParameters: QueryParameterTypesRecordQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiQueryparametertypesRecordQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesRecordQueryParam().'
             );
         }
 
@@ -292,8 +292,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesRecordQueryParamGetRaw(requestParameters: ApiQueryparametertypesRecordQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SimpleRecord>> {
-        const requestOptions = await this.apiQueryparametertypesRecordQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesRecordQueryParamRaw(requestParameters: QueryParameterTypesRecordQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SimpleRecord>> {
+        const requestOptions = await this.queryParameterTypesRecordQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SimpleRecordFromJSON(jsonValue));
@@ -302,15 +302,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesRecordQueryParamGet(requestParameters: ApiQueryparametertypesRecordQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SimpleRecord> {
-        const response = await this.apiQueryparametertypesRecordQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesRecordQueryParam(requestParameters: QueryParameterTypesRecordQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SimpleRecord> {
+        const response = await this.queryParameterTypesRecordQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesRecordQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesRecordQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesRecordQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesRecordQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesRecordQueryParamOptRequestOpts(requestParameters: QueryParameterTypesRecordQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -333,8 +333,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesRecordQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesRecordQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiQueryparametertypesRecordQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesRecordQueryParamOptRaw(requestParameters: QueryParameterTypesRecordQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesRecordQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -343,19 +343,19 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesRecordQueryParamOptGet(requestParameters: ApiQueryparametertypesRecordQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiQueryparametertypesRecordQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesRecordQueryParamOpt(requestParameters: QueryParameterTypesRecordQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesRecordQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleBooleanQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesSimpleBooleanQueryParam without sending the request
      */
-    async apiQueryparametertypesSimpleBooleanQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleBooleanQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleBooleanQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleBooleanQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiQueryparametertypesSimpleBooleanQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleBooleanQueryParam().'
             );
         }
 
@@ -381,8 +381,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleBooleanQueryParamGetRaw(requestParameters: ApiQueryparametertypesSimpleBooleanQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleBooleanQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleBooleanQueryParamRaw(requestParameters: QueryParameterTypesSimpleBooleanQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
+        const requestOptions = await this.queryParameterTypesSimpleBooleanQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -395,15 +395,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleBooleanQueryParamGet(requestParameters: ApiQueryparametertypesSimpleBooleanQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
-        const response = await this.apiQueryparametertypesSimpleBooleanQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleBooleanQueryParam(requestParameters: QueryParameterTypesSimpleBooleanQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
+        const response = await this.queryParameterTypesSimpleBooleanQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleBooleanQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesSimpleBooleanQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesSimpleBooleanQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleBooleanQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleBooleanQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleBooleanQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -426,8 +426,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleBooleanQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesSimpleBooleanQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleBooleanQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleBooleanQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleBooleanQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleBooleanQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -436,19 +436,19 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleBooleanQueryParamOptGet(requestParameters: ApiQueryparametertypesSimpleBooleanQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiQueryparametertypesSimpleBooleanQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleBooleanQueryParamOpt(requestParameters: QueryParameterTypesSimpleBooleanQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleBooleanQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleDoubleQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesSimpleDoubleQueryParam without sending the request
      */
-    async apiQueryparametertypesSimpleDoubleQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleDoubleQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleDoubleQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleDoubleQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiQueryparametertypesSimpleDoubleQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleDoubleQueryParam().'
             );
         }
 
@@ -474,8 +474,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleDoubleQueryParamGetRaw(requestParameters: ApiQueryparametertypesSimpleDoubleQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleDoubleQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleDoubleQueryParamRaw(requestParameters: QueryParameterTypesSimpleDoubleQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.queryParameterTypesSimpleDoubleQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -488,15 +488,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleDoubleQueryParamGet(requestParameters: ApiQueryparametertypesSimpleDoubleQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiQueryparametertypesSimpleDoubleQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleDoubleQueryParam(requestParameters: QueryParameterTypesSimpleDoubleQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.queryParameterTypesSimpleDoubleQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleDoubleQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesSimpleDoubleQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesSimpleDoubleQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleDoubleQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleDoubleQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleDoubleQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -519,8 +519,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleDoubleQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesSimpleDoubleQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleDoubleQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleDoubleQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleDoubleQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleDoubleQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -529,19 +529,19 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleDoubleQueryParamOptGet(requestParameters: ApiQueryparametertypesSimpleDoubleQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiQueryparametertypesSimpleDoubleQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleDoubleQueryParamOpt(requestParameters: QueryParameterTypesSimpleDoubleQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleDoubleQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleEnumQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesSimpleEnumQueryParam without sending the request
      */
-    async apiQueryparametertypesSimpleEnumQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleEnumQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleEnumQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleEnumQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiQueryparametertypesSimpleEnumQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleEnumQueryParam().'
             );
         }
 
@@ -567,8 +567,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleEnumQueryParamGetRaw(requestParameters: ApiQueryparametertypesSimpleEnumQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SampleEnum>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleEnumQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleEnumQueryParamRaw(requestParameters: QueryParameterTypesSimpleEnumQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SampleEnum>> {
+        const requestOptions = await this.queryParameterTypesSimpleEnumQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SampleEnumFromJSON(jsonValue));
@@ -577,15 +577,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleEnumQueryParamGet(requestParameters: ApiQueryparametertypesSimpleEnumQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SampleEnum> {
-        const response = await this.apiQueryparametertypesSimpleEnumQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleEnumQueryParam(requestParameters: QueryParameterTypesSimpleEnumQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SampleEnum> {
+        const response = await this.queryParameterTypesSimpleEnumQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleEnumQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesSimpleEnumQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesSimpleEnumQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleEnumQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleEnumQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleEnumQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -608,8 +608,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleEnumQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesSimpleEnumQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleEnumQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleEnumQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleEnumQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleEnumQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -618,19 +618,19 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleEnumQueryParamOptGet(requestParameters: ApiQueryparametertypesSimpleEnumQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiQueryparametertypesSimpleEnumQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleEnumQueryParamOpt(requestParameters: QueryParameterTypesSimpleEnumQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleEnumQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleFloatQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesSimpleFloatQueryParam without sending the request
      */
-    async apiQueryparametertypesSimpleFloatQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleFloatQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleFloatQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleFloatQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiQueryparametertypesSimpleFloatQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleFloatQueryParam().'
             );
         }
 
@@ -656,8 +656,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleFloatQueryParamGetRaw(requestParameters: ApiQueryparametertypesSimpleFloatQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleFloatQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleFloatQueryParamRaw(requestParameters: QueryParameterTypesSimpleFloatQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.queryParameterTypesSimpleFloatQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -670,15 +670,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleFloatQueryParamGet(requestParameters: ApiQueryparametertypesSimpleFloatQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiQueryparametertypesSimpleFloatQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleFloatQueryParam(requestParameters: QueryParameterTypesSimpleFloatQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.queryParameterTypesSimpleFloatQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleFloatQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesSimpleFloatQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesSimpleFloatQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleFloatQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleFloatQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleFloatQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -701,8 +701,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleFloatQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesSimpleFloatQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleFloatQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleFloatQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleFloatQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleFloatQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -711,19 +711,19 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleFloatQueryParamOptGet(requestParameters: ApiQueryparametertypesSimpleFloatQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiQueryparametertypesSimpleFloatQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleFloatQueryParamOpt(requestParameters: QueryParameterTypesSimpleFloatQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleFloatQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleIntQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesSimpleIntQueryParam without sending the request
      */
-    async apiQueryparametertypesSimpleIntQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleIntQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleIntQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleIntQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiQueryparametertypesSimpleIntQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleIntQueryParam().'
             );
         }
 
@@ -749,8 +749,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleIntQueryParamGetRaw(requestParameters: ApiQueryparametertypesSimpleIntQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleIntQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleIntQueryParamRaw(requestParameters: QueryParameterTypesSimpleIntQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.queryParameterTypesSimpleIntQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -763,15 +763,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleIntQueryParamGet(requestParameters: ApiQueryparametertypesSimpleIntQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiQueryparametertypesSimpleIntQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleIntQueryParam(requestParameters: QueryParameterTypesSimpleIntQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.queryParameterTypesSimpleIntQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleIntQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesSimpleIntQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesSimpleIntQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleIntQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleIntQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleIntQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -794,8 +794,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleIntQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesSimpleIntQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleIntQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleIntQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleIntQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleIntQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -804,19 +804,19 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleIntQueryParamOptGet(requestParameters: ApiQueryparametertypesSimpleIntQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiQueryparametertypesSimpleIntQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleIntQueryParamOpt(requestParameters: QueryParameterTypesSimpleIntQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleIntQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleLocalDateQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesSimpleLocalDateQueryParam without sending the request
      */
-    async apiQueryparametertypesSimpleLocalDateQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleLocalDateQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleLocalDateQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleLocalDateQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiQueryparametertypesSimpleLocalDateQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleLocalDateQueryParam().'
             );
         }
 
@@ -842,8 +842,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleLocalDateQueryParamGetRaw(requestParameters: ApiQueryparametertypesSimpleLocalDateQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleLocalDateQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleLocalDateQueryParamRaw(requestParameters: QueryParameterTypesSimpleLocalDateQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
+        const requestOptions = await this.queryParameterTypesSimpleLocalDateQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -856,15 +856,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleLocalDateQueryParamGet(requestParameters: ApiQueryparametertypesSimpleLocalDateQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
-        const response = await this.apiQueryparametertypesSimpleLocalDateQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleLocalDateQueryParam(requestParameters: QueryParameterTypesSimpleLocalDateQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
+        const response = await this.queryParameterTypesSimpleLocalDateQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleLocalDateQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesSimpleLocalDateQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesSimpleLocalDateQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleLocalDateQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleLocalDateQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleLocalDateQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -887,8 +887,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleLocalDateQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesSimpleLocalDateQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleLocalDateQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleLocalDateQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleLocalDateQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleLocalDateQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -897,19 +897,19 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleLocalDateQueryParamOptGet(requestParameters: ApiQueryparametertypesSimpleLocalDateQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiQueryparametertypesSimpleLocalDateQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleLocalDateQueryParamOpt(requestParameters: QueryParameterTypesSimpleLocalDateQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleLocalDateQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleLocalDateTimeQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesSimpleLocalDateTimeQueryParam without sending the request
      */
-    async apiQueryparametertypesSimpleLocalDateTimeQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleLocalDateTimeQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleLocalDateTimeQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleLocalDateTimeQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiQueryparametertypesSimpleLocalDateTimeQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleLocalDateTimeQueryParam().'
             );
         }
 
@@ -935,8 +935,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleLocalDateTimeQueryParamGetRaw(requestParameters: ApiQueryparametertypesSimpleLocalDateTimeQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleLocalDateTimeQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleLocalDateTimeQueryParamRaw(requestParameters: QueryParameterTypesSimpleLocalDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.queryParameterTypesSimpleLocalDateTimeQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -949,15 +949,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleLocalDateTimeQueryParamGet(requestParameters: ApiQueryparametertypesSimpleLocalDateTimeQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiQueryparametertypesSimpleLocalDateTimeQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleLocalDateTimeQueryParam(requestParameters: QueryParameterTypesSimpleLocalDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.queryParameterTypesSimpleLocalDateTimeQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleLocalDateTimeQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesSimpleLocalDateTimeQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesSimpleLocalDateTimeQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleLocalDateTimeQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleLocalDateTimeQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleLocalDateTimeQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -980,8 +980,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleLocalDateTimeQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesSimpleLocalDateTimeQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleLocalDateTimeQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleLocalDateTimeQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleLocalDateTimeQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleLocalDateTimeQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -990,19 +990,19 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleLocalDateTimeQueryParamOptGet(requestParameters: ApiQueryparametertypesSimpleLocalDateTimeQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiQueryparametertypesSimpleLocalDateTimeQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleLocalDateTimeQueryParamOpt(requestParameters: QueryParameterTypesSimpleLocalDateTimeQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleLocalDateTimeQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleLongQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesSimpleLongQueryParam without sending the request
      */
-    async apiQueryparametertypesSimpleLongQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleLongQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleLongQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleLongQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiQueryparametertypesSimpleLongQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleLongQueryParam().'
             );
         }
 
@@ -1028,8 +1028,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleLongQueryParamGetRaw(requestParameters: ApiQueryparametertypesSimpleLongQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleLongQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleLongQueryParamRaw(requestParameters: QueryParameterTypesSimpleLongQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.queryParameterTypesSimpleLongQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -1042,15 +1042,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleLongQueryParamGet(requestParameters: ApiQueryparametertypesSimpleLongQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiQueryparametertypesSimpleLongQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleLongQueryParam(requestParameters: QueryParameterTypesSimpleLongQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.queryParameterTypesSimpleLongQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleLongQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesSimpleLongQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesSimpleLongQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleLongQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleLongQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleLongQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -1073,8 +1073,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleLongQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesSimpleLongQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleLongQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleLongQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleLongQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleLongQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1083,19 +1083,19 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleLongQueryParamOptGet(requestParameters: ApiQueryparametertypesSimpleLongQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiQueryparametertypesSimpleLongQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleLongQueryParamOpt(requestParameters: QueryParameterTypesSimpleLongQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleLongQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleScalarQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesSimpleScalarQueryParam without sending the request
      */
-    async apiQueryparametertypesSimpleScalarQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleScalarQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleScalarQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleScalarQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiQueryparametertypesSimpleScalarQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleScalarQueryParam().'
             );
         }
 
@@ -1121,8 +1121,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleScalarQueryParamGetRaw(requestParameters: ApiQueryparametertypesSimpleScalarQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleScalarQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleScalarQueryParamRaw(requestParameters: QueryParameterTypesSimpleScalarQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.queryParameterTypesSimpleScalarQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -1135,15 +1135,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleScalarQueryParamGet(requestParameters: ApiQueryparametertypesSimpleScalarQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiQueryparametertypesSimpleScalarQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleScalarQueryParam(requestParameters: QueryParameterTypesSimpleScalarQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.queryParameterTypesSimpleScalarQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleScalarQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesSimpleScalarQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesSimpleScalarQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleScalarQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleScalarQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleScalarQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -1166,8 +1166,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleScalarQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesSimpleScalarQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleScalarQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleScalarQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleScalarQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleScalarQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1176,19 +1176,19 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleScalarQueryParamOptGet(requestParameters: ApiQueryparametertypesSimpleScalarQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiQueryparametertypesSimpleScalarQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleScalarQueryParamOpt(requestParameters: QueryParameterTypesSimpleScalarQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleScalarQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleShortQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesSimpleShortQueryParam without sending the request
      */
-    async apiQueryparametertypesSimpleShortQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleShortQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleShortQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleShortQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiQueryparametertypesSimpleShortQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleShortQueryParam().'
             );
         }
 
@@ -1214,8 +1214,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleShortQueryParamGetRaw(requestParameters: ApiQueryparametertypesSimpleShortQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleShortQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleShortQueryParamRaw(requestParameters: QueryParameterTypesSimpleShortQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
+        const requestOptions = await this.queryParameterTypesSimpleShortQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -1228,15 +1228,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleShortQueryParamGet(requestParameters: ApiQueryparametertypesSimpleShortQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
-        const response = await this.apiQueryparametertypesSimpleShortQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleShortQueryParam(requestParameters: QueryParameterTypesSimpleShortQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
+        const response = await this.queryParameterTypesSimpleShortQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleShortQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesSimpleShortQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesSimpleShortQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleShortQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleShortQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleShortQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -1259,8 +1259,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleShortQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesSimpleShortQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleShortQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleShortQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleShortQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleShortQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1269,19 +1269,19 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleShortQueryParamOptGet(requestParameters: ApiQueryparametertypesSimpleShortQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiQueryparametertypesSimpleShortQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleShortQueryParamOpt(requestParameters: QueryParameterTypesSimpleShortQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleShortQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleStringQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesSimpleStringQueryParam without sending the request
      */
-    async apiQueryparametertypesSimpleStringQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleStringQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleStringQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleStringQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiQueryparametertypesSimpleStringQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleStringQueryParam().'
             );
         }
 
@@ -1307,8 +1307,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleStringQueryParamGetRaw(requestParameters: ApiQueryparametertypesSimpleStringQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleStringQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleStringQueryParamRaw(requestParameters: QueryParameterTypesSimpleStringQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.queryParameterTypesSimpleStringQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -1321,15 +1321,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleStringQueryParamGet(requestParameters: ApiQueryparametertypesSimpleStringQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiQueryparametertypesSimpleStringQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleStringQueryParam(requestParameters: QueryParameterTypesSimpleStringQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.queryParameterTypesSimpleStringQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleStringQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesSimpleStringQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesSimpleStringQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleStringQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleStringQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleStringQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -1352,8 +1352,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleStringQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesSimpleStringQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleStringQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleStringQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleStringQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleStringQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1362,19 +1362,19 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleStringQueryParamOptGet(requestParameters: ApiQueryparametertypesSimpleStringQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiQueryparametertypesSimpleStringQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleStringQueryParamOpt(requestParameters: QueryParameterTypesSimpleStringQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleStringQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleZonedDateTimeQueryParamGet without sending the request
+     * Creates request options for queryParameterTypesSimpleZonedDateTimeQueryParam without sending the request
      */
-    async apiQueryparametertypesSimpleZonedDateTimeQueryParamGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleZonedDateTimeQueryParamGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleZonedDateTimeQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleZonedDateTimeQueryParamRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['queryValue'] == null) {
             throw new runtime.RequiredError(
                 'queryValue',
-                'Required parameter "queryValue" was null or undefined when calling apiQueryparametertypesSimpleZonedDateTimeQueryParamGet().'
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleZonedDateTimeQueryParam().'
             );
         }
 
@@ -1400,8 +1400,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleZonedDateTimeQueryParamGetRaw(requestParameters: ApiQueryparametertypesSimpleZonedDateTimeQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleZonedDateTimeQueryParamGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleZonedDateTimeQueryParamRaw(requestParameters: QueryParameterTypesSimpleZonedDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.queryParameterTypesSimpleZonedDateTimeQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -1414,15 +1414,15 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleZonedDateTimeQueryParamGet(requestParameters: ApiQueryparametertypesSimpleZonedDateTimeQueryParamGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.apiQueryparametertypesSimpleZonedDateTimeQueryParamGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleZonedDateTimeQueryParam(requestParameters: QueryParameterTypesSimpleZonedDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.queryParameterTypesSimpleZonedDateTimeQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for apiQueryparametertypesSimpleZonedDateTimeQueryParamOptGet without sending the request
+     * Creates request options for queryParameterTypesSimpleZonedDateTimeQueryParamOpt without sending the request
      */
-    async apiQueryparametertypesSimpleZonedDateTimeQueryParamOptGetRequestOpts(requestParameters: ApiQueryparametertypesSimpleZonedDateTimeQueryParamOptGetRequest): Promise<runtime.RequestOpts> {
+    async queryParameterTypesSimpleZonedDateTimeQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleZonedDateTimeQueryParamOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -1445,8 +1445,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleZonedDateTimeQueryParamOptGetRaw(requestParameters: ApiQueryparametertypesSimpleZonedDateTimeQueryParamOptGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
-        const requestOptions = await this.apiQueryparametertypesSimpleZonedDateTimeQueryParamOptGetRequestOpts(requestParameters);
+    async queryParameterTypesSimpleZonedDateTimeQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleZonedDateTimeQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleZonedDateTimeQueryParamOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
@@ -1455,8 +1455,8 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async apiQueryparametertypesSimpleZonedDateTimeQueryParamOptGet(requestParameters: ApiQueryparametertypesSimpleZonedDateTimeQueryParamOptGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
-        const response = await this.apiQueryparametertypesSimpleZonedDateTimeQueryParamOptGetRaw(requestParameters, initOverrides);
+    async queryParameterTypesSimpleZonedDateTimeQueryParamOpt(requestParameters: QueryParameterTypesSimpleZonedDateTimeQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleZonedDateTimeQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
