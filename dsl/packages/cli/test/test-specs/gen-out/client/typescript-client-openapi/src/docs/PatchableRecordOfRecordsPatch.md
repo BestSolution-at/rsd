@@ -8,10 +8,10 @@ Name | Type
 ------------ | -------------
 `key` | string
 `version` | string
-`value` | [PatchableRecordBasic](PatchableRecordBasic.md)
-`value_Null` | [PatchableRecordBasic](PatchableRecordBasic.md)
-`value_Opt` | [PatchableRecordBasic](PatchableRecordBasic.md)
-`value_Opt_Null` | [PatchableRecordBasic](PatchableRecordBasic.md)
+`value` | [PatchableRecordOfRecordsPatchValue](PatchableRecordOfRecordsPatchValue.md)
+`value_Null` | [PatchableRecordOfRecordsPatchValueNull](PatchableRecordOfRecordsPatchValueNull.md)
+`value_Opt` | [PatchableRecordOfRecordsPatchValueOpt](PatchableRecordOfRecordsPatchValueOpt.md)
+`value_Opt_Null` | [PatchableRecordOfRecordsPatchValueOptNull](PatchableRecordOfRecordsPatchValueOptNull.md)
 `list` | [PatchableRecordOfRecordsPatchList](PatchableRecordOfRecordsPatchList.md)
 `list_Null` | [PatchableRecordOfRecordsPatchListNull](PatchableRecordOfRecordsPatchListNull.md)
 `list_Opt` | [PatchableRecordOfRecordsPatchListOpt](PatchableRecordOfRecordsPatchListOpt.md)

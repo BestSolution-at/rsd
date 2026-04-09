@@ -4,6 +4,7 @@ import {
 	isMBuiltinType,
 	isMInlineEnumType,
 	isMKeyProperty,
+	isMPropertyNoneInlineProperty,
 	isMResolvedProperty,
 	isMRevisionProperty,
 	MBuiltinType,
@@ -48,7 +49,7 @@ export function generateRecordContent(t: MResolvedRecordType) {
 			if (p.array) {
 				properties[p.name] = generatePatchArrayProperty(t, p);
 			} else {
-				properties[p.name] = generatePatchProperty(p);
+				properties[p.name] = generatePatchProperty(t, p);
 			}
 		});
 		rv[`${t.name}Patch`] = {
@@ -107,6 +108,46 @@ export function generateRecordContent(t: MResolvedRecordType) {
 					};
 				}
 			});
+
+		allProps
+			.filter(isMResolvedProperty)
+			.filter(p => !p.array)
+			.filter(p => p.variant === 'record' || p.variant === 'union')
+			.filter(isMPropertyNoneInlineProperty)
+			.forEach(p => {
+				rv[`${t.name}_${p.name}PatchReplace`] = {
+					allOf: [
+						{
+							$ref: `#/components/schemas/${p.type}`,
+						},
+						{
+							type: 'object',
+							properties: {
+								'@type': {
+									type: 'string',
+								},
+							},
+							required: ['@type'],
+						},
+					],
+				};
+				rv[`${t.name}_${p.name}PatchMerge`] = {
+					allOf: [
+						{
+							$ref: `#/components/schemas/${p.type}Patch`,
+						},
+						{
+							type: 'object',
+							properties: {
+								'@type': {
+									type: 'string',
+								},
+							},
+							required: ['@type'],
+						},
+					],
+				};
+			});
 	}
 	return rv;
 }
@@ -132,8 +173,33 @@ function generatePatchArrayProperty(t: MResolvedRecordType, p: MResolvedPropery)
 	return rv;
 }
 
-function generatePatchProperty(p: MResolvedPropery): JSONSchema4 {
-	const rv = generateProperty(p);
+function generatePatchProperty(t: MResolvedRecordType, p: MResolvedPropery): JSONSchema4 {
+	let rv: JSONSchema4;
+	if (p.variant === 'record' || p.variant === 'union') {
+		rv = nullableProcessor(
+			{
+				oneOf: [
+					{
+						$ref: `#/components/schemas/${t.name}_${p.name}PatchReplace`,
+					},
+					{
+						$ref: `#/components/schemas/${t.name}_${p.name}PatchMerge`,
+					},
+				],
+				discriminator: {
+					propertyName: '@type',
+					mapping: {
+						replace: `#/components/schemas/${t.name}_${p.name}PatchReplace`,
+						merge: `#/components/schemas/${t.name}_${p.name}PatchMerge`,
+					},
+				},
+			},
+			p.nullable,
+		);
+	} else {
+		rv = generateProperty(p);
+	}
+
 	if (p.optional) {
 		return nullableProcessor(rv, true);
 	}

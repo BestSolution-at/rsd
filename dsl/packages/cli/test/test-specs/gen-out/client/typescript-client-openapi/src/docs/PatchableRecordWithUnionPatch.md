@@ -8,10 +8,10 @@ Name | Type
 ------------ | -------------
 `key` | string
 `version` | string
-`value` | [PatchableUnion](PatchableUnion.md)
-`value_Null` | [PatchableUnion](PatchableUnion.md)
-`value_Opt` | [PatchableUnion](PatchableUnion.md)
-`value_Opt_Null` | [PatchableUnion](PatchableUnion.md)
+`value` | [PatchableRecordWithUnionPatchValue](PatchableRecordWithUnionPatchValue.md)
+`value_Null` | [PatchableRecordWithUnionPatchValueNull](PatchableRecordWithUnionPatchValueNull.md)
+`value_Opt` | [PatchableRecordWithUnionPatchValueOpt](PatchableRecordWithUnionPatchValueOpt.md)
+`value_Opt_Null` | [PatchableRecordWithUnionPatchValueOptNull](PatchableRecordWithUnionPatchValueOptNull.md)
 `list` | [PatchableRecordWithUnionPatchList](PatchableRecordWithUnionPatchList.md)
 `list_Null` | [PatchableRecordWithUnionPatchListNull](PatchableRecordWithUnionPatchListNull.md)
 `list_Opt` | [PatchableRecordWithUnionPatchListOpt](PatchableRecordWithUnionPatchListOpt.md)
