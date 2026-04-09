@@ -7,13 +7,13 @@
 Name | Type
 ------------ | -------------
 `value` | [SimpleRecordBasic](SimpleRecordBasic.md)
-`valueNull` | [SimpleRecordBasic](SimpleRecordBasic.md)
-`valueOpt` | [SimpleRecordBasic](SimpleRecordBasic.md)
-`valueOptNull` | [SimpleRecordBasic](SimpleRecordBasic.md)
+`value_Null` | [SimpleRecordBasic](SimpleRecordBasic.md)
+`value_Opt` | [SimpleRecordBasic](SimpleRecordBasic.md)
+`value_Opt_Null` | [SimpleRecordBasic](SimpleRecordBasic.md)
 `list` | [Array&lt;SimpleRecordBasic&gt;](SimpleRecordBasic.md)
-`listNull` | [Array&lt;SimpleRecordBasic&gt;](SimpleRecordBasic.md)
-`listOpt` | [Array&lt;SimpleRecordBasic&gt;](SimpleRecordBasic.md)
-`listOptNull` | [Array&lt;SimpleRecordBasic&gt;](SimpleRecordBasic.md)
+`list_Null` | [Array&lt;SimpleRecordBasic&gt;](SimpleRecordBasic.md)
+`list_Opt` | [Array&lt;SimpleRecordBasic&gt;](SimpleRecordBasic.md)
+`list_Opt_Null` | [Array&lt;SimpleRecordBasic&gt;](SimpleRecordBasic.md)
 
 ## Example
 
@@ -23,13 +23,13 @@ import type { RecordOfRecords } from ''
 // TODO: Update the object below with actual values
 const example = {
   "value": null,
-  "valueNull": null,
-  "valueOpt": null,
-  "valueOptNull": null,
+  "value_Null": null,
+  "value_Opt": null,
+  "value_Opt_Null": null,
   "list": null,
-  "listNull": null,
-  "listOpt": null,
-  "listOptNull": null,
+  "list_Null": null,
+  "list_Opt": null,
+  "list_Opt_Null": null,
 } satisfies RecordOfRecords
 
 console.log(example)

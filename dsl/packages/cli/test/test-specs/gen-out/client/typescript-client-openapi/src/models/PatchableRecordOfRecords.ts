@@ -50,19 +50,19 @@ export interface PatchableRecordOfRecords {
      * @type {PatchableRecordBasic}
      * @memberof PatchableRecordOfRecords
      */
-    valueNull: PatchableRecordBasic;
+    value_Null: PatchableRecordBasic;
     /**
      * 
      * @type {PatchableRecordBasic}
      * @memberof PatchableRecordOfRecords
      */
-    valueOpt?: PatchableRecordBasic;
+    value_Opt?: PatchableRecordBasic;
     /**
      * 
      * @type {PatchableRecordBasic}
      * @memberof PatchableRecordOfRecords
      */
-    valueOptNull?: PatchableRecordBasic;
+    value_Opt_Null?: PatchableRecordBasic;
     /**
      * 
      * @type {Array<PatchableRecordBasic>}
@@ -74,19 +74,19 @@ export interface PatchableRecordOfRecords {
      * @type {Array<PatchableRecordBasic>}
      * @memberof PatchableRecordOfRecords
      */
-    listNull: Array<PatchableRecordBasic> | null;
+    list_Null: Array<PatchableRecordBasic> | null;
     /**
      * 
      * @type {Array<PatchableRecordBasic>}
      * @memberof PatchableRecordOfRecords
      */
-    listOpt?: Array<PatchableRecordBasic>;
+    list_Opt?: Array<PatchableRecordBasic>;
     /**
      * 
      * @type {Array<PatchableRecordBasic>}
      * @memberof PatchableRecordOfRecords
      */
-    listOptNull?: Array<PatchableRecordBasic> | null;
+    list_Opt_Null?: Array<PatchableRecordBasic> | null;
 }
 
 /**
@@ -96,9 +96,9 @@ export function instanceOfPatchableRecordOfRecords(value: object): value is Patc
     if (!('key' in value) || value['key'] === undefined) return false;
     if (!('version' in value) || value['version'] === undefined) return false;
     if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('valueNull' in value) || value['valueNull'] === undefined) return false;
+    if (!('value_Null' in value) || value['value_Null'] === undefined) return false;
     if (!('list' in value) || value['list'] === undefined) return false;
-    if (!('listNull' in value) || value['listNull'] === undefined) return false;
+    if (!('list_Null' in value) || value['list_Null'] === undefined) return false;
     return true;
 }
 
@@ -115,13 +115,13 @@ export function PatchableRecordOfRecordsFromJSONTyped(json: any, ignoreDiscrimin
         'key': json['key'],
         'version': json['version'],
         'value': PatchableRecordBasicFromJSON(json['value']),
-        'valueNull': PatchableRecordBasicFromJSON(json['value_Null']),
-        'valueOpt': json['value_Opt'] == null ? undefined : PatchableRecordBasicFromJSON(json['value_Opt']),
-        'valueOptNull': json['value_Opt_Null'] == null ? undefined : PatchableRecordBasicFromJSON(json['value_Opt_Null']),
+        'value_Null': PatchableRecordBasicFromJSON(json['value_Null']),
+        'value_Opt': json['value_Opt'] == null ? undefined : PatchableRecordBasicFromJSON(json['value_Opt']),
+        'value_Opt_Null': json['value_Opt_Null'] == null ? undefined : PatchableRecordBasicFromJSON(json['value_Opt_Null']),
         'list': ((json['list'] as Array<any>).map(PatchableRecordBasicFromJSON)),
-        'listNull': (json['list_Null'] == null ? null : (json['list_Null'] as Array<any>).map(PatchableRecordBasicFromJSON)),
-        'listOpt': json['list_Opt'] == null ? undefined : ((json['list_Opt'] as Array<any>).map(PatchableRecordBasicFromJSON)),
-        'listOptNull': json['list_Opt_Null'] == null ? undefined : ((json['list_Opt_Null'] as Array<any>).map(PatchableRecordBasicFromJSON)),
+        'list_Null': (json['list_Null'] == null ? null : (json['list_Null'] as Array<any>).map(PatchableRecordBasicFromJSON)),
+        'list_Opt': json['list_Opt'] == null ? undefined : ((json['list_Opt'] as Array<any>).map(PatchableRecordBasicFromJSON)),
+        'list_Opt_Null': json['list_Opt_Null'] == null ? undefined : ((json['list_Opt_Null'] as Array<any>).map(PatchableRecordBasicFromJSON)),
     };
 }
 
@@ -139,13 +139,13 @@ export function PatchableRecordOfRecordsToJSONTyped(value?: PatchableRecordOfRec
         'key': value['key'],
         'version': value['version'],
         'value': PatchableRecordBasicToJSON(value['value']),
-        'value_Null': PatchableRecordBasicToJSON(value['valueNull']),
-        'value_Opt': PatchableRecordBasicToJSON(value['valueOpt']),
-        'value_Opt_Null': PatchableRecordBasicToJSON(value['valueOptNull']),
+        'value_Null': PatchableRecordBasicToJSON(value['value_Null']),
+        'value_Opt': PatchableRecordBasicToJSON(value['value_Opt']),
+        'value_Opt_Null': PatchableRecordBasicToJSON(value['value_Opt_Null']),
         'list': ((value['list'] as Array<any>).map(PatchableRecordBasicToJSON)),
-        'list_Null': (value['listNull'] == null ? null : (value['listNull'] as Array<any>).map(PatchableRecordBasicToJSON)),
-        'list_Opt': value['listOpt'] == null ? undefined : ((value['listOpt'] as Array<any>).map(PatchableRecordBasicToJSON)),
-        'list_Opt_Null': value['listOptNull'] == null ? undefined : ((value['listOptNull'] as Array<any>).map(PatchableRecordBasicToJSON)),
+        'list_Null': (value['list_Null'] == null ? null : (value['list_Null'] as Array<any>).map(PatchableRecordBasicToJSON)),
+        'list_Opt': value['list_Opt'] == null ? undefined : ((value['list_Opt'] as Array<any>).map(PatchableRecordBasicToJSON)),
+        'list_Opt_Null': value['list_Opt_Null'] == null ? undefined : ((value['list_Opt_Null'] as Array<any>).map(PatchableRecordBasicToJSON)),
     };
 }
 

@@ -42,19 +42,19 @@ export interface PatchableEnumInlineRecord {
      * @type {PatchableEnumInlineRecordValueNullEnum}
      * @memberof PatchableEnumInlineRecord
      */
-    valueNull: PatchableEnumInlineRecordValueNullEnum | null;
+    value_Null: PatchableEnumInlineRecordValueNullEnum | null;
     /**
      * 
      * @type {PatchableEnumInlineRecordValueOptEnum}
      * @memberof PatchableEnumInlineRecord
      */
-    valueOpt?: PatchableEnumInlineRecordValueOptEnum;
+    value_Opt?: PatchableEnumInlineRecordValueOptEnum;
     /**
      * 
      * @type {PatchableEnumInlineRecordValueOptNullEnum}
      * @memberof PatchableEnumInlineRecord
      */
-    valueOptNull?: PatchableEnumInlineRecordValueOptNullEnum | null;
+    value_Opt_Null?: PatchableEnumInlineRecordValueOptNullEnum | null;
     /**
      * 
      * @type {Array<PatchableEnumInlineRecordListEnum>}
@@ -66,13 +66,13 @@ export interface PatchableEnumInlineRecord {
      * @type {Array<PatchableEnumInlineRecordListNullEnum>}
      * @memberof PatchableEnumInlineRecord
      */
-    listNull: Array<PatchableEnumInlineRecordListNullEnum> | null;
+    list_Null: Array<PatchableEnumInlineRecordListNullEnum> | null;
     /**
      * 
      * @type {Array<PatchableEnumInlineRecordListOptNullEnum>}
      * @memberof PatchableEnumInlineRecord
      */
-    listOptNull?: Array<PatchableEnumInlineRecordListOptNullEnum> | null;
+    list_Opt_Null?: Array<PatchableEnumInlineRecordListOptNullEnum> | null;
 }
 
 
@@ -147,9 +147,9 @@ export function instanceOfPatchableEnumInlineRecord(value: object): value is Pat
     if (!('key' in value) || value['key'] === undefined) return false;
     if (!('version' in value) || value['version'] === undefined) return false;
     if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('valueNull' in value) || value['valueNull'] === undefined) return false;
+    if (!('value_Null' in value) || value['value_Null'] === undefined) return false;
     if (!('list' in value) || value['list'] === undefined) return false;
-    if (!('listNull' in value) || value['listNull'] === undefined) return false;
+    if (!('list_Null' in value) || value['list_Null'] === undefined) return false;
     return true;
 }
 
@@ -166,12 +166,12 @@ export function PatchableEnumInlineRecordFromJSONTyped(json: any, ignoreDiscrimi
         'key': json['key'],
         'version': json['version'],
         'value': json['value'],
-        'valueNull': json['value_Null'],
-        'valueOpt': json['value_Opt'] == null ? undefined : json['value_Opt'],
-        'valueOptNull': json['value_Opt_Null'] == null ? undefined : json['value_Opt_Null'],
+        'value_Null': json['value_Null'],
+        'value_Opt': json['value_Opt'] == null ? undefined : json['value_Opt'],
+        'value_Opt_Null': json['value_Opt_Null'] == null ? undefined : json['value_Opt_Null'],
         'list': json['list'],
-        'listNull': json['list_Null'] == null ? null : json['list_Null'],
-        'listOptNull': json['list_Opt_Null'] == null ? undefined : json['list_Opt_Null'],
+        'list_Null': json['list_Null'] == null ? null : json['list_Null'],
+        'list_Opt_Null': json['list_Opt_Null'] == null ? undefined : json['list_Opt_Null'],
     };
 }
 
@@ -189,12 +189,12 @@ export function PatchableEnumInlineRecordToJSONTyped(value?: PatchableEnumInline
         'key': value['key'],
         'version': value['version'],
         'value': value['value'],
-        'value_Null': value['valueNull'],
-        'value_Opt': value['valueOpt'],
-        'value_Opt_Null': value['valueOptNull'],
+        'value_Null': value['value_Null'],
+        'value_Opt': value['value_Opt'],
+        'value_Opt_Null': value['value_Opt_Null'],
         'list': value['list'],
-        'list_Null': value['listNull'],
-        'list_Opt_Null': value['listOptNull'],
+        'list_Null': value['list_Null'],
+        'list_Opt_Null': value['list_Opt_Null'],
     };
 }
 

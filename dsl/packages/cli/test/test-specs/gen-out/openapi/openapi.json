@@ -13526,10 +13526,20 @@
       "PatchableRecordPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "value": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableRecord_Basic": {
         "type": "object",
@@ -13599,6 +13609,12 @@
       "PatchableRecord_BasicPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "valueBoolean": {
             "type": "boolean"
           },
@@ -13639,7 +13655,11 @@
             "type": "string",
             "format": "zoned-date-time"
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableRecord_Basic_Optional": {
         "type": "object",
@@ -13699,6 +13719,12 @@
       "PatchableRecord_Basic_OptionalPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "valueBoolean": {
             "type": "boolean",
             "nullable": true
@@ -13749,7 +13775,11 @@
             "format": "zoned-date-time",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableRecord_Basic_Null": {
         "type": "object",
@@ -13829,6 +13859,12 @@
       "PatchableRecord_Basic_NullPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "valueBoolean": {
             "type": "boolean",
             "nullable": true
@@ -13879,7 +13915,11 @@
             "format": "zoned-date-time",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableRecord_Basic_Optional_Null": {
         "type": "object",
@@ -13949,6 +13989,12 @@
       "PatchableRecord_Basic_Optional_NullPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "valueBoolean": {
             "type": "boolean",
             "nullable": true
@@ -13999,7 +14045,11 @@
             "format": "zoned-date-time",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableRecord_Basic_List": {
         "type": "object",
@@ -14099,6 +14149,12 @@
       "PatchableRecord_Basic_ListPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "valueBoolean": {
             "type": "array",
             "items": {
@@ -14169,7 +14225,11 @@
               "format": "zoned-date-time"
             }
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableRecord_Basic_List_Optional": {
         "type": "object",
@@ -14259,6 +14319,12 @@
       "PatchableRecord_Basic_List_OptionalPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "valueBoolean": {
             "type": "array",
             "items": {
@@ -14339,7 +14405,11 @@
             },
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableRecord_Basic_List_Null": {
         "type": "object",
@@ -14449,6 +14519,12 @@
       "PatchableRecord_Basic_List_NullPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "valueBoolean": {
             "type": "array",
             "items": {
@@ -14529,7 +14605,11 @@
             },
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableRecord_Basic_List_Optional_Null": {
         "type": "object",
@@ -14629,6 +14709,12 @@
       "PatchableRecord_Basic_List_Optional_NullPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "valueBoolean": {
             "type": "array",
             "items": {
@@ -14709,7 +14795,11 @@
             },
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableEnumRecord": {
         "type": "object",
@@ -14773,6 +14863,12 @@
       "PatchableEnumRecordPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "value": {
             "$ref": "#/components/schemas/SampleEnum"
           },
@@ -14815,7 +14911,11 @@
             },
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableEnumInlineRecord": {
         "type": "object",
@@ -14901,6 +15001,12 @@
       "PatchableEnumInlineRecordPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "value": {
             "type": "string",
             "enum": [
@@ -14964,7 +15070,11 @@
             },
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableScalarRecord": {
         "type": "object",
@@ -15028,6 +15138,12 @@
       "PatchableScalarRecordPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "value": {
             "type": "string"
           },
@@ -15070,7 +15186,11 @@
             },
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableRecordOfRecords": {
         "type": "object",
@@ -15134,6 +15254,12 @@
       "PatchableRecordOfRecordsPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "value": {
             "$ref": "#/components/schemas/PatchableRecord_Basic"
           },
@@ -15176,7 +15302,11 @@
             },
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableRecordWithUnion": {
         "type": "object",
@@ -15240,6 +15370,12 @@
       "PatchableRecordWithUnionPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "value": {
             "$ref": "#/components/schemas/PatchableUnion"
           },
@@ -15282,7 +15418,11 @@
             },
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableUnionA": {
         "type": "object",
@@ -15313,13 +15453,23 @@
       "PatchableUnionAPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "shared": {
             "type": "string"
           },
           "valueA": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableUnionB": {
         "type": "object",
@@ -15350,13 +15500,23 @@
       "PatchableUnionBPatch": {
         "type": "object",
         "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
           "shared": {
             "type": "string"
           },
           "valueB": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
       },
       "PatchableUnion": {
         "oneOf": [

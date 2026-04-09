@@ -6,6 +6,8 @@
 
 Name | Type
 ------------ | -------------
+`key` | string
+`version` | string
 `shared` | string
 `valueB` | string
 
@@ -16,6 +18,8 @@ import type { PatchableUnionBPatch } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "key": null,
+  "version": null,
   "shared": null,
   "valueB": null,
 } satisfies PatchableUnionBPatch

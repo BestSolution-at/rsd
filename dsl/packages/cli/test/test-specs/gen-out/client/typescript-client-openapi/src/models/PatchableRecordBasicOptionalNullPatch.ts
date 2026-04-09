@@ -21,6 +21,18 @@ import { mapValues } from '../runtime.js';
 export interface PatchableRecordBasicOptionalNullPatch {
     /**
      * 
+     * @type {string}
+     * @memberof PatchableRecordBasicOptionalNullPatch
+     */
+    key: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchableRecordBasicOptionalNullPatch
+     */
+    version: string;
+    /**
+     * 
      * @type {boolean}
      * @memberof PatchableRecordBasicOptionalNullPatch
      */
@@ -85,6 +97,8 @@ export interface PatchableRecordBasicOptionalNullPatch {
  * Check if a given object implements the PatchableRecordBasicOptionalNullPatch interface.
  */
 export function instanceOfPatchableRecordBasicOptionalNullPatch(value: object): value is PatchableRecordBasicOptionalNullPatch {
+    if (!('key' in value) || value['key'] === undefined) return false;
+    if (!('version' in value) || value['version'] === undefined) return false;
     return true;
 }
 
@@ -98,6 +112,8 @@ export function PatchableRecordBasicOptionalNullPatchFromJSONTyped(json: any, ig
     }
     return {
         
+        'key': json['key'],
+        'version': json['version'],
         'valueBoolean': json['valueBoolean'] == null ? undefined : json['valueBoolean'],
         'valueShort': json['valueShort'] == null ? undefined : json['valueShort'],
         'valueInt': json['valueInt'] == null ? undefined : json['valueInt'],
@@ -122,6 +138,8 @@ export function PatchableRecordBasicOptionalNullPatchToJSONTyped(value?: Patchab
 
     return {
         
+        'key': value['key'],
+        'version': value['version'],
         'valueBoolean': value['valueBoolean'],
         'valueShort': value['valueShort'],
         'valueInt': value['valueInt'],

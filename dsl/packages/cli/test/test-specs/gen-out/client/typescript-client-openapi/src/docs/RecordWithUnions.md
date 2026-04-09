@@ -7,13 +7,13 @@
 Name | Type
 ------------ | -------------
 `value` | [Union](Union.md)
-`valueNull` | [Union](Union.md)
-`valueOpt` | [Union](Union.md)
-`valueOptNull` | [Union](Union.md)
+`value_Null` | [Union](Union.md)
+`value_Opt` | [Union](Union.md)
+`value_Opt_Null` | [Union](Union.md)
 `list` | [Array&lt;Union&gt;](Union.md)
-`listNull` | [Array&lt;Union&gt;](Union.md)
-`listOpt` | [Array&lt;Union&gt;](Union.md)
-`listOptNull` | [Array&lt;Union&gt;](Union.md)
+`list_Null` | [Array&lt;Union&gt;](Union.md)
+`list_Opt` | [Array&lt;Union&gt;](Union.md)
+`list_Opt_Null` | [Array&lt;Union&gt;](Union.md)
 
 ## Example
 
@@ -23,13 +23,13 @@ import type { RecordWithUnions } from ''
 // TODO: Update the object below with actual values
 const example = {
   "value": null,
-  "valueNull": null,
-  "valueOpt": null,
-  "valueOptNull": null,
+  "value_Null": null,
+  "value_Opt": null,
+  "value_Opt_Null": null,
   "list": null,
-  "listNull": null,
-  "listOpt": null,
-  "listOptNull": null,
+  "list_Null": null,
+  "list_Opt": null,
+  "list_Opt_Null": null,
 } satisfies RecordWithUnions
 
 console.log(example)

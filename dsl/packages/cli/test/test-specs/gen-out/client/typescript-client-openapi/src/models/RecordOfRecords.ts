@@ -38,19 +38,19 @@ export interface RecordOfRecords {
      * @type {SimpleRecordBasic}
      * @memberof RecordOfRecords
      */
-    valueNull: SimpleRecordBasic;
+    value_Null: SimpleRecordBasic;
     /**
      * 
      * @type {SimpleRecordBasic}
      * @memberof RecordOfRecords
      */
-    valueOpt?: SimpleRecordBasic;
+    value_Opt?: SimpleRecordBasic;
     /**
      * 
      * @type {SimpleRecordBasic}
      * @memberof RecordOfRecords
      */
-    valueOptNull?: SimpleRecordBasic;
+    value_Opt_Null?: SimpleRecordBasic;
     /**
      * 
      * @type {Array<SimpleRecordBasic>}
@@ -62,19 +62,19 @@ export interface RecordOfRecords {
      * @type {Array<SimpleRecordBasic>}
      * @memberof RecordOfRecords
      */
-    listNull: Array<SimpleRecordBasic> | null;
+    list_Null: Array<SimpleRecordBasic> | null;
     /**
      * 
      * @type {Array<SimpleRecordBasic>}
      * @memberof RecordOfRecords
      */
-    listOpt?: Array<SimpleRecordBasic>;
+    list_Opt?: Array<SimpleRecordBasic>;
     /**
      * 
      * @type {Array<SimpleRecordBasic>}
      * @memberof RecordOfRecords
      */
-    listOptNull?: Array<SimpleRecordBasic> | null;
+    list_Opt_Null?: Array<SimpleRecordBasic> | null;
 }
 
 /**
@@ -82,9 +82,9 @@ export interface RecordOfRecords {
  */
 export function instanceOfRecordOfRecords(value: object): value is RecordOfRecords {
     if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('valueNull' in value) || value['valueNull'] === undefined) return false;
+    if (!('value_Null' in value) || value['value_Null'] === undefined) return false;
     if (!('list' in value) || value['list'] === undefined) return false;
-    if (!('listNull' in value) || value['listNull'] === undefined) return false;
+    if (!('list_Null' in value) || value['list_Null'] === undefined) return false;
     return true;
 }
 
@@ -99,13 +99,13 @@ export function RecordOfRecordsFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'value': SimpleRecordBasicFromJSON(json['value']),
-        'valueNull': SimpleRecordBasicFromJSON(json['value_Null']),
-        'valueOpt': json['value_Opt'] == null ? undefined : SimpleRecordBasicFromJSON(json['value_Opt']),
-        'valueOptNull': json['value_Opt_Null'] == null ? undefined : SimpleRecordBasicFromJSON(json['value_Opt_Null']),
+        'value_Null': SimpleRecordBasicFromJSON(json['value_Null']),
+        'value_Opt': json['value_Opt'] == null ? undefined : SimpleRecordBasicFromJSON(json['value_Opt']),
+        'value_Opt_Null': json['value_Opt_Null'] == null ? undefined : SimpleRecordBasicFromJSON(json['value_Opt_Null']),
         'list': ((json['list'] as Array<any>).map(SimpleRecordBasicFromJSON)),
-        'listNull': (json['list_Null'] == null ? null : (json['list_Null'] as Array<any>).map(SimpleRecordBasicFromJSON)),
-        'listOpt': json['list_Opt'] == null ? undefined : ((json['list_Opt'] as Array<any>).map(SimpleRecordBasicFromJSON)),
-        'listOptNull': json['list_Opt_Null'] == null ? undefined : ((json['list_Opt_Null'] as Array<any>).map(SimpleRecordBasicFromJSON)),
+        'list_Null': (json['list_Null'] == null ? null : (json['list_Null'] as Array<any>).map(SimpleRecordBasicFromJSON)),
+        'list_Opt': json['list_Opt'] == null ? undefined : ((json['list_Opt'] as Array<any>).map(SimpleRecordBasicFromJSON)),
+        'list_Opt_Null': json['list_Opt_Null'] == null ? undefined : ((json['list_Opt_Null'] as Array<any>).map(SimpleRecordBasicFromJSON)),
     };
 }
 
@@ -121,13 +121,13 @@ export function RecordOfRecordsToJSONTyped(value?: RecordOfRecords | null, ignor
     return {
         
         'value': SimpleRecordBasicToJSON(value['value']),
-        'value_Null': SimpleRecordBasicToJSON(value['valueNull']),
-        'value_Opt': SimpleRecordBasicToJSON(value['valueOpt']),
-        'value_Opt_Null': SimpleRecordBasicToJSON(value['valueOptNull']),
+        'value_Null': SimpleRecordBasicToJSON(value['value_Null']),
+        'value_Opt': SimpleRecordBasicToJSON(value['value_Opt']),
+        'value_Opt_Null': SimpleRecordBasicToJSON(value['value_Opt_Null']),
         'list': ((value['list'] as Array<any>).map(SimpleRecordBasicToJSON)),
-        'list_Null': (value['listNull'] == null ? null : (value['listNull'] as Array<any>).map(SimpleRecordBasicToJSON)),
-        'list_Opt': value['listOpt'] == null ? undefined : ((value['listOpt'] as Array<any>).map(SimpleRecordBasicToJSON)),
-        'list_Opt_Null': value['listOptNull'] == null ? undefined : ((value['listOptNull'] as Array<any>).map(SimpleRecordBasicToJSON)),
+        'list_Null': (value['list_Null'] == null ? null : (value['list_Null'] as Array<any>).map(SimpleRecordBasicToJSON)),
+        'list_Opt': value['list_Opt'] == null ? undefined : ((value['list_Opt'] as Array<any>).map(SimpleRecordBasicToJSON)),
+        'list_Opt_Null': value['list_Opt_Null'] == null ? undefined : ((value['list_Opt_Null'] as Array<any>).map(SimpleRecordBasicToJSON)),
     };
 }
 

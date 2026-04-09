@@ -6,6 +6,8 @@
 
 Name | Type
 ------------ | -------------
+`key` | string
+`version` | string
 `value` | string
 
 ## Example
@@ -15,6 +17,8 @@ import type { PatchableRecordPatch } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "key": null,
+  "version": null,
   "value": null,
 } satisfies PatchableRecordPatch
 

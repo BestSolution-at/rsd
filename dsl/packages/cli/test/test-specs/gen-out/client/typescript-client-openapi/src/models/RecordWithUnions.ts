@@ -38,19 +38,19 @@ export interface RecordWithUnions {
      * @type {Union}
      * @memberof RecordWithUnions
      */
-    valueNull: Union;
+    value_Null: Union;
     /**
      * 
      * @type {Union}
      * @memberof RecordWithUnions
      */
-    valueOpt?: Union;
+    value_Opt?: Union;
     /**
      * 
      * @type {Union}
      * @memberof RecordWithUnions
      */
-    valueOptNull?: Union;
+    value_Opt_Null?: Union;
     /**
      * 
      * @type {Array<Union>}
@@ -62,19 +62,19 @@ export interface RecordWithUnions {
      * @type {Array<Union>}
      * @memberof RecordWithUnions
      */
-    listNull: Array<Union> | null;
+    list_Null: Array<Union> | null;
     /**
      * 
      * @type {Array<Union>}
      * @memberof RecordWithUnions
      */
-    listOpt?: Array<Union>;
+    list_Opt?: Array<Union>;
     /**
      * 
      * @type {Array<Union>}
      * @memberof RecordWithUnions
      */
-    listOptNull?: Array<Union> | null;
+    list_Opt_Null?: Array<Union> | null;
 }
 
 /**
@@ -82,9 +82,9 @@ export interface RecordWithUnions {
  */
 export function instanceOfRecordWithUnions(value: object): value is RecordWithUnions {
     if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('valueNull' in value) || value['valueNull'] === undefined) return false;
+    if (!('value_Null' in value) || value['value_Null'] === undefined) return false;
     if (!('list' in value) || value['list'] === undefined) return false;
-    if (!('listNull' in value) || value['listNull'] === undefined) return false;
+    if (!('list_Null' in value) || value['list_Null'] === undefined) return false;
     return true;
 }
 
@@ -99,13 +99,13 @@ export function RecordWithUnionsFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'value': UnionFromJSON(json['value']),
-        'valueNull': UnionFromJSON(json['value_Null']),
-        'valueOpt': json['value_Opt'] == null ? undefined : UnionFromJSON(json['value_Opt']),
-        'valueOptNull': json['value_Opt_Null'] == null ? undefined : UnionFromJSON(json['value_Opt_Null']),
+        'value_Null': UnionFromJSON(json['value_Null']),
+        'value_Opt': json['value_Opt'] == null ? undefined : UnionFromJSON(json['value_Opt']),
+        'value_Opt_Null': json['value_Opt_Null'] == null ? undefined : UnionFromJSON(json['value_Opt_Null']),
         'list': ((json['list'] as Array<any>).map(UnionFromJSON)),
-        'listNull': (json['list_Null'] == null ? null : (json['list_Null'] as Array<any>).map(UnionFromJSON)),
-        'listOpt': json['list_Opt'] == null ? undefined : ((json['list_Opt'] as Array<any>).map(UnionFromJSON)),
-        'listOptNull': json['list_Opt_Null'] == null ? undefined : ((json['list_Opt_Null'] as Array<any>).map(UnionFromJSON)),
+        'list_Null': (json['list_Null'] == null ? null : (json['list_Null'] as Array<any>).map(UnionFromJSON)),
+        'list_Opt': json['list_Opt'] == null ? undefined : ((json['list_Opt'] as Array<any>).map(UnionFromJSON)),
+        'list_Opt_Null': json['list_Opt_Null'] == null ? undefined : ((json['list_Opt_Null'] as Array<any>).map(UnionFromJSON)),
     };
 }
 
@@ -121,13 +121,13 @@ export function RecordWithUnionsToJSONTyped(value?: RecordWithUnions | null, ign
     return {
         
         'value': UnionToJSON(value['value']),
-        'value_Null': UnionToJSON(value['valueNull']),
-        'value_Opt': UnionToJSON(value['valueOpt']),
-        'value_Opt_Null': UnionToJSON(value['valueOptNull']),
+        'value_Null': UnionToJSON(value['value_Null']),
+        'value_Opt': UnionToJSON(value['value_Opt']),
+        'value_Opt_Null': UnionToJSON(value['value_Opt_Null']),
         'list': ((value['list'] as Array<any>).map(UnionToJSON)),
-        'list_Null': (value['listNull'] == null ? null : (value['listNull'] as Array<any>).map(UnionToJSON)),
-        'list_Opt': value['listOpt'] == null ? undefined : ((value['listOpt'] as Array<any>).map(UnionToJSON)),
-        'list_Opt_Null': value['listOptNull'] == null ? undefined : ((value['listOptNull'] as Array<any>).map(UnionToJSON)),
+        'list_Null': (value['list_Null'] == null ? null : (value['list_Null'] as Array<any>).map(UnionToJSON)),
+        'list_Opt': value['list_Opt'] == null ? undefined : ((value['list_Opt'] as Array<any>).map(UnionToJSON)),
+        'list_Opt_Null': value['list_Opt_Null'] == null ? undefined : ((value['list_Opt_Null'] as Array<any>).map(UnionToJSON)),
     };
 }
 

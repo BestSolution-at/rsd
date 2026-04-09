@@ -30,7 +30,7 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 								},
 							};
 						} else {
-							schema['$ref'] = `#/components/schemas/${o.resultType.type}`;
+							schema.$ref = `#/components/schemas/${o.resultType.type}`;
 						}
 					} else if (o.resultType.variant === 'inline-enum') {
 						schema = {

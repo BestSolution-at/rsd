@@ -21,6 +21,18 @@ import { mapValues } from '../runtime.js';
 export interface PatchableRecordBasicListPatch {
     /**
      * 
+     * @type {string}
+     * @memberof PatchableRecordBasicListPatch
+     */
+    key: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchableRecordBasicListPatch
+     */
+    version: string;
+    /**
+     * 
      * @type {Array<boolean>}
      * @memberof PatchableRecordBasicListPatch
      */
@@ -85,6 +97,8 @@ export interface PatchableRecordBasicListPatch {
  * Check if a given object implements the PatchableRecordBasicListPatch interface.
  */
 export function instanceOfPatchableRecordBasicListPatch(value: object): value is PatchableRecordBasicListPatch {
+    if (!('key' in value) || value['key'] === undefined) return false;
+    if (!('version' in value) || value['version'] === undefined) return false;
     return true;
 }
 
@@ -98,6 +112,8 @@ export function PatchableRecordBasicListPatchFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
+        'key': json['key'],
+        'version': json['version'],
         'valueBoolean': json['valueBoolean'] == null ? undefined : json['valueBoolean'],
         'valueShort': json['valueShort'] == null ? undefined : json['valueShort'],
         'valueInt': json['valueInt'] == null ? undefined : json['valueInt'],
@@ -122,6 +138,8 @@ export function PatchableRecordBasicListPatchToJSONTyped(value?: PatchableRecord
 
     return {
         
+        'key': value['key'],
+        'version': value['version'],
         'valueBoolean': value['valueBoolean'],
         'valueShort': value['valueShort'],
         'valueInt': value['valueInt'],

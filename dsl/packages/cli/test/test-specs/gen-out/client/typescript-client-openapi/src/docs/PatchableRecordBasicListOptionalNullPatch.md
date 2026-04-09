@@ -6,6 +6,8 @@
 
 Name | Type
 ------------ | -------------
+`key` | string
+`version` | string
 `valueBoolean` | Array&lt;boolean&gt;
 `valueShort` | Array&lt;number&gt;
 `valueInt` | Array&lt;number&gt;
@@ -24,6 +26,8 @@ import type { PatchableRecordBasicListOptionalNullPatch } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "key": null,
+  "version": null,
   "valueBoolean": null,
   "valueShort": null,
   "valueInt": null,

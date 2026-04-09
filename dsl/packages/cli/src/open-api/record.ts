@@ -39,12 +39,18 @@ export function generateRecordContent(t: MResolvedRecordType) {
 
 	if (t.patchable) {
 		const properties: Record<string, unknown> = {};
+		allProps
+			.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
+			.forEach(p => {
+				properties[p.name] = generateProperty(p);
+			});
 		allProps.filter(isMResolvedProperty).forEach(p => {
 			properties[p.name] = generatePatchProperty(p);
 		});
 		rv[`${t.name}Patch`] = {
 			type: 'object',
 			properties,
+			required: allProps.filter(p => isMKeyProperty(p) || isMRevisionProperty(p)).map(p => p.name),
 		};
 	}
 	return rv;

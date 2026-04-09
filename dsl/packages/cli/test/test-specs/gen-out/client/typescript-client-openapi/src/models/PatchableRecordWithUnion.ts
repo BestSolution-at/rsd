@@ -50,19 +50,19 @@ export interface PatchableRecordWithUnion {
      * @type {PatchableUnion}
      * @memberof PatchableRecordWithUnion
      */
-    valueNull: PatchableUnion;
+    value_Null: PatchableUnion;
     /**
      * 
      * @type {PatchableUnion}
      * @memberof PatchableRecordWithUnion
      */
-    valueOpt?: PatchableUnion;
+    value_Opt?: PatchableUnion;
     /**
      * 
      * @type {PatchableUnion}
      * @memberof PatchableRecordWithUnion
      */
-    valueOptNull?: PatchableUnion;
+    value_Opt_Null?: PatchableUnion;
     /**
      * 
      * @type {Array<PatchableUnion>}
@@ -74,19 +74,19 @@ export interface PatchableRecordWithUnion {
      * @type {Array<PatchableUnion>}
      * @memberof PatchableRecordWithUnion
      */
-    listNull: Array<PatchableUnion> | null;
+    list_Null: Array<PatchableUnion> | null;
     /**
      * 
      * @type {Array<PatchableUnion>}
      * @memberof PatchableRecordWithUnion
      */
-    listOpt?: Array<PatchableUnion>;
+    list_Opt?: Array<PatchableUnion>;
     /**
      * 
      * @type {Array<PatchableUnion>}
      * @memberof PatchableRecordWithUnion
      */
-    listOptNull?: Array<PatchableUnion> | null;
+    list_Opt_Null?: Array<PatchableUnion> | null;
 }
 
 /**
@@ -96,9 +96,9 @@ export function instanceOfPatchableRecordWithUnion(value: object): value is Patc
     if (!('key' in value) || value['key'] === undefined) return false;
     if (!('version' in value) || value['version'] === undefined) return false;
     if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('valueNull' in value) || value['valueNull'] === undefined) return false;
+    if (!('value_Null' in value) || value['value_Null'] === undefined) return false;
     if (!('list' in value) || value['list'] === undefined) return false;
-    if (!('listNull' in value) || value['listNull'] === undefined) return false;
+    if (!('list_Null' in value) || value['list_Null'] === undefined) return false;
     return true;
 }
 
@@ -115,13 +115,13 @@ export function PatchableRecordWithUnionFromJSONTyped(json: any, ignoreDiscrimin
         'key': json['key'],
         'version': json['version'],
         'value': PatchableUnionFromJSON(json['value']),
-        'valueNull': PatchableUnionFromJSON(json['value_Null']),
-        'valueOpt': json['value_Opt'] == null ? undefined : PatchableUnionFromJSON(json['value_Opt']),
-        'valueOptNull': json['value_Opt_Null'] == null ? undefined : PatchableUnionFromJSON(json['value_Opt_Null']),
+        'value_Null': PatchableUnionFromJSON(json['value_Null']),
+        'value_Opt': json['value_Opt'] == null ? undefined : PatchableUnionFromJSON(json['value_Opt']),
+        'value_Opt_Null': json['value_Opt_Null'] == null ? undefined : PatchableUnionFromJSON(json['value_Opt_Null']),
         'list': ((json['list'] as Array<any>).map(PatchableUnionFromJSON)),
-        'listNull': (json['list_Null'] == null ? null : (json['list_Null'] as Array<any>).map(PatchableUnionFromJSON)),
-        'listOpt': json['list_Opt'] == null ? undefined : ((json['list_Opt'] as Array<any>).map(PatchableUnionFromJSON)),
-        'listOptNull': json['list_Opt_Null'] == null ? undefined : ((json['list_Opt_Null'] as Array<any>).map(PatchableUnionFromJSON)),
+        'list_Null': (json['list_Null'] == null ? null : (json['list_Null'] as Array<any>).map(PatchableUnionFromJSON)),
+        'list_Opt': json['list_Opt'] == null ? undefined : ((json['list_Opt'] as Array<any>).map(PatchableUnionFromJSON)),
+        'list_Opt_Null': json['list_Opt_Null'] == null ? undefined : ((json['list_Opt_Null'] as Array<any>).map(PatchableUnionFromJSON)),
     };
 }
 
@@ -139,13 +139,13 @@ export function PatchableRecordWithUnionToJSONTyped(value?: PatchableRecordWithU
         'key': value['key'],
         'version': value['version'],
         'value': PatchableUnionToJSON(value['value']),
-        'value_Null': PatchableUnionToJSON(value['valueNull']),
-        'value_Opt': PatchableUnionToJSON(value['valueOpt']),
-        'value_Opt_Null': PatchableUnionToJSON(value['valueOptNull']),
+        'value_Null': PatchableUnionToJSON(value['value_Null']),
+        'value_Opt': PatchableUnionToJSON(value['value_Opt']),
+        'value_Opt_Null': PatchableUnionToJSON(value['value_Opt_Null']),
         'list': ((value['list'] as Array<any>).map(PatchableUnionToJSON)),
-        'list_Null': (value['listNull'] == null ? null : (value['listNull'] as Array<any>).map(PatchableUnionToJSON)),
-        'list_Opt': value['listOpt'] == null ? undefined : ((value['listOpt'] as Array<any>).map(PatchableUnionToJSON)),
-        'list_Opt_Null': value['listOptNull'] == null ? undefined : ((value['listOptNull'] as Array<any>).map(PatchableUnionToJSON)),
+        'list_Null': (value['list_Null'] == null ? null : (value['list_Null'] as Array<any>).map(PatchableUnionToJSON)),
+        'list_Opt': value['list_Opt'] == null ? undefined : ((value['list_Opt'] as Array<any>).map(PatchableUnionToJSON)),
+        'list_Opt_Null': value['list_Opt_Null'] == null ? undefined : ((value['list_Opt_Null'] as Array<any>).map(PatchableUnionToJSON)),
     };
 }
 

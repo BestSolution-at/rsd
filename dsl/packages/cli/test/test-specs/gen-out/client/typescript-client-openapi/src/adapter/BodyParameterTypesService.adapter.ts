@@ -1,7 +1,7 @@
 import { api } from '../../../typescript-client/src/index.js';
 import { ServiceProps } from '../../../typescript-client/src/services/_fetch-type-utils.js';
 import { BodyParameterTypesApi } from '../apis/BodyParameterTypesApi.js';
-import { Configuration, ResponseError } from '../index.js';
+import { Configuration, ResponseError, Union } from '../index.js';
 
 export function createOpenAPIBodyParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -445,10 +445,10 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.apiBodyparametertypesSimpleLocalDateBodyParamPostRaw({
-				body: new Date(bodyLocalDate),
+				body: bodyLocalDate as unknown as Date, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -460,7 +460,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.apiBodyparametertypesSimpleLocalDateBodyParamOptPostRaw({
-				body: bodyLocalDate ? new Date(bodyLocalDate) : undefined,
+				body: bodyLocalDate ? (bodyLocalDate as unknown as Date) : undefined, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -475,7 +475,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.apiBodyparametertypesSimpleLocalDateBodyParamNilPostRaw({
-				body: bodyLocalDate ? new Date(bodyLocalDate) : null,
+				body: bodyLocalDate ? (bodyLocalDate as unknown as Date) : null, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -910,7 +910,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyRecord: api.model.SimpleRecord,
 	): Promise<api.result.Result<api.model.SimpleRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesRecordBodyParamPostRaw({ body: bodyRecord });
+			const response = await this.deletegate.apiBodyparametertypesRecordBodyParamPostRaw({ simpleRecord: bodyRecord });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -924,7 +924,9 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyRecord?: api.model.SimpleRecord,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesRecordBodyParamOptPostRaw({ body: bodyRecord });
+			const response = await this.deletegate.apiBodyparametertypesRecordBodyParamOptPostRaw({
+				simpleRecord: bodyRecord,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -966,9 +968,16 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyUnion: api.model.Union,
 	): Promise<api.result.Result<api.model.Union, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesUnionBodyParamPostRaw({ union: bodyUnion });
+			const response = await this.deletegate.apiBodyparametertypesUnionBodyParamPostRaw({
+				union: bodyUnion['@type'] === 'union-a' ? { ...bodyUnion, type: 'union-a' } : { ...bodyUnion, type: 'union-b' },
+			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				const result = await response.value();
+				if (result.type === 'union-a') {
+					return api.result.OK({ shared: result.shared, valueA: result.valueA, '@type': 'union-a' } as const);
+				} else {
+					return api.result.OK({ shared: result.shared, valueB: result.valueB, '@type': 'union-b' } as const);
+				}
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -980,7 +989,12 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyUnion?: api.model.Union,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesUnionBodyParamOptPostRaw({ union: bodyUnion });
+			const union = bodyUnion
+				? bodyUnion['@type'] === 'union-a'
+					? ({ ...bodyUnion, type: 'union-a' } as const)
+					: ({ ...bodyUnion, type: 'union-b' } as const)
+				: undefined;
+			const response = await this.deletegate.apiBodyparametertypesUnionBodyParamOptPostRaw({ union });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -994,7 +1008,12 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyUnion: api.model.Union | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesUnionBodyParamNilPostRaw({ union: bodyUnion });
+			const union = bodyUnion
+				? bodyUnion['@type'] === 'union-a'
+					? ({ ...bodyUnion, type: 'union-a' } as const)
+					: ({ ...bodyUnion, type: 'union-b' } as const)
+				: null;
+			const response = await this.deletegate.apiBodyparametertypesUnionBodyParamNilPostRaw({ union });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -1008,7 +1027,14 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		bodyUnion?: api.model.Union | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.apiBodyparametertypesUnionBodyParamOptNilPostRaw({ body: bodyUnion });
+			const union = bodyUnion
+				? bodyUnion['@type'] === 'union-a'
+					? ({ ...bodyUnion, type: 'union-a' } as const)
+					: ({ ...bodyUnion, type: 'union-b' } as const)
+				: bodyUnion === null
+					? null
+					: undefined;
+			const response = await this.deletegate.apiBodyparametertypesUnionBodyParamOptNilPostRaw({ union });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -1021,24 +1047,64 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	async patchableRecordBodyParam(
 		bodyRecord: api.model.PatchableRecordPatch,
 	): Promise<api.result.Result<api.model.PatchableRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		throw new Error('Method not implemented.');
+		try {
+			const response = await this.deletegate.apiBodyparametertypesPatchableRecordBodyParamPatchRaw({
+				patchableRecordPatch: bodyRecord,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
 	}
 
 	async patchableRecordBodyParamOpt(
 		bodyRecord?: api.model.PatchableRecordPatch,
 	): Promise<api.result.Result<api.model.PatchableRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		throw new Error('Method not implemented.');
+		try {
+			const response = await this.deletegate.apiBodyparametertypesPatchableRecordBodyParamOptPatchRaw({
+				patchableRecordPatch: bodyRecord,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
 	}
 
 	async patchableRecordBodyParamNil(
 		bodyRecord: api.model.PatchableRecordPatch | null,
 	): Promise<api.result.Result<api.model.PatchableRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		throw new Error('Method not implemented.');
+		try {
+			const response = await this.deletegate.apiBodyparametertypesPatchableRecordBodyParamNilPatchRaw({
+				patchableRecordPatch: bodyRecord,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
 	}
 
 	async patchableRecordBodyParamOptNil(
 		bodyRecord?: api.model.PatchableRecordPatch | null,
 	): Promise<api.result.Result<api.model.PatchableRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		throw new Error('Method not implemented.');
+		try {
+			const response = await this.deletegate.apiBodyparametertypesPatchableRecordBodyParamOptNilPatchRaw({
+				patchableRecordPatch: bodyRecord,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
 	}
 }

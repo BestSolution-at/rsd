@@ -42,19 +42,19 @@ export interface PatchableScalarRecord {
      * @type {string}
      * @memberof PatchableScalarRecord
      */
-    valueNull: string | null;
+    value_Null: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchableScalarRecord
      */
-    valueOpt?: string;
+    value_Opt?: string;
     /**
      * 
      * @type {string}
      * @memberof PatchableScalarRecord
      */
-    valueOptNull?: string | null;
+    value_Opt_Null?: string | null;
     /**
      * 
      * @type {Array<string>}
@@ -66,19 +66,19 @@ export interface PatchableScalarRecord {
      * @type {Array<string>}
      * @memberof PatchableScalarRecord
      */
-    listNull: Array<string> | null;
+    list_Null: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof PatchableScalarRecord
      */
-    listOpt?: Array<string>;
+    list_Opt?: Array<string>;
     /**
      * 
      * @type {Array<string>}
      * @memberof PatchableScalarRecord
      */
-    listOptNull?: Array<string> | null;
+    list_Opt_Null?: Array<string> | null;
 }
 
 /**
@@ -88,9 +88,9 @@ export function instanceOfPatchableScalarRecord(value: object): value is Patchab
     if (!('key' in value) || value['key'] === undefined) return false;
     if (!('version' in value) || value['version'] === undefined) return false;
     if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('valueNull' in value) || value['valueNull'] === undefined) return false;
+    if (!('value_Null' in value) || value['value_Null'] === undefined) return false;
     if (!('list' in value) || value['list'] === undefined) return false;
-    if (!('listNull' in value) || value['listNull'] === undefined) return false;
+    if (!('list_Null' in value) || value['list_Null'] === undefined) return false;
     return true;
 }
 
@@ -107,13 +107,13 @@ export function PatchableScalarRecordFromJSONTyped(json: any, ignoreDiscriminato
         'key': json['key'],
         'version': json['version'],
         'value': json['value'],
-        'valueNull': json['value_Null'],
-        'valueOpt': json['value_Opt'] == null ? undefined : json['value_Opt'],
-        'valueOptNull': json['value_Opt_Null'] == null ? undefined : json['value_Opt_Null'],
+        'value_Null': json['value_Null'],
+        'value_Opt': json['value_Opt'] == null ? undefined : json['value_Opt'],
+        'value_Opt_Null': json['value_Opt_Null'] == null ? undefined : json['value_Opt_Null'],
         'list': json['list'],
-        'listNull': json['list_Null'] == null ? null : json['list_Null'],
-        'listOpt': json['list_Opt'] == null ? undefined : json['list_Opt'],
-        'listOptNull': json['list_Opt_Null'] == null ? undefined : json['list_Opt_Null'],
+        'list_Null': json['list_Null'] == null ? null : json['list_Null'],
+        'list_Opt': json['list_Opt'] == null ? undefined : json['list_Opt'],
+        'list_Opt_Null': json['list_Opt_Null'] == null ? undefined : json['list_Opt_Null'],
     };
 }
 
@@ -131,13 +131,13 @@ export function PatchableScalarRecordToJSONTyped(value?: PatchableScalarRecord |
         'key': value['key'],
         'version': value['version'],
         'value': value['value'],
-        'value_Null': value['valueNull'],
-        'value_Opt': value['valueOpt'],
-        'value_Opt_Null': value['valueOptNull'],
+        'value_Null': value['value_Null'],
+        'value_Opt': value['value_Opt'],
+        'value_Opt_Null': value['value_Opt_Null'],
         'list': value['list'],
-        'list_Null': value['listNull'],
-        'list_Opt': value['listOpt'],
-        'list_Opt_Null': value['listOptNull'],
+        'list_Null': value['list_Null'],
+        'list_Opt': value['list_Opt'],
+        'list_Opt_Null': value['list_Opt_Null'],
     };
 }
 

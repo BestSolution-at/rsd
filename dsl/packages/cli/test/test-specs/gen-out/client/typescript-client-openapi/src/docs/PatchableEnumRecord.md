@@ -9,13 +9,13 @@ Name | Type
 `key` | string
 `version` | string
 `value` | [SampleEnum](SampleEnum.md)
-`valueNull` | [SampleEnum](SampleEnum.md)
-`valueOpt` | [SampleEnum](SampleEnum.md)
-`valueOptNull` | [SampleEnum](SampleEnum.md)
+`value_Null` | [SampleEnum](SampleEnum.md)
+`value_Opt` | [SampleEnum](SampleEnum.md)
+`value_Opt_Null` | [SampleEnum](SampleEnum.md)
 `list` | [Array&lt;SampleEnum&gt;](SampleEnum.md)
-`listNull` | [Array&lt;SampleEnum&gt;](SampleEnum.md)
-`listOpt` | [Array&lt;SampleEnum&gt;](SampleEnum.md)
-`listOptNull` | [Array&lt;SampleEnum&gt;](SampleEnum.md)
+`list_Null` | [Array&lt;SampleEnum&gt;](SampleEnum.md)
+`list_Opt` | [Array&lt;SampleEnum&gt;](SampleEnum.md)
+`list_Opt_Null` | [Array&lt;SampleEnum&gt;](SampleEnum.md)
 
 ## Example
 
@@ -27,13 +27,13 @@ const example = {
   "key": null,
   "version": null,
   "value": null,
-  "valueNull": null,
-  "valueOpt": null,
-  "valueOptNull": null,
+  "value_Null": null,
+  "value_Opt": null,
+  "value_Opt_Null": null,
   "list": null,
-  "listNull": null,
-  "listOpt": null,
-  "listOptNull": null,
+  "list_Null": null,
+  "list_Opt": null,
+  "list_Opt_Null": null,
 } satisfies PatchableEnumRecord
 
 console.log(example)

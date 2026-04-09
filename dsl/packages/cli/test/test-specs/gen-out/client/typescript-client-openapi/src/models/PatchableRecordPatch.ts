@@ -24,6 +24,18 @@ export interface PatchableRecordPatch {
      * @type {string}
      * @memberof PatchableRecordPatch
      */
+    key: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchableRecordPatch
+     */
+    version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchableRecordPatch
+     */
     value?: string;
 }
 
@@ -31,6 +43,8 @@ export interface PatchableRecordPatch {
  * Check if a given object implements the PatchableRecordPatch interface.
  */
 export function instanceOfPatchableRecordPatch(value: object): value is PatchableRecordPatch {
+    if (!('key' in value) || value['key'] === undefined) return false;
+    if (!('version' in value) || value['version'] === undefined) return false;
     return true;
 }
 
@@ -44,6 +58,8 @@ export function PatchableRecordPatchFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
+        'key': json['key'],
+        'version': json['version'],
         'value': json['value'] == null ? undefined : json['value'],
     };
 }
@@ -59,6 +75,8 @@ export function PatchableRecordPatchToJSONTyped(value?: PatchableRecordPatch | n
 
     return {
         
+        'key': value['key'],
+        'version': value['version'],
         'value': value['value'],
     };
 }

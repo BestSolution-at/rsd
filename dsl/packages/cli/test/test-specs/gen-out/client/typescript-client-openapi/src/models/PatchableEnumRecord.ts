@@ -50,19 +50,19 @@ export interface PatchableEnumRecord {
      * @type {SampleEnum}
      * @memberof PatchableEnumRecord
      */
-    valueNull: SampleEnum;
+    value_Null: SampleEnum;
     /**
      * 
      * @type {SampleEnum}
      * @memberof PatchableEnumRecord
      */
-    valueOpt?: SampleEnum;
+    value_Opt?: SampleEnum;
     /**
      * 
      * @type {SampleEnum}
      * @memberof PatchableEnumRecord
      */
-    valueOptNull?: SampleEnum;
+    value_Opt_Null?: SampleEnum;
     /**
      * 
      * @type {Array<SampleEnum>}
@@ -74,19 +74,19 @@ export interface PatchableEnumRecord {
      * @type {Array<SampleEnum>}
      * @memberof PatchableEnumRecord
      */
-    listNull: Array<SampleEnum> | null;
+    list_Null: Array<SampleEnum> | null;
     /**
      * 
      * @type {Array<SampleEnum>}
      * @memberof PatchableEnumRecord
      */
-    listOpt?: Array<SampleEnum>;
+    list_Opt?: Array<SampleEnum>;
     /**
      * 
      * @type {Array<SampleEnum>}
      * @memberof PatchableEnumRecord
      */
-    listOptNull?: Array<SampleEnum> | null;
+    list_Opt_Null?: Array<SampleEnum> | null;
 }
 
 
@@ -98,9 +98,9 @@ export function instanceOfPatchableEnumRecord(value: object): value is Patchable
     if (!('key' in value) || value['key'] === undefined) return false;
     if (!('version' in value) || value['version'] === undefined) return false;
     if (!('value' in value) || value['value'] === undefined) return false;
-    if (!('valueNull' in value) || value['valueNull'] === undefined) return false;
+    if (!('value_Null' in value) || value['value_Null'] === undefined) return false;
     if (!('list' in value) || value['list'] === undefined) return false;
-    if (!('listNull' in value) || value['listNull'] === undefined) return false;
+    if (!('list_Null' in value) || value['list_Null'] === undefined) return false;
     return true;
 }
 
@@ -117,13 +117,13 @@ export function PatchableEnumRecordFromJSONTyped(json: any, ignoreDiscriminator:
         'key': json['key'],
         'version': json['version'],
         'value': SampleEnumFromJSON(json['value']),
-        'valueNull': SampleEnumFromJSON(json['value_Null']),
-        'valueOpt': json['value_Opt'] == null ? undefined : SampleEnumFromJSON(json['value_Opt']),
-        'valueOptNull': json['value_Opt_Null'] == null ? undefined : SampleEnumFromJSON(json['value_Opt_Null']),
+        'value_Null': SampleEnumFromJSON(json['value_Null']),
+        'value_Opt': json['value_Opt'] == null ? undefined : SampleEnumFromJSON(json['value_Opt']),
+        'value_Opt_Null': json['value_Opt_Null'] == null ? undefined : SampleEnumFromJSON(json['value_Opt_Null']),
         'list': ((json['list'] as Array<any>).map(SampleEnumFromJSON)),
-        'listNull': (json['list_Null'] == null ? null : (json['list_Null'] as Array<any>).map(SampleEnumFromJSON)),
-        'listOpt': json['list_Opt'] == null ? undefined : ((json['list_Opt'] as Array<any>).map(SampleEnumFromJSON)),
-        'listOptNull': json['list_Opt_Null'] == null ? undefined : ((json['list_Opt_Null'] as Array<any>).map(SampleEnumFromJSON)),
+        'list_Null': (json['list_Null'] == null ? null : (json['list_Null'] as Array<any>).map(SampleEnumFromJSON)),
+        'list_Opt': json['list_Opt'] == null ? undefined : ((json['list_Opt'] as Array<any>).map(SampleEnumFromJSON)),
+        'list_Opt_Null': json['list_Opt_Null'] == null ? undefined : ((json['list_Opt_Null'] as Array<any>).map(SampleEnumFromJSON)),
     };
 }
 
@@ -141,13 +141,13 @@ export function PatchableEnumRecordToJSONTyped(value?: PatchableEnumRecord | nul
         'key': value['key'],
         'version': value['version'],
         'value': SampleEnumToJSON(value['value']),
-        'value_Null': SampleEnumToJSON(value['valueNull']),
-        'value_Opt': SampleEnumToJSON(value['valueOpt']),
-        'value_Opt_Null': SampleEnumToJSON(value['valueOptNull']),
+        'value_Null': SampleEnumToJSON(value['value_Null']),
+        'value_Opt': SampleEnumToJSON(value['value_Opt']),
+        'value_Opt_Null': SampleEnumToJSON(value['value_Opt_Null']),
         'list': ((value['list'] as Array<any>).map(SampleEnumToJSON)),
-        'list_Null': (value['listNull'] == null ? null : (value['listNull'] as Array<any>).map(SampleEnumToJSON)),
-        'list_Opt': value['listOpt'] == null ? undefined : ((value['listOpt'] as Array<any>).map(SampleEnumToJSON)),
-        'list_Opt_Null': value['listOptNull'] == null ? undefined : ((value['listOptNull'] as Array<any>).map(SampleEnumToJSON)),
+        'list_Null': (value['list_Null'] == null ? null : (value['list_Null'] as Array<any>).map(SampleEnumToJSON)),
+        'list_Opt': value['list_Opt'] == null ? undefined : ((value['list_Opt'] as Array<any>).map(SampleEnumToJSON)),
+        'list_Opt_Null': value['list_Opt_Null'] == null ? undefined : ((value['list_Opt_Null'] as Array<any>).map(SampleEnumToJSON)),
     };
 }
 

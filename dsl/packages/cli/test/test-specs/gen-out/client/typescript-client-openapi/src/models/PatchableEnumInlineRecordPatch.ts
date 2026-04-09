@@ -21,6 +21,18 @@ import { mapValues } from '../runtime.js';
 export interface PatchableEnumInlineRecordPatch {
     /**
      * 
+     * @type {string}
+     * @memberof PatchableEnumInlineRecordPatch
+     */
+    key: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchableEnumInlineRecordPatch
+     */
+    version: string;
+    /**
+     * 
      * @type {PatchableEnumInlineRecordPatchValueEnum}
      * @memberof PatchableEnumInlineRecordPatch
      */
@@ -30,19 +42,19 @@ export interface PatchableEnumInlineRecordPatch {
      * @type {PatchableEnumInlineRecordPatchValueNullEnum}
      * @memberof PatchableEnumInlineRecordPatch
      */
-    valueNull?: PatchableEnumInlineRecordPatchValueNullEnum | null;
+    value_Null?: PatchableEnumInlineRecordPatchValueNullEnum | null;
     /**
      * 
      * @type {PatchableEnumInlineRecordPatchValueOptEnum}
      * @memberof PatchableEnumInlineRecordPatch
      */
-    valueOpt?: PatchableEnumInlineRecordPatchValueOptEnum | null;
+    value_Opt?: PatchableEnumInlineRecordPatchValueOptEnum | null;
     /**
      * 
      * @type {PatchableEnumInlineRecordPatchValueOptNullEnum}
      * @memberof PatchableEnumInlineRecordPatch
      */
-    valueOptNull?: PatchableEnumInlineRecordPatchValueOptNullEnum | null;
+    value_Opt_Null?: PatchableEnumInlineRecordPatchValueOptNullEnum | null;
     /**
      * 
      * @type {Array<PatchableEnumInlineRecordPatchListEnum>}
@@ -54,13 +66,13 @@ export interface PatchableEnumInlineRecordPatch {
      * @type {Array<PatchableEnumInlineRecordPatchListNullEnum>}
      * @memberof PatchableEnumInlineRecordPatch
      */
-    listNull?: Array<PatchableEnumInlineRecordPatchListNullEnum> | null;
+    list_Null?: Array<PatchableEnumInlineRecordPatchListNullEnum> | null;
     /**
      * 
      * @type {Array<PatchableEnumInlineRecordPatchListOptNullEnum>}
      * @memberof PatchableEnumInlineRecordPatch
      */
-    listOptNull?: Array<PatchableEnumInlineRecordPatchListOptNullEnum> | null;
+    list_Opt_Null?: Array<PatchableEnumInlineRecordPatchListOptNullEnum> | null;
 }
 
 
@@ -132,6 +144,8 @@ export type PatchableEnumInlineRecordPatchListOptNullEnum = typeof PatchableEnum
  * Check if a given object implements the PatchableEnumInlineRecordPatch interface.
  */
 export function instanceOfPatchableEnumInlineRecordPatch(value: object): value is PatchableEnumInlineRecordPatch {
+    if (!('key' in value) || value['key'] === undefined) return false;
+    if (!('version' in value) || value['version'] === undefined) return false;
     return true;
 }
 
@@ -145,13 +159,15 @@ export function PatchableEnumInlineRecordPatchFromJSONTyped(json: any, ignoreDis
     }
     return {
         
+        'key': json['key'],
+        'version': json['version'],
         'value': json['value'] == null ? undefined : json['value'],
-        'valueNull': json['value_Null'] == null ? undefined : json['value_Null'],
-        'valueOpt': json['value_Opt'] == null ? undefined : json['value_Opt'],
-        'valueOptNull': json['value_Opt_Null'] == null ? undefined : json['value_Opt_Null'],
+        'value_Null': json['value_Null'] == null ? undefined : json['value_Null'],
+        'value_Opt': json['value_Opt'] == null ? undefined : json['value_Opt'],
+        'value_Opt_Null': json['value_Opt_Null'] == null ? undefined : json['value_Opt_Null'],
         'list': json['list'] == null ? undefined : json['list'],
-        'listNull': json['list_Null'] == null ? undefined : json['list_Null'],
-        'listOptNull': json['list_Opt_Null'] == null ? undefined : json['list_Opt_Null'],
+        'list_Null': json['list_Null'] == null ? undefined : json['list_Null'],
+        'list_Opt_Null': json['list_Opt_Null'] == null ? undefined : json['list_Opt_Null'],
     };
 }
 
@@ -166,13 +182,15 @@ export function PatchableEnumInlineRecordPatchToJSONTyped(value?: PatchableEnumI
 
     return {
         
+        'key': value['key'],
+        'version': value['version'],
         'value': value['value'],
-        'value_Null': value['valueNull'],
-        'value_Opt': value['valueOpt'],
-        'value_Opt_Null': value['valueOptNull'],
+        'value_Null': value['value_Null'],
+        'value_Opt': value['value_Opt'],
+        'value_Opt_Null': value['value_Opt_Null'],
         'list': value['list'],
-        'list_Null': value['listNull'],
-        'list_Opt_Null': value['listOptNull'],
+        'list_Null': value['list_Null'],
+        'list_Opt_Null': value['list_Opt_Null'],
     };
 }
 

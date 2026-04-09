@@ -9,13 +9,13 @@ Name | Type
 `key` | string
 `version` | string
 `value` | [PatchableUnion](PatchableUnion.md)
-`valueNull` | [PatchableUnion](PatchableUnion.md)
-`valueOpt` | [PatchableUnion](PatchableUnion.md)
-`valueOptNull` | [PatchableUnion](PatchableUnion.md)
+`value_Null` | [PatchableUnion](PatchableUnion.md)
+`value_Opt` | [PatchableUnion](PatchableUnion.md)
+`value_Opt_Null` | [PatchableUnion](PatchableUnion.md)
 `list` | [Array&lt;PatchableUnion&gt;](PatchableUnion.md)
-`listNull` | [Array&lt;PatchableUnion&gt;](PatchableUnion.md)
-`listOpt` | [Array&lt;PatchableUnion&gt;](PatchableUnion.md)
-`listOptNull` | [Array&lt;PatchableUnion&gt;](PatchableUnion.md)
+`list_Null` | [Array&lt;PatchableUnion&gt;](PatchableUnion.md)
+`list_Opt` | [Array&lt;PatchableUnion&gt;](PatchableUnion.md)
+`list_Opt_Null` | [Array&lt;PatchableUnion&gt;](PatchableUnion.md)
 
 ## Example
 
@@ -27,13 +27,13 @@ const example = {
   "key": null,
   "version": null,
   "value": null,
-  "valueNull": null,
-  "valueOpt": null,
-  "valueOptNull": null,
+  "value_Null": null,
+  "value_Opt": null,
+  "value_Opt_Null": null,
   "list": null,
-  "listNull": null,
-  "listOpt": null,
-  "listOptNull": null,
+  "list_Null": null,
+  "list_Opt": null,
+  "list_Opt_Null": null,
 } satisfies PatchableRecordWithUnion
 
 console.log(example)

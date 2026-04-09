@@ -24,6 +24,18 @@ export interface PatchableUnionAPatch {
      * @type {string}
      * @memberof PatchableUnionAPatch
      */
+    key: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchableUnionAPatch
+     */
+    version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchableUnionAPatch
+     */
     shared?: string;
     /**
      * 
@@ -37,6 +49,8 @@ export interface PatchableUnionAPatch {
  * Check if a given object implements the PatchableUnionAPatch interface.
  */
 export function instanceOfPatchableUnionAPatch(value: object): value is PatchableUnionAPatch {
+    if (!('key' in value) || value['key'] === undefined) return false;
+    if (!('version' in value) || value['version'] === undefined) return false;
     return true;
 }
 
@@ -50,6 +64,8 @@ export function PatchableUnionAPatchFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
+        'key': json['key'],
+        'version': json['version'],
         'shared': json['shared'] == null ? undefined : json['shared'],
         'valueA': json['valueA'] == null ? undefined : json['valueA'],
     };
@@ -66,6 +82,8 @@ export function PatchableUnionAPatchToJSONTyped(value?: PatchableUnionAPatch | n
 
     return {
         
+        'key': value['key'],
+        'version': value['version'],
         'shared': value['shared'],
         'valueA': value['valueA'],
     };

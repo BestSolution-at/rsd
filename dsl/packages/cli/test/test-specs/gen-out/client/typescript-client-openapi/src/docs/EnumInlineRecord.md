@@ -7,12 +7,12 @@
 Name | Type
 ------------ | -------------
 `value` | string
-`valueNull` | string
-`valueOpt` | string
-`valueOptNull` | string
+`value_Null` | string
+`value_Opt` | string
+`value_Opt_Null` | string
 `list` | Array&lt;string&gt;
-`listNull` | Array&lt;string&gt;
-`listOptNull` | Array&lt;string&gt;
+`list_Null` | Array&lt;string&gt;
+`list_Opt_Null` | Array&lt;string&gt;
 
 ## Example
 
@@ -22,12 +22,12 @@ import type { EnumInlineRecord } from ''
 // TODO: Update the object below with actual values
 const example = {
   "value": null,
-  "valueNull": null,
-  "valueOpt": null,
-  "valueOptNull": null,
+  "value_Null": null,
+  "value_Opt": null,
+  "value_Opt_Null": null,
   "list": null,
-  "listNull": null,
-  "listOptNull": null,
+  "list_Null": null,
+  "list_Opt_Null": null,
 } satisfies EnumInlineRecord
 
 console.log(example)
