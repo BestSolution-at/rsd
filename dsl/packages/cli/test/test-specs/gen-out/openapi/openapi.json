@@ -5678,7 +5678,18 @@
             "in": "header",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SimpleRecord"
+              "type": "string",
+              "format": "base64",
+              "nullable": false
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -5710,7 +5721,18 @@
             "in": "header",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/SimpleRecord"
+              "type": "string",
+              "format": "base64",
+              "nullable": false
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -5742,12 +5764,18 @@
             "in": "header",
             "required": true,
             "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/SimpleRecord"
-                }
-              ],
+              "type": "string",
+              "format": "base64",
               "nullable": true
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -5779,12 +5807,18 @@
             "in": "header",
             "required": false,
             "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/SimpleRecord"
-                }
-              ],
+              "type": "string",
+              "format": "base64",
               "nullable": true
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -5854,7 +5888,9 @@
             "in": "header",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SimpleRecord"
+              "type": "string",
+              "format": "base64",
+              "nullable": false
             }
           },
           {
@@ -5883,7 +5919,17 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "base64"
+              "format": "base64",
+              "nullable": false
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -6801,7 +6847,8 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "base64"
+              "format": "base64",
+              "nullable": false
             }
           }
         ],
@@ -6834,7 +6881,8 @@
             "required": false,
             "schema": {
               "type": "string",
-              "format": "base64"
+              "format": "base64",
+              "nullable": false
             }
           }
         ],
@@ -9681,7 +9729,8 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "base64"
+              "format": "base64",
+              "nullable": false
             }
           }
         ],
@@ -9714,7 +9763,8 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "base64"
+              "format": "base64",
+              "nullable": false
             }
           }
         ],
@@ -11677,10 +11727,18 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SimpleRecord"
-              }
+              "type": "string",
+              "format": "base64",
+              "nullable": false
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -11737,10 +11795,18 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SimpleRecord"
-              }
+              "type": "string",
+              "format": "base64",
+              "nullable": false
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -11800,10 +11866,18 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SimpleRecord"
-              }
+              "type": "string",
+              "format": "base64",
+              "nullable": true
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -11863,10 +11937,18 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SimpleRecord"
-              }
+              "type": "string",
+              "format": "base64",
+              "nullable": true
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -11901,10 +11983,18 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SimpleRecord"
-              }
+              "type": "string",
+              "format": "base64",
+              "nullable": false
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -11939,10 +12029,18 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SimpleRecord"
-              }
+              "type": "string",
+              "format": "base64",
+              "nullable": false
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -11974,10 +12072,18 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SimpleRecord"
-              }
+              "type": "string",
+              "format": "base64",
+              "nullable": true
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -12009,10 +12115,18 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SimpleRecord"
-              }
+              "type": "string",
+              "format": "base64",
+              "nullable": true
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -12874,7 +12988,9 @@
             "in": "header",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SimpleRecord"
+              "type": "string",
+              "format": "base64",
+              "nullable": false
             }
           },
           {
@@ -12903,7 +13019,17 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "base64"
+              "format": "base64",
+              "nullable": false
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],

@@ -27,7 +27,7 @@ describe('SinglePathParameterTypeServiceServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe(true);
 		});
-		test.each([json, msgpack])('success - false - $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('success - false - $encoding', async ({ service }) => {
 			const [result, error] = await service.simpleBooleanPathParam(false);
 			expect(error).toBeNull();
 			expect(result).toBe(false);

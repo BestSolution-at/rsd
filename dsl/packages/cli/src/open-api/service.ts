@@ -122,8 +122,9 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 					// Query params with record types are transferred in OpenAPI in a very special way
 					// We want them to be transferred as a base64 blob
 					const schema =
-						p.meta?.rest?.source === 'query' && p.variant === 'record'
-							? { type: 'string', format: 'base64' }
+						(p.meta?.rest?.source === 'query' || p.meta?.rest?.source === 'header') &&
+						(p.variant === 'record' || p.variant === 'union')
+							? { type: 'string', format: 'base64', nullable: p.nullable }
 							: toType(p);
 					return {
 						name: p.meta?.rest?.name ?? p.name,
@@ -133,6 +134,20 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 						schema,
 					};
 				});
+			if (
+				o.parameters.some(p => p.meta?.rest?.source === 'header' && (p.variant === 'record' || p.variant === 'union'))
+			) {
+				parameters.push({
+					name: 'X-RSD-Param-Content-Type',
+					description:
+						'Contains the type information for record and union types transferred in headers as a base64 blob',
+					in: 'header',
+					required: true,
+					schema: {
+						type: 'string',
+					},
+				});
+			}
 
 			rv[p][o.meta.rest.method.toLowerCase()] = {
 				tags: [s.name],

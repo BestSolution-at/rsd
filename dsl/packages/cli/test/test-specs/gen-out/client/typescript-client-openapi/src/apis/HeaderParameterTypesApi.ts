@@ -33,10 +33,11 @@ export interface HeaderParameterTypesMixedRequest {
     pathNumber: number;
     headerString: string;
     headerNumber: number;
-    headerRecord: SimpleRecord;
+    headerRecord: string;
     queryString: string;
     queryNumber: number;
     queryRecord: string;
+    xRSDParamContentType: string;
     simpleRecord: SimpleRecord;
 }
 
@@ -61,19 +62,23 @@ export interface HeaderParameterTypesMultiHeaderParamOptNilRequest {
 }
 
 export interface HeaderParameterTypesRecordHeaderParamRequest {
-    headerValue: SimpleRecord;
+    headerValue: string;
+    xRSDParamContentType: string;
 }
 
 export interface HeaderParameterTypesRecordHeaderParamNilRequest {
-    headerValue: SimpleRecord | null;
+    headerValue: string | null;
+    xRSDParamContentType: string;
 }
 
 export interface HeaderParameterTypesRecordHeaderParamOptRequest {
-    headerValue?: SimpleRecord;
+    xRSDParamContentType: string;
+    headerValue?: string;
 }
 
 export interface HeaderParameterTypesRecordHeaderParamOptNilRequest {
-    headerValue?: SimpleRecord | null;
+    xRSDParamContentType: string;
+    headerValue?: string | null;
 }
 
 export interface HeaderParameterTypesSimpleBooleanHeaderParamRequest {
@@ -349,6 +354,13 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling headerParameterTypesMixed().'
+            );
+        }
+
         if (requestParameters['simpleRecord'] == null) {
             throw new runtime.RequiredError(
                 'simpleRecord',
@@ -384,6 +396,10 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
 
         if (requestParameters['headerRecord'] != null) {
             headerParameters['headerRecord'] = String(requestParameters['headerRecord']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 
@@ -640,12 +656,23 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling headerParameterTypesRecordHeaderParam().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
             headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 
@@ -688,12 +715,23 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling headerParameterTypesRecordHeaderParamNil().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
             headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 
@@ -729,12 +767,23 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
      * Creates request options for headerParameterTypesRecordHeaderParamOpt without sending the request
      */
     async headerParameterTypesRecordHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesRecordHeaderParamOptRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling headerParameterTypesRecordHeaderParamOpt().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
             headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 
@@ -761,7 +810,7 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async headerParameterTypesRecordHeaderParamOpt(requestParameters: HeaderParameterTypesRecordHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+    async headerParameterTypesRecordHeaderParamOpt(requestParameters: HeaderParameterTypesRecordHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
         const response = await this.headerParameterTypesRecordHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -770,12 +819,23 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
      * Creates request options for headerParameterTypesRecordHeaderParamOptNil without sending the request
      */
     async headerParameterTypesRecordHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesRecordHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling headerParameterTypesRecordHeaderParamOptNil().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
             headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 
@@ -802,7 +862,7 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async headerParameterTypesRecordHeaderParamOptNil(requestParameters: HeaderParameterTypesRecordHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+    async headerParameterTypesRecordHeaderParamOptNil(requestParameters: HeaderParameterTypesRecordHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
         const response = await this.headerParameterTypesRecordHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }

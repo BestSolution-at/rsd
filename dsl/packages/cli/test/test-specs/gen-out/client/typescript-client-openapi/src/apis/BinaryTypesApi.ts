@@ -19,7 +19,6 @@ import type {
   BinaryTypesUploadMixedOptNilRequest,
   BinaryTypesUploadMixedOptRequest,
   BinaryTypesUploadMixedRequest,
-  SimpleRecord,
   UploadMixedResult,
 } from '../models/index.js';
 import {
@@ -31,8 +30,6 @@ import {
     BinaryTypesUploadMixedOptRequestToJSON,
     BinaryTypesUploadMixedRequestFromJSON,
     BinaryTypesUploadMixedRequestToJSON,
-    SimpleRecordFromJSON,
-    SimpleRecordToJSON,
     UploadMixedResultFromJSON,
     UploadMixedResultToJSON,
 } from '../models/index.js';
@@ -42,10 +39,11 @@ export interface BinaryTypesMixedRequest {
     pathNumber: number;
     headerString: string;
     headerNumber: number;
-    headerRecord: SimpleRecord;
+    headerRecord: string;
     queryString: string;
     queryNumber: number;
     queryRecord: string;
+    xRSDParamContentType: string;
     body: any | null;
 }
 
@@ -276,6 +274,13 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling binaryTypesMixed().'
+            );
+        }
+
         if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
                 'body',
@@ -311,6 +316,10 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         if (requestParameters['headerRecord'] != null) {
             headerParameters['headerRecord'] = String(requestParameters['headerRecord']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 

@@ -175,41 +175,49 @@ export interface ListHeaderParameterTypesListLongHeaderParamOptNilRequest {
 export interface ListHeaderParameterTypesListMultiHeaderParamRequest {
     valueA: Array<string>;
     valueB: Array<number>;
-    valueC: Array<SimpleRecord>;
+    valueC: string;
+    xRSDParamContentType: string;
 }
 
 export interface ListHeaderParameterTypesListMultiHeaderParamNilRequest {
     valueA: Array<string>;
     valueB: Array<number>;
-    valueC: Array<SimpleRecord>;
+    valueC: string | null;
+    xRSDParamContentType: string;
 }
 
 export interface ListHeaderParameterTypesListMultiHeaderParamOptRequest {
+    xRSDParamContentType: string;
     valueA?: Array<string>;
     valueB?: Array<number>;
-    valueC?: Array<SimpleRecord>;
+    valueC?: string;
 }
 
 export interface ListHeaderParameterTypesListMultiHeaderParamOptNilRequest {
+    xRSDParamContentType: string;
     valueA?: Array<string>;
     valueB?: Array<number>;
-    valueC?: Array<SimpleRecord>;
+    valueC?: string | null;
 }
 
 export interface ListHeaderParameterTypesListRecordHeaderParamRequest {
-    headerValue: Array<SimpleRecord>;
+    headerValue: string;
+    xRSDParamContentType: string;
 }
 
 export interface ListHeaderParameterTypesListRecordHeaderParamNilRequest {
-    headerValue: Array<SimpleRecord>;
+    headerValue: string | null;
+    xRSDParamContentType: string;
 }
 
 export interface ListHeaderParameterTypesListRecordHeaderParamOptRequest {
-    headerValue?: Array<SimpleRecord>;
+    xRSDParamContentType: string;
+    headerValue?: string;
 }
 
 export interface ListHeaderParameterTypesListRecordHeaderParamOptNilRequest {
-    headerValue?: Array<SimpleRecord>;
+    xRSDParamContentType: string;
+    headerValue?: string | null;
 }
 
 export interface ListHeaderParameterTypesListScalarHeaderParamRequest {
@@ -1912,6 +1920,13 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling listHeaderParameterTypesListMultiHeaderParam().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1925,7 +1940,11 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['valueC'] != null) {
-            headerParameters['valueC'] = requestParameters['valueC']!.join(runtime.COLLECTION_FORMATS["csv"]);
+            headerParameters['valueC'] = String(requestParameters['valueC']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 
@@ -1986,6 +2005,13 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling listHeaderParameterTypesListMultiHeaderParamNil().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1999,7 +2025,11 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['valueC'] != null) {
-            headerParameters['valueC'] = requestParameters['valueC']!.join(runtime.COLLECTION_FORMATS["csv"]);
+            headerParameters['valueC'] = String(requestParameters['valueC']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 
@@ -2035,6 +2065,13 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
      * Creates request options for listHeaderParameterTypesListMultiHeaderParamOpt without sending the request
      */
     async listHeaderParameterTypesListMultiHeaderParamOptRequestOpts(requestParameters: ListHeaderParameterTypesListMultiHeaderParamOptRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling listHeaderParameterTypesListMultiHeaderParamOpt().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2048,7 +2085,11 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['valueC'] != null) {
-            headerParameters['valueC'] = requestParameters['valueC']!.join(runtime.COLLECTION_FORMATS["csv"]);
+            headerParameters['valueC'] = String(requestParameters['valueC']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 
@@ -2075,7 +2116,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listHeaderParameterTypesListMultiHeaderParamOpt(requestParameters: ListHeaderParameterTypesListMultiHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
+    async listHeaderParameterTypesListMultiHeaderParamOpt(requestParameters: ListHeaderParameterTypesListMultiHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
         const response = await this.listHeaderParameterTypesListMultiHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2084,6 +2125,13 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
      * Creates request options for listHeaderParameterTypesListMultiHeaderParamOptNil without sending the request
      */
     async listHeaderParameterTypesListMultiHeaderParamOptNilRequestOpts(requestParameters: ListHeaderParameterTypesListMultiHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling listHeaderParameterTypesListMultiHeaderParamOptNil().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2097,7 +2145,11 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['valueC'] != null) {
-            headerParameters['valueC'] = requestParameters['valueC']!.join(runtime.COLLECTION_FORMATS["csv"]);
+            headerParameters['valueC'] = String(requestParameters['valueC']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 
@@ -2124,7 +2176,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listHeaderParameterTypesListMultiHeaderParamOptNil(requestParameters: ListHeaderParameterTypesListMultiHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
+    async listHeaderParameterTypesListMultiHeaderParamOptNil(requestParameters: ListHeaderParameterTypesListMultiHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
         const response = await this.listHeaderParameterTypesListMultiHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2140,12 +2192,23 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling listHeaderParameterTypesListRecordHeaderParam().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
+            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 
@@ -2188,12 +2251,23 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling listHeaderParameterTypesListRecordHeaderParamNil().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
+            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 
@@ -2229,12 +2303,23 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
      * Creates request options for listHeaderParameterTypesListRecordHeaderParamOpt without sending the request
      */
     async listHeaderParameterTypesListRecordHeaderParamOptRequestOpts(requestParameters: ListHeaderParameterTypesListRecordHeaderParamOptRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling listHeaderParameterTypesListRecordHeaderParamOpt().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
+            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 
@@ -2261,7 +2346,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listHeaderParameterTypesListRecordHeaderParamOpt(requestParameters: ListHeaderParameterTypesListRecordHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+    async listHeaderParameterTypesListRecordHeaderParamOpt(requestParameters: ListHeaderParameterTypesListRecordHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
         const response = await this.listHeaderParameterTypesListRecordHeaderParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2270,12 +2355,23 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
      * Creates request options for listHeaderParameterTypesListRecordHeaderParamOptNil without sending the request
      */
     async listHeaderParameterTypesListRecordHeaderParamOptNilRequestOpts(requestParameters: ListHeaderParameterTypesListRecordHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling listHeaderParameterTypesListRecordHeaderParamOptNil().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
+            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
 
@@ -2302,7 +2398,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listHeaderParameterTypesListRecordHeaderParamOptNil(requestParameters: ListHeaderParameterTypesListRecordHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+    async listHeaderParameterTypesListRecordHeaderParamOptNil(requestParameters: ListHeaderParameterTypesListRecordHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
         const response = await this.listHeaderParameterTypesListRecordHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -70,7 +70,7 @@ All URIs are relative to *http://localhost*
 
 ## headerParameterTypesMixed
 
-> headerParameterTypesMixed(pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, simpleRecord)
+> headerParameterTypesMixed(pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, xRSDParamContentType, simpleRecord)
 
 
 
@@ -98,14 +98,16 @@ async function example() {
     headerString: headerString_example,
     // number | 
     headerNumber: 8.14,
-    // SimpleRecord | 
-    headerRecord: ...,
+    // string | 
+    headerRecord: headerRecord_example,
     // string | 
     queryString: queryString_example,
     // number | 
     queryNumber: 1.2,
     // string | 
     queryRecord: queryRecord_example,
+    // string | Contains the type information for record and union types transferred in headers as a base64 blob
+    xRSDParamContentType: xRSDParamContentType_example,
     // SimpleRecord
     simpleRecord: ...,
   } satisfies HeaderParameterTypesMixedRequest;
@@ -131,10 +133,11 @@ example().catch(console.error);
 | **pathNumber** | `number` |  | [Defaults to `undefined`] |
 | **headerString** | `string` |  | [Defaults to `undefined`] |
 | **headerNumber** | `number` |  | [Defaults to `undefined`] |
-| **headerRecord** | [](.md) |  | [Defaults to `undefined`] |
+| **headerRecord** | `string` |  | [Defaults to `undefined`] |
 | **queryString** | `string` |  | [Defaults to `undefined`] |
 | **queryNumber** | `number` |  | [Defaults to `undefined`] |
 | **queryRecord** | `string` |  | [Defaults to `undefined`] |
+| **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 | **simpleRecord** | [SimpleRecord](SimpleRecord.md) |  | |
 
 ### Return type
@@ -441,7 +444,7 @@ No authorization required
 
 ## headerParameterTypesRecordHeaderParam
 
-> SimpleRecord headerParameterTypesRecordHeaderParam(headerValue)
+> SimpleRecord headerParameterTypesRecordHeaderParam(headerValue, xRSDParamContentType)
 
 
 
@@ -461,8 +464,10 @@ async function example() {
   const api = new HeaderParameterTypesApi();
 
   const body = {
-    // SimpleRecord | 
-    headerValue: ...,
+    // string | 
+    headerValue: headerValue_example,
+    // string | Contains the type information for record and union types transferred in headers as a base64 blob
+    xRSDParamContentType: xRSDParamContentType_example,
   } satisfies HeaderParameterTypesRecordHeaderParamRequest;
 
   try {
@@ -482,7 +487,8 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | [](.md) |  | [Defaults to `undefined`] |
+| **headerValue** | `string` |  | [Defaults to `undefined`] |
+| **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -508,7 +514,7 @@ No authorization required
 
 ## headerParameterTypesRecordHeaderParamNil
 
-> NilResult headerParameterTypesRecordHeaderParamNil(headerValue)
+> NilResult headerParameterTypesRecordHeaderParamNil(headerValue, xRSDParamContentType)
 
 
 
@@ -528,8 +534,10 @@ async function example() {
   const api = new HeaderParameterTypesApi();
 
   const body = {
-    // SimpleRecord | 
-    headerValue: ...,
+    // string | 
+    headerValue: headerValue_example,
+    // string | Contains the type information for record and union types transferred in headers as a base64 blob
+    xRSDParamContentType: xRSDParamContentType_example,
   } satisfies HeaderParameterTypesRecordHeaderParamNilRequest;
 
   try {
@@ -549,7 +557,8 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | [](.md) |  | [Defaults to `undefined`] |
+| **headerValue** | `string` |  | [Defaults to `undefined`] |
+| **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -575,7 +584,7 @@ No authorization required
 
 ## headerParameterTypesRecordHeaderParamOpt
 
-> NilResult headerParameterTypesRecordHeaderParamOpt(headerValue)
+> NilResult headerParameterTypesRecordHeaderParamOpt(xRSDParamContentType, headerValue)
 
 
 
@@ -595,8 +604,10 @@ async function example() {
   const api = new HeaderParameterTypesApi();
 
   const body = {
-    // SimpleRecord |  (optional)
-    headerValue: ...,
+    // string | Contains the type information for record and union types transferred in headers as a base64 blob
+    xRSDParamContentType: xRSDParamContentType_example,
+    // string |  (optional)
+    headerValue: headerValue_example,
   } satisfies HeaderParameterTypesRecordHeaderParamOptRequest;
 
   try {
@@ -616,7 +627,8 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | [](.md) |  | [Optional] [Defaults to `undefined`] |
+| **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
+| **headerValue** | `string` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -642,7 +654,7 @@ No authorization required
 
 ## headerParameterTypesRecordHeaderParamOptNil
 
-> NilResult headerParameterTypesRecordHeaderParamOptNil(headerValue)
+> NilResult headerParameterTypesRecordHeaderParamOptNil(xRSDParamContentType, headerValue)
 
 
 
@@ -662,8 +674,10 @@ async function example() {
   const api = new HeaderParameterTypesApi();
 
   const body = {
-    // SimpleRecord |  (optional)
-    headerValue: ...,
+    // string | Contains the type information for record and union types transferred in headers as a base64 blob
+    xRSDParamContentType: xRSDParamContentType_example,
+    // string |  (optional)
+    headerValue: headerValue_example,
   } satisfies HeaderParameterTypesRecordHeaderParamOptNilRequest;
 
   try {
@@ -683,7 +697,8 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | [](.md) |  | [Optional] [Defaults to `undefined`] |
+| **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
+| **headerValue** | `string` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

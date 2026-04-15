@@ -11,8 +11,7 @@ public class MixHandlerImpl implements HeaderParameterTypesServiceImpl.MixedHand
 	@Override
 	public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber,
 			Data headerRecord, Data body, String queryString, double queryNumber, Data queryRecord) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'mixed'");
+
 	}
 
 }

@@ -150,7 +150,7 @@ No authorization required
 
 ## binaryTypesMixed
 
-> binaryTypesMixed(pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, body)
+> binaryTypesMixed(pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, xRSDParamContentType, body)
 
 
 
@@ -178,14 +178,16 @@ async function example() {
     headerString: headerString_example,
     // number | 
     headerNumber: 8.14,
-    // SimpleRecord | 
-    headerRecord: ...,
+    // string | 
+    headerRecord: headerRecord_example,
     // string | 
     queryString: queryString_example,
     // number | 
     queryNumber: 8.14,
     // string | 
     queryRecord: queryRecord_example,
+    // string | Contains the type information for record and union types transferred in headers as a base64 blob
+    xRSDParamContentType: xRSDParamContentType_example,
     // any
     body: ...,
   } satisfies BinaryTypesMixedRequest;
@@ -211,10 +213,11 @@ example().catch(console.error);
 | **pathNumber** | `number` |  | [Defaults to `undefined`] |
 | **headerString** | `string` |  | [Defaults to `undefined`] |
 | **headerNumber** | `number` |  | [Defaults to `undefined`] |
-| **headerRecord** | [](.md) |  | [Defaults to `undefined`] |
+| **headerRecord** | `string` |  | [Defaults to `undefined`] |
 | **queryString** | `string` |  | [Defaults to `undefined`] |
 | **queryNumber** | `number` |  | [Defaults to `undefined`] |
 | **queryRecord** | `string` |  | [Defaults to `undefined`] |
+| **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 | **body** | `any` |  | |
 
 ### Return type
