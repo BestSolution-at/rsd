@@ -362,7 +362,10 @@ function generateOpertationMethod(
 		const IOException = fqn('java.io.IOException');
 
 		if (o.parameters.find(p => p.variant === 'stream')) {
-			methodBody.append('try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {', NL);
+			methodBody.append('try {', NL);
+			methodBody.indent(tryBlock => {
+				tryBlock.append('var $formDataBuilder = RSDFormDataPublisherBuilder.create();', NL);
+			});
 		} else {
 			methodBody.append('try {', NL);
 		}

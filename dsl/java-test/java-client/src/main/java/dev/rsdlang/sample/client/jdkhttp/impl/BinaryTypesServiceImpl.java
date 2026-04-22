@@ -53,7 +53,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			$formDataBuilder.addBlob("data", data);
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
@@ -80,7 +81,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -106,7 +108,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			if (data != null) {
 				$formDataBuilder.addBlob("data", data);
 			}
@@ -135,7 +138,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			if (data != null) {
 				$formDataBuilder.addBlob("data", data);
 			}
@@ -164,7 +168,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -190,7 +195,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			if (data != null) {
 				$formDataBuilder.addBlob("data", data);
 			} else {
@@ -224,7 +230,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			$formDataBuilder.addBlob("data", data);
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
@@ -251,7 +258,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -277,7 +285,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			if (data != null) {
 				$formDataBuilder.addBlob("data", data);
 			}
@@ -306,7 +315,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			if (data != null) {
 				$formDataBuilder.addBlob("data", data);
 			}
@@ -335,7 +345,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -361,7 +372,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			if (data != null) {
 				$formDataBuilder.addBlob("data", data);
 			} else {
@@ -395,7 +407,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			data.forEach($b -> $formDataBuilder.addBlob("data", $b));
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
@@ -422,7 +435,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -448,7 +462,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			if (data != null) {
 				data.forEach($b -> $formDataBuilder.addBlob("data", $b));
 			}
@@ -477,7 +492,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			if (data != null) {
 				data.forEach($b -> $formDataBuilder.addBlob("data", $b));
 			}
@@ -506,7 +522,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -532,7 +549,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			if (data != null) {
 				data.forEach($b -> $formDataBuilder.addBlob("data", $b));
 			} else {
@@ -566,7 +584,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			data.forEach($b -> $formDataBuilder.addBlob("data", $b));
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
@@ -593,7 +612,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -619,7 +639,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			if (data != null) {
 				data.forEach($b -> $formDataBuilder.addBlob("data", $b));
 			}
@@ -648,7 +669,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			if (data != null) {
 				data.forEach($b -> $formDataBuilder.addBlob("data", $b));
 			}
@@ -677,7 +699,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -703,7 +726,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			if (data != null) {
 				data.forEach($b -> $formDataBuilder.addBlob("data", $b));
 			} else {
@@ -742,7 +766,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			$jsonPayload.add("text", text);
 			$jsonPayload.add("number", number);
@@ -778,7 +803,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
@@ -806,7 +832,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -837,7 +864,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -871,7 +899,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -908,7 +937,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -948,7 +978,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -991,7 +1022,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -1037,7 +1069,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -1086,7 +1119,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -1138,7 +1172,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -1208,7 +1243,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
 			var $formData = $formDataBuilder.build();
@@ -1236,7 +1272,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -1270,7 +1307,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -1310,7 +1348,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -1356,7 +1395,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -1408,7 +1448,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -1466,7 +1507,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -1530,7 +1572,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -1600,7 +1643,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.baseURI());
 
 		var $uri = URI.create($path);
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			if (text != null) {
 				$jsonPayload.add("text", text);
@@ -1696,7 +1740,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
-		try (var $formDataBuilder = RSDFormDataPublisherBuilder.create()) {
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
 			$formDataBuilder.addBlob("dataBlob", dataBlob);
 			$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());
