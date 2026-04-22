@@ -2,11 +2,13 @@
 package dev.rsdlang.sample.client.jdkhttp.impl.model;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.format.DateTimeFormatter;
@@ -1931,7 +1933,7 @@ public class _JsonUtils {
 
 
 	private static JsonValue decodeJsonValue(InputStream stream) {
-		try (var reader = Json.createReader(stream)) {
+		try (var reader = Json.createReader(new InputStreamReader(stream, StandardCharsets.UTF_8))) {
 			return reader.readValue();
 		}
 	}

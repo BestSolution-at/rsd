@@ -36,9 +36,11 @@ function generateJsonDecodeValueFunction(fqn: (t: string) => string): CompositeG
 	const InputStream = fqn('java.io.InputStream');
 	const JsonValue = fqn('jakarta.json.JsonValue');
 	const Json = fqn('jakarta.json.Json');
+	const InputStreamReader = fqn('java.io.InputStreamReader');
+	const StandardCharsets = fqn('java.nio.charset.StandardCharsets');
 	return toNodeTree(`
 private static ${JsonValue} decodeJsonValue(${InputStream} stream) {
-	try (var reader = ${Json}.createReader(stream)) {
+	try (var reader = ${Json}.createReader(new ${InputStreamReader}(stream, ${StandardCharsets}.UTF_8))) {
 		return reader.readValue();
 	}
 }`);
