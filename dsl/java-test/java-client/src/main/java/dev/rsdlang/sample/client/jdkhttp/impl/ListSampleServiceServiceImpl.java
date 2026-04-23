@@ -320,7 +320,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of);
+				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
@@ -343,7 +343,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of);
+				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 			} else if ($response.statusCode() == 400) {
 				throw new SampleErrorException(ServiceUtils.toString($response));
 			}

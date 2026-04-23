@@ -203,7 +203,7 @@ function _generateResource(
 						const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
 						const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
 						mBody.append(
-							`var $payloadJson = ${_JsonUtils}.parseValue($_payload.filePath(), $_payload.contentType()).asJsonObject();`,
+							`var $payloadJson = ${_JsonUtils}.parseValue($_payload.filePath(), $_payload.contentType(), ${_JsonUtils}.TypeInfo.value(${Type}.class)).asJsonObject();`,
 							NL,
 						);
 						mBody.append(`var $payload = new ${Type}($payloadJson);`, NL);
@@ -479,7 +479,7 @@ function generateResourceMethod(
 		if (multiBody) {
 			const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
 			const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
-			mBody.append(`var dto = ${_JsonUtils}.parseObject(data, ${contentTypeText}, ${Type}::new);`, NL);
+			mBody.append(`var dto = ${_JsonUtils}.parseObject(data, ${contentTypeText}, ${Type}::new, ${Type}.class);`, NL);
 		}
 		if (artifactConfig.scopeValues) {
 			artifactConfig.scopeValues.forEach(v => {
@@ -706,22 +706,22 @@ function recordUnionParameter(
 		if (asJSON) {
 			if (p.optional && p.nullable) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseNilObjects(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseNilObjects(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class);`,
 					NL,
 				);
 			} else if (p.optional) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseOptObjects(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseOptObjects(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class);`,
 					NL,
 				);
 			} else if (p.nullable) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseNullObjects(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseNullObjects(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class);`,
 					NL,
 				);
 			} else {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseObjects(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseObjects(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class);`,
 					NL,
 				);
 			}
@@ -729,44 +729,44 @@ function recordUnionParameter(
 			if (p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'query') {
 				if (p.optional && p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapNilObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapNilObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else if (p.optional) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapOptObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapOptObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else if (p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapNullObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapNullObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`var ${p.name} = _RestUtils.mapObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				}
 			} else {
 				if (p.optional && p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapNilObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapNilObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else if (p.optional) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapOptObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapOptObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else if (p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.mapNullObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapNullObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`var ${p.name} = _RestUtils.mapObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.mapObjects(_${p.name}, $o -> ${_JsonUtils}.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				}
@@ -776,22 +776,22 @@ function recordUnionParameter(
 		if (asJSON) {
 			if (p.optional && p.nullable) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseNilObject(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseNilObject(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class);`,
 					NL,
 				);
 			} else if (p.optional) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseOptObject(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseOptObject(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class);`,
 					NL,
 				);
 			} else if (p.nullable) {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseNullObject(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseNullObject(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class);`,
 					NL,
 				);
 			} else {
 				node.append(
-					`var ${p.name} = ${_JsonUtils}.parseObject(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j));`,
+					`var ${p.name} = ${_JsonUtils}.parseObject(_${p.name}, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class);`,
 					NL,
 				);
 			}
@@ -799,44 +799,44 @@ function recordUnionParameter(
 			if (p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'query') {
 				if (p.optional && p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else if (p.optional) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseOptObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseOptObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else if (p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseNullObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseNullObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`var ${p.name} = _RestUtils.parseObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				}
 			} else {
 				if (p.optional && p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> _JsonUtils.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> _JsonUtils.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else if (p.optional) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseOptObject(_${p.name}, $o -> _JsonUtils.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseOptObject(_${p.name}, $o -> _JsonUtils.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else if (p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseNullObject(_${p.name}, $o -> _JsonUtils.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseNullObject(_${p.name}, $o -> _JsonUtils.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`var ${p.name} = _RestUtils.parseObject(_${p.name}, $o -> _JsonUtils.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j)));`,
+						`var ${p.name} = _RestUtils.parseObject(_${p.name}, $o -> _JsonUtils.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				}

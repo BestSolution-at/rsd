@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListHeaderParameterTypesService;
@@ -2279,7 +2278,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
-		$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
+		$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2403,7 +2402,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
 		}
 		if(valueC != null) {
-			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2445,7 +2444,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			$headerParams.put("valueB", "null");
 		}
 		if(valueC != null) {
-			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
 		}
@@ -2582,7 +2581,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			$headerParams.put("valueB", "null");
 		}
 		if(valueC != null) {
-			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
 		}
@@ -2617,7 +2616,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2634,7 +2633,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of);
+				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
@@ -2670,7 +2669,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2702,7 +2701,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -2758,7 +2757,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(_JsonUtils.encodeValue($v, this.contentType()))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}

@@ -41,6 +41,75 @@ import org.msgpack.core.MessagePacker;
 import org.msgpack.core.MessagePackException;
 
 public class _JsonUtils {
+	public static class TypeInfo<T> {
+		public final Class<T> type;
+		public final boolean optional;
+		public final boolean nullable;
+		public final boolean multi;
+
+		public static <T> TypeInfo<T> value(Class<T> type) {
+			return new TypeInfo<>(type, false, false, false);
+		}
+
+		public static <T> TypeInfo<T> list(Class<T> type) {
+			return new TypeInfo<>(type, false, false, true);
+		}
+
+		public static <T> TypeInfo<T> nullable(Class<T> type) {
+			return new TypeInfo<>(type, false, true, false);
+		}
+
+		public static <T> TypeInfo<T> nullableList(Class<T> type) {
+			return new TypeInfo<>(type, false, true, true);
+		}
+
+		public static <T> TypeInfo<T> optional(Class<T> type) {
+			return new TypeInfo<>(type, true, false, false);
+		}
+
+		public static <T> TypeInfo<T> optionalList(Class<T> type) {
+			return new TypeInfo<>(type, true, false, true);
+		}
+
+		public static <T> TypeInfo<T> nillable(Class<T> type) {
+			return new TypeInfo<>(type, true, true, false);
+		}
+
+		public static <T> TypeInfo<T> nillableList(Class<T> type) {
+			return new TypeInfo<>(type, true, true, true);
+		}
+
+		private TypeInfo(Class<T> type, boolean optional, boolean nullable, boolean multi) {
+			this.type = type;
+			this.optional = optional;
+			this.nullable = nullable;
+			this.multi = multi;
+		}
+
+		public TypeInfo<T> withOptional() {
+			return new TypeInfo<>(type, true, nullable, multi);
+		}
+
+		public TypeInfo<T> withNullable() {
+			return new TypeInfo<>(type, optional, true, multi);
+		}
+
+		public TypeInfo<T> withMulti() {
+			return new TypeInfo<>(type, optional, nullable, true);
+		}
+
+		public TypeInfo<T> withNillable() {
+			return new TypeInfo<>(type, true, true, multi);
+		}
+
+		public static final TypeInfo<Boolean> BOOLEAN = TypeInfo.value(Boolean.class);
+		public static final TypeInfo<Short> SHORT = TypeInfo.value(Short.class);
+		public static final TypeInfo<Integer> INTEGER = TypeInfo.value(Integer.class);
+		public static final TypeInfo<Long> LONG = TypeInfo.value(Long.class);
+		public static final TypeInfo<Float> FLOAT = TypeInfo.value(Float.class);
+		public static final TypeInfo<Double> DOUBLE = TypeInfo.value(Double.class);
+		public static final TypeInfo<String> STRING = TypeInfo.value(String.class);
+	}
 
 	private static final Optional<Boolean> OPTIONAL_FALSE = Optional.of(Boolean.FALSE);
 	private static final Optional<Boolean> OPTIONAL_TRUE = Optional.of(Boolean.TRUE);
@@ -793,7 +862,7 @@ public class _JsonUtils {
 	}
 
 	// ----------------
-	public static void encodeValue(OutputStream stream, Object data, String contentType) {
+	public static void encodeValue(OutputStream stream, Object data, String contentType, TypeInfo<?> typeInfo) {
 		switch (contentType) {
 			case "application/json":
 				encodeJsonValue(stream, data);
@@ -806,7 +875,7 @@ public class _JsonUtils {
 		}
 	}
 
-	public static byte[] encodeValue(Object data, String contentType) {
+	public static byte[] encodeValue(Object data, String contentType, TypeInfo<?> typeInfo) {
 		return switch (contentType) {
 			case "application/json" -> encodeJsonValue(data);
 			case "application/vnd.msgpack" -> encodeMsgPackValue(data);
@@ -1024,25 +1093,42 @@ public class _JsonUtils {
 		}
 	}
 
-	private static <T> List<T> parseListStream(InputStream inputStream, String contentType,
-			Function<JsonValue, T> mapper) {
-		var value = decodeValue(inputStream, contentType);
+	private static <T> List<T> parseListStream(
+			InputStream inputStream, 
+			String contentType,
+			Function<JsonValue, T> mapper, 
+			TypeInfo<?> typeInfo) {
+		var value = decodeValue(inputStream, contentType, typeInfo);
 		if (value.getValueType() != JsonValue.ValueType.ARRAY) {
 			throw new IllegalArgumentException("Expected array value, but got: " + value);
 		}
 		return ((JsonArray) value).stream().map(mapper).toList();
 	}
 
-	private static <T> Optional<List<T>> parseOptListStream(InputStream inputStream, String contentType,
-			Function<JsonValue, T> mapper) {
+	private static <T> List<T> parseListStream(
+			InputStream inputStream, 
+			String contentType,
+			Function<JsonValue, T> mapper, 
+			Class<?> type) {
+		return parseListStream(inputStream, contentType, mapper, TypeInfo.list(type));
+	}
+
+	private static <T> Optional<List<T>> parseOptListStream(
+			InputStream inputStream, 
+			String contentType,
+			Function<JsonValue, T> mapper,
+			Class<?> type) {
 		return parseOptStream(inputStream, is -> {
-			return Optional.of(parseListStream(is, contentType, mapper));
+			return Optional.of(parseListStream(is, contentType, mapper, type));
 		});
 	}
 
-	private static <T> Optional<List<T>> parseNullListStream(InputStream inputStream, String contentType,
-			Function<JsonValue, T> mapper) {
-		var value = decodeValue(inputStream, contentType);
+	private static <T> Optional<List<T>> parseNullListStream(
+			InputStream inputStream, 
+			String contentType,
+			Function<JsonValue, T> mapper,
+			Class<?> type) {
+		var value = decodeValue(inputStream, contentType, TypeInfo.nullableList(type));
 		if (value.getValueType() == JsonValue.ValueType.NULL) {
 			return Optional.empty();
 		} else if (value.getValueType() == JsonValue.ValueType.ARRAY) {
@@ -1051,10 +1137,13 @@ public class _JsonUtils {
 		throw new IllegalArgumentException("Expected array value or null, but got: " + value);
 	}
 
-	private static <T> _Base.Nillable<List<T>> parseNilListStream(InputStream inputStream, String contentType,
-			Function<JsonValue, T> mapper) {
+	private static <T> _Base.Nillable<List<T>> parseNilListStream(
+			InputStream inputStream, 
+			String contentType,
+			Function<JsonValue, T> mapper,
+			Class<?> type) {
 		return parseNilStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.nullableList(type));
 			if (value.getValueType() == JsonValue.ValueType.NULL) {
 				return _NillableImpl.nill();
 			} else if (value.getValueType() == JsonValue.ValueType.ARRAY) {
@@ -1067,7 +1156,7 @@ public class _JsonUtils {
 	// ----------------
 
 	public static boolean parseBoolean(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.BOOLEAN);
 		if (value.getValueType() != JsonValue.ValueType.TRUE
 				&& value.getValueType() != JsonValue.ValueType.FALSE) {
 			throw new IllegalArgumentException("Expected boolean value, but got: " + value);
@@ -1076,7 +1165,7 @@ public class _JsonUtils {
 	}
 
 	private static Boolean parseBooleanNull(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.BOOLEAN.withNullable());
 		if (value.getValueType() == JsonValue.ValueType.TRUE) {
 			return Boolean.TRUE;
 		} else if (value.getValueType() == JsonValue.ValueType.FALSE) {
@@ -1089,7 +1178,7 @@ public class _JsonUtils {
 
 	public static Optional<Boolean> parseOptBoolean(InputStream inputStream, String contentType) {
 		return parseOptStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.BOOLEAN);
 			if (value.getValueType() == JsonValue.ValueType.TRUE) {
 				return OPTIONAL_TRUE;
 			} else if (value.getValueType() == JsonValue.ValueType.FALSE) {
@@ -1131,7 +1220,7 @@ public class _JsonUtils {
 				return Boolean.FALSE;
 			}
 			throw new IllegalArgumentException("Expected boolean value, but got: " + v);
-		});
+		}, Boolean.class);
 	}
 
 	public static Optional<List<Boolean>> parseOptBooleans(InputStream inputStream, String contentType) {
@@ -1142,7 +1231,7 @@ public class _JsonUtils {
 				return Boolean.FALSE;
 			}
 			throw new IllegalArgumentException("Expected boolean value, but got: " + v);
-		});
+		}, Boolean.class);
 	}
 
 	public static Optional<List<Boolean>> parseNullBooleans(InputStream inputStream, String contentType) {
@@ -1153,7 +1242,7 @@ public class _JsonUtils {
 				return Boolean.FALSE;
 			}
 			throw new IllegalArgumentException("Expected boolean value, but got: " + v);
-		});
+		}, Boolean.class);
 	}
 
 	public static _Base.Nillable<List<Boolean>> parseNilBooleans(InputStream inputStream, String contentType) {
@@ -1164,12 +1253,12 @@ public class _JsonUtils {
 				return Boolean.FALSE;
 			}
 			throw new IllegalArgumentException("Expected boolean value, but got: " + v);
-		});
+		}, Boolean.class);
 	}
 
 	// ----------------
 	public static short parseShort(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.SHORT);
 		if (value.getValueType() != JsonValue.ValueType.NUMBER) {
 			throw new IllegalArgumentException("Expected number value, but got: " + value);
 		}
@@ -1178,7 +1267,7 @@ public class _JsonUtils {
 
 	public static Optional<Short> parseOptShort(InputStream inputStream, String contentType) {
 		return parseOptStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.SHORT);
 			if (value.getValueType() != JsonValue.ValueType.NUMBER) {
 				throw new IllegalArgumentException("Expected number value, but got: " + value);
 			}
@@ -1187,7 +1276,7 @@ public class _JsonUtils {
 	}
 
 	public static Optional<Short> parseNullShort(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.SHORT.withNullable());
 		if (value.getValueType() == JsonValue.ValueType.NULL) {
 			return Optional.empty();
 		} else if (value.getValueType() == JsonValue.ValueType.NUMBER) {
@@ -1198,7 +1287,7 @@ public class _JsonUtils {
 
 	public static _Base.Nillable<Short> parseNilShort(InputStream inputStream, String contentType) {
 		return parseNilStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.SHORT.withNullable());
 			if (value.getValueType() == JsonValue.ValueType.NULL) {
 				return _NillableImpl.nill();
 			} else if (value.getValueType() == JsonValue.ValueType.NUMBER) {
@@ -1214,7 +1303,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return (short) ((JsonNumber) v).intValue();
-		});
+		}, Short.class);
 	}
 
 	public static Optional<List<Short>> parseOptShorts(InputStream inputStream, String contentType) {
@@ -1223,7 +1312,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return (short) ((JsonNumber) v).intValue();
-		});
+		}, Short.class);
 	}
 
 	public static Optional<List<Short>> parseNullShorts(InputStream inputStream, String contentType) {
@@ -1232,7 +1321,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return (short) ((JsonNumber) v).intValue();
-		});
+		}, Short.class);
 	}
 
 	public static _Base.Nillable<List<Short>> parseNilShorts(InputStream inputStream, String contentType) {
@@ -1241,12 +1330,12 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return (short) ((JsonNumber) v).intValue();
-		});
+		}, Short.class);
 	}
 
 	// ----------------
 	public static int parseInt(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.INTEGER);
 		if (value.getValueType() != JsonValue.ValueType.NUMBER) {
 			throw new IllegalArgumentException("Expected number value, but got: " + value);
 		}
@@ -1269,7 +1358,7 @@ public class _JsonUtils {
 	}
 
 	public static OptionalInt parseNullInt(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.INTEGER.withNullable());
 		if (value.getValueType() == JsonValue.ValueType.NULL) {
 			return OptionalInt.empty();
 		} else if (value.getValueType() == JsonValue.ValueType.NUMBER) {
@@ -1280,7 +1369,7 @@ public class _JsonUtils {
 
 	public static _Base.Nillable<Integer> parseNilInt(InputStream inputStream, String contentType) {
 		return parseNilStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.INTEGER.withNullable());
 			if (value.getValueType() == JsonValue.ValueType.NULL) {
 				return _NillableImpl.nill();
 			} else if (value.getValueType() == JsonValue.ValueType.NUMBER) {
@@ -1296,7 +1385,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return ((JsonNumber) v).intValue();
-		});
+		}, Integer.class);
 	}
 
 	public static Optional<List<Integer>> parseOptInts(InputStream inputStream, String contentType) {
@@ -1305,7 +1394,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return ((JsonNumber) v).intValue();
-		});
+		}, Integer.class);
 	}
 
 	public static Optional<List<Integer>> parseNullInts(InputStream inputStream, String contentType) {
@@ -1314,7 +1403,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return ((JsonNumber) v).intValue();
-		});
+		}, Integer.class);
 	}
 
 	public static _Base.Nillable<List<Integer>> parseNilInts(InputStream inputStream, String contentType) {
@@ -1323,12 +1412,12 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return ((JsonNumber) v).intValue();
-		});
+		}, Integer.class);
 	}
 
 	// ----------------
 	public static long parseLong(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.LONG);
 		if (value.getValueType() != JsonValue.ValueType.NUMBER) {
 			throw new IllegalArgumentException("Expected number value, but got: " + value);
 		}
@@ -1351,7 +1440,7 @@ public class _JsonUtils {
 	}
 
 	public static OptionalLong parseNullLong(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.LONG.withNullable());
 		if (value.getValueType() == JsonValue.ValueType.NULL) {
 			return OptionalLong.empty();
 		} else if (value.getValueType() == JsonValue.ValueType.NUMBER) {
@@ -1362,7 +1451,7 @@ public class _JsonUtils {
 
 	public static _Base.Nillable<Long> parseNilLong(InputStream inputStream, String contentType) {
 		return parseNilStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.LONG.withNullable());
 			if (value.getValueType() == JsonValue.ValueType.NULL) {
 				return _NillableImpl.nill();
 			} else if (value.getValueType() == JsonValue.ValueType.NUMBER) {
@@ -1378,7 +1467,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return ((JsonNumber) v).longValue();
-		});
+		}, Long.class);
 	}
 
 	public static Optional<List<Long>> parseOptLongs(InputStream inputStream, String contentType) {
@@ -1387,7 +1476,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return ((JsonNumber) v).longValue();
-		});
+		}, Long.class);
 	}
 
 	public static Optional<List<Long>> parseNullLongs(InputStream inputStream, String contentType) {
@@ -1396,7 +1485,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return ((JsonNumber) v).longValue();
-		});
+		}, Long.class);
 	}
 
 	public static _Base.Nillable<List<Long>> parseNilLongs(InputStream inputStream, String contentType) {
@@ -1405,12 +1494,12 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return ((JsonNumber) v).longValue();
-		});
+		}, Long.class);
 	}
 
 	// ----------------
 	public static double parseDouble(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.DOUBLE);
 		if (value.getValueType() != JsonValue.ValueType.NUMBER) {
 			throw new IllegalArgumentException("Expected number value, but got: " + value);
 		}
@@ -1433,7 +1522,7 @@ public class _JsonUtils {
 	}
 
 	public static OptionalDouble parseNullDouble(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.DOUBLE.withNullable());
 		if (value.getValueType() == JsonValue.ValueType.NULL) {
 			return OptionalDouble.empty();
 		} else if (value.getValueType() == JsonValue.ValueType.NUMBER) {
@@ -1444,7 +1533,7 @@ public class _JsonUtils {
 
 	public static _Base.Nillable<Double> parseNilDouble(InputStream inputStream, String contentType) {
 		return parseNilStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.DOUBLE.withNullable());
 			if (value.getValueType() == JsonValue.ValueType.NULL) {
 				return _NillableImpl.nill();
 			} else if (value.getValueType() == JsonValue.ValueType.NUMBER) {
@@ -1460,7 +1549,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return ((JsonNumber) v).doubleValue();
-		});
+		}, Double.class);
 	}
 
 	public static Optional<List<Double>> parseOptDoubles(InputStream inputStream, String contentType) {
@@ -1469,7 +1558,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return ((JsonNumber) v).doubleValue();
-		});
+		}, Double.class);
 	}
 
 	public static Optional<List<Double>> parseNullDoubles(InputStream inputStream, String contentType) {
@@ -1478,7 +1567,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return ((JsonNumber) v).doubleValue();
-		});
+		}, Double.class);
 	}
 
 	public static _Base.Nillable<List<Double>> parseNilDoubles(InputStream inputStream, String contentType) {
@@ -1487,12 +1576,12 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return ((JsonNumber) v).doubleValue();
-		});
+		}, Double.class);
 	}
 
 	// ----------------
 	public static Float parseFloat(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.FLOAT);
 		if (value.getValueType() != JsonValue.ValueType.NUMBER) {
 			throw new IllegalArgumentException("Expected number value, but got: " + value);
 		}
@@ -1501,7 +1590,7 @@ public class _JsonUtils {
 
 	public static Optional<Float> parseOptFloat(InputStream inputStream, String contentType) {
 		return parseOptStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.FLOAT);
 			if (value.getValueType() != JsonValue.ValueType.NUMBER) {
 				throw new IllegalArgumentException("Expected number value, but got: " + value);
 			}
@@ -1510,7 +1599,7 @@ public class _JsonUtils {
 	}
 
 	public static Optional<Float> parseNullFloat(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.FLOAT.withNullable());
 		if (value.getValueType() == JsonValue.ValueType.NULL) {
 			return Optional.empty();
 		} else if (value.getValueType() == JsonValue.ValueType.NUMBER) {
@@ -1521,7 +1610,7 @@ public class _JsonUtils {
 
 	public static _Base.Nillable<Float> parseNilFloat(InputStream inputStream, String contentType) {
 		return parseNilStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.FLOAT.withNullable());
 			if (value.getValueType() == JsonValue.ValueType.NULL) {
 				return _NillableImpl.nill();
 			} else if (value.getValueType() == JsonValue.ValueType.NUMBER) {
@@ -1537,7 +1626,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return (float) ((JsonNumber) v).doubleValue();
-		});
+		}, Float.class);
 	}
 
 	public static Optional<List<Float>> parseOptFloats(InputStream inputStream, String contentType) {
@@ -1546,7 +1635,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return (float) ((JsonNumber) v).doubleValue();
-		});
+		}, Float.class);
 	}
 
 	public static Optional<List<Float>> parseNullFloats(InputStream inputStream, String contentType) {
@@ -1555,7 +1644,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return (float) ((JsonNumber) v).doubleValue();
-		});
+		}, Float.class);
 	}
 
 	public static _Base.Nillable<List<Float>> parseNilFloats(InputStream inputStream, String contentType) {
@@ -1564,12 +1653,12 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected number value, but got: " + v);
 			}
 			return (float) ((JsonNumber) v).doubleValue();
-		});
+		}, Float.class);
 	}
 
 	// ----------------
 	public static String parseString(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.STRING);
 		if (value.getValueType() != JsonValue.ValueType.STRING) {
 			throw new IllegalArgumentException("Expected string value, but got: " + value);
 		}
@@ -1578,7 +1667,7 @@ public class _JsonUtils {
 
 	public static Optional<String> parseOptString(InputStream inputStream, String contentType) {
 		return parseOptStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.STRING);
 			if (value.getValueType() != JsonValue.ValueType.STRING) {
 				throw new IllegalArgumentException("Expected string value, but got: " + value);
 			}
@@ -1587,7 +1676,7 @@ public class _JsonUtils {
 	}
 
 	public static Optional<String> parseNullString(InputStream inputStream, String contentType) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.STRING.withNullable());
 		if (value.getValueType() == JsonValue.ValueType.NULL) {
 			return Optional.empty();
 		} else if (value.getValueType() == JsonValue.ValueType.STRING) {
@@ -1598,7 +1687,7 @@ public class _JsonUtils {
 
 	public static _Base.Nillable<String> parseNilString(InputStream inputStream, String contentType) {
 		return parseNilStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.STRING.withNullable());
 			if (value.getValueType() == JsonValue.ValueType.NULL) {
 				return _NillableImpl.nill();
 			} else if (value.getValueType() == JsonValue.ValueType.STRING) {
@@ -1614,7 +1703,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected string value, but got: " + v);
 			}
 			return ((JsonString) v).getString();
-		});
+		}, String.class);
 	}
 
 	public static Optional<List<String>> parseOptStrings(InputStream inputStream, String contentType) {
@@ -1623,7 +1712,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected string value, but got: " + v);
 			}
 			return ((JsonString) v).getString();
-		});
+		}, String.class);
 	}
 
 	public static Optional<List<String>> parseNullStrings(InputStream inputStream, String contentType) {
@@ -1632,7 +1721,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected string value, but got: " + v);
 			}
 			return ((JsonString) v).getString();
-		});
+		}, String.class);
 	}
 
 	public static _Base.Nillable<List<String>> parseNilStrings(InputStream inputStream, String contentType) {
@@ -1641,12 +1730,12 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected string value, but got: " + v);
 			}
 			return ((JsonString) v).getString();
-		});
+		}, String.class);
 	}
 
 	// ----------------
 	public static <T> T parseLiteral(InputStream inputStream, String contentType, Function<String, T> parser) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.STRING);
 		if (value.getValueType() != JsonValue.ValueType.STRING) {
 			throw new IllegalArgumentException("Expected string value, but got: " + value);
 		}
@@ -1656,7 +1745,7 @@ public class _JsonUtils {
 	public static <T> Optional<T> parseOptLiteral(InputStream inputStream, String contentType,
 			Function<String, T> parser) {
 		return parseOptStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.STRING);
 			if (value.getValueType() != JsonValue.ValueType.STRING) {
 				throw new IllegalArgumentException("Expected string value, but got: " + value);
 			}
@@ -1666,7 +1755,7 @@ public class _JsonUtils {
 
 	public static <T> Optional<T> parseNullLiteral(InputStream inputStream, String contentType,
 			Function<String, T> parser) {
-		var value = decodeValue(inputStream, contentType);
+		var value = decodeValue(inputStream, contentType, TypeInfo.STRING.withNullable());
 		if (value.getValueType() == JsonValue.ValueType.NULL) {
 			return Optional.empty();
 		} else if (value.getValueType() == JsonValue.ValueType.STRING) {
@@ -1678,7 +1767,7 @@ public class _JsonUtils {
 	public static <T> _Base.Nillable<T> parseNilLiteral(InputStream inputStream, String contentType,
 			Function<String, T> parser) {
 		return parseNilStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.STRING.withNullable());
 			if (value.getValueType() == JsonValue.ValueType.NULL) {
 				return _NillableImpl.nill();
 			} else if (value.getValueType() == JsonValue.ValueType.STRING) {
@@ -1695,7 +1784,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected string value, but got: " + v);
 			}
 			return parser.apply(((JsonString) v).getString());
-		});
+		}, String.class);
 	}
 
 	public static <T> Optional<List<T>> parseOptLiterals(InputStream inputStream, String contentType,
@@ -1705,7 +1794,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected string value, but got: " + v);
 			}
 			return parser.apply(((JsonString) v).getString());
-		});
+		}, String.class);
 	}
 
 	public static <T> Optional<List<T>> parseNullLiterals(InputStream inputStream, String contentType,
@@ -1715,7 +1804,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected string value or null, but got: " + v);
 			}
 			return parser.apply(((JsonString) v).getString());
-		});
+		}, String.class);
 	}
 
 	public static <T> _Base.Nillable<List<T>> parseNilLiterals(InputStream inputStream, String contentType,
@@ -1725,7 +1814,7 @@ public class _JsonUtils {
 				throw new IllegalArgumentException("Expected string value or null, but got: " + v);
 			}
 			return parser.apply(((JsonString) v).getString());
-		});
+		}, String.class);
 	}
 
 	// ----------------
@@ -1830,18 +1919,25 @@ public class _JsonUtils {
 	}
 
 	// ----------------
-	public static <T> T parseObject(InputStream inputStream, String contentType, Function<JsonObject, T> parser) {
-		var value = decodeValue(inputStream, contentType);
+	public static <T> T parseObject(
+		InputStream inputStream, 
+		String contentType, 
+		Function<JsonObject, T> parser, 
+		Class<T> type) {
+		var value = decodeValue(inputStream, contentType, TypeInfo.value(type));
 		if (value.getValueType() != JsonValue.ValueType.OBJECT) {
 			throw new IllegalArgumentException("Expected object value, but got: " + value);
 		}
 		return parser.apply((JsonObject) value);
 	}
 
-	public static <T> Optional<T> parseOptObject(InputStream inputStream, String contentType,
-			Function<JsonObject, T> parser) {
+	public static <T> Optional<T> parseOptObject(
+			InputStream inputStream, 
+			String contentType,
+			Function<JsonObject, T> parser,
+			Class<T> type) {
 		return parseOptStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.value(type));
 			if (value.getValueType() != JsonValue.ValueType.OBJECT) {
 				throw new IllegalArgumentException("Expected object value, but got: " + value);
 			}
@@ -1849,9 +1945,12 @@ public class _JsonUtils {
 		});
 	}
 
-	public static <T> Optional<T> parseNullObject(InputStream inputStream, String contentType,
-			Function<JsonObject, T> parser) {
-		var value = decodeValue(inputStream, contentType);
+	public static <T> Optional<T> parseNullObject(
+			InputStream inputStream, 
+			String contentType,
+			Function<JsonObject, T> parser,
+			Class<T> type) {
+		var value = decodeValue(inputStream, contentType, TypeInfo.value(type).withNullable());
 		if (value.getValueType() == JsonValue.ValueType.NULL) {
 			return Optional.empty();
 		} else if (value.getValueType() == JsonValue.ValueType.OBJECT) {
@@ -1860,10 +1959,13 @@ public class _JsonUtils {
 		throw new IllegalArgumentException("Expected object value or null, but got: " + value);
 	}
 
-	public static <T> _Base.Nillable<T> parseNilObject(InputStream inputStream, String contentType,
-			Function<JsonObject, T> parser) {
+	public static <T> _Base.Nillable<T> parseNilObject(
+			InputStream inputStream, 
+			String contentType,
+			Function<JsonObject, T> parser,
+			Class<T> type) {
 		return parseNilStream(inputStream, is -> {
-			var value = decodeValue(is, contentType);
+			var value = decodeValue(is, contentType, TypeInfo.value(type).withNullable());
 			if (value.getValueType() == JsonValue.ValueType.NULL) {
 				return _NillableImpl.nill();
 			} else if (value.getValueType() == JsonValue.ValueType.OBJECT) {
@@ -1873,57 +1975,70 @@ public class _JsonUtils {
 		});
 	}
 
-	public static <T> List<T> parseObjects(InputStream inputStream, String contentType, Function<JsonObject, T> parser) {
+	public static <T> List<T> parseObjects(
+			InputStream inputStream, 
+			String contentType, 
+			Function<JsonObject, T> parser,
+			Class<T> type) {
 		return parseListStream(inputStream, contentType, v -> {
 			if (v.getValueType() != JsonValue.ValueType.OBJECT) {
 				throw new IllegalArgumentException("Expected object value, but got: " + v);
 			}
 			return parser.apply((JsonObject) v);
-		});
+		}, type);
 	}
 
-	public static <T> Optional<List<T>> parseOptObjects(InputStream inputStream, String contentType,
-			Function<JsonObject, T> parser) {
+	public static <T> Optional<List<T>> parseOptObjects(
+			InputStream inputStream, 
+			String contentType,
+			Function<JsonObject, T> parser, 
+			Class<T> type) {
 		return parseOptListStream(inputStream, contentType, v -> {
 			if (v.getValueType() != JsonValue.ValueType.OBJECT) {
 				throw new IllegalArgumentException("Expected object value, but got: " + v);
 			}
 			return parser.apply((JsonObject) v);
-		});
+		}, type);
 	}
 
-	public static <T> Optional<List<T>> parseNullObjects(InputStream inputStream, String contentType,
-			Function<JsonObject, T> parser) {
+	public static <T> Optional<List<T>> parseNullObjects(
+			InputStream inputStream, 
+			String contentType,
+			Function<JsonObject, T> parser, 
+			Class<T> type) {
 		return parseNullListStream(inputStream, contentType, v -> {
 			if (v.getValueType() != JsonValue.ValueType.OBJECT) {
 				throw new IllegalArgumentException("Expected object value, but got: " + v);
 			}
 			return parser.apply((JsonObject) v);
-		});
+		}, type);
 	}
 
-	public static <T> _Base.Nillable<List<T>> parseNilObjects(InputStream inputStream, String contentType,
-			Function<JsonObject, T> parser) {
+	public static <T> _Base.Nillable<List<T>> parseNilObjects(
+			InputStream inputStream, 
+			String contentType,
+			Function<JsonObject, T> parser, 
+			Class<T> type) {
 		return parseNilListStream(inputStream, contentType, v -> {
 			if (v.getValueType() != JsonValue.ValueType.OBJECT) {
 				throw new IllegalArgumentException("Expected object value, but got: " + v);
 			}
 			return parser.apply((JsonObject) v);
-		});
+		}, type);
 	}
 
 	// ----------------
 
-	public static JsonValue parseValue(Path path, String contentType) {
+	public static JsonValue parseValue(Path path, String contentType, TypeInfo<?> type) {
 		try (InputStream inputStream = Files.newInputStream(path)) {
-			return decodeValue(inputStream, contentType);
+			return decodeValue(inputStream, contentType, type);
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
 	// ----------------
-	public static JsonValue decodeValue(InputStream stream, String contentType) {
+	public static JsonValue decodeValue(InputStream stream, String contentType, TypeInfo<?> typeInfo) {
 		return switch (contentType) {
 			case "application/json" -> decodeJsonValue(stream);
 			case "application/vnd.msgpack" -> decodeMsgPackValue(stream);

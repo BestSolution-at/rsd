@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Objects;
 
 import dev.rsdlang.sample.client.HeaderParameterTypesService;
-import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.NilResult;
@@ -2397,7 +2396,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", ServiceUtils.encodeBase64(_JsonUtils.encodeValue(headerValue, this.contentType())));
+		$headerParams.put("headerValue", ServiceUtils.encodeBase64(ServiceUtils.ofObject(headerValue, false, this.contentType(), SimpleRecord.Data.class)));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2414,7 +2413,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObject($response, SimpleRecordDataImpl::of);
+				return ServiceUtils.mapObject($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
@@ -2450,7 +2449,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", ServiceUtils.encodeBase64(_JsonUtils.encodeValue(headerValue, this.contentType())));
+			$headerParams.put("headerValue", ServiceUtils.encodeBase64(ServiceUtils.ofObject(headerValue, false, this.contentType(), SimpleRecord.Data.class)));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2482,7 +2481,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", ServiceUtils.encodeBase64(_JsonUtils.encodeValue(headerValue, this.contentType())));
+			$headerParams.put("headerValue", ServiceUtils.encodeBase64(ServiceUtils.ofObject(headerValue, false, this.contentType(), SimpleRecord.Data.class)));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -2538,7 +2537,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if(headerValue != null) {
-			$headerParams.put("headerValue", ServiceUtils.encodeBase64(_JsonUtils.encodeValue(headerValue, this.contentType())));
+			$headerParams.put("headerValue", ServiceUtils.encodeBase64(ServiceUtils.ofObject(headerValue, false, this.contentType(), SimpleRecord.Data.class)));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -2582,18 +2581,18 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		$queryParams.append("queryString", queryString);
 		$queryParams.append("queryNumber", queryNumber);
-		$queryParams.append("queryRecord", _JsonUtils.encodeValue(queryRecord, this.contentType()));
+		$queryParams.append("queryRecord", ServiceUtils.ofObject(queryRecord, false, this.contentType(), SimpleRecord.Data.class));
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerString", "\"" + ServiceUtils.encodeAsciiString(headerString) + "\"");
 		$headerParams.put("headerNumber", String.format("%s", headerNumber));
-		$headerParams.put("headerRecord", ServiceUtils.encodeBase64(_JsonUtils.encodeValue(headerRecord, this.contentType())));
+		$headerParams.put("headerRecord", ServiceUtils.encodeBase64(ServiceUtils.ofObject(headerRecord, false, this.contentType(), SimpleRecord.Data.class)));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(body, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(body, false, $contentType, SimpleRecord.Data.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)

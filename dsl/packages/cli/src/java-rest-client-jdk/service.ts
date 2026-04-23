@@ -162,7 +162,15 @@ function generateOpertationMethod(
 					if (p.array) {
 						const param =
 							p.variant === 'union' || p.variant === 'record'
-								? `${fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`)}.encodeValue($q, this.contentType())`
+								? // eslint-disable-next-line @typescript-eslint/no-deprecated
+									`ServiceUtils.ofObject($q, false, this.contentType(), ${computeParameterAPIType(
+										// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+										p as any,
+										artifactConfig.nativeTypeSubstitues,
+										`${artifactConfig.rootPackageName}.model`,
+										fqn,
+										true,
+									)}.class)`
 								: '$q';
 						const codeBlock = toNodeTree(`
 							${p.name}.stream().forEach($q -> {
@@ -190,7 +198,15 @@ function generateOpertationMethod(
 					} else {
 						const param =
 							p.variant === 'union' || p.variant === 'record'
-								? `${fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`)}.encodeValue(${p.name}, this.contentType())`
+								? // eslint-disable-next-line @typescript-eslint/no-deprecated
+									`ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(
+										// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+										p as any,
+										artifactConfig.nativeTypeSubstitues,
+										`${artifactConfig.rootPackageName}.model`,
+										fqn,
+										true,
+									)}.class)`
 								: p.name;
 
 						const codeBlock = `$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${param});`;
@@ -257,8 +273,8 @@ function generateOpertationMethod(
 					} else if (p.variant === 'stream') {
 						methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 					} else {
-						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
-						const toString = `$v -> ServiceUtils.encodeBase64(${_JsonUtils}.encodeValue($v, this.contentType()))`;
+						// eslint-disable-next-line @typescript-eslint/no-deprecated
+						const toString = `$v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class))`;
 						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
 						if (p.nullable) {
 							methodBody.append(`if(${p.name} != null) {`, NL);
@@ -318,8 +334,8 @@ function generateOpertationMethod(
 							}
 						}
 					} else if (p.variant === 'record' || p.variant === 'union') {
-						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
-						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ServiceUtils.encodeBase64(${_JsonUtils}.encodeValue(${p.name}, this.contentType())));`;
+						// eslint-disable-next-line @typescript-eslint/no-deprecated
+						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ServiceUtils.encodeBase64(ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class)));`;
 						if (p.nullable) {
 							methodBody.append(`if(${p.name} != null) {`, NL);
 							methodBody.indent(tmp => {
@@ -492,7 +508,7 @@ function generateInvokation(
 				});
 			if (o.parameters.find(p => p.variant !== 'stream')) {
 				methodBody.append(
-					'$formDataBuilder.addBytes("_rsdPayload", _JsonUtils.encodeValue($jsonPayload.build(), this.contentType()), this.contentType());',
+					'$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());',
 					NL,
 				);
 			}
@@ -511,29 +527,52 @@ function generateInvokation(
 				methodBody.append(`var $body = ${BodyPublishers}.ofByteArray(${defaultContent});`, NL);
 			} else if (bodyParams.length === 1 && !multiBodyParam) {
 				const param = bodyParams[0];
-				if (!param.array && (isMBuiltinNumericType(param.type) || param.type === 'boolean')) {
-					const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+				if (param.variant === 'builtin') {
 					if (param.optional && !param.nullable) {
+						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
 						methodBody.append(
-							`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${_JsonUtils}.encodeEmptyValue($contentType) : ${_JsonUtils}.encodeValue(${param.name}, $contentType));`,
+							`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${_JsonUtils}.encodeEmptyValue($contentType) : ServiceUtils.of${toFirstUpper(toCamelCaseIdentifier(param.type))}${param.array ? 'List' : ''}(${param.name}, false, $contentType));`,
 							NL,
 						);
 					} else {
 						methodBody.append(
-							`var $body = ${BodyPublishers}.ofByteArray(${_JsonUtils}.encodeValue(${param.name}, $contentType));`,
+							`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.of${toFirstUpper(toCamelCaseIdentifier(param.type))}${param.array ? 'List' : ''}(${param.name}, ${String(param.nullable)}, $contentType));`,
+							NL,
+						);
+					}
+				} else if (param.variant === 'scalar' || param.variant === 'enum' || param.variant === 'inline-enum') {
+					if (param.optional && !param.nullable) {
+						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+						methodBody.append(
+							`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${_JsonUtils}.encodeEmptyValue($contentType) : ServiceUtils.ofLiteral${param.array ? 'List' : ''}(${param.name}, false, $contentType));`,
+							NL,
+						);
+					} else {
+						methodBody.append(
+							`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.ofLiteral${param.array ? 'List' : ''}(${param.name}, ${String(param.nullable)}, $contentType));`,
 							NL,
 						);
 					}
 				} else {
-					const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+					// eslint-disable-next-line @typescript-eslint/no-deprecated
+					const type = computeParameterAPIType(
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+						param as any,
+						artifactConfig.nativeTypeSubstitues,
+						`${artifactConfig.rootPackageName}.model`,
+						fqn,
+						true,
+					);
+
 					if (param.optional && !param.nullable) {
+						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
 						methodBody.append(
-							`var $body = ${BodyPublishers}.ofByteArray( ${param.name} == null ? ${_JsonUtils}.encodeEmptyValue($contentType) : ${_JsonUtils}.encodeValue(${param.name}, $contentType));`,
+							`var $body = ${BodyPublishers}.ofByteArray( ${param.name} == null ? ${_JsonUtils}.encodeEmptyValue($contentType) : ServiceUtils.ofObject${param.array ? 'List' : ''}(${param.name}, ${String(param.nullable)}, $contentType, ${type}.class));`,
 							NL,
 						);
 					} else {
 						methodBody.append(
-							`var $body = ${BodyPublishers}.ofByteArray(${_JsonUtils}.encodeValue(${param.name}, $contentType));`,
+							`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.ofObject${param.array ? 'List' : ''}(${param.name}, ${String(param.nullable)}, $contentType, ${type}.class));`,
 							NL,
 						);
 					}
@@ -648,9 +687,9 @@ function generateInvokation(
 						methodBody.append('throw new UnsupportedOperationException();', NL);
 					}
 				});
-				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+				// FIXME
 				methodBody.append(
-					`var $body = ${BodyPublishers}.ofByteArray(${_JsonUtils}.encodeValue($builder.build(), this.contentType()));`,
+					`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));`,
 					NL,
 				);
 			}
@@ -793,9 +832,15 @@ function handleOkResult(
 		const modelPkg = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
 		const modelType = fqn(`${modelPkg}.${type.type}DataImpl`);
 		if (type.array) {
-			node.append(`return ServiceUtils.mapObjects($response, ${modelType}::of);`, NL);
+			node.append(
+				`return ServiceUtils.mapObjects($response, ${modelType}::of, ${toResultType(type, artifactConfig, fqn, '', true)}.class);`,
+				NL,
+			);
 		} else {
-			node.append(`return ServiceUtils.mapObject($response, ${modelType}::of);`, NL);
+			node.append(
+				`return ServiceUtils.mapObject($response, ${modelType}::of, ${toResultType(type, artifactConfig, fqn, '', true)}.class);`,
+				NL,
+			);
 		}
 	} else if (type.variant === 'builtin') {
 		if (isMBuiltinType(type.type)) {
@@ -922,6 +967,7 @@ function toResultType(
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
 	methodName: string,
+	noArray = false,
 ): string {
 	const modelPkg = `${artifactConfig.rootPackageName}.model`;
 	if (type === undefined) {
@@ -945,7 +991,7 @@ function toResultType(
 		rvType = toFirstUpper(methodName) + '_Result$';
 	}
 
-	if (type.array) {
+	if (type.array && !noArray) {
 		rvType = `${fqn('java.util.List')}<${rvType}>`;
 	}
 

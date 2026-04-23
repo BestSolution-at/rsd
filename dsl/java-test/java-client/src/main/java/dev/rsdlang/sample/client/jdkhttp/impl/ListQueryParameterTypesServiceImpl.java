@@ -13,7 +13,6 @@ import java.time.ZoneId;
 import java.util.List;
 import java.util.Objects;
 
-import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListQueryParameterTypesService;
@@ -423,7 +422,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			$queryParams.append("valueB", $q);
 		});
 		valueC.stream().forEach($q -> {
-			$queryParams.append("valueC", _JsonUtils.encodeValue($q, this.contentType()));
+			$queryParams.append("valueC", ServiceUtils.ofObject($q, false, this.contentType(), SimpleRecord.Data.class));
 		});
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -453,7 +452,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
-			$queryParams.append("queryValue", _JsonUtils.encodeValue($q, this.contentType()));
+			$queryParams.append("queryValue", ServiceUtils.ofObject($q, false, this.contentType(), SimpleRecord.Data.class));
 		});
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -467,7 +466,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of);
+				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {

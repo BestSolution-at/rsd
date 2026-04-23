@@ -134,7 +134,7 @@ public static Response toResponse(int status, RSDException e) {
 				.header("X-RSD-Error-Type", e.type)
 				.header("X-RSD-Error-Message", e.getMessage())
 				.type(MediaType.APPLICATION_JSON_TYPE)
-				.entity(_JsonUtils.encodeValue(s.data, "application/json")).build();
+				.entity(_JsonUtils.encodeValue(s.data, "application/json", null)).build();
 	}
 	return Response.status(status)
 			.header("X-RSD-Error-Type", e.type)

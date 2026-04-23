@@ -25,6 +25,8 @@ import jakarta.json.JsonObject;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._BlobImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._FileImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
+import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils.TypeInfo;
+import dev.rsdlang.sample.client.model._Base;
 import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 
@@ -81,8 +83,8 @@ public class ServiceUtils {
 				.orElseThrow(() -> new IllegalStateException("Response is missing Content-Type header"));
 	}
 
-	public static <T> T mapObject(HttpResponse<InputStream> response, Function<JsonObject, T> factory) {
-		return _JsonUtils.parseObject(response.body(), contentType(response), factory);
+	public static <T> T mapObject(HttpResponse<InputStream> response, Function<JsonObject, T> factory, Class<T> type) {
+		return _JsonUtils.parseObject(response.body(), contentType(response), factory, type);
 	}
 
 	public static String mapString(HttpResponse<InputStream> response) {
@@ -129,8 +131,8 @@ public class ServiceUtils {
 		return _JsonUtils.parseZonedDateTime(response.body(), contentType(response));
 	}
 
-	public static <T> List<T> mapObjects(HttpResponse<InputStream> response, Function<JsonObject, T> factory) {
-		return _JsonUtils.parseObjects(response.body(), contentType(response), factory);
+	public static <T> List<T> mapObjects(HttpResponse<InputStream> response, Function<JsonObject, T> factory, Class<T> type) {
+		return _JsonUtils.parseObjects(response.body(), contentType(response), factory, type);
 	}
 
 	public static List<String> mapStrings(HttpResponse<InputStream> response) {
@@ -175,6 +177,189 @@ public class ServiceUtils {
 
 	public static List<ZonedDateTime> mapZonedDateTimes(HttpResponse<InputStream> response) {
 		return _JsonUtils.parseLiterals(response.body(), contentType(response), ZonedDateTime::parse);
+	}
+
+	public static byte[] ofBoolean(
+			Boolean value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.BOOLEAN);
+	}
+
+	public static byte[] ofBooleanList(
+			List<Boolean> value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.BOOLEAN.withMulti());
+	}
+
+	public static byte[] ofShort(
+			Short value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.SHORT);
+	}
+
+	public static byte[] ofShortList(
+			List<Short> value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.SHORT.withMulti());
+	}
+
+	public static byte[] ofInt(
+			Integer value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.INTEGER);
+	}
+
+	public static byte[] ofIntList(
+			List<Integer> value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.INTEGER.withMulti());
+	}
+
+	public static byte[] ofLong(
+			Long value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.LONG);
+	}
+
+	public static byte[] ofLongList(
+			List<Long> value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.LONG.withMulti());
+	}
+
+	public static byte[] ofFloat(
+			Float value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.FLOAT);
+	}
+
+	public static byte[] ofFloatList(
+			List<Float> value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.FLOAT.withMulti());
+	}
+
+	public static byte[] ofDouble(
+			Double value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.DOUBLE);
+	}
+
+	public static byte[] ofDoubleList(
+			List<Double> value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.DOUBLE.withMulti());
+	}
+
+	public static byte[] ofString(
+			String value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING);
+	}
+
+	public static byte[] ofStringList(
+			List<String> value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
+	}
+
+	public static byte[] ofLocalDate(
+			LocalDate value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING);
+	}
+
+	public static byte[] ofLocalDateList(
+			List<LocalDate> value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
+	}
+
+	public static byte[] ofLocalDateTime(
+			LocalDateTime value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING);
+	}
+
+	public static byte[] ofLocalDateTimeList(
+			List<LocalDateTime> value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
+	}
+
+	public static byte[] ofZonedDateTime(
+			ZonedDateTime value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING);
+	}
+
+	public static byte[] ofZonedDateTimeList(
+			List<ZonedDateTime> value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
+	}
+
+	public static byte[] ofLiteral(
+			Object value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING);
+	}
+
+	public static <T> byte[] ofLiteralList(
+			List<T> value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
+	}
+
+	public static <T/* extends _Base.BaseData*/> byte[] ofObject(
+			T value,
+			boolean nullable,
+			String contentType,
+			Class<T> type) {
+		return of(value, nullable, contentType, TypeInfo.value(type));
+	}
+
+	public static <T/* extends _Base.BaseData*/> byte[] ofObjectList(
+			List<T> value,
+			boolean nullable,
+			String contentType,
+			Class<T> type) {
+		return of(value, nullable, contentType, TypeInfo.value(type).withMulti());
+	}
+
+	private static byte[] of(
+			Object value,
+			boolean nullable,
+			String contentType,
+			TypeInfo<?> baseTypeInfo) {
+		var typeInfo = baseTypeInfo;
+		if (nullable) {
+			typeInfo = typeInfo.withNullable();
+		}
+
+		return _JsonUtils.encodeValue(value, contentType, typeInfo);
 	}
 
 	public static String encodeAsciiString(String text) {

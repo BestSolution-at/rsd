@@ -215,7 +215,7 @@ public class BinaryTypesResource {
 	@Path("uploadMixed")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadMixed(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("_rsdPayload") FileUpload $_payload, @RestForm("text") InputStream _text, @RestForm("number") InputStream _number, @RestForm("rec") InputStream _rec, @RestForm("textList") InputStream _textList, @RestForm("numberList") InputStream _numberList, @RestForm("recList") InputStream _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
-		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType()).asJsonObject();
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(), _JsonUtils.TypeInfo.value(BinaryTypesUploadMixedDataImpl.class)).asJsonObject();
 		var $payload = new BinaryTypesUploadMixedDataImpl($payloadJson);
 		var text = $payload.text();
 		var number = $payload.number();
@@ -232,7 +232,7 @@ public class BinaryTypesResource {
 	@Path("uploadMixedOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadMixedOpt(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("_rsdPayload") FileUpload $_payload, @RestForm("text") InputStream _text, @RestForm("number") InputStream _number, @RestForm("rec") InputStream _rec, @RestForm("textList") InputStream _textList, @RestForm("numberList") InputStream _numberList, @RestForm("recList") InputStream _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
-		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType()).asJsonObject();
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(), _JsonUtils.TypeInfo.value(BinaryTypesUploadMixedOptDataImpl.class)).asJsonObject();
 		var $payload = new BinaryTypesUploadMixedOptDataImpl($payloadJson);
 		var text = $payload.text();
 		var number = $payload.number();
@@ -249,7 +249,7 @@ public class BinaryTypesResource {
 	@Path("uploadMixedNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadMixedNil(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("_rsdPayload") FileUpload $_payload, @RestForm("text") InputStream _text, @RestForm("number") InputStream _number, @RestForm("rec") InputStream _rec, @RestForm("textList") InputStream _textList, @RestForm("numberList") InputStream _numberList, @RestForm("recList") InputStream _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
-		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType()).asJsonObject();
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(), _JsonUtils.TypeInfo.value(BinaryTypesUploadMixedNilDataImpl.class)).asJsonObject();
 		var $payload = new BinaryTypesUploadMixedNilDataImpl($payloadJson);
 		var text = $payload.text();
 		var number = $payload.number();
@@ -266,7 +266,7 @@ public class BinaryTypesResource {
 	@Path("uploadMixedOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadMixedOptNil(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("_rsdPayload") FileUpload $_payload, @RestForm("text") InputStream _text, @RestForm("number") InputStream _number, @RestForm("rec") InputStream _rec, @RestForm("textList") InputStream _textList, @RestForm("numberList") InputStream _numberList, @RestForm("recList") InputStream _recList, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob, @RestForm("_rsdNull-dataFile") boolean $isDataFileNull, @RestForm("_rsdNull-dataBlob") boolean $isDataBlobNull) {
-		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType()).asJsonObject();
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(), _JsonUtils.TypeInfo.value(BinaryTypesUploadMixedOptNilDataImpl.class)).asJsonObject();
 		var $payload = new BinaryTypesUploadMixedOptNilDataImpl($payloadJson);
 		var text = $payload.text();
 		var number = $payload.number();
@@ -287,10 +287,10 @@ public class BinaryTypesResource {
 		var pathNumber = _RestUtils.parseInt(_pathNumber);
 		var headerString = _RestUtils.parseString(_headerString, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
 		var headerNumber = _RestUtils.parseInt(_headerNumber);
-		var headerRecord = _RestUtils.parseObject(_headerRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var headerRecord = _RestUtils.parseObject(_headerRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var queryString = _RestUtils.parseString(_queryString);
 		var queryNumber = _RestUtils.parseInt(_queryNumber);
-		var queryRecord = _RestUtils.parseObject(_queryRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j)));
+		var queryRecord = _RestUtils.parseObject(_queryRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
 		service.mixed(builderFactory, pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob);
 		return responseBuilder.mixed(pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob).build();

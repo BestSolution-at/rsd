@@ -74,7 +74,7 @@ function generateContent(
 						const content = toNodeTree(`
 							return ${Response}.status(${code.toFixed()})
 								.type($contentType)
-								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result, $contentType)));`);
+								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result, $contentType, /* FIXME */ null)));`);
 						methodBody.append(content);
 					}
 				} else {

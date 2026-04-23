@@ -12,7 +12,6 @@ import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.Objects;
 
-import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.NilResult;
@@ -1057,7 +1056,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		$queryParams.append("queryValue", _JsonUtils.encodeValue(queryValue, this.contentType()));
+		$queryParams.append("queryValue", ServiceUtils.ofObject(queryValue, false, this.contentType(), SimpleRecord.Data.class));
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
@@ -1070,7 +1069,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObject($response, SimpleRecordDataImpl::of);
+				return ServiceUtils.mapObject($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
@@ -1106,7 +1105,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
 		if(queryValue != null) {
-			$queryParams.append("queryValue", _JsonUtils.encodeValue(queryValue, this.contentType()));
+			$queryParams.append("queryValue", ServiceUtils.ofObject(queryValue, false, this.contentType(), SimpleRecord.Data.class));
 		}
 
 		var $uri = URI.create($path + $queryParams.toQueryString());

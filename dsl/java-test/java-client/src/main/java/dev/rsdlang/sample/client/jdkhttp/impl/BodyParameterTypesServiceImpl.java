@@ -58,7 +58,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyBoolean, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofBoolean(bodyBoolean, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -110,7 +110,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(bodyBoolean == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyBoolean, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyBoolean == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofBoolean(bodyBoolean, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -136,7 +136,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyBoolean, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofBoolean(bodyBoolean, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -188,7 +188,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyBoolean, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofBoolean(bodyBoolean, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -214,7 +214,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyShort, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofShort(bodyShort, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -266,7 +266,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(bodyShort == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyShort, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyShort == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofShort(bodyShort, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -292,7 +292,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyShort, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofShort(bodyShort, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -344,7 +344,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyShort, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofShort(bodyShort, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -370,7 +370,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyInt, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofInt(bodyInt, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -422,7 +422,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(bodyInt == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyInt, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyInt == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofInt(bodyInt, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -448,7 +448,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyInt, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofInt(bodyInt, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -500,7 +500,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyInt, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofInt(bodyInt, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -526,7 +526,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLong, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLong(bodyLong, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -578,7 +578,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(bodyLong == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyLong, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyLong == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofLong(bodyLong, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -604,7 +604,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLong, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLong(bodyLong, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -656,7 +656,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLong, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLong(bodyLong, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -682,7 +682,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyFloat, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofFloat(bodyFloat, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -734,7 +734,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(bodyFloat == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyFloat, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyFloat == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofFloat(bodyFloat, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -760,7 +760,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyFloat, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofFloat(bodyFloat, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -812,7 +812,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyFloat, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofFloat(bodyFloat, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -838,7 +838,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyDouble, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofDouble(bodyDouble, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -890,7 +890,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(bodyDouble == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyDouble, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyDouble == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofDouble(bodyDouble, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -916,7 +916,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyDouble, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofDouble(bodyDouble, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -968,7 +968,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyDouble, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofDouble(bodyDouble, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -996,7 +996,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyString, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofString(bodyString, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1048,7 +1048,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray( bodyString == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyString, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyString == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofString(bodyString, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1074,7 +1074,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyString, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofString(bodyString, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1126,7 +1126,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyString, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofString(bodyString, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1154,7 +1154,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLocalDate, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLocalDate(bodyLocalDate, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1206,7 +1206,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray( bodyLocalDate == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyLocalDate, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyLocalDate == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofLocalDate(bodyLocalDate, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1232,7 +1232,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLocalDate, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLocalDate(bodyLocalDate, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1284,7 +1284,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLocalDate, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLocalDate(bodyLocalDate, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1312,7 +1312,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLocalDateTime, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLocalDateTime(bodyLocalDateTime, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1364,7 +1364,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray( bodyLocalDateTime == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyLocalDateTime, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyLocalDateTime == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofLocalDateTime(bodyLocalDateTime, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1390,7 +1390,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLocalDateTime, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLocalDateTime(bodyLocalDateTime, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1442,7 +1442,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyLocalDateTime, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLocalDateTime(bodyLocalDateTime, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1470,7 +1470,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyZonedDateTime, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofZonedDateTime(bodyZonedDateTime, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1522,7 +1522,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray( bodyZonedDateTime == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyZonedDateTime, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyZonedDateTime == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofZonedDateTime(bodyZonedDateTime, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1548,7 +1548,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyZonedDateTime, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofZonedDateTime(bodyZonedDateTime, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1600,7 +1600,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyZonedDateTime, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofZonedDateTime(bodyZonedDateTime, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1628,7 +1628,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyScalar, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteral(bodyScalar, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1680,7 +1680,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray( bodyScalar == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyScalar, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyScalar == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofLiteral(bodyScalar, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1706,7 +1706,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyScalar, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteral(bodyScalar, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1758,7 +1758,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyScalar, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteral(bodyScalar, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1786,7 +1786,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyEnum, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteral(bodyEnum, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1838,7 +1838,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray( bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyEnum, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofLiteral(bodyEnum, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1864,7 +1864,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyEnum, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteral(bodyEnum, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1916,7 +1916,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyEnum, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteral(bodyEnum, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1944,7 +1944,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyEnum, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteral(bodyEnum, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -1996,7 +1996,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray( bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyEnum, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofLiteral(bodyEnum, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2022,7 +2022,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyEnum, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteral(bodyEnum, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2074,7 +2074,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyEnum, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteral(bodyEnum, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2107,7 +2107,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			$builder = $builder.add("valueA", valueA);
 			$builder = $builder.add("valueB", valueB);
 			$builder = $builder.add("valueC", ((_BaseDataImpl)valueC).data);
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), this.contentType()));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2163,7 +2163,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if(valueA != null) {
 				$builder = $builder.add("valueA", valueA);
 			}
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), this.contentType()));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2196,7 +2196,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if(valueB != null) {
 				$builder = $builder.add("valueB", valueB);
 			}
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), this.contentType()));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2232,7 +2232,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if(valueC != null) {
 				$builder = $builder.add("valueC", ((_BaseDataImpl)valueC).data);
 			}
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), this.contentType()));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2262,7 +2262,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", valueA);
 			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", valueB);
 			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", ((_BaseDataImpl)valueC).data);
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), this.contentType()));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2316,7 +2316,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $contentType = this.contentType();
 			var $builder = Json.createObjectBuilder();
 			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", valueA);
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), this.contentType()));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2345,7 +2345,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			var $builder = Json.createObjectBuilder();
 			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", valueA);
 			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", valueB);
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), this.contentType()));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2375,7 +2375,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", valueA);
 			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", valueB);
 			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", ((_BaseDataImpl)valueC).data);
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), this.contentType()));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2431,7 +2431,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if(valueA != null) {
 				$builder = $builder.add("valueA", valueA);
 			}
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), this.contentType()));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2462,7 +2462,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 				$builder = $builder.add("valueA", valueA);
 			}
 			$builder = $builder.add("valueB", valueB);
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), this.contentType()));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2496,7 +2496,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			}
 			$builder = $builder.add("valueB", valueB);
 			$builder = $builder.add("valueC", ((_BaseDataImpl)valueC).data);
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue($builder.build(), this.contentType()));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2524,7 +2524,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyRecord, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(bodyRecord, false, $contentType, SimpleRecord.Data.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2535,7 +2535,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObject($response, SimpleRecordDataImpl::of);
+				return ServiceUtils.mapObject($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
@@ -2576,7 +2576,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray( bodyRecord == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyRecord, $contentType));
+			var $body = BodyPublishers.ofByteArray( bodyRecord == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofObject(bodyRecord, false, $contentType, SimpleRecord.Data.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2602,7 +2602,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyRecord, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(bodyRecord, true, $contentType, SimpleRecord.Data.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2654,7 +2654,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyRecord, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(bodyRecord, true, $contentType, SimpleRecord.Data.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2682,7 +2682,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyUnion, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(bodyUnion, false, $contentType, Union.Data.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2693,7 +2693,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObject($response, UnionDataImpl::of);
+				return ServiceUtils.mapObject($response, UnionDataImpl::of, Union.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
@@ -2734,7 +2734,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray( bodyUnion == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyUnion, $contentType));
+			var $body = BodyPublishers.ofByteArray( bodyUnion == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofObject(bodyUnion, false, $contentType, Union.Data.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2760,7 +2760,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyUnion, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(bodyUnion, true, $contentType, Union.Data.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2812,7 +2812,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyUnion, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(bodyUnion, true, $contentType, Union.Data.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2840,7 +2840,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyRecord, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(bodyRecord, false, $contentType, PatchableRecord.Patch.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2851,7 +2851,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of);
+				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of, PatchableRecord.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
@@ -2877,7 +2877,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of);
+				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of, PatchableRecord.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
@@ -2892,7 +2892,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray( bodyRecord == null ? _JsonUtils.encodeEmptyValue($contentType) : _JsonUtils.encodeValue(bodyRecord, $contentType));
+			var $body = BodyPublishers.ofByteArray( bodyRecord == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofObject(bodyRecord, false, $contentType, PatchableRecord.Patch.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2903,7 +2903,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of);
+				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of, PatchableRecord.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
@@ -2918,7 +2918,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyRecord, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(bodyRecord, true, $contentType, PatchableRecord.Patch.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2929,7 +2929,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of);
+				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of, PatchableRecord.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
@@ -2955,7 +2955,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of);
+				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of, PatchableRecord.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
@@ -2970,7 +2970,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeValue(bodyRecord, $contentType));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(bodyRecord, true, $contentType, PatchableRecord.Patch.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2981,7 +2981,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of);
+				return ServiceUtils.mapObject($response, PatchableRecordDataImpl::of, PatchableRecord.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
