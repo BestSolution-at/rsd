@@ -18,6 +18,10 @@ import jakarta.json.Json;
 
 import dev.rsdlang.sample.client.jdkhttp.impl.model._BaseDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
+import dev.rsdlang.sample.client.jdkhttp.impl.model.ListBodyParameterTypesListMultiBodyParamDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.impl.model.ListBodyParameterTypesListMultiBodyParamNilDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.impl.model.ListBodyParameterTypesListMultiBodyParamOptDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.impl.model.ListBodyParameterTypesListMultiBodyParamOptNilDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListBodyParameterTypesService;
@@ -2104,7 +2108,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
 			$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
 			$builder = $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(new ListBodyParameterTypesListMultiBodyParamDataImpl($builder.build()), false, this.contentType(), ListBodyParameterTypesListMultiBodyParamDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2160,7 +2164,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if(valueA != null) {
 				$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
 			}
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(new ListBodyParameterTypesListMultiBodyParamOptDataImpl($builder.build()), false, this.contentType(), ListBodyParameterTypesListMultiBodyParamOptDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2193,7 +2197,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if(valueB != null) {
 				$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
 			}
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(new ListBodyParameterTypesListMultiBodyParamOptDataImpl($builder.build()), false, this.contentType(), ListBodyParameterTypesListMultiBodyParamOptDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2229,7 +2233,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if(valueC != null) {
 				$builder = $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
 			}
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(new ListBodyParameterTypesListMultiBodyParamOptDataImpl($builder.build()), false, this.contentType(), ListBodyParameterTypesListMultiBodyParamOptDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2259,7 +2263,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
 			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
 			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(new ListBodyParameterTypesListMultiBodyParamNilDataImpl($builder.build()), false, this.contentType(), ListBodyParameterTypesListMultiBodyParamNilDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2313,7 +2317,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $contentType = this.contentType();
 			var $builder = Json.createObjectBuilder();
 			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(new ListBodyParameterTypesListMultiBodyParamOptNilDataImpl($builder.build()), false, this.contentType(), ListBodyParameterTypesListMultiBodyParamOptNilDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2342,7 +2346,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $builder = Json.createObjectBuilder();
 			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
 			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(new ListBodyParameterTypesListMultiBodyParamOptNilDataImpl($builder.build()), false, this.contentType(), ListBodyParameterTypesListMultiBodyParamOptNilDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2372,7 +2376,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
 			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
 			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofObject(new ListBodyParameterTypesListMultiBodyParamOptNilDataImpl($builder.build()), false, this.contentType(), ListBodyParameterTypesListMultiBodyParamOptNilDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)

@@ -83,7 +83,7 @@ export function generateService(
 
 		s.operations.forEach(o => {
 			classBody.appendNewLine();
-			generateOperation(classBody, o, artifactConfig, fqn, s.meta?.rest?.path ?? s.name.toLowerCase());
+			generateOperation(classBody, s, o, artifactConfig, fqn, s.meta?.rest?.path ?? s.name.toLowerCase());
 		});
 	});
 	node.append('}', NL);
@@ -106,6 +106,7 @@ export function generateService(
 
 function generateOpertationMethod(
 	node: IndentNode,
+	s: MResolvedService,
 	o: MResolvedOperation,
 	allParameters: readonly MParameter[],
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
@@ -404,7 +405,7 @@ function generateOpertationMethod(
 		}
 
 		methodBody.indent(tryBlock => {
-			tryBlock.append(generateInvokation(o, allParameters, artifactConfig, fqn, hasHeaderParams, multiBodyParam));
+			tryBlock.append(generateInvokation(s, o, allParameters, artifactConfig, fqn, hasHeaderParams, multiBodyParam));
 		});
 		methodBody.append(`} catch (${IOException} | InterruptedException e) {`, NL);
 		methodBody.indent(catchBlock => {
@@ -416,6 +417,7 @@ function generateOpertationMethod(
 }
 
 function generateInvokation(
+	s: MResolvedService,
 	o: MResolvedOperation,
 	allParameters: readonly MParameter[],
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
@@ -429,7 +431,7 @@ function generateInvokation(
 	const method = o.meta?.rest?.method;
 	if (method === 'PUT' || method === 'POST' || method === 'PATCH') {
 		if (o.parameters.find(p => p.variant === 'stream')) {
-			if (o.parameters.find(p => p.variant !== 'stream')) {
+			if (o.parameters.find(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
 				const Json = fqn('jakarta.json.Json');
 				methodBody.append(`var $jsonPayload = ${Json}.createObjectBuilder();`, NL);
 			}
@@ -523,9 +525,13 @@ function generateInvokation(
 						}
 					}
 				});
-			if (o.parameters.find(p => p.variant !== 'stream')) {
+			if (o.parameters.find(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
+				const typeName = fqn(
+					`${artifactConfig.rootPackageName}.jdkhttp.impl.model.${s.name}${toFirstUpper(o.name)}DataImpl`,
+				);
+
 				methodBody.append(
-					'$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());',
+					`$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new ${typeName}($jsonPayload.build()), false, this.contentType(), ${typeName}.class), this.contentType());`,
 					NL,
 				);
 			}
@@ -704,9 +710,12 @@ function generateInvokation(
 						methodBody.append('throw new UnsupportedOperationException();', NL);
 					}
 				});
-				// FIXME
+				const typeName = fqn(
+					`${artifactConfig.rootPackageName}.jdkhttp.impl.model.${s.name}${toFirstUpper(o.name)}DataImpl`,
+				);
+
 				methodBody.append(
-					`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.ofObject($builder.build(), false, this.contentType(), /* Temporary hack */ null));`,
+					`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.ofObject(new ${typeName}($builder.build()), false, this.contentType(), ${typeName}.class));`,
 					NL,
 				);
 			}
@@ -803,6 +812,7 @@ function generateInvokation(
 
 function generateOperation(
 	node: IndentNode,
+	s: MResolvedService,
 	o: MResolvedOperation,
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
@@ -811,7 +821,7 @@ function generateOperation(
 	let idx = o.parameters.findIndex(p => p.optional);
 
 	if (idx === -1) {
-		generateOpertationMethod(node, o, o.parameters, artifactConfig, fqn, path, false);
+		generateOpertationMethod(node, s, o, o.parameters, artifactConfig, fqn, path, false);
 	} else {
 		const hasMultipleParams = o.parameters.filter(p => p.meta?.rest?.source === undefined).length > 1;
 		let first = true;
@@ -821,7 +831,7 @@ function generateOperation(
 			if (!first) {
 				node.appendNewLine();
 			}
-			generateOpertationMethod(node, o, params, artifactConfig, fqn, path, hasMultipleParams);
+			generateOpertationMethod(node, s, o, params, artifactConfig, fqn, path, hasMultipleParams);
 			first = false;
 		}
 	}
@@ -1027,7 +1037,10 @@ function generateServiceData(
 	const JsonObject = fqn('jakarta.json.JsonObject');
 
 	const node = new CompositeGeneratorNode();
-	node.append(`public class ${s.name}${toFirstUpper(o.name)}DataImpl extends _BaseDataImpl {`, NL);
+	node.append(
+		`public class ${s.name}${toFirstUpper(o.name)}DataImpl extends _BaseDataImpl implements ${artifactConfig.rootPackageName}.model._Base.BaseData {`,
+		NL,
+	);
 	node.indent(classBody => {
 		classBody.append(`public ${s.name}${toFirstUpper(o.name)}DataImpl(${JsonObject} data) {`, NL);
 		classBody.indent(methodBody => {

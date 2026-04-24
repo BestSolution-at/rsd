@@ -7,7 +7,7 @@ import jakarta.json.JsonObject;
 
 import dev.rsdlang.sample.client.model.SimpleRecord;
 
-public class BodyParameterTypesMultiBodyParamFirstDataImpl extends _BaseDataImpl {
+public class BodyParameterTypesMultiBodyParamFirstDataImpl extends _BaseDataImpl implements dev.rsdlang.sample.client.model._Base.BaseData {
 	public BodyParameterTypesMultiBodyParamFirstDataImpl(JsonObject data) {
 		super(data);
 	}

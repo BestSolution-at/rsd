@@ -16,6 +16,10 @@ import jakarta.json.Json;
 import dev.rsdlang.sample.client.BinaryTypesService;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._BaseDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
+import dev.rsdlang.sample.client.jdkhttp.impl.model.BinaryTypesUploadMixedDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.impl.model.BinaryTypesUploadMixedNilDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.impl.model.BinaryTypesUploadMixedOptDataImpl;
+import dev.rsdlang.sample.client.jdkhttp.impl.model.BinaryTypesUploadMixedOptNilDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.UploadMixedResultDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.RSDBlob;
@@ -777,7 +781,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			$formDataBuilder.addBlob("dataFile", dataFile);
 			$formDataBuilder.addBlob("dataBlob", dataBlob);
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -806,7 +810,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		try {
 			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -838,7 +842,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (text != null) {
 				$jsonPayload.add("text", text);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -873,7 +877,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (number != null) {
 				$jsonPayload.add("number", number);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -911,7 +915,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -952,7 +956,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			}
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -996,7 +1000,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (numberList != null) {
 				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			}
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1043,7 +1047,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (recList != null) {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			}
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1093,7 +1097,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1146,7 +1150,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (dataBlob != null) {
 				$formDataBuilder.addBlob("dataBlob", dataBlob);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1217,7 +1221,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (dataBlob != null) {
 				$formDataBuilder.addBlob("dataBlob", dataBlob);
 			}
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1246,7 +1250,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		try {
 			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
 			var $jsonPayload = Json.createObjectBuilder();
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1281,7 +1285,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("text");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1322,7 +1326,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("number");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1369,7 +1373,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("rec");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1422,7 +1426,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("textList");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1481,7 +1485,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("numberList");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1546,7 +1550,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("recList");
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1617,7 +1621,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$formDataBuilder.addString("_rsdNull-dataFile", "true", null);
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1694,7 +1698,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$formDataBuilder.addString("_rsdNull-dataBlob", "true", null);
 			}
 
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
@@ -1742,9 +1746,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
 			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
-			var $jsonPayload = Json.createObjectBuilder();
 			$formDataBuilder.addBlob("dataBlob", dataBlob);
-			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject($jsonPayload.build(), false, this.contentType(), null), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();

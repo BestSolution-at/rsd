@@ -333,7 +333,7 @@ public class ServiceUtils {
 		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
 	}
 
-	public static <T/* extends _Base.BaseData*/> byte[] ofObject(
+	public static <T extends _Base.BaseData> byte[] ofObject(
 			T value,
 			boolean nullable,
 			String contentType,
@@ -341,7 +341,7 @@ public class ServiceUtils {
 		return of(value, nullable, contentType, TypeInfo.value(type));
 	}
 
-	public static <T/* extends _Base.BaseData*/> byte[] ofObjectList(
+	public static <T extends _Base.BaseData> byte[] ofObjectList(
 			List<T> value,
 			boolean nullable,
 			String contentType,

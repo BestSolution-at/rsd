@@ -9,7 +9,7 @@ import jakarta.json.JsonObject;
 
 import dev.rsdlang.sample.client.model.SimpleRecord;
 
-public class BinaryTypesUploadMixedOptDataImpl extends _BaseDataImpl {
+public class BinaryTypesUploadMixedOptDataImpl extends _BaseDataImpl implements dev.rsdlang.sample.client.model._Base.BaseData {
 	public BinaryTypesUploadMixedOptDataImpl(JsonObject data) {
 		super(data);
 	}
