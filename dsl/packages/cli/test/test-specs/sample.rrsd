@@ -800,4 +800,7 @@ resource BinaryTypes at '/api/binarytypes' {
 		query-param queryString
 		query-param queryNumber
 		query-param queryRecord
+
+	POST singleBodyAddition at 'singleBodyAddition'
+	POST twoBinariesAddition at 'twoBinariesAddition'
 }

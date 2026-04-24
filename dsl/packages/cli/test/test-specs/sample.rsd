@@ -1602,6 +1602,16 @@ service BinaryTypes {
 
 		dataBlob: blob
 	);
+
+	operation singleBodyAddition(
+		name: string,
+		dataBlob: blob
+	);
+
+	operation twoBinariesAddition(
+		dataBlob: blob,
+		dataFile: file
+	);
 	
 	operation downloadFile(): file;
 	operation downloadBlob(): blob;

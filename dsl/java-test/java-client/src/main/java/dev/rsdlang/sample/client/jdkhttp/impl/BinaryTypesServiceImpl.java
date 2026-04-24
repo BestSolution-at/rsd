@@ -16,6 +16,7 @@ import jakarta.json.Json;
 import dev.rsdlang.sample.client.BinaryTypesService;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._BaseDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model._JsonUtils;
+import dev.rsdlang.sample.client.jdkhttp.impl.model.BinaryTypesSingleBodyAdditionDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.BinaryTypesUploadMixedDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.BinaryTypesUploadMixedNilDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.model.BinaryTypesUploadMixedOptDataImpl;
@@ -1759,6 +1760,72 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 204) {
+				return;
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public void singleBodyAddition(String name, RSDBlob dataBlob) {
+		Objects.requireNonNull(name, "name must not be null");
+		Objects.requireNonNull(dataBlob, "dataBlob must not be null");
+
+		var $path = "%s/api/binarytypes/singleBodyAddition".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
+			var $jsonPayload = Json.createObjectBuilder();
+			$jsonPayload.add("name", name);
+			$formDataBuilder.addBlob("dataBlob", dataBlob);
+			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesSingleBodyAdditionDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesSingleBodyAdditionDataImpl.class), this.contentType());
+			var $formData = $formDataBuilder.build();
+			var $body = $formData.publisher();
+			var $contentType = $formData.contentType();
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 204) {
+				return;
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public void twoBinariesAddition(RSDBlob dataBlob, RSDFile dataFile) {
+		Objects.requireNonNull(dataBlob, "dataBlob must not be null");
+		Objects.requireNonNull(dataFile, "dataFile must not be null");
+
+		var $path = "%s/api/binarytypes/twoBinariesAddition".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
+			$formDataBuilder.addBlob("dataBlob", dataBlob);
+			$formDataBuilder.addBlob("dataFile", dataFile);
+			var $formData = $formDataBuilder.build();
+			var $body = $formData.publisher();
+			var $contentType = $formData.contentType();
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
 			var $request = $requestBuilder.build();
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());

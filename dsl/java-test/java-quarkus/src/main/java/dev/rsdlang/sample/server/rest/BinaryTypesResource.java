@@ -22,6 +22,7 @@ import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.rest.model._JsonUtils;
 import dev.rsdlang.sample.server.rest.model._NillableImpl;
+import dev.rsdlang.sample.server.rest.model.BinaryTypesSingleBodyAdditionDataImpl;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesUploadMixedDataImpl;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesUploadMixedNilDataImpl;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesUploadMixedOptDataImpl;
@@ -294,5 +295,25 @@ public class BinaryTypesResource {
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
 		service.mixed(builderFactory, pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob);
 		return responseBuilder.mixed(pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob).build();
+	}
+	@POST
+	@Path("singleBodyAddition")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public Response singleBodyAddition(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("_rsdPayload") FileUpload $_payload, @RestForm("name") InputStream _name, @RestForm("dataBlob") FileUpload _dataBlob) {
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(), _JsonUtils.TypeInfo.value(BinaryTypesSingleBodyAdditionDataImpl.class)).asJsonObject();
+		var $payload = new BinaryTypesSingleBodyAdditionDataImpl($payloadJson);
+		var name = $payload.name();
+		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
+		service.singleBodyAddition(builderFactory, name, dataBlob);
+		return responseBuilder.singleBodyAddition(name, dataBlob).build();
+	}
+	@POST
+	@Path("twoBinariesAddition")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public Response twoBinariesAddition(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("dataBlob") FileUpload _dataBlob, @RestForm("dataFile") FileUpload _dataFile) {
+		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
+		var dataFile = builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName());
+		service.twoBinariesAddition(builderFactory, dataBlob, dataFile);
+		return responseBuilder.twoBinariesAddition(dataBlob, dataFile).build();
 	}
 }

@@ -26,6 +26,8 @@ export interface BinaryTypesService {
 	uploadMixedNil(text: string | null, number: number | null, rec: SimpleRecord | null, textList: string[] | null, numberList: number[] | null, recList: SimpleRecord[] | null, dataFile: File | null, dataBlob: Blob | null): Promise<Result<UploadMixedResult, StatusRSDError | NativeRSDError>>;
 	uploadMixedOptNil(text?: string | null, number?: number | null, rec?: SimpleRecord | null, textList?: string[] | null, numberList?: number[] | null, recList?: SimpleRecord[] | null, dataFile?: File | null, dataBlob?: Blob | null): Promise<Result<UploadMixedResult, StatusRSDError | NativeRSDError>>;
 	mixed(pathString: string, pathNumber: number, headerString: string, headerNumber: number, headerRecord: SimpleRecord, queryString: string, queryNumber: number, queryRecord: SimpleRecord, dataBlob: Blob): Promise<Result<VoidType, StatusRSDError | NativeRSDError>>;
+	singleBodyAddition(name: string, dataBlob: Blob): Promise<Result<VoidType, StatusRSDError | NativeRSDError>>;
+	twoBinariesAddition(dataBlob: Blob, dataFile: File): Promise<Result<VoidType, StatusRSDError | NativeRSDError>>;
 	downloadFile(): Promise<Result<File, StatusRSDError | NativeRSDError>>;
 	downloadBlob(): Promise<Result<Blob, StatusRSDError | NativeRSDError>>;
 }

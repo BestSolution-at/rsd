@@ -122,6 +122,14 @@ public class BinaryTypesResourceResponseBuilder {
 		return Response.status(204);
 	}
 
+	public ResponseBuilder singleBodyAddition(String name, RSDBlob dataBlob) {
+		return Response.status(204);
+	}
+
+	public ResponseBuilder twoBinariesAddition(RSDBlob dataBlob, RSDFile dataFile) {
+		return Response.status(204);
+	}
+
 	public ResponseBuilder downloadFile(RSDFile $result, String $contentType) {
 		return _RestUtils.toStreamResponse(200, $result);
 	}

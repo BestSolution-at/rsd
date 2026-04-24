@@ -38,10 +38,12 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	private final UploadMixedNilHandler uploadMixedNilHandler;
 	private final UploadMixedOptNilHandler uploadMixedOptNilHandler;
 	private final MixedHandler mixedHandler;
+	private final SingleBodyAdditionHandler singleBodyAdditionHandler;
+	private final TwoBinariesAdditionHandler twoBinariesAdditionHandler;
 	private final DownloadFileHandler downloadFileHandler;
 	private final DownloadBlobHandler downloadBlobHandler;
 
-	public BinaryTypesServiceImpl(UploadFileHandler uploadFileHandler, UploadFileOptHandler uploadFileOptHandler, UploadFileNilHandler uploadFileNilHandler, UploadFileOptNilHandler uploadFileOptNilHandler, UploadBlobHandler uploadBlobHandler, UploadBlobOptHandler uploadBlobOptHandler, UploadBlobNilHandler uploadBlobNilHandler, UploadBlobOptNilHandler uploadBlobOptNilHandler, UploadFileListHandler uploadFileListHandler, UploadFileListOptHandler uploadFileListOptHandler, UploadFileListNilHandler uploadFileListNilHandler, UploadFileListOptNilHandler uploadFileListOptNilHandler, UploadBlobListHandler uploadBlobListHandler, UploadBlobListOptHandler uploadBlobListOptHandler, UploadBlobListNilHandler uploadBlobListNilHandler, UploadBlobListOptNilHandler uploadBlobListOptNilHandler, UploadMixedHandler uploadMixedHandler, UploadMixedOptHandler uploadMixedOptHandler, UploadMixedNilHandler uploadMixedNilHandler, UploadMixedOptNilHandler uploadMixedOptNilHandler, MixedHandler mixedHandler, DownloadFileHandler downloadFileHandler, DownloadBlobHandler downloadBlobHandler) {
+	public BinaryTypesServiceImpl(UploadFileHandler uploadFileHandler, UploadFileOptHandler uploadFileOptHandler, UploadFileNilHandler uploadFileNilHandler, UploadFileOptNilHandler uploadFileOptNilHandler, UploadBlobHandler uploadBlobHandler, UploadBlobOptHandler uploadBlobOptHandler, UploadBlobNilHandler uploadBlobNilHandler, UploadBlobOptNilHandler uploadBlobOptNilHandler, UploadFileListHandler uploadFileListHandler, UploadFileListOptHandler uploadFileListOptHandler, UploadFileListNilHandler uploadFileListNilHandler, UploadFileListOptNilHandler uploadFileListOptNilHandler, UploadBlobListHandler uploadBlobListHandler, UploadBlobListOptHandler uploadBlobListOptHandler, UploadBlobListNilHandler uploadBlobListNilHandler, UploadBlobListOptNilHandler uploadBlobListOptNilHandler, UploadMixedHandler uploadMixedHandler, UploadMixedOptHandler uploadMixedOptHandler, UploadMixedNilHandler uploadMixedNilHandler, UploadMixedOptNilHandler uploadMixedOptNilHandler, MixedHandler mixedHandler, SingleBodyAdditionHandler singleBodyAdditionHandler, TwoBinariesAdditionHandler twoBinariesAdditionHandler, DownloadFileHandler downloadFileHandler, DownloadBlobHandler downloadBlobHandler) {
 		this.uploadFileHandler = uploadFileHandler;
 		this.uploadFileOptHandler = uploadFileOptHandler;
 		this.uploadFileNilHandler = uploadFileNilHandler;
@@ -63,6 +65,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		this.uploadMixedNilHandler = uploadMixedNilHandler;
 		this.uploadMixedOptNilHandler = uploadMixedOptNilHandler;
 		this.mixedHandler = mixedHandler;
+		this.singleBodyAdditionHandler = singleBodyAdditionHandler;
+		this.twoBinariesAdditionHandler = twoBinariesAdditionHandler;
 		this.downloadFileHandler = downloadFileHandler;
 		this.downloadBlobHandler = downloadBlobHandler;
 	}
@@ -173,6 +177,16 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	@Override
+	public void singleBodyAddition(BuilderFactory _factory, String name, RSDBlob dataBlob) {
+		singleBodyAdditionHandler.singleBodyAddition(_factory, name, dataBlob);
+	}
+
+	@Override
+	public void twoBinariesAddition(BuilderFactory _factory, RSDBlob dataBlob, RSDFile dataFile) {
+		twoBinariesAdditionHandler.twoBinariesAddition(_factory, dataBlob, dataFile);
+	}
+
+	@Override
 	public RSDFile downloadFile(BuilderFactory _factory) {
 		return downloadFileHandler.downloadFile(_factory);
 	}
@@ -264,6 +278,14 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 
 	public interface MixedHandler {
 		public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob);
+	}
+
+	public interface SingleBodyAdditionHandler {
+		public void singleBodyAddition(BuilderFactory _factory, String name, RSDBlob dataBlob);
+	}
+
+	public interface TwoBinariesAdditionHandler {
+		public void twoBinariesAddition(BuilderFactory _factory, RSDBlob dataBlob, RSDFile dataFile);
 	}
 
 	public interface DownloadFileHandler {

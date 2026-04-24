@@ -13048,6 +13048,74 @@
         }
       }
     },
+    "/api/binarytypes/singleBodyAddition": {
+      "post": {
+        "tags": [
+          "BinaryTypes"
+        ],
+        "description": "",
+        "operationId": "BinaryTypes_singleBodyAddition",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "dataBlob": {}
+                },
+                "required": [
+                  "name",
+                  "dataBlob"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/api/binarytypes/twoBinariesAddition": {
+      "post": {
+        "tags": [
+          "BinaryTypes"
+        ],
+        "description": "",
+        "operationId": "BinaryTypes_twoBinariesAddition",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dataBlob": {},
+                  "dataFile": {}
+                },
+                "required": [
+                  "dataBlob",
+                  "dataFile"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "success"
+          }
+        }
+      }
+    },
     "/api/binarytypes/downloadFile": {
       "get": {
         "tags": [

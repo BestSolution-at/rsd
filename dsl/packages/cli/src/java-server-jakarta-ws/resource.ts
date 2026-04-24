@@ -25,9 +25,15 @@ import { builtinJSONAccess, builtinSimpleJSONArrayAccessNG } from '../java-model
 export function generateResource(s: MResolvedService, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact[] {
 	const result: Artifact[] = [];
 	const serviceDTOs = s.operations
-		.filter(
-			o => o.parameters.filter(p => p.variant !== 'stream').filter(p => p.meta?.rest?.source === undefined).length > 1,
-		)
+		.filter(o => {
+			if (o.parameters.some(p => p.variant === 'stream')) {
+				return o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined);
+			} else {
+				return (
+					o.parameters.filter(p => p.variant !== 'stream').filter(p => p.meta?.rest?.source === undefined).length > 1
+				);
+			}
+		})
 		.map(o => generateServiceData(s, o, artifactConfig));
 	result.push(...serviceDTOs);
 

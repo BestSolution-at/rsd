@@ -25,6 +25,8 @@ export function createBinaryTypesService(props: ServiceProps<api.service.ErrorTy
 		uploadMixedNil: fnUploadMixedNil(props),
 		uploadMixedOptNil: fnUploadMixedOptNil(props),
 		mixed: fnMixed(props),
+		singleBodyAddition: fnSingleBodyAddition(props),
+		twoBinariesAddition: fnTwoBinariesAddition(props),
 		downloadFile: fnDownloadFile(props),
 		downloadBlob: fnDownloadBlob(props),
 	};
@@ -854,6 +856,77 @@ function fnMixed(props: ServiceProps<api.service.ErrorType>): api.service.Binary
 			return api.result.ERR(err);
 		} finally {
 			final?.('mixed');
+		}
+	};
+}
+
+function fnSingleBodyAddition(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['singleBodyAddition'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (name: string, dataBlob: Blob) => {
+		try {
+			const $init = (await preFetch?.('singleBodyAddition')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/singleBodyAddition`;
+			const $body = new FormData();
+			$body.append('dataBlob', dataBlob);
+			const $jsonPayload = {
+				name,
+			};
+			$body.append('_rsdPayload', new Blob([encodeValue(encodingType(props), $jsonPayload)], { type: encodingType(props) }));
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('singleBodyAddition', api.result.Void));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('singleBodyAddition', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('singleBodyAddition');
+		}
+	};
+}
+
+function fnTwoBinariesAddition(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['twoBinariesAddition'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (dataBlob: Blob, dataFile: File) => {
+		try {
+			const $init = (await preFetch?.('twoBinariesAddition')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/binarytypes/twoBinariesAddition`;
+			const $body = new FormData();
+			$body.append('dataBlob', dataBlob);
+			$body.append('dataFile', dataFile);
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('twoBinariesAddition', api.result.Void));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('twoBinariesAddition', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('twoBinariesAddition');
 		}
 	};
 }

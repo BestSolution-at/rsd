@@ -54,6 +54,10 @@ public interface BinaryTypesService {
 
 	public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob);
 
+	public void singleBodyAddition(BuilderFactory _factory, String name, RSDBlob dataBlob);
+
+	public void twoBinariesAddition(BuilderFactory _factory, RSDBlob dataBlob, RSDFile dataFile);
+
 	public RSDFile downloadFile(BuilderFactory _factory);
 
 	public RSDBlob downloadBlob(BuilderFactory _factory);

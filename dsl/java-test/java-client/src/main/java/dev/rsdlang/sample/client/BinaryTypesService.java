@@ -194,6 +194,14 @@ public interface BinaryTypesService extends BaseService {
 			SimpleRecord.Data queryRecord, 
 			RSDBlob dataBlob);
 
+	public void singleBodyAddition(
+			String name, 
+			RSDBlob dataBlob);
+
+	public void twoBinariesAddition(
+			RSDBlob dataBlob, 
+			RSDFile dataFile);
+
 	public RSDFile downloadFile();
 
 	public RSDBlob downloadBlob();
