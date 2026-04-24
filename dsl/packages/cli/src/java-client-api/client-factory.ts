@@ -1,4 +1,4 @@
-import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
+import { toString } from 'langium/generate';
 
 import { Artifact, ArtifactGenerationConfig } from '../artifact-generator.js';
 import {
@@ -7,7 +7,7 @@ import {
 	generateCompilationUnit,
 	toPath,
 } from '../java-gen-utils.js';
-import { toCamelCaseIdentifier, toFirstUpper } from '../util.js';
+import { toCamelCaseIdentifier, toFirstUpper, toNodeTree } from '../util.js';
 
 export function generateFactory(
 	generatorConfig: ArtifactGenerationConfig,
@@ -18,21 +18,20 @@ export function generateFactory(
 	const importCollector = new JavaImportsCollector(packageName);
 	const fqn = importCollector.importType.bind(importCollector);
 
-	const content = new CompositeGeneratorNode();
-	content.append(`public interface ${toFirstUpper(toCamelCaseIdentifier(generatorConfig.name))}ClientFactory {`, NL);
-	content.indent(child => {
-		const clientType = fqn(
-			`${artifactConfig.rootPackageName}.${toFirstUpper(toCamelCaseIdentifier(generatorConfig.name))}Client`,
-		);
-		const uriType = fqn('java.net.URI');
+	const Type = `${toFirstUpper(toCamelCaseIdentifier(generatorConfig.name))}ClientFactory`;
+	const ClientType = fqn(
+		`${artifactConfig.rootPackageName}.${toFirstUpper(toCamelCaseIdentifier(generatorConfig.name))}Client`,
+	);
+	const UriType = fqn('java.net.URI');
 
-		child.append(`public ${clientType} create(${uriType} uri);`, NL);
-	});
-	content.append('}', NL);
+	const node = toNodeTree(`
+public interface ${Type} {
+	public ${ClientType} create(${UriType} uri);
+}`);
 
 	return {
-		name: `${toFirstUpper(toCamelCaseIdentifier(generatorConfig.name))}ClientFactory.java`,
-		content: toString(generateCompilationUnit(packageName, importCollector, content), '\t'),
+		name: `${Type}.java`,
+		content: toString(generateCompilationUnit(packageName, importCollector, node), '\t'),
 		path: toPath(artifactConfig.targetFolder, packageName),
 	};
 }
