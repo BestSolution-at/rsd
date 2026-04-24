@@ -2,6 +2,8 @@ import { CompositeGeneratorNode, IndentNode, NL, toString } from 'langium/genera
 import { Artifact, ArtifactGenerationConfig } from '../artifact-generator.js';
 import {
 	computeParameterAPIType,
+	computeParameterAPITypeNG,
+	computeParameterValueType,
 	generateCompilationUnit,
 	JavaImportsCollector,
 	JavaRestClientJDKGeneratorConfig,
@@ -18,7 +20,12 @@ import {
 	MResolvedService,
 	MReturnType,
 } from '../model.js';
-import { builtinBuilderAccess, builtinBuilderArrayJSONAccess } from '../java-model-json/shared.js';
+import {
+	builtinBuilderAccess,
+	builtinBuilderArrayJSONAccess,
+	builtinJSONAccess,
+	builtinSimpleJSONArrayAccessNG,
+} from '../java-model-json/shared.js';
 import { computePath } from '../rest-utils.js';
 import { toCamelCaseIdentifier, toFirstUpper, toNodeTree } from '../util.js';
 
@@ -26,7 +33,8 @@ export function generateService(
 	s: MResolvedService,
 	generatorConfig: ArtifactGenerationConfig,
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
-): Artifact {
+): Artifact[] {
+	const artifacts: Artifact[] = [];
 	const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl`;
 
 	const importCollector = new JavaImportsCollector(packageName);
@@ -80,11 +88,20 @@ export function generateService(
 	});
 	node.append('}', NL);
 
-	return {
+	artifacts.push({
 		name: `${s.name}ServiceImpl.java`,
 		content: toString(generateCompilationUnit(packageName, importCollector, node), '\t'),
 		path: toPath(artifactConfig.targetFolder, packageName),
-	};
+	});
+
+	const serviceDTOs = s.operations
+		.filter(
+			o => o.parameters.filter(p => p.variant !== 'stream').filter(p => p.meta?.rest?.source === undefined).length > 1,
+		)
+		.map(o => generateServiceData(s, o, artifactConfig));
+	artifacts.push(...serviceDTOs);
+
+	return artifacts;
 }
 
 function generateOpertationMethod(
@@ -996,4 +1013,192 @@ function toResultType(
 	}
 
 	return rvType;
+}
+
+function generateServiceData(
+	s: MResolvedService,
+	o: MResolvedOperation,
+	artifactConfig: JavaRestClientJDKGeneratorConfig,
+): Artifact {
+	const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
+	const importCollector = new JavaImportsCollector(packageName);
+	const fqn = importCollector.importType.bind(importCollector);
+
+	const JsonObject = fqn('jakarta.json.JsonObject');
+
+	const node = new CompositeGeneratorNode();
+	node.append(`public class ${s.name}${toFirstUpper(o.name)}DataImpl extends _BaseDataImpl {`, NL);
+	node.indent(classBody => {
+		classBody.append(`public ${s.name}${toFirstUpper(o.name)}DataImpl(${JsonObject} data) {`, NL);
+		classBody.indent(methodBody => {
+			methodBody.append('super(data);', NL);
+		});
+		classBody.append('}', NL, NL);
+		o.parameters
+			.filter(p => p.variant !== 'stream')
+			.filter(p => p.meta?.rest?.source === undefined)
+			.forEach(p => {
+				const type =
+					p.variant === 'inline-enum'
+						? computeParameterAPITypeNG(
+								p,
+								artifactConfig.nativeTypeSubstitues,
+								`${artifactConfig.rootPackageName}.model`,
+								fqn,
+								o.name,
+							)
+						: computeParameterAPITypeNG(
+								p,
+								artifactConfig.nativeTypeSubstitues,
+								`${artifactConfig.rootPackageName}.model`,
+								fqn,
+							);
+				classBody.append(`public ${type} ${p.name}() {`, NL);
+				classBody.indent(methodBody => {
+					methodBody.append(
+						generateParameterContent(
+							p,
+							artifactConfig.nativeTypeSubstitues,
+							`${artifactConfig.rootPackageName}.model`,
+							fqn,
+							o,
+						),
+					);
+				});
+				classBody.append('}', NL, NL);
+			});
+	});
+
+	node.append('}');
+
+	return {
+		name: `${s.name}${toFirstUpper(o.name)}DataImpl.java`,
+		content: toString(generateCompilationUnit(packageName, importCollector, node), '\t'),
+		path: toPath(artifactConfig.targetFolder, packageName),
+	};
+}
+
+function generateParameterContent(
+	prop: MParameter,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	interfaceBasePackage: string,
+	fqn: (type: string) => string,
+	o: MResolvedOperation,
+) {
+	let mapper: string;
+	const array = prop.array;
+
+	if (isMBuiltinType(prop.type)) {
+		if (array) {
+			mapper = builtinSimpleJSONArrayAccessNG({
+				type: prop.type,
+				name: prop.name,
+				optional: prop.optional,
+				nullable: prop.nullable,
+			});
+		} else {
+			mapper = builtinJSONAccess({
+				type: prop.type,
+				name: prop.name,
+				optional: prop.optional,
+				nullable: prop.nullable,
+			});
+		}
+	} else if (prop.variant === 'inline-enum') {
+		const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, o.name);
+		if (array) {
+			if (prop.optional && prop.nullable) {
+				mapper = `_JsonUtils.mapNilLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+			} else if (prop.optional) {
+				mapper = `_JsonUtils.mapOptLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+			} else if (prop.nullable) {
+				mapper = `_JsonUtils.mapNullLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+			} else {
+				mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+			}
+		} else {
+			if (prop.optional && prop.nullable) {
+				mapper = `_JsonUtils.mapNilLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+			} else if (prop.optional) {
+				mapper = `_JsonUtils.mapOptLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+			} else if (prop.nullable) {
+				mapper = `_JsonUtils.mapNullLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+			} else {
+				mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+			}
+		}
+	} else {
+		if (prop.variant === 'enum') {
+			if (array) {
+				if (prop.optional && prop.nullable) {
+					mapper = `_JsonUtils.mapNilLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+				} else if (prop.optional) {
+					mapper = `_JsonUtils.mapOptLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+				} else if (prop.nullable) {
+					mapper = `_JsonUtils.mapNullLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+				} else {
+					mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+				}
+			} else {
+				if (prop.optional && prop.nullable) {
+					mapper = `_JsonUtils.mapNilLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+				} else if (prop.optional) {
+					mapper = `_JsonUtils.mapOptLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+				} else if (prop.nullable) {
+					mapper = `_JsonUtils.mapNullLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+				} else {
+					mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+				}
+			}
+		} else if (prop.variant === 'scalar') {
+			const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
+			if (array) {
+				if (prop.optional && prop.nullable) {
+					mapper = `_JsonUtils.mapNilLiterals(data, "${prop.name}", ${Type}::of)`;
+				} else if (prop.optional) {
+					mapper = `_JsonUtils.mapOptLiterals(data, "${prop.name}", ${Type}::of)`;
+				} else if (prop.nullable) {
+					mapper = `_JsonUtils.mapNullLiterals(data, "${prop.name}", ${Type}::of)`;
+				} else {
+					mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::of)`;
+				}
+			} else {
+				if (prop.optional && prop.nullable) {
+					mapper = `_JsonUtils.mapNilLiteral(data, "${prop.name}", ${Type}::of)`;
+				} else if (prop.optional) {
+					mapper = `_JsonUtils.mapOptLiteral(data, "${prop.name}", ${Type}::of)`;
+				} else if (prop.nullable) {
+					mapper = `_JsonUtils.mapNullLiteral(data, "${prop.name}", ${Type}::of)`;
+				} else {
+					mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::of)`;
+				}
+			}
+		} else {
+			const type = prop.patch ? `${prop.type}PatchImpl` : `${prop.type}DataImpl`;
+			if (array) {
+				if (prop.optional && prop.nullable) {
+					mapper = `_JsonUtils.mapNilObjects(data, "${prop.name}", ${type}::of)`;
+				} else if (prop.optional) {
+					mapper = `_JsonUtils.mapOptObjects(data, "${prop.name}", ${type}::of)`;
+				} else if (prop.nullable) {
+					mapper = `_JsonUtils.mapNullObjects(data, "${prop.name}", ${type}::of)`;
+				} else {
+					mapper = `_JsonUtils.mapObjects(data, "${prop.name}", ${type}::of)`;
+				}
+			} else {
+				if (prop.nullable && prop.optional) {
+					mapper = `_JsonUtils.mapNilObject(data, "${prop.name}", ${type}::of)`;
+				} else if (prop.optional) {
+					mapper = `_JsonUtils.mapOptObject(data, "${prop.name}", ${type}::of)`;
+				} else if (prop.nullable) {
+					mapper = `_JsonUtils.mapNullObject(data, "${prop.name}", ${type}::of)`;
+				} else {
+					mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${type}::of)`;
+				}
+			}
+		}
+	}
+	const node = new CompositeGeneratorNode();
+	node.append(`return ${mapper};`, NL);
+	return node;
 }

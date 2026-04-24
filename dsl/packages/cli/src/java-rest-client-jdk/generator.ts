@@ -34,7 +34,7 @@ export function generate(
 	result.push(generateJsonUtils(artifactConfig));
 	result.push(generateServiceUtils(artifactConfig, model));
 	result.push(...model.elements.flatMap(e => generateType(e, model, artifactConfig)).filter(isDefined));
-	result.push(...model.services.map(e => generateService(e, generatorConfig, artifactConfig)));
+	result.push(...model.services.flatMap(e => generateService(e, generatorConfig, artifactConfig)));
 	result.push(...generateStreamImpls(artifactConfig, model));
 	result.push(...generateChangeSupport(artifactConfig));
 	result.push(...generateFormDataPublisherBuilder(artifactConfig, model));
