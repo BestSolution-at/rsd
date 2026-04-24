@@ -80,6 +80,7 @@ public class RecordWithUnionsDataImpl extends _BaseDataImpl implements RecordWit
 			return this;
 		}
 
+
 		public <T extends Union.DataBuilder> DataBuilder withValue(Class<T> clazz, Function<T, Union.Data> block) {
 			Union.DataBuilder b;
 			if (clazz == UnionA.DataBuilder.class) {
@@ -102,6 +103,7 @@ public class RecordWithUnionsDataImpl extends _BaseDataImpl implements RecordWit
 			return this;
 		}
 
+
 		public <T extends Union.DataBuilder> DataBuilder withValue_Null(Class<T> clazz, Function<T, Union.Data> block) {
 			Union.DataBuilder b;
 			if (clazz == UnionA.DataBuilder.class) {
@@ -122,6 +124,7 @@ public class RecordWithUnionsDataImpl extends _BaseDataImpl implements RecordWit
 			$builder.add("value_Opt", ((_BaseDataImpl) value_Opt).data);
 			return this;
 		}
+
 
 		public <T extends Union.DataBuilder> DataBuilder withValue_Opt(Class<T> clazz, Function<T, Union.Data> block) {
 			Union.DataBuilder b;
@@ -145,8 +148,8 @@ public class RecordWithUnionsDataImpl extends _BaseDataImpl implements RecordWit
 			return this;
 		}
 
-		public <T extends Union.DataBuilder> DataBuilder withValue_Opt_Null(Class<T> clazz,
-				Function<T, Union.Data> block) {
+
+		public <T extends Union.DataBuilder> DataBuilder withValue_Opt_Null(Class<T> clazz, Function<T, Union.Data> block) {
 			Union.DataBuilder b;
 			if (clazz == UnionA.DataBuilder.class) {
 				b = UnionADataImpl.builder();

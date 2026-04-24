@@ -106,7 +106,7 @@ export function generateClient(
 		clBody.indent(staticBody => {
 			m.elements.filter(isMResolvedRecordType).forEach(e => {
 				const type = fqn(`${basePackage}.model.${e.name}`);
-				const implType = fqn(`${packageName}.impl.model.${e.name}DataImpl`);
+				const implType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${e.name}DataImpl`);
 				staticBody.append(`registerBuilderCreator(${type}.DataBuilder.class, ${implType}.DataBuilderImpl::new);`, NL);
 			});
 
@@ -115,7 +115,7 @@ export function generateClient(
 				.filter(t => t.patchable)
 				.forEach((e, idx) => {
 					const type = fqn(`${basePackage}.model.${e.name}`);
-					const implType = fqn(`${packageName}.impl.model.${e.name}PatchImpl`);
+					const implType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${e.name}PatchImpl`);
 					if (idx === 0) {
 						staticBody.append(NL);
 					}
@@ -245,7 +245,10 @@ export function generateClient(
 				NL,
 			);
 			clBody.indent(mBody => {
-				mBody.append(`return ${fqn(`${packageName}.impl.model._BlobImpl`)}.of(file, mimeType);`, NL);
+				mBody.append(
+					`return ${fqn(`${artifactConfig.rootPackageName}.impl.model.json._BlobImpl`)}.of(file, mimeType);`,
+					NL,
+				);
 			});
 			clBody.append('}', NL);
 			if (hasFileStream(m)) {
@@ -257,7 +260,10 @@ export function generateClient(
 					NL,
 				);
 				clBody.indent(mBody => {
-					mBody.append(`return ${fqn(`${packageName}.impl.model._FileImpl`)}.of(file, mimeType, filename);`, NL);
+					mBody.append(
+						`return ${fqn(`${artifactConfig.rootPackageName}.impl.model.json._FileImpl`)}.of(file, mimeType, filename);`,
+						NL,
+					);
 				});
 				clBody.append('}', NL);
 			}

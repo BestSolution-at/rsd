@@ -17,45 +17,37 @@ import jakarta.json.JsonValue;
 import dev.rsdlang.sample.client.model.PatchableRecord_Basic_List;
 
 public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implements PatchableRecord_Basic_List.Patch {
-	static class ValueBooleanSetChangeImpl extends _ChangeSupport.ValueElementsChange<Boolean>
-			implements ValueBooleanSetChange {
+	static class ValueBooleanSetChangeImpl extends _ChangeSupport.ValueElementsChange<Boolean> implements ValueBooleanSetChange {
 		ValueBooleanSetChangeImpl(JsonObject data) {
 			super(data, v -> v.getValueType() == JsonValue.ValueType.TRUE);
 		}
 	}
 
-	static class ValueBooleanMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<Boolean, Boolean>
-			implements ValueBooleanMergeChange {
+	static class ValueBooleanMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<Boolean, Boolean> implements ValueBooleanMergeChange {
 		ValueBooleanMergeChangeImpl(JsonObject data) {
-			super(data, v -> v.getValueType() == JsonValue.ValueType.TRUE,
-					v -> v.getValueType() == JsonValue.ValueType.TRUE);
+			super(data, v -> v.getValueType() == JsonValue.ValueType.TRUE, v -> v.getValueType() == JsonValue.ValueType.TRUE);
 		}
 	}
 
-	static class ValueShortSetChangeImpl extends _ChangeSupport.ValueElementsChange<Short>
-			implements ValueShortSetChange {
+	static class ValueShortSetChangeImpl extends _ChangeSupport.ValueElementsChange<Short> implements ValueShortSetChange {
 		ValueShortSetChangeImpl(JsonObject data) {
 			super(data, v -> ((JsonNumber) v).numberValue().shortValue());
 		}
 	}
 
-	static class ValueShortMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<Short, Short>
-			implements ValueShortMergeChange {
+	static class ValueShortMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<Short, Short> implements ValueShortMergeChange {
 		ValueShortMergeChangeImpl(JsonObject data) {
-			super(data, v -> ((JsonNumber) v).numberValue().shortValue(),
-					v -> ((JsonNumber) v).numberValue().shortValue());
+			super(data, v -> ((JsonNumber) v).numberValue().shortValue(), v -> ((JsonNumber) v).numberValue().shortValue());
 		}
 	}
 
-	static class ValueIntSetChangeImpl extends _ChangeSupport.ValueElementsChange<Integer>
-			implements ValueIntSetChange {
+	static class ValueIntSetChangeImpl extends _ChangeSupport.ValueElementsChange<Integer> implements ValueIntSetChange {
 		ValueIntSetChangeImpl(JsonObject data) {
 			super(data, v -> ((JsonNumber) v).intValue());
 		}
 	}
 
-	static class ValueIntMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<Integer, Integer>
-			implements ValueIntMergeChange {
+	static class ValueIntMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<Integer, Integer> implements ValueIntMergeChange {
 		ValueIntMergeChangeImpl(JsonObject data) {
 			super(data, v -> ((JsonNumber) v).intValue(), v -> ((JsonNumber) v).intValue());
 		}
@@ -67,100 +59,81 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 		}
 	}
 
-	static class ValueLongMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<Long, Long>
-			implements ValueLongMergeChange {
+	static class ValueLongMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<Long, Long> implements ValueLongMergeChange {
 		ValueLongMergeChangeImpl(JsonObject data) {
 			super(data, v -> ((JsonNumber) v).longValue(), v -> ((JsonNumber) v).longValue());
 		}
 	}
 
-	static class ValueFloatSetChangeImpl extends _ChangeSupport.ValueElementsChange<Float>
-			implements ValueFloatSetChange {
+	static class ValueFloatSetChangeImpl extends _ChangeSupport.ValueElementsChange<Float> implements ValueFloatSetChange {
 		ValueFloatSetChangeImpl(JsonObject data) {
-			super(data, v -> ((JsonNumber) v).numberValue().floatValue());
+			super(data, v -> ((JsonNumber)v).numberValue().floatValue());
 		}
 	}
 
-	static class ValueFloatMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<Float, Float>
-			implements ValueFloatMergeChange {
+	static class ValueFloatMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<Float, Float> implements ValueFloatMergeChange {
 		ValueFloatMergeChangeImpl(JsonObject data) {
-			super(data, v -> ((JsonNumber) v).numberValue().floatValue(),
-					v -> ((JsonNumber) v).numberValue().floatValue());
+			super(data, v -> ((JsonNumber)v).numberValue().floatValue(), v -> ((JsonNumber)v).numberValue().floatValue());
 		}
 	}
 
-	static class ValueDoubleSetChangeImpl extends _ChangeSupport.ValueElementsChange<Double>
-			implements ValueDoubleSetChange {
+	static class ValueDoubleSetChangeImpl extends _ChangeSupport.ValueElementsChange<Double> implements ValueDoubleSetChange {
 		ValueDoubleSetChangeImpl(JsonObject data) {
 			super(data, v -> ((JsonNumber) v).doubleValue());
 		}
 	}
 
-	static class ValueDoubleMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<Double, Double>
-			implements ValueDoubleMergeChange {
+	static class ValueDoubleMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<Double, Double> implements ValueDoubleMergeChange {
 		ValueDoubleMergeChangeImpl(JsonObject data) {
 			super(data, v -> ((JsonNumber) v).doubleValue(), v -> ((JsonNumber) v).doubleValue());
 		}
 	}
 
-	static class ValueStringSetChangeImpl extends _ChangeSupport.ValueElementsChange<String>
-			implements ValueStringSetChange {
+	static class ValueStringSetChangeImpl extends _ChangeSupport.ValueElementsChange<String> implements ValueStringSetChange {
 		ValueStringSetChangeImpl(JsonObject data) {
 			super(data, v -> ((JsonString) v).getString());
 		}
 	}
 
-	static class ValueStringMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<String, String>
-			implements ValueStringMergeChange {
+	static class ValueStringMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<String, String> implements ValueStringMergeChange {
 		ValueStringMergeChangeImpl(JsonObject data) {
 			super(data, v -> ((JsonString) v).getString(), v -> ((JsonString) v).getString());
 		}
 	}
 
-	static class ValueLocalDateSetChangeImpl extends _ChangeSupport.ValueElementsChange<LocalDate>
-			implements ValueLocalDateSetChange {
+	static class ValueLocalDateSetChangeImpl extends _ChangeSupport.ValueElementsChange<LocalDate> implements ValueLocalDateSetChange {
 		ValueLocalDateSetChangeImpl(JsonObject data) {
-			super(data, v -> LocalDate.parse(((JsonString) v).getString()));
+			super(data, v -> LocalDate.parse(((JsonString)v).getString()));
 		}
 	}
 
-	static class ValueLocalDateMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<LocalDate, LocalDate>
-			implements ValueLocalDateMergeChange {
+	static class ValueLocalDateMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<LocalDate, LocalDate> implements ValueLocalDateMergeChange {
 		ValueLocalDateMergeChangeImpl(JsonObject data) {
-			super(data, v -> LocalDate.parse(((JsonString) v).getString()),
-					v -> LocalDate.parse(((JsonString) v).getString()));
+			super(data, v -> LocalDate.parse(((JsonString)v).getString()), v -> LocalDate.parse(((JsonString)v).getString()));
 		}
 	}
 
-	static class ValueLocalDateTimeSetChangeImpl extends _ChangeSupport.ValueElementsChange<LocalDateTime>
-			implements ValueLocalDateTimeSetChange {
+	static class ValueLocalDateTimeSetChangeImpl extends _ChangeSupport.ValueElementsChange<LocalDateTime> implements ValueLocalDateTimeSetChange {
 		ValueLocalDateTimeSetChangeImpl(JsonObject data) {
-			super(data, v -> LocalDateTime.parse(((JsonString) v).getString()));
+			super(data, v -> LocalDateTime.parse(((JsonString)v).getString()));
 		}
 	}
 
-	static class ValueLocalDateTimeMergeChangeImpl
-			extends _ChangeSupport.ListMergeAddRemoveImpl<LocalDateTime, LocalDateTime>
-			implements ValueLocalDateTimeMergeChange {
+	static class ValueLocalDateTimeMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<LocalDateTime, LocalDateTime> implements ValueLocalDateTimeMergeChange {
 		ValueLocalDateTimeMergeChangeImpl(JsonObject data) {
-			super(data, v -> LocalDateTime.parse(((JsonString) v).getString()),
-					v -> LocalDateTime.parse(((JsonString) v).getString()));
+			super(data, v -> LocalDateTime.parse(((JsonString)v).getString()), v -> LocalDateTime.parse(((JsonString)v).getString()));
 		}
 	}
 
-	static class ValueZonedDateTimeSetChangeImpl extends _ChangeSupport.ValueElementsChange<ZonedDateTime>
-			implements ValueZonedDateTimeSetChange {
+	static class ValueZonedDateTimeSetChangeImpl extends _ChangeSupport.ValueElementsChange<ZonedDateTime> implements ValueZonedDateTimeSetChange {
 		ValueZonedDateTimeSetChangeImpl(JsonObject data) {
-			super(data, v -> ZonedDateTime.parse(((JsonString) v).getString()));
+			super(data, v -> ZonedDateTime.parse(((JsonString)v).getString()));
 		}
 	}
 
-	static class ValueZonedDateTimeMergeChangeImpl
-			extends _ChangeSupport.ListMergeAddRemoveImpl<ZonedDateTime, ZonedDateTime>
-			implements ValueZonedDateTimeMergeChange {
+	static class ValueZonedDateTimeMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<ZonedDateTime, ZonedDateTime> implements ValueZonedDateTimeMergeChange {
 		ValueZonedDateTimeMergeChangeImpl(JsonObject data) {
-			super(data, v -> ZonedDateTime.parse(((JsonString) v).getString()),
-					v -> ZonedDateTime.parse(((JsonString) v).getString()));
+			super(data, v -> ZonedDateTime.parse(((JsonString)v).getString()), v -> ZonedDateTime.parse(((JsonString)v).getString()));
 		}
 	}
 
@@ -179,53 +152,43 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 	}
 
 	public Optional<ValueBooleanChange> valueBoolean() {
-		return _JsonUtils.mapOptObject(data, "valueBoolean",
-				o -> _ChangeSupport.of(o, "@type", ValueBooleanSetChangeImpl::new, ValueBooleanMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "valueBoolean", o -> _ChangeSupport.of(o, "@type", ValueBooleanSetChangeImpl::new, ValueBooleanMergeChangeImpl::new));
 	}
 
 	public Optional<ValueShortChange> valueShort() {
-		return _JsonUtils.mapOptObject(data, "valueShort",
-				o -> _ChangeSupport.of(o, "@type", ValueShortSetChangeImpl::new, ValueShortMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "valueShort", o -> _ChangeSupport.of(o, "@type", ValueShortSetChangeImpl::new, ValueShortMergeChangeImpl::new));
 	}
 
 	public Optional<ValueIntChange> valueInt() {
-		return _JsonUtils.mapOptObject(data, "valueInt",
-				o -> _ChangeSupport.of(o, "@type", ValueIntSetChangeImpl::new, ValueIntMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "valueInt", o -> _ChangeSupport.of(o, "@type", ValueIntSetChangeImpl::new, ValueIntMergeChangeImpl::new));
 	}
 
 	public Optional<ValueLongChange> valueLong() {
-		return _JsonUtils.mapOptObject(data, "valueLong",
-				o -> _ChangeSupport.of(o, "@type", ValueLongSetChangeImpl::new, ValueLongMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "valueLong", o -> _ChangeSupport.of(o, "@type", ValueLongSetChangeImpl::new, ValueLongMergeChangeImpl::new));
 	}
 
 	public Optional<ValueFloatChange> valueFloat() {
-		return _JsonUtils.mapOptObject(data, "valueFloat",
-				o -> _ChangeSupport.of(o, "@type", ValueFloatSetChangeImpl::new, ValueFloatMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "valueFloat", o -> _ChangeSupport.of(o, "@type", ValueFloatSetChangeImpl::new, ValueFloatMergeChangeImpl::new));
 	}
 
 	public Optional<ValueDoubleChange> valueDouble() {
-		return _JsonUtils.mapOptObject(data, "valueDouble",
-				o -> _ChangeSupport.of(o, "@type", ValueDoubleSetChangeImpl::new, ValueDoubleMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "valueDouble", o -> _ChangeSupport.of(o, "@type", ValueDoubleSetChangeImpl::new, ValueDoubleMergeChangeImpl::new));
 	}
 
 	public Optional<ValueStringChange> valueString() {
-		return _JsonUtils.mapOptObject(data, "valueString",
-				o -> _ChangeSupport.of(o, "@type", ValueStringSetChangeImpl::new, ValueStringMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "valueString", o -> _ChangeSupport.of(o, "@type", ValueStringSetChangeImpl::new, ValueStringMergeChangeImpl::new));
 	}
 
 	public Optional<ValueLocalDateChange> valueLocalDate() {
-		return _JsonUtils.mapOptObject(data, "valueLocalDate", o -> _ChangeSupport.of(o, "@type",
-				ValueLocalDateSetChangeImpl::new, ValueLocalDateMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "valueLocalDate", o -> _ChangeSupport.of(o, "@type", ValueLocalDateSetChangeImpl::new, ValueLocalDateMergeChangeImpl::new));
 	}
 
 	public Optional<ValueLocalDateTimeChange> valueLocalDateTime() {
-		return _JsonUtils.mapOptObject(data, "valueLocalDateTime", o -> _ChangeSupport.of(o, "@type",
-				ValueLocalDateTimeSetChangeImpl::new, ValueLocalDateTimeMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "valueLocalDateTime", o -> _ChangeSupport.of(o, "@type", ValueLocalDateTimeSetChangeImpl::new, ValueLocalDateTimeMergeChangeImpl::new));
 	}
 
 	public Optional<ValueZonedDateTimeChange> valueZonedDateTime() {
-		return _JsonUtils.mapOptObject(data, "valueZonedDateTime", o -> _ChangeSupport.of(o, "@type",
-				ValueZonedDateTimeSetChangeImpl::new, ValueZonedDateTimeMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "valueZonedDateTime", o -> _ChangeSupport.of(o, "@type", ValueZonedDateTimeSetChangeImpl::new, ValueZonedDateTimeMergeChangeImpl::new));
 	}
 
 	public static class PatchBuilderImpl implements PatchableRecord_Basic_List.PatchBuilder {
@@ -408,8 +371,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 			return this;
 		}
 
-		public PatchableRecord_Basic_List.PatchBuilder valueLocalDate(List<LocalDate> additions,
-				List<LocalDate> removals) {
+		public PatchableRecord_Basic_List.PatchBuilder valueLocalDate(List<LocalDate> additions, List<LocalDate> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
 			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
@@ -432,8 +394,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 			return this;
 		}
 
-		public PatchableRecord_Basic_List.PatchBuilder valueLocalDateTime(List<LocalDateTime> additions,
-				List<LocalDateTime> removals) {
+		public PatchableRecord_Basic_List.PatchBuilder valueLocalDateTime(List<LocalDateTime> additions, List<LocalDateTime> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
 			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
@@ -456,8 +417,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 			return this;
 		}
 
-		public PatchableRecord_Basic_List.PatchBuilder valueZonedDateTime(List<ZonedDateTime> additions,
-				List<ZonedDateTime> removals) {
+		public PatchableRecord_Basic_List.PatchBuilder valueZonedDateTime(List<ZonedDateTime> additions, List<ZonedDateTime> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
 			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));

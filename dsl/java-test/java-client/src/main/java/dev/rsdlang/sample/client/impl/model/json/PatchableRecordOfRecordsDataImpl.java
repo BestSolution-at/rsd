@@ -100,8 +100,8 @@ public class PatchableRecordOfRecordsDataImpl extends _BaseDataImpl implements P
 			return this;
 		}
 
-		public <T extends PatchableRecord_Basic.DataBuilder> DataBuilder withValue(Class<T> clazz,
-				Function<T, PatchableRecord_Basic.Data> block) {
+
+		public <T extends PatchableRecord_Basic.DataBuilder> DataBuilder withValue(Class<T> clazz, Function<T, PatchableRecord_Basic.Data> block) {
 			var b = PatchableRecord_BasicDataImpl.builder();
 			return value(block.apply(clazz.cast(b)));
 		}
@@ -116,8 +116,8 @@ public class PatchableRecordOfRecordsDataImpl extends _BaseDataImpl implements P
 			return this;
 		}
 
-		public <T extends PatchableRecord_Basic.DataBuilder> DataBuilder withValue_Null(Class<T> clazz,
-				Function<T, PatchableRecord_Basic.Data> block) {
+
+		public <T extends PatchableRecord_Basic.DataBuilder> DataBuilder withValue_Null(Class<T> clazz, Function<T, PatchableRecord_Basic.Data> block) {
 			var b = PatchableRecord_BasicDataImpl.builder();
 			return value_Null(block.apply(clazz.cast(b)));
 		}
@@ -131,8 +131,8 @@ public class PatchableRecordOfRecordsDataImpl extends _BaseDataImpl implements P
 			return this;
 		}
 
-		public <T extends PatchableRecord_Basic.DataBuilder> DataBuilder withValue_Opt(Class<T> clazz,
-				Function<T, PatchableRecord_Basic.Data> block) {
+
+		public <T extends PatchableRecord_Basic.DataBuilder> DataBuilder withValue_Opt(Class<T> clazz, Function<T, PatchableRecord_Basic.Data> block) {
 			var b = PatchableRecord_BasicDataImpl.builder();
 			return value_Opt(block.apply(clazz.cast(b)));
 		}
@@ -147,8 +147,8 @@ public class PatchableRecordOfRecordsDataImpl extends _BaseDataImpl implements P
 			return this;
 		}
 
-		public <T extends PatchableRecord_Basic.DataBuilder> DataBuilder withValue_Opt_Null(Class<T> clazz,
-				Function<T, PatchableRecord_Basic.Data> block) {
+
+		public <T extends PatchableRecord_Basic.DataBuilder> DataBuilder withValue_Opt_Null(Class<T> clazz, Function<T, PatchableRecord_Basic.Data> block) {
 			var b = PatchableRecord_BasicDataImpl.builder();
 			return value_Opt_Null(block.apply(clazz.cast(b)));
 		}

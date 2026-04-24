@@ -7,8 +7,7 @@ import jakarta.json.JsonObjectBuilder;
 
 import dev.rsdlang.sample.client.model.SimpleRecord_KeyVersion_Int_Int;
 
-public class SimpleRecord_KeyVersion_Int_IntDataImpl extends _BaseDataImpl
-		implements SimpleRecord_KeyVersion_Int_Int.Data {
+public class SimpleRecord_KeyVersion_Int_IntDataImpl extends _BaseDataImpl implements SimpleRecord_KeyVersion_Int_Int.Data {
 	SimpleRecord_KeyVersion_Int_IntDataImpl(JsonObject data) {
 		super(data);
 	}

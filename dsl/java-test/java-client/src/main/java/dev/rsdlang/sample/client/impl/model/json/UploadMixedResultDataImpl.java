@@ -98,8 +98,8 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 			return this;
 		}
 
-		public <T extends SimpleRecord.DataBuilder> DataBuilder withRec(Class<T> clazz,
-				Function<T, SimpleRecord.Data> block) {
+
+		public <T extends SimpleRecord.DataBuilder> DataBuilder withRec(Class<T> clazz, Function<T, SimpleRecord.Data> block) {
 			var b = SimpleRecordDataImpl.builder();
 			return rec(block.apply(clazz.cast(b)));
 		}

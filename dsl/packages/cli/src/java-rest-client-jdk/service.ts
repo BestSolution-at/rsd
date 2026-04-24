@@ -472,8 +472,8 @@ function generateInvokation(
 						}
 					} else {
 						if (p.variant === 'record' || p.variant === 'union') {
-							const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
-							const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._BaseDataImpl`);
+							const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+							const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BaseDataImpl`);
 							if (p.array) {
 								codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((${_BaseDataImpl}) i).data));`;
 							} else {
@@ -482,7 +482,7 @@ function generateInvokation(
 						} else {
 							if (p.array) {
 								if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
-									const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+									const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
 									if (p.type === 'boolean') {
 										codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonBooleanArray(${p.name}));`;
 									} else if (p.type === 'double') {
@@ -533,7 +533,7 @@ function generateInvokation(
 				});
 			if (o.parameters.find(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
 				const typeName = fqn(
-					`${artifactConfig.rootPackageName}.jdkhttp.impl.model.${s.name}${toFirstUpper(o.name)}DataImpl`,
+					`${artifactConfig.rootPackageName}.impl.model.json.${s.name}${toFirstUpper(o.name)}DataImpl`,
 				);
 
 				methodBody.append(
@@ -549,7 +549,7 @@ function generateInvokation(
 			const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
 			const bodyParams = allParameters.filter(p => p.meta?.rest?.source === undefined);
 			if (bodyParams.length === 0) {
-				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
 				const defaultContent = multiBodyParam
 					? `${_JsonUtils}.encodeEmptyObject($contentType)`
 					: `${_JsonUtils}.encodeEmptyValue($contentType)`;
@@ -558,7 +558,7 @@ function generateInvokation(
 				const param = bodyParams[0];
 				if (param.variant === 'builtin') {
 					if (param.optional && !param.nullable) {
-						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
 						methodBody.append(
 							`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${_JsonUtils}.encodeEmptyValue($contentType) : ServiceUtils.of${toFirstUpper(toCamelCaseIdentifier(param.type))}${param.array ? 'List' : ''}(${param.name}, false, $contentType));`,
 							NL,
@@ -571,7 +571,7 @@ function generateInvokation(
 					}
 				} else if (param.variant === 'scalar' || param.variant === 'enum' || param.variant === 'inline-enum') {
 					if (param.optional && !param.nullable) {
-						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
 						methodBody.append(
 							`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${_JsonUtils}.encodeEmptyValue($contentType) : ServiceUtils.ofLiteral${param.array ? 'List' : ''}(${param.name}, false, $contentType));`,
 							NL,
@@ -594,7 +594,7 @@ function generateInvokation(
 					);
 
 					if (param.optional && !param.nullable) {
-						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
 						methodBody.append(
 							`var $body = ${BodyPublishers}.ofByteArray( ${param.name} == null ? ${_JsonUtils}.encodeEmptyValue($contentType) : ServiceUtils.ofObject${param.array ? 'List' : ''}(${param.name}, ${String(param.nullable)}, $contentType, ${type}.class));`,
 							NL,
@@ -611,9 +611,9 @@ function generateInvokation(
 				methodBody.append(`var $builder = ${Json}.createObjectBuilder();`, NL);
 				bodyParams.forEach(p => {
 					if (p.variant === 'record' || p.variant === 'union') {
-						const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._BaseDataImpl`);
+						const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BaseDataImpl`);
 						if (p.array) {
-							const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.jdkhttp.impl.model._JsonUtils`);
+							const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
 							if (p.nullable) {
 								methodBody.append(
 									`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
@@ -717,7 +717,7 @@ function generateInvokation(
 					}
 				});
 				const typeName = fqn(
-					`${artifactConfig.rootPackageName}.jdkhttp.impl.model.${s.name}${toFirstUpper(o.name)}DataImpl`,
+					`${artifactConfig.rootPackageName}.impl.model.json.${s.name}${toFirstUpper(o.name)}DataImpl`,
 				);
 
 				methodBody.append(
@@ -862,7 +862,7 @@ function handleOkResult(
 			node.append('return ServiceUtils.mapBlob($response);', NL);
 		}
 	} else if (type.variant === 'record' || type.variant === 'union') {
-		const modelPkg = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
+		const modelPkg = `${artifactConfig.rootPackageName}.impl.model.json`;
 		const modelType = fqn(`${modelPkg}.${type.type}DataImpl`);
 		if (type.array) {
 			node.append(
@@ -1036,7 +1036,7 @@ function generateServiceData(
 	o: MResolvedOperation,
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 ): Artifact {
-	const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
+	const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
 	const importCollector = new JavaImportsCollector(packageName);
 	const fqn = importCollector.importType.bind(importCollector);
 

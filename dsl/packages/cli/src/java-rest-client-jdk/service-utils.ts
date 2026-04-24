@@ -35,10 +35,10 @@ export function generateServiceUtils(
 		importCollector.importType('java.io.IOException');
 		importCollector.importType('java.nio.file.Files');
 		importCollector.importType('java.nio.file.Path');
-		importCollector.importType(`${packageName}.model._BlobImpl`);
+		importCollector.importType(`${artifactConfig.rootPackageName}.impl.model.json._BlobImpl`);
 		importCollector.importType(`${artifactConfig.rootPackageName}.model.RSDBlob`);
 		if (hasFileStreamResult(model)) {
-			importCollector.importType(`${packageName}.model._FileImpl`);
+			importCollector.importType(`${artifactConfig.rootPackageName}.impl.model.json._FileImpl`);
 			importCollector.importType(`${artifactConfig.rootPackageName}.model.RSDFile`);
 		}
 	}
@@ -47,8 +47,8 @@ export function generateServiceUtils(
 	importCollector.importType('java.util.Base64');
 	importCollector.importType('java.util.HexFormat');
 
-	importCollector.importType(`${packageName}.model._JsonUtils`);
-	importCollector.importType(`${packageName}.model._JsonUtils.TypeInfo`);
+	importCollector.importType(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+	importCollector.importType(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils.TypeInfo`);
 	importCollector.importType(`${artifactConfig.rootPackageName}.model._Base`);
 
 	const compilationContent = toNodeTree(`

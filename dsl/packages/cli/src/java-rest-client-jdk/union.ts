@@ -11,7 +11,7 @@ import { generateUnionContent } from '../java-model-json/union.js';
 import { generateUnionPatchContent } from '../java-model-json/union-patch.js';
 
 export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact[] {
-	const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
+	const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
 
 	const result: Artifact[] = [];
 	{

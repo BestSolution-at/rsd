@@ -17,63 +17,51 @@ import dev.rsdlang.sample.client.model.PatchableUnionA;
 import dev.rsdlang.sample.client.model.PatchableUnionB;
 
 public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements PatchableRecordWithUnion.Patch {
-	static class ListSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableUnion.Data>
-			implements ListSetChange {
+	static class ListSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableUnion.Data> implements ListSetChange {
 		ListSetChangeImpl(JsonObject data) {
 			super(data, PatchableUnionDataImpl::of);
 		}
 	}
 
-	static class ListMergeChangeImpl
-			extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableUnion.Data, PatchableUnion.Patch, String>
-			implements ListMergeChange {
+	static class ListMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableUnion.Data, PatchableUnion.Patch, String> implements ListMergeChange {
 		ListMergeChangeImpl(JsonObject data) {
-			super(data, PatchableUnionDataImpl::of, PatchableUnionPatchImpl::of, v -> ((JsonString) v).getString());
+			super(data, PatchableUnionDataImpl::of, PatchableUnionPatchImpl::of, v -> ((JsonString)v).getString() );
 		}
 	}
 
-	static class List_NullSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableUnion.Data>
-			implements List_NullSetChange {
+	static class List_NullSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableUnion.Data> implements List_NullSetChange {
 		List_NullSetChangeImpl(JsonObject data) {
 			super(data, PatchableUnionDataImpl::of);
 		}
 	}
 
-	static class List_NullMergeChangeImpl
-			extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableUnion.Data, PatchableUnion.Patch, String>
-			implements List_NullMergeChange {
+	static class List_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableUnion.Data, PatchableUnion.Patch, String> implements List_NullMergeChange {
 		List_NullMergeChangeImpl(JsonObject data) {
-			super(data, PatchableUnionDataImpl::of, PatchableUnionPatchImpl::of, v -> ((JsonString) v).getString());
+			super(data, PatchableUnionDataImpl::of, PatchableUnionPatchImpl::of, v -> ((JsonString)v).getString() );
 		}
 	}
 
-	static class List_OptSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableUnion.Data>
-			implements List_OptSetChange {
+	static class List_OptSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableUnion.Data> implements List_OptSetChange {
 		List_OptSetChangeImpl(JsonObject data) {
 			super(data, PatchableUnionDataImpl::of);
 		}
 	}
 
-	static class List_OptMergeChangeImpl
-			extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableUnion.Data, PatchableUnion.Patch, String>
-			implements List_OptMergeChange {
+	static class List_OptMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableUnion.Data, PatchableUnion.Patch, String> implements List_OptMergeChange {
 		List_OptMergeChangeImpl(JsonObject data) {
-			super(data, PatchableUnionDataImpl::of, PatchableUnionPatchImpl::of, v -> ((JsonString) v).getString());
+			super(data, PatchableUnionDataImpl::of, PatchableUnionPatchImpl::of, v -> ((JsonString)v).getString() );
 		}
 	}
 
-	static class List_Opt_NullSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableUnion.Data>
-			implements List_Opt_NullSetChange {
+	static class List_Opt_NullSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableUnion.Data> implements List_Opt_NullSetChange {
 		List_Opt_NullSetChangeImpl(JsonObject data) {
 			super(data, PatchableUnionDataImpl::of);
 		}
 	}
 
-	static class List_Opt_NullMergeChangeImpl
-			extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableUnion.Data, PatchableUnion.Patch, String>
-			implements List_Opt_NullMergeChange {
+	static class List_Opt_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableUnion.Data, PatchableUnion.Patch, String> implements List_Opt_NullMergeChange {
 		List_Opt_NullMergeChangeImpl(JsonObject data) {
-			super(data, PatchableUnionDataImpl::of, PatchableUnionPatchImpl::of, v -> ((JsonString) v).getString());
+			super(data, PatchableUnionDataImpl::of, PatchableUnionPatchImpl::of, v -> ((JsonString)v).getString() );
 		}
 	}
 
@@ -92,47 +80,35 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 	}
 
 	public Optional<PatchableUnion> value() {
-		return _JsonUtils.mapOptObject(data, "value",
-				o -> PatchableUnionDataImpl.isSupportedType(o) ? PatchableUnionDataImpl.of(o)
-						: PatchableUnionPatchImpl.of(o));
+		return _JsonUtils.mapOptObject(data, "value", o -> PatchableUnionDataImpl.isSupportedType(o) ? PatchableUnionDataImpl.of(o) : PatchableUnionPatchImpl.of(o));
 	}
 
 	public _Base.Nillable<PatchableUnion> value_Null() {
-		return _JsonUtils.mapNilObject(data, "value_Null",
-				o -> PatchableUnionDataImpl.isSupportedType(o) ? PatchableUnionDataImpl.of(o)
-						: PatchableUnionPatchImpl.of(o));
+		return _JsonUtils.mapNilObject(data, "value_Null", o -> PatchableUnionDataImpl.isSupportedType(o) ? PatchableUnionDataImpl.of(o) : PatchableUnionPatchImpl.of(o));
 	}
 
 	public _Base.Nillable<PatchableUnion> value_Opt() {
-		return _JsonUtils.mapNilObject(data, "value_Opt",
-				o -> PatchableUnionDataImpl.isSupportedType(o) ? PatchableUnionDataImpl.of(o)
-						: PatchableUnionPatchImpl.of(o));
+		return _JsonUtils.mapNilObject(data, "value_Opt", o -> PatchableUnionDataImpl.isSupportedType(o) ? PatchableUnionDataImpl.of(o) : PatchableUnionPatchImpl.of(o));
 	}
 
 	public _Base.Nillable<PatchableUnion> value_Opt_Null() {
-		return _JsonUtils.mapNilObject(data, "value_Opt_Null",
-				o -> PatchableUnionDataImpl.isSupportedType(o) ? PatchableUnionDataImpl.of(o)
-						: PatchableUnionPatchImpl.of(o));
+		return _JsonUtils.mapNilObject(data, "value_Opt_Null", o -> PatchableUnionDataImpl.isSupportedType(o) ? PatchableUnionDataImpl.of(o) : PatchableUnionPatchImpl.of(o));
 	}
 
 	public Optional<ListChange> list() {
-		return _JsonUtils.mapOptObject(data, "list",
-				o -> _ChangeSupport.of(o, "@type", ListSetChangeImpl::new, ListMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "list", o -> _ChangeSupport.of(o, "@type", ListSetChangeImpl::new, ListMergeChangeImpl::new));
 	}
 
 	public _Base.Nillable<List_NullChange> list_Null() {
-		return _JsonUtils.mapNilObject(data, "list_Null",
-				o -> _ChangeSupport.of(o, "@type", List_NullSetChangeImpl::new, List_NullMergeChangeImpl::new));
+		return _JsonUtils.mapNilObject(data, "list_Null", o -> _ChangeSupport.of(o, "@type", List_NullSetChangeImpl::new, List_NullMergeChangeImpl::new));
 	}
 
 	public _Base.Nillable<List_OptChange> list_Opt() {
-		return _JsonUtils.mapNilObject(data, "list_Opt",
-				o -> _ChangeSupport.of(o, "@type", List_OptSetChangeImpl::new, List_OptMergeChangeImpl::new));
+		return _JsonUtils.mapNilObject(data, "list_Opt", o -> _ChangeSupport.of(o, "@type", List_OptSetChangeImpl::new, List_OptMergeChangeImpl::new));
 	}
 
 	public _Base.Nillable<List_Opt_NullChange> list_Opt_Null() {
-		return _JsonUtils.mapNilObject(data, "list_Opt_Null",
-				o -> _ChangeSupport.of(o, "@type", List_Opt_NullSetChangeImpl::new, List_Opt_NullMergeChangeImpl::new));
+		return _JsonUtils.mapNilObject(data, "list_Opt_Null", o -> _ChangeSupport.of(o, "@type", List_Opt_NullSetChangeImpl::new, List_Opt_NullMergeChangeImpl::new));
 	}
 
 	public static class PatchBuilderImpl implements PatchableRecordWithUnion.PatchBuilder {
@@ -154,8 +130,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public <T extends PatchableUnion.Builder> PatchableRecordWithUnion.PatchBuilder withValue(Class<T> clazz,
-				Function<T, PatchableUnion> block) {
+		public <T extends PatchableUnion.Builder> PatchableRecordWithUnion.PatchBuilder withValue(Class<T> clazz, Function<T, PatchableUnion> block) {
 			PatchableUnion.Builder b;
 			if (clazz == PatchableUnionA.DataBuilder.class) {
 				b = PatchableUnionADataImpl.builder();
@@ -182,8 +157,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public <T extends PatchableUnion.Builder> PatchableRecordWithUnion.PatchBuilder withValue_Null(Class<T> clazz,
-				Function<T, PatchableUnion> block) {
+		public <T extends PatchableUnion.Builder> PatchableRecordWithUnion.PatchBuilder withValue_Null(Class<T> clazz, Function<T, PatchableUnion> block) {
 			PatchableUnion.Builder b;
 			if (clazz == PatchableUnionA.DataBuilder.class) {
 				b = PatchableUnionADataImpl.builder();
@@ -210,8 +184,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public <T extends PatchableUnion.Builder> PatchableRecordWithUnion.PatchBuilder withValue_Opt(Class<T> clazz,
-				Function<T, PatchableUnion> block) {
+		public <T extends PatchableUnion.Builder> PatchableRecordWithUnion.PatchBuilder withValue_Opt(Class<T> clazz, Function<T, PatchableUnion> block) {
 			PatchableUnion.Builder b;
 			if (clazz == PatchableUnionA.DataBuilder.class) {
 				b = PatchableUnionADataImpl.builder();
@@ -238,8 +211,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public <T extends PatchableUnion.Builder> PatchableRecordWithUnion.PatchBuilder withValue_Opt_Null(
-				Class<T> clazz, Function<T, PatchableUnion> block) {
+		public <T extends PatchableUnion.Builder> PatchableRecordWithUnion.PatchBuilder withValue_Opt_Null(Class<T> clazz, Function<T, PatchableUnion> block) {
 			PatchableUnion.Builder b;
 			if (clazz == PatchableUnionA.DataBuilder.class) {
 				b = PatchableUnionADataImpl.builder();
@@ -261,8 +233,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public PatchableRecordWithUnion.PatchBuilder list(List<PatchableUnion.Data> additions,
-				List<PatchableUnion.Patch> updates, List<String> removals) {
+		public PatchableRecordWithUnion.PatchBuilder list(List<PatchableUnion.Data> additions, List<PatchableUnion.Patch> updates, List<String> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
 			$changeBuilder.add("additions", _JsonUtils.toJsonValueArray(additions, $e -> ((_BaseDataImpl) $e).data));
@@ -285,8 +256,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public PatchableRecordWithUnion.PatchBuilder list_Null(List<PatchableUnion.Data> additions,
-				List<PatchableUnion.Patch> updates, List<String> removals) {
+		public PatchableRecordWithUnion.PatchBuilder list_Null(List<PatchableUnion.Data> additions, List<PatchableUnion.Patch> updates, List<String> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
 			$changeBuilder.add("additions", _JsonUtils.toJsonValueArray(additions, $e -> ((_BaseDataImpl) $e).data));
@@ -309,8 +279,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public PatchableRecordWithUnion.PatchBuilder list_Opt(List<PatchableUnion.Data> additions,
-				List<PatchableUnion.Patch> updates, List<String> removals) {
+		public PatchableRecordWithUnion.PatchBuilder list_Opt(List<PatchableUnion.Data> additions, List<PatchableUnion.Patch> updates, List<String> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
 			$changeBuilder.add("additions", _JsonUtils.toJsonValueArray(additions, $e -> ((_BaseDataImpl) $e).data));
@@ -333,8 +302,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public PatchableRecordWithUnion.PatchBuilder list_Opt_Null(List<PatchableUnion.Data> additions,
-				List<PatchableUnion.Patch> updates, List<String> removals) {
+		public PatchableRecordWithUnion.PatchBuilder list_Opt_Null(List<PatchableUnion.Data> additions, List<PatchableUnion.Patch> updates, List<String> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
 			$changeBuilder.add("additions", _JsonUtils.toJsonValueArray(additions, $e -> ((_BaseDataImpl) $e).data));

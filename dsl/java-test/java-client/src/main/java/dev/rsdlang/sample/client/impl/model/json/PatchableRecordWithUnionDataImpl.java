@@ -102,8 +102,8 @@ public class PatchableRecordWithUnionDataImpl extends _BaseDataImpl implements P
 			return this;
 		}
 
-		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue(Class<T> clazz,
-				Function<T, PatchableUnion.Data> block) {
+
+		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue(Class<T> clazz, Function<T, PatchableUnion.Data> block) {
 			PatchableUnion.DataBuilder b;
 			if (clazz == PatchableUnionA.DataBuilder.class) {
 				b = PatchableUnionADataImpl.builder();
@@ -125,8 +125,8 @@ public class PatchableRecordWithUnionDataImpl extends _BaseDataImpl implements P
 			return this;
 		}
 
-		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue_Null(Class<T> clazz,
-				Function<T, PatchableUnion.Data> block) {
+
+		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue_Null(Class<T> clazz, Function<T, PatchableUnion.Data> block) {
 			PatchableUnion.DataBuilder b;
 			if (clazz == PatchableUnionA.DataBuilder.class) {
 				b = PatchableUnionADataImpl.builder();
@@ -147,8 +147,8 @@ public class PatchableRecordWithUnionDataImpl extends _BaseDataImpl implements P
 			return this;
 		}
 
-		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue_Opt(Class<T> clazz,
-				Function<T, PatchableUnion.Data> block) {
+
+		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue_Opt(Class<T> clazz, Function<T, PatchableUnion.Data> block) {
 			PatchableUnion.DataBuilder b;
 			if (clazz == PatchableUnionA.DataBuilder.class) {
 				b = PatchableUnionADataImpl.builder();
@@ -170,8 +170,8 @@ public class PatchableRecordWithUnionDataImpl extends _BaseDataImpl implements P
 			return this;
 		}
 
-		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue_Opt_Null(Class<T> clazz,
-				Function<T, PatchableUnion.Data> block) {
+
+		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue_Opt_Null(Class<T> clazz, Function<T, PatchableUnion.Data> block) {
 			PatchableUnion.DataBuilder b;
 			if (clazz == PatchableUnionA.DataBuilder.class) {
 				b = PatchableUnionADataImpl.builder();

@@ -13,8 +13,7 @@ import jakarta.json.JsonObjectBuilder;
 
 import dev.rsdlang.sample.client.model.PatchableRecord_Basic_List_Optional;
 
-public class PatchableRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl
-		implements PatchableRecord_Basic_List_Optional.Data {
+public class PatchableRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl implements PatchableRecord_Basic_List_Optional.Data {
 	PatchableRecord_Basic_List_OptionalDataImpl(JsonObject data) {
 		super(data);
 	}
@@ -175,8 +174,7 @@ public class PatchableRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl
 		}
 
 		@Override
-		public PatchableRecord_Basic_List_Optional.DataBuilder valueLocalDateTime(
-				List<LocalDateTime> valueLocalDateTime) {
+		public PatchableRecord_Basic_List_Optional.DataBuilder valueLocalDateTime(List<LocalDateTime> valueLocalDateTime) {
 			if (valueLocalDateTime == null) {
 				return this;
 			}
@@ -185,8 +183,7 @@ public class PatchableRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl
 		}
 
 		@Override
-		public PatchableRecord_Basic_List_Optional.DataBuilder valueZonedDateTime(
-				List<ZonedDateTime> valueZonedDateTime) {
+		public PatchableRecord_Basic_List_Optional.DataBuilder valueZonedDateTime(List<ZonedDateTime> valueZonedDateTime) {
 			if (valueZonedDateTime == null) {
 				return this;
 			}

@@ -15,45 +15,37 @@ import dev.rsdlang.sample.client.model.PatchableEnumInlineRecord;
 public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements PatchableEnumInlineRecord.Patch {
 	static class ListSetChangeImpl extends _ChangeSupport.ValueElementsChange<List$> implements ListSetChange {
 		ListSetChangeImpl(JsonObject data) {
-			super(data, v -> List$.valueOf(((JsonString) v).getString()));
+			super(data, v -> List$.valueOf(((JsonString)v).getString()));
 		}
 	}
 
-	static class ListMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<List$, List$>
-			implements ListMergeChange {
+	static class ListMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<List$, List$> implements ListMergeChange {
 		ListMergeChangeImpl(JsonObject data) {
-			super(data, v -> List$.valueOf(((JsonString) v).getString()),
-					v -> List$.valueOf(((JsonString) v).getString()));
+			super(data, v -> List$.valueOf(((JsonString)v).getString()), v -> List$.valueOf(((JsonString)v).getString()));
 		}
 	}
 
-	static class List_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<List_Null$>
-			implements List_NullSetChange {
+	static class List_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<List_Null$> implements List_NullSetChange {
 		List_NullSetChangeImpl(JsonObject data) {
-			super(data, v -> List_Null$.valueOf(((JsonString) v).getString()));
+			super(data, v -> List_Null$.valueOf(((JsonString)v).getString()));
 		}
 	}
 
-	static class List_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<List_Null$, List_Null$>
-			implements List_NullMergeChange {
+	static class List_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<List_Null$, List_Null$> implements List_NullMergeChange {
 		List_NullMergeChangeImpl(JsonObject data) {
-			super(data, v -> List_Null$.valueOf(((JsonString) v).getString()),
-					v -> List_Null$.valueOf(((JsonString) v).getString()));
+			super(data, v -> List_Null$.valueOf(((JsonString)v).getString()), v -> List_Null$.valueOf(((JsonString)v).getString()));
 		}
 	}
 
-	static class List_Opt_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<List_Opt_Null$>
-			implements List_Opt_NullSetChange {
+	static class List_Opt_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<List_Opt_Null$> implements List_Opt_NullSetChange {
 		List_Opt_NullSetChangeImpl(JsonObject data) {
-			super(data, v -> List_Opt_Null$.valueOf(((JsonString) v).getString()));
+			super(data, v -> List_Opt_Null$.valueOf(((JsonString)v).getString()));
 		}
 	}
 
-	static class List_Opt_NullMergeChangeImpl extends
-			_ChangeSupport.ListMergeAddRemoveImpl<List_Opt_Null$, List_Opt_Null$> implements List_Opt_NullMergeChange {
+	static class List_Opt_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<List_Opt_Null$, List_Opt_Null$> implements List_Opt_NullMergeChange {
 		List_Opt_NullMergeChangeImpl(JsonObject data) {
-			super(data, v -> List_Opt_Null$.valueOf(((JsonString) v).getString()),
-					v -> List_Opt_Null$.valueOf(((JsonString) v).getString()));
+			super(data, v -> List_Opt_Null$.valueOf(((JsonString)v).getString()), v -> List_Opt_Null$.valueOf(((JsonString)v).getString()));
 		}
 	}
 
@@ -88,18 +80,15 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 	}
 
 	public Optional<ListChange> list() {
-		return _JsonUtils.mapOptObject(data, "list",
-				o -> _ChangeSupport.of(o, "@type", ListSetChangeImpl::new, ListMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "list", o -> _ChangeSupport.of(o, "@type", ListSetChangeImpl::new, ListMergeChangeImpl::new));
 	}
 
 	public _Base.Nillable<List_NullChange> list_Null() {
-		return _JsonUtils.mapNilObject(data, "list_Null",
-				o -> _ChangeSupport.of(o, "@type", List_NullSetChangeImpl::new, List_NullMergeChangeImpl::new));
+		return _JsonUtils.mapNilObject(data, "list_Null", o -> _ChangeSupport.of(o, "@type", List_NullSetChangeImpl::new, List_NullMergeChangeImpl::new));
 	}
 
 	public _Base.Nillable<List_Opt_NullChange> list_Opt_Null() {
-		return _JsonUtils.mapNilObject(data, "list_Opt_Null",
-				o -> _ChangeSupport.of(o, "@type", List_Opt_NullSetChangeImpl::new, List_Opt_NullMergeChangeImpl::new));
+		return _JsonUtils.mapNilObject(data, "list_Opt_Null", o -> _ChangeSupport.of(o, "@type", List_Opt_NullSetChangeImpl::new, List_Opt_NullMergeChangeImpl::new));
 	}
 
 	public static class PatchBuilderImpl implements PatchableEnumInlineRecord.PatchBuilder {
@@ -203,8 +192,7 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			return this;
 		}
 
-		public PatchableEnumInlineRecord.PatchBuilder list_Opt_Null(List<List_Opt_Null$> additions,
-				List<List_Opt_Null$> removals) {
+		public PatchableEnumInlineRecord.PatchBuilder list_Opt_Null(List<List_Opt_Null$> additions, List<List_Opt_Null$> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
 			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));

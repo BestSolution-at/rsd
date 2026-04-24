@@ -48,7 +48,7 @@ public class _NillableImpl<T> implements _Base.Nillable<T> {
 		return this == UNDEFINED;
 	}
 
-	@Override
+	@Override 
 	public boolean isNull() {
 		return this == NULL;
 	}

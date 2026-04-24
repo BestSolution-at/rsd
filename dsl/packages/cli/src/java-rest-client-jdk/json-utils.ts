@@ -9,7 +9,7 @@ import {
 import { generateJsonUtilsContent } from '../java-model-json/json-utils.js';
 
 export function generateJsonUtils(artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact {
-	const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl.model`;
+	const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
 
 	const importCollector = new JavaImportsCollector(packageName);
 	const fqn = importCollector.importType.bind(importCollector);

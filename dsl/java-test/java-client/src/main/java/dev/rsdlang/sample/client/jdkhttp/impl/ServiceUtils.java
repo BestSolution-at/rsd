@@ -21,11 +21,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import jakarta.json.JsonObject;
-import dev.rsdlang.sample.client.model._Base;
+
 import dev.rsdlang.sample.client.impl.model.json._BlobImpl;
 import dev.rsdlang.sample.client.impl.model.json._FileImpl;
 import dev.rsdlang.sample.client.impl.model.json._JsonUtils;
 import dev.rsdlang.sample.client.impl.model.json._JsonUtils.TypeInfo;
+import dev.rsdlang.sample.client.model._Base;
 import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 
@@ -130,8 +131,7 @@ public class ServiceUtils {
 		return _JsonUtils.parseZonedDateTime(response.body(), contentType(response));
 	}
 
-	public static <T> List<T> mapObjects(HttpResponse<InputStream> response, Function<JsonObject, T> factory,
-			Class<T> type) {
+	public static <T> List<T> mapObjects(HttpResponse<InputStream> response, Function<JsonObject, T> factory, Class<T> type) {
 		return _JsonUtils.parseObjects(response.body(), contentType(response), factory, type);
 	}
 

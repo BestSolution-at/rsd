@@ -13,8 +13,7 @@ import jakarta.json.JsonObjectBuilder;
 
 import dev.rsdlang.sample.client.model.SimpleRecord_Basic_List_Optional;
 
-public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl
-		implements SimpleRecord_Basic_List_Optional.Data {
+public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl implements SimpleRecord_Basic_List_Optional.Data {
 	SimpleRecord_Basic_List_OptionalDataImpl(JsonObject data) {
 		super(data);
 	}

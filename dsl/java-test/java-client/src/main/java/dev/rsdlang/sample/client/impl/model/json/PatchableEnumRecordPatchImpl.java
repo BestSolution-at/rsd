@@ -16,60 +16,49 @@ import dev.rsdlang.sample.client.model.SampleEnum;
 public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements PatchableEnumRecord.Patch {
 	static class ListSetChangeImpl extends _ChangeSupport.ValueElementsChange<SampleEnum> implements ListSetChange {
 		ListSetChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString) v).getString()));
+			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()));
 		}
 	}
 
-	static class ListMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<SampleEnum, SampleEnum>
-			implements ListMergeChange {
+	static class ListMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<SampleEnum, SampleEnum> implements ListMergeChange {
 		ListMergeChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString) v).getString()),
-					v -> SampleEnum.valueOf(((JsonString) v).getString()));
+			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()), v -> SampleEnum.valueOf(((JsonString)v).getString()));
 		}
 	}
 
-	static class List_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<SampleEnum>
-			implements List_NullSetChange {
+	static class List_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<SampleEnum> implements List_NullSetChange {
 		List_NullSetChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString) v).getString()));
+			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()));
 		}
 	}
 
-	static class List_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<SampleEnum, SampleEnum>
-			implements List_NullMergeChange {
+	static class List_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<SampleEnum, SampleEnum> implements List_NullMergeChange {
 		List_NullMergeChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString) v).getString()),
-					v -> SampleEnum.valueOf(((JsonString) v).getString()));
+			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()), v -> SampleEnum.valueOf(((JsonString)v).getString()));
 		}
 	}
 
-	static class List_OptSetChangeImpl extends _ChangeSupport.ValueElementsChange<SampleEnum>
-			implements List_OptSetChange {
+	static class List_OptSetChangeImpl extends _ChangeSupport.ValueElementsChange<SampleEnum> implements List_OptSetChange {
 		List_OptSetChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString) v).getString()));
+			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()));
 		}
 	}
 
-	static class List_OptMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<SampleEnum, SampleEnum>
-			implements List_OptMergeChange {
+	static class List_OptMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<SampleEnum, SampleEnum> implements List_OptMergeChange {
 		List_OptMergeChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString) v).getString()),
-					v -> SampleEnum.valueOf(((JsonString) v).getString()));
+			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()), v -> SampleEnum.valueOf(((JsonString)v).getString()));
 		}
 	}
 
-	static class List_Opt_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<SampleEnum>
-			implements List_Opt_NullSetChange {
+	static class List_Opt_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<SampleEnum> implements List_Opt_NullSetChange {
 		List_Opt_NullSetChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString) v).getString()));
+			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()));
 		}
 	}
 
-	static class List_Opt_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<SampleEnum, SampleEnum>
-			implements List_Opt_NullMergeChange {
+	static class List_Opt_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<SampleEnum, SampleEnum> implements List_Opt_NullMergeChange {
 		List_Opt_NullMergeChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString) v).getString()),
-					v -> SampleEnum.valueOf(((JsonString) v).getString()));
+			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()), v -> SampleEnum.valueOf(((JsonString)v).getString()));
 		}
 	}
 
@@ -104,23 +93,19 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 	}
 
 	public Optional<ListChange> list() {
-		return _JsonUtils.mapOptObject(data, "list",
-				o -> _ChangeSupport.of(o, "@type", ListSetChangeImpl::new, ListMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "list", o -> _ChangeSupport.of(o, "@type", ListSetChangeImpl::new, ListMergeChangeImpl::new));
 	}
 
 	public _Base.Nillable<List_NullChange> list_Null() {
-		return _JsonUtils.mapNilObject(data, "list_Null",
-				o -> _ChangeSupport.of(o, "@type", List_NullSetChangeImpl::new, List_NullMergeChangeImpl::new));
+		return _JsonUtils.mapNilObject(data, "list_Null", o -> _ChangeSupport.of(o, "@type", List_NullSetChangeImpl::new, List_NullMergeChangeImpl::new));
 	}
 
 	public _Base.Nillable<List_OptChange> list_Opt() {
-		return _JsonUtils.mapNilObject(data, "list_Opt",
-				o -> _ChangeSupport.of(o, "@type", List_OptSetChangeImpl::new, List_OptMergeChangeImpl::new));
+		return _JsonUtils.mapNilObject(data, "list_Opt", o -> _ChangeSupport.of(o, "@type", List_OptSetChangeImpl::new, List_OptMergeChangeImpl::new));
 	}
 
 	public _Base.Nillable<List_Opt_NullChange> list_Opt_Null() {
-		return _JsonUtils.mapNilObject(data, "list_Opt_Null",
-				o -> _ChangeSupport.of(o, "@type", List_Opt_NullSetChangeImpl::new, List_Opt_NullMergeChangeImpl::new));
+		return _JsonUtils.mapNilObject(data, "list_Opt_Null", o -> _ChangeSupport.of(o, "@type", List_Opt_NullSetChangeImpl::new, List_Opt_NullMergeChangeImpl::new));
 	}
 
 	public static class PatchBuilderImpl implements PatchableEnumRecord.PatchBuilder {

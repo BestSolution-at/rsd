@@ -14,9 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import dev.rsdlang.sample.client.impl.model.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListHeaderParameterTypesService;
-import dev.rsdlang.sample.client.impl.model.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
@@ -58,7 +58,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -67,8 +67,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapBooleans($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -90,8 +89,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -102,7 +100,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -113,7 +111,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -122,8 +120,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -134,7 +131,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -147,7 +144,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -156,8 +153,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -179,8 +175,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -191,7 +186,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -204,7 +199,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -213,8 +208,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -234,7 +228,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -243,8 +237,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapShorts($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -266,8 +259,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -278,7 +270,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -289,7 +281,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -298,8 +290,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -310,7 +301,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -323,7 +314,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -332,8 +323,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -355,8 +345,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -367,7 +356,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -380,7 +369,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -389,8 +378,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -410,7 +398,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -419,8 +407,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapInts($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -442,8 +429,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -454,7 +440,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -465,7 +451,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -474,8 +460,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -486,7 +471,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -499,7 +484,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -508,8 +493,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -531,8 +515,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -543,7 +526,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -556,7 +539,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -565,8 +548,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -586,7 +568,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -595,8 +577,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLongs($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -618,8 +599,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -630,7 +610,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -641,7 +621,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -650,8 +630,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -662,7 +641,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -675,7 +654,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -684,8 +663,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -707,8 +685,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -719,7 +696,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -732,7 +709,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -741,8 +718,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -762,7 +738,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -771,8 +747,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapFloats($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -794,8 +769,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -806,7 +780,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -817,7 +791,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -826,8 +800,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -838,7 +811,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -851,7 +824,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -860,8 +833,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -883,8 +855,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -895,7 +866,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -908,7 +879,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -917,8 +888,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -938,7 +908,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -947,8 +917,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapDoubles($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -970,8 +939,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -982,7 +950,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -993,7 +961,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1002,8 +970,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1014,7 +981,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -1027,7 +994,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1036,8 +1003,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1059,8 +1025,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1071,7 +1036,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -1084,7 +1049,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1093,8 +1058,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1107,8 +1071,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.join(",",
-				headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1117,7 +1080,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1126,8 +1089,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapStrings($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1149,8 +1111,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1161,9 +1122,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",",
-					headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -1173,7 +1133,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1182,8 +1142,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1194,9 +1153,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",",
-					headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -1208,7 +1166,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1217,8 +1175,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1240,8 +1197,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1252,9 +1208,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",",
-					headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -1266,7 +1221,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1275,8 +1230,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1298,7 +1252,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1307,8 +1261,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDates($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1330,8 +1283,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1342,7 +1294,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -1353,7 +1305,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1362,8 +1314,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1374,7 +1325,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -1387,7 +1338,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1396,8 +1347,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1419,8 +1369,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1431,7 +1380,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -1444,7 +1393,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1453,8 +1402,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1476,7 +1424,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1485,8 +1433,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDateTimes($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1508,8 +1455,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1520,7 +1466,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -1531,7 +1477,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1540,8 +1486,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1552,7 +1497,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -1565,7 +1510,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1574,8 +1519,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1597,8 +1541,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1609,7 +1552,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -1622,7 +1565,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1631,8 +1574,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1654,7 +1596,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1663,8 +1605,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapZonedDateTimes($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1686,8 +1627,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1698,7 +1638,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -1709,7 +1649,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1718,8 +1658,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1730,7 +1669,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -1743,7 +1682,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1752,8 +1691,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1775,8 +1713,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1787,7 +1724,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -1800,7 +1737,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1809,8 +1746,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1832,7 +1768,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1841,8 +1777,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, ZoneId::of);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1864,8 +1799,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1876,7 +1810,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -1887,7 +1821,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1896,8 +1830,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1908,7 +1841,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -1921,7 +1854,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1930,8 +1863,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1953,8 +1885,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1965,7 +1896,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -1978,7 +1909,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -1987,8 +1918,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2010,7 +1940,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2019,8 +1949,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, SampleEnum::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2042,8 +1971,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2054,7 +1982,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -2065,7 +1993,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2074,8 +2002,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2086,7 +2013,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -2099,7 +2026,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2108,8 +2035,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2131,8 +2057,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2143,7 +2068,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -2156,7 +2081,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2165,15 +2090,13 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public List<ListInlineEnumHeaderParam_Result$> listInlineEnumHeaderParam(
-			List<ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue) {
+	public List<ListInlineEnumHeaderParam_Result$> listInlineEnumHeaderParam(List<ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue) {
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/listheaderparametertypes/listInlineEnumHeaderParam".formatted(
@@ -2189,7 +2112,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2198,8 +2121,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, ListInlineEnumHeaderParam_Result$::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2221,8 +2143,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2233,7 +2154,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -2244,7 +2165,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2253,8 +2174,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2265,7 +2185,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -2278,7 +2198,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2287,8 +2207,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2310,20 +2229,18 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public NilResult listInlineEnumHeaderParamOptNil(
-			List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue) {
+	public NilResult listInlineEnumHeaderParamOptNil(List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listInlineEnumHeaderParamOptNil".formatted(
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
+		if(headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -2336,7 +2253,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2345,8 +2262,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2360,15 +2276,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("valueA",
-				String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
-		$headerParams
-				.put("valueC",
-						String.join(",",
-								valueC.stream().map($v -> ServiceUtils.encodeBase64(
-										ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class)))
-										.toList()));
+		$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2378,7 +2288,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.header("Accept", this.contentType())
 					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2387,8 +2297,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapString($response);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2410,8 +2319,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2422,9 +2330,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",",
-					valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		if(valueA != null) {
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2434,7 +2341,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2443,8 +2350,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2455,11 +2361,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",",
-					valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		if(valueA != null) {
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		}
-		if (valueB != null) {
+		if(valueB != null) {
 			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -2470,7 +2375,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2479,32 +2384,25 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public List<NilResult> listMultiHeaderParamOpt(List<String> valueA, List<Integer> valueB,
-			List<SimpleRecord.Data> valueC) {
+	public List<NilResult> listMultiHeaderParamOpt(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOpt".formatted(
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",",
-					valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		if(valueA != null) {
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		}
-		if (valueB != null) {
+		if(valueB != null) {
 			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
 		}
-		if (valueC != null) {
-			$headerParams.put("valueC",
-					String.join(",",
-							valueC.stream().map($v -> ServiceUtils.encodeBase64(
-									ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class)))
-									.toList()));
+		if(valueC != null) {
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2515,7 +2413,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.header("Accept", this.contentType())
 					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2524,36 +2422,29 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public List<NilResult> listMultiHeaderParamNil(List<String> valueA, List<Integer> valueB,
-			List<SimpleRecord.Data> valueC) {
+	public List<NilResult> listMultiHeaderParamNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamNil".formatted(
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",",
-					valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		if(valueA != null) {
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
-		if (valueB != null) {
+		if(valueB != null) {
 			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("valueB", "null");
 		}
-		if (valueC != null) {
-			$headerParams.put("valueC",
-					String.join(",",
-							valueC.stream().map($v -> ServiceUtils.encodeBase64(
-									ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class)))
-									.toList()));
+		if(valueC != null) {
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
 		}
@@ -2566,7 +2457,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.header("Accept", this.contentType())
 					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2575,8 +2466,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2598,8 +2488,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2610,9 +2499,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",",
-					valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		if(valueA != null) {
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
@@ -2624,7 +2512,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2633,8 +2521,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2645,13 +2532,12 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",",
-					valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		if(valueA != null) {
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
-		if (valueB != null) {
+		if(valueB != null) {
 			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("valueB", "null");
@@ -2664,7 +2550,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.uri($uri)
 					.header("Accept", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2673,36 +2559,29 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
 	}
 
-	public List<NilResult> listMultiHeaderParamOptNil(List<String> valueA, List<Integer> valueB,
-			List<SimpleRecord.Data> valueC) {
+	public List<NilResult> listMultiHeaderParamOptNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOptNil".formatted(
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",",
-					valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		if(valueA != null) {
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
-		if (valueB != null) {
+		if(valueB != null) {
 			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
 		} else {
 			$headerParams.put("valueB", "null");
 		}
-		if (valueC != null) {
-			$headerParams.put("valueC",
-					String.join(",",
-							valueC.stream().map($v -> ServiceUtils.encodeBase64(
-									ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class)))
-									.toList()));
+		if(valueC != null) {
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
 		}
@@ -2715,7 +2594,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.header("Accept", this.contentType())
 					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2724,8 +2603,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiterals($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2738,12 +2616,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams
-				.put("headerValue",
-						String.join(",",
-								headerValue.stream().map($v -> ServiceUtils.encodeBase64(
-										ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class)))
-										.toList()));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2753,7 +2626,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.header("Accept", this.contentType())
 					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2762,8 +2635,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2785,8 +2657,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2797,12 +2668,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
-			$headerParams.put("headerValue",
-					String.join(",",
-							headerValue.stream().map($v -> ServiceUtils.encodeBase64(
-									ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class)))
-									.toList()));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -2813,7 +2680,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.header("Accept", this.contentType())
 					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2822,8 +2689,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2834,12 +2700,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
-			$headerParams.put("headerValue",
-					String.join(",",
-							headerValue.stream().map($v -> ServiceUtils.encodeBase64(
-									ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class)))
-									.toList()));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -2852,7 +2714,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.header("Accept", this.contentType())
 					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2861,8 +2723,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2884,8 +2745,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -2896,12 +2756,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if (headerValue != null) {
-			$headerParams.put("headerValue",
-					String.join(",",
-							headerValue.stream().map($v -> ServiceUtils.encodeBase64(
-									ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class)))
-									.toList()));
+		if(headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -2914,7 +2770,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 					.header("Accept", this.contentType())
 					.header("X-RSD-Param-Content-Type", this.contentType())
 					.GET();
-			if ($headers.length > 0) {
+			if($headers.length > 0) {
 				$requestBuilder = $requestBuilder.headers($headers);
 			}
 			var $request = $requestBuilder.build();
@@ -2923,8 +2779,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
 			}
-			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(),
-					ServiceUtils.toString($response)));
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}

@@ -15,67 +15,51 @@ import dev.rsdlang.sample.client.model.PatchableRecord_Basic;
 import dev.rsdlang.sample.client.model.PatchableRecordOfRecords;
 
 public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements PatchableRecordOfRecords.Patch {
-	static class ListSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableRecord_Basic.Data>
-			implements ListSetChange {
+	static class ListSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableRecord_Basic.Data> implements ListSetChange {
 		ListSetChangeImpl(JsonObject data) {
 			super(data, PatchableRecord_BasicDataImpl::of);
 		}
 	}
 
-	static class ListMergeChangeImpl extends
-			_ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableRecord_Basic.Data, PatchableRecord_Basic.Patch, String>
-			implements ListMergeChange {
+	static class ListMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableRecord_Basic.Data, PatchableRecord_Basic.Patch, String> implements ListMergeChange {
 		ListMergeChangeImpl(JsonObject data) {
-			super(data, PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of,
-					v -> ((JsonString) v).getString());
+			super(data, PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of, v -> ((JsonString)v).getString() );
 		}
 	}
 
-	static class List_NullSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableRecord_Basic.Data>
-			implements List_NullSetChange {
+	static class List_NullSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableRecord_Basic.Data> implements List_NullSetChange {
 		List_NullSetChangeImpl(JsonObject data) {
 			super(data, PatchableRecord_BasicDataImpl::of);
 		}
 	}
 
-	static class List_NullMergeChangeImpl extends
-			_ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableRecord_Basic.Data, PatchableRecord_Basic.Patch, String>
-			implements List_NullMergeChange {
+	static class List_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableRecord_Basic.Data, PatchableRecord_Basic.Patch, String> implements List_NullMergeChange {
 		List_NullMergeChangeImpl(JsonObject data) {
-			super(data, PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of,
-					v -> ((JsonString) v).getString());
+			super(data, PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of, v -> ((JsonString)v).getString() );
 		}
 	}
 
-	static class List_OptSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableRecord_Basic.Data>
-			implements List_OptSetChange {
+	static class List_OptSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableRecord_Basic.Data> implements List_OptSetChange {
 		List_OptSetChangeImpl(JsonObject data) {
 			super(data, PatchableRecord_BasicDataImpl::of);
 		}
 	}
 
-	static class List_OptMergeChangeImpl extends
-			_ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableRecord_Basic.Data, PatchableRecord_Basic.Patch, String>
-			implements List_OptMergeChange {
+	static class List_OptMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableRecord_Basic.Data, PatchableRecord_Basic.Patch, String> implements List_OptMergeChange {
 		List_OptMergeChangeImpl(JsonObject data) {
-			super(data, PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of,
-					v -> ((JsonString) v).getString());
+			super(data, PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of, v -> ((JsonString)v).getString() );
 		}
 	}
 
-	static class List_Opt_NullSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableRecord_Basic.Data>
-			implements List_Opt_NullSetChange {
+	static class List_Opt_NullSetChangeImpl extends _ChangeSupport.ObjectElementsChange<PatchableRecord_Basic.Data> implements List_Opt_NullSetChange {
 		List_Opt_NullSetChangeImpl(JsonObject data) {
 			super(data, PatchableRecord_BasicDataImpl::of);
 		}
 	}
 
-	static class List_Opt_NullMergeChangeImpl extends
-			_ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableRecord_Basic.Data, PatchableRecord_Basic.Patch, String>
-			implements List_Opt_NullMergeChange {
+	static class List_Opt_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<PatchableRecord_Basic.Data, PatchableRecord_Basic.Patch, String> implements List_Opt_NullMergeChange {
 		List_Opt_NullMergeChangeImpl(JsonObject data) {
-			super(data, PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of,
-					v -> ((JsonString) v).getString());
+			super(data, PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of, v -> ((JsonString)v).getString() );
 		}
 	}
 
@@ -94,43 +78,35 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 	}
 
 	public Optional<PatchableRecord_Basic> value() {
-		return _JsonUtils.mapOptObject(data, "value", o -> _ChangeSupport.of(o, "@type",
-				PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of));
+		return _JsonUtils.mapOptObject(data, "value", o -> _ChangeSupport.of(o, "@type", PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of));
 	}
 
 	public _Base.Nillable<PatchableRecord_Basic> value_Null() {
-		return _JsonUtils.mapNilObject(data, "value_Null", o -> _ChangeSupport.of(o, "@type",
-				PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of));
+		return _JsonUtils.mapNilObject(data, "value_Null", o -> _ChangeSupport.of(o, "@type", PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of));
 	}
 
 	public _Base.Nillable<PatchableRecord_Basic> value_Opt() {
-		return _JsonUtils.mapNilObject(data, "value_Opt", o -> _ChangeSupport.of(o, "@type",
-				PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of));
+		return _JsonUtils.mapNilObject(data, "value_Opt", o -> _ChangeSupport.of(o, "@type", PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of));
 	}
 
 	public _Base.Nillable<PatchableRecord_Basic> value_Opt_Null() {
-		return _JsonUtils.mapNilObject(data, "value_Opt_Null", o -> _ChangeSupport.of(o, "@type",
-				PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of));
+		return _JsonUtils.mapNilObject(data, "value_Opt_Null", o -> _ChangeSupport.of(o, "@type", PatchableRecord_BasicDataImpl::of, PatchableRecord_BasicPatchImpl::of));
 	}
 
 	public Optional<ListChange> list() {
-		return _JsonUtils.mapOptObject(data, "list",
-				o -> _ChangeSupport.of(o, "@type", ListSetChangeImpl::new, ListMergeChangeImpl::new));
+		return _JsonUtils.mapOptObject(data, "list", o -> _ChangeSupport.of(o, "@type", ListSetChangeImpl::new, ListMergeChangeImpl::new));
 	}
 
 	public _Base.Nillable<List_NullChange> list_Null() {
-		return _JsonUtils.mapNilObject(data, "list_Null",
-				o -> _ChangeSupport.of(o, "@type", List_NullSetChangeImpl::new, List_NullMergeChangeImpl::new));
+		return _JsonUtils.mapNilObject(data, "list_Null", o -> _ChangeSupport.of(o, "@type", List_NullSetChangeImpl::new, List_NullMergeChangeImpl::new));
 	}
 
 	public _Base.Nillable<List_OptChange> list_Opt() {
-		return _JsonUtils.mapNilObject(data, "list_Opt",
-				o -> _ChangeSupport.of(o, "@type", List_OptSetChangeImpl::new, List_OptMergeChangeImpl::new));
+		return _JsonUtils.mapNilObject(data, "list_Opt", o -> _ChangeSupport.of(o, "@type", List_OptSetChangeImpl::new, List_OptMergeChangeImpl::new));
 	}
 
 	public _Base.Nillable<List_Opt_NullChange> list_Opt_Null() {
-		return _JsonUtils.mapNilObject(data, "list_Opt_Null",
-				o -> _ChangeSupport.of(o, "@type", List_Opt_NullSetChangeImpl::new, List_Opt_NullMergeChangeImpl::new));
+		return _JsonUtils.mapNilObject(data, "list_Opt_Null", o -> _ChangeSupport.of(o, "@type", List_Opt_NullSetChangeImpl::new, List_Opt_NullMergeChangeImpl::new));
 	}
 
 	public static class PatchBuilderImpl implements PatchableRecordOfRecords.PatchBuilder {
@@ -158,12 +134,11 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public <T extends PatchableRecord_Basic.Builder> PatchableRecordOfRecords.PatchBuilder withValue(Class<T> clazz,
-				Function<T, PatchableRecord_Basic> block) {
+		public <T extends PatchableRecord_Basic.Builder> PatchableRecordOfRecords.PatchBuilder withValue(Class<T> clazz, Function<T, PatchableRecord_Basic> block) {
 			PatchableRecord_Basic.Builder b;
-			if (clazz == PatchableRecord_Basic.DataBuilder.class) {
+			if(clazz == PatchableRecord_Basic.DataBuilder.class ) {
 				b = PatchableRecord_BasicDataImpl.builder();
-			} else if (clazz == PatchableRecord_Basic.PatchBuilder.class) {
+			} else if (clazz == PatchableRecord_Basic.PatchBuilder.class ) {
 				b = PatchableRecord_BasicPatchImpl.builder();
 			} else {
 				throw new IllegalArgumentException("Unsupported builder type %s".formatted(clazz));
@@ -187,12 +162,11 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public <T extends PatchableRecord_Basic.Builder> PatchableRecordOfRecords.PatchBuilder withValue_Null(
-				Class<T> clazz, Function<T, PatchableRecord_Basic> block) {
+		public <T extends PatchableRecord_Basic.Builder> PatchableRecordOfRecords.PatchBuilder withValue_Null(Class<T> clazz, Function<T, PatchableRecord_Basic> block) {
 			PatchableRecord_Basic.Builder b;
-			if (clazz == PatchableRecord_Basic.DataBuilder.class) {
+			if(clazz == PatchableRecord_Basic.DataBuilder.class ) {
 				b = PatchableRecord_BasicDataImpl.builder();
-			} else if (clazz == PatchableRecord_Basic.PatchBuilder.class) {
+			} else if (clazz == PatchableRecord_Basic.PatchBuilder.class ) {
 				b = PatchableRecord_BasicPatchImpl.builder();
 			} else {
 				throw new IllegalArgumentException("Unsupported builder type %s".formatted(clazz));
@@ -216,12 +190,11 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public <T extends PatchableRecord_Basic.Builder> PatchableRecordOfRecords.PatchBuilder withValue_Opt(
-				Class<T> clazz, Function<T, PatchableRecord_Basic> block) {
+		public <T extends PatchableRecord_Basic.Builder> PatchableRecordOfRecords.PatchBuilder withValue_Opt(Class<T> clazz, Function<T, PatchableRecord_Basic> block) {
 			PatchableRecord_Basic.Builder b;
-			if (clazz == PatchableRecord_Basic.DataBuilder.class) {
+			if(clazz == PatchableRecord_Basic.DataBuilder.class ) {
 				b = PatchableRecord_BasicDataImpl.builder();
-			} else if (clazz == PatchableRecord_Basic.PatchBuilder.class) {
+			} else if (clazz == PatchableRecord_Basic.PatchBuilder.class ) {
 				b = PatchableRecord_BasicPatchImpl.builder();
 			} else {
 				throw new IllegalArgumentException("Unsupported builder type %s".formatted(clazz));
@@ -245,12 +218,11 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public <T extends PatchableRecord_Basic.Builder> PatchableRecordOfRecords.PatchBuilder withValue_Opt_Null(
-				Class<T> clazz, Function<T, PatchableRecord_Basic> block) {
+		public <T extends PatchableRecord_Basic.Builder> PatchableRecordOfRecords.PatchBuilder withValue_Opt_Null(Class<T> clazz, Function<T, PatchableRecord_Basic> block) {
 			PatchableRecord_Basic.Builder b;
-			if (clazz == PatchableRecord_Basic.DataBuilder.class) {
+			if(clazz == PatchableRecord_Basic.DataBuilder.class ) {
 				b = PatchableRecord_BasicDataImpl.builder();
-			} else if (clazz == PatchableRecord_Basic.PatchBuilder.class) {
+			} else if (clazz == PatchableRecord_Basic.PatchBuilder.class ) {
 				b = PatchableRecord_BasicPatchImpl.builder();
 			} else {
 				throw new IllegalArgumentException("Unsupported builder type %s".formatted(clazz));
@@ -263,8 +235,7 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public PatchableRecordOfRecords.PatchBuilder list(List<PatchableRecord_Basic.Data> additions,
-				List<PatchableRecord_Basic.Patch> updates, List<String> removals) {
+		public PatchableRecordOfRecords.PatchBuilder list(List<PatchableRecord_Basic.Data> additions, List<PatchableRecord_Basic.Patch> updates, List<String> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
 			$changeBuilder.add("additions", _JsonUtils.toJsonValueArray(additions, $e -> ((_BaseDataImpl) $e).data));
@@ -287,8 +258,7 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public PatchableRecordOfRecords.PatchBuilder list_Null(List<PatchableRecord_Basic.Data> additions,
-				List<PatchableRecord_Basic.Patch> updates, List<String> removals) {
+		public PatchableRecordOfRecords.PatchBuilder list_Null(List<PatchableRecord_Basic.Data> additions, List<PatchableRecord_Basic.Patch> updates, List<String> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
 			$changeBuilder.add("additions", _JsonUtils.toJsonValueArray(additions, $e -> ((_BaseDataImpl) $e).data));
@@ -311,8 +281,7 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public PatchableRecordOfRecords.PatchBuilder list_Opt(List<PatchableRecord_Basic.Data> additions,
-				List<PatchableRecord_Basic.Patch> updates, List<String> removals) {
+		public PatchableRecordOfRecords.PatchBuilder list_Opt(List<PatchableRecord_Basic.Data> additions, List<PatchableRecord_Basic.Patch> updates, List<String> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
 			$changeBuilder.add("additions", _JsonUtils.toJsonValueArray(additions, $e -> ((_BaseDataImpl) $e).data));
@@ -335,8 +304,7 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
-		public PatchableRecordOfRecords.PatchBuilder list_Opt_Null(List<PatchableRecord_Basic.Data> additions,
-				List<PatchableRecord_Basic.Patch> updates, List<String> removals) {
+		public PatchableRecordOfRecords.PatchBuilder list_Opt_Null(List<PatchableRecord_Basic.Data> additions, List<PatchableRecord_Basic.Patch> updates, List<String> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
 			$changeBuilder.add("additions", _JsonUtils.toJsonValueArray(additions, $e -> ((_BaseDataImpl) $e).data));
