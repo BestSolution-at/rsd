@@ -20,60 +20,6 @@ import dev.rsdlang.sample.client.jdkhttp.impl.ListBodyParameterTypesServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.ListHeaderParameterTypesServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.ListQueryParameterTypesServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.ListSampleServiceServiceImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model._BlobImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model._FileImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.EnumInlineRecordDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.EnumRecordDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.MixinRecordDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableEnumInlineRecordDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableEnumInlineRecordPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableEnumRecordDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableEnumRecordPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_List_NullDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_List_NullPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_List_Optional_NullDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_List_Optional_NullPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_List_OptionalDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_List_OptionalPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_ListDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_ListPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_NullDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_NullPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_Optional_NullDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_Optional_NullPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_OptionalDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_Basic_OptionalPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_BasicDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecord_BasicPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecordDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecordOfRecordsDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecordOfRecordsPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecordPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecordWithUnionDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableRecordWithUnionPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableScalarRecordDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableScalarRecordPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableUnionADataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableUnionAPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableUnionBDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.PatchableUnionBPatchImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.RecordOfRecordsDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.RecordWithUnionsDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.ScalarRecordDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecord_Basic_List_NullDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecord_Basic_List_Optional_NullDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecord_Basic_List_OptionalDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecord_Basic_ListDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecord_Basic_NullDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecord_Basic_Optional_NullDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecord_Basic_OptionalDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecord_BasicDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecord_KeyVersion_Int_IntDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecord_KeyVersionDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.SimpleRecordDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.UnionADataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.UnionBDataImpl;
-import dev.rsdlang.sample.client.jdkhttp.impl.model.UploadMixedResultDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.PathParameterTypeServiceServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.QueryParameterTypesServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.SampleServiceServiceImpl;
@@ -124,6 +70,60 @@ import dev.rsdlang.sample.client.PathParameterTypeServiceService;
 import dev.rsdlang.sample.client.QueryParameterTypesService;
 import dev.rsdlang.sample.client.SampleServiceService;
 import dev.rsdlang.sample.client.SpecSamplesClient;
+import dev.rsdlang.sample.client.impl.model.json.EnumInlineRecordDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.EnumRecordDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.MixinRecordDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableEnumInlineRecordDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableEnumInlineRecordPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableEnumRecordDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableEnumRecordPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecordDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecordOfRecordsDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecordOfRecordsPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecordPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecordWithUnionDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecordWithUnionPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_BasicDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_BasicPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_ListDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_ListPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_List_NullDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_List_NullPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_List_OptionalDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_List_OptionalPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_List_Optional_NullDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_List_Optional_NullPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_NullDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_NullPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_OptionalDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_OptionalPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_Optional_NullDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableRecord_Basic_Optional_NullPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableScalarRecordDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableScalarRecordPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableUnionADataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableUnionAPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableUnionBDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableUnionBPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.RecordOfRecordsDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.RecordWithUnionsDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.ScalarRecordDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.SimpleRecordDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.SimpleRecord_BasicDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.SimpleRecord_Basic_ListDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.SimpleRecord_Basic_List_NullDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.SimpleRecord_Basic_List_OptionalDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.SimpleRecord_Basic_List_Optional_NullDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.SimpleRecord_Basic_NullDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.SimpleRecord_Basic_OptionalDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.SimpleRecord_Basic_Optional_NullDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.SimpleRecord_KeyVersionDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.SimpleRecord_KeyVersion_Int_IntDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.UnionADataImpl;
+import dev.rsdlang.sample.client.impl.model.json.UnionBDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.UploadMixedResultDataImpl;
+import dev.rsdlang.sample.client.impl.model.json._BlobImpl;
+import dev.rsdlang.sample.client.impl.model.json._FileImpl;
 
 public class JDKSpecSamplesClient implements SpecSamplesClient {
 	public enum ContentTypeEncoding {
@@ -170,21 +170,31 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 			return new JDKSpecSamplesClient(baseURI, httpClient, contentTypeEncoding);
 		}
 	}
+
 	private static Map<Class<?>, Supplier<Object>> BUILDER_CREATOR_MAP = new HashMap<>();
 	private static Map<Class<?>, Function<JDKSpecSamplesClient, Object>> SERVICE_CREATOR_MAP = new HashMap<>();
 
 	static {
-		registerBuilderCreator(SimpleRecord_KeyVersion.DataBuilder.class, SimpleRecord_KeyVersionDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_KeyVersion_Int_Int.DataBuilder.class, SimpleRecord_KeyVersion_Int_IntDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_KeyVersion.DataBuilder.class,
+				SimpleRecord_KeyVersionDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_KeyVersion_Int_Int.DataBuilder.class,
+				SimpleRecord_KeyVersion_Int_IntDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(SimpleRecord.DataBuilder.class, SimpleRecordDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(SimpleRecord_Basic.DataBuilder.class, SimpleRecord_BasicDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_Optional.DataBuilder.class, SimpleRecord_Basic_OptionalDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_Null.DataBuilder.class, SimpleRecord_Basic_NullDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_Optional_Null.DataBuilder.class, SimpleRecord_Basic_Optional_NullDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_List.DataBuilder.class, SimpleRecord_Basic_ListDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_List_Optional.DataBuilder.class, SimpleRecord_Basic_List_OptionalDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_List_Null.DataBuilder.class, SimpleRecord_Basic_List_NullDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_List_Optional_Null.DataBuilder.class, SimpleRecord_Basic_List_Optional_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_Optional.DataBuilder.class,
+				SimpleRecord_Basic_OptionalDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_Null.DataBuilder.class,
+				SimpleRecord_Basic_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_Optional_Null.DataBuilder.class,
+				SimpleRecord_Basic_Optional_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_List.DataBuilder.class,
+				SimpleRecord_Basic_ListDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_List_Optional.DataBuilder.class,
+				SimpleRecord_Basic_List_OptionalDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_List_Null.DataBuilder.class,
+				SimpleRecord_Basic_List_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_List_Optional_Null.DataBuilder.class,
+				SimpleRecord_Basic_List_Optional_NullDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(EnumRecord.DataBuilder.class, EnumRecordDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(EnumInlineRecord.DataBuilder.class, EnumInlineRecordDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(ScalarRecord.DataBuilder.class, ScalarRecordDataImpl.DataBuilderImpl::new);
@@ -193,38 +203,63 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		registerBuilderCreator(UnionA.DataBuilder.class, UnionADataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(UnionB.DataBuilder.class, UnionBDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(PatchableRecord.DataBuilder.class, PatchableRecordDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic.DataBuilder.class, PatchableRecord_BasicDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_Optional.DataBuilder.class, PatchableRecord_Basic_OptionalDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_Null.DataBuilder.class, PatchableRecord_Basic_NullDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_Optional_Null.DataBuilder.class, PatchableRecord_Basic_Optional_NullDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List.DataBuilder.class, PatchableRecord_Basic_ListDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List_Optional.DataBuilder.class, PatchableRecord_Basic_List_OptionalDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List_Null.DataBuilder.class, PatchableRecord_Basic_List_NullDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List_Optional_Null.DataBuilder.class, PatchableRecord_Basic_List_Optional_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic.DataBuilder.class,
+				PatchableRecord_BasicDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_Optional.DataBuilder.class,
+				PatchableRecord_Basic_OptionalDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_Null.DataBuilder.class,
+				PatchableRecord_Basic_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_Optional_Null.DataBuilder.class,
+				PatchableRecord_Basic_Optional_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List.DataBuilder.class,
+				PatchableRecord_Basic_ListDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List_Optional.DataBuilder.class,
+				PatchableRecord_Basic_List_OptionalDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List_Null.DataBuilder.class,
+				PatchableRecord_Basic_List_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List_Optional_Null.DataBuilder.class,
+				PatchableRecord_Basic_List_Optional_NullDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(PatchableEnumRecord.DataBuilder.class, PatchableEnumRecordDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableEnumInlineRecord.DataBuilder.class, PatchableEnumInlineRecordDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableScalarRecord.DataBuilder.class, PatchableScalarRecordDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecordOfRecords.DataBuilder.class, PatchableRecordOfRecordsDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecordWithUnion.DataBuilder.class, PatchableRecordWithUnionDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableEnumInlineRecord.DataBuilder.class,
+				PatchableEnumInlineRecordDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableScalarRecord.DataBuilder.class,
+				PatchableScalarRecordDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecordOfRecords.DataBuilder.class,
+				PatchableRecordOfRecordsDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecordWithUnion.DataBuilder.class,
+				PatchableRecordWithUnionDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(PatchableUnionA.DataBuilder.class, PatchableUnionADataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(PatchableUnionB.DataBuilder.class, PatchableUnionBDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(MixinRecord.DataBuilder.class, MixinRecordDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(UploadMixedResult.DataBuilder.class, UploadMixedResultDataImpl.DataBuilderImpl::new);
 
 		registerBuilderCreator(PatchableRecord.PatchBuilder.class, PatchableRecordPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic.PatchBuilder.class, PatchableRecord_BasicPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_Optional.PatchBuilder.class, PatchableRecord_Basic_OptionalPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_Null.PatchBuilder.class, PatchableRecord_Basic_NullPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_Optional_Null.PatchBuilder.class, PatchableRecord_Basic_Optional_NullPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List.PatchBuilder.class, PatchableRecord_Basic_ListPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List_Optional.PatchBuilder.class, PatchableRecord_Basic_List_OptionalPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List_Null.PatchBuilder.class, PatchableRecord_Basic_List_NullPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List_Optional_Null.PatchBuilder.class, PatchableRecord_Basic_List_Optional_NullPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableEnumRecord.PatchBuilder.class, PatchableEnumRecordPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableEnumInlineRecord.PatchBuilder.class, PatchableEnumInlineRecordPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableScalarRecord.PatchBuilder.class, PatchableScalarRecordPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecordOfRecords.PatchBuilder.class, PatchableRecordOfRecordsPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecordWithUnion.PatchBuilder.class, PatchableRecordWithUnionPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic.PatchBuilder.class,
+				PatchableRecord_BasicPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_Optional.PatchBuilder.class,
+				PatchableRecord_Basic_OptionalPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_Null.PatchBuilder.class,
+				PatchableRecord_Basic_NullPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_Optional_Null.PatchBuilder.class,
+				PatchableRecord_Basic_Optional_NullPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List.PatchBuilder.class,
+				PatchableRecord_Basic_ListPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List_Optional.PatchBuilder.class,
+				PatchableRecord_Basic_List_OptionalPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List_Null.PatchBuilder.class,
+				PatchableRecord_Basic_List_NullPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List_Optional_Null.PatchBuilder.class,
+				PatchableRecord_Basic_List_Optional_NullPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableEnumRecord.PatchBuilder.class,
+				PatchableEnumRecordPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableEnumInlineRecord.PatchBuilder.class,
+				PatchableEnumInlineRecordPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableScalarRecord.PatchBuilder.class,
+				PatchableScalarRecordPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecordOfRecords.PatchBuilder.class,
+				PatchableRecordOfRecordsPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecordWithUnion.PatchBuilder.class,
+				PatchableRecordWithUnionPatchImpl.PatchBuilderImpl::new);
 		registerBuilderCreator(PatchableUnionA.PatchBuilder.class, PatchableUnionAPatchImpl.PatchBuilderImpl::new);
 		registerBuilderCreator(PatchableUnionB.PatchBuilder.class, PatchableUnionBPatchImpl.PatchBuilderImpl::new);
 
@@ -277,6 +312,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 	public static SpecSamplesClient create(URI baseURI, HttpClient httpClient) {
 		return builder().baseURI(baseURI).httpClient(httpClient).build();
 	}
+
 	public static Builder builder() {
 		return new Builder();
 	}
