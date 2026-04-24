@@ -120,7 +120,6 @@ public class _JsonUtils {
 	private static byte[] APPLICATION_JSON_EMPTY_OBJECT_BYTES = new byte[] { 123, 125 };
 	private static byte[] APPLICATION_VND_MSGPACK_EMPTY_OBJECT_BYTES = new byte[] { -128 };
 
-
 	public static String toString(Object value) {
 		if (value == null) {
 			return null;
@@ -999,9 +998,6 @@ public class _JsonUtils {
 	private static void encodeMsgPackValue(MsgpackJson generator, MessagePacker packer, Object data) throws IOException {
 		generator.encode(packer, createJsonValue(data));
 	}
-
-
-
 
 	public static JsonValue createJsonValue(Object data) {
 		if (data == null) {
@@ -2046,7 +2042,6 @@ public class _JsonUtils {
 		};
 	}
 
-
 	private static JsonValue decodeJsonValue(InputStream stream) {
 		try (var reader = Json.createReader(new InputStreamReader(stream, StandardCharsets.UTF_8))) {
 			return reader.readValue();
@@ -2065,6 +2060,5 @@ public class _JsonUtils {
 			throw new IllegalStateException(e);
 		}
 	}
-
 
 }

@@ -1,4 +1,4 @@
-import { CompositeGeneratorNode, GeneratorNode, NL } from 'langium/generate';
+import { CompositeGeneratorNode, GeneratorNode, IndentNode, NL } from 'langium/generate';
 import { MBuiltinType, MResolvedRSDModel } from './model.js';
 
 export function isDefined<T>(value: T | undefined): value is T {
@@ -57,13 +57,31 @@ export function toNode(block: IndentBlock, endWithNewLine = true) {
 	return node;
 }
 
+export function ident(node: GeneratorNode, ident: number) {
+	let curNode: GeneratorNode = node;
+	for (let i = 0; i < ident; i++) {
+		const newIndent = new IndentNode();
+		newIndent.append(curNode);
+		curNode = newIndent;
+	}
+	return curNode;
+}
+
 export function toNodeTree(block: string): CompositeGeneratorNode {
 	const nodeStack: CompositeGeneratorNode[] = [new CompositeGeneratorNode()];
 
 	let currentIdent = 0;
 	const lines = block.split(/\r?\n/);
 	for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
-		const l = lines[lineIndex];
+		let l = lines[lineIndex];
+
+		if (l.startsWith('#')) {
+			if (l === '#') {
+				continue;
+			}
+			l = l.substring(1);
+			nodeStack[nodeStack.length - 1].append(NL);
+		}
 
 		if (lineIndex === 0) {
 			continue;
@@ -71,7 +89,13 @@ export function toNodeTree(block: string): CompositeGeneratorNode {
 			currentIdent = computeIdent(l);
 		} else if (l.trim().length === 0) {
 			// Treat totally empty lines as they would fail ident computation
-			nodeStack[nodeStack.length - 1].append(NL);
+			// and make sure there are never 2 subsequent empty lines in the output
+			if (
+				nodeStack[nodeStack.length - 1].contents.at(-1) !== NL ||
+				nodeStack[nodeStack.length - 1].contents.at(-2) !== NL
+			) {
+				nodeStack[nodeStack.length - 1].append(NL);
+			}
 			continue;
 		}
 
