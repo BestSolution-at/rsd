@@ -1,4 +1,4 @@
-import { CompositeGeneratorNode, GeneratorNode, IndentNode, NL } from 'langium/generate';
+import { CompositeGeneratorNode, GeneratorNode, IndentNode, isNewLineNode, NL } from 'langium/generate';
 import { MBuiltinType, MResolvedRSDModel } from './model.js';
 
 export function isDefined<T>(value: T | undefined): value is T {
@@ -67,7 +67,7 @@ export function ident(node: GeneratorNode, ident: number) {
 	return curNode;
 }
 
-export function toNodeTree(block: string): CompositeGeneratorNode {
+export function toNodeTree(block: string, endWithNewLine = false): CompositeGeneratorNode {
 	const nodeStack: CompositeGeneratorNode[] = [new CompositeGeneratorNode()];
 
 	let currentIdent = 0;
@@ -91,11 +91,14 @@ export function toNodeTree(block: string): CompositeGeneratorNode {
 			// Treat totally empty lines as they would fail ident computation
 			// and make sure there are never 2 subsequent empty lines in the output
 			if (
-				nodeStack[nodeStack.length - 1].contents.at(-1) !== NL ||
-				nodeStack[nodeStack.length - 1].contents.at(-2) !== NL
+				(isNewLineNode(nodeStack[nodeStack.length - 1].contents.at(-1)) &&
+					isNewLineNode(nodeStack[nodeStack.length - 1].contents.at(-2))) ||
+				// Avoid multiple subsequent empty lines at the end of the file
+				lineIndex === lines.length - 1
 			) {
-				nodeStack[nodeStack.length - 1].append(NL);
+				continue;
 			}
+			nodeStack[nodeStack.length - 1].append(NL);
 			continue;
 		}
 
@@ -122,6 +125,11 @@ export function toNodeTree(block: string): CompositeGeneratorNode {
 			nodeStack[nodeStack.length - 1].indent(c => c.append(node));
 		}
 	}
+
+	if (endWithNewLine && !isNewLineNode(nodeStack[0].contents.at(-1))) {
+		nodeStack[0].append(NL);
+	}
+
 	return nodeStack[0];
 }
 

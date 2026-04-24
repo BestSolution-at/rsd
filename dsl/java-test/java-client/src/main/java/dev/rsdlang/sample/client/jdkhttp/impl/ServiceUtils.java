@@ -421,7 +421,6 @@ public class ServiceUtils {
 		var file = response.body();
 		return _BlobImpl.of(file, mimeType);
 	}
-
 	public static RSDFile mapFile(HttpResponse<Path> response) {
 		var mimeType = response.headers().firstValue("Content-Type")
 				.orElse(null);
@@ -432,5 +431,4 @@ public class ServiceUtils {
 		var fileName = fileNameWithQuotes.substring(1, fileNameWithQuotes.length() - 1);
 		return _FileImpl.of(file, mimeType, fileName);
 	}
-
 }

@@ -117,19 +117,15 @@ export type PatchableRecordOfRecordsPatch = {
 function isValuePatch(v: unknown): v is $ValuePatch {
 	return (isReplace(v) && isPatchableRecord_Basic(v)) || (isMerge(v) && isPatchableRecord_BasicPatch(v));
 }
-
 function isValue_NullPatch(v: unknown): v is $Value_NullPatch {
 	return (isReplace(v) && isPatchableRecord_Basic(v)) || (isMerge(v) && isPatchableRecord_BasicPatch(v));
 }
-
 function isValue_OptPatch(v: unknown): v is $Value_OptPatch {
 	return (isReplace(v) && isPatchableRecord_Basic(v)) || (isMerge(v) && isPatchableRecord_BasicPatch(v));
 }
-
 function isValue_Opt_NullPatch(v: unknown): v is $Value_Opt_NullPatch {
 	return (isReplace(v) && isPatchableRecord_Basic(v)) || (isMerge(v) && isPatchableRecord_BasicPatch(v));
 }
-
 
 export function isPatchableRecordOfRecordsPatch(value: unknown): value is PatchableRecordOfRecordsPatch {
 	return isRecord(value) &&

@@ -27,7 +27,8 @@ export function generateFactory(
 	const node = toNodeTree(`
 public interface ${Type} {
 	public ${ClientType} create(${UriType} uri);
-}`);
+}
+`);
 
 	return {
 		name: `${Type}.java`,

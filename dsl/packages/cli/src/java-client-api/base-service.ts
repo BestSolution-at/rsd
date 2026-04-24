@@ -17,7 +17,8 @@ package ${packageName};
 
 public interface BaseService {
 	public ${ClientType} client();
-}`);
+}
+`);
 
 	return {
 		name: 'BaseService.java',

@@ -666,7 +666,6 @@ public class _RestUtils {
 	public static <T> _Base.Nillable<T> parseNilObject(String value, Function<String, T> parser) {
 		return parseNilLiteral(value, parser);
 	}
-
 	public static Response toResponse(int status, RSDException e) {
 		if (e instanceof RSDException.RSDStructuredDataException s) {
 			return Response.status(status)
@@ -703,5 +702,4 @@ public class _RestUtils {
 			consumer.accept(output);
 		};
 	}
-
 }
