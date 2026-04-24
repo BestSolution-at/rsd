@@ -14,7 +14,6 @@ export function generateMixinContent(
 	node.append(`public interface ${t.name}Mixin {`, NL);
 	node.indent(classBody => {
 		classBody.append(generateInlineEnums(t));
-		// classBody.append(generateBuilder(t));
 		classBody.append(generatePropertyAccessors(t, nativeTypeSubstitues, basePackageName, fqn));
 	});
 	node.append('}', NL);
@@ -51,11 +50,3 @@ function generatePropertyAccessors(
 	});
 	return node;
 }
-
-/*
-function generateBuilder(t: MResolvedMixinType) {
-  const node = new CompositeGeneratorNode();
-  node.append('public interface Builder {}', NL);
-  return node;
-}
-*/

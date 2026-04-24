@@ -10,14 +10,12 @@ export function generatePropertyAccessor(
 	fqn: (type: string) => string,
 	inherited = false,
 ) {
+	const APIType = computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn);
 	const node = new CompositeGeneratorNode();
 	if (inherited) {
 		node.append('@Override', NL);
 	}
-	node.append(
-		`public ${computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn)} ${property.name}();`,
-		NL,
-	);
+	node.append(`public ${APIType} ${property.name}();`, NL);
 	return node;
 }
 
@@ -26,18 +24,22 @@ export function generateBuilderPropertyAccessor(
 	nativeTypeSubstitues: Record<string, string> | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
-	returnType = 'DataBuilder',
+	ReturnType = 'DataBuilder',
 ) {
+	const APIType = computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn, {
+		withArray: true,
+		withOptional: false,
+	});
 	const node = new CompositeGeneratorNode();
-	node.append(
-		`public ${returnType} ${property.name}(${computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn)} ${property.name});`,
-		NL,
-	);
+	node.append(`public ${ReturnType} ${property.name}(${APIType} ${property.name});`, NL);
 	if (isMProperty(property) && !property.array && (property.variant === 'record' || property.variant === 'union')) {
 		const Function = fqn('java.util.function.Function');
+		const methodName = `with${toFirstUpper(property.name)}`;
+		const DataBuilderType = `${property.type}.DataBuilder`;
+		const DataType = `${property.type}.Data`;
 		node.append(
 			NL,
-			`public <T extends ${property.type}.DataBuilder> ${returnType} with${toFirstUpper(property.name)}(Class<T> clazz, ${Function}<T, ${property.type}.Data> block);`,
+			`public <T extends ${DataBuilderType}> ${ReturnType} ${methodName}(Class<T> clazz, ${Function}<T, ${DataType}> block);`,
 			NL,
 		);
 	}

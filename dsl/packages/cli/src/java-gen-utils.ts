@@ -323,6 +323,7 @@ export function computeAPITypeNG(
 	nativeTypeSubstitues: Record<string, string> | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
+	config = { withArray: true, withOptional: true },
 ): string {
 	if (isMKeyProperty(property)) {
 		return builtinToJavaType(property.type, fqn);
@@ -360,23 +361,25 @@ export function computeAPITypeNG(
 		}
 	}
 
-	if (property.array) {
+	if (property.array && config.withArray) {
 		type = `${fqn('java.util.List')}<${type}>`;
 	}
 
-	if (property.optional && property.nullable) {
-		type = fqn(`${basePackageName}._Base`) + `.Nillable<${type}>`;
-	} else if (property.optional || property.nullable) {
-		if (property.array) {
-			type = fqn('java.util.Optional') + `<${type}>`;
-		} else if (property.type === 'int') {
-			type = fqn('java.util.OptionalInt');
-		} else if (property.type === 'long') {
-			type = fqn('java.util.OptionalLong');
-		} else if (property.type === 'double') {
-			type = fqn('java.util.OptionalDouble');
-		} else {
-			type = fqn('java.util.Optional') + `<${type}>`;
+	if (config.withOptional) {
+		if (property.optional && property.nullable) {
+			type = fqn(`${basePackageName}._Base`) + `.Nillable<${type}>`;
+		} else if (property.optional || property.nullable) {
+			if (property.array) {
+				type = fqn('java.util.Optional') + `<${type}>`;
+			} else if (property.type === 'int') {
+				type = fqn('java.util.OptionalInt');
+			} else if (property.type === 'long') {
+				type = fqn('java.util.OptionalLong');
+			} else if (property.type === 'double') {
+				type = fqn('java.util.OptionalDouble');
+			} else {
+				type = fqn('java.util.Optional') + `<${type}>`;
+			}
 		}
 	}
 
