@@ -208,8 +208,7 @@ function appendQueryParams(
 			const param =
 				p.variant === 'union' || p.variant === 'record'
 					? `ServiceUtils.ofObject($q, false, this.contentType(), ${computeParameterAPIType(
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-							p as any,
+							p,
 							artifactConfig.nativeTypeSubstitues,
 							`${artifactConfig.rootPackageName}.model`,
 							fqn,
@@ -220,13 +219,19 @@ function appendQueryParams(
 				${p.name}.stream().forEach($q -> {
 					$queryParams.append("${restName}", ${param});
 				});`);
-			appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$queryParams.append("${restName}", "null");`);
+			appendWithNullGuard(
+				methodBody,
+				p.name,
+				p.nullable,
+				p.optional,
+				codeBlock,
+				`$queryParams.append("${restName}", "null");`,
+			);
 		} else {
 			const param =
 				p.variant === 'union' || p.variant === 'record'
 					? `ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-							p as any,
+							p,
 							artifactConfig.nativeTypeSubstitues,
 							`${artifactConfig.rootPackageName}.model`,
 							fqn,
@@ -234,7 +239,14 @@ function appendQueryParams(
 						)}.class)`
 					: p.name;
 			const codeBlock = `$queryParams.append("${restName}", ${param});`;
-			appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$queryParams.append("${restName}", "null");`);
+			appendWithNullGuard(
+				methodBody,
+				p.name,
+				p.nullable,
+				p.optional,
+				codeBlock,
+				`$queryParams.append("${restName}", "null");`,
+			);
 		}
 	});
 	methodBody.appendNewLine();
@@ -261,14 +273,28 @@ function appendHeaderParams(
 						? '$v -> "\\"" + ServiceUtils.encodeAsciiString($v) + "\\""'
 						: `${fqn('java.util.Objects')}::toString`;
 				const codeBlock = `$headerParams.put("${restName}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
-				appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$headerParams.put("${restName}", "null");`);
+				appendWithNullGuard(
+					methodBody,
+					p.name,
+					p.nullable,
+					p.optional,
+					codeBlock,
+					`$headerParams.put("${restName}", "null");`,
+				);
 			} else if (p.variant === 'stream') {
 				methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 			} else {
 				// eslint-disable-next-line @typescript-eslint/no-deprecated
 				const toString = `$v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class))`;
 				const codeBlock = `$headerParams.put("${restName}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
-				appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$headerParams.put("${restName}", "null");`);
+				appendWithNullGuard(
+					methodBody,
+					p.name,
+					p.nullable,
+					p.optional,
+					codeBlock,
+					`$headerParams.put("${restName}", "null");`,
+				);
 			}
 		} else {
 			if (p.variant === 'builtin') {
@@ -286,7 +312,14 @@ function appendHeaderParams(
 				}
 			} else if (p.variant === 'record' || p.variant === 'union') {
 				const codeBlock = `$headerParams.put("${restName}", ServiceUtils.encodeBase64(ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class)));`;
-				appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$headerParams.put("${restName}", "null");`);
+				appendWithNullGuard(
+					methodBody,
+					p.name,
+					p.nullable,
+					p.optional,
+					codeBlock,
+					`$headerParams.put("${restName}", "null");`,
+				);
 			} else if (p.variant === 'stream') {
 				methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 			} else {
