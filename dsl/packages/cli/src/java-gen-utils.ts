@@ -225,7 +225,7 @@ export function computeParameterAPITypeNG(
 }
 
 /**
- * @deprecated use computeParameterTypeNG
+ * @deprecated use computeParameterAPITypeNG
  */
 export function computeParameterAPIType(
 	parameter: MParameter,

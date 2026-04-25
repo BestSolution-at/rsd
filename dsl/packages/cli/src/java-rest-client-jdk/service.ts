@@ -206,11 +206,11 @@ function generateOperationMethod(
 			allParameters
 				.filter(p => p.meta?.rest?.source === 'query')
 				.forEach(p => {
+					const restName = p.meta?.rest?.name ?? p.name.toLowerCase();
 					if (p.array) {
 						const param =
 							p.variant === 'union' || p.variant === 'record'
-								? // eslint-disable-next-line @typescript-eslint/no-deprecated
-									`ServiceUtils.ofObject($q, false, this.contentType(), ${computeParameterAPIType(
+								? `ServiceUtils.ofObject($q, false, this.contentType(), ${computeParameterAPIType(
 										// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
 										p as any,
 										artifactConfig.nativeTypeSubstitues,
@@ -221,7 +221,7 @@ function generateOperationMethod(
 								: '$q';
 						const codeBlock = toNodeTree(`
 							${p.name}.stream().forEach($q -> {
-								$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${param});
+								$queryParams.append("${restName}", ${param});
 							});`);
 						appendWithNullGuard(
 							methodBody,
@@ -229,13 +229,12 @@ function generateOperationMethod(
 							p.nullable,
 							p.optional,
 							codeBlock,
-							`$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`,
+							`$queryParams.append("${restName}", "null");`,
 						);
 					} else {
 						const param =
 							p.variant === 'union' || p.variant === 'record'
-								? // eslint-disable-next-line @typescript-eslint/no-deprecated
-									`ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(
+								? `ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(
 										// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
 										p as any,
 										artifactConfig.nativeTypeSubstitues,
@@ -244,15 +243,14 @@ function generateOperationMethod(
 										true,
 									)}.class)`
 								: p.name;
-
-						const codeBlock = `$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${param});`;
+						const codeBlock = `$queryParams.append("${restName}", ${param});`;
 						appendWithNullGuard(
 							methodBody,
 							p.name,
 							p.nullable,
 							p.optional,
 							codeBlock,
-							`$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`,
+							`$queryParams.append("${restName}", "null");`,
 						);
 					}
 				});
@@ -317,7 +315,6 @@ function generateOperationMethod(
 							);
 						}
 					} else if (p.variant === 'record' || p.variant === 'union') {
-						// eslint-disable-next-line @typescript-eslint/no-deprecated
 						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ServiceUtils.encodeBase64(ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class)));`;
 						appendWithNullGuard(
 							methodBody,
@@ -349,16 +346,11 @@ function generateOperationMethod(
 
 		const IOException = fqn('java.io.IOException');
 
-		if (o.parameters.find(p => p.variant === 'stream')) {
-			methodBody.append('try {', NL);
-			methodBody.indent(tryBlock => {
-				tryBlock.append('var $formDataBuilder = RSDFormDataPublisherBuilder.create();', NL);
-			});
-		} else {
-			methodBody.append('try {', NL);
-		}
-
+		methodBody.append('try {', NL);
 		methodBody.indent(tryBlock => {
+			if (o.parameters.find(p => p.variant === 'stream')) {
+				tryBlock.append('var $formDataBuilder = RSDFormDataPublisherBuilder.create();', NL);
+			}
 			tryBlock.append(generateInvocation(s, o, allParameters, artifactConfig, fqn, hasHeaderParams, multiBodyParam));
 		});
 		methodBody.append(`} catch (${IOException} | InterruptedException e) {`, NL);
@@ -406,7 +398,8 @@ function generateStreamBody(
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
 ) {
-	if (o.parameters.find(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
+	const hasNonStreamBodyParams = o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined);
+	if (hasNonStreamBodyParams) {
 		const Json = fqn('jakarta.json.Json');
 		methodBody.append(`var $jsonPayload = ${Json}.createObjectBuilder();`, NL);
 	}
@@ -426,7 +419,7 @@ function generateStreamBody(
 				);
 			}
 		});
-	if (o.parameters.find(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
+	if (hasNonStreamBodyParams) {
 		const typeName = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${s.name}${toFirstUpper(o.name)}DataImpl`);
 		methodBody.append(
 			`$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new ${typeName}($jsonPayload.build()), false, this.contentType(), ${typeName}.class), this.contentType());`,
@@ -606,87 +599,21 @@ function appendMultiParamBody(
 			const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BaseDataImpl`);
 			if (p.array) {
 				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
-				if (p.nullable) {
-					methodBody.append(
-						`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
-						NL,
-					);
-				} else {
-					if (p.optional) {
-						methodBody.append('if(' + p.name + ' != null) {', NL);
-						methodBody.indent(l => {
-							l.append(
-								`$builder = $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
-								NL,
-							);
-						});
-						methodBody.append('}', NL);
-					} else {
-						methodBody.append(
-							`$builder = $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
-							NL,
-						);
-					}
-				}
+				appendBuilderAssignment(
+					methodBody,
+					p,
+					`$builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((${_BaseDataImpl}) i).data))`,
+				);
 			} else {
-				if (p.nullable) {
-					methodBody.append(
-						`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`,
-						NL,
-					);
-				} else {
-					if (p.optional) {
-						methodBody.append('if(' + p.name + ' != null) {', NL);
-						methodBody.indent(l => {
-							l.append(`$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`, NL);
-						});
-						methodBody.append('}', NL);
-					} else {
-						methodBody.append(`$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`, NL);
-					}
-				}
+				appendBuilderAssignment(methodBody, p, `$builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data)`);
 			}
 		} else if (p.variant === 'builtin' && isMBuiltinType(p.type)) {
 			const type = p.type;
-			if (p.array) {
-				if (p.nullable) {
-					methodBody.append(
-						`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : ` +
-							builtinBuilderArrayJSONAccess({ name: p.name, type }) +
-							';',
-						NL,
-					);
-				} else {
-					if (p.optional) {
-						methodBody.append('if(' + p.name + ' != null) {', NL);
-						methodBody.indent(l => {
-							l.append(`$builder = ${builtinBuilderArrayJSONAccess({ name: p.name, type })};`, NL);
-						});
-						methodBody.append('}', NL);
-					} else {
-						methodBody.append('$builder = ' + builtinBuilderArrayJSONAccess({ name: p.name, type }) + ';', NL);
-					}
-				}
-			} else {
-				if (p.nullable) {
-					methodBody.append(
-						`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : ` +
-							builtinBuilderAccess({ name: p.name, type }) +
-							';',
-						NL,
-					);
-				} else {
-					if (p.optional) {
-						methodBody.append('if(' + p.name + ' != null) {', NL);
-						methodBody.indent(l => {
-							l.append('$builder = ' + builtinBuilderAccess({ name: p.name, type }) + ';', NL);
-						});
-						methodBody.append('}', NL);
-					} else {
-						methodBody.append('$builder = ' + builtinBuilderAccess({ name: p.name, type }) + ';', NL);
-					}
-				}
-			}
+			appendBuilderAssignment(
+				methodBody,
+				p,
+				p.array ? builtinBuilderArrayJSONAccess({ name: p.name, type }) : builtinBuilderAccess({ name: p.name, type }),
+			);
 		} else {
 			methodBody.append('throw new UnsupportedOperationException();', NL);
 		}
@@ -696,6 +623,18 @@ function appendMultiParamBody(
 		`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.ofObject(new ${typeName}($builder.build()), false, this.contentType(), ${typeName}.class));`,
 		NL,
 	);
+}
+
+function appendBuilderAssignment(methodBody: CompositeGeneratorNode, p: MParameter, expr: string) {
+	if (p.nullable) {
+		methodBody.append(`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : ${expr};`, NL);
+	} else if (p.optional) {
+		methodBody.append(`if(${p.name} != null) {`, NL);
+		methodBody.indent(l => l.append(`$builder = ${expr};`, NL));
+		methodBody.append('}', NL);
+	} else {
+		methodBody.append(`$builder = ${expr};`, NL);
+	}
 }
 
 function generateRequestBuilderChain(
@@ -857,11 +796,7 @@ function handleOkResult(
 		}
 	} else if (type.variant === 'builtin') {
 		if (isMBuiltinType(type.type)) {
-			if (type.array) {
-				node.append(`return ${builtinArrayMap(type.type)};`, NL);
-			} else {
-				node.append(`return ${builtinMap(type.type)};`, NL);
-			}
+			node.append(`return ${builtinMapExpression(type.type, type.array)};`, NL);
 		}
 	} else if (type.variant === 'scalar') {
 		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false);
@@ -886,54 +821,20 @@ function handleOkResult(
 	}
 }
 
-function builtinArrayMap(type: MBuiltinType): string {
-	switch (type) {
-		case 'boolean':
-			return 'ServiceUtils.mapBooleans($response)';
-		case 'double':
-			return 'ServiceUtils.mapDoubles($response)';
-		case 'float':
-			return 'ServiceUtils.mapFloats($response)';
-		case 'int':
-			return 'ServiceUtils.mapInts($response)';
-		case 'local-date':
-			return 'ServiceUtils.mapLocalDates($response)';
-		case 'local-date-time':
-			return 'ServiceUtils.mapLocalDateTimes($response)';
-		case 'long':
-			return 'ServiceUtils.mapLongs($response)';
-		case 'short':
-			return 'ServiceUtils.mapShorts($response)';
-		case 'string':
-			return 'ServiceUtils.mapStrings($response)';
-		case 'zoned-date-time':
-			return 'ServiceUtils.mapZonedDateTimes($response)';
-	}
-}
-
-function builtinMap(type: MBuiltinType): string {
-	switch (type) {
-		case 'boolean':
-			return 'ServiceUtils.mapBoolean($response)';
-		case 'double':
-			return 'ServiceUtils.mapDouble($response)';
-		case 'float':
-			return 'ServiceUtils.mapFloat($response)';
-		case 'int':
-			return 'ServiceUtils.mapInt($response)';
-		case 'local-date':
-			return 'ServiceUtils.mapLocalDate($response)';
-		case 'local-date-time':
-			return 'ServiceUtils.mapLocalDateTime($response)';
-		case 'long':
-			return 'ServiceUtils.mapLong($response)';
-		case 'short':
-			return 'ServiceUtils.mapShort($response)';
-		case 'string':
-			return 'ServiceUtils.mapString($response)';
-		case 'zoned-date-time':
-			return 'ServiceUtils.mapZonedDateTime($response)';
-	}
+function builtinMapExpression(type: MBuiltinType, array: boolean): string {
+	const names: Record<MBuiltinType, string> = {
+		boolean: 'Boolean',
+		double: 'Double',
+		float: 'Float',
+		int: 'Int',
+		'local-date': 'LocalDate',
+		'local-date-time': 'LocalDateTime',
+		long: 'Long',
+		short: 'Short',
+		string: 'String',
+		'zoned-date-time': 'ZonedDateTime',
+	};
+	return `ServiceUtils.map${names[type]}${array ? 's' : ''}($response)`;
 }
 
 function handleErrorResult(
