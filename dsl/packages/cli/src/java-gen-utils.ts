@@ -323,8 +323,9 @@ export function computeAPITypeNG(
 	nativeTypeSubstitues: Record<string, string> | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
-	config = { withArray: true, withOptional: true },
+	config?: { withArray?: boolean; withOptional?: boolean },
 ): string {
+	const { withArray = true, withOptional = true } = config ?? {};
 	if (isMKeyProperty(property)) {
 		return builtinToJavaType(property.type, fqn);
 	}
@@ -361,11 +362,11 @@ export function computeAPITypeNG(
 		}
 	}
 
-	if (property.array && config.withArray) {
+	if (property.array && withArray) {
 		type = `${fqn('java.util.List')}<${type}>`;
 	}
 
-	if (config.withOptional) {
+	if (withOptional) {
 		if (property.optional && property.nullable) {
 			type = fqn(`${basePackageName}._Base`) + `.Nillable<${type}>`;
 		} else if (property.optional || property.nullable) {

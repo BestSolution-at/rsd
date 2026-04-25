@@ -1,6 +1,6 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
 import { isMKeyProperty, isMProperty, isMRevisionProperty, MResolvedBaseProperty, MResolvedPropery } from '../model.js';
-import { computeAPIType, computeAPITypeNG, primitiveToObject } from '../java-gen-utils.js';
+import { computeAPITypeNG, primitiveToObject } from '../java-gen-utils.js';
 import { toFirstUpper } from '../util.js';
 
 export function generatePropertyAccessor(
@@ -54,7 +54,10 @@ export function generatePatchPropertyAccessor(
 ) {
 	const node = new CompositeGeneratorNode();
 	if (isMKeyProperty(property) || isMRevisionProperty(property)) {
-		const type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true);
+		const type = computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn, {
+			withArray: false,
+			withOptional: false,
+		});
 		node.append(`public ${type} ${property.name}();`, NL);
 	} else if (
 		property.variant === 'builtin' ||
@@ -62,7 +65,12 @@ export function generatePatchPropertyAccessor(
 		property.variant === 'inline-enum' ||
 		property.variant === 'scalar'
 	) {
-		let type = primitiveToObject(computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true));
+		let type = primitiveToObject(
+			computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn, {
+				withArray: false,
+				withOptional: false,
+			}),
+		);
 
 		if (property.array) {
 			type = `${toFirstUpper(property.name)}Change`;
@@ -86,7 +94,10 @@ export function generatePatchPropertyAccessor(
 			}
 		}
 	} else {
-		let type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true);
+		let type = computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn, {
+			withArray: false,
+			withOptional: false,
+		});
 
 		if (property.array) {
 			type = `${toFirstUpper(property.name)}Change`;
@@ -118,7 +129,10 @@ export function generatePatchBuilderPropertyAccessor(
 		property.variant === 'inline-enum' ||
 		property.variant === 'scalar'
 	) {
-		let type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true);
+		let type = computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn, {
+			withArray: false,
+			withOptional: false,
+		});
 		if (property.nullable || property.optional || property.array) {
 			type = primitiveToObject(type);
 		}
@@ -143,7 +157,10 @@ export function generatePatchBuilderPropertyAccessor(
 				NL,
 			);
 		} else {
-			const type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true);
+			const type = computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn, {
+				withArray: false,
+				withOptional: false,
+			});
 			const baseType = fqn(`${basePackageName}.${property.type}`);
 			const prefix = toFirstUpper(property.name);
 			node.append(`public PatchBuilder ${property.name}(Patch.${prefix}Change ${property.name});`, NL);
