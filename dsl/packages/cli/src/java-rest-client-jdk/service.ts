@@ -1097,6 +1097,19 @@ function generateServiceData(
 	};
 }
 
+function jsonMapper(
+	kind: 'Literal' | 'Object',
+	propName: string,
+	factoryRef: string,
+	array: boolean,
+	optional: boolean,
+	nullable: boolean,
+): string {
+	const base = array ? `${kind}s` : kind;
+	const qualifier = optional && nullable ? 'Nil' : optional ? 'Opt' : nullable ? 'Null' : '';
+	return `_JsonUtils.map${qualifier}${base}(data, "${propName}", ${factoryRef})`;
+}
+
 function generateParameterContent(
 	prop: MParameter,
 	nativeTypeSubstitues: Record<string, string> | undefined,
@@ -1105,118 +1118,25 @@ function generateParameterContent(
 	o: MResolvedOperation,
 ) {
 	let mapper: string;
-	const array = prop.array;
+	const { array, optional, nullable } = prop;
 
 	if (isMBuiltinType(prop.type)) {
-		if (array) {
-			mapper = builtinSimpleJSONArrayAccessNG({
-				type: prop.type,
-				name: prop.name,
-				optional: prop.optional,
-				nullable: prop.nullable,
-			});
-		} else {
-			mapper = builtinJSONAccess({
-				type: prop.type,
-				name: prop.name,
-				optional: prop.optional,
-				nullable: prop.nullable,
-			});
-		}
+		mapper = array
+			? builtinSimpleJSONArrayAccessNG({ type: prop.type, name: prop.name, optional, nullable })
+			: builtinJSONAccess({ type: prop.type, name: prop.name, optional, nullable });
 	} else if (prop.variant === 'inline-enum') {
 		const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, o.name);
-		if (array) {
-			if (prop.optional && prop.nullable) {
-				mapper = `_JsonUtils.mapNilLiterals(data, "${prop.name}", ${Type}::valueOf)`;
-			} else if (prop.optional) {
-				mapper = `_JsonUtils.mapOptLiterals(data, "${prop.name}", ${Type}::valueOf)`;
-			} else if (prop.nullable) {
-				mapper = `_JsonUtils.mapNullLiterals(data, "${prop.name}", ${Type}::valueOf)`;
-			} else {
-				mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::valueOf)`;
-			}
-		} else {
-			if (prop.optional && prop.nullable) {
-				mapper = `_JsonUtils.mapNilLiteral(data, "${prop.name}", ${Type}::valueOf)`;
-			} else if (prop.optional) {
-				mapper = `_JsonUtils.mapOptLiteral(data, "${prop.name}", ${Type}::valueOf)`;
-			} else if (prop.nullable) {
-				mapper = `_JsonUtils.mapNullLiteral(data, "${prop.name}", ${Type}::valueOf)`;
-			} else {
-				mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::valueOf)`;
-			}
-		}
+		mapper = jsonMapper('Literal', prop.name, `${Type}::valueOf`, array, optional, nullable);
+	} else if (prop.variant === 'enum') {
+		mapper = jsonMapper('Literal', prop.name, `${prop.type}::valueOf`, array, optional, nullable);
+	} else if (prop.variant === 'scalar') {
+		const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
+		mapper = jsonMapper('Literal', prop.name, `${Type}::of`, array, optional, nullable);
 	} else {
-		if (prop.variant === 'enum') {
-			if (array) {
-				if (prop.optional && prop.nullable) {
-					mapper = `_JsonUtils.mapNilLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
-				} else if (prop.optional) {
-					mapper = `_JsonUtils.mapOptLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
-				} else if (prop.nullable) {
-					mapper = `_JsonUtils.mapNullLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
-				} else {
-					mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
-				}
-			} else {
-				if (prop.optional && prop.nullable) {
-					mapper = `_JsonUtils.mapNilLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
-				} else if (prop.optional) {
-					mapper = `_JsonUtils.mapOptLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
-				} else if (prop.nullable) {
-					mapper = `_JsonUtils.mapNullLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
-				} else {
-					mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
-				}
-			}
-		} else if (prop.variant === 'scalar') {
-			const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
-			if (array) {
-				if (prop.optional && prop.nullable) {
-					mapper = `_JsonUtils.mapNilLiterals(data, "${prop.name}", ${Type}::of)`;
-				} else if (prop.optional) {
-					mapper = `_JsonUtils.mapOptLiterals(data, "${prop.name}", ${Type}::of)`;
-				} else if (prop.nullable) {
-					mapper = `_JsonUtils.mapNullLiterals(data, "${prop.name}", ${Type}::of)`;
-				} else {
-					mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::of)`;
-				}
-			} else {
-				if (prop.optional && prop.nullable) {
-					mapper = `_JsonUtils.mapNilLiteral(data, "${prop.name}", ${Type}::of)`;
-				} else if (prop.optional) {
-					mapper = `_JsonUtils.mapOptLiteral(data, "${prop.name}", ${Type}::of)`;
-				} else if (prop.nullable) {
-					mapper = `_JsonUtils.mapNullLiteral(data, "${prop.name}", ${Type}::of)`;
-				} else {
-					mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::of)`;
-				}
-			}
-		} else {
-			const type = prop.patch ? `${prop.type}PatchImpl` : `${prop.type}DataImpl`;
-			if (array) {
-				if (prop.optional && prop.nullable) {
-					mapper = `_JsonUtils.mapNilObjects(data, "${prop.name}", ${type}::of)`;
-				} else if (prop.optional) {
-					mapper = `_JsonUtils.mapOptObjects(data, "${prop.name}", ${type}::of)`;
-				} else if (prop.nullable) {
-					mapper = `_JsonUtils.mapNullObjects(data, "${prop.name}", ${type}::of)`;
-				} else {
-					mapper = `_JsonUtils.mapObjects(data, "${prop.name}", ${type}::of)`;
-				}
-			} else {
-				if (prop.nullable && prop.optional) {
-					mapper = `_JsonUtils.mapNilObject(data, "${prop.name}", ${type}::of)`;
-				} else if (prop.optional) {
-					mapper = `_JsonUtils.mapOptObject(data, "${prop.name}", ${type}::of)`;
-				} else if (prop.nullable) {
-					mapper = `_JsonUtils.mapNullObject(data, "${prop.name}", ${type}::of)`;
-				} else {
-					mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${type}::of)`;
-				}
-			}
-		}
+		const type = prop.patch ? `${prop.type}PatchImpl` : `${prop.type}DataImpl`;
+		mapper = jsonMapper('Object', prop.name, `${type}::of`, array, optional, nullable);
 	}
+
 	const node = new CompositeGeneratorNode();
 	node.append(`return ${mapper};`, NL);
 	return node;
