@@ -414,78 +414,14 @@ function generateStreamBody(
 		.filter(p => p.meta?.rest?.source === undefined)
 		.forEach(p => {
 			if (p.variant === 'stream') {
-				let codeBlock: string;
-				if (p.array) {
-					codeBlock = `${p.name}.forEach($b -> $formDataBuilder.addBlob("${p.meta?.rest?.name ?? p.name}", $b));`;
-				} else {
-					codeBlock = `$formDataBuilder.addBlob("${p.meta?.rest?.name ?? p.name}", ${p.name});`;
-				}
-				if (p.nullable && p.optional) {
-					methodBody.append(`if (${p.name} != null) {`, NL);
-					methodBody.indent(tmp => {
-						tmp.append(codeBlock, NL);
-					});
-					methodBody.append('} else {', NL);
-					methodBody.indent(tmp => {
-						tmp.append(`$formDataBuilder.addString("_rsdNull-${p.meta?.rest?.name ?? p.name}", "true", null);`, NL);
-					});
-					methodBody.append('}', NL, NL);
-				} else if (p.nullable || p.optional) {
-					methodBody.append(`if (${p.name} != null) {`, NL);
-					methodBody.indent(tmp => {
-						tmp.append(codeBlock, NL);
-					});
-					methodBody.append('}', NL);
-				} else {
-					methodBody.append(codeBlock, NL);
-				}
+				appendStreamParam(methodBody, p);
 			} else {
-				let codeBlock: string;
-				if (p.variant === 'record' || p.variant === 'union') {
-					const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
-					const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BaseDataImpl`);
-					if (p.array) {
-						codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((${_BaseDataImpl}) i).data));`;
-					} else {
-						codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ((${_BaseDataImpl}) ${p.name}).data);`;
-					}
-				} else {
-					if (p.array) {
-						if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
-							const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
-							if (p.type === 'boolean') {
-								codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonBooleanArray(${p.name}));`;
-							} else if (p.type === 'double') {
-								codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonDoubleArray(${p.name}));`;
-							} else if (p.type === 'float') {
-								codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonFloatArray(${p.name}));`;
-							} else if (p.type === 'long') {
-								codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonLongArray(${p.name}));`;
-							} else if (p.type === 'int') {
-								codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonIntArray(${p.name}));`;
-							} else {
-								codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${_JsonUtils}.toJsonShortArray(${p.name}));`;
-							}
-						} else {
-							const Objects = fqn('java.util.Objects');
-							codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", _JsonUtils.toJsonLiteralArray(${p.name}, ${Objects}::toString));`;
-						}
-					} else {
-						if (isMBuiltinNumericType(p.type) || p.type === 'boolean' || p.type === 'string') {
-							codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${p.name});`;
-						} else {
-							const Objects = fqn('java.util.Objects');
-							codeBlock = `$jsonPayload.add("${p.meta?.rest?.name ?? p.name}", ${Objects}.toString(${p.name}));`;
-						}
-					}
-				}
-
 				appendWithNullGuard(
 					methodBody,
 					p.name,
 					p.nullable,
 					p.optional,
-					codeBlock,
+					jsonPayloadEntry(p, artifactConfig, fqn),
 					`$jsonPayload.addNull("${p.meta?.rest?.name ?? p.name}");`,
 				);
 			}
@@ -500,6 +436,60 @@ function generateStreamBody(
 	methodBody.append('var $formData = $formDataBuilder.build();', NL);
 	methodBody.append('var $body = $formData.publisher();', NL);
 	methodBody.append('var $contentType = $formData.contentType();', NL);
+}
+
+function appendStreamParam(methodBody: CompositeGeneratorNode, p: MParameter) {
+	const restName = p.meta?.rest?.name ?? p.name;
+	const codeBlock = p.array
+		? `${p.name}.forEach($b -> $formDataBuilder.addBlob("${restName}", $b));`
+		: `$formDataBuilder.addBlob("${restName}", ${p.name});`;
+
+	if (p.nullable && p.optional) {
+		methodBody.append(`if (${p.name} != null) {`, NL);
+		methodBody.indent(tmp => tmp.append(codeBlock, NL));
+		methodBody.append('} else {', NL);
+		methodBody.indent(tmp => tmp.append(`$formDataBuilder.addString("_rsdNull-${restName}", "true", null);`, NL));
+		methodBody.append('}', NL, NL);
+	} else if (p.nullable || p.optional) {
+		methodBody.append(`if (${p.name} != null) {`, NL);
+		methodBody.indent(tmp => tmp.append(codeBlock, NL));
+		methodBody.append('}', NL);
+	} else {
+		methodBody.append(codeBlock, NL);
+	}
+}
+
+function jsonPayloadEntry(
+	p: MParameter,
+	artifactConfig: JavaRestClientJDKGeneratorConfig,
+	fqn: (type: string) => string,
+): string {
+	const key = p.meta?.rest?.name ?? p.name;
+	if (p.variant === 'record' || p.variant === 'union') {
+		const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+		const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BaseDataImpl`);
+		return p.array
+			? `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((${_BaseDataImpl}) i).data));`
+			: `$jsonPayload.add("${key}", ((${_BaseDataImpl}) ${p.name}).data);`;
+	}
+	if (p.array) {
+		if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
+			const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+			if (p.type === 'boolean') return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonBooleanArray(${p.name}));`;
+			if (p.type === 'double') return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonDoubleArray(${p.name}));`;
+			if (p.type === 'float') return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonFloatArray(${p.name}));`;
+			if (p.type === 'long') return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonLongArray(${p.name}));`;
+			if (p.type === 'int') return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonIntArray(${p.name}));`;
+			return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonShortArray(${p.name}));`;
+		}
+		const Objects = fqn('java.util.Objects');
+		return `$jsonPayload.add("${key}", _JsonUtils.toJsonLiteralArray(${p.name}, ${Objects}::toString));`;
+	}
+	if (isMBuiltinNumericType(p.type) || p.type === 'boolean' || p.type === 'string') {
+		return `$jsonPayload.add("${key}", ${p.name});`;
+	}
+	const Objects = fqn('java.util.Objects');
+	return `$jsonPayload.add("${key}", ${Objects}.toString(${p.name}));`;
 }
 
 function generateNonStreamBody(
