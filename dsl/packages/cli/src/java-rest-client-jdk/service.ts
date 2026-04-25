@@ -133,18 +133,13 @@ function appendWithNullGuard(
 	}
 }
 
-function generateOperationMethod(
+function appendMethodSignature(
 	node: IndentNode,
-	s: MResolvedService,
 	o: MResolvedOperation,
 	allParameters: readonly MParameter[],
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
-	path: string,
-	multiBodyParam: boolean,
 ) {
-	const URI = fqn('java.net.URI');
-
 	const parameters = allParameters.map(p => toParameter(p, artifactConfig, fqn, o.name));
 	node.append(`public ${toResultType(o.resultType, artifactConfig, fqn, o.name)} ${o.name}(${parameters.join(', ')})`);
 	if (o.operationErrors.length > 0) {
@@ -169,6 +164,154 @@ function generateOperationMethod(
 		});
 	}
 	node.append(' {', NL);
+}
+
+function appendFormattedPath(
+	methodBody: CompositeGeneratorNode,
+	endpoint: string,
+	variables: string[],
+	fqn: (type: string) => string,
+) {
+	methodBody.append(`var $path = "${endpoint}".formatted(`, NL);
+	methodBody.indent(tmp =>
+		tmp.indent(formatted => {
+			variables.forEach((v, idx) => {
+				if (idx === 0) {
+					formatted.append(`${v}${idx + 1 < variables.length ? ',' : ''}`, idx + 1 < variables.length ? NL : '');
+				} else {
+					const Objects = fqn('java.util.Objects');
+					formatted.append(
+						`ServiceUtils.encodeURIComponent(${Objects}.toString(${v}))${idx + 1 < variables.length ? ',' : ''}`,
+						idx + 1 < variables.length ? NL : '',
+					);
+				}
+			});
+		}),
+	);
+	methodBody.append(');', NL);
+	methodBody.appendNewLine();
+}
+
+function appendQueryParams(
+	methodBody: CompositeGeneratorNode,
+	allParameters: readonly MParameter[],
+	artifactConfig: JavaRestClientJDKGeneratorConfig,
+	fqn: (type: string) => string,
+): boolean {
+	const queryParams = allParameters.filter(p => p.meta?.rest?.source === 'query');
+	if (queryParams.length === 0) return false;
+
+	methodBody.append(`var $queryParams = new ServiceUtils.URLSearchParams();`, NL);
+	queryParams.forEach(p => {
+		const restName = p.meta?.rest?.name ?? p.name.toLowerCase();
+		if (p.array) {
+			const param =
+				p.variant === 'union' || p.variant === 'record'
+					? `ServiceUtils.ofObject($q, false, this.contentType(), ${computeParameterAPIType(
+							// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+							p as any,
+							artifactConfig.nativeTypeSubstitues,
+							`${artifactConfig.rootPackageName}.model`,
+							fqn,
+							true,
+						)}.class)`
+					: '$q';
+			const codeBlock = toNodeTree(`
+				${p.name}.stream().forEach($q -> {
+					$queryParams.append("${restName}", ${param});
+				});`);
+			appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$queryParams.append("${restName}", "null");`);
+		} else {
+			const param =
+				p.variant === 'union' || p.variant === 'record'
+					? `ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(
+							// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+							p as any,
+							artifactConfig.nativeTypeSubstitues,
+							`${artifactConfig.rootPackageName}.model`,
+							fqn,
+							true,
+						)}.class)`
+					: p.name;
+			const codeBlock = `$queryParams.append("${restName}", ${param});`;
+			appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$queryParams.append("${restName}", "null");`);
+		}
+	});
+	methodBody.appendNewLine();
+	return true;
+}
+
+function appendHeaderParams(
+	methodBody: CompositeGeneratorNode,
+	allParameters: readonly MParameter[],
+	artifactConfig: JavaRestClientJDKGeneratorConfig,
+	fqn: (type: string) => string,
+): boolean {
+	const headerParameters = allParameters.filter(p => p.meta?.rest?.source === 'header');
+	if (headerParameters.length === 0) return false;
+
+	const HashMap = fqn('java.util.HashMap');
+	methodBody.append(`var $headerParams = new ${HashMap}<String, String>();`, NL);
+	headerParameters.forEach(p => {
+		const restName = p.meta?.rest?.name ?? p.name.toLowerCase();
+		if (p.array) {
+			if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum' || p.variant === 'scalar') {
+				const toString =
+					p.type === 'string'
+						? '$v -> "\\"" + ServiceUtils.encodeAsciiString($v) + "\\""'
+						: `${fqn('java.util.Objects')}::toString`;
+				const codeBlock = `$headerParams.put("${restName}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
+				appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$headerParams.put("${restName}", "null");`);
+			} else if (p.variant === 'stream') {
+				methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
+			} else {
+				// eslint-disable-next-line @typescript-eslint/no-deprecated
+				const toString = `$v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class))`;
+				const codeBlock = `$headerParams.put("${restName}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
+				appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$headerParams.put("${restName}", "null");`);
+			}
+		} else {
+			if (p.variant === 'builtin') {
+				if (p.type !== 'string') {
+					methodBody.append(`$headerParams.put("${restName}", String.format("%s", ${p.name}));`, NL);
+				} else {
+					appendWithNullGuard(
+						methodBody,
+						p.name,
+						p.nullable,
+						p.optional,
+						`$headerParams.put("${restName}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
+						`$headerParams.put("${restName}", "null");`,
+					);
+				}
+			} else if (p.variant === 'record' || p.variant === 'union') {
+				const codeBlock = `$headerParams.put("${restName}", ServiceUtils.encodeBase64(ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class)));`;
+				appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$headerParams.put("${restName}", "null");`);
+			} else if (p.variant === 'stream') {
+				methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
+			} else {
+				methodBody.append(`$headerParams.put("${restName}", String.format("%s", ${p.name}));`, NL);
+			}
+		}
+	});
+	methodBody.append('var $headers = ServiceUtils.toHeaders($headerParams);', NL);
+	methodBody.appendNewLine();
+	return true;
+}
+
+function generateOperationMethod(
+	node: IndentNode,
+	s: MResolvedService,
+	o: MResolvedOperation,
+	allParameters: readonly MParameter[],
+	artifactConfig: JavaRestClientJDKGeneratorConfig,
+	fqn: (type: string) => string,
+	path: string,
+	multiBodyParam: boolean,
+) {
+	const URI = fqn('java.net.URI');
+
+	appendMethodSignature(node, o, allParameters, artifactConfig, fqn);
 	node.indent(methodBody => {
 		const processedPath = computePath(`${path.replace(/^\//, '')}/${o.meta?.rest?.path ?? ''}`);
 		const endpoint = processedPath.path ? `%s/${processedPath.path}` : '%s';
@@ -182,161 +325,9 @@ function generateOperationMethod(
 					methodBody.appendNewLine();
 				}
 			});
-		methodBody.append(`var $path = "${endpoint}".formatted(`, NL);
-		methodBody.indent(tmp =>
-			tmp.indent(formatted => {
-				variables.forEach((v, idx) => {
-					if (idx === 0) {
-						formatted.append(`${v}${idx + 1 < variables.length ? ',' : ''}`, idx + 1 < variables.length ? NL : '');
-					} else {
-						const Objects = fqn('java.util.Objects');
-						formatted.append(
-							`ServiceUtils.encodeURIComponent(${Objects}.toString(${v}))${idx + 1 < variables.length ? ',' : ''}`,
-							idx + 1 < variables.length ? NL : '',
-						);
-					}
-				});
-			}),
-		);
-		methodBody.append(');', NL);
-		methodBody.appendNewLine();
-		const hasQueryParams = allParameters.find(p => p.meta?.rest?.source === 'query');
-		if (hasQueryParams) {
-			methodBody.append(`var $queryParams = new ServiceUtils.URLSearchParams();`, NL);
-			allParameters
-				.filter(p => p.meta?.rest?.source === 'query')
-				.forEach(p => {
-					const restName = p.meta?.rest?.name ?? p.name.toLowerCase();
-					if (p.array) {
-						const param =
-							p.variant === 'union' || p.variant === 'record'
-								? `ServiceUtils.ofObject($q, false, this.contentType(), ${computeParameterAPIType(
-										// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-										p as any,
-										artifactConfig.nativeTypeSubstitues,
-										`${artifactConfig.rootPackageName}.model`,
-										fqn,
-										true,
-									)}.class)`
-								: '$q';
-						const codeBlock = toNodeTree(`
-							${p.name}.stream().forEach($q -> {
-								$queryParams.append("${restName}", ${param});
-							});`);
-						appendWithNullGuard(
-							methodBody,
-							p.name,
-							p.nullable,
-							p.optional,
-							codeBlock,
-							`$queryParams.append("${restName}", "null");`,
-						);
-					} else {
-						const param =
-							p.variant === 'union' || p.variant === 'record'
-								? `ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(
-										// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-										p as any,
-										artifactConfig.nativeTypeSubstitues,
-										`${artifactConfig.rootPackageName}.model`,
-										fqn,
-										true,
-									)}.class)`
-								: p.name;
-						const codeBlock = `$queryParams.append("${restName}", ${param});`;
-						appendWithNullGuard(
-							methodBody,
-							p.name,
-							p.nullable,
-							p.optional,
-							codeBlock,
-							`$queryParams.append("${restName}", "null");`,
-						);
-					}
-				});
-			methodBody.appendNewLine();
-		}
-		const hasHeaderParams = allParameters.find(p => p.meta?.rest?.source === 'header') !== undefined;
-		if (hasHeaderParams) {
-			const headerParameters = allParameters.filter(p => p.meta?.rest?.source === 'header');
-			const HashMap = fqn('java.util.HashMap');
-			methodBody.append(`var $headerParams = new ${HashMap}<String, String>();`, NL);
-			headerParameters.forEach(p => {
-				if (p.array) {
-					if (
-						p.variant === 'builtin' ||
-						p.variant === 'enum' ||
-						p.variant === 'inline-enum' ||
-						p.variant === 'scalar'
-					) {
-						const toString =
-							p.type === 'string'
-								? '$v -> "\\"" + ServiceUtils.encodeAsciiString($v) + "\\""'
-								: `${fqn('java.util.Objects')}::toString`;
-						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
-						appendWithNullGuard(
-							methodBody,
-							p.name,
-							p.nullable,
-							p.optional,
-							codeBlock,
-							`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`,
-						);
-					} else if (p.variant === 'stream') {
-						methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
-					} else {
-						// eslint-disable-next-line @typescript-eslint/no-deprecated
-						const toString = `$v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class))`;
-						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
-						appendWithNullGuard(
-							methodBody,
-							p.name,
-							p.nullable,
-							p.optional,
-							codeBlock,
-							`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`,
-						);
-					}
-				} else {
-					if (p.variant === 'builtin') {
-						if (p.type !== 'string') {
-							methodBody.append(
-								`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.format("%s", ${p.name}));`,
-								NL,
-							);
-						} else {
-							appendWithNullGuard(
-								methodBody,
-								p.name,
-								p.nullable,
-								p.optional,
-								`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
-								`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`,
-							);
-						}
-					} else if (p.variant === 'record' || p.variant === 'union') {
-						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ServiceUtils.encodeBase64(ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class)));`;
-						appendWithNullGuard(
-							methodBody,
-							p.name,
-							p.nullable,
-							p.optional,
-							codeBlock,
-							`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`,
-						);
-					} else if (p.variant === 'stream') {
-						methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
-					} else {
-						methodBody.append(
-							`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.format("%s", ${p.name}));`,
-							NL,
-						);
-					}
-				}
-			});
-			methodBody.append('var $headers = ServiceUtils.toHeaders($headerParams);', NL);
-			methodBody.appendNewLine();
-		}
+		appendFormattedPath(methodBody, endpoint, variables, fqn);
+		const hasQueryParams = appendQueryParams(methodBody, allParameters, artifactConfig, fqn);
+		const hasHeaderParams = appendHeaderParams(methodBody, allParameters, artifactConfig, fqn);
 
 		if (hasQueryParams) {
 			methodBody.append(`var $uri = ${URI}.create($path + $queryParams.toQueryString());`, NL);
