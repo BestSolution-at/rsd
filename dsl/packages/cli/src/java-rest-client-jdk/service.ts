@@ -223,7 +223,14 @@ function generateOperationMethod(
 							${p.name}.stream().forEach($q -> {
 								$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${param});
 							});`);
-						appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`);
+						appendWithNullGuard(
+							methodBody,
+							p.name,
+							p.nullable,
+							p.optional,
+							codeBlock,
+							`$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`,
+						);
 					} else {
 						const param =
 							p.variant === 'union' || p.variant === 'record'
@@ -239,7 +246,14 @@ function generateOperationMethod(
 								: p.name;
 
 						const codeBlock = `$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${param});`;
-						appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`);
+						appendWithNullGuard(
+							methodBody,
+							p.name,
+							p.nullable,
+							p.optional,
+							codeBlock,
+							`$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`,
+						);
 					}
 				});
 			methodBody.appendNewLine();
@@ -262,14 +276,28 @@ function generateOperationMethod(
 								? '$v -> "\\"" + ServiceUtils.encodeAsciiString($v) + "\\""'
 								: `${fqn('java.util.Objects')}::toString`;
 						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
-						appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`);
+						appendWithNullGuard(
+							methodBody,
+							p.name,
+							p.nullable,
+							p.optional,
+							codeBlock,
+							`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`,
+						);
 					} else if (p.variant === 'stream') {
 						methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 					} else {
 						// eslint-disable-next-line @typescript-eslint/no-deprecated
 						const toString = `$v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class))`;
 						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
-						appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`);
+						appendWithNullGuard(
+							methodBody,
+							p.name,
+							p.nullable,
+							p.optional,
+							codeBlock,
+							`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`,
+						);
 					}
 				} else {
 					if (p.variant === 'builtin') {
@@ -280,7 +308,10 @@ function generateOperationMethod(
 							);
 						} else {
 							appendWithNullGuard(
-								methodBody, p.name, p.nullable, p.optional,
+								methodBody,
+								p.name,
+								p.nullable,
+								p.optional,
 								`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
 								`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`,
 							);
@@ -288,7 +319,14 @@ function generateOperationMethod(
 					} else if (p.variant === 'record' || p.variant === 'union') {
 						// eslint-disable-next-line @typescript-eslint/no-deprecated
 						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ServiceUtils.encodeBase64(ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class)));`;
-						appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`);
+						appendWithNullGuard(
+							methodBody,
+							p.name,
+							p.nullable,
+							p.optional,
+							codeBlock,
+							`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`,
+						);
 					} else if (p.variant === 'stream') {
 						methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 					} else {
@@ -375,8 +413,8 @@ function generateStreamBody(
 	allParameters
 		.filter(p => p.meta?.rest?.source === undefined)
 		.forEach(p => {
-			let codeBlock = '';
 			if (p.variant === 'stream') {
+				let codeBlock: string;
 				if (p.array) {
 					codeBlock = `${p.name}.forEach($b -> $formDataBuilder.addBlob("${p.meta?.rest?.name ?? p.name}", $b));`;
 				} else {
@@ -402,6 +440,7 @@ function generateStreamBody(
 					methodBody.append(codeBlock, NL);
 				}
 			} else {
+				let codeBlock: string;
 				if (p.variant === 'record' || p.variant === 'union') {
 					const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
 					const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BaseDataImpl`);
@@ -441,13 +480,18 @@ function generateStreamBody(
 					}
 				}
 
-				appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$jsonPayload.addNull("${p.meta?.rest?.name ?? p.name}");`);
+				appendWithNullGuard(
+					methodBody,
+					p.name,
+					p.nullable,
+					p.optional,
+					codeBlock,
+					`$jsonPayload.addNull("${p.meta?.rest?.name ?? p.name}");`,
+				);
 			}
 		});
 	if (o.parameters.find(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
-		const typeName = fqn(
-			`${artifactConfig.rootPackageName}.impl.model.json.${s.name}${toFirstUpper(o.name)}DataImpl`,
-		);
+		const typeName = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${s.name}${toFirstUpper(o.name)}DataImpl`);
 		methodBody.append(
 			`$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new ${typeName}($jsonPayload.build()), false, this.contentType(), ${typeName}.class), this.contentType());`,
 			NL,
@@ -638,9 +682,7 @@ function generateNonStreamBody(
 				methodBody.append('throw new UnsupportedOperationException();', NL);
 			}
 		});
-		const typeName = fqn(
-			`${artifactConfig.rootPackageName}.impl.model.json.${s.name}${toFirstUpper(o.name)}DataImpl`,
-		);
+		const typeName = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${s.name}${toFirstUpper(o.name)}DataImpl`);
 		methodBody.append(
 			`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.ofObject(new ${typeName}($builder.build()), false, this.contentType(), ${typeName}.class));`,
 			NL,
