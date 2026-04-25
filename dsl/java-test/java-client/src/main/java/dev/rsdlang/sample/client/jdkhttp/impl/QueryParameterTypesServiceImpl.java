@@ -94,7 +94,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(queryValue != null) {
+		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -168,7 +168,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(queryValue != null) {
+		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -242,7 +242,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(queryValue != null) {
+		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -316,7 +316,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(queryValue != null) {
+		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -390,7 +390,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(queryValue != null) {
+		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -464,7 +464,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(queryValue != null) {
+		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -540,7 +540,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(queryValue != null) {
+		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -616,7 +616,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(queryValue != null) {
+		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -692,7 +692,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(queryValue != null) {
+		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -768,7 +768,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(queryValue != null) {
+		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -844,7 +844,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(queryValue != null) {
+		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -920,7 +920,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(queryValue != null) {
+		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
 
@@ -997,7 +997,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(valueA != null) {
+		if (valueA != null) {
 			$queryParams.append("valueA", valueA);
 		}
 
@@ -1024,10 +1024,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(valueA != null) {
+		if (valueA != null) {
 			$queryParams.append("valueA", valueA);
 		}
-		if(valueB != null) {
+		if (valueB != null) {
 			$queryParams.append("valueB", valueB);
 		}
 
@@ -1104,7 +1104,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();
-		if(queryValue != null) {
+		if (queryValue != null) {
 			$queryParams.append("queryValue", ServiceUtils.ofObject(queryValue, false, this.contentType(), SimpleRecord.Data.class));
 		}
 

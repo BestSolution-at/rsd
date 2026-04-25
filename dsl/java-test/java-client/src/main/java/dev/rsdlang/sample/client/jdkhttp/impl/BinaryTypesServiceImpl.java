@@ -1185,37 +1185,31 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			} else {
 				$jsonPayload.addNull("text");
 			}
-
 			if (number != null) {
 				$jsonPayload.add("number", number);
 			} else {
 				$jsonPayload.addNull("number");
 			}
-
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
 				$jsonPayload.addNull("rec");
 			}
-
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
 				$jsonPayload.addNull("textList");
 			}
-
 			if (numberList != null) {
 				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			} else {
 				$jsonPayload.addNull("numberList");
 			}
-
 			if (recList != null) {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			} else {
 				$jsonPayload.addNull("recList");
 			}
-
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);
 			}
@@ -1285,7 +1279,6 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			} else {
 				$jsonPayload.addNull("text");
 			}
-
 			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
@@ -1320,13 +1313,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			} else {
 				$jsonPayload.addNull("text");
 			}
-
 			if (number != null) {
 				$jsonPayload.add("number", number);
 			} else {
 				$jsonPayload.addNull("number");
 			}
-
 			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
@@ -1361,19 +1352,16 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			} else {
 				$jsonPayload.addNull("text");
 			}
-
 			if (number != null) {
 				$jsonPayload.add("number", number);
 			} else {
 				$jsonPayload.addNull("number");
 			}
-
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
 				$jsonPayload.addNull("rec");
 			}
-
 			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
@@ -1408,25 +1396,21 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			} else {
 				$jsonPayload.addNull("text");
 			}
-
 			if (number != null) {
 				$jsonPayload.add("number", number);
 			} else {
 				$jsonPayload.addNull("number");
 			}
-
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
 				$jsonPayload.addNull("rec");
 			}
-
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
 				$jsonPayload.addNull("textList");
 			}
-
 			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
@@ -1461,31 +1445,26 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			} else {
 				$jsonPayload.addNull("text");
 			}
-
 			if (number != null) {
 				$jsonPayload.add("number", number);
 			} else {
 				$jsonPayload.addNull("number");
 			}
-
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
 				$jsonPayload.addNull("rec");
 			}
-
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
 				$jsonPayload.addNull("textList");
 			}
-
 			if (numberList != null) {
 				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			} else {
 				$jsonPayload.addNull("numberList");
 			}
-
 			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
@@ -1520,37 +1499,31 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			} else {
 				$jsonPayload.addNull("text");
 			}
-
 			if (number != null) {
 				$jsonPayload.add("number", number);
 			} else {
 				$jsonPayload.addNull("number");
 			}
-
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
 				$jsonPayload.addNull("rec");
 			}
-
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
 				$jsonPayload.addNull("textList");
 			}
-
 			if (numberList != null) {
 				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			} else {
 				$jsonPayload.addNull("numberList");
 			}
-
 			if (recList != null) {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			} else {
 				$jsonPayload.addNull("recList");
 			}
-
 			$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
@@ -1585,37 +1558,31 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			} else {
 				$jsonPayload.addNull("text");
 			}
-
 			if (number != null) {
 				$jsonPayload.add("number", number);
 			} else {
 				$jsonPayload.addNull("number");
 			}
-
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
 				$jsonPayload.addNull("rec");
 			}
-
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
 				$jsonPayload.addNull("textList");
 			}
-
 			if (numberList != null) {
 				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			} else {
 				$jsonPayload.addNull("numberList");
 			}
-
 			if (recList != null) {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			} else {
 				$jsonPayload.addNull("recList");
 			}
-
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);
 			} else {
@@ -1656,37 +1623,31 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			} else {
 				$jsonPayload.addNull("text");
 			}
-
 			if (number != null) {
 				$jsonPayload.add("number", number);
 			} else {
 				$jsonPayload.addNull("number");
 			}
-
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
 				$jsonPayload.addNull("rec");
 			}
-
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
 				$jsonPayload.addNull("textList");
 			}
-
 			if (numberList != null) {
 				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			} else {
 				$jsonPayload.addNull("numberList");
 			}
-
 			if (recList != null) {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			} else {
 				$jsonPayload.addNull("recList");
 			}
-
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);
 			} else {

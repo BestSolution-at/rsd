@@ -110,6 +110,29 @@ export function generateService(
 	return artifacts;
 }
 
+function appendWithNullGuard(
+	node: CompositeGeneratorNode | IndentNode,
+	paramName: string,
+	nullable: boolean,
+	optional: boolean,
+	codeBlock: string | CompositeGeneratorNode,
+	nullFallback?: string,
+) {
+	if (nullable) {
+		node.append(`if (${paramName} != null) {`, NL);
+		node.indent(tmp => tmp.append(codeBlock, NL));
+		node.append('} else {', NL);
+		node.indent(tmp => tmp.append(nullFallback ?? '', NL));
+		node.append('}', NL);
+	} else if (optional) {
+		node.append(`if (${paramName} != null) {`, NL);
+		node.indent(tmp => tmp.append(codeBlock, NL));
+		node.append('}', NL);
+	} else {
+		node.append(codeBlock, NL);
+	}
+}
+
 function generateOperationMethod(
 	node: IndentNode,
 	s: MResolvedService,
@@ -200,25 +223,7 @@ function generateOperationMethod(
 							${p.name}.stream().forEach($q -> {
 								$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${param});
 							});`);
-						if (p.nullable) {
-							methodBody.append(`if(${p.name} != null) {`, NL);
-							methodBody.indent(tmp => {
-								tmp.append(codeBlock, NL);
-							});
-							methodBody.append('} else {', NL);
-							methodBody.indent(tmp => {
-								tmp.append(`$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
-							});
-							methodBody.append('}', NL);
-						} else if (p.optional) {
-							methodBody.append(`if(${p.name} != null) {`, NL);
-							methodBody.indent(tmp => {
-								tmp.append(codeBlock, NL);
-							});
-							methodBody.append('}', NL);
-						} else {
-							methodBody.append(codeBlock, NL);
-						}
+						appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`);
 					} else {
 						const param =
 							p.variant === 'union' || p.variant === 'record'
@@ -234,25 +239,7 @@ function generateOperationMethod(
 								: p.name;
 
 						const codeBlock = `$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ${param});`;
-						if (p.nullable) {
-							methodBody.append(`if(${p.name} != null) {`, NL);
-							methodBody.indent(tmp => {
-								tmp.append(codeBlock, NL);
-							});
-							methodBody.append('} else {', NL);
-							methodBody.indent(tmp => {
-								tmp.append(`$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
-							});
-							methodBody.append('}', NL);
-						} else if (p.optional) {
-							methodBody.append(`if(${p.name} != null) {`, NL);
-							methodBody.indent(tmp => {
-								tmp.append(codeBlock, NL);
-							});
-							methodBody.append('}', NL);
-						} else {
-							methodBody.append(codeBlock, NL);
-						}
+						appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$queryParams.append("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`);
 					}
 				});
 			methodBody.appendNewLine();
@@ -275,50 +262,14 @@ function generateOperationMethod(
 								? '$v -> "\\"" + ServiceUtils.encodeAsciiString($v) + "\\""'
 								: `${fqn('java.util.Objects')}::toString`;
 						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
-						if (p.nullable) {
-							methodBody.append(`if(${p.name} != null) {`, NL);
-							methodBody.indent(tmp => {
-								tmp.append(codeBlock, NL);
-							});
-							methodBody.append('} else {', NL);
-							methodBody.indent(tmp => {
-								tmp.append(`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
-							});
-							methodBody.append('}', NL);
-						} else if (p.optional) {
-							methodBody.append(`if(${p.name} != null) {`, NL);
-							methodBody.indent(tmp => {
-								tmp.append(codeBlock, NL);
-							});
-							methodBody.append('}', NL);
-						} else {
-							methodBody.append(codeBlock, NL);
-						}
+						appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`);
 					} else if (p.variant === 'stream') {
 						methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 					} else {
 						// eslint-disable-next-line @typescript-eslint/no-deprecated
 						const toString = `$v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class))`;
 						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
-						if (p.nullable) {
-							methodBody.append(`if(${p.name} != null) {`, NL);
-							methodBody.indent(tmp => {
-								tmp.append(codeBlock, NL);
-							});
-							methodBody.append('} else {', NL);
-							methodBody.indent(tmp => {
-								tmp.append(`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
-							});
-							methodBody.append('}', NL);
-						} else if (p.optional) {
-							methodBody.append(`if(${p.name} != null) {`, NL);
-							methodBody.indent(tmp => {
-								tmp.append(codeBlock, NL);
-							});
-							methodBody.append('}', NL);
-						} else {
-							methodBody.append(codeBlock, NL);
-						}
+						appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`);
 					}
 				} else {
 					if (p.variant === 'builtin') {
@@ -328,57 +279,16 @@ function generateOperationMethod(
 								NL,
 							);
 						} else {
-							if (p.nullable) {
-								methodBody.append(`if (${p.name} != null) {`, NL);
-								methodBody.indent(tmp => {
-									tmp.append(
-										`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
-										NL,
-									);
-								});
-								methodBody.append('} else {', NL);
-								methodBody.indent(tmp => {
-									tmp.append(`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
-								});
-								methodBody.append('}', NL);
-							} else if (p.optional) {
-								methodBody.append('if(' + p.name + ' != null) {', NL);
-								methodBody.indent(tmp => {
-									tmp.append(
-										`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
-										NL,
-									);
-								});
-								methodBody.append('}', NL);
-							} else {
-								methodBody.append(
-									`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
-									NL,
-								);
-							}
+							appendWithNullGuard(
+								methodBody, p.name, p.nullable, p.optional,
+								`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
+								`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`,
+							);
 						}
 					} else if (p.variant === 'record' || p.variant === 'union') {
 						// eslint-disable-next-line @typescript-eslint/no-deprecated
 						const codeBlock = `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", ServiceUtils.encodeBase64(ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class)));`;
-						if (p.nullable) {
-							methodBody.append(`if(${p.name} != null) {`, NL);
-							methodBody.indent(tmp => {
-								tmp.append(codeBlock, NL);
-							});
-							methodBody.append('} else {', NL);
-							methodBody.indent(tmp => {
-								tmp.append(`$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`, NL);
-							});
-							methodBody.append('}', NL);
-						} else if (p.optional) {
-							methodBody.append(`if(${p.name} != null) {`, NL);
-							methodBody.indent(tmp => {
-								tmp.append(codeBlock, NL);
-							});
-							methodBody.append('}', NL);
-						} else {
-							methodBody.append(codeBlock, NL);
-						}
+						appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$headerParams.put("${p.meta?.rest?.name ?? p.name.toLowerCase()}", "null");`);
 					} else if (p.variant === 'stream') {
 						methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 					} else {
@@ -510,25 +420,7 @@ function generateInvocation(
 							}
 						}
 
-						if (p.nullable) {
-							methodBody.append(`if (${p.name} != null) {`, NL);
-							methodBody.indent(tmp => {
-								tmp.append(codeBlock, NL);
-							});
-							methodBody.append('} else {', NL);
-							methodBody.indent(tmp => {
-								tmp.append(`$jsonPayload.addNull("${p.meta?.rest?.name ?? p.name}");`, NL);
-							});
-							methodBody.append('}', NL, NL);
-						} else if (p.optional) {
-							methodBody.append(`if (${p.name} != null) {`, NL);
-							methodBody.indent(tmp => {
-								tmp.append(codeBlock, NL);
-							});
-							methodBody.append('}', NL);
-						} else {
-							methodBody.append(codeBlock, NL);
-						}
+						appendWithNullGuard(methodBody, p.name, p.nullable, p.optional, codeBlock, `$jsonPayload.addNull("${p.meta?.rest?.name ?? p.name}");`);
 					}
 				});
 			if (o.parameters.find(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {

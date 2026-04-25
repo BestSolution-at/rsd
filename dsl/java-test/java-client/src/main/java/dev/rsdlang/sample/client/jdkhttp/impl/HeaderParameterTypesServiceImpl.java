@@ -1063,7 +1063,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if(headerValue != null) {
+		if (headerValue != null) {
 			$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -2208,7 +2208,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if(valueA != null) {
+		if (valueA != null) {
 			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -2239,7 +2239,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if(valueA != null) {
+		if (valueA != null) {
 			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
 		}
 		$headerParams.put("valueB", String.format("%s", valueB));
@@ -2448,7 +2448,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if(headerValue != null) {
+		if (headerValue != null) {
 			$headerParams.put("headerValue", ServiceUtils.encodeBase64(ServiceUtils.ofObject(headerValue, false, this.contentType(), SimpleRecord.Data.class)));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -2480,7 +2480,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if(headerValue != null) {
+		if (headerValue != null) {
 			$headerParams.put("headerValue", ServiceUtils.encodeBase64(ServiceUtils.ofObject(headerValue, false, this.contentType(), SimpleRecord.Data.class)));
 		} else {
 			$headerParams.put("headerValue", "null");
@@ -2536,7 +2536,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		if(headerValue != null) {
+		if (headerValue != null) {
 			$headerParams.put("headerValue", ServiceUtils.encodeBase64(ServiceUtils.ofObject(headerValue, false, this.contentType(), SimpleRecord.Data.class)));
 		} else {
 			$headerParams.put("headerValue", "null");
