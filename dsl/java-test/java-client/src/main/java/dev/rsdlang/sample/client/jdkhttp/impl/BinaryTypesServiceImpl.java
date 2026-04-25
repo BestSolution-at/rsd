@@ -64,6 +64,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -91,6 +92,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -121,6 +123,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -151,6 +154,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -178,6 +182,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -211,6 +216,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -241,6 +247,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -268,6 +275,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -298,6 +306,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -328,6 +337,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -355,6 +365,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -388,6 +399,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -418,6 +430,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -445,6 +458,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -475,6 +489,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -505,6 +520,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -532,6 +548,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -565,6 +582,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -595,6 +613,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -622,6 +641,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -652,6 +672,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -682,6 +703,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -709,6 +731,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -742,6 +765,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -786,6 +810,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -815,6 +840,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -847,6 +873,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -882,6 +909,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -920,6 +948,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -961,6 +990,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1005,6 +1035,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1052,6 +1083,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1102,6 +1134,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1155,6 +1188,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1220,6 +1254,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1249,6 +1284,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1283,6 +1319,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1322,6 +1359,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1366,6 +1404,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1415,6 +1454,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1469,6 +1509,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1528,6 +1569,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1593,6 +1635,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1664,6 +1707,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1712,6 +1756,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1750,6 +1795,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
@@ -1782,6 +1828,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $formData = $formDataBuilder.build();
 			var $body = $formData.publisher();
 			var $contentType = $formData.contentType();
+
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
 					.header("Accept", this.contentType())
