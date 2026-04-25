@@ -2581,7 +2581,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray( bodyRecord == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofObject(bodyRecord, false, $contentType, SimpleRecord.Data.class));
+			var $body = BodyPublishers.ofByteArray(bodyRecord == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofObject(bodyRecord, false, $contentType, SimpleRecord.Data.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2739,7 +2739,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray( bodyUnion == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofObject(bodyUnion, false, $contentType, Union.Data.class));
+			var $body = BodyPublishers.ofByteArray(bodyUnion == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofObject(bodyUnion, false, $contentType, Union.Data.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2897,7 +2897,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray( bodyRecord == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofObject(bodyRecord, false, $contentType, PatchableRecord.Patch.class));
+			var $body = BodyPublishers.ofByteArray(bodyRecord == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofObject(bodyRecord, false, $contentType, PatchableRecord.Patch.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)

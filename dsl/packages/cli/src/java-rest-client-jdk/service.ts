@@ -502,182 +502,200 @@ function generateNonStreamBody(
 	multiBodyParam: boolean,
 ) {
 	methodBody.append('var $contentType = this.contentType();', NL);
-	const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
 	const bodyParams = allParameters.filter(p => p.meta?.rest?.source === undefined);
 	if (bodyParams.length === 0) {
-		const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
-		const defaultContent = multiBodyParam
-			? `${_JsonUtils}.encodeEmptyObject($contentType)`
-			: `${_JsonUtils}.encodeEmptyValue($contentType)`;
-		methodBody.append(`var $body = ${BodyPublishers}.ofByteArray(${defaultContent});`, NL);
+		appendEmptyBody(methodBody, multiBodyParam, artifactConfig, fqn);
 	} else if (bodyParams.length === 1 && !multiBodyParam) {
-		const param = bodyParams[0];
-		if (param.variant === 'builtin') {
-			if (param.optional && !param.nullable) {
-				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
-				methodBody.append(
-					`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${_JsonUtils}.encodeEmptyValue($contentType) : ServiceUtils.of${toFirstUpper(toCamelCaseIdentifier(param.type))}${param.array ? 'List' : ''}(${param.name}, false, $contentType));`,
-					NL,
-				);
-			} else {
-				methodBody.append(
-					`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.of${toFirstUpper(toCamelCaseIdentifier(param.type))}${param.array ? 'List' : ''}(${param.name}, ${String(param.nullable)}, $contentType));`,
-					NL,
-				);
-			}
-		} else if (param.variant === 'scalar' || param.variant === 'enum' || param.variant === 'inline-enum') {
-			if (param.optional && !param.nullable) {
-				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
-				methodBody.append(
-					`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${_JsonUtils}.encodeEmptyValue($contentType) : ServiceUtils.ofLiteral${param.array ? 'List' : ''}(${param.name}, false, $contentType));`,
-					NL,
-				);
-			} else {
-				methodBody.append(
-					`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.ofLiteral${param.array ? 'List' : ''}(${param.name}, ${String(param.nullable)}, $contentType));`,
-					NL,
-				);
-			}
-		} else {
-			// eslint-disable-next-line @typescript-eslint/no-deprecated
-			const type = computeParameterAPIType(
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-				param as any,
-				artifactConfig.nativeTypeSubstitues,
-				`${artifactConfig.rootPackageName}.model`,
-				fqn,
-				true,
-			);
+		appendSingleParamBody(methodBody, bodyParams[0], artifactConfig, fqn);
+	} else {
+		appendMultiParamBody(methodBody, s, o, bodyParams, artifactConfig, fqn);
+	}
+}
 
-			if (param.optional && !param.nullable) {
-				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
-				methodBody.append(
-					`var $body = ${BodyPublishers}.ofByteArray( ${param.name} == null ? ${_JsonUtils}.encodeEmptyValue($contentType) : ServiceUtils.ofObject${param.array ? 'List' : ''}(${param.name}, ${String(param.nullable)}, $contentType, ${type}.class));`,
-					NL,
-				);
-			} else {
-				methodBody.append(
-					`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.ofObject${param.array ? 'List' : ''}(${param.name}, ${String(param.nullable)}, $contentType, ${type}.class));`,
-					NL,
-				);
-			}
+function appendEmptyBody(
+	methodBody: CompositeGeneratorNode,
+	multiBodyParam: boolean,
+	artifactConfig: JavaRestClientJDKGeneratorConfig,
+	fqn: (type: string) => string,
+) {
+	const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
+	const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+	const defaultContent = multiBodyParam
+		? `${_JsonUtils}.encodeEmptyObject($contentType)`
+		: `${_JsonUtils}.encodeEmptyValue($contentType)`;
+	methodBody.append(`var $body = ${BodyPublishers}.ofByteArray(${defaultContent});`, NL);
+}
+
+function appendSingleParamBody(
+	methodBody: CompositeGeneratorNode,
+	param: MParameter,
+	artifactConfig: JavaRestClientJDKGeneratorConfig,
+	fqn: (type: string) => string,
+) {
+	const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
+	const suffix = param.array ? 'List' : '';
+	const optionalEmpty =
+		param.optional && !param.nullable
+			? `${fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`)}.encodeEmptyValue($contentType)`
+			: null;
+
+	if (param.variant === 'builtin') {
+		const method = `ServiceUtils.of${toFirstUpper(toCamelCaseIdentifier(param.type))}${suffix}`;
+		if (optionalEmpty) {
+			methodBody.append(
+				`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${optionalEmpty} : ${method}(${param.name}, false, $contentType));`,
+				NL,
+			);
+		} else {
+			methodBody.append(
+				`var $body = ${BodyPublishers}.ofByteArray(${method}(${param.name}, ${String(param.nullable)}, $contentType));`,
+				NL,
+			);
+		}
+	} else if (param.variant === 'scalar' || param.variant === 'enum' || param.variant === 'inline-enum') {
+		const method = `ServiceUtils.ofLiteral${suffix}`;
+		if (optionalEmpty) {
+			methodBody.append(
+				`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${optionalEmpty} : ${method}(${param.name}, false, $contentType));`,
+				NL,
+			);
+		} else {
+			methodBody.append(
+				`var $body = ${BodyPublishers}.ofByteArray(${method}(${param.name}, ${String(param.nullable)}, $contentType));`,
+				NL,
+			);
 		}
 	} else {
-		const Json = fqn('jakarta.json.Json');
-		methodBody.append(`var $builder = ${Json}.createObjectBuilder();`, NL);
-		bodyParams.forEach(p => {
-			if (p.variant === 'record' || p.variant === 'union') {
-				const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BaseDataImpl`);
-				if (p.array) {
-					const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
-					if (p.nullable) {
-						methodBody.append(
-							`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
-							NL,
-						);
-					} else {
-						if (p.optional) {
-							methodBody.append('if(' + p.name + ' != null) {', NL);
-							methodBody.indent(l => {
-								l.append(
-									`$builder = $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
-									NL,
-								);
-							});
-							methodBody.append('}', NL);
-						} else {
-							methodBody.append(
+		// eslint-disable-next-line @typescript-eslint/no-deprecated
+		const type = computeParameterAPIType(
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+			param as any,
+			artifactConfig.nativeTypeSubstitues,
+			`${artifactConfig.rootPackageName}.model`,
+			fqn,
+			true,
+		);
+		const method = `ServiceUtils.ofObject${suffix}`;
+		if (optionalEmpty) {
+			methodBody.append(
+				`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${optionalEmpty} : ${method}(${param.name}, ${String(param.nullable)}, $contentType, ${type}.class));`,
+				NL,
+			);
+		} else {
+			methodBody.append(
+				`var $body = ${BodyPublishers}.ofByteArray(${method}(${param.name}, ${String(param.nullable)}, $contentType, ${type}.class));`,
+				NL,
+			);
+		}
+	}
+}
+
+function appendMultiParamBody(
+	methodBody: CompositeGeneratorNode,
+	s: MResolvedService,
+	o: MResolvedOperation,
+	bodyParams: MParameter[],
+	artifactConfig: JavaRestClientJDKGeneratorConfig,
+	fqn: (type: string) => string,
+) {
+	const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
+	const Json = fqn('jakarta.json.Json');
+	methodBody.append(`var $builder = ${Json}.createObjectBuilder();`, NL);
+	bodyParams.forEach(p => {
+		if (p.variant === 'record' || p.variant === 'union') {
+			const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BaseDataImpl`);
+			if (p.array) {
+				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+				if (p.nullable) {
+					methodBody.append(
+						`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
+						NL,
+					);
+				} else {
+					if (p.optional) {
+						methodBody.append('if(' + p.name + ' != null) {', NL);
+						methodBody.indent(l => {
+							l.append(
 								`$builder = $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
 								NL,
 							);
-						}
-					}
-				} else {
-					if (p.nullable) {
+						});
+						methodBody.append('}', NL);
+					} else {
 						methodBody.append(
-							`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`,
+							`$builder = $builder.add("${p.name}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((_BaseDataImpl) i).data));`,
 							NL,
 						);
-					} else {
-						if (p.optional) {
-							methodBody.append('if(' + p.name + ' != null) {', NL);
-							methodBody.indent(l => {
-								l.append(`$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`, NL);
-							});
-							methodBody.append('}', NL);
-						} else {
-							methodBody.append(`$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`, NL);
-						}
-					}
-				}
-			} else if (p.variant === 'builtin' && isMBuiltinType(p.type)) {
-				const type = p.type;
-				if (p.array) {
-					if (p.nullable) {
-						methodBody.append(
-							`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : ` +
-								builtinBuilderArrayJSONAccess({
-									name: p.name,
-									type,
-								}) +
-								';',
-							NL,
-						);
-					} else {
-						if (p.optional) {
-							methodBody.append('if(' + p.name + ' != null) {', NL);
-							methodBody.indent(l => {
-								l.append(
-									`$builder = ${builtinBuilderArrayJSONAccess({
-										name: p.name,
-										type,
-									})};`,
-									NL,
-								);
-							});
-							methodBody.append('}', NL);
-						} else {
-							methodBody.append(
-								'$builder = ' +
-									builtinBuilderArrayJSONAccess({
-										name: p.name,
-										type,
-									}) +
-									';',
-								NL,
-							);
-						}
-					}
-				} else {
-					if (p.nullable) {
-						methodBody.append(
-							`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : ` +
-								builtinBuilderAccess({ name: p.name, type }) +
-								';',
-							NL,
-						);
-					} else {
-						if (p.optional) {
-							methodBody.append('if(' + p.name + ' != null) {', NL);
-							methodBody.indent(l => {
-								l.append('$builder = ' + builtinBuilderAccess({ name: p.name, type }) + ';', NL);
-							});
-							methodBody.append('}', NL);
-						} else {
-							methodBody.append('$builder = ' + builtinBuilderAccess({ name: p.name, type }) + ';', NL);
-						}
 					}
 				}
 			} else {
-				methodBody.append('throw new UnsupportedOperationException();', NL);
+				if (p.nullable) {
+					methodBody.append(
+						`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`,
+						NL,
+					);
+				} else {
+					if (p.optional) {
+						methodBody.append('if(' + p.name + ' != null) {', NL);
+						methodBody.indent(l => {
+							l.append(`$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`, NL);
+						});
+						methodBody.append('}', NL);
+					} else {
+						methodBody.append(`$builder = $builder.add("${p.name}", ((${_BaseDataImpl})${p.name}).data);`, NL);
+					}
+				}
 			}
-		});
-		const typeName = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${s.name}${toFirstUpper(o.name)}DataImpl`);
-		methodBody.append(
-			`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.ofObject(new ${typeName}($builder.build()), false, this.contentType(), ${typeName}.class));`,
-			NL,
-		);
-	}
+		} else if (p.variant === 'builtin' && isMBuiltinType(p.type)) {
+			const type = p.type;
+			if (p.array) {
+				if (p.nullable) {
+					methodBody.append(
+						`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : ` +
+							builtinBuilderArrayJSONAccess({ name: p.name, type }) +
+							';',
+						NL,
+					);
+				} else {
+					if (p.optional) {
+						methodBody.append('if(' + p.name + ' != null) {', NL);
+						methodBody.indent(l => {
+							l.append(`$builder = ${builtinBuilderArrayJSONAccess({ name: p.name, type })};`, NL);
+						});
+						methodBody.append('}', NL);
+					} else {
+						methodBody.append('$builder = ' + builtinBuilderArrayJSONAccess({ name: p.name, type }) + ';', NL);
+					}
+				}
+			} else {
+				if (p.nullable) {
+					methodBody.append(
+						`$builder = ${p.name} == null ? $builder.addNull("${p.name}") : ` +
+							builtinBuilderAccess({ name: p.name, type }) +
+							';',
+						NL,
+					);
+				} else {
+					if (p.optional) {
+						methodBody.append('if(' + p.name + ' != null) {', NL);
+						methodBody.indent(l => {
+							l.append('$builder = ' + builtinBuilderAccess({ name: p.name, type }) + ';', NL);
+						});
+						methodBody.append('}', NL);
+					} else {
+						methodBody.append('$builder = ' + builtinBuilderAccess({ name: p.name, type }) + ';', NL);
+					}
+				}
+			}
+		} else {
+			methodBody.append('throw new UnsupportedOperationException();', NL);
+		}
+	});
+	const typeName = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${s.name}${toFirstUpper(o.name)}DataImpl`);
+	methodBody.append(
+		`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.ofObject(new ${typeName}($builder.build()), false, this.contentType(), ${typeName}.class));`,
+		NL,
+	);
 }
 
 function generateRequestBuilderChain(
