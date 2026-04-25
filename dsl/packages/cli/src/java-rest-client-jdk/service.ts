@@ -110,7 +110,7 @@ export function generateService(
 	return artifacts;
 }
 
-function generateOpertationMethod(
+function generateOperationMethod(
 	node: IndentNode,
 	s: MResolvedService,
 	o: MResolvedOperation,
@@ -411,7 +411,7 @@ function generateOpertationMethod(
 		}
 
 		methodBody.indent(tryBlock => {
-			tryBlock.append(generateInvokation(s, o, allParameters, artifactConfig, fqn, hasHeaderParams, multiBodyParam));
+			tryBlock.append(generateInvocation(s, o, allParameters, artifactConfig, fqn, hasHeaderParams, multiBodyParam));
 		});
 		methodBody.append(`} catch (${IOException} | InterruptedException e) {`, NL);
 		methodBody.indent(catchBlock => {
@@ -422,7 +422,7 @@ function generateOpertationMethod(
 	node.append('}', NL);
 }
 
-function generateInvokation(
+function generateInvocation(
 	s: MResolvedService,
 	o: MResolvedOperation,
 	allParameters: readonly MParameter[],
@@ -790,7 +790,7 @@ function generateInvokation(
 				if (r.error === undefined) {
 					handleOkResult(resBlock, o, artifactConfig, fqn);
 				} else {
-					handleErroResult(resBlock, o, r.error, artifactConfig, fqn);
+					handleErrorResult(resBlock, o, r.error, artifactConfig, fqn);
 				}
 			});
 			methodBody.append('}');
@@ -827,7 +827,7 @@ function generateOperation(
 	let idx = o.parameters.findIndex(p => p.optional);
 
 	if (idx === -1) {
-		generateOpertationMethod(node, s, o, o.parameters, artifactConfig, fqn, path, false);
+		generateOperationMethod(node, s, o, o.parameters, artifactConfig, fqn, path, false);
 	} else {
 		const hasMultipleParams = o.parameters.filter(p => p.meta?.rest?.source === undefined).length > 1;
 		let first = true;
@@ -837,7 +837,7 @@ function generateOperation(
 			if (!first) {
 				node.appendNewLine();
 			}
-			generateOpertationMethod(node, s, o, params, artifactConfig, fqn, path, hasMultipleParams);
+			generateOperationMethod(node, s, o, params, artifactConfig, fqn, path, hasMultipleParams);
 			first = false;
 		}
 	}
@@ -956,7 +956,7 @@ function builtinMap(type: MBuiltinType): string {
 	}
 }
 
-function handleErroResult(
+function handleErrorResult(
 	node: IndentNode,
 	o: MResolvedOperation,
 	error: string,
