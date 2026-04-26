@@ -204,17 +204,20 @@ function appendQueryParams(
 	methodBody.append(`var $queryParams = new ServiceUtils.URLSearchParams();`, NL);
 	queryParams.forEach(p => {
 		const restName = p.meta?.rest?.name ?? p.name.toLowerCase();
+		let param: string;
+		if (p.variant === 'union' || p.variant === 'record') {
+			const type = computeParameterAPITypeNG(
+				p,
+				artifactConfig.nativeTypeSubstitues,
+				`${artifactConfig.rootPackageName}.model`,
+				fqn,
+				{ withArray: false, withOptional: false },
+			);
+			param = `ServiceUtils.ofObject(${p.array ? '$q' : p.name}, false, this.contentType(), ${type}.class)`;
+		} else {
+			param = p.array ? '$q' : p.name;
+		}
 		if (p.array) {
-			const param =
-				p.variant === 'union' || p.variant === 'record'
-					? `ServiceUtils.ofObject($q, false, this.contentType(), ${computeParameterAPIType(
-							p,
-							artifactConfig.nativeTypeSubstitues,
-							`${artifactConfig.rootPackageName}.model`,
-							fqn,
-							true,
-						)}.class)`
-					: '$q';
 			const codeBlock = toNodeTree(`
 				${p.name}.stream().forEach($q -> {
 					$queryParams.append("${restName}", ${param});
@@ -228,16 +231,6 @@ function appendQueryParams(
 				`$queryParams.append("${restName}", "null");`,
 			);
 		} else {
-			const param =
-				p.variant === 'union' || p.variant === 'record'
-					? `ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(
-							p,
-							artifactConfig.nativeTypeSubstitues,
-							`${artifactConfig.rootPackageName}.model`,
-							fqn,
-							true,
-						)}.class)`
-					: p.name;
 			const codeBlock = `$queryParams.append("${restName}", ${param});`;
 			appendWithNullGuard(
 				methodBody,
@@ -311,7 +304,14 @@ function appendHeaderParams(
 					);
 				}
 			} else if (p.variant === 'record' || p.variant === 'union') {
-				const codeBlock = `$headerParams.put("${restName}", ServiceUtils.encodeBase64(ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class)));`;
+				const type = computeParameterAPITypeNG(
+					p,
+					artifactConfig.nativeTypeSubstitues,
+					`${artifactConfig.rootPackageName}.model`,
+					fqn,
+					{ withArray: false, withOptional: false },
+				);
+				const codeBlock = `$headerParams.put("${restName}", ServiceUtils.encodeBase64(ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${type}.class)));`;
 				appendWithNullGuard(
 					methodBody,
 					p.name,
@@ -889,14 +889,23 @@ function toParameter(
 	fqn: (type: string) => string,
 	methodName: string,
 ) {
-	const type = computeParameterAPIType(
-		parameter,
-		artifactConfig.nativeTypeSubstitues,
-		`${artifactConfig.rootPackageName}.model`,
-		fqn,
-		false,
-		methodName,
-	);
+	const type =
+		parameter.variant === 'inline-enum'
+			? computeParameterAPITypeNG(
+					parameter,
+					artifactConfig.nativeTypeSubstitues,
+					`${artifactConfig.rootPackageName}.model`,
+					fqn,
+					methodName,
+					{ withArray: true, withOptional: false },
+				)
+			: computeParameterAPITypeNG(
+					parameter,
+					artifactConfig.nativeTypeSubstitues,
+					`${artifactConfig.rootPackageName}.model`,
+					fqn,
+					{ withArray: true, withOptional: false },
+				);
 	return `${type} ${parameter.name}`;
 }
 

@@ -154,6 +154,7 @@ export function computeParameterAPITypeNG(
 	nativeTypeSubstitues: Record<string, string> | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
+	config?: { withArray?: boolean; withOptional?: boolean },
 ): string;
 export function computeParameterAPITypeNG(
 	parameter: MParameterInlineEnumType,
@@ -161,14 +162,20 @@ export function computeParameterAPITypeNG(
 	basePackageName: string,
 	fqn: (type: string) => string,
 	methodName: string,
+	config?: { withArray?: boolean; withOptional?: boolean },
 ): string;
 export function computeParameterAPITypeNG(
 	parameter: MParameter,
 	nativeTypeSubstitues: Record<string, string> | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
-	methodName?: string,
+	methodNameOrConfig?: string | { withArray?: boolean; withOptional?: boolean },
+	config?: { withArray?: boolean; withOptional?: boolean },
 ) {
+	const methodName = typeof methodNameOrConfig === 'string' ? methodNameOrConfig : undefined;
+	const { withArray = true, withOptional = true } =
+		typeof methodNameOrConfig === 'object' ? methodNameOrConfig : (config ?? {});
+
 	let type: string;
 	if (parameter.variant === 'stream') {
 		if (parameter.type === 'file') {
@@ -186,8 +193,7 @@ export function computeParameterAPITypeNG(
 		if (methodName !== undefined) {
 			type = toFirstUpper(methodName) + '_' + toFirstUpper(parameter.name) + '_Param$';
 		} else {
-			type = 'UNKNOWN';
-			console.error('Internal error: methodName is required for inline-enum parameter types');
+			throw new Error('Internal error: methodName is required for inline-enum parameter types');
 		}
 	} else if (parameter.variant === 'enum' || parameter.variant === 'scalar') {
 		if (nativeTypeSubstitues !== undefined && parameter.type in nativeTypeSubstitues) {
@@ -201,23 +207,25 @@ export function computeParameterAPITypeNG(
 		throw new Error('Should not get here');
 	}
 
-	if (parameter.array) {
+	if (parameter.array && withArray) {
 		type = `${fqn('java.util.List')}<${type}>`;
 	}
 
-	if (parameter.optional && parameter.nullable) {
-		type = fqn(`${basePackageName}._Base`) + `.Nillable<${type}>`;
-	} else if (parameter.optional || parameter.nullable) {
-		if (parameter.array) {
-			type = fqn('java.util.Optional') + `<${type}>`;
-		} else if (parameter.type === 'int') {
-			type = fqn('java.util.OptionalInt');
-		} else if (parameter.type === 'long') {
-			type = fqn('java.util.OptionalLong');
-		} else if (parameter.type === 'double') {
-			type = fqn('java.util.OptionalDouble');
-		} else {
-			type = fqn('java.util.Optional') + `<${type}>`;
+	if (withOptional) {
+		if (parameter.optional && parameter.nullable) {
+			type = fqn(`${basePackageName}._Base`) + `.Nillable<${type}>`;
+		} else if (parameter.optional || parameter.nullable) {
+			if (parameter.array) {
+				type = fqn('java.util.Optional') + `<${type}>`;
+			} else if (parameter.type === 'int') {
+				type = fqn('java.util.OptionalInt');
+			} else if (parameter.type === 'long') {
+				type = fqn('java.util.OptionalLong');
+			} else if (parameter.type === 'double') {
+				type = fqn('java.util.OptionalDouble');
+			} else {
+				type = fqn('java.util.Optional') + `<${type}>`;
+			}
 		}
 	}
 
