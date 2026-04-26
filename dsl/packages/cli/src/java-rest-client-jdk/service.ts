@@ -1,7 +1,6 @@
 import { CompositeGeneratorNode, IndentNode, NL, toString } from 'langium/generate';
 import { Artifact, ArtifactGenerationConfig } from '../artifact-generator.js';
 import {
-	computeParameterAPIType,
 	computeParameterAPITypeNG,
 	computeParameterValueType,
 	generateCompilationUnit,
@@ -275,10 +274,10 @@ function appendHeaderParams(
 					`$headerParams.put("${restName}", "null");`,
 				);
 			} else if (p.variant === 'stream') {
-				methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
+				methodBody.append('throw new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 			} else {
-				// eslint-disable-next-line @typescript-eslint/no-deprecated
-				const toString = `$v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), ${computeParameterAPIType(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, true)}.class))`;
+				const type = computeParameterAPITypeNG(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, { withArray: false, withOptional: false });
+				const toString = `$v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), ${type}.class))`;
 				const codeBlock = `$headerParams.put("${restName}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
 				appendWithNullGuard(
 					methodBody,
@@ -321,7 +320,7 @@ function appendHeaderParams(
 					`$headerParams.put("${restName}", "null");`,
 				);
 			} else if (p.variant === 'stream') {
-				methodBody.append('new UnsupportedOperationException("Stream headers are not supported yet");', NL);
+				methodBody.append('throw new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 			} else {
 				methodBody.append(`$headerParams.put("${restName}", String.format("%s", ${p.name}));`, NL);
 			}
@@ -556,55 +555,24 @@ function appendSingleParamBody(
 			? `${fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`)}.encodeEmptyValue($contentType)`
 			: null;
 
+	let baseCall: string;
+	let optionalCall: string;
 	if (param.variant === 'builtin') {
 		const method = `ServiceUtils.of${toFirstUpper(toCamelCaseIdentifier(param.type))}${suffix}`;
-		if (optionalEmpty) {
-			methodBody.append(
-				`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${optionalEmpty} : ${method}(${param.name}, false, $contentType));`,
-				NL,
-			);
-		} else {
-			methodBody.append(
-				`var $body = ${BodyPublishers}.ofByteArray(${method}(${param.name}, ${String(param.nullable)}, $contentType));`,
-				NL,
-			);
-		}
+		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType)`;
+		optionalCall = `${method}(${param.name}, false, $contentType)`;
 	} else if (param.variant === 'scalar' || param.variant === 'enum' || param.variant === 'inline-enum') {
 		const method = `ServiceUtils.ofLiteral${suffix}`;
-		if (optionalEmpty) {
-			methodBody.append(
-				`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${optionalEmpty} : ${method}(${param.name}, false, $contentType));`,
-				NL,
-			);
-		} else {
-			methodBody.append(
-				`var $body = ${BodyPublishers}.ofByteArray(${method}(${param.name}, ${String(param.nullable)}, $contentType));`,
-				NL,
-			);
-		}
+		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType)`;
+		optionalCall = `${method}(${param.name}, false, $contentType)`;
 	} else {
-		// eslint-disable-next-line @typescript-eslint/no-deprecated
-		const type = computeParameterAPIType(
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-			param as any,
-			artifactConfig.nativeTypeSubstitues,
-			`${artifactConfig.rootPackageName}.model`,
-			fqn,
-			true,
-		);
+		const type = computeParameterAPITypeNG(param, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, { withArray: false, withOptional: false });
 		const method = `ServiceUtils.ofObject${suffix}`;
-		if (optionalEmpty) {
-			methodBody.append(
-				`var $body = ${BodyPublishers}.ofByteArray(${param.name} == null ? ${optionalEmpty} : ${method}(${param.name}, ${String(param.nullable)}, $contentType, ${type}.class));`,
-				NL,
-			);
-		} else {
-			methodBody.append(
-				`var $body = ${BodyPublishers}.ofByteArray(${method}(${param.name}, ${String(param.nullable)}, $contentType, ${type}.class));`,
-				NL,
-			);
-		}
+		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType, ${type}.class)`;
+		optionalCall = `${method}(${param.name}, false, $contentType, ${type}.class)`;
 	}
+	const callExpr = optionalEmpty ? `${param.name} == null ? ${optionalEmpty} : ${optionalCall}` : baseCall;
+	methodBody.append(`var $body = ${BodyPublishers}.ofByteArray(${callExpr});`, NL);
 }
 
 function appendMultiParamBody(
@@ -767,21 +735,18 @@ function generateOperation(
 	fqn: (type: string) => string,
 	path: string,
 ) {
-	let idx = o.parameters.findIndex(p => p.optional);
+	const firstOptional = o.parameters.findIndex(p => p.optional);
 
-	if (idx === -1) {
+	if (firstOptional === -1) {
 		generateOperationMethod(node, s, o, o.parameters, artifactConfig, fqn, path, false);
 	} else {
 		const hasMultipleParams = o.parameters.filter(p => p.meta?.rest?.source === undefined).length > 1;
-		let first = true;
-		for (idx; idx <= o.parameters.length; idx++) {
-			const params = [...o.parameters];
-			params.length = idx;
-			if (!first) {
+		for (let i = firstOptional; i <= o.parameters.length; i++) {
+			if (i > firstOptional) {
 				node.appendNewLine();
 			}
+			const params = o.parameters.slice(0, i);
 			generateOperationMethod(node, s, o, params, artifactConfig, fqn, path, hasMultipleParams);
-			first = false;
 		}
 	}
 }
@@ -868,19 +833,11 @@ function handleErrorResult(
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
 ) {
-	if (o.resultType?.variant === 'stream') {
-		node.append(
-			`throw new ${fqn(
-				`${artifactConfig.rootPackageName}.${error}Exception`,
-			)}(ServiceUtils.mapFileToString($response));`,
-			NL,
-		);
-	} else {
-		node.append(
-			`throw new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}(ServiceUtils.toString($response));`,
-			NL,
-		);
-	}
+	const toStr = o.resultType?.variant === 'stream' ? 'mapFileToString' : 'toString';
+	node.append(
+		`throw new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}(ServiceUtils.${toStr}($response));`,
+		NL,
+	);
 }
 
 function toParameter(
