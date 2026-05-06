@@ -276,7 +276,13 @@ function appendHeaderParams(
 			} else if (p.variant === 'stream') {
 				methodBody.append('throw new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 			} else {
-				const type = computeParameterAPITypeNG(p, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, { withArray: false, withOptional: false });
+				const type = computeParameterAPITypeNG(
+					p,
+					artifactConfig.nativeTypeSubstitues,
+					`${artifactConfig.rootPackageName}.model`,
+					fqn,
+					{ withArray: false, withOptional: false },
+				);
 				const toString = `$v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), ${type}.class))`;
 				const codeBlock = `$headerParams.put("${restName}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
 				appendWithNullGuard(
@@ -566,7 +572,13 @@ function appendSingleParamBody(
 		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType)`;
 		optionalCall = `${method}(${param.name}, false, $contentType)`;
 	} else {
-		const type = computeParameterAPITypeNG(param, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn, { withArray: false, withOptional: false });
+		const type = computeParameterAPITypeNG(
+			param,
+			artifactConfig.nativeTypeSubstitues,
+			`${artifactConfig.rootPackageName}.model`,
+			fqn,
+			{ withArray: false, withOptional: false },
+		);
 		const method = `ServiceUtils.ofObject${suffix}`;
 		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType, ${type}.class)`;
 		optionalCall = `${method}(${param.name}, false, $contentType, ${type}.class)`;
@@ -689,10 +701,9 @@ function generateResponseDispatch(
 ) {
 	const BodyHandlers = fqn('java.net.http.HttpResponse.BodyHandlers');
 	if (o.resultType?.variant === 'stream') {
+		const Files = fqn('java.nio.file.Files');
 		methodBody.append(
-			`var $response = this.httpClient().send($request, ${BodyHandlers}.ofFile(${fqn(
-				'java.nio.file.Files',
-			)}.createTempFile("rsd-download","tmp")));`,
+			`var $response = this.httpClient().send($request, ${BodyHandlers}.ofFile(${Files}.createTempFile("rsd-download","tmp")));`,
 			NL,
 		);
 	} else {
@@ -846,23 +857,26 @@ function toParameter(
 	fqn: (type: string) => string,
 	methodName: string,
 ) {
-	const type =
-		parameter.variant === 'inline-enum'
-			? computeParameterAPITypeNG(
-					parameter,
-					artifactConfig.nativeTypeSubstitues,
-					`${artifactConfig.rootPackageName}.model`,
-					fqn,
-					methodName,
-					{ withArray: true, withOptional: false },
-				)
-			: computeParameterAPITypeNG(
-					parameter,
-					artifactConfig.nativeTypeSubstitues,
-					`${artifactConfig.rootPackageName}.model`,
-					fqn,
-					{ withArray: true, withOptional: false },
-				);
+	let type: string;
+	if (parameter.variant === 'inline-enum') {
+		type = computeParameterAPITypeNG(
+			parameter,
+			artifactConfig.nativeTypeSubstitues,
+			`${artifactConfig.rootPackageName}.model`,
+			fqn,
+			methodName,
+			{ withArray: true, withOptional: false },
+		);
+	} else {
+		type = computeParameterAPITypeNG(
+			parameter,
+			artifactConfig.nativeTypeSubstitues,
+			`${artifactConfig.rootPackageName}.model`,
+			fqn,
+			{ withArray: true, withOptional: false },
+		);
+	}
+
 	return `${type} ${parameter.name}`;
 }
 
