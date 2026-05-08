@@ -33,7 +33,7 @@ export interface ListHeaderParameterTypesListBooleanHeaderParamRequest {
 }
 
 export interface ListHeaderParameterTypesListBooleanHeaderParamNilRequest {
-    headerValue: Array<boolean>;
+    headerValue: Array<boolean> | null;
 }
 
 export interface ListHeaderParameterTypesListBooleanHeaderParamOptRequest {
@@ -41,7 +41,7 @@ export interface ListHeaderParameterTypesListBooleanHeaderParamOptRequest {
 }
 
 export interface ListHeaderParameterTypesListBooleanHeaderParamOptNilRequest {
-    headerValue?: Array<boolean>;
+    headerValue?: Array<boolean> | null;
 }
 
 export interface ListHeaderParameterTypesListDoubleHeaderParamRequest {
@@ -49,7 +49,7 @@ export interface ListHeaderParameterTypesListDoubleHeaderParamRequest {
 }
 
 export interface ListHeaderParameterTypesListDoubleHeaderParamNilRequest {
-    headerValue: Array<number>;
+    headerValue: Array<number> | null;
 }
 
 export interface ListHeaderParameterTypesListDoubleHeaderParamOptRequest {
@@ -57,7 +57,7 @@ export interface ListHeaderParameterTypesListDoubleHeaderParamOptRequest {
 }
 
 export interface ListHeaderParameterTypesListDoubleHeaderParamOptNilRequest {
-    headerValue?: Array<number>;
+    headerValue?: Array<number> | null;
 }
 
 export interface ListHeaderParameterTypesListEnumHeaderParamRequest {
@@ -65,7 +65,7 @@ export interface ListHeaderParameterTypesListEnumHeaderParamRequest {
 }
 
 export interface ListHeaderParameterTypesListEnumHeaderParamNilRequest {
-    headerValue: Array<SampleEnum>;
+    headerValue: Array<SampleEnum> | null;
 }
 
 export interface ListHeaderParameterTypesListEnumHeaderParamOptRequest {
@@ -73,7 +73,7 @@ export interface ListHeaderParameterTypesListEnumHeaderParamOptRequest {
 }
 
 export interface ListHeaderParameterTypesListEnumHeaderParamOptNilRequest {
-    headerValue?: Array<SampleEnum>;
+    headerValue?: Array<SampleEnum> | null;
 }
 
 export interface ListHeaderParameterTypesListFloatHeaderParamRequest {
@@ -81,7 +81,7 @@ export interface ListHeaderParameterTypesListFloatHeaderParamRequest {
 }
 
 export interface ListHeaderParameterTypesListFloatHeaderParamNilRequest {
-    headerValue: Array<number>;
+    headerValue: Array<number> | null;
 }
 
 export interface ListHeaderParameterTypesListFloatHeaderParamOptRequest {
@@ -89,7 +89,7 @@ export interface ListHeaderParameterTypesListFloatHeaderParamOptRequest {
 }
 
 export interface ListHeaderParameterTypesListFloatHeaderParamOptNilRequest {
-    headerValue?: Array<number>;
+    headerValue?: Array<number> | null;
 }
 
 export interface ListHeaderParameterTypesListInlineEnumHeaderParamRequest {
@@ -113,7 +113,7 @@ export interface ListHeaderParameterTypesListIntHeaderParamRequest {
 }
 
 export interface ListHeaderParameterTypesListIntHeaderParamNilRequest {
-    headerValue: Array<number>;
+    headerValue: Array<number> | null;
 }
 
 export interface ListHeaderParameterTypesListIntHeaderParamOptRequest {
@@ -121,7 +121,7 @@ export interface ListHeaderParameterTypesListIntHeaderParamOptRequest {
 }
 
 export interface ListHeaderParameterTypesListIntHeaderParamOptNilRequest {
-    headerValue?: Array<number>;
+    headerValue?: Array<number> | null;
 }
 
 export interface ListHeaderParameterTypesListLocalDateHeaderParamRequest {
@@ -129,7 +129,7 @@ export interface ListHeaderParameterTypesListLocalDateHeaderParamRequest {
 }
 
 export interface ListHeaderParameterTypesListLocalDateHeaderParamNilRequest {
-    headerValue: Array<Date>;
+    headerValue: Array<Date> | null;
 }
 
 export interface ListHeaderParameterTypesListLocalDateHeaderParamOptRequest {
@@ -137,7 +137,7 @@ export interface ListHeaderParameterTypesListLocalDateHeaderParamOptRequest {
 }
 
 export interface ListHeaderParameterTypesListLocalDateHeaderParamOptNilRequest {
-    headerValue?: Array<Date>;
+    headerValue?: Array<Date> | null;
 }
 
 export interface ListHeaderParameterTypesListLocalDateTimeHeaderParamRequest {
@@ -145,7 +145,7 @@ export interface ListHeaderParameterTypesListLocalDateTimeHeaderParamRequest {
 }
 
 export interface ListHeaderParameterTypesListLocalDateTimeHeaderParamNilRequest {
-    headerValue: Array<string>;
+    headerValue: Array<string> | null;
 }
 
 export interface ListHeaderParameterTypesListLocalDateTimeHeaderParamOptRequest {
@@ -153,7 +153,7 @@ export interface ListHeaderParameterTypesListLocalDateTimeHeaderParamOptRequest 
 }
 
 export interface ListHeaderParameterTypesListLocalDateTimeHeaderParamOptNilRequest {
-    headerValue?: Array<string>;
+    headerValue?: Array<string> | null;
 }
 
 export interface ListHeaderParameterTypesListLongHeaderParamRequest {
@@ -161,7 +161,7 @@ export interface ListHeaderParameterTypesListLongHeaderParamRequest {
 }
 
 export interface ListHeaderParameterTypesListLongHeaderParamNilRequest {
-    headerValue: Array<number>;
+    headerValue: Array<number> | null;
 }
 
 export interface ListHeaderParameterTypesListLongHeaderParamOptRequest {
@@ -169,7 +169,7 @@ export interface ListHeaderParameterTypesListLongHeaderParamOptRequest {
 }
 
 export interface ListHeaderParameterTypesListLongHeaderParamOptNilRequest {
-    headerValue?: Array<number>;
+    headerValue?: Array<number> | null;
 }
 
 export interface ListHeaderParameterTypesListMultiHeaderParamRequest {
@@ -180,8 +180,8 @@ export interface ListHeaderParameterTypesListMultiHeaderParamRequest {
 }
 
 export interface ListHeaderParameterTypesListMultiHeaderParamNilRequest {
-    valueA: Array<string>;
-    valueB: Array<number>;
+    valueA: Array<string> | null;
+    valueB: Array<number> | null;
     valueC: string | null;
     xRSDParamContentType: string;
 }
@@ -195,8 +195,8 @@ export interface ListHeaderParameterTypesListMultiHeaderParamOptRequest {
 
 export interface ListHeaderParameterTypesListMultiHeaderParamOptNilRequest {
     xRSDParamContentType: string;
-    valueA?: Array<string>;
-    valueB?: Array<number>;
+    valueA?: Array<string> | null;
+    valueB?: Array<number> | null;
     valueC?: string | null;
 }
 
@@ -241,7 +241,7 @@ export interface ListHeaderParameterTypesListShortHeaderParamRequest {
 }
 
 export interface ListHeaderParameterTypesListShortHeaderParamNilRequest {
-    headerValue: Array<number>;
+    headerValue: Array<number> | null;
 }
 
 export interface ListHeaderParameterTypesListShortHeaderParamOptRequest {
@@ -249,7 +249,7 @@ export interface ListHeaderParameterTypesListShortHeaderParamOptRequest {
 }
 
 export interface ListHeaderParameterTypesListShortHeaderParamOptNilRequest {
-    headerValue?: Array<number>;
+    headerValue?: Array<number> | null;
 }
 
 export interface ListHeaderParameterTypesListStringHeaderParamRequest {
@@ -257,7 +257,7 @@ export interface ListHeaderParameterTypesListStringHeaderParamRequest {
 }
 
 export interface ListHeaderParameterTypesListStringHeaderParamNilRequest {
-    headerValue: Array<string>;
+    headerValue: Array<string> | null;
 }
 
 export interface ListHeaderParameterTypesListStringHeaderParamOptRequest {
@@ -265,7 +265,7 @@ export interface ListHeaderParameterTypesListStringHeaderParamOptRequest {
 }
 
 export interface ListHeaderParameterTypesListStringHeaderParamOptNilRequest {
-    headerValue?: Array<string>;
+    headerValue?: Array<string> | null;
 }
 
 export interface ListHeaderParameterTypesListZonedDateTimeHeaderParamRequest {
@@ -273,7 +273,7 @@ export interface ListHeaderParameterTypesListZonedDateTimeHeaderParamRequest {
 }
 
 export interface ListHeaderParameterTypesListZonedDateTimeHeaderParamNilRequest {
-    headerValue: Array<string>;
+    headerValue: Array<string> | null;
 }
 
 export interface ListHeaderParameterTypesListZonedDateTimeHeaderParamOptRequest {
@@ -281,7 +281,7 @@ export interface ListHeaderParameterTypesListZonedDateTimeHeaderParamOptRequest 
 }
 
 export interface ListHeaderParameterTypesListZonedDateTimeHeaderParamOptNilRequest {
-    headerValue?: Array<string>;
+    headerValue?: Array<string> | null;
 }
 
 /**

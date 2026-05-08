@@ -1,5 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
+export * from './BinaryTypesSingleBodyAdditionRequest.js';
+export * from './BinaryTypesTwoBinariesAdditionRequest.js';
 export * from './BinaryTypesUploadMixedNilRequest.js';
 export * from './BinaryTypesUploadMixedOptNilRequest.js';
 export * from './BinaryTypesUploadMixedOptRequest.js';
@@ -11,6 +13,8 @@ export * from './BodyParameterTypesMultiBodyParamOptRequest.js';
 export * from './BodyParameterTypesMultiBodyParamRequest.js';
 export * from './EnumInlineRecord.js';
 export * from './EnumRecord.js';
+export * from './ListBodyParameterTypesListMultiBodyParamNilRequest.js';
+export * from './ListBodyParameterTypesListMultiBodyParamOptNilRequest.js';
 export * from './ListBodyParameterTypesListMultiBodyParamOptRequest.js';
 export * from './ListBodyParameterTypesListMultiBodyParamRequest.js';
 export * from './MixinRecord.js';

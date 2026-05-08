@@ -6988,7 +6988,8 @@
                 "type": "array",
                 "items": {
                   "type": "boolean"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -7023,7 +7024,8 @@
                 "type": "array",
                 "items": {
                   "type": "boolean"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -7135,7 +7137,8 @@
                 "items": {
                   "type": "number",
                   "format": "int32"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -7171,7 +7174,8 @@
                 "items": {
                   "type": "number",
                   "format": "int32"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -7283,7 +7287,8 @@
                 "items": {
                   "type": "number",
                   "format": "int32"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -7319,7 +7324,8 @@
                 "items": {
                   "type": "number",
                   "format": "int32"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -7431,7 +7437,8 @@
                 "items": {
                   "type": "number",
                   "format": "int64"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -7467,7 +7474,8 @@
                 "items": {
                   "type": "number",
                   "format": "int64"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -7579,7 +7587,8 @@
                 "items": {
                   "type": "number",
                   "format": "float"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -7615,7 +7624,8 @@
                 "items": {
                   "type": "number",
                   "format": "float"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -7727,7 +7737,8 @@
                 "items": {
                   "type": "number",
                   "format": "double"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -7763,7 +7774,8 @@
                 "items": {
                   "type": "number",
                   "format": "double"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -7871,7 +7883,8 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -7906,7 +7919,8 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -8022,7 +8036,8 @@
                   "type": "string",
                   "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
                   "format": "date"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -8059,7 +8074,8 @@
                   "type": "string",
                   "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
                   "format": "date"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -8175,7 +8191,8 @@
                   "type": "string",
                   "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
                   "format": "local-date-time"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -8212,7 +8229,8 @@
                   "type": "string",
                   "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
                   "format": "local-date-time"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -8324,7 +8342,8 @@
                 "items": {
                   "type": "string",
                   "format": "zoned-date-time"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -8360,7 +8379,8 @@
                 "items": {
                   "type": "string",
                   "format": "zoned-date-time"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -8598,7 +8618,8 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/SampleEnum"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -8633,7 +8654,8 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/SampleEnum"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -8936,20 +8958,23 @@
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "nullable": true
                   },
                   "valueB": {
                     "type": "array",
                     "items": {
                       "type": "number",
                       "format": "int32"
-                    }
+                    },
+                    "nullable": true
                   },
                   "valueC": {
                     "type": "array",
                     "items": {
                       "$ref": "#/components/schemas/SimpleRecord"
-                    }
+                    },
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -8997,20 +9022,23 @@
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "nullable": true
                   },
                   "valueB": {
                     "type": "array",
                     "items": {
                       "type": "number",
                       "format": "int32"
-                    }
+                    },
+                    "nullable": true
                   },
                   "valueC": {
                     "type": "array",
                     "items": {
                       "$ref": "#/components/schemas/SimpleRecord"
-                    }
+                    },
+                    "nullable": true
                   }
                 },
                 "required": []
@@ -9124,7 +9152,8 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/SimpleRecord"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -9159,7 +9188,8 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/SimpleRecord"
-                }
+                },
+                "nullable": true
               }
             }
           },
@@ -9875,7 +9905,8 @@
               "type": "array",
               "items": {
                 "type": "boolean"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -9910,7 +9941,8 @@
               "type": "array",
               "items": {
                 "type": "boolean"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10022,7 +10054,8 @@
               "items": {
                 "type": "number",
                 "format": "int32"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10058,7 +10091,8 @@
               "items": {
                 "type": "number",
                 "format": "int32"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10170,7 +10204,8 @@
               "items": {
                 "type": "number",
                 "format": "int32"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10206,7 +10241,8 @@
               "items": {
                 "type": "number",
                 "format": "int32"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10318,7 +10354,8 @@
               "items": {
                 "type": "number",
                 "format": "int64"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10354,7 +10391,8 @@
               "items": {
                 "type": "number",
                 "format": "int64"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10466,7 +10504,8 @@
               "items": {
                 "type": "number",
                 "format": "float"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10502,7 +10541,8 @@
               "items": {
                 "type": "number",
                 "format": "float"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10614,7 +10654,8 @@
               "items": {
                 "type": "number",
                 "format": "double"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10650,7 +10691,8 @@
               "items": {
                 "type": "number",
                 "format": "double"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10758,7 +10800,8 @@
               "type": "array",
               "items": {
                 "type": "string"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10793,7 +10836,8 @@
               "type": "array",
               "items": {
                 "type": "string"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10909,7 +10953,8 @@
                 "type": "string",
                 "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
                 "format": "date"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -10946,7 +10991,8 @@
                 "type": "string",
                 "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
                 "format": "date"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -11062,7 +11108,8 @@
                 "type": "string",
                 "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
                 "format": "local-date-time"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -11099,7 +11146,8 @@
                 "type": "string",
                 "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
                 "format": "local-date-time"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -11211,7 +11259,8 @@
               "items": {
                 "type": "string",
                 "format": "zoned-date-time"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -11247,7 +11296,8 @@
               "items": {
                 "type": "string",
                 "format": "zoned-date-time"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -11485,7 +11535,8 @@
               "type": "array",
               "items": {
                 "$ref": "#/components/schemas/SampleEnum"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -11520,7 +11571,8 @@
               "type": "array",
               "items": {
                 "$ref": "#/components/schemas/SampleEnum"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -11844,7 +11896,8 @@
               "type": "array",
               "items": {
                 "type": "string"
-              }
+              },
+              "nullable": true
             }
           },
           {
@@ -11857,7 +11910,8 @@
               "items": {
                 "type": "number",
                 "format": "int32"
-              }
+              },
+              "nullable": true
             }
           },
           {
@@ -11915,7 +11969,8 @@
               "type": "array",
               "items": {
                 "type": "string"
-              }
+              },
+              "nullable": true
             }
           },
           {
@@ -11928,7 +11983,8 @@
               "items": {
                 "type": "number",
                 "format": "int32"
-              }
+              },
+              "nullable": true
             }
           },
           {
@@ -12816,20 +12872,23 @@
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "nullable": true
                   },
                   "numberList": {
                     "type": "array",
                     "items": {
                       "type": "number",
                       "format": "int32"
-                    }
+                    },
+                    "nullable": true
                   },
                   "recList": {
                     "type": "array",
                     "items": {
                       "$ref": "#/components/schemas/SimpleRecord"
-                    }
+                    },
+                    "nullable": true
                   },
                   "dataFile": {},
                   "dataBlob": {}
@@ -12898,20 +12957,23 @@
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "nullable": true
                   },
                   "numberList": {
                     "type": "array",
                     "items": {
                       "type": "number",
                       "format": "int32"
-                    }
+                    },
+                    "nullable": true
                   },
                   "recList": {
                     "type": "array",
                     "items": {
                       "$ref": "#/components/schemas/SimpleRecord"
-                    }
+                    },
+                    "nullable": true
                   },
                   "dataFile": {},
                   "dataBlob": {}

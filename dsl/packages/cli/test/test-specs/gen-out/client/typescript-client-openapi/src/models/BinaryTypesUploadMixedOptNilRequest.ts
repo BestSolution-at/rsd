@@ -50,19 +50,19 @@ export interface BinaryTypesUploadMixedOptNilRequest {
      * @type {Array<string>}
      * @memberof BinaryTypesUploadMixedOptNilRequest
      */
-    textList?: Array<string>;
+    textList?: Array<string> | null;
     /**
      * 
      * @type {Array<number>}
      * @memberof BinaryTypesUploadMixedOptNilRequest
      */
-    numberList?: Array<number>;
+    numberList?: Array<number> | null;
     /**
      * 
      * @type {Array<SimpleRecord>}
      * @memberof BinaryTypesUploadMixedOptNilRequest
      */
-    recList?: Array<SimpleRecord>;
+    recList?: Array<SimpleRecord> | null;
     /**
      * 
      * @type {any}

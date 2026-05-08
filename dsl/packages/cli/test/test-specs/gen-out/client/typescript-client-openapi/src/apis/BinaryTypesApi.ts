@@ -15,6 +15,8 @@
 
 import * as runtime from '../runtime.js';
 import type {
+  BinaryTypesSingleBodyAdditionRequest,
+  BinaryTypesTwoBinariesAdditionRequest,
   BinaryTypesUploadMixedNilRequest,
   BinaryTypesUploadMixedOptNilRequest,
   BinaryTypesUploadMixedOptRequest,
@@ -22,6 +24,10 @@ import type {
   UploadMixedResult,
 } from '../models/index.js';
 import {
+    BinaryTypesSingleBodyAdditionRequestFromJSON,
+    BinaryTypesSingleBodyAdditionRequestToJSON,
+    BinaryTypesTwoBinariesAdditionRequestFromJSON,
+    BinaryTypesTwoBinariesAdditionRequestToJSON,
     BinaryTypesUploadMixedNilRequestFromJSON,
     BinaryTypesUploadMixedNilRequestToJSON,
     BinaryTypesUploadMixedOptNilRequestFromJSON,
@@ -45,6 +51,14 @@ export interface BinaryTypesMixedRequest {
     queryRecord: string;
     xRSDParamContentType: string;
     body: any | null;
+}
+
+export interface BinaryTypesSingleBodyAdditionOperationRequest {
+    binaryTypesSingleBodyAdditionRequest: BinaryTypesSingleBodyAdditionRequest;
+}
+
+export interface BinaryTypesTwoBinariesAdditionOperationRequest {
+    binaryTypesTwoBinariesAdditionRequest: BinaryTypesTwoBinariesAdditionRequest;
 }
 
 export interface BinaryTypesUploadBlobRequest {
@@ -351,6 +365,98 @@ export class BinaryTypesApi extends runtime.BaseAPI {
      */
     async binaryTypesMixed(requestParameters: BinaryTypesMixedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.binaryTypesMixedRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for binaryTypesSingleBodyAddition without sending the request
+     */
+    async binaryTypesSingleBodyAdditionRequestOpts(requestParameters: BinaryTypesSingleBodyAdditionOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['binaryTypesSingleBodyAdditionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'binaryTypesSingleBodyAdditionRequest',
+                'Required parameter "binaryTypesSingleBodyAdditionRequest" was null or undefined when calling binaryTypesSingleBodyAddition().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/binarytypes/singleBodyAddition`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BinaryTypesSingleBodyAdditionRequestToJSON(requestParameters['binaryTypesSingleBodyAdditionRequest']),
+        };
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesSingleBodyAdditionRaw(requestParameters: BinaryTypesSingleBodyAdditionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.binaryTypesSingleBodyAdditionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesSingleBodyAddition(requestParameters: BinaryTypesSingleBodyAdditionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.binaryTypesSingleBodyAdditionRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for binaryTypesTwoBinariesAddition without sending the request
+     */
+    async binaryTypesTwoBinariesAdditionRequestOpts(requestParameters: BinaryTypesTwoBinariesAdditionOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['binaryTypesTwoBinariesAdditionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'binaryTypesTwoBinariesAdditionRequest',
+                'Required parameter "binaryTypesTwoBinariesAdditionRequest" was null or undefined when calling binaryTypesTwoBinariesAddition().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/binarytypes/twoBinariesAddition`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BinaryTypesTwoBinariesAdditionRequestToJSON(requestParameters['binaryTypesTwoBinariesAdditionRequest']),
+        };
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesTwoBinariesAdditionRaw(requestParameters: BinaryTypesTwoBinariesAdditionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.binaryTypesTwoBinariesAdditionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 
+     */
+    async binaryTypesTwoBinariesAddition(requestParameters: BinaryTypesTwoBinariesAdditionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.binaryTypesTwoBinariesAdditionRaw(requestParameters, initOverrides);
     }
 
     /**

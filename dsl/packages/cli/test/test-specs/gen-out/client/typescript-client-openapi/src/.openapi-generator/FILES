@@ -10,6 +10,8 @@ apis/QueryParameterTypesApi.ts
 apis/SampleServiceApi.ts
 apis/index.ts
 docs/BinaryTypesApi.md
+docs/BinaryTypesSingleBodyAdditionRequest.md
+docs/BinaryTypesTwoBinariesAdditionRequest.md
 docs/BinaryTypesUploadMixedNilRequest.md
 docs/BinaryTypesUploadMixedOptNilRequest.md
 docs/BinaryTypesUploadMixedOptRequest.md
@@ -24,6 +26,8 @@ docs/EnumInlineRecord.md
 docs/EnumRecord.md
 docs/HeaderParameterTypesApi.md
 docs/ListBodyParameterTypesApi.md
+docs/ListBodyParameterTypesListMultiBodyParamNilRequest.md
+docs/ListBodyParameterTypesListMultiBodyParamOptNilRequest.md
 docs/ListBodyParameterTypesListMultiBodyParamOptRequest.md
 docs/ListBodyParameterTypesListMultiBodyParamRequest.md
 docs/ListHeaderParameterTypesApi.md
@@ -290,6 +294,8 @@ docs/UnionA.md
 docs/UnionB.md
 docs/UploadMixedResult.md
 index.ts
+models/BinaryTypesSingleBodyAdditionRequest.ts
+models/BinaryTypesTwoBinariesAdditionRequest.ts
 models/BinaryTypesUploadMixedNilRequest.ts
 models/BinaryTypesUploadMixedOptNilRequest.ts
 models/BinaryTypesUploadMixedOptRequest.ts
@@ -301,6 +307,8 @@ models/BodyParameterTypesMultiBodyParamOptRequest.ts
 models/BodyParameterTypesMultiBodyParamRequest.ts
 models/EnumInlineRecord.ts
 models/EnumRecord.ts
+models/ListBodyParameterTypesListMultiBodyParamNilRequest.ts
+models/ListBodyParameterTypesListMultiBodyParamOptNilRequest.ts
 models/ListBodyParameterTypesListMultiBodyParamOptRequest.ts
 models/ListBodyParameterTypesListMultiBodyParamRequest.ts
 models/MixinRecord.ts

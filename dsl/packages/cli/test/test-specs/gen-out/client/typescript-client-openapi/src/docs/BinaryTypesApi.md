@@ -7,6 +7,8 @@ All URIs are relative to *http://localhost*
 | [**binaryTypesDownloadBlob**](BinaryTypesApi.md#binarytypesdownloadblob) | **GET** /api/binarytypes/downloadBlob |  |
 | [**binaryTypesDownloadFile**](BinaryTypesApi.md#binarytypesdownloadfile) | **GET** /api/binarytypes/downloadFile |  |
 | [**binaryTypesMixed**](BinaryTypesApi.md#binarytypesmixed) | **POST** /api/binarytypes/mixed/{pathString}/{pathNumber} |  |
+| [**binaryTypesSingleBodyAddition**](BinaryTypesApi.md#binarytypessinglebodyadditionoperation) | **POST** /api/binarytypes/singleBodyAddition |  |
+| [**binaryTypesTwoBinariesAddition**](BinaryTypesApi.md#binarytypestwobinariesadditionoperation) | **POST** /api/binarytypes/twoBinariesAddition |  |
 | [**binaryTypesUploadBlob**](BinaryTypesApi.md#binarytypesuploadblob) | **POST** /api/binarytypes/uploadBlob |  |
 | [**binaryTypesUploadBlobList**](BinaryTypesApi.md#binarytypesuploadbloblist) | **PUT** /api/binarytypes/uploadBlobList |  |
 | [**binaryTypesUploadBlobListNil**](BinaryTypesApi.md#binarytypesuploadbloblistnil) | **PUT** /api/binarytypes/uploadBlobListNil |  |
@@ -219,6 +221,140 @@ example().catch(console.error);
 | **queryRecord** | `string` |  | [Defaults to `undefined`] |
 | **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 | **body** | `any` |  | |
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | success |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## binaryTypesSingleBodyAddition
+
+> binaryTypesSingleBodyAddition(binaryTypesSingleBodyAdditionRequest)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BinaryTypesApi,
+} from '';
+import type { BinaryTypesSingleBodyAdditionOperationRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BinaryTypesApi();
+
+  const body = {
+    // BinaryTypesSingleBodyAdditionRequest
+    binaryTypesSingleBodyAdditionRequest: ...,
+  } satisfies BinaryTypesSingleBodyAdditionOperationRequest;
+
+  try {
+    const data = await api.binaryTypesSingleBodyAddition(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **binaryTypesSingleBodyAdditionRequest** | [BinaryTypesSingleBodyAdditionRequest](BinaryTypesSingleBodyAdditionRequest.md) |  | |
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | success |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## binaryTypesTwoBinariesAddition
+
+> binaryTypesTwoBinariesAddition(binaryTypesTwoBinariesAdditionRequest)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BinaryTypesApi,
+} from '';
+import type { BinaryTypesTwoBinariesAdditionOperationRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BinaryTypesApi();
+
+  const body = {
+    // BinaryTypesTwoBinariesAdditionRequest
+    binaryTypesTwoBinariesAdditionRequest: ...,
+  } satisfies BinaryTypesTwoBinariesAdditionOperationRequest;
+
+  try {
+    const data = await api.binaryTypesTwoBinariesAddition(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **binaryTypesTwoBinariesAdditionRequest** | [BinaryTypesTwoBinariesAdditionRequest](BinaryTypesTwoBinariesAdditionRequest.md) |  | |
 
 ### Return type
 

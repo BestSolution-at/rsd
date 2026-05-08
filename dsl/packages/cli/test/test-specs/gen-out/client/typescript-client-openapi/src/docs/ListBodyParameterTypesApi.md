@@ -41,9 +41,9 @@ All URIs are relative to *http://localhost*
 | [**listBodyParameterTypesListLongBodyParamOpt**](ListBodyParameterTypesApi.md#listbodyparametertypeslistlongbodyparamopt) | **PUT** /api/listbodyparametertypes/listLongBodyParamOpt |  |
 | [**listBodyParameterTypesListLongBodyParamOptNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistlongbodyparamoptnil) | **PUT** /api/listbodyparametertypes/listLongBodyParamOptNil |  |
 | [**listBodyParameterTypesListMultiBodyParam**](ListBodyParameterTypesApi.md#listbodyparametertypeslistmultibodyparamoperation) | **PUT** /api/listbodyparametertypes/listMultiBodyParam |  |
-| [**listBodyParameterTypesListMultiBodyParamNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistmultibodyparamnil) | **PUT** /api/listbodyparametertypes/listMultiBodyParamNil |  |
+| [**listBodyParameterTypesListMultiBodyParamNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistmultibodyparamniloperation) | **PUT** /api/listbodyparametertypes/listMultiBodyParamNil |  |
 | [**listBodyParameterTypesListMultiBodyParamOpt**](ListBodyParameterTypesApi.md#listbodyparametertypeslistmultibodyparamoptoperation) | **PUT** /api/listbodyparametertypes/listMultiBodyParamOpt |  |
-| [**listBodyParameterTypesListMultiBodyParamOptNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistmultibodyparamoptnil) | **PUT** /api/listbodyparametertypes/listMultiBodyParamOptNil |  |
+| [**listBodyParameterTypesListMultiBodyParamOptNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistmultibodyparamoptniloperation) | **PUT** /api/listbodyparametertypes/listMultiBodyParamOptNil |  |
 | [**listBodyParameterTypesListRecordBodyParam**](ListBodyParameterTypesApi.md#listbodyparametertypeslistrecordbodyparam) | **PUT** /api/listbodyparametertypes/listRecordBodyParam |  |
 | [**listBodyParameterTypesListRecordBodyParamNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistrecordbodyparamnil) | **PUT** /api/listbodyparametertypes/listRecordBodyParamNil |  |
 | [**listBodyParameterTypesListRecordBodyParamOpt**](ListBodyParameterTypesApi.md#listbodyparametertypeslistrecordbodyparamopt) | **PUT** /api/listbodyparametertypes/listRecordBodyParamOpt |  |
@@ -2548,7 +2548,7 @@ No authorization required
 
 ## listBodyParameterTypesListMultiBodyParamNil
 
-> Array&lt;NilResult&gt; listBodyParameterTypesListMultiBodyParamNil(listBodyParameterTypesListMultiBodyParamRequest)
+> Array&lt;NilResult&gt; listBodyParameterTypesListMultiBodyParamNil(listBodyParameterTypesListMultiBodyParamNilRequest)
 
 
 
@@ -2561,16 +2561,16 @@ import {
   Configuration,
   ListBodyParameterTypesApi,
 } from '';
-import type { ListBodyParameterTypesListMultiBodyParamNilRequest } from '';
+import type { ListBodyParameterTypesListMultiBodyParamNilOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // ListBodyParameterTypesListMultiBodyParamRequest
-    listBodyParameterTypesListMultiBodyParamRequest: ...,
-  } satisfies ListBodyParameterTypesListMultiBodyParamNilRequest;
+    // ListBodyParameterTypesListMultiBodyParamNilRequest
+    listBodyParameterTypesListMultiBodyParamNilRequest: ...,
+  } satisfies ListBodyParameterTypesListMultiBodyParamNilOperationRequest;
 
   try {
     const data = await api.listBodyParameterTypesListMultiBodyParamNil(body);
@@ -2589,7 +2589,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **listBodyParameterTypesListMultiBodyParamRequest** | [ListBodyParameterTypesListMultiBodyParamRequest](ListBodyParameterTypesListMultiBodyParamRequest.md) |  | |
+| **listBodyParameterTypesListMultiBodyParamNilRequest** | [ListBodyParameterTypesListMultiBodyParamNilRequest](ListBodyParameterTypesListMultiBodyParamNilRequest.md) |  | |
 
 ### Return type
 
@@ -2682,7 +2682,7 @@ No authorization required
 
 ## listBodyParameterTypesListMultiBodyParamOptNil
 
-> Array&lt;NilResult&gt; listBodyParameterTypesListMultiBodyParamOptNil(listBodyParameterTypesListMultiBodyParamOptRequest)
+> Array&lt;NilResult&gt; listBodyParameterTypesListMultiBodyParamOptNil(listBodyParameterTypesListMultiBodyParamOptNilRequest)
 
 
 
@@ -2695,16 +2695,16 @@ import {
   Configuration,
   ListBodyParameterTypesApi,
 } from '';
-import type { ListBodyParameterTypesListMultiBodyParamOptNilRequest } from '';
+import type { ListBodyParameterTypesListMultiBodyParamOptNilOperationRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // ListBodyParameterTypesListMultiBodyParamOptRequest
-    listBodyParameterTypesListMultiBodyParamOptRequest: ...,
-  } satisfies ListBodyParameterTypesListMultiBodyParamOptNilRequest;
+    // ListBodyParameterTypesListMultiBodyParamOptNilRequest
+    listBodyParameterTypesListMultiBodyParamOptNilRequest: ...,
+  } satisfies ListBodyParameterTypesListMultiBodyParamOptNilOperationRequest;
 
   try {
     const data = await api.listBodyParameterTypesListMultiBodyParamOptNil(body);
@@ -2723,7 +2723,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **listBodyParameterTypesListMultiBodyParamOptRequest** | [ListBodyParameterTypesListMultiBodyParamOptRequest](ListBodyParameterTypesListMultiBodyParamOptRequest.md) |  | |
+| **listBodyParameterTypesListMultiBodyParamOptNilRequest** | [ListBodyParameterTypesListMultiBodyParamOptNilRequest](ListBodyParameterTypesListMultiBodyParamOptNilRequest.md) |  | |
 
 ### Return type
 

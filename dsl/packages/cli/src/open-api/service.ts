@@ -167,12 +167,15 @@ function toType(param: MParameter) {
 	if (param.variant === 'record' || param.variant === 'union' || param.variant === 'enum') {
 		const type = param.patch ? `${param.type}Patch` : param.type;
 		if (param.array) {
-			schema = {
-				type: 'array',
-				items: {
-					$ref: `#/components/schemas/${type}`,
+			schema = nullableProcessor(
+				{
+					type: 'array',
+					items: {
+						$ref: `#/components/schemas/${type}`,
+					},
 				},
-			};
+				param.nullable,
+			);
 		} else {
 			schema = nullableProcessor({ $ref: `#/components/schemas/${type}` }, param.nullable);
 		}
@@ -188,10 +191,13 @@ function toType(param: MParameter) {
 		schema = nullableProcessor({ type: 'string' }, param.nullable);
 	} else if (isMBuiltinType(param.type)) {
 		if (param.array) {
-			schema = {
-				type: 'array',
-				items: generateBuilinProperty(param.type),
-			};
+			schema = nullableProcessor(
+				{
+					type: 'array',
+					items: generateBuilinProperty(param.type),
+				},
+				param.nullable,
+			);
 		} else {
 			schema = nullableProcessor(generateBuilinProperty(param.type), param.nullable);
 		}

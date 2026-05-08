@@ -15,6 +15,8 @@
 
 import * as runtime from '../runtime.js';
 import type {
+  ListBodyParameterTypesListMultiBodyParamNilRequest,
+  ListBodyParameterTypesListMultiBodyParamOptNilRequest,
   ListBodyParameterTypesListMultiBodyParamOptRequest,
   ListBodyParameterTypesListMultiBodyParamRequest,
   NilResult,
@@ -22,6 +24,10 @@ import type {
   SimpleRecord,
 } from '../models/index.js';
 import {
+    ListBodyParameterTypesListMultiBodyParamNilRequestFromJSON,
+    ListBodyParameterTypesListMultiBodyParamNilRequestToJSON,
+    ListBodyParameterTypesListMultiBodyParamOptNilRequestFromJSON,
+    ListBodyParameterTypesListMultiBodyParamOptNilRequestToJSON,
     ListBodyParameterTypesListMultiBodyParamOptRequestFromJSON,
     ListBodyParameterTypesListMultiBodyParamOptRequestToJSON,
     ListBodyParameterTypesListMultiBodyParamRequestFromJSON,
@@ -39,7 +45,7 @@ export interface ListBodyParameterTypesListBooleanBodyParamRequest {
 }
 
 export interface ListBodyParameterTypesListBooleanBodyParamNilRequest {
-    requestBody: Array<boolean>;
+    requestBody: Array<boolean> | null;
 }
 
 export interface ListBodyParameterTypesListBooleanBodyParamOptRequest {
@@ -47,7 +53,7 @@ export interface ListBodyParameterTypesListBooleanBodyParamOptRequest {
 }
 
 export interface ListBodyParameterTypesListBooleanBodyParamOptNilRequest {
-    requestBody?: Array<boolean>;
+    requestBody?: Array<boolean> | null;
 }
 
 export interface ListBodyParameterTypesListDoubleBodyParamRequest {
@@ -55,7 +61,7 @@ export interface ListBodyParameterTypesListDoubleBodyParamRequest {
 }
 
 export interface ListBodyParameterTypesListDoubleBodyParamNilRequest {
-    requestBody: Array<number>;
+    requestBody: Array<number> | null;
 }
 
 export interface ListBodyParameterTypesListDoubleBodyParamOptRequest {
@@ -63,7 +69,7 @@ export interface ListBodyParameterTypesListDoubleBodyParamOptRequest {
 }
 
 export interface ListBodyParameterTypesListDoubleBodyParamOptNilRequest {
-    requestBody?: Array<number>;
+    requestBody?: Array<number> | null;
 }
 
 export interface ListBodyParameterTypesListEnumBodyParamRequest {
@@ -71,7 +77,7 @@ export interface ListBodyParameterTypesListEnumBodyParamRequest {
 }
 
 export interface ListBodyParameterTypesListEnumBodyParamNilRequest {
-    sampleEnum: Array<SampleEnum>;
+    sampleEnum: Array<SampleEnum> | null;
 }
 
 export interface ListBodyParameterTypesListEnumBodyParamOptRequest {
@@ -79,7 +85,7 @@ export interface ListBodyParameterTypesListEnumBodyParamOptRequest {
 }
 
 export interface ListBodyParameterTypesListEnumBodyParamOptNilRequest {
-    sampleEnum?: Array<SampleEnum>;
+    sampleEnum?: Array<SampleEnum> | null;
 }
 
 export interface ListBodyParameterTypesListFloatBodyParamRequest {
@@ -87,7 +93,7 @@ export interface ListBodyParameterTypesListFloatBodyParamRequest {
 }
 
 export interface ListBodyParameterTypesListFloatBodyParamNilRequest {
-    requestBody: Array<number>;
+    requestBody: Array<number> | null;
 }
 
 export interface ListBodyParameterTypesListFloatBodyParamOptRequest {
@@ -95,7 +101,7 @@ export interface ListBodyParameterTypesListFloatBodyParamOptRequest {
 }
 
 export interface ListBodyParameterTypesListFloatBodyParamOptNilRequest {
-    requestBody?: Array<number>;
+    requestBody?: Array<number> | null;
 }
 
 export interface ListBodyParameterTypesListInlineEnumBodyParamRequest {
@@ -119,7 +125,7 @@ export interface ListBodyParameterTypesListIntBodyParamRequest {
 }
 
 export interface ListBodyParameterTypesListIntBodyParamNilRequest {
-    requestBody: Array<number>;
+    requestBody: Array<number> | null;
 }
 
 export interface ListBodyParameterTypesListIntBodyParamOptRequest {
@@ -127,7 +133,7 @@ export interface ListBodyParameterTypesListIntBodyParamOptRequest {
 }
 
 export interface ListBodyParameterTypesListIntBodyParamOptNilRequest {
-    requestBody?: Array<number>;
+    requestBody?: Array<number> | null;
 }
 
 export interface ListBodyParameterTypesListLocalDateBodyParamRequest {
@@ -135,7 +141,7 @@ export interface ListBodyParameterTypesListLocalDateBodyParamRequest {
 }
 
 export interface ListBodyParameterTypesListLocalDateBodyParamNilRequest {
-    requestBody: Array<Date>;
+    requestBody: Array<Date> | null;
 }
 
 export interface ListBodyParameterTypesListLocalDateBodyParamOptRequest {
@@ -143,7 +149,7 @@ export interface ListBodyParameterTypesListLocalDateBodyParamOptRequest {
 }
 
 export interface ListBodyParameterTypesListLocalDateBodyParamOptNilRequest {
-    requestBody?: Array<Date>;
+    requestBody?: Array<Date> | null;
 }
 
 export interface ListBodyParameterTypesListLocalDateTimeBodyParamRequest {
@@ -151,7 +157,7 @@ export interface ListBodyParameterTypesListLocalDateTimeBodyParamRequest {
 }
 
 export interface ListBodyParameterTypesListLocalDateTimeBodyParamNilRequest {
-    requestBody: Array<string>;
+    requestBody: Array<string> | null;
 }
 
 export interface ListBodyParameterTypesListLocalDateTimeBodyParamOptRequest {
@@ -159,7 +165,7 @@ export interface ListBodyParameterTypesListLocalDateTimeBodyParamOptRequest {
 }
 
 export interface ListBodyParameterTypesListLocalDateTimeBodyParamOptNilRequest {
-    requestBody?: Array<string>;
+    requestBody?: Array<string> | null;
 }
 
 export interface ListBodyParameterTypesListLongBodyParamRequest {
@@ -167,7 +173,7 @@ export interface ListBodyParameterTypesListLongBodyParamRequest {
 }
 
 export interface ListBodyParameterTypesListLongBodyParamNilRequest {
-    requestBody: Array<number>;
+    requestBody: Array<number> | null;
 }
 
 export interface ListBodyParameterTypesListLongBodyParamOptRequest {
@@ -175,23 +181,23 @@ export interface ListBodyParameterTypesListLongBodyParamOptRequest {
 }
 
 export interface ListBodyParameterTypesListLongBodyParamOptNilRequest {
-    requestBody?: Array<number>;
+    requestBody?: Array<number> | null;
 }
 
 export interface ListBodyParameterTypesListMultiBodyParamOperationRequest {
     listBodyParameterTypesListMultiBodyParamRequest: ListBodyParameterTypesListMultiBodyParamRequest;
 }
 
-export interface ListBodyParameterTypesListMultiBodyParamNilRequest {
-    listBodyParameterTypesListMultiBodyParamRequest: ListBodyParameterTypesListMultiBodyParamRequest;
+export interface ListBodyParameterTypesListMultiBodyParamNilOperationRequest {
+    listBodyParameterTypesListMultiBodyParamNilRequest: ListBodyParameterTypesListMultiBodyParamNilRequest;
 }
 
 export interface ListBodyParameterTypesListMultiBodyParamOptOperationRequest {
     listBodyParameterTypesListMultiBodyParamOptRequest: ListBodyParameterTypesListMultiBodyParamOptRequest;
 }
 
-export interface ListBodyParameterTypesListMultiBodyParamOptNilRequest {
-    listBodyParameterTypesListMultiBodyParamOptRequest: ListBodyParameterTypesListMultiBodyParamOptRequest;
+export interface ListBodyParameterTypesListMultiBodyParamOptNilOperationRequest {
+    listBodyParameterTypesListMultiBodyParamOptNilRequest: ListBodyParameterTypesListMultiBodyParamOptNilRequest;
 }
 
 export interface ListBodyParameterTypesListRecordBodyParamRequest {
@@ -199,7 +205,7 @@ export interface ListBodyParameterTypesListRecordBodyParamRequest {
 }
 
 export interface ListBodyParameterTypesListRecordBodyParamNilRequest {
-    simpleRecord: Array<SimpleRecord>;
+    simpleRecord: Array<SimpleRecord> | null;
 }
 
 export interface ListBodyParameterTypesListRecordBodyParamOptRequest {
@@ -207,7 +213,7 @@ export interface ListBodyParameterTypesListRecordBodyParamOptRequest {
 }
 
 export interface ListBodyParameterTypesListRecordBodyParamOptNilRequest {
-    simpleRecord?: Array<SimpleRecord>;
+    simpleRecord?: Array<SimpleRecord> | null;
 }
 
 export interface ListBodyParameterTypesListScalarBodyParamRequest {
@@ -231,7 +237,7 @@ export interface ListBodyParameterTypesListShortBodyParamRequest {
 }
 
 export interface ListBodyParameterTypesListShortBodyParamNilRequest {
-    requestBody: Array<number>;
+    requestBody: Array<number> | null;
 }
 
 export interface ListBodyParameterTypesListShortBodyParamOptRequest {
@@ -239,7 +245,7 @@ export interface ListBodyParameterTypesListShortBodyParamOptRequest {
 }
 
 export interface ListBodyParameterTypesListShortBodyParamOptNilRequest {
-    requestBody?: Array<number>;
+    requestBody?: Array<number> | null;
 }
 
 export interface ListBodyParameterTypesListStringBodyParamRequest {
@@ -247,7 +253,7 @@ export interface ListBodyParameterTypesListStringBodyParamRequest {
 }
 
 export interface ListBodyParameterTypesListStringBodyParamNilRequest {
-    requestBody: Array<string>;
+    requestBody: Array<string> | null;
 }
 
 export interface ListBodyParameterTypesListStringBodyParamOptRequest {
@@ -255,7 +261,7 @@ export interface ListBodyParameterTypesListStringBodyParamOptRequest {
 }
 
 export interface ListBodyParameterTypesListStringBodyParamOptNilRequest {
-    requestBody?: Array<string>;
+    requestBody?: Array<string> | null;
 }
 
 export interface ListBodyParameterTypesListZonedDateTimeBodyParamRequest {
@@ -263,7 +269,7 @@ export interface ListBodyParameterTypesListZonedDateTimeBodyParamRequest {
 }
 
 export interface ListBodyParameterTypesListZonedDateTimeBodyParamNilRequest {
-    requestBody: Array<string>;
+    requestBody: Array<string> | null;
 }
 
 export interface ListBodyParameterTypesListZonedDateTimeBodyParamOptRequest {
@@ -271,7 +277,7 @@ export interface ListBodyParameterTypesListZonedDateTimeBodyParamOptRequest {
 }
 
 export interface ListBodyParameterTypesListZonedDateTimeBodyParamOptNilRequest {
-    requestBody?: Array<string>;
+    requestBody?: Array<string> | null;
 }
 
 /**
@@ -1903,11 +1909,11 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
     /**
      * Creates request options for listBodyParameterTypesListMultiBodyParamNil without sending the request
      */
-    async listBodyParameterTypesListMultiBodyParamNilRequestOpts(requestParameters: ListBodyParameterTypesListMultiBodyParamNilRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['listBodyParameterTypesListMultiBodyParamRequest'] == null) {
+    async listBodyParameterTypesListMultiBodyParamNilRequestOpts(requestParameters: ListBodyParameterTypesListMultiBodyParamNilOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['listBodyParameterTypesListMultiBodyParamNilRequest'] == null) {
             throw new runtime.RequiredError(
-                'listBodyParameterTypesListMultiBodyParamRequest',
-                'Required parameter "listBodyParameterTypesListMultiBodyParamRequest" was null or undefined when calling listBodyParameterTypesListMultiBodyParamNil().'
+                'listBodyParameterTypesListMultiBodyParamNilRequest',
+                'Required parameter "listBodyParameterTypesListMultiBodyParamNilRequest" was null or undefined when calling listBodyParameterTypesListMultiBodyParamNil().'
             );
         }
 
@@ -1925,14 +1931,14 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: ListBodyParameterTypesListMultiBodyParamRequestToJSON(requestParameters['listBodyParameterTypesListMultiBodyParamRequest']),
+            body: ListBodyParameterTypesListMultiBodyParamNilRequestToJSON(requestParameters['listBodyParameterTypesListMultiBodyParamNilRequest']),
         };
     }
 
     /**
      * 
      */
-    async listBodyParameterTypesListMultiBodyParamNilRaw(requestParameters: ListBodyParameterTypesListMultiBodyParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<NilResult>>> {
+    async listBodyParameterTypesListMultiBodyParamNilRaw(requestParameters: ListBodyParameterTypesListMultiBodyParamNilOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<NilResult>>> {
         const requestOptions = await this.listBodyParameterTypesListMultiBodyParamNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -1942,7 +1948,7 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listBodyParameterTypesListMultiBodyParamNil(requestParameters: ListBodyParameterTypesListMultiBodyParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
+    async listBodyParameterTypesListMultiBodyParamNil(requestParameters: ListBodyParameterTypesListMultiBodyParamNilOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
         const response = await this.listBodyParameterTypesListMultiBodyParamNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1997,11 +2003,11 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
     /**
      * Creates request options for listBodyParameterTypesListMultiBodyParamOptNil without sending the request
      */
-    async listBodyParameterTypesListMultiBodyParamOptNilRequestOpts(requestParameters: ListBodyParameterTypesListMultiBodyParamOptNilRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['listBodyParameterTypesListMultiBodyParamOptRequest'] == null) {
+    async listBodyParameterTypesListMultiBodyParamOptNilRequestOpts(requestParameters: ListBodyParameterTypesListMultiBodyParamOptNilOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['listBodyParameterTypesListMultiBodyParamOptNilRequest'] == null) {
             throw new runtime.RequiredError(
-                'listBodyParameterTypesListMultiBodyParamOptRequest',
-                'Required parameter "listBodyParameterTypesListMultiBodyParamOptRequest" was null or undefined when calling listBodyParameterTypesListMultiBodyParamOptNil().'
+                'listBodyParameterTypesListMultiBodyParamOptNilRequest',
+                'Required parameter "listBodyParameterTypesListMultiBodyParamOptNilRequest" was null or undefined when calling listBodyParameterTypesListMultiBodyParamOptNil().'
             );
         }
 
@@ -2019,14 +2025,14 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: ListBodyParameterTypesListMultiBodyParamOptRequestToJSON(requestParameters['listBodyParameterTypesListMultiBodyParamOptRequest']),
+            body: ListBodyParameterTypesListMultiBodyParamOptNilRequestToJSON(requestParameters['listBodyParameterTypesListMultiBodyParamOptNilRequest']),
         };
     }
 
     /**
      * 
      */
-    async listBodyParameterTypesListMultiBodyParamOptNilRaw(requestParameters: ListBodyParameterTypesListMultiBodyParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<NilResult>>> {
+    async listBodyParameterTypesListMultiBodyParamOptNilRaw(requestParameters: ListBodyParameterTypesListMultiBodyParamOptNilOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<NilResult>>> {
         const requestOptions = await this.listBodyParameterTypesListMultiBodyParamOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -2036,7 +2042,7 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listBodyParameterTypesListMultiBodyParamOptNil(requestParameters: ListBodyParameterTypesListMultiBodyParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
+    async listBodyParameterTypesListMultiBodyParamOptNil(requestParameters: ListBodyParameterTypesListMultiBodyParamOptNilOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
         const response = await this.listBodyParameterTypesListMultiBodyParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }

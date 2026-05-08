@@ -50,19 +50,19 @@ export interface BinaryTypesUploadMixedNilRequest {
      * @type {Array<string>}
      * @memberof BinaryTypesUploadMixedNilRequest
      */
-    textList: Array<string>;
+    textList: Array<string> | null;
     /**
      * 
      * @type {Array<number>}
      * @memberof BinaryTypesUploadMixedNilRequest
      */
-    numberList: Array<number>;
+    numberList: Array<number> | null;
     /**
      * 
      * @type {Array<SimpleRecord>}
      * @memberof BinaryTypesUploadMixedNilRequest
      */
-    recList: Array<SimpleRecord>;
+    recList: Array<SimpleRecord> | null;
     /**
      * 
      * @type {any}
@@ -105,9 +105,9 @@ export function BinaryTypesUploadMixedNilRequestFromJSONTyped(json: any, ignoreD
         'text': json['text'],
         'number': json['number'],
         'rec': SimpleRecordFromJSON(json['rec']),
-        'textList': json['textList'],
-        'numberList': json['numberList'],
-        'recList': ((json['recList'] as Array<any>).map(SimpleRecordFromJSON)),
+        'textList': json['textList'] == null ? null : json['textList'],
+        'numberList': json['numberList'] == null ? null : json['numberList'],
+        'recList': (json['recList'] == null ? null : (json['recList'] as Array<any>).map(SimpleRecordFromJSON)),
         'dataFile': json['dataFile'],
         'dataBlob': json['dataBlob'],
     };
@@ -129,7 +129,7 @@ export function BinaryTypesUploadMixedNilRequestToJSONTyped(value?: BinaryTypesU
         'rec': SimpleRecordToJSON(value['rec']),
         'textList': value['textList'],
         'numberList': value['numberList'],
-        'recList': ((value['recList'] as Array<any>).map(SimpleRecordToJSON)),
+        'recList': (value['recList'] == null ? null : (value['recList'] as Array<any>).map(SimpleRecordToJSON)),
         'dataFile': value['dataFile'],
         'dataBlob': value['dataBlob'],
     };
