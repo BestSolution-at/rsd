@@ -62,9 +62,9 @@ export function PatchableUnionToJSONTyped(value?: PatchableUnion | null, ignoreD
     }
     switch (value['type']) {
         case 'union-a':
-            return Object.assign({}, PatchableUnionAToJSON(value), { type: 'union-a' } as const);
+            return Object.assign({}, PatchableUnionAToJSON(value), { '@type': 'union-a' } as const);
         case 'union-b':
-            return Object.assign({}, PatchableUnionBToJSON(value), { type: 'union-b' } as const);
+            return Object.assign({}, PatchableUnionBToJSON(value), { '@type': 'union-b' } as const);
         default:
             return value;
     }

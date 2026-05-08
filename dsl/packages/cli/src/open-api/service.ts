@@ -33,12 +33,29 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 							schema.$ref = `#/components/schemas/${o.resultType.type}`;
 						}
 					} else if (o.resultType.variant === 'inline-enum') {
-						schema = {
-							type: 'string',
-							enum: o.resultType.type.entries.map(e => e.name),
-						};
+						if (o.resultType.array) {
+							schema = {
+								type: 'array',
+								items: {
+									type: 'string',
+									enum: o.resultType.type.entries.map(e => e.name),
+								},
+							};
+						} else {
+							schema = {
+								type: 'string',
+								enum: o.resultType.type.entries.map(e => e.name),
+							};
+						}
 					} else if (o.resultType.variant === 'scalar') {
-						schema.type = 'string';
+						if (o.resultType.array) {
+							schema = {
+								type: 'array',
+								items: { type: 'string' },
+							};
+						} else {
+							schema.type = 'string';
+						}
 					} else if (isMBuiltinType(o.resultType.type)) {
 						if (o.resultType.array) {
 							schema = {
@@ -180,15 +197,38 @@ function toType(param: MParameter) {
 			schema = nullableProcessor({ $ref: `#/components/schemas/${type}` }, param.nullable);
 		}
 	} else if (param.variant === 'inline-enum') {
-		schema = nullableProcessor(
-			{
-				type: 'string',
-				enum: param.type.entries.map(e => e.name),
-			},
-			param.nullable,
-		);
+		if (param.array) {
+			schema = nullableProcessor(
+				{
+					type: 'array',
+					items: {
+						type: 'string',
+						enum: param.type.entries.map(e => e.name),
+					},
+				},
+				param.nullable,
+			);
+		} else {
+			schema = nullableProcessor(
+				{
+					type: 'string',
+					enum: param.type.entries.map(e => e.name),
+				},
+				param.nullable,
+			);
+		}
 	} else if (param.variant === 'scalar') {
-		schema = nullableProcessor({ type: 'string' }, param.nullable);
+		if(param.array) {
+			schema = nullableProcessor(
+				{
+					type: 'array',
+					items: { type: 'string' },
+				},
+				param.nullable,
+			);
+		} else {
+			schema = nullableProcessor({ type: 'string' }, param.nullable);
+		}
 	} else if (isMBuiltinType(param.type)) {
 		if (param.array) {
 			schema = nullableProcessor(

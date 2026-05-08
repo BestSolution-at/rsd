@@ -62,9 +62,9 @@ export function PatchableRecordBasicListNullPatchValueFloatToJSONTyped(value?: P
     }
     switch (value['type']) {
         case 'merge':
-            return Object.assign({}, PatchableRecordBasicListNullValueFloatPatchMergeToJSON(value), { type: 'merge' } as const);
+            return Object.assign({}, PatchableRecordBasicListNullValueFloatPatchMergeToJSON(value), { '@type': 'merge' } as const);
         case 'replace':
-            return Object.assign({}, PatchableRecordBasicListNullValueFloatPatchReplaceToJSON(value), { type: 'replace' } as const);
+            return Object.assign({}, PatchableRecordBasicListNullValueFloatPatchReplaceToJSON(value), { '@type': 'replace' } as const);
         default:
             return value;
     }

@@ -62,9 +62,9 @@ export function PatchableRecordBasicListOptionalPatchValueZonedDateTimeToJSONTyp
     }
     switch (value['type']) {
         case 'merge':
-            return Object.assign({}, PatchableRecordBasicListOptionalValueZonedDateTimePatchMergeToJSON(value), { type: 'merge' } as const);
+            return Object.assign({}, PatchableRecordBasicListOptionalValueZonedDateTimePatchMergeToJSON(value), { '@type': 'merge' } as const);
         case 'replace':
-            return Object.assign({}, PatchableRecordBasicListOptionalValueZonedDateTimePatchReplaceToJSON(value), { type: 'replace' } as const);
+            return Object.assign({}, PatchableRecordBasicListOptionalValueZonedDateTimePatchReplaceToJSON(value), { '@type': 'replace' } as const);
         default:
             return value;
     }

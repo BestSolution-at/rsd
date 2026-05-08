@@ -105,7 +105,7 @@ export interface PatchableRecordOfRecordsValueOptPatchMerge {
 export function instanceOfPatchableRecordOfRecordsValueOptPatchMerge(value: object): value is PatchableRecordOfRecordsValueOptPatchMerge {
     if (!('key' in value) || value['key'] === undefined) return false;
     if (!('version' in value) || value['version'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     return true;
 }
 

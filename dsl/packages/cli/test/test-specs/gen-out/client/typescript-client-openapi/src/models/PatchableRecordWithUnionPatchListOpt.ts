@@ -62,9 +62,9 @@ export function PatchableRecordWithUnionPatchListOptToJSONTyped(value?: Patchabl
     }
     switch (value['type']) {
         case 'merge':
-            return Object.assign({}, PatchableRecordWithUnionListOptPatchMergeToJSON(value), { type: 'merge' } as const);
+            return Object.assign({}, PatchableRecordWithUnionListOptPatchMergeToJSON(value), { '@type': 'merge' } as const);
         case 'replace':
-            return Object.assign({}, PatchableRecordWithUnionListOptPatchReplaceToJSON(value), { type: 'replace' } as const);
+            return Object.assign({}, PatchableRecordWithUnionListOptPatchReplaceToJSON(value), { '@type': 'replace' } as const);
         default:
             return value;
     }

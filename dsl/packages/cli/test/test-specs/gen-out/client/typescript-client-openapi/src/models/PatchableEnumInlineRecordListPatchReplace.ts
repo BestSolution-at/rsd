@@ -48,7 +48,7 @@ export type PatchableEnumInlineRecordListPatchReplaceElementsEnum = typeof Patch
  * Check if a given object implements the PatchableEnumInlineRecordListPatchReplace interface.
  */
 export function instanceOfPatchableEnumInlineRecordListPatchReplace(value: object): value is PatchableEnumInlineRecordListPatchReplace {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     if (!('elements' in value) || value['elements'] === undefined) return false;
     return true;
 }

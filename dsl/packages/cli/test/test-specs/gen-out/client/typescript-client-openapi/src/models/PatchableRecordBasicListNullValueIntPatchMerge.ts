@@ -43,7 +43,7 @@ export interface PatchableRecordBasicListNullValueIntPatchMerge {
  * Check if a given object implements the PatchableRecordBasicListNullValueIntPatchMerge interface.
  */
 export function instanceOfPatchableRecordBasicListNullValueIntPatchMerge(value: object): value is PatchableRecordBasicListNullValueIntPatchMerge {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     if (!('additions' in value) || value['additions'] === undefined) return false;
     if (!('removals' in value) || value['removals'] === undefined) return false;
     return true;

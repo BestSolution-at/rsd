@@ -37,7 +37,7 @@ export interface PatchableRecordBasicListOptionalValueZonedDateTimePatchReplace 
  * Check if a given object implements the PatchableRecordBasicListOptionalValueZonedDateTimePatchReplace interface.
  */
 export function instanceOfPatchableRecordBasicListOptionalValueZonedDateTimePatchReplace(value: object): value is PatchableRecordBasicListOptionalValueZonedDateTimePatchReplace {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     if (!('elements' in value) || value['elements'] === undefined) return false;
     return true;
 }

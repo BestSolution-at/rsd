@@ -744,7 +744,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -8412,7 +8415,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           },
@@ -8424,7 +8430,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -8444,7 +8453,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           },
@@ -8476,7 +8488,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
                 "nullable": true
               }
             }
@@ -8509,7 +8524,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
                 "nullable": true
               }
             }
@@ -8687,11 +8705,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string",
-                "enum": [
-                  "A",
-                  "B"
-                ]
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "A",
+                    "B"
+                  ]
+                }
               }
             }
           },
@@ -8703,11 +8724,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "enum": [
-                    "A",
-                    "B"
-                  ]
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "A",
+                      "B"
+                    ]
+                  }
                 }
               }
             }
@@ -8727,11 +8751,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string",
-                "enum": [
-                  "A",
-                  "B"
-                ]
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "A",
+                    "B"
+                  ]
+                }
               }
             }
           },
@@ -8763,11 +8790,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string",
-                "enum": [
-                  "C",
-                  "D"
-                ],
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "C",
+                    "D"
+                  ]
+                },
                 "nullable": true
               }
             }
@@ -8800,11 +8830,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string",
-                "enum": [
-                  "C",
-                  "D"
-                ],
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "C",
+                    "D"
+                  ]
+                },
                 "nullable": true
               }
             }
@@ -9623,7 +9656,10 @@
             "in": "query",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         ],
@@ -9633,7 +9669,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -9693,11 +9732,14 @@
             "in": "query",
             "required": true,
             "schema": {
-              "type": "string",
-              "enum": [
-                "A",
-                "B"
-              ]
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B"
+                ]
+              }
             }
           }
         ],
@@ -9707,11 +9749,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "enum": [
-                    "A",
-                    "B"
-                  ]
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "A",
+                      "B"
+                    ]
+                  }
                 }
               }
             }
@@ -11329,7 +11374,10 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         ],
@@ -11339,7 +11387,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -11361,7 +11412,10 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         ],
@@ -11393,7 +11447,10 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "string",
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
               "nullable": true
             }
           }
@@ -11426,7 +11483,10 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "string",
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
               "nullable": true
             }
           }
@@ -11604,11 +11664,14 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "string",
-              "enum": [
-                "A",
-                "B"
-              ]
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B"
+                ]
+              }
             }
           }
         ],
@@ -11618,11 +11681,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "enum": [
-                    "A",
-                    "B"
-                  ]
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "A",
+                      "B"
+                    ]
+                  }
                 }
               }
             }
@@ -11644,11 +11710,14 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "string",
-              "enum": [
-                "A",
-                "B"
-              ]
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "A",
+                  "B"
+                ]
+              }
             }
           }
         ],
@@ -11680,11 +11749,14 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "string",
-              "enum": [
-                "C",
-                "D"
-              ],
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "C",
+                  "D"
+                ]
+              },
               "nullable": true
             }
           }
@@ -11717,11 +11789,14 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "string",
-              "enum": [
-                "C",
-                "D"
-              ],
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "C",
+                  "D"
+                ]
+              },
               "nullable": true
             }
           }

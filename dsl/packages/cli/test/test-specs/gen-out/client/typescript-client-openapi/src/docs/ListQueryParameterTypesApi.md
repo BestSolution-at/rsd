@@ -292,7 +292,7 @@ No authorization required
 
 ## listQueryParameterTypesListInlineEnumQueryParam
 
-> string listQueryParameterTypesListInlineEnumQueryParam(queryValue)
+> Array&lt;string&gt; listQueryParameterTypesListInlineEnumQueryParam(queryValue)
 
 
 
@@ -312,8 +312,8 @@ async function example() {
   const api = new ListQueryParameterTypesApi();
 
   const body = {
-    // 'A' | 'B' | 
-    queryValue: queryValue_example,
+    // Array<'A' | 'B'> | 
+    queryValue: ...,
   } satisfies ListQueryParameterTypesListInlineEnumQueryParamRequest;
 
   try {
@@ -333,11 +333,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **queryValue** | `A`, `B` |  | [Defaults to `undefined`] [Enum: A, B] |
+| **queryValue** | `A`, `B` |  | [Enum: A, B] |
 
 ### Return type
 
-**string**
+**Array<string>**
 
 ### Authorization
 
@@ -767,7 +767,7 @@ No authorization required
 
 ## listQueryParameterTypesListScalarQueryParam
 
-> string listQueryParameterTypesListScalarQueryParam(queryValue)
+> Array&lt;string&gt; listQueryParameterTypesListScalarQueryParam(queryValue)
 
 
 
@@ -787,8 +787,8 @@ async function example() {
   const api = new ListQueryParameterTypesApi();
 
   const body = {
-    // string | 
-    queryValue: queryValue_example,
+    // Array<string> | 
+    queryValue: ...,
   } satisfies ListQueryParameterTypesListScalarQueryParamRequest;
 
   try {
@@ -808,11 +808,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **queryValue** | `string` |  | [Defaults to `undefined`] |
+| **queryValue** | `Array<string>` |  | |
 
 ### Return type
 
-**string**
+**Array<string>**
 
 ### Authorization
 

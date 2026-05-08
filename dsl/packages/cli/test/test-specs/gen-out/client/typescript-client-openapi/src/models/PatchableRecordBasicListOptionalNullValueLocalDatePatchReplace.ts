@@ -37,7 +37,7 @@ export interface PatchableRecordBasicListOptionalNullValueLocalDatePatchReplace 
  * Check if a given object implements the PatchableRecordBasicListOptionalNullValueLocalDatePatchReplace interface.
  */
 export function instanceOfPatchableRecordBasicListOptionalNullValueLocalDatePatchReplace(value: object): value is PatchableRecordBasicListOptionalNullValueLocalDatePatchReplace {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     if (!('elements' in value) || value['elements'] === undefined) return false;
     return true;
 }

@@ -37,7 +37,7 @@ export interface PatchableRecordBasicListOptionalNullValueIntPatchReplace {
  * Check if a given object implements the PatchableRecordBasicListOptionalNullValueIntPatchReplace interface.
  */
 export function instanceOfPatchableRecordBasicListOptionalNullValueIntPatchReplace(value: object): value is PatchableRecordBasicListOptionalNullValueIntPatchReplace {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     if (!('elements' in value) || value['elements'] === undefined) return false;
     return true;
 }

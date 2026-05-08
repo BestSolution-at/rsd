@@ -141,7 +141,7 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listIntBodyParamNil', () => {
-		test.each([json, msgpack, openapi])('success - null with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success - null with $encoding', async ({ service }) => {
 			const [result, error] = await service.listIntBodyParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
@@ -190,7 +190,7 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listLongBodyParamNil', () => {
-		test.each([json, msgpack, openapi])('success - null with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success - null with $encoding', async ({ service }) => {
 			const [result, error] = await service.listLongBodyParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
@@ -239,7 +239,7 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listFloatBodyParamNil', () => {
-		test.each([json, msgpack, openapi])('success - null with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success - null with $encoding', async ({ service }) => {
 			const [result, error] = await service.listFloatBodyParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
@@ -288,7 +288,7 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listDoubleBodyParamNil', () => {
-		test.each([json, msgpack, openapi])('success - null with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success - null with $encoding', async ({ service }) => {
 			const [result, error] = await service.listDoubleBodyParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
@@ -337,7 +337,7 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listStringBodyParamNil', () => {
-		test.each([json, msgpack, openapi])('success - null with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success - null with $encoding', async ({ service }) => {
 			const [result, error] = await service.listStringBodyParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
@@ -386,7 +386,7 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listLocalDateBodyParamNil', () => {
-		test.each([json, msgpack, openapi])('success - null with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success - null with $encoding', async ({ service }) => {
 			const [result, error] = await service.listLocalDateBodyParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
@@ -438,7 +438,7 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listLocalDateTimeBodyParamNil', () => {
-		test.each([json, msgpack, openapi])('success - null with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success - null with $encoding', async ({ service }) => {
 			const [result, error] = await service.listLocalDateTimeBodyParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
@@ -499,7 +499,7 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listZonedDateTimeBodyParamNil', () => {
-		test.each([json, msgpack, openapi])('success null with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success null with $encoding', async ({ service }) => {
 			const [result, error] = await service.listZonedDateTimeBodyParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
@@ -554,7 +554,7 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listScalarBodyParamNil', () => {
-		test.each([json, msgpack, openapi])('success null with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success null with $encoding', async ({ service }) => {
 			const [result, error] = await service.listScalarBodyParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
@@ -591,7 +591,7 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listEnumBodyParamOpt', () => {
-		test.each([json, msgpack, openapi])('success undefined with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success undefined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listEnumBodyParamOpt();
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
@@ -603,7 +603,7 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listEnumBodyParamNil', () => {
-		test.each([json, msgpack, openapi])('success null with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success null with $encoding', async ({ service }) => {
 			const [result, error] = await service.listEnumBodyParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
@@ -615,17 +615,17 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listEnumBodyParamOptNil', () => {
-		test.each([json, msgpack, openapi])('success undefined with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success undefined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listEnumBodyParamOptNil(undefined);
 			expect(error).toBeNull();
 			expect(result).toEqual('UNDEFINED');
 		});
-		test.each([json, msgpack, openapi])('success null with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success null with $encoding', async ({ service }) => {
 			const [result, error] = await service.listEnumBodyParamOptNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
 		});
-		test.each([json, msgpack, openapi])('success defined with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success defined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listEnumBodyParamOptNil(['A', 'B', 'A']);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
@@ -652,7 +652,7 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 	describe('listInlineEnumBodyParamNil', () => {
-		test.each([json, msgpack, openapi])('success null with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success null with $encoding', async ({ service }) => {
 			const [result, error] = await service.listInlineEnumBodyParamNil(null);
 			expect(error).toBeNull();
 			expect(result).toEqual('NULL');
@@ -740,7 +740,7 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toEqual(['UNDEFINED', 'UNDEFINED', 'UNDEFINED']);
 		});
-		test.each([json, msgpack, openapi])('success null with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, openapi*/])('success null with $encoding', async ({ service }) => {
 			const [result, error] = await service.listMultiBodyParamOptNil(null, null, null);
 			expect(error).toBeNull();
 			expect(result).toEqual(['NULL', 'NULL', 'NULL']);

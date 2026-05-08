@@ -1141,7 +1141,7 @@ No authorization required
 
 ## listBodyParameterTypesListInlineEnumBodyParam
 
-> string listBodyParameterTypesListInlineEnumBodyParam(body)
+> Array&lt;string&gt; listBodyParameterTypesListInlineEnumBodyParam(requestBody)
 
 
 
@@ -1161,8 +1161,8 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // string
-    body: body_example,
+    // Array<string>
+    requestBody: ...,
   } satisfies ListBodyParameterTypesListInlineEnumBodyParamRequest;
 
   try {
@@ -1182,11 +1182,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | |
+| **requestBody** | `Array<string>` |  | |
 
 ### Return type
 
-**string**
+**Array<string>**
 
 ### Authorization
 
@@ -1208,7 +1208,7 @@ No authorization required
 
 ## listBodyParameterTypesListInlineEnumBodyParamNil
 
-> NilResult listBodyParameterTypesListInlineEnumBodyParamNil(body)
+> NilResult listBodyParameterTypesListInlineEnumBodyParamNil(requestBody)
 
 
 
@@ -1228,8 +1228,8 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // string
-    body: body_example,
+    // Array<string>
+    requestBody: ...,
   } satisfies ListBodyParameterTypesListInlineEnumBodyParamNilRequest;
 
   try {
@@ -1249,7 +1249,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | |
+| **requestBody** | `Array<string>` |  | |
 
 ### Return type
 
@@ -1275,7 +1275,7 @@ No authorization required
 
 ## listBodyParameterTypesListInlineEnumBodyParamOpt
 
-> NilResult listBodyParameterTypesListInlineEnumBodyParamOpt(body)
+> NilResult listBodyParameterTypesListInlineEnumBodyParamOpt(requestBody)
 
 
 
@@ -1295,8 +1295,8 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // string (optional)
-    body: body_example,
+    // Array<string> (optional)
+    requestBody: ...,
   } satisfies ListBodyParameterTypesListInlineEnumBodyParamOptRequest;
 
   try {
@@ -1316,7 +1316,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **requestBody** | `Array<string>` |  | [Optional] |
 
 ### Return type
 
@@ -1342,7 +1342,7 @@ No authorization required
 
 ## listBodyParameterTypesListInlineEnumBodyParamOptNil
 
-> NilResult listBodyParameterTypesListInlineEnumBodyParamOptNil(body)
+> NilResult listBodyParameterTypesListInlineEnumBodyParamOptNil(requestBody)
 
 
 
@@ -1362,8 +1362,8 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // string (optional)
-    body: body_example,
+    // Array<string> (optional)
+    requestBody: ...,
   } satisfies ListBodyParameterTypesListInlineEnumBodyParamOptNilRequest;
 
   try {
@@ -1383,7 +1383,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **requestBody** | `Array<string>` |  | [Optional] |
 
 ### Return type
 
@@ -3017,7 +3017,7 @@ No authorization required
 
 ## listBodyParameterTypesListScalarBodyParam
 
-> string listBodyParameterTypesListScalarBodyParam(body)
+> Array&lt;string&gt; listBodyParameterTypesListScalarBodyParam(requestBody)
 
 
 
@@ -3037,8 +3037,8 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // string
-    body: body_example,
+    // Array<string>
+    requestBody: ...,
   } satisfies ListBodyParameterTypesListScalarBodyParamRequest;
 
   try {
@@ -3058,11 +3058,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | |
+| **requestBody** | `Array<string>` |  | |
 
 ### Return type
 
-**string**
+**Array<string>**
 
 ### Authorization
 
@@ -3084,7 +3084,7 @@ No authorization required
 
 ## listBodyParameterTypesListScalarBodyParamNil
 
-> NilResult listBodyParameterTypesListScalarBodyParamNil(body)
+> NilResult listBodyParameterTypesListScalarBodyParamNil(requestBody)
 
 
 
@@ -3104,8 +3104,8 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // string
-    body: body_example,
+    // Array<string>
+    requestBody: ...,
   } satisfies ListBodyParameterTypesListScalarBodyParamNilRequest;
 
   try {
@@ -3125,7 +3125,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | |
+| **requestBody** | `Array<string>` |  | |
 
 ### Return type
 
@@ -3151,7 +3151,7 @@ No authorization required
 
 ## listBodyParameterTypesListScalarBodyParamOpt
 
-> NilResult listBodyParameterTypesListScalarBodyParamOpt(body)
+> NilResult listBodyParameterTypesListScalarBodyParamOpt(requestBody)
 
 
 
@@ -3171,8 +3171,8 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // string (optional)
-    body: body_example,
+    // Array<string> (optional)
+    requestBody: ...,
   } satisfies ListBodyParameterTypesListScalarBodyParamOptRequest;
 
   try {
@@ -3192,7 +3192,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **requestBody** | `Array<string>` |  | [Optional] |
 
 ### Return type
 
@@ -3218,7 +3218,7 @@ No authorization required
 
 ## listBodyParameterTypesListScalarBodyParamOptNil
 
-> NilResult listBodyParameterTypesListScalarBodyParamOptNil(body)
+> NilResult listBodyParameterTypesListScalarBodyParamOptNil(requestBody)
 
 
 
@@ -3238,8 +3238,8 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // string (optional)
-    body: body_example,
+    // Array<string> (optional)
+    requestBody: ...,
   } satisfies ListBodyParameterTypesListScalarBodyParamOptNilRequest;
 
   try {
@@ -3259,7 +3259,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **requestBody** | `Array<string>` |  | [Optional] |
 
 ### Return type
 

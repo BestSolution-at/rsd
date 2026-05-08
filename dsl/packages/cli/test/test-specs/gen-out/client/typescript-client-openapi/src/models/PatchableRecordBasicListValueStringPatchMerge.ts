@@ -43,7 +43,7 @@ export interface PatchableRecordBasicListValueStringPatchMerge {
  * Check if a given object implements the PatchableRecordBasicListValueStringPatchMerge interface.
  */
 export function instanceOfPatchableRecordBasicListValueStringPatchMerge(value: object): value is PatchableRecordBasicListValueStringPatchMerge {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     if (!('additions' in value) || value['additions'] === undefined) return false;
     if (!('removals' in value) || value['removals'] === undefined) return false;
     return true;

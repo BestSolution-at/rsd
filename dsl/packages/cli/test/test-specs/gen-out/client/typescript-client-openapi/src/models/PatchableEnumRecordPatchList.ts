@@ -62,9 +62,9 @@ export function PatchableEnumRecordPatchListToJSONTyped(value?: PatchableEnumRec
     }
     switch (value['type']) {
         case 'merge':
-            return Object.assign({}, PatchableEnumRecordListPatchMergeToJSON(value), { type: 'merge' } as const);
+            return Object.assign({}, PatchableEnumRecordListPatchMergeToJSON(value), { '@type': 'merge' } as const);
         case 'replace':
-            return Object.assign({}, PatchableEnumRecordListPatchReplaceToJSON(value), { type: 'replace' } as const);
+            return Object.assign({}, PatchableEnumRecordListPatchReplaceToJSON(value), { '@type': 'replace' } as const);
         default:
             return value;
     }

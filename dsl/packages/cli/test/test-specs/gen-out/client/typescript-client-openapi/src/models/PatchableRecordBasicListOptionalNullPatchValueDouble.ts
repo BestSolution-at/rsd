@@ -62,9 +62,9 @@ export function PatchableRecordBasicListOptionalNullPatchValueDoubleToJSONTyped(
     }
     switch (value['type']) {
         case 'merge':
-            return Object.assign({}, PatchableRecordBasicListOptionalNullValueDoublePatchMergeToJSON(value), { type: 'merge' } as const);
+            return Object.assign({}, PatchableRecordBasicListOptionalNullValueDoublePatchMergeToJSON(value), { '@type': 'merge' } as const);
         case 'replace':
-            return Object.assign({}, PatchableRecordBasicListOptionalNullValueDoublePatchReplaceToJSON(value), { type: 'replace' } as const);
+            return Object.assign({}, PatchableRecordBasicListOptionalNullValueDoublePatchReplaceToJSON(value), { '@type': 'replace' } as const);
         default:
             return value;
     }

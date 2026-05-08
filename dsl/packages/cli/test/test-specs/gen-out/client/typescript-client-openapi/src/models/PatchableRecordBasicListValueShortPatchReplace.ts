@@ -37,7 +37,7 @@ export interface PatchableRecordBasicListValueShortPatchReplace {
  * Check if a given object implements the PatchableRecordBasicListValueShortPatchReplace interface.
  */
 export function instanceOfPatchableRecordBasicListValueShortPatchReplace(value: object): value is PatchableRecordBasicListValueShortPatchReplace {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     if (!('elements' in value) || value['elements'] === undefined) return false;
     return true;
 }

@@ -12,18 +12,17 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime.js';
-import type {
-  SampleEnum,
-  SimpleRecord,
-} from '../models/index.js';
 import {
+    type SampleEnum,
     SampleEnumFromJSON,
     SampleEnumToJSON,
+} from '../models/SampleEnum.js';
+import {
+    type SimpleRecord,
     SimpleRecordFromJSON,
     SimpleRecordToJSON,
-} from '../models/index.js';
+} from '../models/SimpleRecord.js';
 
 export interface SampleServiceGetSimpleRecordRequest {
     key: string;
@@ -497,7 +496,7 @@ export class SampleServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/samplerecords/simplerecord/{key}`;
-        urlPath = urlPath.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters['key'])));
+        urlPath = urlPath.replace('{key}', encodeURIComponent(String(requestParameters['key'])));
 
         return {
             path: urlPath,
@@ -542,7 +541,7 @@ export class SampleServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/samplerecords/simplerecordwitherror/{key}`;
-        urlPath = urlPath.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters['key'])));
+        urlPath = urlPath.replace('{key}', encodeURIComponent(String(requestParameters['key'])));
 
         return {
             path: urlPath,

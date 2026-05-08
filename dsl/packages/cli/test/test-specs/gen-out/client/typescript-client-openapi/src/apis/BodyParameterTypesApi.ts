@@ -12,45 +12,62 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime.js';
-import type {
-  BodyParameterTypesMultiBodyParamFirstRequest,
-  BodyParameterTypesMultiBodyParamNilRequest,
-  BodyParameterTypesMultiBodyParamOptNilRequest,
-  BodyParameterTypesMultiBodyParamOptRequest,
-  BodyParameterTypesMultiBodyParamRequest,
-  NilResult,
-  PatchableRecord,
-  PatchableRecordPatch,
-  SampleEnum,
-  SimpleRecord,
-  Union,
-} from '../models/index.js';
 import {
+    type BodyParameterTypesMultiBodyParamFirstRequest,
     BodyParameterTypesMultiBodyParamFirstRequestFromJSON,
     BodyParameterTypesMultiBodyParamFirstRequestToJSON,
+} from '../models/BodyParameterTypesMultiBodyParamFirstRequest.js';
+import {
+    type BodyParameterTypesMultiBodyParamNilRequest,
     BodyParameterTypesMultiBodyParamNilRequestFromJSON,
     BodyParameterTypesMultiBodyParamNilRequestToJSON,
+} from '../models/BodyParameterTypesMultiBodyParamNilRequest.js';
+import {
+    type BodyParameterTypesMultiBodyParamOptNilRequest,
     BodyParameterTypesMultiBodyParamOptNilRequestFromJSON,
     BodyParameterTypesMultiBodyParamOptNilRequestToJSON,
+} from '../models/BodyParameterTypesMultiBodyParamOptNilRequest.js';
+import {
+    type BodyParameterTypesMultiBodyParamOptRequest,
     BodyParameterTypesMultiBodyParamOptRequestFromJSON,
     BodyParameterTypesMultiBodyParamOptRequestToJSON,
+} from '../models/BodyParameterTypesMultiBodyParamOptRequest.js';
+import {
+    type BodyParameterTypesMultiBodyParamRequest,
     BodyParameterTypesMultiBodyParamRequestFromJSON,
     BodyParameterTypesMultiBodyParamRequestToJSON,
+} from '../models/BodyParameterTypesMultiBodyParamRequest.js';
+import {
+    type NilResult,
     NilResultFromJSON,
     NilResultToJSON,
+} from '../models/NilResult.js';
+import {
+    type PatchableRecord,
     PatchableRecordFromJSON,
     PatchableRecordToJSON,
+} from '../models/PatchableRecord.js';
+import {
+    type PatchableRecordPatch,
     PatchableRecordPatchFromJSON,
     PatchableRecordPatchToJSON,
+} from '../models/PatchableRecordPatch.js';
+import {
+    type SampleEnum,
     SampleEnumFromJSON,
     SampleEnumToJSON,
+} from '../models/SampleEnum.js';
+import {
+    type SimpleRecord,
     SimpleRecordFromJSON,
     SimpleRecordToJSON,
+} from '../models/SimpleRecord.js';
+import {
+    type Union,
     UnionFromJSON,
     UnionToJSON,
-} from '../models/index.js';
+} from '../models/Union.js';
 
 export interface BodyParameterTypesMultiBodyParamOperationRequest {
     bodyParameterTypesMultiBodyParamRequest: BodyParameterTypesMultiBodyParamRequest;

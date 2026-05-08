@@ -12,33 +12,42 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime.js';
-import type {
-  BinaryTypesSingleBodyAdditionRequest,
-  BinaryTypesTwoBinariesAdditionRequest,
-  BinaryTypesUploadMixedNilRequest,
-  BinaryTypesUploadMixedOptNilRequest,
-  BinaryTypesUploadMixedOptRequest,
-  BinaryTypesUploadMixedRequest,
-  UploadMixedResult,
-} from '../models/index.js';
 import {
+    type BinaryTypesSingleBodyAdditionRequest,
     BinaryTypesSingleBodyAdditionRequestFromJSON,
     BinaryTypesSingleBodyAdditionRequestToJSON,
+} from '../models/BinaryTypesSingleBodyAdditionRequest.js';
+import {
+    type BinaryTypesTwoBinariesAdditionRequest,
     BinaryTypesTwoBinariesAdditionRequestFromJSON,
     BinaryTypesTwoBinariesAdditionRequestToJSON,
+} from '../models/BinaryTypesTwoBinariesAdditionRequest.js';
+import {
+    type BinaryTypesUploadMixedNilRequest,
     BinaryTypesUploadMixedNilRequestFromJSON,
     BinaryTypesUploadMixedNilRequestToJSON,
+} from '../models/BinaryTypesUploadMixedNilRequest.js';
+import {
+    type BinaryTypesUploadMixedOptNilRequest,
     BinaryTypesUploadMixedOptNilRequestFromJSON,
     BinaryTypesUploadMixedOptNilRequestToJSON,
+} from '../models/BinaryTypesUploadMixedOptNilRequest.js';
+import {
+    type BinaryTypesUploadMixedOptRequest,
     BinaryTypesUploadMixedOptRequestFromJSON,
     BinaryTypesUploadMixedOptRequestToJSON,
+} from '../models/BinaryTypesUploadMixedOptRequest.js';
+import {
+    type BinaryTypesUploadMixedRequest,
     BinaryTypesUploadMixedRequestFromJSON,
     BinaryTypesUploadMixedRequestToJSON,
+} from '../models/BinaryTypesUploadMixedRequest.js';
+import {
+    type UploadMixedResult,
     UploadMixedResultFromJSON,
     UploadMixedResultToJSON,
-} from '../models/index.js';
+} from '../models/UploadMixedResult.js';
 
 export interface BinaryTypesMixedRequest {
     pathString: string;
@@ -338,8 +347,8 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/binarytypes/mixed/{pathString}/{pathNumber}`;
-        urlPath = urlPath.replace(`{${"pathString"}}`, encodeURIComponent(String(requestParameters['pathString'])));
-        urlPath = urlPath.replace(`{${"pathNumber"}}`, encodeURIComponent(String(requestParameters['pathNumber'])));
+        urlPath = urlPath.replace('{pathString}', encodeURIComponent(String(requestParameters['pathString'])));
+        urlPath = urlPath.replace('{pathNumber}', encodeURIComponent(String(requestParameters['pathNumber'])));
 
         return {
             path: urlPath,

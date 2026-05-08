@@ -62,9 +62,9 @@ export function PatchableRecordBasicListNullPatchValueLocalDateTimeToJSONTyped(v
     }
     switch (value['type']) {
         case 'merge':
-            return Object.assign({}, PatchableRecordBasicListNullValueLocalDateTimePatchMergeToJSON(value), { type: 'merge' } as const);
+            return Object.assign({}, PatchableRecordBasicListNullValueLocalDateTimePatchMergeToJSON(value), { '@type': 'merge' } as const);
         case 'replace':
-            return Object.assign({}, PatchableRecordBasicListNullValueLocalDateTimePatchReplaceToJSON(value), { type: 'replace' } as const);
+            return Object.assign({}, PatchableRecordBasicListNullValueLocalDateTimePatchReplaceToJSON(value), { '@type': 'replace' } as const);
         default:
             return value;
     }

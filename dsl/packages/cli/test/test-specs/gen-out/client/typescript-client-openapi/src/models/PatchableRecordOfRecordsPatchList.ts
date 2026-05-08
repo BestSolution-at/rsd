@@ -62,9 +62,9 @@ export function PatchableRecordOfRecordsPatchListToJSONTyped(value?: PatchableRe
     }
     switch (value['type']) {
         case 'merge':
-            return Object.assign({}, PatchableRecordOfRecordsListPatchMergeToJSON(value), { type: 'merge' } as const);
+            return Object.assign({}, PatchableRecordOfRecordsListPatchMergeToJSON(value), { '@type': 'merge' } as const);
         case 'replace':
-            return Object.assign({}, PatchableRecordOfRecordsListPatchReplaceToJSON(value), { type: 'replace' } as const);
+            return Object.assign({}, PatchableRecordOfRecordsListPatchReplaceToJSON(value), { '@type': 'replace' } as const);
         default:
             return value;
     }

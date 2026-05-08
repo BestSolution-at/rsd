@@ -12,18 +12,17 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime.js';
-import type {
-  SampleEnum,
-  SimpleRecord,
-} from '../models/index.js';
 import {
+    type SampleEnum,
     SampleEnumFromJSON,
     SampleEnumToJSON,
+} from '../models/SampleEnum.js';
+import {
+    type SimpleRecord,
     SimpleRecordFromJSON,
     SimpleRecordToJSON,
-} from '../models/index.js';
+} from '../models/SimpleRecord.js';
 
 /**
  * 
@@ -348,21 +347,17 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listSampleServiceListScalarRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async listSampleServiceListScalarRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         const requestOptions = await this.listSampleServiceListScalarRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      * 
      */
-    async listSampleServiceListScalar(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async listSampleServiceListScalar(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.listSampleServiceListScalarRaw(initOverrides);
         return await response.value();
     }

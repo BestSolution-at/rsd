@@ -62,9 +62,9 @@ export function PatchableScalarRecordPatchListOptToJSONTyped(value?: PatchableSc
     }
     switch (value['type']) {
         case 'merge':
-            return Object.assign({}, PatchableScalarRecordListOptPatchMergeToJSON(value), { type: 'merge' } as const);
+            return Object.assign({}, PatchableScalarRecordListOptPatchMergeToJSON(value), { '@type': 'merge' } as const);
         case 'replace':
-            return Object.assign({}, PatchableScalarRecordListOptPatchReplaceToJSON(value), { type: 'replace' } as const);
+            return Object.assign({}, PatchableScalarRecordListOptPatchReplaceToJSON(value), { '@type': 'replace' } as const);
         default:
             return value;
     }

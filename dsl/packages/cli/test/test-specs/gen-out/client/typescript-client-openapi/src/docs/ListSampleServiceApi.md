@@ -495,7 +495,7 @@ No authorization required
 
 ## listSampleServiceListScalar
 
-> string listSampleServiceListScalar()
+> Array&lt;string&gt; listSampleServiceListScalar()
 
 
 
@@ -532,7 +532,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**string**
+**Array<string>**
 
 ### Authorization
 

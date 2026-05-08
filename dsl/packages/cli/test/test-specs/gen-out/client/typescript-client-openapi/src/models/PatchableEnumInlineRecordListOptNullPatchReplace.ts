@@ -48,7 +48,7 @@ export type PatchableEnumInlineRecordListOptNullPatchReplaceElementsEnum = typeo
  * Check if a given object implements the PatchableEnumInlineRecordListOptNullPatchReplace interface.
  */
 export function instanceOfPatchableEnumInlineRecordListOptNullPatchReplace(value: object): value is PatchableEnumInlineRecordListOptNullPatchReplace {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     if (!('elements' in value) || value['elements'] === undefined) return false;
     return true;
 }

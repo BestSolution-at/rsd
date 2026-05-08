@@ -12,15 +12,12 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime.js';
-import type {
-  SampleEnum,
-} from '../models/index.js';
 import {
+    type SampleEnum,
     SampleEnumFromJSON,
     SampleEnumToJSON,
-} from '../models/index.js';
+} from '../models/SampleEnum.js';
 
 export interface PathParameterTypeServiceMultiPathParamRequest {
     valueA: string;
@@ -104,8 +101,8 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/pathparametertype/multipathparam/{valueA}/{valueB}`;
-        urlPath = urlPath.replace(`{${"valueA"}}`, encodeURIComponent(String(requestParameters['valueA'])));
-        urlPath = urlPath.replace(`{${"valueB"}}`, encodeURIComponent(String(requestParameters['valueB'])));
+        urlPath = urlPath.replace('{valueA}', encodeURIComponent(String(requestParameters['valueA'])));
+        urlPath = urlPath.replace('{valueB}', encodeURIComponent(String(requestParameters['valueB'])));
 
         return {
             path: urlPath,
@@ -154,7 +151,7 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/pathparametertype/boolean/{pathBoolean}`;
-        urlPath = urlPath.replace(`{${"pathBoolean"}}`, encodeURIComponent(String(requestParameters['pathBoolean'])));
+        urlPath = urlPath.replace('{pathBoolean}', encodeURIComponent(String(requestParameters['pathBoolean'])));
 
         return {
             path: urlPath,
@@ -203,7 +200,7 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/pathparametertype/double/{pathDouble}`;
-        urlPath = urlPath.replace(`{${"pathDouble"}}`, encodeURIComponent(String(requestParameters['pathDouble'])));
+        urlPath = urlPath.replace('{pathDouble}', encodeURIComponent(String(requestParameters['pathDouble'])));
 
         return {
             path: urlPath,
@@ -252,7 +249,7 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/pathparametertype/enum/{pathEnum}`;
-        urlPath = urlPath.replace(`{${"pathEnum"}}`, encodeURIComponent(String(requestParameters['pathEnum'])));
+        urlPath = urlPath.replace('{pathEnum}', encodeURIComponent(String(requestParameters['pathEnum'])));
 
         return {
             path: urlPath,
@@ -297,7 +294,7 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/pathparametertype/float/{pathFloat}`;
-        urlPath = urlPath.replace(`{${"pathFloat"}}`, encodeURIComponent(String(requestParameters['pathFloat'])));
+        urlPath = urlPath.replace('{pathFloat}', encodeURIComponent(String(requestParameters['pathFloat'])));
 
         return {
             path: urlPath,
@@ -346,7 +343,7 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/pathparametertype/int/{pathInt}`;
-        urlPath = urlPath.replace(`{${"pathInt"}}`, encodeURIComponent(String(requestParameters['pathInt'])));
+        urlPath = urlPath.replace('{pathInt}', encodeURIComponent(String(requestParameters['pathInt'])));
 
         return {
             path: urlPath,
@@ -396,9 +393,9 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
         let urlPath = `/api/pathparametertype/localdate/{pathLocalDate}`;
         if (requestParameters['pathLocalDate'] instanceof Date) {
-            urlPath = urlPath.replace(`{${"pathLocalDate"}}`, encodeURIComponent(requestParameters['pathLocalDate'].toISOString().substring(0,10)));
+            urlPath = urlPath.replace('{pathLocalDate}', encodeURIComponent(requestParameters['pathLocalDate'].toISOString().substring(0,10)));
         } else {
-            urlPath = urlPath.replace(`{${"pathLocalDate"}}`, encodeURIComponent(String(requestParameters['pathLocalDate'])));
+            urlPath = urlPath.replace('{pathLocalDate}', encodeURIComponent(String(requestParameters['pathLocalDate'])));
         }
 
         return {
@@ -448,7 +445,7 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/pathparametertype/localdatetime/{pathLocalDateTime}`;
-        urlPath = urlPath.replace(`{${"pathLocalDateTime"}}`, encodeURIComponent(String(requestParameters['pathLocalDateTime'])));
+        urlPath = urlPath.replace('{pathLocalDateTime}', encodeURIComponent(String(requestParameters['pathLocalDateTime'])));
 
         return {
             path: urlPath,
@@ -497,7 +494,7 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/pathparametertype/long/{pathLong}`;
-        urlPath = urlPath.replace(`{${"pathLong"}}`, encodeURIComponent(String(requestParameters['pathLong'])));
+        urlPath = urlPath.replace('{pathLong}', encodeURIComponent(String(requestParameters['pathLong'])));
 
         return {
             path: urlPath,
@@ -546,7 +543,7 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/pathparametertype/scalar/{pathScalar}`;
-        urlPath = urlPath.replace(`{${"pathScalar"}}`, encodeURIComponent(String(requestParameters['pathScalar'])));
+        urlPath = urlPath.replace('{pathScalar}', encodeURIComponent(String(requestParameters['pathScalar'])));
 
         return {
             path: urlPath,
@@ -595,7 +592,7 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/pathparametertype/short/{pathShort}`;
-        urlPath = urlPath.replace(`{${"pathShort"}}`, encodeURIComponent(String(requestParameters['pathShort'])));
+        urlPath = urlPath.replace('{pathShort}', encodeURIComponent(String(requestParameters['pathShort'])));
 
         return {
             path: urlPath,
@@ -644,7 +641,7 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/pathparametertype/string/{pathString}`;
-        urlPath = urlPath.replace(`{${"pathString"}}`, encodeURIComponent(String(requestParameters['pathString'])));
+        urlPath = urlPath.replace('{pathString}', encodeURIComponent(String(requestParameters['pathString'])));
 
         return {
             path: urlPath,
@@ -693,7 +690,7 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/pathparametertype/zoneddatetime/{pathZonedDateTime}`;
-        urlPath = urlPath.replace(`{${"pathZonedDateTime"}}`, encodeURIComponent(String(requestParameters['pathZonedDateTime'])));
+        urlPath = urlPath.replace('{pathZonedDateTime}', encodeURIComponent(String(requestParameters['pathZonedDateTime'])));
 
         return {
             path: urlPath,

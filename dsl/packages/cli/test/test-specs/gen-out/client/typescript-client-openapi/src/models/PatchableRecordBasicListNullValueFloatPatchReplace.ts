@@ -37,7 +37,7 @@ export interface PatchableRecordBasicListNullValueFloatPatchReplace {
  * Check if a given object implements the PatchableRecordBasicListNullValueFloatPatchReplace interface.
  */
 export function instanceOfPatchableRecordBasicListNullValueFloatPatchReplace(value: object): value is PatchableRecordBasicListNullValueFloatPatchReplace {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     if (!('elements' in value) || value['elements'] === undefined) return false;
     return true;
 }

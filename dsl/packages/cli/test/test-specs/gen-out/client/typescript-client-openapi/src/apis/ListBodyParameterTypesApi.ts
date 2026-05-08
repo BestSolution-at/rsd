@@ -12,33 +12,42 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime.js';
-import type {
-  ListBodyParameterTypesListMultiBodyParamNilRequest,
-  ListBodyParameterTypesListMultiBodyParamOptNilRequest,
-  ListBodyParameterTypesListMultiBodyParamOptRequest,
-  ListBodyParameterTypesListMultiBodyParamRequest,
-  NilResult,
-  SampleEnum,
-  SimpleRecord,
-} from '../models/index.js';
 import {
+    type ListBodyParameterTypesListMultiBodyParamNilRequest,
     ListBodyParameterTypesListMultiBodyParamNilRequestFromJSON,
     ListBodyParameterTypesListMultiBodyParamNilRequestToJSON,
+} from '../models/ListBodyParameterTypesListMultiBodyParamNilRequest.js';
+import {
+    type ListBodyParameterTypesListMultiBodyParamOptNilRequest,
     ListBodyParameterTypesListMultiBodyParamOptNilRequestFromJSON,
     ListBodyParameterTypesListMultiBodyParamOptNilRequestToJSON,
+} from '../models/ListBodyParameterTypesListMultiBodyParamOptNilRequest.js';
+import {
+    type ListBodyParameterTypesListMultiBodyParamOptRequest,
     ListBodyParameterTypesListMultiBodyParamOptRequestFromJSON,
     ListBodyParameterTypesListMultiBodyParamOptRequestToJSON,
+} from '../models/ListBodyParameterTypesListMultiBodyParamOptRequest.js';
+import {
+    type ListBodyParameterTypesListMultiBodyParamRequest,
     ListBodyParameterTypesListMultiBodyParamRequestFromJSON,
     ListBodyParameterTypesListMultiBodyParamRequestToJSON,
+} from '../models/ListBodyParameterTypesListMultiBodyParamRequest.js';
+import {
+    type NilResult,
     NilResultFromJSON,
     NilResultToJSON,
+} from '../models/NilResult.js';
+import {
+    type SampleEnum,
     SampleEnumFromJSON,
     SampleEnumToJSON,
+} from '../models/SampleEnum.js';
+import {
+    type SimpleRecord,
     SimpleRecordFromJSON,
     SimpleRecordToJSON,
-} from '../models/index.js';
+} from '../models/SimpleRecord.js';
 
 export interface ListBodyParameterTypesListBooleanBodyParamRequest {
     requestBody: Array<boolean>;
@@ -105,19 +114,19 @@ export interface ListBodyParameterTypesListFloatBodyParamOptNilRequest {
 }
 
 export interface ListBodyParameterTypesListInlineEnumBodyParamRequest {
-    body: string;
+    requestBody: Array<string>;
 }
 
 export interface ListBodyParameterTypesListInlineEnumBodyParamNilRequest {
-    body: string | null;
+    requestBody: Array<string> | null;
 }
 
 export interface ListBodyParameterTypesListInlineEnumBodyParamOptRequest {
-    body?: string;
+    requestBody?: Array<string>;
 }
 
 export interface ListBodyParameterTypesListInlineEnumBodyParamOptNilRequest {
-    body?: string | null;
+    requestBody?: Array<string> | null;
 }
 
 export interface ListBodyParameterTypesListIntBodyParamRequest {
@@ -217,19 +226,19 @@ export interface ListBodyParameterTypesListRecordBodyParamOptNilRequest {
 }
 
 export interface ListBodyParameterTypesListScalarBodyParamRequest {
-    body: string;
+    requestBody: Array<string>;
 }
 
 export interface ListBodyParameterTypesListScalarBodyParamNilRequest {
-    body: string | null;
+    requestBody: Array<string> | null;
 }
 
 export interface ListBodyParameterTypesListScalarBodyParamOptRequest {
-    body?: string;
+    requestBody?: Array<string>;
 }
 
 export interface ListBodyParameterTypesListScalarBodyParamOptNilRequest {
-    body?: string | null;
+    requestBody?: Array<string> | null;
 }
 
 export interface ListBodyParameterTypesListShortBodyParamRequest {
@@ -985,10 +994,10 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
      * Creates request options for listBodyParameterTypesListInlineEnumBodyParam without sending the request
      */
     async listBodyParameterTypesListInlineEnumBodyParamRequestOpts(requestParameters: ListBodyParameterTypesListInlineEnumBodyParamRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
+        if (requestParameters['requestBody'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling listBodyParameterTypesListInlineEnumBodyParam().'
+                'requestBody',
+                'Required parameter "requestBody" was null or undefined when calling listBodyParameterTypesListInlineEnumBodyParam().'
             );
         }
 
@@ -1006,28 +1015,24 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: requestParameters['requestBody'],
         };
     }
 
     /**
      * 
      */
-    async listBodyParameterTypesListInlineEnumBodyParamRaw(requestParameters: ListBodyParameterTypesListInlineEnumBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async listBodyParameterTypesListInlineEnumBodyParamRaw(requestParameters: ListBodyParameterTypesListInlineEnumBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         const requestOptions = await this.listBodyParameterTypesListInlineEnumBodyParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      * 
      */
-    async listBodyParameterTypesListInlineEnumBodyParam(requestParameters: ListBodyParameterTypesListInlineEnumBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async listBodyParameterTypesListInlineEnumBodyParam(requestParameters: ListBodyParameterTypesListInlineEnumBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.listBodyParameterTypesListInlineEnumBodyParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1036,10 +1041,10 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
      * Creates request options for listBodyParameterTypesListInlineEnumBodyParamNil without sending the request
      */
     async listBodyParameterTypesListInlineEnumBodyParamNilRequestOpts(requestParameters: ListBodyParameterTypesListInlineEnumBodyParamNilRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
+        if (requestParameters['requestBody'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling listBodyParameterTypesListInlineEnumBodyParamNil().'
+                'requestBody',
+                'Required parameter "requestBody" was null or undefined when calling listBodyParameterTypesListInlineEnumBodyParamNil().'
             );
         }
 
@@ -1057,7 +1062,7 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: requestParameters['requestBody'],
         };
     }
 
@@ -1097,7 +1102,7 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: requestParameters['requestBody'],
         };
     }
 
@@ -1137,7 +1142,7 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: requestParameters['requestBody'],
         };
     }
 
@@ -2225,10 +2230,10 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
      * Creates request options for listBodyParameterTypesListScalarBodyParam without sending the request
      */
     async listBodyParameterTypesListScalarBodyParamRequestOpts(requestParameters: ListBodyParameterTypesListScalarBodyParamRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
+        if (requestParameters['requestBody'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling listBodyParameterTypesListScalarBodyParam().'
+                'requestBody',
+                'Required parameter "requestBody" was null or undefined when calling listBodyParameterTypesListScalarBodyParam().'
             );
         }
 
@@ -2246,28 +2251,24 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: requestParameters['requestBody'],
         };
     }
 
     /**
      * 
      */
-    async listBodyParameterTypesListScalarBodyParamRaw(requestParameters: ListBodyParameterTypesListScalarBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async listBodyParameterTypesListScalarBodyParamRaw(requestParameters: ListBodyParameterTypesListScalarBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         const requestOptions = await this.listBodyParameterTypesListScalarBodyParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      * 
      */
-    async listBodyParameterTypesListScalarBodyParam(requestParameters: ListBodyParameterTypesListScalarBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async listBodyParameterTypesListScalarBodyParam(requestParameters: ListBodyParameterTypesListScalarBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.listBodyParameterTypesListScalarBodyParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2276,10 +2277,10 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
      * Creates request options for listBodyParameterTypesListScalarBodyParamNil without sending the request
      */
     async listBodyParameterTypesListScalarBodyParamNilRequestOpts(requestParameters: ListBodyParameterTypesListScalarBodyParamNilRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
+        if (requestParameters['requestBody'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling listBodyParameterTypesListScalarBodyParamNil().'
+                'requestBody',
+                'Required parameter "requestBody" was null or undefined when calling listBodyParameterTypesListScalarBodyParamNil().'
             );
         }
 
@@ -2297,7 +2298,7 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: requestParameters['requestBody'],
         };
     }
 
@@ -2337,7 +2338,7 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: requestParameters['requestBody'],
         };
     }
 
@@ -2377,7 +2378,7 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: requestParameters['requestBody'],
         };
     }
 

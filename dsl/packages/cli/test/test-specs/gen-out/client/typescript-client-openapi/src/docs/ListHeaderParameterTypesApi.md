@@ -1141,7 +1141,7 @@ No authorization required
 
 ## listHeaderParameterTypesListInlineEnumHeaderParam
 
-> string listHeaderParameterTypesListInlineEnumHeaderParam(headerValue)
+> Array&lt;string&gt; listHeaderParameterTypesListInlineEnumHeaderParam(headerValue)
 
 
 
@@ -1161,8 +1161,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // 'A' | 'B' | 
-    headerValue: headerValue_example,
+    // Array<'A' | 'B'> | 
+    headerValue: ...,
   } satisfies ListHeaderParameterTypesListInlineEnumHeaderParamRequest;
 
   try {
@@ -1182,11 +1182,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `A`, `B` |  | [Defaults to `undefined`] [Enum: A, B] |
+| **headerValue** | `A`, `B` |  | [Enum: A, B] |
 
 ### Return type
 
-**string**
+**Array<string>**
 
 ### Authorization
 
@@ -1228,8 +1228,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // 'C' | 'D' | 
-    headerValue: headerValue_example,
+    // Array<'C' | 'D'> | 
+    headerValue: ...,
   } satisfies ListHeaderParameterTypesListInlineEnumHeaderParamNilRequest;
 
   try {
@@ -1249,7 +1249,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `C`, `D` |  | [Defaults to `undefined`] [Enum: C, D] |
+| **headerValue** | `C`, `D` |  | [Enum: C, D] |
 
 ### Return type
 
@@ -1295,8 +1295,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // 'A' | 'B' |  (optional)
-    headerValue: headerValue_example,
+    // Array<'A' | 'B'> |  (optional)
+    headerValue: ...,
   } satisfies ListHeaderParameterTypesListInlineEnumHeaderParamOptRequest;
 
   try {
@@ -1316,7 +1316,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `A`, `B` |  | [Optional] [Defaults to `undefined`] [Enum: A, B] |
+| **headerValue** | `A`, `B` |  | [Optional] [Enum: A, B] |
 
 ### Return type
 
@@ -1362,8 +1362,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // 'C' | 'D' |  (optional)
-    headerValue: headerValue_example,
+    // Array<'C' | 'D'> |  (optional)
+    headerValue: ...,
   } satisfies ListHeaderParameterTypesListInlineEnumHeaderParamOptNilRequest;
 
   try {
@@ -1383,7 +1383,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `C`, `D` |  | [Optional] [Defaults to `undefined`] [Enum: C, D] |
+| **headerValue** | `C`, `D` |  | [Optional] [Enum: C, D] |
 
 ### Return type
 
@@ -3065,7 +3065,7 @@ No authorization required
 
 ## listHeaderParameterTypesListScalarHeaderParam
 
-> string listHeaderParameterTypesListScalarHeaderParam(headerValue)
+> Array&lt;string&gt; listHeaderParameterTypesListScalarHeaderParam(headerValue)
 
 
 
@@ -3085,8 +3085,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // string | 
-    headerValue: headerValue_example,
+    // Array<string> | 
+    headerValue: ...,
   } satisfies ListHeaderParameterTypesListScalarHeaderParamRequest;
 
   try {
@@ -3106,11 +3106,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `string` |  | [Defaults to `undefined`] |
+| **headerValue** | `Array<string>` |  | |
 
 ### Return type
 
-**string**
+**Array<string>**
 
 ### Authorization
 
@@ -3152,8 +3152,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // string | 
-    headerValue: headerValue_example,
+    // Array<string> | 
+    headerValue: ...,
   } satisfies ListHeaderParameterTypesListScalarHeaderParamNilRequest;
 
   try {
@@ -3173,7 +3173,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `string` |  | [Defaults to `undefined`] |
+| **headerValue** | `Array<string>` |  | |
 
 ### Return type
 
@@ -3219,8 +3219,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // string |  (optional)
-    headerValue: headerValue_example,
+    // Array<string> |  (optional)
+    headerValue: ...,
   } satisfies ListHeaderParameterTypesListScalarHeaderParamOptRequest;
 
   try {
@@ -3240,7 +3240,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **headerValue** | `Array<string>` |  | [Optional] |
 
 ### Return type
 
@@ -3286,8 +3286,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // string |  (optional)
-    headerValue: headerValue_example,
+    // Array<string> |  (optional)
+    headerValue: ...,
   } satisfies ListHeaderParameterTypesListScalarHeaderParamOptNilRequest;
 
   try {
@@ -3307,7 +3307,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **headerValue** | `Array<string>` |  | [Optional] |
 
 ### Return type
 

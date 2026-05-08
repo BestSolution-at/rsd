@@ -62,9 +62,9 @@ export function PatchableRecordWithUnionPatchValueNullToJSONTyped(value?: Patcha
     }
     switch (value['type']) {
         case 'merge':
-            return Object.assign({}, PatchableRecordWithUnionValueNullPatchMergeToJSON(value), { type: 'merge' } as const);
+            return Object.assign({}, PatchableRecordWithUnionValueNullPatchMergeToJSON(value), { '@type': 'merge' } as const);
         case 'replace':
-            return Object.assign({}, PatchableRecordWithUnionValueNullPatchReplaceToJSON(value), { type: 'replace' } as const);
+            return Object.assign({}, PatchableRecordWithUnionValueNullPatchReplaceToJSON(value), { '@type': 'replace' } as const);
         default:
             return value;
     }

@@ -12,21 +12,22 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime.js';
-import type {
-  NilResult,
-  SampleEnum,
-  SimpleRecord,
-} from '../models/index.js';
 import {
+    type NilResult,
     NilResultFromJSON,
     NilResultToJSON,
+} from '../models/NilResult.js';
+import {
+    type SampleEnum,
     SampleEnumFromJSON,
     SampleEnumToJSON,
+} from '../models/SampleEnum.js';
+import {
+    type SimpleRecord,
     SimpleRecordFromJSON,
     SimpleRecordToJSON,
-} from '../models/index.js';
+} from '../models/SimpleRecord.js';
 
 export interface HeaderParameterTypesMixedRequest {
     pathString: string;
@@ -404,8 +405,8 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/headerparametertypes/mixed/{pathString}/{pathNumber}`;
-        urlPath = urlPath.replace(`{${"pathString"}}`, encodeURIComponent(String(requestParameters['pathString'])));
-        urlPath = urlPath.replace(`{${"pathNumber"}}`, encodeURIComponent(String(requestParameters['pathNumber'])));
+        urlPath = urlPath.replace('{pathString}', encodeURIComponent(String(requestParameters['pathString'])));
+        urlPath = urlPath.replace('{pathNumber}', encodeURIComponent(String(requestParameters['pathNumber'])));
 
         return {
             path: urlPath,

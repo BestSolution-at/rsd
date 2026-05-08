@@ -43,7 +43,7 @@ export interface PatchableRecordBasicListOptionalNullValueLocalDateTimePatchMerg
  * Check if a given object implements the PatchableRecordBasicListOptionalNullValueLocalDateTimePatchMerge interface.
  */
 export function instanceOfPatchableRecordBasicListOptionalNullValueLocalDateTimePatchMerge(value: object): value is PatchableRecordBasicListOptionalNullValueLocalDateTimePatchMerge {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     if (!('additions' in value) || value['additions'] === undefined) return false;
     if (!('removals' in value) || value['removals'] === undefined) return false;
     return true;

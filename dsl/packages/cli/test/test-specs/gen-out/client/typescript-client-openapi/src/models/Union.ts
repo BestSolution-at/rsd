@@ -62,9 +62,9 @@ export function UnionToJSONTyped(value?: Union | null, ignoreDiscriminator: bool
     }
     switch (value['type']) {
         case 'union-a':
-            return Object.assign({}, UnionAToJSON(value), { type: 'union-a' } as const);
+            return Object.assign({}, UnionAToJSON(value), { '@type': 'union-a' } as const);
         case 'union-b':
-            return Object.assign({}, UnionBToJSON(value), { type: 'union-b' } as const);
+            return Object.assign({}, UnionBToJSON(value), { '@type': 'union-b' } as const);
         default:
             return value;
     }

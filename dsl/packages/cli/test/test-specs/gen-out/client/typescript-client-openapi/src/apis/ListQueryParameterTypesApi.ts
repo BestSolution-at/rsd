@@ -12,18 +12,17 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime.js';
-import type {
-  SampleEnum,
-  SimpleRecord,
-} from '../models/index.js';
 import {
+    type SampleEnum,
     SampleEnumFromJSON,
     SampleEnumToJSON,
+} from '../models/SampleEnum.js';
+import {
+    type SimpleRecord,
     SimpleRecordFromJSON,
     SimpleRecordToJSON,
-} from '../models/index.js';
+} from '../models/SimpleRecord.js';
 
 export interface ListQueryParameterTypesListBooleanQueryParamRequest {
     queryValue: Array<boolean>;
@@ -42,7 +41,7 @@ export interface ListQueryParameterTypesListFloatQueryParamRequest {
 }
 
 export interface ListQueryParameterTypesListInlineEnumQueryParamRequest {
-    queryValue: ListQueryParameterTypesListInlineEnumQueryParamQueryValueEnum;
+    queryValue: Array<ListQueryParameterTypesListInlineEnumQueryParamQueryValueEnum>;
 }
 
 export interface ListQueryParameterTypesListIntQueryParamRequest {
@@ -72,7 +71,7 @@ export interface ListQueryParameterTypesListRecordQueryParamRequest {
 }
 
 export interface ListQueryParameterTypesListScalarQueryParamRequest {
-    queryValue: string;
+    queryValue: Array<string>;
 }
 
 export interface ListQueryParameterTypesListShortQueryParamRequest {
@@ -317,21 +316,17 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listQueryParameterTypesListInlineEnumQueryParamRaw(requestParameters: ListQueryParameterTypesListInlineEnumQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async listQueryParameterTypesListInlineEnumQueryParamRaw(requestParameters: ListQueryParameterTypesListInlineEnumQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         const requestOptions = await this.listQueryParameterTypesListInlineEnumQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      * 
      */
-    async listQueryParameterTypesListInlineEnumQueryParam(requestParameters: ListQueryParameterTypesListInlineEnumQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async listQueryParameterTypesListInlineEnumQueryParam(requestParameters: ListQueryParameterTypesListInlineEnumQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.listQueryParameterTypesListInlineEnumQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -683,21 +678,17 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listQueryParameterTypesListScalarQueryParamRaw(requestParameters: ListQueryParameterTypesListScalarQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async listQueryParameterTypesListScalarQueryParamRaw(requestParameters: ListQueryParameterTypesListScalarQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         const requestOptions = await this.listQueryParameterTypesListScalarQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      * 
      */
-    async listQueryParameterTypesListScalarQueryParam(requestParameters: ListQueryParameterTypesListScalarQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async listQueryParameterTypesListScalarQueryParam(requestParameters: ListQueryParameterTypesListScalarQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.listQueryParameterTypesListScalarQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }

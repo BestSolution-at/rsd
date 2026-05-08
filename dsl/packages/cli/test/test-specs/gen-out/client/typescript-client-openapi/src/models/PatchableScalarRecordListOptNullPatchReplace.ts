@@ -37,7 +37,7 @@ export interface PatchableScalarRecordListOptNullPatchReplace {
  * Check if a given object implements the PatchableScalarRecordListOptNullPatchReplace interface.
  */
 export function instanceOfPatchableScalarRecordListOptNullPatchReplace(value: object): value is PatchableScalarRecordListOptNullPatchReplace {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     if (!('elements' in value) || value['elements'] === undefined) return false;
     return true;
 }

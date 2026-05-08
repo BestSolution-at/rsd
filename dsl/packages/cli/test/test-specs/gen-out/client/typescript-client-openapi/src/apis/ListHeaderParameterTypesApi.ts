@@ -12,21 +12,22 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime.js';
-import type {
-  NilResult,
-  SampleEnum,
-  SimpleRecord,
-} from '../models/index.js';
 import {
+    type NilResult,
     NilResultFromJSON,
     NilResultToJSON,
+} from '../models/NilResult.js';
+import {
+    type SampleEnum,
     SampleEnumFromJSON,
     SampleEnumToJSON,
+} from '../models/SampleEnum.js';
+import {
+    type SimpleRecord,
     SimpleRecordFromJSON,
     SimpleRecordToJSON,
-} from '../models/index.js';
+} from '../models/SimpleRecord.js';
 
 export interface ListHeaderParameterTypesListBooleanHeaderParamRequest {
     headerValue: Array<boolean>;
@@ -93,19 +94,19 @@ export interface ListHeaderParameterTypesListFloatHeaderParamOptNilRequest {
 }
 
 export interface ListHeaderParameterTypesListInlineEnumHeaderParamRequest {
-    headerValue: ListHeaderParameterTypesListInlineEnumHeaderParamHeaderValueEnum;
+    headerValue: Array<ListHeaderParameterTypesListInlineEnumHeaderParamHeaderValueEnum>;
 }
 
 export interface ListHeaderParameterTypesListInlineEnumHeaderParamNilRequest {
-    headerValue: ListHeaderParameterTypesListInlineEnumHeaderParamNilHeaderValueEnum;
+    headerValue: Array<ListHeaderParameterTypesListInlineEnumHeaderParamNilHeaderValueEnum>;
 }
 
 export interface ListHeaderParameterTypesListInlineEnumHeaderParamOptRequest {
-    headerValue?: ListHeaderParameterTypesListInlineEnumHeaderParamOptHeaderValueEnum;
+    headerValue?: Array<ListHeaderParameterTypesListInlineEnumHeaderParamOptHeaderValueEnum>;
 }
 
 export interface ListHeaderParameterTypesListInlineEnumHeaderParamOptNilRequest {
-    headerValue?: ListHeaderParameterTypesListInlineEnumHeaderParamOptNilHeaderValueEnum;
+    headerValue?: Array<ListHeaderParameterTypesListInlineEnumHeaderParamOptNilHeaderValueEnum>;
 }
 
 export interface ListHeaderParameterTypesListIntHeaderParamRequest {
@@ -221,19 +222,19 @@ export interface ListHeaderParameterTypesListRecordHeaderParamOptNilRequest {
 }
 
 export interface ListHeaderParameterTypesListScalarHeaderParamRequest {
-    headerValue: string;
+    headerValue: Array<string>;
 }
 
 export interface ListHeaderParameterTypesListScalarHeaderParamNilRequest {
-    headerValue: string | null;
+    headerValue: Array<string> | null;
 }
 
 export interface ListHeaderParameterTypesListScalarHeaderParamOptRequest {
-    headerValue?: string;
+    headerValue?: Array<string>;
 }
 
 export interface ListHeaderParameterTypesListScalarHeaderParamOptNilRequest {
-    headerValue?: string | null;
+    headerValue?: Array<string> | null;
 }
 
 export interface ListHeaderParameterTypesListShortHeaderParamRequest {
@@ -1017,7 +1018,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
 
@@ -1034,21 +1035,17 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listHeaderParameterTypesListInlineEnumHeaderParamRaw(requestParameters: ListHeaderParameterTypesListInlineEnumHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async listHeaderParameterTypesListInlineEnumHeaderParamRaw(requestParameters: ListHeaderParameterTypesListInlineEnumHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         const requestOptions = await this.listHeaderParameterTypesListInlineEnumHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      * 
      */
-    async listHeaderParameterTypesListInlineEnumHeaderParam(requestParameters: ListHeaderParameterTypesListInlineEnumHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async listHeaderParameterTypesListInlineEnumHeaderParam(requestParameters: ListHeaderParameterTypesListInlineEnumHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.listHeaderParameterTypesListInlineEnumHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1069,7 +1066,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
 
@@ -1110,7 +1107,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
 
@@ -1151,7 +1148,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
 
@@ -2419,7 +2416,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
 
@@ -2436,21 +2433,17 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listHeaderParameterTypesListScalarHeaderParamRaw(requestParameters: ListHeaderParameterTypesListScalarHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async listHeaderParameterTypesListScalarHeaderParamRaw(requestParameters: ListHeaderParameterTypesListScalarHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         const requestOptions = await this.listHeaderParameterTypesListScalarHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      * 
      */
-    async listHeaderParameterTypesListScalarHeaderParam(requestParameters: ListHeaderParameterTypesListScalarHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async listHeaderParameterTypesListScalarHeaderParam(requestParameters: ListHeaderParameterTypesListScalarHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.listHeaderParameterTypesListScalarHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -2471,7 +2464,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
 
@@ -2512,7 +2505,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
 
@@ -2553,7 +2546,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
 

@@ -62,9 +62,9 @@ export function PatchableRecordBasicListOptionalPatchValueStringToJSONTyped(valu
     }
     switch (value['type']) {
         case 'merge':
-            return Object.assign({}, PatchableRecordBasicListOptionalValueStringPatchMergeToJSON(value), { type: 'merge' } as const);
+            return Object.assign({}, PatchableRecordBasicListOptionalValueStringPatchMergeToJSON(value), { '@type': 'merge' } as const);
         case 'replace':
-            return Object.assign({}, PatchableRecordBasicListOptionalValueStringPatchReplaceToJSON(value), { type: 'replace' } as const);
+            return Object.assign({}, PatchableRecordBasicListOptionalValueStringPatchReplaceToJSON(value), { '@type': 'replace' } as const);
         default:
             return value;
     }

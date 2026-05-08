@@ -24,22 +24,21 @@ import {
 /**
  * 
  * @export
- * @interface PatchableRecordWithUnionValueOptPatchReplace
  */
-export interface PatchableRecordWithUnionValueOptPatchReplace extends PatchableUnion {
+export type PatchableRecordWithUnionValueOptPatchReplace = PatchableUnion & {
     /**
      * 
      * @type {string}
      * @memberof PatchableRecordWithUnionValueOptPatchReplace
      */
     type: string;
-}
+};
 
 /**
  * Check if a given object implements the PatchableRecordWithUnionValueOptPatchReplace interface.
  */
 export function instanceOfPatchableRecordWithUnionValueOptPatchReplace(value: object): value is PatchableRecordWithUnionValueOptPatchReplace {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     return true;
 }
 

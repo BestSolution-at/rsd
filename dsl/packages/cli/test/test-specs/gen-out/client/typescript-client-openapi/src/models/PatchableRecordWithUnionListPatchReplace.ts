@@ -45,7 +45,7 @@ export interface PatchableRecordWithUnionListPatchReplace {
  * Check if a given object implements the PatchableRecordWithUnionListPatchReplace interface.
  */
 export function instanceOfPatchableRecordWithUnionListPatchReplace(value: object): value is PatchableRecordWithUnionListPatchReplace {
-    if (!('type' in value) || value['type'] === undefined) return false;
+    if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     if (!('elements' in value) || value['elements'] === undefined) return false;
     return true;
 }
