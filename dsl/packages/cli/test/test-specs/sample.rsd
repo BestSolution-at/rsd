@@ -17,59 +17,59 @@ record SimpleRecord {
     @id key: string
     @rev version: string
 
-		value: string
+	value: string
 }
 
 record SimpleRecord_Basic {
     valueBoolean: boolean
-		valueShort: short
-		valueInt: int
-		valueLong: long
-		valueFloat: float
-		valueDouble: double
-		valueString: string
-		valueLocalDate: local-date
-		valueLocalDateTime: local-date-time
-		valueZonedDateTime: zoned-date-time
+	valueShort: short
+	valueInt: int
+	valueLong: long
+	valueFloat: float
+	valueDouble: double
+	valueString: string
+	valueLocalDate: local-date
+	valueLocalDateTime: local-date-time
+	valueZonedDateTime: zoned-date-time
 }
 
 record SimpleRecord_Basic_Optional {
     valueBoolean?: boolean
-		valueShort?: short
-		valueInt?: int
-		valueLong?: long
-		valueFloat?: float
-		valueDouble?: double
-		valueString?: string
-		valueLocalDate?: local-date
-		valueLocalDateTime?: local-date-time
-		valueZonedDateTime?: zoned-date-time
+	valueShort?: short
+	valueInt?: int
+	valueLong?: long
+	valueFloat?: float
+	valueDouble?: double
+	valueString?: string
+	valueLocalDate?: local-date
+	valueLocalDateTime?: local-date-time
+	valueZonedDateTime?: zoned-date-time
 }
 
 record SimpleRecord_Basic_Null {
     valueBoolean: boolean?
-		valueShort: short?
-		valueInt: int?
-		valueLong: long?
-		valueFloat: float?
-		valueDouble: double?
-		valueString: string?
-		valueLocalDate: local-date?
-		valueLocalDateTime: local-date-time?
-		valueZonedDateTime: zoned-date-time?
+	valueShort: short?
+	valueInt: int?
+	valueLong: long?
+	valueFloat: float?
+	valueDouble: double?
+	valueString: string?
+	valueLocalDate: local-date?
+	valueLocalDateTime: local-date-time?
+	valueZonedDateTime: zoned-date-time?
 }
 
 record SimpleRecord_Basic_Optional_Null {
     valueBoolean?: boolean?
-		valueShort?: short?
-		valueInt?: int?
-		valueLong?: long?
-		valueFloat?: float?
-		valueDouble?: double?
-		valueString?: string?
-		valueLocalDate?: local-date?
-		valueLocalDateTime?: local-date-time?
-		valueZonedDateTime?: zoned-date-time?
+	valueShort?: short?
+	valueInt?: int?
+	valueLong?: long?
+	valueFloat?: float?
+	valueDouble?: double?
+	valueString?: string?
+	valueLocalDate?: local-date?
+	valueLocalDateTime?: local-date-time?
+	valueZonedDateTime?: zoned-date-time?
 }
 
 record SimpleRecord_Basic_List {
