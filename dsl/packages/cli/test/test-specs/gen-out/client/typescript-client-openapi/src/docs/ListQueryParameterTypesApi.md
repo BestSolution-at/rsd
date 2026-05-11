@@ -627,7 +627,7 @@ No authorization required
 
 ## listQueryParameterTypesListMultiQueryParam
 
-> string listQueryParameterTypesListMultiQueryParam(valueA, valueB, valueC)
+> string listQueryParameterTypesListMultiQueryParam(valueA, valueB, valueC, xRSDParamContentType)
 
 
 
@@ -653,6 +653,8 @@ async function example() {
     valueB: ...,
     // Array<string> | 
     valueC: ...,
+    // string | Contains the type information for record and union types transferred in headers as a base64 blob
+    xRSDParamContentType: xRSDParamContentType_example,
   } satisfies ListQueryParameterTypesListMultiQueryParamRequest;
 
   try {
@@ -675,6 +677,7 @@ example().catch(console.error);
 | **valueA** | `Array<string>` |  | |
 | **valueB** | `Array<number>` |  | |
 | **valueC** | `Array<string>` |  | |
+| **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -700,7 +703,7 @@ No authorization required
 
 ## listQueryParameterTypesListRecordQueryParam
 
-> Array&lt;SimpleRecord&gt; listQueryParameterTypesListRecordQueryParam(queryValue)
+> Array&lt;SimpleRecord&gt; listQueryParameterTypesListRecordQueryParam(queryValue, xRSDParamContentType)
 
 
 
@@ -722,6 +725,8 @@ async function example() {
   const body = {
     // Array<string> | 
     queryValue: ...,
+    // string | Contains the type information for record and union types transferred in headers as a base64 blob
+    xRSDParamContentType: xRSDParamContentType_example,
   } satisfies ListQueryParameterTypesListRecordQueryParamRequest;
 
   try {
@@ -742,6 +747,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **queryValue** | `Array<string>` |  | |
+| **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 
 ### Return type
 

@@ -6853,6 +6853,15 @@
               "format": "base64",
               "nullable": false
             }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6886,6 +6895,15 @@
               "type": "string",
               "format": "base64",
               "nullable": false
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -9810,6 +9828,15 @@
               },
               "nullable": false
             }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -9846,6 +9873,15 @@
                 "format": "base64"
               },
               "nullable": false
+            }
+          },
+          {
+            "name": "X-RSD-Param-Content-Type",
+            "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],

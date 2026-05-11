@@ -41,9 +41,11 @@ export interface QueryParameterTypesMultiQueryParamOptRequest {
 
 export interface QueryParameterTypesRecordQueryParamRequest {
     queryValue: string;
+    xRSDParamContentType: string;
 }
 
 export interface QueryParameterTypesRecordQueryParamOptRequest {
+    xRSDParamContentType: string;
     queryValue?: string;
 }
 
@@ -271,6 +273,13 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling queryParameterTypesRecordQueryParam().'
+            );
+        }
+
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -278,6 +287,10 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
+        }
 
 
         let urlPath = `/api/queryparametertypes/recordQueryParam`;
@@ -312,6 +325,13 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
      * Creates request options for queryParameterTypesRecordQueryParamOpt without sending the request
      */
     async queryParameterTypesRecordQueryParamOptRequestOpts(requestParameters: QueryParameterTypesRecordQueryParamOptRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling queryParameterTypesRecordQueryParamOpt().'
+            );
+        }
+
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -319,6 +339,10 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
+        }
 
 
         let urlPath = `/api/queryparametertypes/recordQueryParamOpt`;
@@ -344,7 +368,7 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async queryParameterTypesRecordQueryParamOpt(requestParameters: QueryParameterTypesRecordQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+    async queryParameterTypesRecordQueryParamOpt(requestParameters: QueryParameterTypesRecordQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
         const response = await this.queryParameterTypesRecordQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }

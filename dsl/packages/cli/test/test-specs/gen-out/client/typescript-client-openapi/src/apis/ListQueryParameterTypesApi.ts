@@ -64,10 +64,12 @@ export interface ListQueryParameterTypesListMultiQueryParamRequest {
     valueA: Array<string>;
     valueB: Array<number>;
     valueC: Array<string>;
+    xRSDParamContentType: string;
 }
 
 export interface ListQueryParameterTypesListRecordQueryParamRequest {
     queryValue: Array<string>;
+    xRSDParamContentType: string;
 }
 
 export interface ListQueryParameterTypesListScalarQueryParamRequest {
@@ -548,6 +550,13 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling listQueryParameterTypesListMultiQueryParam().'
+            );
+        }
+
         const queryParameters: any = {};
 
         if (requestParameters['valueA'] != null) {
@@ -563,6 +572,10 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
+        }
 
 
         let urlPath = `/api/listqueryparametertypes/listMultiQueryParam`;
@@ -608,6 +621,13 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['xRSDParamContentType'] == null) {
+            throw new runtime.RequiredError(
+                'xRSDParamContentType',
+                'Required parameter "xRSDParamContentType" was null or undefined when calling listQueryParameterTypesListRecordQueryParam().'
+            );
+        }
+
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
@@ -615,6 +635,10 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['xRSDParamContentType'] != null) {
+            headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
+        }
 
 
         let urlPath = `/api/listqueryparametertypes/listRecordQueryParam`;

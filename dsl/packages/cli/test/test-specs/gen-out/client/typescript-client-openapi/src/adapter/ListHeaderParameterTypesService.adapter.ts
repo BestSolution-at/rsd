@@ -35,7 +35,7 @@ function toRSDError(error: unknown): api.service.NativeRSDError | api.service.St
 	}
 }
 
-export class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParameterTypesService {
+class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParameterTypesService {
 	private readonly deletegate: ListHeaderParameterTypesApi;
 
 	constructor(props: ServiceProps<api.service.ErrorType>) {
@@ -887,7 +887,7 @@ export class ListHeaderParameterTypesServiceImpl implements api.service.ListHead
 				headerValue,
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as api.model.NilResult);
+				return api.result.OK(await response.value());
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -904,7 +904,7 @@ export class ListHeaderParameterTypesServiceImpl implements api.service.ListHead
 				headerValue: headerValue as unknown as ('C' | 'D')[],
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as api.model.NilResult);
+				return api.result.OK(await response.value());
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -921,7 +921,7 @@ export class ListHeaderParameterTypesServiceImpl implements api.service.ListHead
 				headerValue: headerValue as unknown as ('C' | 'D')[] | undefined,
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as api.model.NilResult);
+				return api.result.OK(await response.value());
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}

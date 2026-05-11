@@ -177,7 +177,7 @@ No authorization required
 
 ## queryParameterTypesRecordQueryParam
 
-> SimpleRecord queryParameterTypesRecordQueryParam(queryValue)
+> SimpleRecord queryParameterTypesRecordQueryParam(queryValue, xRSDParamContentType)
 
 
 
@@ -199,6 +199,8 @@ async function example() {
   const body = {
     // string | 
     queryValue: queryValue_example,
+    // string | Contains the type information for record and union types transferred in headers as a base64 blob
+    xRSDParamContentType: xRSDParamContentType_example,
   } satisfies QueryParameterTypesRecordQueryParamRequest;
 
   try {
@@ -219,6 +221,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **queryValue** | `string` |  | [Defaults to `undefined`] |
+| **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -244,7 +247,7 @@ No authorization required
 
 ## queryParameterTypesRecordQueryParamOpt
 
-> NilResult queryParameterTypesRecordQueryParamOpt(queryValue)
+> NilResult queryParameterTypesRecordQueryParamOpt(xRSDParamContentType, queryValue)
 
 
 
@@ -264,6 +267,8 @@ async function example() {
   const api = new QueryParameterTypesApi();
 
   const body = {
+    // string | Contains the type information for record and union types transferred in headers as a base64 blob
+    xRSDParamContentType: xRSDParamContentType_example,
     // string |  (optional)
     queryValue: queryValue_example,
   } satisfies QueryParameterTypesRecordQueryParamOptRequest;
@@ -285,6 +290,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 | **queryValue** | `string` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type

@@ -258,7 +258,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 				queryValue: queryValue ? new Date(queryValue) : undefined,
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as api.model.NilResult); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
+				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -422,6 +422,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		try {
 			const response = await this.deletegate.queryParameterTypesRecordQueryParamRaw({
 				queryValue: encodeBase64(JSON.stringify(queryValue)),
+				xRSDParamContentType: 'application/json',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -438,6 +439,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 		try {
 			const response = await this.deletegate.queryParameterTypesRecordQueryParamOptRaw({
 				queryValue: queryValue ? encodeBase64(JSON.stringify(queryValue)) : undefined,
+				xRSDParamContentType: 'application/json',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());

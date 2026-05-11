@@ -154,7 +154,11 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 					};
 				});
 			if (
-				o.parameters.some(p => p.meta?.rest?.source === 'header' && (p.variant === 'record' || p.variant === 'union'))
+				o.parameters.some(
+					p =>
+						(p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'query') &&
+						(p.variant === 'record' || p.variant === 'union'),
+				)
 			) {
 				parameters.push({
 					name: 'X-RSD-Param-Content-Type',
