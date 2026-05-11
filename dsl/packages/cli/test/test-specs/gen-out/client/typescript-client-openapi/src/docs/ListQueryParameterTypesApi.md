@@ -651,8 +651,8 @@ async function example() {
     valueA: ...,
     // Array<number> | 
     valueB: ...,
-    // string | 
-    valueC: valueC_example,
+    // Array<string> | 
+    valueC: ...,
   } satisfies ListQueryParameterTypesListMultiQueryParamRequest;
 
   try {
@@ -674,7 +674,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **valueA** | `Array<string>` |  | |
 | **valueB** | `Array<number>` |  | |
-| **valueC** | `string` |  | [Defaults to `undefined`] |
+| **valueC** | `Array<string>` |  | |
 
 ### Return type
 
@@ -720,8 +720,8 @@ async function example() {
   const api = new ListQueryParameterTypesApi();
 
   const body = {
-    // string | 
-    queryValue: queryValue_example,
+    // Array<string> | 
+    queryValue: ...,
   } satisfies ListQueryParameterTypesListRecordQueryParamRequest;
 
   try {
@@ -741,7 +741,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **queryValue** | `string` |  | [Defaults to `undefined`] |
+| **queryValue** | `Array<string>` |  | |
 
 ### Return type
 

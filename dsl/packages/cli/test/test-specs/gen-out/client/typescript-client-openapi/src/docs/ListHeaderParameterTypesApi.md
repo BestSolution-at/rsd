@@ -2505,8 +2505,8 @@ async function example() {
     valueA: ...,
     // Array<number> | 
     valueB: ...,
-    // string | 
-    valueC: valueC_example,
+    // Array<string> | 
+    valueC: ...,
     // string | Contains the type information for record and union types transferred in headers as a base64 blob
     xRSDParamContentType: xRSDParamContentType_example,
   } satisfies ListHeaderParameterTypesListMultiHeaderParamRequest;
@@ -2530,7 +2530,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **valueA** | `Array<string>` |  | |
 | **valueB** | `Array<number>` |  | |
-| **valueC** | `string` |  | [Defaults to `undefined`] |
+| **valueC** | `Array<string>` |  | |
 | **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 
 ### Return type
@@ -2581,8 +2581,8 @@ async function example() {
     valueA: ...,
     // Array<number> | 
     valueB: ...,
-    // string | 
-    valueC: valueC_example,
+    // Array<string> | 
+    valueC: ...,
     // string | Contains the type information for record and union types transferred in headers as a base64 blob
     xRSDParamContentType: xRSDParamContentType_example,
   } satisfies ListHeaderParameterTypesListMultiHeaderParamNilRequest;
@@ -2606,7 +2606,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **valueA** | `Array<string>` |  | |
 | **valueB** | `Array<number>` |  | |
-| **valueC** | `string` |  | [Defaults to `undefined`] |
+| **valueC** | `Array<string>` |  | |
 | **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 
 ### Return type
@@ -2659,8 +2659,8 @@ async function example() {
     valueA: ...,
     // Array<number> |  (optional)
     valueB: ...,
-    // string |  (optional)
-    valueC: valueC_example,
+    // Array<string> |  (optional)
+    valueC: ...,
   } satisfies ListHeaderParameterTypesListMultiHeaderParamOptRequest;
 
   try {
@@ -2683,7 +2683,7 @@ example().catch(console.error);
 | **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 | **valueA** | `Array<string>` |  | [Optional] |
 | **valueB** | `Array<number>` |  | [Optional] |
-| **valueC** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **valueC** | `Array<string>` |  | [Optional] |
 
 ### Return type
 
@@ -2735,8 +2735,8 @@ async function example() {
     valueA: ...,
     // Array<number> |  (optional)
     valueB: ...,
-    // string |  (optional)
-    valueC: valueC_example,
+    // Array<string> |  (optional)
+    valueC: ...,
   } satisfies ListHeaderParameterTypesListMultiHeaderParamOptNilRequest;
 
   try {
@@ -2759,7 +2759,7 @@ example().catch(console.error);
 | **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 | **valueA** | `Array<string>` |  | [Optional] |
 | **valueB** | `Array<number>` |  | [Optional] |
-| **valueC** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **valueC** | `Array<string>` |  | [Optional] |
 
 ### Return type
 
@@ -2805,8 +2805,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // string | 
-    headerValue: headerValue_example,
+    // Array<string> | 
+    headerValue: ...,
     // string | Contains the type information for record and union types transferred in headers as a base64 blob
     xRSDParamContentType: xRSDParamContentType_example,
   } satisfies ListHeaderParameterTypesListRecordHeaderParamRequest;
@@ -2828,7 +2828,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `string` |  | [Defaults to `undefined`] |
+| **headerValue** | `Array<string>` |  | |
 | **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 
 ### Return type
@@ -2875,8 +2875,8 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // string | 
-    headerValue: headerValue_example,
+    // Array<string> | 
+    headerValue: ...,
     // string | Contains the type information for record and union types transferred in headers as a base64 blob
     xRSDParamContentType: xRSDParamContentType_example,
   } satisfies ListHeaderParameterTypesListRecordHeaderParamNilRequest;
@@ -2898,7 +2898,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `string` |  | [Defaults to `undefined`] |
+| **headerValue** | `Array<string>` |  | |
 | **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 
 ### Return type
@@ -2947,8 +2947,8 @@ async function example() {
   const body = {
     // string | Contains the type information for record and union types transferred in headers as a base64 blob
     xRSDParamContentType: xRSDParamContentType_example,
-    // string |  (optional)
-    headerValue: headerValue_example,
+    // Array<string> |  (optional)
+    headerValue: ...,
   } satisfies ListHeaderParameterTypesListRecordHeaderParamOptRequest;
 
   try {
@@ -2969,7 +2969,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
-| **headerValue** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **headerValue** | `Array<string>` |  | [Optional] |
 
 ### Return type
 
@@ -3017,8 +3017,8 @@ async function example() {
   const body = {
     // string | Contains the type information for record and union types transferred in headers as a base64 blob
     xRSDParamContentType: xRSDParamContentType_example,
-    // string |  (optional)
-    headerValue: headerValue_example,
+    // Array<string> |  (optional)
+    headerValue: ...,
   } satisfies ListHeaderParameterTypesListRecordHeaderParamOptNilRequest;
 
   try {
@@ -3039,7 +3039,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
-| **headerValue** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **headerValue** | `Array<string>` |  | [Optional] |
 
 ### Return type
 

@@ -754,7 +754,7 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleEnumHeaderParamNilRaw({
-				headerValue: headerValue ?? 'null',
+				headerValue: (headerValue ?? 'null') as unknown as api.model.SampleEnum,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());

@@ -63,11 +63,11 @@ export interface ListQueryParameterTypesListLongQueryParamRequest {
 export interface ListQueryParameterTypesListMultiQueryParamRequest {
     valueA: Array<string>;
     valueB: Array<number>;
-    valueC: string;
+    valueC: Array<string>;
 }
 
 export interface ListQueryParameterTypesListRecordQueryParamRequest {
-    queryValue: string;
+    queryValue: Array<string>;
 }
 
 export interface ListQueryParameterTypesListScalarQueryParamRequest {

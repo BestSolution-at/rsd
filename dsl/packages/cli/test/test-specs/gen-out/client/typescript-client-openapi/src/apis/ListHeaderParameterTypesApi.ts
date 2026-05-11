@@ -176,14 +176,14 @@ export interface ListHeaderParameterTypesListLongHeaderParamOptNilRequest {
 export interface ListHeaderParameterTypesListMultiHeaderParamRequest {
     valueA: Array<string>;
     valueB: Array<number>;
-    valueC: string;
+    valueC: Array<string>;
     xRSDParamContentType: string;
 }
 
 export interface ListHeaderParameterTypesListMultiHeaderParamNilRequest {
     valueA: Array<string> | null;
     valueB: Array<number> | null;
-    valueC: string | null;
+    valueC: Array<string> | null;
     xRSDParamContentType: string;
 }
 
@@ -191,34 +191,34 @@ export interface ListHeaderParameterTypesListMultiHeaderParamOptRequest {
     xRSDParamContentType: string;
     valueA?: Array<string>;
     valueB?: Array<number>;
-    valueC?: string;
+    valueC?: Array<string>;
 }
 
 export interface ListHeaderParameterTypesListMultiHeaderParamOptNilRequest {
     xRSDParamContentType: string;
     valueA?: Array<string> | null;
     valueB?: Array<number> | null;
-    valueC?: string | null;
+    valueC?: Array<string> | null;
 }
 
 export interface ListHeaderParameterTypesListRecordHeaderParamRequest {
-    headerValue: string;
+    headerValue: Array<string>;
     xRSDParamContentType: string;
 }
 
 export interface ListHeaderParameterTypesListRecordHeaderParamNilRequest {
-    headerValue: string | null;
+    headerValue: Array<string> | null;
     xRSDParamContentType: string;
 }
 
 export interface ListHeaderParameterTypesListRecordHeaderParamOptRequest {
     xRSDParamContentType: string;
-    headerValue?: string;
+    headerValue?: Array<string>;
 }
 
 export interface ListHeaderParameterTypesListRecordHeaderParamOptNilRequest {
     xRSDParamContentType: string;
-    headerValue?: string | null;
+    headerValue?: Array<string> | null;
 }
 
 export interface ListHeaderParameterTypesListScalarHeaderParamRequest {
@@ -1937,7 +1937,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['valueC'] != null) {
-            headerParameters['valueC'] = String(requestParameters['valueC']);
+            headerParameters['valueC'] = requestParameters['valueC']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         if (requestParameters['xRSDParamContentType'] != null) {
@@ -2022,7 +2022,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['valueC'] != null) {
-            headerParameters['valueC'] = String(requestParameters['valueC']);
+            headerParameters['valueC'] = requestParameters['valueC']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         if (requestParameters['xRSDParamContentType'] != null) {
@@ -2082,7 +2082,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['valueC'] != null) {
-            headerParameters['valueC'] = String(requestParameters['valueC']);
+            headerParameters['valueC'] = requestParameters['valueC']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         if (requestParameters['xRSDParamContentType'] != null) {
@@ -2142,7 +2142,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['valueC'] != null) {
-            headerParameters['valueC'] = String(requestParameters['valueC']);
+            headerParameters['valueC'] = requestParameters['valueC']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         if (requestParameters['xRSDParamContentType'] != null) {
@@ -2201,7 +2201,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         if (requestParameters['xRSDParamContentType'] != null) {
@@ -2260,7 +2260,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         if (requestParameters['xRSDParamContentType'] != null) {
@@ -2312,7 +2312,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         if (requestParameters['xRSDParamContentType'] != null) {
@@ -2364,7 +2364,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters['headerValue'] != null) {
-            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         if (requestParameters['xRSDParamContentType'] != null) {

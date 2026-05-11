@@ -9803,8 +9803,11 @@
             "in": "query",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "base64",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "base64"
+              },
               "nullable": false
             }
           }
@@ -9837,8 +9840,11 @@
             "in": "query",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "base64",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "base64"
+              },
               "nullable": false
             }
           }
@@ -11854,8 +11860,11 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "base64",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "base64"
+              },
               "nullable": false
             }
           },
@@ -11922,8 +11931,11 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "string",
-              "format": "base64",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "base64"
+              },
               "nullable": false
             }
           },
@@ -11995,8 +12007,11 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "base64",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "base64"
+              },
               "nullable": true
             }
           },
@@ -12068,8 +12083,11 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "string",
-              "format": "base64",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "base64"
+              },
               "nullable": true
             }
           },
@@ -12114,8 +12132,11 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "base64",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "base64"
+              },
               "nullable": false
             }
           },
@@ -12160,8 +12181,11 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "string",
-              "format": "base64",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "base64"
+              },
               "nullable": false
             }
           },
@@ -12203,8 +12227,11 @@
             "in": "header",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "base64",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "base64"
+              },
               "nullable": true
             }
           },
@@ -12246,8 +12273,11 @@
             "in": "header",
             "required": false,
             "schema": {
-              "type": "string",
-              "format": "base64",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "base64"
+              },
               "nullable": true
             }
           },
