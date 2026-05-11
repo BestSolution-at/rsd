@@ -141,7 +141,9 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 					const schema =
 						(p.meta?.rest?.source === 'query' || p.meta?.rest?.source === 'header') &&
 						(p.variant === 'record' || p.variant === 'union')
-							? { type: 'string', format: 'base64', nullable: p.nullable }
+							? p.array
+								? { type: 'array', items: { type: 'string', format: 'base64' }, nullable: p.nullable }
+								: { type: 'string', format: 'base64', nullable: p.nullable }
 							: toType(p);
 					return {
 						name: p.meta?.rest?.name ?? p.name,
@@ -218,7 +220,7 @@ function toType(param: MParameter) {
 			);
 		}
 	} else if (param.variant === 'scalar') {
-		if(param.array) {
+		if (param.array) {
 			schema = nullableProcessor(
 				{
 					type: 'array',
