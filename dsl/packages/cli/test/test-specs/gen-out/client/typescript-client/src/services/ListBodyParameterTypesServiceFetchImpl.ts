@@ -44,6 +44,10 @@ export function createListBodyParameterTypesService(props: ServiceProps<api.serv
 		listLocalDateTimeBodyParamOpt: fnListLocalDateTimeBodyParamOpt(props),
 		listLocalDateTimeBodyParamNil: fnListLocalDateTimeBodyParamNil(props),
 		listLocalDateTimeBodyParamOptNil: fnListLocalDateTimeBodyParamOptNil(props),
+		listLocalTimeBodyParam: fnListLocalTimeBodyParam(props),
+		listLocalTimeBodyParamOpt: fnListLocalTimeBodyParamOpt(props),
+		listLocalTimeBodyParamNil: fnListLocalTimeBodyParamNil(props),
+		listLocalTimeBodyParamOptNil: fnListLocalTimeBodyParamOptNil(props),
 		listZonedDateTimeBodyParam: fnListZonedDateTimeBodyParam(props),
 		listZonedDateTimeBodyParamOpt: fnListZonedDateTimeBodyParamOpt(props),
 		listZonedDateTimeBodyParamNil: fnListZonedDateTimeBodyParamNil(props),
@@ -1182,6 +1186,130 @@ function fnListLocalDateTimeBodyParamOptNil(props: ServiceProps<api.service.Erro
 			return api.result.ERR(err);
 		} finally {
 			final?.('listLocalDateTimeBodyParamOptNil');
+		}
+	};
+}
+
+function fnListLocalTimeBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLocalTimeBodyParam'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalTime: string[]) => {
+		try {
+			const $init = (await preFetch?.('listLocalTimeBodyParam')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalTimeBodyParam`;
+			const $body = encodeValue(encodingType(props), bodyLocalTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalTimeBodyParam', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalTimeBodyParam', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalTimeBodyParam');
+		}
+	};
+}
+
+function fnListLocalTimeBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLocalTimeBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalTime?: string[]) => {
+		try {
+			const $init = (await preFetch?.('listLocalTimeBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalTimeBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyLocalTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalTimeBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalTimeBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalTimeBodyParamOpt');
+		}
+	};
+}
+
+function fnListLocalTimeBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLocalTimeBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalTime: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLocalTimeBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalTimeBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyLocalTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalTimeBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalTimeBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalTimeBodyParamNil');
+		}
+	};
+}
+
+function fnListLocalTimeBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listLocalTimeBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalTime?: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listLocalTimeBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listLocalTimeBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyLocalTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalTimeBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalTimeBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalTimeBodyParamOptNil');
 		}
 	};
 }

@@ -145,6 +145,16 @@ public class PathParameterTypeServiceResource {
 	}
 
 	@GET
+	@Path("localtime/{pathLocalTime}")
+	public Response simpleLocalTimePathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathLocalTime") String _pathLocalTime) {
+		var pathLocalTime = _RestUtils.parseLocalTime(_pathLocalTime);
+		var result = service.simpleLocalTimePathParam(builderFactory, pathLocalTime);
+		return responseBuilder.simpleLocalTimePathParam(result, computeResponseContentType($acceptHeaders), pathLocalTime).build();
+	}
+
+	@GET
 	@Path("zoneddatetime/{pathZonedDateTime}")
 	public Response simpleZonedDateTimePathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,

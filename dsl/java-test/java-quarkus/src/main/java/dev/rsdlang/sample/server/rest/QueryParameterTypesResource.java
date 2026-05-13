@@ -237,6 +237,26 @@ public class QueryParameterTypesResource {
 	}
 
 	@GET
+	@Path("simpleLocalTimeQueryParam")
+	public Response simpleLocalTimeQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
+		var queryValue = _RestUtils.parseLocalTime(_queryValue);
+		var result = service.simpleLocalTimeQueryParam(builderFactory, queryValue);
+		return responseBuilder.simpleLocalTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
+	}
+
+	@GET
+	@Path("simpleLocalTimeQueryParamOpt")
+	public Response simpleLocalTimeQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
+		var queryValue = _RestUtils.parseOptLocalTime(_queryValue);
+		var result = service.simpleLocalTimeQueryParamOpt(builderFactory, queryValue);
+		return responseBuilder.simpleLocalTimeQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
+	}
+
+	@GET
 	@Path("simpleZonedDateTimeQueryParam")
 	public Response simpleZonedDateTimeQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,

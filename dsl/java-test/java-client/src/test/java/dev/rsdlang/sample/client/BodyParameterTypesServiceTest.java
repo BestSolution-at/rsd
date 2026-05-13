@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -487,6 +488,57 @@ public class BodyParameterTypesServiceTest {
 	public void simpleLocalDateTimeBodyParamOptNil_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
 				service.simpleLocalDateTimeBodyParamOptNil(LocalDateTime.parse("2020-01-01T10:00")));
+	}
+
+	// --- LocalTime ---
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeBodyParam(BodyParameterTypesService service) {
+		var t = LocalTime.parse("10:00:00");
+		assertEquals(t, service.simpleLocalTimeBodyParam(t));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeBodyParamOpt_undefined(BodyParameterTypesService service) {
+		assertEquals(NilResult.UNDEFINED, service.simpleLocalTimeBodyParamOpt());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeBodyParamOpt_defined(BodyParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.simpleLocalTimeBodyParamOpt(LocalTime.parse("10:00:00")));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeBodyParamNil_null(BodyParameterTypesService service) {
+		assertEquals(NilResult.NULL, service.simpleLocalTimeBodyParamNil(null));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeBodyParamNil_defined(BodyParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.simpleLocalTimeBodyParamNil(LocalTime.parse("10:00:00")));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeBodyParamOptNil_undefined(BodyParameterTypesService service) {
+		assertEquals(NilResult.UNDEFINED, service.simpleLocalTimeBodyParamOptNil());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeBodyParamOptNil_null(BodyParameterTypesService service) {
+		assertEquals(NilResult.NULL, service.simpleLocalTimeBodyParamOptNil(null));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeBodyParamOptNil_defined(BodyParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.simpleLocalTimeBodyParamOptNil(LocalTime.parse("10:00:00")));
 	}
 
 	// --- ZonedDateTime ---

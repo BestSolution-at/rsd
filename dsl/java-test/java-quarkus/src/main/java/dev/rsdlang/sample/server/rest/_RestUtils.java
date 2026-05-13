@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Base64;
@@ -248,6 +249,22 @@ public class _RestUtils {
 
 	public static _Base.Nillable<ZonedDateTime> parseNilZonedDateTime(String value) {
 		return parseNilLiteral(value, ZonedDateTime::parse);
+	}
+
+	public static LocalTime parseLocalTime(String value) {
+		return parseLiteral(value, LocalTime::parse);
+	}
+
+	public static Optional<LocalTime> parseOptLocalTime(String value) {
+		return parseOptLiteral(value, LocalTime::parse);
+	}
+
+	public static Optional<LocalTime> parseNullLocalTime(String value) {
+		return parseNullLiteral(value, LocalTime::parse);
+	}
+
+	public static _Base.Nillable<LocalTime> parseNilLocalTime(String value) {
+		return parseNilLiteral(value, LocalTime::parse);
 	}
 
 	public static <T> List<T> mapLiterals(List<String> data, Function<String, T> mapper) {
@@ -611,6 +628,38 @@ public class _RestUtils {
 
 	public static _Base.Nillable<List<ZonedDateTime>> mapNilZonedDateTimes(String data) {
 		return mapNilLiterals(data, ZonedDateTime::parse);
+	}
+
+	public static List<LocalTime> mapLocalTimes(List<String> data) {
+		return mapLiterals(data, LocalTime::parse);
+	}
+
+	public static Optional<List<LocalTime>> mapOptLocalTimes(List<String> data) {
+		return mapOptLiterals(data, LocalTime::parse);
+	}
+
+	public static Optional<List<LocalTime>> mapNullLocalTimes(List<String> data) {
+		return mapNullLiterals(data, LocalTime::parse);
+	}
+
+	public static _Base.Nillable<List<LocalTime>> mapNilLocalTimes(List<String> data) {
+		return mapNilLiterals(data, LocalTime::parse);
+	}
+
+	public static List<LocalTime> mapLocalTimes(String data) {
+		return mapLiterals(data, LocalTime::parse);
+	}
+
+	public static Optional<List<LocalTime>> mapOptLocalTimes(String data) {
+		return mapOptLiterals(data, LocalTime::parse);
+	}
+
+	public static Optional<List<LocalTime>> mapNullLocalTimes(String data) {
+		return mapNullLiterals(data, LocalTime::parse);
+	}
+
+	public static _Base.Nillable<List<LocalTime>> mapNilLocalTimes(String data) {
+		return mapNilLiterals(data, LocalTime::parse);
 	}
 
 	public static <T> List<T> mapObjects(List<String> data, Function<String, T> mapper) {

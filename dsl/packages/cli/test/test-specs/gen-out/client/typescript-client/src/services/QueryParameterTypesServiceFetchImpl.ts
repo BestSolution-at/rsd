@@ -22,6 +22,8 @@ export function createQueryParameterTypesService(props: ServiceProps<api.service
 		simpleLocalDateQueryParamOpt: fnSimpleLocalDateQueryParamOpt(props),
 		simpleLocalDateTimeQueryParam: fnSimpleLocalDateTimeQueryParam(props),
 		simpleLocalDateTimeQueryParamOpt: fnSimpleLocalDateTimeQueryParamOpt(props),
+		simpleLocalTimeQueryParam: fnSimpleLocalTimeQueryParam(props),
+		simpleLocalTimeQueryParamOpt: fnSimpleLocalTimeQueryParamOpt(props),
 		simpleZonedDateTimeQueryParam: fnSimpleZonedDateTimeQueryParam(props),
 		simpleZonedDateTimeQueryParamOpt: fnSimpleZonedDateTimeQueryParamOpt(props),
 		simpleScalarQueryParam: fnSimpleScalarQueryParam(props),
@@ -642,6 +644,74 @@ function fnSimpleLocalDateTimeQueryParamOpt(props: ServiceProps<api.service.Erro
 			return api.result.ERR(err);
 		} finally {
 			final?.('simpleLocalDateTimeQueryParamOpt');
+		}
+	};
+}
+
+function fnSimpleLocalTimeQueryParam(props: ServiceProps<api.service.ErrorType>): api.service.QueryParameterTypesService['simpleLocalTimeQueryParam'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (queryValue: string) => {
+		try {
+			const $init = (await preFetch?.('simpleLocalTimeQueryParam')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $param = new URLSearchParams();
+			$param.append('queryValue', queryValue);
+			const $path = `${baseUrl}/api/queryparametertypes/simpleLocalTimeQueryParam?${$param.toString()}`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isString);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalTimeQueryParam', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLocalTimeQueryParam', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLocalTimeQueryParam');
+		}
+	};
+}
+
+function fnSimpleLocalTimeQueryParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.QueryParameterTypesService['simpleLocalTimeQueryParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (queryValue?: string) => {
+		try {
+			const $init = (await preFetch?.('simpleLocalTimeQueryParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $param = new URLSearchParams();
+			if (queryValue !== undefined) {
+				$param.append('queryValue', queryValue);
+			}
+			const $path = `${baseUrl}/api/queryparametertypes/simpleLocalTimeQueryParamOpt?${$param.toString()}`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalTimeQueryParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLocalTimeQueryParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLocalTimeQueryParamOpt');
 		}
 	};
 }

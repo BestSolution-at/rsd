@@ -254,6 +254,30 @@
         }
       }
     },
+    "/api/samplerecords/localtime": {
+      "get": {
+        "tags": [
+          "SampleService"
+        ],
+        "description": "",
+        "operationId": "SampleService_getLocalTime",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                  "format": "time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/samplerecords/zoneddatetime": {
       "get": {
         "tags": [
@@ -704,6 +728,33 @@
         }
       }
     },
+    "/api/listsamplerecords/localtime": {
+      "get": {
+        "tags": [
+          "ListSampleService"
+        ],
+        "description": "",
+        "operationId": "ListSampleService_listLocalTime",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                    "format": "time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/listsamplerecords/zoneddatetime": {
       "get": {
         "tags": [
@@ -1139,6 +1190,42 @@
                   "type": "string",
                   "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
                   "format": "local-date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pathparametertype/localtime/{pathLocalTime}": {
+      "get": {
+        "tags": [
+          "PathParameterTypeService"
+        ],
+        "description": "",
+        "operationId": "PathParameterTypeService_simpleLocalTimePathParam",
+        "parameters": [
+          {
+            "name": "pathLocalTime",
+            "description": "",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                  "format": "time"
                 }
               }
             }
@@ -2481,6 +2568,146 @@
                 "type": "string",
                 "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
                 "format": "local-date-time",
+                "nullable": true
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/bodyparametertypes/simpleLocalTimeBodyParam": {
+      "post": {
+        "tags": [
+          "BodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "BodyParameterTypes_simpleLocalTimeBodyParam",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                "format": "time"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                  "format": "time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/bodyparametertypes/simpleLocalTimeBodyParamOpt": {
+      "post": {
+        "tags": [
+          "BodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "BodyParameterTypes_simpleLocalTimeBodyParamOpt",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                "format": "time"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/bodyparametertypes/simpleLocalTimeBodyParamNil": {
+      "post": {
+        "tags": [
+          "BodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "BodyParameterTypes_simpleLocalTimeBodyParamNil",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                "format": "time",
+                "nullable": true
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/bodyparametertypes/simpleLocalTimeBodyParamOptNil": {
+      "post": {
+        "tags": [
+          "BodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "BodyParameterTypes_simpleLocalTimeBodyParamOptNil",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                "format": "time",
                 "nullable": true
               }
             }
@@ -4933,6 +5160,146 @@
         }
       }
     },
+    "/api/headerparametertypes/simpleLocalTimeHeaderParam": {
+      "get": {
+        "tags": [
+          "HeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "HeaderParameterTypes_simpleLocalTimeHeaderParam",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                  "format": "time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/headerparametertypes/simpleLocalTimeHeaderParamOpt": {
+      "get": {
+        "tags": [
+          "HeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "HeaderParameterTypes_simpleLocalTimeHeaderParamOpt",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/headerparametertypes/simpleLocalTimeHeaderParamNil": {
+      "get": {
+        "tags": [
+          "HeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "HeaderParameterTypes_simpleLocalTimeHeaderParamNil",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/headerparametertypes/simpleLocalTimeHeaderParamOptNil": {
+      "get": {
+        "tags": [
+          "HeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "HeaderParameterTypes_simpleLocalTimeHeaderParamOptNil",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/headerparametertypes/simpleZonedDateTimeHeaderParam": {
       "get": {
         "tags": [
@@ -6539,6 +6906,76 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
               "format": "local-date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/queryparametertypes/simpleLocalTimeQueryParam": {
+      "get": {
+        "tags": [
+          "QueryParameterTypes"
+        ],
+        "description": "",
+        "operationId": "QueryParameterTypes_simpleLocalTimeQueryParam",
+        "parameters": [
+          {
+            "name": "queryValue",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                  "format": "time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/queryparametertypes/simpleLocalTimeQueryParamOpt": {
+      "get": {
+        "tags": [
+          "QueryParameterTypes"
+        ],
+        "description": "",
+        "operationId": "QueryParameterTypes_simpleLocalTimeQueryParamOpt",
+        "parameters": [
+          {
+            "name": "queryValue",
+            "description": "",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
             }
           }
         ],
@@ -8271,6 +8708,161 @@
         }
       }
     },
+    "/api/listbodyparametertypes/listLocalTimeBodyParam": {
+      "put": {
+        "tags": [
+          "ListBodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListBodyParameterTypes_listLocalTimeBodyParam",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                  "format": "time"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                    "format": "time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listbodyparametertypes/listLocalTimeBodyParamOpt": {
+      "put": {
+        "tags": [
+          "ListBodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListBodyParameterTypes_listLocalTimeBodyParamOpt",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                  "format": "time"
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listbodyparametertypes/listLocalTimeBodyParamNil": {
+      "put": {
+        "tags": [
+          "ListBodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListBodyParameterTypes_listLocalTimeBodyParamNil",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                  "format": "time"
+                },
+                "nullable": true
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listbodyparametertypes/listLocalTimeBodyParamOptNil": {
+      "put": {
+        "tags": [
+          "ListBodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListBodyParameterTypes_listLocalTimeBodyParamOptNil",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                  "format": "time"
+                },
+                "nullable": true
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/listbodyparametertypes/listZonedDateTimeBodyParam": {
       "put": {
         "tags": [
@@ -9612,6 +10204,48 @@
                     "type": "string",
                     "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
                     "format": "local-date-time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listqueryparametertypes/listLocalTimeQueryParam": {
+      "get": {
+        "tags": [
+          "ListQueryParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListQueryParameterTypes_listLocalTimeQueryParam",
+        "parameters": [
+          {
+            "name": "queryValue",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                "format": "time"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                    "format": "time"
                   }
                 }
               }
@@ -11233,6 +11867,161 @@
                 "type": "string",
                 "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
                 "format": "local-date-time"
+              },
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listheaderparametertypes/listLocalTimeHeaderParam": {
+      "get": {
+        "tags": [
+          "ListHeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListHeaderParameterTypes_listLocalTimeHeaderParam",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                "format": "time"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                    "format": "time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listheaderparametertypes/listLocalTimeHeaderParamOpt": {
+      "get": {
+        "tags": [
+          "ListHeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListHeaderParameterTypes_listLocalTimeHeaderParamOpt",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                "format": "time"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listheaderparametertypes/listLocalTimeHeaderParamNil": {
+      "get": {
+        "tags": [
+          "ListHeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListHeaderParameterTypes_listLocalTimeHeaderParamNil",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                "format": "time"
+              },
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listheaderparametertypes/listLocalTimeHeaderParamOptNil": {
+      "get": {
+        "tags": [
+          "ListHeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListHeaderParameterTypes_listLocalTimeHeaderParamOptNil",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                "format": "time"
               },
               "nullable": true
             }
@@ -13757,6 +14546,11 @@
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
             "format": "local-date-time"
           },
+          "valueLocalTime": {
+            "type": "string",
+            "pattern": "\\d\\d:\\d\\d:\\d\\d",
+            "format": "time"
+          },
           "valueZonedDateTime": {
             "type": "string",
             "format": "zoned-date-time"
@@ -13772,6 +14566,7 @@
           "valueString",
           "valueLocalDate",
           "valueLocalDateTime",
+          "valueLocalTime",
           "valueZonedDateTime"
         ]
       },
@@ -13813,6 +14608,11 @@
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
             "format": "local-date-time"
+          },
+          "valueLocalTime": {
+            "type": "string",
+            "pattern": "\\d\\d:\\d\\d:\\d\\d",
+            "format": "time"
           },
           "valueZonedDateTime": {
             "type": "string",
@@ -13868,6 +14668,12 @@
             "format": "local-date-time",
             "nullable": true
           },
+          "valueLocalTime": {
+            "type": "string",
+            "pattern": "\\d\\d:\\d\\d:\\d\\d",
+            "format": "time",
+            "nullable": true
+          },
           "valueZonedDateTime": {
             "type": "string",
             "format": "zoned-date-time",
@@ -13884,6 +14690,7 @@
           "valueString",
           "valueLocalDate",
           "valueLocalDateTime",
+          "valueLocalTime",
           "valueZonedDateTime"
         ]
       },
@@ -13933,6 +14740,12 @@
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
             "format": "local-date-time",
+            "nullable": true
+          },
+          "valueLocalTime": {
+            "type": "string",
+            "pattern": "\\d\\d:\\d\\d:\\d\\d",
+            "format": "time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -14008,6 +14821,14 @@
               "format": "local-date-time"
             }
           },
+          "valueLocalTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          },
           "valueZonedDateTime": {
             "type": "array",
             "items": {
@@ -14026,6 +14847,7 @@
           "valueString",
           "valueLocalDate",
           "valueLocalDateTime",
+          "valueLocalTime",
           "valueZonedDateTime"
         ]
       },
@@ -14093,6 +14915,14 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
               "format": "local-date-time"
+            }
+          },
+          "valueLocalTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
             }
           },
           "valueZonedDateTime": {
@@ -14179,6 +15009,15 @@
             },
             "nullable": true
           },
+          "valueLocalTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            },
+            "nullable": true
+          },
           "valueZonedDateTime": {
             "type": "array",
             "items": {
@@ -14198,6 +15037,7 @@
           "valueString",
           "valueLocalDate",
           "valueLocalDateTime",
+          "valueLocalTime",
           "valueZonedDateTime"
         ]
       },
@@ -14273,6 +15113,15 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
               "format": "local-date-time"
+            },
+            "nullable": true
+          },
+          "valueLocalTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
             },
             "nullable": true
           },
@@ -14770,6 +15619,11 @@
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
             "format": "local-date-time"
           },
+          "valueLocalTime": {
+            "type": "string",
+            "pattern": "\\d\\d:\\d\\d:\\d\\d",
+            "format": "time"
+          },
           "valueZonedDateTime": {
             "type": "string",
             "format": "zoned-date-time"
@@ -14787,6 +15641,7 @@
           "valueString",
           "valueLocalDate",
           "valueLocalDateTime",
+          "valueLocalTime",
           "valueZonedDateTime"
         ]
       },
@@ -14834,6 +15689,11 @@
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
             "format": "local-date-time"
+          },
+          "valueLocalTime": {
+            "type": "string",
+            "pattern": "\\d\\d:\\d\\d:\\d\\d",
+            "format": "time"
           },
           "valueZonedDateTime": {
             "type": "string",
@@ -14889,6 +15749,11 @@
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
             "format": "local-date-time"
+          },
+          "valueLocalTime": {
+            "type": "string",
+            "pattern": "\\d\\d:\\d\\d:\\d\\d",
+            "format": "time"
           },
           "valueZonedDateTime": {
             "type": "string",
@@ -14952,6 +15817,12 @@
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
             "format": "local-date-time",
+            "nullable": true
+          },
+          "valueLocalTime": {
+            "type": "string",
+            "pattern": "\\d\\d:\\d\\d:\\d\\d",
+            "format": "time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -15019,6 +15890,12 @@
             "format": "local-date-time",
             "nullable": true
           },
+          "valueLocalTime": {
+            "type": "string",
+            "pattern": "\\d\\d:\\d\\d:\\d\\d",
+            "format": "time",
+            "nullable": true
+          },
           "valueZonedDateTime": {
             "type": "string",
             "format": "zoned-date-time",
@@ -15037,6 +15914,7 @@
           "valueString",
           "valueLocalDate",
           "valueLocalDateTime",
+          "valueLocalTime",
           "valueZonedDateTime"
         ]
       },
@@ -15092,6 +15970,12 @@
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
             "format": "local-date-time",
+            "nullable": true
+          },
+          "valueLocalTime": {
+            "type": "string",
+            "pattern": "\\d\\d:\\d\\d:\\d\\d",
+            "format": "time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -15159,6 +16043,12 @@
             "format": "local-date-time",
             "nullable": true
           },
+          "valueLocalTime": {
+            "type": "string",
+            "pattern": "\\d\\d:\\d\\d:\\d\\d",
+            "format": "time",
+            "nullable": true
+          },
           "valueZonedDateTime": {
             "type": "string",
             "format": "zoned-date-time",
@@ -15222,6 +16112,12 @@
             "type": "string",
             "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
             "format": "local-date-time",
+            "nullable": true
+          },
+          "valueLocalTime": {
+            "type": "string",
+            "pattern": "\\d\\d:\\d\\d:\\d\\d",
+            "format": "time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -15307,6 +16203,14 @@
               "format": "local-date-time"
             }
           },
+          "valueLocalTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          },
           "valueZonedDateTime": {
             "type": "array",
             "items": {
@@ -15327,6 +16231,7 @@
           "valueString",
           "valueLocalDate",
           "valueLocalDateTime",
+          "valueLocalTime",
           "valueZonedDateTime"
         ]
       },
@@ -15489,6 +16394,23 @@
               "mapping": {
                 "replace": "#/components/schemas/PatchableRecord_Basic_List_valueLocalDateTimePatchReplace",
                 "merge": "#/components/schemas/PatchableRecord_Basic_List_valueLocalDateTimePatchMerge"
+              }
+            }
+          },
+          "valueLocalTime": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_valueLocalTimePatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_valueLocalTimePatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/PatchableRecord_Basic_List_valueLocalTimePatchReplace",
+                "merge": "#/components/schemas/PatchableRecord_Basic_List_valueLocalTimePatchMerge"
               }
             }
           },
@@ -15929,6 +16851,55 @@
           "removals"
         ]
       },
+      "PatchableRecord_Basic_List_valueLocalTimePatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "PatchableRecord_Basic_List_valueLocalTimePatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
       "PatchableRecord_Basic_List_valueZonedDateTimePatchReplace": {
         "type": "object",
         "properties": {
@@ -16045,6 +17016,14 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
               "format": "local-date-time"
+            }
+          },
+          "valueLocalTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
             }
           },
           "valueZonedDateTime": {
@@ -16219,6 +17198,23 @@
               "mapping": {
                 "replace": "#/components/schemas/PatchableRecord_Basic_List_Optional_valueLocalDateTimePatchReplace",
                 "merge": "#/components/schemas/PatchableRecord_Basic_List_Optional_valueLocalDateTimePatchMerge"
+              }
+            }
+          },
+          "valueLocalTime": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_Optional_valueLocalTimePatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_Optional_valueLocalTimePatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/PatchableRecord_Basic_List_Optional_valueLocalTimePatchReplace",
+                "merge": "#/components/schemas/PatchableRecord_Basic_List_Optional_valueLocalTimePatchMerge"
               }
             }
           },
@@ -16659,6 +17655,55 @@
           "removals"
         ]
       },
+      "PatchableRecord_Basic_List_Optional_valueLocalTimePatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "PatchableRecord_Basic_List_Optional_valueLocalTimePatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
       "PatchableRecord_Basic_List_Optional_valueZonedDateTimePatchReplace": {
         "type": "object",
         "properties": {
@@ -16786,6 +17831,15 @@
             },
             "nullable": true
           },
+          "valueLocalTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            },
+            "nullable": true
+          },
           "valueZonedDateTime": {
             "type": "array",
             "items": {
@@ -16807,6 +17861,7 @@
           "valueString",
           "valueLocalDate",
           "valueLocalDateTime",
+          "valueLocalTime",
           "valueZonedDateTime"
         ]
       },
@@ -16969,6 +18024,23 @@
               "mapping": {
                 "replace": "#/components/schemas/PatchableRecord_Basic_List_Null_valueLocalDateTimePatchReplace",
                 "merge": "#/components/schemas/PatchableRecord_Basic_List_Null_valueLocalDateTimePatchMerge"
+              }
+            }
+          },
+          "valueLocalTime": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_Null_valueLocalTimePatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_Null_valueLocalTimePatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/PatchableRecord_Basic_List_Null_valueLocalTimePatchReplace",
+                "merge": "#/components/schemas/PatchableRecord_Basic_List_Null_valueLocalTimePatchMerge"
               }
             }
           },
@@ -17427,6 +18499,57 @@
           "removals"
         ]
       },
+      "PatchableRecord_Basic_List_Null_valueLocalTimePatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "PatchableRecord_Basic_List_Null_valueLocalTimePatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            },
+            "nullable": true
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
       "PatchableRecord_Basic_List_Null_valueZonedDateTimePatchReplace": {
         "type": "object",
         "properties": {
@@ -17553,6 +18676,15 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
               "format": "local-date-time"
+            },
+            "nullable": true
+          },
+          "valueLocalTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
             },
             "nullable": true
           },
@@ -17729,6 +18861,23 @@
               "mapping": {
                 "replace": "#/components/schemas/PatchableRecord_Basic_List_Optional_Null_valueLocalDateTimePatchReplace",
                 "merge": "#/components/schemas/PatchableRecord_Basic_List_Optional_Null_valueLocalDateTimePatchMerge"
+              }
+            }
+          },
+          "valueLocalTime": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchReplace",
+                "merge": "#/components/schemas/PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchMerge"
               }
             }
           },
@@ -18177,6 +19326,57 @@
               "type": "string",
               "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
               "format": "local-date-time"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
+      "PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
+            },
+            "nullable": true
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\d\\d:\\d\\d:\\d\\d",
+              "format": "time"
             },
             "nullable": true
           }

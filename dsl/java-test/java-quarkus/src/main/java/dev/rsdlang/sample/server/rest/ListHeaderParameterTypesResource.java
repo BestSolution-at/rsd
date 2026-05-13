@@ -416,6 +416,46 @@ public class ListHeaderParameterTypesResource {
 	}
 
 	@GET
+	@Path("listLocalTimeHeaderParam")
+	public Response listLocalTimeHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.mapLocalTimes(_headerValue);
+		var result = service.listLocalTimeHeaderParam(builderFactory, headerValue);
+		return responseBuilder.listLocalTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
+	@Path("listLocalTimeHeaderParamOpt")
+	public Response listLocalTimeHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.mapOptLocalTimes(_headerValue);
+		var result = service.listLocalTimeHeaderParamOpt(builderFactory, headerValue);
+		return responseBuilder.listLocalTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
+	@Path("listLocalTimeHeaderParamNil")
+	public Response listLocalTimeHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.mapNullLocalTimes(_headerValue);
+		var result = service.listLocalTimeHeaderParamNil(builderFactory, headerValue);
+		return responseBuilder.listLocalTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
+	@Path("listLocalTimeHeaderParamOptNil")
+	public Response listLocalTimeHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.mapNilLocalTimes(_headerValue);
+		var result = service.listLocalTimeHeaderParamOptNil(builderFactory, headerValue);
+		return responseBuilder.listLocalTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
 	@Path("listZonedDateTimeHeaderParam")
 	public Response listZonedDateTimeHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,

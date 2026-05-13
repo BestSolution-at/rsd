@@ -44,6 +44,10 @@ export interface BodyParameterTypesService {
 	simpleLocalDateTimeBodyParamOpt(bodyLocalDateTime?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleLocalDateTimeBodyParamNil(bodyLocalDateTime: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleLocalDateTimeBodyParamOptNil(bodyLocalDateTime?: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleLocalTimeBodyParam(bodyLocalTime: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
+	simpleLocalTimeBodyParamOpt(bodyLocalTime?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleLocalTimeBodyParamNil(bodyLocalTime: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleLocalTimeBodyParamOptNil(bodyLocalTime?: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeBodyParam(bodyZonedDateTime: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeBodyParamOpt(bodyZonedDateTime?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeBodyParamNil(bodyZonedDateTime: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;

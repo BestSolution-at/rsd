@@ -3,6 +3,7 @@ package dev.rsdlang.sample.server.service.impl;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 
@@ -23,12 +24,13 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	private final SimpleStringPathParamHandler simpleStringPathParamHandler;
 	private final SimpleLocalDatePathParamHandler simpleLocalDatePathParamHandler;
 	private final SimpleLocalDateTimePathParamHandler simpleLocalDateTimePathParamHandler;
+	private final SimpleLocalTimePathParamHandler simpleLocalTimePathParamHandler;
 	private final SimpleZonedDateTimePathParamHandler simpleZonedDateTimePathParamHandler;
 	private final SimpleScalarPathParamHandler simpleScalarPathParamHandler;
 	private final SimpleEnumPathParamHandler simpleEnumPathParamHandler;
 	private final MultiPathParamHandler multiPathParamHandler;
 
-	public PathParameterTypeServiceServiceImpl(SimpleBooleanPathParamHandler simpleBooleanPathParamHandler, SimpleShortPathParamHandler simpleShortPathParamHandler, SimpleIntPathParamHandler simpleIntPathParamHandler, SimpleLongPathParamHandler simpleLongPathParamHandler, SimpleFloatPathParamHandler simpleFloatPathParamHandler, SimpleDoublePathParamHandler simpleDoublePathParamHandler, SimpleStringPathParamHandler simpleStringPathParamHandler, SimpleLocalDatePathParamHandler simpleLocalDatePathParamHandler, SimpleLocalDateTimePathParamHandler simpleLocalDateTimePathParamHandler, SimpleZonedDateTimePathParamHandler simpleZonedDateTimePathParamHandler, SimpleScalarPathParamHandler simpleScalarPathParamHandler, SimpleEnumPathParamHandler simpleEnumPathParamHandler, MultiPathParamHandler multiPathParamHandler) {
+	public PathParameterTypeServiceServiceImpl(SimpleBooleanPathParamHandler simpleBooleanPathParamHandler, SimpleShortPathParamHandler simpleShortPathParamHandler, SimpleIntPathParamHandler simpleIntPathParamHandler, SimpleLongPathParamHandler simpleLongPathParamHandler, SimpleFloatPathParamHandler simpleFloatPathParamHandler, SimpleDoublePathParamHandler simpleDoublePathParamHandler, SimpleStringPathParamHandler simpleStringPathParamHandler, SimpleLocalDatePathParamHandler simpleLocalDatePathParamHandler, SimpleLocalDateTimePathParamHandler simpleLocalDateTimePathParamHandler, SimpleLocalTimePathParamHandler simpleLocalTimePathParamHandler, SimpleZonedDateTimePathParamHandler simpleZonedDateTimePathParamHandler, SimpleScalarPathParamHandler simpleScalarPathParamHandler, SimpleEnumPathParamHandler simpleEnumPathParamHandler, MultiPathParamHandler multiPathParamHandler) {
 		this.simpleBooleanPathParamHandler = simpleBooleanPathParamHandler;
 		this.simpleShortPathParamHandler = simpleShortPathParamHandler;
 		this.simpleIntPathParamHandler = simpleIntPathParamHandler;
@@ -38,6 +40,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		this.simpleStringPathParamHandler = simpleStringPathParamHandler;
 		this.simpleLocalDatePathParamHandler = simpleLocalDatePathParamHandler;
 		this.simpleLocalDateTimePathParamHandler = simpleLocalDateTimePathParamHandler;
+		this.simpleLocalTimePathParamHandler = simpleLocalTimePathParamHandler;
 		this.simpleZonedDateTimePathParamHandler = simpleZonedDateTimePathParamHandler;
 		this.simpleScalarPathParamHandler = simpleScalarPathParamHandler;
 		this.simpleEnumPathParamHandler = simpleEnumPathParamHandler;
@@ -87,6 +90,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	@Override
 	public LocalDateTime simpleLocalDateTimePathParam(BuilderFactory _factory, LocalDateTime pathLocalDateTime) {
 		return simpleLocalDateTimePathParamHandler.simpleLocalDateTimePathParam(_factory, pathLocalDateTime);
+	}
+
+	@Override
+	public LocalTime simpleLocalTimePathParam(BuilderFactory _factory, LocalTime pathLocalTime) {
+		return simpleLocalTimePathParamHandler.simpleLocalTimePathParam(_factory, pathLocalTime);
 	}
 
 	@Override
@@ -143,6 +151,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 	public interface SimpleLocalDateTimePathParamHandler {
 		public LocalDateTime simpleLocalDateTimePathParam(BuilderFactory _factory, LocalDateTime pathLocalDateTime);
+	}
+
+	public interface SimpleLocalTimePathParamHandler {
+		public LocalTime simpleLocalTimePathParam(BuilderFactory _factory, LocalTime pathLocalTime);
 	}
 
 	public interface SimpleZonedDateTimePathParamHandler {

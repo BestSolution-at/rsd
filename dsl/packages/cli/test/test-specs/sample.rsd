@@ -30,6 +30,7 @@ record SimpleRecord_Basic {
 	valueString: string
 	valueLocalDate: local-date
 	valueLocalDateTime: local-date-time
+	valueLocalTime: local-time
 	valueZonedDateTime: zoned-date-time
 }
 
@@ -43,6 +44,7 @@ record SimpleRecord_Basic_Optional {
 	valueString?: string
 	valueLocalDate?: local-date
 	valueLocalDateTime?: local-date-time
+	valueLocalTime?: local-time
 	valueZonedDateTime?: zoned-date-time
 }
 
@@ -56,6 +58,7 @@ record SimpleRecord_Basic_Null {
 	valueString: string?
 	valueLocalDate: local-date?
 	valueLocalDateTime: local-date-time?
+	valueLocalTime: local-time?
 	valueZonedDateTime: zoned-date-time?
 }
 
@@ -69,6 +72,7 @@ record SimpleRecord_Basic_Optional_Null {
 	valueString?: string?
 	valueLocalDate?: local-date?
 	valueLocalDateTime?: local-date-time?
+	valueLocalTime?: local-time?
 	valueZonedDateTime?: zoned-date-time?
 }
 
@@ -82,6 +86,7 @@ record SimpleRecord_Basic_List {
 	valueString: string[]
 	valueLocalDate: local-date[]
 	valueLocalDateTime: local-date-time[]
+	valueLocalTime: local-time[]
 	valueZonedDateTime: zoned-date-time[]
 }
 
@@ -95,6 +100,7 @@ record SimpleRecord_Basic_List_Optional {
 	valueString?: string[]
 	valueLocalDate?: local-date[]
 	valueLocalDateTime?: local-date-time[]
+	valueLocalTime?: local-time[]
 	valueZonedDateTime?: zoned-date-time[]
 }
 
@@ -108,6 +114,7 @@ record SimpleRecord_Basic_List_Null {
 	valueString: string[]?
 	valueLocalDate: local-date[]?
 	valueLocalDateTime: local-date-time[]?
+	valueLocalTime: local-time[]?
 	valueZonedDateTime: zoned-date-time[]?
 }
 
@@ -121,6 +128,7 @@ record SimpleRecord_Basic_List_Optional_Null {
 	valueString?: string[]?
 	valueLocalDate?: local-date[]?
 	valueLocalDateTime?: local-date-time[]?
+	valueLocalTime?: local-time[]?
 	valueZonedDateTime?: zoned-date-time[]?
 }
 
@@ -221,7 +229,7 @@ patchable record PatchableRecord {
 patchable record PatchableRecord_Basic {
     @id key: string
     @rev version: string
-	
+
     valueBoolean: boolean
 		valueShort: short
 		valueInt: int
@@ -231,6 +239,7 @@ patchable record PatchableRecord_Basic {
 		valueString: string
 		valueLocalDate: local-date
 		valueLocalDateTime: local-date-time
+		valueLocalTime: local-time
 		valueZonedDateTime: zoned-date-time
 }
 
@@ -247,6 +256,7 @@ patchable record PatchableRecord_Basic_Optional {
 		valueString?: string
 		valueLocalDate?: local-date
 		valueLocalDateTime?: local-date-time
+		valueLocalTime?: local-time
 		valueZonedDateTime?: zoned-date-time
 }
 
@@ -263,6 +273,7 @@ patchable record PatchableRecord_Basic_Null {
 		valueString: string?
 		valueLocalDate: local-date?
 		valueLocalDateTime: local-date-time?
+		valueLocalTime: local-time?
 		valueZonedDateTime: zoned-date-time?
 }
 
@@ -279,13 +290,14 @@ patchable record PatchableRecord_Basic_Optional_Null {
 		valueString?: string?
 		valueLocalDate?: local-date?
 		valueLocalDateTime?: local-date-time?
+		valueLocalTime?: local-time?
 		valueZonedDateTime?: zoned-date-time?
 }
 
 patchable record PatchableRecord_Basic_List {
 	@id key: string
 	@rev version: string
-	
+
 	valueBoolean: boolean[]
 	valueShort: short[]
 	valueInt: int[]
@@ -295,6 +307,7 @@ patchable record PatchableRecord_Basic_List {
 	valueString: string[]
 	valueLocalDate: local-date[]
 	valueLocalDateTime: local-date-time[]
+	valueLocalTime: local-time[]
 	valueZonedDateTime: zoned-date-time[]
 }
 
@@ -311,6 +324,7 @@ patchable record PatchableRecord_Basic_List_Optional {
 	valueString?: string[]
 	valueLocalDate?: local-date[]
 	valueLocalDateTime?: local-date-time[]
+	valueLocalTime?: local-time[]
 	valueZonedDateTime?: zoned-date-time[]
 }
 
@@ -327,6 +341,7 @@ patchable record PatchableRecord_Basic_List_Null {
 	valueString: string[]?
 	valueLocalDate: local-date[]?
 	valueLocalDateTime: local-date-time[]?
+	valueLocalTime: local-time[]?
 	valueZonedDateTime: zoned-date-time[]?
 }
 
@@ -343,6 +358,7 @@ patchable record PatchableRecord_Basic_List_Optional_Null {
 	valueString?: string[]?
 	valueLocalDate?: local-date[]?
 	valueLocalDateTime?: local-date-time[]?
+	valueLocalTime?: local-time[]?
 	valueZonedDateTime?: zoned-date-time[]?
 }
 
@@ -498,6 +514,7 @@ service SampleService {
 		operation getString(): string;
 		operation getLocalDate(): local-date;
 		operation getLocalDateTime(): local-date-time;
+		operation getLocalTime(): local-time;
 		operation getZonedDateTime(): zoned-date-time;
 		operation getScalar(): ZoneId;
 		operation getEnum(): SampleEnum;
@@ -520,6 +537,7 @@ service ListSampleService {
 		operation listString(): string[];
 		operation listLocalDate(): local-date[];
 		operation listLocalDateTime(): local-date-time[];
+		operation listLocalTime(): local-time[];
 		operation listZonedDateTime(): zoned-date-time[];
 		operation listScalar(): ZoneId[];
 		operation listEnum(): SampleEnum[];
@@ -557,6 +575,9 @@ service PathParameterTypeService {
 	operation simpleLocalDateTimePathParam(
 		pathLocalDateTime: local-date-time
 	): local-date-time;
+	operation simpleLocalTimePathParam(
+		pathLocalTime: local-time
+	): local-time;
 	operation simpleZonedDateTimePathParam(
 		pathZonedDateTime: zoned-date-time
 	): zoned-date-time;
@@ -685,6 +706,19 @@ service BodyParameterTypes {
 	): NilResult;
 	operation simpleLocalDateTimeBodyParamOptNil(
 		bodyLocalDateTime?: local-date-time?
+	): NilResult;
+
+	operation simpleLocalTimeBodyParam(
+		bodyLocalTime: local-time
+	): local-time;
+	operation simpleLocalTimeBodyParamOpt(
+		bodyLocalTime?: local-time
+	): NilResult;
+	operation simpleLocalTimeBodyParamNil(
+		bodyLocalTime: local-time?
+	): NilResult;
+	operation simpleLocalTimeBodyParamOptNil(
+		bodyLocalTime?: local-time?
 	): NilResult;
 
 	operation simpleZonedDateTimeBodyParam(
@@ -905,6 +939,19 @@ service HeaderParameterTypes {
 		headerValue?: local-date-time?
 	): NilResult;
 
+	operation simpleLocalTimeHeaderParam(
+		headerValue: local-time
+	): local-time;
+	operation simpleLocalTimeHeaderParamOpt(
+		headerValue?: local-time
+	): NilResult;
+	operation simpleLocalTimeHeaderParamNil(
+		headerValue: local-time?
+	): NilResult;
+	operation simpleLocalTimeHeaderParamOptNil(
+		headerValue?: local-time?
+	): NilResult;
+
 	operation simpleZonedDateTimeHeaderParam(
 		headerValue: zoned-date-time
 	): zoned-date-time;
@@ -1050,6 +1097,13 @@ service QueryParameterTypes {
 	): local-date-time;
 	operation simpleLocalDateTimeQueryParamOpt(
 		queryValue?: local-date-time
+	): NilResult;
+
+	operation simpleLocalTimeQueryParam(
+		queryValue: local-time
+	): local-time;
+	operation simpleLocalTimeQueryParamOpt(
+		queryValue?: local-time
 	): NilResult;
 
 	operation simpleZonedDateTimeQueryParam(
@@ -1202,6 +1256,19 @@ service ListBodyParameterTypes {
 		bodyLocalDateTime?: local-date-time[]?
 	): NilResult;
 
+	operation listLocalTimeBodyParam(
+		bodyLocalTime: local-time[]
+	): local-time[];
+	operation listLocalTimeBodyParamOpt(
+		bodyLocalTime?: local-time[]
+	): NilResult;
+	operation listLocalTimeBodyParamNil(
+		bodyLocalTime: local-time[]?
+	): NilResult;
+	operation listLocalTimeBodyParamOptNil(
+		bodyLocalTime?: local-time[]?
+	): NilResult;
+
 	operation listZonedDateTimeBodyParam(
 		bodyZonedDateTime: zoned-date-time[]
 	): zoned-date-time[];
@@ -1302,6 +1369,9 @@ service ListQueryParameterTypes {
 	operation listLocalDateTimeQueryParam(
 		queryValue: local-date-time[]
 	): local-date-time[];
+	operation listLocalTimeQueryParam(
+		queryValue: local-time[]
+	): local-time[];
 	operation listZonedDateTimeQueryParam(
 		queryValue: zoned-date-time[]
 	): zoned-date-time[];
@@ -1436,6 +1506,19 @@ service ListHeaderParameterTypes {
 	): NilResult;
 	operation listLocalDateTimeHeaderParamOptNil(
 		headerValue?: local-date-time[]?
+	): NilResult;
+
+	operation listLocalTimeHeaderParam(
+		headerValue: local-time[]
+	): local-time[];
+	operation listLocalTimeHeaderParamOpt(
+		headerValue?: local-time[]
+	): NilResult;
+	operation listLocalTimeHeaderParamNil(
+		headerValue: local-time[]?
+	): NilResult;
+	operation listLocalTimeHeaderParamOptNil(
+		headerValue?: local-time[]?
 	): NilResult;
 
 	operation listZonedDateTimeHeaderParam(

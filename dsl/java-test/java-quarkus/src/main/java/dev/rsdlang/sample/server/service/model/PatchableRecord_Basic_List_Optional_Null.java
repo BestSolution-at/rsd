@@ -3,6 +3,7 @@ package dev.rsdlang.sample.server.service.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -32,6 +33,8 @@ public interface PatchableRecord_Basic_List_Optional_Null {
 
 		public _Base.Nillable<List<LocalDateTime>> valueLocalDateTime();
 
+		public _Base.Nillable<List<LocalTime>> valueLocalTime();
+
 		public _Base.Nillable<List<ZonedDateTime>> valueZonedDateTime();
 
 	}
@@ -58,6 +61,8 @@ public interface PatchableRecord_Basic_List_Optional_Null {
 		public DataBuilder valueLocalDate(List<LocalDate> valueLocalDate);
 
 		public DataBuilder valueLocalDateTime(List<LocalDateTime> valueLocalDateTime);
+
+		public DataBuilder valueLocalTime(List<LocalTime> valueLocalTime);
 
 		public DataBuilder valueZonedDateTime(List<ZonedDateTime> valueZonedDateTime);
 
@@ -145,6 +150,15 @@ public interface PatchableRecord_Basic_List_Optional_Null {
 		public interface ValueLocalDateTimeMergeChange extends ValueLocalDateTimeChange, _Base.ListMergeAddRemove<LocalDateTime, LocalDateTime> {
 		}
 
+		public interface ValueLocalTimeChange {
+		}
+
+		public interface ValueLocalTimeSetChange extends ValueLocalTimeChange, _Base.ListReplace<LocalTime> {
+		}
+
+		public interface ValueLocalTimeMergeChange extends ValueLocalTimeChange, _Base.ListMergeAddRemove<LocalTime, LocalTime> {
+		}
+
 		public interface ValueZonedDateTimeChange {
 		}
 
@@ -175,6 +189,8 @@ public interface PatchableRecord_Basic_List_Optional_Null {
 		public _Base.Nillable<ValueLocalDateChange> valueLocalDate();
 
 		public _Base.Nillable<ValueLocalDateTimeChange> valueLocalDateTime();
+
+		public _Base.Nillable<ValueLocalTimeChange> valueLocalTime();
 
 		public _Base.Nillable<ValueZonedDateTimeChange> valueZonedDateTime();
 
@@ -220,6 +236,10 @@ public interface PatchableRecord_Basic_List_Optional_Null {
 		public PatchBuilder valueLocalDateTime(Patch.ValueLocalDateTimeChange valueLocalDateTime);
 		public PatchBuilder valueLocalDateTime(List<LocalDateTime> additions, List<LocalDateTime> removals);
 		public PatchBuilder valueLocalDateTime(List<LocalDateTime> elements);
+
+		public PatchBuilder valueLocalTime(Patch.ValueLocalTimeChange valueLocalTime);
+		public PatchBuilder valueLocalTime(List<LocalTime> additions, List<LocalTime> removals);
+		public PatchBuilder valueLocalTime(List<LocalTime> elements);
 
 		public PatchBuilder valueZonedDateTime(Patch.ValueZonedDateTimeChange valueZonedDateTime);
 		public PatchBuilder valueZonedDateTime(List<ZonedDateTime> additions, List<ZonedDateTime> removals);

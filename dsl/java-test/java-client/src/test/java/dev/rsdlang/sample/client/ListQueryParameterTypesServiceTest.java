@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -105,6 +106,15 @@ public class ListQueryParameterTypesServiceTest {
 	public void listLocalDateTimeQueryParam(ListQueryParameterTypesService service) {
 		var dateTimes = List.of(LocalDateTime.parse("2020-01-01T10:00"), LocalDateTime.parse("2021-06-15T12:30"));
 		assertEquals(dateTimes, service.listLocalDateTimeQueryParam(dateTimes));
+	}
+
+	// --- LocalTime ---
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listLocalTimeQueryParam(ListQueryParameterTypesService service) {
+		var times = List.of(LocalTime.parse("10:00:00"), LocalTime.parse("11:30:00"));
+		assertEquals(times, service.listLocalTimeQueryParam(times));
 	}
 
 	// --- ZonedDateTime ---

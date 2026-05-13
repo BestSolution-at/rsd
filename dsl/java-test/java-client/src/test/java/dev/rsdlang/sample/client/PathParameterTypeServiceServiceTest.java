@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -98,6 +99,15 @@ public class PathParameterTypeServiceServiceTest {
 	public void simpleLocalDateTimePathParam(PathParameterTypeServiceService service) {
 		var dt = LocalDateTime.parse("2020-01-01T10:00");
 		assertEquals(dt, service.simpleLocalDateTimePathParam(dt));
+	}
+
+	// --- LocalTime ---
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimePathParam(PathParameterTypeServiceService service) {
+		var t = LocalTime.parse("10:00:00");
+		assertEquals(t, service.simpleLocalTimePathParam(t));
 	}
 
 	// --- ZonedDateTime ---

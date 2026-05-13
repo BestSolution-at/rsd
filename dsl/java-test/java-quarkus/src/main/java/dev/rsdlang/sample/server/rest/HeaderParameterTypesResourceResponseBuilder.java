@@ -3,6 +3,7 @@ package dev.rsdlang.sample.server.rest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -200,6 +201,26 @@ public class HeaderParameterTypesResourceResponseBuilder {
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder simpleLocalDateTimeHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<LocalDateTime> headerValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder simpleLocalTimeHeaderParam(LocalTime $result, String $contentType, LocalTime headerValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder simpleLocalTimeHeaderParamOpt(NilResult $result, String $contentType, Optional<LocalTime> headerValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder simpleLocalTimeHeaderParamNil(NilResult $result, String $contentType, Optional<LocalTime> headerValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder simpleLocalTimeHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<LocalTime> headerValue) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}

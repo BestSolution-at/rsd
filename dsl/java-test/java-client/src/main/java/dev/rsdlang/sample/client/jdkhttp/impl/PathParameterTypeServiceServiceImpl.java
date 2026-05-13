@@ -8,6 +8,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.Objects;
@@ -245,6 +246,31 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				return ServiceUtils.mapLocalDateTime($response);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public LocalTime simpleLocalTimePathParam(LocalTime pathLocalTime) {
+		Objects.requireNonNull(pathLocalTime, "pathLocalTime must not be null");
+
+		var $path = "%s/api/pathparametertype/localtime/%s".formatted(
+				this.baseURI(),
+				ServiceUtils.encodeURIComponent(Objects.toString(pathLocalTime)));
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLocalTime($response);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {

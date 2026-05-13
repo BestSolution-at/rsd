@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -488,6 +489,57 @@ public class ListBodyParameterTypesServiceTest {
 	public void listLocalDateTimeBodyParamOptNil_defined(ListBodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
 				service.listLocalDateTimeBodyParamOptNil(List.of(LocalDateTime.parse("2020-01-01T10:00"))));
+	}
+
+	// --- LocalTime ---
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listLocalTimeBodyParam(ListBodyParameterTypesService service) {
+		var times = List.of(LocalTime.parse("10:00:00"), LocalTime.parse("11:30:00"));
+		assertEquals(times, service.listLocalTimeBodyParam(times));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listLocalTimeBodyParamOpt_undefined(ListBodyParameterTypesService service) {
+		assertEquals(NilResult.UNDEFINED, service.listLocalTimeBodyParamOpt());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listLocalTimeBodyParamOpt_defined(ListBodyParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.listLocalTimeBodyParamOpt(List.of(LocalTime.parse("10:00:00"))));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listLocalTimeBodyParamNil_null(ListBodyParameterTypesService service) {
+		assertEquals(NilResult.NULL, service.listLocalTimeBodyParamNil(null));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listLocalTimeBodyParamNil_defined(ListBodyParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.listLocalTimeBodyParamNil(List.of(LocalTime.parse("10:00:00"))));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listLocalTimeBodyParamOptNil_undefined(ListBodyParameterTypesService service) {
+		assertEquals(NilResult.UNDEFINED, service.listLocalTimeBodyParamOptNil());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listLocalTimeBodyParamOptNil_null(ListBodyParameterTypesService service) {
+		assertEquals(NilResult.NULL, service.listLocalTimeBodyParamOptNil(null));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listLocalTimeBodyParamOptNil_defined(ListBodyParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.listLocalTimeBodyParamOptNil(List.of(LocalTime.parse("10:00:00"))));
 	}
 
 	// --- ZonedDateTime ---

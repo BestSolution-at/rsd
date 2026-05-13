@@ -3,6 +3,7 @@ package dev.rsdlang.sample.server.rest.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -125,6 +126,18 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 		}
 	}
 
+	static class ValueLocalTimeSetChangeImpl extends _ChangeSupport.ValueElementsChange<LocalTime> implements ValueLocalTimeSetChange {
+		ValueLocalTimeSetChangeImpl(JsonObject data) {
+			super(data, v -> LocalTime.parse(((JsonString)v).getString()));
+		}
+	}
+
+	static class ValueLocalTimeMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<LocalTime, LocalTime> implements ValueLocalTimeMergeChange {
+		ValueLocalTimeMergeChangeImpl(JsonObject data) {
+			super(data, v -> LocalTime.parse(((JsonString)v).getString()), v -> LocalTime.parse(((JsonString)v).getString()));
+		}
+	}
+
 	static class ValueZonedDateTimeSetChangeImpl extends _ChangeSupport.ValueElementsChange<ZonedDateTime> implements ValueZonedDateTimeSetChange {
 		ValueZonedDateTimeSetChangeImpl(JsonObject data) {
 			super(data, v -> ZonedDateTime.parse(((JsonString)v).getString()));
@@ -185,6 +198,10 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 
 	public _Base.Nillable<ValueLocalDateTimeChange> valueLocalDateTime() {
 		return _JsonUtils.mapNilObject(data, "valueLocalDateTime", o -> _ChangeSupport.of(o, "@type", ValueLocalDateTimeSetChangeImpl::new, ValueLocalDateTimeMergeChangeImpl::new));
+	}
+
+	public _Base.Nillable<ValueLocalTimeChange> valueLocalTime() {
+		return _JsonUtils.mapNilObject(data, "valueLocalTime", o -> _ChangeSupport.of(o, "@type", ValueLocalTimeSetChangeImpl::new, ValueLocalTimeMergeChangeImpl::new));
 	}
 
 	public _Base.Nillable<ValueZonedDateTimeChange> valueZonedDateTime() {
@@ -408,6 +425,29 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 			$changeBuilder.add("@type", "replace");
 			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements));
 			$builder.add("valueLocalDateTime", $changeBuilder.build());
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List_Optional_Null.PatchBuilder valueLocalTime(ValueLocalTimeChange valueLocalTime) {
+			$builder.add("valueLocalTime", ((_BaseDataImpl) valueLocalTime).data);
+			return this;
+		}
+
+		public PatchableRecord_Basic_List_Optional_Null.PatchBuilder valueLocalTime(List<LocalTime> additions, List<LocalTime> removals) {
+			var $changeBuilder = Json.createObjectBuilder();
+			$changeBuilder.add("@type", "merge");
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$builder.add("valueLocalTime", $changeBuilder.build());
+			return this;
+		}
+
+		public PatchableRecord_Basic_List_Optional_Null.PatchBuilder valueLocalTime(List<LocalTime> elements) {
+			var $changeBuilder = Json.createObjectBuilder();
+			$changeBuilder.add("@type", "replace");
+			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements));
+			$builder.add("valueLocalTime", $changeBuilder.build());
 			return this;
 		}
 

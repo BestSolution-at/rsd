@@ -3,6 +3,7 @@ package dev.rsdlang.sample.server.service.impl;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 
@@ -26,6 +27,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 	private final GetStringHandler getStringHandler;
 	private final GetLocalDateHandler getLocalDateHandler;
 	private final GetLocalDateTimeHandler getLocalDateTimeHandler;
+	private final GetLocalTimeHandler getLocalTimeHandler;
 	private final GetZonedDateTimeHandler getZonedDateTimeHandler;
 	private final GetScalarHandler getScalarHandler;
 	private final GetEnumHandler getEnumHandler;
@@ -35,7 +37,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 	private final GetSimpleRecordHandler getSimpleRecordHandler;
 	private final GetSimpleRecordWithErrorHandler getSimpleRecordWithErrorHandler;
 
-	public SampleServiceServiceImpl(GetBooleanHandler getBooleanHandler, GetShortHandler getShortHandler, GetIntHandler getIntHandler, GetLongHandler getLongHandler, GetFloatHandler getFloatHandler, GetDoubleHandler getDoubleHandler, GetStringHandler getStringHandler, GetLocalDateHandler getLocalDateHandler, GetLocalDateTimeHandler getLocalDateTimeHandler, GetZonedDateTimeHandler getZonedDateTimeHandler, GetScalarHandler getScalarHandler, GetEnumHandler getEnumHandler, VoidOperationHandler voidOperationHandler, ErrorOperationHandler errorOperationHandler, MultiErrorOperationHandler multiErrorOperationHandler, GetSimpleRecordHandler getSimpleRecordHandler, GetSimpleRecordWithErrorHandler getSimpleRecordWithErrorHandler) {
+	public SampleServiceServiceImpl(GetBooleanHandler getBooleanHandler, GetShortHandler getShortHandler, GetIntHandler getIntHandler, GetLongHandler getLongHandler, GetFloatHandler getFloatHandler, GetDoubleHandler getDoubleHandler, GetStringHandler getStringHandler, GetLocalDateHandler getLocalDateHandler, GetLocalDateTimeHandler getLocalDateTimeHandler, GetLocalTimeHandler getLocalTimeHandler, GetZonedDateTimeHandler getZonedDateTimeHandler, GetScalarHandler getScalarHandler, GetEnumHandler getEnumHandler, VoidOperationHandler voidOperationHandler, ErrorOperationHandler errorOperationHandler, MultiErrorOperationHandler multiErrorOperationHandler, GetSimpleRecordHandler getSimpleRecordHandler, GetSimpleRecordWithErrorHandler getSimpleRecordWithErrorHandler) {
 		this.getBooleanHandler = getBooleanHandler;
 		this.getShortHandler = getShortHandler;
 		this.getIntHandler = getIntHandler;
@@ -45,6 +47,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		this.getStringHandler = getStringHandler;
 		this.getLocalDateHandler = getLocalDateHandler;
 		this.getLocalDateTimeHandler = getLocalDateTimeHandler;
+		this.getLocalTimeHandler = getLocalTimeHandler;
 		this.getZonedDateTimeHandler = getZonedDateTimeHandler;
 		this.getScalarHandler = getScalarHandler;
 		this.getEnumHandler = getEnumHandler;
@@ -98,6 +101,11 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 	@Override
 	public LocalDateTime getLocalDateTime(BuilderFactory _factory) {
 		return getLocalDateTimeHandler.getLocalDateTime(_factory);
+	}
+
+	@Override
+	public LocalTime getLocalTime(BuilderFactory _factory) {
+		return getLocalTimeHandler.getLocalTime(_factory);
 	}
 
 	@Override
@@ -178,6 +186,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 	public interface GetLocalDateTimeHandler {
 		public LocalDateTime getLocalDateTime(BuilderFactory _factory);
+	}
+
+	public interface GetLocalTimeHandler {
+		public LocalTime getLocalTime(BuilderFactory _factory);
 	}
 
 	public interface GetZonedDateTimeHandler {

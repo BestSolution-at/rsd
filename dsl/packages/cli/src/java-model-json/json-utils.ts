@@ -378,6 +378,7 @@ export function generateJsonUtilsContent(
 	fqn('java.nio.file.Path');
 	fqn('java.time.LocalDate');
 	fqn('java.time.LocalDateTime');
+	fqn('java.time.LocalTime');
 	fqn('java.time.ZonedDateTime');
 	fqn('java.time.format.DateTimeFormatter');
 	fqn('java.util.function.Function');
@@ -490,6 +491,8 @@ ${toString(emptyObjectValues, '\t')}
 			return toString(d);
 		} else if (value instanceof LocalDateTime dt) {
 			return toString(dt);
+		} else if (value instanceof LocalTime t) {
+			return toString(t);
 		} else if (value instanceof ZonedDateTime zdt) {
 			return toString(zdt);
 		}
@@ -502,6 +505,10 @@ ${toString(emptyObjectValues, '\t')}
 
 	public static String toString(LocalDate value) {
 		return DateTimeFormatter.ISO_DATE.format(value);
+	}
+
+	public static String toString(LocalTime value) {
+		return DateTimeFormatter.ISO_LOCAL_TIME.format(value);
 	}
 
 	public static String toString(ZonedDateTime value) {
@@ -1106,6 +1113,39 @@ ${toString(emptyObjectValues, '\t')}
 
 	public static ZonedDateTime mapZonedDateTime(JsonObject object, String property) {
 		return mapLiteral(object, property, ZonedDateTime::parse);
+	}
+
+	// ----------------
+	public static Optional<List<LocalTime>> mapNullLocalTimes(JsonObject object, String property) {
+		return mapNullLiterals(object, property, LocalTime::parse);
+	}
+
+	public static _Base.Nillable<List<LocalTime>> mapNilLocalTimes(JsonObject object, String property) {
+		return mapNilLiterals(object, property, LocalTime::parse);
+	}
+
+	public static Optional<List<LocalTime>> mapOptLocalTimes(JsonObject object, String property) {
+		return mapOptLiterals(object, property, LocalTime::parse);
+	}
+
+	public static List<LocalTime> mapLocalTimes(JsonObject object, String property) {
+		return mapLiterals(object, property, LocalTime::parse);
+	}
+
+	public static Optional<LocalTime> mapNullLocalTime(JsonObject object, String property) {
+		return mapNullLiteral(object, property, LocalTime::parse);
+	}
+
+	public static _Base.Nillable<LocalTime> mapNilLocalTime(JsonObject object, String property) {
+		return mapNilLiteral(object, property, LocalTime::parse);
+	}
+
+	public static Optional<LocalTime> mapOptLocalTime(JsonObject object, String property) {
+		return mapOptLiteral(object, property, LocalTime::parse);
+	}
+
+	public static LocalTime mapLocalTime(JsonObject object, String property) {
+		return mapLiteral(object, property, LocalTime::parse);
 	}
 
 	// ----------------
@@ -2136,6 +2176,39 @@ ${toString(encodeFunctions, '\t')}
 	public static _Base.Nillable<List<ZonedDateTime>> parseNilZonedDateTimes(InputStream inputStream,
 			String contentType) {
 		return parseNilLiterals(inputStream, contentType, ZonedDateTime::parse);
+	}
+
+	// ----------------
+	public static LocalTime parseLocalTime(InputStream inputStream, String contentType) {
+		return parseLiteral(inputStream, contentType, LocalTime::parse);
+	}
+
+	public static Optional<LocalTime> parseOptLocalTime(InputStream inputStream, String contentType) {
+		return parseOptLiteral(inputStream, contentType, LocalTime::parse);
+	}
+
+	public static Optional<LocalTime> parseNullLocalTime(InputStream inputStream, String contentType) {
+		return parseNullLiteral(inputStream, contentType, LocalTime::parse);
+	}
+
+	public static _Base.Nillable<LocalTime> parseNilLocalTime(InputStream inputStream, String contentType) {
+		return parseNilLiteral(inputStream, contentType, LocalTime::parse);
+	}
+
+	public static List<LocalTime> parseLocalTimes(InputStream inputStream, String contentType) {
+		return parseLiterals(inputStream, contentType, LocalTime::parse);
+	}
+
+	public static Optional<List<LocalTime>> parseOptLocalTimes(InputStream inputStream, String contentType) {
+		return parseOptLiterals(inputStream, contentType, LocalTime::parse);
+	}
+
+	public static Optional<List<LocalTime>> parseNullLocalTimes(InputStream inputStream, String contentType) {
+		return parseNullLiterals(inputStream, contentType, LocalTime::parse);
+	}
+
+	public static _Base.Nillable<List<LocalTime>> parseNilLocalTimes(InputStream inputStream, String contentType) {
+		return parseNilLiterals(inputStream, contentType, LocalTime::parse);
 	}
 
 	// ----------------

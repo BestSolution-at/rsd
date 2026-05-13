@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -492,6 +493,57 @@ public class HeaderParameterTypesServiceTest {
 	public void simpleLocalDateTimeHeaderParamOptNil_defined(HeaderParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
 				service.simpleLocalDateTimeHeaderParamOptNil(LocalDateTime.parse("2020-01-01T10:00")));
+	}
+
+	// --- LocalTime ---
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeHeaderParam(HeaderParameterTypesService service) {
+		var t = LocalTime.parse("10:00:00");
+		assertEquals(t, service.simpleLocalTimeHeaderParam(t));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeHeaderParamOpt_undefined(HeaderParameterTypesService service) {
+		assertEquals(NilResult.UNDEFINED, service.simpleLocalTimeHeaderParamOpt());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeHeaderParamOpt_defined(HeaderParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.simpleLocalTimeHeaderParamOpt(LocalTime.parse("10:00:00")));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeHeaderParamNil_null(HeaderParameterTypesService service) {
+		assertEquals(NilResult.NULL, service.simpleLocalTimeHeaderParamNil(null));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeHeaderParamNil_defined(HeaderParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.simpleLocalTimeHeaderParamNil(LocalTime.parse("10:00:00")));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeHeaderParamOptNil_undefined(HeaderParameterTypesService service) {
+		assertEquals(NilResult.UNDEFINED, service.simpleLocalTimeHeaderParamOptNil());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeHeaderParamOptNil_null(HeaderParameterTypesService service) {
+		assertEquals(NilResult.NULL, service.simpleLocalTimeHeaderParamOptNil(null));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeHeaderParamOptNil_defined(HeaderParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.simpleLocalTimeHeaderParamOptNil(LocalTime.parse("10:00:00")));
 	}
 
 	// --- ZonedDateTime ---

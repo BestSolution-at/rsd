@@ -3,6 +3,7 @@ package dev.rsdlang.sample.client.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 
 public interface PatchableRecord_Basic_Optional_Null {
@@ -31,6 +32,8 @@ public interface PatchableRecord_Basic_Optional_Null {
 
 		public _Base.Nillable<LocalDateTime> valueLocalDateTime();
 
+		public _Base.Nillable<LocalTime> valueLocalTime();
+
 		public _Base.Nillable<ZonedDateTime> valueZonedDateTime();
 
 	}
@@ -57,6 +60,8 @@ public interface PatchableRecord_Basic_Optional_Null {
 		public DataBuilder valueLocalDate(LocalDate valueLocalDate);
 
 		public DataBuilder valueLocalDateTime(LocalDateTime valueLocalDateTime);
+
+		public DataBuilder valueLocalTime(LocalTime valueLocalTime);
 
 		public DataBuilder valueZonedDateTime(ZonedDateTime valueZonedDateTime);
 
@@ -85,6 +90,8 @@ public interface PatchableRecord_Basic_Optional_Null {
 
 		public _Base.Nillable<LocalDateTime> valueLocalDateTime();
 
+		public _Base.Nillable<LocalTime> valueLocalTime();
+
 		public _Base.Nillable<ZonedDateTime> valueZonedDateTime();
 
 	}
@@ -111,6 +118,8 @@ public interface PatchableRecord_Basic_Optional_Null {
 		public PatchBuilder valueLocalDate(LocalDate valueLocalDate);
 
 		public PatchBuilder valueLocalDateTime(LocalDateTime valueLocalDateTime);
+
+		public PatchBuilder valueLocalTime(LocalTime valueLocalTime);
 
 		public PatchBuilder valueZonedDateTime(ZonedDateTime valueZonedDateTime);
 

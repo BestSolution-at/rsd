@@ -14,6 +14,7 @@ export interface ListSampleServiceService {
 	listString(): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
 	listLocalDate(): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
 	listLocalDateTime(): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
+	listLocalTime(): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
 	listZonedDateTime(): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
 	listScalar(): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
 	listEnum(): Promise<Result<SampleEnum[], StatusRSDError | NativeRSDError>>;

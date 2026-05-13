@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -90,6 +91,13 @@ public class SampleServiceServiceTest {
 	public void getLocalDateTime(SampleServiceService service) {
 		var result = service.getLocalDateTime();
 		assertEquals(LocalDateTime.parse("2020-01-01T10:00"), result);
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void getLocalTime(SampleServiceService service) {
+		var result = service.getLocalTime();
+		assertEquals(LocalTime.parse("10:00:00"), result);
 	}
 
 	@ParameterizedTest

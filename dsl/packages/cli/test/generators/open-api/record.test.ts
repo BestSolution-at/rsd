@@ -2,7 +2,6 @@ import { beforeAll, describe, expect, test } from 'vitest';
 import { isMResolvedRecordType, MResolvedRSDModel } from '../../../src/model.js';
 import { findListElement, sampleModel } from '../test-utils.js';
 import { generateRecordContent } from '../../../src/open-api/record.js';
-import { a } from 'vitest/dist/chunks/suite.d.FvehnV49.js';
 
 let model: MResolvedRSDModel;
 
@@ -114,6 +113,11 @@ const RECORD_TESTS: RecordTest[] = [
 						pattern: '\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d',
 						format: 'local-date-time',
 					},
+					valueLocalTime: {
+						type: 'string',
+						pattern: '\\d\\d:\\d\\d:\\d\\d',
+						format: 'time',
+					},
 					valueZonedDateTime: {
 						type: 'string',
 						format: 'zoned-date-time',
@@ -129,6 +133,7 @@ const RECORD_TESTS: RecordTest[] = [
 					'valueString',
 					'valueLocalDate',
 					'valueLocalDateTime',
+					'valueLocalTime',
 					'valueZonedDateTime',
 				],
 			},
@@ -175,6 +180,11 @@ const RECORD_TESTS: RecordTest[] = [
 						type: 'string',
 						pattern: '\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d',
 						format: 'local-date-time',
+					},
+					valueLocalTime: {
+						type: 'string',
+						pattern: '\\d\\d:\\d\\d:\\d\\d',
+						format: 'time',
 					},
 					valueZonedDateTime: {
 						type: 'string',
@@ -236,6 +246,12 @@ const RECORD_TESTS: RecordTest[] = [
 						format: 'local-date-time',
 						nullable: true,
 					},
+					valueLocalTime: {
+						type: 'string',
+						pattern: '\\d\\d:\\d\\d:\\d\\d',
+						format: 'time',
+						nullable: true,
+					},
 					valueZonedDateTime: {
 						type: 'string',
 						format: 'zoned-date-time',
@@ -252,6 +268,7 @@ const RECORD_TESTS: RecordTest[] = [
 					'valueString',
 					'valueLocalDate',
 					'valueLocalDateTime',
+					'valueLocalTime',
 					'valueZonedDateTime',
 				],
 			},
@@ -306,6 +323,12 @@ const RECORD_TESTS: RecordTest[] = [
 						type: 'string',
 						pattern: '\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d',
 						format: 'local-date-time',
+						nullable: true,
+					},
+					valueLocalTime: {
+						type: 'string',
+						pattern: '\\d\\d:\\d\\d:\\d\\d',
+						format: 'time',
 						nullable: true,
 					},
 					valueZonedDateTime: {
@@ -387,6 +410,14 @@ const RECORD_TESTS: RecordTest[] = [
 							format: 'local-date-time',
 						},
 					},
+					valueLocalTime: {
+						type: 'array',
+						items: {
+							type: 'string',
+							pattern: '\\d\\d:\\d\\d:\\d\\d',
+							format: 'time',
+						},
+					},
 					valueZonedDateTime: {
 						type: 'array',
 						items: {
@@ -405,6 +436,7 @@ const RECORD_TESTS: RecordTest[] = [
 					'valueString',
 					'valueLocalDate',
 					'valueLocalDateTime',
+					'valueLocalTime',
 					'valueZonedDateTime',
 				],
 			},
@@ -477,6 +509,14 @@ const RECORD_TESTS: RecordTest[] = [
 							type: 'string',
 							pattern: '\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d',
 							format: 'local-date-time',
+						},
+					},
+					valueLocalTime: {
+						type: 'array',
+						items: {
+							type: 'string',
+							pattern: '\\d\\d:\\d\\d:\\d\\d',
+							format: 'time',
 						},
 					},
 					valueZonedDateTime: {
@@ -569,6 +609,15 @@ const RECORD_TESTS: RecordTest[] = [
 						},
 						nullable: true,
 					},
+					valueLocalTime: {
+						type: 'array',
+						items: {
+							type: 'string',
+							pattern: '\\d\\d:\\d\\d:\\d\\d',
+							format: 'time',
+						},
+						nullable: true,
+					},
 					valueZonedDateTime: {
 						type: 'array',
 						items: {
@@ -588,6 +637,7 @@ const RECORD_TESTS: RecordTest[] = [
 					'valueString',
 					'valueLocalDate',
 					'valueLocalDateTime',
+					'valueLocalTime',
 					'valueZonedDateTime',
 				],
 			},
@@ -668,6 +718,15 @@ const RECORD_TESTS: RecordTest[] = [
 							type: 'string',
 							pattern: '\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d',
 							format: 'local-date-time',
+						},
+						nullable: true,
+					},
+					valueLocalTime: {
+						type: 'array',
+						items: {
+							type: 'string',
+							pattern: '\\d\\d:\\d\\d:\\d\\d',
+							format: 'time',
 						},
 						nullable: true,
 					},

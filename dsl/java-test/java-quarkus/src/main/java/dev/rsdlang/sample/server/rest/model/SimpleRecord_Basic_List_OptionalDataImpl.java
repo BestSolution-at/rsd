@@ -3,6 +3,7 @@ package dev.rsdlang.sample.server.rest.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -61,6 +62,11 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 	@Override
 	public Optional<List<LocalDateTime>> valueLocalDateTime() {
 		return _JsonUtils.mapOptLocalDateTimes(data, "valueLocalDateTime");
+	}
+
+	@Override
+	public Optional<List<LocalTime>> valueLocalTime() {
+		return _JsonUtils.mapOptLocalTimes(data, "valueLocalTime");
 	}
 
 	@Override
@@ -157,6 +163,15 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 				return this;
 			}
 			$builder.add("valueLocalDateTime", _JsonUtils.toJsonLiteralArray(valueLocalDateTime));
+			return this;
+		}
+
+		@Override
+		public SimpleRecord_Basic_List_Optional.DataBuilder valueLocalTime(List<LocalTime> valueLocalTime) {
+			if (valueLocalTime == null) {
+				return this;
+			}
+			$builder.add("valueLocalTime", _JsonUtils.toJsonLiteralArray(valueLocalTime));
 			return this;
 		}
 

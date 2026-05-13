@@ -118,6 +118,13 @@ public class SampleServiceResource {
 	}
 
 	@GET
+	@Path("localtime")
+	public Response getLocalTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.getLocalTime(builderFactory);
+		return responseBuilder.getLocalTime(result, computeResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
 	@Path("zoneddatetime")
 	public Response getZonedDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getZonedDateTime(builderFactory);

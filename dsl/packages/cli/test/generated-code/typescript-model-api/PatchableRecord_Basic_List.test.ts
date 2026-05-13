@@ -22,6 +22,7 @@ const Simple: PatchableRecord_Basic_List = {
 	valueFloat: [1.1, 2.2],
 	valueLocalDate: ['2020-01-01', '2020-12-31'],
 	valueLocalDateTime: ['2020-01-01T10:00:00', '2020-12-31T23:59:59'],
+	valueLocalTime: ['10:00:00', '23:59:59'],
 	valueShort: [1, 2],
 	valueZonedDateTime: ['2020-01-01T10:00:00Z', '2020-12-31T23:59:59Z'],
 };
@@ -106,6 +107,10 @@ const SimplePatchReplace: PatchableRecord_Basic_ListPatch = {
 		'@type': 'replace',
 		elements: ['2020-01-01T10:00:00', '2020-12-31T23:59:59'],
 	},
+	valueLocalTime: {
+		'@type': 'replace',
+		elements: ['10:00:00', '23:59:59'],
+	},
 	valueShort: {
 		'@type': 'replace',
 		elements: [1, 2],
@@ -159,6 +164,11 @@ const SimplePatchMerge: PatchableRecord_Basic_ListPatch = {
 		additions: ['2020-01-01T10:00:00'],
 		removals: ['2020-12-31T23:59:59'],
 	},
+	valueLocalTime: {
+		'@type': 'merge',
+		additions: ['10:00:00'],
+		removals: ['23:59:59'],
+	},
 	valueShort: {
 		'@type': 'merge',
 		additions: [1],
@@ -182,6 +192,7 @@ const SimplePatchMinimal: PatchableRecord_Basic_ListPatch = {
 	valueFloat: undefined,
 	valueLocalDate: undefined,
 	valueLocalDateTime: undefined,
+	valueLocalTime: undefined,
 	valueShort: undefined,
 	valueZonedDateTime: undefined,
 };

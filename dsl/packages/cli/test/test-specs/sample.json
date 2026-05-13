@@ -218,6 +218,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueLocalTime",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": false,
           "readonly": false,
@@ -333,6 +344,17 @@
           "nullable": false,
           "variant": "builtin",
           "type": "local-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalTime",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "local-time",
           "doc": ""
         },
         {
@@ -456,6 +478,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueLocalTime",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": false,
           "readonly": false,
@@ -571,6 +604,17 @@
           "nullable": true,
           "variant": "builtin",
           "type": "local-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalTime",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-time",
           "doc": ""
         },
         {
@@ -694,6 +738,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueLocalTime",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": true,
           "readonly": false,
@@ -809,6 +864,17 @@
           "nullable": false,
           "variant": "builtin",
           "type": "local-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "local-time",
           "doc": ""
         },
         {
@@ -932,6 +998,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueLocalTime",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": true,
           "readonly": false,
@@ -1047,6 +1124,17 @@
           "nullable": true,
           "variant": "builtin",
           "type": "local-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-time",
           "doc": ""
         },
         {
@@ -1942,6 +2030,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueLocalTime",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": false,
           "readonly": false,
@@ -2069,6 +2168,17 @@
           "nullable": false,
           "variant": "builtin",
           "type": "local-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalTime",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "local-time",
           "doc": ""
         },
         {
@@ -2204,6 +2314,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueLocalTime",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": false,
           "readonly": false,
@@ -2331,6 +2452,17 @@
           "nullable": true,
           "variant": "builtin",
           "type": "local-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalTime",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-time",
           "doc": ""
         },
         {
@@ -2466,6 +2598,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueLocalTime",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": true,
           "readonly": false,
@@ -2593,6 +2736,17 @@
           "nullable": false,
           "variant": "builtin",
           "type": "local-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "local-time",
           "doc": ""
         },
         {
@@ -2728,6 +2882,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueLocalTime",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": true,
           "readonly": false,
@@ -2855,6 +3020,17 @@
           "nullable": true,
           "variant": "builtin",
           "type": "local-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueLocalTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "local-time",
           "doc": ""
         },
         {
@@ -4046,6 +4222,32 @@
         },
         {
           "@type": "Operation",
+          "name": "getLocalTime",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "local-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "localtime",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "getZonedDateTime",
           "doc": "",
           "parameters": [],
@@ -4551,6 +4753,32 @@
             "rest": {
               "method": "GET",
               "path": "localdatetime",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalTime",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "local-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "localtime",
               "results": [
                 {
                   "statusCode": 200
@@ -5101,6 +5329,50 @@
             "rest": {
               "method": "GET",
               "path": "localdatetime/${pathLocalDateTime}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalTimePathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathLocalTime",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathLocalTime",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "local-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "localtime/${pathLocalTime}",
               "results": [
                 {
                   "statusCode": 200
@@ -6534,6 +6806,142 @@
             "rest": {
               "method": "POST",
               "path": "simpleLocalDateTimeBodyParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalTimeBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalTime",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "local-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleLocalTimeBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalTimeBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalTime",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleLocalTimeBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalTimeBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalTime",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleLocalTimeBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalTimeBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalTime",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleLocalTimeBodyParamOptNil",
               "results": []
             }
           }
@@ -9284,6 +9692,166 @@
         },
         {
           "@type": "Operation",
+          "name": "simpleLocalTimeHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "local-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleLocalTimeHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalTimeHeaderParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleLocalTimeHeaderParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalTimeHeaderParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleLocalTimeHeaderParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalTimeHeaderParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleLocalTimeHeaderParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "simpleZonedDateTimeHeaderParam",
           "doc": "",
           "parameters": [
@@ -11267,6 +11835,86 @@
         },
         {
           "@type": "Operation",
+          "name": "simpleLocalTimeQueryParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "queryValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "queryValue",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "local-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleLocalTimeQueryParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleLocalTimeQueryParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "queryValue",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "queryValue",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleLocalTimeQueryParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "simpleZonedDateTimeQueryParam",
           "doc": "",
           "parameters": [
@@ -12937,6 +13585,142 @@
         },
         {
           "@type": "Operation",
+          "name": "listLocalTimeBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalTime",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "local-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listLocalTimeBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalTimeBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalTime",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listLocalTimeBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalTimeBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalTime",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listLocalTimeBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalTimeBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyLocalTime",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listLocalTimeBodyParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "listZonedDateTimeBodyParam",
           "doc": "",
           "parameters": [
@@ -14267,6 +15051,46 @@
             "rest": {
               "method": "GET",
               "path": "listLocalDateTimeQueryParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalTimeQueryParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "queryValue",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "queryValue",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "local-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "listLocalTimeQueryParam",
               "results": []
             }
           }
@@ -16017,6 +16841,166 @@
             "rest": {
               "method": "GET",
               "path": "listLocalDateTimeHeaderParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalTimeHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "local-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "listLocalTimeHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalTimeHeaderParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "listLocalTimeHeaderParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalTimeHeaderParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "listLocalTimeHeaderParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listLocalTimeHeaderParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "local-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "listLocalTimeHeaderParamOptNil",
               "results": []
             }
           }

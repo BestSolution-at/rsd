@@ -420,6 +420,46 @@ public class HeaderParameterTypesResource {
 	}
 
 	@GET
+	@Path("simpleLocalTimeHeaderParam")
+	public Response simpleLocalTimeHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.parseLocalTime(_headerValue);
+		var result = service.simpleLocalTimeHeaderParam(builderFactory, headerValue);
+		return responseBuilder.simpleLocalTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
+	@Path("simpleLocalTimeHeaderParamOpt")
+	public Response simpleLocalTimeHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.parseOptLocalTime(_headerValue);
+		var result = service.simpleLocalTimeHeaderParamOpt(builderFactory, headerValue);
+		return responseBuilder.simpleLocalTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
+	@Path("simpleLocalTimeHeaderParamNil")
+	public Response simpleLocalTimeHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.parseNullLocalTime(_headerValue);
+		var result = service.simpleLocalTimeHeaderParamNil(builderFactory, headerValue);
+		return responseBuilder.simpleLocalTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
+	@Path("simpleLocalTimeHeaderParamOptNil")
+	public Response simpleLocalTimeHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.parseNilLocalTime(_headerValue);
+		var result = service.simpleLocalTimeHeaderParamOptNil(builderFactory, headerValue);
+		return responseBuilder.simpleLocalTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
 	@Path("simpleZonedDateTimeHeaderParam")
 	public Response simpleZonedDateTimeHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,

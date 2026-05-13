@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -218,6 +219,27 @@ public class QueryParameterTypesServiceTest {
 	public void simpleLocalDateTimeQueryParamOpt_defined(QueryParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
 				service.simpleLocalDateTimeQueryParamOpt(LocalDateTime.parse("2020-01-01T10:00")));
+	}
+
+	// --- LocalTime ---
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeQueryParam(QueryParameterTypesService service) {
+		var t = LocalTime.parse("10:00:00");
+		assertEquals(t, service.simpleLocalTimeQueryParam(t));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeQueryParamOpt_undefined(QueryParameterTypesService service) {
+		assertEquals(NilResult.UNDEFINED, service.simpleLocalTimeQueryParamOpt());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleLocalTimeQueryParamOpt_defined(QueryParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.simpleLocalTimeQueryParamOpt(LocalTime.parse("10:00:00")));
 	}
 
 	// --- ZonedDateTime ---

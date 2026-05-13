@@ -457,6 +457,50 @@ public class ListBodyParameterTypesResource {
 	}
 
 	@PUT
+	@Path("listLocalTimeBodyParam")
+	public Response listLocalTimeBodyParam(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalTime) {
+		var bodyLocalTime = _JsonUtils.parseLocalTimes(_bodyLocalTime, computeRequestContentType($contentTypeHeader));
+		var result = service.listLocalTimeBodyParam(builderFactory, bodyLocalTime);
+		return responseBuilder.listLocalTimeBodyParam(result, computeResponseContentType($acceptHeaders), bodyLocalTime).build();
+	}
+
+	@PUT
+	@Path("listLocalTimeBodyParamOpt")
+	public Response listLocalTimeBodyParamOpt(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalTime) {
+		var bodyLocalTime = _JsonUtils.parseOptLocalTimes(_bodyLocalTime, computeRequestContentType($contentTypeHeader));
+		var result = service.listLocalTimeBodyParamOpt(builderFactory, bodyLocalTime);
+		return responseBuilder.listLocalTimeBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyLocalTime).build();
+	}
+
+	@PUT
+	@Path("listLocalTimeBodyParamNil")
+	public Response listLocalTimeBodyParamNil(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalTime) {
+		var bodyLocalTime = _JsonUtils.parseNullLocalTimes(_bodyLocalTime, computeRequestContentType($contentTypeHeader));
+		var result = service.listLocalTimeBodyParamNil(builderFactory, bodyLocalTime);
+		return responseBuilder.listLocalTimeBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyLocalTime).build();
+	}
+
+	@PUT
+	@Path("listLocalTimeBodyParamOptNil")
+	public Response listLocalTimeBodyParamOptNil(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalTime) {
+		var bodyLocalTime = _JsonUtils.parseNilLocalTimes(_bodyLocalTime, computeRequestContentType($contentTypeHeader));
+		var result = service.listLocalTimeBodyParamOptNil(builderFactory, bodyLocalTime);
+		return responseBuilder.listLocalTimeBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyLocalTime).build();
+	}
+
+	@PUT
 	@Path("listZonedDateTimeBodyParam")
 	public Response listZonedDateTimeBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,

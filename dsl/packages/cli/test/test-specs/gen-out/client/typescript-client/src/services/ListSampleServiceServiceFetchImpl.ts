@@ -13,6 +13,7 @@ export function createListSampleServiceService(props: ServiceProps<api.service.E
 		listString: fnListString(props),
 		listLocalDate: fnListLocalDate(props),
 		listLocalDateTime: fnListLocalDateTime(props),
+		listLocalTime: fnListLocalTime(props),
 		listZonedDateTime: fnListZonedDateTime(props),
 		listScalar: fnListScalar(props),
 		listEnum: fnListEnum(props),
@@ -295,6 +296,37 @@ function fnListLocalDateTime(props: ServiceProps<api.service.ErrorType>): api.se
 			return api.result.ERR(err);
 		} finally {
 			final?.('listLocalDateTime');
+		}
+	};
+}
+
+function fnListLocalTime(props: ServiceProps<api.service.ErrorType>): api.service.ListSampleServiceService['listLocalTime'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async () => {
+		try {
+			const $init = (await preFetch?.('listLocalTime')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listsamplerecords/localtime`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listLocalTime', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listLocalTime', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listLocalTime');
 		}
 	};
 }

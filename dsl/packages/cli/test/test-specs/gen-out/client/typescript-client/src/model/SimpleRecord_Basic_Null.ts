@@ -11,6 +11,7 @@ export type SimpleRecord_Basic_Null = {
 	readonly valueString: string | null;
 	readonly valueLocalDate: string | null;
 	readonly valueLocalDateTime: string | null;
+	readonly valueLocalTime: string | null;
 	readonly valueZonedDateTime: string | null;
 };
 
@@ -25,6 +26,7 @@ export function isSimpleRecord_Basic_Null(value: unknown): value is SimpleRecord
 		(checkProp(value, 'valueString', isNull) || checkProp(value, 'valueString', isString)) &&
 		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', isString)) &&
 		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', isString)) &&
+		(checkProp(value, 'valueLocalTime', isNull) || checkProp(value, 'valueLocalTime', isString)) &&
 		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', isString));
 }
 
@@ -38,6 +40,7 @@ export function SimpleRecord_Basic_NullFromJSON($value: Record<string, unknown>)
 	const valueString = propValue('valueString', $value, isString, 'null');
 	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'null');
 	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'null');
+	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'null');
 	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'null');
 	return {
 		valueBoolean,
@@ -49,6 +52,7 @@ export function SimpleRecord_Basic_NullFromJSON($value: Record<string, unknown>)
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -63,6 +67,7 @@ export function SimpleRecord_Basic_NullToJSON($value: SimpleRecord_Basic_Null): 
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueLocalTime = $value.valueLocalTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -75,6 +80,7 @@ export function SimpleRecord_Basic_NullToJSON($value: SimpleRecord_Basic_Null): 
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
