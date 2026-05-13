@@ -201,6 +201,16 @@ record TreeNode {
 	children: TreeNode[]
 }
 
+record CyclicNodeA {
+	value: string
+	nodeB: CyclicNodeB
+}
+
+record CyclicNodeB {
+	value: string
+	nodeA: CyclicNodeA
+}
+
 patchable record PatchableRecord {
     @id key: string
     @rev version: string

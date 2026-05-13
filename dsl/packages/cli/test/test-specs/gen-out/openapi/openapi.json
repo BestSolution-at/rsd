@@ -14658,6 +14658,36 @@
           "children"
         ]
       },
+      "CyclicNodeA": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "nodeB": {
+            "$ref": "#/components/schemas/CyclicNodeB"
+          }
+        },
+        "required": [
+          "value",
+          "nodeB"
+        ]
+      },
+      "CyclicNodeB": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "nodeA": {
+            "$ref": "#/components/schemas/CyclicNodeA"
+          }
+        },
+        "required": [
+          "value",
+          "nodeA"
+        ]
+      },
       "PatchableRecord": {
         "type": "object",
         "properties": {

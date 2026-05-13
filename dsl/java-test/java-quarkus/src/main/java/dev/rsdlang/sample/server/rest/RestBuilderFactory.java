@@ -11,6 +11,8 @@ import dev.rsdlang.sample.server.rest.model._BlobImpl;
 import dev.rsdlang.sample.server.rest.model._FileImpl;
 import dev.rsdlang.sample.server.rest.model._StreamBlobImpl;
 import dev.rsdlang.sample.server.rest.model._StreamFileImpl;
+import dev.rsdlang.sample.server.rest.model.CyclicNodeADataImpl;
+import dev.rsdlang.sample.server.rest.model.CyclicNodeBDataImpl;
 import dev.rsdlang.sample.server.rest.model.EnumInlineRecordDataImpl;
 import dev.rsdlang.sample.server.rest.model.EnumRecordDataImpl;
 import dev.rsdlang.sample.server.rest.model.MixinRecordDataImpl;
@@ -69,6 +71,8 @@ import dev.rsdlang.sample.server.rest.model.UnionDataImpl;
 import dev.rsdlang.sample.server.rest.model.UploadMixedResultDataImpl;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.model._Base;
+import dev.rsdlang.sample.server.service.model.CyclicNodeA;
+import dev.rsdlang.sample.server.service.model.CyclicNodeB;
 import dev.rsdlang.sample.server.service.model.EnumInlineRecord;
 import dev.rsdlang.sample.server.service.model.EnumRecord;
 import dev.rsdlang.sample.server.service.model.MixinRecord;
@@ -171,6 +175,12 @@ public class RestBuilderFactory implements BuilderFactory {
 		}
 		if (type == TreeNode.DataBuilder.class) {
 			return type.cast(TreeNodeDataImpl.builder());
+		}
+		if (type == CyclicNodeA.DataBuilder.class) {
+			return type.cast(CyclicNodeADataImpl.builder());
+		}
+		if (type == CyclicNodeB.DataBuilder.class) {
+			return type.cast(CyclicNodeBDataImpl.builder());
 		}
 		if (type == PatchableRecord.DataBuilder.class) {
 			return type.cast(PatchableRecordDataImpl.builder());
@@ -334,6 +344,12 @@ public class RestBuilderFactory implements BuilderFactory {
 		}
 		if (type == TreeNode.Data.class) {
 			return type.cast(TreeNodeDataImpl.of(data));
+		}
+		if (type == CyclicNodeA.Data.class) {
+			return type.cast(CyclicNodeADataImpl.of(data));
+		}
+		if (type == CyclicNodeB.Data.class) {
+			return type.cast(CyclicNodeBDataImpl.of(data));
 		}
 		if (type == PatchableRecord.Data.class) {
 			return type.cast(PatchableRecordDataImpl.of(data));

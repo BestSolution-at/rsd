@@ -10,6 +10,8 @@ export * from './BodyParameterTypesMultiBodyParamNilRequest.js';
 export * from './BodyParameterTypesMultiBodyParamOptNilRequest.js';
 export * from './BodyParameterTypesMultiBodyParamOptRequest.js';
 export * from './BodyParameterTypesMultiBodyParamRequest.js';
+export * from './CyclicNodeA.js';
+export * from './CyclicNodeB.js';
 export * from './EnumInlineRecord.js';
 export * from './EnumRecord.js';
 export * from './ListBodyParameterTypesListMultiBodyParamNilRequest.js';

@@ -21,6 +21,8 @@ docs/BodyParameterTypesMultiBodyParamNilRequest.md
 docs/BodyParameterTypesMultiBodyParamOptNilRequest.md
 docs/BodyParameterTypesMultiBodyParamOptRequest.md
 docs/BodyParameterTypesMultiBodyParamRequest.md
+docs/CyclicNodeA.md
+docs/CyclicNodeB.md
 docs/EnumInlineRecord.md
 docs/EnumRecord.md
 docs/HeaderParameterTypesApi.md
@@ -304,6 +306,8 @@ models/BodyParameterTypesMultiBodyParamNilRequest.ts
 models/BodyParameterTypesMultiBodyParamOptNilRequest.ts
 models/BodyParameterTypesMultiBodyParamOptRequest.ts
 models/BodyParameterTypesMultiBodyParamRequest.ts
+models/CyclicNodeA.ts
+models/CyclicNodeB.ts
 models/EnumInlineRecord.ts
 models/EnumRecord.ts
 models/ListBodyParameterTypesListMultiBodyParamNilRequest.ts
