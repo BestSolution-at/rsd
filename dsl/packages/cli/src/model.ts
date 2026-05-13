@@ -9,6 +9,7 @@ export type MBuiltinType =
 	| 'boolean'
 	| 'local-date'
 	| 'local-date-time'
+	| 'local-time'
 	| 'string'
 	| 'zoned-date-time'
 	| NumericBuiltinType;
@@ -18,6 +19,7 @@ export function isMBuiltinType(value: unknown): value is MBuiltinType {
 		value === 'boolean' ||
 		value === 'local-date' ||
 		value === 'local-date-time' ||
+		value === 'local-time' ||
 		value === 'string' ||
 		value === 'zoned-date-time' ||
 		isMBuiltinNumericType(value)

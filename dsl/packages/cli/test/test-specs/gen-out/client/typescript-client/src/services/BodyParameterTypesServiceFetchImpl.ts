@@ -44,6 +44,10 @@ export function createBodyParameterTypesService(props: ServiceProps<api.service.
 		simpleLocalDateTimeBodyParamOpt: fnSimpleLocalDateTimeBodyParamOpt(props),
 		simpleLocalDateTimeBodyParamNil: fnSimpleLocalDateTimeBodyParamNil(props),
 		simpleLocalDateTimeBodyParamOptNil: fnSimpleLocalDateTimeBodyParamOptNil(props),
+		simpleLocalTimeBodyParam: fnSimpleLocalTimeBodyParam(props),
+		simpleLocalTimeBodyParamOpt: fnSimpleLocalTimeBodyParamOpt(props),
+		simpleLocalTimeBodyParamNil: fnSimpleLocalTimeBodyParamNil(props),
+		simpleLocalTimeBodyParamOptNil: fnSimpleLocalTimeBodyParamOptNil(props),
 		simpleZonedDateTimeBodyParam: fnSimpleZonedDateTimeBodyParam(props),
 		simpleZonedDateTimeBodyParamOpt: fnSimpleZonedDateTimeBodyParamOpt(props),
 		simpleZonedDateTimeBodyParamNil: fnSimpleZonedDateTimeBodyParamNil(props),
@@ -1191,6 +1195,130 @@ function fnSimpleLocalDateTimeBodyParamOptNil(props: ServiceProps<api.service.Er
 			return api.result.ERR(err);
 		} finally {
 			final?.('simpleLocalDateTimeBodyParamOptNil');
+		}
+	};
+}
+
+function fnSimpleLocalTimeBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLocalTimeBodyParam'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalTime: string) => {
+		try {
+			const $init = (await preFetch?.('simpleLocalTimeBodyParam')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleLocalTimeBodyParam`;
+			const $body = encodeValue(encodingType(props), bodyLocalTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isString);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalTimeBodyParam', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLocalTimeBodyParam', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLocalTimeBodyParam');
+		}
+	};
+}
+
+function fnSimpleLocalTimeBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLocalTimeBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalTime?: string) => {
+		try {
+			const $init = (await preFetch?.('simpleLocalTimeBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleLocalTimeBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyLocalTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalTimeBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLocalTimeBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLocalTimeBodyParamOpt');
+		}
+	};
+}
+
+function fnSimpleLocalTimeBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLocalTimeBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalTime: string | null) => {
+		try {
+			const $init = (await preFetch?.('simpleLocalTimeBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleLocalTimeBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyLocalTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalTimeBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLocalTimeBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLocalTimeBodyParamNil');
+		}
+	};
+}
+
+function fnSimpleLocalTimeBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleLocalTimeBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyLocalTime?: string | null) => {
+		try {
+			const $init = (await preFetch?.('simpleLocalTimeBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/bodyparametertypes/simpleLocalTimeBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyLocalTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleLocalTimeBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleLocalTimeBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleLocalTimeBodyParamOptNil');
 		}
 	};
 }

@@ -461,6 +461,50 @@ public class BodyParameterTypesResource {
 	}
 
 	@POST
+	@Path("simpleLocalTimeBodyParam")
+	public Response simpleLocalTimeBodyParam(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalTime) {
+		var bodyLocalTime = _JsonUtils.parseLocalTime(_bodyLocalTime, computeRequestContentType($contentTypeHeader));
+		var result = service.simpleLocalTimeBodyParam(builderFactory, bodyLocalTime);
+		return responseBuilder.simpleLocalTimeBodyParam(result, computeResponseContentType($acceptHeaders), bodyLocalTime).build();
+	}
+
+	@POST
+	@Path("simpleLocalTimeBodyParamOpt")
+	public Response simpleLocalTimeBodyParamOpt(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalTime) {
+		var bodyLocalTime = _JsonUtils.parseOptLocalTime(_bodyLocalTime, computeRequestContentType($contentTypeHeader));
+		var result = service.simpleLocalTimeBodyParamOpt(builderFactory, bodyLocalTime);
+		return responseBuilder.simpleLocalTimeBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyLocalTime).build();
+	}
+
+	@POST
+	@Path("simpleLocalTimeBodyParamNil")
+	public Response simpleLocalTimeBodyParamNil(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalTime) {
+		var bodyLocalTime = _JsonUtils.parseNullLocalTime(_bodyLocalTime, computeRequestContentType($contentTypeHeader));
+		var result = service.simpleLocalTimeBodyParamNil(builderFactory, bodyLocalTime);
+		return responseBuilder.simpleLocalTimeBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyLocalTime).build();
+	}
+
+	@POST
+	@Path("simpleLocalTimeBodyParamOptNil")
+	public Response simpleLocalTimeBodyParamOptNil(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyLocalTime) {
+		var bodyLocalTime = _JsonUtils.parseNilLocalTime(_bodyLocalTime, computeRequestContentType($contentTypeHeader));
+		var result = service.simpleLocalTimeBodyParamOptNil(builderFactory, bodyLocalTime);
+		return responseBuilder.simpleLocalTimeBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyLocalTime).build();
+	}
+
+	@POST
 	@Path("simpleZonedDateTimeBodyParam")
 	public Response simpleZonedDateTimeBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,

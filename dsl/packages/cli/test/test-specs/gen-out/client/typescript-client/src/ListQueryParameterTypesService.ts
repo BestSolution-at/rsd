@@ -14,6 +14,7 @@ export interface ListQueryParameterTypesService {
 	listStringQueryParam(queryValue: string[]): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
 	listLocalDateQueryParam(queryValue: string[]): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
 	listLocalDateTimeQueryParam(queryValue: string[]): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
+	listLocalTimeQueryParam(queryValue: string[]): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
 	listZonedDateTimeQueryParam(queryValue: string[]): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
 	listScalarQueryParam(queryValue: string[]): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
 	listEnumQueryParam(queryValue: SampleEnum[]): Promise<Result<SampleEnum[], StatusRSDError | NativeRSDError>>;

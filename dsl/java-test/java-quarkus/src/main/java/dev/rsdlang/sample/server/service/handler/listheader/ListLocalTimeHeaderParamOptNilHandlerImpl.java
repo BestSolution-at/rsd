@@ -1,0 +1,27 @@
+package dev.rsdlang.sample.server.service.handler.listheader;
+
+import java.time.LocalTime;
+import java.util.List;
+
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
+import dev.rsdlang.sample.server.service.model.NilResult;
+import dev.rsdlang.sample.server.service.model._Base.Nillable;
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+public class ListLocalTimeHeaderParamOptNilHandlerImpl
+		implements ListHeaderParameterTypesServiceImpl.ListLocalTimeHeaderParamOptNilHandler {
+
+	@Override
+	public NilResult listLocalTimeHeaderParamOptNil(BuilderFactory _factory, Nillable<List<LocalTime>> headerValue) {
+		if (headerValue.isNull()) {
+			return NilResult.NULL;
+		} else if (headerValue.isUndefined()) {
+			return NilResult.UNDEFINED;
+		} else {
+			return NilResult.DEFINED;
+		}
+	}
+
+}

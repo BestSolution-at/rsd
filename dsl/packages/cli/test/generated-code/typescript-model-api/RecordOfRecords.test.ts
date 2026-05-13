@@ -15,6 +15,7 @@ const SimpleRecord_Basic: SimpleRecord_Basic = {
 	valueInt: 1,
 	valueLocalDate: '2020-01-01',
 	valueLocalDateTime: '2020-01-01T00:00:00',
+	valueLocalTime: '2020-01-01T00:00:00',
 	valueLong: 1,
 	valueShort: 1,
 	valueString: 'Value',

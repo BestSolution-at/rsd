@@ -11,6 +11,7 @@ export type SimpleRecord_Basic_List_Optional = {
 	readonly valueString?: string[];
 	readonly valueLocalDate?: string[];
 	readonly valueLocalDateTime?: string[];
+	readonly valueLocalTime?: string[];
 	readonly valueZonedDateTime?: string[];
 };
 
@@ -25,6 +26,7 @@ export function isSimpleRecord_Basic_List_Optional(value: unknown): value is Sim
 		checkOptProp(value, 'valueString', createTypedArrayGuard(isString)) &&
 		checkOptProp(value, 'valueLocalDate', createTypedArrayGuard(isString)) &&
 		checkOptProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString)) &&
+		checkOptProp(value, 'valueLocalTime', createTypedArrayGuard(isString)) &&
 		checkOptProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString));
 }
 
@@ -38,6 +40,7 @@ export function SimpleRecord_Basic_List_OptionalFromJSON($value: Record<string, 
 	const valueString = propListValue('valueString', $value, isString, 'optional');
 	const valueLocalDate = propListValue('valueLocalDate', $value, isString, 'optional');
 	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString, 'optional');
+	const valueLocalTime = propListValue('valueLocalTime', $value, isString, 'optional');
 	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString, 'optional');
 	return {
 		valueBoolean,
@@ -49,6 +52,7 @@ export function SimpleRecord_Basic_List_OptionalFromJSON($value: Record<string, 
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -63,6 +67,7 @@ export function SimpleRecord_Basic_List_OptionalToJSON($value: SimpleRecord_Basi
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueLocalTime = $value.valueLocalTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -75,6 +80,7 @@ export function SimpleRecord_Basic_List_OptionalToJSON($value: SimpleRecord_Basi
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }

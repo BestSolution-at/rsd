@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -83,6 +84,14 @@ public class ListSampleServiceServiceTest {
 				List.of(LocalDateTime.parse("2020-01-01T10:00:00"), LocalDateTime.parse("2021-02-02T11:30:00"),
 						LocalDateTime.parse("2022-03-03T12:45:00")),
 				service.listLocalDateTime());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listLocalTime(ListSampleServiceService service) {
+		assertEquals(
+				List.of(LocalTime.parse("10:00:00"), LocalTime.parse("11:30:00"), LocalTime.parse("12:45:00")),
+				service.listLocalTime());
 	}
 
 	@ParameterizedTest

@@ -3,6 +3,7 @@ package dev.rsdlang.sample.server.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.Optional;
@@ -50,6 +51,10 @@ public interface QueryParameterTypesService {
 	public LocalDateTime simpleLocalDateTimeQueryParam(BuilderFactory _factory, LocalDateTime queryValue);
 
 	public NilResult simpleLocalDateTimeQueryParamOpt(BuilderFactory _factory, Optional<LocalDateTime> queryValue);
+
+	public LocalTime simpleLocalTimeQueryParam(BuilderFactory _factory, LocalTime queryValue);
+
+	public NilResult simpleLocalTimeQueryParamOpt(BuilderFactory _factory, Optional<LocalTime> queryValue);
 
 	public ZonedDateTime simpleZonedDateTimeQueryParam(BuilderFactory _factory, ZonedDateTime queryValue);
 

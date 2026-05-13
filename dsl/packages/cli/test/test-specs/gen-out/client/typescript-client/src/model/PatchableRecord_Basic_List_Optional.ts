@@ -13,6 +13,7 @@ export type PatchableRecord_Basic_List_Optional = {
 	readonly valueString?: string[];
 	readonly valueLocalDate?: string[];
 	readonly valueLocalDateTime?: string[];
+	readonly valueLocalTime?: string[];
 	readonly valueZonedDateTime?: string[];
 };
 
@@ -29,6 +30,7 @@ export function isPatchableRecord_Basic_List_Optional(value: unknown): value is 
 		checkOptProp(value, 'valueString', createTypedArrayGuard(isString)) &&
 		checkOptProp(value, 'valueLocalDate', createTypedArrayGuard(isString)) &&
 		checkOptProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString)) &&
+		checkOptProp(value, 'valueLocalTime', createTypedArrayGuard(isString)) &&
 		checkOptProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString));
 }
 
@@ -44,6 +46,7 @@ export function PatchableRecord_Basic_List_OptionalFromJSON($value: Record<strin
 	const valueString = propListValue('valueString', $value, isString, 'optional');
 	const valueLocalDate = propListValue('valueLocalDate', $value, isString, 'optional');
 	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString, 'optional');
+	const valueLocalTime = propListValue('valueLocalTime', $value, isString, 'optional');
 	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString, 'optional');
 	return {
 		key,
@@ -57,6 +60,7 @@ export function PatchableRecord_Basic_List_OptionalFromJSON($value: Record<strin
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -73,6 +77,7 @@ export function PatchableRecord_Basic_List_OptionalToJSON($value: PatchableRecor
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueLocalTime = $value.valueLocalTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -87,6 +92,7 @@ export function PatchableRecord_Basic_List_OptionalToJSON($value: PatchableRecor
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -127,6 +133,10 @@ type $ValueLocalDateTimeReplace = ListReplace<string>;
 type $ValueLocalDateTimeMerge = ListMergeAddRemove<string, string>;
 type $ValueLocalDateTimePatch = $ValueLocalDateTimeReplace | $ValueLocalDateTimeMerge;
 
+type $ValueLocalTimeReplace = ListReplace<string>;
+type $ValueLocalTimeMerge = ListMergeAddRemove<string, string>;
+type $ValueLocalTimePatch = $ValueLocalTimeReplace | $ValueLocalTimeMerge;
+
 type $ValueZonedDateTimeReplace = ListReplace<string>;
 type $ValueZonedDateTimeMerge = ListMergeAddRemove<string, string>;
 type $ValueZonedDateTimePatch = $ValueZonedDateTimeReplace | $ValueZonedDateTimeMerge;
@@ -143,6 +153,7 @@ export type PatchableRecord_Basic_List_OptionalPatch = {
 	readonly valueString?: $ValueStringPatch | null;
 	readonly valueLocalDate?: $ValueLocalDatePatch | null;
 	readonly valueLocalDateTime?: $ValueLocalDateTimePatch | null;
+	readonly valueLocalTime?: $ValueLocalTimePatch | null;
 	readonly valueZonedDateTime?: $ValueZonedDateTimePatch | null;
 };
 
@@ -159,6 +170,7 @@ export function isPatchableRecord_Basic_List_OptionalPatch(value: unknown): valu
 		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isString))) &&
 		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isString))) &&
 		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isString))) &&
+		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', createReplaceAddRemoveGuard(isString))) &&
 		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isString)));
 }
 
@@ -174,6 +186,7 @@ export function PatchableRecord_Basic_List_OptionalPatchFromJSON($value: Record<
 	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
 	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
 	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
 	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
 	return {
 		key,
@@ -187,6 +200,7 @@ export function PatchableRecord_Basic_List_OptionalPatchFromJSON($value: Record<
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -203,6 +217,7 @@ export function PatchableRecord_Basic_List_OptionalPatchToJSON($value: Patchable
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueLocalTime = $value.valueLocalTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -217,6 +232,7 @@ export function PatchableRecord_Basic_List_OptionalPatchToJSON($value: Patchable
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }

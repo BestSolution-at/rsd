@@ -23,6 +23,7 @@ export function generateServiceUtils(
 	importCollector.importType('java.nio.charset.StandardCharsets');
 	importCollector.importType('java.time.LocalDate');
 	importCollector.importType('java.time.LocalDateTime');
+	importCollector.importType('java.time.LocalTime');
 	importCollector.importType('java.time.ZonedDateTime');
 	importCollector.importType('java.util.List');
 	importCollector.importType('java.util.Map');
@@ -153,6 +154,10 @@ public class ServiceUtils {
 		return _JsonUtils.parseZonedDateTime(response.body(), contentType(response));
 	}
 
+	public static LocalTime mapLocalTime(HttpResponse<InputStream> response) {
+		return _JsonUtils.parseLocalTime(response.body(), contentType(response));
+	}
+
 	public static <T> List<T> mapObjects(HttpResponse<InputStream> response, Function<JsonObject, T> factory, Class<T> type) {
 		return _JsonUtils.parseObjects(response.body(), contentType(response), factory, type);
 	}
@@ -199,6 +204,10 @@ public class ServiceUtils {
 
 	public static List<ZonedDateTime> mapZonedDateTimes(HttpResponse<InputStream> response) {
 		return _JsonUtils.parseLiterals(response.body(), contentType(response), ZonedDateTime::parse);
+	}
+
+	public static List<LocalTime> mapLocalTimes(HttpResponse<InputStream> response) {
+		return _JsonUtils.parseLiterals(response.body(), contentType(response), LocalTime::parse);
 	}
 
 	public static byte[] ofBoolean(
@@ -336,6 +345,20 @@ public class ServiceUtils {
 
 	public static byte[] ofZonedDateTimeList(
 			List<ZonedDateTime> value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
+	}
+
+	public static byte[] ofLocalTime(
+			LocalTime value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING);
+	}
+
+	public static byte[] ofLocalTimeList(
+			List<LocalTime> value,
 			boolean nullable,
 			String contentType) {
 		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());

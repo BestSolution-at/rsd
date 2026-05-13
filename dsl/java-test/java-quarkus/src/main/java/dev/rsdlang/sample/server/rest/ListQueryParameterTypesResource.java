@@ -147,6 +147,16 @@ public class ListQueryParameterTypesResource {
 	}
 
 	@GET
+	@Path("listLocalTimeQueryParam")
+	public Response listLocalTimeQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapLocalTimes(_queryValue);
+		var result = service.listLocalTimeQueryParam(builderFactory, queryValue);
+		return responseBuilder.listLocalTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
+	}
+
+	@GET
 	@Path("listZonedDateTimeQueryParam")
 	public Response listZonedDateTimeQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,

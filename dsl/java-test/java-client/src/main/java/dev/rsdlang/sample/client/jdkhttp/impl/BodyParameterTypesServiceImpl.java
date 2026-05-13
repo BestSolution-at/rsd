@@ -9,6 +9,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.Objects;
@@ -1448,6 +1449,164 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		try {
 			var $contentType = this.contentType();
 			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLocalDateTime(bodyLocalDateTime, true, $contentType));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public LocalTime simpleLocalTimeBodyParam(LocalTime bodyLocalTime) {
+		Objects.requireNonNull(bodyLocalTime, "bodyLocalTime must not be null");
+
+		var $path = "%s/api/bodyparametertypes/simpleLocalTimeBodyParam".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $contentType = this.contentType();
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLocalTime(bodyLocalTime, false, $contentType));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLocalTime($response);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult simpleLocalTimeBodyParamOpt() {
+		var $path = "%s/api/bodyparametertypes/simpleLocalTimeBodyParamOpt".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $contentType = this.contentType();
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeEmptyValue($contentType));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult simpleLocalTimeBodyParamOpt(LocalTime bodyLocalTime) {
+		var $path = "%s/api/bodyparametertypes/simpleLocalTimeBodyParamOpt".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $contentType = this.contentType();
+			var $body = BodyPublishers.ofByteArray(bodyLocalTime == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofLocalTime(bodyLocalTime, false, $contentType));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult simpleLocalTimeBodyParamNil(LocalTime bodyLocalTime) {
+		var $path = "%s/api/bodyparametertypes/simpleLocalTimeBodyParamNil".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $contentType = this.contentType();
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLocalTime(bodyLocalTime, true, $contentType));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult simpleLocalTimeBodyParamOptNil() {
+		var $path = "%s/api/bodyparametertypes/simpleLocalTimeBodyParamOptNil".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $contentType = this.contentType();
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeEmptyValue($contentType));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult simpleLocalTimeBodyParamOptNil(LocalTime bodyLocalTime) {
+		var $path = "%s/api/bodyparametertypes/simpleLocalTimeBodyParamOptNil".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $contentType = this.contentType();
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLocalTime(bodyLocalTime, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)

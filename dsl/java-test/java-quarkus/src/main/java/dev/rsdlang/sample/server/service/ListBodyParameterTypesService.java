@@ -3,6 +3,7 @@ package dev.rsdlang.sample.server.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -105,6 +106,14 @@ public interface ListBodyParameterTypesService {
 	public NilResult listLocalDateTimeBodyParamNil(BuilderFactory _factory, Optional<List<LocalDateTime>> bodyLocalDateTime);
 
 	public NilResult listLocalDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDateTime>> bodyLocalDateTime);
+
+	public List<LocalTime> listLocalTimeBodyParam(BuilderFactory _factory, List<LocalTime> bodyLocalTime);
+
+	public NilResult listLocalTimeBodyParamOpt(BuilderFactory _factory, Optional<List<LocalTime>> bodyLocalTime);
+
+	public NilResult listLocalTimeBodyParamNil(BuilderFactory _factory, Optional<List<LocalTime>> bodyLocalTime);
+
+	public NilResult listLocalTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalTime>> bodyLocalTime);
 
 	public List<ZonedDateTime> listZonedDateTimeBodyParam(BuilderFactory _factory, List<ZonedDateTime> bodyZonedDateTime);
 

@@ -3,6 +3,7 @@ package dev.rsdlang.sample.server.service.impl;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -26,13 +27,14 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 	private final ListStringHandler listStringHandler;
 	private final ListLocalDateHandler listLocalDateHandler;
 	private final ListLocalDateTimeHandler listLocalDateTimeHandler;
+	private final ListLocalTimeHandler listLocalTimeHandler;
 	private final ListZonedDateTimeHandler listZonedDateTimeHandler;
 	private final ListScalarHandler listScalarHandler;
 	private final ListEnumHandler listEnumHandler;
 	private final ListSimpleRecordHandler listSimpleRecordHandler;
 	private final ListSimpleRecordWithErrorHandler listSimpleRecordWithErrorHandler;
 
-	public ListSampleServiceServiceImpl(ListBooleanHandler listBooleanHandler, ListShortHandler listShortHandler, ListIntHandler listIntHandler, ListLongHandler listLongHandler, ListFloatHandler listFloatHandler, ListDoubleHandler listDoubleHandler, ListStringHandler listStringHandler, ListLocalDateHandler listLocalDateHandler, ListLocalDateTimeHandler listLocalDateTimeHandler, ListZonedDateTimeHandler listZonedDateTimeHandler, ListScalarHandler listScalarHandler, ListEnumHandler listEnumHandler, ListSimpleRecordHandler listSimpleRecordHandler, ListSimpleRecordWithErrorHandler listSimpleRecordWithErrorHandler) {
+	public ListSampleServiceServiceImpl(ListBooleanHandler listBooleanHandler, ListShortHandler listShortHandler, ListIntHandler listIntHandler, ListLongHandler listLongHandler, ListFloatHandler listFloatHandler, ListDoubleHandler listDoubleHandler, ListStringHandler listStringHandler, ListLocalDateHandler listLocalDateHandler, ListLocalDateTimeHandler listLocalDateTimeHandler, ListLocalTimeHandler listLocalTimeHandler, ListZonedDateTimeHandler listZonedDateTimeHandler, ListScalarHandler listScalarHandler, ListEnumHandler listEnumHandler, ListSimpleRecordHandler listSimpleRecordHandler, ListSimpleRecordWithErrorHandler listSimpleRecordWithErrorHandler) {
 		this.listBooleanHandler = listBooleanHandler;
 		this.listShortHandler = listShortHandler;
 		this.listIntHandler = listIntHandler;
@@ -42,6 +44,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 		this.listStringHandler = listStringHandler;
 		this.listLocalDateHandler = listLocalDateHandler;
 		this.listLocalDateTimeHandler = listLocalDateTimeHandler;
+		this.listLocalTimeHandler = listLocalTimeHandler;
 		this.listZonedDateTimeHandler = listZonedDateTimeHandler;
 		this.listScalarHandler = listScalarHandler;
 		this.listEnumHandler = listEnumHandler;
@@ -92,6 +95,11 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 	@Override
 	public List<LocalDateTime> listLocalDateTime(BuilderFactory _factory) {
 		return listLocalDateTimeHandler.listLocalDateTime(_factory);
+	}
+
+	@Override
+	public List<LocalTime> listLocalTime(BuilderFactory _factory) {
+		return listLocalTimeHandler.listLocalTime(_factory);
 	}
 
 	@Override
@@ -154,6 +162,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 
 	public interface ListLocalDateTimeHandler {
 		public List<LocalDateTime> listLocalDateTime(BuilderFactory _factory);
+	}
+
+	public interface ListLocalTimeHandler {
+		public List<LocalTime> listLocalTime(BuilderFactory _factory);
 	}
 
 	public interface ListZonedDateTimeHandler {

@@ -3,6 +3,7 @@ package dev.rsdlang.sample.client;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 
@@ -140,6 +141,18 @@ public interface BodyParameterTypesService extends BaseService {
 	public NilResult simpleLocalDateTimeBodyParamOptNil();
 
 	public NilResult simpleLocalDateTimeBodyParamOptNil(LocalDateTime bodyLocalDateTime);
+
+	public LocalTime simpleLocalTimeBodyParam(LocalTime bodyLocalTime);
+
+	public NilResult simpleLocalTimeBodyParamOpt();
+
+	public NilResult simpleLocalTimeBodyParamOpt(LocalTime bodyLocalTime);
+
+	public NilResult simpleLocalTimeBodyParamNil(LocalTime bodyLocalTime);
+
+	public NilResult simpleLocalTimeBodyParamOptNil();
+
+	public NilResult simpleLocalTimeBodyParamOptNil(LocalTime bodyLocalTime);
 
 	public ZonedDateTime simpleZonedDateTimeBodyParam(ZonedDateTime bodyZonedDateTime);
 

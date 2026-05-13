@@ -1,32 +1,32 @@
 grammar RemoteServiceDefinition
 
 entry RSDModel:
-    elements += UserType*
-    errors += ErrorType*
-    services += Service*
+    elements+=UserType*
+    errors+=ErrorType*
+    services+=Service*
 ;
 
 UserType:
     EnumType | RecordType | MixinType | UnionType | ScalarType;
 
 ScalarType:
-    doc = (SL_DOC_COMMENT|ML_DOC_COMMENT)?
+    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'scalar' name=ID ';';
 
 BuiltinType returns string:
-    'boolean'|'short'|'int'|'string'|'float'|'double'|'long'|'local-date'|'local-date-time'|'zoned-date-time';
+    'boolean'|'short'|'int'|'string'|'float'|'double'|'long'|'local-date'|'local-date-time'|'local-time'|'zoned-date-time';
 
 StreamType returns string:
-        'blob' | 'file';
+    'blob' | 'file';
 
 EnumType:
-    doc = (SL_DOC_COMMENT|ML_DOC_COMMENT)?
+    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'enum' name=ID '='
-        entries += EnumEntry ( '|' entries += EnumEntry )*
+        entries+=EnumEntry ( '|' entries+=EnumEntry )*
     ';';
 
 InlineEnumType:
-    'enum' entries += EnumEntry ( '|' entries += EnumEntry )*
+    'enum' entries+=EnumEntry ( '|' entries+=EnumEntry )*
 ;
 
 EnumEntry:
@@ -34,15 +34,15 @@ EnumEntry:
 ;
 
 RecordType:
-    doc = (SL_DOC_COMMENT|ML_DOC_COMMENT)?
+    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     patchable?='patchable'? 'record' name=ID
     '{'
         (
-            keyProperty = KeyProperty
-            revProperty = RevisionProperty?
+            keyProperty=KeyProperty
+            revProperty=RevisionProperty?
         )?
-        ('include' mixins += [MixinType:ID])*
-        property += Property*
+        ('include' mixins+=[MixinType:ID])*
+        property+=Property*
     '}'
 ;
 
@@ -51,20 +51,20 @@ UnionRecord:
 ;
 
 UnionType:
-    doc = (SL_DOC_COMMENT|ML_DOC_COMMENT)?
+    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     patchable?='patchable'? 'union' name=ID '='
-        records += UnionRecord ('|' records+=UnionRecord )+
+        records+=UnionRecord ('|' records+=UnionRecord )+
     ('descriminated-with' descProp=ID)? ';'
 ;
 
 MixinType:
-    doc = (SL_DOC_COMMENT|ML_DOC_COMMENT)?
+    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'mixin' name=ID '{'
         (
-            keyProperty = KeyProperty
-            revProperty = RevisionProperty?
+            keyProperty=KeyProperty
+            revProperty=RevisionProperty?
         )?
-        property += Property*
+        property+=Property*
     '}'
 ;
 
@@ -86,9 +86,9 @@ TypeRef:
 ;
 
 Service:
-    doc = (SL_DOC_COMMENT|ML_DOC_COMMENT)?
+    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'service' name=ID '{'
-        operations += Operation*
+        operations+=Operation*
     '}'
 ;
 
@@ -105,20 +105,20 @@ ReturnType:
 ;
 
 ErrorType:
-    doc = (SL_DOC_COMMENT|ML_DOC_COMMENT)?
+    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'error' name=ID ('=' value=TypeRef)? ';'
 ;
 
 Operation:
-    doc = (SL_DOC_COMMENT|ML_DOC_COMMENT)?
-    'operation' name=ID '(' (parameters += Parameter ( ',' parameters += Parameter )*)? ')' 
-    (':' returnType = ReturnType)?
-    ('throws' failures += OperationFail* )? 
+    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
+    'operation' name=ID '(' (parameters+=Parameter ( ',' parameters+=Parameter )*)? ')' 
+    (':' returnType=ReturnType)?
+    ('throws' failures+=OperationFail* )? 
     ';'
 ;
 
 OperationFail:
-    error = [ErrorType:ID] doc=SL_DOC_COMMENT?
+    error=[ErrorType:ID] doc=SL_DOC_COMMENT?
 ;
 
 hidden terminal WS: /\s+/;

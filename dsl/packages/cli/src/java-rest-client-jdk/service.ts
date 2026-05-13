@@ -829,6 +829,7 @@ function builtinMapExpression(type: MBuiltinType, array: boolean): string {
 		int: 'Int',
 		'local-date': 'LocalDate',
 		'local-date-time': 'LocalDateTime',
+		'local-time': 'LocalTime',
 		long: 'Long',
 		short: 'Short',
 		string: 'String',

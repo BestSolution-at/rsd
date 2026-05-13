@@ -3,6 +3,7 @@ package dev.rsdlang.sample.client.impl.model.json;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -71,6 +72,11 @@ public class PatchableRecord_Basic_List_NullDataImpl extends _BaseDataImpl imple
 	@Override
 	public Optional<List<LocalDateTime>> valueLocalDateTime() {
 		return _JsonUtils.mapNullLocalDateTimes(data, "valueLocalDateTime");
+	}
+
+	@Override
+	public Optional<List<LocalTime>> valueLocalTime() {
+		return _JsonUtils.mapNullLocalTimes(data, "valueLocalTime");
 	}
 
 	@Override
@@ -188,6 +194,16 @@ public class PatchableRecord_Basic_List_NullDataImpl extends _BaseDataImpl imple
 				return this;
 			}
 			$builder.add("valueLocalDateTime", _JsonUtils.toJsonLiteralArray(valueLocalDateTime));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List_Null.DataBuilder valueLocalTime(List<LocalTime> valueLocalTime) {
+			if (valueLocalTime == null) {
+				$builder.addNull("valueLocalTime");
+				return this;
+			}
+			$builder.add("valueLocalTime", _JsonUtils.toJsonLiteralArray(valueLocalTime));
 			return this;
 		}
 

@@ -3,6 +3,7 @@ package dev.rsdlang.sample.server.rest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.Optional;
@@ -107,6 +108,16 @@ public class QueryParameterTypesResourceResponseBuilder {
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder simpleLocalDateTimeQueryParamOpt(NilResult $result, String $contentType, Optional<LocalDateTime> queryValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder simpleLocalTimeQueryParam(LocalTime $result, String $contentType, LocalTime queryValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder simpleLocalTimeQueryParamOpt(NilResult $result, String $contentType, Optional<LocalTime> queryValue) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}

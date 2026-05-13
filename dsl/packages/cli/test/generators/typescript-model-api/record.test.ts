@@ -52,6 +52,7 @@ export type SimpleRecord_Basic = {
 	readonly valueString: string;
 	readonly valueLocalDate: string;
 	readonly valueLocalDateTime: string;
+	readonly valueLocalTime: string;
 	readonly valueZonedDateTime: string;
 };
 `.trim();
@@ -67,6 +68,7 @@ export type SimpleRecord_Basic_Optional = {
 	readonly valueString?: string;
 	readonly valueLocalDate?: string;
 	readonly valueLocalDateTime?: string;
+	readonly valueLocalTime?: string;
 	readonly valueZonedDateTime?: string;
 };
 `.trim();
@@ -82,6 +84,7 @@ export type SimpleRecord_Basic_Null = {
 	readonly valueString: string | null;
 	readonly valueLocalDate: string | null;
 	readonly valueLocalDateTime: string | null;
+	readonly valueLocalTime: string | null;
 	readonly valueZonedDateTime: string | null;
 };
 `.trim();
@@ -97,6 +100,7 @@ export type SimpleRecord_Basic_Optional_Null = {
 	readonly valueString?: string | null;
 	readonly valueLocalDate?: string | null;
 	readonly valueLocalDateTime?: string | null;
+	readonly valueLocalTime?: string | null;
 	readonly valueZonedDateTime?: string | null;
 };
 `.trim();
@@ -112,6 +116,7 @@ export type SimpleRecord_Basic_List = {
 	readonly valueString: string[];
 	readonly valueLocalDate: string[];
 	readonly valueLocalDateTime: string[];
+	readonly valueLocalTime: string[];
 	readonly valueZonedDateTime: string[];
 };
 `.trim();
@@ -127,6 +132,7 @@ export type SimpleRecord_Basic_List_Optional = {
 	readonly valueString?: string[];
 	readonly valueLocalDate?: string[];
 	readonly valueLocalDateTime?: string[];
+	readonly valueLocalTime?: string[];
 	readonly valueZonedDateTime?: string[];
 };
 `.trim();
@@ -142,6 +148,7 @@ export type SimpleRecord_Basic_List_Null = {
 	readonly valueString: string[] | null;
 	readonly valueLocalDate: string[] | null;
 	readonly valueLocalDateTime: string[] | null;
+	readonly valueLocalTime: string[] | null;
 	readonly valueZonedDateTime: string[] | null;
 };
 `.trim();
@@ -157,6 +164,7 @@ export type SimpleRecord_Basic_List_Optional_Null = {
 	readonly valueString?: string[] | null;
 	readonly valueLocalDate?: string[] | null;
 	readonly valueLocalDateTime?: string[] | null;
+	readonly valueLocalTime?: string[] | null;
 	readonly valueZonedDateTime?: string[] | null;
 };
 `.trim();
@@ -357,6 +365,7 @@ export function isSimpleRecord_Basic(value: unknown): value is SimpleRecord_Basi
 		checkProp(value, 'valueString', isString) &&
 		checkProp(value, 'valueLocalDate', isString) &&
 		checkProp(value, 'valueLocalDateTime', isString) &&
+		checkProp(value, 'valueLocalTime', isString) &&
 		checkProp(value, 'valueZonedDateTime', isString);
 }
 `.trim();
@@ -373,6 +382,7 @@ export function isSimpleRecord_Basic_Optional(value: unknown): value is SimpleRe
 		checkOptProp(value, 'valueString', isString) &&
 		checkOptProp(value, 'valueLocalDate', isString) &&
 		checkOptProp(value, 'valueLocalDateTime', isString) &&
+		checkOptProp(value, 'valueLocalTime', isString) &&
 		checkOptProp(value, 'valueZonedDateTime', isString);
 }
 `.trim();
@@ -389,6 +399,7 @@ export function isSimpleRecord_Basic_Null(value: unknown): value is SimpleRecord
 		(checkProp(value, 'valueString', isNull) || checkProp(value, 'valueString', isString)) &&
 		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', isString)) &&
 		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', isString)) &&
+		(checkProp(value, 'valueLocalTime', isNull) || checkProp(value, 'valueLocalTime', isString)) &&
 		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', isString));
 }
 `.trim();
@@ -405,6 +416,7 @@ export function isSimpleRecord_Basic_Optional_Null(value: unknown): value is Sim
 		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isString)) &&
 		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isString)) &&
 		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
+		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', isString)) &&
 		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isString));
 }
 `.trim();
@@ -421,6 +433,7 @@ export function isSimpleRecord_Basic_List(value: unknown): value is SimpleRecord
 		checkProp(value, 'valueString', createTypedArrayGuard(isString)) &&
 		checkProp(value, 'valueLocalDate', createTypedArrayGuard(isString)) &&
 		checkProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString)) &&
+		checkProp(value, 'valueLocalTime', createTypedArrayGuard(isString)) &&
 		checkProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString));
 }
 `.trim();
@@ -437,6 +450,7 @@ export function isSimpleRecord_Basic_List_Optional(value: unknown): value is Sim
 		checkOptProp(value, 'valueString', createTypedArrayGuard(isString)) &&
 		checkOptProp(value, 'valueLocalDate', createTypedArrayGuard(isString)) &&
 		checkOptProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString)) &&
+		checkOptProp(value, 'valueLocalTime', createTypedArrayGuard(isString)) &&
 		checkOptProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString));
 }
 `.trim();
@@ -453,6 +467,7 @@ export function isSimpleRecord_Basic_List_Null(value: unknown): value is SimpleR
 		(checkProp(value, 'valueString', isNull) || checkProp(value, 'valueString', createTypedArrayGuard(isString))) &&
 		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', createTypedArrayGuard(isString))) &&
 		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString))) &&
+		(checkProp(value, 'valueLocalTime', isNull) || checkProp(value, 'valueLocalTime', createTypedArrayGuard(isString))) &&
 		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString)));
 }
 `.trim();
@@ -469,6 +484,7 @@ export function isSimpleRecord_Basic_List_Optional_Null(value: unknown): value i
 		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createTypedArrayGuard(isString))) &&
 		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createTypedArrayGuard(isString))) &&
 		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString))) &&
+		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', createTypedArrayGuard(isString))) &&
 		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString)));
 }
 `.trim();
@@ -664,6 +680,7 @@ export function SimpleRecord_BasicFromJSON($value: Record<string, unknown>): Sim
 	const valueString = propValue('valueString', $value, isString);
 	const valueLocalDate = propValue('valueLocalDate', $value, isString);
 	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString);
+	const valueLocalTime = propValue('valueLocalTime', $value, isString);
 	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString);
 	return {
 		valueBoolean,
@@ -675,6 +692,7 @@ export function SimpleRecord_BasicFromJSON($value: Record<string, unknown>): Sim
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }`.trim();
@@ -690,6 +708,7 @@ export function SimpleRecord_Basic_OptionalFromJSON($value: Record<string, unkno
 	const valueString = propValue('valueString', $value, isString, 'optional');
 	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional');
 	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional');
+	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional');
 	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional');
 	return {
 		valueBoolean,
@@ -701,6 +720,7 @@ export function SimpleRecord_Basic_OptionalFromJSON($value: Record<string, unkno
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }`.trim();
@@ -716,6 +736,7 @@ export function SimpleRecord_Basic_NullFromJSON($value: Record<string, unknown>)
 	const valueString = propValue('valueString', $value, isString, 'null');
 	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'null');
 	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'null');
+	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'null');
 	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'null');
 	return {
 		valueBoolean,
@@ -727,6 +748,7 @@ export function SimpleRecord_Basic_NullFromJSON($value: Record<string, unknown>)
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }`.trim();
@@ -742,6 +764,7 @@ export function SimpleRecord_Basic_Optional_NullFromJSON($value: Record<string, 
 	const valueString = propValue('valueString', $value, isString, 'optional_null');
 	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
 	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
+	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional_null');
 	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
 	return {
 		valueBoolean,
@@ -753,6 +776,7 @@ export function SimpleRecord_Basic_Optional_NullFromJSON($value: Record<string, 
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }`.trim();
@@ -768,6 +792,7 @@ export function SimpleRecord_Basic_ListFromJSON($value: Record<string, unknown>)
 	const valueString = propListValue('valueString', $value, isString);
 	const valueLocalDate = propListValue('valueLocalDate', $value, isString);
 	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString);
+	const valueLocalTime = propListValue('valueLocalTime', $value, isString);
 	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString);
 	return {
 		valueBoolean,
@@ -779,6 +804,7 @@ export function SimpleRecord_Basic_ListFromJSON($value: Record<string, unknown>)
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -795,6 +821,7 @@ export function SimpleRecord_Basic_List_OptionalFromJSON($value: Record<string, 
 	const valueString = propListValue('valueString', $value, isString, 'optional');
 	const valueLocalDate = propListValue('valueLocalDate', $value, isString, 'optional');
 	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString, 'optional');
+	const valueLocalTime = propListValue('valueLocalTime', $value, isString, 'optional');
 	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString, 'optional');
 	return {
 		valueBoolean,
@@ -806,6 +833,7 @@ export function SimpleRecord_Basic_List_OptionalFromJSON($value: Record<string, 
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -822,6 +850,7 @@ export function SimpleRecord_Basic_List_NullFromJSON($value: Record<string, unkn
 	const valueString = propListValue('valueString', $value, isString, 'null');
 	const valueLocalDate = propListValue('valueLocalDate', $value, isString, 'null');
 	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString, 'null');
+	const valueLocalTime = propListValue('valueLocalTime', $value, isString, 'null');
 	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString, 'null');
 	return {
 		valueBoolean,
@@ -833,6 +862,7 @@ export function SimpleRecord_Basic_List_NullFromJSON($value: Record<string, unkn
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -849,6 +879,7 @@ export function SimpleRecord_Basic_List_Optional_NullFromJSON($value: Record<str
 	const valueString = propListValue('valueString', $value, isString, 'optional_null');
 	const valueLocalDate = propListValue('valueLocalDate', $value, isString, 'optional_null');
 	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString, 'optional_null');
+	const valueLocalTime = propListValue('valueLocalTime', $value, isString, 'optional_null');
 	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString, 'optional_null');
 	return {
 		valueBoolean,
@@ -860,6 +891,7 @@ export function SimpleRecord_Basic_List_Optional_NullFromJSON($value: Record<str
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -1103,6 +1135,7 @@ export function SimpleRecord_BasicToJSON($value: SimpleRecord_Basic): Record<str
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueLocalTime = $value.valueLocalTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -1115,6 +1148,7 @@ export function SimpleRecord_BasicToJSON($value: SimpleRecord_Basic): Record<str
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -1131,6 +1165,7 @@ export function SimpleRecord_Basic_OptionalToJSON($value: SimpleRecord_Basic_Opt
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueLocalTime = $value.valueLocalTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -1143,6 +1178,7 @@ export function SimpleRecord_Basic_OptionalToJSON($value: SimpleRecord_Basic_Opt
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -1159,6 +1195,7 @@ export function SimpleRecord_Basic_NullToJSON($value: SimpleRecord_Basic_Null): 
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueLocalTime = $value.valueLocalTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -1171,6 +1208,7 @@ export function SimpleRecord_Basic_NullToJSON($value: SimpleRecord_Basic_Null): 
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -1187,6 +1225,7 @@ export function SimpleRecord_Basic_Optional_NullToJSON($value: SimpleRecord_Basi
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueLocalTime = $value.valueLocalTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -1199,6 +1238,7 @@ export function SimpleRecord_Basic_Optional_NullToJSON($value: SimpleRecord_Basi
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -1215,6 +1255,7 @@ export function SimpleRecord_Basic_ListToJSON($value: SimpleRecord_Basic_List): 
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueLocalTime = $value.valueLocalTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -1227,6 +1268,7 @@ export function SimpleRecord_Basic_ListToJSON($value: SimpleRecord_Basic_List): 
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -1243,6 +1285,7 @@ export function SimpleRecord_Basic_List_OptionalToJSON($value: SimpleRecord_Basi
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueLocalTime = $value.valueLocalTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -1255,6 +1298,7 @@ export function SimpleRecord_Basic_List_OptionalToJSON($value: SimpleRecord_Basi
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -1271,6 +1315,7 @@ export function SimpleRecord_Basic_List_NullToJSON($value: SimpleRecord_Basic_Li
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueLocalTime = $value.valueLocalTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -1283,6 +1328,7 @@ export function SimpleRecord_Basic_List_NullToJSON($value: SimpleRecord_Basic_Li
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }
@@ -1299,6 +1345,7 @@ export function SimpleRecord_Basic_List_Optional_NullToJSON($value: SimpleRecord
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
+	const valueLocalTime = $value.valueLocalTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -1311,6 +1358,7 @@ export function SimpleRecord_Basic_List_Optional_NullToJSON($value: SimpleRecord
 		valueString,
 		valueLocalDate,
 		valueLocalDateTime,
+		valueLocalTime,
 		valueZonedDateTime,
 	};
 }

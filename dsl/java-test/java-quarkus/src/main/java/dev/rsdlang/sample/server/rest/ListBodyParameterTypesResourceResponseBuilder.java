@@ -3,6 +3,7 @@ package dev.rsdlang.sample.server.rest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -197,6 +198,26 @@ public class ListBodyParameterTypesResourceResponseBuilder {
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLocalDateTimeBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<LocalDateTime>> bodyLocalDateTime) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder listLocalTimeBodyParam(List<LocalTime> $result, String $contentType, List<LocalTime> bodyLocalTime) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder listLocalTimeBodyParamOpt(NilResult $result, String $contentType, Optional<List<LocalTime>> bodyLocalTime) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder listLocalTimeBodyParamNil(NilResult $result, String $contentType, Optional<List<LocalTime>> bodyLocalTime) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder listLocalTimeBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<LocalTime>> bodyLocalTime) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}

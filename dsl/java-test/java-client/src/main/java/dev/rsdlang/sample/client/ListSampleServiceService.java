@@ -3,6 +3,7 @@ package dev.rsdlang.sample.client;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -28,6 +29,8 @@ public interface ListSampleServiceService extends BaseService {
 	public List<LocalDate> listLocalDate();
 
 	public List<LocalDateTime> listLocalDateTime();
+
+	public List<LocalTime> listLocalTime();
 
 	public List<ZonedDateTime> listZonedDateTime();
 

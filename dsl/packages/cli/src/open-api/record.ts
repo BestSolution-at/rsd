@@ -301,6 +301,12 @@ export function generateBuilinProperty(t: MBuiltinType): JSONSchema4 {
 			pattern: '\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d',
 			format: 'local-date-time',
 		};
+	} else if (t === 'local-time') {
+		return {
+			type: 'string',
+			pattern: '\\d\\d:\\d\\d:\\d\\d',
+			format: 'time',
+		};
 		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	} else if (t === 'zoned-date-time') {
 		return {

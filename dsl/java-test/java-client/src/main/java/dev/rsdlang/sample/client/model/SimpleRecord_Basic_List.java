@@ -3,6 +3,7 @@ package dev.rsdlang.sample.client.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -27,6 +28,8 @@ public interface SimpleRecord_Basic_List {
 
 		public List<LocalDateTime> valueLocalDateTime();
 
+		public List<LocalTime> valueLocalTime();
+
 		public List<ZonedDateTime> valueZonedDateTime();
 
 	}
@@ -49,6 +52,8 @@ public interface SimpleRecord_Basic_List {
 		public DataBuilder valueLocalDate(List<LocalDate> valueLocalDate);
 
 		public DataBuilder valueLocalDateTime(List<LocalDateTime> valueLocalDateTime);
+
+		public DataBuilder valueLocalTime(List<LocalTime> valueLocalTime);
 
 		public DataBuilder valueZonedDateTime(List<ZonedDateTime> valueZonedDateTime);
 

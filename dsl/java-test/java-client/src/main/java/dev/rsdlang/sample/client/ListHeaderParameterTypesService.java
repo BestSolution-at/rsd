@@ -3,6 +3,7 @@ package dev.rsdlang.sample.client;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -139,6 +140,18 @@ public interface ListHeaderParameterTypesService extends BaseService {
 	public NilResult listLocalDateTimeHeaderParamOptNil();
 
 	public NilResult listLocalDateTimeHeaderParamOptNil(List<LocalDateTime> headerValue);
+
+	public List<LocalTime> listLocalTimeHeaderParam(List<LocalTime> headerValue);
+
+	public NilResult listLocalTimeHeaderParamOpt();
+
+	public NilResult listLocalTimeHeaderParamOpt(List<LocalTime> headerValue);
+
+	public NilResult listLocalTimeHeaderParamNil(List<LocalTime> headerValue);
+
+	public NilResult listLocalTimeHeaderParamOptNil();
+
+	public NilResult listLocalTimeHeaderParamOptNil(List<LocalTime> headerValue);
 
 	public List<ZonedDateTime> listZonedDateTimeHeaderParam(List<ZonedDateTime> headerValue);
 
