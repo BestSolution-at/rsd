@@ -288,6 +288,7 @@ docs/SimpleRecordBasicOptional.md
 docs/SimpleRecordBasicOptionalNull.md
 docs/SimpleRecordKeyVersion.md
 docs/SimpleRecordKeyVersionIntInt.md
+docs/TreeNode.md
 docs/Union.md
 docs/UnionA.md
 docs/UnionB.md
@@ -562,6 +563,7 @@ models/SimpleRecordBasicOptional.ts
 models/SimpleRecordBasicOptionalNull.ts
 models/SimpleRecordKeyVersion.ts
 models/SimpleRecordKeyVersionIntInt.ts
+models/TreeNode.ts
 models/Union.ts
 models/UnionA.ts
 models/UnionB.ts

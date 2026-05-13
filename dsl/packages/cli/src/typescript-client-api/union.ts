@@ -10,7 +10,7 @@ import {
 import { generateUnionContent } from '../typescript-model-api/union.js';
 
 export function generateUnion(t: MResolvedUnionType, config: TypescriptClientAPIGeneratorConfig): Artifact {
-	const collector = new TypescriptImportCollector(config);
+	const collector = new TypescriptImportCollector(config, `${t.name}.ts`);
 	const fqn = collector.importType.bind(collector);
 	return {
 		name: `${t.name}.ts`,

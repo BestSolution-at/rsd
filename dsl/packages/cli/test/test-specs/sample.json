@@ -1700,6 +1700,37 @@
     },
     {
       "@type": "RecordType",
+      "name": "TreeNode",
+      "patchable": false,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "value",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "children",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "record",
+          "type": "TreeNode",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
       "name": "PatchableRecord",
       "patchable": true,
       "mixins": [],

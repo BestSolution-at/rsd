@@ -6,9 +6,9 @@ import {
 } from '../typescript-gen-utils.js';
 
 export function generateNamespacesIndex(config: TypescriptClientAPIGeneratorConfig) {
-	const collector = new TypescriptImportCollector(config);
+	const collector = new TypescriptImportCollector(config, 'index-namespaces.ts');
 	return {
-		name: `index-namespaces.ts`,
+		name: 'index-namespaces.ts',
 		content: toString(
 			generateCompilationUnit(collector, generateNamespacesIndexContent(config.allowImportingTsExtensions ?? false)),
 			'\t',

@@ -7,9 +7,9 @@ import {
 import { toNodeTree } from '../util.js';
 
 export function generateTypeUtils(config: TypescriptClientAPIGeneratorConfig) {
-	const collector = new TypescriptImportCollector(config);
+	const collector = new TypescriptImportCollector(config, '_type-utils.ts');
 	return {
-		name: `_type-utils.ts`,
+		name: '_type-utils.ts',
 		content: toString(generateCompilationUnit(collector, generateTypeUtilsContent()), '\t'),
 		path: config.targetFolder,
 	};

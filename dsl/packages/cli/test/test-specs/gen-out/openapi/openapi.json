@@ -14640,6 +14640,24 @@
           }
         }
       },
+      "TreeNode": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TreeNode"
+            }
+          }
+        },
+        "required": [
+          "value",
+          "children"
+        ]
+      },
       "PatchableRecord": {
         "type": "object",
         "properties": {

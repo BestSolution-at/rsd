@@ -9,7 +9,7 @@ import {
 import { generateEnumContent } from '../typescript-model-api/enum.js';
 
 export function generateEnum(t: MResolvedEnumType, config: TypescriptClientAPIGeneratorConfig): Artifact {
-	const collector = new TypescriptImportCollector(config);
+	const collector = new TypescriptImportCollector(config, `${t.name}.ts`);
 	return {
 		name: `${t.name}.ts`,
 		content: toString(generateCompilationUnit(collector, generateEnumContent(t)), '\t'),

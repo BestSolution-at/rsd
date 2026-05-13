@@ -269,6 +269,7 @@ export * from './SimpleRecordBasicOptional.js';
 export * from './SimpleRecordBasicOptionalNull.js';
 export * from './SimpleRecordKeyVersion.js';
 export * from './SimpleRecordKeyVersionIntInt.js';
+export * from './TreeNode.js';
 export * from './Union.js';
 export * from './UnionA.js';
 export * from './UnionB.js';

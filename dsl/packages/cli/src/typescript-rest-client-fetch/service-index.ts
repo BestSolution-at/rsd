@@ -7,9 +7,9 @@ import {
 } from '../typescript-gen-utils.js';
 
 export function generateServiceIndex(model: MResolvedRSDModel, config: TypescriptFetchClientGeneratorConfig) {
-	const collector = new TypescriptImportCollector(config);
+	const collector = new TypescriptImportCollector(config, 'index.ts');
 	return {
-		name: `index.ts`,
+		name: 'index.ts',
 		content: toString(
 			generateCompilationUnit(
 				collector,

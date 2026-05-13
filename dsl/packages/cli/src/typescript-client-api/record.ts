@@ -9,7 +9,7 @@ import {
 } from '../typescript-gen-utils.js';
 
 export function generateRecord(t: MResolvedRecordType, config: TypescriptClientAPIGeneratorConfig): Artifact {
-	const collector = new TypescriptImportCollector(config);
+	const collector = new TypescriptImportCollector(config, `${t.name}.ts`);
 	const fqn = collector.importType.bind(collector);
 	return {
 		name: `${t.name}.ts`,

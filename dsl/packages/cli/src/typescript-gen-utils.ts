@@ -37,9 +37,11 @@ export class TypescriptImportCollector {
 	private readonly importTypes = new Map<string, Set<string>>();
 	private readonly typeOnlyTypes = new Set<string>();
 	private readonly allowImportingTsExtensions: boolean;
+	private readonly filename: string;
 
-	constructor(config: TypescriptClientAPIGeneratorConfig) {
+	constructor(config: TypescriptClientAPIGeneratorConfig, filename: string) {
 		this.allowImportingTsExtensions = config.allowImportingTsExtensions ?? false;
+		this.filename = filename;
 	}
 
 	importType(type: string, typeOnly: boolean) {
@@ -49,6 +51,10 @@ export class TypescriptImportCollector {
 
 	public appendImportGroups(node: CompositeGeneratorNode) {
 		this.importTypes.forEach((v, p) => {
+			// skip self imports, these can happen when a type references itself, either directly or indirectly. In this case we can just use the type without importing it.
+			if (p === `./${this.filename}`) {
+				return;
+			}
 			if (!this.allowImportingTsExtensions) {
 				p = p.replace(/\.ts$/, '.js');
 			}

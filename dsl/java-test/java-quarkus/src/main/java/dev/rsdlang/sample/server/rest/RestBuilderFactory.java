@@ -62,6 +62,7 @@ import dev.rsdlang.sample.server.rest.model.SimpleRecord_BasicDataImpl;
 import dev.rsdlang.sample.server.rest.model.SimpleRecord_KeyVersion_Int_IntDataImpl;
 import dev.rsdlang.sample.server.rest.model.SimpleRecord_KeyVersionDataImpl;
 import dev.rsdlang.sample.server.rest.model.SimpleRecordDataImpl;
+import dev.rsdlang.sample.server.rest.model.TreeNodeDataImpl;
 import dev.rsdlang.sample.server.rest.model.UnionADataImpl;
 import dev.rsdlang.sample.server.rest.model.UnionBDataImpl;
 import dev.rsdlang.sample.server.rest.model.UnionDataImpl;
@@ -104,6 +105,7 @@ import dev.rsdlang.sample.server.service.model.SimpleRecord_Basic_Optional;
 import dev.rsdlang.sample.server.service.model.SimpleRecord_Basic_Optional_Null;
 import dev.rsdlang.sample.server.service.model.SimpleRecord_KeyVersion;
 import dev.rsdlang.sample.server.service.model.SimpleRecord_KeyVersion_Int_Int;
+import dev.rsdlang.sample.server.service.model.TreeNode;
 import dev.rsdlang.sample.server.service.model.Union;
 import dev.rsdlang.sample.server.service.model.UnionA;
 import dev.rsdlang.sample.server.service.model.UnionB;
@@ -166,6 +168,9 @@ public class RestBuilderFactory implements BuilderFactory {
 		}
 		if (type == UnionB.DataBuilder.class) {
 			return type.cast(UnionBDataImpl.builder());
+		}
+		if (type == TreeNode.DataBuilder.class) {
+			return type.cast(TreeNodeDataImpl.builder());
 		}
 		if (type == PatchableRecord.DataBuilder.class) {
 			return type.cast(PatchableRecordDataImpl.builder());
@@ -326,6 +331,9 @@ public class RestBuilderFactory implements BuilderFactory {
 		}
 		if (type == UnionB.Data.class) {
 			return type.cast(UnionBDataImpl.of(data));
+		}
+		if (type == TreeNode.Data.class) {
+			return type.cast(TreeNodeDataImpl.of(data));
 		}
 		if (type == PatchableRecord.Data.class) {
 			return type.cast(PatchableRecordDataImpl.of(data));

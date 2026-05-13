@@ -196,6 +196,11 @@ record UnionB {
 
 union Union = UnionA('union-a') | UnionB('union-b');
 
+record TreeNode {
+	value: string
+	children: TreeNode[]
+}
+
 patchable record PatchableRecord {
     @id key: string
     @rev version: string

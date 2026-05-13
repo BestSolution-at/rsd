@@ -20,7 +20,7 @@ import {
 import { toFirstUpper } from '../util.js';
 
 export function generateService(s: MResolvedService, config: TypescriptFetchClientGeneratorConfig) {
-	const collector = new TypescriptImportCollector(config);
+	const collector = new TypescriptImportCollector(config, `${s.name}ServiceFetchImpl.ts`);
 	const fqn = collector.importType.bind(collector);
 	return {
 		name: `${s.name}ServiceFetchImpl.ts`,

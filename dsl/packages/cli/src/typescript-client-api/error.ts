@@ -8,10 +8,10 @@ import {
 } from '../typescript-gen-utils.js';
 
 export function generateErrors(errors: readonly MError[], config: TypescriptClientAPIGeneratorConfig): Artifact {
-	const collector = new TypescriptImportCollector(config);
+	const collector = new TypescriptImportCollector(config, 'Errors.ts');
 	const fqn = collector.importType.bind(collector);
 	return {
-		name: `Errors.ts`,
+		name: 'Errors.ts',
 		content: toString(generateCompilationUnit(collector, generateErrorsContent(errors, fqn)), '\t'),
 		path: config.targetFolder,
 	};

@@ -8,9 +8,9 @@ import {
 } from '../typescript-gen-utils.js';
 
 export function generateModelIndex(model: MResolvedRSDModel, config: TypescriptClientAPIGeneratorConfig): Artifact {
-	const collector = new TypescriptImportCollector(config);
+	const collector = new TypescriptImportCollector(config, 'index.ts');
 	return {
-		name: `index.ts`,
+		name: 'index.ts',
 		content: toString(
 			generateCompilationUnit(collector, generateIndexContent(model, config.allowImportingTsExtensions ?? false)),
 			'\t',

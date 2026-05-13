@@ -29,10 +29,10 @@ const encodingPlugins: Record<string, EncodingPlugin> = {
 };
 
 export function generateFetchTypeUtils(config: TypescriptFetchClientGeneratorConfig) {
-	const collector = new TypescriptImportCollector(config);
+	const collector = new TypescriptImportCollector(config, '_fetch-type-utils.ts');
 	const fqn = collector.importType.bind(collector);
 	return {
-		name: `_fetch-type-utils.ts`,
+		name: '_fetch-type-utils.ts',
 		content: toString(generateCompilationUnit(collector, generateFetchTypeUtilsContent(config, fqn)), '\t'),
 		path: `${config.targetFolder}/services`,
 	};

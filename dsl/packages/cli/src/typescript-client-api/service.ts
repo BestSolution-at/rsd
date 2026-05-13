@@ -8,7 +8,7 @@ import {
 } from '../typescript-gen-utils.js';
 
 export function generateService(s: MResolvedService, config: TypescriptClientAPIGeneratorConfig) {
-	const collector = new TypescriptImportCollector(config);
+	const collector = new TypescriptImportCollector(config, `${s.name}Service.ts`);
 	const fqn = collector.importType.bind(collector);
 	return {
 		name: `${s.name}Service.ts`,

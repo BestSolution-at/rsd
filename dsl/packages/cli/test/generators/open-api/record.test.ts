@@ -2,6 +2,7 @@ import { beforeAll, describe, expect, test } from 'vitest';
 import { isMResolvedRecordType, MResolvedRSDModel } from '../../../src/model.js';
 import { findListElement, sampleModel } from '../test-utils.js';
 import { generateRecordContent } from '../../../src/open-api/record.js';
+import { a } from 'vitest/dist/chunks/suite.d.FvehnV49.js';
 
 let model: MResolvedRSDModel;
 
@@ -803,14 +804,22 @@ const RECORD_TESTS: RecordTest[] = [
 						$ref: '#/components/schemas/SimpleRecord_Basic',
 					},
 					value_Null: {
-						$ref: '#/components/schemas/SimpleRecord_Basic',
+						allOf: [
+							{
+								$ref: '#/components/schemas/SimpleRecord_Basic',
+							},
+						],
 						nullable: true,
 					},
 					value_Opt: {
 						$ref: '#/components/schemas/SimpleRecord_Basic',
 					},
 					value_Opt_Null: {
-						$ref: '#/components/schemas/SimpleRecord_Basic',
+						allOf: [
+							{
+								$ref: '#/components/schemas/SimpleRecord_Basic',
+							},
+						],
 						nullable: true,
 					},
 					list: {
@@ -854,14 +863,22 @@ const RECORD_TESTS: RecordTest[] = [
 						$ref: '#/components/schemas/Union',
 					},
 					value_Null: {
-						$ref: '#/components/schemas/Union',
+						allOf: [
+							{
+								$ref: '#/components/schemas/Union',
+							},
+						],
 						nullable: true,
 					},
 					value_Opt: {
 						$ref: '#/components/schemas/Union',
 					},
 					value_Opt_Null: {
-						$ref: '#/components/schemas/Union',
+						allOf: [
+							{
+								$ref: '#/components/schemas/Union',
+							},
+						],
 						nullable: true,
 					},
 					list: {

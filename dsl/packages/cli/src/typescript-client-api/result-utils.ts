@@ -6,10 +6,10 @@ import {
 } from '../typescript-gen-utils.js';
 
 export function generateResultUtils(config: TypescriptClientAPIGeneratorConfig) {
-	const collector = new TypescriptImportCollector(config);
+	const collector = new TypescriptImportCollector(config, '_result-utils.ts');
 	const fqn = collector.importType.bind(collector);
 	return {
-		name: `_result-utils.ts`,
+		name: '_result-utils.ts',
 		content: toString(generateCompilationUnit(collector, generateResultUtilsContent(fqn)), '\t'),
 		path: config.targetFolder,
 	};
