@@ -6,8 +6,8 @@
 
 Name | Type
 ------------ | -------------
-`dataBlob` | any
-`dataFile` | any
+`dataBlob` | Blob
+`dataFile` | Blob
 
 ## Example
 

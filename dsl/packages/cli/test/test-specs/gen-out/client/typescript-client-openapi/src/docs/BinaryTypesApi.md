@@ -7,8 +7,8 @@ All URIs are relative to *http://localhost*
 | [**binaryTypesDownloadBlob**](BinaryTypesApi.md#binarytypesdownloadblob) | **GET** /api/binarytypes/downloadBlob |  |
 | [**binaryTypesDownloadFile**](BinaryTypesApi.md#binarytypesdownloadfile) | **GET** /api/binarytypes/downloadFile |  |
 | [**binaryTypesMixed**](BinaryTypesApi.md#binarytypesmixed) | **POST** /api/binarytypes/mixed/{pathString}/{pathNumber} |  |
-| [**binaryTypesSingleBodyAddition**](BinaryTypesApi.md#binarytypessinglebodyadditionoperation) | **POST** /api/binarytypes/singleBodyAddition |  |
-| [**binaryTypesTwoBinariesAddition**](BinaryTypesApi.md#binarytypestwobinariesadditionoperation) | **POST** /api/binarytypes/twoBinariesAddition |  |
+| [**binaryTypesSingleBodyAddition**](BinaryTypesApi.md#binarytypessinglebodyaddition) | **POST** /api/binarytypes/singleBodyAddition |  |
+| [**binaryTypesTwoBinariesAddition**](BinaryTypesApi.md#binarytypestwobinariesaddition) | **POST** /api/binarytypes/twoBinariesAddition |  |
 | [**binaryTypesUploadBlob**](BinaryTypesApi.md#binarytypesuploadblob) | **POST** /api/binarytypes/uploadBlob |  |
 | [**binaryTypesUploadBlobList**](BinaryTypesApi.md#binarytypesuploadbloblist) | **PUT** /api/binarytypes/uploadBlobList |  |
 | [**binaryTypesUploadBlobListNil**](BinaryTypesApi.md#binarytypesuploadbloblistnil) | **PUT** /api/binarytypes/uploadBlobListNil |  |
@@ -25,16 +25,16 @@ All URIs are relative to *http://localhost*
 | [**binaryTypesUploadFileNil**](BinaryTypesApi.md#binarytypesuploadfilenil) | **POST** /api/binarytypes/uploadFileNil |  |
 | [**binaryTypesUploadFileOpt**](BinaryTypesApi.md#binarytypesuploadfileopt) | **POST** /api/binarytypes/uploadFileOpt |  |
 | [**binaryTypesUploadFileOptNil**](BinaryTypesApi.md#binarytypesuploadfileoptnil) | **POST** /api/binarytypes/uploadFileOptNil |  |
-| [**binaryTypesUploadMixed**](BinaryTypesApi.md#binarytypesuploadmixedoperation) | **PUT** /api/binarytypes/uploadMixed |  |
-| [**binaryTypesUploadMixedNil**](BinaryTypesApi.md#binarytypesuploadmixedniloperation) | **PUT** /api/binarytypes/uploadMixedNil |  |
-| [**binaryTypesUploadMixedOpt**](BinaryTypesApi.md#binarytypesuploadmixedoptoperation) | **PUT** /api/binarytypes/uploadMixedOpt |  |
-| [**binaryTypesUploadMixedOptNil**](BinaryTypesApi.md#binarytypesuploadmixedoptniloperation) | **PUT** /api/binarytypes/uploadMixedOptNil |  |
+| [**binaryTypesUploadMixed**](BinaryTypesApi.md#binarytypesuploadmixed) | **PUT** /api/binarytypes/uploadMixed |  |
+| [**binaryTypesUploadMixedNil**](BinaryTypesApi.md#binarytypesuploadmixednil) | **PUT** /api/binarytypes/uploadMixedNil |  |
+| [**binaryTypesUploadMixedOpt**](BinaryTypesApi.md#binarytypesuploadmixedopt) | **PUT** /api/binarytypes/uploadMixedOpt |  |
+| [**binaryTypesUploadMixedOptNil**](BinaryTypesApi.md#binarytypesuploadmixedoptnil) | **PUT** /api/binarytypes/uploadMixedOptNil |  |
 
 
 
 ## binaryTypesDownloadBlob
 
-> any binaryTypesDownloadBlob()
+> Blob binaryTypesDownloadBlob()
 
 
 
@@ -71,7 +71,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**any**
+**Blob**
 
 ### Authorization
 
@@ -93,7 +93,7 @@ No authorization required
 
 ## binaryTypesDownloadFile
 
-> any binaryTypesDownloadFile()
+> Blob binaryTypesDownloadFile()
 
 
 
@@ -130,7 +130,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**any**
+**Blob**
 
 ### Authorization
 
@@ -152,7 +152,7 @@ No authorization required
 
 ## binaryTypesMixed
 
-> binaryTypesMixed(pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, xRSDParamContentType, body)
+> binaryTypesMixed(pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, xRSDParamContentType, dataBlob)
 
 
 
@@ -190,8 +190,8 @@ async function example() {
     queryRecord: queryRecord_example,
     // string | Contains the type information for record and union types transferred in headers as a base64 blob
     xRSDParamContentType: xRSDParamContentType_example,
-    // any
-    body: ...,
+    // Blob
+    dataBlob: BINARY_DATA_HERE,
   } satisfies BinaryTypesMixedRequest;
 
   try {
@@ -220,7 +220,7 @@ example().catch(console.error);
 | **queryNumber** | `number` |  | [Defaults to `undefined`] |
 | **queryRecord** | `string` |  | [Defaults to `undefined`] |
 | **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
-| **body** | `any` |  | |
+| **dataBlob** | `Blob` |  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -232,7 +232,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: Not defined
 
 
@@ -246,7 +246,7 @@ No authorization required
 
 ## binaryTypesSingleBodyAddition
 
-> binaryTypesSingleBodyAddition(binaryTypesSingleBodyAdditionRequest)
+> binaryTypesSingleBodyAddition(dataBlob, rsdPayload)
 
 
 
@@ -259,16 +259,18 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { BinaryTypesSingleBodyAdditionOperationRequest } from '';
+import type { BinaryTypesSingleBodyAdditionRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   const body = {
-    // BinaryTypesSingleBodyAdditionRequest
-    binaryTypesSingleBodyAdditionRequest: ...,
-  } satisfies BinaryTypesSingleBodyAdditionOperationRequest;
+    // Blob
+    dataBlob: BINARY_DATA_HERE,
+    // BinaryTypesSingleBodyAdditionRequestRsdPayload (optional)
+    rsdPayload: ...,
+  } satisfies BinaryTypesSingleBodyAdditionRequest;
 
   try {
     const data = await api.binaryTypesSingleBodyAddition(body);
@@ -287,7 +289,8 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **binaryTypesSingleBodyAdditionRequest** | [BinaryTypesSingleBodyAdditionRequest](BinaryTypesSingleBodyAdditionRequest.md) |  | |
+| **dataBlob** | `Blob` |  | [Defaults to `undefined`] |
+| **rsdPayload** | [BinaryTypesSingleBodyAdditionRequestRsdPayload](BinaryTypesSingleBodyAdditionRequestRsdPayload.md) |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -299,7 +302,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: Not defined
 
 
@@ -313,7 +316,7 @@ No authorization required
 
 ## binaryTypesTwoBinariesAddition
 
-> binaryTypesTwoBinariesAddition(binaryTypesTwoBinariesAdditionRequest)
+> binaryTypesTwoBinariesAddition(dataBlob, dataFile)
 
 
 
@@ -326,16 +329,18 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { BinaryTypesTwoBinariesAdditionOperationRequest } from '';
+import type { BinaryTypesTwoBinariesAdditionRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   const body = {
-    // BinaryTypesTwoBinariesAdditionRequest
-    binaryTypesTwoBinariesAdditionRequest: ...,
-  } satisfies BinaryTypesTwoBinariesAdditionOperationRequest;
+    // Blob
+    dataBlob: BINARY_DATA_HERE,
+    // Blob
+    dataFile: BINARY_DATA_HERE,
+  } satisfies BinaryTypesTwoBinariesAdditionRequest;
 
   try {
     const data = await api.binaryTypesTwoBinariesAddition(body);
@@ -354,7 +359,8 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **binaryTypesTwoBinariesAdditionRequest** | [BinaryTypesTwoBinariesAdditionRequest](BinaryTypesTwoBinariesAdditionRequest.md) |  | |
+| **dataBlob** | `Blob` |  | [Defaults to `undefined`] |
+| **dataFile** | `Blob` |  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -366,7 +372,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: Not defined
 
 
@@ -380,7 +386,7 @@ No authorization required
 
 ## binaryTypesUploadBlob
 
-> number binaryTypesUploadBlob(body)
+> number binaryTypesUploadBlob(data)
 
 
 
@@ -400,8 +406,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any
-    body: ...,
+    // Blob
+    data: BINARY_DATA_HERE,
   } satisfies BinaryTypesUploadBlobRequest;
 
   try {
@@ -421,7 +427,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | |
+| **data** | `Blob` |  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -433,7 +439,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -447,7 +453,7 @@ No authorization required
 
 ## binaryTypesUploadBlobList
 
-> number binaryTypesUploadBlobList(body)
+> number binaryTypesUploadBlobList(data)
 
 
 
@@ -467,8 +473,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any
-    body: ...,
+    // Array<Blob>
+    data: /path/to/file.txt,
   } satisfies BinaryTypesUploadBlobListRequest;
 
   try {
@@ -488,7 +494,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | |
+| **data** | `Array<Blob>` |  | |
 
 ### Return type
 
@@ -500,7 +506,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -514,7 +520,7 @@ No authorization required
 
 ## binaryTypesUploadBlobListNil
 
-> number binaryTypesUploadBlobListNil(body)
+> number binaryTypesUploadBlobListNil(data)
 
 
 
@@ -534,8 +540,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any
-    body: ...,
+    // Array<Blob>
+    data: /path/to/file.txt,
   } satisfies BinaryTypesUploadBlobListNilRequest;
 
   try {
@@ -555,7 +561,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | |
+| **data** | `Array<Blob>` |  | |
 
 ### Return type
 
@@ -567,7 +573,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -581,7 +587,7 @@ No authorization required
 
 ## binaryTypesUploadBlobListOpt
 
-> number binaryTypesUploadBlobListOpt(body)
+> number binaryTypesUploadBlobListOpt(data)
 
 
 
@@ -601,8 +607,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // Array<Blob> (optional)
+    data: /path/to/file.txt,
   } satisfies BinaryTypesUploadBlobListOptRequest;
 
   try {
@@ -622,7 +628,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **data** | `Array<Blob>` |  | [Optional] |
 
 ### Return type
 
@@ -634,7 +640,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -648,7 +654,7 @@ No authorization required
 
 ## binaryTypesUploadBlobListOptNil
 
-> number binaryTypesUploadBlobListOptNil(body)
+> number binaryTypesUploadBlobListOptNil(data)
 
 
 
@@ -668,8 +674,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // Array<Blob> (optional)
+    data: /path/to/file.txt,
   } satisfies BinaryTypesUploadBlobListOptNilRequest;
 
   try {
@@ -689,7 +695,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **data** | `Array<Blob>` |  | [Optional] |
 
 ### Return type
 
@@ -701,7 +707,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -715,7 +721,7 @@ No authorization required
 
 ## binaryTypesUploadBlobNil
 
-> number binaryTypesUploadBlobNil(body)
+> number binaryTypesUploadBlobNil(data)
 
 
 
@@ -735,8 +741,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any
-    body: ...,
+    // Blob
+    data: BINARY_DATA_HERE,
   } satisfies BinaryTypesUploadBlobNilRequest;
 
   try {
@@ -756,7 +762,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | |
+| **data** | `Blob` |  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -768,7 +774,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -782,7 +788,7 @@ No authorization required
 
 ## binaryTypesUploadBlobOpt
 
-> number binaryTypesUploadBlobOpt(body)
+> number binaryTypesUploadBlobOpt(data)
 
 
 
@@ -802,8 +808,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // Blob (optional)
+    data: BINARY_DATA_HERE,
   } satisfies BinaryTypesUploadBlobOptRequest;
 
   try {
@@ -823,7 +829,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **data** | `Blob` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -835,7 +841,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -849,7 +855,7 @@ No authorization required
 
 ## binaryTypesUploadBlobOptNil
 
-> number binaryTypesUploadBlobOptNil(body)
+> number binaryTypesUploadBlobOptNil(data)
 
 
 
@@ -869,8 +875,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // Blob (optional)
+    data: BINARY_DATA_HERE,
   } satisfies BinaryTypesUploadBlobOptNilRequest;
 
   try {
@@ -890,7 +896,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **data** | `Blob` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -902,7 +908,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -916,7 +922,7 @@ No authorization required
 
 ## binaryTypesUploadFile
 
-> number binaryTypesUploadFile(body)
+> number binaryTypesUploadFile(data)
 
 
 
@@ -936,8 +942,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any
-    body: ...,
+    // Blob
+    data: BINARY_DATA_HERE,
   } satisfies BinaryTypesUploadFileRequest;
 
   try {
@@ -957,7 +963,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | |
+| **data** | `Blob` |  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -969,7 +975,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -983,7 +989,7 @@ No authorization required
 
 ## binaryTypesUploadFileList
 
-> number binaryTypesUploadFileList(body)
+> number binaryTypesUploadFileList(data)
 
 
 
@@ -1003,8 +1009,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any
-    body: ...,
+    // Array<Blob>
+    data: /path/to/file.txt,
   } satisfies BinaryTypesUploadFileListRequest;
 
   try {
@@ -1024,7 +1030,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | |
+| **data** | `Array<Blob>` |  | |
 
 ### Return type
 
@@ -1036,7 +1042,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -1050,7 +1056,7 @@ No authorization required
 
 ## binaryTypesUploadFileListNil
 
-> number binaryTypesUploadFileListNil(body)
+> number binaryTypesUploadFileListNil(data)
 
 
 
@@ -1070,8 +1076,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any
-    body: ...,
+    // Array<Blob>
+    data: /path/to/file.txt,
   } satisfies BinaryTypesUploadFileListNilRequest;
 
   try {
@@ -1091,7 +1097,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | |
+| **data** | `Array<Blob>` |  | |
 
 ### Return type
 
@@ -1103,7 +1109,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -1117,7 +1123,7 @@ No authorization required
 
 ## binaryTypesUploadFileListOpt
 
-> number binaryTypesUploadFileListOpt(body)
+> number binaryTypesUploadFileListOpt(data)
 
 
 
@@ -1137,8 +1143,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // Array<Blob> (optional)
+    data: /path/to/file.txt,
   } satisfies BinaryTypesUploadFileListOptRequest;
 
   try {
@@ -1158,7 +1164,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **data** | `Array<Blob>` |  | [Optional] |
 
 ### Return type
 
@@ -1170,7 +1176,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -1184,7 +1190,7 @@ No authorization required
 
 ## binaryTypesUploadFileListOptNil
 
-> number binaryTypesUploadFileListOptNil(body)
+> number binaryTypesUploadFileListOptNil(data)
 
 
 
@@ -1204,8 +1210,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // Array<Blob> (optional)
+    data: /path/to/file.txt,
   } satisfies BinaryTypesUploadFileListOptNilRequest;
 
   try {
@@ -1225,7 +1231,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **data** | `Array<Blob>` |  | [Optional] |
 
 ### Return type
 
@@ -1237,7 +1243,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -1251,7 +1257,7 @@ No authorization required
 
 ## binaryTypesUploadFileNil
 
-> number binaryTypesUploadFileNil(body)
+> number binaryTypesUploadFileNil(data)
 
 
 
@@ -1271,8 +1277,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any
-    body: ...,
+    // Blob
+    data: BINARY_DATA_HERE,
   } satisfies BinaryTypesUploadFileNilRequest;
 
   try {
@@ -1292,7 +1298,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | |
+| **data** | `Blob` |  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -1304,7 +1310,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -1318,7 +1324,7 @@ No authorization required
 
 ## binaryTypesUploadFileOpt
 
-> number binaryTypesUploadFileOpt(body)
+> number binaryTypesUploadFileOpt(data)
 
 
 
@@ -1338,8 +1344,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // Blob (optional)
+    data: BINARY_DATA_HERE,
   } satisfies BinaryTypesUploadFileOptRequest;
 
   try {
@@ -1359,7 +1365,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **data** | `Blob` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -1371,7 +1377,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -1385,7 +1391,7 @@ No authorization required
 
 ## binaryTypesUploadFileOptNil
 
-> number binaryTypesUploadFileOptNil(body)
+> number binaryTypesUploadFileOptNil(data)
 
 
 
@@ -1405,8 +1411,8 @@ async function example() {
   const api = new BinaryTypesApi();
 
   const body = {
-    // any (optional)
-    body: ...,
+    // Blob (optional)
+    data: BINARY_DATA_HERE,
   } satisfies BinaryTypesUploadFileOptNilRequest;
 
   try {
@@ -1426,7 +1432,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `any` |  | [Optional] |
+| **data** | `Blob` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -1438,7 +1444,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -1452,7 +1458,7 @@ No authorization required
 
 ## binaryTypesUploadMixed
 
-> UploadMixedResult binaryTypesUploadMixed(binaryTypesUploadMixedRequest)
+> UploadMixedResult binaryTypesUploadMixed(dataFile, dataBlob, rsdPayload)
 
 
 
@@ -1465,16 +1471,20 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { BinaryTypesUploadMixedOperationRequest } from '';
+import type { BinaryTypesUploadMixedRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   const body = {
-    // BinaryTypesUploadMixedRequest
-    binaryTypesUploadMixedRequest: ...,
-  } satisfies BinaryTypesUploadMixedOperationRequest;
+    // Blob
+    dataFile: BINARY_DATA_HERE,
+    // Blob
+    dataBlob: BINARY_DATA_HERE,
+    // BinaryTypesUploadMixedRequestRsdPayload (optional)
+    rsdPayload: ...,
+  } satisfies BinaryTypesUploadMixedRequest;
 
   try {
     const data = await api.binaryTypesUploadMixed(body);
@@ -1493,7 +1503,9 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **binaryTypesUploadMixedRequest** | [BinaryTypesUploadMixedRequest](BinaryTypesUploadMixedRequest.md) |  | |
+| **dataFile** | `Blob` |  | [Defaults to `undefined`] |
+| **dataBlob** | `Blob` |  | [Defaults to `undefined`] |
+| **rsdPayload** | [BinaryTypesUploadMixedRequestRsdPayload](BinaryTypesUploadMixedRequestRsdPayload.md) |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -1505,7 +1517,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -1519,7 +1531,7 @@ No authorization required
 
 ## binaryTypesUploadMixedNil
 
-> UploadMixedResult binaryTypesUploadMixedNil(binaryTypesUploadMixedNilRequest)
+> UploadMixedResult binaryTypesUploadMixedNil(dataFile, dataBlob, rsdPayload)
 
 
 
@@ -1532,16 +1544,20 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { BinaryTypesUploadMixedNilOperationRequest } from '';
+import type { BinaryTypesUploadMixedNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   const body = {
-    // BinaryTypesUploadMixedNilRequest
-    binaryTypesUploadMixedNilRequest: ...,
-  } satisfies BinaryTypesUploadMixedNilOperationRequest;
+    // Blob
+    dataFile: BINARY_DATA_HERE,
+    // Blob
+    dataBlob: BINARY_DATA_HERE,
+    // BinaryTypesUploadMixedNilRequestRsdPayload (optional)
+    rsdPayload: ...,
+  } satisfies BinaryTypesUploadMixedNilRequest;
 
   try {
     const data = await api.binaryTypesUploadMixedNil(body);
@@ -1560,7 +1576,9 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **binaryTypesUploadMixedNilRequest** | [BinaryTypesUploadMixedNilRequest](BinaryTypesUploadMixedNilRequest.md) |  | |
+| **dataFile** | `Blob` |  | [Defaults to `undefined`] |
+| **dataBlob** | `Blob` |  | [Defaults to `undefined`] |
+| **rsdPayload** | [BinaryTypesUploadMixedNilRequestRsdPayload](BinaryTypesUploadMixedNilRequestRsdPayload.md) |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -1572,7 +1590,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -1586,7 +1604,7 @@ No authorization required
 
 ## binaryTypesUploadMixedOpt
 
-> UploadMixedResult binaryTypesUploadMixedOpt(binaryTypesUploadMixedOptRequest)
+> UploadMixedResult binaryTypesUploadMixedOpt(dataFile, dataBlob, rsdPayload)
 
 
 
@@ -1599,16 +1617,20 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { BinaryTypesUploadMixedOptOperationRequest } from '';
+import type { BinaryTypesUploadMixedOptRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   const body = {
-    // BinaryTypesUploadMixedOptRequest
-    binaryTypesUploadMixedOptRequest: ...,
-  } satisfies BinaryTypesUploadMixedOptOperationRequest;
+    // Blob (optional)
+    dataFile: BINARY_DATA_HERE,
+    // Blob (optional)
+    dataBlob: BINARY_DATA_HERE,
+    // BinaryTypesUploadMixedOptRequestRsdPayload (optional)
+    rsdPayload: ...,
+  } satisfies BinaryTypesUploadMixedOptRequest;
 
   try {
     const data = await api.binaryTypesUploadMixedOpt(body);
@@ -1627,7 +1649,9 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **binaryTypesUploadMixedOptRequest** | [BinaryTypesUploadMixedOptRequest](BinaryTypesUploadMixedOptRequest.md) |  | |
+| **dataFile** | `Blob` |  | [Optional] [Defaults to `undefined`] |
+| **dataBlob** | `Blob` |  | [Optional] [Defaults to `undefined`] |
+| **rsdPayload** | [BinaryTypesUploadMixedOptRequestRsdPayload](BinaryTypesUploadMixedOptRequestRsdPayload.md) |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -1639,7 +1663,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 
@@ -1653,7 +1677,7 @@ No authorization required
 
 ## binaryTypesUploadMixedOptNil
 
-> UploadMixedResult binaryTypesUploadMixedOptNil(binaryTypesUploadMixedOptNilRequest)
+> UploadMixedResult binaryTypesUploadMixedOptNil(dataFile, dataBlob, rsdPayload)
 
 
 
@@ -1666,16 +1690,20 @@ import {
   Configuration,
   BinaryTypesApi,
 } from '';
-import type { BinaryTypesUploadMixedOptNilOperationRequest } from '';
+import type { BinaryTypesUploadMixedOptNilRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
   const api = new BinaryTypesApi();
 
   const body = {
-    // BinaryTypesUploadMixedOptNilRequest
-    binaryTypesUploadMixedOptNilRequest: ...,
-  } satisfies BinaryTypesUploadMixedOptNilOperationRequest;
+    // Blob (optional)
+    dataFile: BINARY_DATA_HERE,
+    // Blob (optional)
+    dataBlob: BINARY_DATA_HERE,
+    // BinaryTypesUploadMixedOptNilRequestRsdPayload (optional)
+    rsdPayload: ...,
+  } satisfies BinaryTypesUploadMixedOptNilRequest;
 
   try {
     const data = await api.binaryTypesUploadMixedOptNil(body);
@@ -1694,7 +1722,9 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **binaryTypesUploadMixedOptNilRequest** | [BinaryTypesUploadMixedOptNilRequest](BinaryTypesUploadMixedOptNilRequest.md) |  | |
+| **dataFile** | `Blob` |  | [Optional] [Defaults to `undefined`] |
+| **dataBlob** | `Blob` |  | [Optional] [Defaults to `undefined`] |
+| **rsdPayload** | [BinaryTypesUploadMixedOptNilRequestRsdPayload](BinaryTypesUploadMixedOptNilRequestRsdPayload.md) |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -1706,7 +1736,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `multipart/form-data`
 - **Accept**: `application/json`
 
 

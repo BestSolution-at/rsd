@@ -14,35 +14,30 @@
 
 import * as runtime from '../runtime.js';
 import {
-    type BinaryTypesSingleBodyAdditionRequest,
-    BinaryTypesSingleBodyAdditionRequestFromJSON,
-    BinaryTypesSingleBodyAdditionRequestToJSON,
-} from '../models/BinaryTypesSingleBodyAdditionRequest.js';
+    type BinaryTypesSingleBodyAdditionRequestRsdPayload,
+    BinaryTypesSingleBodyAdditionRequestRsdPayloadFromJSON,
+    BinaryTypesSingleBodyAdditionRequestRsdPayloadToJSON,
+} from '../models/BinaryTypesSingleBodyAdditionRequestRsdPayload.js';
 import {
-    type BinaryTypesTwoBinariesAdditionRequest,
-    BinaryTypesTwoBinariesAdditionRequestFromJSON,
-    BinaryTypesTwoBinariesAdditionRequestToJSON,
-} from '../models/BinaryTypesTwoBinariesAdditionRequest.js';
+    type BinaryTypesUploadMixedNilRequestRsdPayload,
+    BinaryTypesUploadMixedNilRequestRsdPayloadFromJSON,
+    BinaryTypesUploadMixedNilRequestRsdPayloadToJSON,
+} from '../models/BinaryTypesUploadMixedNilRequestRsdPayload.js';
 import {
-    type BinaryTypesUploadMixedNilRequest,
-    BinaryTypesUploadMixedNilRequestFromJSON,
-    BinaryTypesUploadMixedNilRequestToJSON,
-} from '../models/BinaryTypesUploadMixedNilRequest.js';
+    type BinaryTypesUploadMixedOptNilRequestRsdPayload,
+    BinaryTypesUploadMixedOptNilRequestRsdPayloadFromJSON,
+    BinaryTypesUploadMixedOptNilRequestRsdPayloadToJSON,
+} from '../models/BinaryTypesUploadMixedOptNilRequestRsdPayload.js';
 import {
-    type BinaryTypesUploadMixedOptNilRequest,
-    BinaryTypesUploadMixedOptNilRequestFromJSON,
-    BinaryTypesUploadMixedOptNilRequestToJSON,
-} from '../models/BinaryTypesUploadMixedOptNilRequest.js';
+    type BinaryTypesUploadMixedOptRequestRsdPayload,
+    BinaryTypesUploadMixedOptRequestRsdPayloadFromJSON,
+    BinaryTypesUploadMixedOptRequestRsdPayloadToJSON,
+} from '../models/BinaryTypesUploadMixedOptRequestRsdPayload.js';
 import {
-    type BinaryTypesUploadMixedOptRequest,
-    BinaryTypesUploadMixedOptRequestFromJSON,
-    BinaryTypesUploadMixedOptRequestToJSON,
-} from '../models/BinaryTypesUploadMixedOptRequest.js';
-import {
-    type BinaryTypesUploadMixedRequest,
-    BinaryTypesUploadMixedRequestFromJSON,
-    BinaryTypesUploadMixedRequestToJSON,
-} from '../models/BinaryTypesUploadMixedRequest.js';
+    type BinaryTypesUploadMixedRequestRsdPayload,
+    BinaryTypesUploadMixedRequestRsdPayloadFromJSON,
+    BinaryTypesUploadMixedRequestRsdPayloadToJSON,
+} from '../models/BinaryTypesUploadMixedRequestRsdPayload.js';
 import {
     type UploadMixedResult,
     UploadMixedResultFromJSON,
@@ -59,95 +54,105 @@ export interface BinaryTypesMixedRequest {
     queryNumber: number;
     queryRecord: string;
     xRSDParamContentType: string;
-    body: any | null;
+    dataBlob: Blob;
 }
 
-export interface BinaryTypesSingleBodyAdditionOperationRequest {
-    binaryTypesSingleBodyAdditionRequest: BinaryTypesSingleBodyAdditionRequest;
+export interface BinaryTypesSingleBodyAdditionRequest {
+    dataBlob: Blob;
+    rsdPayload?: BinaryTypesSingleBodyAdditionRequestRsdPayload;
 }
 
-export interface BinaryTypesTwoBinariesAdditionOperationRequest {
-    binaryTypesTwoBinariesAdditionRequest: BinaryTypesTwoBinariesAdditionRequest;
+export interface BinaryTypesTwoBinariesAdditionRequest {
+    dataBlob: Blob;
+    dataFile: Blob;
 }
 
 export interface BinaryTypesUploadBlobRequest {
-    body: any | null;
+    data: Blob;
 }
 
 export interface BinaryTypesUploadBlobListRequest {
-    body: any | null;
+    data: Array<Blob>;
 }
 
 export interface BinaryTypesUploadBlobListNilRequest {
-    body: any | null;
+    data: Array<Blob> | null;
 }
 
 export interface BinaryTypesUploadBlobListOptRequest {
-    body?: any | null;
+    data?: Array<Blob>;
 }
 
 export interface BinaryTypesUploadBlobListOptNilRequest {
-    body?: any | null;
+    data?: Array<Blob> | null;
 }
 
 export interface BinaryTypesUploadBlobNilRequest {
-    body: any | null;
+    data: Blob | null;
 }
 
 export interface BinaryTypesUploadBlobOptRequest {
-    body?: any | null;
+    data?: Blob;
 }
 
 export interface BinaryTypesUploadBlobOptNilRequest {
-    body?: any | null;
+    data?: Blob | null;
 }
 
 export interface BinaryTypesUploadFileRequest {
-    body: any | null;
+    data: Blob;
 }
 
 export interface BinaryTypesUploadFileListRequest {
-    body: any | null;
+    data: Array<Blob>;
 }
 
 export interface BinaryTypesUploadFileListNilRequest {
-    body: any | null;
+    data: Array<Blob> | null;
 }
 
 export interface BinaryTypesUploadFileListOptRequest {
-    body?: any | null;
+    data?: Array<Blob>;
 }
 
 export interface BinaryTypesUploadFileListOptNilRequest {
-    body?: any | null;
+    data?: Array<Blob> | null;
 }
 
 export interface BinaryTypesUploadFileNilRequest {
-    body: any | null;
+    data: Blob | null;
 }
 
 export interface BinaryTypesUploadFileOptRequest {
-    body?: any | null;
+    data?: Blob;
 }
 
 export interface BinaryTypesUploadFileOptNilRequest {
-    body?: any | null;
+    data?: Blob | null;
 }
 
-export interface BinaryTypesUploadMixedOperationRequest {
-    binaryTypesUploadMixedRequest: BinaryTypesUploadMixedRequest;
+export interface BinaryTypesUploadMixedRequest {
+    dataFile: Blob;
+    dataBlob: Blob;
+    rsdPayload?: BinaryTypesUploadMixedRequestRsdPayload;
 }
 
-export interface BinaryTypesUploadMixedNilOperationRequest {
-    binaryTypesUploadMixedNilRequest: BinaryTypesUploadMixedNilRequest;
+export interface BinaryTypesUploadMixedNilRequest {
+    dataFile: Blob | null;
+    dataBlob: Blob | null;
+    rsdPayload?: BinaryTypesUploadMixedNilRequestRsdPayload;
 }
 
-export interface BinaryTypesUploadMixedOptOperationRequest {
-    binaryTypesUploadMixedOptRequest: BinaryTypesUploadMixedOptRequest;
+export interface BinaryTypesUploadMixedOptRequest {
+    dataFile?: Blob;
+    dataBlob?: Blob;
+    rsdPayload?: BinaryTypesUploadMixedOptRequestRsdPayload;
 }
 
-export interface BinaryTypesUploadMixedOptNilOperationRequest {
-    binaryTypesUploadMixedOptNilRequest: BinaryTypesUploadMixedOptNilRequest;
+export interface BinaryTypesUploadMixedOptNilRequest {
+    dataFile?: Blob | null;
+    dataBlob?: Blob | null;
+    rsdPayload?: BinaryTypesUploadMixedOptNilRequestRsdPayload;
 }
 
 /**
@@ -177,21 +182,17 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async binaryTypesDownloadBlobRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+    async binaryTypesDownloadBlobRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
         const requestOptions = await this.binaryTypesDownloadBlobRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<any>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
+        return new runtime.BlobApiResponse(response);
     }
 
     /**
      * 
      */
-    async binaryTypesDownloadBlob(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+    async binaryTypesDownloadBlob(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
         const response = await this.binaryTypesDownloadBlobRaw(initOverrides);
         return await response.value();
     }
@@ -218,21 +219,17 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async binaryTypesDownloadFileRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+    async binaryTypesDownloadFileRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
         const requestOptions = await this.binaryTypesDownloadFileRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<any>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
+        return new runtime.BlobApiResponse(response);
     }
 
     /**
      * 
      */
-    async binaryTypesDownloadFile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+    async binaryTypesDownloadFile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
         const response = await this.binaryTypesDownloadFileRaw(initOverrides);
         return await response.value();
     }
@@ -304,10 +301,10 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['body'] == null) {
+        if (requestParameters['dataBlob'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling binaryTypesMixed().'
+                'dataBlob',
+                'Required parameter "dataBlob" was null or undefined when calling binaryTypesMixed().'
             );
         }
 
@@ -327,8 +324,6 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
-
         if (requestParameters['headerString'] != null) {
             headerParameters['headerString'] = String(requestParameters['headerString']);
         }
@@ -345,6 +340,26 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
 
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['dataBlob'] != null) {
+            formParams.append('dataBlob', requestParameters['dataBlob'] as any);
+        }
+
 
         let urlPath = `/api/binarytypes/mixed/{pathString}/{pathNumber}`;
         urlPath = urlPath.replace('{pathString}', encodeURIComponent(String(requestParameters['pathString'])));
@@ -355,7 +370,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -379,11 +394,11 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * Creates request options for binaryTypesSingleBodyAddition without sending the request
      */
-    async binaryTypesSingleBodyAdditionRequestOpts(requestParameters: BinaryTypesSingleBodyAdditionOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['binaryTypesSingleBodyAdditionRequest'] == null) {
+    async binaryTypesSingleBodyAdditionRequestOpts(requestParameters: BinaryTypesSingleBodyAdditionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['dataBlob'] == null) {
             throw new runtime.RequiredError(
-                'binaryTypesSingleBodyAdditionRequest',
-                'Required parameter "binaryTypesSingleBodyAdditionRequest" was null or undefined when calling binaryTypesSingleBodyAddition().'
+                'dataBlob',
+                'Required parameter "dataBlob" was null or undefined when calling binaryTypesSingleBodyAddition().'
             );
         }
 
@@ -391,7 +406,29 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['dataBlob'] != null) {
+            formParams.append('dataBlob', requestParameters['dataBlob'] as any);
+        }
+
+        if (requestParameters['rsdPayload'] != null) {
+            formParams.append('_rsdPayload', new Blob([JSON.stringify(BinaryTypesSingleBodyAdditionRequestRsdPayloadToJSON(requestParameters['rsdPayload']))], { type: "application/json", }));
+                    }
 
 
         let urlPath = `/api/binarytypes/singleBodyAddition`;
@@ -401,14 +438,14 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: BinaryTypesSingleBodyAdditionRequestToJSON(requestParameters['binaryTypesSingleBodyAdditionRequest']),
+            body: formParams,
         };
     }
 
     /**
      * 
      */
-    async binaryTypesSingleBodyAdditionRaw(requestParameters: BinaryTypesSingleBodyAdditionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async binaryTypesSingleBodyAdditionRaw(requestParameters: BinaryTypesSingleBodyAdditionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const requestOptions = await this.binaryTypesSingleBodyAdditionRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -418,18 +455,25 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async binaryTypesSingleBodyAddition(requestParameters: BinaryTypesSingleBodyAdditionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async binaryTypesSingleBodyAddition(requestParameters: BinaryTypesSingleBodyAdditionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.binaryTypesSingleBodyAdditionRaw(requestParameters, initOverrides);
     }
 
     /**
      * Creates request options for binaryTypesTwoBinariesAddition without sending the request
      */
-    async binaryTypesTwoBinariesAdditionRequestOpts(requestParameters: BinaryTypesTwoBinariesAdditionOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['binaryTypesTwoBinariesAdditionRequest'] == null) {
+    async binaryTypesTwoBinariesAdditionRequestOpts(requestParameters: BinaryTypesTwoBinariesAdditionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['dataBlob'] == null) {
             throw new runtime.RequiredError(
-                'binaryTypesTwoBinariesAdditionRequest',
-                'Required parameter "binaryTypesTwoBinariesAdditionRequest" was null or undefined when calling binaryTypesTwoBinariesAddition().'
+                'dataBlob',
+                'Required parameter "dataBlob" was null or undefined when calling binaryTypesTwoBinariesAddition().'
+            );
+        }
+
+        if (requestParameters['dataFile'] == null) {
+            throw new runtime.RequiredError(
+                'dataFile',
+                'Required parameter "dataFile" was null or undefined when calling binaryTypesTwoBinariesAddition().'
             );
         }
 
@@ -437,7 +481,31 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['dataBlob'] != null) {
+            formParams.append('dataBlob', requestParameters['dataBlob'] as any);
+        }
+
+        if (requestParameters['dataFile'] != null) {
+            formParams.append('dataFile', requestParameters['dataFile'] as any);
+        }
 
 
         let urlPath = `/api/binarytypes/twoBinariesAddition`;
@@ -447,14 +515,14 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: BinaryTypesTwoBinariesAdditionRequestToJSON(requestParameters['binaryTypesTwoBinariesAdditionRequest']),
+            body: formParams,
         };
     }
 
     /**
      * 
      */
-    async binaryTypesTwoBinariesAdditionRaw(requestParameters: BinaryTypesTwoBinariesAdditionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async binaryTypesTwoBinariesAdditionRaw(requestParameters: BinaryTypesTwoBinariesAdditionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const requestOptions = await this.binaryTypesTwoBinariesAdditionRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -464,7 +532,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async binaryTypesTwoBinariesAddition(requestParameters: BinaryTypesTwoBinariesAdditionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async binaryTypesTwoBinariesAddition(requestParameters: BinaryTypesTwoBinariesAdditionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.binaryTypesTwoBinariesAdditionRaw(requestParameters, initOverrides);
     }
 
@@ -472,10 +540,10 @@ export class BinaryTypesApi extends runtime.BaseAPI {
      * Creates request options for binaryTypesUploadBlob without sending the request
      */
     async binaryTypesUploadBlobRequestOpts(requestParameters: BinaryTypesUploadBlobRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
+        if (requestParameters['data'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling binaryTypesUploadBlob().'
+                'data',
+                'Required parameter "data" was null or undefined when calling binaryTypesUploadBlob().'
             );
         }
 
@@ -483,7 +551,25 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            formParams.append('data', requestParameters['data'] as any);
+        }
 
 
         let urlPath = `/api/binarytypes/uploadBlob`;
@@ -493,7 +579,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -523,10 +609,10 @@ export class BinaryTypesApi extends runtime.BaseAPI {
      * Creates request options for binaryTypesUploadBlobList without sending the request
      */
     async binaryTypesUploadBlobListRequestOpts(requestParameters: BinaryTypesUploadBlobListRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
+        if (requestParameters['data'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling binaryTypesUploadBlobList().'
+                'data',
+                'Required parameter "data" was null or undefined when calling binaryTypesUploadBlobList().'
             );
         }
 
@@ -534,7 +620,27 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            requestParameters['data'].forEach((element) => {
+                formParams.append('data', element as any);
+            })
+        }
 
 
         let urlPath = `/api/binarytypes/uploadBlobList`;
@@ -544,7 +650,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -574,10 +680,10 @@ export class BinaryTypesApi extends runtime.BaseAPI {
      * Creates request options for binaryTypesUploadBlobListNil without sending the request
      */
     async binaryTypesUploadBlobListNilRequestOpts(requestParameters: BinaryTypesUploadBlobListNilRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
+        if (requestParameters['data'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling binaryTypesUploadBlobListNil().'
+                'data',
+                'Required parameter "data" was null or undefined when calling binaryTypesUploadBlobListNil().'
             );
         }
 
@@ -585,7 +691,27 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            requestParameters['data'].forEach((element) => {
+                formParams.append('data', element as any);
+            })
+        }
 
 
         let urlPath = `/api/binarytypes/uploadBlobListNil`;
@@ -595,7 +721,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -629,7 +755,27 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            requestParameters['data'].forEach((element) => {
+                formParams.append('data', element as any);
+            })
+        }
 
 
         let urlPath = `/api/binarytypes/uploadBlobListOpt`;
@@ -639,7 +785,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -673,7 +819,27 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            requestParameters['data'].forEach((element) => {
+                formParams.append('data', element as any);
+            })
+        }
 
 
         let urlPath = `/api/binarytypes/uploadBlobListOptNil`;
@@ -683,7 +849,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -713,10 +879,10 @@ export class BinaryTypesApi extends runtime.BaseAPI {
      * Creates request options for binaryTypesUploadBlobNil without sending the request
      */
     async binaryTypesUploadBlobNilRequestOpts(requestParameters: BinaryTypesUploadBlobNilRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
+        if (requestParameters['data'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling binaryTypesUploadBlobNil().'
+                'data',
+                'Required parameter "data" was null or undefined when calling binaryTypesUploadBlobNil().'
             );
         }
 
@@ -724,7 +890,25 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            formParams.append('data', requestParameters['data'] as any);
+        }
 
 
         let urlPath = `/api/binarytypes/uploadBlobNil`;
@@ -734,7 +918,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -768,7 +952,25 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            formParams.append('data', requestParameters['data'] as any);
+        }
 
 
         let urlPath = `/api/binarytypes/uploadBlobOpt`;
@@ -778,7 +980,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -812,7 +1014,25 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            formParams.append('data', requestParameters['data'] as any);
+        }
 
 
         let urlPath = `/api/binarytypes/uploadBlobOptNil`;
@@ -822,7 +1042,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -852,10 +1072,10 @@ export class BinaryTypesApi extends runtime.BaseAPI {
      * Creates request options for binaryTypesUploadFile without sending the request
      */
     async binaryTypesUploadFileRequestOpts(requestParameters: BinaryTypesUploadFileRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
+        if (requestParameters['data'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling binaryTypesUploadFile().'
+                'data',
+                'Required parameter "data" was null or undefined when calling binaryTypesUploadFile().'
             );
         }
 
@@ -863,7 +1083,25 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            formParams.append('data', requestParameters['data'] as any);
+        }
 
 
         let urlPath = `/api/binarytypes/uploadFile`;
@@ -873,7 +1111,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -903,10 +1141,10 @@ export class BinaryTypesApi extends runtime.BaseAPI {
      * Creates request options for binaryTypesUploadFileList without sending the request
      */
     async binaryTypesUploadFileListRequestOpts(requestParameters: BinaryTypesUploadFileListRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
+        if (requestParameters['data'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling binaryTypesUploadFileList().'
+                'data',
+                'Required parameter "data" was null or undefined when calling binaryTypesUploadFileList().'
             );
         }
 
@@ -914,7 +1152,27 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            requestParameters['data'].forEach((element) => {
+                formParams.append('data', element as any);
+            })
+        }
 
 
         let urlPath = `/api/binarytypes/uploadFileList`;
@@ -924,7 +1182,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -954,10 +1212,10 @@ export class BinaryTypesApi extends runtime.BaseAPI {
      * Creates request options for binaryTypesUploadFileListNil without sending the request
      */
     async binaryTypesUploadFileListNilRequestOpts(requestParameters: BinaryTypesUploadFileListNilRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
+        if (requestParameters['data'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling binaryTypesUploadFileListNil().'
+                'data',
+                'Required parameter "data" was null or undefined when calling binaryTypesUploadFileListNil().'
             );
         }
 
@@ -965,7 +1223,27 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            requestParameters['data'].forEach((element) => {
+                formParams.append('data', element as any);
+            })
+        }
 
 
         let urlPath = `/api/binarytypes/uploadFileListNil`;
@@ -975,7 +1253,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -1009,7 +1287,27 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            requestParameters['data'].forEach((element) => {
+                formParams.append('data', element as any);
+            })
+        }
 
 
         let urlPath = `/api/binarytypes/uploadFileListOpt`;
@@ -1019,7 +1317,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -1053,7 +1351,27 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            requestParameters['data'].forEach((element) => {
+                formParams.append('data', element as any);
+            })
+        }
 
 
         let urlPath = `/api/binarytypes/uploadFileListOptNil`;
@@ -1063,7 +1381,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -1093,10 +1411,10 @@ export class BinaryTypesApi extends runtime.BaseAPI {
      * Creates request options for binaryTypesUploadFileNil without sending the request
      */
     async binaryTypesUploadFileNilRequestOpts(requestParameters: BinaryTypesUploadFileNilRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['body'] == null) {
+        if (requestParameters['data'] == null) {
             throw new runtime.RequiredError(
-                'body',
-                'Required parameter "body" was null or undefined when calling binaryTypesUploadFileNil().'
+                'data',
+                'Required parameter "data" was null or undefined when calling binaryTypesUploadFileNil().'
             );
         }
 
@@ -1104,7 +1422,25 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            formParams.append('data', requestParameters['data'] as any);
+        }
 
 
         let urlPath = `/api/binarytypes/uploadFileNil`;
@@ -1114,7 +1450,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -1148,7 +1484,25 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            formParams.append('data', requestParameters['data'] as any);
+        }
 
 
         let urlPath = `/api/binarytypes/uploadFileOpt`;
@@ -1158,7 +1512,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -1192,7 +1546,25 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['data'] != null) {
+            formParams.append('data', requestParameters['data'] as any);
+        }
 
 
         let urlPath = `/api/binarytypes/uploadFileOptNil`;
@@ -1202,7 +1574,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: formParams,
         };
     }
 
@@ -1231,11 +1603,18 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * Creates request options for binaryTypesUploadMixed without sending the request
      */
-    async binaryTypesUploadMixedRequestOpts(requestParameters: BinaryTypesUploadMixedOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['binaryTypesUploadMixedRequest'] == null) {
+    async binaryTypesUploadMixedRequestOpts(requestParameters: BinaryTypesUploadMixedRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['dataFile'] == null) {
             throw new runtime.RequiredError(
-                'binaryTypesUploadMixedRequest',
-                'Required parameter "binaryTypesUploadMixedRequest" was null or undefined when calling binaryTypesUploadMixed().'
+                'dataFile',
+                'Required parameter "dataFile" was null or undefined when calling binaryTypesUploadMixed().'
+            );
+        }
+
+        if (requestParameters['dataBlob'] == null) {
+            throw new runtime.RequiredError(
+                'dataBlob',
+                'Required parameter "dataBlob" was null or undefined when calling binaryTypesUploadMixed().'
             );
         }
 
@@ -1243,7 +1622,35 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['dataFile'] != null) {
+            formParams.append('dataFile', requestParameters['dataFile'] as any);
+        }
+
+        if (requestParameters['dataBlob'] != null) {
+            formParams.append('dataBlob', requestParameters['dataBlob'] as any);
+        }
+
+        if (requestParameters['rsdPayload'] != null) {
+            formParams.append('_rsdPayload', new Blob([JSON.stringify(BinaryTypesUploadMixedRequestRsdPayloadToJSON(requestParameters['rsdPayload']))], { type: "application/json", }));
+                    }
 
 
         let urlPath = `/api/binarytypes/uploadMixed`;
@@ -1253,14 +1660,14 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: BinaryTypesUploadMixedRequestToJSON(requestParameters['binaryTypesUploadMixedRequest']),
+            body: formParams,
         };
     }
 
     /**
      * 
      */
-    async binaryTypesUploadMixedRaw(requestParameters: BinaryTypesUploadMixedOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
+    async binaryTypesUploadMixedRaw(requestParameters: BinaryTypesUploadMixedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
         const requestOptions = await this.binaryTypesUploadMixedRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -1270,7 +1677,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async binaryTypesUploadMixed(requestParameters: BinaryTypesUploadMixedOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
+    async binaryTypesUploadMixed(requestParameters: BinaryTypesUploadMixedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
         const response = await this.binaryTypesUploadMixedRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1278,11 +1685,18 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * Creates request options for binaryTypesUploadMixedNil without sending the request
      */
-    async binaryTypesUploadMixedNilRequestOpts(requestParameters: BinaryTypesUploadMixedNilOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['binaryTypesUploadMixedNilRequest'] == null) {
+    async binaryTypesUploadMixedNilRequestOpts(requestParameters: BinaryTypesUploadMixedNilRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['dataFile'] == null) {
             throw new runtime.RequiredError(
-                'binaryTypesUploadMixedNilRequest',
-                'Required parameter "binaryTypesUploadMixedNilRequest" was null or undefined when calling binaryTypesUploadMixedNil().'
+                'dataFile',
+                'Required parameter "dataFile" was null or undefined when calling binaryTypesUploadMixedNil().'
+            );
+        }
+
+        if (requestParameters['dataBlob'] == null) {
+            throw new runtime.RequiredError(
+                'dataBlob',
+                'Required parameter "dataBlob" was null or undefined when calling binaryTypesUploadMixedNil().'
             );
         }
 
@@ -1290,7 +1704,35 @@ export class BinaryTypesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['dataFile'] != null) {
+            formParams.append('dataFile', requestParameters['dataFile'] as any);
+        }
+
+        if (requestParameters['dataBlob'] != null) {
+            formParams.append('dataBlob', requestParameters['dataBlob'] as any);
+        }
+
+        if (requestParameters['rsdPayload'] != null) {
+            formParams.append('_rsdPayload', new Blob([JSON.stringify(BinaryTypesUploadMixedNilRequestRsdPayloadToJSON(requestParameters['rsdPayload']))], { type: "application/json", }));
+                    }
 
 
         let urlPath = `/api/binarytypes/uploadMixedNil`;
@@ -1300,14 +1742,14 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: BinaryTypesUploadMixedNilRequestToJSON(requestParameters['binaryTypesUploadMixedNilRequest']),
+            body: formParams,
         };
     }
 
     /**
      * 
      */
-    async binaryTypesUploadMixedNilRaw(requestParameters: BinaryTypesUploadMixedNilOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
+    async binaryTypesUploadMixedNilRaw(requestParameters: BinaryTypesUploadMixedNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
         const requestOptions = await this.binaryTypesUploadMixedNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -1317,7 +1759,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async binaryTypesUploadMixedNil(requestParameters: BinaryTypesUploadMixedNilOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
+    async binaryTypesUploadMixedNil(requestParameters: BinaryTypesUploadMixedNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
         const response = await this.binaryTypesUploadMixedNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1325,19 +1767,40 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * Creates request options for binaryTypesUploadMixedOpt without sending the request
      */
-    async binaryTypesUploadMixedOptRequestOpts(requestParameters: BinaryTypesUploadMixedOptOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['binaryTypesUploadMixedOptRequest'] == null) {
-            throw new runtime.RequiredError(
-                'binaryTypesUploadMixedOptRequest',
-                'Required parameter "binaryTypesUploadMixedOptRequest" was null or undefined when calling binaryTypesUploadMixedOpt().'
-            );
-        }
-
+    async binaryTypesUploadMixedOptRequestOpts(requestParameters: BinaryTypesUploadMixedOptRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['dataFile'] != null) {
+            formParams.append('dataFile', requestParameters['dataFile'] as any);
+        }
+
+        if (requestParameters['dataBlob'] != null) {
+            formParams.append('dataBlob', requestParameters['dataBlob'] as any);
+        }
+
+        if (requestParameters['rsdPayload'] != null) {
+            formParams.append('_rsdPayload', new Blob([JSON.stringify(BinaryTypesUploadMixedOptRequestRsdPayloadToJSON(requestParameters['rsdPayload']))], { type: "application/json", }));
+                    }
 
 
         let urlPath = `/api/binarytypes/uploadMixedOpt`;
@@ -1347,14 +1810,14 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: BinaryTypesUploadMixedOptRequestToJSON(requestParameters['binaryTypesUploadMixedOptRequest']),
+            body: formParams,
         };
     }
 
     /**
      * 
      */
-    async binaryTypesUploadMixedOptRaw(requestParameters: BinaryTypesUploadMixedOptOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
+    async binaryTypesUploadMixedOptRaw(requestParameters: BinaryTypesUploadMixedOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
         const requestOptions = await this.binaryTypesUploadMixedOptRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -1364,7 +1827,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async binaryTypesUploadMixedOpt(requestParameters: BinaryTypesUploadMixedOptOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
+    async binaryTypesUploadMixedOpt(requestParameters: BinaryTypesUploadMixedOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
         const response = await this.binaryTypesUploadMixedOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1372,19 +1835,40 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * Creates request options for binaryTypesUploadMixedOptNil without sending the request
      */
-    async binaryTypesUploadMixedOptNilRequestOpts(requestParameters: BinaryTypesUploadMixedOptNilOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['binaryTypesUploadMixedOptNilRequest'] == null) {
-            throw new runtime.RequiredError(
-                'binaryTypesUploadMixedOptNilRequest',
-                'Required parameter "binaryTypesUploadMixedOptNilRequest" was null or undefined when calling binaryTypesUploadMixedOptNil().'
-            );
-        }
-
+    async binaryTypesUploadMixedOptNilRequestOpts(requestParameters: BinaryTypesUploadMixedOptNilRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        const consumes: runtime.Consume[] = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters['dataFile'] != null) {
+            formParams.append('dataFile', requestParameters['dataFile'] as any);
+        }
+
+        if (requestParameters['dataBlob'] != null) {
+            formParams.append('dataBlob', requestParameters['dataBlob'] as any);
+        }
+
+        if (requestParameters['rsdPayload'] != null) {
+            formParams.append('_rsdPayload', new Blob([JSON.stringify(BinaryTypesUploadMixedOptNilRequestRsdPayloadToJSON(requestParameters['rsdPayload']))], { type: "application/json", }));
+                    }
 
 
         let urlPath = `/api/binarytypes/uploadMixedOptNil`;
@@ -1394,14 +1878,14 @@ export class BinaryTypesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: BinaryTypesUploadMixedOptNilRequestToJSON(requestParameters['binaryTypesUploadMixedOptNilRequest']),
+            body: formParams,
         };
     }
 
     /**
      * 
      */
-    async binaryTypesUploadMixedOptNilRaw(requestParameters: BinaryTypesUploadMixedOptNilOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
+    async binaryTypesUploadMixedOptNilRaw(requestParameters: BinaryTypesUploadMixedOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadMixedResult>> {
         const requestOptions = await this.binaryTypesUploadMixedOptNilRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -1411,7 +1895,7 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async binaryTypesUploadMixedOptNil(requestParameters: BinaryTypesUploadMixedOptNilOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
+    async binaryTypesUploadMixedOptNil(requestParameters: BinaryTypesUploadMixedOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadMixedResult> {
         const response = await this.binaryTypesUploadMixedOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -65,16 +65,16 @@ export interface BinaryTypesUploadMixedOptNilRequest {
     recList?: Array<SimpleRecord> | null;
     /**
      * 
-     * @type {any}
+     * @type {Blob}
      * @memberof BinaryTypesUploadMixedOptNilRequest
      */
-    dataFile?: any | null;
+    dataFile?: Blob | null;
     /**
      * 
-     * @type {any}
+     * @type {Blob}
      * @memberof BinaryTypesUploadMixedOptNilRequest
      */
-    dataBlob?: any | null;
+    dataBlob?: Blob | null;
 }
 
 /**

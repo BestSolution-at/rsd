@@ -27,10 +27,10 @@ export interface BinaryTypesSingleBodyAdditionRequest {
     name: string;
     /**
      * 
-     * @type {any}
+     * @type {Blob}
      * @memberof BinaryTypesSingleBodyAdditionRequest
      */
-    dataBlob: any | null;
+    dataBlob: Blob;
 }
 
 /**

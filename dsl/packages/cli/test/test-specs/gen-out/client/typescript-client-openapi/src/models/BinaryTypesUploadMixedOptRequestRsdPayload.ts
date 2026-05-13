@@ -24,71 +24,59 @@ import {
 /**
  * 
  * @export
- * @interface BinaryTypesUploadMixedOptRequest
+ * @interface BinaryTypesUploadMixedOptRequestRsdPayload
  */
-export interface BinaryTypesUploadMixedOptRequest {
+export interface BinaryTypesUploadMixedOptRequestRsdPayload {
     /**
      * 
      * @type {string}
-     * @memberof BinaryTypesUploadMixedOptRequest
+     * @memberof BinaryTypesUploadMixedOptRequestRsdPayload
      */
     text?: string;
     /**
      * 
      * @type {number}
-     * @memberof BinaryTypesUploadMixedOptRequest
+     * @memberof BinaryTypesUploadMixedOptRequestRsdPayload
      */
     number?: number;
     /**
      * 
      * @type {SimpleRecord}
-     * @memberof BinaryTypesUploadMixedOptRequest
+     * @memberof BinaryTypesUploadMixedOptRequestRsdPayload
      */
     rec?: SimpleRecord;
     /**
      * 
      * @type {Array<string>}
-     * @memberof BinaryTypesUploadMixedOptRequest
+     * @memberof BinaryTypesUploadMixedOptRequestRsdPayload
      */
     textList?: Array<string>;
     /**
      * 
      * @type {Array<number>}
-     * @memberof BinaryTypesUploadMixedOptRequest
+     * @memberof BinaryTypesUploadMixedOptRequestRsdPayload
      */
     numberList?: Array<number>;
     /**
      * 
      * @type {Array<SimpleRecord>}
-     * @memberof BinaryTypesUploadMixedOptRequest
+     * @memberof BinaryTypesUploadMixedOptRequestRsdPayload
      */
     recList?: Array<SimpleRecord>;
-    /**
-     * 
-     * @type {Blob}
-     * @memberof BinaryTypesUploadMixedOptRequest
-     */
-    dataFile?: Blob;
-    /**
-     * 
-     * @type {Blob}
-     * @memberof BinaryTypesUploadMixedOptRequest
-     */
-    dataBlob?: Blob;
 }
 
 /**
- * Check if a given object implements the BinaryTypesUploadMixedOptRequest interface.
+ * Check if a given object implements the BinaryTypesUploadMixedOptRequestRsdPayload interface.
  */
-export function instanceOfBinaryTypesUploadMixedOptRequest(value: object): value is BinaryTypesUploadMixedOptRequest {
+export function instanceOfBinaryTypesUploadMixedOptRequestRsdPayload(value: object): value is BinaryTypesUploadMixedOptRequestRsdPayload {
     return true;
 }
 
-export function BinaryTypesUploadMixedOptRequestFromJSON(json: any): BinaryTypesUploadMixedOptRequest {
-    return BinaryTypesUploadMixedOptRequestFromJSONTyped(json, false);
+export function BinaryTypesUploadMixedOptRequestRsdPayloadFromJSON(json: any): BinaryTypesUploadMixedOptRequestRsdPayload {
+    return BinaryTypesUploadMixedOptRequestRsdPayloadFromJSONTyped(json, false);
 }
 
-export function BinaryTypesUploadMixedOptRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BinaryTypesUploadMixedOptRequest {
+export function BinaryTypesUploadMixedOptRequestRsdPayloadFromJSONTyped(json: any, ignoreDiscriminator: boolean): BinaryTypesUploadMixedOptRequestRsdPayload {
     if (json == null) {
         return json;
     }
@@ -100,16 +88,14 @@ export function BinaryTypesUploadMixedOptRequestFromJSONTyped(json: any, ignoreD
         'textList': json['textList'] == null ? undefined : json['textList'],
         'numberList': json['numberList'] == null ? undefined : json['numberList'],
         'recList': json['recList'] == null ? undefined : ((json['recList'] as Array<any>).map(SimpleRecordFromJSON)),
-        'dataFile': json['dataFile'] == null ? undefined : json['dataFile'],
-        'dataBlob': json['dataBlob'] == null ? undefined : json['dataBlob'],
     };
 }
 
-export function BinaryTypesUploadMixedOptRequestToJSON(json: any): BinaryTypesUploadMixedOptRequest {
-    return BinaryTypesUploadMixedOptRequestToJSONTyped(json, false);
+export function BinaryTypesUploadMixedOptRequestRsdPayloadToJSON(json: any): BinaryTypesUploadMixedOptRequestRsdPayload {
+    return BinaryTypesUploadMixedOptRequestRsdPayloadToJSONTyped(json, false);
 }
 
-export function BinaryTypesUploadMixedOptRequestToJSONTyped(value?: BinaryTypesUploadMixedOptRequest | null, ignoreDiscriminator: boolean = false): any {
+export function BinaryTypesUploadMixedOptRequestRsdPayloadToJSONTyped(value?: BinaryTypesUploadMixedOptRequestRsdPayload | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -122,8 +108,6 @@ export function BinaryTypesUploadMixedOptRequestToJSONTyped(value?: BinaryTypesU
         'textList': value['textList'],
         'numberList': value['numberList'],
         'recList': value['recList'] == null ? undefined : ((value['recList'] as Array<any>).map(SimpleRecordToJSON)),
-        'dataFile': value['dataFile'],
-        'dataBlob': value['dataBlob'],
     };
 }
 

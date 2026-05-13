@@ -24,79 +24,65 @@ import {
 /**
  * 
  * @export
- * @interface BinaryTypesUploadMixedNilRequest
+ * @interface BinaryTypesUploadMixedNilRequestRsdPayload
  */
-export interface BinaryTypesUploadMixedNilRequest {
+export interface BinaryTypesUploadMixedNilRequestRsdPayload {
     /**
      * 
      * @type {string}
-     * @memberof BinaryTypesUploadMixedNilRequest
+     * @memberof BinaryTypesUploadMixedNilRequestRsdPayload
      */
     text: string | null;
     /**
      * 
      * @type {number}
-     * @memberof BinaryTypesUploadMixedNilRequest
+     * @memberof BinaryTypesUploadMixedNilRequestRsdPayload
      */
     number: number | null;
     /**
      * 
      * @type {SimpleRecord}
-     * @memberof BinaryTypesUploadMixedNilRequest
+     * @memberof BinaryTypesUploadMixedNilRequestRsdPayload
      */
     rec: SimpleRecord | null;
     /**
      * 
      * @type {Array<string>}
-     * @memberof BinaryTypesUploadMixedNilRequest
+     * @memberof BinaryTypesUploadMixedNilRequestRsdPayload
      */
     textList: Array<string> | null;
     /**
      * 
      * @type {Array<number>}
-     * @memberof BinaryTypesUploadMixedNilRequest
+     * @memberof BinaryTypesUploadMixedNilRequestRsdPayload
      */
     numberList: Array<number> | null;
     /**
      * 
      * @type {Array<SimpleRecord>}
-     * @memberof BinaryTypesUploadMixedNilRequest
+     * @memberof BinaryTypesUploadMixedNilRequestRsdPayload
      */
     recList: Array<SimpleRecord> | null;
-    /**
-     * 
-     * @type {Blob}
-     * @memberof BinaryTypesUploadMixedNilRequest
-     */
-    dataFile: Blob | null;
-    /**
-     * 
-     * @type {Blob}
-     * @memberof BinaryTypesUploadMixedNilRequest
-     */
-    dataBlob: Blob | null;
 }
 
 /**
- * Check if a given object implements the BinaryTypesUploadMixedNilRequest interface.
+ * Check if a given object implements the BinaryTypesUploadMixedNilRequestRsdPayload interface.
  */
-export function instanceOfBinaryTypesUploadMixedNilRequest(value: object): value is BinaryTypesUploadMixedNilRequest {
+export function instanceOfBinaryTypesUploadMixedNilRequestRsdPayload(value: object): value is BinaryTypesUploadMixedNilRequestRsdPayload {
     if (!('text' in value) || value['text'] === undefined) return false;
     if (!('number' in value) || value['number'] === undefined) return false;
     if (!('rec' in value) || value['rec'] === undefined) return false;
     if (!('textList' in value) || value['textList'] === undefined) return false;
     if (!('numberList' in value) || value['numberList'] === undefined) return false;
     if (!('recList' in value) || value['recList'] === undefined) return false;
-    if (!('dataFile' in value) || value['dataFile'] === undefined) return false;
-    if (!('dataBlob' in value) || value['dataBlob'] === undefined) return false;
     return true;
 }
 
-export function BinaryTypesUploadMixedNilRequestFromJSON(json: any): BinaryTypesUploadMixedNilRequest {
-    return BinaryTypesUploadMixedNilRequestFromJSONTyped(json, false);
+export function BinaryTypesUploadMixedNilRequestRsdPayloadFromJSON(json: any): BinaryTypesUploadMixedNilRequestRsdPayload {
+    return BinaryTypesUploadMixedNilRequestRsdPayloadFromJSONTyped(json, false);
 }
 
-export function BinaryTypesUploadMixedNilRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BinaryTypesUploadMixedNilRequest {
+export function BinaryTypesUploadMixedNilRequestRsdPayloadFromJSONTyped(json: any, ignoreDiscriminator: boolean): BinaryTypesUploadMixedNilRequestRsdPayload {
     if (json == null) {
         return json;
     }
@@ -108,16 +94,14 @@ export function BinaryTypesUploadMixedNilRequestFromJSONTyped(json: any, ignoreD
         'textList': json['textList'] == null ? null : json['textList'],
         'numberList': json['numberList'] == null ? null : json['numberList'],
         'recList': (json['recList'] == null ? null : (json['recList'] as Array<any>).map(SimpleRecordFromJSON)),
-        'dataFile': json['dataFile'],
-        'dataBlob': json['dataBlob'],
     };
 }
 
-export function BinaryTypesUploadMixedNilRequestToJSON(json: any): BinaryTypesUploadMixedNilRequest {
-    return BinaryTypesUploadMixedNilRequestToJSONTyped(json, false);
+export function BinaryTypesUploadMixedNilRequestRsdPayloadToJSON(json: any): BinaryTypesUploadMixedNilRequestRsdPayload {
+    return BinaryTypesUploadMixedNilRequestRsdPayloadToJSONTyped(json, false);
 }
 
-export function BinaryTypesUploadMixedNilRequestToJSONTyped(value?: BinaryTypesUploadMixedNilRequest | null, ignoreDiscriminator: boolean = false): any {
+export function BinaryTypesUploadMixedNilRequestRsdPayloadToJSONTyped(value?: BinaryTypesUploadMixedNilRequestRsdPayload | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -130,8 +114,6 @@ export function BinaryTypesUploadMixedNilRequestToJSONTyped(value?: BinaryTypesU
         'textList': value['textList'],
         'numberList': value['numberList'],
         'recList': (value['recList'] == null ? null : (value['recList'] as Array<any>).map(SimpleRecordToJSON)),
-        'dataFile': value['dataFile'],
-        'dataBlob': value['dataBlob'],
     };
 }
 

@@ -1,5 +1,5 @@
 
-# BinaryTypesUploadMixedNilRequest
+# BinaryTypesUploadMixedRequestRsdPayload
 
 
 ## Properties
@@ -12,13 +12,11 @@ Name | Type
 `textList` | Array&lt;string&gt;
 `numberList` | Array&lt;number&gt;
 `recList` | [Array&lt;SimpleRecord&gt;](SimpleRecord.md)
-`dataFile` | Blob
-`dataBlob` | Blob
 
 ## Example
 
 ```typescript
-import type { BinaryTypesUploadMixedNilRequest } from ''
+import type { BinaryTypesUploadMixedRequestRsdPayload } from ''
 
 // TODO: Update the object below with actual values
 const example = {
@@ -28,9 +26,7 @@ const example = {
   "textList": null,
   "numberList": null,
   "recList": null,
-  "dataFile": null,
-  "dataBlob": null,
-} satisfies BinaryTypesUploadMixedNilRequest
+} satisfies BinaryTypesUploadMixedRequestRsdPayload
 
 console.log(example)
 
@@ -39,7 +35,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as BinaryTypesUploadMixedNilRequest
+const exampleParsed = JSON.parse(exampleJSON) as BinaryTypesUploadMixedRequestRsdPayload
 console.log(exampleParsed)
 ```
 

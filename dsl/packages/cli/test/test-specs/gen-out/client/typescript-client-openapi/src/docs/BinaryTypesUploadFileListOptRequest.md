@@ -1,24 +1,22 @@
 
-# BinaryTypesSingleBodyAdditionRequest
+# BinaryTypesUploadFileListOptRequest
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`name` | string
-`dataBlob` | Blob
+`data` | Array&lt;Blob&gt;
 
 ## Example
 
 ```typescript
-import type { BinaryTypesSingleBodyAdditionRequest } from ''
+import type { BinaryTypesUploadFileListOptRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "name": null,
-  "dataBlob": null,
-} satisfies BinaryTypesSingleBodyAdditionRequest
+  "data": null,
+} satisfies BinaryTypesUploadFileListOptRequest
 
 console.log(example)
 
@@ -27,7 +25,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as BinaryTypesSingleBodyAdditionRequest
+const exampleParsed = JSON.parse(exampleJSON) as BinaryTypesUploadFileListOptRequest
 console.log(exampleParsed)
 ```
 

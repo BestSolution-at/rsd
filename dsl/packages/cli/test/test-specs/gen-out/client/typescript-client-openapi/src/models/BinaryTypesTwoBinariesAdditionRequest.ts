@@ -21,16 +21,16 @@ import { mapValues } from '../runtime.js';
 export interface BinaryTypesTwoBinariesAdditionRequest {
     /**
      * 
-     * @type {any}
+     * @type {Blob}
      * @memberof BinaryTypesTwoBinariesAdditionRequest
      */
-    dataBlob: any | null;
+    dataBlob: Blob;
     /**
      * 
-     * @type {any}
+     * @type {Blob}
      * @memberof BinaryTypesTwoBinariesAdditionRequest
      */
-    dataFile: any | null;
+    dataFile: Blob;
 }
 
 /**

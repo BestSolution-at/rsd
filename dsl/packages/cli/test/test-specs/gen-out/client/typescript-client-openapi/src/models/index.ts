@@ -1,11 +1,10 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './BinaryTypesSingleBodyAdditionRequest.js';
-export * from './BinaryTypesTwoBinariesAdditionRequest.js';
-export * from './BinaryTypesUploadMixedNilRequest.js';
-export * from './BinaryTypesUploadMixedOptNilRequest.js';
-export * from './BinaryTypesUploadMixedOptRequest.js';
-export * from './BinaryTypesUploadMixedRequest.js';
+export * from './BinaryTypesSingleBodyAdditionRequestRsdPayload.js';
+export * from './BinaryTypesUploadMixedNilRequestRsdPayload.js';
+export * from './BinaryTypesUploadMixedOptNilRequestRsdPayload.js';
+export * from './BinaryTypesUploadMixedOptRequestRsdPayload.js';
+export * from './BinaryTypesUploadMixedRequestRsdPayload.js';
 export * from './BodyParameterTypesMultiBodyParamFirstRequest.js';
 export * from './BodyParameterTypesMultiBodyParamNilRequest.js';
 export * from './BodyParameterTypesMultiBodyParamOptNilRequest.js';

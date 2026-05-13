@@ -12351,8 +12351,20 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "data"
+                ]
+              }
             }
           },
           "required": true
@@ -12382,11 +12394,21 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
+                  }
+                },
+                "required": []
+              }
             }
           },
-          "required": false
+          "required": true
         },
         "responses": {
           "201": {
@@ -12413,8 +12435,20 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "data"
+                ]
+              }
             }
           },
           "required": true
@@ -12444,11 +12478,21 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": true
+                  }
+                },
+                "required": []
+              }
             }
           },
-          "required": false
+          "required": true
         },
         "responses": {
           "201": {
@@ -12475,8 +12519,20 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "data"
+                ]
+              }
             }
           },
           "required": true
@@ -12506,11 +12562,21 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
+                  }
+                },
+                "required": []
+              }
             }
           },
-          "required": false
+          "required": true
         },
         "responses": {
           "201": {
@@ -12537,8 +12603,20 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "data"
+                ]
+              }
             }
           },
           "required": true
@@ -12568,11 +12646,21 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": true
+                  }
+                },
+                "required": []
+              }
             }
           },
-          "required": false
+          "required": true
         },
         "responses": {
           "201": {
@@ -12599,8 +12687,22 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                },
+                "required": [
+                  "data"
+                ]
+              }
             }
           },
           "required": true
@@ -12630,11 +12732,23 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                },
+                "required": []
+              }
             }
           },
-          "required": false
+          "required": true
         },
         "responses": {
           "200": {
@@ -12661,8 +12775,23 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "data"
+                ]
+              }
             }
           },
           "required": true
@@ -12692,11 +12821,24 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "nullable": true
+                  }
+                },
+                "required": []
+              }
             }
           },
-          "required": false
+          "required": true
         },
         "responses": {
           "200": {
@@ -12723,8 +12865,22 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                },
+                "required": [
+                  "data"
+                ]
+              }
             }
           },
           "required": true
@@ -12754,11 +12910,23 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                },
+                "required": []
+              }
             }
           },
-          "required": false
+          "required": true
         },
         "responses": {
           "200": {
@@ -12785,8 +12953,23 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "data"
+                ]
+              }
             }
           },
           "required": true
@@ -12816,11 +12999,24 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "nullable": true
+                  }
+                },
+                "required": []
+              }
             }
           },
-          "required": false
+          "required": true
         },
         "responses": {
           "200": {
@@ -12847,49 +13043,64 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "text": {
-                    "type": "string"
+                  "dataFile": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
                   },
-                  "number": {
-                    "type": "number",
-                    "format": "int32"
+                  "dataBlob": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
                   },
-                  "rec": {
-                    "$ref": "#/components/schemas/SimpleRecord"
-                  },
-                  "textList": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "numberList": {
-                    "type": "array",
-                    "items": {
-                      "type": "number",
-                      "format": "int32"
-                    }
-                  },
-                  "recList": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/SimpleRecord"
-                    }
-                  },
-                  "dataFile": {},
-                  "dataBlob": {}
+                  "_rsdPayload": {
+                    "type": "object",
+                    "properties": {
+                      "text": {
+                        "type": "string"
+                      },
+                      "number": {
+                        "type": "number",
+                        "format": "int32"
+                      },
+                      "rec": {
+                        "$ref": "#/components/schemas/SimpleRecord"
+                      },
+                      "textList": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "numberList": {
+                        "type": "array",
+                        "items": {
+                          "type": "number",
+                          "format": "int32"
+                        }
+                      },
+                      "recList": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/SimpleRecord"
+                        }
+                      }
+                    },
+                    "required": [
+                      "text",
+                      "number",
+                      "rec",
+                      "textList",
+                      "numberList",
+                      "recList"
+                    ]
+                  }
                 },
                 "required": [
-                  "text",
-                  "number",
-                  "rec",
-                  "textList",
-                  "numberList",
-                  "recList",
                   "dataFile",
                   "dataBlob"
                 ]
@@ -12922,41 +13133,55 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "text": {
-                    "type": "string"
+                  "dataFile": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
                   },
-                  "number": {
-                    "type": "number",
-                    "format": "int32"
+                  "dataBlob": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
                   },
-                  "rec": {
-                    "$ref": "#/components/schemas/SimpleRecord"
-                  },
-                  "textList": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "numberList": {
-                    "type": "array",
-                    "items": {
-                      "type": "number",
-                      "format": "int32"
-                    }
-                  },
-                  "recList": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/SimpleRecord"
-                    }
-                  },
-                  "dataFile": {},
-                  "dataBlob": {}
+                  "_rsdPayload": {
+                    "type": "object",
+                    "properties": {
+                      "text": {
+                        "type": "string"
+                      },
+                      "number": {
+                        "type": "number",
+                        "format": "int32"
+                      },
+                      "rec": {
+                        "$ref": "#/components/schemas/SimpleRecord"
+                      },
+                      "textList": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "numberList": {
+                        "type": "array",
+                        "items": {
+                          "type": "number",
+                          "format": "int32"
+                        }
+                      },
+                      "recList": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/SimpleRecord"
+                        }
+                      }
+                    },
+                    "required": []
+                  }
                 },
                 "required": []
               }
@@ -12988,59 +13213,74 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "text": {
+                  "dataFile": {
                     "type": "string",
+                    "format": "binary",
                     "nullable": true
                   },
-                  "number": {
-                    "type": "number",
-                    "format": "int32",
+                  "dataBlob": {
+                    "type": "string",
+                    "format": "binary",
                     "nullable": true
                   },
-                  "rec": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/SimpleRecord"
+                  "_rsdPayload": {
+                    "type": "object",
+                    "properties": {
+                      "text": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "number": {
+                        "type": "number",
+                        "format": "int32",
+                        "nullable": true
+                      },
+                      "rec": {
+                        "allOf": [
+                          {
+                            "$ref": "#/components/schemas/SimpleRecord"
+                          }
+                        ],
+                        "nullable": true
+                      },
+                      "textList": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "nullable": true
+                      },
+                      "numberList": {
+                        "type": "array",
+                        "items": {
+                          "type": "number",
+                          "format": "int32"
+                        },
+                        "nullable": true
+                      },
+                      "recList": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/SimpleRecord"
+                        },
+                        "nullable": true
                       }
-                    ],
-                    "nullable": true
-                  },
-                  "textList": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
                     },
-                    "nullable": true
-                  },
-                  "numberList": {
-                    "type": "array",
-                    "items": {
-                      "type": "number",
-                      "format": "int32"
-                    },
-                    "nullable": true
-                  },
-                  "recList": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/SimpleRecord"
-                    },
-                    "nullable": true
-                  },
-                  "dataFile": {},
-                  "dataBlob": {}
+                    "required": [
+                      "text",
+                      "number",
+                      "rec",
+                      "textList",
+                      "numberList",
+                      "recList"
+                    ]
+                  }
                 },
                 "required": [
-                  "text",
-                  "number",
-                  "rec",
-                  "textList",
-                  "numberList",
-                  "recList",
                   "dataFile",
                   "dataBlob"
                 ]
@@ -13073,51 +13313,65 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "text": {
+                  "dataFile": {
                     "type": "string",
+                    "format": "binary",
                     "nullable": true
                   },
-                  "number": {
-                    "type": "number",
-                    "format": "int32",
+                  "dataBlob": {
+                    "type": "string",
+                    "format": "binary",
                     "nullable": true
                   },
-                  "rec": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/SimpleRecord"
+                  "_rsdPayload": {
+                    "type": "object",
+                    "properties": {
+                      "text": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "number": {
+                        "type": "number",
+                        "format": "int32",
+                        "nullable": true
+                      },
+                      "rec": {
+                        "allOf": [
+                          {
+                            "$ref": "#/components/schemas/SimpleRecord"
+                          }
+                        ],
+                        "nullable": true
+                      },
+                      "textList": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "nullable": true
+                      },
+                      "numberList": {
+                        "type": "array",
+                        "items": {
+                          "type": "number",
+                          "format": "int32"
+                        },
+                        "nullable": true
+                      },
+                      "recList": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/SimpleRecord"
+                        },
+                        "nullable": true
                       }
-                    ],
-                    "nullable": true
-                  },
-                  "textList": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
                     },
-                    "nullable": true
-                  },
-                  "numberList": {
-                    "type": "array",
-                    "items": {
-                      "type": "number",
-                      "format": "int32"
-                    },
-                    "nullable": true
-                  },
-                  "recList": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/SimpleRecord"
-                    },
-                    "nullable": true
-                  },
-                  "dataFile": {},
-                  "dataBlob": {}
+                    "required": []
+                  }
                 },
                 "required": []
               }
@@ -13238,8 +13492,20 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dataBlob": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "dataBlob"
+                ]
+              }
             }
           },
           "required": true
@@ -13261,17 +13527,28 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
-                    "type": "string"
+                  "dataBlob": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
                   },
-                  "dataBlob": {}
+                  "_rsdPayload": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name"
+                    ]
+                  }
                 },
                 "required": [
-                  "name",
                   "dataBlob"
                 ]
               }
@@ -13296,12 +13573,20 @@
         "parameters": [],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "dataBlob": {},
-                  "dataFile": {}
+                  "dataBlob": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
+                  },
+                  "dataFile": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
+                  }
                 },
                 "required": [
                   "dataBlob",
@@ -13332,7 +13617,10 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
               }
             }
           }
@@ -13352,7 +13640,10 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
               }
             }
           }

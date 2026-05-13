@@ -12,8 +12,8 @@ Name | Type
 `textList` | Array&lt;string&gt;
 `numberList` | Array&lt;number&gt;
 `recList` | [Array&lt;SimpleRecord&gt;](SimpleRecord.md)
-`dataFile` | any
-`dataBlob` | any
+`dataFile` | Blob
+`dataBlob` | Blob
 
 ## Example
 

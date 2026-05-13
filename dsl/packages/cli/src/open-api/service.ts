@@ -65,6 +65,11 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 						} else {
 							schema = generateBuilinProperty(o.resultType.type);
 						}
+					} else if (o.resultType.variant === 'stream') {
+						schema = {
+							type: 'string',
+							format: 'binary',
+						};
 					}
 					responses[s] = {
 						description: o.resultType.doc,
@@ -104,33 +109,71 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 
 			let requestBody;
 			const bodyParams = o.parameters.filter(p => p.meta?.rest?.source === undefined);
+			const hasStreamBodyParam = bodyParams.some(p => p.variant === 'stream');
 
-			if (bodyParams.length === 1) {
-				requestBody = {
-					content: {
-						'application/json': {
-							schema: toType(bodyParams[0]),
-						},
-					},
-					required: !bodyParams[0].optional,
-				};
-			} else if (bodyParams.length > 1) {
+			if (hasStreamBodyParam) {
 				const properties: Record<string, unknown> = {};
-				bodyParams.forEach(p => {
-					properties[p.name] = toType(p);
-				});
+				bodyParams
+					.filter(p => p.variant === 'stream')
+					.forEach(p => {
+						properties[p.name] = toType(p);
+					});
+				if (bodyParams.some(p => p.variant !== 'stream')) {
+					const noneStreamProperties: Record<string, unknown> = {};
+					bodyParams
+						.filter(p => p.variant !== 'stream')
+						.forEach(p => {
+							noneStreamProperties[p.name] = toType(p);
+						});
+					properties._rsdPayload = {
+						type: 'object',
+						properties: noneStreamProperties,
+						required: bodyParams.filter(p => p.variant !== 'stream' && !p.optional).map(p => p.name),
+					};
+				}
 				requestBody = {
 					content: {
-						'application/json': {
+						'multipart/form-data': {
 							schema: {
 								type: 'object',
 								properties,
-								required: bodyParams.filter(p => !p.optional).map(p => p.name),
+								required: bodyParams
+									.filter(p => p.variant === 'stream')
+									.filter(p => !p.optional)
+									.map(p => p.name),
 							},
 						},
 					},
 					required: true,
 				};
+			} else {
+				if (bodyParams.length === 1) {
+					requestBody = {
+						content: {
+							'application/json': {
+								schema: toType(bodyParams[0]),
+							},
+						},
+						required: !bodyParams[0].optional,
+					};
+				} else if (bodyParams.length > 1) {
+					const properties: Record<string, unknown> = {};
+					bodyParams.forEach(p => {
+						properties[p.name] = toType(p);
+					});
+					requestBody = {
+						content: {
+							'application/json': {
+								schema: {
+									type: 'object',
+									properties,
+									required: bodyParams.filter(p => !p.optional).map(p => p.name),
+								},
+							},
+						},
+						required: true,
+					};
+				}
 			}
 
 			const parameters = o.parameters
@@ -187,7 +230,26 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 
 function toType(param: MParameter) {
 	let schema: Record<string, unknown> = {};
-	if (param.variant === 'record' || param.variant === 'union' || param.variant === 'enum') {
+	if (param.variant === 'stream') {
+		if (param.array) {
+			schema = nullableProcessor(
+				{
+					type: 'array',
+					items: {
+						type: 'string',
+						format: 'binary',
+					},
+				},
+				param.nullable,
+			);
+		} else {
+			schema = {
+				type: 'string',
+				format: 'binary',
+				nullable: param.nullable,
+			};
+		}
+	} else if (param.variant === 'record' || param.variant === 'union' || param.variant === 'enum') {
 		const type = param.patch ? `${param.type}Patch` : param.type;
 		if (param.array) {
 			schema = nullableProcessor(
