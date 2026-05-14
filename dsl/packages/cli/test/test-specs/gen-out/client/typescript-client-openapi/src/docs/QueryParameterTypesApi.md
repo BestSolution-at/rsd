@@ -1527,7 +1527,7 @@ No authorization required
 
 ## queryParameterTypesSimpleOffsetDateTimeQueryParam
 
-> string queryParameterTypesSimpleOffsetDateTimeQueryParam(queryValue)
+> Date queryParameterTypesSimpleOffsetDateTimeQueryParam(queryValue)
 
 
 
@@ -1547,8 +1547,8 @@ async function example() {
   const api = new QueryParameterTypesApi();
 
   const body = {
-    // string | 
-    queryValue: queryValue_example,
+    // Date | 
+    queryValue: 2013-10-20T19:20:30+01:00,
   } satisfies QueryParameterTypesSimpleOffsetDateTimeQueryParamRequest;
 
   try {
@@ -1568,11 +1568,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **queryValue** | `string` |  | [Defaults to `undefined`] |
+| **queryValue** | `Date` |  | [Defaults to `undefined`] |
 
 ### Return type
 
-**string**
+**Date**
 
 ### Authorization
 
@@ -1614,8 +1614,8 @@ async function example() {
   const api = new QueryParameterTypesApi();
 
   const body = {
-    // string |  (optional)
-    queryValue: queryValue_example,
+    // Date |  (optional)
+    queryValue: 2013-10-20T19:20:30+01:00,
   } satisfies QueryParameterTypesSimpleOffsetDateTimeQueryParamOptRequest;
 
   try {
@@ -1635,7 +1635,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **queryValue** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **queryValue** | `Date` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

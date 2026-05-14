@@ -18,7 +18,7 @@ Name | Type
 `valueLocalDate` | Date
 `valueLocalDateTime` | string
 `valueLocalTime` | string
-`valueOffsetDateTime` | string
+`valueOffsetDateTime` | Date
 `valueZonedDateTime` | string
 `type` | string
 

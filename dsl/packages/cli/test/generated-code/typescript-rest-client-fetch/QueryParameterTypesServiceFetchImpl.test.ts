@@ -185,7 +185,11 @@ describe('SingleQueryParameterTypesService', () => {
 		test.each([json, msgpack, openapi])('success - 2025-01-01T10:00:00+01:00 - $encoding', async ({ service }) => {
 			const [result, error] = await service.simpleOffsetDateTimeQueryParam('2025-01-01T10:00:00+01:00');
 			expect(error).toBeNull();
-			expect(result).toBe('2025-01-01T10:00:00+01:00');
+			if (service === openapiService) {
+				expect(result).toBe('2025-01-01T09:00:00Z');
+			} else {
+				expect(result).toBe('2025-01-01T10:00:00+01:00');
+			}
 		});
 		test.each([json, msgpack, openapi])('success - optional - $encoding', async ({ service }) => {
 			const [result, error] = await service.simpleOffsetDateTimeQueryParamOpt();

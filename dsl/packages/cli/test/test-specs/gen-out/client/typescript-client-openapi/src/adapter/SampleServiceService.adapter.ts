@@ -140,9 +140,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-	async getLocalTime(): Promise<
-		api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>
-	> {
+	async getLocalTime(): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.sampleServiceGetLocalTimeRaw();
 			if (response.raw.status === 200) {
@@ -159,7 +157,7 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 		try {
 			const response = await this.delegate.sampleServiceGetOffsetDateTimeRaw();
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {

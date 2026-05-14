@@ -93,10 +93,10 @@ export interface PatchableRecordOfRecordsValuePatchReplace {
     valueLocalTime: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof PatchableRecordOfRecordsValuePatchReplace
      */
-    valueOffsetDateTime: string;
+    valueOffsetDateTime: Date;
     /**
      * 
      * @type {string}
@@ -155,7 +155,7 @@ export function PatchableRecordOfRecordsValuePatchReplaceFromJSONTyped(json: any
         'valueLocalDate': (new Date(json['valueLocalDate'])),
         'valueLocalDateTime': json['valueLocalDateTime'],
         'valueLocalTime': json['valueLocalTime'],
-        'valueOffsetDateTime': json['valueOffsetDateTime'],
+        'valueOffsetDateTime': (new Date(json['valueOffsetDateTime'])),
         'valueZonedDateTime': json['valueZonedDateTime'],
         'type': json['@type'],
     };
@@ -184,7 +184,7 @@ export function PatchableRecordOfRecordsValuePatchReplaceToJSONTyped(value?: Pat
         'valueLocalDate': value['valueLocalDate'].toISOString().substring(0,10),
         'valueLocalDateTime': value['valueLocalDateTime'],
         'valueLocalTime': value['valueLocalTime'],
-        'valueOffsetDateTime': value['valueOffsetDateTime'],
+        'valueOffsetDateTime': value['valueOffsetDateTime'].toISOString(),
         'valueZonedDateTime': value['valueZonedDateTime'],
         '@type': value['type'],
     };

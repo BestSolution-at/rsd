@@ -243,19 +243,19 @@ export interface HeaderParameterTypesSimpleLongHeaderParamOptNilRequest {
 }
 
 export interface HeaderParameterTypesSimpleOffsetDateTimeHeaderParamRequest {
-    headerValue: string;
+    headerValue: Date;
 }
 
 export interface HeaderParameterTypesSimpleOffsetDateTimeHeaderParamNilRequest {
-    headerValue: string | null;
+    headerValue: Date | null;
 }
 
 export interface HeaderParameterTypesSimpleOffsetDateTimeHeaderParamOptRequest {
-    headerValue?: string;
+    headerValue?: Date;
 }
 
 export interface HeaderParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRequest {
-    headerValue?: string | null;
+    headerValue?: Date | null;
 }
 
 export interface HeaderParameterTypesSimpleScalarHeaderParamRequest {
@@ -2749,12 +2749,12 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async headerParameterTypesSimpleOffsetDateTimeHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
         const requestOptions = await this.headerParameterTypesSimpleOffsetDateTimeHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
+            return new runtime.JSONApiResponse<Date>(response);
         } else {
             return new runtime.TextApiResponse(response) as any;
         }
@@ -2763,7 +2763,7 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async headerParameterTypesSimpleOffsetDateTimeHeaderParam(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParam(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
         const response = await this.headerParameterTypesSimpleOffsetDateTimeHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }

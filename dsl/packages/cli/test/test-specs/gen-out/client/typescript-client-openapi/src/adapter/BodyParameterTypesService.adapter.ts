@@ -626,10 +626,10 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamRaw({
-				body: bodyOffsetDateTime,
+				body: bodyOffsetDateTime as unknown as Date,
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()) as unknown as string);
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -641,7 +641,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamOptRaw({
-				body: bodyOffsetDateTime,
+				body: bodyOffsetDateTime as unknown as Date,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -656,7 +656,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamNilRaw({
-				body: bodyOffsetDateTime,
+				body: bodyOffsetDateTime as unknown as Date,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -671,7 +671,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamOptNilRaw({
-				body: bodyOffsetDateTime,
+				body: bodyOffsetDateTime as unknown as Date,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());

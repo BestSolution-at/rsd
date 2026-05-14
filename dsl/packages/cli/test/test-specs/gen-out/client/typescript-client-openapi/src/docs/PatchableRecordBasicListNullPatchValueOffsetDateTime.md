@@ -7,9 +7,9 @@
 Name | Type
 ------------ | -------------
 `type` | string
-`elements` | Array&lt;string&gt;
-`additions` | Array&lt;string&gt;
-`removals` | Array&lt;string&gt;
+`elements` | Array&lt;Date&gt;
+`additions` | Array&lt;Date&gt;
+`removals` | Array&lt;Date&gt;
 
 ## Example
 

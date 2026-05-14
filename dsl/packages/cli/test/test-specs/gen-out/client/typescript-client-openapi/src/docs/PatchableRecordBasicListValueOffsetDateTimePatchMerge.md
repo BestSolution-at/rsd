@@ -7,8 +7,8 @@
 Name | Type
 ------------ | -------------
 `type` | string
-`additions` | Array&lt;string&gt;
-`removals` | Array&lt;string&gt;
+`additions` | Array&lt;Date&gt;
+`removals` | Array&lt;Date&gt;
 
 ## Example
 

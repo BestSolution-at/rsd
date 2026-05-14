@@ -72,7 +72,7 @@ export interface ListQueryParameterTypesListMultiQueryParamRequest {
 }
 
 export interface ListQueryParameterTypesListOffsetDateTimeQueryParamRequest {
-    queryValue: Array<string>;
+    queryValue: Array<Date>;
 }
 
 export interface ListQueryParameterTypesListRecordQueryParamRequest {
@@ -699,7 +699,7 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listQueryParameterTypesListOffsetDateTimeQueryParamRaw(requestParameters: ListQueryParameterTypesListOffsetDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async listQueryParameterTypesListOffsetDateTimeQueryParamRaw(requestParameters: ListQueryParameterTypesListOffsetDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Date>>> {
         const requestOptions = await this.listQueryParameterTypesListOffsetDateTimeQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -709,7 +709,7 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listQueryParameterTypesListOffsetDateTimeQueryParam(requestParameters: ListQueryParameterTypesListOffsetDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async listQueryParameterTypesListOffsetDateTimeQueryParam(requestParameters: ListQueryParameterTypesListOffsetDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Date>> {
         const response = await this.listQueryParameterTypesListOffsetDateTimeQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }

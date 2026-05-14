@@ -7,7 +7,7 @@
 Name | Type
 ------------ | -------------
 `type` | string
-`elements` | Array&lt;string&gt;
+`elements` | Array&lt;Date&gt;
 
 ## Example
 

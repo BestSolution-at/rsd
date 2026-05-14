@@ -226,19 +226,19 @@ export interface ListBodyParameterTypesListMultiBodyParamOptNilOperationRequest 
 }
 
 export interface ListBodyParameterTypesListOffsetDateTimeBodyParamRequest {
-    requestBody: Array<string>;
+    requestBody: Array<Date>;
 }
 
 export interface ListBodyParameterTypesListOffsetDateTimeBodyParamNilRequest {
-    requestBody: Array<string> | null;
+    requestBody: Array<Date> | null;
 }
 
 export interface ListBodyParameterTypesListOffsetDateTimeBodyParamOptRequest {
-    requestBody?: Array<string>;
+    requestBody?: Array<Date>;
 }
 
 export interface ListBodyParameterTypesListOffsetDateTimeBodyParamOptNilRequest {
-    requestBody?: Array<string> | null;
+    requestBody?: Array<Date> | null;
 }
 
 export interface ListBodyParameterTypesListRecordBodyParamRequest {
@@ -2290,7 +2290,7 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listBodyParameterTypesListOffsetDateTimeBodyParamRaw(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async listBodyParameterTypesListOffsetDateTimeBodyParamRaw(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Date>>> {
         const requestOptions = await this.listBodyParameterTypesListOffsetDateTimeBodyParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -2300,7 +2300,7 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listBodyParameterTypesListOffsetDateTimeBodyParam(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async listBodyParameterTypesListOffsetDateTimeBodyParam(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Date>> {
         const response = await this.listBodyParameterTypesListOffsetDateTimeBodyParamRaw(requestParameters, initOverrides);
         return await response.value();
     }

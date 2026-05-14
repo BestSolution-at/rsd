@@ -120,7 +120,7 @@ const RECORD_TESTS: RecordTest[] = [
 					},
 					valueOffsetDateTime: {
 						type: 'string',
-						format: 'offset-date-time',
+						format: 'date-time',
 					},
 					valueZonedDateTime: {
 						type: 'string',
@@ -193,7 +193,7 @@ const RECORD_TESTS: RecordTest[] = [
 					},
 					valueOffsetDateTime: {
 						type: 'string',
-						format: 'offset-date-time',
+						format: 'date-time',
 					},
 					valueZonedDateTime: {
 						type: 'string',
@@ -263,7 +263,7 @@ const RECORD_TESTS: RecordTest[] = [
 					},
 					valueOffsetDateTime: {
 						type: 'string',
-						format: 'offset-date-time',
+						format: 'date-time',
 						nullable: true,
 					},
 					valueZonedDateTime: {
@@ -348,7 +348,7 @@ const RECORD_TESTS: RecordTest[] = [
 					},
 					valueOffsetDateTime: {
 						type: 'string',
-						format: 'offset-date-time',
+						format: 'date-time',
 						nullable: true,
 					},
 					valueZonedDateTime: {
@@ -442,7 +442,7 @@ const RECORD_TESTS: RecordTest[] = [
 						type: 'array',
 						items: {
 							type: 'string',
-							format: 'offset-date-time',
+							format: 'date-time',
 						},
 					},
 					valueZonedDateTime: {
@@ -551,7 +551,7 @@ const RECORD_TESTS: RecordTest[] = [
 						type: 'array',
 						items: {
 							type: 'string',
-							format: 'offset-date-time',
+							format: 'date-time',
 						},
 					},
 					valueZonedDateTime: {
@@ -657,7 +657,7 @@ const RECORD_TESTS: RecordTest[] = [
 						type: 'array',
 						items: {
 							type: 'string',
-							format: 'offset-date-time',
+							format: 'date-time',
 						},
 						nullable: true,
 					},
@@ -778,7 +778,7 @@ const RECORD_TESTS: RecordTest[] = [
 						type: 'array',
 						items: {
 							type: 'string',
-							format: 'offset-date-time',
+							format: 'date-time',
 						},
 						nullable: true,
 					},

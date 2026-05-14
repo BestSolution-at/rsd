@@ -3637,7 +3637,7 @@ No authorization required
 
 ## bodyParameterTypesSimpleOffsetDateTimeBodyParam
 
-> string bodyParameterTypesSimpleOffsetDateTimeBodyParam(body)
+> Date bodyParameterTypesSimpleOffsetDateTimeBodyParam(body)
 
 
 
@@ -3657,8 +3657,8 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string
-    body: body_example,
+    // Date
+    body: 2013-10-20T19:20:30+01:00,
   } satisfies BodyParameterTypesSimpleOffsetDateTimeBodyParamRequest;
 
   try {
@@ -3678,11 +3678,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | |
+| **body** | `Date` |  | |
 
 ### Return type
 
-**string**
+**Date**
 
 ### Authorization
 
@@ -3724,8 +3724,8 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string
-    body: body_example,
+    // Date
+    body: 2013-10-20T19:20:30+01:00,
   } satisfies BodyParameterTypesSimpleOffsetDateTimeBodyParamNilRequest;
 
   try {
@@ -3745,7 +3745,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | |
+| **body** | `Date` |  | |
 
 ### Return type
 
@@ -3791,8 +3791,8 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string (optional)
-    body: body_example,
+    // Date (optional)
+    body: 2013-10-20T19:20:30+01:00,
   } satisfies BodyParameterTypesSimpleOffsetDateTimeBodyParamOptRequest;
 
   try {
@@ -3812,7 +3812,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `Date` |  | [Optional] |
 
 ### Return type
 
@@ -3858,8 +3858,8 @@ async function example() {
   const api = new BodyParameterTypesApi();
 
   const body = {
-    // string (optional)
-    body: body_example,
+    // Date (optional)
+    body: 2013-10-20T19:20:30+01:00,
   } satisfies BodyParameterTypesSimpleOffsetDateTimeBodyParamOptNilRequest;
 
   try {
@@ -3879,7 +3879,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | `string` |  | [Optional] |
+| **body** | `Date` |  | [Optional] |
 
 ### Return type
 

@@ -772,7 +772,7 @@ No authorization required
 
 ## listQueryParameterTypesListOffsetDateTimeQueryParam
 
-> Array&lt;string&gt; listQueryParameterTypesListOffsetDateTimeQueryParam(queryValue)
+> Array&lt;Date&gt; listQueryParameterTypesListOffsetDateTimeQueryParam(queryValue)
 
 
 
@@ -792,7 +792,7 @@ async function example() {
   const api = new ListQueryParameterTypesApi();
 
   const body = {
-    // Array<string> | 
+    // Array<Date> | 
     queryValue: ...,
   } satisfies ListQueryParameterTypesListOffsetDateTimeQueryParamRequest;
 
@@ -813,11 +813,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **queryValue** | `Array<string>` |  | |
+| **queryValue** | `Array<Date>` |  | |
 
 ### Return type
 
-**Array<string>**
+**Array<Date>**
 
 ### Authorization
 

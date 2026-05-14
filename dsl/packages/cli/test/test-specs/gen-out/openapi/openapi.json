@@ -293,7 +293,7 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "format": "offset-date-time"
+                  "format": "date-time"
                 }
               }
             }
@@ -795,7 +795,7 @@
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "format": "offset-date-time"
+                    "format": "date-time"
                   }
                 }
               }
@@ -1297,7 +1297,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           }
         ],
@@ -1308,7 +1308,7 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "format": "offset-date-time"
+                  "format": "date-time"
                 }
               }
             }
@@ -2824,7 +2824,7 @@
             "application/json": {
               "schema": {
                 "type": "string",
-                "format": "offset-date-time"
+                "format": "date-time"
               }
             }
           },
@@ -2837,7 +2837,7 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "format": "offset-date-time"
+                  "format": "date-time"
                 }
               }
             }
@@ -2858,7 +2858,7 @@
             "application/json": {
               "schema": {
                 "type": "string",
-                "format": "offset-date-time"
+                "format": "date-time"
               }
             }
           },
@@ -2891,7 +2891,7 @@
             "application/json": {
               "schema": {
                 "type": "string",
-                "format": "offset-date-time",
+                "format": "date-time",
                 "nullable": true
               }
             }
@@ -2925,7 +2925,7 @@
             "application/json": {
               "schema": {
                 "type": "string",
-                "format": "offset-date-time",
+                "format": "date-time",
                 "nullable": true
               }
             }
@@ -5533,7 +5533,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           }
         ],
@@ -5544,7 +5544,7 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "format": "offset-date-time"
+                  "format": "date-time"
                 }
               }
             }
@@ -5567,7 +5567,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           }
         ],
@@ -5600,7 +5600,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "offset-date-time",
+              "format": "date-time",
               "nullable": true
             }
           }
@@ -5634,7 +5634,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "format": "offset-date-time",
+              "format": "date-time",
               "nullable": true
             }
           }
@@ -7361,7 +7361,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           }
         ],
@@ -7372,7 +7372,7 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "format": "offset-date-time"
+                  "format": "date-time"
                 }
               }
             }
@@ -7395,7 +7395,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           }
         ],
@@ -9298,7 +9298,7 @@
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "format": "offset-date-time"
+                  "format": "date-time"
                 }
               }
             }
@@ -9314,7 +9314,7 @@
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "format": "offset-date-time"
+                    "format": "date-time"
                   }
                 }
               }
@@ -9338,7 +9338,7 @@
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "format": "offset-date-time"
+                  "format": "date-time"
                 }
               }
             }
@@ -9374,7 +9374,7 @@
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "format": "offset-date-time"
+                  "format": "date-time"
                 },
                 "nullable": true
               }
@@ -9411,7 +9411,7 @@
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "format": "offset-date-time"
+                  "format": "date-time"
                 },
                 "nullable": true
               }
@@ -10841,7 +10841,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "format": "offset-date-time"
+                "format": "date-time"
               }
             }
           }
@@ -10855,7 +10855,7 @@
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "format": "offset-date-time"
+                    "format": "date-time"
                   }
                 }
               }
@@ -12668,7 +12668,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "format": "offset-date-time"
+                "format": "date-time"
               }
             }
           }
@@ -12682,7 +12682,7 @@
                   "type": "array",
                   "items": {
                     "type": "string",
-                    "format": "offset-date-time"
+                    "format": "date-time"
                   }
                 }
               }
@@ -12708,7 +12708,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "format": "offset-date-time"
+                "format": "date-time"
               }
             }
           }
@@ -12744,7 +12744,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "format": "offset-date-time"
+                "format": "date-time"
               },
               "nullable": true
             }
@@ -12781,7 +12781,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "format": "offset-date-time"
+                "format": "date-time"
               },
               "nullable": true
             }
@@ -15313,7 +15313,7 @@
           },
           "valueOffsetDateTime": {
             "type": "string",
-            "format": "offset-date-time"
+            "format": "date-time"
           },
           "valueZonedDateTime": {
             "type": "string",
@@ -15381,7 +15381,7 @@
           },
           "valueOffsetDateTime": {
             "type": "string",
-            "format": "offset-date-time"
+            "format": "date-time"
           },
           "valueZonedDateTime": {
             "type": "string",
@@ -15445,7 +15445,7 @@
           },
           "valueOffsetDateTime": {
             "type": "string",
-            "format": "offset-date-time",
+            "format": "date-time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -15525,7 +15525,7 @@
           },
           "valueOffsetDateTime": {
             "type": "string",
-            "format": "offset-date-time",
+            "format": "date-time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -15613,7 +15613,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           },
           "valueZonedDateTime": {
@@ -15717,7 +15717,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           },
           "valueZonedDateTime": {
@@ -15817,7 +15817,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             },
             "nullable": true
           },
@@ -15933,7 +15933,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             },
             "nullable": true
           },
@@ -16438,7 +16438,7 @@
           },
           "valueOffsetDateTime": {
             "type": "string",
-            "format": "offset-date-time"
+            "format": "date-time"
           },
           "valueZonedDateTime": {
             "type": "string",
@@ -16514,7 +16514,7 @@
           },
           "valueOffsetDateTime": {
             "type": "string",
-            "format": "offset-date-time"
+            "format": "date-time"
           },
           "valueZonedDateTime": {
             "type": "string",
@@ -16578,7 +16578,7 @@
           },
           "valueOffsetDateTime": {
             "type": "string",
-            "format": "offset-date-time"
+            "format": "date-time"
           },
           "valueZonedDateTime": {
             "type": "string",
@@ -16652,7 +16652,7 @@
           },
           "valueOffsetDateTime": {
             "type": "string",
-            "format": "offset-date-time",
+            "format": "date-time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -16728,7 +16728,7 @@
           },
           "valueOffsetDateTime": {
             "type": "string",
-            "format": "offset-date-time",
+            "format": "date-time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -16816,7 +16816,7 @@
           },
           "valueOffsetDateTime": {
             "type": "string",
-            "format": "offset-date-time",
+            "format": "date-time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -16892,7 +16892,7 @@
           },
           "valueOffsetDateTime": {
             "type": "string",
-            "format": "offset-date-time",
+            "format": "date-time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -16968,7 +16968,7 @@
           },
           "valueOffsetDateTime": {
             "type": "string",
-            "format": "offset-date-time",
+            "format": "date-time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -17066,7 +17066,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           },
           "valueZonedDateTime": {
@@ -17786,7 +17786,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           }
         },
@@ -17805,14 +17805,14 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           },
           "removals": {
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           }
         },
@@ -17952,7 +17952,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           },
           "valueZonedDateTime": {
@@ -18660,7 +18660,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           }
         },
@@ -18679,14 +18679,14 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           },
           "removals": {
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           }
         },
@@ -18836,7 +18836,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             },
             "nullable": true
           },
@@ -19578,7 +19578,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           }
         },
@@ -19597,7 +19597,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             },
             "nullable": true
           },
@@ -19605,7 +19605,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             },
             "nullable": true
           }
@@ -19758,7 +19758,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             },
             "nullable": true
           },
@@ -20488,7 +20488,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             }
           }
         },
@@ -20507,7 +20507,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             },
             "nullable": true
           },
@@ -20515,7 +20515,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "format": "offset-date-time"
+              "format": "date-time"
             },
             "nullable": true
           }

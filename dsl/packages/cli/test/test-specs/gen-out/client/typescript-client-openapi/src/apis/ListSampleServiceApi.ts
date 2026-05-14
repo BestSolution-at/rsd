@@ -384,7 +384,7 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listSampleServiceListOffsetDateTimeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async listSampleServiceListOffsetDateTimeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Date>>> {
         const requestOptions = await this.listSampleServiceListOffsetDateTimeRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
@@ -394,7 +394,7 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listSampleServiceListOffsetDateTime(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async listSampleServiceListOffsetDateTime(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Date>> {
         const response = await this.listSampleServiceListOffsetDateTimeRaw(initOverrides);
         return await response.value();
     }

@@ -3412,7 +3412,7 @@ No authorization required
 
 ## headerParameterTypesSimpleOffsetDateTimeHeaderParam
 
-> string headerParameterTypesSimpleOffsetDateTimeHeaderParam(headerValue)
+> Date headerParameterTypesSimpleOffsetDateTimeHeaderParam(headerValue)
 
 
 
@@ -3432,8 +3432,8 @@ async function example() {
   const api = new HeaderParameterTypesApi();
 
   const body = {
-    // string | 
-    headerValue: headerValue_example,
+    // Date | 
+    headerValue: 2013-10-20T19:20:30+01:00,
   } satisfies HeaderParameterTypesSimpleOffsetDateTimeHeaderParamRequest;
 
   try {
@@ -3453,11 +3453,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `string` |  | [Defaults to `undefined`] |
+| **headerValue** | `Date` |  | [Defaults to `undefined`] |
 
 ### Return type
 
-**string**
+**Date**
 
 ### Authorization
 
@@ -3499,8 +3499,8 @@ async function example() {
   const api = new HeaderParameterTypesApi();
 
   const body = {
-    // string | 
-    headerValue: headerValue_example,
+    // Date | 
+    headerValue: 2013-10-20T19:20:30+01:00,
   } satisfies HeaderParameterTypesSimpleOffsetDateTimeHeaderParamNilRequest;
 
   try {
@@ -3520,7 +3520,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `string` |  | [Defaults to `undefined`] |
+| **headerValue** | `Date` |  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -3566,8 +3566,8 @@ async function example() {
   const api = new HeaderParameterTypesApi();
 
   const body = {
-    // string |  (optional)
-    headerValue: headerValue_example,
+    // Date |  (optional)
+    headerValue: 2013-10-20T19:20:30+01:00,
   } satisfies HeaderParameterTypesSimpleOffsetDateTimeHeaderParamOptRequest;
 
   try {
@@ -3587,7 +3587,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **headerValue** | `Date` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -3633,8 +3633,8 @@ async function example() {
   const api = new HeaderParameterTypesApi();
 
   const body = {
-    // string |  (optional)
-    headerValue: headerValue_example,
+    // Date |  (optional)
+    headerValue: 2013-10-20T19:20:30+01:00,
   } satisfies HeaderParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRequest;
 
   try {
@@ -3654,7 +3654,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **headerValue** | `Date` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

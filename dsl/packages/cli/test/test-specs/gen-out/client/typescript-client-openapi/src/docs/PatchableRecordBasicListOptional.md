@@ -18,7 +18,7 @@ Name | Type
 `valueLocalDate` | Array&lt;Date&gt;
 `valueLocalDateTime` | Array&lt;string&gt;
 `valueLocalTime` | Array&lt;string&gt;
-`valueOffsetDateTime` | Array&lt;string&gt;
+`valueOffsetDateTime` | Array&lt;Date&gt;
 `valueZonedDateTime` | Array&lt;string&gt;
 
 ## Example

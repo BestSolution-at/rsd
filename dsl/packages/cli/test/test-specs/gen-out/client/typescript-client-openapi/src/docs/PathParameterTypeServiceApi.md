@@ -697,7 +697,7 @@ No authorization required
 
 ## pathParameterTypeServiceSimpleOffsetDateTimePathParam
 
-> string pathParameterTypeServiceSimpleOffsetDateTimePathParam(pathOffsetDateTime)
+> Date pathParameterTypeServiceSimpleOffsetDateTimePathParam(pathOffsetDateTime)
 
 
 
@@ -717,8 +717,8 @@ async function example() {
   const api = new PathParameterTypeServiceApi();
 
   const body = {
-    // string | 
-    pathOffsetDateTime: pathOffsetDateTime_example,
+    // Date | 
+    pathOffsetDateTime: 2013-10-20T19:20:30+01:00,
   } satisfies PathParameterTypeServiceSimpleOffsetDateTimePathParamRequest;
 
   try {
@@ -738,11 +738,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **pathOffsetDateTime** | `string` |  | [Defaults to `undefined`] |
+| **pathOffsetDateTime** | `Date` |  | [Defaults to `undefined`] |
 
 ### Return type
 
-**string**
+**Date**
 
 ### Authorization
 

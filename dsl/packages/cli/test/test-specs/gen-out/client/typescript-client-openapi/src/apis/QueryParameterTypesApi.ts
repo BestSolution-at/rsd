@@ -122,11 +122,11 @@ export interface QueryParameterTypesSimpleLongQueryParamOptRequest {
 }
 
 export interface QueryParameterTypesSimpleOffsetDateTimeQueryParamRequest {
-    queryValue: string;
+    queryValue: Date;
 }
 
 export interface QueryParameterTypesSimpleOffsetDateTimeQueryParamOptRequest {
-    queryValue?: string;
+    queryValue?: Date;
 }
 
 export interface QueryParameterTypesSimpleScalarQueryParamRequest {
@@ -1236,7 +1236,7 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
-            queryParameters['queryValue'] = requestParameters['queryValue'];
+            queryParameters['queryValue'] = (requestParameters['queryValue'] as any).toISOString();
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1255,12 +1255,12 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async queryParameterTypesSimpleOffsetDateTimeQueryParamRaw(requestParameters: QueryParameterTypesSimpleOffsetDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async queryParameterTypesSimpleOffsetDateTimeQueryParamRaw(requestParameters: QueryParameterTypesSimpleOffsetDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
         const requestOptions = await this.queryParameterTypesSimpleOffsetDateTimeQueryParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
+            return new runtime.JSONApiResponse<Date>(response);
         } else {
             return new runtime.TextApiResponse(response) as any;
         }
@@ -1269,7 +1269,7 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async queryParameterTypesSimpleOffsetDateTimeQueryParam(requestParameters: QueryParameterTypesSimpleOffsetDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async queryParameterTypesSimpleOffsetDateTimeQueryParam(requestParameters: QueryParameterTypesSimpleOffsetDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
         const response = await this.queryParameterTypesSimpleOffsetDateTimeQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1281,7 +1281,7 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         if (requestParameters['queryValue'] != null) {
-            queryParameters['queryValue'] = requestParameters['queryValue'];
+            queryParameters['queryValue'] = (requestParameters['queryValue'] as any).toISOString();
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

@@ -3061,7 +3061,7 @@ No authorization required
 
 ## listHeaderParameterTypesListOffsetDateTimeHeaderParam
 
-> Array&lt;string&gt; listHeaderParameterTypesListOffsetDateTimeHeaderParam(headerValue)
+> Array&lt;Date&gt; listHeaderParameterTypesListOffsetDateTimeHeaderParam(headerValue)
 
 
 
@@ -3081,7 +3081,7 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // Array<string> | 
+    // Array<Date> | 
     headerValue: ...,
   } satisfies ListHeaderParameterTypesListOffsetDateTimeHeaderParamRequest;
 
@@ -3102,11 +3102,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `Array<string>` |  | |
+| **headerValue** | `Array<Date>` |  | |
 
 ### Return type
 
-**Array<string>**
+**Array<Date>**
 
 ### Authorization
 
@@ -3148,7 +3148,7 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // Array<string> | 
+    // Array<Date> | 
     headerValue: ...,
   } satisfies ListHeaderParameterTypesListOffsetDateTimeHeaderParamNilRequest;
 
@@ -3169,7 +3169,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `Array<string>` |  | |
+| **headerValue** | `Array<Date>` |  | |
 
 ### Return type
 
@@ -3215,7 +3215,7 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // Array<string> |  (optional)
+    // Array<Date> |  (optional)
     headerValue: ...,
   } satisfies ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptRequest;
 
@@ -3236,7 +3236,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `Array<string>` |  | [Optional] |
+| **headerValue** | `Array<Date>` |  | [Optional] |
 
 ### Return type
 
@@ -3282,7 +3282,7 @@ async function example() {
   const api = new ListHeaderParameterTypesApi();
 
   const body = {
-    // Array<string> |  (optional)
+    // Array<Date> |  (optional)
     headerValue: ...,
   } satisfies ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRequest;
 
@@ -3303,7 +3303,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **headerValue** | `Array<string>` |  | [Optional] |
+| **headerValue** | `Array<Date>` |  | [Optional] |
 
 ### Return type
 

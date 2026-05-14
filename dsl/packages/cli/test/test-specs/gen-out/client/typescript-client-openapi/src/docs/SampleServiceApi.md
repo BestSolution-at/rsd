@@ -619,7 +619,7 @@ No authorization required
 
 ## sampleServiceGetOffsetDateTime
 
-> string sampleServiceGetOffsetDateTime()
+> Date sampleServiceGetOffsetDateTime()
 
 
 
@@ -656,7 +656,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**string**
+**Date**
 
 ### Authorization
 

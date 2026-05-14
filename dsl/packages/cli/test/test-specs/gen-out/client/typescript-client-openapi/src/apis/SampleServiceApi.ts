@@ -460,12 +460,12 @@ export class SampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async sampleServiceGetOffsetDateTimeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async sampleServiceGetOffsetDateTimeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
         const requestOptions = await this.sampleServiceGetOffsetDateTimeRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
+            return new runtime.JSONApiResponse<Date>(response);
         } else {
             return new runtime.TextApiResponse(response) as any;
         }
@@ -474,7 +474,7 @@ export class SampleServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async sampleServiceGetOffsetDateTime(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async sampleServiceGetOffsetDateTime(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
         const response = await this.sampleServiceGetOffsetDateTimeRaw(initOverrides);
         return await response.value();
     }

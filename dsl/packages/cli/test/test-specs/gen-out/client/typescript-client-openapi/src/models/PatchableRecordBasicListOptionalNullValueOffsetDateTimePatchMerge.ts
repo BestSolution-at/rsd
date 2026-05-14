@@ -27,16 +27,16 @@ export interface PatchableRecordBasicListOptionalNullValueOffsetDateTimePatchMer
     type: string;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof PatchableRecordBasicListOptionalNullValueOffsetDateTimePatchMerge
      */
-    additions: Array<string> | null;
+    additions: Array<Date> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof PatchableRecordBasicListOptionalNullValueOffsetDateTimePatchMerge
      */
-    removals: Array<string> | null;
+    removals: Array<Date> | null;
 }
 
 /**

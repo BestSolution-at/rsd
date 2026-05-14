@@ -662,10 +662,10 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamRaw({
-				headerValue,
+				headerValue: headerValue as unknown as Date,
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()) as unknown as string);
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error) {
@@ -678,7 +678,7 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamOptRaw({
-				headerValue,
+				headerValue: headerValue as unknown as Date,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -694,7 +694,7 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamNilRaw({
-				headerValue: headerValue ?? 'null',
+				headerValue: (headerValue ?? 'null') as unknown as Date,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -710,7 +710,7 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRaw({
-				headerValue: headerValue !== undefined ? (headerValue ?? 'null') : undefined,
+				headerValue: headerValue !== undefined ? ((headerValue ?? 'null') as unknown as Date) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -720,7 +720,6 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-
 
 	async simpleZonedDateTimeHeaderParam(
 		headerValue: string,

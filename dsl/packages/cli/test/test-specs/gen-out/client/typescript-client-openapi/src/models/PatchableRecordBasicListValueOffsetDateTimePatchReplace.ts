@@ -27,10 +27,10 @@ export interface PatchableRecordBasicListValueOffsetDateTimePatchReplace {
     type: string;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof PatchableRecordBasicListValueOffsetDateTimePatchReplace
      */
-    elements: Array<string>;
+    elements: Array<Date>;
 }
 
 /**

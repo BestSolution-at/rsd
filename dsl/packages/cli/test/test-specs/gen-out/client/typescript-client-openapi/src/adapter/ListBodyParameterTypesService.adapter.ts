@@ -558,7 +558,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 				requestBody: bodyLocalDateTime,
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string[]); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(response));
 		} catch (error) {
@@ -622,7 +622,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 				requestBody: bodyLocalTime,
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string[]); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(response));
 		} catch (error) {
@@ -683,7 +683,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.listBodyParameterTypesListOffsetDateTimeBodyParamRaw({
-				requestBody: bodyOffsetDateTime,
+				requestBody: bodyOffsetDateTime as unknown as Date[], // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK((await response.value()) as unknown as string[]); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
@@ -699,7 +699,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.listBodyParameterTypesListOffsetDateTimeBodyParamOptRaw({
-				requestBody: bodyOffsetDateTime,
+				requestBody: bodyOffsetDateTime as unknown as Date[] | undefined, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -715,7 +715,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.listBodyParameterTypesListOffsetDateTimeBodyParamNilRaw({
-				requestBody: bodyOffsetDateTime,
+				requestBody: bodyOffsetDateTime as unknown as Date[] | null, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -731,7 +731,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.listBodyParameterTypesListOffsetDateTimeBodyParamOptNilRaw({
-				requestBody: bodyOffsetDateTime,
+				requestBody: bodyOffsetDateTime as unknown as Date[] | null | undefined, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -741,7 +741,6 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-
 
 	async listZonedDateTimeBodyParam(
 		bodyZonedDateTime: string[],

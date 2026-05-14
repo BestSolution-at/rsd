@@ -81,10 +81,10 @@ export interface SimpleRecordBasicListOptional {
     valueLocalTime?: Array<string>;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof SimpleRecordBasicListOptional
      */
-    valueOffsetDateTime?: Array<string>;
+    valueOffsetDateTime?: Array<Date>;
     /**
      * 
      * @type {Array<string>}

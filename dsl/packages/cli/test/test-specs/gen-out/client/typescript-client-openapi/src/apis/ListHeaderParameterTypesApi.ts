@@ -218,19 +218,19 @@ export interface ListHeaderParameterTypesListMultiHeaderParamOptNilRequest {
 }
 
 export interface ListHeaderParameterTypesListOffsetDateTimeHeaderParamRequest {
-    headerValue: Array<string>;
+    headerValue: Array<Date>;
 }
 
 export interface ListHeaderParameterTypesListOffsetDateTimeHeaderParamNilRequest {
-    headerValue: Array<string> | null;
+    headerValue: Array<Date> | null;
 }
 
 export interface ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptRequest {
-    headerValue?: Array<string>;
+    headerValue?: Array<Date>;
 }
 
 export interface ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRequest {
-    headerValue?: Array<string> | null;
+    headerValue?: Array<Date> | null;
 }
 
 export interface ListHeaderParameterTypesListRecordHeaderParamRequest {
@@ -2421,7 +2421,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listHeaderParameterTypesListOffsetDateTimeHeaderParamRaw(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParamRaw(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Date>>> {
         const requestOptions = await this.listHeaderParameterTypesListOffsetDateTimeHeaderParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
@@ -2431,7 +2431,7 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async listHeaderParameterTypesListOffsetDateTimeHeaderParam(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParam(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Date>> {
         const response = await this.listHeaderParameterTypesListOffsetDateTimeHeaderParamRaw(requestParameters, initOverrides);
         return await response.value();
     }

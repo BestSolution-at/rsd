@@ -61,7 +61,7 @@ export interface PathParameterTypeServiceSimpleLongPathParamRequest {
 }
 
 export interface PathParameterTypeServiceSimpleOffsetDateTimePathParamRequest {
-    pathOffsetDateTime: string;
+    pathOffsetDateTime: Date;
 }
 
 export interface PathParameterTypeServiceSimpleScalarPathParamRequest {
@@ -600,7 +600,11 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/pathparametertype/offsetdatetime/{pathOffsetDateTime}`;
-        urlPath = urlPath.replace('{pathOffsetDateTime}', encodeURIComponent(String(requestParameters['pathOffsetDateTime'])));
+        if (requestParameters['pathOffsetDateTime'] instanceof Date) {
+            urlPath = urlPath.replace('{pathOffsetDateTime}', encodeURIComponent(requestParameters['pathOffsetDateTime'].toISOString()));
+        } else {
+            urlPath = urlPath.replace('{pathOffsetDateTime}', encodeURIComponent(String(requestParameters['pathOffsetDateTime'])));
+        }
 
         return {
             path: urlPath,
@@ -613,12 +617,12 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async pathParameterTypeServiceSimpleOffsetDateTimePathParamRaw(requestParameters: PathParameterTypeServiceSimpleOffsetDateTimePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async pathParameterTypeServiceSimpleOffsetDateTimePathParamRaw(requestParameters: PathParameterTypeServiceSimpleOffsetDateTimePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
         const requestOptions = await this.pathParameterTypeServiceSimpleOffsetDateTimePathParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
+            return new runtime.JSONApiResponse<Date>(response);
         } else {
             return new runtime.TextApiResponse(response) as any;
         }
@@ -627,7 +631,7 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async pathParameterTypeServiceSimpleOffsetDateTimePathParam(requestParameters: PathParameterTypeServiceSimpleOffsetDateTimePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async pathParameterTypeServiceSimpleOffsetDateTimePathParam(requestParameters: PathParameterTypeServiceSimpleOffsetDateTimePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
         const response = await this.pathParameterTypeServiceSimpleOffsetDateTimePathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }

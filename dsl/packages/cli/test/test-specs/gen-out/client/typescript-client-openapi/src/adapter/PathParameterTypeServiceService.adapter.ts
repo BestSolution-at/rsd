@@ -190,17 +190,16 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.pathParameterTypeServiceSimpleOffsetDateTimePathParamRaw({
-				pathOffsetDateTime,
+				pathOffsetDateTime: pathOffsetDateTime as unknown as Date, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-
 
 	async simpleZonedDateTimePathParam(
 		pathZonedDateTime: string,

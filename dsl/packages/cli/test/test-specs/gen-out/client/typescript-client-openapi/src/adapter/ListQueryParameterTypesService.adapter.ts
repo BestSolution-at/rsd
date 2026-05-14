@@ -213,10 +213,10 @@ class ListQueryParameterTypesServiceImpl implements api.service.ListQueryParamet
 	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listQueryParameterTypesListOffsetDateTimeQueryParamRaw({
-				queryValue,
+				queryValue: queryValue as unknown as Date[],
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()) as unknown as string[]);
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -224,7 +224,6 @@ class ListQueryParameterTypesServiceImpl implements api.service.ListQueryParamet
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-
 
 	async listZonedDateTimeQueryParam(
 		queryValue: string[],

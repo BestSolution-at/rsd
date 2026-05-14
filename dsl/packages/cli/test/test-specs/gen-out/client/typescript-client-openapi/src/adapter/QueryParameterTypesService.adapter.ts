@@ -335,10 +335,10 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.queryParameterTypesSimpleOffsetDateTimeQueryParamRaw({
-				queryValue,
+				queryValue: new Date(queryValue),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -351,7 +351,7 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.queryParameterTypesSimpleOffsetDateTimeQueryParamOptRaw({
-				queryValue,
+				queryValue: queryValue as unknown as Date | undefined, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -361,7 +361,6 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-
 
 	async simpleZonedDateTimeQueryParam(
 		queryValue: string,

@@ -310,7 +310,7 @@ export function generateBuilinProperty(t: MBuiltinType): JSONSchema4 {
 	} else if (t === 'offset-date-time') {
 		return {
 			type: 'string',
-			format: 'offset-date-time',
+			format: 'date-time',
 		};
 		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	} else if (t === 'zoned-date-time') {

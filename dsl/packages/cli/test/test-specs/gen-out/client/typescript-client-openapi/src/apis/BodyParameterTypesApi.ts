@@ -282,19 +282,19 @@ export interface BodyParameterTypesSimpleLongBodyParamOptNilRequest {
 }
 
 export interface BodyParameterTypesSimpleOffsetDateTimeBodyParamRequest {
-    body: string;
+    body: Date;
 }
 
 export interface BodyParameterTypesSimpleOffsetDateTimeBodyParamNilRequest {
-    body: string | null;
+    body: Date | null;
 }
 
 export interface BodyParameterTypesSimpleOffsetDateTimeBodyParamOptRequest {
-    body?: string;
+    body?: Date;
 }
 
 export interface BodyParameterTypesSimpleOffsetDateTimeBodyParamOptNilRequest {
-    body?: string | null;
+    body?: Date | null;
 }
 
 export interface BodyParameterTypesSimpleScalarBodyParamRequest {
@@ -2793,12 +2793,12 @@ export class BodyParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async bodyParameterTypesSimpleOffsetDateTimeBodyParamRaw(requestParameters: BodyParameterTypesSimpleOffsetDateTimeBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async bodyParameterTypesSimpleOffsetDateTimeBodyParamRaw(requestParameters: BodyParameterTypesSimpleOffsetDateTimeBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
         const requestOptions = await this.bodyParameterTypesSimpleOffsetDateTimeBodyParamRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
+            return new runtime.JSONApiResponse<Date>(response);
         } else {
             return new runtime.TextApiResponse(response) as any;
         }
@@ -2807,7 +2807,7 @@ export class BodyParameterTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async bodyParameterTypesSimpleOffsetDateTimeBodyParam(requestParameters: BodyParameterTypesSimpleOffsetDateTimeBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async bodyParameterTypesSimpleOffsetDateTimeBodyParam(requestParameters: BodyParameterTypesSimpleOffsetDateTimeBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
         const response = await this.bodyParameterTypesSimpleOffsetDateTimeBodyParamRaw(requestParameters, initOverrides);
         return await response.value();
     }

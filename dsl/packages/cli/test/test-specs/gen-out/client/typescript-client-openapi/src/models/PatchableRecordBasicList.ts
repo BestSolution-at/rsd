@@ -93,10 +93,10 @@ export interface PatchableRecordBasicList {
     valueLocalTime: Array<string>;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof PatchableRecordBasicList
      */
-    valueOffsetDateTime: Array<string>;
+    valueOffsetDateTime: Array<Date>;
     /**
      * 
      * @type {Array<string>}

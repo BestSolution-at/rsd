@@ -3025,7 +3025,7 @@ No authorization required
 
 ## listBodyParameterTypesListOffsetDateTimeBodyParam
 
-> Array&lt;string&gt; listBodyParameterTypesListOffsetDateTimeBodyParam(requestBody)
+> Array&lt;Date&gt; listBodyParameterTypesListOffsetDateTimeBodyParam(requestBody)
 
 
 
@@ -3045,7 +3045,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<string>
+    // Array<Date>
     requestBody: ...,
   } satisfies ListBodyParameterTypesListOffsetDateTimeBodyParamRequest;
 
@@ -3066,11 +3066,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<string>` |  | |
+| **requestBody** | `Array<Date>` |  | |
 
 ### Return type
 
-**Array<string>**
+**Array<Date>**
 
 ### Authorization
 
@@ -3112,7 +3112,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<string>
+    // Array<Date>
     requestBody: ...,
   } satisfies ListBodyParameterTypesListOffsetDateTimeBodyParamNilRequest;
 
@@ -3133,7 +3133,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<string>` |  | |
+| **requestBody** | `Array<Date>` |  | |
 
 ### Return type
 
@@ -3179,7 +3179,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<string> (optional)
+    // Array<Date> (optional)
     requestBody: ...,
   } satisfies ListBodyParameterTypesListOffsetDateTimeBodyParamOptRequest;
 
@@ -3200,7 +3200,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<string>` |  | [Optional] |
+| **requestBody** | `Array<Date>` |  | [Optional] |
 
 ### Return type
 
@@ -3246,7 +3246,7 @@ async function example() {
   const api = new ListBodyParameterTypesApi();
 
   const body = {
-    // Array<string> (optional)
+    // Array<Date> (optional)
     requestBody: ...,
   } satisfies ListBodyParameterTypesListOffsetDateTimeBodyParamOptNilRequest;
 
@@ -3267,7 +3267,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **requestBody** | `Array<string>` |  | [Optional] |
+| **requestBody** | `Array<Date>` |  | [Optional] |
 
 ### Return type
 

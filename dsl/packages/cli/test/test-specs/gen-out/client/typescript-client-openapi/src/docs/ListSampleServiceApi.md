@@ -556,7 +556,7 @@ No authorization required
 
 ## listSampleServiceListOffsetDateTime
 
-> Array&lt;string&gt; listSampleServiceListOffsetDateTime()
+> Array&lt;Date&gt; listSampleServiceListOffsetDateTime()
 
 
 
@@ -593,7 +593,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<string>**
+**Array<Date>**
 
 ### Authorization
 
