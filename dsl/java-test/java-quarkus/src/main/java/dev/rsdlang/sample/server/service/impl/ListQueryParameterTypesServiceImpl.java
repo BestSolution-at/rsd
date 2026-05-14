@@ -4,6 +4,7 @@ package dev.rsdlang.sample.server.service.impl;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -27,6 +28,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	private final ListLocalDateQueryParamHandler listLocalDateQueryParamHandler;
 	private final ListLocalDateTimeQueryParamHandler listLocalDateTimeQueryParamHandler;
 	private final ListLocalTimeQueryParamHandler listLocalTimeQueryParamHandler;
+	private final ListOffsetDateTimeQueryParamHandler listOffsetDateTimeQueryParamHandler;
 	private final ListZonedDateTimeQueryParamHandler listZonedDateTimeQueryParamHandler;
 	private final ListScalarQueryParamHandler listScalarQueryParamHandler;
 	private final ListEnumQueryParamHandler listEnumQueryParamHandler;
@@ -34,7 +36,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	private final ListMultiQueryParamHandler listMultiQueryParamHandler;
 	private final ListRecordQueryParamHandler listRecordQueryParamHandler;
 
-	public ListQueryParameterTypesServiceImpl(ListBooleanQueryParamHandler listBooleanQueryParamHandler, ListShortQueryParamHandler listShortQueryParamHandler, ListIntQueryParamHandler listIntQueryParamHandler, ListLongQueryParamHandler listLongQueryParamHandler, ListFloatQueryParamHandler listFloatQueryParamHandler, ListDoubleQueryParamHandler listDoubleQueryParamHandler, ListStringQueryParamHandler listStringQueryParamHandler, ListLocalDateQueryParamHandler listLocalDateQueryParamHandler, ListLocalDateTimeQueryParamHandler listLocalDateTimeQueryParamHandler, ListLocalTimeQueryParamHandler listLocalTimeQueryParamHandler, ListZonedDateTimeQueryParamHandler listZonedDateTimeQueryParamHandler, ListScalarQueryParamHandler listScalarQueryParamHandler, ListEnumQueryParamHandler listEnumQueryParamHandler, ListInlineEnumQueryParamHandler listInlineEnumQueryParamHandler, ListMultiQueryParamHandler listMultiQueryParamHandler, ListRecordQueryParamHandler listRecordQueryParamHandler) {
+	public ListQueryParameterTypesServiceImpl(ListBooleanQueryParamHandler listBooleanQueryParamHandler, ListShortQueryParamHandler listShortQueryParamHandler, ListIntQueryParamHandler listIntQueryParamHandler, ListLongQueryParamHandler listLongQueryParamHandler, ListFloatQueryParamHandler listFloatQueryParamHandler, ListDoubleQueryParamHandler listDoubleQueryParamHandler, ListStringQueryParamHandler listStringQueryParamHandler, ListLocalDateQueryParamHandler listLocalDateQueryParamHandler, ListLocalDateTimeQueryParamHandler listLocalDateTimeQueryParamHandler, ListLocalTimeQueryParamHandler listLocalTimeQueryParamHandler, ListOffsetDateTimeQueryParamHandler listOffsetDateTimeQueryParamHandler, ListZonedDateTimeQueryParamHandler listZonedDateTimeQueryParamHandler, ListScalarQueryParamHandler listScalarQueryParamHandler, ListEnumQueryParamHandler listEnumQueryParamHandler, ListInlineEnumQueryParamHandler listInlineEnumQueryParamHandler, ListMultiQueryParamHandler listMultiQueryParamHandler, ListRecordQueryParamHandler listRecordQueryParamHandler) {
 		this.listBooleanQueryParamHandler = listBooleanQueryParamHandler;
 		this.listShortQueryParamHandler = listShortQueryParamHandler;
 		this.listIntQueryParamHandler = listIntQueryParamHandler;
@@ -45,6 +47,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		this.listLocalDateQueryParamHandler = listLocalDateQueryParamHandler;
 		this.listLocalDateTimeQueryParamHandler = listLocalDateTimeQueryParamHandler;
 		this.listLocalTimeQueryParamHandler = listLocalTimeQueryParamHandler;
+		this.listOffsetDateTimeQueryParamHandler = listOffsetDateTimeQueryParamHandler;
 		this.listZonedDateTimeQueryParamHandler = listZonedDateTimeQueryParamHandler;
 		this.listScalarQueryParamHandler = listScalarQueryParamHandler;
 		this.listEnumQueryParamHandler = listEnumQueryParamHandler;
@@ -101,6 +104,11 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	@Override
 	public List<LocalTime> listLocalTimeQueryParam(BuilderFactory _factory, List<LocalTime> queryValue) {
 		return listLocalTimeQueryParamHandler.listLocalTimeQueryParam(_factory, queryValue);
+	}
+
+	@Override
+	public List<OffsetDateTime> listOffsetDateTimeQueryParam(BuilderFactory _factory, List<OffsetDateTime> queryValue) {
+		return listOffsetDateTimeQueryParamHandler.listOffsetDateTimeQueryParam(_factory, queryValue);
 	}
 
 	@Override
@@ -171,6 +179,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 	public interface ListLocalTimeQueryParamHandler {
 		public List<LocalTime> listLocalTimeQueryParam(BuilderFactory _factory, List<LocalTime> queryValue);
+	}
+
+	public interface ListOffsetDateTimeQueryParamHandler {
+		public List<OffsetDateTime> listOffsetDateTimeQueryParam(BuilderFactory _factory, List<OffsetDateTime> queryValue);
 	}
 
 	public interface ListZonedDateTimeQueryParamHandler {

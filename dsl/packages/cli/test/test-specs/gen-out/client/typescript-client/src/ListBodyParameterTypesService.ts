@@ -46,6 +46,10 @@ export interface ListBodyParameterTypesService {
 	listLocalTimeBodyParamOpt(bodyLocalTime?: string[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listLocalTimeBodyParamNil(bodyLocalTime: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listLocalTimeBodyParamOptNil(bodyLocalTime?: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	listOffsetDateTimeBodyParam(bodyOffsetDateTime: string[]): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
+	listOffsetDateTimeBodyParamOpt(bodyOffsetDateTime?: string[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	listOffsetDateTimeBodyParamNil(bodyOffsetDateTime: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	listOffsetDateTimeBodyParamOptNil(bodyOffsetDateTime?: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listZonedDateTimeBodyParam(bodyZonedDateTime: string[]): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
 	listZonedDateTimeBodyParamOpt(bodyZonedDateTime?: string[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listZonedDateTimeBodyParamNil(bodyZonedDateTime: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;

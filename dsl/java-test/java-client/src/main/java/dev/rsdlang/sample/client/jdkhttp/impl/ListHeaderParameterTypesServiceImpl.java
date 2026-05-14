@@ -9,6 +9,7 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.HashMap;
@@ -1722,6 +1723,178 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 	public NilResult listLocalTimeHeaderParamOptNil(List<LocalTime> headerValue) {
 		var $path = "%s/api/listheaderparametertypes/listLocalTimeHeaderParamOptNil".formatted(
+				this.baseURI());
+
+		var $headerParams = new HashMap<String, String>();
+		if (headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
+		var $headers = ServiceUtils.toHeaders($headerParams);
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public List<OffsetDateTime> listOffsetDateTimeHeaderParam(List<OffsetDateTime> headerValue) {
+		Objects.requireNonNull(headerValue, "headerValue must not be null");
+
+		var $path = "%s/api/listheaderparametertypes/listOffsetDateTimeHeaderParam".formatted(
+				this.baseURI());
+
+		var $headerParams = new HashMap<String, String>();
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		var $headers = ServiceUtils.toHeaders($headerParams);
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapOffsetDateTimes($response);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult listOffsetDateTimeHeaderParamOpt() {
+		var $path = "%s/api/listheaderparametertypes/listOffsetDateTimeHeaderParamOpt".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult listOffsetDateTimeHeaderParamOpt(List<OffsetDateTime> headerValue) {
+		var $path = "%s/api/listheaderparametertypes/listOffsetDateTimeHeaderParamOpt".formatted(
+				this.baseURI());
+
+		var $headerParams = new HashMap<String, String>();
+		if (headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		}
+		var $headers = ServiceUtils.toHeaders($headerParams);
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult listOffsetDateTimeHeaderParamNil(List<OffsetDateTime> headerValue) {
+		var $path = "%s/api/listheaderparametertypes/listOffsetDateTimeHeaderParamNil".formatted(
+				this.baseURI());
+
+		var $headerParams = new HashMap<String, String>();
+		if (headerValue != null) {
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("headerValue", "null");
+		}
+		var $headers = ServiceUtils.toHeaders($headerParams);
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult listOffsetDateTimeHeaderParamOptNil() {
+		var $path = "%s/api/listheaderparametertypes/listOffsetDateTimeHeaderParamOptNil".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult listOffsetDateTimeHeaderParamOptNil(List<OffsetDateTime> headerValue) {
+		var $path = "%s/api/listheaderparametertypes/listOffsetDateTimeHeaderParamOptNil".formatted(
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();

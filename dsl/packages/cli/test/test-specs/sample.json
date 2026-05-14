@@ -229,6 +229,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "offset-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": false,
           "readonly": false,
@@ -355,6 +366,17 @@
           "nullable": false,
           "variant": "builtin",
           "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "offset-date-time",
           "doc": ""
         },
         {
@@ -489,6 +511,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "offset-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": false,
           "readonly": false,
@@ -615,6 +648,17 @@
           "nullable": true,
           "variant": "builtin",
           "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "offset-date-time",
           "doc": ""
         },
         {
@@ -749,6 +793,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "offset-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": true,
           "readonly": false,
@@ -875,6 +930,17 @@
           "nullable": false,
           "variant": "builtin",
           "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "offset-date-time",
           "doc": ""
         },
         {
@@ -1009,6 +1075,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "offset-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": true,
           "readonly": false,
@@ -1135,6 +1212,17 @@
           "nullable": true,
           "variant": "builtin",
           "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "offset-date-time",
           "doc": ""
         },
         {
@@ -2041,6 +2129,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "offset-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": false,
           "readonly": false,
@@ -2179,6 +2278,17 @@
           "nullable": false,
           "variant": "builtin",
           "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "offset-date-time",
           "doc": ""
         },
         {
@@ -2325,6 +2435,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "offset-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": false,
           "readonly": false,
@@ -2463,6 +2584,17 @@
           "nullable": true,
           "variant": "builtin",
           "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "offset-date-time",
           "doc": ""
         },
         {
@@ -2609,6 +2741,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "offset-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": true,
           "readonly": false,
@@ -2747,6 +2890,17 @@
           "nullable": false,
           "variant": "builtin",
           "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "offset-date-time",
           "doc": ""
         },
         {
@@ -2893,6 +3047,17 @@
         },
         {
           "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "offset-date-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "valueZonedDateTime",
           "array": true,
           "readonly": false,
@@ -3031,6 +3196,17 @@
           "nullable": true,
           "variant": "builtin",
           "type": "local-time",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "valueOffsetDateTime",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "builtin",
+          "type": "offset-date-time",
           "doc": ""
         },
         {
@@ -4248,6 +4424,32 @@
         },
         {
           "@type": "Operation",
+          "name": "getOffsetDateTime",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "offset-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "offsetdatetime",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "getZonedDateTime",
           "doc": "",
           "parameters": [],
@@ -4779,6 +4981,32 @@
             "rest": {
               "method": "GET",
               "path": "localtime",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listOffsetDateTime",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "offset-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "offsetdatetime",
               "results": [
                 {
                   "statusCode": 200
@@ -5373,6 +5601,50 @@
             "rest": {
               "method": "GET",
               "path": "localtime/${pathLocalTime}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleOffsetDateTimePathParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "pathOffsetDateTime",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "pathOffsetDateTime",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "offset-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "offsetdatetime/${pathOffsetDateTime}",
               "results": [
                 {
                   "statusCode": 200
@@ -6942,6 +7214,142 @@
             "rest": {
               "method": "POST",
               "path": "simpleLocalTimeBodyParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleOffsetDateTimeBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyOffsetDateTime",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "offset-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleOffsetDateTimeBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleOffsetDateTimeBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyOffsetDateTime",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleOffsetDateTimeBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleOffsetDateTimeBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyOffsetDateTime",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleOffsetDateTimeBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleOffsetDateTimeBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyOffsetDateTime",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "simpleOffsetDateTimeBodyParamOptNil",
               "results": []
             }
           }
@@ -9852,6 +10260,166 @@
         },
         {
           "@type": "Operation",
+          "name": "simpleOffsetDateTimeHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "offset-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleOffsetDateTimeHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleOffsetDateTimeHeaderParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleOffsetDateTimeHeaderParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleOffsetDateTimeHeaderParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleOffsetDateTimeHeaderParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleOffsetDateTimeHeaderParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleOffsetDateTimeHeaderParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "simpleZonedDateTimeHeaderParam",
           "doc": "",
           "parameters": [
@@ -11915,6 +12483,86 @@
         },
         {
           "@type": "Operation",
+          "name": "simpleOffsetDateTimeQueryParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "queryValue",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "queryValue",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "offset-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleOffsetDateTimeQueryParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "simpleOffsetDateTimeQueryParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "queryValue",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "queryValue",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleOffsetDateTimeQueryParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "simpleZonedDateTimeQueryParam",
           "doc": "",
           "parameters": [
@@ -13721,6 +14369,142 @@
         },
         {
           "@type": "Operation",
+          "name": "listOffsetDateTimeBodyParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyOffsetDateTime",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "offset-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listOffsetDateTimeBodyParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listOffsetDateTimeBodyParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyOffsetDateTime",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listOffsetDateTimeBodyParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listOffsetDateTimeBodyParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyOffsetDateTime",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listOffsetDateTimeBodyParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listOffsetDateTimeBodyParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "bodyOffsetDateTime",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "listOffsetDateTimeBodyParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
           "name": "listZonedDateTimeBodyParam",
           "doc": "",
           "parameters": [
@@ -15091,6 +15875,46 @@
             "rest": {
               "method": "GET",
               "path": "listLocalTimeQueryParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listOffsetDateTimeQueryParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "queryValue",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "queryValue",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "offset-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "listOffsetDateTimeQueryParam",
               "results": []
             }
           }
@@ -17001,6 +17825,166 @@
             "rest": {
               "method": "GET",
               "path": "listLocalTimeHeaderParamOptNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listOffsetDateTimeHeaderParam",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "offset-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "listOffsetDateTimeHeaderParam",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listOffsetDateTimeHeaderParamOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "listOffsetDateTimeHeaderParamOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listOffsetDateTimeHeaderParamNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "listOffsetDateTimeHeaderParamNil",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "listOffsetDateTimeHeaderParamOptNil",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "headerValue",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "builtin",
+              "type": "offset-date-time",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "headerValue",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "listOffsetDateTimeHeaderParamOptNil",
               "results": []
             }
           }

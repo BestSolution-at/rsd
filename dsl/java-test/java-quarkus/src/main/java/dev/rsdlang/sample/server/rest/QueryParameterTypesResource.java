@@ -257,6 +257,26 @@ public class QueryParameterTypesResource {
 	}
 
 	@GET
+	@Path("simpleOffsetDateTimeQueryParam")
+	public Response simpleOffsetDateTimeQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
+		var queryValue = _RestUtils.parseOffsetDateTime(_queryValue);
+		var result = service.simpleOffsetDateTimeQueryParam(builderFactory, queryValue);
+		return responseBuilder.simpleOffsetDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
+	}
+
+	@GET
+	@Path("simpleOffsetDateTimeQueryParamOpt")
+	public Response simpleOffsetDateTimeQueryParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") String _queryValue) {
+		var queryValue = _RestUtils.parseOptOffsetDateTime(_queryValue);
+		var result = service.simpleOffsetDateTimeQueryParamOpt(builderFactory, queryValue);
+		return responseBuilder.simpleOffsetDateTimeQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
+	}
+
+	@GET
 	@Path("simpleZonedDateTimeQueryParam")
 	public Response simpleZonedDateTimeQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,

@@ -18,6 +18,7 @@ export function createListQueryParameterTypesService(props: ServiceProps<api.ser
 		listLocalDateQueryParam: fnListLocalDateQueryParam(props),
 		listLocalDateTimeQueryParam: fnListLocalDateTimeQueryParam(props),
 		listLocalTimeQueryParam: fnListLocalTimeQueryParam(props),
+		listOffsetDateTimeQueryParam: fnListOffsetDateTimeQueryParam(props),
 		listZonedDateTimeQueryParam: fnListZonedDateTimeQueryParam(props),
 		listScalarQueryParam: fnListScalarQueryParam(props),
 		listEnumQueryParam: fnListEnumQueryParam(props),
@@ -372,6 +373,41 @@ function fnListLocalTimeQueryParam(props: ServiceProps<api.service.ErrorType>): 
 			return api.result.ERR(err);
 		} finally {
 			final?.('listLocalTimeQueryParam');
+		}
+	};
+}
+
+function fnListOffsetDateTimeQueryParam(props: ServiceProps<api.service.ErrorType>): api.service.ListQueryParameterTypesService['listOffsetDateTimeQueryParam'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (queryValue: string[]) => {
+		try {
+			const $init = (await preFetch?.('listOffsetDateTimeQueryParam')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $param = new URLSearchParams();
+			queryValue.forEach($entry => {
+				$param.append('queryValue', $entry);
+			});
+			const $path = `${baseUrl}/api/listqueryparametertypes/listOffsetDateTimeQueryParam?${$param.toString()}`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listOffsetDateTimeQueryParam', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listOffsetDateTimeQueryParam', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listOffsetDateTimeQueryParam');
 		}
 	};
 }

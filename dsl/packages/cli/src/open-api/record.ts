@@ -307,6 +307,11 @@ export function generateBuilinProperty(t: MBuiltinType): JSONSchema4 {
 			pattern: '\\d\\d:\\d\\d:\\d\\d',
 			format: 'time',
 		};
+	} else if (t === 'offset-date-time') {
+		return {
+			type: 'string',
+			format: 'offset-date-time',
+		};
 		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	} else if (t === 'zoned-date-time') {
 		return {

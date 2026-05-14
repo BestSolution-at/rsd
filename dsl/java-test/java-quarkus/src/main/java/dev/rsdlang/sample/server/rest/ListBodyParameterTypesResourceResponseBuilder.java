@@ -4,6 +4,7 @@ package dev.rsdlang.sample.server.rest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -218,6 +219,26 @@ public class ListBodyParameterTypesResourceResponseBuilder {
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLocalTimeBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<LocalTime>> bodyLocalTime) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder listOffsetDateTimeBodyParam(List<OffsetDateTime> $result, String $contentType, List<OffsetDateTime> bodyOffsetDateTime) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder listOffsetDateTimeBodyParamOpt(NilResult $result, String $contentType, Optional<List<OffsetDateTime>> bodyOffsetDateTime) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder listOffsetDateTimeBodyParamNil(NilResult $result, String $contentType, Optional<List<OffsetDateTime>> bodyOffsetDateTime) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder listOffsetDateTimeBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<OffsetDateTime>> bodyOffsetDateTime) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}

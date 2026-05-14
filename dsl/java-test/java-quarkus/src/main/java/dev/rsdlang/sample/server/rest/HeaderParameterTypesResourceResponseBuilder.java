@@ -4,6 +4,7 @@ package dev.rsdlang.sample.server.rest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -221,6 +222,26 @@ public class HeaderParameterTypesResourceResponseBuilder {
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder simpleLocalTimeHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<LocalTime> headerValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder simpleOffsetDateTimeHeaderParam(OffsetDateTime $result, String $contentType, OffsetDateTime headerValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder simpleOffsetDateTimeHeaderParamOpt(NilResult $result, String $contentType, Optional<OffsetDateTime> headerValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder simpleOffsetDateTimeHeaderParamNil(NilResult $result, String $contentType, Optional<OffsetDateTime> headerValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder simpleOffsetDateTimeHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<OffsetDateTime> headerValue) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}

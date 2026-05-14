@@ -46,6 +46,10 @@ export interface ListHeaderParameterTypesService {
 	listLocalTimeHeaderParamOpt(headerValue?: string[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listLocalTimeHeaderParamNil(headerValue: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listLocalTimeHeaderParamOptNil(headerValue?: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	listOffsetDateTimeHeaderParam(headerValue: string[]): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
+	listOffsetDateTimeHeaderParamOpt(headerValue?: string[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	listOffsetDateTimeHeaderParamNil(headerValue: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	listOffsetDateTimeHeaderParamOptNil(headerValue?: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listZonedDateTimeHeaderParam(headerValue: string[]): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
 	listZonedDateTimeHeaderParamOpt(headerValue?: string[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listZonedDateTimeHeaderParamNil(headerValue: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;

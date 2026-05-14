@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -539,6 +540,56 @@ public class BodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void simpleLocalTimeBodyParamOptNil_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED, service.simpleLocalTimeBodyParamOptNil(LocalTime.parse("10:00:00")));
+	}
+
+	// --- OffsetDateTime ---
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleOffsetDateTimeBodyParam(BodyParameterTypesService service) {
+		var odt = OffsetDateTime.parse("2025-01-01T10:00:00+01:00");
+		assertEquals(odt, service.simpleOffsetDateTimeBodyParam(odt));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleOffsetDateTimeBodyParamOpt_undefined(BodyParameterTypesService service) {
+		assertEquals(NilResult.UNDEFINED, service.simpleOffsetDateTimeBodyParamOpt());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleOffsetDateTimeBodyParamOpt_defined(BodyParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.simpleOffsetDateTimeBodyParamOpt(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleOffsetDateTimeBodyParamNil_null(BodyParameterTypesService service) {
+		assertEquals(NilResult.NULL, service.simpleOffsetDateTimeBodyParamNil(null));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleOffsetDateTimeBodyParamNil_defined(BodyParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.simpleOffsetDateTimeBodyParamNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleOffsetDateTimeBodyParamOptNil_undefined(BodyParameterTypesService service) {
+		assertEquals(NilResult.UNDEFINED, service.simpleOffsetDateTimeBodyParamOptNil());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleOffsetDateTimeBodyParamOptNil_null(BodyParameterTypesService service) {
+		assertEquals(NilResult.NULL, service.simpleOffsetDateTimeBodyParamOptNil(null));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleOffsetDateTimeBodyParamOptNil_defined(BodyParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.simpleOffsetDateTimeBodyParamOptNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
 	}
 
 	// --- ZonedDateTime ---

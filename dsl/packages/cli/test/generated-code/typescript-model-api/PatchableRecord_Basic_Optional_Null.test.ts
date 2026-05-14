@@ -24,6 +24,7 @@ const Simple: PatchableRecord_Basic_Optional_Null = {
 	valueLocalDate: '2024-01-01',
 	valueLocalDateTime: '2024-01-01T12:00:00',
 	valueLocalTime: '2024-01-01T12:00:00',
+	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
 	valueZonedDateTime: '2024-01-01T12:00:00Z',
 };
 
@@ -40,6 +41,7 @@ const SimpleMinimal: PatchableRecord_Basic_Optional_Null = {
 	valueLocalDate: undefined,
 	valueLocalDateTime: undefined,
 	valueLocalTime: undefined,
+	valueOffsetDateTime: undefined,
 	valueZonedDateTime: undefined,
 };
 
@@ -56,6 +58,7 @@ const SimpleNull: PatchableRecord_Basic_Optional_Null = {
 	valueLocalDate: null,
 	valueLocalDateTime: null,
 	valueLocalTime: null,
+	valueOffsetDateTime: null,
 	valueZonedDateTime: null,
 };
 
@@ -122,6 +125,7 @@ const SimplePatch: PatchableRecord_Basic_Optional_NullPatch = {
 	valueLocalDate: '2024-01-01',
 	valueLocalDateTime: '2024-01-01T12:00:00',
 	valueLocalTime: '2024-01-01T12:00:00',
+	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
 	valueZonedDateTime: '2024-01-01T12:00:00Z',
 };
 
@@ -138,6 +142,7 @@ const SimplePatchMinimal: PatchableRecord_Basic_Optional_NullPatch = {
 	valueLocalDate: undefined,
 	valueLocalDateTime: undefined,
 	valueLocalTime: undefined,
+	valueOffsetDateTime: undefined,
 	valueZonedDateTime: undefined,
 };
 
@@ -154,6 +159,7 @@ const SimplePatchNull: PatchableRecord_Basic_Optional_NullPatch = {
 	valueLocalDate: null,
 	valueLocalDateTime: null,
 	valueLocalTime: null,
+	valueOffsetDateTime: null,
 	valueZonedDateTime: null,
 };
 

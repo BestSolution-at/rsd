@@ -118,6 +118,10 @@ const RECORD_TESTS: RecordTest[] = [
 						pattern: '\\d\\d:\\d\\d:\\d\\d',
 						format: 'time',
 					},
+					valueOffsetDateTime: {
+						type: 'string',
+						format: 'offset-date-time',
+					},
 					valueZonedDateTime: {
 						type: 'string',
 						format: 'zoned-date-time',
@@ -134,6 +138,7 @@ const RECORD_TESTS: RecordTest[] = [
 					'valueLocalDate',
 					'valueLocalDateTime',
 					'valueLocalTime',
+					'valueOffsetDateTime',
 					'valueZonedDateTime',
 				],
 			},
@@ -185,6 +190,10 @@ const RECORD_TESTS: RecordTest[] = [
 						type: 'string',
 						pattern: '\\d\\d:\\d\\d:\\d\\d',
 						format: 'time',
+					},
+					valueOffsetDateTime: {
+						type: 'string',
+						format: 'offset-date-time',
 					},
 					valueZonedDateTime: {
 						type: 'string',
@@ -252,6 +261,11 @@ const RECORD_TESTS: RecordTest[] = [
 						format: 'time',
 						nullable: true,
 					},
+					valueOffsetDateTime: {
+						type: 'string',
+						format: 'offset-date-time',
+						nullable: true,
+					},
 					valueZonedDateTime: {
 						type: 'string',
 						format: 'zoned-date-time',
@@ -269,6 +283,7 @@ const RECORD_TESTS: RecordTest[] = [
 					'valueLocalDate',
 					'valueLocalDateTime',
 					'valueLocalTime',
+					'valueOffsetDateTime',
 					'valueZonedDateTime',
 				],
 			},
@@ -329,6 +344,11 @@ const RECORD_TESTS: RecordTest[] = [
 						type: 'string',
 						pattern: '\\d\\d:\\d\\d:\\d\\d',
 						format: 'time',
+						nullable: true,
+					},
+					valueOffsetDateTime: {
+						type: 'string',
+						format: 'offset-date-time',
 						nullable: true,
 					},
 					valueZonedDateTime: {
@@ -418,6 +438,13 @@ const RECORD_TESTS: RecordTest[] = [
 							format: 'time',
 						},
 					},
+					valueOffsetDateTime: {
+						type: 'array',
+						items: {
+							type: 'string',
+							format: 'offset-date-time',
+						},
+					},
 					valueZonedDateTime: {
 						type: 'array',
 						items: {
@@ -437,6 +464,7 @@ const RECORD_TESTS: RecordTest[] = [
 					'valueLocalDate',
 					'valueLocalDateTime',
 					'valueLocalTime',
+					'valueOffsetDateTime',
 					'valueZonedDateTime',
 				],
 			},
@@ -517,6 +545,13 @@ const RECORD_TESTS: RecordTest[] = [
 							type: 'string',
 							pattern: '\\d\\d:\\d\\d:\\d\\d',
 							format: 'time',
+						},
+					},
+					valueOffsetDateTime: {
+						type: 'array',
+						items: {
+							type: 'string',
+							format: 'offset-date-time',
 						},
 					},
 					valueZonedDateTime: {
@@ -618,6 +653,14 @@ const RECORD_TESTS: RecordTest[] = [
 						},
 						nullable: true,
 					},
+					valueOffsetDateTime: {
+						type: 'array',
+						items: {
+							type: 'string',
+							format: 'offset-date-time',
+						},
+						nullable: true,
+					},
 					valueZonedDateTime: {
 						type: 'array',
 						items: {
@@ -638,6 +681,7 @@ const RECORD_TESTS: RecordTest[] = [
 					'valueLocalDate',
 					'valueLocalDateTime',
 					'valueLocalTime',
+					'valueOffsetDateTime',
 					'valueZonedDateTime',
 				],
 			},
@@ -727,6 +771,14 @@ const RECORD_TESTS: RecordTest[] = [
 							type: 'string',
 							pattern: '\\d\\d:\\d\\d:\\d\\d',
 							format: 'time',
+						},
+						nullable: true,
+					},
+					valueOffsetDateTime: {
+						type: 'array',
+						items: {
+							type: 'string',
+							format: 'offset-date-time',
 						},
 						nullable: true,
 					},

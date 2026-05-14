@@ -278,6 +278,29 @@
         }
       }
     },
+    "/api/samplerecords/offsetdatetime": {
+      "get": {
+        "tags": [
+          "SampleService"
+        ],
+        "description": "",
+        "operationId": "SampleService_getOffsetDateTime",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "offset-date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/samplerecords/zoneddatetime": {
       "get": {
         "tags": [
@@ -747,6 +770,32 @@
                     "type": "string",
                     "pattern": "\\d\\d:\\d\\d:\\d\\d",
                     "format": "time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listsamplerecords/offsetdatetime": {
+      "get": {
+        "tags": [
+          "ListSampleService"
+        ],
+        "description": "",
+        "operationId": "ListSampleService_listOffsetDateTime",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "offset-date-time"
                   }
                 }
               }
@@ -1226,6 +1275,40 @@
                   "type": "string",
                   "pattern": "\\d\\d:\\d\\d:\\d\\d",
                   "format": "time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pathparametertype/offsetdatetime/{pathOffsetDateTime}": {
+      "get": {
+        "tags": [
+          "PathParameterTypeService"
+        ],
+        "description": "",
+        "operationId": "PathParameterTypeService_simpleOffsetDateTimePathParam",
+        "parameters": [
+          {
+            "name": "pathOffsetDateTime",
+            "description": "",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "offset-date-time"
                 }
               }
             }
@@ -2708,6 +2791,141 @@
                 "type": "string",
                 "pattern": "\\d\\d:\\d\\d:\\d\\d",
                 "format": "time",
+                "nullable": true
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/bodyparametertypes/simpleOffsetDateTimeBodyParam": {
+      "post": {
+        "tags": [
+          "BodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "BodyParameterTypes_simpleOffsetDateTimeBodyParam",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "format": "offset-date-time"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "offset-date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/bodyparametertypes/simpleOffsetDateTimeBodyParamOpt": {
+      "post": {
+        "tags": [
+          "BodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "BodyParameterTypes_simpleOffsetDateTimeBodyParamOpt",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "format": "offset-date-time"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/bodyparametertypes/simpleOffsetDateTimeBodyParamNil": {
+      "post": {
+        "tags": [
+          "BodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "BodyParameterTypes_simpleOffsetDateTimeBodyParamNil",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "format": "offset-date-time",
+                "nullable": true
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/bodyparametertypes/simpleOffsetDateTimeBodyParamOptNil": {
+      "post": {
+        "tags": [
+          "BodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "BodyParameterTypes_simpleOffsetDateTimeBodyParamOptNil",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "format": "offset-date-time",
                 "nullable": true
               }
             }
@@ -5300,6 +5518,141 @@
         }
       }
     },
+    "/api/headerparametertypes/simpleOffsetDateTimeHeaderParam": {
+      "get": {
+        "tags": [
+          "HeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "HeaderParameterTypes_simpleOffsetDateTimeHeaderParam",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "offset-date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/headerparametertypes/simpleOffsetDateTimeHeaderParamOpt": {
+      "get": {
+        "tags": [
+          "HeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "HeaderParameterTypes_simpleOffsetDateTimeHeaderParamOpt",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/headerparametertypes/simpleOffsetDateTimeHeaderParamNil": {
+      "get": {
+        "tags": [
+          "HeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "HeaderParameterTypes_simpleOffsetDateTimeHeaderParamNil",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "offset-date-time",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/headerparametertypes/simpleOffsetDateTimeHeaderParamOptNil": {
+      "get": {
+        "tags": [
+          "HeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "HeaderParameterTypes_simpleOffsetDateTimeHeaderParamOptNil",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "offset-date-time",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/headerparametertypes/simpleZonedDateTimeHeaderParam": {
       "get": {
         "tags": [
@@ -6976,6 +7329,73 @@
               "type": "string",
               "pattern": "\\d\\d:\\d\\d:\\d\\d",
               "format": "time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/queryparametertypes/simpleOffsetDateTimeQueryParam": {
+      "get": {
+        "tags": [
+          "QueryParameterTypes"
+        ],
+        "description": "",
+        "operationId": "QueryParameterTypes_simpleOffsetDateTimeQueryParam",
+        "parameters": [
+          {
+            "name": "queryValue",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "offset-date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/queryparametertypes/simpleOffsetDateTimeQueryParamOpt": {
+      "get": {
+        "tags": [
+          "QueryParameterTypes"
+        ],
+        "description": "",
+        "operationId": "QueryParameterTypes_simpleOffsetDateTimeQueryParamOpt",
+        "parameters": [
+          {
+            "name": "queryValue",
+            "description": "",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "offset-date-time"
             }
           }
         ],
@@ -8863,6 +9283,156 @@
         }
       }
     },
+    "/api/listbodyparametertypes/listOffsetDateTimeBodyParam": {
+      "put": {
+        "tags": [
+          "ListBodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListBodyParameterTypes_listOffsetDateTimeBodyParam",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "offset-date-time"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "offset-date-time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listbodyparametertypes/listOffsetDateTimeBodyParamOpt": {
+      "put": {
+        "tags": [
+          "ListBodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListBodyParameterTypes_listOffsetDateTimeBodyParamOpt",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "offset-date-time"
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listbodyparametertypes/listOffsetDateTimeBodyParamNil": {
+      "put": {
+        "tags": [
+          "ListBodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListBodyParameterTypes_listOffsetDateTimeBodyParamNil",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "offset-date-time"
+                },
+                "nullable": true
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listbodyparametertypes/listOffsetDateTimeBodyParamOptNil": {
+      "put": {
+        "tags": [
+          "ListBodyParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListBodyParameterTypes_listOffsetDateTimeBodyParamOptNil",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "offset-date-time"
+                },
+                "nullable": true
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/listbodyparametertypes/listZonedDateTimeBodyParam": {
       "put": {
         "tags": [
@@ -10246,6 +10816,46 @@
                     "type": "string",
                     "pattern": "\\d\\d:\\d\\d:\\d\\d",
                     "format": "time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listqueryparametertypes/listOffsetDateTimeQueryParam": {
+      "get": {
+        "tags": [
+          "ListQueryParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListQueryParameterTypes_listOffsetDateTimeQueryParam",
+        "parameters": [
+          {
+            "name": "queryValue",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "offset-date-time"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "offset-date-time"
                   }
                 }
               }
@@ -12022,6 +12632,156 @@
                 "type": "string",
                 "pattern": "\\d\\d:\\d\\d:\\d\\d",
                 "format": "time"
+              },
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listheaderparametertypes/listOffsetDateTimeHeaderParam": {
+      "get": {
+        "tags": [
+          "ListHeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListHeaderParameterTypes_listOffsetDateTimeHeaderParam",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "offset-date-time"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "offset-date-time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listheaderparametertypes/listOffsetDateTimeHeaderParamOpt": {
+      "get": {
+        "tags": [
+          "ListHeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListHeaderParameterTypes_listOffsetDateTimeHeaderParamOpt",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "offset-date-time"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listheaderparametertypes/listOffsetDateTimeHeaderParamNil": {
+      "get": {
+        "tags": [
+          "ListHeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListHeaderParameterTypes_listOffsetDateTimeHeaderParamNil",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "offset-date-time"
+              },
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listheaderparametertypes/listOffsetDateTimeHeaderParamOptNil": {
+      "get": {
+        "tags": [
+          "ListHeaderParameterTypes"
+        ],
+        "description": "",
+        "operationId": "ListHeaderParameterTypes_listOffsetDateTimeHeaderParamOptNil",
+        "parameters": [
+          {
+            "name": "headerValue",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "offset-date-time"
               },
               "nullable": true
             }
@@ -14551,6 +15311,10 @@
             "pattern": "\\d\\d:\\d\\d:\\d\\d",
             "format": "time"
           },
+          "valueOffsetDateTime": {
+            "type": "string",
+            "format": "offset-date-time"
+          },
           "valueZonedDateTime": {
             "type": "string",
             "format": "zoned-date-time"
@@ -14567,6 +15331,7 @@
           "valueLocalDate",
           "valueLocalDateTime",
           "valueLocalTime",
+          "valueOffsetDateTime",
           "valueZonedDateTime"
         ]
       },
@@ -14613,6 +15378,10 @@
             "type": "string",
             "pattern": "\\d\\d:\\d\\d:\\d\\d",
             "format": "time"
+          },
+          "valueOffsetDateTime": {
+            "type": "string",
+            "format": "offset-date-time"
           },
           "valueZonedDateTime": {
             "type": "string",
@@ -14674,6 +15443,11 @@
             "format": "time",
             "nullable": true
           },
+          "valueOffsetDateTime": {
+            "type": "string",
+            "format": "offset-date-time",
+            "nullable": true
+          },
           "valueZonedDateTime": {
             "type": "string",
             "format": "zoned-date-time",
@@ -14691,6 +15465,7 @@
           "valueLocalDate",
           "valueLocalDateTime",
           "valueLocalTime",
+          "valueOffsetDateTime",
           "valueZonedDateTime"
         ]
       },
@@ -14746,6 +15521,11 @@
             "type": "string",
             "pattern": "\\d\\d:\\d\\d:\\d\\d",
             "format": "time",
+            "nullable": true
+          },
+          "valueOffsetDateTime": {
+            "type": "string",
+            "format": "offset-date-time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -14829,6 +15609,13 @@
               "format": "time"
             }
           },
+          "valueOffsetDateTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          },
           "valueZonedDateTime": {
             "type": "array",
             "items": {
@@ -14848,6 +15635,7 @@
           "valueLocalDate",
           "valueLocalDateTime",
           "valueLocalTime",
+          "valueOffsetDateTime",
           "valueZonedDateTime"
         ]
       },
@@ -14923,6 +15711,13 @@
               "type": "string",
               "pattern": "\\d\\d:\\d\\d:\\d\\d",
               "format": "time"
+            }
+          },
+          "valueOffsetDateTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
             }
           },
           "valueZonedDateTime": {
@@ -15018,6 +15813,14 @@
             },
             "nullable": true
           },
+          "valueOffsetDateTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            },
+            "nullable": true
+          },
           "valueZonedDateTime": {
             "type": "array",
             "items": {
@@ -15038,6 +15841,7 @@
           "valueLocalDate",
           "valueLocalDateTime",
           "valueLocalTime",
+          "valueOffsetDateTime",
           "valueZonedDateTime"
         ]
       },
@@ -15122,6 +15926,14 @@
               "type": "string",
               "pattern": "\\d\\d:\\d\\d:\\d\\d",
               "format": "time"
+            },
+            "nullable": true
+          },
+          "valueOffsetDateTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
             },
             "nullable": true
           },
@@ -15624,6 +16436,10 @@
             "pattern": "\\d\\d:\\d\\d:\\d\\d",
             "format": "time"
           },
+          "valueOffsetDateTime": {
+            "type": "string",
+            "format": "offset-date-time"
+          },
           "valueZonedDateTime": {
             "type": "string",
             "format": "zoned-date-time"
@@ -15642,6 +16458,7 @@
           "valueLocalDate",
           "valueLocalDateTime",
           "valueLocalTime",
+          "valueOffsetDateTime",
           "valueZonedDateTime"
         ]
       },
@@ -15694,6 +16511,10 @@
             "type": "string",
             "pattern": "\\d\\d:\\d\\d:\\d\\d",
             "format": "time"
+          },
+          "valueOffsetDateTime": {
+            "type": "string",
+            "format": "offset-date-time"
           },
           "valueZonedDateTime": {
             "type": "string",
@@ -15754,6 +16575,10 @@
             "type": "string",
             "pattern": "\\d\\d:\\d\\d:\\d\\d",
             "format": "time"
+          },
+          "valueOffsetDateTime": {
+            "type": "string",
+            "format": "offset-date-time"
           },
           "valueZonedDateTime": {
             "type": "string",
@@ -15823,6 +16648,11 @@
             "type": "string",
             "pattern": "\\d\\d:\\d\\d:\\d\\d",
             "format": "time",
+            "nullable": true
+          },
+          "valueOffsetDateTime": {
+            "type": "string",
+            "format": "offset-date-time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -15896,6 +16726,11 @@
             "format": "time",
             "nullable": true
           },
+          "valueOffsetDateTime": {
+            "type": "string",
+            "format": "offset-date-time",
+            "nullable": true
+          },
           "valueZonedDateTime": {
             "type": "string",
             "format": "zoned-date-time",
@@ -15915,6 +16750,7 @@
           "valueLocalDate",
           "valueLocalDateTime",
           "valueLocalTime",
+          "valueOffsetDateTime",
           "valueZonedDateTime"
         ]
       },
@@ -15976,6 +16812,11 @@
             "type": "string",
             "pattern": "\\d\\d:\\d\\d:\\d\\d",
             "format": "time",
+            "nullable": true
+          },
+          "valueOffsetDateTime": {
+            "type": "string",
+            "format": "offset-date-time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -16049,6 +16890,11 @@
             "format": "time",
             "nullable": true
           },
+          "valueOffsetDateTime": {
+            "type": "string",
+            "format": "offset-date-time",
+            "nullable": true
+          },
           "valueZonedDateTime": {
             "type": "string",
             "format": "zoned-date-time",
@@ -16118,6 +16964,11 @@
             "type": "string",
             "pattern": "\\d\\d:\\d\\d:\\d\\d",
             "format": "time",
+            "nullable": true
+          },
+          "valueOffsetDateTime": {
+            "type": "string",
+            "format": "offset-date-time",
             "nullable": true
           },
           "valueZonedDateTime": {
@@ -16211,6 +17062,13 @@
               "format": "time"
             }
           },
+          "valueOffsetDateTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          },
           "valueZonedDateTime": {
             "type": "array",
             "items": {
@@ -16232,6 +17090,7 @@
           "valueLocalDate",
           "valueLocalDateTime",
           "valueLocalTime",
+          "valueOffsetDateTime",
           "valueZonedDateTime"
         ]
       },
@@ -16411,6 +17270,23 @@
               "mapping": {
                 "replace": "#/components/schemas/PatchableRecord_Basic_List_valueLocalTimePatchReplace",
                 "merge": "#/components/schemas/PatchableRecord_Basic_List_valueLocalTimePatchMerge"
+              }
+            }
+          },
+          "valueOffsetDateTime": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_valueOffsetDateTimePatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_valueOffsetDateTimePatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/PatchableRecord_Basic_List_valueOffsetDateTimePatchReplace",
+                "merge": "#/components/schemas/PatchableRecord_Basic_List_valueOffsetDateTimePatchMerge"
               }
             }
           },
@@ -16900,6 +17776,52 @@
           "removals"
         ]
       },
+      "PatchableRecord_Basic_List_valueOffsetDateTimePatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "PatchableRecord_Basic_List_valueOffsetDateTimePatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
       "PatchableRecord_Basic_List_valueZonedDateTimePatchReplace": {
         "type": "object",
         "properties": {
@@ -17024,6 +17946,13 @@
               "type": "string",
               "pattern": "\\d\\d:\\d\\d:\\d\\d",
               "format": "time"
+            }
+          },
+          "valueOffsetDateTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
             }
           },
           "valueZonedDateTime": {
@@ -17215,6 +18144,23 @@
               "mapping": {
                 "replace": "#/components/schemas/PatchableRecord_Basic_List_Optional_valueLocalTimePatchReplace",
                 "merge": "#/components/schemas/PatchableRecord_Basic_List_Optional_valueLocalTimePatchMerge"
+              }
+            }
+          },
+          "valueOffsetDateTime": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_Optional_valueOffsetDateTimePatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_Optional_valueOffsetDateTimePatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/PatchableRecord_Basic_List_Optional_valueOffsetDateTimePatchReplace",
+                "merge": "#/components/schemas/PatchableRecord_Basic_List_Optional_valueOffsetDateTimePatchMerge"
               }
             }
           },
@@ -17704,6 +18650,52 @@
           "removals"
         ]
       },
+      "PatchableRecord_Basic_List_Optional_valueOffsetDateTimePatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "PatchableRecord_Basic_List_Optional_valueOffsetDateTimePatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
       "PatchableRecord_Basic_List_Optional_valueZonedDateTimePatchReplace": {
         "type": "object",
         "properties": {
@@ -17840,6 +18832,14 @@
             },
             "nullable": true
           },
+          "valueOffsetDateTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            },
+            "nullable": true
+          },
           "valueZonedDateTime": {
             "type": "array",
             "items": {
@@ -17862,6 +18862,7 @@
           "valueLocalDate",
           "valueLocalDateTime",
           "valueLocalTime",
+          "valueOffsetDateTime",
           "valueZonedDateTime"
         ]
       },
@@ -18041,6 +19042,23 @@
               "mapping": {
                 "replace": "#/components/schemas/PatchableRecord_Basic_List_Null_valueLocalTimePatchReplace",
                 "merge": "#/components/schemas/PatchableRecord_Basic_List_Null_valueLocalTimePatchMerge"
+              }
+            }
+          },
+          "valueOffsetDateTime": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_Null_valueOffsetDateTimePatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_Null_valueOffsetDateTimePatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/PatchableRecord_Basic_List_Null_valueOffsetDateTimePatchReplace",
+                "merge": "#/components/schemas/PatchableRecord_Basic_List_Null_valueOffsetDateTimePatchMerge"
               }
             }
           },
@@ -18550,6 +19568,54 @@
           "removals"
         ]
       },
+      "PatchableRecord_Basic_List_Null_valueOffsetDateTimePatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "PatchableRecord_Basic_List_Null_valueOffsetDateTimePatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            },
+            "nullable": true
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
       "PatchableRecord_Basic_List_Null_valueZonedDateTimePatchReplace": {
         "type": "object",
         "properties": {
@@ -18685,6 +19751,14 @@
               "type": "string",
               "pattern": "\\d\\d:\\d\\d:\\d\\d",
               "format": "time"
+            },
+            "nullable": true
+          },
+          "valueOffsetDateTime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
             },
             "nullable": true
           },
@@ -18878,6 +19952,23 @@
               "mapping": {
                 "replace": "#/components/schemas/PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchReplace",
                 "merge": "#/components/schemas/PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchMerge"
+              }
+            }
+          },
+          "valueOffsetDateTime": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_Optional_Null_valueOffsetDateTimePatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/PatchableRecord_Basic_List_Optional_Null_valueOffsetDateTimePatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/PatchableRecord_Basic_List_Optional_Null_valueOffsetDateTimePatchReplace",
+                "merge": "#/components/schemas/PatchableRecord_Basic_List_Optional_Null_valueOffsetDateTimePatchMerge"
               }
             }
           },
@@ -19377,6 +20468,54 @@
               "type": "string",
               "pattern": "\\d\\d:\\d\\d:\\d\\d",
               "format": "time"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
+      "PatchableRecord_Basic_List_Optional_Null_valueOffsetDateTimePatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "PatchableRecord_Basic_List_Optional_Null_valueOffsetDateTimePatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
+            },
+            "nullable": true
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "offset-date-time"
             },
             "nullable": true
           }

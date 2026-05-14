@@ -4,6 +4,7 @@ package dev.rsdlang.sample.client.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +37,8 @@ public interface PatchableRecord_Basic_List {
 
 		public List<LocalTime> valueLocalTime();
 
+		public List<OffsetDateTime> valueOffsetDateTime();
+
 		public List<ZonedDateTime> valueZonedDateTime();
 
 	}
@@ -64,6 +67,8 @@ public interface PatchableRecord_Basic_List {
 		public DataBuilder valueLocalDateTime(List<LocalDateTime> valueLocalDateTime);
 
 		public DataBuilder valueLocalTime(List<LocalTime> valueLocalTime);
+
+		public DataBuilder valueOffsetDateTime(List<OffsetDateTime> valueOffsetDateTime);
 
 		public DataBuilder valueZonedDateTime(List<ZonedDateTime> valueZonedDateTime);
 
@@ -160,6 +165,15 @@ public interface PatchableRecord_Basic_List {
 		public interface ValueLocalTimeMergeChange extends ValueLocalTimeChange, _Base.ListMergeAddRemove<LocalTime, LocalTime> {
 		}
 
+		public interface ValueOffsetDateTimeChange {
+		}
+
+		public interface ValueOffsetDateTimeSetChange extends ValueOffsetDateTimeChange, _Base.ListReplace<OffsetDateTime> {
+		}
+
+		public interface ValueOffsetDateTimeMergeChange extends ValueOffsetDateTimeChange, _Base.ListMergeAddRemove<OffsetDateTime, OffsetDateTime> {
+		}
+
 		public interface ValueZonedDateTimeChange {
 		}
 
@@ -192,6 +206,8 @@ public interface PatchableRecord_Basic_List {
 		public Optional<ValueLocalDateTimeChange> valueLocalDateTime();
 
 		public Optional<ValueLocalTimeChange> valueLocalTime();
+
+		public Optional<ValueOffsetDateTimeChange> valueOffsetDateTime();
 
 		public Optional<ValueZonedDateTimeChange> valueZonedDateTime();
 
@@ -241,6 +257,10 @@ public interface PatchableRecord_Basic_List {
 		public PatchBuilder valueLocalTime(Patch.ValueLocalTimeChange valueLocalTime);
 		public PatchBuilder valueLocalTime(List<LocalTime> additions, List<LocalTime> removals);
 		public PatchBuilder valueLocalTime(List<LocalTime> elements);
+
+		public PatchBuilder valueOffsetDateTime(Patch.ValueOffsetDateTimeChange valueOffsetDateTime);
+		public PatchBuilder valueOffsetDateTime(List<OffsetDateTime> additions, List<OffsetDateTime> removals);
+		public PatchBuilder valueOffsetDateTime(List<OffsetDateTime> elements);
 
 		public PatchBuilder valueZonedDateTime(Patch.ValueZonedDateTimeChange valueZonedDateTime);
 		public PatchBuilder valueZonedDateTime(List<ZonedDateTime> additions, List<ZonedDateTime> removals);

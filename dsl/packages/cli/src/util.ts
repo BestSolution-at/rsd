@@ -196,5 +196,5 @@ export function hasFileStreamParameter(model: MResolvedRSDModel): boolean {
 }
 
 export function isStringSerializedType(type: MBuiltinType) {
-	return type === 'local-date' || type === 'local-date-time' || type === 'local-time' || type === 'string' || type === 'zoned-date-time';
+	return type === 'local-date' || type === 'local-date-time' || type === 'local-time' || type === 'offset-date-time' || type === 'string' || type === 'zoned-date-time';
 }

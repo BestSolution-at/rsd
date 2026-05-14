@@ -12,6 +12,7 @@ export type SimpleRecord_Basic_List_Optional = {
 	readonly valueLocalDate?: string[];
 	readonly valueLocalDateTime?: string[];
 	readonly valueLocalTime?: string[];
+	readonly valueOffsetDateTime?: string[];
 	readonly valueZonedDateTime?: string[];
 };
 
@@ -27,6 +28,7 @@ export function isSimpleRecord_Basic_List_Optional(value: unknown): value is Sim
 		checkOptProp(value, 'valueLocalDate', createTypedArrayGuard(isString)) &&
 		checkOptProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString)) &&
 		checkOptProp(value, 'valueLocalTime', createTypedArrayGuard(isString)) &&
+		checkOptProp(value, 'valueOffsetDateTime', createTypedArrayGuard(isString)) &&
 		checkOptProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString));
 }
 
@@ -41,6 +43,7 @@ export function SimpleRecord_Basic_List_OptionalFromJSON($value: Record<string, 
 	const valueLocalDate = propListValue('valueLocalDate', $value, isString, 'optional');
 	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString, 'optional');
 	const valueLocalTime = propListValue('valueLocalTime', $value, isString, 'optional');
+	const valueOffsetDateTime = propListValue('valueOffsetDateTime', $value, isString, 'optional');
 	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString, 'optional');
 	return {
 		valueBoolean,
@@ -53,6 +56,7 @@ export function SimpleRecord_Basic_List_OptionalFromJSON($value: Record<string, 
 		valueLocalDate,
 		valueLocalDateTime,
 		valueLocalTime,
+		valueOffsetDateTime,
 		valueZonedDateTime,
 	};
 }
@@ -68,6 +72,7 @@ export function SimpleRecord_Basic_List_OptionalToJSON($value: SimpleRecord_Basi
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
 	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -81,6 +86,7 @@ export function SimpleRecord_Basic_List_OptionalToJSON($value: SimpleRecord_Basi
 		valueLocalDate,
 		valueLocalDateTime,
 		valueLocalTime,
+		valueOffsetDateTime,
 		valueZonedDateTime,
 	};
 }

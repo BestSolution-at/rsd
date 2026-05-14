@@ -48,6 +48,10 @@ export function createListBodyParameterTypesService(props: ServiceProps<api.serv
 		listLocalTimeBodyParamOpt: fnListLocalTimeBodyParamOpt(props),
 		listLocalTimeBodyParamNil: fnListLocalTimeBodyParamNil(props),
 		listLocalTimeBodyParamOptNil: fnListLocalTimeBodyParamOptNil(props),
+		listOffsetDateTimeBodyParam: fnListOffsetDateTimeBodyParam(props),
+		listOffsetDateTimeBodyParamOpt: fnListOffsetDateTimeBodyParamOpt(props),
+		listOffsetDateTimeBodyParamNil: fnListOffsetDateTimeBodyParamNil(props),
+		listOffsetDateTimeBodyParamOptNil: fnListOffsetDateTimeBodyParamOptNil(props),
 		listZonedDateTimeBodyParam: fnListZonedDateTimeBodyParam(props),
 		listZonedDateTimeBodyParamOpt: fnListZonedDateTimeBodyParamOpt(props),
 		listZonedDateTimeBodyParamNil: fnListZonedDateTimeBodyParamNil(props),
@@ -1310,6 +1314,130 @@ function fnListLocalTimeBodyParamOptNil(props: ServiceProps<api.service.ErrorTyp
 			return api.result.ERR(err);
 		} finally {
 			final?.('listLocalTimeBodyParamOptNil');
+		}
+	};
+}
+
+function fnListOffsetDateTimeBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listOffsetDateTimeBodyParam'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyOffsetDateTime: string[]) => {
+		try {
+			const $init = (await preFetch?.('listOffsetDateTimeBodyParam')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listOffsetDateTimeBodyParam`;
+			const $body = encodeValue(encodingType(props), bodyOffsetDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listOffsetDateTimeBodyParam', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listOffsetDateTimeBodyParam', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listOffsetDateTimeBodyParam');
+		}
+	};
+}
+
+function fnListOffsetDateTimeBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listOffsetDateTimeBodyParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyOffsetDateTime?: string[]) => {
+		try {
+			const $init = (await preFetch?.('listOffsetDateTimeBodyParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listOffsetDateTimeBodyParamOpt`;
+			const $body = encodeValue(encodingType(props), bodyOffsetDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listOffsetDateTimeBodyParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listOffsetDateTimeBodyParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listOffsetDateTimeBodyParamOpt');
+		}
+	};
+}
+
+function fnListOffsetDateTimeBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listOffsetDateTimeBodyParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyOffsetDateTime: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listOffsetDateTimeBodyParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listOffsetDateTimeBodyParamNil`;
+			const $body = encodeValue(encodingType(props), bodyOffsetDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listOffsetDateTimeBodyParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listOffsetDateTimeBodyParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listOffsetDateTimeBodyParamNil');
+		}
+	};
+}
+
+function fnListOffsetDateTimeBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService['listOffsetDateTimeBodyParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (bodyOffsetDateTime?: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listOffsetDateTimeBodyParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listbodyparametertypes/listOffsetDateTimeBodyParamOptNil`;
+			const $body = encodeValue(encodingType(props), bodyOffsetDateTime);
+			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listOffsetDateTimeBodyParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listOffsetDateTimeBodyParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listOffsetDateTimeBodyParamOptNil');
 		}
 	};
 }

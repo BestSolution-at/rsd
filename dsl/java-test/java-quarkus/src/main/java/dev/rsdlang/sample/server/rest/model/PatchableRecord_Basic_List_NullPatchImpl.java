@@ -4,6 +4,7 @@ package dev.rsdlang.sample.server.rest.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -138,6 +139,18 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 		}
 	}
 
+	static class ValueOffsetDateTimeSetChangeImpl extends _ChangeSupport.ValueElementsChange<OffsetDateTime> implements ValueOffsetDateTimeSetChange {
+		ValueOffsetDateTimeSetChangeImpl(JsonObject data) {
+			super(data, v -> OffsetDateTime.parse(((JsonString)v).getString()));
+		}
+	}
+
+	static class ValueOffsetDateTimeMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<OffsetDateTime, OffsetDateTime> implements ValueOffsetDateTimeMergeChange {
+		ValueOffsetDateTimeMergeChangeImpl(JsonObject data) {
+			super(data, v -> OffsetDateTime.parse(((JsonString)v).getString()), v -> OffsetDateTime.parse(((JsonString)v).getString()));
+		}
+	}
+
 	static class ValueZonedDateTimeSetChangeImpl extends _ChangeSupport.ValueElementsChange<ZonedDateTime> implements ValueZonedDateTimeSetChange {
 		ValueZonedDateTimeSetChangeImpl(JsonObject data) {
 			super(data, v -> ZonedDateTime.parse(((JsonString)v).getString()));
@@ -202,6 +215,10 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 
 	public _Base.Nillable<ValueLocalTimeChange> valueLocalTime() {
 		return _JsonUtils.mapNilObject(data, "valueLocalTime", o -> _ChangeSupport.of(o, "@type", ValueLocalTimeSetChangeImpl::new, ValueLocalTimeMergeChangeImpl::new));
+	}
+
+	public _Base.Nillable<ValueOffsetDateTimeChange> valueOffsetDateTime() {
+		return _JsonUtils.mapNilObject(data, "valueOffsetDateTime", o -> _ChangeSupport.of(o, "@type", ValueOffsetDateTimeSetChangeImpl::new, ValueOffsetDateTimeMergeChangeImpl::new));
 	}
 
 	public _Base.Nillable<ValueZonedDateTimeChange> valueZonedDateTime() {
@@ -448,6 +465,29 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 			$changeBuilder.add("@type", "replace");
 			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements));
 			$builder.add("valueLocalTime", $changeBuilder.build());
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueOffsetDateTime(ValueOffsetDateTimeChange valueOffsetDateTime) {
+			$builder.add("valueOffsetDateTime", ((_BaseDataImpl) valueOffsetDateTime).data);
+			return this;
+		}
+
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueOffsetDateTime(List<OffsetDateTime> additions, List<OffsetDateTime> removals) {
+			var $changeBuilder = Json.createObjectBuilder();
+			$changeBuilder.add("@type", "merge");
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$builder.add("valueOffsetDateTime", $changeBuilder.build());
+			return this;
+		}
+
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueOffsetDateTime(List<OffsetDateTime> elements) {
+			var $changeBuilder = Json.createObjectBuilder();
+			$changeBuilder.add("@type", "replace");
+			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements));
+			$builder.add("valueOffsetDateTime", $changeBuilder.build());
 			return this;
 		}
 

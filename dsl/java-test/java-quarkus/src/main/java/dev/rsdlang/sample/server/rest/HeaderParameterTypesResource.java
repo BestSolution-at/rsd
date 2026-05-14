@@ -460,6 +460,46 @@ public class HeaderParameterTypesResource {
 	}
 
 	@GET
+	@Path("simpleOffsetDateTimeHeaderParam")
+	public Response simpleOffsetDateTimeHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.parseOffsetDateTime(_headerValue);
+		var result = service.simpleOffsetDateTimeHeaderParam(builderFactory, headerValue);
+		return responseBuilder.simpleOffsetDateTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
+	@Path("simpleOffsetDateTimeHeaderParamOpt")
+	public Response simpleOffsetDateTimeHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.parseOptOffsetDateTime(_headerValue);
+		var result = service.simpleOffsetDateTimeHeaderParamOpt(builderFactory, headerValue);
+		return responseBuilder.simpleOffsetDateTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
+	@Path("simpleOffsetDateTimeHeaderParamNil")
+	public Response simpleOffsetDateTimeHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.parseNullOffsetDateTime(_headerValue);
+		var result = service.simpleOffsetDateTimeHeaderParamNil(builderFactory, headerValue);
+		return responseBuilder.simpleOffsetDateTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
+	@Path("simpleOffsetDateTimeHeaderParamOptNil")
+	public Response simpleOffsetDateTimeHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.parseNilOffsetDateTime(_headerValue);
+		var result = service.simpleOffsetDateTimeHeaderParamOptNil(builderFactory, headerValue);
+		return responseBuilder.simpleOffsetDateTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
 	@Path("simpleZonedDateTimeHeaderParam")
 	public Response simpleZonedDateTimeHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,

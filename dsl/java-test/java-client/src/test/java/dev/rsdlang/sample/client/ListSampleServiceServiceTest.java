@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -92,6 +93,16 @@ public class ListSampleServiceServiceTest {
 		assertEquals(
 				List.of(LocalTime.parse("10:00:00"), LocalTime.parse("11:30:00"), LocalTime.parse("12:45:00")),
 				service.listLocalTime());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listOffsetDateTime(ListSampleServiceService service) {
+		assertEquals(
+				List.of(OffsetDateTime.parse("2020-01-01T10:00:00+01:00"),
+						OffsetDateTime.parse("2021-02-02T11:30:00+01:00"),
+						OffsetDateTime.parse("2022-03-03T12:45:00+01:00")),
+				service.listOffsetDateTime());
 	}
 
 	@ParameterizedTest

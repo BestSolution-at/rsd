@@ -4,6 +4,7 @@ package dev.rsdlang.sample.server.service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.Optional;
@@ -55,6 +56,10 @@ public interface QueryParameterTypesService {
 	public LocalTime simpleLocalTimeQueryParam(BuilderFactory _factory, LocalTime queryValue);
 
 	public NilResult simpleLocalTimeQueryParamOpt(BuilderFactory _factory, Optional<LocalTime> queryValue);
+
+	public OffsetDateTime simpleOffsetDateTimeQueryParam(BuilderFactory _factory, OffsetDateTime queryValue);
+
+	public NilResult simpleOffsetDateTimeQueryParamOpt(BuilderFactory _factory, Optional<OffsetDateTime> queryValue);
 
 	public ZonedDateTime simpleZonedDateTimeQueryParam(BuilderFactory _factory, ZonedDateTime queryValue);
 

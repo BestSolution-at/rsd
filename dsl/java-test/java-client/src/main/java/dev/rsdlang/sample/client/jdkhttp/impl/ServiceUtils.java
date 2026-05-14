@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -136,6 +137,10 @@ public class ServiceUtils {
 		return _JsonUtils.parseLocalTime(response.body(), contentType(response));
 	}
 
+	public static OffsetDateTime mapOffsetDateTime(HttpResponse<InputStream> response) {
+		return _JsonUtils.parseOffsetDateTime(response.body(), contentType(response));
+	}
+
 	public static <T> List<T> mapObjects(HttpResponse<InputStream> response, Function<JsonObject, T> factory, Class<T> type) {
 		return _JsonUtils.parseObjects(response.body(), contentType(response), factory, type);
 	}
@@ -186,6 +191,10 @@ public class ServiceUtils {
 
 	public static List<LocalTime> mapLocalTimes(HttpResponse<InputStream> response) {
 		return _JsonUtils.parseLiterals(response.body(), contentType(response), LocalTime::parse);
+	}
+
+	public static List<OffsetDateTime> mapOffsetDateTimes(HttpResponse<InputStream> response) {
+		return _JsonUtils.parseLiterals(response.body(), contentType(response), OffsetDateTime::parse);
 	}
 
 	public static byte[] ofBoolean(
@@ -337,6 +346,20 @@ public class ServiceUtils {
 
 	public static byte[] ofLocalTimeList(
 			List<LocalTime> value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
+	}
+
+	public static byte[] ofOffsetDateTime(
+			OffsetDateTime value,
+			boolean nullable,
+			String contentType) {
+		return of(value, nullable, contentType, TypeInfo.STRING);
+	}
+
+	public static byte[] ofOffsetDateTimeList(
+			List<OffsetDateTime> value,
 			boolean nullable,
 			String contentType) {
 		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());

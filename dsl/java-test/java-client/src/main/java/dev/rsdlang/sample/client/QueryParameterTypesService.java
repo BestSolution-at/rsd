@@ -4,6 +4,7 @@ package dev.rsdlang.sample.client;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 
@@ -71,6 +72,12 @@ public interface QueryParameterTypesService extends BaseService {
 	public NilResult simpleLocalTimeQueryParamOpt();
 
 	public NilResult simpleLocalTimeQueryParamOpt(LocalTime queryValue);
+
+	public OffsetDateTime simpleOffsetDateTimeQueryParam(OffsetDateTime queryValue);
+
+	public NilResult simpleOffsetDateTimeQueryParamOpt();
+
+	public NilResult simpleOffsetDateTimeQueryParamOpt(OffsetDateTime queryValue);
 
 	public ZonedDateTime simpleZonedDateTimeQueryParam(ZonedDateTime queryValue);
 

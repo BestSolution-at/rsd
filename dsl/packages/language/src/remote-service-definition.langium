@@ -14,7 +14,7 @@ ScalarType:
     'scalar' name=ID ';';
 
 BuiltinType returns string:
-    'boolean'|'short'|'int'|'string'|'float'|'double'|'long'|'local-date'|'local-date-time'|'local-time'|'zoned-date-time';
+    'boolean'|'short'|'int'|'string'|'float'|'double'|'long'|'local-date'|'local-date-time'|'local-time'|'offset-date-time'|'zoned-date-time';
 
 StreamType returns string:
     'blob' | 'file';

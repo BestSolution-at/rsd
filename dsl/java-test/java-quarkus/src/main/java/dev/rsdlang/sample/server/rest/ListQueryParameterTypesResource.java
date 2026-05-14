@@ -157,6 +157,16 @@ public class ListQueryParameterTypesResource {
 	}
 
 	@GET
+	@Path("listOffsetDateTimeQueryParam")
+	public Response listOffsetDateTimeQueryParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("queryValue") List<String> _queryValue) {
+		var queryValue = _RestUtils.mapOffsetDateTimes(_queryValue);
+		var result = service.listOffsetDateTimeQueryParam(builderFactory, queryValue);
+		return responseBuilder.listOffsetDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
+	}
+
+	@GET
 	@Path("listZonedDateTimeQueryParam")
 	public Response listZonedDateTimeQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,

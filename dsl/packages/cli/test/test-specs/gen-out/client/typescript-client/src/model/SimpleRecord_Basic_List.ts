@@ -12,6 +12,7 @@ export type SimpleRecord_Basic_List = {
 	readonly valueLocalDate: string[];
 	readonly valueLocalDateTime: string[];
 	readonly valueLocalTime: string[];
+	readonly valueOffsetDateTime: string[];
 	readonly valueZonedDateTime: string[];
 };
 
@@ -27,6 +28,7 @@ export function isSimpleRecord_Basic_List(value: unknown): value is SimpleRecord
 		checkProp(value, 'valueLocalDate', createTypedArrayGuard(isString)) &&
 		checkProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString)) &&
 		checkProp(value, 'valueLocalTime', createTypedArrayGuard(isString)) &&
+		checkProp(value, 'valueOffsetDateTime', createTypedArrayGuard(isString)) &&
 		checkProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString));
 }
 
@@ -41,6 +43,7 @@ export function SimpleRecord_Basic_ListFromJSON($value: Record<string, unknown>)
 	const valueLocalDate = propListValue('valueLocalDate', $value, isString);
 	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString);
 	const valueLocalTime = propListValue('valueLocalTime', $value, isString);
+	const valueOffsetDateTime = propListValue('valueOffsetDateTime', $value, isString);
 	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString);
 	return {
 		valueBoolean,
@@ -53,6 +56,7 @@ export function SimpleRecord_Basic_ListFromJSON($value: Record<string, unknown>)
 		valueLocalDate,
 		valueLocalDateTime,
 		valueLocalTime,
+		valueOffsetDateTime,
 		valueZonedDateTime,
 	};
 }
@@ -68,6 +72,7 @@ export function SimpleRecord_Basic_ListToJSON($value: SimpleRecord_Basic_List): 
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
 	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -81,6 +86,7 @@ export function SimpleRecord_Basic_ListToJSON($value: SimpleRecord_Basic_List): 
 		valueLocalDate,
 		valueLocalDateTime,
 		valueLocalTime,
+		valueOffsetDateTime,
 		valueZonedDateTime,
 	};
 }

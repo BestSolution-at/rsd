@@ -4,6 +4,7 @@ package dev.rsdlang.sample.server.rest.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -77,6 +78,11 @@ public class PatchableRecord_Basic_List_Optional_NullDataImpl extends _BaseDataI
 	@Override
 	public _Base.Nillable<List<LocalTime>> valueLocalTime() {
 		return _JsonUtils.mapNilLocalTimes(data, "valueLocalTime");
+	}
+
+	@Override
+	public _Base.Nillable<List<OffsetDateTime>> valueOffsetDateTime() {
+		return _JsonUtils.mapNilOffsetDateTimes(data, "valueOffsetDateTime");
 	}
 
 	@Override
@@ -204,6 +210,16 @@ public class PatchableRecord_Basic_List_Optional_NullDataImpl extends _BaseDataI
 				return this;
 			}
 			$builder.add("valueLocalTime", _JsonUtils.toJsonLiteralArray(valueLocalTime));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List_Optional_Null.DataBuilder valueOffsetDateTime(List<OffsetDateTime> valueOffsetDateTime) {
+			if (valueOffsetDateTime == null) {
+				$builder.addNull("valueOffsetDateTime");
+				return this;
+			}
+			$builder.add("valueOffsetDateTime", _JsonUtils.toJsonLiteralArray(valueOffsetDateTime));
 			return this;
 		}
 

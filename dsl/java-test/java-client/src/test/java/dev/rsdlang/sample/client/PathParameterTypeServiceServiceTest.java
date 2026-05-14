@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -108,6 +109,14 @@ public class PathParameterTypeServiceServiceTest {
 	public void simpleLocalTimePathParam(PathParameterTypeServiceService service) {
 		var t = LocalTime.parse("10:00:00");
 		assertEquals(t, service.simpleLocalTimePathParam(t));
+	}
+
+	// --- OffsetDateTime ---
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleOffsetDateTimePathParam(PathParameterTypeServiceService service) {
+		var odt = OffsetDateTime.parse("2025-01-01T10:00:00+01:00");
+		assertEquals(odt, service.simpleOffsetDateTimePathParam(odt));
 	}
 
 	// --- ZonedDateTime ---

@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Base64;
@@ -265,6 +266,22 @@ public class _RestUtils {
 
 	public static _Base.Nillable<LocalTime> parseNilLocalTime(String value) {
 		return parseNilLiteral(value, LocalTime::parse);
+	}
+
+	public static OffsetDateTime parseOffsetDateTime(String value) {
+		return parseLiteral(value, OffsetDateTime::parse);
+	}
+
+	public static Optional<OffsetDateTime> parseOptOffsetDateTime(String value) {
+		return parseOptLiteral(value, OffsetDateTime::parse);
+	}
+
+	public static Optional<OffsetDateTime> parseNullOffsetDateTime(String value) {
+		return parseNullLiteral(value, OffsetDateTime::parse);
+	}
+
+	public static _Base.Nillable<OffsetDateTime> parseNilOffsetDateTime(String value) {
+		return parseNilLiteral(value, OffsetDateTime::parse);
 	}
 
 	public static <T> List<T> mapLiterals(List<String> data, Function<String, T> mapper) {
@@ -660,6 +677,38 @@ public class _RestUtils {
 
 	public static _Base.Nillable<List<LocalTime>> mapNilLocalTimes(String data) {
 		return mapNilLiterals(data, LocalTime::parse);
+	}
+
+	public static List<OffsetDateTime> mapOffsetDateTimes(List<String> data) {
+		return mapLiterals(data, OffsetDateTime::parse);
+	}
+
+	public static Optional<List<OffsetDateTime>> mapOptOffsetDateTimes(List<String> data) {
+		return mapOptLiterals(data, OffsetDateTime::parse);
+	}
+
+	public static Optional<List<OffsetDateTime>> mapNullOffsetDateTimes(List<String> data) {
+		return mapNullLiterals(data, OffsetDateTime::parse);
+	}
+
+	public static _Base.Nillable<List<OffsetDateTime>> mapNilOffsetDateTimes(List<String> data) {
+		return mapNilLiterals(data, OffsetDateTime::parse);
+	}
+
+	public static List<OffsetDateTime> mapOffsetDateTimes(String data) {
+		return mapLiterals(data, OffsetDateTime::parse);
+	}
+
+	public static Optional<List<OffsetDateTime>> mapOptOffsetDateTimes(String data) {
+		return mapOptLiterals(data, OffsetDateTime::parse);
+	}
+
+	public static Optional<List<OffsetDateTime>> mapNullOffsetDateTimes(String data) {
+		return mapNullLiterals(data, OffsetDateTime::parse);
+	}
+
+	public static _Base.Nillable<List<OffsetDateTime>> mapNilOffsetDateTimes(String data) {
+		return mapNilLiterals(data, OffsetDateTime::parse);
 	}
 
 	public static <T> List<T> mapObjects(List<String> data, Function<String, T> mapper) {

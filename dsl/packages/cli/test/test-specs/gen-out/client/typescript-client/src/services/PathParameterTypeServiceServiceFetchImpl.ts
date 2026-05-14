@@ -14,6 +14,7 @@ export function createPathParameterTypeServiceService(props: ServiceProps<api.se
 		simpleLocalDatePathParam: fnSimpleLocalDatePathParam(props),
 		simpleLocalDateTimePathParam: fnSimpleLocalDateTimePathParam(props),
 		simpleLocalTimePathParam: fnSimpleLocalTimePathParam(props),
+		simpleOffsetDateTimePathParam: fnSimpleOffsetDateTimePathParam(props),
 		simpleZonedDateTimePathParam: fnSimpleZonedDateTimePathParam(props),
 		simpleScalarPathParam: fnSimpleScalarPathParam(props),
 		simpleEnumPathParam: fnSimpleEnumPathParam(props),
@@ -326,6 +327,37 @@ function fnSimpleLocalTimePathParam(props: ServiceProps<api.service.ErrorType>):
 			return api.result.ERR(err);
 		} finally {
 			final?.('simpleLocalTimePathParam');
+		}
+	};
+}
+
+function fnSimpleOffsetDateTimePathParam(props: ServiceProps<api.service.ErrorType>): api.service.PathParameterTypeServiceService['simpleOffsetDateTimePathParam'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (pathOffsetDateTime: string) => {
+		try {
+			const $init = (await preFetch?.('simpleOffsetDateTimePathParam')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/pathparametertype/offsetdatetime/${encodeURIComponent(pathOffsetDateTime)}`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isString);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleOffsetDateTimePathParam', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleOffsetDateTimePathParam', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleOffsetDateTimePathParam');
 		}
 	};
 }

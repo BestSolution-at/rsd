@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -240,6 +241,26 @@ public class QueryParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void simpleLocalTimeQueryParamOpt_defined(QueryParameterTypesService service) {
 		assertEquals(NilResult.DEFINED, service.simpleLocalTimeQueryParamOpt(LocalTime.parse("10:00:00")));
+	}
+
+	// --- OffsetDateTime ---
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleOffsetDateTimeQueryParam(QueryParameterTypesService service) {
+		var odt = OffsetDateTime.parse("2025-01-01T10:00:00+01:00");
+		assertEquals(odt, service.simpleOffsetDateTimeQueryParam(odt));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleOffsetDateTimeQueryParamOpt_undefined(QueryParameterTypesService service) {
+		assertEquals(NilResult.UNDEFINED, service.simpleOffsetDateTimeQueryParamOpt());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void simpleOffsetDateTimeQueryParamOpt_defined(QueryParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.simpleOffsetDateTimeQueryParamOpt(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
 	}
 
 	// --- ZonedDateTime ---

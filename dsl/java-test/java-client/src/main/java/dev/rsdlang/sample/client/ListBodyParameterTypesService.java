@@ -4,6 +4,7 @@ package dev.rsdlang.sample.client;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -152,6 +153,18 @@ public interface ListBodyParameterTypesService extends BaseService {
 	public NilResult listLocalTimeBodyParamOptNil();
 
 	public NilResult listLocalTimeBodyParamOptNil(List<LocalTime> bodyLocalTime);
+
+	public List<OffsetDateTime> listOffsetDateTimeBodyParam(List<OffsetDateTime> bodyOffsetDateTime);
+
+	public NilResult listOffsetDateTimeBodyParamOpt();
+
+	public NilResult listOffsetDateTimeBodyParamOpt(List<OffsetDateTime> bodyOffsetDateTime);
+
+	public NilResult listOffsetDateTimeBodyParamNil(List<OffsetDateTime> bodyOffsetDateTime);
+
+	public NilResult listOffsetDateTimeBodyParamOptNil();
+
+	public NilResult listOffsetDateTimeBodyParamOptNil(List<OffsetDateTime> bodyOffsetDateTime);
 
 	public List<ZonedDateTime> listZonedDateTimeBodyParam(List<ZonedDateTime> bodyZonedDateTime);
 

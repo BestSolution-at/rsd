@@ -123,6 +123,13 @@ public class ListSampleServiceResource {
 	}
 
 	@GET
+	@Path("offsetdatetime")
+	public Response listOffsetDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.listOffsetDateTime(builderFactory);
+		return responseBuilder.listOffsetDateTime(result, computeResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
 	@Path("zoneddatetime")
 	public Response listZonedDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listZonedDateTime(builderFactory);

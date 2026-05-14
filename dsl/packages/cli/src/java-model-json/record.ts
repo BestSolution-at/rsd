@@ -210,6 +210,7 @@ function builtinBuilderAccess(property: { type: MBuiltinType; name: string }): s
 		case 'local-date':
 		case 'local-date-time':
 		case 'local-time':
+		case 'offset-date-time':
 		case 'zoned-date-time':
 			return `$builder.add("${property.name}", _JsonUtils.toString(${property.name}))`;
 	}
@@ -230,6 +231,8 @@ function builtinBuilderArrayJSONAccess(property: { type: MBuiltinType; name: str
 		case 'local-date-time':
 			return `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
 		case 'local-time':
+			return `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
+		case 'offset-date-time':
 			return `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
 		case 'long':
 			return `$builder.add("${property.name}", _JsonUtils.toJsonLongArray(${property.name}))`;

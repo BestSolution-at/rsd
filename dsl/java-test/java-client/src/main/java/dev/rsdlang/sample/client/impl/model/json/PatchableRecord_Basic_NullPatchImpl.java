@@ -4,6 +4,7 @@ package dev.rsdlang.sample.client.impl.model.json;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
 import jakarta.json.Json;
@@ -66,6 +67,10 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 
 	public _Base.Nillable<LocalTime> valueLocalTime() {
 		return _JsonUtils.mapNilLocalTime(data, "valueLocalTime");
+	}
+
+	public _Base.Nillable<OffsetDateTime> valueOffsetDateTime() {
+		return _JsonUtils.mapNilOffsetDateTime(data, "valueOffsetDateTime");
 	}
 
 	public _Base.Nillable<ZonedDateTime> valueZonedDateTime() {
@@ -182,6 +187,16 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 				return this;
 			}
 			$builder.add("valueLocalTime", valueLocalTime.toString());
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_Null.PatchBuilder valueOffsetDateTime(OffsetDateTime valueOffsetDateTime) {
+			if (valueOffsetDateTime == null) {
+				$builder.addNull("valueOffsetDateTime");
+				return this;
+			}
+			$builder.add("valueOffsetDateTime", valueOffsetDateTime.toString());
 			return this;
 		}
 

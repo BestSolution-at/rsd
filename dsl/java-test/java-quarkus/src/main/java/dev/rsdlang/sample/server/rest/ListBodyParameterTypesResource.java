@@ -501,6 +501,50 @@ public class ListBodyParameterTypesResource {
 	}
 
 	@PUT
+	@Path("listOffsetDateTimeBodyParam")
+	public Response listOffsetDateTimeBodyParam(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyOffsetDateTime) {
+		var bodyOffsetDateTime = _JsonUtils.parseOffsetDateTimes(_bodyOffsetDateTime, computeRequestContentType($contentTypeHeader));
+		var result = service.listOffsetDateTimeBodyParam(builderFactory, bodyOffsetDateTime);
+		return responseBuilder.listOffsetDateTimeBodyParam(result, computeResponseContentType($acceptHeaders), bodyOffsetDateTime).build();
+	}
+
+	@PUT
+	@Path("listOffsetDateTimeBodyParamOpt")
+	public Response listOffsetDateTimeBodyParamOpt(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyOffsetDateTime) {
+		var bodyOffsetDateTime = _JsonUtils.parseOptOffsetDateTimes(_bodyOffsetDateTime, computeRequestContentType($contentTypeHeader));
+		var result = service.listOffsetDateTimeBodyParamOpt(builderFactory, bodyOffsetDateTime);
+		return responseBuilder.listOffsetDateTimeBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyOffsetDateTime).build();
+	}
+
+	@PUT
+	@Path("listOffsetDateTimeBodyParamNil")
+	public Response listOffsetDateTimeBodyParamNil(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyOffsetDateTime) {
+		var bodyOffsetDateTime = _JsonUtils.parseNullOffsetDateTimes(_bodyOffsetDateTime, computeRequestContentType($contentTypeHeader));
+		var result = service.listOffsetDateTimeBodyParamNil(builderFactory, bodyOffsetDateTime);
+		return responseBuilder.listOffsetDateTimeBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyOffsetDateTime).build();
+	}
+
+	@PUT
+	@Path("listOffsetDateTimeBodyParamOptNil")
+	public Response listOffsetDateTimeBodyParamOptNil(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyOffsetDateTime) {
+		var bodyOffsetDateTime = _JsonUtils.parseNilOffsetDateTimes(_bodyOffsetDateTime, computeRequestContentType($contentTypeHeader));
+		var result = service.listOffsetDateTimeBodyParamOptNil(builderFactory, bodyOffsetDateTime);
+		return responseBuilder.listOffsetDateTimeBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyOffsetDateTime).build();
+	}
+
+	@PUT
 	@Path("listZonedDateTimeBodyParam")
 	public Response listZonedDateTimeBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,

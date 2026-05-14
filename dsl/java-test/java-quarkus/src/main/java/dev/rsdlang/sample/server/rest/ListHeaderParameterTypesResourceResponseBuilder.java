@@ -4,6 +4,7 @@ package dev.rsdlang.sample.server.rest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -218,6 +219,26 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLocalTimeHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<LocalTime>> headerValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder listOffsetDateTimeHeaderParam(List<OffsetDateTime> $result, String $contentType, List<OffsetDateTime> headerValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder listOffsetDateTimeHeaderParamOpt(NilResult $result, String $contentType, Optional<List<OffsetDateTime>> headerValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder listOffsetDateTimeHeaderParamNil(NilResult $result, String $contentType, Optional<List<OffsetDateTime>> headerValue) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder listOffsetDateTimeHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<OffsetDateTime>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
