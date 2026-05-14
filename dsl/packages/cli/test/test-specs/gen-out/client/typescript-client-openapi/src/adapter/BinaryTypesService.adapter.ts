@@ -429,7 +429,9 @@ class BinaryTypesServiceImpl implements api.service.BinaryTypesService {
 	): Promise<api.result.Result<api.result.VoidType, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.binaryTypesSingleBodyAdditionRaw({
-				name,
+				rsdPayload: {
+					name,
+				},
 				dataBlob,
 			});
 			if (response.raw.status === 200) {
