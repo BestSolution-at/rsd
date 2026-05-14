@@ -191,6 +191,41 @@ class ListQueryParameterTypesServiceImpl implements api.service.ListQueryParamet
 		}
 	}
 
+	async listLocalTimeQueryParam(
+		queryValue: string[],
+	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.listQueryParameterTypesListLocalTimeQueryParamRaw({
+				queryValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			} else {
+				return api.result.ERR(toRSDError(response));
+			}
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async listOffsetDateTimeQueryParam(
+		queryValue: string[],
+	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.listQueryParameterTypesListOffsetDateTimeQueryParamRaw({
+				queryValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			} else {
+				return api.result.ERR(toRSDError(response));
+			}
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+
 	async listZonedDateTimeQueryParam(
 		queryValue: string[],
 	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {

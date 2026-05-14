@@ -90,6 +90,18 @@ export interface PatchableRecordOfRecordsValueOptNullPatchMerge {
      * @type {string}
      * @memberof PatchableRecordOfRecordsValueOptNullPatchMerge
      */
+    valueLocalTime?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchableRecordOfRecordsValueOptNullPatchMerge
+     */
+    valueOffsetDateTime?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchableRecordOfRecordsValueOptNullPatchMerge
+     */
     valueZonedDateTime?: string;
     /**
      * 
@@ -130,6 +142,8 @@ export function PatchableRecordOfRecordsValueOptNullPatchMergeFromJSONTyped(json
         'valueString': json['valueString'] == null ? undefined : json['valueString'],
         'valueLocalDate': json['valueLocalDate'] == null ? undefined : (new Date(json['valueLocalDate'])),
         'valueLocalDateTime': json['valueLocalDateTime'] == null ? undefined : json['valueLocalDateTime'],
+        'valueLocalTime': json['valueLocalTime'] == null ? undefined : json['valueLocalTime'],
+        'valueOffsetDateTime': json['valueOffsetDateTime'] == null ? undefined : json['valueOffsetDateTime'],
         'valueZonedDateTime': json['valueZonedDateTime'] == null ? undefined : json['valueZonedDateTime'],
         'type': json['@type'],
     };
@@ -157,6 +171,8 @@ export function PatchableRecordOfRecordsValueOptNullPatchMergeToJSONTyped(value?
         'valueString': value['valueString'],
         'valueLocalDate': value['valueLocalDate'] == null ? value['valueLocalDate'] : value['valueLocalDate'].toISOString().substring(0,10),
         'valueLocalDateTime': value['valueLocalDateTime'],
+        'valueLocalTime': value['valueLocalTime'],
+        'valueOffsetDateTime': value['valueOffsetDateTime'],
         'valueZonedDateTime': value['valueZonedDateTime'],
         '@type': value['type'],
     };

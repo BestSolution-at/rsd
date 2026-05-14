@@ -169,6 +169,39 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 		}
 	}
 
+	async simpleLocalTimePathParam(
+		pathLocalTime: string,
+	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.pathParameterTypeServiceSimpleLocalTimePathParamRaw({
+				pathLocalTime,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleOffsetDateTimePathParam(
+		pathOffsetDateTime: string,
+	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.pathParameterTypeServiceSimpleOffsetDateTimePathParamRaw({
+				pathOffsetDateTime,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+
 	async simpleZonedDateTimePathParam(
 		pathZonedDateTime: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {

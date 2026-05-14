@@ -397,6 +397,104 @@ describe('SingleHeaderParameterTypesService', () => {
 		});
 	});
 
+	describe('simpleLocalTimeHeaderParam', () => {
+		test.each([json, msgpack, openApi])('success - 10:00:00 with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeHeaderParam('10:00:00');
+			expect(error).toBeNull();
+			expect(result).toBe('10:00:00');
+		});
+	});
+	describe('simpleLocalTimeHeaderParamOpt', () => {
+		test.each([json, msgpack, openApi])('success - undefined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeHeaderParamOpt();
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+		test.each([json, msgpack, openApi])('success - defined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeHeaderParamOpt('10:00:00');
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
+	});
+	describe('simpleLocalTimeHeaderParamNil', () => {
+		test.each([json, msgpack, openApi])('success - null with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeHeaderParamNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+		test.each([json, msgpack, openApi])('success - defined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeHeaderParamNil('10:00:00');
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
+	});
+	describe('simpleLocalTimeHeaderParamOptNil', () => {
+		test.each([json, msgpack, openApi])('success - undefined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeHeaderParamOptNil();
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+		test.each([json, msgpack, openApi])('success - null with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeHeaderParamOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+		test.each([json, msgpack, openApi])('success - defined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeHeaderParamOptNil('10:00:00');
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
+	});
+
+	describe('simpleOffsetDateTimeHeaderParam', () => {
+		test.each([json, msgpack, openApi])('success - 2025-01-01T10:00:00+01:00 with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeHeaderParam('2025-01-01T10:00:00+01:00');
+			expect(error).toBeNull();
+			expect(result).toBe('2025-01-01T10:00:00+01:00');
+		});
+	});
+	describe('simpleOffsetDateTimeHeaderParamOpt', () => {
+		test.each([json, msgpack, openApi])('success - undefined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeHeaderParamOpt();
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+		test.each([json, msgpack, openApi])('success - defined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeHeaderParamOpt('2025-01-01T10:00:00+01:00');
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
+	});
+	describe('simpleOffsetDateTimeHeaderParamNil', () => {
+		test.each([json, msgpack, openApi])('success - null with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeHeaderParamNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+		test.each([json, msgpack, openApi])('success - defined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeHeaderParamNil('2025-01-01T10:00:00+01:00');
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
+	});
+	describe('simpleOffsetDateTimeHeaderParamOptNil', () => {
+		test.each([json, msgpack, openApi])('success - undefined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeHeaderParamOptNil();
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+		test.each([json, msgpack, openApi])('success - null with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeHeaderParamOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+		test.each([json, msgpack, openApi])('success - defined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeHeaderParamOptNil('2025-01-01T10:00:00+01:00');
+			expect(error).toBeNull();
+			expect(result).toBe('DEFINED');
+		});
+	});
+
 	describe('simpleZonedDateTimeHeaderParam', () => {
 		test.each([json, msgpack, openApi])('success - 2024-01-01T12:34:56Z with $encoding', async ({ service }) => {
 			const [result, error] = await service.simpleZonedDateTimeHeaderParam('2024-01-01T12:34:56Z');

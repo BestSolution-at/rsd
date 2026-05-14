@@ -78,6 +78,18 @@ export interface SimpleRecordBasicNull {
      * @type {string}
      * @memberof SimpleRecordBasicNull
      */
+    valueLocalTime: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleRecordBasicNull
+     */
+    valueOffsetDateTime: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleRecordBasicNull
+     */
     valueZonedDateTime: string | null;
 }
 
@@ -94,6 +106,8 @@ export function instanceOfSimpleRecordBasicNull(value: object): value is SimpleR
     if (!('valueString' in value) || value['valueString'] === undefined) return false;
     if (!('valueLocalDate' in value) || value['valueLocalDate'] === undefined) return false;
     if (!('valueLocalDateTime' in value) || value['valueLocalDateTime'] === undefined) return false;
+    if (!('valueLocalTime' in value) || value['valueLocalTime'] === undefined) return false;
+    if (!('valueOffsetDateTime' in value) || value['valueOffsetDateTime'] === undefined) return false;
     if (!('valueZonedDateTime' in value) || value['valueZonedDateTime'] === undefined) return false;
     return true;
 }
@@ -117,6 +131,8 @@ export function SimpleRecordBasicNullFromJSONTyped(json: any, ignoreDiscriminato
         'valueString': json['valueString'],
         'valueLocalDate': (json['valueLocalDate'] == null ? null : new Date(json['valueLocalDate'])),
         'valueLocalDateTime': json['valueLocalDateTime'],
+        'valueLocalTime': json['valueLocalTime'],
+        'valueOffsetDateTime': json['valueOffsetDateTime'],
         'valueZonedDateTime': json['valueZonedDateTime'],
     };
 }
@@ -141,6 +157,8 @@ export function SimpleRecordBasicNullToJSONTyped(value?: SimpleRecordBasicNull |
         'valueString': value['valueString'],
         'valueLocalDate': value['valueLocalDate'] == null ? value['valueLocalDate'] : value['valueLocalDate'].toISOString().substring(0,10),
         'valueLocalDateTime': value['valueLocalDateTime'],
+        'valueLocalTime': value['valueLocalTime'],
+        'valueOffsetDateTime': value['valueOffsetDateTime'],
         'valueZonedDateTime': value['valueZonedDateTime'],
     };
 }

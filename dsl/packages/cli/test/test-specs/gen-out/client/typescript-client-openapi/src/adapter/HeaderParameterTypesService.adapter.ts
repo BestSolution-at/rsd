@@ -593,6 +593,135 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 		}
 	}
 
+	async simpleLocalTimeHeaderParam(
+		headerValue: string,
+	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalTimeHeaderParamRaw({
+				headerValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLocalTimeHeaderParamOpt(
+		headerValue?: string,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalTimeHeaderParamOptRaw({
+				headerValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLocalTimeHeaderParamNil(
+		headerValue: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalTimeHeaderParamNilRaw({
+				headerValue: headerValue ?? 'null',
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLocalTimeHeaderParamOptNil(
+		headerValue?: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalTimeHeaderParamOptNilRaw({
+				headerValue: headerValue !== undefined ? (headerValue ?? 'null') : undefined,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleOffsetDateTimeHeaderParam(
+		headerValue: string,
+	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamRaw({
+				headerValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleOffsetDateTimeHeaderParamOpt(
+		headerValue?: string,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamOptRaw({
+				headerValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleOffsetDateTimeHeaderParamNil(
+		headerValue: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamNilRaw({
+				headerValue: headerValue ?? 'null',
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleOffsetDateTimeHeaderParamOptNil(
+		headerValue?: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRaw({
+				headerValue: headerValue !== undefined ? (headerValue ?? 'null') : undefined,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+
 	async simpleZonedDateTimeHeaderParam(
 		headerValue: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {

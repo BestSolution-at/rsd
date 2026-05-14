@@ -48,6 +48,13 @@ import {
     PatchableRecordBasicListOptionalNullPatchValueLocalDateTimeToJSON,
     PatchableRecordBasicListOptionalNullPatchValueLocalDateTimeToJSONTyped,
 } from './PatchableRecordBasicListOptionalNullPatchValueLocalDateTime.js';
+import type { PatchableRecordBasicListOptionalNullPatchValueOffsetDateTime } from './PatchableRecordBasicListOptionalNullPatchValueOffsetDateTime.js';
+import {
+    PatchableRecordBasicListOptionalNullPatchValueOffsetDateTimeFromJSON,
+    PatchableRecordBasicListOptionalNullPatchValueOffsetDateTimeFromJSONTyped,
+    PatchableRecordBasicListOptionalNullPatchValueOffsetDateTimeToJSON,
+    PatchableRecordBasicListOptionalNullPatchValueOffsetDateTimeToJSONTyped,
+} from './PatchableRecordBasicListOptionalNullPatchValueOffsetDateTime.js';
 import type { PatchableRecordBasicListOptionalNullPatchValueBoolean } from './PatchableRecordBasicListOptionalNullPatchValueBoolean.js';
 import {
     PatchableRecordBasicListOptionalNullPatchValueBooleanFromJSON,
@@ -62,6 +69,13 @@ import {
     PatchableRecordBasicListOptionalNullPatchValueFloatToJSON,
     PatchableRecordBasicListOptionalNullPatchValueFloatToJSONTyped,
 } from './PatchableRecordBasicListOptionalNullPatchValueFloat.js';
+import type { PatchableRecordBasicListOptionalNullPatchValueLocalTime } from './PatchableRecordBasicListOptionalNullPatchValueLocalTime.js';
+import {
+    PatchableRecordBasicListOptionalNullPatchValueLocalTimeFromJSON,
+    PatchableRecordBasicListOptionalNullPatchValueLocalTimeFromJSONTyped,
+    PatchableRecordBasicListOptionalNullPatchValueLocalTimeToJSON,
+    PatchableRecordBasicListOptionalNullPatchValueLocalTimeToJSONTyped,
+} from './PatchableRecordBasicListOptionalNullPatchValueLocalTime.js';
 import type { PatchableRecordBasicListOptionalNullPatchValueString } from './PatchableRecordBasicListOptionalNullPatchValueString.js';
 import {
     PatchableRecordBasicListOptionalNullPatchValueStringFromJSON,
@@ -158,6 +172,18 @@ export interface PatchableRecordBasicListOptionalNullPatch {
     valueLocalDateTime?: PatchableRecordBasicListOptionalNullPatchValueLocalDateTime;
     /**
      * 
+     * @type {PatchableRecordBasicListOptionalNullPatchValueLocalTime}
+     * @memberof PatchableRecordBasicListOptionalNullPatch
+     */
+    valueLocalTime?: PatchableRecordBasicListOptionalNullPatchValueLocalTime;
+    /**
+     * 
+     * @type {PatchableRecordBasicListOptionalNullPatchValueOffsetDateTime}
+     * @memberof PatchableRecordBasicListOptionalNullPatch
+     */
+    valueOffsetDateTime?: PatchableRecordBasicListOptionalNullPatchValueOffsetDateTime;
+    /**
+     * 
      * @type {PatchableRecordBasicListOptionalNullPatchValueZonedDateTime}
      * @memberof PatchableRecordBasicListOptionalNullPatch
      */
@@ -194,6 +220,8 @@ export function PatchableRecordBasicListOptionalNullPatchFromJSONTyped(json: any
         'valueString': json['valueString'] == null ? undefined : PatchableRecordBasicListOptionalNullPatchValueStringFromJSON(json['valueString']),
         'valueLocalDate': json['valueLocalDate'] == null ? undefined : PatchableRecordBasicListOptionalNullPatchValueLocalDateFromJSON(json['valueLocalDate']),
         'valueLocalDateTime': json['valueLocalDateTime'] == null ? undefined : PatchableRecordBasicListOptionalNullPatchValueLocalDateTimeFromJSON(json['valueLocalDateTime']),
+        'valueLocalTime': json['valueLocalTime'] == null ? undefined : PatchableRecordBasicListOptionalNullPatchValueLocalTimeFromJSON(json['valueLocalTime']),
+        'valueOffsetDateTime': json['valueOffsetDateTime'] == null ? undefined : PatchableRecordBasicListOptionalNullPatchValueOffsetDateTimeFromJSON(json['valueOffsetDateTime']),
         'valueZonedDateTime': json['valueZonedDateTime'] == null ? undefined : PatchableRecordBasicListOptionalNullPatchValueZonedDateTimeFromJSON(json['valueZonedDateTime']),
     };
 }
@@ -220,6 +248,8 @@ export function PatchableRecordBasicListOptionalNullPatchToJSONTyped(value?: Pat
         'valueString': PatchableRecordBasicListOptionalNullPatchValueStringToJSON(value['valueString']),
         'valueLocalDate': PatchableRecordBasicListOptionalNullPatchValueLocalDateToJSON(value['valueLocalDate']),
         'valueLocalDateTime': PatchableRecordBasicListOptionalNullPatchValueLocalDateTimeToJSON(value['valueLocalDateTime']),
+        'valueLocalTime': PatchableRecordBasicListOptionalNullPatchValueLocalTimeToJSON(value['valueLocalTime']),
+        'valueOffsetDateTime': PatchableRecordBasicListOptionalNullPatchValueOffsetDateTimeToJSON(value['valueOffsetDateTime']),
         'valueZonedDateTime': PatchableRecordBasicListOptionalNullPatchValueZonedDateTimeToJSON(value['valueZonedDateTime']),
     };
 }

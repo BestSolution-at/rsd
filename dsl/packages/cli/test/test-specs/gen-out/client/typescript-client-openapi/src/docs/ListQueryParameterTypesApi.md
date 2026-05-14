@@ -12,8 +12,10 @@ All URIs are relative to *http://localhost*
 | [**listQueryParameterTypesListIntQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistintqueryparam) | **GET** /api/listqueryparametertypes/listIntQueryParam |  |
 | [**listQueryParameterTypesListLocalDateQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistlocaldatequeryparam) | **GET** /api/listqueryparametertypes/listLocalDateQueryParam |  |
 | [**listQueryParameterTypesListLocalDateTimeQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistlocaldatetimequeryparam) | **GET** /api/listqueryparametertypes/listLocalDateTimeQueryParam |  |
+| [**listQueryParameterTypesListLocalTimeQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistlocaltimequeryparam) | **GET** /api/listqueryparametertypes/listLocalTimeQueryParam |  |
 | [**listQueryParameterTypesListLongQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistlongqueryparam) | **GET** /api/listqueryparametertypes/listLongQueryParam |  |
 | [**listQueryParameterTypesListMultiQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistmultiqueryparam) | **GET** /api/listqueryparametertypes/listMultiQueryParam |  |
+| [**listQueryParameterTypesListOffsetDateTimeQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistoffsetdatetimequeryparam) | **GET** /api/listqueryparametertypes/listOffsetDateTimeQueryParam |  |
 | [**listQueryParameterTypesListRecordQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistrecordqueryparam) | **GET** /api/listqueryparametertypes/listRecordQueryParam |  |
 | [**listQueryParameterTypesListScalarQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistscalarqueryparam) | **GET** /api/listqueryparametertypes/listScalarQueryParam |  |
 | [**listQueryParameterTypesListShortQueryParam**](ListQueryParameterTypesApi.md#listqueryparametertypeslistshortqueryparam) | **GET** /api/listqueryparametertypes/listShortQueryParam |  |
@@ -558,6 +560,73 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## listQueryParameterTypesListLocalTimeQueryParam
+
+> Array&lt;string&gt; listQueryParameterTypesListLocalTimeQueryParam(queryValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListQueryParameterTypesApi,
+} from '';
+import type { ListQueryParameterTypesListLocalTimeQueryParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListQueryParameterTypesApi();
+
+  const body = {
+    // Array<string> | 
+    queryValue: ...,
+  } satisfies ListQueryParameterTypesListLocalTimeQueryParamRequest;
+
+  try {
+    const data = await api.listQueryParameterTypesListLocalTimeQueryParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **queryValue** | `Array<string>` |  | |
+
+### Return type
+
+**Array<string>**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## listQueryParameterTypesListLongQueryParam
 
 > Array&lt;number&gt; listQueryParameterTypesListLongQueryParam(queryValue)
@@ -682,6 +751,73 @@ example().catch(console.error);
 ### Return type
 
 **string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listQueryParameterTypesListOffsetDateTimeQueryParam
+
+> Array&lt;string&gt; listQueryParameterTypesListOffsetDateTimeQueryParam(queryValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListQueryParameterTypesApi,
+} from '';
+import type { ListQueryParameterTypesListOffsetDateTimeQueryParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListQueryParameterTypesApi();
+
+  const body = {
+    // Array<string> | 
+    queryValue: ...,
+  } satisfies ListQueryParameterTypesListOffsetDateTimeQueryParamRequest;
+
+  try {
+    const data = await api.listQueryParameterTypesListOffsetDateTimeQueryParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **queryValue** | `Array<string>` |  | |
+
+### Return type
+
+**Array<string>**
 
 ### Authorization
 

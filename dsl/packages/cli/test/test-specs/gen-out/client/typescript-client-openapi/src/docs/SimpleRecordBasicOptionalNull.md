@@ -15,6 +15,8 @@ Name | Type
 `valueString` | string
 `valueLocalDate` | Date
 `valueLocalDateTime` | string
+`valueLocalTime` | string
+`valueOffsetDateTime` | string
 `valueZonedDateTime` | string
 
 ## Example
@@ -33,6 +35,8 @@ const example = {
   "valueString": null,
   "valueLocalDate": null,
   "valueLocalDateTime": null,
+  "valueLocalTime": null,
+  "valueOffsetDateTime": null,
   "valueZonedDateTime": null,
 } satisfies SimpleRecordBasicOptionalNull
 

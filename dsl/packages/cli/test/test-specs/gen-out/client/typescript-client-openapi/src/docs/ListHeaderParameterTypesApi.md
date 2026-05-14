@@ -36,6 +36,10 @@ All URIs are relative to *http://localhost*
 | [**listHeaderParameterTypesListLocalDateTimeHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaldatetimeheaderparamnil) | **GET** /api/listheaderparametertypes/listLocalDateTimeHeaderParamNil |  |
 | [**listHeaderParameterTypesListLocalDateTimeHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaldatetimeheaderparamopt) | **GET** /api/listheaderparametertypes/listLocalDateTimeHeaderParamOpt |  |
 | [**listHeaderParameterTypesListLocalDateTimeHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaldatetimeheaderparamoptnil) | **GET** /api/listheaderparametertypes/listLocalDateTimeHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListLocalTimeHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaltimeheaderparam) | **GET** /api/listheaderparametertypes/listLocalTimeHeaderParam |  |
+| [**listHeaderParameterTypesListLocalTimeHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaltimeheaderparamnil) | **GET** /api/listheaderparametertypes/listLocalTimeHeaderParamNil |  |
+| [**listHeaderParameterTypesListLocalTimeHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaltimeheaderparamopt) | **GET** /api/listheaderparametertypes/listLocalTimeHeaderParamOpt |  |
+| [**listHeaderParameterTypesListLocalTimeHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlocaltimeheaderparamoptnil) | **GET** /api/listheaderparametertypes/listLocalTimeHeaderParamOptNil |  |
 | [**listHeaderParameterTypesListLongHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlongheaderparam) | **GET** /api/listheaderparametertypes/listLongHeaderParam |  |
 | [**listHeaderParameterTypesListLongHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlongheaderparamnil) | **GET** /api/listheaderparametertypes/listLongHeaderParamNil |  |
 | [**listHeaderParameterTypesListLongHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistlongheaderparamopt) | **GET** /api/listheaderparametertypes/listLongHeaderParamOpt |  |
@@ -44,6 +48,10 @@ All URIs are relative to *http://localhost*
 | [**listHeaderParameterTypesListMultiHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistmultiheaderparamnil) | **GET** /api/listheaderparametertypes/listMultiHeaderParamNil |  |
 | [**listHeaderParameterTypesListMultiHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistmultiheaderparamopt) | **GET** /api/listheaderparametertypes/listMultiHeaderParamOpt |  |
 | [**listHeaderParameterTypesListMultiHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistmultiheaderparamoptnil) | **GET** /api/listheaderparametertypes/listMultiHeaderParamOptNil |  |
+| [**listHeaderParameterTypesListOffsetDateTimeHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistoffsetdatetimeheaderparam) | **GET** /api/listheaderparametertypes/listOffsetDateTimeHeaderParam |  |
+| [**listHeaderParameterTypesListOffsetDateTimeHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistoffsetdatetimeheaderparamnil) | **GET** /api/listheaderparametertypes/listOffsetDateTimeHeaderParamNil |  |
+| [**listHeaderParameterTypesListOffsetDateTimeHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistoffsetdatetimeheaderparamopt) | **GET** /api/listheaderparametertypes/listOffsetDateTimeHeaderParamOpt |  |
+| [**listHeaderParameterTypesListOffsetDateTimeHeaderParamOptNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistoffsetdatetimeheaderparamoptnil) | **GET** /api/listheaderparametertypes/listOffsetDateTimeHeaderParamOptNil |  |
 | [**listHeaderParameterTypesListRecordHeaderParam**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistrecordheaderparam) | **GET** /api/listheaderparametertypes/listRecordHeaderParam |  |
 | [**listHeaderParameterTypesListRecordHeaderParamNil**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistrecordheaderparamnil) | **GET** /api/listheaderparametertypes/listRecordHeaderParamNil |  |
 | [**listHeaderParameterTypesListRecordHeaderParamOpt**](ListHeaderParameterTypesApi.md#listheaderparametertypeslistrecordheaderparamopt) | **GET** /api/listheaderparametertypes/listRecordHeaderParamOpt |  |
@@ -2211,6 +2219,274 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## listHeaderParameterTypesListLocalTimeHeaderParam
+
+> Array&lt;string&gt; listHeaderParameterTypesListLocalTimeHeaderParam(headerValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListHeaderParameterTypesApi,
+} from '';
+import type { ListHeaderParameterTypesListLocalTimeHeaderParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListHeaderParameterTypesApi();
+
+  const body = {
+    // Array<string> | 
+    headerValue: ...,
+  } satisfies ListHeaderParameterTypesListLocalTimeHeaderParamRequest;
+
+  try {
+    const data = await api.listHeaderParameterTypesListLocalTimeHeaderParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **headerValue** | `Array<string>` |  | |
+
+### Return type
+
+**Array<string>**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listHeaderParameterTypesListLocalTimeHeaderParamNil
+
+> NilResult listHeaderParameterTypesListLocalTimeHeaderParamNil(headerValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListHeaderParameterTypesApi,
+} from '';
+import type { ListHeaderParameterTypesListLocalTimeHeaderParamNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListHeaderParameterTypesApi();
+
+  const body = {
+    // Array<string> | 
+    headerValue: ...,
+  } satisfies ListHeaderParameterTypesListLocalTimeHeaderParamNilRequest;
+
+  try {
+    const data = await api.listHeaderParameterTypesListLocalTimeHeaderParamNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **headerValue** | `Array<string>` |  | |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listHeaderParameterTypesListLocalTimeHeaderParamOpt
+
+> NilResult listHeaderParameterTypesListLocalTimeHeaderParamOpt(headerValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListHeaderParameterTypesApi,
+} from '';
+import type { ListHeaderParameterTypesListLocalTimeHeaderParamOptRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListHeaderParameterTypesApi();
+
+  const body = {
+    // Array<string> |  (optional)
+    headerValue: ...,
+  } satisfies ListHeaderParameterTypesListLocalTimeHeaderParamOptRequest;
+
+  try {
+    const data = await api.listHeaderParameterTypesListLocalTimeHeaderParamOpt(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **headerValue** | `Array<string>` |  | [Optional] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listHeaderParameterTypesListLocalTimeHeaderParamOptNil
+
+> NilResult listHeaderParameterTypesListLocalTimeHeaderParamOptNil(headerValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListHeaderParameterTypesApi,
+} from '';
+import type { ListHeaderParameterTypesListLocalTimeHeaderParamOptNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListHeaderParameterTypesApi();
+
+  const body = {
+    // Array<string> |  (optional)
+    headerValue: ...,
+  } satisfies ListHeaderParameterTypesListLocalTimeHeaderParamOptNilRequest;
+
+  try {
+    const data = await api.listHeaderParameterTypesListLocalTimeHeaderParamOptNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **headerValue** | `Array<string>` |  | [Optional] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## listHeaderParameterTypesListLongHeaderParam
 
 > Array&lt;number&gt; listHeaderParameterTypesListLongHeaderParam(headerValue)
@@ -2764,6 +3040,274 @@ example().catch(console.error);
 ### Return type
 
 [**Array&lt;NilResult&gt;**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listHeaderParameterTypesListOffsetDateTimeHeaderParam
+
+> Array&lt;string&gt; listHeaderParameterTypesListOffsetDateTimeHeaderParam(headerValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListHeaderParameterTypesApi,
+} from '';
+import type { ListHeaderParameterTypesListOffsetDateTimeHeaderParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListHeaderParameterTypesApi();
+
+  const body = {
+    // Array<string> | 
+    headerValue: ...,
+  } satisfies ListHeaderParameterTypesListOffsetDateTimeHeaderParamRequest;
+
+  try {
+    const data = await api.listHeaderParameterTypesListOffsetDateTimeHeaderParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **headerValue** | `Array<string>` |  | |
+
+### Return type
+
+**Array<string>**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listHeaderParameterTypesListOffsetDateTimeHeaderParamNil
+
+> NilResult listHeaderParameterTypesListOffsetDateTimeHeaderParamNil(headerValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListHeaderParameterTypesApi,
+} from '';
+import type { ListHeaderParameterTypesListOffsetDateTimeHeaderParamNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListHeaderParameterTypesApi();
+
+  const body = {
+    // Array<string> | 
+    headerValue: ...,
+  } satisfies ListHeaderParameterTypesListOffsetDateTimeHeaderParamNilRequest;
+
+  try {
+    const data = await api.listHeaderParameterTypesListOffsetDateTimeHeaderParamNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **headerValue** | `Array<string>` |  | |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listHeaderParameterTypesListOffsetDateTimeHeaderParamOpt
+
+> NilResult listHeaderParameterTypesListOffsetDateTimeHeaderParamOpt(headerValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListHeaderParameterTypesApi,
+} from '';
+import type { ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListHeaderParameterTypesApi();
+
+  const body = {
+    // Array<string> |  (optional)
+    headerValue: ...,
+  } satisfies ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptRequest;
+
+  try {
+    const data = await api.listHeaderParameterTypesListOffsetDateTimeHeaderParamOpt(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **headerValue** | `Array<string>` |  | [Optional] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listHeaderParameterTypesListOffsetDateTimeHeaderParamOptNil
+
+> NilResult listHeaderParameterTypesListOffsetDateTimeHeaderParamOptNil(headerValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListHeaderParameterTypesApi,
+} from '';
+import type { ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListHeaderParameterTypesApi();
+
+  const body = {
+    // Array<string> |  (optional)
+    headerValue: ...,
+  } satisfies ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRequest;
+
+  try {
+    const data = await api.listHeaderParameterTypesListOffsetDateTimeHeaderParamOptNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **headerValue** | `Array<string>` |  | [Optional] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
 
 ### Authorization
 

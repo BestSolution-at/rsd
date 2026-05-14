@@ -78,6 +78,18 @@ export interface SimpleRecordBasicListOptionalNull {
      * @type {Array<string>}
      * @memberof SimpleRecordBasicListOptionalNull
      */
+    valueLocalTime?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SimpleRecordBasicListOptionalNull
+     */
+    valueOffsetDateTime?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SimpleRecordBasicListOptionalNull
+     */
     valueZonedDateTime?: Array<string> | null;
 }
 
@@ -107,6 +119,8 @@ export function SimpleRecordBasicListOptionalNullFromJSONTyped(json: any, ignore
         'valueString': json['valueString'] == null ? undefined : json['valueString'],
         'valueLocalDate': json['valueLocalDate'] == null ? undefined : json['valueLocalDate'],
         'valueLocalDateTime': json['valueLocalDateTime'] == null ? undefined : json['valueLocalDateTime'],
+        'valueLocalTime': json['valueLocalTime'] == null ? undefined : json['valueLocalTime'],
+        'valueOffsetDateTime': json['valueOffsetDateTime'] == null ? undefined : json['valueOffsetDateTime'],
         'valueZonedDateTime': json['valueZonedDateTime'] == null ? undefined : json['valueZonedDateTime'],
     };
 }
@@ -131,6 +145,8 @@ export function SimpleRecordBasicListOptionalNullToJSONTyped(value?: SimpleRecor
         'valueString': value['valueString'],
         'valueLocalDate': value['valueLocalDate'],
         'valueLocalDateTime': value['valueLocalDateTime'],
+        'valueLocalTime': value['valueLocalTime'],
+        'valueOffsetDateTime': value['valueOffsetDateTime'],
         'valueZonedDateTime': value['valueZonedDateTime'],
     };
 }

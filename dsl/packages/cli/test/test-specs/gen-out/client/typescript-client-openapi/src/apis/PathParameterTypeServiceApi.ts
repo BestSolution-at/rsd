@@ -52,8 +52,16 @@ export interface PathParameterTypeServiceSimpleLocalDateTimePathParamRequest {
     pathLocalDateTime: string;
 }
 
+export interface PathParameterTypeServiceSimpleLocalTimePathParamRequest {
+    pathLocalTime: string;
+}
+
 export interface PathParameterTypeServiceSimpleLongPathParamRequest {
     pathLong: number;
+}
+
+export interface PathParameterTypeServiceSimpleOffsetDateTimePathParamRequest {
+    pathOffsetDateTime: string;
 }
 
 export interface PathParameterTypeServiceSimpleScalarPathParamRequest {
@@ -478,6 +486,55 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for pathParameterTypeServiceSimpleLocalTimePathParam without sending the request
+     */
+    async pathParameterTypeServiceSimpleLocalTimePathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleLocalTimePathParamRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['pathLocalTime'] == null) {
+            throw new runtime.RequiredError(
+                'pathLocalTime',
+                'Required parameter "pathLocalTime" was null or undefined when calling pathParameterTypeServiceSimpleLocalTimePathParam().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/pathparametertype/localtime/{pathLocalTime}`;
+        urlPath = urlPath.replace('{pathLocalTime}', encodeURIComponent(String(requestParameters['pathLocalTime'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async pathParameterTypeServiceSimpleLocalTimePathParamRaw(requestParameters: PathParameterTypeServiceSimpleLocalTimePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleLocalTimePathParamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async pathParameterTypeServiceSimpleLocalTimePathParam(requestParameters: PathParameterTypeServiceSimpleLocalTimePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.pathParameterTypeServiceSimpleLocalTimePathParamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for pathParameterTypeServiceSimpleLongPathParam without sending the request
      */
     async pathParameterTypeServiceSimpleLongPathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleLongPathParamRequest): Promise<runtime.RequestOpts> {
@@ -523,6 +580,55 @@ export class PathParameterTypeServiceApi extends runtime.BaseAPI {
      */
     async pathParameterTypeServiceSimpleLongPathParam(requestParameters: PathParameterTypeServiceSimpleLongPathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
         const response = await this.pathParameterTypeServiceSimpleLongPathParamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for pathParameterTypeServiceSimpleOffsetDateTimePathParam without sending the request
+     */
+    async pathParameterTypeServiceSimpleOffsetDateTimePathParamRequestOpts(requestParameters: PathParameterTypeServiceSimpleOffsetDateTimePathParamRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['pathOffsetDateTime'] == null) {
+            throw new runtime.RequiredError(
+                'pathOffsetDateTime',
+                'Required parameter "pathOffsetDateTime" was null or undefined when calling pathParameterTypeServiceSimpleOffsetDateTimePathParam().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/pathparametertype/offsetdatetime/{pathOffsetDateTime}`;
+        urlPath = urlPath.replace('{pathOffsetDateTime}', encodeURIComponent(String(requestParameters['pathOffsetDateTime'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async pathParameterTypeServiceSimpleOffsetDateTimePathParamRaw(requestParameters: PathParameterTypeServiceSimpleOffsetDateTimePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.pathParameterTypeServiceSimpleOffsetDateTimePathParamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async pathParameterTypeServiceSimpleOffsetDateTimePathParam(requestParameters: PathParameterTypeServiceSimpleOffsetDateTimePathParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.pathParameterTypeServiceSimpleOffsetDateTimePathParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -78,6 +78,18 @@ export interface SimpleRecordBasicOptionalNull {
      * @type {string}
      * @memberof SimpleRecordBasicOptionalNull
      */
+    valueLocalTime?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleRecordBasicOptionalNull
+     */
+    valueOffsetDateTime?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SimpleRecordBasicOptionalNull
+     */
     valueZonedDateTime?: string | null;
 }
 
@@ -107,6 +119,8 @@ export function SimpleRecordBasicOptionalNullFromJSONTyped(json: any, ignoreDisc
         'valueString': json['valueString'] == null ? undefined : json['valueString'],
         'valueLocalDate': json['valueLocalDate'] == null ? undefined : (new Date(json['valueLocalDate'])),
         'valueLocalDateTime': json['valueLocalDateTime'] == null ? undefined : json['valueLocalDateTime'],
+        'valueLocalTime': json['valueLocalTime'] == null ? undefined : json['valueLocalTime'],
+        'valueOffsetDateTime': json['valueOffsetDateTime'] == null ? undefined : json['valueOffsetDateTime'],
         'valueZonedDateTime': json['valueZonedDateTime'] == null ? undefined : json['valueZonedDateTime'],
     };
 }
@@ -131,6 +145,8 @@ export function SimpleRecordBasicOptionalNullToJSONTyped(value?: SimpleRecordBas
         'valueString': value['valueString'],
         'valueLocalDate': value['valueLocalDate'] == null ? value['valueLocalDate'] : value['valueLocalDate'].toISOString().substring(0,10),
         'valueLocalDateTime': value['valueLocalDateTime'],
+        'valueLocalTime': value['valueLocalTime'],
+        'valueOffsetDateTime': value['valueOffsetDateTime'],
         'valueZonedDateTime': value['valueZonedDateTime'],
     };
 }

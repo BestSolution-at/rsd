@@ -83,6 +83,23 @@ describe('ListQueryParameterTypesServiceFetchImpl', () => {
 			expect(result).toEqual(['2024-01-01T10:00:00', '2024-12-31T22:30:00']);
 		});
 	});
+	describe('listLocalTimeQueryParam', () => {
+		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
+			const [result, error] = await service.listLocalTimeQueryParam(['10:00:00', '23:59:59']);
+			expect(error).toBeNull();
+			expect(result).toEqual(['10:00:00', '23:59:59']);
+		});
+	});
+	describe('listOffsetDateTimeQueryParam', () => {
+		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
+			const [result, error] = await service.listOffsetDateTimeQueryParam([
+				'2025-01-01T10:00:00+01:00',
+				'2021-02-02T11:30:00+01:00',
+			]);
+			expect(error).toBeNull();
+			expect(result).toEqual(['2025-01-01T10:00:00+01:00', '2021-02-02T11:30:00+01:00']);
+		});
+	});
 	describe('listZonedDateTimeQueryParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
 			const [result, error] = await service.listZonedDateTimeQueryParam([

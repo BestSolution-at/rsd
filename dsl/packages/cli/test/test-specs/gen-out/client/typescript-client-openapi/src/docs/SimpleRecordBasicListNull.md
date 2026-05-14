@@ -15,6 +15,8 @@ Name | Type
 `valueString` | Array&lt;string&gt;
 `valueLocalDate` | Array&lt;Date&gt;
 `valueLocalDateTime` | Array&lt;string&gt;
+`valueLocalTime` | Array&lt;string&gt;
+`valueOffsetDateTime` | Array&lt;string&gt;
 `valueZonedDateTime` | Array&lt;string&gt;
 
 ## Example
@@ -33,6 +35,8 @@ const example = {
   "valueString": null,
   "valueLocalDate": null,
   "valueLocalDateTime": null,
+  "valueLocalTime": null,
+  "valueOffsetDateTime": null,
   "valueZonedDateTime": null,
 } satisfies SimpleRecordBasicListNull
 

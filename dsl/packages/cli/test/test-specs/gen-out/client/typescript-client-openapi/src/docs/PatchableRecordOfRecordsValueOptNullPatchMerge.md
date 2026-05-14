@@ -17,6 +17,8 @@ Name | Type
 `valueString` | string
 `valueLocalDate` | Date
 `valueLocalDateTime` | string
+`valueLocalTime` | string
+`valueOffsetDateTime` | string
 `valueZonedDateTime` | string
 `type` | string
 
@@ -38,6 +40,8 @@ const example = {
   "valueString": null,
   "valueLocalDate": null,
   "valueLocalDateTime": null,
+  "valueLocalTime": null,
+  "valueOffsetDateTime": null,
   "valueZonedDateTime": null,
   "type": null,
 } satisfies PatchableRecordOfRecordsValueOptNullPatchMerge

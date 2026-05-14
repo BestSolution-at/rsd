@@ -98,6 +98,22 @@ describe('SinglePathParameterTypeServiceServiceFetchImpl', () => {
 		});
 	});
 
+	describe('simpleLocalTimePathParam', () => {
+		test.each([json, msgpack, openapi])('success - $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimePathParam('10:00:00');
+			expect(error).toBeNull();
+			expect(result).toBe('10:00:00');
+		});
+	});
+
+	describe('simpleOffsetDateTimePathParam', () => {
+		test.each([json, msgpack, openapi])('success - $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimePathParam('2025-01-01T10:00:00+01:00');
+			expect(error).toBeNull();
+			expect(result).toBe('2025-01-01T10:00:00+01:00');
+		});
+	});
+
 	describe('simpleZonedDateTimePathParam', () => {
 		test.each([json, msgpack, openapi])('success - $encoding', async ({ service }) => {
 			const [result, error] = await service.simpleZonedDateTimePathParam('2024-06-15T12:34:56Z');

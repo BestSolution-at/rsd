@@ -247,6 +247,40 @@ describe('SampleServiceServiceFetchImpl', () => {
 		});
 	});
 
+	describe('getLocalTime', () => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
+			const [result, error] = await service.getLocalTime();
+			expect(error).toBeNull();
+			expect(result).toBe('10:00:00');
+		});
+		test('fail - invalid data', async () => {
+			const [result, error] = await serviceFailInvalid.getLocalTime();
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(api.service.isNativeError(error)).toBe(true);
+			if (api.service.isNativeError(error)) {
+				expect(error.error.message).toEqual('Invalid result');
+			}
+		});
+	});
+
+	describe('getOffsetDateTime', () => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
+			const [result, error] = await service.getOffsetDateTime();
+			expect(error).toBeNull();
+			expect(result).toBe('2025-01-01T10:00:00+01:00');
+		});
+		test('fail - invalid data', async () => {
+			const [result, error] = await serviceFailInvalid.getOffsetDateTime();
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(api.service.isNativeError(error)).toBe(true);
+			if (api.service.isNativeError(error)) {
+				expect(error.error.message).toEqual('Invalid result');
+			}
+		});
+	});
+
 	describe('getZonedDateTime', () => {
 		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getZonedDateTime();

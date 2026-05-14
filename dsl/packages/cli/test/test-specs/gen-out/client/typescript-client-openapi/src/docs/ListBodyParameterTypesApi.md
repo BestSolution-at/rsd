@@ -36,6 +36,10 @@ All URIs are relative to *http://localhost*
 | [**listBodyParameterTypesListLocalDateTimeBodyParamNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistlocaldatetimebodyparamnil) | **PUT** /api/listbodyparametertypes/listLocalDateTimeBodyParamNil |  |
 | [**listBodyParameterTypesListLocalDateTimeBodyParamOpt**](ListBodyParameterTypesApi.md#listbodyparametertypeslistlocaldatetimebodyparamopt) | **PUT** /api/listbodyparametertypes/listLocalDateTimeBodyParamOpt |  |
 | [**listBodyParameterTypesListLocalDateTimeBodyParamOptNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistlocaldatetimebodyparamoptnil) | **PUT** /api/listbodyparametertypes/listLocalDateTimeBodyParamOptNil |  |
+| [**listBodyParameterTypesListLocalTimeBodyParam**](ListBodyParameterTypesApi.md#listbodyparametertypeslistlocaltimebodyparam) | **PUT** /api/listbodyparametertypes/listLocalTimeBodyParam |  |
+| [**listBodyParameterTypesListLocalTimeBodyParamNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistlocaltimebodyparamnil) | **PUT** /api/listbodyparametertypes/listLocalTimeBodyParamNil |  |
+| [**listBodyParameterTypesListLocalTimeBodyParamOpt**](ListBodyParameterTypesApi.md#listbodyparametertypeslistlocaltimebodyparamopt) | **PUT** /api/listbodyparametertypes/listLocalTimeBodyParamOpt |  |
+| [**listBodyParameterTypesListLocalTimeBodyParamOptNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistlocaltimebodyparamoptnil) | **PUT** /api/listbodyparametertypes/listLocalTimeBodyParamOptNil |  |
 | [**listBodyParameterTypesListLongBodyParam**](ListBodyParameterTypesApi.md#listbodyparametertypeslistlongbodyparam) | **PUT** /api/listbodyparametertypes/listLongBodyParam |  |
 | [**listBodyParameterTypesListLongBodyParamNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistlongbodyparamnil) | **PUT** /api/listbodyparametertypes/listLongBodyParamNil |  |
 | [**listBodyParameterTypesListLongBodyParamOpt**](ListBodyParameterTypesApi.md#listbodyparametertypeslistlongbodyparamopt) | **PUT** /api/listbodyparametertypes/listLongBodyParamOpt |  |
@@ -44,6 +48,10 @@ All URIs are relative to *http://localhost*
 | [**listBodyParameterTypesListMultiBodyParamNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistmultibodyparamniloperation) | **PUT** /api/listbodyparametertypes/listMultiBodyParamNil |  |
 | [**listBodyParameterTypesListMultiBodyParamOpt**](ListBodyParameterTypesApi.md#listbodyparametertypeslistmultibodyparamoptoperation) | **PUT** /api/listbodyparametertypes/listMultiBodyParamOpt |  |
 | [**listBodyParameterTypesListMultiBodyParamOptNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistmultibodyparamoptniloperation) | **PUT** /api/listbodyparametertypes/listMultiBodyParamOptNil |  |
+| [**listBodyParameterTypesListOffsetDateTimeBodyParam**](ListBodyParameterTypesApi.md#listbodyparametertypeslistoffsetdatetimebodyparam) | **PUT** /api/listbodyparametertypes/listOffsetDateTimeBodyParam |  |
+| [**listBodyParameterTypesListOffsetDateTimeBodyParamNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistoffsetdatetimebodyparamnil) | **PUT** /api/listbodyparametertypes/listOffsetDateTimeBodyParamNil |  |
+| [**listBodyParameterTypesListOffsetDateTimeBodyParamOpt**](ListBodyParameterTypesApi.md#listbodyparametertypeslistoffsetdatetimebodyparamopt) | **PUT** /api/listbodyparametertypes/listOffsetDateTimeBodyParamOpt |  |
+| [**listBodyParameterTypesListOffsetDateTimeBodyParamOptNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistoffsetdatetimebodyparamoptnil) | **PUT** /api/listbodyparametertypes/listOffsetDateTimeBodyParamOptNil |  |
 | [**listBodyParameterTypesListRecordBodyParam**](ListBodyParameterTypesApi.md#listbodyparametertypeslistrecordbodyparam) | **PUT** /api/listbodyparametertypes/listRecordBodyParam |  |
 | [**listBodyParameterTypesListRecordBodyParamNil**](ListBodyParameterTypesApi.md#listbodyparametertypeslistrecordbodyparamnil) | **PUT** /api/listbodyparametertypes/listRecordBodyParamNil |  |
 | [**listBodyParameterTypesListRecordBodyParamOpt**](ListBodyParameterTypesApi.md#listbodyparametertypeslistrecordbodyparamopt) | **PUT** /api/listbodyparametertypes/listRecordBodyParamOpt |  |
@@ -2211,6 +2219,274 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## listBodyParameterTypesListLocalTimeBodyParam
+
+> Array&lt;string&gt; listBodyParameterTypesListLocalTimeBodyParam(requestBody)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListBodyParameterTypesApi,
+} from '';
+import type { ListBodyParameterTypesListLocalTimeBodyParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListBodyParameterTypesApi();
+
+  const body = {
+    // Array<string>
+    requestBody: ...,
+  } satisfies ListBodyParameterTypesListLocalTimeBodyParamRequest;
+
+  try {
+    const data = await api.listBodyParameterTypesListLocalTimeBodyParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **requestBody** | `Array<string>` |  | |
+
+### Return type
+
+**Array<string>**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listBodyParameterTypesListLocalTimeBodyParamNil
+
+> NilResult listBodyParameterTypesListLocalTimeBodyParamNil(requestBody)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListBodyParameterTypesApi,
+} from '';
+import type { ListBodyParameterTypesListLocalTimeBodyParamNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListBodyParameterTypesApi();
+
+  const body = {
+    // Array<string>
+    requestBody: ...,
+  } satisfies ListBodyParameterTypesListLocalTimeBodyParamNilRequest;
+
+  try {
+    const data = await api.listBodyParameterTypesListLocalTimeBodyParamNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **requestBody** | `Array<string>` |  | |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listBodyParameterTypesListLocalTimeBodyParamOpt
+
+> NilResult listBodyParameterTypesListLocalTimeBodyParamOpt(requestBody)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListBodyParameterTypesApi,
+} from '';
+import type { ListBodyParameterTypesListLocalTimeBodyParamOptRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListBodyParameterTypesApi();
+
+  const body = {
+    // Array<string> (optional)
+    requestBody: ...,
+  } satisfies ListBodyParameterTypesListLocalTimeBodyParamOptRequest;
+
+  try {
+    const data = await api.listBodyParameterTypesListLocalTimeBodyParamOpt(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **requestBody** | `Array<string>` |  | [Optional] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listBodyParameterTypesListLocalTimeBodyParamOptNil
+
+> NilResult listBodyParameterTypesListLocalTimeBodyParamOptNil(requestBody)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListBodyParameterTypesApi,
+} from '';
+import type { ListBodyParameterTypesListLocalTimeBodyParamOptNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListBodyParameterTypesApi();
+
+  const body = {
+    // Array<string> (optional)
+    requestBody: ...,
+  } satisfies ListBodyParameterTypesListLocalTimeBodyParamOptNilRequest;
+
+  try {
+    const data = await api.listBodyParameterTypesListLocalTimeBodyParamOptNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **requestBody** | `Array<string>` |  | [Optional] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## listBodyParameterTypesListLongBodyParam
 
 > Array&lt;number&gt; listBodyParameterTypesListLongBodyParam(requestBody)
@@ -2728,6 +3004,274 @@ example().catch(console.error);
 ### Return type
 
 [**Array&lt;NilResult&gt;**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listBodyParameterTypesListOffsetDateTimeBodyParam
+
+> Array&lt;string&gt; listBodyParameterTypesListOffsetDateTimeBodyParam(requestBody)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListBodyParameterTypesApi,
+} from '';
+import type { ListBodyParameterTypesListOffsetDateTimeBodyParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListBodyParameterTypesApi();
+
+  const body = {
+    // Array<string>
+    requestBody: ...,
+  } satisfies ListBodyParameterTypesListOffsetDateTimeBodyParamRequest;
+
+  try {
+    const data = await api.listBodyParameterTypesListOffsetDateTimeBodyParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **requestBody** | `Array<string>` |  | |
+
+### Return type
+
+**Array<string>**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listBodyParameterTypesListOffsetDateTimeBodyParamNil
+
+> NilResult listBodyParameterTypesListOffsetDateTimeBodyParamNil(requestBody)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListBodyParameterTypesApi,
+} from '';
+import type { ListBodyParameterTypesListOffsetDateTimeBodyParamNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListBodyParameterTypesApi();
+
+  const body = {
+    // Array<string>
+    requestBody: ...,
+  } satisfies ListBodyParameterTypesListOffsetDateTimeBodyParamNilRequest;
+
+  try {
+    const data = await api.listBodyParameterTypesListOffsetDateTimeBodyParamNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **requestBody** | `Array<string>` |  | |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listBodyParameterTypesListOffsetDateTimeBodyParamOpt
+
+> NilResult listBodyParameterTypesListOffsetDateTimeBodyParamOpt(requestBody)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListBodyParameterTypesApi,
+} from '';
+import type { ListBodyParameterTypesListOffsetDateTimeBodyParamOptRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListBodyParameterTypesApi();
+
+  const body = {
+    // Array<string> (optional)
+    requestBody: ...,
+  } satisfies ListBodyParameterTypesListOffsetDateTimeBodyParamOptRequest;
+
+  try {
+    const data = await api.listBodyParameterTypesListOffsetDateTimeBodyParamOpt(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **requestBody** | `Array<string>` |  | [Optional] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listBodyParameterTypesListOffsetDateTimeBodyParamOptNil
+
+> NilResult listBodyParameterTypesListOffsetDateTimeBodyParamOptNil(requestBody)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListBodyParameterTypesApi,
+} from '';
+import type { ListBodyParameterTypesListOffsetDateTimeBodyParamOptNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListBodyParameterTypesApi();
+
+  const body = {
+    // Array<string> (optional)
+    requestBody: ...,
+  } satisfies ListBodyParameterTypesListOffsetDateTimeBodyParamOptNilRequest;
+
+  try {
+    const data = await api.listBodyParameterTypesListOffsetDateTimeBodyParamOptNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **requestBody** | `Array<string>` |  | [Optional] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
 
 ### Authorization
 

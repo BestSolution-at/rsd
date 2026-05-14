@@ -289,6 +289,43 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listSampleServiceListLocalTime without sending the request
+     */
+    async listSampleServiceListLocalTimeRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/listsamplerecords/localtime`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async listSampleServiceListLocalTimeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.listSampleServiceListLocalTimeRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * 
+     */
+    async listSampleServiceListLocalTime(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.listSampleServiceListLocalTimeRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for listSampleServiceListLong without sending the request
      */
     async listSampleServiceListLongRequestOpts(): Promise<runtime.RequestOpts> {
@@ -322,6 +359,43 @@ export class ListSampleServiceApi extends runtime.BaseAPI {
      */
     async listSampleServiceListLong(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
         const response = await this.listSampleServiceListLongRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listSampleServiceListOffsetDateTime without sending the request
+     */
+    async listSampleServiceListOffsetDateTimeRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/listsamplerecords/offsetdatetime`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async listSampleServiceListOffsetDateTimeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.listSampleServiceListOffsetDateTimeRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * 
+     */
+    async listSampleServiceListOffsetDateTime(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.listSampleServiceListOffsetDateTimeRaw(initOverrides);
         return await response.value();
     }
 

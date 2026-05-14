@@ -140,6 +140,33 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
+	async getLocalTime(): Promise<
+		api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>
+	> {
+		try {
+			const response = await this.delegate.sampleServiceGetLocalTimeRaw();
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async getOffsetDateTime(): Promise<
+		api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>
+	> {
+		try {
+			const response = await this.delegate.sampleServiceGetOffsetDateTimeRaw();
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
 	async getZonedDateTime(): Promise<
 		api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>
 	> {

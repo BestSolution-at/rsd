@@ -22,8 +22,12 @@ All URIs are relative to *http://localhost*
 | [**queryParameterTypesSimpleLocalDateQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimplelocaldatequeryparamopt) | **GET** /api/queryparametertypes/simpleLocalDateQueryParamOpt |  |
 | [**queryParameterTypesSimpleLocalDateTimeQueryParam**](QueryParameterTypesApi.md#queryparametertypessimplelocaldatetimequeryparam) | **GET** /api/queryparametertypes/simpleLocalDateTimeQueryParam |  |
 | [**queryParameterTypesSimpleLocalDateTimeQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimplelocaldatetimequeryparamopt) | **GET** /api/queryparametertypes/simpleLocalDateTimeQueryParamOpt |  |
+| [**queryParameterTypesSimpleLocalTimeQueryParam**](QueryParameterTypesApi.md#queryparametertypessimplelocaltimequeryparam) | **GET** /api/queryparametertypes/simpleLocalTimeQueryParam |  |
+| [**queryParameterTypesSimpleLocalTimeQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimplelocaltimequeryparamopt) | **GET** /api/queryparametertypes/simpleLocalTimeQueryParamOpt |  |
 | [**queryParameterTypesSimpleLongQueryParam**](QueryParameterTypesApi.md#queryparametertypessimplelongqueryparam) | **GET** /api/queryparametertypes/simpleLongQueryParam |  |
 | [**queryParameterTypesSimpleLongQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimplelongqueryparamopt) | **GET** /api/queryparametertypes/simpleLongQueryParamOpt |  |
+| [**queryParameterTypesSimpleOffsetDateTimeQueryParam**](QueryParameterTypesApi.md#queryparametertypessimpleoffsetdatetimequeryparam) | **GET** /api/queryparametertypes/simpleOffsetDateTimeQueryParam |  |
+| [**queryParameterTypesSimpleOffsetDateTimeQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimpleoffsetdatetimequeryparamopt) | **GET** /api/queryparametertypes/simpleOffsetDateTimeQueryParamOpt |  |
 | [**queryParameterTypesSimpleScalarQueryParam**](QueryParameterTypesApi.md#queryparametertypessimplescalarqueryparam) | **GET** /api/queryparametertypes/simpleScalarQueryParam |  |
 | [**queryParameterTypesSimpleScalarQueryParamOpt**](QueryParameterTypesApi.md#queryparametertypessimplescalarqueryparamopt) | **GET** /api/queryparametertypes/simpleScalarQueryParamOpt |  |
 | [**queryParameterTypesSimpleShortQueryParam**](QueryParameterTypesApi.md#queryparametertypessimpleshortqueryparam) | **GET** /api/queryparametertypes/simpleShortQueryParam |  |
@@ -1253,6 +1257,140 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## queryParameterTypesSimpleLocalTimeQueryParam
+
+> string queryParameterTypesSimpleLocalTimeQueryParam(queryValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  QueryParameterTypesApi,
+} from '';
+import type { QueryParameterTypesSimpleLocalTimeQueryParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new QueryParameterTypesApi();
+
+  const body = {
+    // string | 
+    queryValue: queryValue_example,
+  } satisfies QueryParameterTypesSimpleLocalTimeQueryParamRequest;
+
+  try {
+    const data = await api.queryParameterTypesSimpleLocalTimeQueryParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **queryValue** | `string` |  | [Defaults to `undefined`] |
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## queryParameterTypesSimpleLocalTimeQueryParamOpt
+
+> NilResult queryParameterTypesSimpleLocalTimeQueryParamOpt(queryValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  QueryParameterTypesApi,
+} from '';
+import type { QueryParameterTypesSimpleLocalTimeQueryParamOptRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new QueryParameterTypesApi();
+
+  const body = {
+    // string |  (optional)
+    queryValue: queryValue_example,
+  } satisfies QueryParameterTypesSimpleLocalTimeQueryParamOptRequest;
+
+  try {
+    const data = await api.queryParameterTypesSimpleLocalTimeQueryParamOpt(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **queryValue** | `string` |  | [Optional] [Defaults to `undefined`] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## queryParameterTypesSimpleLongQueryParam
 
 > number queryParameterTypesSimpleLongQueryParam(queryValue)
@@ -1364,6 +1502,140 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **queryValue** | `number` |  | [Optional] [Defaults to `undefined`] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## queryParameterTypesSimpleOffsetDateTimeQueryParam
+
+> string queryParameterTypesSimpleOffsetDateTimeQueryParam(queryValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  QueryParameterTypesApi,
+} from '';
+import type { QueryParameterTypesSimpleOffsetDateTimeQueryParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new QueryParameterTypesApi();
+
+  const body = {
+    // string | 
+    queryValue: queryValue_example,
+  } satisfies QueryParameterTypesSimpleOffsetDateTimeQueryParamRequest;
+
+  try {
+    const data = await api.queryParameterTypesSimpleOffsetDateTimeQueryParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **queryValue** | `string` |  | [Defaults to `undefined`] |
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## queryParameterTypesSimpleOffsetDateTimeQueryParamOpt
+
+> NilResult queryParameterTypesSimpleOffsetDateTimeQueryParamOpt(queryValue)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  QueryParameterTypesApi,
+} from '';
+import type { QueryParameterTypesSimpleOffsetDateTimeQueryParamOptRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new QueryParameterTypesApi();
+
+  const body = {
+    // string |  (optional)
+    queryValue: queryValue_example,
+  } satisfies QueryParameterTypesSimpleOffsetDateTimeQueryParamOptRequest;
+
+  try {
+    const data = await api.queryParameterTypesSimpleOffsetDateTimeQueryParamOpt(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **queryValue** | `string` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

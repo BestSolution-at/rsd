@@ -12,7 +12,9 @@ All URIs are relative to *http://localhost*
 | [**sampleServiceGetInt**](SampleServiceApi.md#sampleservicegetint) | **GET** /api/samplerecords/int |  |
 | [**sampleServiceGetLocalDate**](SampleServiceApi.md#sampleservicegetlocaldate) | **GET** /api/samplerecords/localdate |  |
 | [**sampleServiceGetLocalDateTime**](SampleServiceApi.md#sampleservicegetlocaldatetime) | **GET** /api/samplerecords/localdatetime |  |
+| [**sampleServiceGetLocalTime**](SampleServiceApi.md#sampleservicegetlocaltime) | **GET** /api/samplerecords/localtime |  |
 | [**sampleServiceGetLong**](SampleServiceApi.md#sampleservicegetlong) | **GET** /api/samplerecords/long |  |
+| [**sampleServiceGetOffsetDateTime**](SampleServiceApi.md#sampleservicegetoffsetdatetime) | **GET** /api/samplerecords/offsetdatetime |  |
 | [**sampleServiceGetScalar**](SampleServiceApi.md#sampleservicegetscalar) | **GET** /api/samplerecords/scalar |  |
 | [**sampleServiceGetShort**](SampleServiceApi.md#sampleservicegetshort) | **GET** /api/samplerecords/short |  |
 | [**sampleServiceGetSimpleRecord**](SampleServiceApi.md#sampleservicegetsimplerecord) | **GET** /api/samplerecords/simplerecord/{key} |  |
@@ -497,6 +499,65 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## sampleServiceGetLocalTime
+
+> string sampleServiceGetLocalTime()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetLocalTimeRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetLocalTime();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## sampleServiceGetLong
 
 > number sampleServiceGetLong()
@@ -537,6 +598,65 @@ This endpoint does not need any parameter.
 ### Return type
 
 **number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetOffsetDateTime
+
+> string sampleServiceGetOffsetDateTime()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetOffsetDateTimeRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetOffsetDateTime();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**string**
 
 ### Authorization
 

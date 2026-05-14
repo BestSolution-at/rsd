@@ -27,6 +27,13 @@ import {
     PatchableRecordBasicListPatchValueIntToJSON,
     PatchableRecordBasicListPatchValueIntToJSONTyped,
 } from './PatchableRecordBasicListPatchValueInt.js';
+import type { PatchableRecordBasicListPatchValueLocalTime } from './PatchableRecordBasicListPatchValueLocalTime.js';
+import {
+    PatchableRecordBasicListPatchValueLocalTimeFromJSON,
+    PatchableRecordBasicListPatchValueLocalTimeFromJSONTyped,
+    PatchableRecordBasicListPatchValueLocalTimeToJSON,
+    PatchableRecordBasicListPatchValueLocalTimeToJSONTyped,
+} from './PatchableRecordBasicListPatchValueLocalTime.js';
 import type { PatchableRecordBasicListPatchValueLong } from './PatchableRecordBasicListPatchValueLong.js';
 import {
     PatchableRecordBasicListPatchValueLongFromJSON,
@@ -34,6 +41,13 @@ import {
     PatchableRecordBasicListPatchValueLongToJSON,
     PatchableRecordBasicListPatchValueLongToJSONTyped,
 } from './PatchableRecordBasicListPatchValueLong.js';
+import type { PatchableRecordBasicListPatchValueOffsetDateTime } from './PatchableRecordBasicListPatchValueOffsetDateTime.js';
+import {
+    PatchableRecordBasicListPatchValueOffsetDateTimeFromJSON,
+    PatchableRecordBasicListPatchValueOffsetDateTimeFromJSONTyped,
+    PatchableRecordBasicListPatchValueOffsetDateTimeToJSON,
+    PatchableRecordBasicListPatchValueOffsetDateTimeToJSONTyped,
+} from './PatchableRecordBasicListPatchValueOffsetDateTime.js';
 import type { PatchableRecordBasicListPatchValueString } from './PatchableRecordBasicListPatchValueString.js';
 import {
     PatchableRecordBasicListPatchValueStringFromJSON,
@@ -158,6 +172,18 @@ export interface PatchableRecordBasicListPatch {
     valueLocalDateTime?: PatchableRecordBasicListPatchValueLocalDateTime;
     /**
      * 
+     * @type {PatchableRecordBasicListPatchValueLocalTime}
+     * @memberof PatchableRecordBasicListPatch
+     */
+    valueLocalTime?: PatchableRecordBasicListPatchValueLocalTime;
+    /**
+     * 
+     * @type {PatchableRecordBasicListPatchValueOffsetDateTime}
+     * @memberof PatchableRecordBasicListPatch
+     */
+    valueOffsetDateTime?: PatchableRecordBasicListPatchValueOffsetDateTime;
+    /**
+     * 
      * @type {PatchableRecordBasicListPatchValueZonedDateTime}
      * @memberof PatchableRecordBasicListPatch
      */
@@ -194,6 +220,8 @@ export function PatchableRecordBasicListPatchFromJSONTyped(json: any, ignoreDisc
         'valueString': json['valueString'] == null ? undefined : PatchableRecordBasicListPatchValueStringFromJSON(json['valueString']),
         'valueLocalDate': json['valueLocalDate'] == null ? undefined : PatchableRecordBasicListPatchValueLocalDateFromJSON(json['valueLocalDate']),
         'valueLocalDateTime': json['valueLocalDateTime'] == null ? undefined : PatchableRecordBasicListPatchValueLocalDateTimeFromJSON(json['valueLocalDateTime']),
+        'valueLocalTime': json['valueLocalTime'] == null ? undefined : PatchableRecordBasicListPatchValueLocalTimeFromJSON(json['valueLocalTime']),
+        'valueOffsetDateTime': json['valueOffsetDateTime'] == null ? undefined : PatchableRecordBasicListPatchValueOffsetDateTimeFromJSON(json['valueOffsetDateTime']),
         'valueZonedDateTime': json['valueZonedDateTime'] == null ? undefined : PatchableRecordBasicListPatchValueZonedDateTimeFromJSON(json['valueZonedDateTime']),
     };
 }
@@ -220,6 +248,8 @@ export function PatchableRecordBasicListPatchToJSONTyped(value?: PatchableRecord
         'valueString': PatchableRecordBasicListPatchValueStringToJSON(value['valueString']),
         'valueLocalDate': PatchableRecordBasicListPatchValueLocalDateToJSON(value['valueLocalDate']),
         'valueLocalDateTime': PatchableRecordBasicListPatchValueLocalDateTimeToJSON(value['valueLocalDateTime']),
+        'valueLocalTime': PatchableRecordBasicListPatchValueLocalTimeToJSON(value['valueLocalTime']),
+        'valueOffsetDateTime': PatchableRecordBasicListPatchValueOffsetDateTimeToJSON(value['valueOffsetDateTime']),
         'valueZonedDateTime': PatchableRecordBasicListPatchValueZonedDateTimeToJSON(value['valueZonedDateTime']),
     };
 }

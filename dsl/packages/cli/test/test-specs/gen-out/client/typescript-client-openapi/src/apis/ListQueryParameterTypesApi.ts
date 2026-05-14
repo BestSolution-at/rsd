@@ -56,6 +56,10 @@ export interface ListQueryParameterTypesListLocalDateTimeQueryParamRequest {
     queryValue: Array<string>;
 }
 
+export interface ListQueryParameterTypesListLocalTimeQueryParamRequest {
+    queryValue: Array<string>;
+}
+
 export interface ListQueryParameterTypesListLongQueryParamRequest {
     queryValue: Array<number>;
 }
@@ -65,6 +69,10 @@ export interface ListQueryParameterTypesListMultiQueryParamRequest {
     valueB: Array<number>;
     valueC: Array<string>;
     xRSDParamContentType: string;
+}
+
+export interface ListQueryParameterTypesListOffsetDateTimeQueryParamRequest {
+    queryValue: Array<string>;
 }
 
 export interface ListQueryParameterTypesListRecordQueryParamRequest {
@@ -478,6 +486,54 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listQueryParameterTypesListLocalTimeQueryParam without sending the request
+     */
+    async listQueryParameterTypesListLocalTimeQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListLocalTimeQueryParamRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['queryValue'] == null) {
+            throw new runtime.RequiredError(
+                'queryValue',
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListLocalTimeQueryParam().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['queryValue'] != null) {
+            queryParameters['queryValue'] = requestParameters['queryValue'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/listqueryparametertypes/listLocalTimeQueryParam`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async listQueryParameterTypesListLocalTimeQueryParamRaw(requestParameters: ListQueryParameterTypesListLocalTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.listQueryParameterTypesListLocalTimeQueryParamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * 
+     */
+    async listQueryParameterTypesListLocalTimeQueryParam(requestParameters: ListQueryParameterTypesListLocalTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.listQueryParameterTypesListLocalTimeQueryParamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for listQueryParameterTypesListLongQueryParam without sending the request
      */
     async listQueryParameterTypesListLongQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListLongQueryParamRequest): Promise<runtime.RequestOpts> {
@@ -607,6 +663,54 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
      */
     async listQueryParameterTypesListMultiQueryParam(requestParameters: ListQueryParameterTypesListMultiQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.listQueryParameterTypesListMultiQueryParamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listQueryParameterTypesListOffsetDateTimeQueryParam without sending the request
+     */
+    async listQueryParameterTypesListOffsetDateTimeQueryParamRequestOpts(requestParameters: ListQueryParameterTypesListOffsetDateTimeQueryParamRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['queryValue'] == null) {
+            throw new runtime.RequiredError(
+                'queryValue',
+                'Required parameter "queryValue" was null or undefined when calling listQueryParameterTypesListOffsetDateTimeQueryParam().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['queryValue'] != null) {
+            queryParameters['queryValue'] = requestParameters['queryValue'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/listqueryparametertypes/listOffsetDateTimeQueryParam`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async listQueryParameterTypesListOffsetDateTimeQueryParamRaw(requestParameters: ListQueryParameterTypesListOffsetDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.listQueryParameterTypesListOffsetDateTimeQueryParamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * 
+     */
+    async listQueryParameterTypesListOffsetDateTimeQueryParam(requestParameters: ListQueryParameterTypesListOffsetDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.listQueryParameterTypesListOffsetDateTimeQueryParamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

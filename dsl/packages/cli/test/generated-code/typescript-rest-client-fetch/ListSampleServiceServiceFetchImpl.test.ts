@@ -209,6 +209,40 @@ describe('ListSampleServiceServiceImpl', () => {
 		});
 	});
 
+	describe('listLocalTime', () => {
+		test.each([json, msgpack, openAPI])('sucess - $encoding', async ({ service }) => {
+			const [result, error] = await service.listLocalTime();
+			expect(error).toBeNull();
+			expect(result).toStrictEqual(['10:00:00', '11:30:00', '12:45:00']);
+		});
+		test.each([jsonInvalid, msgpackInvalid, openAPIInvalid])('fail - $encoding - invalid data', async ({ service }) => {
+			const [result, error] = await service.listLocalTime();
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(api.service.isNativeError(error)).toBe(true);
+			if (api.service.isNativeError(error)) {
+				expect(error.error.message).toEqual('Invalid result');
+			}
+		});
+	});
+
+	describe('listOffsetDateTime', () => {
+		test.each([json, msgpack, openAPI])('sucess - $encoding', async ({ service }) => {
+			const [result, error] = await service.listOffsetDateTime();
+			expect(error).toBeNull();
+			expect(result).toStrictEqual(['2020-01-01T10:00:00+01:00', '2021-02-02T11:30:00+01:00', '2022-03-03T12:45:00+01:00']);
+		});
+		test.each([jsonInvalid, msgpackInvalid, openAPIInvalid])('fail - $encoding - invalid data', async ({ service }) => {
+			const [result, error] = await service.listOffsetDateTime();
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(api.service.isNativeError(error)).toBe(true);
+			if (api.service.isNativeError(error)) {
+				expect(error.error.message).toEqual('Invalid result');
+			}
+		});
+	});
+
 	describe('listZonedDateTime', () => {
 		test.each([json, msgpack, openAPI])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listZonedDateTime();

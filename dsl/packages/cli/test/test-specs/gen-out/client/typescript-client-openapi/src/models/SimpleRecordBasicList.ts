@@ -78,6 +78,18 @@ export interface SimpleRecordBasicList {
      * @type {Array<string>}
      * @memberof SimpleRecordBasicList
      */
+    valueLocalTime: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SimpleRecordBasicList
+     */
+    valueOffsetDateTime: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SimpleRecordBasicList
+     */
     valueZonedDateTime: Array<string>;
 }
 
@@ -94,6 +106,8 @@ export function instanceOfSimpleRecordBasicList(value: object): value is SimpleR
     if (!('valueString' in value) || value['valueString'] === undefined) return false;
     if (!('valueLocalDate' in value) || value['valueLocalDate'] === undefined) return false;
     if (!('valueLocalDateTime' in value) || value['valueLocalDateTime'] === undefined) return false;
+    if (!('valueLocalTime' in value) || value['valueLocalTime'] === undefined) return false;
+    if (!('valueOffsetDateTime' in value) || value['valueOffsetDateTime'] === undefined) return false;
     if (!('valueZonedDateTime' in value) || value['valueZonedDateTime'] === undefined) return false;
     return true;
 }
@@ -117,6 +131,8 @@ export function SimpleRecordBasicListFromJSONTyped(json: any, ignoreDiscriminato
         'valueString': json['valueString'],
         'valueLocalDate': json['valueLocalDate'],
         'valueLocalDateTime': json['valueLocalDateTime'],
+        'valueLocalTime': json['valueLocalTime'],
+        'valueOffsetDateTime': json['valueOffsetDateTime'],
         'valueZonedDateTime': json['valueZonedDateTime'],
     };
 }
@@ -141,6 +157,8 @@ export function SimpleRecordBasicListToJSONTyped(value?: SimpleRecordBasicList |
         'valueString': value['valueString'],
         'valueLocalDate': value['valueLocalDate'],
         'valueLocalDateTime': value['valueLocalDateTime'],
+        'valueLocalTime': value['valueLocalTime'],
+        'valueOffsetDateTime': value['valueOffsetDateTime'],
         'valueZonedDateTime': value['valueZonedDateTime'],
     };
 }

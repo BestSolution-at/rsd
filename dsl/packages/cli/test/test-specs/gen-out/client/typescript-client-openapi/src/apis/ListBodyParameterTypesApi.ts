@@ -177,6 +177,22 @@ export interface ListBodyParameterTypesListLocalDateTimeBodyParamOptNilRequest {
     requestBody?: Array<string> | null;
 }
 
+export interface ListBodyParameterTypesListLocalTimeBodyParamRequest {
+    requestBody: Array<string>;
+}
+
+export interface ListBodyParameterTypesListLocalTimeBodyParamNilRequest {
+    requestBody: Array<string> | null;
+}
+
+export interface ListBodyParameterTypesListLocalTimeBodyParamOptRequest {
+    requestBody?: Array<string>;
+}
+
+export interface ListBodyParameterTypesListLocalTimeBodyParamOptNilRequest {
+    requestBody?: Array<string> | null;
+}
+
 export interface ListBodyParameterTypesListLongBodyParamRequest {
     requestBody: Array<number>;
 }
@@ -207,6 +223,22 @@ export interface ListBodyParameterTypesListMultiBodyParamOptOperationRequest {
 
 export interface ListBodyParameterTypesListMultiBodyParamOptNilOperationRequest {
     listBodyParameterTypesListMultiBodyParamOptNilRequest: ListBodyParameterTypesListMultiBodyParamOptNilRequest;
+}
+
+export interface ListBodyParameterTypesListOffsetDateTimeBodyParamRequest {
+    requestBody: Array<string>;
+}
+
+export interface ListBodyParameterTypesListOffsetDateTimeBodyParamNilRequest {
+    requestBody: Array<string> | null;
+}
+
+export interface ListBodyParameterTypesListOffsetDateTimeBodyParamOptRequest {
+    requestBody?: Array<string>;
+}
+
+export interface ListBodyParameterTypesListOffsetDateTimeBodyParamOptNilRequest {
+    requestBody?: Array<string> | null;
 }
 
 export interface ListBodyParameterTypesListRecordBodyParamRequest {
@@ -1687,6 +1719,180 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listBodyParameterTypesListLocalTimeBodyParam without sending the request
+     */
+    async listBodyParameterTypesListLocalTimeBodyParamRequestOpts(requestParameters: ListBodyParameterTypesListLocalTimeBodyParamRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['requestBody'] == null) {
+            throw new runtime.RequiredError(
+                'requestBody',
+                'Required parameter "requestBody" was null or undefined when calling listBodyParameterTypesListLocalTimeBodyParam().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/listbodyparametertypes/listLocalTimeBodyParam`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['requestBody'],
+        };
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListLocalTimeBodyParamRaw(requestParameters: ListBodyParameterTypesListLocalTimeBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.listBodyParameterTypesListLocalTimeBodyParamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListLocalTimeBodyParam(requestParameters: ListBodyParameterTypesListLocalTimeBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.listBodyParameterTypesListLocalTimeBodyParamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listBodyParameterTypesListLocalTimeBodyParamNil without sending the request
+     */
+    async listBodyParameterTypesListLocalTimeBodyParamNilRequestOpts(requestParameters: ListBodyParameterTypesListLocalTimeBodyParamNilRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['requestBody'] == null) {
+            throw new runtime.RequiredError(
+                'requestBody',
+                'Required parameter "requestBody" was null or undefined when calling listBodyParameterTypesListLocalTimeBodyParamNil().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/listbodyparametertypes/listLocalTimeBodyParamNil`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['requestBody'],
+        };
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListLocalTimeBodyParamNilRaw(requestParameters: ListBodyParameterTypesListLocalTimeBodyParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.listBodyParameterTypesListLocalTimeBodyParamNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListLocalTimeBodyParamNil(requestParameters: ListBodyParameterTypesListLocalTimeBodyParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.listBodyParameterTypesListLocalTimeBodyParamNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listBodyParameterTypesListLocalTimeBodyParamOpt without sending the request
+     */
+    async listBodyParameterTypesListLocalTimeBodyParamOptRequestOpts(requestParameters: ListBodyParameterTypesListLocalTimeBodyParamOptRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/listbodyparametertypes/listLocalTimeBodyParamOpt`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['requestBody'],
+        };
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListLocalTimeBodyParamOptRaw(requestParameters: ListBodyParameterTypesListLocalTimeBodyParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.listBodyParameterTypesListLocalTimeBodyParamOptRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListLocalTimeBodyParamOpt(requestParameters: ListBodyParameterTypesListLocalTimeBodyParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.listBodyParameterTypesListLocalTimeBodyParamOptRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listBodyParameterTypesListLocalTimeBodyParamOptNil without sending the request
+     */
+    async listBodyParameterTypesListLocalTimeBodyParamOptNilRequestOpts(requestParameters: ListBodyParameterTypesListLocalTimeBodyParamOptNilRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/listbodyparametertypes/listLocalTimeBodyParamOptNil`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['requestBody'],
+        };
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListLocalTimeBodyParamOptNilRaw(requestParameters: ListBodyParameterTypesListLocalTimeBodyParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.listBodyParameterTypesListLocalTimeBodyParamOptNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListLocalTimeBodyParamOptNil(requestParameters: ListBodyParameterTypesListLocalTimeBodyParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.listBodyParameterTypesListLocalTimeBodyParamOptNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for listBodyParameterTypesListLongBodyParam without sending the request
      */
     async listBodyParameterTypesListLongBodyParamRequestOpts(requestParameters: ListBodyParameterTypesListLongBodyParamRequest): Promise<runtime.RequestOpts> {
@@ -2049,6 +2255,180 @@ export class ListBodyParameterTypesApi extends runtime.BaseAPI {
      */
     async listBodyParameterTypesListMultiBodyParamOptNil(requestParameters: ListBodyParameterTypesListMultiBodyParamOptNilOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
         const response = await this.listBodyParameterTypesListMultiBodyParamOptNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listBodyParameterTypesListOffsetDateTimeBodyParam without sending the request
+     */
+    async listBodyParameterTypesListOffsetDateTimeBodyParamRequestOpts(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['requestBody'] == null) {
+            throw new runtime.RequiredError(
+                'requestBody',
+                'Required parameter "requestBody" was null or undefined when calling listBodyParameterTypesListOffsetDateTimeBodyParam().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/listbodyparametertypes/listOffsetDateTimeBodyParam`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['requestBody'],
+        };
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListOffsetDateTimeBodyParamRaw(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.listBodyParameterTypesListOffsetDateTimeBodyParamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListOffsetDateTimeBodyParam(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.listBodyParameterTypesListOffsetDateTimeBodyParamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listBodyParameterTypesListOffsetDateTimeBodyParamNil without sending the request
+     */
+    async listBodyParameterTypesListOffsetDateTimeBodyParamNilRequestOpts(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamNilRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['requestBody'] == null) {
+            throw new runtime.RequiredError(
+                'requestBody',
+                'Required parameter "requestBody" was null or undefined when calling listBodyParameterTypesListOffsetDateTimeBodyParamNil().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/listbodyparametertypes/listOffsetDateTimeBodyParamNil`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['requestBody'],
+        };
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListOffsetDateTimeBodyParamNilRaw(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.listBodyParameterTypesListOffsetDateTimeBodyParamNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListOffsetDateTimeBodyParamNil(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.listBodyParameterTypesListOffsetDateTimeBodyParamNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listBodyParameterTypesListOffsetDateTimeBodyParamOpt without sending the request
+     */
+    async listBodyParameterTypesListOffsetDateTimeBodyParamOptRequestOpts(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamOptRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/listbodyparametertypes/listOffsetDateTimeBodyParamOpt`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['requestBody'],
+        };
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListOffsetDateTimeBodyParamOptRaw(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.listBodyParameterTypesListOffsetDateTimeBodyParamOptRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListOffsetDateTimeBodyParamOpt(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.listBodyParameterTypesListOffsetDateTimeBodyParamOptRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listBodyParameterTypesListOffsetDateTimeBodyParamOptNil without sending the request
+     */
+    async listBodyParameterTypesListOffsetDateTimeBodyParamOptNilRequestOpts(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamOptNilRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/listbodyparametertypes/listOffsetDateTimeBodyParamOptNil`;
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters['requestBody'],
+        };
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListOffsetDateTimeBodyParamOptNilRaw(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.listBodyParameterTypesListOffsetDateTimeBodyParamOptNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async listBodyParameterTypesListOffsetDateTimeBodyParamOptNil(requestParameters: ListBodyParameterTypesListOffsetDateTimeBodyParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.listBodyParameterTypesListOffsetDateTimeBodyParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
