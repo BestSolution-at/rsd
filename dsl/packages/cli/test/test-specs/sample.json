@@ -4137,6 +4137,114 @@
       "doc": ""
     },
     {
+      "@type": "RecordType",
+      "name": "MixedResult",
+      "patchable": false,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "pathString",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "pathNumber",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "int",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "headerString",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "headerNumber",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "int",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "headerRecord",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "record",
+          "type": "SimpleRecord",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "queryString",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "queryNumber",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "int",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "queryRecord",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "record",
+          "type": "SimpleRecord",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "dataBlob",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "int",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
       "@type": "EnumType",
       "name": "NilResult",
       "entries": [
@@ -20330,6 +20438,13 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "MixedResult",
+            "doc": ""
+          },
           "errors": [],
           "operationErrors": [],
           "meta": {
@@ -20368,6 +20483,13 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
           "errors": [],
           "operationErrors": [],
           "meta": {
@@ -20406,6 +20528,13 @@
               "doc": ""
             }
           ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
           "errors": [],
           "operationErrors": [],
           "meta": {

@@ -172,7 +172,9 @@ function _generateResource(
 					`@${fqn('jakarta.ws.rs.Consumes')}(${fqn('jakarta.ws.rs.core.MediaType')}.MULTIPART_FORM_DATA)`,
 					NL,
 				);
-				const params: string[] = o.parameters.map(p => toParameter(p, true, artifactConfig, fqn, true));
+				const params: string[] = o.parameters
+					.filter(p => p.variant === 'stream' || p.meta?.rest?.source !== undefined)
+					.map(p => toParameter(p, true, artifactConfig, fqn, true));
 				const nullableStreamParams = o.parameters
 					.filter(p => p.variant === 'stream' && p.optional && p.nullable)
 					.map(p => `@RestForm("_rsdNull-${p.name}") boolean $is${toFirstUpper(p.name)}Null`);

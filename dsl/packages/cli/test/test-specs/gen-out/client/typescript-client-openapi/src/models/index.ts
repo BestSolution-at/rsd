@@ -18,6 +18,7 @@ export * from './ListBodyParameterTypesListMultiBodyParamNilRequest.js';
 export * from './ListBodyParameterTypesListMultiBodyParamOptNilRequest.js';
 export * from './ListBodyParameterTypesListMultiBodyParamOptRequest.js';
 export * from './ListBodyParameterTypesListMultiBodyParamRequest.js';
+export * from './MixedResult.js';
 export * from './MixinRecord.js';
 export * from './NilResult.js';
 export * from './PatchableEnumInlineRecord.js';

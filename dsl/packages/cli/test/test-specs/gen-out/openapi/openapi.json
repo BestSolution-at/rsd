@@ -15060,8 +15060,15 @@
           "required": true
         },
         "responses": {
-          "204": {
-            "description": "success"
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MixedResult"
+                }
+              }
+            }
           }
         }
       }
@@ -15106,8 +15113,15 @@
           "required": true
         },
         "responses": {
-          "204": {
-            "description": "success"
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -15147,8 +15161,19 @@
           "required": true
         },
         "responses": {
-          "204": {
-            "description": "success"
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -22935,6 +22960,53 @@
             "nullable": true
           }
         }
+      },
+      "MixedResult": {
+        "type": "object",
+        "properties": {
+          "pathString": {
+            "type": "string"
+          },
+          "pathNumber": {
+            "type": "number",
+            "format": "int32"
+          },
+          "headerString": {
+            "type": "string"
+          },
+          "headerNumber": {
+            "type": "number",
+            "format": "int32"
+          },
+          "headerRecord": {
+            "$ref": "#/components/schemas/SimpleRecord"
+          },
+          "queryString": {
+            "type": "string"
+          },
+          "queryNumber": {
+            "type": "number",
+            "format": "int32"
+          },
+          "queryRecord": {
+            "$ref": "#/components/schemas/SimpleRecord"
+          },
+          "dataBlob": {
+            "type": "number",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "pathString",
+          "pathNumber",
+          "headerString",
+          "headerNumber",
+          "headerRecord",
+          "queryString",
+          "queryNumber",
+          "queryRecord",
+          "dataBlob"
+        ]
       },
       "NilResult": {
         "type": "string",

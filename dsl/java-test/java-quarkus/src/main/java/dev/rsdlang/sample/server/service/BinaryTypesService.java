@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.OptionalInt;
 
 import dev.rsdlang.sample.server.service.model._Base;
+import dev.rsdlang.sample.server.service.model.MixedResult;
 import dev.rsdlang.sample.server.service.model.RSDBlob;
 import dev.rsdlang.sample.server.service.model.RSDFile;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
@@ -52,11 +53,11 @@ public interface BinaryTypesService {
 
 	public UploadMixedResult.Data uploadMixedOptNil(BuilderFactory _factory, _Base.Nillable<String> text, _Base.Nillable<Integer> number, _Base.Nillable<SimpleRecord.Data> rec, _Base.Nillable<List<String>> textList, _Base.Nillable<List<Integer>> numberList, _Base.Nillable<List<SimpleRecord.Data>> recList, _Base.Nillable<RSDFile> dataFile, _Base.Nillable<RSDBlob> dataBlob);
 
-	public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob);
+	public MixedResult.Data mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob);
 
-	public void singleBodyAddition(BuilderFactory _factory, String name, RSDBlob dataBlob);
+	public String singleBodyAddition(BuilderFactory _factory, String name, RSDBlob dataBlob);
 
-	public void twoBinariesAddition(BuilderFactory _factory, RSDBlob dataBlob, RSDFile dataFile);
+	public List<Integer> twoBinariesAddition(BuilderFactory _factory, RSDBlob dataBlob, RSDFile dataFile);
 
 	public RSDFile downloadFile(BuilderFactory _factory);
 

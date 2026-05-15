@@ -11,6 +11,7 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.rest.model._JsonUtils;
 import dev.rsdlang.sample.server.service.model._Base;
+import dev.rsdlang.sample.server.service.model.MixedResult;
 import dev.rsdlang.sample.server.service.model.RSDBlob;
 import dev.rsdlang.sample.server.service.model.RSDFile;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
@@ -118,17 +119,20 @@ public class BinaryTypesResourceResponseBuilder {
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder mixed(String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob) {
-		return Response.status(204);
-	}
+	public ResponseBuilder mixed(MixedResult.Data $result, String $contentType, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder singleBodyAddition(String name, RSDBlob dataBlob) {
-		return Response.status(204);
-	}
+	public ResponseBuilder singleBodyAddition(String $result, String $contentType, String name, RSDBlob dataBlob) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder twoBinariesAddition(RSDBlob dataBlob, RSDFile dataFile) {
-		return Response.status(204);
-	}
+	public ResponseBuilder twoBinariesAddition(List<Integer> $result, String $contentType, RSDBlob dataBlob, RSDFile dataFile) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder downloadFile(RSDFile $result, String $contentType) {
 		return _RestUtils.toStreamResponse(200, $result);

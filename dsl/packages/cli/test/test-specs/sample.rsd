@@ -509,6 +509,21 @@ record UploadMixedResult {
 	dataBlobContent?: string?
 }
 
+record MixedResult {
+	pathString: string
+	pathNumber: int
+
+	headerString: string
+	headerNumber: int
+	headerRecord: SimpleRecord
+
+	queryString: string
+	queryNumber: int
+	queryRecord: SimpleRecord
+
+	dataBlob: int
+}
+
 /*record Node {
 	parent?: Node[]
 	children: Node[]
@@ -1782,17 +1797,17 @@ service BinaryTypes {
 		queryRecord: SimpleRecord,
 
 		dataBlob: blob
-	);
+	): MixedResult;
 
 	operation singleBodyAddition(
 		name: string,
 		dataBlob: blob
-	);
+	): string;
 
 	operation twoBinariesAddition(
 		dataBlob: blob,
 		dataFile: file
-	);
+	): int[];
 	
 	operation downloadFile(): file;
 	operation downloadBlob(): blob;

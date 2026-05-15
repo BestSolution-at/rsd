@@ -34,6 +34,7 @@ docs/ListBodyParameterTypesListMultiBodyParamRequest.md
 docs/ListHeaderParameterTypesApi.md
 docs/ListQueryParameterTypesApi.md
 docs/ListSampleServiceApi.md
+docs/MixedResult.md
 docs/MixinRecord.md
 docs/NilResult.md
 docs/PatchableEnumInlineRecord.md
@@ -338,6 +339,7 @@ models/ListBodyParameterTypesListMultiBodyParamNilRequest.ts
 models/ListBodyParameterTypesListMultiBodyParamOptNilRequest.ts
 models/ListBodyParameterTypesListMultiBodyParamOptRequest.ts
 models/ListBodyParameterTypesListMultiBodyParamRequest.ts
+models/MixedResult.ts
 models/MixinRecord.ts
 models/NilResult.ts
 models/PatchableEnumInlineRecord.ts

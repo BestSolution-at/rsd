@@ -10,6 +10,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import dev.rsdlang.sample.server.service.BinaryTypesService;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.model._Base;
+import dev.rsdlang.sample.server.service.model.MixedResult;
 import dev.rsdlang.sample.server.service.model.RSDBlob;
 import dev.rsdlang.sample.server.service.model.RSDFile;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
@@ -172,18 +173,18 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	@Override
-	public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob) {
-		mixedHandler.mixed(_factory, pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob);
+	public MixedResult.Data mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob) {
+		return mixedHandler.mixed(_factory, pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob);
 	}
 
 	@Override
-	public void singleBodyAddition(BuilderFactory _factory, String name, RSDBlob dataBlob) {
-		singleBodyAdditionHandler.singleBodyAddition(_factory, name, dataBlob);
+	public String singleBodyAddition(BuilderFactory _factory, String name, RSDBlob dataBlob) {
+		return singleBodyAdditionHandler.singleBodyAddition(_factory, name, dataBlob);
 	}
 
 	@Override
-	public void twoBinariesAddition(BuilderFactory _factory, RSDBlob dataBlob, RSDFile dataFile) {
-		twoBinariesAdditionHandler.twoBinariesAddition(_factory, dataBlob, dataFile);
+	public List<Integer> twoBinariesAddition(BuilderFactory _factory, RSDBlob dataBlob, RSDFile dataFile) {
+		return twoBinariesAdditionHandler.twoBinariesAddition(_factory, dataBlob, dataFile);
 	}
 
 	@Override
@@ -277,15 +278,15 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public interface MixedHandler {
-		public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob);
+		public MixedResult.Data mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob);
 	}
 
 	public interface SingleBodyAdditionHandler {
-		public void singleBodyAddition(BuilderFactory _factory, String name, RSDBlob dataBlob);
+		public String singleBodyAddition(BuilderFactory _factory, String name, RSDBlob dataBlob);
 	}
 
 	public interface TwoBinariesAdditionHandler {
-		public void twoBinariesAddition(BuilderFactory _factory, RSDBlob dataBlob, RSDFile dataFile);
+		public List<Integer> twoBinariesAddition(BuilderFactory _factory, RSDBlob dataBlob, RSDFile dataFile);
 	}
 
 	public interface DownloadFileHandler {
