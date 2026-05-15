@@ -4,6 +4,7 @@ package dev.rsdlang.sample.server.rest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 
@@ -62,6 +63,11 @@ public class PathParameterTypeServiceResourceResponseBuilder {
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder simpleLocalTimePathParam(LocalTime $result, String $contentType, LocalTime pathLocalTime) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder simpleOffsetDateTimePathParam(OffsetDateTime $result, String $contentType, OffsetDateTime pathOffsetDateTime) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}

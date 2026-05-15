@@ -379,6 +379,7 @@ export function generateJsonUtilsContent(
 	fqn('java.time.LocalDate');
 	fqn('java.time.LocalDateTime');
 	fqn('java.time.LocalTime');
+	fqn('java.time.OffsetDateTime');
 	fqn('java.time.ZonedDateTime');
 	fqn('java.time.format.DateTimeFormatter');
 	fqn('java.util.function.Function');
@@ -493,6 +494,8 @@ ${toString(emptyObjectValues, '\t')}
 			return toString(dt);
 		} else if (value instanceof LocalTime t) {
 			return toString(t);
+		} else if (value instanceof OffsetDateTime odt) {
+			return toString(odt);
 		} else if (value instanceof ZonedDateTime zdt) {
 			return toString(zdt);
 		}
@@ -509,6 +512,10 @@ ${toString(emptyObjectValues, '\t')}
 
 	public static String toString(LocalTime value) {
 		return DateTimeFormatter.ISO_LOCAL_TIME.format(value);
+	}
+
+	public static String toString(OffsetDateTime value) {
+		return DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(value);
 	}
 
 	public static String toString(ZonedDateTime value) {
@@ -1146,6 +1153,39 @@ ${toString(emptyObjectValues, '\t')}
 
 	public static LocalTime mapLocalTime(JsonObject object, String property) {
 		return mapLiteral(object, property, LocalTime::parse);
+	}
+
+	// ----------------
+	public static Optional<List<OffsetDateTime>> mapNullOffsetDateTimes(JsonObject object, String property) {
+		return mapNullLiterals(object, property, OffsetDateTime::parse);
+	}
+
+	public static _Base.Nillable<List<OffsetDateTime>> mapNilOffsetDateTimes(JsonObject object, String property) {
+		return mapNilLiterals(object, property, OffsetDateTime::parse);
+	}
+
+	public static Optional<List<OffsetDateTime>> mapOptOffsetDateTimes(JsonObject object, String property) {
+		return mapOptLiterals(object, property, OffsetDateTime::parse);
+	}
+
+	public static List<OffsetDateTime> mapOffsetDateTimes(JsonObject object, String property) {
+		return mapLiterals(object, property, OffsetDateTime::parse);
+	}
+
+	public static Optional<OffsetDateTime> mapNullOffsetDateTime(JsonObject object, String property) {
+		return mapNullLiteral(object, property, OffsetDateTime::parse);
+	}
+
+	public static _Base.Nillable<OffsetDateTime> mapNilOffsetDateTime(JsonObject object, String property) {
+		return mapNilLiteral(object, property, OffsetDateTime::parse);
+	}
+
+	public static Optional<OffsetDateTime> mapOptOffsetDateTime(JsonObject object, String property) {
+		return mapOptLiteral(object, property, OffsetDateTime::parse);
+	}
+
+	public static OffsetDateTime mapOffsetDateTime(JsonObject object, String property) {
+		return mapLiteral(object, property, OffsetDateTime::parse);
 	}
 
 	// ----------------
@@ -2209,6 +2249,40 @@ ${toString(encodeFunctions, '\t')}
 
 	public static _Base.Nillable<List<LocalTime>> parseNilLocalTimes(InputStream inputStream, String contentType) {
 		return parseNilLiterals(inputStream, contentType, LocalTime::parse);
+	}
+
+	// ----------------
+	public static OffsetDateTime parseOffsetDateTime(InputStream inputStream, String contentType) {
+		return parseLiteral(inputStream, contentType, OffsetDateTime::parse);
+	}
+
+	public static Optional<OffsetDateTime> parseOptOffsetDateTime(InputStream inputStream, String contentType) {
+		return parseOptLiteral(inputStream, contentType, OffsetDateTime::parse);
+	}
+
+	public static Optional<OffsetDateTime> parseNullOffsetDateTime(InputStream inputStream, String contentType) {
+		return parseNullLiteral(inputStream, contentType, OffsetDateTime::parse);
+	}
+
+	public static _Base.Nillable<OffsetDateTime> parseNilOffsetDateTime(InputStream inputStream, String contentType) {
+		return parseNilLiteral(inputStream, contentType, OffsetDateTime::parse);
+	}
+
+	public static List<OffsetDateTime> parseOffsetDateTimes(InputStream inputStream, String contentType) {
+		return parseLiterals(inputStream, contentType, OffsetDateTime::parse);
+	}
+
+	public static Optional<List<OffsetDateTime>> parseOptOffsetDateTimes(InputStream inputStream, String contentType) {
+		return parseOptLiterals(inputStream, contentType, OffsetDateTime::parse);
+	}
+
+	public static Optional<List<OffsetDateTime>> parseNullOffsetDateTimes(InputStream inputStream, String contentType) {
+		return parseNullLiterals(inputStream, contentType, OffsetDateTime::parse);
+	}
+
+	public static _Base.Nillable<List<OffsetDateTime>> parseNilOffsetDateTimes(InputStream inputStream,
+			String contentType) {
+		return parseNilLiterals(inputStream, contentType, OffsetDateTime::parse);
 	}
 
 	// ----------------

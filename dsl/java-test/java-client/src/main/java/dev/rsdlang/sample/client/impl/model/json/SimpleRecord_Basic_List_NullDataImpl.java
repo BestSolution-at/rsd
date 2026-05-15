@@ -4,6 +4,7 @@ package dev.rsdlang.sample.client.impl.model.json;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -67,6 +68,11 @@ public class SimpleRecord_Basic_List_NullDataImpl extends _BaseDataImpl implemen
 	@Override
 	public Optional<List<LocalTime>> valueLocalTime() {
 		return _JsonUtils.mapNullLocalTimes(data, "valueLocalTime");
+	}
+
+	@Override
+	public Optional<List<OffsetDateTime>> valueOffsetDateTime() {
+		return _JsonUtils.mapNullOffsetDateTimes(data, "valueOffsetDateTime");
 	}
 
 	@Override
@@ -182,6 +188,16 @@ public class SimpleRecord_Basic_List_NullDataImpl extends _BaseDataImpl implemen
 				return this;
 			}
 			$builder.add("valueLocalTime", _JsonUtils.toJsonLiteralArray(valueLocalTime));
+			return this;
+		}
+
+		@Override
+		public SimpleRecord_Basic_List_Null.DataBuilder valueOffsetDateTime(List<OffsetDateTime> valueOffsetDateTime) {
+			if (valueOffsetDateTime == null) {
+				$builder.addNull("valueOffsetDateTime");
+				return this;
+			}
+			$builder.add("valueOffsetDateTime", _JsonUtils.toJsonLiteralArray(valueOffsetDateTime));
 			return this;
 		}
 

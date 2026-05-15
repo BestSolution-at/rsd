@@ -90,6 +90,18 @@ export interface PatchableRecordBasicOptionalNullPatch {
      * @type {string}
      * @memberof PatchableRecordBasicOptionalNullPatch
      */
+    valueLocalTime?: string | null;
+    /**
+     * 
+     * @type {Date}
+     * @memberof PatchableRecordBasicOptionalNullPatch
+     */
+    valueOffsetDateTime?: Date | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchableRecordBasicOptionalNullPatch
+     */
     valueZonedDateTime?: string | null;
 }
 
@@ -123,6 +135,8 @@ export function PatchableRecordBasicOptionalNullPatchFromJSONTyped(json: any, ig
         'valueString': json['valueString'] == null ? undefined : json['valueString'],
         'valueLocalDate': json['valueLocalDate'] == null ? undefined : (new Date(json['valueLocalDate'])),
         'valueLocalDateTime': json['valueLocalDateTime'] == null ? undefined : json['valueLocalDateTime'],
+        'valueLocalTime': json['valueLocalTime'] == null ? undefined : json['valueLocalTime'],
+        'valueOffsetDateTime': json['valueOffsetDateTime'] == null ? undefined : (new Date(json['valueOffsetDateTime'])),
         'valueZonedDateTime': json['valueZonedDateTime'] == null ? undefined : json['valueZonedDateTime'],
     };
 }
@@ -149,6 +163,8 @@ export function PatchableRecordBasicOptionalNullPatchToJSONTyped(value?: Patchab
         'valueString': value['valueString'],
         'valueLocalDate': value['valueLocalDate'] == null ? value['valueLocalDate'] : value['valueLocalDate'].toISOString().substring(0,10),
         'valueLocalDateTime': value['valueLocalDateTime'],
+        'valueLocalTime': value['valueLocalTime'],
+        'valueOffsetDateTime': value['valueOffsetDateTime'] == null ? value['valueOffsetDateTime'] : value['valueOffsetDateTime'].toISOString(),
         'valueZonedDateTime': value['valueZonedDateTime'],
     };
 }

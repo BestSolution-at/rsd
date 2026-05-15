@@ -210,6 +210,22 @@ export interface HeaderParameterTypesSimpleLocalDateTimeHeaderParamOptNilRequest
     headerValue?: string | null;
 }
 
+export interface HeaderParameterTypesSimpleLocalTimeHeaderParamRequest {
+    headerValue: string;
+}
+
+export interface HeaderParameterTypesSimpleLocalTimeHeaderParamNilRequest {
+    headerValue: string | null;
+}
+
+export interface HeaderParameterTypesSimpleLocalTimeHeaderParamOptRequest {
+    headerValue?: string;
+}
+
+export interface HeaderParameterTypesSimpleLocalTimeHeaderParamOptNilRequest {
+    headerValue?: string | null;
+}
+
 export interface HeaderParameterTypesSimpleLongHeaderParamRequest {
     headerValue: number;
 }
@@ -224,6 +240,22 @@ export interface HeaderParameterTypesSimpleLongHeaderParamOptRequest {
 
 export interface HeaderParameterTypesSimpleLongHeaderParamOptNilRequest {
     headerValue?: number | null;
+}
+
+export interface HeaderParameterTypesSimpleOffsetDateTimeHeaderParamRequest {
+    headerValue: Date;
+}
+
+export interface HeaderParameterTypesSimpleOffsetDateTimeHeaderParamNilRequest {
+    headerValue: Date | null;
+}
+
+export interface HeaderParameterTypesSimpleOffsetDateTimeHeaderParamOptRequest {
+    headerValue?: Date;
+}
+
+export interface HeaderParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRequest {
+    headerValue?: Date | null;
 }
 
 export interface HeaderParameterTypesSimpleScalarHeaderParamRequest {
@@ -2321,6 +2353,188 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for headerParameterTypesSimpleLocalTimeHeaderParam without sending the request
+     */
+    async headerParameterTypesSimpleLocalTimeHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleLocalTimeHeaderParamRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['headerValue'] == null) {
+            throw new runtime.RequiredError(
+                'headerValue',
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleLocalTimeHeaderParam().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+
+        let urlPath = `/api/headerparametertypes/simpleLocalTimeHeaderParam`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleLocalTimeHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleLocalTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.headerParameterTypesSimpleLocalTimeHeaderParamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleLocalTimeHeaderParam(requestParameters: HeaderParameterTypesSimpleLocalTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.headerParameterTypesSimpleLocalTimeHeaderParamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for headerParameterTypesSimpleLocalTimeHeaderParamNil without sending the request
+     */
+    async headerParameterTypesSimpleLocalTimeHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleLocalTimeHeaderParamNilRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['headerValue'] == null) {
+            throw new runtime.RequiredError(
+                'headerValue',
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleLocalTimeHeaderParamNil().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+
+        let urlPath = `/api/headerparametertypes/simpleLocalTimeHeaderParamNil`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleLocalTimeHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleLocalTimeHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleLocalTimeHeaderParamNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleLocalTimeHeaderParamNil(requestParameters: HeaderParameterTypesSimpleLocalTimeHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleLocalTimeHeaderParamNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for headerParameterTypesSimpleLocalTimeHeaderParamOpt without sending the request
+     */
+    async headerParameterTypesSimpleLocalTimeHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleLocalTimeHeaderParamOptRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+
+        let urlPath = `/api/headerparametertypes/simpleLocalTimeHeaderParamOpt`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleLocalTimeHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleLocalTimeHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleLocalTimeHeaderParamOptRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleLocalTimeHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleLocalTimeHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleLocalTimeHeaderParamOptRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for headerParameterTypesSimpleLocalTimeHeaderParamOptNil without sending the request
+     */
+    async headerParameterTypesSimpleLocalTimeHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleLocalTimeHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+
+        let urlPath = `/api/headerparametertypes/simpleLocalTimeHeaderParamOptNil`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleLocalTimeHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleLocalTimeHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleLocalTimeHeaderParamOptNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleLocalTimeHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleLocalTimeHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleLocalTimeHeaderParamOptNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for headerParameterTypesSimpleLongHeaderParam without sending the request
      */
     async headerParameterTypesSimpleLongHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleLongHeaderParamRequest): Promise<runtime.RequestOpts> {
@@ -2499,6 +2713,188 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
      */
     async headerParameterTypesSimpleLongHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleLongHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
         const response = await this.headerParameterTypesSimpleLongHeaderParamOptNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for headerParameterTypesSimpleOffsetDateTimeHeaderParam without sending the request
+     */
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParamRequestOpts(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['headerValue'] == null) {
+            throw new runtime.RequiredError(
+                'headerValue',
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleOffsetDateTimeHeaderParam().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+
+        let urlPath = `/api/headerparametertypes/simpleOffsetDateTimeHeaderParam`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParamRaw(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
+        const requestOptions = await this.headerParameterTypesSimpleOffsetDateTimeHeaderParamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<Date>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParam(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
+        const response = await this.headerParameterTypesSimpleOffsetDateTimeHeaderParamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for headerParameterTypesSimpleOffsetDateTimeHeaderParamNil without sending the request
+     */
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParamNilRequestOpts(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamNilRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['headerValue'] == null) {
+            throw new runtime.RequiredError(
+                'headerValue',
+                'Required parameter "headerValue" was null or undefined when calling headerParameterTypesSimpleOffsetDateTimeHeaderParamNil().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+
+        let urlPath = `/api/headerparametertypes/simpleOffsetDateTimeHeaderParamNil`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParamNilRaw(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleOffsetDateTimeHeaderParamNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParamNil(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleOffsetDateTimeHeaderParamNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for headerParameterTypesSimpleOffsetDateTimeHeaderParamOpt without sending the request
+     */
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParamOptRequestOpts(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamOptRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+
+        let urlPath = `/api/headerparametertypes/simpleOffsetDateTimeHeaderParamOpt`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParamOptRaw(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleOffsetDateTimeHeaderParamOptRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParamOpt(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleOffsetDateTimeHeaderParamOptRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for headerParameterTypesSimpleOffsetDateTimeHeaderParamOptNil without sending the request
+     */
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRequestOpts(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = String(requestParameters['headerValue']);
+        }
+
+
+        let urlPath = `/api/headerparametertypes/simpleOffsetDateTimeHeaderParamOptNil`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRaw(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.headerParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async headerParameterTypesSimpleOffsetDateTimeHeaderParamOptNil(requestParameters: HeaderParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.headerParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

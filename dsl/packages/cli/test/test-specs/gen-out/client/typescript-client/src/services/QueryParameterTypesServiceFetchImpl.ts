@@ -24,6 +24,8 @@ export function createQueryParameterTypesService(props: ServiceProps<api.service
 		simpleLocalDateTimeQueryParamOpt: fnSimpleLocalDateTimeQueryParamOpt(props),
 		simpleLocalTimeQueryParam: fnSimpleLocalTimeQueryParam(props),
 		simpleLocalTimeQueryParamOpt: fnSimpleLocalTimeQueryParamOpt(props),
+		simpleOffsetDateTimeQueryParam: fnSimpleOffsetDateTimeQueryParam(props),
+		simpleOffsetDateTimeQueryParamOpt: fnSimpleOffsetDateTimeQueryParamOpt(props),
 		simpleZonedDateTimeQueryParam: fnSimpleZonedDateTimeQueryParam(props),
 		simpleZonedDateTimeQueryParamOpt: fnSimpleZonedDateTimeQueryParamOpt(props),
 		simpleScalarQueryParam: fnSimpleScalarQueryParam(props),
@@ -712,6 +714,74 @@ function fnSimpleLocalTimeQueryParamOpt(props: ServiceProps<api.service.ErrorTyp
 			return api.result.ERR(err);
 		} finally {
 			final?.('simpleLocalTimeQueryParamOpt');
+		}
+	};
+}
+
+function fnSimpleOffsetDateTimeQueryParam(props: ServiceProps<api.service.ErrorType>): api.service.QueryParameterTypesService['simpleOffsetDateTimeQueryParam'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (queryValue: string) => {
+		try {
+			const $init = (await preFetch?.('simpleOffsetDateTimeQueryParam')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $param = new URLSearchParams();
+			$param.append('queryValue', queryValue);
+			const $path = `${baseUrl}/api/queryparametertypes/simpleOffsetDateTimeQueryParam?${$param.toString()}`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isString);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleOffsetDateTimeQueryParam', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleOffsetDateTimeQueryParam', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleOffsetDateTimeQueryParam');
+		}
+	};
+}
+
+function fnSimpleOffsetDateTimeQueryParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.QueryParameterTypesService['simpleOffsetDateTimeQueryParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (queryValue?: string) => {
+		try {
+			const $init = (await preFetch?.('simpleOffsetDateTimeQueryParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $param = new URLSearchParams();
+			if (queryValue !== undefined) {
+				$param.append('queryValue', queryValue);
+			}
+			const $path = `${baseUrl}/api/queryparametertypes/simpleOffsetDateTimeQueryParamOpt?${$param.toString()}`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('simpleOffsetDateTimeQueryParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('simpleOffsetDateTimeQueryParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('simpleOffsetDateTimeQueryParamOpt');
 		}
 	};
 }

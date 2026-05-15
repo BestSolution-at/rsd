@@ -505,6 +505,50 @@ public class BodyParameterTypesResource {
 	}
 
 	@POST
+	@Path("simpleOffsetDateTimeBodyParam")
+	public Response simpleOffsetDateTimeBodyParam(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyOffsetDateTime) {
+		var bodyOffsetDateTime = _JsonUtils.parseOffsetDateTime(_bodyOffsetDateTime, computeRequestContentType($contentTypeHeader));
+		var result = service.simpleOffsetDateTimeBodyParam(builderFactory, bodyOffsetDateTime);
+		return responseBuilder.simpleOffsetDateTimeBodyParam(result, computeResponseContentType($acceptHeaders), bodyOffsetDateTime).build();
+	}
+
+	@POST
+	@Path("simpleOffsetDateTimeBodyParamOpt")
+	public Response simpleOffsetDateTimeBodyParamOpt(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyOffsetDateTime) {
+		var bodyOffsetDateTime = _JsonUtils.parseOptOffsetDateTime(_bodyOffsetDateTime, computeRequestContentType($contentTypeHeader));
+		var result = service.simpleOffsetDateTimeBodyParamOpt(builderFactory, bodyOffsetDateTime);
+		return responseBuilder.simpleOffsetDateTimeBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyOffsetDateTime).build();
+	}
+
+	@POST
+	@Path("simpleOffsetDateTimeBodyParamNil")
+	public Response simpleOffsetDateTimeBodyParamNil(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyOffsetDateTime) {
+		var bodyOffsetDateTime = _JsonUtils.parseNullOffsetDateTime(_bodyOffsetDateTime, computeRequestContentType($contentTypeHeader));
+		var result = service.simpleOffsetDateTimeBodyParamNil(builderFactory, bodyOffsetDateTime);
+		return responseBuilder.simpleOffsetDateTimeBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyOffsetDateTime).build();
+	}
+
+	@POST
+	@Path("simpleOffsetDateTimeBodyParamOptNil")
+	public Response simpleOffsetDateTimeBodyParamOptNil(
+			@HeaderParam("Content-Type") String $contentTypeHeader,
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			InputStream _bodyOffsetDateTime) {
+		var bodyOffsetDateTime = _JsonUtils.parseNilOffsetDateTime(_bodyOffsetDateTime, computeRequestContentType($contentTypeHeader));
+		var result = service.simpleOffsetDateTimeBodyParamOptNil(builderFactory, bodyOffsetDateTime);
+		return responseBuilder.simpleOffsetDateTimeBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyOffsetDateTime).build();
+	}
+
+	@POST
 	@Path("simpleZonedDateTimeBodyParam")
 	public Response simpleZonedDateTimeBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,

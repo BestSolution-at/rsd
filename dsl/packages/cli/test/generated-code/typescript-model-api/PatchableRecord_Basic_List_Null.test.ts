@@ -23,6 +23,7 @@ const Simple: PatchableRecord_Basic_List_Null = {
 	valueLocalDate: ['2020-01-01', '2020-12-31'],
 	valueLocalDateTime: ['2020-01-01T10:00:00', '2020-12-31T23:59:59'],
 	valueLocalTime: ['10:00:00', '23:59:59'],
+	valueOffsetDateTime: ['2025-01-01T10:00:00+01:00'],
 	valueShort: [1, 2],
 	valueZonedDateTime: ['2020-01-01T10:00:00Z', '2020-12-31T23:59:59Z'],
 };
@@ -39,6 +40,7 @@ const SimpleNull: PatchableRecord_Basic_List_Null = {
 	valueLocalDate: null,
 	valueLocalDateTime: null,
 	valueLocalTime: null,
+	valueOffsetDateTime: null,
 	valueShort: null,
 	valueZonedDateTime: null,
 };
@@ -133,6 +135,10 @@ const SimplePatchReplace: PatchableRecord_Basic_List_NullPatch = {
 		'@type': 'replace',
 		elements: ['10:00:00', '23:59:59'],
 	},
+	valueOffsetDateTime: {
+		'@type': 'replace',
+		elements: ['2025-01-01T10:00:00+01:00'],
+	},
 	valueShort: {
 		'@type': 'replace',
 		elements: [1, 2],
@@ -191,6 +197,11 @@ const SimplePatchMerge: PatchableRecord_Basic_List_NullPatch = {
 		additions: ['10:00:00'],
 		removals: ['23:59:59'],
 	},
+	valueOffsetDateTime: {
+		'@type': 'merge',
+		additions: ['2025-01-01T10:00:00+01:00'],
+		removals: ['2021-02-02T11:30:00+01:00'],
+	},
 	valueShort: {
 		'@type': 'merge',
 		additions: [1],
@@ -215,6 +226,7 @@ const SimplePatchMinimal: PatchableRecord_Basic_List_NullPatch = {
 	valueLocalDate: undefined,
 	valueLocalDateTime: undefined,
 	valueLocalTime: undefined,
+	valueOffsetDateTime: undefined,
 	valueShort: undefined,
 	valueZonedDateTime: undefined,
 };
@@ -231,6 +243,7 @@ const SimplePatchNull: PatchableRecord_Basic_List_NullPatch = {
 	valueLocalDate: null,
 	valueLocalDateTime: null,
 	valueLocalTime: null,
+	valueOffsetDateTime: null,
 	valueShort: null,
 	valueZonedDateTime: null,
 };

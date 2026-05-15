@@ -78,6 +78,18 @@ export interface SimpleRecordBasicListNull {
      * @type {Array<string>}
      * @memberof SimpleRecordBasicListNull
      */
+    valueLocalTime: Array<string> | null;
+    /**
+     * 
+     * @type {Array<Date>}
+     * @memberof SimpleRecordBasicListNull
+     */
+    valueOffsetDateTime: Array<Date> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SimpleRecordBasicListNull
+     */
     valueZonedDateTime: Array<string> | null;
 }
 
@@ -94,6 +106,8 @@ export function instanceOfSimpleRecordBasicListNull(value: object): value is Sim
     if (!('valueString' in value) || value['valueString'] === undefined) return false;
     if (!('valueLocalDate' in value) || value['valueLocalDate'] === undefined) return false;
     if (!('valueLocalDateTime' in value) || value['valueLocalDateTime'] === undefined) return false;
+    if (!('valueLocalTime' in value) || value['valueLocalTime'] === undefined) return false;
+    if (!('valueOffsetDateTime' in value) || value['valueOffsetDateTime'] === undefined) return false;
     if (!('valueZonedDateTime' in value) || value['valueZonedDateTime'] === undefined) return false;
     return true;
 }
@@ -117,6 +131,8 @@ export function SimpleRecordBasicListNullFromJSONTyped(json: any, ignoreDiscrimi
         'valueString': json['valueString'] == null ? null : json['valueString'],
         'valueLocalDate': json['valueLocalDate'] == null ? null : json['valueLocalDate'],
         'valueLocalDateTime': json['valueLocalDateTime'] == null ? null : json['valueLocalDateTime'],
+        'valueLocalTime': json['valueLocalTime'] == null ? null : json['valueLocalTime'],
+        'valueOffsetDateTime': json['valueOffsetDateTime'] == null ? null : json['valueOffsetDateTime'],
         'valueZonedDateTime': json['valueZonedDateTime'] == null ? null : json['valueZonedDateTime'],
     };
 }
@@ -141,6 +157,8 @@ export function SimpleRecordBasicListNullToJSONTyped(value?: SimpleRecordBasicLi
         'valueString': value['valueString'],
         'valueLocalDate': value['valueLocalDate'],
         'valueLocalDateTime': value['valueLocalDateTime'],
+        'valueLocalTime': value['valueLocalTime'],
+        'valueOffsetDateTime': value['valueOffsetDateTime'],
         'valueZonedDateTime': value['valueZonedDateTime'],
     };
 }

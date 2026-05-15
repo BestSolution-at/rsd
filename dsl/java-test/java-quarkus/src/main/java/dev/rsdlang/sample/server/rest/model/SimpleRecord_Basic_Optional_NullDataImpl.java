@@ -4,6 +4,7 @@ package dev.rsdlang.sample.server.rest.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
 import jakarta.json.Json;
@@ -66,6 +67,11 @@ public class SimpleRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl impl
 	@Override
 	public _Base.Nillable<LocalTime> valueLocalTime() {
 		return _JsonUtils.mapNilLocalTime(data, "valueLocalTime");
+	}
+
+	@Override
+	public _Base.Nillable<OffsetDateTime> valueOffsetDateTime() {
+		return _JsonUtils.mapNilOffsetDateTime(data, "valueOffsetDateTime");
 	}
 
 	@Override
@@ -181,6 +187,16 @@ public class SimpleRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl impl
 				return this;
 			}
 			$builder.add("valueLocalTime", _JsonUtils.toString(valueLocalTime));
+			return this;
+		}
+
+		@Override
+		public SimpleRecord_Basic_Optional_Null.DataBuilder valueOffsetDateTime(OffsetDateTime valueOffsetDateTime) {
+			if (valueOffsetDateTime == null) {
+				$builder.addNull("valueOffsetDateTime");
+				return this;
+			}
+			$builder.add("valueOffsetDateTime", _JsonUtils.toString(valueOffsetDateTime));
 			return this;
 		}
 

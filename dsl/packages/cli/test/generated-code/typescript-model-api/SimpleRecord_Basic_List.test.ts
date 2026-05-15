@@ -16,6 +16,7 @@ const Simple: SimpleRecord_Basic_List = {
 	valueLocalDate: ['2020-01-01', '2020-02-01'],
 	valueLocalDateTime: ['2020-01-01T10:00:00', '2020-02-01T10:00:00'],
 	valueLocalTime: ['2020-01-01T10:00:00', '2020-02-01T10:00:00'],
+	valueOffsetDateTime: ['2025-01-01T10:00:00+01:00'],
 	valueLong: [0, 1],
 	valueString: ['a', 'b'],
 	valueZonedDateTime: ['2025-01-01T10:00:00Z', '2025-02-01T10:00:00Z'],

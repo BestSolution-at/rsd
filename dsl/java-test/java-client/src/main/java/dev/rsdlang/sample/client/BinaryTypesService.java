@@ -3,6 +3,7 @@ package dev.rsdlang.sample.client;
 
 import java.util.List;
 
+import dev.rsdlang.sample.client.model.MixedResult;
 import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 import dev.rsdlang.sample.client.model.SimpleRecord;
@@ -183,7 +184,7 @@ public interface BinaryTypesService extends BaseService {
 			RSDFile dataFile, 
 			RSDBlob dataBlob);
 
-	public void mixed(
+	public MixedResult.Data mixed(
 			String pathString, 
 			int pathNumber, 
 			String headerString, 
@@ -194,11 +195,11 @@ public interface BinaryTypesService extends BaseService {
 			SimpleRecord.Data queryRecord, 
 			RSDBlob dataBlob);
 
-	public void singleBodyAddition(
+	public String singleBodyAddition(
 			String name, 
 			RSDBlob dataBlob);
 
-	public void twoBinariesAddition(
+	public List<Integer> twoBinariesAddition(
 			RSDBlob dataBlob, 
 			RSDFile dataFile);
 

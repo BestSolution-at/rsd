@@ -354,6 +354,74 @@ describe('SingleBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 
+	describe('simpleLocalTimeBodyParam', () => {
+		test.each([json, msgpack, openapi])('success - 10:00:00 with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeBodyParam('10:00:00');
+			expect(error).toBeNull();
+			expect(result).toBe('10:00:00');
+		});
+	});
+	describe('simpleLocalTimeBodyParamOpt', () => {
+		test.each([json, msgpack, openapi])('success - undefined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeBodyParamOpt();
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+	});
+	describe('simpleLocalTimeBodyParamNil', () => {
+		test.each([json, msgpack /*, openapi*/])('success - null with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeBodyParamNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+	});
+	describe('simpleLocalTimeBodyParamOptNil', () => {
+		test.each([json, msgpack, openapi])('success - null with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeBodyParamOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+		test.each([json, msgpack, openapi])('success - undefined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeBodyParamOptNil(undefined);
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+	});
+
+	describe('simpleOffsetDateTimeBodyParam', () => {
+		test.each([json, msgpack, openapi])('success - 2025-01-01T10:00:00+01:00 with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeBodyParam('2025-01-01T10:00:00+01:00');
+			expect(error).toBeNull();
+			expect(result).toBe('2025-01-01T10:00:00+01:00');
+		});
+	});
+	describe('simpleOffsetDateTimeBodyParamOpt', () => {
+		test.each([json, msgpack, openapi])('success - undefined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeBodyParamOpt();
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+	});
+	describe('simpleOffsetDateTimeBodyParamNil', () => {
+		test.each([json, msgpack /*, openapi*/])('success - null with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeBodyParamNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+	});
+	describe('simpleOffsetDateTimeBodyParamOptNil', () => {
+		test.each([json, msgpack, openapi])('success - null with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeBodyParamOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toBe('NULL');
+		});
+		test.each([json, msgpack, openapi])('success - undefined with $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeBodyParamOptNil(undefined);
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+	});
+
 	describe('simpleScalarBodyParam', () => {
 		test.each([json, msgpack, openapi])('success - ScalarValue with $encoding', async ({ service }) => {
 			const [result, error] = await service.simpleScalarBodyParam('Europe/Vienna');

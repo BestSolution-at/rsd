@@ -157,6 +157,22 @@ export interface ListHeaderParameterTypesListLocalDateTimeHeaderParamOptNilReque
     headerValue?: Array<string> | null;
 }
 
+export interface ListHeaderParameterTypesListLocalTimeHeaderParamRequest {
+    headerValue: Array<string>;
+}
+
+export interface ListHeaderParameterTypesListLocalTimeHeaderParamNilRequest {
+    headerValue: Array<string> | null;
+}
+
+export interface ListHeaderParameterTypesListLocalTimeHeaderParamOptRequest {
+    headerValue?: Array<string>;
+}
+
+export interface ListHeaderParameterTypesListLocalTimeHeaderParamOptNilRequest {
+    headerValue?: Array<string> | null;
+}
+
 export interface ListHeaderParameterTypesListLongHeaderParamRequest {
     headerValue: Array<number>;
 }
@@ -199,6 +215,22 @@ export interface ListHeaderParameterTypesListMultiHeaderParamOptNilRequest {
     valueA?: Array<string> | null;
     valueB?: Array<number> | null;
     valueC?: Array<string> | null;
+}
+
+export interface ListHeaderParameterTypesListOffsetDateTimeHeaderParamRequest {
+    headerValue: Array<Date>;
+}
+
+export interface ListHeaderParameterTypesListOffsetDateTimeHeaderParamNilRequest {
+    headerValue: Array<Date> | null;
+}
+
+export interface ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptRequest {
+    headerValue?: Array<Date>;
+}
+
+export interface ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRequest {
+    headerValue?: Array<Date> | null;
 }
 
 export interface ListHeaderParameterTypesListRecordHeaderParamRequest {
@@ -1715,6 +1747,184 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listHeaderParameterTypesListLocalTimeHeaderParam without sending the request
+     */
+    async listHeaderParameterTypesListLocalTimeHeaderParamRequestOpts(requestParameters: ListHeaderParameterTypesListLocalTimeHeaderParamRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['headerValue'] == null) {
+            throw new runtime.RequiredError(
+                'headerValue',
+                'Required parameter "headerValue" was null or undefined when calling listHeaderParameterTypesListLocalTimeHeaderParam().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
+
+        let urlPath = `/api/listheaderparametertypes/listLocalTimeHeaderParam`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListLocalTimeHeaderParamRaw(requestParameters: ListHeaderParameterTypesListLocalTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.listHeaderParameterTypesListLocalTimeHeaderParamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListLocalTimeHeaderParam(requestParameters: ListHeaderParameterTypesListLocalTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.listHeaderParameterTypesListLocalTimeHeaderParamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listHeaderParameterTypesListLocalTimeHeaderParamNil without sending the request
+     */
+    async listHeaderParameterTypesListLocalTimeHeaderParamNilRequestOpts(requestParameters: ListHeaderParameterTypesListLocalTimeHeaderParamNilRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['headerValue'] == null) {
+            throw new runtime.RequiredError(
+                'headerValue',
+                'Required parameter "headerValue" was null or undefined when calling listHeaderParameterTypesListLocalTimeHeaderParamNil().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
+
+        let urlPath = `/api/listheaderparametertypes/listLocalTimeHeaderParamNil`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListLocalTimeHeaderParamNilRaw(requestParameters: ListHeaderParameterTypesListLocalTimeHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.listHeaderParameterTypesListLocalTimeHeaderParamNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListLocalTimeHeaderParamNil(requestParameters: ListHeaderParameterTypesListLocalTimeHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.listHeaderParameterTypesListLocalTimeHeaderParamNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listHeaderParameterTypesListLocalTimeHeaderParamOpt without sending the request
+     */
+    async listHeaderParameterTypesListLocalTimeHeaderParamOptRequestOpts(requestParameters: ListHeaderParameterTypesListLocalTimeHeaderParamOptRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
+
+        let urlPath = `/api/listheaderparametertypes/listLocalTimeHeaderParamOpt`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListLocalTimeHeaderParamOptRaw(requestParameters: ListHeaderParameterTypesListLocalTimeHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.listHeaderParameterTypesListLocalTimeHeaderParamOptRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListLocalTimeHeaderParamOpt(requestParameters: ListHeaderParameterTypesListLocalTimeHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.listHeaderParameterTypesListLocalTimeHeaderParamOptRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listHeaderParameterTypesListLocalTimeHeaderParamOptNil without sending the request
+     */
+    async listHeaderParameterTypesListLocalTimeHeaderParamOptNilRequestOpts(requestParameters: ListHeaderParameterTypesListLocalTimeHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
+
+        let urlPath = `/api/listheaderparametertypes/listLocalTimeHeaderParamOptNil`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListLocalTimeHeaderParamOptNilRaw(requestParameters: ListHeaderParameterTypesListLocalTimeHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.listHeaderParameterTypesListLocalTimeHeaderParamOptNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListLocalTimeHeaderParamOptNil(requestParameters: ListHeaderParameterTypesListLocalTimeHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.listHeaderParameterTypesListLocalTimeHeaderParamOptNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for listHeaderParameterTypesListLongHeaderParam without sending the request
      */
     async listHeaderParameterTypesListLongHeaderParamRequestOpts(requestParameters: ListHeaderParameterTypesListLongHeaderParamRequest): Promise<runtime.RequestOpts> {
@@ -2175,6 +2385,184 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
      */
     async listHeaderParameterTypesListMultiHeaderParamOptNil(requestParameters: ListHeaderParameterTypesListMultiHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NilResult>> {
         const response = await this.listHeaderParameterTypesListMultiHeaderParamOptNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listHeaderParameterTypesListOffsetDateTimeHeaderParam without sending the request
+     */
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParamRequestOpts(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['headerValue'] == null) {
+            throw new runtime.RequiredError(
+                'headerValue',
+                'Required parameter "headerValue" was null or undefined when calling listHeaderParameterTypesListOffsetDateTimeHeaderParam().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
+
+        let urlPath = `/api/listheaderparametertypes/listOffsetDateTimeHeaderParam`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParamRaw(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Date>>> {
+        const requestOptions = await this.listHeaderParameterTypesListOffsetDateTimeHeaderParamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParam(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Date>> {
+        const response = await this.listHeaderParameterTypesListOffsetDateTimeHeaderParamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listHeaderParameterTypesListOffsetDateTimeHeaderParamNil without sending the request
+     */
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParamNilRequestOpts(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamNilRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['headerValue'] == null) {
+            throw new runtime.RequiredError(
+                'headerValue',
+                'Required parameter "headerValue" was null or undefined when calling listHeaderParameterTypesListOffsetDateTimeHeaderParamNil().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
+
+        let urlPath = `/api/listheaderparametertypes/listOffsetDateTimeHeaderParamNil`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParamNilRaw(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.listHeaderParameterTypesListOffsetDateTimeHeaderParamNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParamNil(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.listHeaderParameterTypesListOffsetDateTimeHeaderParamNilRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listHeaderParameterTypesListOffsetDateTimeHeaderParamOpt without sending the request
+     */
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParamOptRequestOpts(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
+
+        let urlPath = `/api/listheaderparametertypes/listOffsetDateTimeHeaderParamOpt`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParamOptRaw(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.listHeaderParameterTypesListOffsetDateTimeHeaderParamOptRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParamOpt(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.listHeaderParameterTypesListOffsetDateTimeHeaderParamOptRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listHeaderParameterTypesListOffsetDateTimeHeaderParamOptNil without sending the request
+     */
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRequestOpts(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['headerValue'] != null) {
+            headerParameters['headerValue'] = requestParameters['headerValue']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
+
+        let urlPath = `/api/listheaderparametertypes/listOffsetDateTimeHeaderParamOptNil`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRaw(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.listHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async listHeaderParameterTypesListOffsetDateTimeHeaderParamOptNil(requestParameters: ListHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.listHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

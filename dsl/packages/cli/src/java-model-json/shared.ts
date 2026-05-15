@@ -154,6 +154,8 @@ export function builtinSimpleJSONAccessNG(property: { type: MBuiltinType; name: 
 			return `_JsonUtils.mapLocalTime(data, "${property.name}")`;
 		case 'long':
 			return `_JsonUtils.mapLong(data, "${property.name}")`;
+		case 'offset-date-time':
+			return `_JsonUtils.mapOffsetDateTime(data, "${property.name}")`;
 		case 'short':
 			return `_JsonUtils.mapShort(data, "${property.name}")`;
 		case 'string':
@@ -184,6 +186,8 @@ export function builtinSimpleJSONArrayAccess(property: { type: MBuiltinType; nam
 			return `_JsonUtils.mapLocalTimes(data, "${property.name}")`;
 		case 'long':
 			return `_JsonUtils.mapLongs(data, "${property.name}")`;
+		case 'offset-date-time':
+			return `_JsonUtils.mapOffsetDateTimes(data, "${property.name}")`;
 		case 'short':
 			return `_JsonUtils.mapShorts(data, "${property.name}")`;
 		case 'string':
@@ -241,6 +245,8 @@ function builtinJSONAccessNG(property: {
 			return `_JsonUtils.map${nullablePart}LocalTime(data, "${property.name}")`;
 		case 'long':
 			return `_JsonUtils.map${nullablePart}Long(data, "${property.name}")`;
+		case 'offset-date-time':
+			return `_JsonUtils.map${nullablePart}OffsetDateTime(data, "${property.name}")`;
 		case 'short':
 			return `_JsonUtils.map${nullablePart}Short(data, "${property.name}")`;
 		case 'string':
@@ -291,6 +297,8 @@ export function builtinBuilderArrayJSONAccess(
 			return `${builderName}.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
 		case 'long':
 			return `${builderName}.add("${property.name}", _JsonUtils.toJsonLongArray(${property.name}))`;
+		case 'offset-date-time':
+			return `${builderName}.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
 		case 'short':
 			return `${builderName}.add("${property.name}", _JsonUtils.toJsonShortArray(${property.name}))`;
 		case 'string':
@@ -313,6 +321,7 @@ export function builtinBuilderAccess(property: { type: MBuiltinType; name: strin
 		case 'local-date':
 		case 'local-date-time':
 		case 'local-time':
+		case 'offset-date-time':
 		case 'zoned-date-time':
 			return `$builder.add("${property.name}", ${property.name}.toString())`;
 	}
@@ -896,6 +905,8 @@ export function builtinOptJSONAccess(property: { type: MBuiltinType; name: strin
 			return `_JsonUtils.mapOptLocalTime(data, "${property.name}")`;
 		case 'long':
 			return `_JsonUtils.mapOptLong(data, "${property.name}")`;
+		case 'offset-date-time':
+			return `_JsonUtils.mapOptOffsetDateTime(data, "${property.name}")`;
 		case 'short':
 			return `_JsonUtils.mapOptShort(data, "${property.name}")`;
 		case 'string':
@@ -923,6 +934,8 @@ export function builtinOptArrayJSONAccess(property: { type: MBuiltinType; name: 
 			return `_JsonUtils.mapOptLocalTimes(data, "${property.name}")`;
 		case 'long':
 			return `_JsonUtils.mapOptLongs(data, "${property.name}")`;
+		case 'offset-date-time':
+			return `_JsonUtils.mapOptOffsetDateTimes(data, "${property.name}")`;
 		case 'short':
 			return `_JsonUtils.mapOptShorts(data, "${property.name}")`;
 		case 'string':
@@ -950,6 +963,8 @@ export function builtinNilJSONAccess(property: { type: MBuiltinType; name: strin
 			return `_JsonUtils.mapNilLocalTime(data, "${property.name}")`;
 		case 'long':
 			return `_JsonUtils.mapNilLong(data, "${property.name}")`;
+		case 'offset-date-time':
+			return `_JsonUtils.mapNilOffsetDateTime(data, "${property.name}")`;
 		case 'short':
 			return `_JsonUtils.mapNilShort(data, "${property.name}")`;
 		case 'string':
@@ -977,6 +992,8 @@ export function builtinNilArrayJSONAccess(property: { type: MBuiltinType; name: 
 			return `_JsonUtils.mapNilLocalTimes(data, "${property.name}")`;
 		case 'long':
 			return `_JsonUtils.mapNilLongs(data, "${property.name}")`;
+		case 'offset-date-time':
+			return `_JsonUtils.mapNilOffsetDateTimes(data, "${property.name}")`;
 		case 'short':
 			return `_JsonUtils.mapNilShorts(data, "${property.name}")`;
 		case 'string':

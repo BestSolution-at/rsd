@@ -658,6 +658,142 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 		}
 	}
 
+	async listLocalTimeHeaderParam(
+		headerValue: string[],
+	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.listHeaderParameterTypesListLocalTimeHeaderParamRaw({
+				headerValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			} else {
+				return api.result.ERR(toRSDError(response));
+			}
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async listLocalTimeHeaderParamOpt(
+		headerValue?: string[],
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.listHeaderParameterTypesListLocalTimeHeaderParamOptRaw({
+				headerValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			} else {
+				return api.result.ERR(toRSDError(response));
+			}
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async listLocalTimeHeaderParamNil(
+		headerValue: string[] | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.listHeaderParameterTypesListLocalTimeHeaderParamNilRaw({
+				headerValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			} else {
+				return api.result.ERR(toRSDError(response));
+			}
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async listLocalTimeHeaderParamOptNil(
+		headerValue?: string[] | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.listHeaderParameterTypesListLocalTimeHeaderParamOptNilRaw({
+				headerValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			} else {
+				return api.result.ERR(toRSDError(response));
+			}
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async listOffsetDateTimeHeaderParam(
+		headerValue: string[],
+	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.listHeaderParameterTypesListOffsetDateTimeHeaderParamRaw({
+				headerValue: headerValue as unknown as Date[], // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK((await response.value()) as unknown as string[]);
+			} else {
+				return api.result.ERR(toRSDError(response));
+			}
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async listOffsetDateTimeHeaderParamOpt(
+		headerValue?: string[],
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.listHeaderParameterTypesListOffsetDateTimeHeaderParamOptRaw({
+				headerValue: headerValue as unknown as Date[] | undefined, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			} else {
+				return api.result.ERR(toRSDError(response));
+			}
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async listOffsetDateTimeHeaderParamNil(
+		headerValue: string[] | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.listHeaderParameterTypesListOffsetDateTimeHeaderParamNilRaw({
+				headerValue: headerValue as unknown as Date[] | null, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			} else {
+				return api.result.ERR(toRSDError(response));
+			}
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async listOffsetDateTimeHeaderParamOptNil(
+		headerValue?: string[] | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.listHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRaw({
+				headerValue: headerValue as unknown as Date[] | null | undefined, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			} else {
+				return api.result.ERR(toRSDError(response));
+			}
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
 	async listZonedDateTimeHeaderParam(
 		headerValue: string[],
 	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {

@@ -39,6 +39,10 @@ resource SampleService at '/api/samplerecords' {
 			200
 	}
 
+	GET getOffsetDateTime at 'offsetdatetime' => {
+			200
+	}
+
 	GET getZonedDateTime at 'zoneddatetime' => {
 			200
 	}
@@ -117,6 +121,10 @@ resource ListSampleService at '/api/listsamplerecords' {
 			200
 	}
 
+	GET listOffsetDateTime at 'offsetdatetime' => {
+			200
+	}
+
 	GET listZonedDateTime at 'zoneddatetime' => {
 			200
 	}
@@ -168,6 +176,9 @@ resource PathParameterTypeService at '/api/pathparametertype' {
 			200
 	}
 	GET simpleLocalTimePathParam at 'localtime/${pathLocalTime}' => {
+			200
+	}
+	GET simpleOffsetDateTimePathParam at 'offsetdatetime/${pathOffsetDateTime}' => {
 			200
 	}
 	GET simpleZonedDateTimePathParam at 'zoneddatetime/${pathZonedDateTime}' => {
@@ -234,6 +245,11 @@ resource BodyParameterTypes at '/api/bodyparametertypes' {
 	POST simpleLocalTimeBodyParamOpt at 'simpleLocalTimeBodyParamOpt'
 	POST simpleLocalTimeBodyParamNil at 'simpleLocalTimeBodyParamNil'
 	POST simpleLocalTimeBodyParamOptNil at 'simpleLocalTimeBodyParamOptNil'
+
+	POST simpleOffsetDateTimeBodyParam at 'simpleOffsetDateTimeBodyParam'
+	POST simpleOffsetDateTimeBodyParamOpt at 'simpleOffsetDateTimeBodyParamOpt'
+	POST simpleOffsetDateTimeBodyParamNil at 'simpleOffsetDateTimeBodyParamNil'
+	POST simpleOffsetDateTimeBodyParamOptNil at 'simpleOffsetDateTimeBodyParamOptNil'
 
 	POST simpleZonedDateTimeBodyParam at 'simpleZonedDateTimeBodyParam'
 	POST simpleZonedDateTimeBodyParamOpt at 'simpleZonedDateTimeBodyParamOpt'
@@ -369,6 +385,15 @@ resource HeaderParameterTypes at '/api/headerparametertypes' {
 	GET simpleLocalTimeHeaderParamOptNil at 'simpleLocalTimeHeaderParamOptNil'
 		header-param headerValue
 
+	GET simpleOffsetDateTimeHeaderParam at 'simpleOffsetDateTimeHeaderParam'
+		header-param headerValue
+	GET simpleOffsetDateTimeHeaderParamOpt at 'simpleOffsetDateTimeHeaderParamOpt'
+		header-param headerValue
+	GET simpleOffsetDateTimeHeaderParamNil at 'simpleOffsetDateTimeHeaderParamNil'
+		header-param headerValue
+	GET simpleOffsetDateTimeHeaderParamOptNil at 'simpleOffsetDateTimeHeaderParamOptNil'
+		header-param headerValue
+
 	GET simpleZonedDateTimeHeaderParam at 'simpleZonedDateTimeHeaderParam'
 		header-param headerValue
 	GET simpleZonedDateTimeHeaderParamOpt at 'simpleZonedDateTimeHeaderParamOpt'
@@ -489,6 +514,11 @@ resource QueryParameterTypes at '/api/queryparametertypes' {
 	GET simpleLocalTimeQueryParamOpt at 'simpleLocalTimeQueryParamOpt'
 		query-param queryValue
 
+	GET simpleOffsetDateTimeQueryParam at 'simpleOffsetDateTimeQueryParam'
+		query-param queryValue
+	GET simpleOffsetDateTimeQueryParamOpt at 'simpleOffsetDateTimeQueryParamOpt'
+		query-param queryValue
+
 	GET simpleZonedDateTimeQueryParam at 'simpleZonedDateTimeQueryParam'
 		query-param queryValue
 	GET simpleZonedDateTimeQueryParamOpt at 'simpleZonedDateTimeQueryParamOpt'
@@ -568,6 +598,11 @@ resource ListBodyParameterTypes at '/api/listbodyparametertypes' {
 	PUT listLocalTimeBodyParamNil at 'listLocalTimeBodyParamNil'
 	PUT listLocalTimeBodyParamOptNil at 'listLocalTimeBodyParamOptNil'
 
+	PUT listOffsetDateTimeBodyParam at 'listOffsetDateTimeBodyParam'
+	PUT listOffsetDateTimeBodyParamOpt at 'listOffsetDateTimeBodyParamOpt'
+	PUT listOffsetDateTimeBodyParamNil at 'listOffsetDateTimeBodyParamNil'
+	PUT listOffsetDateTimeBodyParamOptNil at 'listOffsetDateTimeBodyParamOptNil'
+
 	PUT listZonedDateTimeBodyParam at 'listZonedDateTimeBodyParam'
 	PUT listZonedDateTimeBodyParamOpt at 'listZonedDateTimeBodyParamOpt'
 	PUT listZonedDateTimeBodyParamNil at 'listZonedDateTimeBodyParamNil'
@@ -619,6 +654,8 @@ resource ListQueryParameterTypes at '/api/listqueryparametertypes' {
 	GET listLocalDateTimeQueryParam at 'listLocalDateTimeQueryParam'
 		query-param queryValue
 	GET listLocalTimeQueryParam at 'listLocalTimeQueryParam'
+		query-param queryValue
+	GET listOffsetDateTimeQueryParam at 'listOffsetDateTimeQueryParam'
 		query-param queryValue
 	GET listZonedDateTimeQueryParam at 'listZonedDateTimeQueryParam'
 		query-param queryValue
@@ -725,6 +762,15 @@ resource ListHeaderParameterTypes at '/api/listheaderparametertypes' {
 	GET listLocalTimeHeaderParamNil at 'listLocalTimeHeaderParamNil'
 		header-param headerValue
 	GET listLocalTimeHeaderParamOptNil at 'listLocalTimeHeaderParamOptNil'
+		header-param headerValue
+
+	GET listOffsetDateTimeHeaderParam at 'listOffsetDateTimeHeaderParam'
+		header-param headerValue
+	GET listOffsetDateTimeHeaderParamOpt at 'listOffsetDateTimeHeaderParamOpt'
+		header-param headerValue
+	GET listOffsetDateTimeHeaderParamNil at 'listOffsetDateTimeHeaderParamNil'
+		header-param headerValue
+	GET listOffsetDateTimeHeaderParamOptNil at 'listOffsetDateTimeHeaderParamOptNil'
 		header-param headerValue
 
 	GET listZonedDateTimeHeaderParam at 'listZonedDateTimeHeaderParam'

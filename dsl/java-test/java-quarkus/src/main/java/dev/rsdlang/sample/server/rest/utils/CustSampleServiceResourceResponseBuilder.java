@@ -2,6 +2,8 @@ package dev.rsdlang.sample.server.rest.utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -99,6 +101,22 @@ public class CustSampleServiceResourceResponseBuilder extends SampleServiceResou
 			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
 		}
 		return super.getLocalDateTime($result, contentType);
+	}
+
+	@Override
+	public ResponseBuilder getLocalTime(LocalTime $result, String contentType) {
+		if (headers.isInvalidData()) {
+			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
+		}
+		return super.getLocalTime($result, contentType);
+	}
+
+	@Override
+	public ResponseBuilder getOffsetDateTime(OffsetDateTime $result, String contentType) {
+		if (headers.isInvalidData()) {
+			return Response.status(200).entity("true").type(MediaType.APPLICATION_JSON);
+		}
+		return super.getOffsetDateTime($result, contentType);
 	}
 
 	@Override

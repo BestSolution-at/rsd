@@ -560,6 +560,128 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 			return api.result.ERR(toRSDError(error));
 		}
 	}
+	async simpleLocalTimeBodyParam(
+		bodyLocalTime: string,
+	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.bodyParameterTypesSimpleLocalTimeBodyParamRaw({
+				body: bodyLocalTime,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleLocalTimeBodyParamOpt(
+		bodyLocalTime?: string,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.bodyParameterTypesSimpleLocalTimeBodyParamOptRaw({
+				body: bodyLocalTime,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleLocalTimeBodyParamNil(
+		bodyLocalTime: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.bodyParameterTypesSimpleLocalTimeBodyParamNilRaw({
+				body: bodyLocalTime,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleLocalTimeBodyParamOptNil(
+		bodyLocalTime?: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.bodyParameterTypesSimpleLocalTimeBodyParamOptNilRaw({
+				body: bodyLocalTime,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleOffsetDateTimeBodyParam(
+		bodyOffsetDateTime: string,
+	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamRaw({
+				body: bodyOffsetDateTime as unknown as Date,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK((await response.value()) as unknown as string);
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleOffsetDateTimeBodyParamOpt(
+		bodyOffsetDateTime?: string,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamOptRaw({
+				body: bodyOffsetDateTime as unknown as Date,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleOffsetDateTimeBodyParamNil(
+		bodyOffsetDateTime: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamNilRaw({
+				body: bodyOffsetDateTime as unknown as Date,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleOffsetDateTimeBodyParamOptNil(
+		bodyOffsetDateTime?: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamOptNilRaw({
+				body: bodyOffsetDateTime as unknown as Date,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
 	async simpleZonedDateTimeBodyParam(
 		bodyZonedDateTime: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {

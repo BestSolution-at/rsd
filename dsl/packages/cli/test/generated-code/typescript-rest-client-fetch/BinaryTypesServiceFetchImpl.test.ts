@@ -418,4 +418,50 @@ describe('BinaryTypesServiceFetchImpl', () => {
 			});
 		});
 	});
+
+	describe('singleBodyAddition', () => {
+		test.each([json, msgpack, openapi])('success', async ({ service }) => {
+			const file = new File(['Hello, World!'], 'hello.txt', { type: 'text/plain' });
+			const [result, error] = await service.singleBodyAddition('TestName', file);
+			expect(error).toBeNull();
+			expect(result).toBe('TestNameHello, World!');
+		});
+	});
+	describe('twoBinariesAddition', () => {
+		test.each([json, msgpack, openapi])('success', async ({ service }) => {
+			const file = new File(['Hello, File!'], 'hello.txt', { type: 'text/plain' });
+			const blob = new Blob(['Hello, Blob!'], { type: 'text/plain' });
+			const [result, error] = await service.twoBinariesAddition(blob, file);
+			expect(error).toBeNull();
+			expect(result).toStrictEqual([12, 12]);
+		});
+	});
+	describe('mixed', () => {
+		test.each([json, msgpack, openapi])('success', async ({ service }) => {
+			const blob = new Blob(['Mixed Blob Content'], { type: 'text/plain' });
+			const [result, error] = await service.mixed(
+				'path',
+				42,
+				'header',
+				24,
+				{ key: '1', version: '1', value: 'Record1' },
+				'query',
+				84,
+				{ key: '2', version: '1', value: 'Record2' },
+				blob,
+			);
+			expect(error).toBeNull();
+			expect(result).toStrictEqual({
+				pathString: 'path',
+				pathNumber: 42,
+				headerString: 'header',
+				headerNumber: 24,
+				headerRecord: { key: '1', version: '1', value: 'Record1' },
+				queryString: 'query',
+				queryNumber: 84,
+				queryRecord: { key: '2', version: '1', value: 'Record2' },
+				dataBlob: 18,
+			});
+		});
+	});
 });

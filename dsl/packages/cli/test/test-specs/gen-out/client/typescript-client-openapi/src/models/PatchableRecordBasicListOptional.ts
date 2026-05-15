@@ -90,6 +90,18 @@ export interface PatchableRecordBasicListOptional {
      * @type {Array<string>}
      * @memberof PatchableRecordBasicListOptional
      */
+    valueLocalTime?: Array<string>;
+    /**
+     * 
+     * @type {Array<Date>}
+     * @memberof PatchableRecordBasicListOptional
+     */
+    valueOffsetDateTime?: Array<Date>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PatchableRecordBasicListOptional
+     */
     valueZonedDateTime?: Array<string>;
 }
 
@@ -123,6 +135,8 @@ export function PatchableRecordBasicListOptionalFromJSONTyped(json: any, ignoreD
         'valueString': json['valueString'] == null ? undefined : json['valueString'],
         'valueLocalDate': json['valueLocalDate'] == null ? undefined : json['valueLocalDate'],
         'valueLocalDateTime': json['valueLocalDateTime'] == null ? undefined : json['valueLocalDateTime'],
+        'valueLocalTime': json['valueLocalTime'] == null ? undefined : json['valueLocalTime'],
+        'valueOffsetDateTime': json['valueOffsetDateTime'] == null ? undefined : json['valueOffsetDateTime'],
         'valueZonedDateTime': json['valueZonedDateTime'] == null ? undefined : json['valueZonedDateTime'],
     };
 }
@@ -149,6 +163,8 @@ export function PatchableRecordBasicListOptionalToJSONTyped(value?: PatchableRec
         'valueString': value['valueString'],
         'valueLocalDate': value['valueLocalDate'],
         'valueLocalDateTime': value['valueLocalDateTime'],
+        'valueLocalTime': value['valueLocalTime'],
+        'valueOffsetDateTime': value['valueOffsetDateTime'],
         'valueZonedDateTime': value['valueZonedDateTime'],
     };
 }

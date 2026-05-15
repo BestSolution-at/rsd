@@ -473,6 +473,116 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 	});
 
+	describe('listLocalTimeBodyParam', () => {
+		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
+			const [result, error] = await service.listLocalTimeBodyParam(['10:00:00', '23:59:59']);
+			expect(error).toBeNull();
+			expect(result).toEqual(['10:00:00', '23:59:59']);
+		});
+	});
+	describe('listLocalTimeBodyParamOpt', () => {
+		test.each([json, msgpack, openapi])('success - undefined with $encoding', async ({ service }) => {
+			const [result, error] = await service.listLocalTimeBodyParamOpt();
+			expect(error).toBeNull();
+			expect(result).toEqual('UNDEFINED');
+		});
+		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
+			const [result, error] = await service.listLocalTimeBodyParamOpt(['10:00:00', '23:59:59']);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
+	});
+	describe('listLocalTimeBodyParamNil', () => {
+		test.each([json, msgpack /*, openapi*/])('success - null with $encoding', async ({ service }) => {
+			const [result, error] = await service.listLocalTimeBodyParamNil(null);
+			expect(error).toBeNull();
+			expect(result).toEqual('NULL');
+		});
+		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
+			const [result, error] = await service.listLocalTimeBodyParamNil(['10:00:00', '23:59:59']);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
+	});
+	describe('listLocalTimeBodyParamOptNil', () => {
+		test.each([json, msgpack, openapi])('success - undefined with $encoding', async ({ service }) => {
+			const [result, error] = await service.listLocalTimeBodyParamOptNil();
+			expect(error).toBeNull();
+			expect(result).toEqual('UNDEFINED');
+		});
+		test.each([json, msgpack, openapi])('success - null with $encoding', async ({ service }) => {
+			const [result, error] = await service.listLocalTimeBodyParamOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toEqual('NULL');
+		});
+		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
+			const [result, error] = await service.listLocalTimeBodyParamOptNil(['10:00:00', '23:59:59']);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
+	});
+
+	describe('listOffsetDateTimeBodyParam', () => {
+		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
+			const [result, error] = await service.listOffsetDateTimeBodyParam([
+				'2025-01-01T10:00:00+01:00',
+				'2021-02-02T11:30:00+01:00',
+			]);
+			expect(error).toBeNull();
+			expect(result).toEqual(['2025-01-01T10:00:00+01:00', '2021-02-02T11:30:00+01:00']);
+		});
+	});
+	describe('listOffsetDateTimeBodyParamOpt', () => {
+		test.each([json, msgpack, openapi])('success - undefined with $encoding', async ({ service }) => {
+			const [result, error] = await service.listOffsetDateTimeBodyParamOpt();
+			expect(error).toBeNull();
+			expect(result).toEqual('UNDEFINED');
+		});
+		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
+			const [result, error] = await service.listOffsetDateTimeBodyParamOpt([
+				'2025-01-01T10:00:00+01:00',
+				'2021-02-02T11:30:00+01:00',
+			]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
+	});
+	describe('listOffsetDateTimeBodyParamNil', () => {
+		test.each([json, msgpack /*, openapi*/])('success - null with $encoding', async ({ service }) => {
+			const [result, error] = await service.listOffsetDateTimeBodyParamNil(null);
+			expect(error).toBeNull();
+			expect(result).toEqual('NULL');
+		});
+		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
+			const [result, error] = await service.listOffsetDateTimeBodyParamNil([
+				'2025-01-01T10:00:00+01:00',
+				'2021-02-02T11:30:00+01:00',
+			]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
+	});
+	describe('listOffsetDateTimeBodyParamOptNil', () => {
+		test.each([json, msgpack, openapi])('success - undefined with $encoding', async ({ service }) => {
+			const [result, error] = await service.listOffsetDateTimeBodyParamOptNil();
+			expect(error).toBeNull();
+			expect(result).toEqual('UNDEFINED');
+		});
+		test.each([json, msgpack, openapi])('success - null with $encoding', async ({ service }) => {
+			const [result, error] = await service.listOffsetDateTimeBodyParamOptNil(null);
+			expect(error).toBeNull();
+			expect(result).toEqual('NULL');
+		});
+		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
+			const [result, error] = await service.listOffsetDateTimeBodyParamOptNil([
+				'2025-01-01T10:00:00+01:00',
+				'2021-02-02T11:30:00+01:00',
+			]);
+			expect(error).toBeNull();
+			expect(result).toEqual('DEFINED');
+		});
+	});
+
 	describe('listZonedDateTimeBodyParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
 			const [result, error] = await service.listZonedDateTimeBodyParam([

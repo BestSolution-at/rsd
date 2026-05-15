@@ -152,7 +152,7 @@ No authorization required
 
 ## binaryTypesMixed
 
-> binaryTypesMixed(pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, xRSDParamContentType, dataBlob)
+> MixedResult binaryTypesMixed(pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, xRSDParamContentType, dataBlob)
 
 
 
@@ -224,7 +224,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**MixedResult**](MixedResult.md)
 
 ### Authorization
 
@@ -233,20 +233,20 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: `multipart/form-data`
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | success |  -  |
+| **200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## binaryTypesSingleBodyAddition
 
-> binaryTypesSingleBodyAddition(dataBlob, rsdPayload)
+> string binaryTypesSingleBodyAddition(dataBlob, rsdPayload)
 
 
 
@@ -294,7 +294,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+**string**
 
 ### Authorization
 
@@ -303,20 +303,20 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: `multipart/form-data`
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | success |  -  |
+| **200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## binaryTypesTwoBinariesAddition
 
-> binaryTypesTwoBinariesAddition(dataBlob, dataFile)
+> Array&lt;number&gt; binaryTypesTwoBinariesAddition(dataBlob, dataFile)
 
 
 
@@ -364,7 +364,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+**Array<number>**
 
 ### Authorization
 
@@ -373,13 +373,13 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: `multipart/form-data`
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | success |  -  |
+| **200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

@@ -90,6 +90,18 @@ export interface PatchableRecordOfRecordsValuePatchReplace {
      * @type {string}
      * @memberof PatchableRecordOfRecordsValuePatchReplace
      */
+    valueLocalTime: string;
+    /**
+     * 
+     * @type {Date}
+     * @memberof PatchableRecordOfRecordsValuePatchReplace
+     */
+    valueOffsetDateTime: Date;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchableRecordOfRecordsValuePatchReplace
+     */
     valueZonedDateTime: string;
     /**
      * 
@@ -114,6 +126,8 @@ export function instanceOfPatchableRecordOfRecordsValuePatchReplace(value: objec
     if (!('valueString' in value) || value['valueString'] === undefined) return false;
     if (!('valueLocalDate' in value) || value['valueLocalDate'] === undefined) return false;
     if (!('valueLocalDateTime' in value) || value['valueLocalDateTime'] === undefined) return false;
+    if (!('valueLocalTime' in value) || value['valueLocalTime'] === undefined) return false;
+    if (!('valueOffsetDateTime' in value) || value['valueOffsetDateTime'] === undefined) return false;
     if (!('valueZonedDateTime' in value) || value['valueZonedDateTime'] === undefined) return false;
     if ((!('type' in value) && !('@type' in value)) || (value['type'] === undefined && value['@type'] === undefined)) return false;
     return true;
@@ -140,6 +154,8 @@ export function PatchableRecordOfRecordsValuePatchReplaceFromJSONTyped(json: any
         'valueString': json['valueString'],
         'valueLocalDate': (new Date(json['valueLocalDate'])),
         'valueLocalDateTime': json['valueLocalDateTime'],
+        'valueLocalTime': json['valueLocalTime'],
+        'valueOffsetDateTime': (new Date(json['valueOffsetDateTime'])),
         'valueZonedDateTime': json['valueZonedDateTime'],
         'type': json['@type'],
     };
@@ -167,6 +183,8 @@ export function PatchableRecordOfRecordsValuePatchReplaceToJSONTyped(value?: Pat
         'valueString': value['valueString'],
         'valueLocalDate': value['valueLocalDate'].toISOString().substring(0,10),
         'valueLocalDateTime': value['valueLocalDateTime'],
+        'valueLocalTime': value['valueLocalTime'],
+        'valueOffsetDateTime': value['valueOffsetDateTime'].toISOString(),
         'valueZonedDateTime': value['valueZonedDateTime'],
         '@type': value['type'],
     };

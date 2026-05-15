@@ -49,10 +49,18 @@ All URIs are relative to *http://localhost*
 | [**bodyParameterTypesSimpleLocalDateTimeBodyParamNil**](BodyParameterTypesApi.md#bodyparametertypessimplelocaldatetimebodyparamnil) | **POST** /api/bodyparametertypes/simpleLocalDateTimeBodyParamNil |  |
 | [**bodyParameterTypesSimpleLocalDateTimeBodyParamOpt**](BodyParameterTypesApi.md#bodyparametertypessimplelocaldatetimebodyparamopt) | **POST** /api/bodyparametertypes/simpleLocalDateTimeBodyParamOpt |  |
 | [**bodyParameterTypesSimpleLocalDateTimeBodyParamOptNil**](BodyParameterTypesApi.md#bodyparametertypessimplelocaldatetimebodyparamoptnil) | **POST** /api/bodyparametertypes/simpleLocalDateTimeBodyParamOptNil |  |
+| [**bodyParameterTypesSimpleLocalTimeBodyParam**](BodyParameterTypesApi.md#bodyparametertypessimplelocaltimebodyparam) | **POST** /api/bodyparametertypes/simpleLocalTimeBodyParam |  |
+| [**bodyParameterTypesSimpleLocalTimeBodyParamNil**](BodyParameterTypesApi.md#bodyparametertypessimplelocaltimebodyparamnil) | **POST** /api/bodyparametertypes/simpleLocalTimeBodyParamNil |  |
+| [**bodyParameterTypesSimpleLocalTimeBodyParamOpt**](BodyParameterTypesApi.md#bodyparametertypessimplelocaltimebodyparamopt) | **POST** /api/bodyparametertypes/simpleLocalTimeBodyParamOpt |  |
+| [**bodyParameterTypesSimpleLocalTimeBodyParamOptNil**](BodyParameterTypesApi.md#bodyparametertypessimplelocaltimebodyparamoptnil) | **POST** /api/bodyparametertypes/simpleLocalTimeBodyParamOptNil |  |
 | [**bodyParameterTypesSimpleLongBodyParam**](BodyParameterTypesApi.md#bodyparametertypessimplelongbodyparam) | **POST** /api/bodyparametertypes/simpleLongBodyParam |  |
 | [**bodyParameterTypesSimpleLongBodyParamNil**](BodyParameterTypesApi.md#bodyparametertypessimplelongbodyparamnil) | **POST** /api/bodyparametertypes/simpleLongBodyParamNil |  |
 | [**bodyParameterTypesSimpleLongBodyParamOpt**](BodyParameterTypesApi.md#bodyparametertypessimplelongbodyparamopt) | **POST** /api/bodyparametertypes/simpleLongBodyParamOpt |  |
 | [**bodyParameterTypesSimpleLongBodyParamOptNil**](BodyParameterTypesApi.md#bodyparametertypessimplelongbodyparamoptnil) | **POST** /api/bodyparametertypes/simpleLongBodyParamOptNil |  |
+| [**bodyParameterTypesSimpleOffsetDateTimeBodyParam**](BodyParameterTypesApi.md#bodyparametertypessimpleoffsetdatetimebodyparam) | **POST** /api/bodyparametertypes/simpleOffsetDateTimeBodyParam |  |
+| [**bodyParameterTypesSimpleOffsetDateTimeBodyParamNil**](BodyParameterTypesApi.md#bodyparametertypessimpleoffsetdatetimebodyparamnil) | **POST** /api/bodyparametertypes/simpleOffsetDateTimeBodyParamNil |  |
+| [**bodyParameterTypesSimpleOffsetDateTimeBodyParamOpt**](BodyParameterTypesApi.md#bodyparametertypessimpleoffsetdatetimebodyparamopt) | **POST** /api/bodyparametertypes/simpleOffsetDateTimeBodyParamOpt |  |
+| [**bodyParameterTypesSimpleOffsetDateTimeBodyParamOptNil**](BodyParameterTypesApi.md#bodyparametertypessimpleoffsetdatetimebodyparamoptnil) | **POST** /api/bodyparametertypes/simpleOffsetDateTimeBodyParamOptNil |  |
 | [**bodyParameterTypesSimpleScalarBodyParam**](BodyParameterTypesApi.md#bodyparametertypessimplescalarbodyparam) | **POST** /api/bodyparametertypes/simpleScalarBodyParam |  |
 | [**bodyParameterTypesSimpleScalarBodyParamNil**](BodyParameterTypesApi.md#bodyparametertypessimplescalarbodyparamnil) | **POST** /api/bodyparametertypes/simpleScalarBodyParamNil |  |
 | [**bodyParameterTypesSimpleScalarBodyParamOpt**](BodyParameterTypesApi.md#bodyparametertypessimplescalarbodyparamopt) | **POST** /api/bodyparametertypes/simpleScalarBodyParamOpt |  |
@@ -3091,6 +3099,274 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## bodyParameterTypesSimpleLocalTimeBodyParam
+
+> string bodyParameterTypesSimpleLocalTimeBodyParam(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BodyParameterTypesApi,
+} from '';
+import type { BodyParameterTypesSimpleLocalTimeBodyParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BodyParameterTypesApi();
+
+  const body = {
+    // string
+    body: body_example,
+  } satisfies BodyParameterTypesSimpleLocalTimeBodyParamRequest;
+
+  try {
+    const data = await api.bodyParameterTypesSimpleLocalTimeBodyParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `string` |  | |
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## bodyParameterTypesSimpleLocalTimeBodyParamNil
+
+> NilResult bodyParameterTypesSimpleLocalTimeBodyParamNil(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BodyParameterTypesApi,
+} from '';
+import type { BodyParameterTypesSimpleLocalTimeBodyParamNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BodyParameterTypesApi();
+
+  const body = {
+    // string
+    body: body_example,
+  } satisfies BodyParameterTypesSimpleLocalTimeBodyParamNilRequest;
+
+  try {
+    const data = await api.bodyParameterTypesSimpleLocalTimeBodyParamNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `string` |  | |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## bodyParameterTypesSimpleLocalTimeBodyParamOpt
+
+> NilResult bodyParameterTypesSimpleLocalTimeBodyParamOpt(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BodyParameterTypesApi,
+} from '';
+import type { BodyParameterTypesSimpleLocalTimeBodyParamOptRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BodyParameterTypesApi();
+
+  const body = {
+    // string (optional)
+    body: body_example,
+  } satisfies BodyParameterTypesSimpleLocalTimeBodyParamOptRequest;
+
+  try {
+    const data = await api.bodyParameterTypesSimpleLocalTimeBodyParamOpt(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `string` |  | [Optional] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## bodyParameterTypesSimpleLocalTimeBodyParamOptNil
+
+> NilResult bodyParameterTypesSimpleLocalTimeBodyParamOptNil(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BodyParameterTypesApi,
+} from '';
+import type { BodyParameterTypesSimpleLocalTimeBodyParamOptNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BodyParameterTypesApi();
+
+  const body = {
+    // string (optional)
+    body: body_example,
+  } satisfies BodyParameterTypesSimpleLocalTimeBodyParamOptNilRequest;
+
+  try {
+    const data = await api.bodyParameterTypesSimpleLocalTimeBodyParamOptNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `string` |  | [Optional] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## bodyParameterTypesSimpleLongBodyParam
 
 > number bodyParameterTypesSimpleLongBodyParam(body)
@@ -3336,6 +3612,274 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **body** | `number` |  | [Optional] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## bodyParameterTypesSimpleOffsetDateTimeBodyParam
+
+> Date bodyParameterTypesSimpleOffsetDateTimeBodyParam(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BodyParameterTypesApi,
+} from '';
+import type { BodyParameterTypesSimpleOffsetDateTimeBodyParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BodyParameterTypesApi();
+
+  const body = {
+    // Date
+    body: 2013-10-20T19:20:30+01:00,
+  } satisfies BodyParameterTypesSimpleOffsetDateTimeBodyParamRequest;
+
+  try {
+    const data = await api.bodyParameterTypesSimpleOffsetDateTimeBodyParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `Date` |  | |
+
+### Return type
+
+**Date**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## bodyParameterTypesSimpleOffsetDateTimeBodyParamNil
+
+> NilResult bodyParameterTypesSimpleOffsetDateTimeBodyParamNil(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BodyParameterTypesApi,
+} from '';
+import type { BodyParameterTypesSimpleOffsetDateTimeBodyParamNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BodyParameterTypesApi();
+
+  const body = {
+    // Date
+    body: 2013-10-20T19:20:30+01:00,
+  } satisfies BodyParameterTypesSimpleOffsetDateTimeBodyParamNilRequest;
+
+  try {
+    const data = await api.bodyParameterTypesSimpleOffsetDateTimeBodyParamNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `Date` |  | |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## bodyParameterTypesSimpleOffsetDateTimeBodyParamOpt
+
+> NilResult bodyParameterTypesSimpleOffsetDateTimeBodyParamOpt(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BodyParameterTypesApi,
+} from '';
+import type { BodyParameterTypesSimpleOffsetDateTimeBodyParamOptRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BodyParameterTypesApi();
+
+  const body = {
+    // Date (optional)
+    body: 2013-10-20T19:20:30+01:00,
+  } satisfies BodyParameterTypesSimpleOffsetDateTimeBodyParamOptRequest;
+
+  try {
+    const data = await api.bodyParameterTypesSimpleOffsetDateTimeBodyParamOpt(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `Date` |  | [Optional] |
+
+### Return type
+
+[**NilResult**](NilResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## bodyParameterTypesSimpleOffsetDateTimeBodyParamOptNil
+
+> NilResult bodyParameterTypesSimpleOffsetDateTimeBodyParamOptNil(body)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  BodyParameterTypesApi,
+} from '';
+import type { BodyParameterTypesSimpleOffsetDateTimeBodyParamOptNilRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new BodyParameterTypesApi();
+
+  const body = {
+    // Date (optional)
+    body: 2013-10-20T19:20:30+01:00,
+  } satisfies BodyParameterTypesSimpleOffsetDateTimeBodyParamOptNilRequest;
+
+  try {
+    const data = await api.bodyParameterTypesSimpleOffsetDateTimeBodyParamOptNil(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | `Date` |  | [Optional] |
 
 ### Return type
 

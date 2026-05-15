@@ -48,6 +48,10 @@ export function createListHeaderParameterTypesService(props: ServiceProps<api.se
 		listLocalTimeHeaderParamOpt: fnListLocalTimeHeaderParamOpt(props),
 		listLocalTimeHeaderParamNil: fnListLocalTimeHeaderParamNil(props),
 		listLocalTimeHeaderParamOptNil: fnListLocalTimeHeaderParamOptNil(props),
+		listOffsetDateTimeHeaderParam: fnListOffsetDateTimeHeaderParam(props),
+		listOffsetDateTimeHeaderParamOpt: fnListOffsetDateTimeHeaderParamOpt(props),
+		listOffsetDateTimeHeaderParamNil: fnListOffsetDateTimeHeaderParamNil(props),
+		listOffsetDateTimeHeaderParamOptNil: fnListOffsetDateTimeHeaderParamOptNil(props),
 		listZonedDateTimeHeaderParam: fnListZonedDateTimeHeaderParam(props),
 		listZonedDateTimeHeaderParamOpt: fnListZonedDateTimeHeaderParamOpt(props),
 		listZonedDateTimeHeaderParamNil: fnListZonedDateTimeHeaderParamNil(props),
@@ -1530,6 +1534,152 @@ function fnListLocalTimeHeaderParamOptNil(props: ServiceProps<api.service.ErrorT
 			return api.result.ERR(err);
 		} finally {
 			final?.('listLocalTimeHeaderParamOptNil');
+		}
+	};
+}
+
+function fnListOffsetDateTimeHeaderParam(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listOffsetDateTimeHeaderParam'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: string[]) => {
+		try {
+			const $init = (await preFetch?.('listOffsetDateTimeHeaderParam')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			headerValue.forEach($entry => {
+				$headers.append('headerValue', $entry);
+			});
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listOffsetDateTimeHeaderParam`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listOffsetDateTimeHeaderParam', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listOffsetDateTimeHeaderParam', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listOffsetDateTimeHeaderParam');
+		}
+	};
+}
+
+function fnListOffsetDateTimeHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listOffsetDateTimeHeaderParamOpt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: string[]) => {
+		try {
+			const $init = (await preFetch?.('listOffsetDateTimeHeaderParamOpt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			if (headerValue !== undefined) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listOffsetDateTimeHeaderParamOpt`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listOffsetDateTimeHeaderParamOpt', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listOffsetDateTimeHeaderParamOpt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listOffsetDateTimeHeaderParamOpt');
+		}
+	};
+}
+
+function fnListOffsetDateTimeHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listOffsetDateTimeHeaderParamNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listOffsetDateTimeHeaderParamNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			if (headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listOffsetDateTimeHeaderParamNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listOffsetDateTimeHeaderParamNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listOffsetDateTimeHeaderParamNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listOffsetDateTimeHeaderParamNil');
+		}
+	};
+}
+
+function fnListOffsetDateTimeHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listOffsetDateTimeHeaderParamOptNil'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async (headerValue?: string[] | null) => {
+		try {
+			const $init = (await preFetch?.('listOffsetDateTimeHeaderParamOptNil')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			if (headerValue !== undefined && headerValue !== null) {
+				headerValue.forEach($entry => {
+					$headers.append('headerValue', $entry);
+				});
+			} else if (headerValue === null) {
+				$headers.append('headerValue', 'null');
+			}
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/listheaderparametertypes/listOffsetDateTimeHeaderParamOptNil`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.model.isNilResult);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('listOffsetDateTimeHeaderParamOptNil', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('listOffsetDateTimeHeaderParamOptNil', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('listOffsetDateTimeHeaderParamOptNil');
 		}
 	};
 }

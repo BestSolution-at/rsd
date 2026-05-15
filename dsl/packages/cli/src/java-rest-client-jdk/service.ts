@@ -831,6 +831,7 @@ function builtinMapExpression(type: MBuiltinType, array: boolean): string {
 		'local-date-time': 'LocalDateTime',
 		'local-time': 'LocalTime',
 		long: 'Long',
+		'offset-date-time': 'OffsetDateTime',
 		short: 'Short',
 		string: 'String',
 		'zoned-date-time': 'ZonedDateTime',

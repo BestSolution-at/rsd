@@ -844,8 +844,10 @@ function fnMixed(props: ServiceProps<api.service.ErrorType>): api.service.Binary
 				$body.append('_rsdQuarkusBugDummy', '');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
-			if ($response.status === 204) {
-				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('mixed', api.result.Void));
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.MixedResultFromJSON($data);
+				return safeExecute(api.result.OK($result), () => onSuccess?.('mixed', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
@@ -881,8 +883,9 @@ function fnSingleBodyAddition(props: ServiceProps<api.service.ErrorType>): api.s
 				$body.append('_rsdQuarkusBugDummy', '');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
-			if ($response.status === 204) {
-				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('singleBodyAddition', api.result.Void));
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isString);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('singleBodyAddition', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
@@ -915,8 +918,9 @@ function fnTwoBinariesAddition(props: ServiceProps<api.service.ErrorType>): api.
 				$body.append('_rsdQuarkusBugDummy', '');
 			}
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
-			if ($response.status === 204) {
-				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('twoBinariesAddition', api.result.Void));
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isNumber));
+				return safeExecute(api.result.OK($data), () => onSuccess?.('twoBinariesAddition', $data));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);

@@ -21,8 +21,10 @@ import dev.rsdlang.sample.client.impl.model.json.BinaryTypesUploadMixedDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.BinaryTypesUploadMixedNilDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.BinaryTypesUploadMixedOptDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.BinaryTypesUploadMixedOptNilDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.MixedResultDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.UploadMixedResultDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.model.MixedResult;
 import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 import dev.rsdlang.sample.client.model.SimpleRecord;
@@ -1725,7 +1727,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public void mixed(String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob) {
+	public MixedResult.Data mixed(String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob) {
 		Objects.requireNonNull(pathString, "pathString must not be null");
 		Objects.requireNonNull(headerString, "headerString must not be null");
 		Objects.requireNonNull(headerRecord, "headerRecord must not be null");
@@ -1769,8 +1771,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $request = $requestBuilder.build();
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
-			if ($response.statusCode() == 204) {
-				return;
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapObject($response, MixedResultDataImpl::of, MixedResult.Data.class);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
@@ -1778,7 +1780,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public void singleBodyAddition(String name, RSDBlob dataBlob) {
+	public String singleBodyAddition(String name, RSDBlob dataBlob) {
 		Objects.requireNonNull(name, "name must not be null");
 		Objects.requireNonNull(dataBlob, "dataBlob must not be null");
 
@@ -1804,8 +1806,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $request = $requestBuilder.build();
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
-			if ($response.statusCode() == 204) {
-				return;
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapString($response);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {
@@ -1813,7 +1815,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public void twoBinariesAddition(RSDBlob dataBlob, RSDFile dataFile) {
+	public List<Integer> twoBinariesAddition(RSDBlob dataBlob, RSDFile dataFile) {
 		Objects.requireNonNull(dataBlob, "dataBlob must not be null");
 		Objects.requireNonNull(dataFile, "dataFile must not be null");
 
@@ -1837,8 +1839,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			var $request = $requestBuilder.build();
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
-			if ($response.statusCode() == 204) {
-				return;
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapInts($response);
 			}
 			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 		} catch (IOException | InterruptedException e) {

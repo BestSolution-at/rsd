@@ -12,6 +12,7 @@ export type SimpleRecord_Basic_Optional = {
 	readonly valueLocalDate?: string;
 	readonly valueLocalDateTime?: string;
 	readonly valueLocalTime?: string;
+	readonly valueOffsetDateTime?: string;
 	readonly valueZonedDateTime?: string;
 };
 
@@ -27,6 +28,7 @@ export function isSimpleRecord_Basic_Optional(value: unknown): value is SimpleRe
 		checkOptProp(value, 'valueLocalDate', isString) &&
 		checkOptProp(value, 'valueLocalDateTime', isString) &&
 		checkOptProp(value, 'valueLocalTime', isString) &&
+		checkOptProp(value, 'valueOffsetDateTime', isString) &&
 		checkOptProp(value, 'valueZonedDateTime', isString);
 }
 
@@ -41,6 +43,7 @@ export function SimpleRecord_Basic_OptionalFromJSON($value: Record<string, unkno
 	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional');
 	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional');
 	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional');
+	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional');
 	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional');
 	return {
 		valueBoolean,
@@ -53,6 +56,7 @@ export function SimpleRecord_Basic_OptionalFromJSON($value: Record<string, unkno
 		valueLocalDate,
 		valueLocalDateTime,
 		valueLocalTime,
+		valueOffsetDateTime,
 		valueZonedDateTime,
 	};
 }
@@ -68,6 +72,7 @@ export function SimpleRecord_Basic_OptionalToJSON($value: SimpleRecord_Basic_Opt
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
 	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -81,6 +86,7 @@ export function SimpleRecord_Basic_OptionalToJSON($value: SimpleRecord_Basic_Opt
 		valueLocalDate,
 		valueLocalDateTime,
 		valueLocalTime,
+		valueOffsetDateTime,
 		valueZonedDateTime,
 	};
 }

@@ -46,6 +46,10 @@ export interface HeaderParameterTypesService {
 	simpleLocalTimeHeaderParamOpt(headerValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleLocalTimeHeaderParamNil(headerValue: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleLocalTimeHeaderParamOptNil(headerValue?: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleOffsetDateTimeHeaderParam(headerValue: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
+	simpleOffsetDateTimeHeaderParamOpt(headerValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleOffsetDateTimeHeaderParamNil(headerValue: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleOffsetDateTimeHeaderParamOptNil(headerValue?: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeHeaderParam(headerValue: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeHeaderParamOpt(headerValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeHeaderParamNil(headerValue: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;

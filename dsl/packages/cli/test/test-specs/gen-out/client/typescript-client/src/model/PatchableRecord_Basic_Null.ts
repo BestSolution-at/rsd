@@ -14,6 +14,7 @@ export type PatchableRecord_Basic_Null = {
 	readonly valueLocalDate: string | null;
 	readonly valueLocalDateTime: string | null;
 	readonly valueLocalTime: string | null;
+	readonly valueOffsetDateTime: string | null;
 	readonly valueZonedDateTime: string | null;
 };
 
@@ -31,6 +32,7 @@ export function isPatchableRecord_Basic_Null(value: unknown): value is Patchable
 		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', isString)) &&
 		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', isString)) &&
 		(checkProp(value, 'valueLocalTime', isNull) || checkProp(value, 'valueLocalTime', isString)) &&
+		(checkProp(value, 'valueOffsetDateTime', isNull) || checkProp(value, 'valueOffsetDateTime', isString)) &&
 		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', isString));
 }
 
@@ -47,6 +49,7 @@ export function PatchableRecord_Basic_NullFromJSON($value: Record<string, unknow
 	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'null');
 	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'null');
 	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'null');
+	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'null');
 	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'null');
 	return {
 		key,
@@ -61,6 +64,7 @@ export function PatchableRecord_Basic_NullFromJSON($value: Record<string, unknow
 		valueLocalDate,
 		valueLocalDateTime,
 		valueLocalTime,
+		valueOffsetDateTime,
 		valueZonedDateTime,
 	};
 }
@@ -78,6 +82,7 @@ export function PatchableRecord_Basic_NullToJSON($value: PatchableRecord_Basic_N
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
 	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -93,6 +98,7 @@ export function PatchableRecord_Basic_NullToJSON($value: PatchableRecord_Basic_N
 		valueLocalDate,
 		valueLocalDateTime,
 		valueLocalTime,
+		valueOffsetDateTime,
 		valueZonedDateTime,
 	};
 }
@@ -110,6 +116,7 @@ export type PatchableRecord_Basic_NullPatch = {
 	readonly valueLocalDate?: string | null;
 	readonly valueLocalDateTime?: string | null;
 	readonly valueLocalTime?: string | null;
+	readonly valueOffsetDateTime?: string | null;
 	readonly valueZonedDateTime?: string | null;
 };
 
@@ -127,6 +134,7 @@ export function isPatchableRecord_Basic_NullPatch(value: unknown): value is Patc
 		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isString)) &&
 		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
 		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', isString)) &&
+		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', isString)) &&
 		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isString));
 }
 
@@ -143,6 +151,7 @@ export function PatchableRecord_Basic_NullPatchFromJSON($value: Record<string, u
 	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
 	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
 	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional_null');
+	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional_null');
 	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
 	return {
 		key,
@@ -157,6 +166,7 @@ export function PatchableRecord_Basic_NullPatchFromJSON($value: Record<string, u
 		valueLocalDate,
 		valueLocalDateTime,
 		valueLocalTime,
+		valueOffsetDateTime,
 		valueZonedDateTime,
 	};
 }
@@ -174,6 +184,7 @@ export function PatchableRecord_Basic_NullPatchToJSON($value: PatchableRecord_Ba
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
 	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -189,6 +200,7 @@ export function PatchableRecord_Basic_NullPatchToJSON($value: PatchableRecord_Ba
 		valueLocalDate,
 		valueLocalDateTime,
 		valueLocalTime,
+		valueOffsetDateTime,
 		valueZonedDateTime,
 	};
 }

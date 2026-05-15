@@ -90,6 +90,18 @@ export interface PatchableRecordBasicList {
      * @type {Array<string>}
      * @memberof PatchableRecordBasicList
      */
+    valueLocalTime: Array<string>;
+    /**
+     * 
+     * @type {Array<Date>}
+     * @memberof PatchableRecordBasicList
+     */
+    valueOffsetDateTime: Array<Date>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PatchableRecordBasicList
+     */
     valueZonedDateTime: Array<string>;
 }
 
@@ -108,6 +120,8 @@ export function instanceOfPatchableRecordBasicList(value: object): value is Patc
     if (!('valueString' in value) || value['valueString'] === undefined) return false;
     if (!('valueLocalDate' in value) || value['valueLocalDate'] === undefined) return false;
     if (!('valueLocalDateTime' in value) || value['valueLocalDateTime'] === undefined) return false;
+    if (!('valueLocalTime' in value) || value['valueLocalTime'] === undefined) return false;
+    if (!('valueOffsetDateTime' in value) || value['valueOffsetDateTime'] === undefined) return false;
     if (!('valueZonedDateTime' in value) || value['valueZonedDateTime'] === undefined) return false;
     return true;
 }
@@ -133,6 +147,8 @@ export function PatchableRecordBasicListFromJSONTyped(json: any, ignoreDiscrimin
         'valueString': json['valueString'],
         'valueLocalDate': json['valueLocalDate'],
         'valueLocalDateTime': json['valueLocalDateTime'],
+        'valueLocalTime': json['valueLocalTime'],
+        'valueOffsetDateTime': json['valueOffsetDateTime'],
         'valueZonedDateTime': json['valueZonedDateTime'],
     };
 }
@@ -159,6 +175,8 @@ export function PatchableRecordBasicListToJSONTyped(value?: PatchableRecordBasic
         'valueString': value['valueString'],
         'valueLocalDate': value['valueLocalDate'],
         'valueLocalDateTime': value['valueLocalDateTime'],
+        'valueLocalTime': value['valueLocalTime'],
+        'valueOffsetDateTime': value['valueOffsetDateTime'],
         'valueZonedDateTime': value['valueZonedDateTime'],
     };
 }

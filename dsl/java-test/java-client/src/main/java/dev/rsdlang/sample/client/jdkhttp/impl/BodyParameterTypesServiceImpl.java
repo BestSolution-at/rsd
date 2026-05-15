@@ -10,6 +10,7 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.Objects;
@@ -1607,6 +1608,164 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		try {
 			var $contentType = this.contentType();
 			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLocalTime(bodyLocalTime, true, $contentType));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public OffsetDateTime simpleOffsetDateTimeBodyParam(OffsetDateTime bodyOffsetDateTime) {
+		Objects.requireNonNull(bodyOffsetDateTime, "bodyOffsetDateTime must not be null");
+
+		var $path = "%s/api/bodyparametertypes/simpleOffsetDateTimeBodyParam".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $contentType = this.contentType();
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofOffsetDateTime(bodyOffsetDateTime, false, $contentType));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapOffsetDateTime($response);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult simpleOffsetDateTimeBodyParamOpt() {
+		var $path = "%s/api/bodyparametertypes/simpleOffsetDateTimeBodyParamOpt".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $contentType = this.contentType();
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeEmptyValue($contentType));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult simpleOffsetDateTimeBodyParamOpt(OffsetDateTime bodyOffsetDateTime) {
+		var $path = "%s/api/bodyparametertypes/simpleOffsetDateTimeBodyParamOpt".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $contentType = this.contentType();
+			var $body = BodyPublishers.ofByteArray(bodyOffsetDateTime == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofOffsetDateTime(bodyOffsetDateTime, false, $contentType));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult simpleOffsetDateTimeBodyParamNil(OffsetDateTime bodyOffsetDateTime) {
+		var $path = "%s/api/bodyparametertypes/simpleOffsetDateTimeBodyParamNil".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $contentType = this.contentType();
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofOffsetDateTime(bodyOffsetDateTime, true, $contentType));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult simpleOffsetDateTimeBodyParamOptNil() {
+		var $path = "%s/api/bodyparametertypes/simpleOffsetDateTimeBodyParamOptNil".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $contentType = this.contentType();
+			var $body = BodyPublishers.ofByteArray(_JsonUtils.encodeEmptyValue($contentType));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult simpleOffsetDateTimeBodyParamOptNil(OffsetDateTime bodyOffsetDateTime) {
+		var $path = "%s/api/bodyparametertypes/simpleOffsetDateTimeBodyParamOptNil".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $contentType = this.contentType();
+			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofOffsetDateTime(bodyOffsetDateTime, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)

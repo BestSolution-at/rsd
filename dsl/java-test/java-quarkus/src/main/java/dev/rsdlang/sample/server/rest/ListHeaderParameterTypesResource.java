@@ -456,6 +456,46 @@ public class ListHeaderParameterTypesResource {
 	}
 
 	@GET
+	@Path("listOffsetDateTimeHeaderParam")
+	public Response listOffsetDateTimeHeaderParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.mapOffsetDateTimes(_headerValue);
+		var result = service.listOffsetDateTimeHeaderParam(builderFactory, headerValue);
+		return responseBuilder.listOffsetDateTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
+	@Path("listOffsetDateTimeHeaderParamOpt")
+	public Response listOffsetDateTimeHeaderParamOpt(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.mapOptOffsetDateTimes(_headerValue);
+		var result = service.listOffsetDateTimeHeaderParamOpt(builderFactory, headerValue);
+		return responseBuilder.listOffsetDateTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
+	@Path("listOffsetDateTimeHeaderParamNil")
+	public Response listOffsetDateTimeHeaderParamNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.mapNullOffsetDateTimes(_headerValue);
+		var result = service.listOffsetDateTimeHeaderParamNil(builderFactory, headerValue);
+		return responseBuilder.listOffsetDateTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
+	@Path("listOffsetDateTimeHeaderParamOptNil")
+	public Response listOffsetDateTimeHeaderParamOptNil(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@HeaderParam("headerValue") String _headerValue) {
+		var headerValue = _RestUtils.mapNilOffsetDateTimes(_headerValue);
+		var result = service.listOffsetDateTimeHeaderParamOptNil(builderFactory, headerValue);
+		return responseBuilder.listOffsetDateTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+	}
+
+	@GET
 	@Path("listZonedDateTimeHeaderParam")
 	public Response listZonedDateTimeHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,

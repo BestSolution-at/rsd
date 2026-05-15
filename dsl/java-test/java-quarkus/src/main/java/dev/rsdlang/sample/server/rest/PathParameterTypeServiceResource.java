@@ -155,6 +155,16 @@ public class PathParameterTypeServiceResource {
 	}
 
 	@GET
+	@Path("offsetdatetime/{pathOffsetDateTime}")
+	public Response simpleOffsetDateTimePathParam(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@PathParam("pathOffsetDateTime") String _pathOffsetDateTime) {
+		var pathOffsetDateTime = _RestUtils.parseOffsetDateTime(_pathOffsetDateTime);
+		var result = service.simpleOffsetDateTimePathParam(builderFactory, pathOffsetDateTime);
+		return responseBuilder.simpleOffsetDateTimePathParam(result, computeResponseContentType($acceptHeaders), pathOffsetDateTime).build();
+	}
+
+	@GET
 	@Path("zoneddatetime/{pathZonedDateTime}")
 	public Response simpleZonedDateTimePathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,

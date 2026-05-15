@@ -10,6 +10,7 @@ export type MBuiltinType =
 	| 'local-date'
 	| 'local-date-time'
 	| 'local-time'
+	| 'offset-date-time'
 	| 'string'
 	| 'zoned-date-time'
 	| NumericBuiltinType;
@@ -20,6 +21,7 @@ export function isMBuiltinType(value: unknown): value is MBuiltinType {
 		value === 'local-date' ||
 		value === 'local-date-time' ||
 		value === 'local-time' ||
+		value === 'offset-date-time' ||
 		value === 'string' ||
 		value === 'zoned-date-time' ||
 		isMBuiltinNumericType(value)

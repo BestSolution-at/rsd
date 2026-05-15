@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -541,6 +542,56 @@ public class ListHeaderParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listLocalTimeHeaderParamOptNil_defined(ListHeaderParameterTypesService service) {
 		assertEquals(NilResult.DEFINED, service.listLocalTimeHeaderParamOptNil(List.of(LocalTime.parse("10:00:00"))));
+	}
+
+	// --- OffsetDateTime ---
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listOffsetDateTimeHeaderParam(ListHeaderParameterTypesService service) {
+		var times = List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"), OffsetDateTime.parse("2021-02-02T11:30:00+01:00"));
+		assertEquals(times, service.listOffsetDateTimeHeaderParam(times));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listOffsetDateTimeHeaderParamOpt_undefined(ListHeaderParameterTypesService service) {
+		assertEquals(NilResult.UNDEFINED, service.listOffsetDateTimeHeaderParamOpt());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listOffsetDateTimeHeaderParamOpt_defined(ListHeaderParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.listOffsetDateTimeHeaderParamOpt(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listOffsetDateTimeHeaderParamNil_null(ListHeaderParameterTypesService service) {
+		assertEquals(NilResult.NULL, service.listOffsetDateTimeHeaderParamNil(null));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listOffsetDateTimeHeaderParamNil_defined(ListHeaderParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.listOffsetDateTimeHeaderParamNil(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listOffsetDateTimeHeaderParamOptNil_undefined(ListHeaderParameterTypesService service) {
+		assertEquals(NilResult.UNDEFINED, service.listOffsetDateTimeHeaderParamOptNil());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listOffsetDateTimeHeaderParamOptNil_null(ListHeaderParameterTypesService service) {
+		assertEquals(NilResult.NULL, service.listOffsetDateTimeHeaderParamOptNil(null));
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listOffsetDateTimeHeaderParamOptNil_defined(ListHeaderParameterTypesService service) {
+		assertEquals(NilResult.DEFINED, service.listOffsetDateTimeHeaderParamOptNil(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
 	}
 
 	// --- ZonedDateTime ---

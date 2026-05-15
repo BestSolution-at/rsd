@@ -14,6 +14,7 @@ export function createSampleServiceService(props: ServiceProps<api.service.Error
 		getLocalDate: fnGetLocalDate(props),
 		getLocalDateTime: fnGetLocalDateTime(props),
 		getLocalTime: fnGetLocalTime(props),
+		getOffsetDateTime: fnGetOffsetDateTime(props),
 		getZonedDateTime: fnGetZonedDateTime(props),
 		getScalar: fnGetScalar(props),
 		getEnum: fnGetEnum(props),
@@ -330,6 +331,37 @@ function fnGetLocalTime(props: ServiceProps<api.service.ErrorType>): api.service
 			return api.result.ERR(err);
 		} finally {
 			final?.('getLocalTime');
+		}
+	};
+}
+
+function fnGetOffsetDateTime(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getOffsetDateTime'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async () => {
+		try {
+			const $init = (await preFetch?.('getOffsetDateTime')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/samplerecords/offsetdatetime`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 200) {
+				const $data = await decodeResponse($response, api.utils.isString);
+				return safeExecute(api.result.OK($data), () => onSuccess?.('getOffsetDateTime', $data));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('getOffsetDateTime', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('getOffsetDateTime');
 		}
 	};
 }

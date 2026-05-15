@@ -1,4 +1,5 @@
 import { api } from '../../../typescript-client/src/index.js';
+import { MixedResult } from '../../../typescript-client/src/model/MixedResult.js';
 import { encodeBase64, ServiceProps } from '../../../typescript-client/src/services/_fetch-type-utils.js';
 import { BinaryTypesApi } from '../apis/BinaryTypesApi.js';
 import { Configuration, ResponseError } from '../runtime.js';
@@ -401,7 +402,7 @@ class BinaryTypesServiceImpl implements api.service.BinaryTypesService {
 		queryNumber: number,
 		queryRecord: api.model.SimpleRecord,
 		dataBlob: Blob,
-	): Promise<api.result.Result<api.result.VoidType, api.service.StatusRSDError | api.service.NativeRSDError>> {
+	): Promise<api.result.Result<MixedResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.binaryTypesMixedRaw({
 				pathString,
@@ -416,7 +417,7 @@ class BinaryTypesServiceImpl implements api.service.BinaryTypesService {
 				xRSDParamContentType: 'application/json',
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(api.result.Void);
+				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error) {
@@ -426,14 +427,16 @@ class BinaryTypesServiceImpl implements api.service.BinaryTypesService {
 	async singleBodyAddition(
 		name: string,
 		dataBlob: Blob,
-	): Promise<api.result.Result<api.result.VoidType, api.service.StatusRSDError | api.service.NativeRSDError>> {
+	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.binaryTypesSingleBodyAdditionRaw({
-				name,
+				rsdPayload: {
+					name,
+				},
 				dataBlob,
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(api.result.Void);
+				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error) {
@@ -443,14 +446,14 @@ class BinaryTypesServiceImpl implements api.service.BinaryTypesService {
 	async twoBinariesAddition(
 		dataBlob: Blob,
 		dataFile: File,
-	): Promise<api.result.Result<api.result.VoidType, api.service.StatusRSDError | api.service.NativeRSDError>> {
+	): Promise<api.result.Result<number[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.binaryTypesTwoBinariesAdditionRaw({
 				dataBlob,
 				dataFile,
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(api.result.Void);
+				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error) {

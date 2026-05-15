@@ -26,6 +26,8 @@ export interface QueryParameterTypesService {
 	simpleLocalDateTimeQueryParamOpt(queryValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleLocalTimeQueryParam(queryValue: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	simpleLocalTimeQueryParamOpt(queryValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleOffsetDateTimeQueryParam(queryValue: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
+	simpleOffsetDateTimeQueryParamOpt(queryValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeQueryParam(queryValue: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeQueryParamOpt(queryValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleScalarQueryParam(queryValue: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;

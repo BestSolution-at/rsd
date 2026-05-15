@@ -9,6 +9,7 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.Objects;
@@ -766,6 +767,82 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 	public NilResult simpleLocalTimeQueryParamOpt(LocalTime queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleLocalTimeQueryParamOpt".formatted(
+				this.baseURI());
+
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		if (queryValue != null) {
+			$queryParams.append("queryValue", queryValue);
+		}
+
+		var $uri = URI.create($path + $queryParams.toQueryString());
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public OffsetDateTime simpleOffsetDateTimeQueryParam(OffsetDateTime queryValue) {
+		Objects.requireNonNull(queryValue, "queryValue must not be null");
+
+		var $path = "%s/api/queryparametertypes/simpleOffsetDateTimeQueryParam".formatted(
+				this.baseURI());
+
+		var $queryParams = new ServiceUtils.URLSearchParams();
+		$queryParams.append("queryValue", queryValue);
+
+		var $uri = URI.create($path + $queryParams.toQueryString());
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapOffsetDateTime($response);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult simpleOffsetDateTimeQueryParamOpt() {
+		var $path = "%s/api/queryparametertypes/simpleOffsetDateTimeQueryParamOpt".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				return ServiceUtils.mapLiteral($response, NilResult::valueOf);
+			}
+			throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+		} catch (IOException | InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	public NilResult simpleOffsetDateTimeQueryParamOpt(OffsetDateTime queryValue) {
+		var $path = "%s/api/queryparametertypes/simpleOffsetDateTimeQueryParamOpt".formatted(
 				this.baseURI());
 
 		var $queryParams = new ServiceUtils.URLSearchParams();

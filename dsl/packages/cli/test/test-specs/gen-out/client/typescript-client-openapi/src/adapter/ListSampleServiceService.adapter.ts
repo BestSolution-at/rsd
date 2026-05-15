@@ -173,6 +173,33 @@ class ListSampleServiceServiceImpl implements api.service.ListSampleServiceServi
 			return api.result.ERR(toRSDError(error));
 		}
 	}
+	async listLocalTime(): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.listSampleServiceListLocalTimeRaw();
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			} else {
+				return api.result.ERR(toRSDError(response));
+			}
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async listOffsetDateTime(): Promise<
+		api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>
+	> {
+		try {
+			const response = await this.deletegate.listSampleServiceListOffsetDateTimeRaw();
+			if (response.raw.status === 200) {
+				return api.result.OK((await response.value()) as unknown as string[]);
+			} else {
+				return api.result.ERR(toRSDError(response));
+			}
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
 	async listZonedDateTime(): Promise<
 		api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>
 	> {

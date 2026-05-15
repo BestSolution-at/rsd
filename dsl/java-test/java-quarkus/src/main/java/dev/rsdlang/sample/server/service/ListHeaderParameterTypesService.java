@@ -4,6 +4,7 @@ package dev.rsdlang.sample.server.service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -114,6 +115,14 @@ public interface ListHeaderParameterTypesService {
 	public NilResult listLocalTimeHeaderParamNil(BuilderFactory _factory, Optional<List<LocalTime>> headerValue);
 
 	public NilResult listLocalTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalTime>> headerValue);
+
+	public List<OffsetDateTime> listOffsetDateTimeHeaderParam(BuilderFactory _factory, List<OffsetDateTime> headerValue);
+
+	public NilResult listOffsetDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<OffsetDateTime>> headerValue);
+
+	public NilResult listOffsetDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<OffsetDateTime>> headerValue);
+
+	public NilResult listOffsetDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<OffsetDateTime>> headerValue);
 
 	public List<ZonedDateTime> listZonedDateTimeHeaderParam(BuilderFactory _factory, List<ZonedDateTime> headerValue);
 

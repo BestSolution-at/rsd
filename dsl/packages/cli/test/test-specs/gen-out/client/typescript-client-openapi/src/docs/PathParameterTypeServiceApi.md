@@ -12,7 +12,9 @@ All URIs are relative to *http://localhost*
 | [**pathParameterTypeServiceSimpleIntPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimpleintpathparam) | **GET** /api/pathparametertype/int/{pathInt} |  |
 | [**pathParameterTypeServiceSimpleLocalDatePathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplelocaldatepathparam) | **GET** /api/pathparametertype/localdate/{pathLocalDate} |  |
 | [**pathParameterTypeServiceSimpleLocalDateTimePathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplelocaldatetimepathparam) | **GET** /api/pathparametertype/localdatetime/{pathLocalDateTime} |  |
+| [**pathParameterTypeServiceSimpleLocalTimePathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplelocaltimepathparam) | **GET** /api/pathparametertype/localtime/{pathLocalTime} |  |
 | [**pathParameterTypeServiceSimpleLongPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplelongpathparam) | **GET** /api/pathparametertype/long/{pathLong} |  |
+| [**pathParameterTypeServiceSimpleOffsetDateTimePathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimpleoffsetdatetimepathparam) | **GET** /api/pathparametertype/offsetdatetime/{pathOffsetDateTime} |  |
 | [**pathParameterTypeServiceSimpleScalarPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplescalarpathparam) | **GET** /api/pathparametertype/scalar/{pathScalar} |  |
 | [**pathParameterTypeServiceSimpleShortPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimpleshortpathparam) | **GET** /api/pathparametertype/short/{pathShort} |  |
 | [**pathParameterTypeServiceSimpleStringPathParam**](PathParameterTypeServiceApi.md#pathparametertypeservicesimplestringpathparam) | **GET** /api/pathparametertype/string/{pathString} |  |
@@ -559,6 +561,73 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## pathParameterTypeServiceSimpleLocalTimePathParam
+
+> string pathParameterTypeServiceSimpleLocalTimePathParam(pathLocalTime)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PathParameterTypeServiceApi,
+} from '';
+import type { PathParameterTypeServiceSimpleLocalTimePathParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new PathParameterTypeServiceApi();
+
+  const body = {
+    // string | 
+    pathLocalTime: pathLocalTime_example,
+  } satisfies PathParameterTypeServiceSimpleLocalTimePathParamRequest;
+
+  try {
+    const data = await api.pathParameterTypeServiceSimpleLocalTimePathParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pathLocalTime** | `string` |  | [Defaults to `undefined`] |
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## pathParameterTypeServiceSimpleLongPathParam
 
 > number pathParameterTypeServiceSimpleLongPathParam(pathLong)
@@ -607,6 +676,73 @@ example().catch(console.error);
 ### Return type
 
 **number**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## pathParameterTypeServiceSimpleOffsetDateTimePathParam
+
+> Date pathParameterTypeServiceSimpleOffsetDateTimePathParam(pathOffsetDateTime)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PathParameterTypeServiceApi,
+} from '';
+import type { PathParameterTypeServiceSimpleOffsetDateTimePathParamRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new PathParameterTypeServiceApi();
+
+  const body = {
+    // Date | 
+    pathOffsetDateTime: 2013-10-20T19:20:30+01:00,
+  } satisfies PathParameterTypeServiceSimpleOffsetDateTimePathParamRequest;
+
+  try {
+    const data = await api.pathParameterTypeServiceSimpleOffsetDateTimePathParam(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pathOffsetDateTime** | `Date` |  | [Defaults to `undefined`] |
+
+### Return type
+
+**Date**
 
 ### Authorization
 

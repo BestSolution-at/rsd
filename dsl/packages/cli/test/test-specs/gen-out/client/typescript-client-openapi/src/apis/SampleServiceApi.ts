@@ -357,6 +357,47 @@ export class SampleServiceApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for sampleServiceGetLocalTime without sending the request
+     */
+    async sampleServiceGetLocalTimeRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/samplerecords/localtime`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetLocalTimeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.sampleServiceGetLocalTimeRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetLocalTime(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.sampleServiceGetLocalTimeRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for sampleServiceGetLong without sending the request
      */
     async sampleServiceGetLongRequestOpts(): Promise<runtime.RequestOpts> {
@@ -394,6 +435,47 @@ export class SampleServiceApi extends runtime.BaseAPI {
      */
     async sampleServiceGetLong(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
         const response = await this.sampleServiceGetLongRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for sampleServiceGetOffsetDateTime without sending the request
+     */
+    async sampleServiceGetOffsetDateTimeRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/samplerecords/offsetdatetime`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetOffsetDateTimeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
+        const requestOptions = await this.sampleServiceGetOffsetDateTimeRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<Date>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetOffsetDateTime(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
+        const response = await this.sampleServiceGetOffsetDateTimeRaw(initOverrides);
         return await response.value();
     }
 

@@ -12,6 +12,7 @@ export type SimpleRecord_Basic_Null = {
 	readonly valueLocalDate: string | null;
 	readonly valueLocalDateTime: string | null;
 	readonly valueLocalTime: string | null;
+	readonly valueOffsetDateTime: string | null;
 	readonly valueZonedDateTime: string | null;
 };
 
@@ -27,6 +28,7 @@ export function isSimpleRecord_Basic_Null(value: unknown): value is SimpleRecord
 		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', isString)) &&
 		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', isString)) &&
 		(checkProp(value, 'valueLocalTime', isNull) || checkProp(value, 'valueLocalTime', isString)) &&
+		(checkProp(value, 'valueOffsetDateTime', isNull) || checkProp(value, 'valueOffsetDateTime', isString)) &&
 		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', isString));
 }
 
@@ -41,6 +43,7 @@ export function SimpleRecord_Basic_NullFromJSON($value: Record<string, unknown>)
 	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'null');
 	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'null');
 	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'null');
+	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'null');
 	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'null');
 	return {
 		valueBoolean,
@@ -53,6 +56,7 @@ export function SimpleRecord_Basic_NullFromJSON($value: Record<string, unknown>)
 		valueLocalDate,
 		valueLocalDateTime,
 		valueLocalTime,
+		valueOffsetDateTime,
 		valueZonedDateTime,
 	};
 }
@@ -68,6 +72,7 @@ export function SimpleRecord_Basic_NullToJSON($value: SimpleRecord_Basic_Null): 
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
 	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
 	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
@@ -81,6 +86,7 @@ export function SimpleRecord_Basic_NullToJSON($value: SimpleRecord_Basic_Null): 
 		valueLocalDate,
 		valueLocalDateTime,
 		valueLocalTime,
+		valueOffsetDateTime,
 		valueZonedDateTime,
 	};
 }

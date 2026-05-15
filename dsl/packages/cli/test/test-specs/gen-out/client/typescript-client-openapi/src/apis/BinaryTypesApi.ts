@@ -39,6 +39,11 @@ import {
     BinaryTypesUploadMixedRequestRsdPayloadToJSON,
 } from '../models/BinaryTypesUploadMixedRequestRsdPayload.js';
 import {
+    type MixedResult,
+    MixedResultFromJSON,
+    MixedResultToJSON,
+} from '../models/MixedResult.js';
+import {
     type UploadMixedResult,
     UploadMixedResultFromJSON,
     UploadMixedResultToJSON,
@@ -377,18 +382,19 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async binaryTypesMixedRaw(requestParameters: BinaryTypesMixedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async binaryTypesMixedRaw(requestParameters: BinaryTypesMixedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MixedResult>> {
         const requestOptions = await this.binaryTypesMixedRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => MixedResultFromJSON(jsonValue));
     }
 
     /**
      * 
      */
-    async binaryTypesMixed(requestParameters: BinaryTypesMixedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.binaryTypesMixedRaw(requestParameters, initOverrides);
+    async binaryTypesMixed(requestParameters: BinaryTypesMixedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MixedResult> {
+        const response = await this.binaryTypesMixedRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -445,18 +451,23 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async binaryTypesSingleBodyAdditionRaw(requestParameters: BinaryTypesSingleBodyAdditionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async binaryTypesSingleBodyAdditionRaw(requestParameters: BinaryTypesSingleBodyAdditionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         const requestOptions = await this.binaryTypesSingleBodyAdditionRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
      * 
      */
-    async binaryTypesSingleBodyAddition(requestParameters: BinaryTypesSingleBodyAdditionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.binaryTypesSingleBodyAdditionRaw(requestParameters, initOverrides);
+    async binaryTypesSingleBodyAddition(requestParameters: BinaryTypesSingleBodyAdditionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.binaryTypesSingleBodyAdditionRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -522,18 +533,19 @@ export class BinaryTypesApi extends runtime.BaseAPI {
     /**
      * 
      */
-    async binaryTypesTwoBinariesAdditionRaw(requestParameters: BinaryTypesTwoBinariesAdditionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async binaryTypesTwoBinariesAdditionRaw(requestParameters: BinaryTypesTwoBinariesAdditionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<number>>> {
         const requestOptions = await this.binaryTypesTwoBinariesAdditionRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      * 
      */
-    async binaryTypesTwoBinariesAddition(requestParameters: BinaryTypesTwoBinariesAdditionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.binaryTypesTwoBinariesAdditionRaw(requestParameters, initOverrides);
+    async binaryTypesTwoBinariesAddition(requestParameters: BinaryTypesTwoBinariesAdditionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<number>> {
+        const response = await this.binaryTypesTwoBinariesAdditionRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

@@ -169,6 +169,34 @@ describe('SingleQueryParameterTypesService', () => {
 			expect(result).toBe('UNDEFINED');
 		});
 	});
+	describe('simpleLocalTimeQueryParam', () => {
+		test.each([json, msgpack, openapi])('success - 10:00:00 - $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeQueryParam('10:00:00');
+			expect(error).toBeNull();
+			expect(result).toBe('10:00:00');
+		});
+		test.each([json, msgpack, openapi])('success - optional - $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleLocalTimeQueryParamOpt();
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+	});
+	describe('simpleOffsetDateTimeQueryParam', () => {
+		test.each([json, msgpack, openapi])('success - 2025-01-01T10:00:00+01:00 - $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeQueryParam('2025-01-01T10:00:00+01:00');
+			expect(error).toBeNull();
+			if (service === openapiService) {
+				expect(result).toBe('2025-01-01T09:00:00Z');
+			} else {
+				expect(result).toBe('2025-01-01T10:00:00+01:00');
+			}
+		});
+		test.each([json, msgpack, openapi])('success - optional - $encoding', async ({ service }) => {
+			const [result, error] = await service.simpleOffsetDateTimeQueryParamOpt();
+			expect(error).toBeNull();
+			expect(result).toBe('UNDEFINED');
+		});
+	});
 	describe('simpleZonedDateTimeQueryParam', () => {
 		test.each([json, msgpack, openapi])('success - 2024-01-01T12:34:56Z - $encoding', async ({ service }) => {
 			const [result, error] = await service.simpleZonedDateTimeQueryParam('2024-01-01T12:34:56Z');

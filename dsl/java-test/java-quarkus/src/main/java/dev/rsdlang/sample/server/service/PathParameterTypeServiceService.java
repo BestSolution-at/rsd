@@ -4,6 +4,7 @@ package dev.rsdlang.sample.server.service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 
@@ -29,6 +30,8 @@ public interface PathParameterTypeServiceService {
 	public LocalDateTime simpleLocalDateTimePathParam(BuilderFactory _factory, LocalDateTime pathLocalDateTime);
 
 	public LocalTime simpleLocalTimePathParam(BuilderFactory _factory, LocalTime pathLocalTime);
+
+	public OffsetDateTime simpleOffsetDateTimePathParam(BuilderFactory _factory, OffsetDateTime pathOffsetDateTime);
 
 	public ZonedDateTime simpleZonedDateTimePathParam(BuilderFactory _factory, ZonedDateTime pathZonedDateTime);
 

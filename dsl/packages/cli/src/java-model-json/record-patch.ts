@@ -134,7 +134,7 @@ function lambdaBodyComputer(prop: MResolvedPropery, type: string, fqn: (type: st
 		} else if (prop.type === 'string') {
 			const JsonString = fqn('jakarta.json.JsonString');
 			return `((${JsonString}) v).getString()`;
-		} else if (prop.type === 'local-date' || prop.type === 'local-date-time' || prop.type === 'local-time' || prop.type === 'zoned-date-time') {
+		} else if (prop.type === 'local-date' || prop.type === 'local-date-time' || prop.type === 'local-time' || prop.type === 'offset-date-time' || prop.type === 'zoned-date-time') {
 			const JsonString = fqn('jakarta.json.JsonString');
 			return `${type}.parse(((${JsonString})v).getString())`;
 		} else {

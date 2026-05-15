@@ -15,6 +15,7 @@ export interface SampleServiceService {
 	getLocalDate(): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	getLocalDateTime(): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	getLocalTime(): Promise<Result<string, StatusRSDError | NativeRSDError>>;
+	getOffsetDateTime(): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	getZonedDateTime(): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	getScalar(): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	getEnum(): Promise<Result<SampleEnum, StatusRSDError | NativeRSDError>>;

@@ -11,7 +11,9 @@ All URIs are relative to *http://localhost*
 | [**listSampleServiceListInt**](ListSampleServiceApi.md#listsampleservicelistint) | **GET** /api/listsamplerecords/int |  |
 | [**listSampleServiceListLocalDate**](ListSampleServiceApi.md#listsampleservicelistlocaldate) | **GET** /api/listsamplerecords/localdate |  |
 | [**listSampleServiceListLocalDateTime**](ListSampleServiceApi.md#listsampleservicelistlocaldatetime) | **GET** /api/listsamplerecords/localdatetime |  |
+| [**listSampleServiceListLocalTime**](ListSampleServiceApi.md#listsampleservicelistlocaltime) | **GET** /api/listsamplerecords/localtime |  |
 | [**listSampleServiceListLong**](ListSampleServiceApi.md#listsampleservicelistlong) | **GET** /api/listsamplerecords/long |  |
+| [**listSampleServiceListOffsetDateTime**](ListSampleServiceApi.md#listsampleservicelistoffsetdatetime) | **GET** /api/listsamplerecords/offsetdatetime |  |
 | [**listSampleServiceListScalar**](ListSampleServiceApi.md#listsampleservicelistscalar) | **GET** /api/listsamplerecords/scalar |  |
 | [**listSampleServiceListShort**](ListSampleServiceApi.md#listsampleservicelistshort) | **GET** /api/listsamplerecords/short |  |
 | [**listSampleServiceListSimpleRecord**](ListSampleServiceApi.md#listsampleservicelistsimplerecord) | **GET** /api/listsamplerecords/simplerecord |  |
@@ -434,6 +436,65 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## listSampleServiceListLocalTime
+
+> Array&lt;string&gt; listSampleServiceListLocalTime()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListSampleServiceApi,
+} from '';
+import type { ListSampleServiceListLocalTimeRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListSampleServiceApi();
+
+  try {
+    const data = await api.listSampleServiceListLocalTime();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**Array<string>**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## listSampleServiceListLong
 
 > Array&lt;number&gt; listSampleServiceListLong()
@@ -474,6 +535,65 @@ This endpoint does not need any parameter.
 ### Return type
 
 **Array<number>**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listSampleServiceListOffsetDateTime
+
+> Array&lt;Date&gt; listSampleServiceListOffsetDateTime()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ListSampleServiceApi,
+} from '';
+import type { ListSampleServiceListOffsetDateTimeRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ListSampleServiceApi();
+
+  try {
+    const data = await api.listSampleServiceListOffsetDateTime();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**Array<Date>**
 
 ### Authorization
 

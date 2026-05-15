@@ -32,6 +32,8 @@ export function builtinToJavaType(type: MBuiltinType, fqn: (type: string) => str
 			return fqn('java.time.LocalTime');
 		case 'long':
 			return 'long';
+		case 'offset-date-time':
+			return fqn('java.time.OffsetDateTime');
 		case 'short':
 			return 'short';
 		case 'string':
@@ -59,6 +61,8 @@ export function builtinToJavaObjectType(type: MBuiltinType, fqn: (type: string) 
 			return fqn('java.time.LocalTime');
 		case 'long':
 			return 'Long';
+		case 'offset-date-time':
+			return fqn('java.time.OffsetDateTime');
 		case 'short':
 			return 'Short';
 		case 'string':

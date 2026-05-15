@@ -128,6 +128,30 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 	}
 
 	@Override
+	public ResponseBuilder listLocalTime(List<java.time.LocalTime> $result, String contentType) {
+		if (headers.isUnknownStatus()) {
+			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
+		} else if (headers.isInvalidData()) {
+			return Response.status(200).entity("123").type(MediaType.APPLICATION_JSON);
+		} else if (headers.isInvalidEncodedData()) {
+			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
+		}
+		return super.listLocalTime($result, contentType);
+	}
+
+	@Override
+	public ResponseBuilder listOffsetDateTime(List<java.time.OffsetDateTime> $result, String contentType) {
+		if (headers.isUnknownStatus()) {
+			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
+		} else if (headers.isInvalidData()) {
+			return Response.status(200).entity("123").type(MediaType.APPLICATION_JSON);
+		} else if (headers.isInvalidEncodedData()) {
+			return Response.status(200).entity("This is not JSON").type(MediaType.APPLICATION_JSON);
+		}
+		return super.listOffsetDateTime($result, contentType);
+	}
+
+	@Override
 	public ResponseBuilder listZonedDateTime(List<java.time.ZonedDateTime> $result, String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);

@@ -17,6 +17,8 @@ Name | Type
 `valueString` | [PatchableRecordBasicListOptionalPatchValueString](PatchableRecordBasicListOptionalPatchValueString.md)
 `valueLocalDate` | [PatchableRecordBasicListOptionalPatchValueLocalDate](PatchableRecordBasicListOptionalPatchValueLocalDate.md)
 `valueLocalDateTime` | [PatchableRecordBasicListOptionalPatchValueLocalDateTime](PatchableRecordBasicListOptionalPatchValueLocalDateTime.md)
+`valueLocalTime` | [PatchableRecordBasicListOptionalPatchValueLocalTime](PatchableRecordBasicListOptionalPatchValueLocalTime.md)
+`valueOffsetDateTime` | [PatchableRecordBasicListOptionalPatchValueOffsetDateTime](PatchableRecordBasicListOptionalPatchValueOffsetDateTime.md)
 `valueZonedDateTime` | [PatchableRecordBasicListOptionalPatchValueZonedDateTime](PatchableRecordBasicListOptionalPatchValueZonedDateTime.md)
 
 ## Example
@@ -37,6 +39,8 @@ const example = {
   "valueString": null,
   "valueLocalDate": null,
   "valueLocalDateTime": null,
+  "valueLocalTime": null,
+  "valueOffsetDateTime": null,
   "valueZonedDateTime": null,
 } satisfies PatchableRecordBasicListOptionalPatch
 

@@ -9,6 +9,7 @@ export type PM_BuiltinType =
 	| 'local-date'
 	| 'local-date-time'
 	| 'local-time'
+	| 'offset-date-time'
 	| 'zoned-date-time';
 
 export type PM_UserType = PM_ScalarType | PM_EnumType | PM_MixinEntityType | PM_EntityType;

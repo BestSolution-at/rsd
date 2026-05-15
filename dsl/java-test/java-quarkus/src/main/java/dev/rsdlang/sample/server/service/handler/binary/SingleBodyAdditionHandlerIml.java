@@ -9,9 +9,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class SingleBodyAdditionHandlerIml implements BinaryTypesServiceImpl.SingleBodyAdditionHandler {
 
 	@Override
-	public void singleBodyAddition(BuilderFactory _factory, String name, RSDBlob dataBlob) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'singleBodyAddition'");
+	public String singleBodyAddition(BuilderFactory _factory, String name, RSDBlob dataBlob) {
+		return name + StreamUtils.streamToString(dataBlob.stream());
 	}
 
 }

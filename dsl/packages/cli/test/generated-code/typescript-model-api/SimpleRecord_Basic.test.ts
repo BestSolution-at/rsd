@@ -14,6 +14,7 @@ const Simple = {
 	valueLocalDate: '2025-01-01',
 	valueLocalDateTime: '2025-01-01T10:00:00',
 	valueLocalTime: '10:00:00',
+	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
 	valueLong: 1,
 	valueShort: 1,
 	valueString: 'Foo',

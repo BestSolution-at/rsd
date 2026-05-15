@@ -105,12 +105,28 @@ export interface QueryParameterTypesSimpleLocalDateTimeQueryParamOptRequest {
     queryValue?: string;
 }
 
+export interface QueryParameterTypesSimpleLocalTimeQueryParamRequest {
+    queryValue: string;
+}
+
+export interface QueryParameterTypesSimpleLocalTimeQueryParamOptRequest {
+    queryValue?: string;
+}
+
 export interface QueryParameterTypesSimpleLongQueryParamRequest {
     queryValue: number;
 }
 
 export interface QueryParameterTypesSimpleLongQueryParamOptRequest {
     queryValue?: number;
+}
+
+export interface QueryParameterTypesSimpleOffsetDateTimeQueryParamRequest {
+    queryValue: Date;
+}
+
+export interface QueryParameterTypesSimpleOffsetDateTimeQueryParamOptRequest {
+    queryValue?: Date;
 }
 
 export interface QueryParameterTypesSimpleScalarQueryParamRequest {
@@ -1021,6 +1037,99 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for queryParameterTypesSimpleLocalTimeQueryParam without sending the request
+     */
+    async queryParameterTypesSimpleLocalTimeQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleLocalTimeQueryParamRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['queryValue'] == null) {
+            throw new runtime.RequiredError(
+                'queryValue',
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleLocalTimeQueryParam().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['queryValue'] != null) {
+            queryParameters['queryValue'] = requestParameters['queryValue'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/queryparametertypes/simpleLocalTimeQueryParam`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async queryParameterTypesSimpleLocalTimeQueryParamRaw(requestParameters: QueryParameterTypesSimpleLocalTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.queryParameterTypesSimpleLocalTimeQueryParamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async queryParameterTypesSimpleLocalTimeQueryParam(requestParameters: QueryParameterTypesSimpleLocalTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.queryParameterTypesSimpleLocalTimeQueryParamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for queryParameterTypesSimpleLocalTimeQueryParamOpt without sending the request
+     */
+    async queryParameterTypesSimpleLocalTimeQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleLocalTimeQueryParamOptRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['queryValue'] != null) {
+            queryParameters['queryValue'] = requestParameters['queryValue'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/queryparametertypes/simpleLocalTimeQueryParamOpt`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async queryParameterTypesSimpleLocalTimeQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleLocalTimeQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleLocalTimeQueryParamOptRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async queryParameterTypesSimpleLocalTimeQueryParamOpt(requestParameters: QueryParameterTypesSimpleLocalTimeQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleLocalTimeQueryParamOptRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for queryParameterTypesSimpleLongQueryParam without sending the request
      */
     async queryParameterTypesSimpleLongQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleLongQueryParamRequest): Promise<runtime.RequestOpts> {
@@ -1110,6 +1219,99 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
      */
     async queryParameterTypesSimpleLongQueryParamOpt(requestParameters: QueryParameterTypesSimpleLongQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
         const response = await this.queryParameterTypesSimpleLongQueryParamOptRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for queryParameterTypesSimpleOffsetDateTimeQueryParam without sending the request
+     */
+    async queryParameterTypesSimpleOffsetDateTimeQueryParamRequestOpts(requestParameters: QueryParameterTypesSimpleOffsetDateTimeQueryParamRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['queryValue'] == null) {
+            throw new runtime.RequiredError(
+                'queryValue',
+                'Required parameter "queryValue" was null or undefined when calling queryParameterTypesSimpleOffsetDateTimeQueryParam().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['queryValue'] != null) {
+            queryParameters['queryValue'] = (requestParameters['queryValue'] as any).toISOString();
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/queryparametertypes/simpleOffsetDateTimeQueryParam`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async queryParameterTypesSimpleOffsetDateTimeQueryParamRaw(requestParameters: QueryParameterTypesSimpleOffsetDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Date>> {
+        const requestOptions = await this.queryParameterTypesSimpleOffsetDateTimeQueryParamRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<Date>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async queryParameterTypesSimpleOffsetDateTimeQueryParam(requestParameters: QueryParameterTypesSimpleOffsetDateTimeQueryParamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Date> {
+        const response = await this.queryParameterTypesSimpleOffsetDateTimeQueryParamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for queryParameterTypesSimpleOffsetDateTimeQueryParamOpt without sending the request
+     */
+    async queryParameterTypesSimpleOffsetDateTimeQueryParamOptRequestOpts(requestParameters: QueryParameterTypesSimpleOffsetDateTimeQueryParamOptRequest): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        if (requestParameters['queryValue'] != null) {
+            queryParameters['queryValue'] = (requestParameters['queryValue'] as any).toISOString();
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/queryparametertypes/simpleOffsetDateTimeQueryParamOpt`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async queryParameterTypesSimpleOffsetDateTimeQueryParamOptRaw(requestParameters: QueryParameterTypesSimpleOffsetDateTimeQueryParamOptRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NilResult>> {
+        const requestOptions = await this.queryParameterTypesSimpleOffsetDateTimeQueryParamOptRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NilResultFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     */
+    async queryParameterTypesSimpleOffsetDateTimeQueryParamOpt(requestParameters: QueryParameterTypesSimpleOffsetDateTimeQueryParamOptRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NilResult> {
+        const response = await this.queryParameterTypesSimpleOffsetDateTimeQueryParamOptRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -338,4 +338,45 @@ public class BinaryTypesServiceTest {
 		assertEquals("Hello, Blob!", new String(result.stream().readAllBytes(), StandardCharsets.UTF_8));
 	}
 
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void singleBodyAddition(BinaryTypesService service) throws IOException {
+		var result = service.singleBodyAddition("Hello, ", blob(service, "Blob!"));
+		assertEquals("Hello, Blob!", result);
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void twoBinariesAddition(BinaryTypesService service) throws IOException {
+		var result = service.twoBinariesAddition(blob(service, "Hello, "), file(service, "World!"));
+		assertEquals(List.of(7, 6), result);
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void mixed(BinaryTypesService service) throws IOException {
+		var rec = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var result = service.mixed(
+				"path",
+				42,
+				"header",
+				24,
+				rec,
+				"query",
+				84,
+				rec,
+				blob(service, "BlobContent"));
+		assertEquals("path", result.pathString());
+		assertEquals(42, result.pathNumber());
+
+		assertEquals("header", result.headerString());
+		assertEquals(24, result.headerNumber());
+		assertEquals("k", result.headerRecord().key());
+
+		assertEquals("query", result.queryString());
+		assertEquals(84, result.queryNumber());
+		assertEquals("k", result.queryRecord().key());
+
+		assertEquals(11, result.dataBlob());
+	}
 }

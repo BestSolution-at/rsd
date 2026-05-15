@@ -4,6 +4,7 @@ package dev.rsdlang.sample.client.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
 public interface SimpleRecord_Basic_Optional_Null {
@@ -29,6 +30,8 @@ public interface SimpleRecord_Basic_Optional_Null {
 
 		public _Base.Nillable<LocalTime> valueLocalTime();
 
+		public _Base.Nillable<OffsetDateTime> valueOffsetDateTime();
+
 		public _Base.Nillable<ZonedDateTime> valueZonedDateTime();
 
 	}
@@ -53,6 +56,8 @@ public interface SimpleRecord_Basic_Optional_Null {
 		public DataBuilder valueLocalDateTime(LocalDateTime valueLocalDateTime);
 
 		public DataBuilder valueLocalTime(LocalTime valueLocalTime);
+
+		public DataBuilder valueOffsetDateTime(OffsetDateTime valueOffsetDateTime);
 
 		public DataBuilder valueZonedDateTime(ZonedDateTime valueZonedDateTime);
 
