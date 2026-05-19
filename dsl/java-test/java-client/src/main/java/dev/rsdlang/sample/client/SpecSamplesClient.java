@@ -3,6 +3,7 @@ package dev.rsdlang.sample.client;
 
 import java.net.URI;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.ServiceLoader;
 
 import dev.rsdlang.sample.client.model._Base;
@@ -10,16 +11,218 @@ import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 import dev.rsdlang.sample.client.spi.SpecSamplesClientFactory;
 
+/**
+ * <p>
+ * Client interface for the SpecSamplesClient API. It provides methods to create
+ * service instances, builders, and to create blobs and files.
+ * </p>
+ * <p>
+ * It also defines a <code>LifecycleHook</code> interface to intercept the
+ * lifecycle of a request, allowing to modify the request, handle successful
+ * responses, handle errors, and perform actions after the request is completed.
+ * </p>
+ */
 public interface SpecSamplesClient {
+	/**
+	 * Creates a new instance of the SpecSamplesClient using the provided base URL.
+	 * 
+	 * <p>
+	 * The service loader is used to load the implementation of the
+	 * SpecSamplesClientFactory, which is responsible for creating instances of the
+	 * SpecSamplesClient.
+	 * </p>
+	 *
+	 * @param baseURL the base URL of the API
+	 * @return a new instance of SpecSamplesClient
+	 */
 	public static SpecSamplesClient create(URI baseURL) {
 		return ServiceLoader.load(SpecSamplesClientFactory.class).iterator().next().create(baseURL);
 	}
 
+	/**
+	 * <p>
+	 * Returns a builder instance for the specified class.
+	 * </p>
+	 * <p>
+	 * The builder can be used to create instances of data classes that are used as
+	 * request bodies or response bodies in the API.
+	 * </p>
+	 * 
+	 * @param <T>   the type of the builder
+	 * @param clazz the class of the builder
+	 * @return an instance of the specified builder class
+	 */
 	public <T extends _Base.BaseDataBuilder<?>> T builder(Class<T> clazz);
 
+	/**
+	 * <p>
+	 * Returns a service instance for the specified class.
+	 * </p>
+	 * <p>
+	 * The service can be used to call the API methods defined in the service
+	 * interface.
+	 * </p>
+	 * 
+	 * @param <T>   the type of the service
+	 * @param clazz the class of the service
+	 * @return an instance of the specified service class
+	 */
 	public <T extends BaseService> T service(Class<T> clazz);
 
+	/**
+	 * <p>
+	 * Returns a service instance for the specified class with a lifecycle hook.
+	 * </p>
+	 * <p>
+	 * The service can be used to call the API methods defined in the service
+	 * interface.
+	 * </p>
+	 * 
+	 * @param <T>           the type of the service
+	 * @param clazz         the class of the service
+	 * @param lifecycleHook the lifecycle hook to intercept the request lifecycle
+	 * @return an instance of the specified service class
+	 */
+	public <T extends BaseService> T service(Class<T> clazz, LifecycleHook lifecycleHook);
+
+	/**
+	 * Creates a blob from the specified file and MIME type.
+	 * 
+	 * A blob is a binary large object that can be used to store and transfer
+	 * binary data, such as images, videos, or other files.
+	 * 
+	 * @param file     the path to the file to be converted into a blob
+	 * @param mimeType the MIME type of the file
+	 * @return a new instance of RSDBlob representing the file
+	 */
 	public RSDBlob createBlob(Path file, String mimeType);
 
+	/**
+	 * Creates a file from the specified file, MIME type, and filename.
+	 * 
+	 * A file is a representation of a file that can be used to store and transfer
+	 * files with additional metadata, such as the filename and MIME type.
+	 * 
+	 * @param file     the path to the file to be converted into a file object
+	 * @param mimeType the MIME type of the file
+	 * @param filename the name of the file
+	 * @return a new instance of RSDFile representing the file
+	 */
 	public RSDFile createFile(Path file, String mimeType, String filename);
+
+	/**
+	 * Interface to adapt implementation specific request and response objects in the lifecycle hook.
+	 * 
+	 * This allows to modify the request before it is sent (e.g. to add headers) and to access
+	 * additional information from the response (e.g. headers, status code, etc.) in the lifecycle hook.
+	 * 
+	 * The adapt method can be called with the specific class to adapt to, and should return an optional 
+	 * containing the adapted instance if available, or empty if not. This allows to keep the lifecycle hook 
+	 * implementation independent of the underlying HTTP client implementation, while still 
+	 * providing access to implementation specific features when needed.
+	 */
+	public interface Adaptable {
+		/**
+		 * Allows to adapt the given implementation specific type (e.g. request builder, response, etc.) to a specific class.
+		 * 
+		 * @param <T>   the type of the class to adapt to
+		 * @param clazz the class to adapt to
+		 * @return an optional containing the adapted instance if available, or empty if not
+		 */
+		public <T> Optional<T> adapt(Class<T> clazz);
+	}
+
+	/**
+	 * Hook to intercept the lifecycle of a request. The methods are called in the
+	 * following order:
+	 * <ol>
+	 * <li>{@link #preRequest(String, Adaptable)} is called
+	 * before the request is sent. It allows to modify the request builder, e.g. to
+	 * add headers.</li>
+	 * <li>{@link #onSuccess(String, Object, Adaptable)} is called if the request
+	 * was
+	 * successful. The value parameter contains the deserialized response body.</li>
+	 * <li>{@link #onError(String, RSDException, Adaptable)} if the request failed
+	 * with a
+	 * documented error response
+	 * The error parameter contains the deserialized error response body.</li>
+	 * <li>{@link #onCatch(String, RSDException)} is called if an
+	 * exception was thrown
+	 * during the request. The error parameter contains the exception.</li>
+	 * <li>{@link #onFinally(String)} is called after the request was completed,
+	 * regardless of the outcome. It can be used to clean up resources or log the
+	 * request.</li>
+	 * </ol>
+	 * 
+	 * The method parameter contains the name of the service method that was called
+	 * (e.g. "getUser", "createUser", etc.).
+	 * 
+	 * @see #service(Class, LifecycleHook) to use the lifecycle hook when creating a
+	 *      service instance
+	 */
+	public interface LifecycleHook {
+		/**
+		 * Called before the request is sent. It allows to modify the request builder,
+		 * e.g. to
+		 * add headers.
+		 *
+		 * @param method         the method name of the service method that was
+		 *                       called
+		 *                       (e.g. "getUser", "createUser", etc.)
+		 * @param requestAdapter allows to adapt the request specific to
+		 *                       the implementation used eg. HttpRequest.Builder
+		 *                       for JDK HttpClient, Request.Builder for OkHttp,
+		 *                       etc. so that it can be modified, e.g. to add
+		 *                       headers.
+		 */
+		void preRequest(String method, Adaptable requestAdapter);
+
+		/**
+		 * Called if the request was successful. The value parameter contains the
+		 * deserialized response body.
+		 * 
+		 * @param method          the method name of the service method that was called
+		 *                        (e.g. "getUser", "createUser", etc.)
+		 * @param value           the deserialized response body
+		 * @param responseAdapter allows to adapt the response specific to the
+		 *                        implementation used eg. HttpResponse for JDK
+		 *                        HttpClient, Response for OkHttp, etc. so that it can
+		 *                        be accessed for additional information, e.g. to read
+		 *                        headers, status code, etc.
+		 */
+		void onSuccess(String method, Object value, Adaptable responseAdapter);
+
+		/**
+		 * Called if the request was technically successful but returned an error or unknown
+		 * response.
+		 * 
+		 * @param method          the method name of the service method that was called
+		 *                        (e.g. "getUser", "createUser", etc.)
+		 * @param error           exception containing the deserialized error response
+		 *                        body
+		 * @param responseAdapter allows to adapt the response specific to the
+		 *                        implementation used
+		 *                        eg. HttpResponse for JDK HttpClient, Response for
+		 *                        OkHttp, etc.
+		 */
+		void onError(String method, RSDException error, Adaptable responseAdapter);
+
+		/**
+		 * Called if an exception was thrown during the request (e.g. network error)
+		 * 
+		 * @param method          the method name of the service method that was called
+		 *                        (e.g. "getUser", "createUser", etc.)
+		 * @param error           the exception that was thrown during the request
+		 */
+		void onCatch(String method, RSDException error);
+
+		/**
+		 * Called after the request was completed, regardless of the outcome. It can be
+		 * used to clean up resources or log the request.
+		 * 
+		 * @param method the method name of the service method that was called
+		 *               (e.g. "getUser", "createUser", etc.)
+		 */
+		void onFinally(String method);
+	}
 }

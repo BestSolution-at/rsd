@@ -29,10 +29,14 @@ export function generateClient(
 	const Map = fqn('java.util.Map');
 	const HashMap = fqn('java.util.HashMap');
 	const Supplier = fqn('java.util.function.Supplier');
-	const Function = fqn('java.util.function.Function');
+	const BiFunction = fqn('java.util.function.BiFunction');
 	const HttpClient = fqn('java.net.http.HttpClient');
 	const Base = fqn(`${basePackage}.model._Base`);
 	const BaseService = fqn(`${basePackage}.BaseService`);
+	const RSDException = fqn(`${basePackage}.RSDException`);
+	const HttpRequest = fqn('java.net.http.HttpRequest');
+	const HttpResponse = fqn('java.net.http.HttpResponse');
+	const Optional = fqn('java.util.Optional');
 
 	const content = new CompositeGeneratorNode();
 	content.append(`public class JDK${toCamelCaseIdentifier(generatorConfig.name)}Client implements ${Client} {`, NL);
@@ -91,14 +95,42 @@ export function generateClient(
 					}
 					return new JDK${toCamelCaseIdentifier(generatorConfig.name)}Client(baseURI, httpClient, contentTypeEncoding);
 				}
-			}`);
-		classBody.append(builder, NL);
+			}
+
+			private static final LifecycleHook NOOP_LIFECYCLE_HOOK = new LifecycleHook() {
+
+				@Override
+				public void preRequest(String method, Adaptable requestBuilderAdapter) {
+					// no-op
+				}
+
+				@Override
+				public void onSuccess(String method, Object value, Adaptable responseAdapter) {
+					// no-op
+				}
+
+				@Override
+				public void onError(String method, ${RSDException} error, Adaptable responseAdapter) {
+					// no-op
+				}
+
+				@Override
+				public void onCatch(String method, ${RSDException} error) {
+					// no-op
+				}
+
+				@Override
+				public void onFinally(String method) {
+					// no-op
+				}
+			};`);
+		classBody.append(builder, NL, NL);
 	});
 
 	content.indent(clBody => {
 		clBody.append(`private static ${Map}<Class<?>, ${Supplier}<Object>> BUILDER_CREATOR_MAP = new ${HashMap}<>();`, NL);
 		clBody.append(
-			`private static ${Map}<Class<?>, ${Function}<JDK${toCamelCaseIdentifier(generatorConfig.name)}Client, Object>> SERVICE_CREATOR_MAP = new ${HashMap}<>();`,
+			`private static ${Map}<Class<?>, ${BiFunction}<JDK${toCamelCaseIdentifier(generatorConfig.name)}Client, LifecycleHook, Object>> SERVICE_CREATOR_MAP = new ${HashMap}<>();`,
 			NL,
 		);
 		clBody.appendNewLine();
@@ -142,7 +174,7 @@ export function generateClient(
 		clBody.append('}', NL);
 		clBody.appendNewLine();
 		clBody.append(
-			`private static void registerServiceCreator(Class<?> clazz, ${Function}<JDK${toCamelCaseIdentifier(generatorConfig.name)}Client, Object> constructor) {`,
+			`private static void registerServiceCreator(Class<?> clazz, ${BiFunction}<JDK${toCamelCaseIdentifier(generatorConfig.name)}Client, LifecycleHook, Object> constructor) {`,
 			NL,
 		);
 		clBody.indent(mBody => {
@@ -199,7 +231,7 @@ export function generateClient(
 		clBody.indent(mBody => {
 			mBody.append(`return builder().baseURI(baseURI).httpClient(httpClient).build();`, NL);
 		});
-		clBody.append('}', NL);
+		clBody.append('}', NL, NL);
 
 		clBody.append('public static Builder builder() {', NL);
 		clBody.indent(mBody => {
@@ -220,19 +252,70 @@ export function generateClient(
 			mBody.append('}', NL);
 			mBody.append(`throw new IllegalArgumentException(String.format("Unsupported build '%s'", clazz));`, NL);
 		});
+		clBody.append('}', NL, NL);
+
+		clBody.append('@Override', NL);
+		clBody.append(`public <T extends ${BaseService}> T service(Class<T> clazz) {`, NL);
+		clBody.indent(mBody => {
+			mBody.append('return service(clazz, null);', NL);
+		});
 		clBody.append('}', NL);
+
 		clBody.appendNewLine();
 		clBody.append('@SuppressWarnings("unchecked")', NL);
 		clBody.append('@Override', NL);
-		clBody.append(`public <T extends ${BaseService}> T service(Class<T> clazz) {`, NL);
+		clBody.append(`public <T extends ${BaseService}> T service(Class<T> clazz, LifecycleHook lifecycleHook) {`, NL);
 		clBody.indent(mBody => {
 			mBody.append('var serviceConstructor = SERVICE_CREATOR_MAP.get(clazz);', NL);
 			mBody.append('if (serviceConstructor != null) {', NL);
 			mBody.indent(block => {
-				block.append('return (T) serviceConstructor.apply(this);', NL);
+				block.append(
+					'return (T) serviceConstructor.apply(this, lifecycleHook == null ? NOOP_LIFECYCLE_HOOK : lifecycleHook);',
+					NL,
+				);
 			});
 			mBody.append('}', NL);
 			mBody.append(`throw new IllegalArgumentException(String.format("Unsupported service '%s'", clazz));`, NL);
+		});
+		clBody.append('}', NL, NL);
+		clBody.append(`public Adaptable createRequestBuilderAdaptable(${HttpRequest}.Builder requestBuilder) {`, NL);
+		clBody.indent(mBody => {
+			mBody.append('return new Adaptable() {', NL);
+			mBody.indent(block => {
+				block.append('@SuppressWarnings("unchecked")', NL);
+				block.append('@Override', NL);
+				block.append(`public <T> ${Optional}<T> adapt(Class<T> targetClass) {`, NL);
+				block.indent(adaptBlock => {
+					adaptBlock.append(`if (targetClass == ${HttpRequest}.Builder.class) {`, NL);
+					adaptBlock.indent(ifBlock => {
+						ifBlock.append(`return ${Optional}.of((T) requestBuilder);`, NL);
+					});
+					adaptBlock.append('}', NL);
+					adaptBlock.append(`return ${Optional}.empty();`, NL);
+				});
+				block.append('}', NL);
+			});
+			mBody.append('};', NL);
+		});
+		clBody.append('}', NL, NL);
+		clBody.append(`public Adaptable createResponseAdaptable(${HttpResponse}<?> response) {`, NL);
+		clBody.indent(mBody => {
+			mBody.append('return new Adaptable() {', NL);
+			mBody.indent(block => {
+				block.append('@SuppressWarnings("unchecked")', NL);
+				block.append('@Override', NL);
+				block.append(`public <T> ${Optional}<T> adapt(Class<T> targetClass) {`, NL);
+				block.indent(adaptBlock => {
+					adaptBlock.append(`if (targetClass == ${HttpResponse}.class) {`, NL);
+					adaptBlock.indent(ifBlock => {
+						ifBlock.append(`return ${Optional}.of((T) response);`, NL);
+					});
+					adaptBlock.append('}', NL);
+					adaptBlock.append(`return ${Optional}.empty();`, NL);
+				});
+				block.append('}', NL);
+			});
+			mBody.append('};', NL);
 		});
 		clBody.append('}', NL);
 
