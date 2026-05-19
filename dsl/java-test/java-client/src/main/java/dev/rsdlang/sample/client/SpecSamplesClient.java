@@ -111,8 +111,15 @@ public interface SpecSamplesClient {
 	public RSDFile createFile(Path file, String mimeType, String filename);
 
 	/**
-	 * Allows to adapt to specific implementations, e.g. to modify the
-	 * request builder in the lifecycle hook to add headers, ...
+	 * Interface to adapt implementation specific request and response objects in the lifecycle hook.
+	 * 
+	 * This allows to modify the request before it is sent (e.g. to add headers) and to access
+	 * additional information from the response (e.g. headers, status code, etc.) in the lifecycle hook.
+	 * 
+	 * The adapt method can be called with the specific class to adapt to, and should return an optional 
+	 * containing the adapted instance if available, or empty if not. This allows to keep the lifecycle hook 
+	 * implementation independent of the underlying HTTP client implementation, while still 
+	 * providing access to implementation specific features when needed.
 	 */
 	public interface Adaptable {
 		/**
@@ -139,7 +146,7 @@ public interface SpecSamplesClient {
 	 * with a
 	 * documented error response
 	 * The error parameter contains the deserialized error response body.</li>
-	 * <li>{@link #onCatch(String, RSDException, Adaptable)} is called if an
+	 * <li>{@link #onCatch(String, RSDException)} is called if an
 	 * exception was thrown
 	 * during the request. The error parameter contains the exception.</li>
 	 * <li>{@link #onFinally(String)} is called after the request was completed,

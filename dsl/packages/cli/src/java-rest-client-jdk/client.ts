@@ -291,7 +291,7 @@ export function generateClient(
 						ifBlock.append(`return ${Optional}.of((T) requestBuilder);`, NL);
 					});
 					adaptBlock.append('}', NL);
-					adaptBlock.append('return Optional.empty();', NL);
+					adaptBlock.append(`return ${Optional}.empty();`, NL);
 				});
 				block.append('}', NL);
 			});
