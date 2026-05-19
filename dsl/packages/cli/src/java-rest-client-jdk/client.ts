@@ -257,7 +257,7 @@ export function generateClient(
 		clBody.append('@Override', NL);
 		clBody.append(`public <T extends ${BaseService}> T service(Class<T> clazz) {`, NL);
 		clBody.indent(mBody => {
-			mBody.append('return service(clazz, NOOP_LIFECYCLE_HOOK);', NL);
+			mBody.append('return service(clazz, null);', NL);
 		});
 		clBody.append('}', NL);
 
@@ -269,7 +269,10 @@ export function generateClient(
 			mBody.append('var serviceConstructor = SERVICE_CREATOR_MAP.get(clazz);', NL);
 			mBody.append('if (serviceConstructor != null) {', NL);
 			mBody.indent(block => {
-				block.append('return (T) serviceConstructor.apply(this, lifecycleHook);', NL);
+				block.append(
+					'return (T) serviceConstructor.apply(this, lifecycleHook == null ? NOOP_LIFECYCLE_HOOK : lifecycleHook);',
+					NL,
+				);
 			});
 			mBody.append('}', NL);
 			mBody.append(`throw new IllegalArgumentException(String.format("Unsupported service '%s'", clazz));`, NL);
@@ -308,7 +311,7 @@ export function generateClient(
 						ifBlock.append(`return ${Optional}.of((T) response);`, NL);
 					});
 					adaptBlock.append('}', NL);
-					adaptBlock.append('return Optional.empty();', NL);
+					adaptBlock.append(`return ${Optional}.empty();`, NL);
 				});
 				block.append('}', NL);
 			});

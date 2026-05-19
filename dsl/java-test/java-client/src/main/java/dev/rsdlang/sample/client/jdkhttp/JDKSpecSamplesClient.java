@@ -339,7 +339,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 
 	@Override
 	public <T extends BaseService> T service(Class<T> clazz) {
-		return service(clazz, NOOP_LIFECYCLE_HOOK);
+		return service(clazz, null);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -347,7 +347,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 	public <T extends BaseService> T service(Class<T> clazz, LifecycleHook lifecycleHook) {
 		var serviceConstructor = SERVICE_CREATOR_MAP.get(clazz);
 		if (serviceConstructor != null) {
-			return (T) serviceConstructor.apply(this, lifecycleHook);
+			return (T) serviceConstructor.apply(this, lifecycleHook == null ? NOOP_LIFECYCLE_HOOK : lifecycleHook);
 		}
 		throw new IllegalArgumentException(String.format("Unsupported service '%s'", clazz));
 	}
