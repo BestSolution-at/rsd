@@ -13,9 +13,6 @@ export function generateRSDException(
 	artifactConfig: JavaClientAPIGeneratorConfig,
 	packageName: string,
 ): Artifact[] {
-	if (errors.length === 0) {
-		return [];
-	}
 	const importCollector = new JavaImportsCollector(packageName);
 	const fqn = importCollector.importType.bind(importCollector);
 	return [
@@ -35,7 +32,11 @@ function generateRSDExceptionTypeContent(errors: readonly MError[]) {
 	node.append('public enum Type {', NL);
 	node.indent(classBody => {
 		classBody.append('_Native,', NL);
-		classBody.append('_UnknownResponse,', NL);
+		if (errors.length > 0) {
+			classBody.append('_UnknownResponse,', NL);
+		} else {
+			classBody.append('_UnknownResponse;', NL);
+		}
 		errors.forEach((e, idx, arr) => {
 			classBody.append(e.name, idx + 1 < arr.length ? ',' : ';', NL);
 		});
