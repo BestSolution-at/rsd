@@ -799,6 +799,7 @@ function handleOkResult(
 	const type = o.resultType;
 
 	if (type === undefined) {
+		node.append(`this.lifecycleHook.onSuccess("${o.name}", null, this.client.createResponseAdaptable($response));`, NL);
 		node.append('return;', NL);
 		return;
 	}

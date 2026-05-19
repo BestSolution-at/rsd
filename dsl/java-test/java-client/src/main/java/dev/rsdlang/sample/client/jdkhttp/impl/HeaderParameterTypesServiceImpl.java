@@ -4186,6 +4186,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 204) {
+				this.lifecycleHook.onSuccess("mixed", null, this.client.createResponseAdaptable($response));
 				return;
 			}
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));

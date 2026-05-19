@@ -540,6 +540,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 204) {
+				this.lifecycleHook.onSuccess("voidOperation", null, this.client.createResponseAdaptable($response));
 				return;
 			}
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
@@ -573,6 +574,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
+				this.lifecycleHook.onSuccess("errorOperation", null, this.client.createResponseAdaptable($response));
 				return;
 			} else if ($response.statusCode() == 400) {
 				var exception = new SampleErrorException(ServiceUtils.toString($response));
@@ -611,6 +613,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
+				this.lifecycleHook.onSuccess("multiErrorOperation", null, this.client.createResponseAdaptable($response));
 				return;
 			} else if ($response.statusCode() == 400) {
 				var exception = new SampleErrorException(ServiceUtils.toString($response));
