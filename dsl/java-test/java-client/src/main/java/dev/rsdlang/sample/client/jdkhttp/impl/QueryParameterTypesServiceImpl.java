@@ -73,7 +73,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -107,7 +107,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -146,7 +146,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -183,7 +183,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -217,7 +217,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -256,7 +256,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -293,7 +293,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -327,7 +327,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -366,7 +366,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -403,7 +403,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -437,7 +437,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -476,7 +476,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -513,7 +513,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -547,7 +547,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -586,7 +586,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -623,7 +623,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoubleQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -657,7 +657,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoubleQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -696,7 +696,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoubleQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -735,7 +735,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -769,7 +769,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -808,7 +808,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -847,7 +847,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -881,7 +881,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -920,7 +920,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -959,7 +959,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimeQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -993,7 +993,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1032,7 +1032,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1071,7 +1071,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimeQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1105,7 +1105,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1144,7 +1144,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1183,7 +1183,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimeQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1217,7 +1217,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1256,7 +1256,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1295,7 +1295,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimeQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1329,7 +1329,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1368,7 +1368,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1407,7 +1407,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1441,7 +1441,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1480,7 +1480,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1519,7 +1519,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1553,7 +1553,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1592,7 +1592,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1632,7 +1632,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("multiQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1666,7 +1666,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("multiQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1705,7 +1705,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("multiQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1747,7 +1747,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("multiQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1787,7 +1787,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("recordQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1821,7 +1821,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("recordQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1861,7 +1861,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("recordQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}

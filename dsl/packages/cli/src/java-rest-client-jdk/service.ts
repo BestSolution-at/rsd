@@ -384,7 +384,7 @@ function generateOperationMethod(
 			}
 			tryBlock.append(generateInvocation(s, o, allParameters, artifactConfig, fqn, hasHeaderParams, multiBodyParam));
 		});
-		methodBody.append(`} catch (Throwable e) {`, NL);
+		methodBody.append(`} catch (Exception e) {`, NL);
 		methodBody.indent(catchBlock => {
 			const RSException = fqn(`${artifactConfig.rootPackageName}.RSDException`);
 			catchBlock.append(`if (e instanceof ${RSException} rsdEx) {`, NL);

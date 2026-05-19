@@ -80,7 +80,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -114,7 +114,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -155,7 +155,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -196,7 +196,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -230,7 +230,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -271,7 +271,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -312,7 +312,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -346,7 +346,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -387,7 +387,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -428,7 +428,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -462,7 +462,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -503,7 +503,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -544,7 +544,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -578,7 +578,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -619,7 +619,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -660,7 +660,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -694,7 +694,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -735,7 +735,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -776,7 +776,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -810,7 +810,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -851,7 +851,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -892,7 +892,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -926,7 +926,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -967,7 +967,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1008,7 +1008,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1042,7 +1042,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1083,7 +1083,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1124,7 +1124,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1158,7 +1158,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1199,7 +1199,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1240,7 +1240,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoubleHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1274,7 +1274,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoubleHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1315,7 +1315,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoubleHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1356,7 +1356,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoubleHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1390,7 +1390,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoubleHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1431,7 +1431,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoubleHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1474,7 +1474,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1508,7 +1508,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1551,7 +1551,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1596,7 +1596,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1630,7 +1630,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1675,7 +1675,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1718,7 +1718,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1752,7 +1752,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1793,7 +1793,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1834,7 +1834,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1868,7 +1868,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1909,7 +1909,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1952,7 +1952,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1986,7 +1986,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2027,7 +2027,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2068,7 +2068,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2102,7 +2102,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2143,7 +2143,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2186,7 +2186,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimeHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2220,7 +2220,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2261,7 +2261,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2302,7 +2302,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimeHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2336,7 +2336,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2377,7 +2377,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2420,7 +2420,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2454,7 +2454,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2495,7 +2495,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2536,7 +2536,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2570,7 +2570,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2611,7 +2611,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2654,7 +2654,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2688,7 +2688,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2729,7 +2729,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2770,7 +2770,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2804,7 +2804,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2845,7 +2845,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2888,7 +2888,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2922,7 +2922,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2963,7 +2963,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3004,7 +3004,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3038,7 +3038,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3079,7 +3079,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3122,7 +3122,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3156,7 +3156,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3197,7 +3197,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3238,7 +3238,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3272,7 +3272,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3313,7 +3313,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3356,7 +3356,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleInlineEnumHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3390,7 +3390,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleInlineEnumHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3431,7 +3431,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleInlineEnumHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3472,7 +3472,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleInlineEnumHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3506,7 +3506,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleInlineEnumHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3547,7 +3547,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleInlineEnumHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3591,7 +3591,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("multiHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3625,7 +3625,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("multiHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3668,7 +3668,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("multiHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3712,7 +3712,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("multiHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3758,7 +3758,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("multiHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3792,7 +3792,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("multiHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3837,7 +3837,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("multiHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3883,7 +3883,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("multiHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3927,7 +3927,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("recordHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3961,7 +3961,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("recordHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -4005,7 +4005,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("recordHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -4051,7 +4051,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("recordHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -4085,7 +4085,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("recordHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -4131,7 +4131,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("recordHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -4192,7 +4192,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("mixed", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}

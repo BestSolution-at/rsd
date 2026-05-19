@@ -70,7 +70,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listBoolean", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -104,7 +104,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listShort", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -138,7 +138,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listInt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -172,7 +172,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLong", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -206,7 +206,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listFloat", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -240,7 +240,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listDouble", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -274,7 +274,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listString", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -308,7 +308,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDate", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -342,7 +342,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateTime", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -376,7 +376,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalTime", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -410,7 +410,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listOffsetDateTime", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -444,7 +444,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listZonedDateTime", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -478,7 +478,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listScalar", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -512,7 +512,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listEnum", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -546,7 +546,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listSimpleRecord", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -585,7 +585,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listSimpleRecordWithError", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}

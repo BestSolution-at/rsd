@@ -84,7 +84,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listBooleanBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -122,7 +122,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listBooleanBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -160,7 +160,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listBooleanBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -198,7 +198,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listBooleanBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -236,7 +236,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listBooleanBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -274,7 +274,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listBooleanBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -312,7 +312,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listShortBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -350,7 +350,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listShortBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -388,7 +388,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listShortBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -426,7 +426,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listShortBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -464,7 +464,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listShortBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -502,7 +502,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listShortBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -540,7 +540,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listIntBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -578,7 +578,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listIntBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -616,7 +616,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listIntBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -654,7 +654,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listIntBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -692,7 +692,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listIntBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -730,7 +730,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listIntBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -768,7 +768,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLongBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -806,7 +806,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLongBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -844,7 +844,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLongBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -882,7 +882,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLongBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -920,7 +920,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLongBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -958,7 +958,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLongBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -996,7 +996,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listFloatBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1034,7 +1034,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listFloatBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1072,7 +1072,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listFloatBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1110,7 +1110,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listFloatBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1148,7 +1148,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listFloatBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1186,7 +1186,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listFloatBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1224,7 +1224,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listDoubleBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1262,7 +1262,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listDoubleBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1300,7 +1300,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listDoubleBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1338,7 +1338,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listDoubleBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1376,7 +1376,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listDoubleBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1414,7 +1414,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listDoubleBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1454,7 +1454,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listStringBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1492,7 +1492,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listStringBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1530,7 +1530,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listStringBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1568,7 +1568,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listStringBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1606,7 +1606,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listStringBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1644,7 +1644,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listStringBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1684,7 +1684,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1722,7 +1722,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1760,7 +1760,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1798,7 +1798,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1836,7 +1836,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1874,7 +1874,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1914,7 +1914,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateTimeBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1952,7 +1952,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -1990,7 +1990,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2028,7 +2028,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateTimeBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2066,7 +2066,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2104,7 +2104,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2144,7 +2144,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalTimeBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2182,7 +2182,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2220,7 +2220,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2258,7 +2258,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalTimeBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2296,7 +2296,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2334,7 +2334,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2374,7 +2374,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listOffsetDateTimeBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2412,7 +2412,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listOffsetDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2450,7 +2450,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listOffsetDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2488,7 +2488,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listOffsetDateTimeBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2526,7 +2526,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listOffsetDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2564,7 +2564,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listOffsetDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2604,7 +2604,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listZonedDateTimeBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2642,7 +2642,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listZonedDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2680,7 +2680,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listZonedDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2718,7 +2718,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listZonedDateTimeBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2756,7 +2756,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listZonedDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2794,7 +2794,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listZonedDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2834,7 +2834,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listScalarBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2872,7 +2872,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listScalarBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2910,7 +2910,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listScalarBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2948,7 +2948,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listScalarBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -2986,7 +2986,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listScalarBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3024,7 +3024,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listScalarBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3064,7 +3064,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listEnumBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3102,7 +3102,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listEnumBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3140,7 +3140,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listEnumBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3178,7 +3178,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listEnumBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3216,7 +3216,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listEnumBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3254,7 +3254,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listEnumBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3294,7 +3294,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listInlineEnumBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3332,7 +3332,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listInlineEnumBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3370,7 +3370,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listInlineEnumBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3408,7 +3408,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listInlineEnumBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3446,7 +3446,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listInlineEnumBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3484,7 +3484,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listInlineEnumBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3529,7 +3529,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3567,7 +3567,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3609,7 +3609,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3654,7 +3654,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3702,7 +3702,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3744,7 +3744,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3782,7 +3782,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3822,7 +3822,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3863,7 +3863,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3905,7 +3905,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3945,7 +3945,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listRecordBodyParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -3983,7 +3983,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listRecordBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -4021,7 +4021,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listRecordBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -4059,7 +4059,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listRecordBodyParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -4097,7 +4097,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listRecordBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -4135,7 +4135,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("listRecordBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}

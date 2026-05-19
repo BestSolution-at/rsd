@@ -68,7 +68,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -103,7 +103,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -138,7 +138,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -173,7 +173,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -208,7 +208,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -243,7 +243,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoublePathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -280,7 +280,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -317,7 +317,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDatePathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -354,7 +354,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimePathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -391,7 +391,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimePathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -428,7 +428,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimePathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -465,7 +465,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimePathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -502,7 +502,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -539,7 +539,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
@@ -577,7 +577,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("multiPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
