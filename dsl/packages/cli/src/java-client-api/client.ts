@@ -68,7 +68,7 @@ public ${FileType} createFile(${PathType} file, String mimeType, String filename
 	const node = toNodeTree(`
 /**
  * <p>
- * Client interface for the SpecSamples API. It provides methods to create
+ * Client interface for the ${Type} API. It provides methods to create
  * service instances, builders, and to create blobs and files.
  * </p>
  * <p>
@@ -79,12 +79,12 @@ public ${FileType} createFile(${PathType} file, String mimeType, String filename
  */
 public interface ${Type} {
 	/**
-	 * Creates a new instance of the SpecSamplesClient using the provided base URL.
+	 * Creates a new instance of the ${Type} using the provided base URL.
 	 * 
 	 * <p>
 	 * The service loader is used to load the implementation of the
-	 * SpecSamplesClientFactory, which is responsible for creating instances of the
-	 * SpecSamplesClient.
+	 * ${Type}Factory, which is responsible for creating instances of the
+	 * ${Type}.
 	 * </p>
 	 *
 	 * @param baseURL the base URL of the API
@@ -161,7 +161,7 @@ public interface ${Type} {
 	 * Hook to intercept the lifecycle of a request. The methods are called in the
 	 * following order:
 	 * <ol>
-	 * <li>{@link #preRequest(String, Adapter)} is called
+	 * <li>{@link #preRequest(String, Adaptable)} is called
 	 * before the request is sent. It allows to modify the request builder, e.g. to
 	 * add headers.</li>
 	 * <li>{@link #onSuccess(String, Object, Adaptable)} is called if the request
@@ -171,7 +171,7 @@ public interface ${Type} {
 	 * with a
 	 * documented error response
 	 * The error parameter contains the deserialized error response body.</li>
-	 * <li>{@link #onCatch(String, Throwable, Optional<Adaptable>)} is called if an
+	 * <li>{@link #onCatch(String, RSDException, Adaptable)} is called if an
 	 * exception was thrown
 	 * during the request. The error parameter contains the exception.</li>
 	 * <li>{@link #onFinally(String)} is called after the request was completed,

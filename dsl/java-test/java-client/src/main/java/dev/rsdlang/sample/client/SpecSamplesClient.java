@@ -13,7 +13,7 @@ import dev.rsdlang.sample.client.spi.SpecSamplesClientFactory;
 
 /**
  * <p>
- * Client interface for the SpecSamples API. It provides methods to create
+ * Client interface for the SpecSamplesClient API. It provides methods to create
  * service instances, builders, and to create blobs and files.
  * </p>
  * <p>
@@ -111,8 +111,8 @@ public interface SpecSamplesClient {
 	public RSDFile createFile(Path file, String mimeType, String filename);
 
 	/**
-	 * Allows to adapt implementation specific implementations, e.g. to modify the
-	 * request builder in the lifecycle hook, e.g. to add headers.
+	 * Allows to adapt to specific implementations, e.g. to modify the
+	 * request builder in the lifecycle hook to add headers, ...
 	 */
 	public interface Adaptable {
 		/**
@@ -129,7 +129,7 @@ public interface SpecSamplesClient {
 	 * Hook to intercept the lifecycle of a request. The methods are called in the
 	 * following order:
 	 * <ol>
-	 * <li>{@link #preRequest(String, Adapter)} is called
+	 * <li>{@link #preRequest(String, Adaptable)} is called
 	 * before the request is sent. It allows to modify the request builder, e.g. to
 	 * add headers.</li>
 	 * <li>{@link #onSuccess(String, Object, Adaptable)} is called if the request
@@ -139,7 +139,7 @@ public interface SpecSamplesClient {
 	 * with a
 	 * documented error response
 	 * The error parameter contains the deserialized error response body.</li>
-	 * <li>{@link #onCatch(String, Throwable, Optional<Adaptable>)} is called if an
+	 * <li>{@link #onCatch(String, RSDException, Adaptable)} is called if an
 	 * exception was thrown
 	 * during the request. The error parameter contains the exception.</li>
 	 * <li>{@link #onFinally(String)} is called after the request was completed,
