@@ -200,6 +200,10 @@ public interface SpecSamplesClient {
 		 *                        (e.g. "getUser", "createUser", etc.)
 		 * @param error           exception containing the deserialized error response
 		 *                        body
+		 * @param responseAdapter allows to adapt the response specific to the
+		 *                        implementation used
+		 *                        eg. HttpResponse for JDK HttpClient, Response for
+		 *                        OkHttp, etc.
 		 */
 		void onError(String method, RSDException error, Adaptable responseAdapter);
 
@@ -209,10 +213,6 @@ public interface SpecSamplesClient {
 		 * @param method          the method name of the service method that was called
 		 *                        (e.g. "getUser", "createUser", etc.)
 		 * @param error           the exception that was thrown during the request
-		 * @param responseAdapter allows to adapt the response specific to the
-		 *                        implementation used
-		 *                        eg. HttpResponse for JDK HttpClient, Response for
-		 *                        OkHttp, etc.
 		 */
 		void onCatch(String method, RSDException error);
 
