@@ -143,8 +143,8 @@ public interface ${Type} {
 #${fileContent ? toString(ident(fileContent, 1), '\t') : ''}
 	
 	/**
-	 * Allows to adapt implementation specific implementations, e.g. to modify the
-	 * request builder in the lifecycle hook, e.g. to add headers.
+	 * Allows to adapt to specific implementations, e.g. to modify the
+	 * request builder in the lifecycle hook to add headers, ...
 	 */
 	public interface Adaptable {
 		/**
