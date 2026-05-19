@@ -392,6 +392,11 @@ function generateOperationMethod(
 				ifBlock.append('throw rsdEx;', NL);
 			});
 			catchBlock.append('}', NL);
+			catchBlock.append('if (e instanceof InterruptedException) {', NL);
+			catchBlock.indent(interruptBlock => {
+				interruptBlock.append('Thread.currentThread().interrupt();', NL);
+			});
+			catchBlock.append('}', NL, NL);
 			catchBlock.append(
 				`var $exception = new ${RSException}(${RSException}.Type._Native, "Unexpected error while executing operation ${o.name}", e);`,
 				NL,

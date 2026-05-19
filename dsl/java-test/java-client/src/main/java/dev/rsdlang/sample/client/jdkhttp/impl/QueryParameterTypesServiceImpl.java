@@ -77,6 +77,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanQueryParam", e);
 			this.lifecycleHook.onCatch("simpleBooleanQueryParam", $exception);
 			throw $exception;
@@ -111,6 +115,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleBooleanQueryParamOpt", $exception);
 			throw $exception;
@@ -150,6 +158,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleBooleanQueryParamOpt", $exception);
 			throw $exception;
@@ -187,6 +199,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortQueryParam", e);
 			this.lifecycleHook.onCatch("simpleShortQueryParam", $exception);
 			throw $exception;
@@ -221,6 +237,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleShortQueryParamOpt", $exception);
 			throw $exception;
@@ -260,6 +280,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleShortQueryParamOpt", $exception);
 			throw $exception;
@@ -297,6 +321,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntQueryParam", e);
 			this.lifecycleHook.onCatch("simpleIntQueryParam", $exception);
 			throw $exception;
@@ -331,6 +359,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleIntQueryParamOpt", $exception);
 			throw $exception;
@@ -370,6 +402,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleIntQueryParamOpt", $exception);
 			throw $exception;
@@ -407,6 +443,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongQueryParam", e);
 			this.lifecycleHook.onCatch("simpleLongQueryParam", $exception);
 			throw $exception;
@@ -441,6 +481,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLongQueryParamOpt", $exception);
 			throw $exception;
@@ -480,6 +524,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLongQueryParamOpt", $exception);
 			throw $exception;
@@ -517,6 +565,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatQueryParam", e);
 			this.lifecycleHook.onCatch("simpleFloatQueryParam", $exception);
 			throw $exception;
@@ -551,6 +603,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleFloatQueryParamOpt", $exception);
 			throw $exception;
@@ -590,6 +646,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleFloatQueryParamOpt", $exception);
 			throw $exception;
@@ -627,6 +687,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleQueryParam", e);
 			this.lifecycleHook.onCatch("simpleDoubleQueryParam", $exception);
 			throw $exception;
@@ -661,6 +725,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleDoubleQueryParamOpt", $exception);
 			throw $exception;
@@ -700,6 +768,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleDoubleQueryParamOpt", $exception);
 			throw $exception;
@@ -739,6 +811,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringQueryParam", e);
 			this.lifecycleHook.onCatch("simpleStringQueryParam", $exception);
 			throw $exception;
@@ -773,6 +849,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleStringQueryParamOpt", $exception);
 			throw $exception;
@@ -812,6 +892,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleStringQueryParamOpt", $exception);
 			throw $exception;
@@ -851,6 +935,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateQueryParam", e);
 			this.lifecycleHook.onCatch("simpleLocalDateQueryParam", $exception);
 			throw $exception;
@@ -885,6 +973,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLocalDateQueryParamOpt", $exception);
 			throw $exception;
@@ -924,6 +1016,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLocalDateQueryParamOpt", $exception);
 			throw $exception;
@@ -963,6 +1059,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeQueryParam", e);
 			this.lifecycleHook.onCatch("simpleLocalDateTimeQueryParam", $exception);
 			throw $exception;
@@ -997,6 +1097,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLocalDateTimeQueryParamOpt", $exception);
 			throw $exception;
@@ -1036,6 +1140,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLocalDateTimeQueryParamOpt", $exception);
 			throw $exception;
@@ -1075,6 +1183,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeQueryParam", e);
 			this.lifecycleHook.onCatch("simpleLocalTimeQueryParam", $exception);
 			throw $exception;
@@ -1109,6 +1221,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLocalTimeQueryParamOpt", $exception);
 			throw $exception;
@@ -1148,6 +1264,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLocalTimeQueryParamOpt", $exception);
 			throw $exception;
@@ -1187,6 +1307,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeQueryParam", e);
 			this.lifecycleHook.onCatch("simpleOffsetDateTimeQueryParam", $exception);
 			throw $exception;
@@ -1221,6 +1345,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleOffsetDateTimeQueryParamOpt", $exception);
 			throw $exception;
@@ -1260,6 +1388,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleOffsetDateTimeQueryParamOpt", $exception);
 			throw $exception;
@@ -1299,6 +1431,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeQueryParam", e);
 			this.lifecycleHook.onCatch("simpleZonedDateTimeQueryParam", $exception);
 			throw $exception;
@@ -1333,6 +1469,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleZonedDateTimeQueryParamOpt", $exception);
 			throw $exception;
@@ -1372,6 +1512,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleZonedDateTimeQueryParamOpt", $exception);
 			throw $exception;
@@ -1411,6 +1555,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarQueryParam", e);
 			this.lifecycleHook.onCatch("simpleScalarQueryParam", $exception);
 			throw $exception;
@@ -1445,6 +1593,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleScalarQueryParamOpt", $exception);
 			throw $exception;
@@ -1484,6 +1636,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleScalarQueryParamOpt", $exception);
 			throw $exception;
@@ -1523,6 +1679,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumQueryParam", e);
 			this.lifecycleHook.onCatch("simpleEnumQueryParam", $exception);
 			throw $exception;
@@ -1557,6 +1717,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleEnumQueryParamOpt", $exception);
 			throw $exception;
@@ -1596,6 +1760,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumQueryParamOpt", e);
 			this.lifecycleHook.onCatch("simpleEnumQueryParamOpt", $exception);
 			throw $exception;
@@ -1636,6 +1804,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiQueryParam", e);
 			this.lifecycleHook.onCatch("multiQueryParam", $exception);
 			throw $exception;
@@ -1670,6 +1842,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiQueryParamOpt", e);
 			this.lifecycleHook.onCatch("multiQueryParamOpt", $exception);
 			throw $exception;
@@ -1709,6 +1885,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiQueryParamOpt", e);
 			this.lifecycleHook.onCatch("multiQueryParamOpt", $exception);
 			throw $exception;
@@ -1751,6 +1931,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiQueryParamOpt", e);
 			this.lifecycleHook.onCatch("multiQueryParamOpt", $exception);
 			throw $exception;
@@ -1791,6 +1975,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordQueryParam", e);
 			this.lifecycleHook.onCatch("recordQueryParam", $exception);
 			throw $exception;
@@ -1825,6 +2013,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordQueryParamOpt", e);
 			this.lifecycleHook.onCatch("recordQueryParamOpt", $exception);
 			throw $exception;
@@ -1865,6 +2057,10 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordQueryParamOpt", e);
 			this.lifecycleHook.onCatch("recordQueryParamOpt", $exception);
 			throw $exception;

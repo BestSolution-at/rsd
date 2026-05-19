@@ -92,6 +92,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParam", e);
 			this.lifecycleHook.onCatch("simpleBooleanBodyParam", $exception);
 			throw $exception;
@@ -130,6 +134,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleBooleanBodyParamOpt", $exception);
 			throw $exception;
@@ -168,6 +176,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleBooleanBodyParamOpt", $exception);
 			throw $exception;
@@ -206,6 +218,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleBooleanBodyParamNil", $exception);
 			throw $exception;
@@ -244,6 +260,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleBooleanBodyParamOptNil", $exception);
 			throw $exception;
@@ -282,6 +302,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleBooleanBodyParamOptNil", $exception);
 			throw $exception;
@@ -320,6 +344,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortBodyParam", e);
 			this.lifecycleHook.onCatch("simpleShortBodyParam", $exception);
 			throw $exception;
@@ -358,6 +386,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleShortBodyParamOpt", $exception);
 			throw $exception;
@@ -396,6 +428,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleShortBodyParamOpt", $exception);
 			throw $exception;
@@ -434,6 +470,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleShortBodyParamNil", $exception);
 			throw $exception;
@@ -472,6 +512,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleShortBodyParamOptNil", $exception);
 			throw $exception;
@@ -510,6 +554,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleShortBodyParamOptNil", $exception);
 			throw $exception;
@@ -548,6 +596,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntBodyParam", e);
 			this.lifecycleHook.onCatch("simpleIntBodyParam", $exception);
 			throw $exception;
@@ -586,6 +638,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleIntBodyParamOpt", $exception);
 			throw $exception;
@@ -624,6 +680,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleIntBodyParamOpt", $exception);
 			throw $exception;
@@ -662,6 +722,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleIntBodyParamNil", $exception);
 			throw $exception;
@@ -700,6 +764,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleIntBodyParamOptNil", $exception);
 			throw $exception;
@@ -738,6 +806,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleIntBodyParamOptNil", $exception);
 			throw $exception;
@@ -776,6 +848,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongBodyParam", e);
 			this.lifecycleHook.onCatch("simpleLongBodyParam", $exception);
 			throw $exception;
@@ -814,6 +890,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLongBodyParamOpt", $exception);
 			throw $exception;
@@ -852,6 +932,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLongBodyParamOpt", $exception);
 			throw $exception;
@@ -890,6 +974,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleLongBodyParamNil", $exception);
 			throw $exception;
@@ -928,6 +1016,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleLongBodyParamOptNil", $exception);
 			throw $exception;
@@ -966,6 +1058,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleLongBodyParamOptNil", $exception);
 			throw $exception;
@@ -1004,6 +1100,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatBodyParam", e);
 			this.lifecycleHook.onCatch("simpleFloatBodyParam", $exception);
 			throw $exception;
@@ -1042,6 +1142,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleFloatBodyParamOpt", $exception);
 			throw $exception;
@@ -1080,6 +1184,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleFloatBodyParamOpt", $exception);
 			throw $exception;
@@ -1118,6 +1226,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleFloatBodyParamNil", $exception);
 			throw $exception;
@@ -1156,6 +1268,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleFloatBodyParamOptNil", $exception);
 			throw $exception;
@@ -1194,6 +1310,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleFloatBodyParamOptNil", $exception);
 			throw $exception;
@@ -1232,6 +1352,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParam", e);
 			this.lifecycleHook.onCatch("simpleDoubleBodyParam", $exception);
 			throw $exception;
@@ -1270,6 +1394,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleDoubleBodyParamOpt", $exception);
 			throw $exception;
@@ -1308,6 +1436,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleDoubleBodyParamOpt", $exception);
 			throw $exception;
@@ -1346,6 +1478,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleDoubleBodyParamNil", $exception);
 			throw $exception;
@@ -1384,6 +1520,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleDoubleBodyParamOptNil", $exception);
 			throw $exception;
@@ -1422,6 +1562,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleDoubleBodyParamOptNil", $exception);
 			throw $exception;
@@ -1462,6 +1606,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringBodyParam", e);
 			this.lifecycleHook.onCatch("simpleStringBodyParam", $exception);
 			throw $exception;
@@ -1500,6 +1648,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleStringBodyParamOpt", $exception);
 			throw $exception;
@@ -1538,6 +1690,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleStringBodyParamOpt", $exception);
 			throw $exception;
@@ -1576,6 +1732,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleStringBodyParamNil", $exception);
 			throw $exception;
@@ -1614,6 +1774,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleStringBodyParamOptNil", $exception);
 			throw $exception;
@@ -1652,6 +1816,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleStringBodyParamOptNil", $exception);
 			throw $exception;
@@ -1692,6 +1860,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParam", e);
 			this.lifecycleHook.onCatch("simpleLocalDateBodyParam", $exception);
 			throw $exception;
@@ -1730,6 +1902,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLocalDateBodyParamOpt", $exception);
 			throw $exception;
@@ -1768,6 +1944,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLocalDateBodyParamOpt", $exception);
 			throw $exception;
@@ -1806,6 +1986,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleLocalDateBodyParamNil", $exception);
 			throw $exception;
@@ -1844,6 +2028,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleLocalDateBodyParamOptNil", $exception);
 			throw $exception;
@@ -1882,6 +2070,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleLocalDateBodyParamOptNil", $exception);
 			throw $exception;
@@ -1922,6 +2114,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParam", e);
 			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParam", $exception);
 			throw $exception;
@@ -1960,6 +2156,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamOpt", $exception);
 			throw $exception;
@@ -1998,6 +2198,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamOpt", $exception);
 			throw $exception;
@@ -2036,6 +2240,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamNil", $exception);
 			throw $exception;
@@ -2074,6 +2282,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamOptNil", $exception);
 			throw $exception;
@@ -2112,6 +2324,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamOptNil", $exception);
 			throw $exception;
@@ -2152,6 +2368,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParam", e);
 			this.lifecycleHook.onCatch("simpleLocalTimeBodyParam", $exception);
 			throw $exception;
@@ -2190,6 +2410,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamOpt", $exception);
 			throw $exception;
@@ -2228,6 +2452,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamOpt", $exception);
 			throw $exception;
@@ -2266,6 +2494,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamNil", $exception);
 			throw $exception;
@@ -2304,6 +2536,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamOptNil", $exception);
 			throw $exception;
@@ -2342,6 +2578,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamOptNil", $exception);
 			throw $exception;
@@ -2382,6 +2622,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParam", e);
 			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParam", $exception);
 			throw $exception;
@@ -2420,6 +2664,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamOpt", $exception);
 			throw $exception;
@@ -2458,6 +2706,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamOpt", $exception);
 			throw $exception;
@@ -2496,6 +2748,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamNil", $exception);
 			throw $exception;
@@ -2534,6 +2790,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamOptNil", $exception);
 			throw $exception;
@@ -2572,6 +2832,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamOptNil", $exception);
 			throw $exception;
@@ -2612,6 +2876,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParam", e);
 			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParam", $exception);
 			throw $exception;
@@ -2650,6 +2918,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamOpt", $exception);
 			throw $exception;
@@ -2688,6 +2960,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamOpt", $exception);
 			throw $exception;
@@ -2726,6 +3002,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamNil", $exception);
 			throw $exception;
@@ -2764,6 +3044,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamOptNil", $exception);
 			throw $exception;
@@ -2802,6 +3086,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamOptNil", $exception);
 			throw $exception;
@@ -2842,6 +3130,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarBodyParam", e);
 			this.lifecycleHook.onCatch("simpleScalarBodyParam", $exception);
 			throw $exception;
@@ -2880,6 +3172,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleScalarBodyParamOpt", $exception);
 			throw $exception;
@@ -2918,6 +3214,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleScalarBodyParamOpt", $exception);
 			throw $exception;
@@ -2956,6 +3256,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleScalarBodyParamNil", $exception);
 			throw $exception;
@@ -2994,6 +3298,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleScalarBodyParamOptNil", $exception);
 			throw $exception;
@@ -3032,6 +3340,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleScalarBodyParamOptNil", $exception);
 			throw $exception;
@@ -3072,6 +3384,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumBodyParam", e);
 			this.lifecycleHook.onCatch("simpleEnumBodyParam", $exception);
 			throw $exception;
@@ -3110,6 +3426,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleEnumBodyParamOpt", $exception);
 			throw $exception;
@@ -3148,6 +3468,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleEnumBodyParamOpt", $exception);
 			throw $exception;
@@ -3186,6 +3510,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleEnumBodyParamNil", $exception);
 			throw $exception;
@@ -3224,6 +3552,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleEnumBodyParamOptNil", $exception);
 			throw $exception;
@@ -3262,6 +3594,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleEnumBodyParamOptNil", $exception);
 			throw $exception;
@@ -3302,6 +3638,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParam", e);
 			this.lifecycleHook.onCatch("simpleInlineEnumBodyParam", $exception);
 			throw $exception;
@@ -3340,6 +3680,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamOpt", $exception);
 			throw $exception;
@@ -3378,6 +3722,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamOpt", e);
 			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamOpt", $exception);
 			throw $exception;
@@ -3416,6 +3764,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamNil", e);
 			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamNil", $exception);
 			throw $exception;
@@ -3454,6 +3806,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamOptNil", $exception);
 			throw $exception;
@@ -3492,6 +3848,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamOptNil", $exception);
 			throw $exception;
@@ -3537,6 +3897,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParam", e);
 			this.lifecycleHook.onCatch("multiBodyParam", $exception);
 			throw $exception;
@@ -3575,6 +3939,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOpt", e);
 			this.lifecycleHook.onCatch("multiBodyParamOpt", $exception);
 			throw $exception;
@@ -3617,6 +3985,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOpt", e);
 			this.lifecycleHook.onCatch("multiBodyParamOpt", $exception);
 			throw $exception;
@@ -3662,6 +4034,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOpt", e);
 			this.lifecycleHook.onCatch("multiBodyParamOpt", $exception);
 			throw $exception;
@@ -3710,6 +4086,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOpt", e);
 			this.lifecycleHook.onCatch("multiBodyParamOpt", $exception);
 			throw $exception;
@@ -3752,6 +4132,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamNil", e);
 			this.lifecycleHook.onCatch("multiBodyParamNil", $exception);
 			throw $exception;
@@ -3790,6 +4174,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("multiBodyParamOptNil", $exception);
 			throw $exception;
@@ -3830,6 +4218,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("multiBodyParamOptNil", $exception);
 			throw $exception;
@@ -3871,6 +4263,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("multiBodyParamOptNil", $exception);
 			throw $exception;
@@ -3913,6 +4309,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("multiBodyParamOptNil", $exception);
 			throw $exception;
@@ -3951,6 +4351,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamFirst", e);
 			this.lifecycleHook.onCatch("multiBodyParamFirst", $exception);
 			throw $exception;
@@ -3993,6 +4397,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamFirst", e);
 			this.lifecycleHook.onCatch("multiBodyParamFirst", $exception);
 			throw $exception;
@@ -4036,6 +4444,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamFirst", e);
 			this.lifecycleHook.onCatch("multiBodyParamFirst", $exception);
 			throw $exception;
@@ -4082,6 +4494,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamFirst", e);
 			this.lifecycleHook.onCatch("multiBodyParamFirst", $exception);
 			throw $exception;
@@ -4122,6 +4538,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordBodyParam", e);
 			this.lifecycleHook.onCatch("recordBodyParam", $exception);
 			throw $exception;
@@ -4160,6 +4580,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordBodyParamOpt", e);
 			this.lifecycleHook.onCatch("recordBodyParamOpt", $exception);
 			throw $exception;
@@ -4198,6 +4622,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordBodyParamOpt", e);
 			this.lifecycleHook.onCatch("recordBodyParamOpt", $exception);
 			throw $exception;
@@ -4236,6 +4664,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordBodyParamNil", e);
 			this.lifecycleHook.onCatch("recordBodyParamNil", $exception);
 			throw $exception;
@@ -4274,6 +4706,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("recordBodyParamOptNil", $exception);
 			throw $exception;
@@ -4312,6 +4748,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("recordBodyParamOptNil", $exception);
 			throw $exception;
@@ -4352,6 +4792,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation unionBodyParam", e);
 			this.lifecycleHook.onCatch("unionBodyParam", $exception);
 			throw $exception;
@@ -4390,6 +4834,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation unionBodyParamOpt", e);
 			this.lifecycleHook.onCatch("unionBodyParamOpt", $exception);
 			throw $exception;
@@ -4428,6 +4876,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation unionBodyParamOpt", e);
 			this.lifecycleHook.onCatch("unionBodyParamOpt", $exception);
 			throw $exception;
@@ -4466,6 +4918,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation unionBodyParamNil", e);
 			this.lifecycleHook.onCatch("unionBodyParamNil", $exception);
 			throw $exception;
@@ -4504,6 +4960,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation unionBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("unionBodyParamOptNil", $exception);
 			throw $exception;
@@ -4542,6 +5002,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation unionBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("unionBodyParamOptNil", $exception);
 			throw $exception;
@@ -4582,6 +5046,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation patchableRecordBodyParam", e);
 			this.lifecycleHook.onCatch("patchableRecordBodyParam", $exception);
 			throw $exception;
@@ -4620,6 +5088,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamOpt", e);
 			this.lifecycleHook.onCatch("patchableRecordBodyParamOpt", $exception);
 			throw $exception;
@@ -4658,6 +5130,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamOpt", e);
 			this.lifecycleHook.onCatch("patchableRecordBodyParamOpt", $exception);
 			throw $exception;
@@ -4696,6 +5172,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamNil", e);
 			this.lifecycleHook.onCatch("patchableRecordBodyParamNil", $exception);
 			throw $exception;
@@ -4734,6 +5214,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("patchableRecordBodyParamOptNil", $exception);
 			throw $exception;
@@ -4772,6 +5256,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamOptNil", e);
 			this.lifecycleHook.onCatch("patchableRecordBodyParamOptNil", $exception);
 			throw $exception;

@@ -92,6 +92,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFile", e);
 			this.lifecycleHook.onCatch("uploadFile", $exception);
 			throw $exception;
@@ -132,6 +136,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileOpt", e);
 			this.lifecycleHook.onCatch("uploadFileOpt", $exception);
 			throw $exception;
@@ -175,6 +183,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileOpt", e);
 			this.lifecycleHook.onCatch("uploadFileOpt", $exception);
 			throw $exception;
@@ -218,6 +230,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileNil", e);
 			this.lifecycleHook.onCatch("uploadFileNil", $exception);
 			throw $exception;
@@ -258,6 +274,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileOptNil", e);
 			this.lifecycleHook.onCatch("uploadFileOptNil", $exception);
 			throw $exception;
@@ -304,6 +324,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileOptNil", e);
 			this.lifecycleHook.onCatch("uploadFileOptNil", $exception);
 			throw $exception;
@@ -347,6 +371,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlob", e);
 			this.lifecycleHook.onCatch("uploadBlob", $exception);
 			throw $exception;
@@ -387,6 +415,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobOpt", e);
 			this.lifecycleHook.onCatch("uploadBlobOpt", $exception);
 			throw $exception;
@@ -430,6 +462,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobOpt", e);
 			this.lifecycleHook.onCatch("uploadBlobOpt", $exception);
 			throw $exception;
@@ -473,6 +509,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobNil", e);
 			this.lifecycleHook.onCatch("uploadBlobNil", $exception);
 			throw $exception;
@@ -513,6 +553,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobOptNil", e);
 			this.lifecycleHook.onCatch("uploadBlobOptNil", $exception);
 			throw $exception;
@@ -559,6 +603,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobOptNil", e);
 			this.lifecycleHook.onCatch("uploadBlobOptNil", $exception);
 			throw $exception;
@@ -602,6 +650,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileList", e);
 			this.lifecycleHook.onCatch("uploadFileList", $exception);
 			throw $exception;
@@ -642,6 +694,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileListOpt", e);
 			this.lifecycleHook.onCatch("uploadFileListOpt", $exception);
 			throw $exception;
@@ -685,6 +741,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileListOpt", e);
 			this.lifecycleHook.onCatch("uploadFileListOpt", $exception);
 			throw $exception;
@@ -728,6 +788,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileListNil", e);
 			this.lifecycleHook.onCatch("uploadFileListNil", $exception);
 			throw $exception;
@@ -768,6 +832,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileListOptNil", e);
 			this.lifecycleHook.onCatch("uploadFileListOptNil", $exception);
 			throw $exception;
@@ -814,6 +882,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileListOptNil", e);
 			this.lifecycleHook.onCatch("uploadFileListOptNil", $exception);
 			throw $exception;
@@ -857,6 +929,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobList", e);
 			this.lifecycleHook.onCatch("uploadBlobList", $exception);
 			throw $exception;
@@ -897,6 +973,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobListOpt", e);
 			this.lifecycleHook.onCatch("uploadBlobListOpt", $exception);
 			throw $exception;
@@ -940,6 +1020,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobListOpt", e);
 			this.lifecycleHook.onCatch("uploadBlobListOpt", $exception);
 			throw $exception;
@@ -983,6 +1067,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobListNil", e);
 			this.lifecycleHook.onCatch("uploadBlobListNil", $exception);
 			throw $exception;
@@ -1023,6 +1111,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobListOptNil", e);
 			this.lifecycleHook.onCatch("uploadBlobListOptNil", $exception);
 			throw $exception;
@@ -1069,6 +1161,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobListOptNil", e);
 			this.lifecycleHook.onCatch("uploadBlobListOptNil", $exception);
 			throw $exception;
@@ -1126,6 +1222,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixed", e);
 			this.lifecycleHook.onCatch("uploadMixed", $exception);
 			throw $exception;
@@ -1168,6 +1268,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
 			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
 			throw $exception;
@@ -1213,6 +1317,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
 			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
 			throw $exception;
@@ -1261,6 +1369,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
 			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
 			throw $exception;
@@ -1312,6 +1424,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
 			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
 			throw $exception;
@@ -1366,6 +1482,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
 			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
 			throw $exception;
@@ -1423,6 +1543,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
 			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
 			throw $exception;
@@ -1483,6 +1607,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
 			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
 			throw $exception;
@@ -1546,6 +1674,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
 			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
 			throw $exception;
@@ -1612,6 +1744,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
 			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
 			throw $exception;
@@ -1690,6 +1826,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedNil", e);
 			this.lifecycleHook.onCatch("uploadMixedNil", $exception);
 			throw $exception;
@@ -1732,6 +1872,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
 			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
 			throw $exception;
@@ -1779,6 +1923,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
 			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
 			throw $exception;
@@ -1831,6 +1979,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
 			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
 			throw $exception;
@@ -1888,6 +2040,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
 			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
 			throw $exception;
@@ -1950,6 +2106,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
 			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
 			throw $exception;
@@ -2017,6 +2177,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
 			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
 			throw $exception;
@@ -2089,6 +2253,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
 			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
 			throw $exception;
@@ -2167,6 +2335,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
 			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
 			throw $exception;
@@ -2251,6 +2423,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
 			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
 			throw $exception;
@@ -2316,6 +2492,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation mixed", e);
 			this.lifecycleHook.onCatch("mixed", $exception);
 			throw $exception;
@@ -2363,6 +2543,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation singleBodyAddition", e);
 			this.lifecycleHook.onCatch("singleBodyAddition", $exception);
 			throw $exception;
@@ -2408,6 +2592,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation twoBinariesAddition", e);
 			this.lifecycleHook.onCatch("twoBinariesAddition", $exception);
 			throw $exception;
@@ -2442,6 +2630,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation downloadFile", e);
 			this.lifecycleHook.onCatch("downloadFile", $exception);
 			throw $exception;
@@ -2476,6 +2668,10 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation downloadBlob", e);
 			this.lifecycleHook.onCatch("downloadBlob", $exception);
 			throw $exception;

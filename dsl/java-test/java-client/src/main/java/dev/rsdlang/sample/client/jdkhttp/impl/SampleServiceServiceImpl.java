@@ -75,6 +75,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getBoolean", e);
 			this.lifecycleHook.onCatch("getBoolean", $exception);
 			throw $exception;
@@ -109,6 +113,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getShort", e);
 			this.lifecycleHook.onCatch("getShort", $exception);
 			throw $exception;
@@ -143,6 +151,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getInt", e);
 			this.lifecycleHook.onCatch("getInt", $exception);
 			throw $exception;
@@ -177,6 +189,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getLong", e);
 			this.lifecycleHook.onCatch("getLong", $exception);
 			throw $exception;
@@ -211,6 +227,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getFloat", e);
 			this.lifecycleHook.onCatch("getFloat", $exception);
 			throw $exception;
@@ -245,6 +265,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getDouble", e);
 			this.lifecycleHook.onCatch("getDouble", $exception);
 			throw $exception;
@@ -279,6 +303,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getString", e);
 			this.lifecycleHook.onCatch("getString", $exception);
 			throw $exception;
@@ -313,6 +341,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getLocalDate", e);
 			this.lifecycleHook.onCatch("getLocalDate", $exception);
 			throw $exception;
@@ -347,6 +379,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getLocalDateTime", e);
 			this.lifecycleHook.onCatch("getLocalDateTime", $exception);
 			throw $exception;
@@ -381,6 +417,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getLocalTime", e);
 			this.lifecycleHook.onCatch("getLocalTime", $exception);
 			throw $exception;
@@ -415,6 +455,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getOffsetDateTime", e);
 			this.lifecycleHook.onCatch("getOffsetDateTime", $exception);
 			throw $exception;
@@ -449,6 +493,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getZonedDateTime", e);
 			this.lifecycleHook.onCatch("getZonedDateTime", $exception);
 			throw $exception;
@@ -483,6 +531,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getScalar", e);
 			this.lifecycleHook.onCatch("getScalar", $exception);
 			throw $exception;
@@ -517,6 +569,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getEnum", e);
 			this.lifecycleHook.onCatch("getEnum", $exception);
 			throw $exception;
@@ -550,6 +606,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation voidOperation", e);
 			this.lifecycleHook.onCatch("voidOperation", $exception);
 			throw $exception;
@@ -588,6 +648,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation errorOperation", e);
 			this.lifecycleHook.onCatch("errorOperation", $exception);
 			throw $exception;
@@ -631,6 +695,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiErrorOperation", e);
 			this.lifecycleHook.onCatch("multiErrorOperation", $exception);
 			throw $exception;
@@ -668,6 +736,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleRecord", e);
 			this.lifecycleHook.onCatch("getSimpleRecord", $exception);
 			throw $exception;
@@ -710,6 +782,10 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleRecordWithError", e);
 			this.lifecycleHook.onCatch("getSimpleRecordWithError", $exception);
 			throw $exception;

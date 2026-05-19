@@ -83,6 +83,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBooleanHeaderParam", e);
 			this.lifecycleHook.onCatch("listBooleanHeaderParam", $exception);
 			throw $exception;
@@ -117,6 +121,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBooleanHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listBooleanHeaderParamOpt", $exception);
 			throw $exception;
@@ -160,6 +168,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBooleanHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listBooleanHeaderParamOpt", $exception);
 			throw $exception;
@@ -205,6 +217,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBooleanHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listBooleanHeaderParamNil", $exception);
 			throw $exception;
@@ -239,6 +255,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBooleanHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listBooleanHeaderParamOptNil", $exception);
 			throw $exception;
@@ -284,6 +304,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBooleanHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listBooleanHeaderParamOptNil", $exception);
 			throw $exception;
@@ -325,6 +349,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShortHeaderParam", e);
 			this.lifecycleHook.onCatch("listShortHeaderParam", $exception);
 			throw $exception;
@@ -359,6 +387,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShortHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listShortHeaderParamOpt", $exception);
 			throw $exception;
@@ -402,6 +434,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShortHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listShortHeaderParamOpt", $exception);
 			throw $exception;
@@ -447,6 +483,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShortHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listShortHeaderParamNil", $exception);
 			throw $exception;
@@ -481,6 +521,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShortHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listShortHeaderParamOptNil", $exception);
 			throw $exception;
@@ -526,6 +570,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShortHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listShortHeaderParamOptNil", $exception);
 			throw $exception;
@@ -567,6 +615,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listIntHeaderParam", e);
 			this.lifecycleHook.onCatch("listIntHeaderParam", $exception);
 			throw $exception;
@@ -601,6 +653,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listIntHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listIntHeaderParamOpt", $exception);
 			throw $exception;
@@ -644,6 +700,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listIntHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listIntHeaderParamOpt", $exception);
 			throw $exception;
@@ -689,6 +749,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listIntHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listIntHeaderParamNil", $exception);
 			throw $exception;
@@ -723,6 +787,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listIntHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listIntHeaderParamOptNil", $exception);
 			throw $exception;
@@ -768,6 +836,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listIntHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listIntHeaderParamOptNil", $exception);
 			throw $exception;
@@ -809,6 +881,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLongHeaderParam", e);
 			this.lifecycleHook.onCatch("listLongHeaderParam", $exception);
 			throw $exception;
@@ -843,6 +919,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLongHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listLongHeaderParamOpt", $exception);
 			throw $exception;
@@ -886,6 +966,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLongHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listLongHeaderParamOpt", $exception);
 			throw $exception;
@@ -931,6 +1015,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLongHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listLongHeaderParamNil", $exception);
 			throw $exception;
@@ -965,6 +1053,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLongHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listLongHeaderParamOptNil", $exception);
 			throw $exception;
@@ -1010,6 +1102,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLongHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listLongHeaderParamOptNil", $exception);
 			throw $exception;
@@ -1051,6 +1147,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloatHeaderParam", e);
 			this.lifecycleHook.onCatch("listFloatHeaderParam", $exception);
 			throw $exception;
@@ -1085,6 +1185,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloatHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listFloatHeaderParamOpt", $exception);
 			throw $exception;
@@ -1128,6 +1232,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloatHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listFloatHeaderParamOpt", $exception);
 			throw $exception;
@@ -1173,6 +1281,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloatHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listFloatHeaderParamNil", $exception);
 			throw $exception;
@@ -1207,6 +1319,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloatHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listFloatHeaderParamOptNil", $exception);
 			throw $exception;
@@ -1252,6 +1368,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloatHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listFloatHeaderParamOptNil", $exception);
 			throw $exception;
@@ -1293,6 +1413,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDoubleHeaderParam", e);
 			this.lifecycleHook.onCatch("listDoubleHeaderParam", $exception);
 			throw $exception;
@@ -1327,6 +1451,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDoubleHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listDoubleHeaderParamOpt", $exception);
 			throw $exception;
@@ -1370,6 +1498,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDoubleHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listDoubleHeaderParamOpt", $exception);
 			throw $exception;
@@ -1415,6 +1547,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDoubleHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listDoubleHeaderParamNil", $exception);
 			throw $exception;
@@ -1449,6 +1585,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDoubleHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listDoubleHeaderParamOptNil", $exception);
 			throw $exception;
@@ -1494,6 +1634,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDoubleHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listDoubleHeaderParamOptNil", $exception);
 			throw $exception;
@@ -1537,6 +1681,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listStringHeaderParam", e);
 			this.lifecycleHook.onCatch("listStringHeaderParam", $exception);
 			throw $exception;
@@ -1571,6 +1719,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listStringHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listStringHeaderParamOpt", $exception);
 			throw $exception;
@@ -1614,6 +1766,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listStringHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listStringHeaderParamOpt", $exception);
 			throw $exception;
@@ -1659,6 +1815,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listStringHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listStringHeaderParamNil", $exception);
 			throw $exception;
@@ -1693,6 +1853,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listStringHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listStringHeaderParamOptNil", $exception);
 			throw $exception;
@@ -1738,6 +1902,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listStringHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listStringHeaderParamOptNil", $exception);
 			throw $exception;
@@ -1781,6 +1949,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateHeaderParam", e);
 			this.lifecycleHook.onCatch("listLocalDateHeaderParam", $exception);
 			throw $exception;
@@ -1815,6 +1987,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listLocalDateHeaderParamOpt", $exception);
 			throw $exception;
@@ -1858,6 +2034,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listLocalDateHeaderParamOpt", $exception);
 			throw $exception;
@@ -1903,6 +2083,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listLocalDateHeaderParamNil", $exception);
 			throw $exception;
@@ -1937,6 +2121,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listLocalDateHeaderParamOptNil", $exception);
 			throw $exception;
@@ -1982,6 +2170,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listLocalDateHeaderParamOptNil", $exception);
 			throw $exception;
@@ -2025,6 +2217,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTimeHeaderParam", e);
 			this.lifecycleHook.onCatch("listLocalDateTimeHeaderParam", $exception);
 			throw $exception;
@@ -2059,6 +2255,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTimeHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listLocalDateTimeHeaderParamOpt", $exception);
 			throw $exception;
@@ -2102,6 +2302,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTimeHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listLocalDateTimeHeaderParamOpt", $exception);
 			throw $exception;
@@ -2147,6 +2351,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTimeHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listLocalDateTimeHeaderParamNil", $exception);
 			throw $exception;
@@ -2181,6 +2389,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTimeHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listLocalDateTimeHeaderParamOptNil", $exception);
 			throw $exception;
@@ -2226,6 +2438,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTimeHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listLocalDateTimeHeaderParamOptNil", $exception);
 			throw $exception;
@@ -2269,6 +2485,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTimeHeaderParam", e);
 			this.lifecycleHook.onCatch("listLocalTimeHeaderParam", $exception);
 			throw $exception;
@@ -2303,6 +2523,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTimeHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listLocalTimeHeaderParamOpt", $exception);
 			throw $exception;
@@ -2346,6 +2570,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTimeHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listLocalTimeHeaderParamOpt", $exception);
 			throw $exception;
@@ -2391,6 +2619,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTimeHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listLocalTimeHeaderParamNil", $exception);
 			throw $exception;
@@ -2425,6 +2657,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTimeHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listLocalTimeHeaderParamOptNil", $exception);
 			throw $exception;
@@ -2470,6 +2706,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTimeHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listLocalTimeHeaderParamOptNil", $exception);
 			throw $exception;
@@ -2513,6 +2753,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTimeHeaderParam", e);
 			this.lifecycleHook.onCatch("listOffsetDateTimeHeaderParam", $exception);
 			throw $exception;
@@ -2547,6 +2791,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTimeHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listOffsetDateTimeHeaderParamOpt", $exception);
 			throw $exception;
@@ -2590,6 +2838,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTimeHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listOffsetDateTimeHeaderParamOpt", $exception);
 			throw $exception;
@@ -2635,6 +2887,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTimeHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listOffsetDateTimeHeaderParamNil", $exception);
 			throw $exception;
@@ -2669,6 +2925,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTimeHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listOffsetDateTimeHeaderParamOptNil", $exception);
 			throw $exception;
@@ -2714,6 +2974,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTimeHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listOffsetDateTimeHeaderParamOptNil", $exception);
 			throw $exception;
@@ -2757,6 +3021,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTimeHeaderParam", e);
 			this.lifecycleHook.onCatch("listZonedDateTimeHeaderParam", $exception);
 			throw $exception;
@@ -2791,6 +3059,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTimeHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listZonedDateTimeHeaderParamOpt", $exception);
 			throw $exception;
@@ -2834,6 +3106,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTimeHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listZonedDateTimeHeaderParamOpt", $exception);
 			throw $exception;
@@ -2879,6 +3155,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTimeHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listZonedDateTimeHeaderParamNil", $exception);
 			throw $exception;
@@ -2913,6 +3193,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTimeHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listZonedDateTimeHeaderParamOptNil", $exception);
 			throw $exception;
@@ -2958,6 +3242,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTimeHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listZonedDateTimeHeaderParamOptNil", $exception);
 			throw $exception;
@@ -3001,6 +3289,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalarHeaderParam", e);
 			this.lifecycleHook.onCatch("listScalarHeaderParam", $exception);
 			throw $exception;
@@ -3035,6 +3327,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalarHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listScalarHeaderParamOpt", $exception);
 			throw $exception;
@@ -3078,6 +3374,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalarHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listScalarHeaderParamOpt", $exception);
 			throw $exception;
@@ -3123,6 +3423,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalarHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listScalarHeaderParamNil", $exception);
 			throw $exception;
@@ -3157,6 +3461,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalarHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listScalarHeaderParamOptNil", $exception);
 			throw $exception;
@@ -3202,6 +3510,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalarHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listScalarHeaderParamOptNil", $exception);
 			throw $exception;
@@ -3245,6 +3557,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnumHeaderParam", e);
 			this.lifecycleHook.onCatch("listEnumHeaderParam", $exception);
 			throw $exception;
@@ -3279,6 +3595,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnumHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listEnumHeaderParamOpt", $exception);
 			throw $exception;
@@ -3322,6 +3642,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnumHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listEnumHeaderParamOpt", $exception);
 			throw $exception;
@@ -3367,6 +3691,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnumHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listEnumHeaderParamNil", $exception);
 			throw $exception;
@@ -3401,6 +3729,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnumHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listEnumHeaderParamOptNil", $exception);
 			throw $exception;
@@ -3446,6 +3778,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnumHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listEnumHeaderParamOptNil", $exception);
 			throw $exception;
@@ -3489,6 +3825,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInlineEnumHeaderParam", e);
 			this.lifecycleHook.onCatch("listInlineEnumHeaderParam", $exception);
 			throw $exception;
@@ -3523,6 +3863,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInlineEnumHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listInlineEnumHeaderParamOpt", $exception);
 			throw $exception;
@@ -3566,6 +3910,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInlineEnumHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listInlineEnumHeaderParamOpt", $exception);
 			throw $exception;
@@ -3611,6 +3959,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInlineEnumHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listInlineEnumHeaderParamNil", $exception);
 			throw $exception;
@@ -3645,6 +3997,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInlineEnumHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listInlineEnumHeaderParamOptNil", $exception);
 			throw $exception;
@@ -3690,6 +4046,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInlineEnumHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listInlineEnumHeaderParamOptNil", $exception);
 			throw $exception;
@@ -3737,6 +4097,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiHeaderParam", e);
 			this.lifecycleHook.onCatch("listMultiHeaderParam", $exception);
 			throw $exception;
@@ -3771,6 +4135,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listMultiHeaderParamOpt", $exception);
 			throw $exception;
@@ -3814,6 +4182,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listMultiHeaderParamOpt", $exception);
 			throw $exception;
@@ -3860,6 +4232,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listMultiHeaderParamOpt", $exception);
 			throw $exception;
@@ -3910,6 +4286,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listMultiHeaderParamOpt", $exception);
 			throw $exception;
@@ -3966,6 +4346,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listMultiHeaderParamNil", $exception);
 			throw $exception;
@@ -4000,6 +4384,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listMultiHeaderParamOptNil", $exception);
 			throw $exception;
@@ -4045,6 +4433,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listMultiHeaderParamOptNil", $exception);
 			throw $exception;
@@ -4095,6 +4487,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listMultiHeaderParamOptNil", $exception);
 			throw $exception;
@@ -4151,6 +4547,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listMultiHeaderParamOptNil", $exception);
 			throw $exception;
@@ -4195,6 +4595,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listRecordHeaderParam", e);
 			this.lifecycleHook.onCatch("listRecordHeaderParam", $exception);
 			throw $exception;
@@ -4229,6 +4633,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listRecordHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listRecordHeaderParamOpt", $exception);
 			throw $exception;
@@ -4273,6 +4681,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listRecordHeaderParamOpt", e);
 			this.lifecycleHook.onCatch("listRecordHeaderParamOpt", $exception);
 			throw $exception;
@@ -4319,6 +4731,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listRecordHeaderParamNil", e);
 			this.lifecycleHook.onCatch("listRecordHeaderParamNil", $exception);
 			throw $exception;
@@ -4353,6 +4769,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listRecordHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listRecordHeaderParamOptNil", $exception);
 			throw $exception;
@@ -4399,6 +4819,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listRecordHeaderParamOptNil", e);
 			this.lifecycleHook.onCatch("listRecordHeaderParamOptNil", $exception);
 			throw $exception;

@@ -74,6 +74,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBoolean", e);
 			this.lifecycleHook.onCatch("listBoolean", $exception);
 			throw $exception;
@@ -108,6 +112,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShort", e);
 			this.lifecycleHook.onCatch("listShort", $exception);
 			throw $exception;
@@ -142,6 +150,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInt", e);
 			this.lifecycleHook.onCatch("listInt", $exception);
 			throw $exception;
@@ -176,6 +188,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLong", e);
 			this.lifecycleHook.onCatch("listLong", $exception);
 			throw $exception;
@@ -210,6 +226,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloat", e);
 			this.lifecycleHook.onCatch("listFloat", $exception);
 			throw $exception;
@@ -244,6 +264,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDouble", e);
 			this.lifecycleHook.onCatch("listDouble", $exception);
 			throw $exception;
@@ -278,6 +302,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listString", e);
 			this.lifecycleHook.onCatch("listString", $exception);
 			throw $exception;
@@ -312,6 +340,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDate", e);
 			this.lifecycleHook.onCatch("listLocalDate", $exception);
 			throw $exception;
@@ -346,6 +378,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTime", e);
 			this.lifecycleHook.onCatch("listLocalDateTime", $exception);
 			throw $exception;
@@ -380,6 +416,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTime", e);
 			this.lifecycleHook.onCatch("listLocalTime", $exception);
 			throw $exception;
@@ -414,6 +454,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTime", e);
 			this.lifecycleHook.onCatch("listOffsetDateTime", $exception);
 			throw $exception;
@@ -448,6 +492,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTime", e);
 			this.lifecycleHook.onCatch("listZonedDateTime", $exception);
 			throw $exception;
@@ -482,6 +530,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalar", e);
 			this.lifecycleHook.onCatch("listScalar", $exception);
 			throw $exception;
@@ -516,6 +568,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnum", e);
 			this.lifecycleHook.onCatch("listEnum", $exception);
 			throw $exception;
@@ -550,6 +606,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listSimpleRecord", e);
 			this.lifecycleHook.onCatch("listSimpleRecord", $exception);
 			throw $exception;
@@ -589,6 +649,10 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listSimpleRecordWithError", e);
 			this.lifecycleHook.onCatch("listSimpleRecordWithError", $exception);
 			throw $exception;

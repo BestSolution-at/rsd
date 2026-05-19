@@ -72,6 +72,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanPathParam", e);
 			this.lifecycleHook.onCatch("simpleBooleanPathParam", $exception);
 			throw $exception;
@@ -107,6 +111,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortPathParam", e);
 			this.lifecycleHook.onCatch("simpleShortPathParam", $exception);
 			throw $exception;
@@ -142,6 +150,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntPathParam", e);
 			this.lifecycleHook.onCatch("simpleIntPathParam", $exception);
 			throw $exception;
@@ -177,6 +189,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongPathParam", e);
 			this.lifecycleHook.onCatch("simpleLongPathParam", $exception);
 			throw $exception;
@@ -212,6 +228,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatPathParam", e);
 			this.lifecycleHook.onCatch("simpleFloatPathParam", $exception);
 			throw $exception;
@@ -247,6 +267,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoublePathParam", e);
 			this.lifecycleHook.onCatch("simpleDoublePathParam", $exception);
 			throw $exception;
@@ -284,6 +308,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringPathParam", e);
 			this.lifecycleHook.onCatch("simpleStringPathParam", $exception);
 			throw $exception;
@@ -321,6 +349,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDatePathParam", e);
 			this.lifecycleHook.onCatch("simpleLocalDatePathParam", $exception);
 			throw $exception;
@@ -358,6 +390,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimePathParam", e);
 			this.lifecycleHook.onCatch("simpleLocalDateTimePathParam", $exception);
 			throw $exception;
@@ -395,6 +431,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimePathParam", e);
 			this.lifecycleHook.onCatch("simpleLocalTimePathParam", $exception);
 			throw $exception;
@@ -432,6 +472,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimePathParam", e);
 			this.lifecycleHook.onCatch("simpleOffsetDateTimePathParam", $exception);
 			throw $exception;
@@ -469,6 +513,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimePathParam", e);
 			this.lifecycleHook.onCatch("simpleZonedDateTimePathParam", $exception);
 			throw $exception;
@@ -506,6 +554,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarPathParam", e);
 			this.lifecycleHook.onCatch("simpleScalarPathParam", $exception);
 			throw $exception;
@@ -543,6 +595,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumPathParam", e);
 			this.lifecycleHook.onCatch("simpleEnumPathParam", $exception);
 			throw $exception;
@@ -581,6 +637,10 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiPathParam", e);
 			this.lifecycleHook.onCatch("multiPathParam", $exception);
 			throw $exception;

@@ -79,6 +79,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBooleanQueryParam", e);
 			this.lifecycleHook.onCatch("listBooleanQueryParam", $exception);
 			throw $exception;
@@ -118,6 +122,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShortQueryParam", e);
 			this.lifecycleHook.onCatch("listShortQueryParam", $exception);
 			throw $exception;
@@ -157,6 +165,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listIntQueryParam", e);
 			this.lifecycleHook.onCatch("listIntQueryParam", $exception);
 			throw $exception;
@@ -196,6 +208,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLongQueryParam", e);
 			this.lifecycleHook.onCatch("listLongQueryParam", $exception);
 			throw $exception;
@@ -235,6 +251,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloatQueryParam", e);
 			this.lifecycleHook.onCatch("listFloatQueryParam", $exception);
 			throw $exception;
@@ -274,6 +294,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDoubleQueryParam", e);
 			this.lifecycleHook.onCatch("listDoubleQueryParam", $exception);
 			throw $exception;
@@ -315,6 +339,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listStringQueryParam", e);
 			this.lifecycleHook.onCatch("listStringQueryParam", $exception);
 			throw $exception;
@@ -356,6 +384,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateQueryParam", e);
 			this.lifecycleHook.onCatch("listLocalDateQueryParam", $exception);
 			throw $exception;
@@ -397,6 +429,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTimeQueryParam", e);
 			this.lifecycleHook.onCatch("listLocalDateTimeQueryParam", $exception);
 			throw $exception;
@@ -438,6 +474,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTimeQueryParam", e);
 			this.lifecycleHook.onCatch("listLocalTimeQueryParam", $exception);
 			throw $exception;
@@ -479,6 +519,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTimeQueryParam", e);
 			this.lifecycleHook.onCatch("listOffsetDateTimeQueryParam", $exception);
 			throw $exception;
@@ -520,6 +564,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTimeQueryParam", e);
 			this.lifecycleHook.onCatch("listZonedDateTimeQueryParam", $exception);
 			throw $exception;
@@ -561,6 +609,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalarQueryParam", e);
 			this.lifecycleHook.onCatch("listScalarQueryParam", $exception);
 			throw $exception;
@@ -602,6 +654,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnumQueryParam", e);
 			this.lifecycleHook.onCatch("listEnumQueryParam", $exception);
 			throw $exception;
@@ -643,6 +699,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInlineEnumQueryParam", e);
 			this.lifecycleHook.onCatch("listInlineEnumQueryParam", $exception);
 			throw $exception;
@@ -692,6 +752,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiQueryParam", e);
 			this.lifecycleHook.onCatch("listMultiQueryParam", $exception);
 			throw $exception;
@@ -734,6 +798,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 			if (e instanceof RSDException rsdEx) {
 				throw rsdEx;
 			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
 			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listRecordQueryParam", e);
 			this.lifecycleHook.onCatch("listRecordQueryParam", $exception);
 			throw $exception;
