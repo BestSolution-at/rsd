@@ -232,10 +232,6 @@ public interface ${Type} {
 		 *                        (e.g. "getUser", "createUser", etc.)
 		 * @param error           exception containing the deserialized error response
 		 *                        body
-		 * @param responseAdapter allows to adapt the response specific to the
-		 *                        implementation used
-		 *                        eg. HttpResponse for JDK HttpClient, Response for
-		 *                        OkHttp, etc.
 		 */
 		void onError(String method, RSDException error, Adaptable responseAdapter);
 
