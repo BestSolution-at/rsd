@@ -155,7 +155,7 @@ public interface ${Type} {
 	 */
 	public interface Adaptable {
 		/**
-		 * Allows to adapt the given implementation specific
+		 * Allows to adapt the given implementation specific type (e.g. request builder, response, etc.) to a specific class.
 		 * 
 		 * @param <T>   the type of the class to adapt to
 		 * @param clazz the class to adapt to
