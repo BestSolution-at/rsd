@@ -40,6 +40,7 @@ export function generateService(
 	const fqn = importCollector.importType.bind(importCollector);
 
 	const ServiceInterface = fqn(`${artifactConfig.rootPackageName}.${s.name}Service`);
+	const Client = fqn(`${artifactConfig.rootPackageName}.${toCamelCaseIdentifier(generatorConfig.name)}Client`);
 	const JDKClient = fqn(
 		`${artifactConfig.rootPackageName}.jdkhttp.JDK${toCamelCaseIdentifier(generatorConfig.name)}Client`,
 	);
@@ -49,9 +50,12 @@ export function generateService(
 	node.indent(classBody => {
 		classBody.append(`private final ${JDKClient} client;`, NL);
 		classBody.appendNewLine();
-		classBody.append(`public ${s.name}ServiceImpl(${JDKClient} client) {`, NL);
+		classBody.append(`private final ${Client}.LifecycleHook lifecycleHook;`, NL);
+		classBody.appendNewLine();
+		classBody.append(`public ${s.name}ServiceImpl(${JDKClient} client, ${Client}.LifecycleHook lifecycleHook) {`, NL);
 		classBody.indent(initBody => {
 			initBody.append('this.client = client;', NL);
+			initBody.append('this.lifecycleHook = lifecycleHook;', NL);
 		});
 		classBody.append('}', NL, NL);
 		classBody.append(`public ${JDKClient} client() {`, NL);
@@ -373,8 +377,6 @@ function generateOperationMethod(
 			methodBody.append(`var $uri = ${URI}.create($path);`, NL);
 		}
 
-		const IOException = fqn('java.io.IOException');
-
 		methodBody.append('try {', NL);
 		methodBody.indent(tryBlock => {
 			if (o.parameters.find(p => p.variant === 'stream')) {
@@ -382,9 +384,24 @@ function generateOperationMethod(
 			}
 			tryBlock.append(generateInvocation(s, o, allParameters, artifactConfig, fqn, hasHeaderParams, multiBodyParam));
 		});
-		methodBody.append(`} catch (${IOException} | InterruptedException e) {`, NL);
+		methodBody.append(`} catch (Throwable e) {`, NL);
 		methodBody.indent(catchBlock => {
-			catchBlock.append('throw new IllegalStateException(e);', NL);
+			const RSException = fqn(`${artifactConfig.rootPackageName}.RSDException`);
+			catchBlock.append(`if (e instanceof ${RSException} rsdEx) {`, NL);
+			catchBlock.indent(ifBlock => {
+				ifBlock.append('throw rsdEx;', NL);
+			});
+			catchBlock.append('}', NL);
+			catchBlock.append(
+				`var $exception = new ${RSException}(${RSException}.Type._Native, "Unexpected error while executing operation ${o.name}", e);`,
+				NL,
+			);
+			catchBlock.append(`this.lifecycleHook.onCatch("${o.name}", $exception);`, NL);
+			catchBlock.append('throw $exception;', NL);
+		});
+		methodBody.append('} finally {', NL);
+		methodBody.indent(finallyBlock => {
+			finallyBlock.append(`this.lifecycleHook.onFinally("${o.name}");`, NL);
 		});
 		methodBody.append('}', NL);
 	});
@@ -412,7 +429,7 @@ function generateInvocation(
 		methodBody.appendNewLine();
 	}
 
-	generateRequestBuilderChain(methodBody, method, allParameters, hasHeaderParams, fqn);
+	generateRequestBuilderChain(o, methodBody, method, allParameters, hasHeaderParams, fqn);
 	generateResponseDispatch(methodBody, o, artifactConfig, fqn);
 
 	methodBody.append();
@@ -642,6 +659,7 @@ function appendBuilderAssignment(methodBody: CompositeGeneratorNode, p: MParamet
 }
 
 function generateRequestBuilderChain(
+	o: MResolvedOperation,
 	methodBody: CompositeGeneratorNode,
 	method: string | undefined,
 	allParameters: readonly MParameter[],
@@ -689,6 +707,10 @@ function generateRequestBuilderChain(
 		});
 		methodBody.append('}', NL);
 	}
+	methodBody.append(
+		`this.lifecycleHook.preRequest("${o.name}", client.createRequestBuilderAdaptable($requestBuilder));`,
+		NL,
+	);
 	methodBody.append('var $request = $requestBuilder.build();', NL);
 	methodBody.appendNewLine();
 }
@@ -732,10 +754,16 @@ function generateResponseDispatch(
 	}
 
 	const toStringMethod = o.resultType?.variant === 'stream' ? 'mapFileToString' : 'toString';
+	const RSDException = fqn(`${artifactConfig.rootPackageName}.RSDException`);
 	methodBody.append(
-		`throw new IllegalStateException(String.format("Unsupported Http-Status '%s':\\n%s", $response.statusCode(), ServiceUtils.${toStringMethod}($response)));`,
+		`var $exception = new ${RSDException}(${RSDException}.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\\n%s", $response.statusCode(), ServiceUtils.${toStringMethod}($response)));`,
 		NL,
 	);
+	methodBody.append(
+		`this.lifecycleHook.onError("${o.name}", $exception, this.client.createResponseAdaptable($response));`,
+		NL,
+	);
+	methodBody.append('throw $exception;', NL);
 }
 
 function generateOperation(
@@ -776,49 +804,51 @@ function handleOkResult(
 	}
 	if (type.variant === 'stream') {
 		if (type.type === 'file') {
-			node.append('return ServiceUtils.mapFile($response);', NL);
+			node.append('var $rv = ServiceUtils.mapFile($response);', NL);
 		} else {
-			node.append('return ServiceUtils.mapBlob($response);', NL);
+			node.append('var $rv = ServiceUtils.mapBlob($response);', NL);
 		}
 	} else if (type.variant === 'record' || type.variant === 'union') {
 		const modelPkg = `${artifactConfig.rootPackageName}.impl.model.json`;
 		const modelType = fqn(`${modelPkg}.${type.type}DataImpl`);
 		if (type.array) {
 			node.append(
-				`return ServiceUtils.mapObjects($response, ${modelType}::of, ${toResultType(type, artifactConfig, fqn, '', true)}.class);`,
+				`var $rv = ServiceUtils.mapObjects($response, ${modelType}::of, ${toResultType(type, artifactConfig, fqn, '', true)}.class);`,
 				NL,
 			);
 		} else {
 			node.append(
-				`return ServiceUtils.mapObject($response, ${modelType}::of, ${toResultType(type, artifactConfig, fqn, '', true)}.class);`,
+				`var $rv = ServiceUtils.mapObject($response, ${modelType}::of, ${toResultType(type, artifactConfig, fqn, '', true)}.class);`,
 				NL,
 			);
 		}
 	} else if (type.variant === 'builtin') {
 		if (isMBuiltinType(type.type)) {
-			node.append(`return ${builtinMapExpression(type.type, type.array)};`, NL);
+			node.append(`var $rv = ${builtinMapExpression(type.type, type.array)};`, NL);
 		}
 	} else if (type.variant === 'scalar') {
 		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false);
 		if (type.array) {
-			node.append(`return ServiceUtils.mapLiterals($response, ${resolvedType}::of);`, NL);
+			node.append(`var $rv = ServiceUtils.mapLiterals($response, ${resolvedType}::of);`, NL);
 		} else {
-			node.append(`return ServiceUtils.mapLiteral($response, ${resolvedType}::of);`, NL);
+			node.append(`var $rv = ServiceUtils.mapLiteral($response, ${resolvedType}::of);`, NL);
 		}
 	} else if (type.variant === 'enum') {
 		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false);
 		if (type.array) {
-			node.append(`return ServiceUtils.mapLiterals($response, ${resolvedType}::valueOf);`, NL);
+			node.append(`var $rv = ServiceUtils.mapLiterals($response, ${resolvedType}::valueOf);`, NL);
 		} else {
-			node.append(`return ServiceUtils.mapLiteral($response, ${resolvedType}::valueOf);`, NL);
+			node.append(`var $rv = ServiceUtils.mapLiteral($response, ${resolvedType}::valueOf);`, NL);
 		}
 	} else {
 		if (type.array) {
-			node.append(`return ServiceUtils.mapLiterals($response, ${toFirstUpper(o.name)}_Result$::valueOf);`, NL);
+			node.append(`var $rv = ServiceUtils.mapLiterals($response, ${toFirstUpper(o.name)}_Result$::valueOf);`, NL);
 		} else {
-			node.append(`return ServiceUtils.mapLiteral($response, ${toFirstUpper(o.name)}_Result$::valueOf);`, NL);
+			node.append(`var $rv = ServiceUtils.mapLiteral($response, ${toFirstUpper(o.name)}_Result$::valueOf);`, NL);
 		}
 	}
+	node.append(`this.lifecycleHook.onSuccess("${o.name}", $rv, this.client.createResponseAdaptable($response));`, NL);
+	node.append('return $rv;', NL);
 }
 
 function builtinMapExpression(type: MBuiltinType, array: boolean): string {
@@ -848,9 +878,14 @@ function handleErrorResult(
 ) {
 	const toStr = o.resultType?.variant === 'stream' ? 'mapFileToString' : 'toString';
 	node.append(
-		`throw new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}(ServiceUtils.${toStr}($response));`,
+		`var exception = new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}(ServiceUtils.${toStr}($response));`,
 		NL,
 	);
+	node.append(
+		`this.lifecycleHook.onError("${o.name}", exception, this.client.createResponseAdaptable($response));`,
+		NL,
+	);
+	node.append(`throw exception;`, NL);
 }
 
 function toParameter(

@@ -5,14 +5,21 @@ import dev.rsdlang.sample.server.service.model._Base;
 
 public class RSDException extends RuntimeException {
 	public enum Type {
+		_Native,
+		_UnknownResponse,
 		SampleError,
 		SampleError2;
 	}
 
 	public final Type type;
 
-	RSDException(Type type, String message) {
+	public RSDException(Type type, String message) {
 		super(message);
+		this.type = type;
+	}
+
+	public RSDException(Type type, String message, Throwable cause) {
+		super(message, cause);
 		this.type = type;
 	}
 

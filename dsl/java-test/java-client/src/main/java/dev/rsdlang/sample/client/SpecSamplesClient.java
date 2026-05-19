@@ -3,6 +3,7 @@ package dev.rsdlang.sample.client;
 
 import java.net.URI;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.ServiceLoader;
 
 import dev.rsdlang.sample.client.model._Base;
@@ -69,6 +70,22 @@ public interface SpecSamplesClient {
 	public <T extends BaseService> T service(Class<T> clazz);
 
 	/**
+	 * <p>
+	 * Returns a service instance for the specified class with a lifecycle hook.
+	 * </p>
+	 * <p>
+	 * The service can be used to call the API methods defined in the service
+	 * interface.
+	 * </p>
+	 * 
+	 * @param <T>           the type of the service
+	 * @param clazz         the class of the service
+	 * @param lifecycleHook the lifecycle hook to intercept the request lifecycle
+	 * @return an instance of the specified service class
+	 */
+	public <T extends BaseService> T service(Class<T> clazz, LifecycleHook lifecycleHook);
+
+	/**
 	 * Creates a blob from the specified file and MIME type.
 	 * 
 	 * A blob is a binary large object that can be used to store and transfer
@@ -94,18 +111,36 @@ public interface SpecSamplesClient {
 	public RSDFile createFile(Path file, String mimeType, String filename);
 
 	/**
+	 * Allows to adapt implementation specific implementations, e.g. to modify the
+	 * request builder in the lifecycle hook, e.g. to add headers.
+	 */
+	public interface Adaptable {
+		/**
+		 * Allows to adapt the given implementation specific
+		 * 
+		 * @param <T>   the type of the class to adapt to
+		 * @param clazz the class to adapt to
+		 * @return an optional containing the adapted instance if available, or empty if not
+		 */
+		public <T> Optional<T> adapt(Class<T> clazz);
+	}
+
+	/**
 	 * Hook to intercept the lifecycle of a request. The methods are called in the
 	 * following order:
 	 * <ol>
-	 * <li>{@link #preRequest(String, java.net.http.HttpRequest.Builder)} is called
+	 * <li>{@link #preRequest(String, Adapter)} is called
 	 * before the request is sent. It allows to modify the request builder, e.g. to
 	 * add headers.</li>
-	 * <li>{@link #onSuccess(String, Object)} is called if the request was
+	 * <li>{@link #onSuccess(String, Object, Adaptable)} is called if the request
+	 * was
 	 * successful. The value parameter contains the deserialized response body.</li>
-	 * <li>{@link #onError(String, RSDException)} if the request failed with a
+	 * <li>{@link #onError(String, RSDException, Adaptable)} if the request failed
+	 * with a
 	 * documented error response
 	 * The error parameter contains the deserialized error response body.</li>
-	 * <li>{@link #onCatch(String, Throwable)} is called if an exception was thrown
+	 * <li>{@link #onCatch(String, Throwable, Optional<Adaptable>)} is called if an
+	 * exception was thrown
 	 * during the request. The error parameter contains the exception.</li>
 	 * <li>{@link #onFinally(String)} is called after the request was completed,
 	 * regardless of the outcome. It can be used to clean up resources or log the
@@ -114,6 +149,9 @@ public interface SpecSamplesClient {
 	 * 
 	 * The method parameter contains the name of the service method that was called
 	 * (e.g. "getUser", "createUser", etc.).
+	 * 
+	 * @see #service(Class, LifecycleHook) to use the lifecycle hook when creating a
+	 *      service instance
 	 */
 	public interface LifecycleHook {
 		/**
@@ -121,42 +159,59 @@ public interface SpecSamplesClient {
 		 * e.g. to
 		 * add headers.
 		 *
-		 * @param method         the method name of the service method that was called
+		 * @param method         the method name of the service method that was
+		 *                       called
 		 *                       (e.g. "getUser", "createUser", etc.)
-		 * @param requestBuilder the request builder that can be modified to add
-		 *                       headers, query parameters, etc.
+		 * @param requestAdapter allows to adapt the request specific to
+		 *                       the implementation used eg. HttpRequest.Builder
+		 *                       for JDK HttpClient, Request.Builder for OkHttp,
+		 *                       etc. so that it can be modified, e.g. to add
+		 *                       headers.
 		 */
-		void preRequest(String method, java.net.http.HttpRequest.Builder requestBuilder);
+		void preRequest(String method, Adaptable requestAdapter);
 
 		/**
 		 * Called if the request was successful. The value parameter contains the
 		 * deserialized response body.
 		 * 
-		 * @param method the method name of the service method that was called
-		 *               (e.g. "getUser", "createUser", etc.)
-		 * @param value  the deserialized response body
+		 * @param method          the method name of the service method that was called
+		 *                        (e.g. "getUser", "createUser", etc.)
+		 * @param value           the deserialized response body
+		 * @param responseAdapter allows to adapt the response specific to the
+		 *                        implementation used eg. HttpResponse for JDK
+		 *                        HttpClient, Response for OkHttp, etc. so that it can
+		 *                        be accessed for additional information, e.g. to read
+		 *                        headers, status code, etc.
 		 */
-		void onSuccess(String method, Object value);
+		void onSuccess(String method, Object value, Adaptable responseAdapter);
 
 		/**
-		 * Called if the request was successful if the request failed with a
-		 * documented error response
+		 * Called if the request was technically successful but returned an error or unknown
+		 * response.
 		 * 
-		 * @param method the method name of the service method that was called
-		 *               (e.g. "getUser", "createUser", etc.)
-		 * @param error  the deserialized error response body
+		 * @param method          the method name of the service method that was called
+		 *                        (e.g. "getUser", "createUser", etc.)
+		 * @param error           exception containing the deserialized error response
+		 *                        body
+		 * @param responseAdapter allows to adapt the response specific to the
+		 *                        implementation used
+		 *                        eg. HttpResponse for JDK HttpClient, Response for
+		 *                        OkHttp, etc.
 		 */
-		void onError(String method, RSDException error);
+		void onError(String method, RSDException error, Adaptable responseAdapter);
 
 		/**
-		 * Called if an exception was thrown during the request. The error parameter
-		 * contains the exception.
+		 * Called if an exception was thrown during the request (e.g. network error)
 		 * 
-		 * @param method the method name of the service method that was called
-		 *               (e.g. "getUser", "createUser", etc.)
-		 * @param error  the exception that was thrown during the request
+		 * @param method          the method name of the service method that was called
+		 *                        (e.g. "getUser", "createUser", etc.)
+		 * @param error           the exception that was thrown during the request
+		 * @param responseAdapter allows to adapt the response specific to the
+		 *                        implementation used
+		 *                        eg. HttpResponse for JDK HttpClient, Response for
+		 *                        OkHttp, etc.
 		 */
-		void onCatch(String method, Throwable error);
+		void onCatch(String method, RSDException error);
 
 		/**
 		 * Called after the request was completed, regardless of the outcome. It can be

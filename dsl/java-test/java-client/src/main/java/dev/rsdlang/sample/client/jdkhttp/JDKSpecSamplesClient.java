@@ -2,12 +2,15 @@
 package dev.rsdlang.sample.client.jdkhttp;
 
 import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.net.URI;
 import java.nio.file.Path;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import dev.rsdlang.sample.client.BaseService;
 import dev.rsdlang.sample.client.BinaryTypesService;
@@ -130,6 +133,7 @@ import dev.rsdlang.sample.client.model.UnionB;
 import dev.rsdlang.sample.client.model.UploadMixedResult;
 import dev.rsdlang.sample.client.PathParameterTypeServiceService;
 import dev.rsdlang.sample.client.QueryParameterTypesService;
+import dev.rsdlang.sample.client.RSDException;
 import dev.rsdlang.sample.client.SampleServiceService;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
@@ -178,8 +182,37 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 			return new JDKSpecSamplesClient(baseURI, httpClient, contentTypeEncoding);
 		}
 	}
+
+	private static LifecycleHook NOOP_LIFECYCLE_HOOK = new LifecycleHook() {
+
+		@Override
+		public void preRequest(String method, Adaptable requestBuilderAdapter) {
+			// no-op
+		}
+
+		@Override
+		public void onSuccess(String method, Object value, Adaptable responseAdapter) {
+			// no-op
+		}
+
+		@Override
+		public void onError(String method, RSDException error, Adaptable responseAdapter) {
+			// no-op
+		}
+
+		@Override
+		public void onCatch(String method, RSDException error) {
+			// no-op
+		}
+
+		@Override
+		public void onFinally(String method) {
+			// no-op
+		}
+	};
+
 	private static Map<Class<?>, Supplier<Object>> BUILDER_CREATOR_MAP = new HashMap<>();
-	private static Map<Class<?>, Function<JDKSpecSamplesClient, Object>> SERVICE_CREATOR_MAP = new HashMap<>();
+	private static Map<Class<?>, BiFunction<JDKSpecSamplesClient, LifecycleHook, Object>> SERVICE_CREATOR_MAP = new HashMap<>();
 
 	static {
 		registerBuilderCreator(SimpleRecord_KeyVersion.DataBuilder.class, SimpleRecord_KeyVersionDataImpl.DataBuilderImpl::new);
@@ -256,7 +289,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		BUILDER_CREATOR_MAP.put(clazz, constructor);
 	}
 
-	private static void registerServiceCreator(Class<?> clazz, Function<JDKSpecSamplesClient, Object> constructor) {
+	private static void registerServiceCreator(Class<?> clazz, BiFunction<JDKSpecSamplesClient, LifecycleHook, Object> constructor) {
 		SERVICE_CREATOR_MAP.put(clazz, constructor);
 	}
 
@@ -289,6 +322,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 	public static SpecSamplesClient create(URI baseURI, HttpClient httpClient) {
 		return builder().baseURI(baseURI).httpClient(httpClient).build();
 	}
+
 	public static Builder builder() {
 		return new Builder();
 	}
@@ -303,14 +337,45 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		throw new IllegalArgumentException(String.format("Unsupported build '%s'", clazz));
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends BaseService> T service(Class<T> clazz) {
+		return service(clazz, NOOP_LIFECYCLE_HOOK);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends BaseService> T service(Class<T> clazz, LifecycleHook lifecycleHook) {
 		var serviceConstructor = SERVICE_CREATOR_MAP.get(clazz);
 		if (serviceConstructor != null) {
-			return (T) serviceConstructor.apply(this);
+			return (T) serviceConstructor.apply(this, lifecycleHook);
 		}
 		throw new IllegalArgumentException(String.format("Unsupported service '%s'", clazz));
+	}
+
+	public Adaptable createRequestBuilderAdaptable(HttpRequest.Builder requestBuilder) {
+		return new Adaptable() {
+			@SuppressWarnings("unchecked")
+			@Override
+			public <T> Optional<T> adapt(Class<T> targetClass) {
+				if (targetClass == HttpRequest.Builder.class) {
+					return Optional.of((T) requestBuilder);
+				}
+				return Optional.empty();
+			}
+		};
+	}
+
+	public Adaptable createResponseAdaptable(HttpResponse<?> response) {
+		return new Adaptable() {
+			@SuppressWarnings("unchecked")
+			@Override
+			public <T> Optional<T> adapt(Class<T> targetClass) {
+				if (targetClass == HttpResponse.class) {
+					return Optional.of((T) response);
+				}
+				return Optional.empty();
+			}
+		};
 	}
 
 	public RSDBlob createBlob(Path file, String mimeType) {

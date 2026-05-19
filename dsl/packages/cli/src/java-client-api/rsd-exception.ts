@@ -34,6 +34,8 @@ function generateRSDExceptionTypeContent(errors: readonly MError[]) {
 	const node = new CompositeGeneratorNode();
 	node.append('public enum Type {', NL);
 	node.indent(classBody => {
+		classBody.append('_Native,', NL);
+		classBody.append('_UnknownResponse,', NL);
 		errors.forEach((e, idx, arr) => {
 			classBody.append(e.name, idx + 1 < arr.length ? ',' : ';', NL);
 		});
@@ -44,17 +46,25 @@ function generateRSDExceptionTypeContent(errors: readonly MError[]) {
 
 function generateRSDExceptionContent(errors: readonly MError[], packageName: string, fqn: (type: string) => string) {
 	const _Base = fqn(`${packageName}.model._Base`);
+
 	const node = new CompositeGeneratorNode();
 	node.append(`public class RSDException extends RuntimeException {`, NL);
 	node.indent(classBody => {
 		classBody.append(generateRSDExceptionTypeContent(errors));
 		classBody.append('public final Type type;', NL, NL);
-		classBody.append('RSDException(Type type, String message) {', NL);
+		classBody.append('public RSDException(Type type, String message) {', NL);
 		classBody.indent(methodBody => {
 			methodBody.append('super(message);', NL);
 			methodBody.append('this.type = type;', NL);
 		});
 		classBody.append('}', NL, NL);
+		classBody.append('public RSDException(Type type, String message, Throwable cause) {', NL);
+		classBody.indent(methodBody => {
+			methodBody.append('super(message, cause);', NL);
+			methodBody.append('this.type = type;', NL);
+		});
+		classBody.append('}', NL, NL);
+
 		classBody.append('public static class RSDStructuredDataException extends RSDException {', NL);
 		classBody.indent(innerClassBody => {
 			innerClassBody.append(`public final ${_Base}.BaseData data;`, NL, NL);
