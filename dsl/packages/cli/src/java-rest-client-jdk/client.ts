@@ -97,7 +97,7 @@ export function generateClient(
 				}
 			}
 
-			private static LifecycleHook NOOP_LIFECYCLE_HOOK = new LifecycleHook() {
+			private static final LifecycleHook NOOP_LIFECYCLE_HOOK = new LifecycleHook() {
 
 				@Override
 				public void preRequest(String method, Adaptable requestBuilderAdapter) {
