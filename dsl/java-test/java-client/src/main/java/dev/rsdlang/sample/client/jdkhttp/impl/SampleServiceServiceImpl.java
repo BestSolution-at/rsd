@@ -13,13 +13,16 @@ import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.util.Objects;
 
+import dev.rsdlang.sample.client.impl.model.json.ErrorDataDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.model.ErrorData;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.RSDException;
 import dev.rsdlang.sample.client.SampleError2Exception;
 import dev.rsdlang.sample.client.SampleErrorException;
+import dev.rsdlang.sample.client.SampleErrorWithValueException;
 import dev.rsdlang.sample.client.SampleServiceService;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
@@ -791,6 +794,49 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			throw $exception;
 		} finally {
 			this.lifecycleHook.onFinally("getSimpleRecordWithError");
+		}
+	}
+
+	public void getSimpleErrorWithValue()
+			throws SampleErrorWithValueException {
+		var $path = "%s/api/samplerecords/simpleerrorwithvalue".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			this.lifecycleHook.preRequest("getSimpleErrorWithValue", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 204) {
+				this.lifecycleHook.onSuccess("getSimpleErrorWithValue", null, this.client.createResponseAdaptable($response));
+				return;
+			} else if ($response.statusCode() == 400) {
+				var $errorData = ServiceUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
+				var exception = new SampleErrorWithValueException("Invokation of getSimpleErrorWithValue failed", $errorData);
+				this.lifecycleHook.onError("getSimpleErrorWithValue", exception, this.client.createResponseAdaptable($response));
+				throw exception;
+			}
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			this.lifecycleHook.onError("getSimpleErrorWithValue", $exception, this.client.createResponseAdaptable($response));
+			throw $exception;
+		} catch (Exception e) {
+			if (e instanceof RSDException rsdEx) {
+				throw rsdEx;
+			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleErrorWithValue", e);
+			this.lifecycleHook.onCatch("getSimpleErrorWithValue", $exception);
+			throw $exception;
+		} finally {
+			this.lifecycleHook.onFinally("getSimpleErrorWithValue");
 		}
 	}
 }

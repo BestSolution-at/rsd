@@ -16,6 +16,7 @@ import jakarta.ws.rs.Produces;
 
 import dev.rsdlang.sample.server.service.SampleError2Exception;
 import dev.rsdlang.sample.server.service.SampleErrorException;
+import dev.rsdlang.sample.server.service.SampleErrorWithValueException;
 import dev.rsdlang.sample.server.service.SampleServiceService;
 
 @ApplicationScoped
@@ -203,6 +204,17 @@ public class SampleServiceResource {
 			var result = service.getSimpleRecordWithError(builderFactory, key);
 			return responseBuilder.getSimpleRecordWithError(result, computeResponseContentType($acceptHeaders), key).build();
 		} catch (SampleErrorException e) {
+			return _RestUtils.toResponse(400, e);
+		}
+	}
+
+	@GET
+	@Path("simpleerrorwithvalue")
+	public Response getSimpleErrorWithValue(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		try {
+			service.getSimpleErrorWithValue(builderFactory);
+			return responseBuilder.getSimpleErrorWithValue().build();
+		} catch (SampleErrorWithValueException e) {
 			return _RestUtils.toResponse(400, e);
 		}
 	}

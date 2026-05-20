@@ -15,6 +15,7 @@ import dev.rsdlang.sample.server.rest.model.CyclicNodeADataImpl;
 import dev.rsdlang.sample.server.rest.model.CyclicNodeBDataImpl;
 import dev.rsdlang.sample.server.rest.model.EnumInlineRecordDataImpl;
 import dev.rsdlang.sample.server.rest.model.EnumRecordDataImpl;
+import dev.rsdlang.sample.server.rest.model.ErrorDataDataImpl;
 import dev.rsdlang.sample.server.rest.model.MixedResultDataImpl;
 import dev.rsdlang.sample.server.rest.model.MixinRecordDataImpl;
 import dev.rsdlang.sample.server.rest.model.PatchableEnumInlineRecordDataImpl;
@@ -76,6 +77,7 @@ import dev.rsdlang.sample.server.service.model.CyclicNodeA;
 import dev.rsdlang.sample.server.service.model.CyclicNodeB;
 import dev.rsdlang.sample.server.service.model.EnumInlineRecord;
 import dev.rsdlang.sample.server.service.model.EnumRecord;
+import dev.rsdlang.sample.server.service.model.ErrorData;
 import dev.rsdlang.sample.server.service.model.MixedResult;
 import dev.rsdlang.sample.server.service.model.MixinRecord;
 import dev.rsdlang.sample.server.service.model.PatchableEnumInlineRecord;
@@ -289,6 +291,9 @@ public class RestBuilderFactory implements BuilderFactory {
 		if (type == MixedResult.DataBuilder.class) {
 			return type.cast(MixedResultDataImpl.builder());
 		}
+		if (type == ErrorData.DataBuilder.class) {
+			return type.cast(ErrorDataDataImpl.builder());
+		}
 		throw new IllegalArgumentException("Unsupported Builder '%s'".formatted(type));
 	}
 
@@ -460,6 +465,9 @@ public class RestBuilderFactory implements BuilderFactory {
 		}
 		if (type == MixedResult.Data.class) {
 			return type.cast(MixedResultDataImpl.of(data));
+		}
+		if (type == ErrorData.Data.class) {
+			return type.cast(ErrorDataDataImpl.of(data));
 		}
 		if (type == Union.Data.class) {
 			return type.cast(UnionDataImpl.of(data));

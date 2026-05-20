@@ -50,4 +50,6 @@ public interface SampleServiceService extends BaseService {
 
 	public SimpleRecord.Data getSimpleRecordWithError(String key) throws SampleErrorException;
 
+	public void getSimpleErrorWithValue() throws SampleErrorWithValueException;
+
 }

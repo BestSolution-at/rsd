@@ -4262,6 +4262,26 @@
         }
       ],
       "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "ErrorData",
+      "patchable": false,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "message",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        }
+      ],
+      "doc": ""
     }
   ],
   "services": [
@@ -4820,6 +4840,37 @@
                 {
                   "statusCode": 400,
                   "error": "SampleError"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getSimpleErrorWithValue",
+          "doc": "",
+          "parameters": [],
+          "errors": [
+            "SampleErrorWithValue"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleErrorWithValue",
+              "doc": ""
+            }
+          ],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleerrorwithvalue",
+              "results": [
+                {
+                  "statusCode": 204
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleErrorWithValue"
                 }
               ]
             }
@@ -20613,6 +20664,11 @@
     {
       "@type": "Error",
       "name": "SampleError2"
+    },
+    {
+      "@type": "Error",
+      "name": "SampleErrorWithValue",
+      "contentType": "ErrorData"
     }
   ]
 }

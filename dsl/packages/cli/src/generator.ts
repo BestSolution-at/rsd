@@ -240,6 +240,7 @@ function mapError(error: ErrorType): MError {
 	return {
 		'@type': 'Error',
 		name: error.name,
+		contentType: error.value?.builtin ?? error.value?.refType?.ref?.name,
 	};
 }
 

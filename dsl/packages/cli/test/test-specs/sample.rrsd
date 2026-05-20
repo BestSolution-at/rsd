@@ -78,6 +78,10 @@ resource SampleService at '/api/samplerecords' {
 			400: SampleError
 			401: SampleError2
 	}
+	GET getSimpleErrorWithValue at 'simpleerrorwithvalue' => {
+			204
+			400: SampleErrorWithValue
+	}
 }
 
 resource ListSampleService at '/api/listsamplerecords' {

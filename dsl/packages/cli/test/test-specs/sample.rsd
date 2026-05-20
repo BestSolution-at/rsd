@@ -524,16 +524,16 @@ record MixedResult {
 	dataBlob: int
 }
 
-/*record Node {
-	parent?: Node[]
-	children: Node[]
-}*/
 
 enum NilResult = UNDEFINED | NULL | DEFINED;
 
+record ErrorData {
+	message: string
+}
+
 error SampleError;
 error SampleError2;
-
+error SampleErrorWithValue = ErrorData;
 
 service SampleService {
 		operation getBoolean(): boolean;
@@ -557,6 +557,7 @@ service SampleService {
 		
 		operation getSimpleRecord(key: string): SimpleRecord;
 		operation getSimpleRecordWithError(key: string): SimpleRecord throws SampleError;
+		operation getSimpleErrorWithValue() throws SampleErrorWithValue;
 }
 
 service ListSampleService {

@@ -23,6 +23,7 @@ export function createSampleServiceService(props: ServiceProps<api.service.Error
 		multiErrorOperation: fnMultiErrorOperation(props),
 		getSimpleRecord: fnGetSimpleRecord(props),
 		getSimpleRecordWithError: fnGetSimpleRecordWithError(props),
+		getSimpleErrorWithValue: fnGetSimpleErrorWithValue(props),
 	};
 }
 function fnGetBoolean(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getBoolean'] {
@@ -633,6 +634,42 @@ function fnGetSimpleRecordWithError(props: ServiceProps<api.service.ErrorType>):
 			return api.result.ERR(err);
 		} finally {
 			final?.('getSimpleRecordWithError');
+		}
+	};
+}
+
+function fnGetSimpleErrorWithValue(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getSimpleErrorWithValue'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
+	return async () => {
+		try {
+			const $init = (await preFetch?.('getSimpleErrorWithValue')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/samplerecords/simpleerrorwithvalue`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorWithValue', api.result.Void));
+			} else if ($response.status === 400) {
+				const err = {
+					_type: 'SampleErrorWithValue',
+					message: await $response.text(),
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorWithValue', err));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('getSimpleErrorWithValue', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('getSimpleErrorWithValue');
 		}
 	};
 }

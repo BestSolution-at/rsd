@@ -110,4 +110,8 @@ public class SampleServiceResourceResponseBuilder {
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
+	public ResponseBuilder getSimpleErrorWithValue() {
+		return Response.status(204);
+	}
+
 }

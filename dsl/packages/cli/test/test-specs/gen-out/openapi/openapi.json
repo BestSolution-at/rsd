@@ -517,6 +517,31 @@
         }
       }
     },
+    "/api/samplerecords/simpleerrorwithvalue": {
+      "get": {
+        "tags": [
+          "SampleService"
+        ],
+        "description": "",
+        "operationId": "SampleService_getSimpleErrorWithValue",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "success"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/listsamplerecords/boolean": {
       "get": {
         "tags": [
@@ -23014,6 +23039,17 @@
           "UNDEFINED",
           "NULL",
           "DEFINED"
+        ]
+      },
+      "ErrorData": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
         ]
       }
     }

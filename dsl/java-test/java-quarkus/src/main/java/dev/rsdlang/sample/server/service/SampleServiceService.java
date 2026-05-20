@@ -54,4 +54,7 @@ public interface SampleServiceService {
 	public SimpleRecord.Data getSimpleRecordWithError(BuilderFactory _factory, String key)
 			throws SampleErrorException;
 
+	public void getSimpleErrorWithValue(BuilderFactory _factory)
+			throws SampleErrorWithValueException;
+
 }

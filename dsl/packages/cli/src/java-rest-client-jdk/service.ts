@@ -7,11 +7,16 @@ import {
 	JavaImportsCollector,
 	JavaRestClientJDKGeneratorConfig,
 	resolveType,
+	toAPIType,
 	toPath,
 } from '../java-gen-utils.js';
 import {
 	isMBuiltinNumericType,
 	isMBuiltinType,
+	isMEnumType,
+	isMResolvedRecordType,
+	isMResolvedUnionType,
+	isMScalarType,
 	MBuiltinType,
 	MOperation,
 	MParameter,
@@ -882,11 +887,54 @@ function handleErrorResult(
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
 ) {
-	const toStr = o.resultType?.variant === 'stream' ? 'mapFileToString' : 'toString';
-	node.append(
-		`var exception = new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}(ServiceUtils.${toStr}($response));`,
-		NL,
-	);
+	const resolvedError = o.resolved.errors.find(e => e.name === error);
+	if (resolvedError?.contentType && resolvedError.resolvedContentType) {
+		const type = resolvedError.resolvedContentType;
+		if (o.resultType?.variant !== 'stream') {
+			if (isMResolvedUnionType(type) || isMResolvedRecordType(type)) {
+				const modelPkg = `${artifactConfig.rootPackageName}.impl.model.json`;
+				const modelType = fqn(`${modelPkg}.${resolvedError.contentType}DataImpl`);
+				const apiType = toAPIType(
+					resolvedError.resolvedContentType,
+					artifactConfig.nativeTypeSubstitues,
+					`${artifactConfig.rootPackageName}.model`,
+					fqn,
+				);
+				node.append(`var $errorData = ServiceUtils.mapObject($response, ${modelType}::of, ${apiType}.class);`, NL);
+			} else if (isMBuiltinType(type)) {
+				node.append(`var $errorData = ${builtinMapExpression(type, false)};`, NL);
+			} else if (isMScalarType(type)) {
+				const apiType = toAPIType(
+					resolvedError.resolvedContentType,
+					artifactConfig.nativeTypeSubstitues,
+					`${artifactConfig.rootPackageName}.model`,
+					fqn,
+				);
+				node.append(`var $errorData = ServiceUtils.mapLiteral($response, ${apiType}::of);`, NL);
+			} else if (isMEnumType(type)) {
+				const apiType = toAPIType(
+					resolvedError.resolvedContentType,
+					artifactConfig.nativeTypeSubstitues,
+					`${artifactConfig.rootPackageName}.model`,
+					fqn,
+				);
+				node.append(`var $errorData = ServiceUtils.mapLiteral($response, ${apiType}::valueOf);`, NL);
+			}
+		} else {
+			//
+		}
+
+		node.append(
+			`var exception = new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}("Invokation of ${o.name} failed", $errorData);`,
+			NL,
+		);
+	} else {
+		const toStr = o.resultType?.variant === 'stream' ? 'mapFileToString' : 'toString';
+		node.append(
+			`var exception = new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}(ServiceUtils.${toStr}($response));`,
+			NL,
+		);
+	}
 	node.append(
 		`this.lifecycleHook.onError("${o.name}", exception, this.client.createResponseAdaptable($response));`,
 		NL,

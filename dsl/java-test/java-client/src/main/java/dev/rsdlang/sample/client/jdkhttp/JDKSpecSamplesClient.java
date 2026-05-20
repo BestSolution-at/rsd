@@ -22,6 +22,7 @@ import dev.rsdlang.sample.client.impl.model.json.CyclicNodeADataImpl;
 import dev.rsdlang.sample.client.impl.model.json.CyclicNodeBDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.EnumInlineRecordDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.EnumRecordDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.ErrorDataDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.MixedResultDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.MixinRecordDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.PatchableEnumInlineRecordDataImpl;
@@ -93,6 +94,7 @@ import dev.rsdlang.sample.client.model.CyclicNodeA;
 import dev.rsdlang.sample.client.model.CyclicNodeB;
 import dev.rsdlang.sample.client.model.EnumInlineRecord;
 import dev.rsdlang.sample.client.model.EnumRecord;
+import dev.rsdlang.sample.client.model.ErrorData;
 import dev.rsdlang.sample.client.model.MixedResult;
 import dev.rsdlang.sample.client.model.MixinRecord;
 import dev.rsdlang.sample.client.model.PatchableEnumInlineRecord;
@@ -255,6 +257,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		registerBuilderCreator(MixinRecord.DataBuilder.class, MixinRecordDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(UploadMixedResult.DataBuilder.class, UploadMixedResultDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(MixedResult.DataBuilder.class, MixedResultDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(ErrorData.DataBuilder.class, ErrorDataDataImpl.DataBuilderImpl::new);
 
 		registerBuilderCreator(PatchableRecord.PatchBuilder.class, PatchableRecordPatchImpl.PatchBuilderImpl::new);
 		registerBuilderCreator(PatchableRecord_Basic.PatchBuilder.class, PatchableRecord_BasicPatchImpl.PatchBuilderImpl::new);
