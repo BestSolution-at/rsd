@@ -1,4 +1,12 @@
-import { isMBuiltinType, MParameter, MResolvedService } from '../model.js';
+import {
+	isMBuiltinType,
+	isMEnumType,
+	isMRecordType,
+	isMScalarType,
+	isMUnionType,
+	MParameter,
+	MResolvedService,
+} from '../model.js';
 import { generateBuilinProperty, nullableProcessor } from './record.js';
 
 export function generateService(s: MResolvedService): Record<string, unknown> {
@@ -92,16 +100,56 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 
 			o.meta.rest.results.forEach(r => {
 				if (r.error) {
-					responses[r.statusCode] = {
-						description: '',
-						content: {
-							'application/json': {
-								schema: {
-									type: 'string',
+					const error = o.resolved.errors.find(e => e.name === r.error);
+					if (error?.resolvedContentType) {
+						if (
+							isMRecordType(error.resolvedContentType) ||
+							isMUnionType(error.resolvedContentType) ||
+							isMEnumType(error.resolvedContentType)
+						) {
+							responses[r.statusCode] = {
+								description: '',
+								content: {
+									'application/json': {
+										schema: {
+											$ref: `#/components/schemas/${error.resolvedContentType.name}`,
+										},
+									},
+								},
+							};
+						} else if (isMBuiltinType(error.resolvedContentType)) {
+							responses[r.statusCode] = {
+								description: '',
+								content: {
+									'application/json': {
+										schema: generateBuilinProperty(error.resolvedContentType),
+									},
+								},
+							};
+						} else {
+							responses[r.statusCode] = {
+								description: '',
+								content: {
+									'application/json': {
+										schema: {
+											type: 'string',
+										},
+									},
+								},
+							};
+						}
+					} else {
+						responses[r.statusCode] = {
+							description: '',
+							content: {
+								'application/json': {
+									schema: {
+										type: 'string',
+									},
 								},
 							},
-						},
-					};
+						};
+					}
 				} else {
 					handleResultType(r.statusCode);
 				}

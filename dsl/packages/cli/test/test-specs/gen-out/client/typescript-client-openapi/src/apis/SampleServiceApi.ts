@@ -14,6 +14,11 @@
 
 import * as runtime from '../runtime.js';
 import {
+    type ErrorData,
+    ErrorDataFromJSON,
+    ErrorDataToJSON,
+} from '../models/ErrorData.js';
+import {
     type SampleEnum,
     SampleEnumFromJSON,
     SampleEnumToJSON,
@@ -23,6 +28,11 @@ import {
     SimpleRecordFromJSON,
     SimpleRecordToJSON,
 } from '../models/SimpleRecord.js';
+import {
+    type Union,
+    UnionFromJSON,
+    UnionToJSON,
+} from '../models/Union.js';
 
 export interface SampleServiceGetSimpleRecordRequest {
     key: string;
@@ -559,6 +569,222 @@ export class SampleServiceApi extends runtime.BaseAPI {
     async sampleServiceGetShort(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
         const response = await this.sampleServiceGetShortRaw(initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Creates request options for sampleServiceGetSimpleErrorBoolean without sending the request
+     */
+    async sampleServiceGetSimpleErrorBooleanRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/samplerecords/simpleerrorboolean`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetSimpleErrorBooleanRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.sampleServiceGetSimpleErrorBooleanRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetSimpleErrorBoolean(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.sampleServiceGetSimpleErrorBooleanRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for sampleServiceGetSimpleErrorEnum without sending the request
+     */
+    async sampleServiceGetSimpleErrorEnumRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/samplerecords/simpleerrorenum`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetSimpleErrorEnumRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.sampleServiceGetSimpleErrorEnumRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetSimpleErrorEnum(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.sampleServiceGetSimpleErrorEnumRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for sampleServiceGetSimpleErrorInt without sending the request
+     */
+    async sampleServiceGetSimpleErrorIntRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/samplerecords/simpleerrorint`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetSimpleErrorIntRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.sampleServiceGetSimpleErrorIntRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetSimpleErrorInt(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.sampleServiceGetSimpleErrorIntRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for sampleServiceGetSimpleErrorScalar without sending the request
+     */
+    async sampleServiceGetSimpleErrorScalarRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/samplerecords/simpleerrorscalar`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetSimpleErrorScalarRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.sampleServiceGetSimpleErrorScalarRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetSimpleErrorScalar(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.sampleServiceGetSimpleErrorScalarRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for sampleServiceGetSimpleErrorUnion without sending the request
+     */
+    async sampleServiceGetSimpleErrorUnionRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/samplerecords/simpleerrorunion`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetSimpleErrorUnionRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.sampleServiceGetSimpleErrorUnionRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetSimpleErrorUnion(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.sampleServiceGetSimpleErrorUnionRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for sampleServiceGetSimpleErrorWithValue without sending the request
+     */
+    async sampleServiceGetSimpleErrorWithValueRequestOpts(): Promise<runtime.RequestOpts> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/samplerecords/simpleerrorwithvalue`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetSimpleErrorWithValueRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.sampleServiceGetSimpleErrorWithValueRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceGetSimpleErrorWithValue(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.sampleServiceGetSimpleErrorWithValueRaw(initOverrides);
     }
 
     /**

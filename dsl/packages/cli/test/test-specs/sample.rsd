@@ -562,6 +562,7 @@ service SampleService {
 		
 		operation getSimpleRecord(key: string): SimpleRecord;
 		operation getSimpleRecordWithError(key: string): SimpleRecord throws SampleError;
+		
 		operation getSimpleErrorWithValue() throws SampleErrorWithValue;
 		operation getSimpleErrorInt() throws SampleErrorInt;
 		operation getSimpleErrorBoolean() throws SampleErrorBoolean;

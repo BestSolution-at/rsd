@@ -534,7 +534,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ErrorData"
                 }
               }
             }
@@ -559,7 +559,8 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "type": "number",
+                  "format": "int32"
                 }
               }
             }
@@ -584,7 +585,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "type": "boolean"
                 }
               }
             }
@@ -609,7 +610,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/SampleEnum"
                 }
               }
             }
@@ -659,7 +660,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/Union"
                 }
               }
             }
@@ -15353,7 +15354,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ErrorData"
                 }
               }
             }
@@ -15386,7 +15387,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ErrorData"
                 }
               }
             }

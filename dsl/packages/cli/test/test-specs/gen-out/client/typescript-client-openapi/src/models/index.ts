@@ -14,6 +14,7 @@ export * from './CyclicNodeA.js';
 export * from './CyclicNodeB.js';
 export * from './EnumInlineRecord.js';
 export * from './EnumRecord.js';
+export * from './ErrorData.js';
 export * from './ListBodyParameterTypesListMultiBodyParamNilRequest.js';
 export * from './ListBodyParameterTypesListMultiBodyParamOptNilRequest.js';
 export * from './ListBodyParameterTypesListMultiBodyParamOptRequest.js';
