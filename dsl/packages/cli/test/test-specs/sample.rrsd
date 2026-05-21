@@ -875,6 +875,7 @@ resource BinaryTypes at '/api/binarytypes' {
 	}
 	GET downloadFile at 'downloadFile' => {
 			200
+			400: SampleErrorWithValue
 	}
 
 	POST uploadBlob at 'uploadBlob' => {
@@ -891,6 +892,7 @@ resource BinaryTypes at '/api/binarytypes' {
 	}
 	GET downloadBlob at 'downloadBlob' => {
 			200
+			400: SampleErrorWithValue
 	}
 
 	PUT uploadFileList at 'uploadFileList'

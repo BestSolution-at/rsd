@@ -732,15 +732,7 @@ function generateResponseDispatch(
 	fqn: (type: string) => string,
 ) {
 	const BodyHandlers = fqn('java.net.http.HttpResponse.BodyHandlers');
-	if (o.resultType?.variant === 'stream') {
-		const Files = fqn('java.nio.file.Files');
-		methodBody.append(
-			`var $response = this.httpClient().send($request, ${BodyHandlers}.ofFile(${Files}.createTempFile("rsd-download","tmp")));`,
-			NL,
-		);
-	} else {
-		methodBody.append(`var $response = this.httpClient().send($request, ${BodyHandlers}.ofInputStream());`, NL);
-	}
+	methodBody.append(`var $response = this.httpClient().send($request, ${BodyHandlers}.ofInputStream());`, NL);
 	if (o.meta?.rest?.results.length) {
 		o.meta.rest.results.forEach((r, idx) => {
 			methodBody.append(`${idx === 0 ? '' : ' else '}if ($response.statusCode() == ${r.statusCode.toFixed(0)}) {`, NL);
@@ -763,10 +755,9 @@ function generateResponseDispatch(
 		methodBody.append('}', NL);
 	}
 
-	const toStringMethod = o.resultType?.variant === 'stream' ? 'mapFileToString' : 'toString';
 	const RSDException = fqn(`${artifactConfig.rootPackageName}.RSDException`);
 	methodBody.append(
-		`var $exception = new ${RSDException}(${RSDException}.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\\n%s", $response.statusCode(), ServiceUtils.${toStringMethod}($response)));`,
+		`var $exception = new ${RSDException}(${RSDException}.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\\n%s", $response.statusCode(), ServiceUtils.toString($response)));`,
 		NL,
 	);
 	methodBody.append(
@@ -890,50 +881,46 @@ function handleErrorResult(
 	const resolvedError = o.resolved.errors.find(e => e.name === error);
 	if (resolvedError?.contentType && resolvedError.resolvedContentType) {
 		const type = resolvedError.resolvedContentType;
-		if (o.resultType?.variant !== 'stream') {
-			if (isMResolvedUnionType(type) || isMResolvedRecordType(type)) {
-				const modelPkg = `${artifactConfig.rootPackageName}.impl.model.json`;
-				const modelType = fqn(`${modelPkg}.${resolvedError.contentType}DataImpl`);
-				const apiType = toAPIType(
-					resolvedError.resolvedContentType,
-					artifactConfig.nativeTypeSubstitues,
-					`${artifactConfig.rootPackageName}.model`,
-					fqn,
-				);
-				node.append(`var $errorData = ServiceUtils.mapObject($response, ${modelType}::of, ${apiType}.class);`, NL);
-			} else if (isMBuiltinType(type)) {
-				node.append(`var $errorData = ${builtinMapExpression(type, false)};`, NL);
-			} else if (isMScalarType(type)) {
-				const apiType = toAPIType(
-					resolvedError.resolvedContentType,
-					artifactConfig.nativeTypeSubstitues,
-					`${artifactConfig.rootPackageName}.model`,
-					fqn,
-				);
-				node.append(`var $errorData = ServiceUtils.mapLiteral($response, ${apiType}::of);`, NL);
-			} else if (isMEnumType(type)) {
-				const apiType = toAPIType(
-					resolvedError.resolvedContentType,
-					artifactConfig.nativeTypeSubstitues,
-					`${artifactConfig.rootPackageName}.model`,
-					fqn,
-				);
-				node.append(`var $errorData = ServiceUtils.mapLiteral($response, ${apiType}::valueOf);`, NL);
-			}
-		} else {
-			//
+		if (isMResolvedUnionType(type) || isMResolvedRecordType(type)) {
+			const modelPkg = `${artifactConfig.rootPackageName}.impl.model.json`;
+			const modelType = fqn(`${modelPkg}.${resolvedError.contentType}DataImpl`);
+			const apiType = toAPIType(
+				resolvedError.resolvedContentType,
+				artifactConfig.nativeTypeSubstitues,
+				`${artifactConfig.rootPackageName}.model`,
+				fqn,
+			);
+			node.append(`var $errorData = ServiceUtils.mapObject($response, ${modelType}::of, ${apiType}.class);`, NL);
+		} else if (isMBuiltinType(type)) {
+			node.append(`var $errorData = ${builtinMapExpression(type, false)};`, NL);
+		} else if (isMScalarType(type)) {
+			const apiType = toAPIType(
+				resolvedError.resolvedContentType,
+				artifactConfig.nativeTypeSubstitues,
+				`${artifactConfig.rootPackageName}.model`,
+				fqn,
+			);
+			node.append(`var $errorData = ServiceUtils.mapLiteral($response, ${apiType}::of);`, NL);
+		} else if (isMEnumType(type)) {
+			const apiType = toAPIType(
+				resolvedError.resolvedContentType,
+				artifactConfig.nativeTypeSubstitues,
+				`${artifactConfig.rootPackageName}.model`,
+				fqn,
+			);
+			node.append(`var $errorData = ServiceUtils.mapLiteral($response, ${apiType}::valueOf);`, NL);
 		}
 		node.append(
 			`var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of ${o.name} failed");`,
+			NL,
 		);
 		node.append(
 			`var exception = new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}($message, $errorData);`,
 			NL,
 		);
 	} else {
-		const toStr = o.resultType?.variant === 'stream' ? 'mapFileToString' : 'toString';
 		node.append(
-			`var exception = new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}(ServiceUtils.${toStr}($response));`,
+			`var exception = new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}(ServiceUtils.toString($response));`,
 			NL,
 		);
 	}

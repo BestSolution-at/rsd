@@ -59,8 +59,10 @@ public interface BinaryTypesService {
 
 	public List<Integer> twoBinariesAddition(BuilderFactory _factory, RSDBlob dataBlob, RSDFile dataFile);
 
-	public RSDFile downloadFile(BuilderFactory _factory);
+	public RSDFile downloadFile(BuilderFactory _factory)
+			throws SampleErrorWithValueException;
 
-	public RSDBlob downloadBlob(BuilderFactory _factory);
+	public RSDBlob downloadBlob(BuilderFactory _factory)
+			throws SampleErrorWithValueException;
 
 }

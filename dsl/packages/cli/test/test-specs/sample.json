@@ -20763,8 +20763,16 @@
             "type": "file",
             "doc": ""
           },
-          "errors": [],
-          "operationErrors": [],
+          "errors": [
+            "SampleErrorWithValue"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleErrorWithValue",
+              "doc": ""
+            }
+          ],
           "meta": {
             "rest": {
               "method": "GET",
@@ -20772,6 +20780,10 @@
               "results": [
                 {
                   "statusCode": 200
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleErrorWithValue"
                 }
               ]
             }
@@ -20789,8 +20801,16 @@
             "type": "blob",
             "doc": ""
           },
-          "errors": [],
-          "operationErrors": [],
+          "errors": [
+            "SampleErrorWithValue"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleErrorWithValue",
+              "doc": ""
+            }
+          ],
           "meta": {
             "rest": {
               "method": "GET",
@@ -20798,6 +20818,10 @@
               "results": [
                 {
                   "statusCode": 200
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleErrorWithValue"
                 }
               ]
             }
