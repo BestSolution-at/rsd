@@ -15,7 +15,12 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 
 import dev.rsdlang.sample.server.service.SampleError2Exception;
+import dev.rsdlang.sample.server.service.SampleErrorBooleanException;
+import dev.rsdlang.sample.server.service.SampleErrorEnumException;
 import dev.rsdlang.sample.server.service.SampleErrorException;
+import dev.rsdlang.sample.server.service.SampleErrorIntException;
+import dev.rsdlang.sample.server.service.SampleErrorScalarException;
+import dev.rsdlang.sample.server.service.SampleErrorUnionException;
 import dev.rsdlang.sample.server.service.SampleErrorWithValueException;
 import dev.rsdlang.sample.server.service.SampleServiceService;
 
@@ -215,6 +220,61 @@ public class SampleServiceResource {
 			service.getSimpleErrorWithValue(builderFactory);
 			return responseBuilder.getSimpleErrorWithValue().build();
 		} catch (SampleErrorWithValueException e) {
+			return _RestUtils.toResponse(400, e);
+		}
+	}
+
+	@GET
+	@Path("simpleerrorint")
+	public Response getSimpleErrorInt(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		try {
+			service.getSimpleErrorInt(builderFactory);
+			return responseBuilder.getSimpleErrorInt().build();
+		} catch (SampleErrorIntException e) {
+			return _RestUtils.toResponse(400, e);
+		}
+	}
+
+	@GET
+	@Path("simpleerrorboolean")
+	public Response getSimpleErrorBoolean(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		try {
+			service.getSimpleErrorBoolean(builderFactory);
+			return responseBuilder.getSimpleErrorBoolean().build();
+		} catch (SampleErrorBooleanException e) {
+			return _RestUtils.toResponse(400, e);
+		}
+	}
+
+	@GET
+	@Path("simpleerrorenum")
+	public Response getSimpleErrorEnum(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		try {
+			service.getSimpleErrorEnum(builderFactory);
+			return responseBuilder.getSimpleErrorEnum().build();
+		} catch (SampleErrorEnumException e) {
+			return _RestUtils.toResponse(400, e);
+		}
+	}
+
+	@GET
+	@Path("simpleerrorscalar")
+	public Response getSimpleErrorScalar(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		try {
+			service.getSimpleErrorScalar(builderFactory);
+			return responseBuilder.getSimpleErrorScalar().build();
+		} catch (SampleErrorScalarException e) {
+			return _RestUtils.toResponse(400, e);
+		}
+	}
+
+	@GET
+	@Path("simpleerrorunion")
+	public Response getSimpleErrorUnion(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		try {
+			service.getSimpleErrorUnion(builderFactory);
+			return responseBuilder.getSimpleErrorUnion().build();
+		} catch (SampleErrorUnionException e) {
 			return _RestUtils.toResponse(400, e);
 		}
 	}

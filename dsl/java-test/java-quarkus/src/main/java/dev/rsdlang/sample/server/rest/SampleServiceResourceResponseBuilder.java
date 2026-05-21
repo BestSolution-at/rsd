@@ -114,4 +114,24 @@ public class SampleServiceResourceResponseBuilder {
 		return Response.status(204);
 	}
 
+	public ResponseBuilder getSimpleErrorInt() {
+		return Response.status(204);
+	}
+
+	public ResponseBuilder getSimpleErrorBoolean() {
+		return Response.status(204);
+	}
+
+	public ResponseBuilder getSimpleErrorEnum() {
+		return Response.status(204);
+	}
+
+	public ResponseBuilder getSimpleErrorScalar() {
+		return Response.status(204);
+	}
+
+	public ResponseBuilder getSimpleErrorUnion() {
+		return Response.status(204);
+	}
+
 }

@@ -534,6 +534,11 @@ record ErrorData {
 error SampleError;
 error SampleError2;
 error SampleErrorWithValue = ErrorData;
+error SampleErrorInt = int;
+error SampleErrorBoolean = boolean;
+error SampleErrorEnum = SampleEnum;
+error SampleErrorScalar = ZoneId;
+error SampleErrorUnion = Union;
 
 service SampleService {
 		operation getBoolean(): boolean;
@@ -558,6 +563,11 @@ service SampleService {
 		operation getSimpleRecord(key: string): SimpleRecord;
 		operation getSimpleRecordWithError(key: string): SimpleRecord throws SampleError;
 		operation getSimpleErrorWithValue() throws SampleErrorWithValue;
+		operation getSimpleErrorInt() throws SampleErrorInt;
+		operation getSimpleErrorBoolean() throws SampleErrorBoolean;
+		operation getSimpleErrorEnum() throws SampleErrorEnum;
+		operation getSimpleErrorScalar() throws SampleErrorScalar;
+		operation getSimpleErrorUnion() throws SampleErrorUnion;
 }
 
 service ListSampleService {

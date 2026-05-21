@@ -421,11 +421,17 @@ export function toAPIType(
 	nativeTypeSubstitues: Record<string, string> | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
+	options?: {
+		objectType?: boolean;
+	},
 ) {
 	if (isMBuiltinType(type)) {
+		if (options?.objectType) {
+			return builtinToJavaObjectType(type, t => t);
+		}
 		return builtinToJavaType(type, t => t);
 	} else if (isMEnumType(type)) {
-		return type.name;
+		return fqn(`${basePackageName}.${type.name}`);
 	} else if (isMMixinType(type)) {
 		return fqn(`${basePackageName}.${type.name}Mixin`);
 	} else if (isMScalarType(type)) {

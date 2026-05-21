@@ -40,6 +40,13 @@ function generateSource(
 
 	if (t.resolvedContentType) {
 		const type = toAPIType(t.resolvedContentType, artifactConfig.nativeTypeSubstitues, packageName + '.model', fqn);
+		const objectType = toAPIType(
+			t.resolvedContentType,
+			artifactConfig.nativeTypeSubstitues,
+			packageName + '.model',
+			fqn,
+			{ objectType: true },
+		);
 		node.append(`public class ${t.name}Exception extends RSDException.RSDStructuredDataException {`, NL);
 		node.indent(body => {
 			body.append(`private final ${type} data;`, NL, NL);
@@ -49,7 +56,7 @@ function generateSource(
 				method.append(`this.data = data;`, NL);
 			});
 			body.append('}', NL);
-			body.append(`public ${type} data() {`, NL);
+			body.append(`public ${objectType} data() {`, NL);
 			body.indent(method => {
 				method.append(`return this.data;`, NL);
 			});

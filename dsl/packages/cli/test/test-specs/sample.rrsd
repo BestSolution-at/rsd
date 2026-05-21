@@ -82,6 +82,26 @@ resource SampleService at '/api/samplerecords' {
 			204
 			400: SampleErrorWithValue
 	}
+	GET getSimpleErrorInt at 'simpleerrorint' => {
+			204
+			400: SampleErrorInt
+	}
+	GET getSimpleErrorBoolean at 'simpleerrorboolean' => {
+			204
+			400: SampleErrorBoolean
+	}
+	GET getSimpleErrorEnum at 'simpleerrorenum' => {
+			204
+			400: SampleErrorEnum
+	}
+	GET getSimpleErrorScalar at 'simpleerrorscalar' => {
+			204
+			400: SampleErrorScalar
+	}
+	GET getSimpleErrorUnion at 'simpleerrorunion' => {
+			204
+			400: SampleErrorUnion
+	}
 }
 
 resource ListSampleService at '/api/listsamplerecords' {

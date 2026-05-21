@@ -923,9 +923,11 @@ function handleErrorResult(
 		} else {
 			//
 		}
-
 		node.append(
-			`var exception = new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}("Invokation of ${o.name} failed", $errorData);`,
+			`var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of ${o.name} failed");`,
+		);
+		node.append(
+			`var exception = new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}($message, $errorData);`,
 			NL,
 		);
 	} else {

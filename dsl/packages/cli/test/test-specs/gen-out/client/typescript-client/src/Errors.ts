@@ -2,9 +2,9 @@
 import type { RSDError } from './_result-utils.js';
 import { checkProp, isNumber, isRecord, isString } from './_type-utils.js';
 
-const errorTypes = new Set(['_Native', '_Status', 'SampleError', 'SampleError2', 'SampleErrorWithValue']);
+const errorTypes = new Set(['_Native', '_Status', 'SampleError', 'SampleError2', 'SampleErrorWithValue', 'SampleErrorInt', 'SampleErrorBoolean', 'SampleErrorEnum', 'SampleErrorScalar', 'SampleErrorUnion']);
 
-export type ErrorType = '_Native' | '_Status' | 'SampleError' | 'SampleError2' | 'SampleErrorWithValue';
+export type ErrorType = '_Native' | '_Status' | 'SampleError' | 'SampleError2' | 'SampleErrorWithValue' | 'SampleErrorInt' | 'SampleErrorBoolean' | 'SampleErrorEnum' | 'SampleErrorScalar' | 'SampleErrorUnion';
 
 export function isKnownRSDError(value: unknown): value is RSDError<ErrorType> {
 	return (
@@ -26,6 +26,11 @@ export type StatusRSDError = RSDError<'_Status'> & {
 export type SampleErrorError = RSDError<'SampleError'> & { message: string };
 export type SampleError2Error = RSDError<'SampleError2'> & { message: string };
 export type SampleErrorWithValueError = RSDError<'SampleErrorWithValue'> & { message: string };
+export type SampleErrorIntError = RSDError<'SampleErrorInt'> & { message: string };
+export type SampleErrorBooleanError = RSDError<'SampleErrorBoolean'> & { message: string };
+export type SampleErrorEnumError = RSDError<'SampleErrorEnum'> & { message: string };
+export type SampleErrorScalarError = RSDError<'SampleErrorScalar'> & { message: string };
+export type SampleErrorUnionError = RSDError<'SampleErrorUnion'> & { message: string };
 
 export function isNativeError(value: unknown): value is NativeRSDError {
 	return (
@@ -63,6 +68,41 @@ export function isSampleErrorWithValueError(value: unknown): value is SampleErro
 	return (
 		isRecord(value) &&
 		checkProp(value, '_type', v => v === 'SampleErrorWithValue') &&
+		checkProp(value, 'message', isString)
+	);
+}
+export function isSampleErrorIntError(value: unknown): value is SampleErrorIntError {
+	return (
+		isRecord(value) &&
+		checkProp(value, '_type', v => v === 'SampleErrorInt') &&
+		checkProp(value, 'message', isString)
+	);
+}
+export function isSampleErrorBooleanError(value: unknown): value is SampleErrorBooleanError {
+	return (
+		isRecord(value) &&
+		checkProp(value, '_type', v => v === 'SampleErrorBoolean') &&
+		checkProp(value, 'message', isString)
+	);
+}
+export function isSampleErrorEnumError(value: unknown): value is SampleErrorEnumError {
+	return (
+		isRecord(value) &&
+		checkProp(value, '_type', v => v === 'SampleErrorEnum') &&
+		checkProp(value, 'message', isString)
+	);
+}
+export function isSampleErrorScalarError(value: unknown): value is SampleErrorScalarError {
+	return (
+		isRecord(value) &&
+		checkProp(value, '_type', v => v === 'SampleErrorScalar') &&
+		checkProp(value, 'message', isString)
+	);
+}
+export function isSampleErrorUnionError(value: unknown): value is SampleErrorUnionError {
+	return (
+		isRecord(value) &&
+		checkProp(value, '_type', v => v === 'SampleErrorUnion') &&
 		checkProp(value, 'message', isString)
 	);
 }

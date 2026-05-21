@@ -7,7 +7,12 @@ public class RSDException extends RuntimeException {
 		_UnknownResponse,
 		SampleError,
 		SampleError2,
-		SampleErrorWithValue;
+		SampleErrorWithValue,
+		SampleErrorInt,
+		SampleErrorBoolean,
+		SampleErrorEnum,
+		SampleErrorScalar,
+		SampleErrorUnion;
 	}
 
 	public final Type type;

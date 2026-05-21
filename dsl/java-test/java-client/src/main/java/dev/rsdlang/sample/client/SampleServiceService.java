@@ -52,4 +52,14 @@ public interface SampleServiceService extends BaseService {
 
 	public void getSimpleErrorWithValue() throws SampleErrorWithValueException;
 
+	public void getSimpleErrorInt() throws SampleErrorIntException;
+
+	public void getSimpleErrorBoolean() throws SampleErrorBooleanException;
+
+	public void getSimpleErrorEnum() throws SampleErrorEnumException;
+
+	public void getSimpleErrorScalar() throws SampleErrorScalarException;
+
+	public void getSimpleErrorUnion() throws SampleErrorUnionException;
+
 }

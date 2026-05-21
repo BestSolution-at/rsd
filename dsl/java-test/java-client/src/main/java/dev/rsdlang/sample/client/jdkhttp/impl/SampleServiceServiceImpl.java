@@ -15,13 +15,20 @@ import java.util.Objects;
 
 import dev.rsdlang.sample.client.impl.model.json.ErrorDataDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.SimpleRecordDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.UnionDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.ErrorData;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.Union;
 import dev.rsdlang.sample.client.RSDException;
 import dev.rsdlang.sample.client.SampleError2Exception;
+import dev.rsdlang.sample.client.SampleErrorBooleanException;
+import dev.rsdlang.sample.client.SampleErrorEnumException;
 import dev.rsdlang.sample.client.SampleErrorException;
+import dev.rsdlang.sample.client.SampleErrorIntException;
+import dev.rsdlang.sample.client.SampleErrorScalarException;
+import dev.rsdlang.sample.client.SampleErrorUnionException;
 import dev.rsdlang.sample.client.SampleErrorWithValueException;
 import dev.rsdlang.sample.client.SampleServiceService;
 import dev.rsdlang.sample.client.SpecSamplesClient;
@@ -817,7 +824,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				return;
 			} else if ($response.statusCode() == 400) {
 				var $errorData = ServiceUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
-				var exception = new SampleErrorWithValueException("Invokation of getSimpleErrorWithValue failed", $errorData);
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of getSimpleErrorWithValue failed");var exception = new SampleErrorWithValueException($message, $errorData);
 				this.lifecycleHook.onError("getSimpleErrorWithValue", exception, this.client.createResponseAdaptable($response));
 				throw exception;
 			}
@@ -837,6 +844,221 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			throw $exception;
 		} finally {
 			this.lifecycleHook.onFinally("getSimpleErrorWithValue");
+		}
+	}
+
+	public void getSimpleErrorInt()
+			throws SampleErrorIntException {
+		var $path = "%s/api/samplerecords/simpleerrorint".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			this.lifecycleHook.preRequest("getSimpleErrorInt", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 204) {
+				this.lifecycleHook.onSuccess("getSimpleErrorInt", null, this.client.createResponseAdaptable($response));
+				return;
+			} else if ($response.statusCode() == 400) {
+				var $errorData = ServiceUtils.mapInt($response);
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of getSimpleErrorInt failed");var exception = new SampleErrorIntException($message, $errorData);
+				this.lifecycleHook.onError("getSimpleErrorInt", exception, this.client.createResponseAdaptable($response));
+				throw exception;
+			}
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			this.lifecycleHook.onError("getSimpleErrorInt", $exception, this.client.createResponseAdaptable($response));
+			throw $exception;
+		} catch (Exception e) {
+			if (e instanceof RSDException rsdEx) {
+				throw rsdEx;
+			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleErrorInt", e);
+			this.lifecycleHook.onCatch("getSimpleErrorInt", $exception);
+			throw $exception;
+		} finally {
+			this.lifecycleHook.onFinally("getSimpleErrorInt");
+		}
+	}
+
+	public void getSimpleErrorBoolean()
+			throws SampleErrorBooleanException {
+		var $path = "%s/api/samplerecords/simpleerrorboolean".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			this.lifecycleHook.preRequest("getSimpleErrorBoolean", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 204) {
+				this.lifecycleHook.onSuccess("getSimpleErrorBoolean", null, this.client.createResponseAdaptable($response));
+				return;
+			} else if ($response.statusCode() == 400) {
+				var $errorData = ServiceUtils.mapBoolean($response);
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of getSimpleErrorBoolean failed");var exception = new SampleErrorBooleanException($message, $errorData);
+				this.lifecycleHook.onError("getSimpleErrorBoolean", exception, this.client.createResponseAdaptable($response));
+				throw exception;
+			}
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			this.lifecycleHook.onError("getSimpleErrorBoolean", $exception, this.client.createResponseAdaptable($response));
+			throw $exception;
+		} catch (Exception e) {
+			if (e instanceof RSDException rsdEx) {
+				throw rsdEx;
+			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleErrorBoolean", e);
+			this.lifecycleHook.onCatch("getSimpleErrorBoolean", $exception);
+			throw $exception;
+		} finally {
+			this.lifecycleHook.onFinally("getSimpleErrorBoolean");
+		}
+	}
+
+	public void getSimpleErrorEnum()
+			throws SampleErrorEnumException {
+		var $path = "%s/api/samplerecords/simpleerrorenum".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			this.lifecycleHook.preRequest("getSimpleErrorEnum", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 204) {
+				this.lifecycleHook.onSuccess("getSimpleErrorEnum", null, this.client.createResponseAdaptable($response));
+				return;
+			} else if ($response.statusCode() == 400) {
+				var $errorData = ServiceUtils.mapLiteral($response, SampleEnum::valueOf);
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of getSimpleErrorEnum failed");var exception = new SampleErrorEnumException($message, $errorData);
+				this.lifecycleHook.onError("getSimpleErrorEnum", exception, this.client.createResponseAdaptable($response));
+				throw exception;
+			}
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			this.lifecycleHook.onError("getSimpleErrorEnum", $exception, this.client.createResponseAdaptable($response));
+			throw $exception;
+		} catch (Exception e) {
+			if (e instanceof RSDException rsdEx) {
+				throw rsdEx;
+			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleErrorEnum", e);
+			this.lifecycleHook.onCatch("getSimpleErrorEnum", $exception);
+			throw $exception;
+		} finally {
+			this.lifecycleHook.onFinally("getSimpleErrorEnum");
+		}
+	}
+
+	public void getSimpleErrorScalar()
+			throws SampleErrorScalarException {
+		var $path = "%s/api/samplerecords/simpleerrorscalar".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			this.lifecycleHook.preRequest("getSimpleErrorScalar", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 204) {
+				this.lifecycleHook.onSuccess("getSimpleErrorScalar", null, this.client.createResponseAdaptable($response));
+				return;
+			} else if ($response.statusCode() == 400) {
+				var $errorData = ServiceUtils.mapLiteral($response, ZoneId::of);
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of getSimpleErrorScalar failed");var exception = new SampleErrorScalarException($message, $errorData);
+				this.lifecycleHook.onError("getSimpleErrorScalar", exception, this.client.createResponseAdaptable($response));
+				throw exception;
+			}
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			this.lifecycleHook.onError("getSimpleErrorScalar", $exception, this.client.createResponseAdaptable($response));
+			throw $exception;
+		} catch (Exception e) {
+			if (e instanceof RSDException rsdEx) {
+				throw rsdEx;
+			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleErrorScalar", e);
+			this.lifecycleHook.onCatch("getSimpleErrorScalar", $exception);
+			throw $exception;
+		} finally {
+			this.lifecycleHook.onFinally("getSimpleErrorScalar");
+		}
+	}
+
+	public void getSimpleErrorUnion()
+			throws SampleErrorUnionException {
+		var $path = "%s/api/samplerecords/simpleerrorunion".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			this.lifecycleHook.preRequest("getSimpleErrorUnion", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 204) {
+				this.lifecycleHook.onSuccess("getSimpleErrorUnion", null, this.client.createResponseAdaptable($response));
+				return;
+			} else if ($response.statusCode() == 400) {
+				var $errorData = ServiceUtils.mapObject($response, UnionDataImpl::of, Union.Data.class);
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of getSimpleErrorUnion failed");var exception = new SampleErrorUnionException($message, $errorData);
+				this.lifecycleHook.onError("getSimpleErrorUnion", exception, this.client.createResponseAdaptable($response));
+				throw exception;
+			}
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			this.lifecycleHook.onError("getSimpleErrorUnion", $exception, this.client.createResponseAdaptable($response));
+			throw $exception;
+		} catch (Exception e) {
+			if (e instanceof RSDException rsdEx) {
+				throw rsdEx;
+			}
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleErrorUnion", e);
+			this.lifecycleHook.onCatch("getSimpleErrorUnion", $exception);
+			throw $exception;
+		} finally {
+			this.lifecycleHook.onFinally("getSimpleErrorUnion");
 		}
 	}
 }

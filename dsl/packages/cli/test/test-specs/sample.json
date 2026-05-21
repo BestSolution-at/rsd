@@ -4875,6 +4875,161 @@
               ]
             }
           }
+        },
+        {
+          "@type": "Operation",
+          "name": "getSimpleErrorInt",
+          "doc": "",
+          "parameters": [],
+          "errors": [
+            "SampleErrorInt"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleErrorInt",
+              "doc": ""
+            }
+          ],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleerrorint",
+              "results": [
+                {
+                  "statusCode": 204
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleErrorInt"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getSimpleErrorBoolean",
+          "doc": "",
+          "parameters": [],
+          "errors": [
+            "SampleErrorBoolean"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleErrorBoolean",
+              "doc": ""
+            }
+          ],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleerrorboolean",
+              "results": [
+                {
+                  "statusCode": 204
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleErrorBoolean"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getSimpleErrorEnum",
+          "doc": "",
+          "parameters": [],
+          "errors": [
+            "SampleErrorEnum"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleErrorEnum",
+              "doc": ""
+            }
+          ],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleerrorenum",
+              "results": [
+                {
+                  "statusCode": 204
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleErrorEnum"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getSimpleErrorScalar",
+          "doc": "",
+          "parameters": [],
+          "errors": [
+            "SampleErrorScalar"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleErrorScalar",
+              "doc": ""
+            }
+          ],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleerrorscalar",
+              "results": [
+                {
+                  "statusCode": 204
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleErrorScalar"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "getSimpleErrorUnion",
+          "doc": "",
+          "parameters": [],
+          "errors": [
+            "SampleErrorUnion"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleErrorUnion",
+              "doc": ""
+            }
+          ],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "simpleerrorunion",
+              "results": [
+                {
+                  "statusCode": 204
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleErrorUnion"
+                }
+              ]
+            }
+          }
         }
       ],
       "meta": {
@@ -20669,6 +20824,31 @@
       "@type": "Error",
       "name": "SampleErrorWithValue",
       "contentType": "ErrorData"
+    },
+    {
+      "@type": "Error",
+      "name": "SampleErrorInt",
+      "contentType": "int"
+    },
+    {
+      "@type": "Error",
+      "name": "SampleErrorBoolean",
+      "contentType": "boolean"
+    },
+    {
+      "@type": "Error",
+      "name": "SampleErrorEnum",
+      "contentType": "SampleEnum"
+    },
+    {
+      "@type": "Error",
+      "name": "SampleErrorScalar",
+      "contentType": "ZoneId"
+    },
+    {
+      "@type": "Error",
+      "name": "SampleErrorUnion",
+      "contentType": "Union"
     }
   ]
 }
