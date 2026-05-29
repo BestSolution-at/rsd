@@ -422,6 +422,7 @@ function mapToResolvedError(
 				resolvedContentType,
 			};
 		}
+		console.warn(`Could not resolve content type '${error.contentType}' for error '${error.name}'`);
 	}
 	return error;
 }
