@@ -1,6 +1,6 @@
 import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
-import { isMEnumType, isMRecordType, isMUnionType, MResolvedRSDModel } from '../model.js';
+import { isMEnumType, isMRecordType, isMScalarType, isMUnionType, MResolvedRSDModel } from '../model.js';
 import {
 	generateCompilationUnit,
 	TypescriptClientAPIGeneratorConfig,
@@ -30,5 +30,12 @@ function generateIndexContent(model: MResolvedRSDModel, allowImportingTsExtensio
 			}
 		}
 	});
+	if (model.elements.some(isMScalarType)) {
+		if (allowImportingTsExtensions) {
+			node.append(`export * from './Scalars.ts'`, NL);
+		} else {
+			node.append(`export * from './Scalars.js'`, NL);
+		}
+	}
 	return node;
 }
