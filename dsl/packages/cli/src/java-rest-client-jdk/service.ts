@@ -913,7 +913,7 @@ function handleErrorResult(
 			throw new Error(`Unsupported error content type for operation ${o.name}`);
 		}
 		node.append(
-			`var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of ${o.name} failed");`,
+			`var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of ${o.name} failed");`,
 			NL,
 		);
 		node.append(
