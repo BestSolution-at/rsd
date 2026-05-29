@@ -909,6 +909,8 @@ function handleErrorResult(
 				fqn,
 			);
 			node.append(`var $errorData = ServiceUtils.mapLiteral($response, ${apiType}::valueOf);`, NL);
+		} else {
+			throw new Error(`Unsupported error content type for operation ${o.name}`);
 		}
 		node.append(
 			`var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of ${o.name} failed");`,
