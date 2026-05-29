@@ -960,9 +960,11 @@ function fnDownloadFile(props: ServiceProps<api.service.ErrorType>): api.service
 				const $result = new File([$data], fileName, { type: $data.type });
 				return safeExecute(api.result.OK($result), () => onSuccess?.('downloadFile', $result));
 			} else if ($response.status === 400) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.ErrorDataFromJSON($data);
 				const err = {
 					_type: 'SampleErrorWithValue',
-					message: await $response.text(),
+					data: $result,
 				} as const;
 				return safeExecute(api.result.ERR(err), () => onError?.('downloadFile', err));
 			}
@@ -998,9 +1000,11 @@ function fnDownloadBlob(props: ServiceProps<api.service.ErrorType>): api.service
 				const $result = $data;
 				return safeExecute(api.result.OK($result), () => onSuccess?.('downloadBlob', $result));
 			} else if ($response.status === 400) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.ErrorDataFromJSON($data);
 				const err = {
 					_type: 'SampleErrorWithValue',
-					message: await $response.text(),
+					data: $result,
 				} as const;
 				return safeExecute(api.result.ERR(err), () => onError?.('downloadBlob', err));
 			}

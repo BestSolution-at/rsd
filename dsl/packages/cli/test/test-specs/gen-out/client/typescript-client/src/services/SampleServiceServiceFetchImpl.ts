@@ -660,9 +660,11 @@ function fnGetSimpleErrorWithValue(props: ServiceProps<api.service.ErrorType>): 
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorWithValue', api.result.Void));
 			} else if ($response.status === 400) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.ErrorDataFromJSON($data);
 				const err = {
 					_type: 'SampleErrorWithValue',
-					message: await $response.text(),
+					data: $result,
 				} as const;
 				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorWithValue', err));
 			}
@@ -696,9 +698,10 @@ function fnGetSimpleErrorInt(props: ServiceProps<api.service.ErrorType>): api.se
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorInt', api.result.Void));
 			} else if ($response.status === 400) {
+				const $result = await decodeResponse($response, api.utils.isNumber);
 				const err = {
 					_type: 'SampleErrorInt',
-					message: await $response.text(),
+					data: $result,
 				} as const;
 				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorInt', err));
 			}
@@ -732,9 +735,10 @@ function fnGetSimpleErrorBoolean(props: ServiceProps<api.service.ErrorType>): ap
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorBoolean', api.result.Void));
 			} else if ($response.status === 400) {
+				const $result = await decodeResponse($response, api.utils.isBoolean);
 				const err = {
 					_type: 'SampleErrorBoolean',
-					message: await $response.text(),
+					data: $result,
 				} as const;
 				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorBoolean', err));
 			}
@@ -768,9 +772,10 @@ function fnGetSimpleErrorEnum(props: ServiceProps<api.service.ErrorType>): api.s
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorEnum', api.result.Void));
 			} else if ($response.status === 400) {
+				const $result = await decodeResponse($response, api.model.isSampleEnum);
 				const err = {
 					_type: 'SampleErrorEnum',
-					message: await $response.text(),
+					data: $result,
 				} as const;
 				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorEnum', err));
 			}
@@ -804,9 +809,10 @@ function fnGetSimpleErrorScalar(props: ServiceProps<api.service.ErrorType>): api
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorScalar', api.result.Void));
 			} else if ($response.status === 400) {
+				const $result = await decodeResponse($response, api.utils.isString);
 				const err = {
 					_type: 'SampleErrorScalar',
-					message: await $response.text(),
+					data: $result,
 				} as const;
 				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorScalar', err));
 			}
@@ -840,9 +846,11 @@ function fnGetSimpleErrorUnion(props: ServiceProps<api.service.ErrorType>): api.
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorUnion', api.result.Void));
 			} else if ($response.status === 400) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.UnionFromJSON($data);
 				const err = {
 					_type: 'SampleErrorUnion',
-					message: await $response.text(),
+					data: $result,
 				} as const;
 				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorUnion', err));
 			}

@@ -1,12 +1,4 @@
-import {
-	isMBuiltinType,
-	isMEnumType,
-	isMRecordType,
-	isMScalarType,
-	isMUnionType,
-	MParameter,
-	MResolvedService,
-} from '../model.js';
+import { isMBuiltinType, isMEnumType, isMRecordType, isMUnionType, MParameter, MResolvedService } from '../model.js';
 import { generateBuilinProperty, nullableProcessor } from './record.js';
 
 export function generateService(s: MResolvedService): Record<string, unknown> {

@@ -2,7 +2,11 @@ import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import {
 	isMBuiltinNumericType,
 	isMBuiltinType,
+	isMEnumType,
 	isMInlineEnumType,
+	isMResolvedRecordType,
+	isMResolvedUnionType,
+	isMScalarType,
 	MBuiltinType,
 	MInlineEnumType,
 	MParameter,
@@ -586,12 +590,41 @@ function handleErrorResult(
 	fqn: (type: string, typeOnly: boolean) => string,
 ) {
 	const node = new CompositeGeneratorNode();
-	node.append(`const err = {`, NL);
-	node.indent(struct => {
-		struct.append(`_type: '${error}',`, NL);
-		struct.append('message: await $response.text(),', NL);
-	});
-	node.append('} as const;', NL);
+	const err = o.resolved.errors.find(e => e.name === error);
+	if (err?.resolvedContentType) {
+		const decodeResponse = fqn('decodeResponse:./_fetch-type-utils.ts', false);
+		if (isMResolvedRecordType(err.resolvedContentType) || isMResolvedUnionType(err.resolvedContentType)) {
+			const isRecord = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isRecord`;
+			const fromJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${err.resolvedContentType.name}FromJSON`;
+			node.append(`const $data = await ${decodeResponse}($response, ${isRecord});`, NL);
+			node.append(`const $result = ${fromJSON}($data);`, NL);
+		} else if (isMScalarType(err.resolvedContentType)) {
+			const isString = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+			node.append(`const $result = await ${decodeResponse}($response, ${isString});`, NL);
+		} else if (isMEnumType(err.resolvedContentType)) {
+			const typeName = err.resolvedContentType.name;
+			const typeguard = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.is${typeName}`;
+			node.append(`const $result = await ${decodeResponse}($response, ${typeguard});`, NL);
+		} else {
+			const type = builtinToJSType(err.resolvedContentType);
+			const typeguard = `${fqn(`api:${config.apiNamespacePath}`, false)}.utils.is${toFirstUpper(type)}`;
+			node.append(`const $result = await ${decodeResponse}($response, ${typeguard});`, NL);
+		}
+		node.append(`const err = {`, NL);
+		node.indent(struct => {
+			struct.append(`_type: '${error}',`, NL);
+			struct.append('data: $result,', NL);
+		});
+		node.append('} as const;', NL);
+	} else {
+		node.append(`const err = {`, NL);
+		node.indent(struct => {
+			struct.append(`_type: '${error}',`, NL);
+			struct.append('message: await $response.text(),', NL);
+		});
+		node.append('} as const;', NL);
+	}
+
 	const ERR = `${fqn(`api:${config.apiNamespacePath}`, false)}.result.ERR`;
 	const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
 	node.append(`return ${safeExecute}(${ERR}(err), () => onError?.('${o.name}', err));`, NL);

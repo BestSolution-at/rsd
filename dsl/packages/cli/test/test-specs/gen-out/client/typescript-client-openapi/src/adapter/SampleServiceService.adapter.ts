@@ -1,4 +1,6 @@
 import { api } from '../../../typescript-client/src/index.js';
+import { ErrorDataFromJSON } from '../../../typescript-client/src/model/ErrorData.js';
+import { UnionFromJSON } from '../../../typescript-client/src/model/Union.js';
 import { ServiceProps } from '../../../typescript-client/src/services/_fetch-type-utils.js';
 import { SampleServiceApi } from '../apis/SampleServiceApi.js';
 import { Configuration, ResponseError } from '../runtime.js';
@@ -314,6 +316,166 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 					const err = {
 						_type: 'SampleError',
 						message: await error.response.text(),
+					} as const;
+					return api.result.ERR(err);
+				}
+			}
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async getSimpleErrorWithValue(): Promise<
+		api.result.Result<
+			api.result.VoidType,
+			api.service.SampleErrorWithValueError | api.service.StatusRSDError | api.service.NativeRSDError
+		>
+	> {
+		try {
+			const response = await this.delegate.sampleServiceGetSimpleErrorWithValueRaw();
+			if (response.raw.status === 204) {
+				return api.result.OK(api.result.Void);
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			if (error instanceof ResponseError) {
+				if (error.response.status === 400) {
+					const result = (await error.response.json()) as Record<string, unknown>;
+					const data = ErrorDataFromJSON(result);
+					const err = {
+						_type: 'SampleErrorWithValue',
+						data,
+					} as const;
+					return api.result.ERR(err);
+				}
+			}
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async getSimpleErrorInt(): Promise<
+		api.result.Result<
+			api.result.VoidType,
+			api.service.SampleErrorIntError | api.service.StatusRSDError | api.service.NativeRSDError
+		>
+	> {
+		try {
+			const response = await this.delegate.sampleServiceGetSimpleErrorIntRaw();
+			if (response.raw.status === 204) {
+				return api.result.OK(api.result.Void);
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			if (error instanceof ResponseError) {
+				if (error.response.status === 400) {
+					const err = {
+						_type: 'SampleErrorInt',
+						data: (await error.response.json()) as number,
+					} as const;
+					return api.result.ERR(err);
+				}
+			}
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async getSimpleErrorBoolean(): Promise<
+		api.result.Result<
+			api.result.VoidType,
+			api.service.SampleErrorBooleanError | api.service.StatusRSDError | api.service.NativeRSDError
+		>
+	> {
+		try {
+			const response = await this.delegate.sampleServiceGetSimpleErrorBooleanRaw();
+			if (response.raw.status === 204) {
+				return api.result.OK(api.result.Void);
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			if (error instanceof ResponseError) {
+				if (error.response.status === 400) {
+					const err = {
+						_type: 'SampleErrorBoolean',
+						data: (await error.response.json()) as boolean,
+					} as const;
+					return api.result.ERR(err);
+				}
+			}
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async getSimpleErrorEnum(): Promise<
+		api.result.Result<
+			api.result.VoidType,
+			api.service.SampleErrorEnumError | api.service.StatusRSDError | api.service.NativeRSDError
+		>
+	> {
+		try {
+			const response = await this.delegate.sampleServiceGetSimpleErrorEnumRaw();
+			if (response.raw.status === 204) {
+				return api.result.OK(api.result.Void);
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			if (error instanceof ResponseError) {
+				if (error.response.status === 400) {
+					const err = {
+						_type: 'SampleErrorEnum',
+						data: (await error.response.json()) as api.model.SampleEnum,
+					} as const;
+					return api.result.ERR(err);
+				}
+			}
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async getSimpleErrorScalar(): Promise<
+		api.result.Result<
+			api.result.VoidType,
+			api.service.SampleErrorScalarError | api.service.StatusRSDError | api.service.NativeRSDError
+		>
+	> {
+		try {
+			const response = await this.delegate.sampleServiceGetSimpleErrorScalarRaw();
+			if (response.raw.status === 204) {
+				return api.result.OK(api.result.Void);
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			if (error instanceof ResponseError) {
+				if (error.response.status === 400) {
+					const err = {
+						_type: 'SampleErrorScalar',
+						data: (await error.response.json()) as string,
+					} as const;
+					return api.result.ERR(err);
+				}
+			}
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async getSimpleErrorUnion(): Promise<
+		api.result.Result<
+			api.result.VoidType,
+			api.service.SampleErrorUnionError | api.service.StatusRSDError | api.service.NativeRSDError
+		>
+	> {
+		try {
+			const response = await this.delegate.sampleServiceGetSimpleErrorUnionRaw();
+			if (response.raw.status === 204) {
+				return api.result.OK(api.result.Void);
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			if (error instanceof ResponseError) {
+				if (error.response.status === 400) {
+					const result = (await error.response.json()) as Record<string, unknown>;
+					const data = UnionFromJSON(result);
+					const err = {
+						_type: 'SampleErrorUnion',
+						data,
 					} as const;
 					return api.result.ERR(err);
 				}

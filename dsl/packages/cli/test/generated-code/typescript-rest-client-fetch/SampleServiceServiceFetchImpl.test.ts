@@ -4,6 +4,7 @@ import { api, createSampleServiceService } from '../../test-specs/gen-out/client
 import {
 	isSampleError2Error,
 	isSampleErrorError,
+	isSampleErrorWithValueError,
 } from '../../test-specs/gen-out/client/typescript-client/src/Errors.js';
 import { createOpenAPISampleServiceService } from '../../test-specs/gen-out/client/typescript-client-openapi/src/adapter/SampleServiceService.adapter.js';
 
@@ -397,6 +398,54 @@ describe('SampleServiceServiceFetchImpl', () => {
 			expect(error).not.toBeNull();
 			expect(result).toBeUndefined();
 			expect(isSampleErrorError(error)).toBe(true);
+		});
+	});
+	describe('getSimpleErrorWithValue', () => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
+			const [result, error] = await service.getSimpleErrorWithValue();
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(isSampleErrorWithValueError(error)).toBe(true);
+		});
+	});
+	describe('getSimpleErrorInt', () => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
+			const [result, error] = await service.getSimpleErrorInt();
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(api.service.isSampleErrorIntError(error)).toBe(true);
+		});
+	});
+	describe('getSimpleErrorBoolean', () => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
+			const [result, error] = await service.getSimpleErrorBoolean();
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(api.service.isSampleErrorBooleanError(error)).toBe(true);
+		});
+	});
+	describe('getSimpleErrorEnum', () => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
+			const [result, error] = await service.getSimpleErrorEnum();
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(api.service.isSampleErrorEnumError(error)).toBe(true);
+		});
+	});
+	describe('getSimpleErrorUnion', () => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
+			const [result, error] = await service.getSimpleErrorUnion();
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(api.service.isSampleErrorUnionError(error)).toBe(true);
+		});
+	});
+	describe('getSimpleErrorScalar', () => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
+			const [result, error] = await service.getSimpleErrorScalar();
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(api.service.isSampleErrorScalarError(error)).toBe(true);
 		});
 	});
 });

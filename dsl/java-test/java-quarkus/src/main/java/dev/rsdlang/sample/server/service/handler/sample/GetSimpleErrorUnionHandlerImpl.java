@@ -3,7 +3,6 @@ package dev.rsdlang.sample.server.service.handler.sample;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.SampleErrorUnionException;
 import dev.rsdlang.sample.server.service.impl.SampleServiceServiceImpl;
-import dev.rsdlang.sample.server.service.model.Union;
 import dev.rsdlang.sample.server.service.model.UnionA;
 import jakarta.enterprise.context.ApplicationScoped;
 

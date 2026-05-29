@@ -1,13 +1,18 @@
 import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
-import { MError } from '../model.js';
+import { isMEnumType, isMRecordType, isMScalarType, isMUnionType, MResolvedError } from '../model.js';
 import {
+	builtinToJSType,
 	generateCompilationUnit,
 	TypescriptClientAPIGeneratorConfig,
 	TypescriptImportCollector,
 } from '../typescript-gen-utils.js';
+import { toFirstUpper } from '../util.js';
 
-export function generateErrors(errors: readonly MError[], config: TypescriptClientAPIGeneratorConfig): Artifact {
+export function generateErrors(
+	errors: readonly MResolvedError[],
+	config: TypescriptClientAPIGeneratorConfig,
+): Artifact {
 	const collector = new TypescriptImportCollector(config, 'Errors.ts');
 	const fqn = collector.importType.bind(collector);
 	return {
@@ -17,7 +22,7 @@ export function generateErrors(errors: readonly MError[], config: TypescriptClie
 	};
 }
 
-function generateErrorsContent(errors: readonly MError[], fqn: (t: string, typeOnly: boolean) => string) {
+function generateErrorsContent(errors: readonly MResolvedError[], fqn: (t: string, typeOnly: boolean) => string) {
 	const node = new CompositeGeneratorNode();
 	node.append(
 		`const errorTypes = new Set(['_Native', '_Status', ${errors.map(e => `'${e.name}'`).join(', ')}]);`,
@@ -60,7 +65,24 @@ function generateErrorsContent(errors: readonly MError[], fqn: (t: string, typeO
 
 	errors.forEach(e => {
 		const RSDError = fqn('RSDError:./_result-utils.ts', true);
-		node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { message: string };`, NL);
+		if (e.resolvedContentType) {
+			if (
+				isMRecordType(e.resolvedContentType) ||
+				isMUnionType(e.resolvedContentType) ||
+				isMEnumType(e.resolvedContentType)
+			) {
+				const typeName = e.resolvedContentType.name;
+				const importedType = fqn(`${typeName}:./model/${typeName}.ts`, true);
+				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: ${importedType} };`, NL);
+			} else if (isMScalarType(e.resolvedContentType)) {
+				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: string }; // TBD`, NL);
+			} else {
+				const type = builtinToJSType(e.resolvedContentType);
+				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: ${type} }; // TBD`, NL);
+			}
+		} else {
+			node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { message: string };`, NL);
+		}
 	});
 	node.append(NL);
 	node.append(`export function isNativeError(value: unknown): value is NativeRSDError {`, NL);
@@ -103,11 +125,31 @@ function generateErrorsContent(errors: readonly MError[], fqn: (t: string, typeO
 			mBody.append('return (', NL);
 			mBody.indent(andBlock => {
 				const isRecord = fqn('isRecord:./_type-utils.ts', false);
-				const isString = fqn('isString:./_type-utils.ts', false);
 				const checkProp = fqn('checkProp:./_type-utils.ts', false);
 				andBlock.append(`${isRecord}(value) &&`, NL);
 				andBlock.append(`${checkProp}(value, '_type', v => v === '${e.name}') &&`, NL);
-				andBlock.append(`${checkProp}(value, 'message', ${isString})`, NL);
+				if (e.resolvedContentType) {
+					if (
+						isMRecordType(e.resolvedContentType) ||
+						isMUnionType(e.resolvedContentType) ||
+						isMEnumType(e.resolvedContentType)
+					) {
+						const typeName = e.resolvedContentType.name;
+						const typeguard = fqn(`is${typeName}:./model/${typeName}.ts`, false);
+						andBlock.append(`${checkProp}(value, 'data', ${typeguard})`, NL);
+					} else if (isMScalarType(e.resolvedContentType)) {
+						const isString = fqn('isString:./_type-utils.ts', false);
+						andBlock.append(`${checkProp}(value, 'data', ${isString})`, NL);
+					} else {
+						const type = builtinToJSType(e.resolvedContentType);
+						const typeguard = fqn(`is${toFirstUpper(type)}:./_type-utils.ts`, false);
+						andBlock.append(`${checkProp}(value, 'data', ${typeguard})`, NL);
+					}
+				} else {
+					const isString = fqn('isString:./_type-utils.ts', false);
+
+					andBlock.append(`${checkProp}(value, 'message', ${isString})`, NL);
+				}
 			});
 			mBody.append(');', NL);
 		});
