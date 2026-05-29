@@ -75,10 +75,10 @@ function generateErrorsContent(errors: readonly MResolvedError[], fqn: (t: strin
 				const importedType = fqn(`${typeName}:./model/${typeName}.ts`, true);
 				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: ${importedType} };`, NL);
 			} else if (isMScalarType(e.resolvedContentType)) {
-				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: string }; // TBD`, NL);
+				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: string };`, NL);
 			} else {
 				const type = builtinToJSType(e.resolvedContentType);
-				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: ${type} }; // TBD`, NL);
+				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: ${type} };`, NL);
 			}
 		} else {
 			node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { message: string };`, NL);
