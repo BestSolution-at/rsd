@@ -517,6 +517,157 @@
         }
       }
     },
+    "/api/samplerecords/simpleerrorwithvalue": {
+      "get": {
+        "tags": [
+          "SampleService"
+        ],
+        "description": "",
+        "operationId": "SampleService_getSimpleErrorWithValue",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "success"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/samplerecords/simpleerrorint": {
+      "get": {
+        "tags": [
+          "SampleService"
+        ],
+        "description": "",
+        "operationId": "SampleService_getSimpleErrorInt",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "success"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/samplerecords/simpleerrorboolean": {
+      "get": {
+        "tags": [
+          "SampleService"
+        ],
+        "description": "",
+        "operationId": "SampleService_getSimpleErrorBoolean",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "success"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/samplerecords/simpleerrorenum": {
+      "get": {
+        "tags": [
+          "SampleService"
+        ],
+        "description": "",
+        "operationId": "SampleService_getSimpleErrorEnum",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "success"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SampleEnum"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/samplerecords/simpleerrorscalar": {
+      "get": {
+        "tags": [
+          "SampleService"
+        ],
+        "description": "",
+        "operationId": "SampleService_getSimpleErrorScalar",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "success"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/samplerecords/simpleerrorunion": {
+      "get": {
+        "tags": [
+          "SampleService"
+        ],
+        "description": "",
+        "operationId": "SampleService_getSimpleErrorUnion",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "success"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Union"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/listsamplerecords/boolean": {
       "get": {
         "tags": [
@@ -15197,6 +15348,16 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorData"
+                }
+              }
+            }
           }
         }
       }
@@ -15217,6 +15378,16 @@
                 "schema": {
                   "type": "string",
                   "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorData"
                 }
               }
             }
@@ -23014,6 +23185,17 @@
           "UNDEFINED",
           "NULL",
           "DEFINED"
+        ]
+      },
+      "ErrorData": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
         ]
       }
     }

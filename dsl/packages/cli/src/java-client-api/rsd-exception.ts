@@ -14,12 +14,11 @@ export function generateRSDException(
 	packageName: string,
 ): Artifact[] {
 	const importCollector = new JavaImportsCollector(packageName);
-	const fqn = importCollector.importType.bind(importCollector);
 	return [
 		{
 			name: 'RSDException.java',
 			content: toString(
-				generateCompilationUnit(packageName, importCollector, generateRSDExceptionContent(errors, packageName, fqn)),
+				generateCompilationUnit(packageName, importCollector, generateRSDExceptionContent(errors)),
 				'\t',
 			),
 			path: toPath(artifactConfig.targetFolder, packageName),
@@ -45,9 +44,7 @@ function generateRSDExceptionTypeContent(errors: readonly MError[]) {
 	return node;
 }
 
-function generateRSDExceptionContent(errors: readonly MError[], packageName: string, fqn: (type: string) => string) {
-	const _Base = fqn(`${packageName}.model._Base`);
-
+function generateRSDExceptionContent(errors: readonly MError[]) {
 	const node = new CompositeGeneratorNode();
 	node.append(`public class RSDException extends RuntimeException {`, NL);
 	node.indent(classBody => {
@@ -64,20 +61,16 @@ function generateRSDExceptionContent(errors: readonly MError[], packageName: str
 			methodBody.append('super(message, cause);', NL);
 			methodBody.append('this.type = type;', NL);
 		});
-		classBody.append('}', NL, NL);
+		classBody.append('}', NL);
 
-		classBody.append('public static class RSDStructuredDataException extends RSDException {', NL);
+		classBody.append('public static abstract class RSDStructuredDataException extends RSDException {', NL);
 		classBody.indent(innerClassBody => {
-			innerClassBody.append(`public final ${_Base}.BaseData data;`, NL, NL);
-			innerClassBody.append(
-				`public RSDStructuredDataException(Type type, String message, ${_Base}.BaseData data) {`,
-				NL,
-			);
+			innerClassBody.append(`public RSDStructuredDataException(Type type, String message) {`, NL);
 			innerClassBody.indent(methodBody => {
 				methodBody.append('super(type, message);', NL);
-				methodBody.append('this.data = data;', NL);
 			});
 			innerClassBody.append('}', NL);
+			innerClassBody.append('public abstract Object data();', NL);
 		});
 		classBody.append('}', NL);
 	});

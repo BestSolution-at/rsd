@@ -4,32 +4,76 @@ import {
 	generateCompilationUnit,
 	JavaClientAPIGeneratorConfig,
 	JavaImportsCollector,
+	toAPIType,
 	toPath,
 } from '../java-gen-utils.js';
-import { MError } from '../model.js';
+import { MResolvedError } from '../model.js';
 
-export function generateError(t: MError, artifactConfig: JavaClientAPIGeneratorConfig, packageName: string): Artifact {
+export function generateError(
+	t: MResolvedError,
+	artifactConfig: JavaClientAPIGeneratorConfig,
+	packageName: string,
+): Artifact {
 	const importCollector = new JavaImportsCollector(packageName);
 
 	return {
 		name: `${t.name}Exception.java`,
-		content: toString(generateCompilationUnit(packageName, importCollector, generateSource(t)), '\t'),
+		content: toString(
+			generateCompilationUnit(
+				packageName,
+				importCollector,
+				generateSource(t, artifactConfig, packageName, importCollector.importType.bind(importCollector)),
+			),
+			'\t',
+		),
 		path: toPath(artifactConfig.targetFolder, packageName),
 	};
 }
 
-function generateSource(t: MError): CompositeGeneratorNode {
+function generateSource(
+	t: MResolvedError,
+	artifactConfig: JavaClientAPIGeneratorConfig,
+	packageName: string,
+	fqn: (type: string) => string,
+): CompositeGeneratorNode {
 	const node = new CompositeGeneratorNode();
 
-	node.append(`public class ${t.name}Exception extends RSDException {`, NL);
-	node.indent(body => {
-		body.append(`public ${t.name}Exception(String message) {`, NL);
-		body.indent(method => {
-			method.append(`super(Type.${t.name}, message);`, NL);
+	if (t.resolvedContentType) {
+		const type = toAPIType(t.resolvedContentType, artifactConfig.nativeTypeSubstitues, packageName + '.model', fqn);
+		const objectType = toAPIType(
+			t.resolvedContentType,
+			artifactConfig.nativeTypeSubstitues,
+			packageName + '.model',
+			fqn,
+			{ objectType: true },
+		);
+		node.append(`public class ${t.name}Exception extends RSDException.RSDStructuredDataException {`, NL);
+		node.indent(body => {
+			body.append(`private final ${type} data;`, NL, NL);
+			body.append(`public ${t.name}Exception(String message, ${type} data) {`, NL);
+			body.indent(method => {
+				method.append(`super(Type.${t.name}, message);`, NL);
+				method.append(`this.data = data;`, NL);
+			});
+			body.append('}', NL);
+			body.append(`public ${objectType} data() {`, NL);
+			body.indent(method => {
+				method.append(`return this.data;`, NL);
+			});
+			body.append('}', NL);
 		});
-		body.append('}', NL);
-	});
-	node.append('}', NL);
+		node.append('}', NL);
+	} else {
+		node.append(`public class ${t.name}Exception extends RSDException {`, NL);
+		node.indent(body => {
+			body.append(`public ${t.name}Exception(String message) {`, NL);
+			body.indent(method => {
+				method.append(`super(Type.${t.name}, message);`, NL);
+			});
+			body.append('}', NL);
+		});
+		node.append('}', NL);
+	}
 
 	return node;
 }

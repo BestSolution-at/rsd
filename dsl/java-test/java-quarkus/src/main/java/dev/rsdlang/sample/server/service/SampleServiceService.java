@@ -54,4 +54,22 @@ public interface SampleServiceService {
 	public SimpleRecord.Data getSimpleRecordWithError(BuilderFactory _factory, String key)
 			throws SampleErrorException;
 
+	public void getSimpleErrorWithValue(BuilderFactory _factory)
+			throws SampleErrorWithValueException;
+
+	public void getSimpleErrorInt(BuilderFactory _factory)
+			throws SampleErrorIntException;
+
+	public void getSimpleErrorBoolean(BuilderFactory _factory)
+			throws SampleErrorBooleanException;
+
+	public void getSimpleErrorEnum(BuilderFactory _factory)
+			throws SampleErrorEnumException;
+
+	public void getSimpleErrorScalar(BuilderFactory _factory)
+			throws SampleErrorScalarException;
+
+	public void getSimpleErrorUnion(BuilderFactory _factory)
+			throws SampleErrorUnionException;
+
 }

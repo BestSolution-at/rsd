@@ -8,6 +8,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -461,20 +462,30 @@ public class ServiceUtils {
 		}
 	}
 
-	public static RSDBlob mapBlob(HttpResponse<Path> response) {
+	public static RSDBlob mapBlob(HttpResponse<InputStream> response) {
 		var mimeType = response.headers().firstValue("Content-Type")
 				.orElse(null);
-		var file = response.body();
-		return _BlobImpl.of(file, mimeType);
+		try (var inputStream = response.body()) {
+			var file = Files.createTempFile("blob", null);
+			Files.copy(inputStream, file, StandardCopyOption.REPLACE_EXISTING);
+			return _BlobImpl.of(file, mimeType);
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
-	public static RSDFile mapFile(HttpResponse<Path> response) {
+	public static RSDFile mapFile(HttpResponse<InputStream> response) {
 		var mimeType = response.headers().firstValue("Content-Type")
 				.orElse(null);
-		var file = response.body();
 		var dispoHeader = response.headers()
 				.firstValue("Content-Disposition").orElseThrow();
 		var fileNameWithQuotes = dispoHeader.substring(dispoHeader.indexOf("filename=") + "filename=".length());
 		var fileName = fileNameWithQuotes.substring(1, fileNameWithQuotes.length() - 1);
-		return _FileImpl.of(file, mimeType, fileName);
+		try (var inputStream = response.body()) {
+			var file = Files.createTempFile("file-blob", null);
+			Files.copy(inputStream, file, StandardCopyOption.REPLACE_EXISTING);
+			return _FileImpl.of(file, mimeType, fileName);
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 }

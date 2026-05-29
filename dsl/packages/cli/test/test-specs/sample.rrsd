@@ -78,6 +78,30 @@ resource SampleService at '/api/samplerecords' {
 			400: SampleError
 			401: SampleError2
 	}
+	GET getSimpleErrorWithValue at 'simpleerrorwithvalue' => {
+			204
+			400: SampleErrorWithValue
+	}
+	GET getSimpleErrorInt at 'simpleerrorint' => {
+			204
+			400: SampleErrorInt
+	}
+	GET getSimpleErrorBoolean at 'simpleerrorboolean' => {
+			204
+			400: SampleErrorBoolean
+	}
+	GET getSimpleErrorEnum at 'simpleerrorenum' => {
+			204
+			400: SampleErrorEnum
+	}
+	GET getSimpleErrorScalar at 'simpleerrorscalar' => {
+			204
+			400: SampleErrorScalar
+	}
+	GET getSimpleErrorUnion at 'simpleerrorunion' => {
+			204
+			400: SampleErrorUnion
+	}
 }
 
 resource ListSampleService at '/api/listsamplerecords' {
@@ -851,6 +875,7 @@ resource BinaryTypes at '/api/binarytypes' {
 	}
 	GET downloadFile at 'downloadFile' => {
 			200
+			400: SampleErrorWithValue
 	}
 
 	POST uploadBlob at 'uploadBlob' => {
@@ -867,6 +892,7 @@ resource BinaryTypes at '/api/binarytypes' {
 	}
 	GET downloadBlob at 'downloadBlob' => {
 			200
+			400: SampleErrorWithValue
 	}
 
 	PUT uploadFileList at 'uploadFileList'

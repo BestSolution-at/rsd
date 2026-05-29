@@ -15,6 +15,7 @@ import dev.rsdlang.sample.server.service.model.RSDBlob;
 import dev.rsdlang.sample.server.service.model.RSDFile;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
 import dev.rsdlang.sample.server.service.model.UploadMixedResult;
+import dev.rsdlang.sample.server.service.SampleErrorWithValueException;
 
 @ApplicationScoped
 public class BinaryTypesServiceImpl implements BinaryTypesService {
@@ -188,12 +189,14 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	@Override
-	public RSDFile downloadFile(BuilderFactory _factory) {
+	public RSDFile downloadFile(BuilderFactory _factory)
+			throws SampleErrorWithValueException {
 		return downloadFileHandler.downloadFile(_factory);
 	}
 
 	@Override
-	public RSDBlob downloadBlob(BuilderFactory _factory) {
+	public RSDBlob downloadBlob(BuilderFactory _factory)
+			throws SampleErrorWithValueException {
 		return downloadBlobHandler.downloadBlob(_factory);
 	}
 
@@ -290,11 +293,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public interface DownloadFileHandler {
-		public RSDFile downloadFile(BuilderFactory _factory);
+		public RSDFile downloadFile(BuilderFactory _factory)
+				throws SampleErrorWithValueException;
 	}
 
 	public interface DownloadBlobHandler {
-		public RSDBlob downloadBlob(BuilderFactory _factory);
+		public RSDBlob downloadBlob(BuilderFactory _factory)
+				throws SampleErrorWithValueException;
 	}
 
 }

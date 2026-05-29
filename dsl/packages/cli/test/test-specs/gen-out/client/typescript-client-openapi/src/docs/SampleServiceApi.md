@@ -17,6 +17,12 @@ All URIs are relative to *http://localhost*
 | [**sampleServiceGetOffsetDateTime**](SampleServiceApi.md#sampleservicegetoffsetdatetime) | **GET** /api/samplerecords/offsetdatetime |  |
 | [**sampleServiceGetScalar**](SampleServiceApi.md#sampleservicegetscalar) | **GET** /api/samplerecords/scalar |  |
 | [**sampleServiceGetShort**](SampleServiceApi.md#sampleservicegetshort) | **GET** /api/samplerecords/short |  |
+| [**sampleServiceGetSimpleErrorBoolean**](SampleServiceApi.md#sampleservicegetsimpleerrorboolean) | **GET** /api/samplerecords/simpleerrorboolean |  |
+| [**sampleServiceGetSimpleErrorEnum**](SampleServiceApi.md#sampleservicegetsimpleerrorenum) | **GET** /api/samplerecords/simpleerrorenum |  |
+| [**sampleServiceGetSimpleErrorInt**](SampleServiceApi.md#sampleservicegetsimpleerrorint) | **GET** /api/samplerecords/simpleerrorint |  |
+| [**sampleServiceGetSimpleErrorScalar**](SampleServiceApi.md#sampleservicegetsimpleerrorscalar) | **GET** /api/samplerecords/simpleerrorscalar |  |
+| [**sampleServiceGetSimpleErrorUnion**](SampleServiceApi.md#sampleservicegetsimpleerrorunion) | **GET** /api/samplerecords/simpleerrorunion |  |
+| [**sampleServiceGetSimpleErrorWithValue**](SampleServiceApi.md#sampleservicegetsimpleerrorwithvalue) | **GET** /api/samplerecords/simpleerrorwithvalue |  |
 | [**sampleServiceGetSimpleRecord**](SampleServiceApi.md#sampleservicegetsimplerecord) | **GET** /api/samplerecords/simplerecord/{key} |  |
 | [**sampleServiceGetSimpleRecordWithError**](SampleServiceApi.md#sampleservicegetsimplerecordwitherror) | **GET** /api/samplerecords/simplerecordwitherror/{key} |  |
 | [**sampleServiceGetString**](SampleServiceApi.md#sampleservicegetstring) | **GET** /api/samplerecords/string |  |
@@ -790,6 +796,366 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetSimpleErrorBoolean
+
+> sampleServiceGetSimpleErrorBoolean()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetSimpleErrorBooleanRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetSimpleErrorBoolean();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | success |  -  |
+| **400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetSimpleErrorEnum
+
+> sampleServiceGetSimpleErrorEnum()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetSimpleErrorEnumRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetSimpleErrorEnum();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | success |  -  |
+| **400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetSimpleErrorInt
+
+> sampleServiceGetSimpleErrorInt()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetSimpleErrorIntRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetSimpleErrorInt();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | success |  -  |
+| **400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetSimpleErrorScalar
+
+> sampleServiceGetSimpleErrorScalar()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetSimpleErrorScalarRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetSimpleErrorScalar();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | success |  -  |
+| **400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetSimpleErrorUnion
+
+> sampleServiceGetSimpleErrorUnion()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetSimpleErrorUnionRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetSimpleErrorUnion();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | success |  -  |
+| **400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceGetSimpleErrorWithValue
+
+> sampleServiceGetSimpleErrorWithValue()
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceGetSimpleErrorWithValueRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  try {
+    const data = await api.sampleServiceGetSimpleErrorWithValue();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | success |  -  |
+| **400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

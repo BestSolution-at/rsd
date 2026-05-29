@@ -23,6 +23,12 @@ export function createSampleServiceService(props: ServiceProps<api.service.Error
 		multiErrorOperation: fnMultiErrorOperation(props),
 		getSimpleRecord: fnGetSimpleRecord(props),
 		getSimpleRecordWithError: fnGetSimpleRecordWithError(props),
+		getSimpleErrorWithValue: fnGetSimpleErrorWithValue(props),
+		getSimpleErrorInt: fnGetSimpleErrorInt(props),
+		getSimpleErrorBoolean: fnGetSimpleErrorBoolean(props),
+		getSimpleErrorEnum: fnGetSimpleErrorEnum(props),
+		getSimpleErrorScalar: fnGetSimpleErrorScalar(props),
+		getSimpleErrorUnion: fnGetSimpleErrorUnion(props),
 	};
 }
 function fnGetBoolean(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getBoolean'] {
@@ -633,6 +639,230 @@ function fnGetSimpleRecordWithError(props: ServiceProps<api.service.ErrorType>):
 			return api.result.ERR(err);
 		} finally {
 			final?.('getSimpleRecordWithError');
+		}
+	};
+}
+
+function fnGetSimpleErrorWithValue(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getSimpleErrorWithValue'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
+	return async () => {
+		try {
+			const $init = (await preFetch?.('getSimpleErrorWithValue')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/samplerecords/simpleerrorwithvalue`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorWithValue', api.result.Void));
+			} else if ($response.status === 400) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.ErrorDataFromJSON($data);
+				const err = {
+					_type: 'SampleErrorWithValue',
+					data: $result,
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorWithValue', err));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('getSimpleErrorWithValue', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('getSimpleErrorWithValue');
+		}
+	};
+}
+
+function fnGetSimpleErrorInt(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getSimpleErrorInt'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
+	return async () => {
+		try {
+			const $init = (await preFetch?.('getSimpleErrorInt')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/samplerecords/simpleerrorint`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorInt', api.result.Void));
+			} else if ($response.status === 400) {
+				const $result = await decodeResponse($response, api.utils.isNumber);
+				const err = {
+					_type: 'SampleErrorInt',
+					data: $result,
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorInt', err));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('getSimpleErrorInt', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('getSimpleErrorInt');
+		}
+	};
+}
+
+function fnGetSimpleErrorBoolean(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getSimpleErrorBoolean'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
+	return async () => {
+		try {
+			const $init = (await preFetch?.('getSimpleErrorBoolean')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/samplerecords/simpleerrorboolean`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorBoolean', api.result.Void));
+			} else if ($response.status === 400) {
+				const $result = await decodeResponse($response, api.utils.isBoolean);
+				const err = {
+					_type: 'SampleErrorBoolean',
+					data: $result,
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorBoolean', err));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('getSimpleErrorBoolean', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('getSimpleErrorBoolean');
+		}
+	};
+}
+
+function fnGetSimpleErrorEnum(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getSimpleErrorEnum'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
+	return async () => {
+		try {
+			const $init = (await preFetch?.('getSimpleErrorEnum')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/samplerecords/simpleerrorenum`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorEnum', api.result.Void));
+			} else if ($response.status === 400) {
+				const $result = await decodeResponse($response, api.model.isSampleEnum);
+				const err = {
+					_type: 'SampleErrorEnum',
+					data: $result,
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorEnum', err));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('getSimpleErrorEnum', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('getSimpleErrorEnum');
+		}
+	};
+}
+
+function fnGetSimpleErrorScalar(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getSimpleErrorScalar'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
+	return async () => {
+		try {
+			const $init = (await preFetch?.('getSimpleErrorScalar')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/samplerecords/simpleerrorscalar`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorScalar', api.result.Void));
+			} else if ($response.status === 400) {
+				const $result = await decodeResponse($response, api.utils.isString);
+				const err = {
+					_type: 'SampleErrorScalar',
+					data: $result,
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorScalar', err));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('getSimpleErrorScalar', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('getSimpleErrorScalar');
+		}
+	};
+}
+
+function fnGetSimpleErrorUnion(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getSimpleErrorUnion'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
+	return async () => {
+		try {
+			const $init = (await preFetch?.('getSimpleErrorUnion')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/samplerecords/simpleerrorunion`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorUnion', api.result.Void));
+			} else if ($response.status === 400) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.UnionFromJSON($data);
+				const err = {
+					_type: 'SampleErrorUnion',
+					data: $result,
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorUnion', err));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('getSimpleErrorUnion', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('getSimpleErrorUnion');
 		}
 	};
 }

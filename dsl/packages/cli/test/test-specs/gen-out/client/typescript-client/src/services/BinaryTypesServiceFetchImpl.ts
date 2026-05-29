@@ -937,7 +937,7 @@ function fnTwoBinariesAddition(props: ServiceProps<api.service.ErrorType>): api.
 
 function fnDownloadFile(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['downloadFile'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
-	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
 	return async () => {
 		try {
 			const $init = (await preFetch?.('downloadFile')) ?? {};
@@ -959,6 +959,14 @@ function fnDownloadFile(props: ServiceProps<api.service.ErrorType>): api.service
 				}
 				const $result = new File([$data], fileName, { type: $data.type });
 				return safeExecute(api.result.OK($result), () => onSuccess?.('downloadFile', $result));
+			} else if ($response.status === 400) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.ErrorDataFromJSON($data);
+				const err = {
+					_type: 'SampleErrorWithValue',
+					data: $result,
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('downloadFile', err));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
@@ -975,7 +983,7 @@ function fnDownloadFile(props: ServiceProps<api.service.ErrorType>): api.service
 
 function fnDownloadBlob(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['downloadBlob'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
-	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
 	return async () => {
 		try {
 			const $init = (await preFetch?.('downloadBlob')) ?? {};
@@ -991,6 +999,14 @@ function fnDownloadBlob(props: ServiceProps<api.service.ErrorType>): api.service
 				const $data = await $response.blob();
 				const $result = $data;
 				return safeExecute(api.result.OK($result), () => onSuccess?.('downloadBlob', $result));
+			} else if ($response.status === 400) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.ErrorDataFromJSON($data);
+				const err = {
+					_type: 'SampleErrorWithValue',
+					data: $result,
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('downloadBlob', err));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);

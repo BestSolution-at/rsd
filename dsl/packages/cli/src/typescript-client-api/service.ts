@@ -1,5 +1,12 @@
 import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
-import { isMBuiltinType, isMInlineEnumType, MParameter, MResolvedService, MReturnType } from '../model.js';
+import {
+	isMBuiltinType,
+	isMInlineEnumType,
+	MOperationError,
+	MParameter,
+	MResolvedService,
+	MReturnType,
+} from '../model.js';
 import {
 	builtinToJSType,
 	generateCompilationUnit,
@@ -33,7 +40,7 @@ function generateServiceContent(
 					o.resultType,
 					config,
 					fqn,
-				)}, ${toErrorType(o.errors, fqn)}>>;`,
+				)}, ${toErrorType(o.operationErrors, fqn)}>>;`,
 				NL,
 			);
 		});
@@ -42,13 +49,13 @@ function generateServiceContent(
 	return node;
 }
 
-function toErrorType(errors: string[], fqn: (type: string, typeOnly: boolean) => string) {
+function toErrorType(errors: MOperationError[], fqn: (type: string, typeOnly: boolean) => string) {
 	const Status = fqn(`StatusRSDError:./Errors.ts`, true);
 	const Native = fqn(`NativeRSDError:./Errors.ts`, true);
 	if (errors.length === 0) {
 		return `${Status} | ${Native}`;
 	} else {
-		return errors.map(e => fqn(`${e}Error:./Errors.ts`, true)).join(' | ') + ` | ${Status} | ${Native}`;
+		return errors.map(e => fqn(`${e.error}Error:./Errors.ts`, true)).join(' | ') + ` | ${Status} | ${Native}`;
 	}
 }
 

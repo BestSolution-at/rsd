@@ -203,8 +203,8 @@ public interface BinaryTypesService extends BaseService {
 			RSDBlob dataBlob, 
 			RSDFile dataFile);
 
-	public RSDFile downloadFile();
+	public RSDFile downloadFile() throws SampleErrorWithValueException;
 
-	public RSDBlob downloadBlob();
+	public RSDBlob downloadBlob() throws SampleErrorWithValueException;
 
 }

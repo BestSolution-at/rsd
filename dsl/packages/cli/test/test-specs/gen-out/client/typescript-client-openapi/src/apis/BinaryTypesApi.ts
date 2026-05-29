@@ -39,6 +39,11 @@ import {
     BinaryTypesUploadMixedRequestRsdPayloadToJSON,
 } from '../models/BinaryTypesUploadMixedRequestRsdPayload.js';
 import {
+    type ErrorData,
+    ErrorDataFromJSON,
+    ErrorDataToJSON,
+} from '../models/ErrorData.js';
+import {
     type MixedResult,
     MixedResultFromJSON,
     MixedResultToJSON,

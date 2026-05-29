@@ -177,4 +177,75 @@ public class SampleServiceServiceTest {
 			assertEquals("This is a sample error from the server", e.getMessage());
 		}
 	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void getSimpleErrorWithValue(SampleServiceService service) {
+		try {
+			service.getSimpleErrorWithValue();
+			fail("Expected SampleErrorWithValueException to be thrown");
+		} catch (SampleErrorWithValueException e) {
+			assertEquals("This is a sample error with value from the server", e.getMessage());
+			assertEquals("An error message", e.data().message());
+		}
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void getSimpleErrorInt(SampleServiceService service) {
+		try {
+			service.getSimpleErrorInt();
+			fail("Expected SampleErrorIntException to be thrown");
+		} catch (SampleErrorIntException e) {
+			assertEquals("This is a sample int error from the server", e.getMessage());
+			assertEquals(123, e.data());
+		}
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void getSimpleErrorBoolean(SampleServiceService service) {
+		try {
+			service.getSimpleErrorBoolean();
+			fail("Expected SampleErrorBooleanException to be thrown");
+		} catch (SampleErrorBooleanException e) {
+			assertEquals("This is a sample boolean error from the server", e.getMessage());
+			assertTrue(e.data());
+		}
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void getSimpleErrorEnum(SampleServiceService service) {
+		try {
+			service.getSimpleErrorEnum();
+			fail("Expected SampleErrorEnumException to be thrown");
+		} catch (SampleErrorEnumException e) {
+			assertEquals("This is a sample enum error from the server", e.getMessage());
+			assertEquals(SampleEnum.A, e.data());
+		}
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void getSimpleErrorScalar(SampleServiceService service) {
+		try {
+			service.getSimpleErrorScalar();
+			fail("Expected SampleErrorScalarException to be thrown");
+		} catch (SampleErrorScalarException e) {
+			assertEquals("This is a sample scalar error from the server", e.getMessage());
+			assertEquals(ZoneId.of("America/New_York"), e.data());
+		}
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void getSimpleErrorUnion(SampleServiceService service) {
+		try {
+			service.getSimpleErrorUnion();
+			fail("Expected SampleErrorUnionException to be thrown");
+		} catch (SampleErrorUnionException e) {
+			assertEquals("This is a sample union error from the server", e.getMessage());
+		}
+	}
 }

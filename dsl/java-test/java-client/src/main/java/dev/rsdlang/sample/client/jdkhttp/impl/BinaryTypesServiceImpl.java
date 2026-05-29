@@ -5,7 +5,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.net.URI;
-import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -20,15 +19,18 @@ import dev.rsdlang.sample.client.impl.model.json.BinaryTypesUploadMixedDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.BinaryTypesUploadMixedNilDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.BinaryTypesUploadMixedOptDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.BinaryTypesUploadMixedOptNilDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.ErrorDataDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.MixedResultDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.UploadMixedResultDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.model.ErrorData;
 import dev.rsdlang.sample.client.model.MixedResult;
 import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.UploadMixedResult;
 import dev.rsdlang.sample.client.RSDException;
+import dev.rsdlang.sample.client.SampleErrorWithValueException;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class BinaryTypesServiceImpl implements BinaryTypesService {
@@ -2604,7 +2606,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public RSDFile downloadFile() {
+	public RSDFile downloadFile()
+			throws SampleErrorWithValueException {
 		var $path = "%s/api/binarytypes/downloadFile".formatted(
 				this.baseURI());
 
@@ -2617,13 +2620,19 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			this.lifecycleHook.preRequest("downloadFile", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
-			var $response = this.httpClient().send($request, BodyHandlers.ofFile(Files.createTempFile("rsd-download","tmp")));
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				var $rv = ServiceUtils.mapFile($response);
 				this.lifecycleHook.onSuccess("downloadFile", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
+			} else if ($response.statusCode() == 400) {
+				var $errorData = ServiceUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of downloadFile failed");
+				var exception = new SampleErrorWithValueException($message, $errorData);
+				this.lifecycleHook.onError("downloadFile", exception, this.client.createResponseAdaptable($response));
+				throw exception;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.mapFileToString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("downloadFile", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2642,7 +2651,8 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public RSDBlob downloadBlob() {
+	public RSDBlob downloadBlob()
+			throws SampleErrorWithValueException {
 		var $path = "%s/api/binarytypes/downloadBlob".formatted(
 				this.baseURI());
 
@@ -2655,13 +2665,19 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			this.lifecycleHook.preRequest("downloadBlob", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
-			var $response = this.httpClient().send($request, BodyHandlers.ofFile(Files.createTempFile("rsd-download","tmp")));
+			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				var $rv = ServiceUtils.mapBlob($response);
 				this.lifecycleHook.onSuccess("downloadBlob", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
+			} else if ($response.statusCode() == 400) {
+				var $errorData = ServiceUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of downloadBlob failed");
+				var exception = new SampleErrorWithValueException($message, $errorData);
+				this.lifecycleHook.onError("downloadBlob", exception, this.client.createResponseAdaptable($response));
+				throw exception;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.mapFileToString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
 			this.lifecycleHook.onError("downloadBlob", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {

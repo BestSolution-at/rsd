@@ -524,16 +524,21 @@ record MixedResult {
 	dataBlob: int
 }
 
-/*record Node {
-	parent?: Node[]
-	children: Node[]
-}*/
 
 enum NilResult = UNDEFINED | NULL | DEFINED;
 
+record ErrorData {
+	message: string
+}
+
 error SampleError;
 error SampleError2;
-
+error SampleErrorWithValue = ErrorData;
+error SampleErrorInt = int;
+error SampleErrorBoolean = boolean;
+error SampleErrorEnum = SampleEnum;
+error SampleErrorScalar = ZoneId;
+error SampleErrorUnion = Union;
 
 service SampleService {
 		operation getBoolean(): boolean;
@@ -557,6 +562,13 @@ service SampleService {
 		
 		operation getSimpleRecord(key: string): SimpleRecord;
 		operation getSimpleRecordWithError(key: string): SimpleRecord throws SampleError;
+		
+		operation getSimpleErrorWithValue() throws SampleErrorWithValue;
+		operation getSimpleErrorInt() throws SampleErrorInt;
+		operation getSimpleErrorBoolean() throws SampleErrorBoolean;
+		operation getSimpleErrorEnum() throws SampleErrorEnum;
+		operation getSimpleErrorScalar() throws SampleErrorScalar;
+		operation getSimpleErrorUnion() throws SampleErrorUnion;
 }
 
 service ListSampleService {
@@ -1809,6 +1821,6 @@ service BinaryTypes {
 		dataFile: file
 	): int[];
 	
-	operation downloadFile(): file;
-	operation downloadBlob(): blob;
+	operation downloadFile(): file throws SampleErrorWithValue;
+	operation downloadBlob(): blob throws SampleErrorWithValue;
 }

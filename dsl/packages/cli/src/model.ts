@@ -46,14 +46,14 @@ export function isMStreamType(value: unknown): value is MStreamType {
 	return value === 'blob' || value === 'file';
 }
 
-export type MRSDModel<T extends MUserType = MUserType, S extends MService = MService> = {
+export type MRSDModel<T extends MUserType = MUserType, S extends MService = MService, E extends MError = MError> = {
 	'@type': 'RSDModel';
 	elements: readonly T[];
 	services: readonly S[];
-	errors: readonly MError[];
+	errors: readonly E[];
 };
 
-export type MResolvedRSDModel = MRSDModel<MResolvedUserType, MResolvedService>;
+export type MResolvedRSDModel = MRSDModel<MResolvedUserType, MResolvedService, MResolvedError>;
 
 export function isMRSDModel(value: unknown): value is MRSDModel {
 	return isObject(value) && '@type' in value && value['@type'] === 'RSDModel';
@@ -310,7 +310,7 @@ export type MOperationError = {
 
 export type MResolvedOperation = MOperation & {
 	resolved: {
-		errors: MError[];
+		errors: MResolvedError[];
 	};
 };
 
@@ -377,17 +377,54 @@ export type MReturnType = MReturnTypeInlineEnumType | MReturnTypeNoneInlineEnumT
 export type MError = {
 	'@type': 'Error';
 	name: string;
+	contentType?: string;
+};
+
+export type MResolvedError = MError & {
+	resolvedContentType?: Exclude<MResolvedUserType, MResolvedInlineEnumType | MResolvedMixinType> | MBuiltinType;
 };
 
 export function resolve(model: MRSDModel): MResolvedRSDModel {
 	const solvedMixins = new Map<string, MResolvedMixinType>();
 	const solvedRecords = new Map<string, MResolvedRecordType>();
 	const solvedUnions = new Map<string, MResolvedUnionType>();
+
+	const elements = model.elements.map(t => mapToResolved(t, model, solvedMixins, solvedRecords, solvedUnions));
+	const errors = model.errors.map(e =>
+		mapToResolvedError(
+			e,
+			elements.filter(v => !isMInlineEnumType(v)).filter(v => !isMMixinType(v)),
+		),
+	);
 	return {
 		...model,
-		elements: model.elements.map(t => mapToResolved(t, model, solvedMixins, solvedRecords, solvedUnions)),
-		services: model.services.map(s => mapToResolvedService(s, model)),
+		elements,
+		services: model.services.map(s => mapToResolvedService(s, errors)),
+		errors,
 	};
+}
+
+function mapToResolvedError(
+	error: MError,
+	model: Exclude<MResolvedUserType, MResolvedInlineEnumType | MResolvedMixinType>[],
+): MResolvedError {
+	if (error.contentType) {
+		if (isMBuiltinType(error.contentType)) {
+			return {
+				...error,
+				resolvedContentType: error.contentType,
+			};
+		}
+		const resolvedContentType = model.find(e => e.name === error.contentType);
+		if (resolvedContentType) {
+			return {
+				...error,
+				resolvedContentType,
+			};
+		}
+		console.warn(`Could not resolve content type '${error.contentType}' for error '${error.name}'`);
+	}
+	return error;
 }
 
 function mapToResolved(
@@ -565,18 +602,18 @@ function mapToResolvedUnionType(
 	return rv;
 }
 
-function mapToResolvedService(m: MService, model: MRSDModel): MResolvedService {
+function mapToResolvedService(m: MService, errors: MResolvedError[]): MResolvedService {
 	return {
 		...m,
-		operations: m.operations.map(o => mapToResolvedOperation(o, model)),
+		operations: m.operations.map(o => mapToResolvedOperation(o, errors)),
 	};
 }
 
-function mapToResolvedOperation(o: MOperation, model: MRSDModel): MResolvedOperation {
+function mapToResolvedOperation(o: MOperation, errors: MResolvedError[]): MResolvedOperation {
 	return {
 		...o,
 		resolved: {
-			errors: o.operationErrors.map(e => model.errors.find(err => err.name === e.error)).filter(isDefined),
+			errors: o.operationErrors.map(e => errors.find(err => err.name === e.error)).filter(isDefined),
 		},
 	};
 }

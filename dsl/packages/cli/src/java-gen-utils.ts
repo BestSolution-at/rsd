@@ -6,11 +6,18 @@ import {
 	MParameterInlineEnumType,
 	MParameterNoneInlineEnumType,
 	MResolvedBaseProperty,
+	MResolvedEnumType,
+	MResolvedMixinType,
+	MResolvedRecordType,
+	MResolvedScalarType,
+	MResolvedUnionType,
 	isMBuiltinType,
+	isMEnumType,
 	isMInlineEnumType,
 	isMKeyProperty,
 	isMMixinType,
 	isMRevisionProperty,
+	isMScalarType,
 } from './model.js';
 import { toFirstUpper } from './util.js';
 
@@ -401,6 +408,40 @@ export function computeAPITypeNG(
 	}
 
 	return type;
+}
+
+export function toAPIType(
+	type:
+		| MBuiltinType
+		| MResolvedEnumType
+		| MResolvedMixinType
+		| MResolvedUnionType
+		| MResolvedRecordType
+		| MResolvedScalarType,
+	nativeTypeSubstitues: Record<string, string> | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+	options?: {
+		objectType?: boolean;
+	},
+) {
+	if (isMBuiltinType(type)) {
+		if (options?.objectType) {
+			return builtinToJavaObjectType(type, t => t);
+		}
+		return builtinToJavaType(type, t => t);
+	} else if (isMEnumType(type)) {
+		return fqn(`${basePackageName}.${type.name}`);
+	} else if (isMMixinType(type)) {
+		return fqn(`${basePackageName}.${type.name}Mixin`);
+	} else if (isMScalarType(type)) {
+		if (nativeTypeSubstitues !== undefined && type.name in nativeTypeSubstitues) {
+			return fqn(nativeTypeSubstitues[type.name]);
+		}
+		return 'String';
+	} else {
+		return fqn(`${basePackageName}.${type.name}`) + '.Data';
+	}
 }
 
 export function toPath(targetFolder: string, packageName: string) {

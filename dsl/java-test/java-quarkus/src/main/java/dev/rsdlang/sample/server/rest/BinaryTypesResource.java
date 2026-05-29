@@ -30,6 +30,7 @@ import dev.rsdlang.sample.server.service.BinaryTypesService;
 import dev.rsdlang.sample.server.service.model.RSDBlob;
 import dev.rsdlang.sample.server.service.model.RSDFile;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
+import dev.rsdlang.sample.server.service.SampleErrorWithValueException;
 import org.jboss.resteasy.reactive.multipart.FileUpload;
 import org.jboss.resteasy.reactive.RestForm;
 
@@ -72,15 +73,23 @@ public class BinaryTypesResource {
 	@GET
 	@Path("downloadFile")
 	public Response downloadFile(@HeaderParam("Accept") List<String> $acceptHeaders) {
-		var result = service.downloadFile(builderFactory);
-		return responseBuilder.downloadFile(result, computeResponseContentType($acceptHeaders)).build();
+		try {
+			var result = service.downloadFile(builderFactory);
+			return responseBuilder.downloadFile(result, computeResponseContentType($acceptHeaders)).build();
+		} catch (SampleErrorWithValueException e) {
+			return _RestUtils.toResponse(400, e);
+		}
 	}
 
 	@GET
 	@Path("downloadBlob")
 	public Response downloadBlob(@HeaderParam("Accept") List<String> $acceptHeaders) {
-		var result = service.downloadBlob(builderFactory);
-		return responseBuilder.downloadBlob(result, computeResponseContentType($acceptHeaders)).build();
+		try {
+			var result = service.downloadBlob(builderFactory);
+			return responseBuilder.downloadBlob(result, computeResponseContentType($acceptHeaders)).build();
+		} catch (SampleErrorWithValueException e) {
+			return _RestUtils.toResponse(400, e);
+		}
 	}
 
 	@POST

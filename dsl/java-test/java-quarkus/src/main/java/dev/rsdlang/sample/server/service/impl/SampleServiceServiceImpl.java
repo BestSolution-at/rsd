@@ -14,7 +14,13 @@ import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
 import dev.rsdlang.sample.server.service.SampleError2Exception;
+import dev.rsdlang.sample.server.service.SampleErrorBooleanException;
+import dev.rsdlang.sample.server.service.SampleErrorEnumException;
 import dev.rsdlang.sample.server.service.SampleErrorException;
+import dev.rsdlang.sample.server.service.SampleErrorIntException;
+import dev.rsdlang.sample.server.service.SampleErrorScalarException;
+import dev.rsdlang.sample.server.service.SampleErrorUnionException;
+import dev.rsdlang.sample.server.service.SampleErrorWithValueException;
 import dev.rsdlang.sample.server.service.SampleServiceService;
 
 @ApplicationScoped
@@ -38,8 +44,14 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 	private final MultiErrorOperationHandler multiErrorOperationHandler;
 	private final GetSimpleRecordHandler getSimpleRecordHandler;
 	private final GetSimpleRecordWithErrorHandler getSimpleRecordWithErrorHandler;
+	private final GetSimpleErrorWithValueHandler getSimpleErrorWithValueHandler;
+	private final GetSimpleErrorIntHandler getSimpleErrorIntHandler;
+	private final GetSimpleErrorBooleanHandler getSimpleErrorBooleanHandler;
+	private final GetSimpleErrorEnumHandler getSimpleErrorEnumHandler;
+	private final GetSimpleErrorScalarHandler getSimpleErrorScalarHandler;
+	private final GetSimpleErrorUnionHandler getSimpleErrorUnionHandler;
 
-	public SampleServiceServiceImpl(GetBooleanHandler getBooleanHandler, GetShortHandler getShortHandler, GetIntHandler getIntHandler, GetLongHandler getLongHandler, GetFloatHandler getFloatHandler, GetDoubleHandler getDoubleHandler, GetStringHandler getStringHandler, GetLocalDateHandler getLocalDateHandler, GetLocalDateTimeHandler getLocalDateTimeHandler, GetLocalTimeHandler getLocalTimeHandler, GetOffsetDateTimeHandler getOffsetDateTimeHandler, GetZonedDateTimeHandler getZonedDateTimeHandler, GetScalarHandler getScalarHandler, GetEnumHandler getEnumHandler, VoidOperationHandler voidOperationHandler, ErrorOperationHandler errorOperationHandler, MultiErrorOperationHandler multiErrorOperationHandler, GetSimpleRecordHandler getSimpleRecordHandler, GetSimpleRecordWithErrorHandler getSimpleRecordWithErrorHandler) {
+	public SampleServiceServiceImpl(GetBooleanHandler getBooleanHandler, GetShortHandler getShortHandler, GetIntHandler getIntHandler, GetLongHandler getLongHandler, GetFloatHandler getFloatHandler, GetDoubleHandler getDoubleHandler, GetStringHandler getStringHandler, GetLocalDateHandler getLocalDateHandler, GetLocalDateTimeHandler getLocalDateTimeHandler, GetLocalTimeHandler getLocalTimeHandler, GetOffsetDateTimeHandler getOffsetDateTimeHandler, GetZonedDateTimeHandler getZonedDateTimeHandler, GetScalarHandler getScalarHandler, GetEnumHandler getEnumHandler, VoidOperationHandler voidOperationHandler, ErrorOperationHandler errorOperationHandler, MultiErrorOperationHandler multiErrorOperationHandler, GetSimpleRecordHandler getSimpleRecordHandler, GetSimpleRecordWithErrorHandler getSimpleRecordWithErrorHandler, GetSimpleErrorWithValueHandler getSimpleErrorWithValueHandler, GetSimpleErrorIntHandler getSimpleErrorIntHandler, GetSimpleErrorBooleanHandler getSimpleErrorBooleanHandler, GetSimpleErrorEnumHandler getSimpleErrorEnumHandler, GetSimpleErrorScalarHandler getSimpleErrorScalarHandler, GetSimpleErrorUnionHandler getSimpleErrorUnionHandler) {
 		this.getBooleanHandler = getBooleanHandler;
 		this.getShortHandler = getShortHandler;
 		this.getIntHandler = getIntHandler;
@@ -59,6 +71,12 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		this.multiErrorOperationHandler = multiErrorOperationHandler;
 		this.getSimpleRecordHandler = getSimpleRecordHandler;
 		this.getSimpleRecordWithErrorHandler = getSimpleRecordWithErrorHandler;
+		this.getSimpleErrorWithValueHandler = getSimpleErrorWithValueHandler;
+		this.getSimpleErrorIntHandler = getSimpleErrorIntHandler;
+		this.getSimpleErrorBooleanHandler = getSimpleErrorBooleanHandler;
+		this.getSimpleErrorEnumHandler = getSimpleErrorEnumHandler;
+		this.getSimpleErrorScalarHandler = getSimpleErrorScalarHandler;
+		this.getSimpleErrorUnionHandler = getSimpleErrorUnionHandler;
 	}
 
 	@Override
@@ -160,6 +178,42 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		return getSimpleRecordWithErrorHandler.getSimpleRecordWithError(_factory, key);
 	}
 
+	@Override
+	public void getSimpleErrorWithValue(BuilderFactory _factory)
+			throws SampleErrorWithValueException {
+		getSimpleErrorWithValueHandler.getSimpleErrorWithValue(_factory);
+	}
+
+	@Override
+	public void getSimpleErrorInt(BuilderFactory _factory)
+			throws SampleErrorIntException {
+		getSimpleErrorIntHandler.getSimpleErrorInt(_factory);
+	}
+
+	@Override
+	public void getSimpleErrorBoolean(BuilderFactory _factory)
+			throws SampleErrorBooleanException {
+		getSimpleErrorBooleanHandler.getSimpleErrorBoolean(_factory);
+	}
+
+	@Override
+	public void getSimpleErrorEnum(BuilderFactory _factory)
+			throws SampleErrorEnumException {
+		getSimpleErrorEnumHandler.getSimpleErrorEnum(_factory);
+	}
+
+	@Override
+	public void getSimpleErrorScalar(BuilderFactory _factory)
+			throws SampleErrorScalarException {
+		getSimpleErrorScalarHandler.getSimpleErrorScalar(_factory);
+	}
+
+	@Override
+	public void getSimpleErrorUnion(BuilderFactory _factory)
+			throws SampleErrorUnionException {
+		getSimpleErrorUnionHandler.getSimpleErrorUnion(_factory);
+	}
+
 	public interface GetBooleanHandler {
 		public boolean getBoolean(BuilderFactory _factory);
 	}
@@ -238,6 +292,36 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 	public interface GetSimpleRecordWithErrorHandler {
 		public SimpleRecord.Data getSimpleRecordWithError(BuilderFactory _factory, String key)
 				throws SampleErrorException;
+	}
+
+	public interface GetSimpleErrorWithValueHandler {
+		public void getSimpleErrorWithValue(BuilderFactory _factory)
+				throws SampleErrorWithValueException;
+	}
+
+	public interface GetSimpleErrorIntHandler {
+		public void getSimpleErrorInt(BuilderFactory _factory)
+				throws SampleErrorIntException;
+	}
+
+	public interface GetSimpleErrorBooleanHandler {
+		public void getSimpleErrorBoolean(BuilderFactory _factory)
+				throws SampleErrorBooleanException;
+	}
+
+	public interface GetSimpleErrorEnumHandler {
+		public void getSimpleErrorEnum(BuilderFactory _factory)
+				throws SampleErrorEnumException;
+	}
+
+	public interface GetSimpleErrorScalarHandler {
+		public void getSimpleErrorScalar(BuilderFactory _factory)
+				throws SampleErrorScalarException;
+	}
+
+	public interface GetSimpleErrorUnionHandler {
+		public void getSimpleErrorUnion(BuilderFactory _factory)
+				throws SampleErrorUnionException;
 	}
 
 }
