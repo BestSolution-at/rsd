@@ -3,4 +3,10 @@ export type ZoneId = string;
 export function ZoneIdFromString(value: string): ZoneId {
 	return value;
 }
+export function ZoneIdToString(value: ZoneId): string {
+	return value;
+}
+export function isZoneId(value: unknown): value is ZoneId {
+	return typeof value === 'string';
+}
 
