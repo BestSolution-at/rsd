@@ -57,10 +57,10 @@ export interface BodyParameterTypesService {
 	simpleZonedDateTimeBodyParamOpt(bodyZonedDateTime?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeBodyParamNil(bodyZonedDateTime: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeBodyParamOptNil(bodyZonedDateTime?: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	simpleScalarBodyParam(bodyScalar: string): Promise<Result<ZoneId, StatusRSDError | NativeRSDError>>;
-	simpleScalarBodyParamOpt(bodyScalar?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	simpleScalarBodyParamNil(bodyScalar: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	simpleScalarBodyParamOptNil(bodyScalar?: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleScalarBodyParam(bodyScalar: ZoneId): Promise<Result<ZoneId, StatusRSDError | NativeRSDError>>;
+	simpleScalarBodyParamOpt(bodyScalar?: ZoneId): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleScalarBodyParamNil(bodyScalar: ZoneId | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleScalarBodyParamOptNil(bodyScalar?: ZoneId | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleEnumBodyParam(bodyEnum: SampleEnum): Promise<Result<SampleEnum, StatusRSDError | NativeRSDError>>;
 	simpleEnumBodyParamOpt(bodyEnum?: SampleEnum): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleEnumBodyParamNil(bodyEnum: SampleEnum | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;

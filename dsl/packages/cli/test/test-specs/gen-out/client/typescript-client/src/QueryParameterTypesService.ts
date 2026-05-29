@@ -31,8 +31,8 @@ export interface QueryParameterTypesService {
 	simpleOffsetDateTimeQueryParamOpt(queryValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeQueryParam(queryValue: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeQueryParamOpt(queryValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	simpleScalarQueryParam(queryValue: string): Promise<Result<ZoneId, StatusRSDError | NativeRSDError>>;
-	simpleScalarQueryParamOpt(queryValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleScalarQueryParam(queryValue: ZoneId): Promise<Result<ZoneId, StatusRSDError | NativeRSDError>>;
+	simpleScalarQueryParamOpt(queryValue?: ZoneId): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleEnumQueryParam(queryValue: SampleEnum): Promise<Result<SampleEnum, StatusRSDError | NativeRSDError>>;
 	simpleEnumQueryParamOpt(queryValue?: SampleEnum): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	multiQueryParam(valueA: string, valueB: number): Promise<Result<string, StatusRSDError | NativeRSDError>>;

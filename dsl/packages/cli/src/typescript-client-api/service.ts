@@ -112,7 +112,7 @@ function toParameter(
 	if (isMBuiltinType(parameter.type)) {
 		type = builtinToJSType(parameter.type);
 	} else if (parameter.variant === 'scalar') {
-		type = 'string';
+		type = fqn(`${parameter.type}:./model/Scalars.ts`, true);
 	} else if (isMInlineEnumType(parameter.type)) {
 		type = parameter.type.entries.map(e => `'${e.name}'`).join(' | ');
 		if (parameter.array) {

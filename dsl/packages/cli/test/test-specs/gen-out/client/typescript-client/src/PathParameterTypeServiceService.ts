@@ -17,7 +17,7 @@ export interface PathParameterTypeServiceService {
 	simpleLocalTimePathParam(pathLocalTime: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	simpleOffsetDateTimePathParam(pathOffsetDateTime: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimePathParam(pathZonedDateTime: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
-	simpleScalarPathParam(pathScalar: string): Promise<Result<ZoneId, StatusRSDError | NativeRSDError>>;
+	simpleScalarPathParam(pathScalar: ZoneId): Promise<Result<ZoneId, StatusRSDError | NativeRSDError>>;
 	simpleEnumPathParam(pathEnum: SampleEnum): Promise<Result<SampleEnum, StatusRSDError | NativeRSDError>>;
 	multiPathParam(valueA: string, valueB: number): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 }
