@@ -2,6 +2,7 @@
 import type { Result } from './_result-utils.js';
 import type { NativeRSDError, StatusRSDError } from './Errors.js';
 import type { NilResult } from './model/NilResult.js';
+import type { ZoneId } from './model/Scalars.js';
 import type { SampleEnum } from './model/SampleEnum.js';
 import type { SimpleRecord } from './model/SimpleRecord.js';
 
@@ -54,7 +55,7 @@ export interface ListBodyParameterTypesService {
 	listZonedDateTimeBodyParamOpt(bodyZonedDateTime?: string[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listZonedDateTimeBodyParamNil(bodyZonedDateTime: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listZonedDateTimeBodyParamOptNil(bodyZonedDateTime?: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	listScalarBodyParam(bodyScalar: string[]): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
+	listScalarBodyParam(bodyScalar: string[]): Promise<Result<ZoneId[], StatusRSDError | NativeRSDError>>;
 	listScalarBodyParamOpt(bodyScalar?: string[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listScalarBodyParamNil(bodyScalar: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listScalarBodyParamOptNil(bodyScalar?: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;

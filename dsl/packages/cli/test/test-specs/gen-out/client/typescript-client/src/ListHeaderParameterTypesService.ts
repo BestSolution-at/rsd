@@ -2,6 +2,7 @@
 import type { Result } from './_result-utils.js';
 import type { NativeRSDError, StatusRSDError } from './Errors.js';
 import type { NilResult } from './model/NilResult.js';
+import type { ZoneId } from './model/Scalars.js';
 import type { SampleEnum } from './model/SampleEnum.js';
 import type { SimpleRecord } from './model/SimpleRecord.js';
 
@@ -54,7 +55,7 @@ export interface ListHeaderParameterTypesService {
 	listZonedDateTimeHeaderParamOpt(headerValue?: string[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listZonedDateTimeHeaderParamNil(headerValue: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listZonedDateTimeHeaderParamOptNil(headerValue?: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	listScalarHeaderParam(headerValue: string[]): Promise<Result<string[], StatusRSDError | NativeRSDError>>;
+	listScalarHeaderParam(headerValue: string[]): Promise<Result<ZoneId[], StatusRSDError | NativeRSDError>>;
 	listScalarHeaderParamOpt(headerValue?: string[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listScalarHeaderParamNil(headerValue: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listScalarHeaderParamOptNil(headerValue?: string[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
