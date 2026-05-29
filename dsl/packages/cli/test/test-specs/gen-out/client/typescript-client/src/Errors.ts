@@ -29,10 +29,10 @@ export type StatusRSDError = RSDError<'_Status'> & {
 export type SampleErrorError = RSDError<'SampleError'> & { message: string };
 export type SampleError2Error = RSDError<'SampleError2'> & { message: string };
 export type SampleErrorWithValueError = RSDError<'SampleErrorWithValue'> & { data: ErrorData };
-export type SampleErrorIntError = RSDError<'SampleErrorInt'> & { data: number }; // TBD
-export type SampleErrorBooleanError = RSDError<'SampleErrorBoolean'> & { data: boolean }; // TBD
+export type SampleErrorIntError = RSDError<'SampleErrorInt'> & { data: number };
+export type SampleErrorBooleanError = RSDError<'SampleErrorBoolean'> & { data: boolean };
 export type SampleErrorEnumError = RSDError<'SampleErrorEnum'> & { data: SampleEnum };
-export type SampleErrorScalarError = RSDError<'SampleErrorScalar'> & { data: string }; // TBD
+export type SampleErrorScalarError = RSDError<'SampleErrorScalar'> & { data: string };
 export type SampleErrorUnionError = RSDError<'SampleErrorUnion'> & { data: Union };
 
 export function isNativeError(value: unknown): value is NativeRSDError {

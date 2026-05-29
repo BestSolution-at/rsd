@@ -481,7 +481,7 @@ public class ServiceUtils {
 		var fileNameWithQuotes = dispoHeader.substring(dispoHeader.indexOf("filename=") + "filename=".length());
 		var fileName = fileNameWithQuotes.substring(1, fileNameWithQuotes.length() - 1);
 		try (var inputStream = response.body()) {
-			var file = Files.createTempFile("blob", null);
+			var file = Files.createTempFile("file-blob", null);
 			Files.copy(inputStream, file, StandardCopyOption.REPLACE_EXISTING);
 			return _FileImpl.of(file, mimeType, fileName);
 		} catch (IOException e) {

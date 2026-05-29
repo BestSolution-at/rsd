@@ -824,7 +824,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				return;
 			} else if ($response.statusCode() == 400) {
 				var $errorData = ServiceUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of getSimpleErrorWithValue failed");
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorWithValue failed");
 				var exception = new SampleErrorWithValueException($message, $errorData);
 				this.lifecycleHook.onError("getSimpleErrorWithValue", exception, this.client.createResponseAdaptable($response));
 				throw exception;
@@ -868,7 +868,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				return;
 			} else if ($response.statusCode() == 400) {
 				var $errorData = ServiceUtils.mapInt($response);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of getSimpleErrorInt failed");
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorInt failed");
 				var exception = new SampleErrorIntException($message, $errorData);
 				this.lifecycleHook.onError("getSimpleErrorInt", exception, this.client.createResponseAdaptable($response));
 				throw exception;
@@ -912,7 +912,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				return;
 			} else if ($response.statusCode() == 400) {
 				var $errorData = ServiceUtils.mapBoolean($response);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of getSimpleErrorBoolean failed");
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorBoolean failed");
 				var exception = new SampleErrorBooleanException($message, $errorData);
 				this.lifecycleHook.onError("getSimpleErrorBoolean", exception, this.client.createResponseAdaptable($response));
 				throw exception;
@@ -956,7 +956,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				return;
 			} else if ($response.statusCode() == 400) {
 				var $errorData = ServiceUtils.mapLiteral($response, SampleEnum::valueOf);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of getSimpleErrorEnum failed");
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorEnum failed");
 				var exception = new SampleErrorEnumException($message, $errorData);
 				this.lifecycleHook.onError("getSimpleErrorEnum", exception, this.client.createResponseAdaptable($response));
 				throw exception;
@@ -1000,7 +1000,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				return;
 			} else if ($response.statusCode() == 400) {
 				var $errorData = ServiceUtils.mapLiteral($response, ZoneId::of);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of getSimpleErrorScalar failed");
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorScalar failed");
 				var exception = new SampleErrorScalarException($message, $errorData);
 				this.lifecycleHook.onError("getSimpleErrorScalar", exception, this.client.createResponseAdaptable($response));
 				throw exception;
@@ -1044,7 +1044,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				return;
 			} else if ($response.statusCode() == 400) {
 				var $errorData = ServiceUtils.mapObject($response, UnionDataImpl::of, Union.Data.class);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of getSimpleErrorUnion failed");
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorUnion failed");
 				var exception = new SampleErrorUnionException($message, $errorData);
 				this.lifecycleHook.onError("getSimpleErrorUnion", exception, this.client.createResponseAdaptable($response));
 				throw exception;

@@ -2627,7 +2627,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				return $rv;
 			} else if ($response.statusCode() == 400) {
 				var $errorData = ServiceUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of downloadFile failed");
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of downloadFile failed");
 				var exception = new SampleErrorWithValueException($message, $errorData);
 				this.lifecycleHook.onError("downloadFile", exception, this.client.createResponseAdaptable($response));
 				throw exception;
@@ -2672,7 +2672,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				return $rv;
 			} else if ($response.statusCode() == 400) {
 				var $errorData = ServiceUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invokation of downloadBlob failed");
+				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of downloadBlob failed");
 				var exception = new SampleErrorWithValueException($message, $errorData);
 				this.lifecycleHook.onError("downloadBlob", exception, this.client.createResponseAdaptable($response));
 				throw exception;
