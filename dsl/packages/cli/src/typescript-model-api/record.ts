@@ -314,7 +314,7 @@ export function RecordTypeguard(
 					} else if (isMInlineEnumType(p.type)) {
 						guard = `is${t.name}_${toFirstUpper(p.name)}`;
 					} else if (p.variant === 'scalar') {
-						guard = fqn('isString:../_type-utils.ts', false);
+						guard = fqn(`is${p.type}:./Scalars.ts`, false);
 					} else {
 						guard = fqn(`is${p.type}:./${p.type}.ts`, false);
 					}
@@ -420,7 +420,7 @@ export function ListChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOnl
 	if (isMBuiltinType(prop.type)) {
 		type = builtinToJSType(prop.type);
 	} else if (prop.variant === 'scalar') {
-		type = 'string';
+		type = fqn(`${prop.type}:./Scalars.ts`, true);
 	} else if (isMInlineEnumType(prop.type)) {
 		type = toFirstUpper(prop.name) + 'Enum';
 	} else if (prop.variant === 'enum' || prop.variant === 'record' || prop.variant === 'union') {
@@ -494,7 +494,7 @@ export function RecordTypeguardPatch(
 					} else if (isMInlineEnumType(p.type)) {
 						guard = `is${t.name}_${toFirstUpper(p.name)}`;
 					} else if (p.variant === 'scalar') {
-						guard = fqn('isString:../_type-utils.ts', false);
+						guard = fqn(`is${p.type}:./Scalars.ts`, false);
 					} else if (p.variant === 'enum') {
 						guard = fqn(`is${p.type}:./${p.type}.ts`, false);
 					} else if (p.variant === 'union') {
@@ -767,7 +767,7 @@ function generateProperty(prop: MResolvedBaseProperty, fqn: (t: string, typeOnly
 		if (isMBuiltinType(prop.type)) {
 			type = builtinToJSType(prop.type);
 		} else if (prop.variant === 'scalar') {
-			type = 'string';
+			type = fqn(`${prop.type}:./Scalars.ts`, true);
 		} else if (isMInlineEnumType(prop.type)) {
 			type = toFirstUpper(prop.name) + 'Enum';
 		} else if (prop.variant === 'enum' || prop.variant === 'record' || prop.variant === 'union') {
@@ -796,7 +796,7 @@ function generatePatchProperty(prop: MResolvedPropery, fqn: (t: string, typeOnly
 	} else if (isMBuiltinType(prop.type)) {
 		type = builtinToJSType(prop.type);
 	} else if (prop.variant === 'scalar') {
-		type = 'string';
+		type = fqn(`${prop.type}:./Scalars.ts`, true);
 	} else if (isMInlineEnumType(prop.type)) {
 		type = toFirstUpper(prop.name) + 'Enum';
 	} else if (prop.variant === 'enum') {
