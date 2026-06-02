@@ -39,12 +39,8 @@ export function encodeBase64(value: string | Uint8Array): string {
 
 export function encodeAsciiString(text: string): string {
 	text = text.replaceAll('\\u', '\\u005Cu'); // Escape existing \u sequences
-	if (text.startsWith(' ')) {
-		text = text.replace(/^\s+/, match => match.replace(/ /g, '\\u0020'));
-	}
-	if (text.endsWith(' ')) {
-		text = text.replace(/\s+$/, match => match.replace(/ /g, '\\u0020'));
-	}
+	text = text.replace(/^ +/, match => '\\u0020'.repeat(match.length));
+	text = text.replace(/ +$/, match => '\\u0020'.repeat(match.length));
 
 	let b = '';
 	const l = text.length;

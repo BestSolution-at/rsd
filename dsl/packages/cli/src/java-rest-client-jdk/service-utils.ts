@@ -32,8 +32,6 @@ export function generateServiceUtils(
 	importCollector.importType('java.util.stream.Collectors');
 	importCollector.importType('java.util.stream.Stream');
 	importCollector.importType('java.util.ArrayList');
-	importCollector.importType('java.util.regex.Pattern');
-
 	if (hasStreamResult(model)) {
 		importCollector.importType('java.io.IOException');
 		importCollector.importType('java.nio.file.Files');
@@ -57,9 +55,6 @@ export function generateServiceUtils(
 
 	const compilationContent = toNodeTree(`
 public class ServiceUtils {
-	private static final Pattern SPACE_PREFIX = Pattern.compile("^ +");
-	private static final Pattern SPACE_SUFFIX = Pattern.compile(" +$");
-
 	private record SearchParam(String key, Object value) {
 
 	}
@@ -437,11 +432,16 @@ public class ServiceUtils {
 
 	public static String encodeAsciiString(String text) {
 		text = text.replace("\\\\u", "\\\\u005Cu"); // Escape existing \\\\u sequences
-		if (text.startsWith(" ")) {
-			text = SPACE_PREFIX.matcher(text).replaceAll(match -> match.group().replace(" ", "\\\\\\\\u0020"));
+		int leading = 0;
+		while (leading < text.length() && text.charAt(leading) == ' ') leading++;
+		if (leading > 0) {
+			text = "\\\\u0020".repeat(leading) + text.substring(leading);
 		}
-		if (text.endsWith(" ")) {
-			text = SPACE_SUFFIX.matcher(text).replaceAll(match -> match.group().replace(" ", "\\\\\\\\u0020"));
+		int trailing = 0;
+		int len = text.length();
+		while (trailing < len && text.charAt(len - 1 - trailing) == ' ') trailing++;
+		if (trailing > 0) {
+			text = text.substring(0, len - trailing) + "\\\\u0020".repeat(trailing);
 		}
 		var b = new StringBuilder(text.length());
 		var l = text.length();

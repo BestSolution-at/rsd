@@ -20,7 +20,6 @@ import java.util.function.Function;
 import java.util.HexFormat;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -35,9 +34,6 @@ import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 
 public class ServiceUtils {
-	private static final Pattern SPACE_PREFIX = Pattern.compile("^ +");
-	private static final Pattern SPACE_SUFFIX = Pattern.compile(" +$");
-
 	private record SearchParam(String key, Object value) {
 
 	}
@@ -415,11 +411,16 @@ public class ServiceUtils {
 
 	public static String encodeAsciiString(String text) {
 		text = text.replace("\\u", "\\u005Cu"); // Escape existing \\u sequences
-		if (text.startsWith(" ")) {
-			text = SPACE_PREFIX.matcher(text).replaceAll(match -> match.group().replace(" ", "\\\\u0020"));
+		int leading = 0;
+		while (leading < text.length() && text.charAt(leading) == ' ') leading++;
+		if (leading > 0) {
+			text = "\\u0020".repeat(leading) + text.substring(leading);
 		}
-		if (text.endsWith(" ")) {
-			text = SPACE_SUFFIX.matcher(text).replaceAll(match -> match.group().replace(" ", "\\\\u0020"));
+		int trailing = 0;
+		int len = text.length();
+		while (trailing < len && text.charAt(len - 1 - trailing) == ' ') trailing++;
+		if (trailing > 0) {
+			text = text.substring(0, len - trailing) + "\\u0020".repeat(trailing);
 		}
 		var b = new StringBuilder(text.length());
 		var l = text.length();
