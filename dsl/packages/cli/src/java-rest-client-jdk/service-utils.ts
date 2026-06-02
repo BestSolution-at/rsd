@@ -32,6 +32,7 @@ export function generateServiceUtils(
 	importCollector.importType('java.util.stream.Collectors');
 	importCollector.importType('java.util.stream.Stream');
 	importCollector.importType('java.util.ArrayList');
+	importCollector.importType('java.util.regex.Pattern');
 
 	if (hasStreamResult(model)) {
 		importCollector.importType('java.io.IOException');
@@ -433,12 +434,18 @@ public class ServiceUtils {
 
 	public static String encodeAsciiString(String text) {
 		text = text.replace("\\\\u", "\\\\u005Cu"); // Escape existing \\\\u sequences
+		if (text.startsWith(" ")) {
+			text = Pattern.compile("^\\\\s+").matcher(text).replaceAll(match -> match.group().replace(" ", "\\\\\\\\u0020"));
+		}
+		if (text.endsWith(" ")) {
+			text = Pattern.compile("\\\\s+$").matcher(text).replaceAll(match -> match.group().replace(" ", "\\\\\\\\u0020"));
+		}
 		var b = new StringBuilder(text.length());
 		var l = text.length();
 		for (var i = 0; i < l; i++) {
 			var c = text.charAt(i);
 			// Escape non-printable characters, comma and all non-ASCII characters
-			if (c < 32 || c > 126 || c == 44 || c == 32) {
+			if (c < 32 || c > 126 || c == 44) {
 				b.append(String.format("\\\\u%04x", (int) c));
 			} else {
 				b.append(c);

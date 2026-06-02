@@ -20,6 +20,7 @@ import java.util.function.Function;
 import java.util.HexFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -142,7 +143,8 @@ public class ServiceUtils {
 		return _JsonUtils.parseOffsetDateTime(response.body(), contentType(response));
 	}
 
-	public static <T> List<T> mapObjects(HttpResponse<InputStream> response, Function<JsonObject, T> factory, Class<T> type) {
+	public static <T> List<T> mapObjects(HttpResponse<InputStream> response, Function<JsonObject, T> factory,
+			Class<T> type) {
 		return _JsonUtils.parseObjects(response.body(), contentType(response), factory, type);
 	}
 
@@ -411,12 +413,18 @@ public class ServiceUtils {
 
 	public static String encodeAsciiString(String text) {
 		text = text.replace("\\u", "\\u005Cu"); // Escape existing \\u sequences
+		if (text.startsWith(" ")) {
+			text = Pattern.compile("^\\s+").matcher(text).replaceAll(match -> match.group().replace(" ", "\\\\u0020"));
+		}
+		if (text.endsWith(" ")) {
+			text = Pattern.compile("\\s+$").matcher(text).replaceAll(match -> match.group().replace(" ", "\\\\u0020"));
+		}
 		var b = new StringBuilder(text.length());
 		var l = text.length();
 		for (var i = 0; i < l; i++) {
 			var c = text.charAt(i);
 			// Escape non-printable characters, comma and all non-ASCII characters
-			if (c < 32 || c > 126 || c == 44 || c == 32) {
+			if (c < 32 || c > 126 || c == 44) {
 				b.append(String.format("\\u%04x", (int) c));
 			} else {
 				b.append(c);
@@ -473,6 +481,7 @@ public class ServiceUtils {
 			throw new IllegalStateException(e);
 		}
 	}
+
 	public static RSDFile mapFile(HttpResponse<InputStream> response) {
 		var mimeType = response.headers().firstValue("Content-Type")
 				.orElse(null);

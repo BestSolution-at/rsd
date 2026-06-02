@@ -87,12 +87,19 @@ function generateFetchTypeUtilsContent(
 
 		export function encodeAsciiString(text: string): string {
 			text = text.replaceAll('\\\\u', '\\\\u005Cu'); // Escape existing \\u sequences
+			if (text.startsWith(' ')) {
+				text = text.replace(/^\\s+/, match => match.replace(/ /g, '\\\\u0020'));
+			}
+			if (text.endsWith(' ')) {
+				text = text.replace(/\\s+$/, match => match.replace(/ /g, '\\\\u0020'));
+			}
+
 			let b = '';
 			const l = text.length;
 			for (let i = 0; i < l; i++) {
 				const c = text.charCodeAt(i);
 				// Escape non-printable characters, comma and all non-ASCII characters
-				if (c < 32 || c > 126 || c === 44 || c === 32) {
+				if (c < 32 || c > 126 || c === 44) {
 					b += \`\\\\u\${c.toString(16).padStart(4, '0')}\`;
 				} else {
 					b += text.charAt(i);
