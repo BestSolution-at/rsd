@@ -15,7 +15,7 @@ let collector: TypescriptImportCollector;
 let fqn: (type: string, typeOnly: boolean) => string;
 
 beforeEach(() => {
-	collector = new TypescriptImportCollector(createTypescriptClientAPIGeneratorConfig());
+	collector = new TypescriptImportCollector(createTypescriptClientAPIGeneratorConfig(), 'sample.ts');
 	fqn = collector.importType.bind(collector);
 });
 
@@ -179,14 +179,14 @@ export type SimpleRecord_Basic_List_Optional_Null = {
 
 const ScalarRecord_Result = `
 export type ScalarRecord = {
-	readonly value: string;
-	readonly value_Null: string | null;
-	readonly value_Opt?: string;
-	readonly value_Opt_Null?: string | null;
-	readonly list: string[];
-	readonly list_Null: string[] | null;
-	readonly list_Opt?: string[];
-	readonly list_Opt_Null?: string[] | null;
+	readonly value: ZoneId;
+	readonly value_Null: ZoneId | null;
+	readonly value_Opt?: ZoneId;
+	readonly value_Opt_Null?: ZoneId | null;
+	readonly list: ZoneId[];
+	readonly list_Null: ZoneId[] | null;
+	readonly list_Opt?: ZoneId[];
+	readonly list_Opt_Null?: ZoneId[] | null;
 };
 `.trim();
 
@@ -535,14 +535,14 @@ export function isEnumInlineRecord(value: unknown): value is EnumInlineRecord {
 const ScalarRecord_Typeguard_Result = `
 export function isScalarRecord(value: unknown): value is ScalarRecord {
 	return isRecord(value) &&
-		checkProp(value, 'value', isString) &&
-		(checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isString)) &&
-		checkOptProp(value, 'value_Opt', isString) &&
-		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isString)) &&
-		checkProp(value, 'list', createTypedArrayGuard(isString)) &&
-		(checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isString))) &&
-		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isString)) &&
-		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isString)));
+		checkProp(value, 'value', isZoneId) &&
+		(checkProp(value, 'value_Null', isNull) || checkProp(value, 'value_Null', isZoneId)) &&
+		checkOptProp(value, 'value_Opt', isZoneId) &&
+		(checkOptProp(value, 'value_Opt_Null', isNull) || checkOptProp(value, 'value_Opt_Null', isZoneId)) &&
+		checkProp(value, 'list', createTypedArrayGuard(isZoneId)) &&
+		(checkProp(value, 'list_Null', isNull) || checkProp(value, 'list_Null', createTypedArrayGuard(isZoneId))) &&
+		checkOptProp(value, 'list_Opt', createTypedArrayGuard(isZoneId)) &&
+		(checkOptProp(value, 'list_Opt_Null', isNull) || checkOptProp(value, 'list_Opt_Null', createTypedArrayGuard(isZoneId)));
 }
 `.trim();
 
@@ -696,9 +696,9 @@ export function SimpleRecord_BasicFromJSON($value: Record<string, unknown>): Sim
 	const valueString = propValue('valueString', $value, isString);
 	const valueLocalDate = propValue('valueLocalDate', $value, isString);
 	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString);
-	const valueLocalTime = propValue('valueLocalTime', \$value, isString);
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', \$value, isString);
-	const valueZonedDateTime = propValue('valueZonedDateTime', \$value, isString);
+	const valueLocalTime = propValue('valueLocalTime', $value, isString);
+	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString);
+	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString);
 	return {
 		valueBoolean,
 		valueShort,
@@ -726,9 +726,9 @@ export function SimpleRecord_Basic_OptionalFromJSON($value: Record<string, unkno
 	const valueString = propValue('valueString', $value, isString, 'optional');
 	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional');
 	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional');
-	const valueLocalTime = propValue('valueLocalTime', \$value, isString, 'optional');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', \$value, isString, 'optional');
-	const valueZonedDateTime = propValue('valueZonedDateTime', \$value, isString, 'optional');
+	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional');
+	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional');
+	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional');
 	return {
 		valueBoolean,
 		valueShort,
@@ -756,9 +756,9 @@ export function SimpleRecord_Basic_NullFromJSON($value: Record<string, unknown>)
 	const valueString = propValue('valueString', $value, isString, 'null');
 	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'null');
 	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'null');
-	const valueLocalTime = propValue('valueLocalTime', \$value, isString, 'null');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', \$value, isString, 'null');
-	const valueZonedDateTime = propValue('valueZonedDateTime', \$value, isString, 'null');
+	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'null');
+	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'null');
+	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'null');
 	return {
 		valueBoolean,
 		valueShort,
@@ -786,9 +786,9 @@ export function SimpleRecord_Basic_Optional_NullFromJSON($value: Record<string, 
 	const valueString = propValue('valueString', $value, isString, 'optional_null');
 	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
 	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
-	const valueLocalTime = propValue('valueLocalTime', \$value, isString, 'optional_null');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', \$value, isString, 'optional_null');
-	const valueZonedDateTime = propValue('valueZonedDateTime', \$value, isString, 'optional_null');
+	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional_null');
+	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional_null');
+	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
 	return {
 		valueBoolean,
 		valueShort,
@@ -816,9 +816,9 @@ export function SimpleRecord_Basic_ListFromJSON($value: Record<string, unknown>)
 	const valueString = propListValue('valueString', $value, isString);
 	const valueLocalDate = propListValue('valueLocalDate', $value, isString);
 	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString);
-	const valueLocalTime = propListValue('valueLocalTime', \$value, isString);
-	const valueOffsetDateTime = propListValue('valueOffsetDateTime', \$value, isString);
-	const valueZonedDateTime = propListValue('valueZonedDateTime', \$value, isString);
+	const valueLocalTime = propListValue('valueLocalTime', $value, isString);
+	const valueOffsetDateTime = propListValue('valueOffsetDateTime', $value, isString);
+	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString);
 	return {
 		valueBoolean,
 		valueShort,
@@ -847,9 +847,9 @@ export function SimpleRecord_Basic_List_OptionalFromJSON($value: Record<string, 
 	const valueString = propListValue('valueString', $value, isString, 'optional');
 	const valueLocalDate = propListValue('valueLocalDate', $value, isString, 'optional');
 	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString, 'optional');
-	const valueLocalTime = propListValue('valueLocalTime', \$value, isString, 'optional');
-	const valueOffsetDateTime = propListValue('valueOffsetDateTime', \$value, isString, 'optional');
-	const valueZonedDateTime = propListValue('valueZonedDateTime', \$value, isString, 'optional');
+	const valueLocalTime = propListValue('valueLocalTime', $value, isString, 'optional');
+	const valueOffsetDateTime = propListValue('valueOffsetDateTime', $value, isString, 'optional');
+	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString, 'optional');
 	return {
 		valueBoolean,
 		valueShort,
@@ -878,9 +878,9 @@ export function SimpleRecord_Basic_List_NullFromJSON($value: Record<string, unkn
 	const valueString = propListValue('valueString', $value, isString, 'null');
 	const valueLocalDate = propListValue('valueLocalDate', $value, isString, 'null');
 	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString, 'null');
-	const valueLocalTime = propListValue('valueLocalTime', \$value, isString, 'null');
-	const valueOffsetDateTime = propListValue('valueOffsetDateTime', \$value, isString, 'null');
-	const valueZonedDateTime = propListValue('valueZonedDateTime', \$value, isString, 'null');
+	const valueLocalTime = propListValue('valueLocalTime', $value, isString, 'null');
+	const valueOffsetDateTime = propListValue('valueOffsetDateTime', $value, isString, 'null');
+	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString, 'null');
 	return {
 		valueBoolean,
 		valueShort,
@@ -909,9 +909,9 @@ export function SimpleRecord_Basic_List_Optional_NullFromJSON($value: Record<str
 	const valueString = propListValue('valueString', $value, isString, 'optional_null');
 	const valueLocalDate = propListValue('valueLocalDate', $value, isString, 'optional_null');
 	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString, 'optional_null');
-	const valueLocalTime = propListValue('valueLocalTime', \$value, isString, 'optional_null');
-	const valueOffsetDateTime = propListValue('valueOffsetDateTime', \$value, isString, 'optional_null');
-	const valueZonedDateTime = propListValue('valueZonedDateTime', \$value, isString, 'optional_null');
+	const valueLocalTime = propListValue('valueLocalTime', $value, isString, 'optional_null');
+	const valueOffsetDateTime = propListValue('valueOffsetDateTime', $value, isString, 'optional_null');
+	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString, 'optional_null');
 	return {
 		valueBoolean,
 		valueShort,
@@ -1167,9 +1167,9 @@ export function SimpleRecord_BasicToJSON($value: SimpleRecord_Basic): Record<str
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = \$value.valueLocalTime;
-	const valueOffsetDateTime = \$value.valueOffsetDateTime;
-	const valueZonedDateTime = \$value.valueZonedDateTime;
+	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
 		valueBoolean,
@@ -1199,9 +1199,9 @@ export function SimpleRecord_Basic_OptionalToJSON($value: SimpleRecord_Basic_Opt
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = \$value.valueLocalTime;
-	const valueOffsetDateTime = \$value.valueOffsetDateTime;
-	const valueZonedDateTime = \$value.valueZonedDateTime;
+	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
 		valueBoolean,
@@ -1231,9 +1231,9 @@ export function SimpleRecord_Basic_NullToJSON($value: SimpleRecord_Basic_Null): 
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = \$value.valueLocalTime;
-	const valueOffsetDateTime = \$value.valueOffsetDateTime;
-	const valueZonedDateTime = \$value.valueZonedDateTime;
+	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
 		valueBoolean,
@@ -1263,9 +1263,9 @@ export function SimpleRecord_Basic_Optional_NullToJSON($value: SimpleRecord_Basi
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = \$value.valueLocalTime;
-	const valueOffsetDateTime = \$value.valueOffsetDateTime;
-	const valueZonedDateTime = \$value.valueZonedDateTime;
+	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
 		valueBoolean,
@@ -1295,9 +1295,9 @@ export function SimpleRecord_Basic_ListToJSON($value: SimpleRecord_Basic_List): 
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = \$value.valueLocalTime;
-	const valueOffsetDateTime = \$value.valueOffsetDateTime;
-	const valueZonedDateTime = \$value.valueZonedDateTime;
+	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
 		valueBoolean,
@@ -1327,9 +1327,9 @@ export function SimpleRecord_Basic_List_OptionalToJSON($value: SimpleRecord_Basi
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = \$value.valueLocalTime;
-	const valueOffsetDateTime = \$value.valueOffsetDateTime;
-	const valueZonedDateTime = \$value.valueZonedDateTime;
+	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
 		valueBoolean,
@@ -1359,9 +1359,9 @@ export function SimpleRecord_Basic_List_NullToJSON($value: SimpleRecord_Basic_Li
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = \$value.valueLocalTime;
-	const valueOffsetDateTime = \$value.valueOffsetDateTime;
-	const valueZonedDateTime = \$value.valueZonedDateTime;
+	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
 		valueBoolean,
@@ -1391,9 +1391,9 @@ export function SimpleRecord_Basic_List_Optional_NullToJSON($value: SimpleRecord
 	const valueString = $value.valueString;
 	const valueLocalDate = $value.valueLocalDate;
 	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = \$value.valueLocalTime;
-	const valueOffsetDateTime = \$value.valueOffsetDateTime;
-	const valueZonedDateTime = \$value.valueZonedDateTime;
+	const valueLocalTime = $value.valueLocalTime;
+	const valueOffsetDateTime = $value.valueOffsetDateTime;
+	const valueZonedDateTime = $value.valueZonedDateTime;
 
 	return {
 		valueBoolean,

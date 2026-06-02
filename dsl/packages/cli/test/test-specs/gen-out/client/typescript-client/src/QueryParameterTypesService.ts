@@ -2,6 +2,7 @@
 import type { Result } from './_result-utils.js';
 import type { NativeRSDError, StatusRSDError } from './Errors.js';
 import type { NilResult } from './model/NilResult.js';
+import type { ZoneId } from './model/Scalars.js';
 import type { SampleEnum } from './model/SampleEnum.js';
 import type { SimpleRecord } from './model/SimpleRecord.js';
 
@@ -30,8 +31,8 @@ export interface QueryParameterTypesService {
 	simpleOffsetDateTimeQueryParamOpt(queryValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeQueryParam(queryValue: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeQueryParamOpt(queryValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	simpleScalarQueryParam(queryValue: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
-	simpleScalarQueryParamOpt(queryValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleScalarQueryParam(queryValue: ZoneId): Promise<Result<ZoneId, StatusRSDError | NativeRSDError>>;
+	simpleScalarQueryParamOpt(queryValue?: ZoneId): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleEnumQueryParam(queryValue: SampleEnum): Promise<Result<SampleEnum, StatusRSDError | NativeRSDError>>;
 	simpleEnumQueryParamOpt(queryValue?: SampleEnum): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	multiQueryParam(valueA: string, valueB: number): Promise<Result<string, StatusRSDError | NativeRSDError>>;

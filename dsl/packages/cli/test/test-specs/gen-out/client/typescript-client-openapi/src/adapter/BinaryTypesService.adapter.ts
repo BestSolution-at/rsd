@@ -1,6 +1,10 @@
 import { api } from '../../../typescript-client/src/index.js';
 import { MixedResult } from '../../../typescript-client/src/model/MixedResult.js';
-import { encodeBase64, ServiceProps } from '../../../typescript-client/src/services/_fetch-type-utils.js';
+import {
+	encodeAsciiString,
+	encodeBase64,
+	ServiceProps,
+} from '../../../typescript-client/src/services/_fetch-type-utils.js';
 import { BinaryTypesApi } from '../apis/BinaryTypesApi.js';
 import { Configuration, ResponseError } from '../runtime.js';
 
@@ -407,7 +411,7 @@ class BinaryTypesServiceImpl implements api.service.BinaryTypesService {
 			const response = await this.delegate.binaryTypesMixedRaw({
 				pathString,
 				pathNumber,
-				headerString,
+				headerString: `"${encodeAsciiString(headerString)}"`,
 				headerNumber,
 				headerRecord: encodeBase64(JSON.stringify(headerRecord)),
 				queryString,

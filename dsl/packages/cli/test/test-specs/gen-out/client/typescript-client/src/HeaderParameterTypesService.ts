@@ -2,6 +2,7 @@
 import type { Result, VoidType } from './_result-utils.js';
 import type { NativeRSDError, StatusRSDError } from './Errors.js';
 import type { NilResult } from './model/NilResult.js';
+import type { ZoneId } from './model/Scalars.js';
 import type { SampleEnum } from './model/SampleEnum.js';
 import type { SimpleRecord } from './model/SimpleRecord.js';
 
@@ -54,10 +55,10 @@ export interface HeaderParameterTypesService {
 	simpleZonedDateTimeHeaderParamOpt(headerValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeHeaderParamNil(headerValue: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleZonedDateTimeHeaderParamOptNil(headerValue?: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	simpleScalarHeaderParam(headerValue: string): Promise<Result<string, StatusRSDError | NativeRSDError>>;
-	simpleScalarHeaderParamOpt(headerValue?: string): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	simpleScalarHeaderParamNil(headerValue: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	simpleScalarHeaderParamOptNil(headerValue?: string | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleScalarHeaderParam(headerValue: ZoneId): Promise<Result<ZoneId, StatusRSDError | NativeRSDError>>;
+	simpleScalarHeaderParamOpt(headerValue?: ZoneId): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleScalarHeaderParamNil(headerValue: ZoneId | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
+	simpleScalarHeaderParamOptNil(headerValue?: ZoneId | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleEnumHeaderParam(headerValue: SampleEnum): Promise<Result<SampleEnum, StatusRSDError | NativeRSDError>>;
 	simpleEnumHeaderParamOpt(headerValue?: SampleEnum): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleEnumHeaderParamNil(headerValue: SampleEnum | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
