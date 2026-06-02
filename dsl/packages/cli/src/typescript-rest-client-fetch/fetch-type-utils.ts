@@ -92,7 +92,7 @@ function generateFetchTypeUtilsContent(
 			for (let i = 0; i < l; i++) {
 				const c = text.charCodeAt(i);
 				// Escape non-printable characters, comma and all non-ASCII characters
-				if (c < 32 || c > 126 || c === 44) {
+				if (c < 32 || c > 126 || c === 44 || c === 32) {
 					b += \`\\\\u\${c.toString(16).padStart(4, '0')}\`;
 				} else {
 					b += text.charAt(i);

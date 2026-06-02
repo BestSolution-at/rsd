@@ -6,15 +6,15 @@ import {
 
 describe('fetch-type-utils', () => {
 	test('encodeAsciiString', () => {
-		expect(encodeAsciiString('Hello World!')).toBe('Hello World!');
+		expect(encodeAsciiString('Hello World!')).toBe('Hello\\u0020World!');
 		expect(encodeAsciiString('Hello+World!')).toBe('Hello+World!');
 		expect(encodeAsciiString('Hello/World!')).toBe('Hello/World!');
-		expect(encodeAsciiString('a Ā 𐀀 文 🦄')).toBe('a \\u0100 \\ud800\\udc00 \\u6587 \\ud83e\\udd84');
+		expect(encodeAsciiString('a-Ā-𐀀-文-🦄')).toBe('a-\\u0100-\\ud800\\udc00-\\u6587-\\ud83e\\udd84');
 	});
 	test('decodeAsciiString', () => {
-		expect(decodeAsciiString('Hello World!')).toBe('Hello World!');
+		expect(decodeAsciiString('Hello\\u0020World!')).toBe('Hello World!');
 		expect(decodeAsciiString('Hello+World!')).toBe('Hello+World!');
 		expect(decodeAsciiString('Hello/World!')).toBe('Hello/World!');
-		expect(decodeAsciiString('a \\u0100 \\ud800\\udc00 \\u6587 \\ud83e\\udd84')).toBe('a Ā 𐀀 文 🦄');
+		expect(decodeAsciiString('a-\\u0100-\\ud800\\udc00-\\u6587-\\ud83e\\udd84')).toBe('a-Ā-𐀀-文-🦄');
 	});
 });

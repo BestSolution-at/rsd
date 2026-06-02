@@ -438,7 +438,7 @@ public class ServiceUtils {
 		for (var i = 0; i < l; i++) {
 			var c = text.charAt(i);
 			// Escape non-printable characters, comma and all non-ASCII characters
-			if (c < 32 || c > 126 || c == 44) {
+			if (c < 32 || c > 126 || c == 44 || c == 32) {
 				b.append(String.format("\\\\u%04x", (int) c));
 			} else {
 				b.append(c);
