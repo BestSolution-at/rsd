@@ -1840,7 +1840,7 @@ function fnListScalarHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
-				$headers.append('headerValue', $entry);
+				$headers.append('headerValue', encodeAsciiString(api.model.ZoneIdToString($entry)));
 			});
 			$init.headers = $headers;
 
@@ -1875,7 +1875,7 @@ function fnListScalarHeaderParamOpt(props: ServiceProps<api.service.ErrorType>):
 			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
-					$headers.append('headerValue', $entry);
+					$headers.append('headerValue', encodeAsciiString(api.model.ZoneIdToString($entry)));
 				});
 			}
 			$init.headers = $headers;
@@ -1911,7 +1911,7 @@ function fnListScalarHeaderParamNil(props: ServiceProps<api.service.ErrorType>):
 			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
-					$headers.append('headerValue', $entry);
+					$headers.append('headerValue', encodeAsciiString(api.model.ZoneIdToString($entry)));
 				});
 			} else {
 				$headers.append('headerValue', 'null');
@@ -1949,7 +1949,7 @@ function fnListScalarHeaderParamOptNil(props: ServiceProps<api.service.ErrorType
 			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
-					$headers.append('headerValue', $entry);
+					$headers.append('headerValue', encodeAsciiString(api.model.ZoneIdToString($entry)));
 				});
 			} else if (headerValue === null) {
 				$headers.append('headerValue', 'null');

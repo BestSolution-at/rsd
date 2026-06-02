@@ -134,17 +134,23 @@ function numericOrBooleanHeaderQueryCode(target: string, p: MParameter) {
 	return node;
 }
 
-function stringHeaderQueryCode(target: string, p: MParameter, fqn: (type: string, typeOnly: boolean) => string) {
+function stringHeaderQueryCode(
+	target: string,
+	p: MParameter,
+	config: TypescriptFetchClientGeneratorConfig,
+	fqn: (type: string, typeOnly: boolean) => string,
+) {
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		node.append(`${p.name}.forEach($entry => {`, NL);
 		node.indent(mBody => {
-			if (p.meta?.rest?.source === 'header' && (p.type === 'string' || p.type === 'scalar')) {
+			if (p.meta?.rest?.source === 'header' && (p.type === 'string' || p.variant === 'scalar')) {
 				const encodeAsciiString = fqn('encodeAsciiString:./_fetch-type-utils.ts', false);
-				if (p.type === 'string') {
-					mBody.append(`${target}.append('${p.name}', '"' + ${encodeAsciiString}($entry) + '"');`, NL);
+				if (p.variant === 'scalar') {
+					const toString = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToString`;
+					mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}(${toString}($entry)));`, NL);
 				} else {
-					mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}($entry));`, NL);
+					mBody.append(`${target}.append('${p.name}', '"' + ${encodeAsciiString}($entry) + '"');`, NL);
 				}
 			} else {
 				mBody.append(`${target}.append('${p.name}', $entry);`, NL);
@@ -152,12 +158,13 @@ function stringHeaderQueryCode(target: string, p: MParameter, fqn: (type: string
 		});
 		node.append('});', NL);
 	} else {
-		if (p.meta?.rest?.source === 'header' && (p.type === 'string' || p.type === 'scalar')) {
+		if (p.meta?.rest?.source === 'header' && (p.type === 'string' || p.variant === 'scalar')) {
 			const encodeAsciiString = fqn('encodeAsciiString:./_fetch-type-utils.ts', false);
-			if (p.type === 'string') {
-				node.append(`${target}.append('${p.name}', '"' + ${encodeAsciiString}(${p.name}) + '"');`, NL);
+			if (p.variant === 'scalar') {
+				const toString = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToString`;
+				node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${toString}(${p.name})));`, NL);
 			} else {
-				node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${p.name}));`, NL);
+				node.append(`${target}.append('${p.name}', '"' + ${encodeAsciiString}(${p.name}) + '"');`, NL);
 			}
 		} else {
 			node.append(`${target}.append('${p.name}', ${p.name});`, NL);
@@ -204,7 +211,7 @@ function headerQueryCodeBlock(
 	if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum' || p.variant === 'scalar') {
 		return isMBuiltinNumericType(p.type) || p.type === 'boolean'
 			? numericOrBooleanHeaderQueryCode(target, p)
-			: stringHeaderQueryCode(target, p, fqn);
+			: stringHeaderQueryCode(target, p, config, fqn);
 	}
 	return recordHeaderQueryCode(target, p, config, fqn);
 }
