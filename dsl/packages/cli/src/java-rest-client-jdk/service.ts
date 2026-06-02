@@ -270,9 +270,7 @@ function appendHeaderParams(
 		if (p.array) {
 			if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum' || p.variant === 'scalar') {
 				const toString =
-					p.type === 'string'
-						? '$v -> "\\"" + ServiceUtils.encodeAsciiString($v) + "\\""'
-						: `${fqn('java.util.Objects')}::toString`;
+					p.type === 'string' ? '$v -> ServiceUtils.encodeAsciiString($v)' : `${fqn('java.util.Objects')}::toString`;
 				const codeBlock = `$headerParams.put("${restName}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
 				appendWithNullGuard(
 					methodBody,
@@ -313,7 +311,7 @@ function appendHeaderParams(
 						p.name,
 						p.nullable,
 						p.optional,
-						`$headerParams.put("${restName}", "\\"" + ServiceUtils.encodeAsciiString(${p.name}) + "\\"");`,
+						`$headerParams.put("${restName}", ServiceUtils.encodeAsciiString(${p.name}));`,
 						`$headerParams.put("${restName}", "null");`,
 					);
 				}

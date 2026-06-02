@@ -400,7 +400,7 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleStringHeaderParamRaw({
-				headerValue: '"' + encodeAsciiString(headerValue) + '"',
+				headerValue: encodeAsciiString(headerValue),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -415,7 +415,7 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleStringHeaderParamOptRaw({
-				headerValue: headerValue !== undefined ? '"' + encodeAsciiString(headerValue) + '"' : undefined,
+				headerValue: headerValue !== undefined ? encodeAsciiString(headerValue) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -430,7 +430,7 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleStringHeaderParamNilRaw({
-				headerValue: headerValue !== null ? '"' + encodeAsciiString(headerValue) + '"' : 'null',
+				headerValue: headerValue !== null ? encodeAsciiString(headerValue) : 'null',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -446,11 +446,7 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleStringHeaderParamOptNilRaw({
 				headerValue:
-					headerValue !== undefined
-						? headerValue !== null
-							? '"' + encodeAsciiString(headerValue) + '"'
-							: 'null'
-						: undefined,
+					headerValue !== undefined ? (headerValue !== null ? encodeAsciiString(headerValue) : 'null') : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -975,7 +971,7 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesMultiHeaderParamRaw({
-				valueA: `"${encodeAsciiString(valueA)}"`,
+				valueA: encodeAsciiString(valueA),
 				valueB,
 			});
 			if (response.raw.status === 200) {
@@ -993,7 +989,7 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	): Promise<api.result.Result<api.model.NilResult[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesMultiHeaderParamOptRaw({
-				valueA: valueA !== undefined ? `"${encodeAsciiString(valueA)}"` : undefined,
+				valueA: valueA !== undefined ? encodeAsciiString(valueA) : undefined,
 				valueB,
 			});
 			if (response.raw.status === 200) {
@@ -1011,7 +1007,7 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	): Promise<api.result.Result<api.model.NilResult[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesMultiHeaderParamNilRaw({
-				valueA: valueA !== null ? `"${encodeAsciiString(valueA)}"` : 'null',
+				valueA: valueA !== null ? encodeAsciiString(valueA) : 'null',
 				valueB: (valueB ?? 'null') as unknown as number,
 			});
 			if (response.raw.status === 200) {

@@ -304,7 +304,7 @@ public class HeaderParameterTypesResource {
 	public Response simpleStringHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseString(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var headerValue = _RestUtils.parseString(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var result = service.simpleStringHeaderParam(builderFactory, headerValue);
 		return responseBuilder.simpleStringHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -314,7 +314,7 @@ public class HeaderParameterTypesResource {
 	public Response simpleStringHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseOptString(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var headerValue = _RestUtils.parseOptString(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var result = service.simpleStringHeaderParamOpt(builderFactory, headerValue);
 		return responseBuilder.simpleStringHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -324,7 +324,7 @@ public class HeaderParameterTypesResource {
 	public Response simpleStringHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNullString(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var headerValue = _RestUtils.parseNullString(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var result = service.simpleStringHeaderParamNil(builderFactory, headerValue);
 		return responseBuilder.simpleStringHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -334,7 +334,7 @@ public class HeaderParameterTypesResource {
 	public Response simpleStringHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNilString(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var headerValue = _RestUtils.parseNilString(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var result = service.simpleStringHeaderParamOptNil(builderFactory, headerValue);
 		return responseBuilder.simpleStringHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -665,7 +665,7 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB) {
-		var valueA = _RestUtils.parseString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var valueA = _RestUtils.parseString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseInt(_valueB);
 		var result = service.multiHeaderParam(builderFactory, valueA, valueB);
 		return responseBuilder.multiHeaderParam(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
@@ -677,7 +677,7 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB) {
-		var valueA = _RestUtils.parseOptString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var valueA = _RestUtils.parseOptString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseOptInt(_valueB);
 		var result = service.multiHeaderParamOpt(builderFactory, valueA, valueB);
 		return responseBuilder.multiHeaderParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
@@ -689,7 +689,7 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB) {
-		var valueA = _RestUtils.parseNullString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var valueA = _RestUtils.parseNullString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseNullInt(_valueB);
 		var result = service.multiHeaderParamNil(builderFactory, valueA, valueB);
 		return responseBuilder.multiHeaderParamNil(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
@@ -701,7 +701,7 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB) {
-		var valueA = _RestUtils.parseNilString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var valueA = _RestUtils.parseNilString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseNilInt(_valueB);
 		var result = service.multiHeaderParamOptNil(builderFactory, valueA, valueB);
 		return responseBuilder.multiHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
@@ -768,7 +768,7 @@ public class HeaderParameterTypesResource {
 			@QueryParam("queryRecord") String _queryRecord) {
 		var pathString = _RestUtils.parseString(_pathString);
 		var pathNumber = _RestUtils.parseInt(_pathNumber);
-		var headerString = _RestUtils.parseString(_headerString, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var headerString = _RestUtils.parseString(_headerString, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var headerNumber = _RestUtils.parseInt(_headerNumber);
 		var headerRecord = _RestUtils.parseObject(_headerRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var body = _JsonUtils.parseObject(_body, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);

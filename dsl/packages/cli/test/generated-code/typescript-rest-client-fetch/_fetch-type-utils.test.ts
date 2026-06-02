@@ -9,6 +9,7 @@ describe('fetch-type-utils', () => {
 		expect(encodeAsciiString('Hello World!')).toBe('Hello\\u0020World!');
 		expect(encodeAsciiString('Hello+World!')).toBe('Hello+World!');
 		expect(encodeAsciiString('Hello/World!')).toBe('Hello/World!');
+		expect(encodeAsciiString('Hello\nWorld!')).toBe('Hello\\u000aWorld!');
 		expect(encodeAsciiString('a-Ā-𐀀-文-🦄')).toBe('a-\\u0100-\\ud800\\udc00-\\u6587-\\ud83e\\udd84');
 	});
 	test('decodeAsciiString', () => {

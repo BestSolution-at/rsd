@@ -411,7 +411,7 @@ class BinaryTypesServiceImpl implements api.service.BinaryTypesService {
 			const response = await this.delegate.binaryTypesMixedRaw({
 				pathString,
 				pathNumber,
-				headerString: `"${encodeAsciiString(headerString)}"`,
+				headerString: encodeAsciiString(headerString),
 				headerNumber,
 				headerRecord: encodeBase64(JSON.stringify(headerRecord)),
 				queryString,

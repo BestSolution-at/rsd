@@ -1653,7 +1653,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1737,7 +1737,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -1784,7 +1784,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -1871,7 +1871,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -4066,7 +4066,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+		$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
 		$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
 		$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -4153,7 +4153,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -4200,7 +4200,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
 		}
 		if (valueB != null) {
 			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
@@ -4250,7 +4250,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
 		}
 		if (valueB != null) {
 			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
@@ -4304,7 +4304,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
@@ -4402,7 +4402,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
@@ -4451,7 +4451,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
@@ -4505,7 +4505,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> "\"" + ServiceUtils.encodeAsciiString($v) + "\"").toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}

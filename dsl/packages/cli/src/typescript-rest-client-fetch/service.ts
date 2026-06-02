@@ -150,7 +150,7 @@ function stringHeaderQueryCode(
 					const toString = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToString`;
 					mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}(${toString}($entry)));`, NL);
 				} else {
-					mBody.append(`${target}.append('${p.name}', '"' + ${encodeAsciiString}($entry) + '"');`, NL);
+					mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}($entry));`, NL);
 				}
 			} else {
 				mBody.append(`${target}.append('${p.name}', $entry);`, NL);
@@ -164,7 +164,7 @@ function stringHeaderQueryCode(
 				const toString = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToString`;
 				node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${toString}(${p.name})));`, NL);
 			} else {
-				node.append(`${target}.append('${p.name}', '"' + ${encodeAsciiString}(${p.name}) + '"');`, NL);
+				node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${p.name}));`, NL);
 			}
 		} else {
 			node.append(`${target}.append('${p.name}', ${p.name});`, NL);

@@ -618,22 +618,22 @@ function builtinParameter(
 			if (p.meta?.rest?.source === 'header' && p.type === 'string') {
 				if (p.optional && p.nullable) {
 					node.append(
-						`var ${p.name} = ${_Util}.mapNil${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));`,
+						`var ${p.name} = ${_Util}.mapNil${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, $hv -> _RestUtils.fromEscapedAscii($hv));`,
 						NL,
 					);
 				} else if (p.optional) {
 					node.append(
-						`var ${p.name} = ${_Util}.mapOpt${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));`,
+						`var ${p.name} = ${_Util}.mapOpt${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, $hv -> _RestUtils.fromEscapedAscii($hv));`,
 						NL,
 					);
 				} else if (p.nullable) {
 					node.append(
-						`var ${p.name} = ${_Util}.mapNull${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));`,
+						`var ${p.name} = ${_Util}.mapNull${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, $hv -> _RestUtils.fromEscapedAscii($hv));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`var ${p.name} = ${_Util}.map${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));`,
+						`var ${p.name} = ${_Util}.map${toFirstUpper(toCamelCaseIdentifier(p.type))}s(_${p.name}, $hv -> _RestUtils.fromEscapedAscii($hv));`,
 						NL,
 					);
 				}
@@ -660,9 +660,7 @@ function builtinParameter(
 		}
 	} else {
 		const transformer =
-			p.type === 'string' && p.meta?.rest?.source === 'header'
-				? `, $hv -> ${_Util}.fromEscapedAscii($hv.substring(1, $hv.length() - 1))`
-				: '';
+			p.type === 'string' && p.meta?.rest?.source === 'header' ? `, $hv -> ${_Util}.fromEscapedAscii($hv)` : '';
 		const mimeType =
 			p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'path' || p.meta?.rest?.source === 'query'
 				? ''
