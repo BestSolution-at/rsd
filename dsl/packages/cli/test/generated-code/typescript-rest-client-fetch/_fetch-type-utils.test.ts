@@ -13,6 +13,8 @@ describe('fetch-type-utils', () => {
 		expect(encodeAsciiString('Hello+World!')).toBe('Hello+World!');
 		expect(encodeAsciiString('Hello/World!')).toBe('Hello/World!');
 		expect(encodeAsciiString('Hello\nWorld!')).toBe('Hello\\u000aWorld!');
+		expect(encodeAsciiString('Hello\tWorld!')).toBe('Hello\\u0009World!');
+		expect(encodeAsciiString(' \tHello Tab-World!\t ')).toBe('\\u0020\\u0009Hello Tab-World!\\u0009\\u0020');
 		expect(encodeAsciiString('a Ā 𐀀 文 🦄')).toBe('a \\u0100 \\ud800\\udc00 \\u6587 \\ud83e\\udd84');
 		expect(encodeAsciiString('\\u FooBar')).toBe('\\u005Cu FooBar');
 	});
