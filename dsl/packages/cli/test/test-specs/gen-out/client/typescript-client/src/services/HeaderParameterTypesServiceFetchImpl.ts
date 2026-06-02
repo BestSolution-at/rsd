@@ -916,7 +916,7 @@ function fnSimpleStringHeaderParam(props: ServiceProps<api.service.ErrorType>): 
 			const $headers = new Headers($init.headers ?? {});
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
-			$headers.append('headerValue', '"' + encodeAsciiString(headerValue) + '"');
+			$headers.append('headerValue', encodeAsciiString(headerValue));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/headerparametertypes/simpleStringHeaderParam`;
@@ -949,7 +949,7 @@ function fnSimpleStringHeaderParamOpt(props: ServiceProps<api.service.ErrorType>
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
-				$headers.append('headerValue', '"' + encodeAsciiString(headerValue) + '"');
+				$headers.append('headerValue', encodeAsciiString(headerValue));
 			}
 			$init.headers = $headers;
 
@@ -983,7 +983,7 @@ function fnSimpleStringHeaderParamNil(props: ServiceProps<api.service.ErrorType>
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
-				$headers.append('headerValue', '"' + encodeAsciiString(headerValue) + '"');
+				$headers.append('headerValue', encodeAsciiString(headerValue));
 			} else {
 				$headers.append('headerValue', 'null');
 			}
@@ -1019,7 +1019,7 @@ function fnSimpleStringHeaderParamOptNil(props: ServiceProps<api.service.ErrorTy
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
-				$headers.append('headerValue', '"' + encodeAsciiString(headerValue) + '"');
+				$headers.append('headerValue', encodeAsciiString(headerValue));
 			} else if (headerValue === null) {
 				$headers.append('headerValue', 'null');
 			}
@@ -2158,7 +2158,7 @@ function fnMultiHeaderParam(props: ServiceProps<api.service.ErrorType>): api.ser
 			const $headers = new Headers($init.headers ?? {});
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
-			$headers.append('valueA', '"' + encodeAsciiString(valueA) + '"');
+			$headers.append('valueA', encodeAsciiString(valueA));
 			$headers.append('valueB', String(valueB));
 			$init.headers = $headers;
 
@@ -2192,7 +2192,7 @@ function fnMultiHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			if (valueA !== undefined) {
-				$headers.append('valueA', '"' + encodeAsciiString(valueA) + '"');
+				$headers.append('valueA', encodeAsciiString(valueA));
 			}
 			if (valueB !== undefined) {
 				$headers.append('valueB', String(valueB));
@@ -2229,7 +2229,7 @@ function fnMultiHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			if (valueA !== null) {
-				$headers.append('valueA', '"' + encodeAsciiString(valueA) + '"');
+				$headers.append('valueA', encodeAsciiString(valueA));
 			} else {
 				$headers.append('valueA', 'null');
 			}
@@ -2270,7 +2270,7 @@ function fnMultiHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): a
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			if (valueA !== undefined && valueA !== null) {
-				$headers.append('valueA', '"' + encodeAsciiString(valueA) + '"');
+				$headers.append('valueA', encodeAsciiString(valueA));
 			} else if (valueA === null) {
 				$headers.append('valueA', 'null');
 			}
@@ -2454,7 +2454,7 @@ function fnMixed(props: ServiceProps<api.service.ErrorType>): api.service.Header
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
-			$headers.append('headerString', '"' + encodeAsciiString(headerString) + '"');
+			$headers.append('headerString', encodeAsciiString(headerString));
 			$headers.append('headerNumber', String(headerNumber));
 			$headers.append('headerRecord', encodeBase64(encodeValue(encodingType(props), api.model.SimpleRecordToJSON(headerRecord))));
 			$init.headers = $headers;

@@ -964,7 +964,7 @@ function fnListStringHeaderParam(props: ServiceProps<api.service.ErrorType>): ap
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			headerValue.forEach($entry => {
-				$headers.append('headerValue', '"' + encodeAsciiString($entry) + '"');
+				$headers.append('headerValue', encodeAsciiString($entry));
 			});
 			$init.headers = $headers;
 
@@ -999,7 +999,7 @@ function fnListStringHeaderParamOpt(props: ServiceProps<api.service.ErrorType>):
 			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
 				headerValue.forEach($entry => {
-					$headers.append('headerValue', '"' + encodeAsciiString($entry) + '"');
+					$headers.append('headerValue', encodeAsciiString($entry));
 				});
 			}
 			$init.headers = $headers;
@@ -1035,7 +1035,7 @@ function fnListStringHeaderParamNil(props: ServiceProps<api.service.ErrorType>):
 			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
 				headerValue.forEach($entry => {
-					$headers.append('headerValue', '"' + encodeAsciiString($entry) + '"');
+					$headers.append('headerValue', encodeAsciiString($entry));
 				});
 			} else {
 				$headers.append('headerValue', 'null');
@@ -1073,7 +1073,7 @@ function fnListStringHeaderParamOptNil(props: ServiceProps<api.service.ErrorType
 			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
 				headerValue.forEach($entry => {
-					$headers.append('headerValue', '"' + encodeAsciiString($entry) + '"');
+					$headers.append('headerValue', encodeAsciiString($entry));
 				});
 			} else if (headerValue === null) {
 				$headers.append('headerValue', 'null');
@@ -2279,7 +2279,7 @@ function fnListMultiHeaderParam(props: ServiceProps<api.service.ErrorType>): api
 			$headers.append('Content-Type', encodingType(props));
 			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			valueA.forEach($entry => {
-				$headers.append('valueA', '"' + encodeAsciiString($entry) + '"');
+				$headers.append('valueA', encodeAsciiString($entry));
 			});
 			valueB.forEach($entry => {
 				$headers.append('valueB', String($entry));
@@ -2321,7 +2321,7 @@ function fnListMultiHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): 
 			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			if (valueA !== undefined) {
 				valueA.forEach($entry => {
-					$headers.append('valueA', '"' + encodeAsciiString($entry) + '"');
+					$headers.append('valueA', encodeAsciiString($entry));
 				});
 			}
 			if (valueB !== undefined) {
@@ -2368,7 +2368,7 @@ function fnListMultiHeaderParamNil(props: ServiceProps<api.service.ErrorType>): 
 			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			if (valueA !== null) {
 				valueA.forEach($entry => {
-					$headers.append('valueA', '"' + encodeAsciiString($entry) + '"');
+					$headers.append('valueA', encodeAsciiString($entry));
 				});
 			} else {
 				$headers.append('valueA', 'null');
@@ -2421,7 +2421,7 @@ function fnListMultiHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>
 			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
 			if (valueA !== undefined && valueA !== null) {
 				valueA.forEach($entry => {
-					$headers.append('valueA', '"' + encodeAsciiString($entry) + '"');
+					$headers.append('valueA', encodeAsciiString($entry));
 				});
 			} else if (valueA === null) {
 				$headers.append('valueA', 'null');

@@ -1594,7 +1594,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
+		$headerParams.put("headerValue", ServiceUtils.encodeAsciiString(headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1678,7 +1678,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
+			$headerParams.put("headerValue", ServiceUtils.encodeAsciiString(headerValue));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -1725,7 +1725,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
+			$headerParams.put("headerValue", ServiceUtils.encodeAsciiString(headerValue));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -1812,7 +1812,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", "\"" + ServiceUtils.encodeAsciiString(headerValue) + "\"");
+			$headerParams.put("headerValue", ServiceUtils.encodeAsciiString(headerValue));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -3926,7 +3926,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+		$headerParams.put("valueA", ServiceUtils.encodeAsciiString(valueA));
 		$headerParams.put("valueB", String.format("%s", valueB));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -4011,7 +4011,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+			$headerParams.put("valueA", ServiceUtils.encodeAsciiString(valueA));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -4058,7 +4058,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+			$headerParams.put("valueA", ServiceUtils.encodeAsciiString(valueA));
 		}
 		$headerParams.put("valueB", String.format("%s", valueB));
 		var $headers = ServiceUtils.toHeaders($headerParams);
@@ -4106,7 +4106,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+			$headerParams.put("valueA", ServiceUtils.encodeAsciiString(valueA));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
@@ -4194,7 +4194,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+			$headerParams.put("valueA", ServiceUtils.encodeAsciiString(valueA));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
@@ -4243,7 +4243,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", "\"" + ServiceUtils.encodeAsciiString(valueA) + "\"");
+			$headerParams.put("valueA", ServiceUtils.encodeAsciiString(valueA));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
@@ -4578,7 +4578,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		$queryParams.append("queryRecord", ServiceUtils.ofObject(queryRecord, false, this.contentType(), SimpleRecord.Data.class));
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerString", "\"" + ServiceUtils.encodeAsciiString(headerString) + "\"");
+		$headerParams.put("headerString", ServiceUtils.encodeAsciiString(headerString));
 		$headerParams.put("headerNumber", String.format("%s", headerNumber));
 		$headerParams.put("headerRecord", ServiceUtils.encodeBase64(ServiceUtils.ofObject(headerRecord, false, this.contentType(), SimpleRecord.Data.class)));
 		var $headers = ServiceUtils.toHeaders($headerParams);

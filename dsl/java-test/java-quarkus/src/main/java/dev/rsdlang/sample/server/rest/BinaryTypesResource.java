@@ -294,7 +294,7 @@ public class BinaryTypesResource {
 	public Response mixed(@HeaderParam("Accept") List<String> $acceptHeaders, @HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType, @PathParam("pathString") String _pathString, @PathParam("pathNumber") String _pathNumber, @HeaderParam("headerString") String _headerString, @HeaderParam("headerNumber") String _headerNumber, @HeaderParam("headerRecord") String _headerRecord, @QueryParam("queryString") String _queryString, @QueryParam("queryNumber") String _queryNumber, @QueryParam("queryRecord") String _queryRecord, @RestForm("dataBlob") FileUpload _dataBlob) {
 		var pathString = _RestUtils.parseString(_pathString);
 		var pathNumber = _RestUtils.parseInt(_pathNumber);
-		var headerString = _RestUtils.parseString(_headerString, $hv -> _RestUtils.fromEscapedAscii($hv.substring(1, $hv.length() - 1)));
+		var headerString = _RestUtils.parseString(_headerString, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var headerNumber = _RestUtils.parseInt(_headerNumber);
 		var headerRecord = _RestUtils.parseObject(_headerRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var queryString = _RestUtils.parseString(_queryString);

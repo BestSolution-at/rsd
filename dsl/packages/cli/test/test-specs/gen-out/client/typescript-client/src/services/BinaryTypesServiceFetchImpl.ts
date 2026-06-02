@@ -828,7 +828,7 @@ function fnMixed(props: ServiceProps<api.service.ErrorType>): api.service.Binary
 			const $headers = new Headers($init.headers ?? {});
 			$headers.append('Accept', encodingType(props));
 			$headers.append('X-RSD-Param-Content-Type', encodingType(props));
-			$headers.append('headerString', '"' + encodeAsciiString(headerString) + '"');
+			$headers.append('headerString', encodeAsciiString(headerString));
 			$headers.append('headerNumber', String(headerNumber));
 			$headers.append('headerRecord', encodeBase64(encodeValue(encodingType(props), api.model.SimpleRecordToJSON(headerRecord))));
 			$init.headers = $headers;

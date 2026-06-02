@@ -459,7 +459,7 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListStringHeaderParamRaw({
-				headerValue: headerValue.map(e => '"' + encodeAsciiString(e) + '"'),
+				headerValue: headerValue.map(e => encodeAsciiString(e)),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -1073,7 +1073,7 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListMultiHeaderParamRaw({
-				valueA: valueA.map(e => '"' + encodeAsciiString(e) + '"'),
+				valueA: valueA.map(e => encodeAsciiString(e)),
 				valueB,
 				valueC: valueC.map(e => encodeBase64(JSON.stringify(e))),
 				xRSDParamContentType: 'application/json',

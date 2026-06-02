@@ -2456,7 +2456,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		$queryParams.append("queryRecord", ServiceUtils.ofObject(queryRecord, false, this.contentType(), SimpleRecord.Data.class));
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerString", "\"" + ServiceUtils.encodeAsciiString(headerString) + "\"");
+		$headerParams.put("headerString", ServiceUtils.encodeAsciiString(headerString));
 		$headerParams.put("headerNumber", String.format("%s", headerNumber));
 		$headerParams.put("headerRecord", ServiceUtils.encodeBase64(ServiceUtils.ofObject(headerRecord, false, this.contentType(), SimpleRecord.Data.class)));
 		var $headers = ServiceUtils.toHeaders($headerParams);

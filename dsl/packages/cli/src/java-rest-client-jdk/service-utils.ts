@@ -32,7 +32,6 @@ export function generateServiceUtils(
 	importCollector.importType('java.util.stream.Collectors');
 	importCollector.importType('java.util.stream.Stream');
 	importCollector.importType('java.util.ArrayList');
-
 	if (hasStreamResult(model)) {
 		importCollector.importType('java.io.IOException');
 		importCollector.importType('java.nio.file.Files');
@@ -433,6 +432,17 @@ public class ServiceUtils {
 
 	public static String encodeAsciiString(String text) {
 		text = text.replace("\\\\u", "\\\\u005Cu"); // Escape existing \\\\u sequences
+		int leading = 0;
+		while (leading < text.length() && text.charAt(leading) == ' ') leading++;
+		if (leading > 0) {
+			text = "\\\\u0020".repeat(leading) + text.substring(leading);
+		}
+		int trailing = 0;
+		int len = text.length();
+		while (trailing < len && text.charAt(len - 1 - trailing) == ' ') trailing++;
+		if (trailing > 0) {
+			text = text.substring(0, len - trailing) + "\\\\u0020".repeat(trailing);
+		}
 		var b = new StringBuilder(text.length());
 		var l = text.length();
 		for (var i = 0; i < l; i++) {
