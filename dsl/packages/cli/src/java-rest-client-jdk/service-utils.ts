@@ -57,6 +57,9 @@ export function generateServiceUtils(
 
 	const compilationContent = toNodeTree(`
 public class ServiceUtils {
+	private static final Pattern SPACE_PREFIX = Pattern.compile("^\\\\s+");
+	private static final Pattern SPACE_SUFFIX = Pattern.compile("\\\\s+$");
+
 	private record SearchParam(String key, Object value) {
 
 	}
@@ -435,10 +438,10 @@ public class ServiceUtils {
 	public static String encodeAsciiString(String text) {
 		text = text.replace("\\\\u", "\\\\u005Cu"); // Escape existing \\\\u sequences
 		if (text.startsWith(" ")) {
-			text = Pattern.compile("^\\\\s+").matcher(text).replaceAll(match -> match.group().replace(" ", "\\\\\\\\u0020"));
+			text = SPACE_PREFIX.matcher(text).replaceAll(match -> match.group().replace(" ", "\\\\\\\\u0020"));
 		}
 		if (text.endsWith(" ")) {
-			text = Pattern.compile("\\\\s+$").matcher(text).replaceAll(match -> match.group().replace(" ", "\\\\\\\\u0020"));
+			text = SPACE_SUFFIX.matcher(text).replaceAll(match -> match.group().replace(" ", "\\\\\\\\u0020"));
 		}
 		var b = new StringBuilder(text.length());
 		var l = text.length();
