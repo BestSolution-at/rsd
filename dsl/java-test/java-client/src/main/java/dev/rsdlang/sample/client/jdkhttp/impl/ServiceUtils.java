@@ -35,8 +35,8 @@ import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 
 public class ServiceUtils {
-	private static final Pattern SPACE_PREFIX = Pattern.compile("^\\s+");
-	private static final Pattern SPACE_SUFFIX = Pattern.compile("\\s+$");
+	private static final Pattern SPACE_PREFIX = Pattern.compile("^ +");
+	private static final Pattern SPACE_SUFFIX = Pattern.compile(" +$");
 
 	private record SearchParam(String key, Object value) {
 

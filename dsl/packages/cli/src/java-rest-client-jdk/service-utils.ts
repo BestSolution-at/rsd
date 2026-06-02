@@ -57,8 +57,8 @@ export function generateServiceUtils(
 
 	const compilationContent = toNodeTree(`
 public class ServiceUtils {
-	private static final Pattern SPACE_PREFIX = Pattern.compile("^\\\\s+");
-	private static final Pattern SPACE_SUFFIX = Pattern.compile("\\\\s+$");
+	private static final Pattern SPACE_PREFIX = Pattern.compile("^ +");
+	private static final Pattern SPACE_SUFFIX = Pattern.compile(" +$");
 
 	private record SearchParam(String key, Object value) {
 
