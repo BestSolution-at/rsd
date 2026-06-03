@@ -140,17 +140,10 @@ export function FromJSON(
 				const propValue = fqn('propValue:../_type-utils.ts', false);
 				const guard = builtinTypeGuard(p.type, fqn);
 				fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard});`, NL);
-			} else if (
-				p.variant === 'inline-enum' ||
-				p.variant === 'builtin' ||
-				p.variant === 'enum' ||
-				p.variant === 'scalar'
-			) {
+			} else if (p.variant === 'inline-enum' || p.variant === 'enum' || p.variant === 'scalar') {
 				let guard: string;
 
-				if (isMBuiltinType(p.type)) {
-					guard = builtinTypeGuard(p.type, fqn);
-				} else if (isMInlineEnumType(p.type)) {
+				if (isMInlineEnumType(p.type)) {
 					guard = `is${t.name}_${toFirstUpper(p.name)}`;
 				} else if (p.variant === 'enum') {
 					guard = fqn(`is${p.type}:./${p.type}.ts`, false);
@@ -186,20 +179,52 @@ export function FromJSON(
 					allow = ", 'null'";
 				}
 
-				const guard = fqn('isRecord:../_type-utils.ts', false);
-				const map = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
-
-				if (p.array) {
-					const propMappedListValue = fqn('propMappedListValue:../_type-utils.ts', false);
-					fBody.append(
-						`const ${p.name} = ${propMappedListValue}('${p.name}', $value, ${guard}, ${map}`,
-						allow,
-						');',
-						NL,
-					);
+				let guard = '';
+				let fromJSON = '';
+				if (isMBuiltinType(p.type)) {
+					guard = builtinTypeGuard(p.type, fqn);
+					if (p.type === 'local-date-time') {
+						fromJSON = fqn('LocalDateTimeFromJSON:./Builtins.ts', false);
+					} else if (p.type === 'local-date') {
+						fromJSON = fqn('LocalDateFromJSON:./Builtins.ts', false);
+					} else if (p.type === 'local-time') {
+						fromJSON = fqn('LocalTimeFromJSON:./Builtins.ts', false);
+					} else if (p.type === 'offset-date-time') {
+						fromJSON = fqn('OffsetDateTimeFromJSON:./Builtins.ts', false);
+					} else if (p.type === 'zoned-date-time') {
+						fromJSON = fqn('ZonedDateTimeFromJSON:./Builtins.ts', false);
+					}
 				} else {
-					const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
-					fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${map}`, allow, ');', NL);
+					guard = fqn('isRecord:../_type-utils.ts', false);
+					fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
+				}
+
+				if (fromJSON) {
+					if (p.array) {
+						const propMappedListValue = fqn('propMappedListValue:../_type-utils.ts', false);
+						fBody.append(
+							`const ${p.name} = ${propMappedListValue}('${p.name}', $value, ${guard}, ${fromJSON}`,
+							allow,
+							');',
+							NL,
+						);
+					} else {
+						const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
+						fBody.append(
+							`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${fromJSON}`,
+							allow,
+							');',
+							NL,
+						);
+					}
+				} else {
+					if (p.array) {
+						const propListValue = fqn('propListValue:../_type-utils.ts', false);
+						fBody.append(`const ${p.name} = ${propListValue}('${p.name}', $value, ${guard}`, allow, ');', NL);
+					} else {
+						const propValue = fqn('propValue:../_type-utils.ts', false);
+						fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard}`, allow, ');', NL);
+					}
 				}
 			}
 		});
