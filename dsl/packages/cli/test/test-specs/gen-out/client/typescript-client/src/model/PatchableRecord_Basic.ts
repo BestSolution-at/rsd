@@ -149,11 +149,11 @@ export function PatchableRecord_BasicPatchFromJSON($value: Record<string, unknow
 	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional');
 	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional');
 	const valueString = propValue('valueString', $value, isString, 'optional');
-	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional');
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional');
-	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional');
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, LocalDateFromJSON, 'optional');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, LocalDateTimeFromJSON, 'optional');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, LocalTimeFromJSON, 'optional');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, OffsetDateTimeFromJSON, 'optional');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, ZonedDateTimeFromJSON, 'optional');
 	return {
 		key,
 		version,

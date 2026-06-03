@@ -1155,11 +1155,11 @@ export function PatchableRecord_BasicPatchFromJSON($value: Record<string, unknow
 	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional');
 	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional');
 	const valueString = propValue('valueString', $value, isString, 'optional');
-	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional');
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional');
-	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional');
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, LocalDateFromJSON, 'optional');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, LocalDateTimeFromJSON, 'optional');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, LocalTimeFromJSON, 'optional');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, OffsetDateTimeFromJSON, 'optional');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, ZonedDateTimeFromJSON, 'optional');
 	return {
 		key,
 		version,
@@ -1190,11 +1190,11 @@ export function PatchableRecord_Basic_OptionalPatchFromJSON($value: Record<strin
 	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
 	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
 	const valueString = propValue('valueString', $value, isString, 'optional_null');
-	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
-	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional_null');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional_null');
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, LocalDateFromJSON, 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, LocalDateTimeFromJSON, 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, LocalTimeFromJSON, 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, OffsetDateTimeFromJSON, 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, ZonedDateTimeFromJSON, 'optional_null');
 	return {
 		key,
 		version,
@@ -1225,11 +1225,11 @@ export function PatchableRecord_Basic_NullPatchFromJSON($value: Record<string, u
 	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
 	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
 	const valueString = propValue('valueString', $value, isString, 'optional_null');
-	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
-	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional_null');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional_null');
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, LocalDateFromJSON, 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, LocalDateTimeFromJSON, 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, LocalTimeFromJSON, 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, OffsetDateTimeFromJSON, 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, ZonedDateTimeFromJSON, 'optional_null');
 	return {
 		key,
 		version,
@@ -1260,11 +1260,11 @@ export function PatchableRecord_Basic_Optional_NullPatchFromJSON($value: Record<
 	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
 	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
 	const valueString = propValue('valueString', $value, isString, 'optional_null');
-	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
-	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional_null');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional_null');
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, LocalDateFromJSON, 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, LocalDateTimeFromJSON, 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, LocalTimeFromJSON, 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, OffsetDateTimeFromJSON, 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, ZonedDateTimeFromJSON, 'optional_null');
 	return {
 		key,
 		version,
@@ -1295,11 +1295,11 @@ export function PatchableRecord_Basic_ListPatchFromJSON($value: Record<string, u
 	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
 	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
 	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
-	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
-	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
-	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
-	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
-	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, LocalDateFromJSON) : ListMergeAddRemoveFromJSON(v, isString, LocalDateFromJSON, isString, LocalDateFromJSON), 'optional');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, LocalDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, LocalDateTimeFromJSON, isString, LocalDateTimeFromJSON), 'optional');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, LocalTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, LocalTimeFromJSON, isString, LocalTimeFromJSON), 'optional');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, OffsetDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, OffsetDateTimeFromJSON, isString, OffsetDateTimeFromJSON), 'optional');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, ZonedDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, ZonedDateTimeFromJSON, isString, ZonedDateTimeFromJSON), 'optional');
 	return {
 		key,
 		version,
@@ -1330,11 +1330,11 @@ export function PatchableRecord_Basic_List_OptionalPatchFromJSON($value: Record<
 	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
 	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
 	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, LocalDateFromJSON) : ListMergeAddRemoveFromJSON(v, isString, LocalDateFromJSON, isString, LocalDateFromJSON), 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, LocalDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, LocalDateTimeFromJSON, isString, LocalDateTimeFromJSON), 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, LocalTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, LocalTimeFromJSON, isString, LocalTimeFromJSON), 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, OffsetDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, OffsetDateTimeFromJSON, isString, OffsetDateTimeFromJSON), 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, ZonedDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, ZonedDateTimeFromJSON, isString, ZonedDateTimeFromJSON), 'optional_null');
 	return {
 		key,
 		version,
@@ -1364,11 +1364,11 @@ export function PatchableRecord_Basic_List_NullPatchFromJSON($value: Record<stri
 	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
 	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
 	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, LocalDateFromJSON) : ListMergeAddRemoveFromJSON(v, isString, LocalDateFromJSON, isString, LocalDateFromJSON), 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, LocalDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, LocalDateTimeFromJSON, isString, LocalDateTimeFromJSON), 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, LocalTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, LocalTimeFromJSON, isString, LocalTimeFromJSON), 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, OffsetDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, OffsetDateTimeFromJSON, isString, OffsetDateTimeFromJSON), 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, ZonedDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, ZonedDateTimeFromJSON, isString, ZonedDateTimeFromJSON), 'optional_null');
 	return {
 		key,
 		version,
@@ -1399,11 +1399,11 @@ export function PatchableRecord_Basic_List_Optional_NullPatchFromJSON($value: Re
 	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
 	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
 	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, LocalDateFromJSON) : ListMergeAddRemoveFromJSON(v, isString, LocalDateFromJSON, isString, LocalDateFromJSON), 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, LocalDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, LocalDateTimeFromJSON, isString, LocalDateTimeFromJSON), 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, LocalTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, LocalTimeFromJSON, isString, LocalTimeFromJSON), 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, OffsetDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, OffsetDateTimeFromJSON, isString, OffsetDateTimeFromJSON), 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, ZonedDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, ZonedDateTimeFromJSON, isString, ZonedDateTimeFromJSON), 'optional_null');
 	return {
 		key,
 		version,

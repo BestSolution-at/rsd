@@ -183,17 +183,7 @@ export function FromJSON(
 				let fromJSON = '';
 				if (isMBuiltinType(p.type)) {
 					guard = builtinTypeGuard(p.type, fqn);
-					if (p.type === 'local-date-time') {
-						fromJSON = fqn('LocalDateTimeFromJSON:./Builtins.ts', false);
-					} else if (p.type === 'local-date') {
-						fromJSON = fqn('LocalDateFromJSON:./Builtins.ts', false);
-					} else if (p.type === 'local-time') {
-						fromJSON = fqn('LocalTimeFromJSON:./Builtins.ts', false);
-					} else if (p.type === 'offset-date-time') {
-						fromJSON = fqn('OffsetDateTimeFromJSON:./Builtins.ts', false);
-					} else if (p.type === 'zoned-date-time') {
-						fromJSON = fqn('ZonedDateTimeFromJSON:./Builtins.ts', false);
-					}
+					fromJSON = builtinFromJSON(p.type, fqn, () => '');
 				} else {
 					guard = fqn('isRecord:../_type-utils.ts', false);
 					fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
@@ -264,17 +254,7 @@ export function ToJSON(
 				let ToJSON = '';
 
 				if (isMBuiltinType(p.type)) {
-					if (p.type === 'local-date-time') {
-						ToJSON = fqn('LocalDateTimeToJSON:./Builtins.ts', false);
-					} else if (p.type === 'local-date') {
-						ToJSON = fqn('LocalDateToJSON:./Builtins.ts', false);
-					} else if (p.type === 'local-time') {
-						ToJSON = fqn('LocalTimeToJSON:./Builtins.ts', false);
-					} else if (p.type === 'offset-date-time') {
-						ToJSON = fqn('OffsetDateTimeToJSON:./Builtins.ts', false);
-					} else if (p.type === 'zoned-date-time') {
-						ToJSON = fqn('ZonedDateTimeToJSON:./Builtins.ts', false);
-					}
+					ToJSON = builtinToJSON(p.type, fqn, () => '');
 				} else {
 					ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
 				}
@@ -628,20 +608,39 @@ export function FromJSONPatch(
 					if (p.array) {
 						const propValue = fqn('propMappedValue:../_type-utils.ts', false);
 						const isRecord = fqn('isRecord:../_type-utils.ts', false);
-						const noopMap = fqn('noopMap:../_type-utils.ts', false);
+						let fromJSON: string;
+						if (isMBuiltinType(p.type)) {
+							fromJSON = builtinFromJSON(p.type, fqn, () => fqn('noopMap:../_type-utils.ts', false));
+						} else {
+							fromJSON = fqn('noopMap:../_type-utils.ts', false);
+						}
 						const isListReplace = fqn('isListReplace:../_type-utils.ts', false);
 						const ListMergeAddRemoveFromJSON = fqn('ListMergeAddRemoveFromJSON:../_type-utils.ts', false);
 						const ListReplaceFromJSON = fqn('ListReplaceFromJSON:../_type-utils.ts', false);
 
 						fBody.append(
-							`const ${p.name} = ${propValue}('${p.name}', $value, ${isRecord}, v => ${isListReplace}(v, ${guard}) ? ${ListReplaceFromJSON}(v, ${guard}, ${noopMap}) : ${ListMergeAddRemoveFromJSON}(v, ${guard}, ${noopMap}, ${guard}, ${noopMap})`,
+							`const ${p.name} = ${propValue}('${p.name}', $value, ${isRecord}, v => ${isListReplace}(v, ${guard}) ? ${ListReplaceFromJSON}(v, ${guard}, ${fromJSON}) : ${ListMergeAddRemoveFromJSON}(v, ${guard}, ${fromJSON}, ${guard}, ${fromJSON})`,
 							allow,
 							');',
 							NL,
 						);
 					} else {
-						const propValue = fqn('propValue:../_type-utils.ts', false);
-						fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard}`, allow, ');', NL);
+						let fromJSON = '';
+						if (isMBuiltinType(p.type)) {
+							fromJSON = builtinFromJSON(p.type, fqn, () => '');
+						}
+						if (fromJSON) {
+							const propValue = fqn('propMappedValue:../_type-utils.ts', false);
+							fBody.append(
+								`const ${p.name} = ${propValue}('${p.name}', $value, ${guard}, ${fromJSON}`,
+								allow,
+								');',
+								NL,
+							);
+						} else {
+							const propValue = fqn('propValue:../_type-utils.ts', false);
+							fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard}`, allow, ');', NL);
+						}
 					}
 				} else {
 					let allow = ", 'optional'";
@@ -650,12 +649,13 @@ export function FromJSONPatch(
 					}
 
 					const guard = fqn('isRecord:../_type-utils.ts', false);
-					const isString = fqn('isString:../_type-utils.ts', false);
-					const noopMap = fqn('noopMap:../_type-utils.ts', false);
 					const map = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
 					const patchMap = fqn(`${p.type}PatchFromJSON:./${p.type}.ts`, false);
 
 					if (p.array) {
+						const noopMap = fqn('noopMap:../_type-utils.ts', false);
+						const isString = fqn('isString:../_type-utils.ts', false);
+
 						const ListMergeAddUpdateRemoveFromJSON = fqn('ListMergeAddUpdateRemoveFromJSON:../_type-utils.ts', false);
 						const isListReplace = fqn('isListReplace:../_type-utils.ts', false);
 						const ListReplaceFromJSON = fqn('ListReplaceFromJSON:../_type-utils.ts', false);
@@ -869,4 +869,42 @@ function builtinTypeGuard(type: MBuiltinType, fqn: (v: string, typeOnly: boolean
 	} else {
 		return fqn('isString:../_type-utils.ts', false);
 	}
+}
+
+function builtinFromJSON(
+	type: MBuiltinType,
+	fqn: (v: string, typeOnly: boolean) => string,
+	defaultValue: () => string,
+): string {
+	if (type === 'local-date-time') {
+		return fqn('LocalDateTimeFromJSON:./Builtins.ts', false);
+	} else if (type === 'local-date') {
+		return fqn('LocalDateFromJSON:./Builtins.ts', false);
+	} else if (type === 'local-time') {
+		return fqn('LocalTimeFromJSON:./Builtins.ts', false);
+	} else if (type === 'offset-date-time') {
+		return fqn('OffsetDateTimeFromJSON:./Builtins.ts', false);
+	} else if (type === 'zoned-date-time') {
+		return fqn('ZonedDateTimeFromJSON:./Builtins.ts', false);
+	}
+	return defaultValue();
+}
+
+function builtinToJSON(
+	type: MBuiltinType,
+	fqn: (v: string, typeOnly: boolean) => string,
+	defaultValue: () => string,
+): string {
+	if (type === 'local-date-time') {
+		return fqn('LocalDateTimeToJSON:./Builtins.ts', false);
+	} else if (type === 'local-date') {
+		return fqn('LocalDateToJSON:./Builtins.ts', false);
+	} else if (type === 'local-time') {
+		return fqn('LocalTimeToJSON:./Builtins.ts', false);
+	} else if (type === 'offset-date-time') {
+		return fqn('OffsetDateTimeToJSON:./Builtins.ts', false);
+	} else if (type === 'zoned-date-time') {
+		return fqn('ZonedDateTimeToJSON:./Builtins.ts', false);
+	}
+	return defaultValue();
 }

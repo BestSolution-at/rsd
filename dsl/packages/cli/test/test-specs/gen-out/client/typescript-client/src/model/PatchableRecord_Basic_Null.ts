@@ -149,11 +149,11 @@ export function PatchableRecord_Basic_NullPatchFromJSON($value: Record<string, u
 	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
 	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
 	const valueString = propValue('valueString', $value, isString, 'optional_null');
-	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
-	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional_null');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional_null');
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, LocalDateFromJSON, 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, LocalDateTimeFromJSON, 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, LocalTimeFromJSON, 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, OffsetDateTimeFromJSON, 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, ZonedDateTimeFromJSON, 'optional_null');
 	return {
 		key,
 		version,
