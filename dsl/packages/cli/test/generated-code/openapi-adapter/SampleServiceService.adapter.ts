@@ -1,9 +1,9 @@
-import { api } from '../../../typescript-client/src/index.js';
-import { ErrorDataFromJSON } from '../../../typescript-client/src/model/ErrorData.js';
-import { UnionFromJSON } from '../../../typescript-client/src/model/Union.js';
-import { ServiceProps } from '../../../typescript-client/src/services/_fetch-type-utils.js';
-import { SampleServiceApi } from '../apis/SampleServiceApi.js';
-import { Configuration, ResponseError } from '../runtime.js';
+import { api } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
+import { ErrorDataFromJSON } from '../../test-specs/gen-out/client/typescript-client/src/model/ErrorData.js';
+import { UnionFromJSON } from '../../test-specs/gen-out/client/typescript-client/src/model/Union.js';
+import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
+import { SampleServiceApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/SampleServiceApi.js';
+import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
 
 export function createOpenAPISampleServiceService(
 	props: ServiceProps<api.service.ErrorType>,

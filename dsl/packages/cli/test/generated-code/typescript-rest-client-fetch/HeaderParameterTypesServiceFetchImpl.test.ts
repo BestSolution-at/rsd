@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
 import { api, createHeaderParameterTypesService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
-import { createOpenAPIHeaderParameterTypesService } from '../../test-specs/gen-out/client/typescript-client-openapi/src/adapter/HeaderParameterTypesService.adapter.js';
+import { createOpenAPIHeaderParameterTypesService } from '../openapi-adapter/HeaderParameterTypesService.adapter.js';
 
 const jsonService = createHeaderParameterTypesService({
 	baseUrl: 'http://localhost:3000',

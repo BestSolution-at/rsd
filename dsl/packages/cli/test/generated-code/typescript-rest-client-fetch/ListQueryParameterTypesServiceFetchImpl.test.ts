@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
 import { createListQueryParameterTypesService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
-import { createOpenAPIListQueryParameterTypesService } from '../../test-specs/gen-out/client/typescript-client-openapi/src/adapter/ListQueryParameterTypesService.adapter.js';
+import { createOpenAPIListQueryParameterTypesService } from '../openapi-adapter/ListQueryParameterTypesService.adapter.js';
 
 const jsonService = createListQueryParameterTypesService({
 	baseUrl: 'http://localhost:3000',

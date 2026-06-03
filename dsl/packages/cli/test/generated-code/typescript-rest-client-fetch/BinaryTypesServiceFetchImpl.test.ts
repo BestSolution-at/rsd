@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 
 import { createBinaryTypesService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
 import { UploadMixedResult } from '../../test-specs/gen-out/client/typescript-client/src/model/UploadMixedResult.js';
-import { createOpenAPIBinaryTypesService } from '../../test-specs/gen-out/client/typescript-client-openapi/src/adapter/BinaryTypesService.adapter.js';
+import { createOpenAPIBinaryTypesService } from '../openapi-adapter/BinaryTypesService.adapter.js';
 
 const jsonService = createBinaryTypesService({
 	baseUrl: 'http://localhost:3000',

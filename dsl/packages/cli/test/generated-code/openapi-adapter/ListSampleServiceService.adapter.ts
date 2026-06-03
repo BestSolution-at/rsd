@@ -1,7 +1,7 @@
-import { api } from '../../../typescript-client/src/index.js';
-import { ServiceProps } from '../../../typescript-client/src/services/_fetch-type-utils.js';
-import { ListSampleServiceApi } from '../apis/ListSampleServiceApi.js';
-import { Configuration, ResponseError } from '../runtime.js';
+import { api } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
+import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
+import { ListSampleServiceApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/ListSampleServiceApi.js';
+import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
 
 export function createOpenAPIListSampleServiceService(
 	props: ServiceProps<api.service.ErrorType>,

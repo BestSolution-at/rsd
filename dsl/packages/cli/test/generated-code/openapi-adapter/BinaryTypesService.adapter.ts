@@ -1,12 +1,12 @@
-import { api } from '../../../typescript-client/src/index.js';
-import { MixedResult } from '../../../typescript-client/src/model/MixedResult.js';
+import { api } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
+import { MixedResult } from '../../test-specs/gen-out/client/typescript-client/src/model/MixedResult.js';
 import {
 	encodeAsciiString,
 	encodeBase64,
 	ServiceProps,
-} from '../../../typescript-client/src/services/_fetch-type-utils.js';
-import { BinaryTypesApi } from '../apis/BinaryTypesApi.js';
-import { Configuration, ResponseError } from '../runtime.js';
+} from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
+import { BinaryTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/BinaryTypesApi.js';
+import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
 
 export function createOpenAPIBinaryTypesService(
 	config: ServiceProps<api.service.ErrorType>,

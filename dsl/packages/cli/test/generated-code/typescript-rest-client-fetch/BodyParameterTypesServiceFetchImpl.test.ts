@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
 import { createBodyParameterTypesService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
-import { createOpenAPIBodyParameterTypesService } from '../../test-specs/gen-out/client/typescript-client-openapi/src/adapter/BodyParameterTypesService.adapter.js';
+import { createOpenAPIBodyParameterTypesService } from '../openapi-adapter/BodyParameterTypesService.adapter.js';
 
 const jsonService = createBodyParameterTypesService({
 	baseUrl: 'http://localhost:3000',

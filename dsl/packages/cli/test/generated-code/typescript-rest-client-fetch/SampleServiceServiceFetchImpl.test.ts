@@ -6,7 +6,7 @@ import {
 	isSampleErrorError,
 	isSampleErrorWithValueError,
 } from '../../test-specs/gen-out/client/typescript-client/src/Errors.js';
-import { createOpenAPISampleServiceService } from '../../test-specs/gen-out/client/typescript-client-openapi/src/adapter/SampleServiceService.adapter.js';
+import { createOpenAPISampleServiceService } from '../openapi-adapter/SampleServiceService.adapter.js';
 
 const jsonService = createSampleServiceService({
 	baseUrl: 'http://localhost:3000',

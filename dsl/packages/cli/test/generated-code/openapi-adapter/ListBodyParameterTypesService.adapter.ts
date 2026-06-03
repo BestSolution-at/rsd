@@ -1,8 +1,8 @@
-import { api } from '../../../typescript-client/src/index.js';
-import { ListBodyParameterTypesService } from '../../../typescript-client/src/ListBodyParameterTypesService.js';
-import { ServiceProps } from '../../../typescript-client/src/services/_fetch-type-utils.js';
-import { ListBodyParameterTypesApi } from '../apis/ListBodyParameterTypesApi.js';
-import { Configuration, ResponseError } from '../runtime.js';
+import { api } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
+import { ListBodyParameterTypesService } from '../../test-specs/gen-out/client/typescript-client/src/ListBodyParameterTypesService.js';
+import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
+import { ListBodyParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/ListBodyParameterTypesApi.js';
+import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
 
 export function createOpenAPIListBodyParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,

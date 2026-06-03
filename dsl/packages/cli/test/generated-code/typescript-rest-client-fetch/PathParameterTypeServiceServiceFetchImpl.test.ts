@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
 import { createPathParameterTypeServiceService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
-import { createOpenAPIPathParameterTypeServiceService } from '../../test-specs/gen-out/client/typescript-client-openapi/src/adapter/PathParameterTypeServiceService.adapter.js';
+import { createOpenAPIPathParameterTypeServiceService } from '../openapi-adapter/PathParameterTypeServiceService.adapter.js';
 
 const jsonService = createPathParameterTypeServiceService({
 	baseUrl: 'http://localhost:3000',

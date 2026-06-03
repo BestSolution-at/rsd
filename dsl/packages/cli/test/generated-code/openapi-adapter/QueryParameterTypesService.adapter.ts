@@ -1,7 +1,10 @@
-import { api } from '../../../typescript-client/src/index.js';
-import { encodeBase64, ServiceProps } from '../../../typescript-client/src/services/_fetch-type-utils.js';
-import { QueryParameterTypesApi } from '../apis/QueryParameterTypesApi.js';
-import { Configuration, ResponseError } from '../runtime.js';
+import { api } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
+import {
+	encodeBase64,
+	ServiceProps,
+} from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
+import { QueryParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/QueryParameterTypesApi.js';
+import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
 
 export function createOpenAPIQueryParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
