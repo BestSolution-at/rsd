@@ -21,159 +21,159 @@ beforeEach(() => {
 
 const SimpleRecord_KeyVersion_Result = `
 export type SimpleRecord_KeyVersion = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 };
 `.trim();
 
 const SimpleRecord_KeyVersion_Int_Int_Result = `
 export type SimpleRecord_KeyVersion_Int_Int = {
-	readonly key: number;
-	readonly version: number;
+	readonly key: RSDInt;
+	readonly version: RSDInt;
 };
 `.trim();
 
 const SimpleRecord_Result = `
 export type SimpleRecord = {
-	readonly key: string;
-	readonly version: string;
-	readonly value: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
+	readonly value: RSDString;
 };
 `.trim();
 
 const SimpleRecord_Basic_Result = `
 export type SimpleRecord_Basic = {
-	readonly valueBoolean: boolean;
-	readonly valueShort: number;
-	readonly valueInt: number;
-	readonly valueLong: number;
-	readonly valueFloat: number;
-	readonly valueDouble: number;
-	readonly valueString: string;
-	readonly valueLocalDate: string;
-	readonly valueLocalDateTime: string;
-	readonly valueLocalTime: string;
-	readonly valueOffsetDateTime: string;
-	readonly valueZonedDateTime: string;
+	readonly valueBoolean: RSDBoolean;
+	readonly valueShort: RSDShort;
+	readonly valueInt: RSDInt;
+	readonly valueLong: RSDLong;
+	readonly valueFloat: RSDFloat;
+	readonly valueDouble: RSDDouble;
+	readonly valueString: RSDString;
+	readonly valueLocalDate: RSDLocalDate;
+	readonly valueLocalDateTime: RSDLocalDateTime;
+	readonly valueLocalTime: RSDLocalTime;
+	readonly valueOffsetDateTime: RSDOffsetDateTime;
+	readonly valueZonedDateTime: RSDZonedDateTime;
 };
 `.trim();
 
 const SimpleRecord_Basic_Optional_Result = `
 export type SimpleRecord_Basic_Optional = {
-	readonly valueBoolean?: boolean;
-	readonly valueShort?: number;
-	readonly valueInt?: number;
-	readonly valueLong?: number;
-	readonly valueFloat?: number;
-	readonly valueDouble?: number;
-	readonly valueString?: string;
-	readonly valueLocalDate?: string;
-	readonly valueLocalDateTime?: string;
-	readonly valueLocalTime?: string;
-	readonly valueOffsetDateTime?: string;
-	readonly valueZonedDateTime?: string;
+	readonly valueBoolean?: RSDBoolean;
+	readonly valueShort?: RSDShort;
+	readonly valueInt?: RSDInt;
+	readonly valueLong?: RSDLong;
+	readonly valueFloat?: RSDFloat;
+	readonly valueDouble?: RSDDouble;
+	readonly valueString?: RSDString;
+	readonly valueLocalDate?: RSDLocalDate;
+	readonly valueLocalDateTime?: RSDLocalDateTime;
+	readonly valueLocalTime?: RSDLocalTime;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime;
+	readonly valueZonedDateTime?: RSDZonedDateTime;
 };
 `.trim();
 
 const SimpleRecord_Basic_Null_Result = `
 export type SimpleRecord_Basic_Null = {
-	readonly valueBoolean: boolean | null;
-	readonly valueShort: number | null;
-	readonly valueInt: number | null;
-	readonly valueLong: number | null;
-	readonly valueFloat: number | null;
-	readonly valueDouble: number | null;
-	readonly valueString: string | null;
-	readonly valueLocalDate: string | null;
-	readonly valueLocalDateTime: string | null;
-	readonly valueLocalTime: string | null;
-	readonly valueOffsetDateTime: string | null;
-	readonly valueZonedDateTime: string | null;
+	readonly valueBoolean: RSDBoolean | null;
+	readonly valueShort: RSDShort | null;
+	readonly valueInt: RSDInt | null;
+	readonly valueLong: RSDLong | null;
+	readonly valueFloat: RSDFloat | null;
+	readonly valueDouble: RSDDouble | null;
+	readonly valueString: RSDString | null;
+	readonly valueLocalDate: RSDLocalDate | null;
+	readonly valueLocalDateTime: RSDLocalDateTime | null;
+	readonly valueLocalTime: RSDLocalTime | null;
+	readonly valueOffsetDateTime: RSDOffsetDateTime | null;
+	readonly valueZonedDateTime: RSDZonedDateTime | null;
 };
 `.trim();
 
 const SimpleRecord_Basic_Optional_Null_Result = `
 export type SimpleRecord_Basic_Optional_Null = {
-	readonly valueBoolean?: boolean | null;
-	readonly valueShort?: number | null;
-	readonly valueInt?: number | null;
-	readonly valueLong?: number | null;
-	readonly valueFloat?: number | null;
-	readonly valueDouble?: number | null;
-	readonly valueString?: string | null;
-	readonly valueLocalDate?: string | null;
-	readonly valueLocalDateTime?: string | null;
-	readonly valueLocalTime?: string | null;
-	readonly valueOffsetDateTime?: string | null;
-	readonly valueZonedDateTime?: string | null;
+	readonly valueBoolean?: RSDBoolean | null;
+	readonly valueShort?: RSDShort | null;
+	readonly valueInt?: RSDInt | null;
+	readonly valueLong?: RSDLong | null;
+	readonly valueFloat?: RSDFloat | null;
+	readonly valueDouble?: RSDDouble | null;
+	readonly valueString?: RSDString | null;
+	readonly valueLocalDate?: RSDLocalDate | null;
+	readonly valueLocalDateTime?: RSDLocalDateTime | null;
+	readonly valueLocalTime?: RSDLocalTime | null;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime | null;
+	readonly valueZonedDateTime?: RSDZonedDateTime | null;
 };
 `.trim();
 
 const SimpleRecord_Basic_List_Result = `
 export type SimpleRecord_Basic_List = {
-	readonly valueBoolean: boolean[];
-	readonly valueShort: number[];
-	readonly valueInt: number[];
-	readonly valueLong: number[];
-	readonly valueFloat: number[];
-	readonly valueDouble: number[];
-	readonly valueString: string[];
-	readonly valueLocalDate: string[];
-	readonly valueLocalDateTime: string[];
-	readonly valueLocalTime: string[];
-	readonly valueOffsetDateTime: string[];
-	readonly valueZonedDateTime: string[];
+	readonly valueBoolean: RSDBoolean[];
+	readonly valueShort: RSDShort[];
+	readonly valueInt: RSDInt[];
+	readonly valueLong: RSDLong[];
+	readonly valueFloat: RSDFloat[];
+	readonly valueDouble: RSDDouble[];
+	readonly valueString: RSDString[];
+	readonly valueLocalDate: RSDLocalDate[];
+	readonly valueLocalDateTime: RSDLocalDateTime[];
+	readonly valueLocalTime: RSDLocalTime[];
+	readonly valueOffsetDateTime: RSDOffsetDateTime[];
+	readonly valueZonedDateTime: RSDZonedDateTime[];
 };
 `.trim();
 
 const SimpleRecord_Basic_List_Optional_Result = `
 export type SimpleRecord_Basic_List_Optional = {
-	readonly valueBoolean?: boolean[];
-	readonly valueShort?: number[];
-	readonly valueInt?: number[];
-	readonly valueLong?: number[];
-	readonly valueFloat?: number[];
-	readonly valueDouble?: number[];
-	readonly valueString?: string[];
-	readonly valueLocalDate?: string[];
-	readonly valueLocalDateTime?: string[];
-	readonly valueLocalTime?: string[];
-	readonly valueOffsetDateTime?: string[];
-	readonly valueZonedDateTime?: string[];
+	readonly valueBoolean?: RSDBoolean[];
+	readonly valueShort?: RSDShort[];
+	readonly valueInt?: RSDInt[];
+	readonly valueLong?: RSDLong[];
+	readonly valueFloat?: RSDFloat[];
+	readonly valueDouble?: RSDDouble[];
+	readonly valueString?: RSDString[];
+	readonly valueLocalDate?: RSDLocalDate[];
+	readonly valueLocalDateTime?: RSDLocalDateTime[];
+	readonly valueLocalTime?: RSDLocalTime[];
+	readonly valueOffsetDateTime?: RSDOffsetDateTime[];
+	readonly valueZonedDateTime?: RSDZonedDateTime[];
 };
 `.trim();
 
 const SimpleRecord_Basic_List_Null_Result = `
 export type SimpleRecord_Basic_List_Null = {
-	readonly valueBoolean: boolean[] | null;
-	readonly valueShort: number[] | null;
-	readonly valueInt: number[] | null;
-	readonly valueLong: number[] | null;
-	readonly valueFloat: number[] | null;
-	readonly valueDouble: number[] | null;
-	readonly valueString: string[] | null;
-	readonly valueLocalDate: string[] | null;
-	readonly valueLocalDateTime: string[] | null;
-	readonly valueLocalTime: string[] | null;
-	readonly valueOffsetDateTime: string[] | null;
-	readonly valueZonedDateTime: string[] | null;
+	readonly valueBoolean: RSDBoolean[] | null;
+	readonly valueShort: RSDShort[] | null;
+	readonly valueInt: RSDInt[] | null;
+	readonly valueLong: RSDLong[] | null;
+	readonly valueFloat: RSDFloat[] | null;
+	readonly valueDouble: RSDDouble[] | null;
+	readonly valueString: RSDString[] | null;
+	readonly valueLocalDate: RSDLocalDate[] | null;
+	readonly valueLocalDateTime: RSDLocalDateTime[] | null;
+	readonly valueLocalTime: RSDLocalTime[] | null;
+	readonly valueOffsetDateTime: RSDOffsetDateTime[] | null;
+	readonly valueZonedDateTime: RSDZonedDateTime[] | null;
 };
 `.trim();
 
 const SimpleRecord_Basic_List_Optional_Null_Result = `
 export type SimpleRecord_Basic_List_Optional_Null = {
-	readonly valueBoolean?: boolean[] | null;
-	readonly valueShort?: number[] | null;
-	readonly valueInt?: number[] | null;
-	readonly valueLong?: number[] | null;
-	readonly valueFloat?: number[] | null;
-	readonly valueDouble?: number[] | null;
-	readonly valueString?: string[] | null;
-	readonly valueLocalDate?: string[] | null;
-	readonly valueLocalDateTime?: string[] | null;
-	readonly valueLocalTime?: string[] | null;
-	readonly valueOffsetDateTime?: string[] | null;
-	readonly valueZonedDateTime?: string[] | null;
+	readonly valueBoolean?: RSDBoolean[] | null;
+	readonly valueShort?: RSDShort[] | null;
+	readonly valueInt?: RSDInt[] | null;
+	readonly valueLong?: RSDLong[] | null;
+	readonly valueFloat?: RSDFloat[] | null;
+	readonly valueDouble?: RSDDouble[] | null;
+	readonly valueString?: RSDString[] | null;
+	readonly valueLocalDate?: RSDLocalDate[] | null;
+	readonly valueLocalDateTime?: RSDLocalDateTime[] | null;
+	readonly valueLocalTime?: RSDLocalTime[] | null;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime[] | null;
+	readonly valueZonedDateTime?: RSDZonedDateTime[] | null;
 };
 `.trim();
 
@@ -243,9 +243,9 @@ export type RecordWithUnions = {
 
 const MixinRecord_Result = `
 export type MixinRecord = {
-	readonly sample: string;
-	readonly mValueString: string;
-	readonly mValueString2: string;
+	readonly sample: RSDString;
+	readonly mValueString: RSDString;
+	readonly mValueString2: RSDString;
 	readonly myUnion: Union;
 	readonly myRecord: SimpleRecord;
 };

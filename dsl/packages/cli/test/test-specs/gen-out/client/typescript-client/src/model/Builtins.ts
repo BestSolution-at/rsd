@@ -55,13 +55,13 @@ export function isOffsetDateTime(value: unknown): value is RSDOffsetDateTime {
 }
 
 export type RSDLong = number;
-export function isLong(value: unknown): value is RSDLong {
+export function isRSDLong(value: unknown): value is RSDLong {
     return typeof value === 'number' 
         && Number.isInteger(value);
 }
 
 export type RSDInt = number;
-export function isInt(value: unknown): value is RSDInt {
+export function isRSDInt(value: unknown): value is RSDInt {
     return typeof value === 'number' 
         && Number.isInteger(value)
         && value >= -2147483648
@@ -69,7 +69,7 @@ export function isInt(value: unknown): value is RSDInt {
 }
 
 export type RSDShort = number;
-export function isShort(value: unknown): value is RSDShort {
+export function isRSDShort(value: unknown): value is RSDShort {
     return typeof value === 'number'
         && Number.isInteger(value)
         && value >= -32768
@@ -77,7 +77,7 @@ export function isShort(value: unknown): value is RSDShort {
 }
 
 export type RSDFloat = number;
-export function isFloat(value: unknown): value is RSDFloat {
+export function isRSDFloat(value: unknown): value is RSDFloat {
     return typeof value === 'number'
         && !Number.isNaN(value)
         && Number.isFinite(value)
@@ -85,18 +85,18 @@ export function isFloat(value: unknown): value is RSDFloat {
 }
 
 export type RSDDouble = number;
-export function isDouble(value: unknown): value is RSDDouble {
+export function isRSDDouble(value: unknown): value is RSDDouble {
     return typeof value === 'number'
         && !Number.isNaN(value)
         && Number.isFinite(value);
 }
 
 export type RSDString = string;
-export function isString(value: unknown): value is RSDString {
+export function isRSDString(value: unknown): value is RSDString {
     return typeof value === 'string';
 }
 
 export type RSDBoolean = boolean;
-export function isBoolean(value: unknown): value is RSDBoolean {
+export function isRSDBoolean(value: unknown): value is RSDBoolean {
     return typeof value === 'boolean';
 }

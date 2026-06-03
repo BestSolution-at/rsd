@@ -103,12 +103,62 @@ export function generateCompilationUnit(importCollector: TypescriptImportCollect
 	return node;
 }
 
-export function builtinToJSType(type: MBuiltinType) {
+export function builtinToType(type: MBuiltinType, fqn: (v: string, typeOnly: boolean) => string, relativePath: string) {
 	if (type === 'boolean') {
-		return 'boolean';
-	} else if (type === 'double' || type === 'float' || type === 'int' || type === 'long' || type === 'short') {
-		return 'number';
+		return fqn(`RSDBoolean:${relativePath}Builtins.ts`, true);
+	} else if (type === 'string') {
+		return fqn(`RSDString:${relativePath}Builtins.ts`, true);
+	} else if (type === 'short') {
+		return fqn(`RSDShort:${relativePath}Builtins.ts`, true);
+	} else if (type === 'int') {
+		return fqn(`RSDInt:${relativePath}Builtins.ts`, true);
+	} else if (type === 'long') {
+		return fqn(`RSDLong:${relativePath}Builtins.ts`, true);
+	} else if (type === 'float') {
+		return fqn(`RSDFloat:${relativePath}Builtins.ts`, true);
+	} else if (type === 'double') {
+		return fqn(`RSDDouble:${relativePath}Builtins.ts`, true);
+	} else if (type === 'local-date') {
+		return fqn(`RSDLocalDate:${relativePath}Builtins.ts`, true);
+	} else if (type === 'local-date-time') {
+		return fqn(`RSDLocalDateTime:${relativePath}Builtins.ts`, true);
+	} else if (type === 'local-time') {
+		return fqn(`RSDLocalTime:${relativePath}Builtins.ts`, true);
+	} else if (type === 'offset-date-time') {
+		return fqn(`RSDOffsetDateTime:${relativePath}Builtins.ts`, true);
 	} else {
-		return 'string';
+		return fqn(`RSDZonedDateTime:${relativePath}Builtins.ts`, true);
+	}
+}
+
+export function builtinTypeGuard(
+	type: MBuiltinType,
+	fqn: (v: string, typeOnly: boolean) => string,
+	relativePath: string,
+): string {
+	if (type === 'boolean') {
+		return fqn(`isRSDBoolean:${relativePath}Builtins.ts`, false);
+	} else if (type === 'string') {
+		return fqn(`isRSDString:${relativePath}Builtins.ts`, false);
+	} else if (type === 'short') {
+		return fqn(`isRSDShort:${relativePath}Builtins.ts`, false);
+	} else if (type === 'int') {
+		return fqn(`isRSDInt:${relativePath}Builtins.ts`, false);
+	} else if (type === 'long') {
+		return fqn(`isRSDLong:${relativePath}Builtins.ts`, false);
+	} else if (type === 'float') {
+		return fqn(`isRSDFloat:${relativePath}Builtins.ts`, false);
+	} else if (type === 'double') {
+		return fqn(`isRSDDouble:${relativePath}Builtins.ts`, false);
+	} else if (type === 'local-date-time') {
+		return fqn(`isLocalDateTime:${relativePath}Builtins.ts`, false);
+	} else if (type === 'local-date') {
+		return fqn(`isLocalDate:${relativePath}Builtins.ts`, false);
+	} else if (type === 'local-time') {
+		return fqn(`isLocalTime:${relativePath}Builtins.ts`, false);
+	} else if (type === 'offset-date-time') {
+		return fqn(`isOffsetDateTime:${relativePath}Builtins.ts`, false);
+	} else {
+		return fqn(`isZonedDateTime:${relativePath}Builtins.ts`, false);
 	}
 }

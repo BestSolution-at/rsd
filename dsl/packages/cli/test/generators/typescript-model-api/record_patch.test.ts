@@ -46,92 +46,92 @@ beforeEach(() => {
 
 const PatchableRecord_Result = `
 export type PatchableRecordPatch = {
-	readonly key: string;
-	readonly version: string;
-	readonly value?: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
+	readonly value?: RSDString;
 };
 `.trim();
 
 const PatchableRecord_BasicPatch_Result = `
 export type PatchableRecord_BasicPatch = {
-	readonly key: string;
-	readonly version: string;
-	readonly valueBoolean?: boolean;
-	readonly valueShort?: number;
-	readonly valueInt?: number;
-	readonly valueLong?: number;
-	readonly valueFloat?: number;
-	readonly valueDouble?: number;
-	readonly valueString?: string;
-	readonly valueLocalDate?: string;
-	readonly valueLocalDateTime?: string;
-	readonly valueLocalTime?: string;
-	readonly valueOffsetDateTime?: string;
-	readonly valueZonedDateTime?: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
+	readonly valueBoolean?: RSDBoolean;
+	readonly valueShort?: RSDShort;
+	readonly valueInt?: RSDInt;
+	readonly valueLong?: RSDLong;
+	readonly valueFloat?: RSDFloat;
+	readonly valueDouble?: RSDDouble;
+	readonly valueString?: RSDString;
+	readonly valueLocalDate?: RSDLocalDate;
+	readonly valueLocalDateTime?: RSDLocalDateTime;
+	readonly valueLocalTime?: RSDLocalTime;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime;
+	readonly valueZonedDateTime?: RSDZonedDateTime;
 };
 `.trim();
 
 const PatchableRecord_Basic_Optional_Result = `
 export type PatchableRecord_Basic_OptionalPatch = {
-	readonly key: string;
-	readonly version: string;
-	readonly valueBoolean?: boolean | null;
-	readonly valueShort?: number | null;
-	readonly valueInt?: number | null;
-	readonly valueLong?: number | null;
-	readonly valueFloat?: number | null;
-	readonly valueDouble?: number | null;
-	readonly valueString?: string | null;
-	readonly valueLocalDate?: string | null;
-	readonly valueLocalDateTime?: string | null;
-	readonly valueLocalTime?: string | null;
-	readonly valueOffsetDateTime?: string | null;
-	readonly valueZonedDateTime?: string | null;
+	readonly key: RSDString;
+	readonly version: RSDString;
+	readonly valueBoolean?: RSDBoolean | null;
+	readonly valueShort?: RSDShort | null;
+	readonly valueInt?: RSDInt | null;
+	readonly valueLong?: RSDLong | null;
+	readonly valueFloat?: RSDFloat | null;
+	readonly valueDouble?: RSDDouble | null;
+	readonly valueString?: RSDString | null;
+	readonly valueLocalDate?: RSDLocalDate | null;
+	readonly valueLocalDateTime?: RSDLocalDateTime | null;
+	readonly valueLocalTime?: RSDLocalTime | null;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime | null;
+	readonly valueZonedDateTime?: RSDZonedDateTime | null;
 };
 `.trim();
 
 const PatchableRecord_Basic_Null_Result = `
 export type PatchableRecord_Basic_NullPatch = {
-	readonly key: string;
-	readonly version: string;
-	readonly valueBoolean?: boolean | null;
-	readonly valueShort?: number | null;
-	readonly valueInt?: number | null;
-	readonly valueLong?: number | null;
-	readonly valueFloat?: number | null;
-	readonly valueDouble?: number | null;
-	readonly valueString?: string | null;
-	readonly valueLocalDate?: string | null;
-	readonly valueLocalDateTime?: string | null;
-	readonly valueLocalTime?: string | null;
-	readonly valueOffsetDateTime?: string | null;
-	readonly valueZonedDateTime?: string | null;
+	readonly key: RSDString;
+	readonly version: RSDString;
+	readonly valueBoolean?: RSDBoolean | null;
+	readonly valueShort?: RSDShort | null;
+	readonly valueInt?: RSDInt | null;
+	readonly valueLong?: RSDLong | null;
+	readonly valueFloat?: RSDFloat | null;
+	readonly valueDouble?: RSDDouble | null;
+	readonly valueString?: RSDString | null;
+	readonly valueLocalDate?: RSDLocalDate | null;
+	readonly valueLocalDateTime?: RSDLocalDateTime | null;
+	readonly valueLocalTime?: RSDLocalTime | null;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime | null;
+	readonly valueZonedDateTime?: RSDZonedDateTime | null;
 };
 `.trim();
 
 const PatchableRecord_Basic_Optional_Null_Result = `
 export type PatchableRecord_Basic_Optional_NullPatch = {
-	readonly key: string;
-	readonly version: string;
-	readonly valueBoolean?: boolean | null;
-	readonly valueShort?: number | null;
-	readonly valueInt?: number | null;
-	readonly valueLong?: number | null;
-	readonly valueFloat?: number | null;
-	readonly valueDouble?: number | null;
-	readonly valueString?: string | null;
-	readonly valueLocalDate?: string | null;
-	readonly valueLocalDateTime?: string | null;
-	readonly valueLocalTime?: string | null;
-	readonly valueOffsetDateTime?: string | null;
-	readonly valueZonedDateTime?: string | null;
+	readonly key: RSDString;
+	readonly version: RSDString;
+	readonly valueBoolean?: RSDBoolean | null;
+	readonly valueShort?: RSDShort | null;
+	readonly valueInt?: RSDInt | null;
+	readonly valueLong?: RSDLong | null;
+	readonly valueFloat?: RSDFloat | null;
+	readonly valueDouble?: RSDDouble | null;
+	readonly valueString?: RSDString | null;
+	readonly valueLocalDate?: RSDLocalDate | null;
+	readonly valueLocalDateTime?: RSDLocalDateTime | null;
+	readonly valueLocalTime?: RSDLocalTime | null;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime | null;
+	readonly valueZonedDateTime?: RSDZonedDateTime | null;
 };
 `.trim();
 
 const PatchableRecord_Basic_List_Result = `
 export type PatchableRecord_Basic_ListPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly valueBoolean?: $ValueBooleanPatch;
 	readonly valueShort?: $ValueShortPatch;
 	readonly valueInt?: $ValueIntPatch;
@@ -149,8 +149,8 @@ export type PatchableRecord_Basic_ListPatch = {
 
 const PatchableRecord_Basic_List_Optional_Result = `
 export type PatchableRecord_Basic_List_OptionalPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly valueBoolean?: $ValueBooleanPatch | null;
 	readonly valueShort?: $ValueShortPatch | null;
 	readonly valueInt?: $ValueIntPatch | null;
@@ -168,8 +168,8 @@ export type PatchableRecord_Basic_List_OptionalPatch = {
 
 const PatchableRecord_Basic_List_Null_Result = `
 export type PatchableRecord_Basic_List_NullPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly valueBoolean?: $ValueBooleanPatch | null;
 	readonly valueShort?: $ValueShortPatch | null;
 	readonly valueInt?: $ValueIntPatch | null;
@@ -187,8 +187,8 @@ export type PatchableRecord_Basic_List_NullPatch = {
 
 const PatchableEnumRecord_Result = `
 export type PatchableEnumRecordPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly value?: SampleEnum;
 	readonly value_Null?: SampleEnum | null;
 	readonly value_Opt?: SampleEnum | null;
@@ -202,8 +202,8 @@ export type PatchableEnumRecordPatch = {
 
 const PatchableEnumInlineRecord_Result = `
 export type PatchableEnumInlineRecordPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly value?: ValueEnum;
 	readonly value_Null?: Value_NullEnum | null;
 	readonly value_Opt?: Value_OptEnum | null;
@@ -216,8 +216,8 @@ export type PatchableEnumInlineRecordPatch = {
 
 const PatchableScalarRecordPatch_Result = `
 export type PatchableScalarRecordPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly value?: ZoneId;
 	readonly value_Null?: ZoneId | null;
 	readonly value_Opt?: ZoneId | null;
@@ -231,8 +231,8 @@ export type PatchableScalarRecordPatch = {
 
 const PatchableRecordOfRecordsPatch_Result = `
 export type PatchableRecordOfRecordsPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly value?: $ValuePatch;
 	readonly value_Null?: $Value_NullPatch | null;
 	readonly value_Opt?: $Value_OptPatch | null;
@@ -246,8 +246,8 @@ export type PatchableRecordOfRecordsPatch = {
 
 const PatchableRecordWithUnionPatch_Result = `
 export type PatchableRecordWithUnionPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly value?: $ValuePatch;
 	readonly value_Null?: $Value_NullPatch | null;
 	readonly value_Opt?: $Value_OptPatch | null;
@@ -324,74 +324,74 @@ describe('RecordTypePatch', () => {
 });
 
 const PatchableRecord_Basic_List_valueBoolean_Result = `
-type $ValueBooleanReplace = ListReplace<boolean>;
-type $ValueBooleanMerge = ListMergeAddRemove<boolean, boolean>;
+type $ValueBooleanReplace = ListReplace<RSDBoolean>;
+type $ValueBooleanMerge = ListMergeAddRemove<RSDBoolean, RSDBoolean>;
 type $ValueBooleanPatch = $ValueBooleanReplace | $ValueBooleanMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueShort_Result = `
-type $ValueShortReplace = ListReplace<number>;
-type $ValueShortMerge = ListMergeAddRemove<number, number>;
+type $ValueShortReplace = ListReplace<RSDShort>;
+type $ValueShortMerge = ListMergeAddRemove<RSDShort, RSDShort>;
 type $ValueShortPatch = $ValueShortReplace | $ValueShortMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueInt_Result = `
-type $ValueIntReplace = ListReplace<number>;
-type $ValueIntMerge = ListMergeAddRemove<number, number>;
+type $ValueIntReplace = ListReplace<RSDInt>;
+type $ValueIntMerge = ListMergeAddRemove<RSDInt, RSDInt>;
 type $ValueIntPatch = $ValueIntReplace | $ValueIntMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueLong_Result = `
-type $ValueLongReplace = ListReplace<number>;
-type $ValueLongMerge = ListMergeAddRemove<number, number>;
+type $ValueLongReplace = ListReplace<RSDLong>;
+type $ValueLongMerge = ListMergeAddRemove<RSDLong, RSDLong>;
 type $ValueLongPatch = $ValueLongReplace | $ValueLongMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueFloat_Result = `
-type $ValueFloatReplace = ListReplace<number>;
-type $ValueFloatMerge = ListMergeAddRemove<number, number>;
+type $ValueFloatReplace = ListReplace<RSDFloat>;
+type $ValueFloatMerge = ListMergeAddRemove<RSDFloat, RSDFloat>;
 type $ValueFloatPatch = $ValueFloatReplace | $ValueFloatMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueDouble_Result = `
-type $ValueDoubleReplace = ListReplace<number>;
-type $ValueDoubleMerge = ListMergeAddRemove<number, number>;
+type $ValueDoubleReplace = ListReplace<RSDDouble>;
+type $ValueDoubleMerge = ListMergeAddRemove<RSDDouble, RSDDouble>;
 type $ValueDoublePatch = $ValueDoubleReplace | $ValueDoubleMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueString_Result = `
-type $ValueStringReplace = ListReplace<string>;
-type $ValueStringMerge = ListMergeAddRemove<string, string>;
+type $ValueStringReplace = ListReplace<RSDString>;
+type $ValueStringMerge = ListMergeAddRemove<RSDString, RSDString>;
 type $ValueStringPatch = $ValueStringReplace | $ValueStringMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueLocalDate_Result = `
-type $ValueLocalDateReplace = ListReplace<string>;
-type $ValueLocalDateMerge = ListMergeAddRemove<string, string>;
+type $ValueLocalDateReplace = ListReplace<RSDLocalDate>;
+type $ValueLocalDateMerge = ListMergeAddRemove<RSDLocalDate, RSDLocalDate>;
 type $ValueLocalDatePatch = $ValueLocalDateReplace | $ValueLocalDateMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueLocalDateTime_Result = `
-type $ValueLocalDateTimeReplace = ListReplace<string>;
-type $ValueLocalDateTimeMerge = ListMergeAddRemove<string, string>;
+type $ValueLocalDateTimeReplace = ListReplace<RSDLocalDateTime>;
+type $ValueLocalDateTimeMerge = ListMergeAddRemove<RSDLocalDateTime, RSDLocalDateTime>;
 type $ValueLocalDateTimePatch = $ValueLocalDateTimeReplace | $ValueLocalDateTimeMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueLocalTime_Result = `
-type $ValueLocalTimeReplace = ListReplace<string>;
-type $ValueLocalTimeMerge = ListMergeAddRemove<string, string>;
+type $ValueLocalTimeReplace = ListReplace<RSDLocalTime>;
+type $ValueLocalTimeMerge = ListMergeAddRemove<RSDLocalTime, RSDLocalTime>;
 type $ValueLocalTimePatch = $ValueLocalTimeReplace | $ValueLocalTimeMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueOffsetDateTime_Result = `
-type $ValueOffsetDateTimeReplace = ListReplace<string>;
-type $ValueOffsetDateTimeMerge = ListMergeAddRemove<string, string>;
+type $ValueOffsetDateTimeReplace = ListReplace<RSDOffsetDateTime>;
+type $ValueOffsetDateTimeMerge = ListMergeAddRemove<RSDOffsetDateTime, RSDOffsetDateTime>;
 type $ValueOffsetDateTimePatch = $ValueOffsetDateTimeReplace | $ValueOffsetDateTimeMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueZonedDateTime_Result = `
-type $ValueZonedDateTimeReplace = ListReplace<string>;
-type $ValueZonedDateTimeMerge = ListMergeAddRemove<string, string>;
+type $ValueZonedDateTimeReplace = ListReplace<RSDZonedDateTime>;
+type $ValueZonedDateTimeMerge = ListMergeAddRemove<RSDZonedDateTime, RSDZonedDateTime>;
 type $ValueZonedDateTimePatch = $ValueZonedDateTimeReplace | $ValueZonedDateTimeMerge;
 `.trim();
 

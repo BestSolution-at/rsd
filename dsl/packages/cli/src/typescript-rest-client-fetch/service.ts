@@ -7,7 +7,6 @@ import {
 	isMResolvedRecordType,
 	isMResolvedUnionType,
 	isMScalarType,
-	MBuiltinType,
 	MInlineEnumType,
 	MParameter,
 	MParameterNoneInlineEnumType,
@@ -16,7 +15,8 @@ import {
 	MService,
 } from '../model.js';
 import {
-	builtinToJSType,
+	builtinToType,
+	builtinTypeGuard,
 	generateCompilationUnit,
 	TypescriptFetchClientGeneratorConfig,
 	TypescriptImportCollector,
@@ -613,8 +613,7 @@ function handleErrorResult(
 			const typeguard = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.is${typeName}`;
 			node.append(`const $result = await ${decodeResponse}($response, ${typeguard});`, NL);
 		} else {
-			const type = builtinToJSType(err.resolvedContentType);
-			const typeguard = `${fqn(`api:${config.apiNamespacePath}`, false)}.utils.is${toFirstUpper(type)}`;
+			const typeguard = builtinTypeGuard(err.resolvedContentType, fqn, '../model/');
 			node.append(`const $result = await ${decodeResponse}($response, ${typeguard});`, NL);
 		}
 		node.append(`const err = {`, NL);
@@ -682,7 +681,7 @@ function handleOkResult(
 			if (o.resultType.array) {
 				const isTypedArrayGuard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isTypedArray`;
 				if (isMBuiltinType(o.resultType.type)) {
-					const guard = builtinTypeGuard(o.resultType.type, config, fqn);
+					const guard = builtinTypeGuard(o.resultType.type, fqn, '../model/');
 					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
 				} else if (o.resultType.variant === 'scalar') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
@@ -696,7 +695,7 @@ function handleOkResult(
 				}
 			} else {
 				if (isMBuiltinType(o.resultType.type)) {
-					const guard = builtinTypeGuard(o.resultType.type, config, fqn);
+					const guard = builtinTypeGuard(o.resultType.type, fqn, '../model/');
 					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
 				} else if (o.resultType.variant === 'scalar') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
@@ -748,7 +747,7 @@ function toParameter(
 ) {
 	let type: string;
 	if (isMBuiltinType(parameter.type)) {
-		type = builtinToJSType(parameter.type);
+		type = builtinToType(parameter.type, fqn, '../model/');
 	} else if (parameter.variant === 'scalar') {
 		type = 'string';
 	} else if (isMInlineEnumType(parameter.type)) {
@@ -777,18 +776,4 @@ function toParameter(
 	}
 
 	return `${parameter.name}${optional}: ${type}${optUndefined}${nullable}`;
-}
-
-function builtinTypeGuard(
-	type: MBuiltinType,
-	config: TypescriptFetchClientGeneratorConfig,
-	fqn: (v: string, typeOnly: boolean) => string,
-) {
-	if (type === 'boolean') {
-		return fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isBoolean`;
-	} else if (type === 'double' || type === 'float' || type === 'int' || type === 'long' || type === 'short') {
-		return fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isNumber`;
-	} else {
-		return fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-	}
 }

@@ -16,7 +16,7 @@ import {
 	MResolvedRecordType,
 } from '../model.js';
 import { toFirstUpper, toNode, toNodeTree } from '../util.js';
-import { builtinToJSType } from '../typescript-gen-utils.js';
+import { builtinToType, builtinTypeGuard } from '../typescript-gen-utils.js';
 
 export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, typeOnly: boolean) => string) {
 	const allProps = allResolvedRecordProperties(t);
@@ -439,7 +439,7 @@ export function ValueChangeTypeGuard(
 export function ListChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOnly: boolean) => string) {
 	let type = 'string';
 	if (isMBuiltinType(prop.type)) {
-		type = builtinToJSType(prop.type);
+		type = builtinToType(prop.type, fqn, './');
 	} else if (prop.variant === 'scalar') {
 		type = fqn(`${prop.type}:./Scalars.ts`, true);
 	} else if (isMInlineEnumType(prop.type)) {
@@ -748,7 +748,7 @@ export function ToJSONPatch(
 							const isListReplace = fqn('isListReplace:../_type-utils.ts', false);
 							const ListReplaceToJSON = fqn('ListReplaceToJSON:../_type-utils.ts', false);
 							const ListMergeAddRemoveFromJSON = fqn('ListMergeAddRemoveToJSON:../_type-utils.ts', false);
-							const guard = builtinTypeGuard(p.type, fqn);
+							const guard = builtinTypeGuard(p.type, fqn, './');
 							mBody.append(
 								`${isListReplace}($value.${p.name}, ${guard}) ? ${ListReplaceToJSON}($value.${p.name}, ${toJSON}) : ${ListMergeAddRemoveFromJSON}($value.${p.name}, ${toJSON}, ${toJSON});`,
 								NL,
@@ -829,12 +829,12 @@ export function ToJSONPatch(
 function generateProperty(prop: MResolvedBaseProperty, fqn: (t: string, typeOnly: boolean) => string) {
 	const node = new CompositeGeneratorNode();
 	if (isMKeyProperty(prop) || isMRevisionProperty(prop)) {
-		const type = builtinToJSType(prop.type);
+		const type = builtinToType(prop.type, fqn, './');
 		node.append(`readonly ${prop.name}: ${type};`);
 	} else {
 		let type = 'string';
 		if (isMBuiltinType(prop.type)) {
-			type = builtinToJSType(prop.type);
+			type = builtinToType(prop.type, fqn, './');
 		} else if (prop.variant === 'scalar') {
 			type = fqn(`${prop.type}:./Scalars.ts`, true);
 		} else if (isMInlineEnumType(prop.type)) {
@@ -863,7 +863,7 @@ function generatePatchProperty(prop: MResolvedPropery, fqn: (t: string, typeOnly
 	if (prop.array) {
 		type = `$${toFirstUpper(prop.name)}Patch`;
 	} else if (isMBuiltinType(prop.type)) {
-		type = builtinToJSType(prop.type);
+		type = builtinToType(prop.type, fqn, './');
 	} else if (prop.variant === 'scalar') {
 		type = fqn(`${prop.type}:./Scalars.ts`, true);
 	} else if (isMInlineEnumType(prop.type)) {
@@ -935,32 +935,4 @@ function builtinToJSON(
 		return fqn('ZonedDateTimeToJSON:./Builtins.ts', false);
 	}
 	return defaultValue();
-}
-
-function builtinTypeGuard(type: MBuiltinType, fqn: (v: string, typeOnly: boolean) => string): string {
-	if (type === 'boolean') {
-		return fqn('isBoolean:../_type-utils.ts', false);
-	} else if (type === 'string') {
-		return fqn('isString:../_type-utils.ts', false);
-	} else if (type === 'short') {
-		return fqn('isShort:./Builtins.ts', false);
-	} else if (type === 'int') {
-		return fqn('isInt:./Builtins.ts', false);
-	} else if (type === 'long') {
-		return fqn('isLong:./Builtins.ts', false);
-	} else if (type === 'float') {
-		return fqn('isFloat:./Builtins.ts', false);
-	} else if (type === 'double') {
-		return fqn('isDouble:./Builtins.ts', false);
-	} else if (type === 'local-date-time') {
-		return fqn('isLocalDateTime:./Builtins.ts', false);
-	} else if (type === 'local-date') {
-		return fqn('isLocalDate:./Builtins.ts', false);
-	} else if (type === 'local-time') {
-		return fqn('isLocalTime:./Builtins.ts', false);
-	} else if (type === 'offset-date-time') {
-		return fqn('isOffsetDateTime:./Builtins.ts', false);
-	} else {
-		return fqn('isZonedDateTime:./Builtins.ts', false);
-	}
 }
