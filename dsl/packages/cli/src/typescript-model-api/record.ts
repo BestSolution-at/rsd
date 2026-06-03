@@ -231,33 +231,49 @@ export function ToJSON(
 		props.forEach(p => {
 			if (isMKeyProperty(p) || isMRevisionProperty(p)) {
 				mBody.append(`const ${p.name} = $value.${p.name};`, NL);
-			} else if (
-				p.variant === 'inline-enum' ||
-				p.variant === 'builtin' ||
-				p.variant === 'enum' ||
-				p.variant === 'scalar'
-			) {
+			} else if (p.variant === 'inline-enum' || p.variant === 'enum' || p.variant === 'scalar') {
 				mBody.append(`const ${p.name} = $value.${p.name};`, NL);
 			} else {
-				const ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
 				mBody.append(`const ${p.name} = `);
 
-				if (p.optional && p.nullable) {
-					const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
-					const isNull = fqn('isNull:../_type-utils.ts', false);
-					mBody.append(`${isUndefined}($value.${p.name}) || ${isNull}($value.${p.name}) ? $value.${p.name} : `);
-				} else if (p.optional) {
-					const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
-					mBody.append(`${isUndefined}($value.${p.name}) ? undefined : `);
-				} else if (p.nullable) {
-					const isNull = fqn('isNull:../_type-utils.ts', false);
-					mBody.append(`${isNull}($value.${p.name}) ? null : `);
+				let ToJSON = '';
+
+				if (isMBuiltinType(p.type)) {
+					if (p.type === 'local-date-time') {
+						ToJSON = fqn('LocalDateTimeToJSON:./Builtins.ts', false);
+					} else if (p.type === 'local-date') {
+						ToJSON = fqn('LocalDateToJSON:./Builtins.ts', false);
+					} else if (p.type === 'local-time') {
+						ToJSON = fqn('LocalTimeToJSON:./Builtins.ts', false);
+					} else if (p.type === 'offset-date-time') {
+						ToJSON = fqn('OffsetDateTimeToJSON:./Builtins.ts', false);
+					} else if (p.type === 'zoned-date-time') {
+						ToJSON = fqn('ZonedDateTimeToJSON:./Builtins.ts', false);
+					}
+				} else {
+					ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
 				}
 
-				if (p.array) {
-					mBody.append(`$value.${p.name}.map(${ToJSON});`, NL);
+				if (ToJSON) {
+					if (p.optional && p.nullable) {
+						const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
+						const isNull = fqn('isNull:../_type-utils.ts', false);
+						mBody.append(`${isUndefined}($value.${p.name}) || ${isNull}($value.${p.name}) ? $value.${p.name} : `);
+					} else if (p.optional) {
+						const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
+						mBody.append(`${isUndefined}($value.${p.name}) ? undefined : `);
+					} else if (p.nullable) {
+						const isNull = fqn('isNull:../_type-utils.ts', false);
+						mBody.append(`${isNull}($value.${p.name}) ? null : `);
+					}
+
+					if (p.array) {
+						mBody.append(`$value.${p.name}.map(${ToJSON});`, NL);
+					} else {
+						mBody.append(`${ToJSON}($value.${p.name});`, NL);
+					}
 				} else {
-					mBody.append(`${ToJSON}($value.${p.name});`, NL);
+					mBody.append(`$value.${p.name};`, NL);
 				}
 			}
 		});

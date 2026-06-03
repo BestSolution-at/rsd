@@ -1165,11 +1165,11 @@ export function SimpleRecord_BasicToJSON($value: SimpleRecord_Basic): Record<str
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = LocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = LocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = LocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = OffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = ZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		valueBoolean,
@@ -1197,11 +1197,11 @@ export function SimpleRecord_Basic_OptionalToJSON($value: SimpleRecord_Basic_Opt
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) ? undefined : LocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) ? undefined : LocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isUndefined($value.valueLocalTime) ? undefined : LocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) ? undefined : OffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) ? undefined : ZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		valueBoolean,
@@ -1229,11 +1229,11 @@ export function SimpleRecord_Basic_NullToJSON($value: SimpleRecord_Basic_Null): 
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isNull($value.valueLocalDate) ? null : LocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isNull($value.valueLocalDateTime) ? null : LocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isNull($value.valueLocalTime) ? null : LocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isNull($value.valueOffsetDateTime) ? null : OffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isNull($value.valueZonedDateTime) ? null : ZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		valueBoolean,
@@ -1261,11 +1261,11 @@ export function SimpleRecord_Basic_Optional_NullToJSON($value: SimpleRecord_Basi
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : LocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : LocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : LocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : OffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : ZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		valueBoolean,
@@ -1293,11 +1293,11 @@ export function SimpleRecord_Basic_ListToJSON($value: SimpleRecord_Basic_List): 
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = $value.valueLocalDate.map(LocalDateToJSON);
+	const valueLocalDateTime = $value.valueLocalDateTime.map(LocalDateTimeToJSON);
+	const valueLocalTime = $value.valueLocalTime.map(LocalTimeToJSON);
+	const valueOffsetDateTime = $value.valueOffsetDateTime.map(OffsetDateTimeToJSON);
+	const valueZonedDateTime = $value.valueZonedDateTime.map(ZonedDateTimeToJSON);
 
 	return {
 		valueBoolean,
@@ -1325,11 +1325,11 @@ export function SimpleRecord_Basic_List_OptionalToJSON($value: SimpleRecord_Basi
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) ? undefined : $value.valueLocalDate.map(LocalDateToJSON);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) ? undefined : $value.valueLocalDateTime.map(LocalDateTimeToJSON);
+	const valueLocalTime = isUndefined($value.valueLocalTime) ? undefined : $value.valueLocalTime.map(LocalTimeToJSON);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) ? undefined : $value.valueOffsetDateTime.map(OffsetDateTimeToJSON);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) ? undefined : $value.valueZonedDateTime.map(ZonedDateTimeToJSON);
 
 	return {
 		valueBoolean,
@@ -1357,11 +1357,11 @@ export function SimpleRecord_Basic_List_NullToJSON($value: SimpleRecord_Basic_Li
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isNull($value.valueLocalDate) ? null : $value.valueLocalDate.map(LocalDateToJSON);
+	const valueLocalDateTime = isNull($value.valueLocalDateTime) ? null : $value.valueLocalDateTime.map(LocalDateTimeToJSON);
+	const valueLocalTime = isNull($value.valueLocalTime) ? null : $value.valueLocalTime.map(LocalTimeToJSON);
+	const valueOffsetDateTime = isNull($value.valueOffsetDateTime) ? null : $value.valueOffsetDateTime.map(OffsetDateTimeToJSON);
+	const valueZonedDateTime = isNull($value.valueZonedDateTime) ? null : $value.valueZonedDateTime.map(ZonedDateTimeToJSON);
 
 	return {
 		valueBoolean,
@@ -1389,11 +1389,11 @@ export function SimpleRecord_Basic_List_Optional_NullToJSON($value: SimpleRecord
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : $value.valueLocalDate.map(LocalDateToJSON);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : $value.valueLocalDateTime.map(LocalDateTimeToJSON);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : $value.valueLocalTime.map(LocalTimeToJSON);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : $value.valueOffsetDateTime.map(OffsetDateTimeToJSON);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : $value.valueZonedDateTime.map(ZonedDateTimeToJSON);
 
 	return {
 		valueBoolean,
