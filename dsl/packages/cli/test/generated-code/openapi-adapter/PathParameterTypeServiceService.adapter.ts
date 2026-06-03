@@ -1,8 +1,8 @@
-import { api } from '../../../typescript-client/src/index.js';
-import { PathParameterTypeServiceService } from '../../../typescript-client/src/PathParameterTypeServiceService.js';
-import { ServiceProps } from '../../../typescript-client/src/services/_fetch-type-utils.js';
-import { PathParameterTypeServiceApi } from '../apis/PathParameterTypeServiceApi.js';
-import { Configuration, ResponseError } from '../runtime.js';
+import { api } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
+import { PathParameterTypeServiceService } from '../../test-specs/gen-out/client/typescript-client/src/PathParameterTypeServiceService.js';
+import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
+import { PathParameterTypeServiceApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/PathParameterTypeServiceApi.js';
+import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
 
 export function createOpenAPIPathParameterTypeServiceService(
 	props: ServiceProps<api.service.ErrorType>,

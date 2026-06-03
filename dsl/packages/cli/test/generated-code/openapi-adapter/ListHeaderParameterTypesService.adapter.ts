@@ -1,11 +1,11 @@
-import { api } from '../../../typescript-client/src/index.js';
+import { api } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
 import {
 	encodeAsciiString,
 	encodeBase64,
 	ServiceProps,
-} from '../../../typescript-client/src/services/_fetch-type-utils.js';
-import { ListHeaderParameterTypesApi } from '../index.js';
-import { Configuration, ResponseError } from '../runtime.js';
+} from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
+import { ListHeaderParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/index.js';
+import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
 
 export function createOpenAPIListHeaderParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,

@@ -2,6 +2,7 @@ import { describe, expect, test } from 'vitest';
 
 import { api, createListSampleServiceService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
 import { isSampleErrorError } from '../../test-specs/gen-out/client/typescript-client/src/Errors.js';
+import { createOpenAPIListSampleServiceService } from '../openapi-adapter/ListSampleServiceService.adapter.js';
 
 const jsonService = createListSampleServiceService({
 	baseUrl: 'http://localhost:3000',
@@ -12,7 +13,7 @@ const msgpackService = createListSampleServiceService({
 	encoding: 'application/vnd.msgpack',
 });
 
-const openAPIService = createListSampleServiceService({
+const openAPIService = createOpenAPIListSampleServiceService({
 	baseUrl: 'http://localhost:3000',
 });
 
@@ -230,7 +231,11 @@ describe('ListSampleServiceServiceImpl', () => {
 		test.each([json, msgpack, openAPI])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listOffsetDateTime();
 			expect(error).toBeNull();
-			expect(result).toStrictEqual(['2020-01-01T10:00:00+01:00', '2021-02-02T11:30:00+01:00', '2022-03-03T12:45:00+01:00']);
+			expect(result).toStrictEqual([
+				'2020-01-01T10:00:00+01:00',
+				'2021-02-02T11:30:00+01:00',
+				'2022-03-03T12:45:00+01:00',
+			]);
 		});
 		test.each([jsonInvalid, msgpackInvalid, openAPIInvalid])('fail - $encoding - invalid data', async ({ service }) => {
 			const [result, error] = await service.listOffsetDateTime();

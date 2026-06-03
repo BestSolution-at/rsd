@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
 import { createListHeaderParameterTypesService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
-import { createOpenAPIListHeaderParameterTypesService } from '../../test-specs/gen-out/client/typescript-client-openapi/src/adapter/ListHeaderParameterTypesService.adapter.js';
+import { createOpenAPIListHeaderParameterTypesService } from '../openapi-adapter/ListHeaderParameterTypesService.adapter.js';
 
 const jsonService = createListHeaderParameterTypesService({
 	baseUrl: 'http://localhost:3000',

@@ -1,12 +1,16 @@
-import { api } from '../../../typescript-client/src/index.js';
-import { ServiceProps } from '../../../typescript-client/src/services/_fetch-type-utils.js';
-import { BodyParameterTypesApi } from '../apis/BodyParameterTypesApi.js';
-import { Configuration, ResponseError } from '../index.js';
+import { api } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
+import {
+	encodeAsciiString,
+	encodeBase64,
+	ServiceProps,
+} from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
+import { HeaderParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/HeaderParameterTypesApi.js';
+import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
 
-export function createOpenAPIBodyParameterTypesService(
+export function createOpenAPIHeaderParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
-): api.service.BodyParameterTypesService {
-	return new BodyParameterTypesServiceImpl(props);
+): api.service.HeaderParameterTypesService {
+	return new HeaderParameterTypesServiceImpl(props);
 }
 
 function toRSDError(error: unknown): api.service.NativeRSDError | api.service.StatusRSDError {
@@ -31,1213 +35,1110 @@ function toRSDError(error: unknown): api.service.NativeRSDError | api.service.St
 	}
 }
 
-class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesService {
-	private deletegate: BodyParameterTypesApi;
+class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterTypesService {
+	private readonly deletegate: HeaderParameterTypesApi;
 
-	constructor(config: ServiceProps<api.service.ErrorType>) {
-		this.deletegate = new BodyParameterTypesApi(new Configuration({ basePath: config.baseUrl }));
+	constructor(props: ServiceProps<api.service.ErrorType>) {
+		this.deletegate = new HeaderParameterTypesApi(new Configuration({ basePath: props.baseUrl }));
 	}
 
-	async simpleBooleanBodyParam(
-		bodyBoolean: boolean,
+	async simpleBooleanHeaderParam(
+		headerValue: boolean,
 	): Promise<api.result.Result<boolean, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleBooleanBodyParamRaw({ body: bodyBoolean });
+			const response = await this.deletegate.headerParameterTypesSimpleBooleanHeaderParamRaw({ headerValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleBooleanBodyParamOpt(
-		bodyBoolean?: boolean,
+	async simpleBooleanHeaderParamOpt(
+		headerValue?: boolean,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleBooleanBodyParamOptRaw({
-				body: bodyBoolean,
+			const response = await this.deletegate.headerParameterTypesSimpleBooleanHeaderParamOptRaw({ headerValue });
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleBooleanHeaderParamNil(
+		headerValue: boolean | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleBooleanHeaderParamNilRaw({
+				headerValue: (headerValue ?? 'null') as unknown as boolean,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleBooleanBodyParamNil(
-		bodyBoolean: boolean | null,
+	async simpleBooleanHeaderParamOptNil(
+		headerValue?: boolean | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleBooleanBodyParamNilRaw({
-				body: bodyBoolean,
+			const response = await this.deletegate.headerParameterTypesSimpleBooleanHeaderParamOptNilRaw({
+				headerValue: (headerValue === null ? 'null' : headerValue) as unknown as boolean,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleBooleanBodyParamOptNil(
-		bodyBoolean?: boolean | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleBooleanBodyParamOptNilRaw({
-				body: bodyBoolean,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleShortBodyParam(
-		bodyShort: number,
+	async simpleShortHeaderParam(
+		headerValue: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleShortBodyParamRaw({ body: bodyShort });
+			const response = await this.deletegate.headerParameterTypesSimpleShortHeaderParamRaw({ headerValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleShortBodyParamOpt(
-		bodyShort?: number,
+	async simpleShortHeaderParamOpt(
+		headerValue?: number,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleShortBodyParamOptRaw({ body: bodyShort });
+			const response = await this.deletegate.headerParameterTypesSimpleShortHeaderParamOptRaw({ headerValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleShortBodyParamNil(
-		bodyShort: number | null,
+	async simpleShortHeaderParamNil(
+		headerValue: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleShortBodyParamNilRaw({ body: bodyShort });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleShortBodyParamOptNil(
-		bodyShort?: number | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleShortBodyParamOptNilRaw({
-				body: bodyShort,
+			const response = await this.deletegate.headerParameterTypesSimpleShortHeaderParamNilRaw({
+				headerValue: (headerValue ?? 'null') as unknown as number,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleIntBodyParam(
-		bodyInt: number,
-	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleIntBodyParamRaw({ body: bodyInt });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleIntBodyParamOpt(
-		bodyInt?: number,
+	async simpleShortHeaderParamOptNil(
+		headerValue?: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleIntBodyParamOptRaw({ body: bodyInt });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleIntBodyParamNil(
-		bodyInt: number | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleIntBodyParamNilRaw({ body: bodyInt });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleIntBodyParamOptNil(
-		bodyInt?: number | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleIntBodyParamOptNilRaw({
-				body: bodyInt,
+			const response = await this.deletegate.headerParameterTypesSimpleShortHeaderParamOptNilRaw({
+				headerValue: (headerValue === null ? 'null' : headerValue) as unknown as number,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleLongBodyParam(
-		bodyLong: number,
+	async simpleIntHeaderParam(
+		headerValue: number,
 	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamRaw({ body: bodyLong });
+			const response = await this.deletegate.headerParameterTypesSimpleIntHeaderParamRaw({ headerValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleLongBodyParamOpt(
-		bodyLong?: number,
+	async simpleIntHeaderParamOpt(
+		headerValue?: number,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamOptRaw({ body: bodyLong });
+			const response = await this.deletegate.headerParameterTypesSimpleIntHeaderParamOptRaw({ headerValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleLongBodyParamNil(
-		bodyLong: number | null,
+	async simpleIntHeaderParamNil(
+		headerValue: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamNilRaw({ body: bodyLong });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleLongBodyParamOptNil(
-		bodyLong?: number | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamOptNilRaw({ body: bodyLong });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleFloatBodyParam(
-		bodyFloat: number,
-	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleFloatBodyParamRaw({ body: bodyFloat });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleFloatBodyParamOpt(
-		bodyFloat?: number,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleFloatBodyParamOptRaw({ body: bodyFloat });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleFloatBodyParamNil(
-		bodyFloat: number | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleFloatBodyParamNilRaw({ body: bodyFloat });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleFloatBodyParamOptNil(
-		bodyFloat?: number | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleFloatBodyParamOptNilRaw({
-				body: bodyFloat,
+			const response = await this.deletegate.headerParameterTypesSimpleIntHeaderParamNilRaw({
+				headerValue: (headerValue ?? 'null') as unknown as number,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleDoubleBodyParam(
-		bodyDouble: number,
-	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleDoubleBodyParamRaw({ body: bodyDouble });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleDoubleBodyParamOpt(
-		bodyDouble?: number,
+	async simpleIntHeaderParamOptNil(
+		headerValue?: number | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleDoubleBodyParamOptRaw({ body: bodyDouble });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleDoubleBodyParamNil(
-		bodyDouble: number | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleDoubleBodyParamNilRaw({ body: bodyDouble });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleDoubleBodyParamOptNil(
-		bodyDouble?: number | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleDoubleBodyParamOptNilRaw({
-				body: bodyDouble,
+			const response = await this.deletegate.headerParameterTypesSimpleIntHeaderParamOptNilRaw({
+				headerValue: (headerValue === null ? 'null' : headerValue) as unknown as number,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-	async simpleStringBodyParam(
-		bodyString: string,
+
+	async simpleLongHeaderParam(
+		headerValue: number,
+	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLongHeaderParamRaw({ headerValue });
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLongHeaderParamOpt(
+		headerValue?: number,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLongHeaderParamOptRaw({ headerValue });
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLongHeaderParamNil(
+		headerValue: number | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLongHeaderParamNilRaw({
+				headerValue: (headerValue ?? 'null') as unknown as number,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLongHeaderParamOptNil(
+		headerValue?: number | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLongHeaderParamOptNilRaw({
+				headerValue: (headerValue === null ? 'null' : headerValue) as unknown as number,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleFloatHeaderParam(
+		headerValue: number,
+	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleFloatHeaderParamRaw({ headerValue });
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleFloatHeaderParamOpt(
+		headerValue?: number,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleFloatHeaderParamOptRaw({ headerValue });
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleFloatHeaderParamNil(
+		headerValue: number | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleFloatHeaderParamNilRaw({
+				headerValue: (headerValue ?? 'null') as unknown as number,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleFloatHeaderParamOptNil(
+		headerValue?: number | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleFloatHeaderParamOptNilRaw({
+				headerValue: (headerValue === null ? 'null' : headerValue) as unknown as number,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleDoubleHeaderParam(
+		headerValue: number,
+	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleDoubleHeaderParamRaw({ headerValue });
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleDoubleHeaderParamOpt(
+		headerValue?: number,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleDoubleHeaderParamOptRaw({ headerValue });
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleDoubleHeaderParamNil(
+		headerValue: number | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleDoubleHeaderParamNilRaw({
+				headerValue: (headerValue ?? 'null') as unknown as number,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleDoubleHeaderParamOptNil(
+		headerValue?: number | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleDoubleHeaderParamOptNilRaw({
+				headerValue: (headerValue === null ? 'null' : headerValue) as unknown as number,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleStringHeaderParam(
+		headerValue: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleStringBodyParamRaw({ body: bodyString });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleStringBodyParamOpt(
-		bodyString?: string,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleStringBodyParamOptRaw({ body: bodyString });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleStringBodyParamNil(
-		bodyString: string | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleStringBodyParamNilRaw({ body: bodyString });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleStringBodyParamOptNil(
-		bodyString?: string | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleStringBodyParamOptNilRaw({
-				body: bodyString,
+			const response = await this.deletegate.headerParameterTypesSimpleStringHeaderParamRaw({
+				headerValue: encodeAsciiString(headerValue),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-	async simpleLocalDateBodyParam(
-		bodyLocalDate: string,
+	async simpleStringHeaderParamOpt(
+		headerValue?: string,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleStringHeaderParamOptRaw({
+				headerValue: headerValue !== undefined ? encodeAsciiString(headerValue) : undefined,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleStringHeaderParamNil(
+		headerValue: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleStringHeaderParamNilRaw({
+				headerValue: headerValue !== null ? encodeAsciiString(headerValue) : 'null',
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleStringHeaderParamOptNil(
+		headerValue?: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleStringHeaderParamOptNilRaw({
+				headerValue:
+					headerValue !== undefined ? (headerValue !== null ? encodeAsciiString(headerValue) : 'null') : undefined,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+	async simpleLocalDateHeaderParam(
+		headerValue: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateBodyParamRaw({
-				body: bodyLocalDate as unknown as Date, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
+			const response = await this.deletegate.headerParameterTypesSimpleLocalDateHeaderParamRaw({
+				headerValue: headerValue as unknown as Date,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleLocalDateBodyParamOpt(
-		bodyLocalDate?: string,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateBodyParamOptRaw({
-				body: bodyLocalDate ? (bodyLocalDate as unknown as Date) : undefined, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleLocalDateBodyParamNil(
-		bodyLocalDate: string | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateBodyParamNilRaw({
-				body: bodyLocalDate ? (bodyLocalDate as unknown as Date) : null, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleLocalDateBodyParamOptNil(
-		bodyLocalDate?: string | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateBodyParamOptNilRaw({
-				body: bodyLocalDate ? (bodyLocalDate as unknown as Date) : undefined, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleLocalDateTimeBodyParam(
-		bodyLocalDateTime: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateTimeBodyParamRaw({
-				body: bodyLocalDateTime,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleLocalDateTimeBodyParamOpt(
-		bodyLocalDateTime?: string,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateTimeBodyParamOptRaw({
-				body: bodyLocalDateTime,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleLocalDateTimeBodyParamNil(
-		bodyLocalDateTime: string | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateTimeBodyParamNilRaw({
-				body: bodyLocalDateTime,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleLocalDateTimeBodyParamOptNil(
-		bodyLocalDateTime?: string | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateTimeBodyParamOptNilRaw({
-				body: bodyLocalDateTime,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleLocalTimeBodyParam(
-		bodyLocalTime: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLocalTimeBodyParamRaw({
-				body: bodyLocalTime,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleLocalTimeBodyParamOpt(
-		bodyLocalTime?: string,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLocalTimeBodyParamOptRaw({
-				body: bodyLocalTime,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleLocalTimeBodyParamNil(
-		bodyLocalTime: string | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLocalTimeBodyParamNilRaw({
-				body: bodyLocalTime,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleLocalTimeBodyParamOptNil(
-		bodyLocalTime?: string | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLocalTimeBodyParamOptNilRaw({
-				body: bodyLocalTime,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleOffsetDateTimeBodyParam(
-		bodyOffsetDateTime: string,
+	async simpleLocalDateHeaderParamOpt(
+		headerValue?: string,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalDateHeaderParamOptRaw({
+				headerValue: headerValue !== undefined ? (headerValue as unknown as Date) : undefined,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLocalDateHeaderParamNil(
+		headerValue: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalDateHeaderParamNilRaw({
+				headerValue: headerValue !== null ? (headerValue as unknown as Date) : ('null' as unknown as Date),
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLocalDateHeaderParamOptNil(
+		headerValue?: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalDateHeaderParamOptNilRaw({
+				headerValue:
+					headerValue !== undefined
+						? headerValue !== null
+							? (headerValue as unknown as Date)
+							: ('null' as unknown as Date)
+						: undefined,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLocalDateTimeHeaderParam(
+		headerValue: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamRaw({
-				body: bodyOffsetDateTime as unknown as Date,
+			const response = await this.deletegate.headerParameterTypesSimpleLocalDateTimeHeaderParamRaw({
+				headerValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLocalDateTimeHeaderParamOpt(
+		headerValue?: string,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalDateTimeHeaderParamOptRaw({
+				headerValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLocalDateTimeHeaderParamNil(
+		headerValue: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalDateTimeHeaderParamNilRaw({
+				headerValue: headerValue ?? 'null',
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLocalDateTimeHeaderParamOptNil(
+		headerValue?: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalDateTimeHeaderParamOptNilRaw({
+				headerValue: headerValue !== undefined ? (headerValue ?? 'null') : undefined,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLocalTimeHeaderParam(
+		headerValue: string,
+	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalTimeHeaderParamRaw({
+				headerValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLocalTimeHeaderParamOpt(
+		headerValue?: string,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalTimeHeaderParamOptRaw({
+				headerValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLocalTimeHeaderParamNil(
+		headerValue: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalTimeHeaderParamNilRaw({
+				headerValue: headerValue ?? 'null',
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleLocalTimeHeaderParamOptNil(
+		headerValue?: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleLocalTimeHeaderParamOptNilRaw({
+				headerValue: headerValue !== undefined ? (headerValue ?? 'null') : undefined,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleOffsetDateTimeHeaderParam(
+		headerValue: string,
+	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamRaw({
+				headerValue: headerValue as unknown as Date,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK((await response.value()) as unknown as string);
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleOffsetDateTimeBodyParamOpt(
-		bodyOffsetDateTime?: string,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamOptRaw({
-				body: bodyOffsetDateTime as unknown as Date,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleOffsetDateTimeBodyParamNil(
-		bodyOffsetDateTime: string | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamNilRaw({
-				body: bodyOffsetDateTime as unknown as Date,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleOffsetDateTimeBodyParamOptNil(
-		bodyOffsetDateTime?: string | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamOptNilRaw({
-				body: bodyOffsetDateTime as unknown as Date,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleZonedDateTimeBodyParam(
-		bodyZonedDateTime: string,
+	async simpleOffsetDateTimeHeaderParamOpt(
+		headerValue?: string,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamOptRaw({
+				headerValue: headerValue as unknown as Date,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleOffsetDateTimeHeaderParamNil(
+		headerValue: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamNilRaw({
+				headerValue: (headerValue ?? 'null') as unknown as Date,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleOffsetDateTimeHeaderParamOptNil(
+		headerValue?: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRaw({
+				headerValue: headerValue !== undefined ? ((headerValue ?? 'null') as unknown as Date) : undefined,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleZonedDateTimeHeaderParam(
+		headerValue: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleZonedDateTimeBodyParamRaw({
-				body: bodyZonedDateTime,
+			const response = await this.deletegate.headerParameterTypesSimpleZonedDateTimeHeaderParamRaw({
+				headerValue,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-	async simpleZonedDateTimeBodyParamOpt(
-		bodyZonedDateTime?: string,
+
+	async simpleZonedDateTimeHeaderParamOpt(
+		headerValue?: string,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleZonedDateTimeBodyParamOptRaw({
-				body: bodyZonedDateTime,
+			const response = await this.deletegate.headerParameterTypesSimpleZonedDateTimeHeaderParamOptRaw({
+				headerValue,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-	async simpleZonedDateTimeBodyParamNil(
-		bodyZonedDateTime: string | null,
+
+	async simpleZonedDateTimeHeaderParamNil(
+		headerValue: string | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleZonedDateTimeBodyParamNilRaw({
-				body: bodyZonedDateTime,
+			const response = await this.deletegate.headerParameterTypesSimpleZonedDateTimeHeaderParamNilRaw({
+				headerValue: headerValue ?? 'null',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-	async simpleZonedDateTimeBodyParamOptNil(
-		bodyZonedDateTime?: string | null,
+
+	async simpleZonedDateTimeHeaderParamOptNil(
+		headerValue?: string | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleZonedDateTimeBodyParamOptNilRaw({
-				body: bodyZonedDateTime,
+			const response = await this.deletegate.headerParameterTypesSimpleZonedDateTimeHeaderParamOptNilRaw({
+				headerValue: headerValue !== undefined ? (headerValue ?? 'null') : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-	async simpleScalarBodyParam(
-		bodyScalar: string,
+
+	async simpleScalarHeaderParam(
+		headerValue: string,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleScalarBodyParamRaw({ body: bodyScalar });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-	async simpleScalarBodyParamOpt(
-		bodyScalar?: string,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleScalarBodyParamOptRaw({ body: bodyScalar });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleScalarBodyParamNil(
-		bodyScalar: string | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleScalarBodyParamNilRaw({ body: bodyScalar });
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async simpleScalarBodyParamOptNil(
-		bodyScalar?: string | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleScalarBodyParamOptNilRaw({
-				body: bodyScalar,
+			const response = await this.deletegate.headerParameterTypesSimpleScalarHeaderParamRaw({
+				headerValue,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleEnumBodyParam(
-		bodyEnum: api.model.SampleEnum,
+	async simpleScalarHeaderParamOpt(
+		headerValue?: string,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleScalarHeaderParamOptRaw({
+				headerValue,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleScalarHeaderParamNil(
+		headerValue: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleScalarHeaderParamNilRaw({
+				headerValue: headerValue ?? 'null',
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleScalarHeaderParamOptNil(
+		headerValue?: string | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleScalarHeaderParamOptNilRaw({
+				headerValue: headerValue !== undefined ? (headerValue ?? 'null') : undefined,
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleEnumHeaderParam(
+		headerValue: api.model.SampleEnum,
 	): Promise<api.result.Result<api.model.SampleEnum, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleEnumBodyParamRaw({ body: bodyEnum });
+			const response = await this.deletegate.headerParameterTypesSimpleEnumHeaderParamRaw({ headerValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleEnumBodyParamOpt(
-		bodyEnum?: api.model.SampleEnum,
+	async simpleEnumHeaderParamOpt(
+		headerValue?: api.model.SampleEnum,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleEnumBodyParamOptRaw({ body: bodyEnum });
+			const response = await this.deletegate.headerParameterTypesSimpleEnumHeaderParamOptRaw({ headerValue });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleEnumBodyParamNil(
-		bodyEnum: api.model.SampleEnum | null,
+	async simpleEnumHeaderParamNil(
+		headerValue: api.model.SampleEnum | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleEnumBodyParamNilRaw({ body: bodyEnum });
+			const response = await this.deletegate.headerParameterTypesSimpleEnumHeaderParamNilRaw({
+				headerValue: (headerValue ?? 'null') as unknown as api.model.SampleEnum,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleEnumBodyParamOptNil(
-		bodyEnum?: api.model.SampleEnum | null,
+	async simpleEnumHeaderParamOptNil(
+		headerValue?: api.model.SampleEnum | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleEnumBodyParamOptNilRaw({ body: bodyEnum });
+			const response = await this.deletegate.headerParameterTypesSimpleEnumHeaderParamOptNilRaw({
+				headerValue: (headerValue !== undefined ? (headerValue ?? 'null') : undefined) as unknown as null,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleInlineEnumBodyParam(
-		bodyEnum: 'A' | 'B',
+	async simpleInlineEnumHeaderParam(
+		headerValue: 'A' | 'B',
 	): Promise<api.result.Result<'A' | 'B', api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			// TODO File bug report because inline enums don't work
-			const response = await this.deletegate.bodyParameterTypesSimpleInlineEnumBodyParamRaw({ body: bodyEnum });
+			const response = await this.deletegate.headerParameterTypesSimpleInlineEnumHeaderParamRaw({ headerValue });
 			if (response.raw.status === 200) {
 				return api.result.OK((await response.value()) as 'A' | 'B');
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleInlineEnumBodyParamOpt(
-		bodyEnum?: 'A' | 'B',
+	async simpleInlineEnumHeaderParamOpt(
+		headerValue?: 'A' | 'B',
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleInlineEnumBodyParamOptRaw({
-				body: bodyEnum,
+			const response = await this.deletegate.headerParameterTypesSimpleInlineEnumHeaderParamOptRaw({ headerValue });
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
+
+	async simpleInlineEnumHeaderParamNil(
+		headerValue: 'C' | 'D' | null,
+	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.deletegate.headerParameterTypesSimpleInlineEnumHeaderParamNilRaw({
+				headerValue: (headerValue ?? 'null') as unknown as 'C' | 'D',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleInlineEnumBodyParamNil(
-		bodyEnum: 'C' | 'D' | null,
+	async simpleInlineEnumHeaderParamOptNil(
+		headerValue?: 'C' | 'D' | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleInlineEnumBodyParamNilRaw({
-				body: bodyEnum,
+			const response = await this.deletegate.headerParameterTypesSimpleInlineEnumHeaderParamOptNilRaw({
+				headerValue: (headerValue !== undefined ? (headerValue ?? 'null') : undefined) as unknown as 'C' | 'D',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async simpleInlineEnumBodyParamOptNil(
-		bodyEnum?: 'C' | 'D' | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleInlineEnumBodyParamOptNilRaw({
-				body: bodyEnum,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async multiBodyParam(
+	async multiHeaderParam(
 		valueA: string,
 		valueB: number,
-		valueC: api.model.SimpleRecord,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesMultiBodyParamRaw({
-				bodyParameterTypesMultiBodyParamRequest: {
-					valueA,
-					valueB,
-					valueC,
-				},
+			const response = await this.deletegate.headerParameterTypesMultiHeaderParamRaw({
+				valueA: encodeAsciiString(valueA),
+				valueB,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async multiBodyParamOpt(
+	async multiHeaderParamOpt(
 		valueA?: string,
 		valueB?: number,
-		valueC?: api.model.SimpleRecord,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+	): Promise<api.result.Result<api.model.NilResult[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesMultiBodyParamOptRaw({
-				bodyParameterTypesMultiBodyParamOptRequest: {
-					valueA,
-					valueB,
-					valueC,
-				},
+			const response = await this.deletegate.headerParameterTypesMultiHeaderParamOptRaw({
+				valueA: valueA !== undefined ? encodeAsciiString(valueA) : undefined,
+				valueB,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async multiBodyParamNil(
+	async multiHeaderParamNil(
 		valueA: string | null,
 		valueB: number | null,
-		valueC: api.model.SimpleRecord | null,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+	): Promise<api.result.Result<api.model.NilResult[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesMultiBodyParamNilRaw({
-				bodyParameterTypesMultiBodyParamNilRequest: {
-					valueA,
-					valueB,
-					valueC,
-				},
+			const response = await this.deletegate.headerParameterTypesMultiHeaderParamNilRaw({
+				valueA: valueA !== null ? encodeAsciiString(valueA) : 'null',
+				valueB: (valueB ?? 'null') as unknown as number,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async multiBodyParamOptNil(
+	async multiHeaderParamOptNil(
 		valueA?: string | null,
 		valueB?: number | null,
-		valueC?: api.model.SimpleRecord | null,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+	): Promise<api.result.Result<api.model.NilResult[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesMultiBodyParamOptNilRaw({
-				bodyParameterTypesMultiBodyParamOptNilRequest: {
-					valueA,
-					valueB,
-					valueC,
-				},
+			const response = await this.deletegate.headerParameterTypesMultiHeaderParamOptNilRaw({
+				valueA: valueA !== undefined ? (valueA !== null ? `"${encodeAsciiString(valueA)}"` : 'null') : undefined,
+				valueB: valueB !== undefined ? ((valueB ?? 'null') as unknown as number) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async multiBodyParamFirst(
-		valueA: string | undefined,
-		valueB: number,
-		valueC: api.model.SimpleRecord,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesMultiBodyParamFirstRaw({
-				bodyParameterTypesMultiBodyParamFirstRequest: {
-					valueA,
-					valueB,
-					valueC,
-				},
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async recordBodyParam(
-		bodyRecord: api.model.SimpleRecord,
+	async recordHeaderParam(
+		headerValue: api.model.SimpleRecord,
 	): Promise<api.result.Result<api.model.SimpleRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesRecordBodyParamRaw({
-				simpleRecord: bodyRecord,
+			const response = await this.deletegate.headerParameterTypesRecordHeaderParamRaw({
+				headerValue: encodeBase64(JSON.stringify(headerValue)),
+				xRSDParamContentType: 'application/json',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async recordBodyParamOpt(
-		bodyRecord?: api.model.SimpleRecord,
+	async recordHeaderParamOpt(
+		headerValue?: api.model.SimpleRecord,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesRecordBodyParamOptRaw({
-				simpleRecord: bodyRecord,
+			const response = await this.deletegate.headerParameterTypesRecordHeaderParamOptRaw({
+				headerValue: headerValue !== undefined ? encodeBase64(JSON.stringify(headerValue)) : undefined,
+				xRSDParamContentType: 'application/json',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async recordBodyParamNil(
-		bodyRecord: api.model.SimpleRecord | null,
+	async recordHeaderParamNil(
+		headerValue: api.model.SimpleRecord | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesRecordBodyParamNilRaw({
-				simpleRecord: bodyRecord,
+			const response = await this.deletegate.headerParameterTypesRecordHeaderParamNilRaw({
+				headerValue: headerValue !== null ? encodeBase64(JSON.stringify(headerValue)) : 'null',
+				xRSDParamContentType: 'application/json',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async recordBodyParamOptNil(
-		bodyRecord?: api.model.SimpleRecord | null,
+	async recordHeaderParamOptNil(
+		headerValue?: api.model.SimpleRecord | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesRecordBodyParamOptNilRaw({
-				simpleRecord: bodyRecord,
+			const response = await this.deletegate.headerParameterTypesRecordHeaderParamOptNilRaw({
+				headerValue:
+					headerValue !== undefined
+						? headerValue !== null
+							? encodeBase64(JSON.stringify(headerValue))
+							: 'null'
+						: undefined,
+				xRSDParamContentType: 'application/json',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
 
-	async unionBodyParam(
-		bodyUnion: api.model.Union,
-	): Promise<api.result.Result<api.model.Union, api.service.StatusRSDError | api.service.NativeRSDError>> {
+	async mixed(
+		pathString: string,
+		pathNumber: number,
+		headerString: string,
+		headerNumber: number,
+		headerRecord: api.model.SimpleRecord,
+		body: api.model.SimpleRecord,
+		queryString: string,
+		queryNumber: number,
+		queryRecord: api.model.SimpleRecord,
+	): Promise<api.result.Result<api.result.VoidType, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesUnionBodyParamRaw({
-				union: bodyUnion['@type'] === 'union-a' ? { ...bodyUnion, type: 'union-a' } : { ...bodyUnion, type: 'union-b' },
+			const response = await this.deletegate.headerParameterTypesMixedRaw({
+				pathString: `"${encodeAsciiString(pathString)}"`,
+				pathNumber,
+				headerString: `"${encodeAsciiString(headerString)}"`,
+				headerNumber,
+				headerRecord: encodeBase64(JSON.stringify(headerRecord)),
+				xRSDParamContentType: 'application/json',
+				simpleRecord: body,
+				queryString: `"${encodeAsciiString(queryString)}"`,
+				queryNumber,
+				queryRecord: encodeBase64(JSON.stringify(queryRecord)),
 			});
-			if (response.raw.status === 200) {
-				const result = await response.value();
-				if (result.type === 'union-a') {
-					return api.result.OK({ shared: result.shared, valueA: result.valueA, '@type': 'union-a' } as const);
-				} else {
-					return api.result.OK({ shared: result.shared, valueB: result.valueB, '@type': 'union-b' } as const);
-				}
+			if (response.raw.status === 204) {
+				return api.result.OK(api.result.Void);
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async unionBodyParamOpt(
-		bodyUnion?: api.model.Union,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const union = bodyUnion
-				? bodyUnion['@type'] === 'union-a'
-					? ({ ...bodyUnion, type: 'union-a' } as const)
-					: ({ ...bodyUnion, type: 'union-b' } as const)
-				: undefined;
-			const response = await this.deletegate.bodyParameterTypesUnionBodyParamOptRaw({
-				union,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async unionBodyParamNil(
-		bodyUnion: api.model.Union | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const union = bodyUnion
-				? bodyUnion['@type'] === 'union-a'
-					? ({ ...bodyUnion, type: 'union-a' } as const)
-					: ({ ...bodyUnion, type: 'union-b' } as const)
-				: null;
-			const response = await this.deletegate.bodyParameterTypesUnionBodyParamNilRaw({
-				union,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async unionBodyParamOptNil(
-		bodyUnion?: api.model.Union | null,
-	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const union = bodyUnion
-				? bodyUnion['@type'] === 'union-a'
-					? ({ ...bodyUnion, type: 'union-a' } as const)
-					: ({ ...bodyUnion, type: 'union-b' } as const)
-				: bodyUnion === null
-					? null
-					: undefined;
-			const response = await this.deletegate.bodyParameterTypesUnionBodyParamOptNilRaw({
-				union,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async patchableRecordBodyParam(
-		bodyRecord: api.model.PatchableRecordPatch,
-	): Promise<api.result.Result<api.model.PatchableRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesPatchableRecordBodyParamRaw({
-				patchableRecordPatch: bodyRecord,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async patchableRecordBodyParamOpt(
-		bodyRecord?: api.model.PatchableRecordPatch,
-	): Promise<api.result.Result<api.model.PatchableRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesPatchableRecordBodyParamOptRaw({
-				patchableRecordPatch: bodyRecord,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async patchableRecordBodyParamNil(
-		bodyRecord: api.model.PatchableRecordPatch | null,
-	): Promise<api.result.Result<api.model.PatchableRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesPatchableRecordBodyParamNilRaw({
-				patchableRecordPatch: bodyRecord,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
-			return api.result.ERR(toRSDError(error));
-		}
-	}
-
-	async patchableRecordBodyParamOptNil(
-		bodyRecord?: api.model.PatchableRecordPatch | null,
-	): Promise<api.result.Result<api.model.PatchableRecord, api.service.StatusRSDError | api.service.NativeRSDError>> {
-		try {
-			const response = await this.deletegate.bodyParameterTypesPatchableRecordBodyParamOptNilRaw({
-				patchableRecordPatch: bodyRecord,
-			});
-			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
-			}
-			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
-		} catch (error: unknown) {
+		} catch (error) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
