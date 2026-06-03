@@ -138,7 +138,7 @@ export function FromJSON(
 		props.forEach(p => {
 			if (isMKeyProperty(p) || isMRevisionProperty(p)) {
 				const propValue = fqn('propValue:../_type-utils.ts', false);
-				const guard = builtinTypeGuard(p.type, fqn);
+				const guard = builtinFromJsonTypeGuard(p.type, fqn);
 				fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard});`, NL);
 			} else if (p.variant === 'inline-enum' || p.variant === 'enum' || p.variant === 'scalar') {
 				let guard: string;
@@ -182,7 +182,7 @@ export function FromJSON(
 				let guard = '';
 				let fromJSON = '';
 				if (isMBuiltinType(p.type)) {
-					guard = builtinTypeGuard(p.type, fqn);
+					guard = builtinFromJsonTypeGuard(p.type, fqn);
 					fromJSON = builtinFromJSON(p.type, fqn, () => '');
 				} else {
 					guard = fqn('isRecord:../_type-utils.ts', false);
@@ -324,14 +324,14 @@ export function RecordTypeguard(
 				}
 
 				if (isMKeyProperty(p) || isMRevisionProperty(p)) {
-					const guard = builtinTypeGuard(p.type, fqn);
+					const guard = builtinFromJsonTypeGuard(p.type, fqn);
 					const checkProp = fqn('checkProp:../_type-utils.ts', false);
 					andBlock.append(`${checkProp}(value, '${p.name}', ${guard})`);
 				} else {
 					let guard: string;
 
 					if (isMBuiltinType(p.type)) {
-						guard = builtinTypeGuard(p.type, fqn);
+						guard = builtinFromJsonTypeGuard(p.type, fqn);
 					} else if (isMInlineEnumType(p.type)) {
 						guard = `is${t.name}_${toFirstUpper(p.name)}`;
 					} else if (p.variant === 'scalar') {
@@ -496,7 +496,7 @@ export function RecordTypeguardPatch(
 						andBlock.append(' &&', NL);
 					}
 
-					const guard = builtinTypeGuard(p.type, fqn);
+					const guard = builtinFromJsonTypeGuard(p.type, fqn);
 					const checkProp = fqn('checkProp:../_type-utils.ts', false);
 					andBlock.append(`${checkProp}(value, '${p.name}', ${guard})`);
 				});
@@ -511,7 +511,7 @@ export function RecordTypeguardPatch(
 					let guard: string;
 
 					if (isMBuiltinType(p.type)) {
-						guard = builtinTypeGuard(p.type, fqn);
+						guard = builtinFromJsonTypeGuard(p.type, fqn);
 					} else if (isMInlineEnumType(p.type)) {
 						guard = `is${t.name}_${toFirstUpper(p.name)}`;
 					} else if (p.variant === 'scalar') {
@@ -577,7 +577,7 @@ export function FromJSONPatch(
 		props
 			.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
 			.forEach(p => {
-				const guard = builtinTypeGuard(p.type, fqn);
+				const guard = builtinFromJsonTypeGuard(p.type, fqn);
 				const propValue = fqn('propValue:../_type-utils.ts', false);
 				fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard});`, NL);
 			});
@@ -589,7 +589,7 @@ export function FromJSONPatch(
 					let guard: string;
 
 					if (isMBuiltinType(p.type)) {
-						guard = builtinTypeGuard(p.type, fqn);
+						guard = builtinFromJsonTypeGuard(p.type, fqn);
 					} else if (isMInlineEnumType(p.type)) {
 						guard = `is${t.name}_${toFirstUpper(p.name)}`;
 					} else if (p.variant === 'enum') {
@@ -732,11 +732,37 @@ export function ToJSONPatch(
 			.filter(isMResolvedProperty)
 			.filter(p => !p.readonly)
 			.forEach(p => {
-				if (p.variant === 'inline-enum' || p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'scalar') {
+				if (p.variant === 'builtin' && isMBuiltinType(p.type)) {
+					const toJSON = builtinToJSON(p.type, fqn, () => '');
+					if (toJSON) {
+						mBody.append(`const ${p.name} = `);
+						if (p.optional || p.nullable) {
+							const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
+							const isNull = fqn('isNull:../_type-utils.ts', false);
+							mBody.append(`${isUndefined}($value.${p.name}) || ${isNull}($value.${p.name}) ? $value.${p.name} : `);
+						} else {
+							const isUndefined = fqn('isUndefined:../_type-utils.ts', false);
+							mBody.append(`${isUndefined}($value.${p.name}) ? undefined : `);
+						}
+						if (p.array) {
+							const isListReplace = fqn('isListReplace:../_type-utils.ts', false);
+							const ListReplaceToJSON = fqn('ListReplaceToJSON:../_type-utils.ts', false);
+							const ListMergeAddRemoveFromJSON = fqn('ListMergeAddRemoveToJSON:../_type-utils.ts', false);
+							const guard = builtinTypeGuard(p.type, fqn);
+							mBody.append(
+								`${isListReplace}($value.${p.name}, ${guard}) ? ${ListReplaceToJSON}($value.${p.name}, ${toJSON}) : ${ListMergeAddRemoveFromJSON}($value.${p.name}, ${toJSON}, ${toJSON});`,
+								NL,
+							);
+						} else {
+							mBody.append(`${toJSON}($value.${p.name});`, NL);
+						}
+					} else {
+						mBody.append(`const ${p.name} = $value.${p.name};`, NL);
+					}
+				} else if (p.variant === 'inline-enum' || p.variant === 'enum' || p.variant === 'scalar') {
 					mBody.append(`const ${p.name} = $value.${p.name};`, NL);
 				} else {
 					const ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
-					const ToJSONPatch = fqn(`${p.type}PatchToJSON:./${p.type}.ts`, false);
 					mBody.append(`const ${p.name} = `);
 
 					if (p.optional || p.nullable) {
@@ -749,6 +775,7 @@ export function ToJSONPatch(
 					}
 
 					if (p.array) {
+						const ToJSONPatch = fqn(`${p.type}PatchToJSON:./${p.type}.ts`, false);
 						const noopMap = fqn('noopMap:../_type-utils.ts', false);
 						const ReplaceOrMergeToJSON = fqn('ReplaceOrMergeToJSON:../_type-utils.ts', false);
 						const createListReplaceToJSON = fqn('createListReplaceToJSON:../_type-utils.ts', false);
@@ -768,6 +795,7 @@ export function ToJSONPatch(
 							const OrPatchToJSON = fqn(`${p.type}OrPatchToJSON:./${p.type}.ts`, false);
 							mBody.append(`${OrPatchToJSON}($value.${p.name});`, NL);
 						} else {
+							const ToJSONPatch = fqn(`${p.type}PatchToJSON:./${p.type}.ts`, false);
 							const ReplaceOrMergeToJSON = fqn('ReplaceOrMergeToJSON:../_type-utils.ts', false);
 							mBody.append(`${ReplaceOrMergeToJSON}($value.${p.name}, ${ToJSON}, ${ToJSONPatch});`, NL);
 						}
@@ -861,7 +889,7 @@ function generatePatchProperty(prop: MResolvedPropery, fqn: (t: string, typeOnly
 	);
 }
 
-function builtinTypeGuard(type: MBuiltinType, fqn: (v: string, typeOnly: boolean) => string) {
+function builtinFromJsonTypeGuard(type: MBuiltinType, fqn: (v: string, typeOnly: boolean) => string) {
 	if (type === 'boolean') {
 		return fqn('isBoolean:../_type-utils.ts', false);
 	} else if (type === 'double' || type === 'float' || type === 'int' || type === 'long' || type === 'short') {
@@ -907,4 +935,32 @@ function builtinToJSON(
 		return fqn('ZonedDateTimeToJSON:./Builtins.ts', false);
 	}
 	return defaultValue();
+}
+
+function builtinTypeGuard(type: MBuiltinType, fqn: (v: string, typeOnly: boolean) => string): string {
+	if (type === 'boolean') {
+		return fqn('isBoolean:../_type-utils.ts', false);
+	} else if (type === 'string') {
+		return fqn('isString:../_type-utils.ts', false);
+	} else if (type === 'short') {
+		return fqn('isShort:./Builtins.ts', false);
+	} else if (type === 'int') {
+		return fqn('isInt:./Builtins.ts', false);
+	} else if (type === 'long') {
+		return fqn('isLong:./Builtins.ts', false);
+	} else if (type === 'float') {
+		return fqn('isFloat:./Builtins.ts', false);
+	} else if (type === 'double') {
+		return fqn('isDouble:./Builtins.ts', false);
+	} else if (type === 'local-date-time') {
+		return fqn('isLocalDateTime:./Builtins.ts', false);
+	} else if (type === 'local-date') {
+		return fqn('isLocalDate:./Builtins.ts', false);
+	} else if (type === 'local-time') {
+		return fqn('isLocalTime:./Builtins.ts', false);
+	} else if (type === 'offset-date-time') {
+		return fqn('isOffsetDateTime:./Builtins.ts', false);
+	} else {
+		return fqn('isZonedDateTime:./Builtins.ts', false);
+	}
 }

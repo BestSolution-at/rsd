@@ -182,11 +182,11 @@ export function PatchableRecord_Basic_OptionalPatchToJSON($value: PatchableRecor
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : LocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : LocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : LocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : OffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : ZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		key,

@@ -1649,11 +1649,11 @@ export function PatchableRecord_BasicPatchToJSON($value: PatchableRecord_BasicPa
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) ? undefined : LocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) ? undefined : LocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isUndefined($value.valueLocalTime) ? undefined : LocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) ? undefined : OffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) ? undefined : ZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		key,
@@ -1685,11 +1685,11 @@ export function PatchableRecord_Basic_OptionalPatchToJSON($value: PatchableRecor
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : LocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : LocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : LocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : OffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : ZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		key,
@@ -1721,11 +1721,11 @@ export function PatchableRecord_Basic_NullPatchToJSON($value: PatchableRecord_Ba
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : LocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : LocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : LocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : OffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : ZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		key,
@@ -1757,11 +1757,11 @@ export function PatchableRecord_Basic_Optional_NullPatchToJSON($value: Patchable
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : LocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : LocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : LocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : OffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : ZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		key,
@@ -1792,11 +1792,11 @@ export function PatchableRecord_Basic_ListPatchToJSON($value: PatchableRecord_Ba
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) ? undefined : isListReplace($value.valueLocalDate, isLocalDate) ? ListReplaceToJSON($value.valueLocalDate, LocalDateToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDate, LocalDateToJSON, LocalDateToJSON);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) ? undefined : isListReplace($value.valueLocalDateTime, isLocalDateTime) ? ListReplaceToJSON($value.valueLocalDateTime, LocalDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDateTime, LocalDateTimeToJSON, LocalDateTimeToJSON);
+	const valueLocalTime = isUndefined($value.valueLocalTime) ? undefined : isListReplace($value.valueLocalTime, isLocalTime) ? ListReplaceToJSON($value.valueLocalTime, LocalTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalTime, LocalTimeToJSON, LocalTimeToJSON);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) ? undefined : isListReplace($value.valueOffsetDateTime, isOffsetDateTime) ? ListReplaceToJSON($value.valueOffsetDateTime, OffsetDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueOffsetDateTime, OffsetDateTimeToJSON, OffsetDateTimeToJSON);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) ? undefined : isListReplace($value.valueZonedDateTime, isZonedDateTime) ? ListReplaceToJSON($value.valueZonedDateTime, ZonedDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueZonedDateTime, ZonedDateTimeToJSON, ZonedDateTimeToJSON);
 
 	return {
 		key,
@@ -1827,11 +1827,11 @@ export function PatchableRecord_Basic_List_OptionalPatchToJSON($value: Patchable
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : isListReplace($value.valueLocalDate, isLocalDate) ? ListReplaceToJSON($value.valueLocalDate, LocalDateToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDate, LocalDateToJSON, LocalDateToJSON);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : isListReplace($value.valueLocalDateTime, isLocalDateTime) ? ListReplaceToJSON($value.valueLocalDateTime, LocalDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDateTime, LocalDateTimeToJSON, LocalDateTimeToJSON);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : isListReplace($value.valueLocalTime, isLocalTime) ? ListReplaceToJSON($value.valueLocalTime, LocalTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalTime, LocalTimeToJSON, LocalTimeToJSON);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : isListReplace($value.valueOffsetDateTime, isOffsetDateTime) ? ListReplaceToJSON($value.valueOffsetDateTime, OffsetDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueOffsetDateTime, OffsetDateTimeToJSON, OffsetDateTimeToJSON);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : isListReplace($value.valueZonedDateTime, isZonedDateTime) ? ListReplaceToJSON($value.valueZonedDateTime, ZonedDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueZonedDateTime, ZonedDateTimeToJSON, ZonedDateTimeToJSON);
 
 	return {
 		key,
@@ -1863,11 +1863,11 @@ export function PatchableRecord_Basic_List_NullPatchToJSON($value: PatchableReco
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : isListReplace($value.valueLocalDate, isLocalDate) ? ListReplaceToJSON($value.valueLocalDate, LocalDateToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDate, LocalDateToJSON, LocalDateToJSON);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : isListReplace($value.valueLocalDateTime, isLocalDateTime) ? ListReplaceToJSON($value.valueLocalDateTime, LocalDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDateTime, LocalDateTimeToJSON, LocalDateTimeToJSON);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : isListReplace($value.valueLocalTime, isLocalTime) ? ListReplaceToJSON($value.valueLocalTime, LocalTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalTime, LocalTimeToJSON, LocalTimeToJSON);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : isListReplace($value.valueOffsetDateTime, isOffsetDateTime) ? ListReplaceToJSON($value.valueOffsetDateTime, OffsetDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueOffsetDateTime, OffsetDateTimeToJSON, OffsetDateTimeToJSON);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : isListReplace($value.valueZonedDateTime, isZonedDateTime) ? ListReplaceToJSON($value.valueZonedDateTime, ZonedDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueZonedDateTime, ZonedDateTimeToJSON, ZonedDateTimeToJSON);
 
 	return {
 		key,
@@ -1899,11 +1899,11 @@ export function PatchableRecord_Basic_List_Optional_NullPatchToJSON($value: Patc
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : isListReplace($value.valueLocalDate, isLocalDate) ? ListReplaceToJSON($value.valueLocalDate, LocalDateToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDate, LocalDateToJSON, LocalDateToJSON);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : isListReplace($value.valueLocalDateTime, isLocalDateTime) ? ListReplaceToJSON($value.valueLocalDateTime, LocalDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDateTime, LocalDateTimeToJSON, LocalDateTimeToJSON);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : isListReplace($value.valueLocalTime, isLocalTime) ? ListReplaceToJSON($value.valueLocalTime, LocalTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalTime, LocalTimeToJSON, LocalTimeToJSON);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : isListReplace($value.valueOffsetDateTime, isOffsetDateTime) ? ListReplaceToJSON($value.valueOffsetDateTime, OffsetDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueOffsetDateTime, OffsetDateTimeToJSON, OffsetDateTimeToJSON);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : isListReplace($value.valueZonedDateTime, isZonedDateTime) ? ListReplaceToJSON($value.valueZonedDateTime, ZonedDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueZonedDateTime, ZonedDateTimeToJSON, ZonedDateTimeToJSON);
 
 	return {
 		key,
