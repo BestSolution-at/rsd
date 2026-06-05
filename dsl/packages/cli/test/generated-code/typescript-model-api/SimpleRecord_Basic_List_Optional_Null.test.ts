@@ -22,6 +22,21 @@ const Simple: SimpleRecord_Basic_List_Optional_Null = {
 	valueZonedDateTime: ['2025-01-01T10:00:00Z', '2025-02-01T10:00:00Z'],
 };
 
+const Simple_Json = {
+	valueBoolean: [true, false],
+	valueShort: [0, 1],
+	valueDouble: [1.5, 2.5],
+	valueFloat: [1.5, 2.5],
+	valueInt: [0, 1],
+	valueLocalDate: ['2020-01-01', '2020-02-01'],
+	valueLocalDateTime: ['2020-01-01T10:00:00', '2020-02-01T10:00:00'],
+	valueLocalTime: ['2020-01-01T10:00:00', '2020-02-01T10:00:00'],
+	valueOffsetDateTime: ['2025-01-01T10:00:00+01:00'],
+	valueLong: ['0', '1'],
+	valueString: ['a', 'b'],
+	valueZonedDateTime: ['2025-01-01T10:00:00Z', '2025-02-01T10:00:00Z'],
+};
+
 const SimpleNull: SimpleRecord_Basic_List_Optional_Null = {
 	valueBoolean: null,
 	valueDouble: null,
@@ -54,8 +69,8 @@ const SimpleEmpty: SimpleRecord_Basic_List_Optional_Null = {
 
 describe('SimpleRecord_Basic_List_Optional_NullFromJSON', () => {
 	test('simple', () => {
-		expect(SimpleRecord_Basic_List_Optional_NullFromJSON(Simple)).toStrictEqual(Simple);
-		expect(SimpleRecord_Basic_List_Optional_NullFromJSON(Simple)).not.toBe(Simple);
+		expect(SimpleRecord_Basic_List_Optional_NullFromJSON(Simple_Json)).toStrictEqual(Simple);
+		expect(SimpleRecord_Basic_List_Optional_NullFromJSON(Simple_Json)).not.toBe(Simple);
 
 		expect(SimpleRecord_Basic_List_Optional_NullFromJSON(SimpleNull)).toStrictEqual(SimpleNull);
 		expect(SimpleRecord_Basic_List_Optional_NullFromJSON(SimpleNull)).not.toBe(SimpleNull);
@@ -63,21 +78,22 @@ describe('SimpleRecord_Basic_List_Optional_NullFromJSON', () => {
 		expect(SimpleRecord_Basic_List_Optional_NullFromJSON({})).toStrictEqual(SimpleEmpty);
 	});
 	test('remove-unknown', () => {
-		expect(SimpleRecord_Basic_List_Optional_NullFromJSON(addFooProperty(Simple))).toStrictEqual(Simple);
+		expect(SimpleRecord_Basic_List_Optional_NullFromJSON(addFooProperty(Simple_Json))).toStrictEqual(Simple);
 	});
 	test('empty object', () => {
 		expect(SimpleRecord_Basic_List_Optional_NullFromJSON({})).toStrictEqual(SimpleEmpty);
 	});
 	test.each(Object.keys(Simple))('missing prop $0', data => {
-		const { withOut, withUndefined } = removeProperty(Simple, data);
+		const { withOut } = removeProperty(Simple_Json, data);
+		const { withUndefined } = removeProperty(Simple, data);
 		expect(SimpleRecord_Basic_List_Optional_NullFromJSON(withOut)).toStrictEqual(withUndefined);
 	});
 	test.each(Object.keys(Simple))('invalid prop $0', data => {
-		expect(() => SimpleRecord_Basic_List_Optional_NullFromJSON(invalidateProperty(Simple, data))).toThrow();
+		expect(() => SimpleRecord_Basic_List_Optional_NullFromJSON(invalidateProperty(Simple_Json, data))).toThrow();
 		expect(() => SimpleRecord_Basic_List_Optional_NullFromJSON(invalidateProperty(SimpleEmpty, data))).toThrow();
 		expect(() => SimpleRecord_Basic_List_Optional_NullFromJSON(invalidateProperty({}, data))).toThrow();
 
-		expect(() => SimpleRecord_Basic_List_Optional_NullFromJSON(invalidateArrayProperty(Simple, data))).toThrow();
+		expect(() => SimpleRecord_Basic_List_Optional_NullFromJSON(invalidateArrayProperty(Simple_Json, data))).toThrow();
 	});
 });
 describe('isSimpleRecord_Basic_List_Optional_Null', () => {
@@ -104,7 +120,7 @@ describe('isSimpleRecord_Basic_List_Optional_Null', () => {
 });
 describe('SimpleRecord_Basic_List_Optional_NullToJSON', () => {
 	test('simple', () => {
-		expect(SimpleRecord_Basic_List_Optional_NullToJSON(Simple)).toStrictEqual(Simple);
+		expect(SimpleRecord_Basic_List_Optional_NullToJSON(Simple)).toStrictEqual(Simple_Json);
 		expect(SimpleRecord_Basic_List_Optional_NullToJSON(Simple)).not.toBe(Simple);
 
 		expect(SimpleRecord_Basic_List_Optional_NullToJSON(SimpleEmpty)).toStrictEqual(SimpleEmpty);
@@ -114,6 +130,6 @@ describe('SimpleRecord_Basic_List_Optional_NullToJSON', () => {
 		expect(SimpleRecord_Basic_List_Optional_NullToJSON({})).not.toBe(SimpleEmpty);
 	});
 	test('additional props', () => {
-		expect(SimpleRecord_Basic_List_Optional_NullToJSON(addFooProperty(Simple))).toStrictEqual(Simple);
+		expect(SimpleRecord_Basic_List_Optional_NullToJSON(addFooProperty(Simple))).toStrictEqual(Simple_Json);
 	});
 });

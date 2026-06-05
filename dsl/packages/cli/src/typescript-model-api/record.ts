@@ -137,9 +137,10 @@ export function FromJSON(
 	node.indent(fBody => {
 		props.forEach(p => {
 			if (isMKeyProperty(p) || isMRevisionProperty(p)) {
-				const propValue = fqn('propValue:../_type-utils.ts', false);
+				const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
+				const mapper = builtinFromJSON(p.type, fqn);
 				const guard = builtinFromJsonTypeGuard(p.type, fqn);
-				fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard});`, NL);
+				fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${mapper});`, NL);
 			} else if (p.variant === 'inline-enum' || p.variant === 'enum' || p.variant === 'scalar') {
 				let guard: string;
 
@@ -183,7 +184,7 @@ export function FromJSON(
 				let fromJSON = '';
 				if (isMBuiltinType(p.type)) {
 					guard = builtinFromJsonTypeGuard(p.type, fqn);
-					fromJSON = builtinFromJSON(p.type, fqn, () => '');
+					fromJSON = builtinFromJSON(p.type, fqn);
 				} else {
 					guard = fqn('isRecord:../_type-utils.ts', false);
 					fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
@@ -245,7 +246,8 @@ export function ToJSON(
 	node.indent(mBody => {
 		props.forEach(p => {
 			if (isMKeyProperty(p) || isMRevisionProperty(p)) {
-				mBody.append(`const ${p.name} = $value.${p.name};`, NL);
+				const ToJSON = builtinToJSON(p.type, fqn);
+				mBody.append(`const ${p.name} = ${ToJSON}($value.${p.name});`, NL);
 			} else if (p.variant === 'inline-enum' || p.variant === 'enum' || p.variant === 'scalar') {
 				mBody.append(`const ${p.name} = $value.${p.name};`, NL);
 			} else {
@@ -254,7 +256,7 @@ export function ToJSON(
 				let ToJSON = '';
 
 				if (isMBuiltinType(p.type)) {
-					ToJSON = builtinToJSON(p.type, fqn, () => '');
+					ToJSON = builtinToJSON(p.type, fqn);
 				} else {
 					ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
 				}
@@ -577,9 +579,10 @@ export function FromJSONPatch(
 		props
 			.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
 			.forEach(p => {
+				const propMappedValue = fqn('propMappedValue:../_type-utils.ts', false);
+				const mapper = builtinFromJSON(p.type, fqn);
 				const guard = builtinFromJsonTypeGuard(p.type, fqn);
-				const propValue = fqn('propValue:../_type-utils.ts', false);
-				fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard});`, NL);
+				fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${mapper});`, NL);
 			});
 		props
 			.filter(isMResolvedProperty)
@@ -610,7 +613,7 @@ export function FromJSONPatch(
 						const isRecord = fqn('isRecord:../_type-utils.ts', false);
 						let fromJSON: string;
 						if (isMBuiltinType(p.type)) {
-							fromJSON = builtinFromJSON(p.type, fqn, () => fqn('noopMap:../_type-utils.ts', false));
+							fromJSON = builtinFromJSON(p.type, fqn);
 						} else {
 							fromJSON = fqn('noopMap:../_type-utils.ts', false);
 						}
@@ -627,7 +630,7 @@ export function FromJSONPatch(
 					} else {
 						let fromJSON = '';
 						if (isMBuiltinType(p.type)) {
-							fromJSON = builtinFromJSON(p.type, fqn, () => '');
+							fromJSON = builtinFromJSON(p.type, fqn);
 						}
 						if (fromJSON) {
 							const propValue = fqn('propMappedValue:../_type-utils.ts', false);
@@ -726,14 +729,15 @@ export function ToJSONPatch(
 		props
 			.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
 			.forEach(p => {
-				mBody.append(`const ${p.name} = $value.${p.name};`, NL);
+				const toJSON = builtinToJSON(p.type, fqn);
+				mBody.append(`const ${p.name} = ${toJSON}($value.${p.name});`, NL);
 			});
 		props
 			.filter(isMResolvedProperty)
 			.filter(p => !p.readonly)
 			.forEach(p => {
 				if (p.variant === 'builtin' && isMBuiltinType(p.type)) {
-					const toJSON = builtinToJSON(p.type, fqn, () => '');
+					const toJSON = builtinToJSON(p.type, fqn);
 					if (toJSON) {
 						mBody.append(`const ${p.name} = `);
 						if (p.optional || p.nullable) {
@@ -892,18 +896,14 @@ function generatePatchProperty(prop: MResolvedPropery, fqn: (t: string, typeOnly
 function builtinFromJsonTypeGuard(type: MBuiltinType, fqn: (v: string, typeOnly: boolean) => string) {
 	if (type === 'boolean') {
 		return fqn('isBoolean:../_type-utils.ts', false);
-	} else if (type === 'double' || type === 'float' || type === 'int' || type === 'long' || type === 'short') {
+	} else if (type === 'double' || type === 'float' || type === 'int' || type === 'short') {
 		return fqn('isNumber:../_type-utils.ts', false);
 	} else {
 		return fqn('isString:../_type-utils.ts', false);
 	}
 }
 
-function builtinFromJSON(
-	type: MBuiltinType,
-	fqn: (v: string, typeOnly: boolean) => string,
-	defaultValue: () => string,
-): string {
+function builtinFromJSON(type: MBuiltinType, fqn: (v: string, typeOnly: boolean) => string): string {
 	if (type === 'local-date-time') {
 		return fqn('RSDLocalDateTimeFromJSON:./Builtins.ts', false);
 	} else if (type === 'local-date') {
@@ -914,15 +914,24 @@ function builtinFromJSON(
 		return fqn('RSDOffsetDateTimeFromJSON:./Builtins.ts', false);
 	} else if (type === 'zoned-date-time') {
 		return fqn('RSDZonedDateTimeFromJSON:./Builtins.ts', false);
+	} else if (type === 'long') {
+		return fqn('RSDLongFromJSON:./Builtins.ts', false);
+	} else if (type === 'double') {
+		return fqn('RSDDoubleFromJSON:./Builtins.ts', false);
+	} else if (type === 'float') {
+		return fqn('RSDFloatFromJSON:./Builtins.ts', false);
+	} else if (type === 'int') {
+		return fqn('RSDIntFromJSON:./Builtins.ts', false);
+	} else if (type === 'short') {
+		return fqn('RSDShortFromJSON:./Builtins.ts', false);
+	} else if (type === 'boolean') {
+		return fqn('RSDBooleanFromJSON:./Builtins.ts', false);
+	} else {
+		return fqn('RSDStringFromJSON:./Builtins.ts', false);
 	}
-	return defaultValue();
 }
 
-function builtinToJSON(
-	type: MBuiltinType,
-	fqn: (v: string, typeOnly: boolean) => string,
-	defaultValue: () => string,
-): string {
+function builtinToJSON(type: MBuiltinType, fqn: (v: string, typeOnly: boolean) => string): string {
 	if (type === 'local-date-time') {
 		return fqn('RSDLocalDateTimeToJSON:./Builtins.ts', false);
 	} else if (type === 'local-date') {
@@ -933,6 +942,19 @@ function builtinToJSON(
 		return fqn('RSDOffsetDateTimeToJSON:./Builtins.ts', false);
 	} else if (type === 'zoned-date-time') {
 		return fqn('RSDZonedDateTimeToJSON:./Builtins.ts', false);
+	} else if (type === 'long') {
+		return fqn('RSDLongToJSON:./Builtins.ts', false);
+	} else if (type === 'double') {
+		return fqn('RSDDoubleToJSON:./Builtins.ts', false);
+	} else if (type === 'float') {
+		return fqn('RSDFloatToJSON:./Builtins.ts', false);
+	} else if (type === 'int') {
+		return fqn('RSDIntToJSON:./Builtins.ts', false);
+	} else if (type === 'short') {
+		return fqn('RSDShortToJSON:./Builtins.ts', false);
+	} else if (type === 'boolean') {
+		return fqn('RSDBooleanToJSON:./Builtins.ts', false);
+	} else {
+		return fqn('RSDStringToJSON:./Builtins.ts', false);
 	}
-	return defaultValue();
 }
