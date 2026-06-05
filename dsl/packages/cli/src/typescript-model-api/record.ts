@@ -496,7 +496,7 @@ export function RecordTypeguardPatch(
 						andBlock.append(' &&', NL);
 					}
 
-					const guard = builtinFromJsonTypeGuard(p.type, fqn);
+					const guard = builtinTypeGuard(p.type, fqn, './');
 					const checkProp = fqn('checkProp:../_type-utils.ts', false);
 					andBlock.append(`${checkProp}(value, '${p.name}', ${guard})`);
 				});
@@ -511,7 +511,7 @@ export function RecordTypeguardPatch(
 					let guard: string;
 
 					if (isMBuiltinType(p.type)) {
-						guard = builtinFromJsonTypeGuard(p.type, fqn);
+						guard = builtinTypeGuard(p.type, fqn, './');
 					} else if (isMInlineEnumType(p.type)) {
 						guard = `is${t.name}_${toFirstUpper(p.name)}`;
 					} else if (p.variant === 'scalar') {

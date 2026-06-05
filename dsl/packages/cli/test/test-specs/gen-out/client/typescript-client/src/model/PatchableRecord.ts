@@ -46,9 +46,9 @@ export type PatchableRecordPatch = {
 
 export function isPatchableRecordPatch(value: unknown): value is PatchableRecordPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		checkOptProp(value, 'value', isString);
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		checkOptProp(value, 'value', isRSDString);
 }
 
 export function PatchableRecordPatchFromJSON($value: Record<string, unknown>): PatchableRecordPatch {

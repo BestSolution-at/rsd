@@ -130,8 +130,8 @@ function isValue_Opt_NullPatch(v: unknown): v is $Value_Opt_NullPatch {
 
 export function isPatchableRecordOfRecordsPatch(value: unknown): value is PatchableRecordOfRecordsPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
 		checkOptProp(value, 'value', isValuePatch) &&
 		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isValue_NullPatch)) &&
 		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isValue_OptPatch)) &&

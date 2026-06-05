@@ -123,20 +123,20 @@ export type PatchableRecord_BasicPatch = {
 
 export function isPatchableRecord_BasicPatch(value: unknown): value is PatchableRecord_BasicPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		checkOptProp(value, 'valueBoolean', isBoolean) &&
-		checkOptProp(value, 'valueShort', isNumber) &&
-		checkOptProp(value, 'valueInt', isNumber) &&
-		checkOptProp(value, 'valueLong', isNumber) &&
-		checkOptProp(value, 'valueFloat', isNumber) &&
-		checkOptProp(value, 'valueDouble', isNumber) &&
-		checkOptProp(value, 'valueString', isString) &&
-		checkOptProp(value, 'valueLocalDate', isString) &&
-		checkOptProp(value, 'valueLocalDateTime', isString) &&
-		checkOptProp(value, 'valueLocalTime', isString) &&
-		checkOptProp(value, 'valueOffsetDateTime', isString) &&
-		checkOptProp(value, 'valueZonedDateTime', isString);
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		checkOptProp(value, 'valueBoolean', isRSDBoolean) &&
+		checkOptProp(value, 'valueShort', isRSDShort) &&
+		checkOptProp(value, 'valueInt', isRSDInt) &&
+		checkOptProp(value, 'valueLong', isRSDLong) &&
+		checkOptProp(value, 'valueFloat', isRSDFloat) &&
+		checkOptProp(value, 'valueDouble', isRSDDouble) &&
+		checkOptProp(value, 'valueString', isRSDString) &&
+		checkOptProp(value, 'valueLocalDate', isRSDLocalDate) &&
+		checkOptProp(value, 'valueLocalDateTime', isRSDLocalDateTime) &&
+		checkOptProp(value, 'valueLocalTime', isRSDLocalTime) &&
+		checkOptProp(value, 'valueOffsetDateTime', isRSDOffsetDateTime) &&
+		checkOptProp(value, 'valueZonedDateTime', isRSDZonedDateTime);
 }
 
 export function PatchableRecord_BasicPatchFromJSON($value: Record<string, unknown>): PatchableRecord_BasicPatch {

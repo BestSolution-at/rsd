@@ -171,20 +171,20 @@ export type PatchableRecord_Basic_ListPatch = {
 
 export function isPatchableRecord_Basic_ListPatch(value: unknown): value is PatchableRecord_Basic_ListPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isBoolean)) &&
-		checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isNumber)) &&
-		checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isNumber)) &&
-		checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isNumber)) &&
-		checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isNumber)) &&
-		checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isNumber)) &&
-		checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isString)) &&
-		checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isString)) &&
-		checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isString)) &&
-		checkOptProp(value, 'valueLocalTime', createReplaceAddRemoveGuard(isString)) &&
-		checkOptProp(value, 'valueOffsetDateTime', createReplaceAddRemoveGuard(isString)) &&
-		checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isString));
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isRSDBoolean)) &&
+		checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isRSDShort)) &&
+		checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isRSDInt)) &&
+		checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isRSDLong)) &&
+		checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isRSDFloat)) &&
+		checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isRSDDouble)) &&
+		checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isRSDString)) &&
+		checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isRSDLocalDate)) &&
+		checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isRSDLocalDateTime)) &&
+		checkOptProp(value, 'valueLocalTime', createReplaceAddRemoveGuard(isRSDLocalTime)) &&
+		checkOptProp(value, 'valueOffsetDateTime', createReplaceAddRemoveGuard(isRSDOffsetDateTime)) &&
+		checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isRSDZonedDateTime));
 }
 
 export function PatchableRecord_Basic_ListPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_ListPatch {

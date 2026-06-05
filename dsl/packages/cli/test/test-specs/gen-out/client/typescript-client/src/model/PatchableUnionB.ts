@@ -59,10 +59,10 @@ export type PatchableUnionBPatch = {
 export function isPatchableUnionBPatch(value: unknown): value is PatchableUnionBPatch {
 	return isRecord(value) &&
 		checkProp(value, '@type', createIsStringTypeGuard('patch:union-b')) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		checkOptProp(value, 'shared', isString) &&
-		checkOptProp(value, 'valueB', isString);
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		checkOptProp(value, 'shared', isRSDString) &&
+		checkOptProp(value, 'valueB', isRSDString);
 }
 
 export function PatchableUnionBPatchFromJSON($value: Record<string, unknown>): PatchableUnionBPatch {

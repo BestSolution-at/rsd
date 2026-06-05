@@ -117,8 +117,8 @@ export type PatchableRecordWithUnionPatch = {
 
 export function isPatchableRecordWithUnionPatch(value: unknown): value is PatchableRecordWithUnionPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
 		checkOptProp(value, 'value', v => isPatchableUnion(v) || isPatchableUnionPatch(v)) &&
 		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', v => isPatchableUnion(v) || isPatchableUnionPatch(v))) &&
 		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', v => isPatchableUnion(v) || isPatchableUnionPatch(v))) &&

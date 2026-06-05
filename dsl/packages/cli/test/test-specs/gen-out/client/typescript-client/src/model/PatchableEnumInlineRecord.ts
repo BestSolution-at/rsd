@@ -136,8 +136,8 @@ export type PatchableEnumInlineRecordPatch = {
 
 export function isPatchableEnumInlineRecordPatch(value: unknown): value is PatchableEnumInlineRecordPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
 		checkOptProp(value, 'value', isPatchableEnumInlineRecord_Value) &&
 		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isPatchableEnumInlineRecord_Value_Null)) &&
 		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isPatchableEnumInlineRecord_Value_Opt)) &&
