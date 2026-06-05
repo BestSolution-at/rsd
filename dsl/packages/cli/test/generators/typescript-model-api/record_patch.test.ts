@@ -46,92 +46,92 @@ beforeEach(() => {
 
 const PatchableRecord_Result = `
 export type PatchableRecordPatch = {
-	readonly key: string;
-	readonly version: string;
-	readonly value?: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
+	readonly value?: RSDString;
 };
 `.trim();
 
 const PatchableRecord_BasicPatch_Result = `
 export type PatchableRecord_BasicPatch = {
-	readonly key: string;
-	readonly version: string;
-	readonly valueBoolean?: boolean;
-	readonly valueShort?: number;
-	readonly valueInt?: number;
-	readonly valueLong?: number;
-	readonly valueFloat?: number;
-	readonly valueDouble?: number;
-	readonly valueString?: string;
-	readonly valueLocalDate?: string;
-	readonly valueLocalDateTime?: string;
-	readonly valueLocalTime?: string;
-	readonly valueOffsetDateTime?: string;
-	readonly valueZonedDateTime?: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
+	readonly valueBoolean?: RSDBoolean;
+	readonly valueShort?: RSDShort;
+	readonly valueInt?: RSDInt;
+	readonly valueLong?: RSDLong;
+	readonly valueFloat?: RSDFloat;
+	readonly valueDouble?: RSDDouble;
+	readonly valueString?: RSDString;
+	readonly valueLocalDate?: RSDLocalDate;
+	readonly valueLocalDateTime?: RSDLocalDateTime;
+	readonly valueLocalTime?: RSDLocalTime;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime;
+	readonly valueZonedDateTime?: RSDZonedDateTime;
 };
 `.trim();
 
 const PatchableRecord_Basic_Optional_Result = `
 export type PatchableRecord_Basic_OptionalPatch = {
-	readonly key: string;
-	readonly version: string;
-	readonly valueBoolean?: boolean | null;
-	readonly valueShort?: number | null;
-	readonly valueInt?: number | null;
-	readonly valueLong?: number | null;
-	readonly valueFloat?: number | null;
-	readonly valueDouble?: number | null;
-	readonly valueString?: string | null;
-	readonly valueLocalDate?: string | null;
-	readonly valueLocalDateTime?: string | null;
-	readonly valueLocalTime?: string | null;
-	readonly valueOffsetDateTime?: string | null;
-	readonly valueZonedDateTime?: string | null;
+	readonly key: RSDString;
+	readonly version: RSDString;
+	readonly valueBoolean?: RSDBoolean | null;
+	readonly valueShort?: RSDShort | null;
+	readonly valueInt?: RSDInt | null;
+	readonly valueLong?: RSDLong | null;
+	readonly valueFloat?: RSDFloat | null;
+	readonly valueDouble?: RSDDouble | null;
+	readonly valueString?: RSDString | null;
+	readonly valueLocalDate?: RSDLocalDate | null;
+	readonly valueLocalDateTime?: RSDLocalDateTime | null;
+	readonly valueLocalTime?: RSDLocalTime | null;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime | null;
+	readonly valueZonedDateTime?: RSDZonedDateTime | null;
 };
 `.trim();
 
 const PatchableRecord_Basic_Null_Result = `
 export type PatchableRecord_Basic_NullPatch = {
-	readonly key: string;
-	readonly version: string;
-	readonly valueBoolean?: boolean | null;
-	readonly valueShort?: number | null;
-	readonly valueInt?: number | null;
-	readonly valueLong?: number | null;
-	readonly valueFloat?: number | null;
-	readonly valueDouble?: number | null;
-	readonly valueString?: string | null;
-	readonly valueLocalDate?: string | null;
-	readonly valueLocalDateTime?: string | null;
-	readonly valueLocalTime?: string | null;
-	readonly valueOffsetDateTime?: string | null;
-	readonly valueZonedDateTime?: string | null;
+	readonly key: RSDString;
+	readonly version: RSDString;
+	readonly valueBoolean?: RSDBoolean | null;
+	readonly valueShort?: RSDShort | null;
+	readonly valueInt?: RSDInt | null;
+	readonly valueLong?: RSDLong | null;
+	readonly valueFloat?: RSDFloat | null;
+	readonly valueDouble?: RSDDouble | null;
+	readonly valueString?: RSDString | null;
+	readonly valueLocalDate?: RSDLocalDate | null;
+	readonly valueLocalDateTime?: RSDLocalDateTime | null;
+	readonly valueLocalTime?: RSDLocalTime | null;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime | null;
+	readonly valueZonedDateTime?: RSDZonedDateTime | null;
 };
 `.trim();
 
 const PatchableRecord_Basic_Optional_Null_Result = `
 export type PatchableRecord_Basic_Optional_NullPatch = {
-	readonly key: string;
-	readonly version: string;
-	readonly valueBoolean?: boolean | null;
-	readonly valueShort?: number | null;
-	readonly valueInt?: number | null;
-	readonly valueLong?: number | null;
-	readonly valueFloat?: number | null;
-	readonly valueDouble?: number | null;
-	readonly valueString?: string | null;
-	readonly valueLocalDate?: string | null;
-	readonly valueLocalDateTime?: string | null;
-	readonly valueLocalTime?: string | null;
-	readonly valueOffsetDateTime?: string | null;
-	readonly valueZonedDateTime?: string | null;
+	readonly key: RSDString;
+	readonly version: RSDString;
+	readonly valueBoolean?: RSDBoolean | null;
+	readonly valueShort?: RSDShort | null;
+	readonly valueInt?: RSDInt | null;
+	readonly valueLong?: RSDLong | null;
+	readonly valueFloat?: RSDFloat | null;
+	readonly valueDouble?: RSDDouble | null;
+	readonly valueString?: RSDString | null;
+	readonly valueLocalDate?: RSDLocalDate | null;
+	readonly valueLocalDateTime?: RSDLocalDateTime | null;
+	readonly valueLocalTime?: RSDLocalTime | null;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime | null;
+	readonly valueZonedDateTime?: RSDZonedDateTime | null;
 };
 `.trim();
 
 const PatchableRecord_Basic_List_Result = `
 export type PatchableRecord_Basic_ListPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly valueBoolean?: $ValueBooleanPatch;
 	readonly valueShort?: $ValueShortPatch;
 	readonly valueInt?: $ValueIntPatch;
@@ -149,8 +149,8 @@ export type PatchableRecord_Basic_ListPatch = {
 
 const PatchableRecord_Basic_List_Optional_Result = `
 export type PatchableRecord_Basic_List_OptionalPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly valueBoolean?: $ValueBooleanPatch | null;
 	readonly valueShort?: $ValueShortPatch | null;
 	readonly valueInt?: $ValueIntPatch | null;
@@ -168,8 +168,8 @@ export type PatchableRecord_Basic_List_OptionalPatch = {
 
 const PatchableRecord_Basic_List_Null_Result = `
 export type PatchableRecord_Basic_List_NullPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly valueBoolean?: $ValueBooleanPatch | null;
 	readonly valueShort?: $ValueShortPatch | null;
 	readonly valueInt?: $ValueIntPatch | null;
@@ -187,8 +187,8 @@ export type PatchableRecord_Basic_List_NullPatch = {
 
 const PatchableEnumRecord_Result = `
 export type PatchableEnumRecordPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly value?: SampleEnum;
 	readonly value_Null?: SampleEnum | null;
 	readonly value_Opt?: SampleEnum | null;
@@ -202,8 +202,8 @@ export type PatchableEnumRecordPatch = {
 
 const PatchableEnumInlineRecord_Result = `
 export type PatchableEnumInlineRecordPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly value?: ValueEnum;
 	readonly value_Null?: Value_NullEnum | null;
 	readonly value_Opt?: Value_OptEnum | null;
@@ -216,8 +216,8 @@ export type PatchableEnumInlineRecordPatch = {
 
 const PatchableScalarRecordPatch_Result = `
 export type PatchableScalarRecordPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly value?: ZoneId;
 	readonly value_Null?: ZoneId | null;
 	readonly value_Opt?: ZoneId | null;
@@ -231,8 +231,8 @@ export type PatchableScalarRecordPatch = {
 
 const PatchableRecordOfRecordsPatch_Result = `
 export type PatchableRecordOfRecordsPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly value?: $ValuePatch;
 	readonly value_Null?: $Value_NullPatch | null;
 	readonly value_Opt?: $Value_OptPatch | null;
@@ -246,8 +246,8 @@ export type PatchableRecordOfRecordsPatch = {
 
 const PatchableRecordWithUnionPatch_Result = `
 export type PatchableRecordWithUnionPatch = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 	readonly value?: $ValuePatch;
 	readonly value_Null?: $Value_NullPatch | null;
 	readonly value_Opt?: $Value_OptPatch | null;
@@ -324,74 +324,74 @@ describe('RecordTypePatch', () => {
 });
 
 const PatchableRecord_Basic_List_valueBoolean_Result = `
-type $ValueBooleanReplace = ListReplace<boolean>;
-type $ValueBooleanMerge = ListMergeAddRemove<boolean, boolean>;
+type $ValueBooleanReplace = ListReplace<RSDBoolean>;
+type $ValueBooleanMerge = ListMergeAddRemove<RSDBoolean, RSDBoolean>;
 type $ValueBooleanPatch = $ValueBooleanReplace | $ValueBooleanMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueShort_Result = `
-type $ValueShortReplace = ListReplace<number>;
-type $ValueShortMerge = ListMergeAddRemove<number, number>;
+type $ValueShortReplace = ListReplace<RSDShort>;
+type $ValueShortMerge = ListMergeAddRemove<RSDShort, RSDShort>;
 type $ValueShortPatch = $ValueShortReplace | $ValueShortMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueInt_Result = `
-type $ValueIntReplace = ListReplace<number>;
-type $ValueIntMerge = ListMergeAddRemove<number, number>;
+type $ValueIntReplace = ListReplace<RSDInt>;
+type $ValueIntMerge = ListMergeAddRemove<RSDInt, RSDInt>;
 type $ValueIntPatch = $ValueIntReplace | $ValueIntMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueLong_Result = `
-type $ValueLongReplace = ListReplace<number>;
-type $ValueLongMerge = ListMergeAddRemove<number, number>;
+type $ValueLongReplace = ListReplace<RSDLong>;
+type $ValueLongMerge = ListMergeAddRemove<RSDLong, RSDLong>;
 type $ValueLongPatch = $ValueLongReplace | $ValueLongMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueFloat_Result = `
-type $ValueFloatReplace = ListReplace<number>;
-type $ValueFloatMerge = ListMergeAddRemove<number, number>;
+type $ValueFloatReplace = ListReplace<RSDFloat>;
+type $ValueFloatMerge = ListMergeAddRemove<RSDFloat, RSDFloat>;
 type $ValueFloatPatch = $ValueFloatReplace | $ValueFloatMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueDouble_Result = `
-type $ValueDoubleReplace = ListReplace<number>;
-type $ValueDoubleMerge = ListMergeAddRemove<number, number>;
+type $ValueDoubleReplace = ListReplace<RSDDouble>;
+type $ValueDoubleMerge = ListMergeAddRemove<RSDDouble, RSDDouble>;
 type $ValueDoublePatch = $ValueDoubleReplace | $ValueDoubleMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueString_Result = `
-type $ValueStringReplace = ListReplace<string>;
-type $ValueStringMerge = ListMergeAddRemove<string, string>;
+type $ValueStringReplace = ListReplace<RSDString>;
+type $ValueStringMerge = ListMergeAddRemove<RSDString, RSDString>;
 type $ValueStringPatch = $ValueStringReplace | $ValueStringMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueLocalDate_Result = `
-type $ValueLocalDateReplace = ListReplace<string>;
-type $ValueLocalDateMerge = ListMergeAddRemove<string, string>;
+type $ValueLocalDateReplace = ListReplace<RSDLocalDate>;
+type $ValueLocalDateMerge = ListMergeAddRemove<RSDLocalDate, RSDLocalDate>;
 type $ValueLocalDatePatch = $ValueLocalDateReplace | $ValueLocalDateMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueLocalDateTime_Result = `
-type $ValueLocalDateTimeReplace = ListReplace<string>;
-type $ValueLocalDateTimeMerge = ListMergeAddRemove<string, string>;
+type $ValueLocalDateTimeReplace = ListReplace<RSDLocalDateTime>;
+type $ValueLocalDateTimeMerge = ListMergeAddRemove<RSDLocalDateTime, RSDLocalDateTime>;
 type $ValueLocalDateTimePatch = $ValueLocalDateTimeReplace | $ValueLocalDateTimeMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueLocalTime_Result = `
-type $ValueLocalTimeReplace = ListReplace<string>;
-type $ValueLocalTimeMerge = ListMergeAddRemove<string, string>;
+type $ValueLocalTimeReplace = ListReplace<RSDLocalTime>;
+type $ValueLocalTimeMerge = ListMergeAddRemove<RSDLocalTime, RSDLocalTime>;
 type $ValueLocalTimePatch = $ValueLocalTimeReplace | $ValueLocalTimeMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueOffsetDateTime_Result = `
-type $ValueOffsetDateTimeReplace = ListReplace<string>;
-type $ValueOffsetDateTimeMerge = ListMergeAddRemove<string, string>;
+type $ValueOffsetDateTimeReplace = ListReplace<RSDOffsetDateTime>;
+type $ValueOffsetDateTimeMerge = ListMergeAddRemove<RSDOffsetDateTime, RSDOffsetDateTime>;
 type $ValueOffsetDateTimePatch = $ValueOffsetDateTimeReplace | $ValueOffsetDateTimeMerge;
 `.trim();
 
 const PatchableRecord_Basic_List_valueZonedDateTime_Result = `
-type $ValueZonedDateTimeReplace = ListReplace<string>;
-type $ValueZonedDateTimeMerge = ListMergeAddRemove<string, string>;
+type $ValueZonedDateTimeReplace = ListReplace<RSDZonedDateTime>;
+type $ValueZonedDateTimeMerge = ListMergeAddRemove<RSDZonedDateTime, RSDZonedDateTime>;
 type $ValueZonedDateTimePatch = $ValueZonedDateTimeReplace | $ValueZonedDateTimeMerge;
 `.trim();
 
@@ -759,177 +759,177 @@ describe('ValueChangeTypes', () => {
 const PatchableRecord_Typeguard_Result = `
 export function isPatchableRecordPatch(value: unknown): value is PatchableRecordPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		checkOptProp(value, 'value', isString);
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		checkOptProp(value, 'value', isRSDString);
 }
 `.trim();
 
 const PatchableRecord_Basic_Typeguard_Result = `
 export function isPatchableRecord_BasicPatch(value: unknown): value is PatchableRecord_BasicPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		checkOptProp(value, 'valueBoolean', isBoolean) &&
-		checkOptProp(value, 'valueShort', isNumber) &&
-		checkOptProp(value, 'valueInt', isNumber) &&
-		checkOptProp(value, 'valueLong', isNumber) &&
-		checkOptProp(value, 'valueFloat', isNumber) &&
-		checkOptProp(value, 'valueDouble', isNumber) &&
-		checkOptProp(value, 'valueString', isString) &&
-		checkOptProp(value, 'valueLocalDate', isString) &&
-		checkOptProp(value, 'valueLocalDateTime', isString) &&
-		checkOptProp(value, 'valueLocalTime', isString) &&
-		checkOptProp(value, 'valueOffsetDateTime', isString) &&
-		checkOptProp(value, 'valueZonedDateTime', isString);
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		checkOptProp(value, 'valueBoolean', isRSDBoolean) &&
+		checkOptProp(value, 'valueShort', isRSDShort) &&
+		checkOptProp(value, 'valueInt', isRSDInt) &&
+		checkOptProp(value, 'valueLong', isRSDLong) &&
+		checkOptProp(value, 'valueFloat', isRSDFloat) &&
+		checkOptProp(value, 'valueDouble', isRSDDouble) &&
+		checkOptProp(value, 'valueString', isRSDString) &&
+		checkOptProp(value, 'valueLocalDate', isRSDLocalDate) &&
+		checkOptProp(value, 'valueLocalDateTime', isRSDLocalDateTime) &&
+		checkOptProp(value, 'valueLocalTime', isRSDLocalTime) &&
+		checkOptProp(value, 'valueOffsetDateTime', isRSDOffsetDateTime) &&
+		checkOptProp(value, 'valueZonedDateTime', isRSDZonedDateTime);
 }
 `.trim();
 
 const PatchableRecord_Basic_Optional_Typeguard_Result = `
 export function isPatchableRecord_Basic_OptionalPatch(value: unknown): value is PatchableRecord_Basic_OptionalPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
-		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isNumber)) &&
-		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isNumber)) &&
-		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isNumber)) &&
-		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isNumber)) &&
-		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isNumber)) &&
-		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isString)) &&
-		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isString)) &&
-		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
-		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', isString)) &&
-		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', isString)) &&
-		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isString));
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isRSDBoolean)) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isRSDShort)) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isRSDInt)) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isRSDLong)) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isRSDFloat)) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isRSDDouble)) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isRSDString)) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isRSDLocalDate)) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isRSDLocalDateTime)) &&
+		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', isRSDLocalTime)) &&
+		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', isRSDOffsetDateTime)) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isRSDZonedDateTime));
 }
 `.trim();
 
 const PatchableRecord_Basic_Null_Typeguard_Result = `
 export function isPatchableRecord_Basic_NullPatch(value: unknown): value is PatchableRecord_Basic_NullPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
-		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isNumber)) &&
-		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isNumber)) &&
-		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isNumber)) &&
-		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isNumber)) &&
-		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isNumber)) &&
-		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isString)) &&
-		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isString)) &&
-		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
-		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', isString)) &&
-		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', isString)) &&
-		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isString));
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isRSDBoolean)) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isRSDShort)) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isRSDInt)) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isRSDLong)) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isRSDFloat)) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isRSDDouble)) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isRSDString)) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isRSDLocalDate)) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isRSDLocalDateTime)) &&
+		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', isRSDLocalTime)) &&
+		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', isRSDOffsetDateTime)) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isRSDZonedDateTime));
 }
 `.trim();
 
 const PatchableRecord_Basic_Optional_Null_Typeguard_Result = `
 export function isPatchableRecord_Basic_Optional_NullPatch(value: unknown): value is PatchableRecord_Basic_Optional_NullPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
-		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isNumber)) &&
-		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isNumber)) &&
-		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isNumber)) &&
-		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isNumber)) &&
-		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isNumber)) &&
-		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isString)) &&
-		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isString)) &&
-		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
-		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', isString)) &&
-		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', isString)) &&
-		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isString));
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isRSDBoolean)) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isRSDShort)) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isRSDInt)) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isRSDLong)) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isRSDFloat)) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isRSDDouble)) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isRSDString)) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isRSDLocalDate)) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isRSDLocalDateTime)) &&
+		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', isRSDLocalTime)) &&
+		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', isRSDOffsetDateTime)) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isRSDZonedDateTime));
 }
 `.trim();
 
 const PatchableRecord_Basic_List_Typeguard_Result = `
 export function isPatchableRecord_Basic_ListPatch(value: unknown): value is PatchableRecord_Basic_ListPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isBoolean)) &&
-		checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isNumber)) &&
-		checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isNumber)) &&
-		checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isNumber)) &&
-		checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isNumber)) &&
-		checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isNumber)) &&
-		checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isString)) &&
-		checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isString)) &&
-		checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isString)) &&
-		checkOptProp(value, 'valueLocalTime', createReplaceAddRemoveGuard(isString)) &&
-		checkOptProp(value, 'valueOffsetDateTime', createReplaceAddRemoveGuard(isString)) &&
-		checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isString));
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isRSDBoolean)) &&
+		checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isRSDShort)) &&
+		checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isRSDInt)) &&
+		checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isRSDLong)) &&
+		checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isRSDFloat)) &&
+		checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isRSDDouble)) &&
+		checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isRSDString)) &&
+		checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isRSDLocalDate)) &&
+		checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isRSDLocalDateTime)) &&
+		checkOptProp(value, 'valueLocalTime', createReplaceAddRemoveGuard(isRSDLocalTime)) &&
+		checkOptProp(value, 'valueOffsetDateTime', createReplaceAddRemoveGuard(isRSDOffsetDateTime)) &&
+		checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isRSDZonedDateTime));
 }
 `.trim();
 
 const PatchableRecord_Basic_List_Optional_Typeguard_Result = `
 export function isPatchableRecord_Basic_List_OptionalPatch(value: unknown): value is PatchableRecord_Basic_List_OptionalPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isBoolean))) &&
-		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isString)));
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isRSDBoolean))) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isRSDShort))) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isRSDInt))) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isRSDLong))) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isRSDFloat))) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isRSDDouble))) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isRSDString))) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isRSDLocalDate))) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isRSDLocalDateTime))) &&
+		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', createReplaceAddRemoveGuard(isRSDLocalTime))) &&
+		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', createReplaceAddRemoveGuard(isRSDOffsetDateTime))) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isRSDZonedDateTime)));
 }
 `.trim();
 
 const PatchableRecord_Basic_List_Null_Typeguard_Result = `
 export function isPatchableRecord_Basic_List_NullPatch(value: unknown): value is PatchableRecord_Basic_List_NullPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isBoolean))) &&
-		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isString)));
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isRSDBoolean))) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isRSDShort))) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isRSDInt))) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isRSDLong))) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isRSDFloat))) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isRSDDouble))) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isRSDString))) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isRSDLocalDate))) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isRSDLocalDateTime))) &&
+		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', createReplaceAddRemoveGuard(isRSDLocalTime))) &&
+		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', createReplaceAddRemoveGuard(isRSDOffsetDateTime))) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isRSDZonedDateTime)));
 }
 `.trim();
 
 const PatchableRecord_Basic_List_Optional_Null_Typeguard_Result = `
 export function isPatchableRecord_Basic_List_Optional_NullPatch(value: unknown): value is PatchableRecord_Basic_List_Optional_NullPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isBoolean))) &&
-		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isNumber))) &&
-		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', createReplaceAddRemoveGuard(isString))) &&
-		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isString)));
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', createReplaceAddRemoveGuard(isRSDBoolean))) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', createReplaceAddRemoveGuard(isRSDShort))) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', createReplaceAddRemoveGuard(isRSDInt))) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', createReplaceAddRemoveGuard(isRSDLong))) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', createReplaceAddRemoveGuard(isRSDFloat))) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', createReplaceAddRemoveGuard(isRSDDouble))) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createReplaceAddRemoveGuard(isRSDString))) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createReplaceAddRemoveGuard(isRSDLocalDate))) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createReplaceAddRemoveGuard(isRSDLocalDateTime))) &&
+		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', createReplaceAddRemoveGuard(isRSDLocalTime))) &&
+		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', createReplaceAddRemoveGuard(isRSDOffsetDateTime))) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createReplaceAddRemoveGuard(isRSDZonedDateTime)));
 }
 `.trim();
 
 const PatchableEnumRecord_Typeguard_Result = `
 export function isPatchableEnumRecordPatch(value: unknown): value is PatchableEnumRecordPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
 		checkOptProp(value, 'value', isSampleEnum) &&
 		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isSampleEnum)) &&
 		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isSampleEnum)) &&
@@ -944,8 +944,8 @@ export function isPatchableEnumRecordPatch(value: unknown): value is PatchableEn
 const PatchableEnumInlineRecord_Typeguard_Result = `
 export function isPatchableEnumInlineRecordPatch(value: unknown): value is PatchableEnumInlineRecordPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
 		checkOptProp(value, 'value', isPatchableEnumInlineRecord_Value) &&
 		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isPatchableEnumInlineRecord_Value_Null)) &&
 		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isPatchableEnumInlineRecord_Value_Opt)) &&
@@ -959,8 +959,8 @@ export function isPatchableEnumInlineRecordPatch(value: unknown): value is Patch
 const PatchableScalarRecord_Typeguard_Result = `
 export function isPatchableScalarRecordPatch(value: unknown): value is PatchableScalarRecordPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
 		checkOptProp(value, 'value', isZoneId) &&
 		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isZoneId)) &&
 		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isZoneId)) &&
@@ -975,8 +975,8 @@ export function isPatchableScalarRecordPatch(value: unknown): value is Patchable
 const PatchableRecordOfRecords_Typeguard_Result = `
 export function isPatchableRecordOfRecordsPatch(value: unknown): value is PatchableRecordOfRecordsPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
 		checkOptProp(value, 'value', isValuePatch) &&
 		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', isValue_NullPatch)) &&
 		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', isValue_OptPatch)) &&
@@ -991,8 +991,8 @@ export function isPatchableRecordOfRecordsPatch(value: unknown): value is Patcha
 const PatchableRecordWithUnion_Typeguard_Result = `
 export function isPatchableRecordWithUnionPatch(value: unknown): value is PatchableRecordWithUnionPatch {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
 		checkOptProp(value, 'value', v => isPatchableUnion(v) || isPatchableUnionPatch(v)) &&
 		(checkOptProp(value, 'value_Null', isNull) || checkOptProp(value, 'value_Null', v => isPatchableUnion(v) || isPatchableUnionPatch(v))) &&
 		(checkOptProp(value, 'value_Opt', isNull) || checkOptProp(value, 'value_Opt', v => isPatchableUnion(v) || isPatchableUnionPatch(v))) &&
@@ -1155,11 +1155,11 @@ export function PatchableRecord_BasicPatchFromJSON($value: Record<string, unknow
 	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional');
 	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional');
 	const valueString = propValue('valueString', $value, isString, 'optional');
-	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional');
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional');
-	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional');
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, RSDOffsetDateTimeFromJSON, 'optional');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, RSDZonedDateTimeFromJSON, 'optional');
 	return {
 		key,
 		version,
@@ -1190,11 +1190,11 @@ export function PatchableRecord_Basic_OptionalPatchFromJSON($value: Record<strin
 	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
 	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
 	const valueString = propValue('valueString', $value, isString, 'optional_null');
-	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
-	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional_null');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional_null');
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, RSDOffsetDateTimeFromJSON, 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, RSDZonedDateTimeFromJSON, 'optional_null');
 	return {
 		key,
 		version,
@@ -1225,11 +1225,11 @@ export function PatchableRecord_Basic_NullPatchFromJSON($value: Record<string, u
 	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
 	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
 	const valueString = propValue('valueString', $value, isString, 'optional_null');
-	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
-	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional_null');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional_null');
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, RSDOffsetDateTimeFromJSON, 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, RSDZonedDateTimeFromJSON, 'optional_null');
 	return {
 		key,
 		version,
@@ -1260,11 +1260,11 @@ export function PatchableRecord_Basic_Optional_NullPatchFromJSON($value: Record<
 	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
 	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
 	const valueString = propValue('valueString', $value, isString, 'optional_null');
-	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
-	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional_null');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional_null');
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, RSDOffsetDateTimeFromJSON, 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, RSDZonedDateTimeFromJSON, 'optional_null');
 	return {
 		key,
 		version,
@@ -1295,11 +1295,11 @@ export function PatchableRecord_Basic_ListPatchFromJSON($value: Record<string, u
 	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
 	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
 	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
-	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
-	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
-	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
-	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
-	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateFromJSON, isString, RSDLocalDateFromJSON), 'optional');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateTimeFromJSON, isString, RSDLocalDateTimeFromJSON), 'optional');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalTimeFromJSON, isString, RSDLocalTimeFromJSON), 'optional');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDOffsetDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDOffsetDateTimeFromJSON, isString, RSDOffsetDateTimeFromJSON), 'optional');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDZonedDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDZonedDateTimeFromJSON, isString, RSDZonedDateTimeFromJSON), 'optional');
 	return {
 		key,
 		version,
@@ -1330,11 +1330,11 @@ export function PatchableRecord_Basic_List_OptionalPatchFromJSON($value: Record<
 	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
 	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
 	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateFromJSON, isString, RSDLocalDateFromJSON), 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateTimeFromJSON, isString, RSDLocalDateTimeFromJSON), 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalTimeFromJSON, isString, RSDLocalTimeFromJSON), 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDOffsetDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDOffsetDateTimeFromJSON, isString, RSDOffsetDateTimeFromJSON), 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDZonedDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDZonedDateTimeFromJSON, isString, RSDZonedDateTimeFromJSON), 'optional_null');
 	return {
 		key,
 		version,
@@ -1364,11 +1364,11 @@ export function PatchableRecord_Basic_List_NullPatchFromJSON($value: Record<stri
 	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
 	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
 	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateFromJSON, isString, RSDLocalDateFromJSON), 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateTimeFromJSON, isString, RSDLocalDateTimeFromJSON), 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalTimeFromJSON, isString, RSDLocalTimeFromJSON), 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDOffsetDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDOffsetDateTimeFromJSON, isString, RSDOffsetDateTimeFromJSON), 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDZonedDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDZonedDateTimeFromJSON, isString, RSDZonedDateTimeFromJSON), 'optional_null');
 	return {
 		key,
 		version,
@@ -1399,11 +1399,11 @@ export function PatchableRecord_Basic_List_Optional_NullPatchFromJSON($value: Re
 	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
 	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
 	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateFromJSON, isString, RSDLocalDateFromJSON), 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateTimeFromJSON, isString, RSDLocalDateTimeFromJSON), 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalTimeFromJSON, isString, RSDLocalTimeFromJSON), 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDOffsetDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDOffsetDateTimeFromJSON, isString, RSDOffsetDateTimeFromJSON), 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDZonedDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDZonedDateTimeFromJSON, isString, RSDZonedDateTimeFromJSON), 'optional_null');
 	return {
 		key,
 		version,
@@ -1649,11 +1649,11 @@ export function PatchableRecord_BasicPatchToJSON($value: PatchableRecord_BasicPa
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) ? undefined : RSDLocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) ? undefined : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isUndefined($value.valueLocalTime) ? undefined : RSDLocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) ? undefined : RSDOffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) ? undefined : RSDZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		key,
@@ -1685,11 +1685,11 @@ export function PatchableRecord_Basic_OptionalPatchToJSON($value: PatchableRecor
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : RSDLocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : RSDLocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : RSDOffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : RSDZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		key,
@@ -1721,11 +1721,11 @@ export function PatchableRecord_Basic_NullPatchToJSON($value: PatchableRecord_Ba
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : RSDLocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : RSDLocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : RSDOffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : RSDZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		key,
@@ -1757,11 +1757,11 @@ export function PatchableRecord_Basic_Optional_NullPatchToJSON($value: Patchable
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : RSDLocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : RSDLocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : RSDOffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : RSDZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		key,
@@ -1792,11 +1792,11 @@ export function PatchableRecord_Basic_ListPatchToJSON($value: PatchableRecord_Ba
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) ? undefined : isListReplace($value.valueLocalDate, isRSDLocalDate) ? ListReplaceToJSON($value.valueLocalDate, RSDLocalDateToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDate, RSDLocalDateToJSON, RSDLocalDateToJSON);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) ? undefined : isListReplace($value.valueLocalDateTime, isRSDLocalDateTime) ? ListReplaceToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON, RSDLocalDateTimeToJSON);
+	const valueLocalTime = isUndefined($value.valueLocalTime) ? undefined : isListReplace($value.valueLocalTime, isRSDLocalTime) ? ListReplaceToJSON($value.valueLocalTime, RSDLocalTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalTime, RSDLocalTimeToJSON, RSDLocalTimeToJSON);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) ? undefined : isListReplace($value.valueOffsetDateTime, isRSDOffsetDateTime) ? ListReplaceToJSON($value.valueOffsetDateTime, RSDOffsetDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueOffsetDateTime, RSDOffsetDateTimeToJSON, RSDOffsetDateTimeToJSON);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) ? undefined : isListReplace($value.valueZonedDateTime, isRSDZonedDateTime) ? ListReplaceToJSON($value.valueZonedDateTime, RSDZonedDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueZonedDateTime, RSDZonedDateTimeToJSON, RSDZonedDateTimeToJSON);
 
 	return {
 		key,
@@ -1827,11 +1827,11 @@ export function PatchableRecord_Basic_List_OptionalPatchToJSON($value: Patchable
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : isListReplace($value.valueLocalDate, isRSDLocalDate) ? ListReplaceToJSON($value.valueLocalDate, RSDLocalDateToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDate, RSDLocalDateToJSON, RSDLocalDateToJSON);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : isListReplace($value.valueLocalDateTime, isRSDLocalDateTime) ? ListReplaceToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON, RSDLocalDateTimeToJSON);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : isListReplace($value.valueLocalTime, isRSDLocalTime) ? ListReplaceToJSON($value.valueLocalTime, RSDLocalTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalTime, RSDLocalTimeToJSON, RSDLocalTimeToJSON);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : isListReplace($value.valueOffsetDateTime, isRSDOffsetDateTime) ? ListReplaceToJSON($value.valueOffsetDateTime, RSDOffsetDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueOffsetDateTime, RSDOffsetDateTimeToJSON, RSDOffsetDateTimeToJSON);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : isListReplace($value.valueZonedDateTime, isRSDZonedDateTime) ? ListReplaceToJSON($value.valueZonedDateTime, RSDZonedDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueZonedDateTime, RSDZonedDateTimeToJSON, RSDZonedDateTimeToJSON);
 
 	return {
 		key,
@@ -1863,11 +1863,11 @@ export function PatchableRecord_Basic_List_NullPatchToJSON($value: PatchableReco
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : isListReplace($value.valueLocalDate, isRSDLocalDate) ? ListReplaceToJSON($value.valueLocalDate, RSDLocalDateToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDate, RSDLocalDateToJSON, RSDLocalDateToJSON);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : isListReplace($value.valueLocalDateTime, isRSDLocalDateTime) ? ListReplaceToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON, RSDLocalDateTimeToJSON);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : isListReplace($value.valueLocalTime, isRSDLocalTime) ? ListReplaceToJSON($value.valueLocalTime, RSDLocalTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalTime, RSDLocalTimeToJSON, RSDLocalTimeToJSON);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : isListReplace($value.valueOffsetDateTime, isRSDOffsetDateTime) ? ListReplaceToJSON($value.valueOffsetDateTime, RSDOffsetDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueOffsetDateTime, RSDOffsetDateTimeToJSON, RSDOffsetDateTimeToJSON);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : isListReplace($value.valueZonedDateTime, isRSDZonedDateTime) ? ListReplaceToJSON($value.valueZonedDateTime, RSDZonedDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueZonedDateTime, RSDZonedDateTimeToJSON, RSDZonedDateTimeToJSON);
 
 	return {
 		key,
@@ -1899,11 +1899,11 @@ export function PatchableRecord_Basic_List_Optional_NullPatchToJSON($value: Patc
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : isListReplace($value.valueLocalDate, isRSDLocalDate) ? ListReplaceToJSON($value.valueLocalDate, RSDLocalDateToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDate, RSDLocalDateToJSON, RSDLocalDateToJSON);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : isListReplace($value.valueLocalDateTime, isRSDLocalDateTime) ? ListReplaceToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON, RSDLocalDateTimeToJSON);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : isListReplace($value.valueLocalTime, isRSDLocalTime) ? ListReplaceToJSON($value.valueLocalTime, RSDLocalTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalTime, RSDLocalTimeToJSON, RSDLocalTimeToJSON);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : isListReplace($value.valueOffsetDateTime, isRSDOffsetDateTime) ? ListReplaceToJSON($value.valueOffsetDateTime, RSDOffsetDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueOffsetDateTime, RSDOffsetDateTimeToJSON, RSDOffsetDateTimeToJSON);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : isListReplace($value.valueZonedDateTime, isRSDZonedDateTime) ? ListReplaceToJSON($value.valueZonedDateTime, RSDZonedDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueZonedDateTime, RSDZonedDateTimeToJSON, RSDZonedDateTimeToJSON);
 
 	return {
 		key,

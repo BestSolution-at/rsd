@@ -15,6 +15,7 @@ import { generateResultUtils } from './result-utils.js';
 import { generateTypeUtils } from './type-utils.js';
 import { generateNamespacesIndex } from './namespaces-index.js';
 import { generateScalar } from './scalar.js';
+import { generateBuiltin } from './builtin.js';
 
 function generate(
 	model: MResolvedRSDModel,
@@ -40,6 +41,7 @@ function generate(
 	result.push(generateTypeUtils(artifactConfig));
 	result.push(generateNamespacesIndex(artifactConfig));
 	result.push(...generateScalar(model, artifactConfig));
+	result.push(...generateBuiltin(artifactConfig));
 	return result;
 }
 

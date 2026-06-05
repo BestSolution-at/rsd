@@ -2,12 +2,12 @@ import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
 import { isMEnumType, isMRecordType, isMScalarType, isMUnionType, MResolvedError } from '../model.js';
 import {
-	builtinToJSType,
+	builtinToType,
+	builtinTypeGuard,
 	generateCompilationUnit,
 	TypescriptClientAPIGeneratorConfig,
 	TypescriptImportCollector,
 } from '../typescript-gen-utils.js';
-import { toFirstUpper } from '../util.js';
 
 export function generateErrors(
 	errors: readonly MResolvedError[],
@@ -77,7 +77,7 @@ function generateErrorsContent(errors: readonly MResolvedError[], fqn: (t: strin
 			} else if (isMScalarType(e.resolvedContentType)) {
 				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: string };`, NL);
 			} else {
-				const type = builtinToJSType(e.resolvedContentType);
+				const type = builtinToType(e.resolvedContentType, fqn, './model/');
 				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: ${type} };`, NL);
 			}
 		} else {
@@ -141,8 +141,7 @@ function generateErrorsContent(errors: readonly MResolvedError[], fqn: (t: strin
 						const isString = fqn('isString:./_type-utils.ts', false);
 						andBlock.append(`${checkProp}(value, 'data', ${isString})`, NL);
 					} else {
-						const type = builtinToJSType(e.resolvedContentType);
-						const typeguard = fqn(`is${toFirstUpper(type)}:./_type-utils.ts`, false);
+						const typeguard = builtinTypeGuard(e.resolvedContentType, fqn, './model/');
 						andBlock.append(`${checkProp}(value, 'data', ${typeguard})`, NL);
 					}
 				} else {

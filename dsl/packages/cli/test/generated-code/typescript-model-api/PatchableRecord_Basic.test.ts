@@ -16,7 +16,7 @@ const Simple: PatchableRecord_Basic = {
 	version: 'version',
 	valueBoolean: true,
 	valueDouble: 0.1,
-	valueFloat: 0.1,
+	valueFloat: 0.5,
 	valueInt: 1,
 	valueLocalDate: '2020-01-02',
 	valueLocalDateTime: '2020-01-02T03:04:05',

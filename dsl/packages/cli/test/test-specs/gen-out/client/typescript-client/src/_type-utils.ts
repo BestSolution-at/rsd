@@ -406,7 +406,7 @@ export function ListReplaceFromJSON<T, U>(
 	};
 }
 
-export function ListReplaceToJSON<T>(value: ListReplace<T>, map: (value: T) => Record<string, unknown>) {
+export function ListReplaceToJSON<T, U>(value: ListReplace<T>, map: (value: T) => U) {
 	const elements = value.elements.map(map);
 	return {
 		'@type': 'replace',

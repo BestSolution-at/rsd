@@ -21,159 +21,159 @@ beforeEach(() => {
 
 const SimpleRecord_KeyVersion_Result = `
 export type SimpleRecord_KeyVersion = {
-	readonly key: string;
-	readonly version: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
 };
 `.trim();
 
 const SimpleRecord_KeyVersion_Int_Int_Result = `
 export type SimpleRecord_KeyVersion_Int_Int = {
-	readonly key: number;
-	readonly version: number;
+	readonly key: RSDInt;
+	readonly version: RSDInt;
 };
 `.trim();
 
 const SimpleRecord_Result = `
 export type SimpleRecord = {
-	readonly key: string;
-	readonly version: string;
-	readonly value: string;
+	readonly key: RSDString;
+	readonly version: RSDString;
+	readonly value: RSDString;
 };
 `.trim();
 
 const SimpleRecord_Basic_Result = `
 export type SimpleRecord_Basic = {
-	readonly valueBoolean: boolean;
-	readonly valueShort: number;
-	readonly valueInt: number;
-	readonly valueLong: number;
-	readonly valueFloat: number;
-	readonly valueDouble: number;
-	readonly valueString: string;
-	readonly valueLocalDate: string;
-	readonly valueLocalDateTime: string;
-	readonly valueLocalTime: string;
-	readonly valueOffsetDateTime: string;
-	readonly valueZonedDateTime: string;
+	readonly valueBoolean: RSDBoolean;
+	readonly valueShort: RSDShort;
+	readonly valueInt: RSDInt;
+	readonly valueLong: RSDLong;
+	readonly valueFloat: RSDFloat;
+	readonly valueDouble: RSDDouble;
+	readonly valueString: RSDString;
+	readonly valueLocalDate: RSDLocalDate;
+	readonly valueLocalDateTime: RSDLocalDateTime;
+	readonly valueLocalTime: RSDLocalTime;
+	readonly valueOffsetDateTime: RSDOffsetDateTime;
+	readonly valueZonedDateTime: RSDZonedDateTime;
 };
 `.trim();
 
 const SimpleRecord_Basic_Optional_Result = `
 export type SimpleRecord_Basic_Optional = {
-	readonly valueBoolean?: boolean;
-	readonly valueShort?: number;
-	readonly valueInt?: number;
-	readonly valueLong?: number;
-	readonly valueFloat?: number;
-	readonly valueDouble?: number;
-	readonly valueString?: string;
-	readonly valueLocalDate?: string;
-	readonly valueLocalDateTime?: string;
-	readonly valueLocalTime?: string;
-	readonly valueOffsetDateTime?: string;
-	readonly valueZonedDateTime?: string;
+	readonly valueBoolean?: RSDBoolean;
+	readonly valueShort?: RSDShort;
+	readonly valueInt?: RSDInt;
+	readonly valueLong?: RSDLong;
+	readonly valueFloat?: RSDFloat;
+	readonly valueDouble?: RSDDouble;
+	readonly valueString?: RSDString;
+	readonly valueLocalDate?: RSDLocalDate;
+	readonly valueLocalDateTime?: RSDLocalDateTime;
+	readonly valueLocalTime?: RSDLocalTime;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime;
+	readonly valueZonedDateTime?: RSDZonedDateTime;
 };
 `.trim();
 
 const SimpleRecord_Basic_Null_Result = `
 export type SimpleRecord_Basic_Null = {
-	readonly valueBoolean: boolean | null;
-	readonly valueShort: number | null;
-	readonly valueInt: number | null;
-	readonly valueLong: number | null;
-	readonly valueFloat: number | null;
-	readonly valueDouble: number | null;
-	readonly valueString: string | null;
-	readonly valueLocalDate: string | null;
-	readonly valueLocalDateTime: string | null;
-	readonly valueLocalTime: string | null;
-	readonly valueOffsetDateTime: string | null;
-	readonly valueZonedDateTime: string | null;
+	readonly valueBoolean: RSDBoolean | null;
+	readonly valueShort: RSDShort | null;
+	readonly valueInt: RSDInt | null;
+	readonly valueLong: RSDLong | null;
+	readonly valueFloat: RSDFloat | null;
+	readonly valueDouble: RSDDouble | null;
+	readonly valueString: RSDString | null;
+	readonly valueLocalDate: RSDLocalDate | null;
+	readonly valueLocalDateTime: RSDLocalDateTime | null;
+	readonly valueLocalTime: RSDLocalTime | null;
+	readonly valueOffsetDateTime: RSDOffsetDateTime | null;
+	readonly valueZonedDateTime: RSDZonedDateTime | null;
 };
 `.trim();
 
 const SimpleRecord_Basic_Optional_Null_Result = `
 export type SimpleRecord_Basic_Optional_Null = {
-	readonly valueBoolean?: boolean | null;
-	readonly valueShort?: number | null;
-	readonly valueInt?: number | null;
-	readonly valueLong?: number | null;
-	readonly valueFloat?: number | null;
-	readonly valueDouble?: number | null;
-	readonly valueString?: string | null;
-	readonly valueLocalDate?: string | null;
-	readonly valueLocalDateTime?: string | null;
-	readonly valueLocalTime?: string | null;
-	readonly valueOffsetDateTime?: string | null;
-	readonly valueZonedDateTime?: string | null;
+	readonly valueBoolean?: RSDBoolean | null;
+	readonly valueShort?: RSDShort | null;
+	readonly valueInt?: RSDInt | null;
+	readonly valueLong?: RSDLong | null;
+	readonly valueFloat?: RSDFloat | null;
+	readonly valueDouble?: RSDDouble | null;
+	readonly valueString?: RSDString | null;
+	readonly valueLocalDate?: RSDLocalDate | null;
+	readonly valueLocalDateTime?: RSDLocalDateTime | null;
+	readonly valueLocalTime?: RSDLocalTime | null;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime | null;
+	readonly valueZonedDateTime?: RSDZonedDateTime | null;
 };
 `.trim();
 
 const SimpleRecord_Basic_List_Result = `
 export type SimpleRecord_Basic_List = {
-	readonly valueBoolean: boolean[];
-	readonly valueShort: number[];
-	readonly valueInt: number[];
-	readonly valueLong: number[];
-	readonly valueFloat: number[];
-	readonly valueDouble: number[];
-	readonly valueString: string[];
-	readonly valueLocalDate: string[];
-	readonly valueLocalDateTime: string[];
-	readonly valueLocalTime: string[];
-	readonly valueOffsetDateTime: string[];
-	readonly valueZonedDateTime: string[];
+	readonly valueBoolean: RSDBoolean[];
+	readonly valueShort: RSDShort[];
+	readonly valueInt: RSDInt[];
+	readonly valueLong: RSDLong[];
+	readonly valueFloat: RSDFloat[];
+	readonly valueDouble: RSDDouble[];
+	readonly valueString: RSDString[];
+	readonly valueLocalDate: RSDLocalDate[];
+	readonly valueLocalDateTime: RSDLocalDateTime[];
+	readonly valueLocalTime: RSDLocalTime[];
+	readonly valueOffsetDateTime: RSDOffsetDateTime[];
+	readonly valueZonedDateTime: RSDZonedDateTime[];
 };
 `.trim();
 
 const SimpleRecord_Basic_List_Optional_Result = `
 export type SimpleRecord_Basic_List_Optional = {
-	readonly valueBoolean?: boolean[];
-	readonly valueShort?: number[];
-	readonly valueInt?: number[];
-	readonly valueLong?: number[];
-	readonly valueFloat?: number[];
-	readonly valueDouble?: number[];
-	readonly valueString?: string[];
-	readonly valueLocalDate?: string[];
-	readonly valueLocalDateTime?: string[];
-	readonly valueLocalTime?: string[];
-	readonly valueOffsetDateTime?: string[];
-	readonly valueZonedDateTime?: string[];
+	readonly valueBoolean?: RSDBoolean[];
+	readonly valueShort?: RSDShort[];
+	readonly valueInt?: RSDInt[];
+	readonly valueLong?: RSDLong[];
+	readonly valueFloat?: RSDFloat[];
+	readonly valueDouble?: RSDDouble[];
+	readonly valueString?: RSDString[];
+	readonly valueLocalDate?: RSDLocalDate[];
+	readonly valueLocalDateTime?: RSDLocalDateTime[];
+	readonly valueLocalTime?: RSDLocalTime[];
+	readonly valueOffsetDateTime?: RSDOffsetDateTime[];
+	readonly valueZonedDateTime?: RSDZonedDateTime[];
 };
 `.trim();
 
 const SimpleRecord_Basic_List_Null_Result = `
 export type SimpleRecord_Basic_List_Null = {
-	readonly valueBoolean: boolean[] | null;
-	readonly valueShort: number[] | null;
-	readonly valueInt: number[] | null;
-	readonly valueLong: number[] | null;
-	readonly valueFloat: number[] | null;
-	readonly valueDouble: number[] | null;
-	readonly valueString: string[] | null;
-	readonly valueLocalDate: string[] | null;
-	readonly valueLocalDateTime: string[] | null;
-	readonly valueLocalTime: string[] | null;
-	readonly valueOffsetDateTime: string[] | null;
-	readonly valueZonedDateTime: string[] | null;
+	readonly valueBoolean: RSDBoolean[] | null;
+	readonly valueShort: RSDShort[] | null;
+	readonly valueInt: RSDInt[] | null;
+	readonly valueLong: RSDLong[] | null;
+	readonly valueFloat: RSDFloat[] | null;
+	readonly valueDouble: RSDDouble[] | null;
+	readonly valueString: RSDString[] | null;
+	readonly valueLocalDate: RSDLocalDate[] | null;
+	readonly valueLocalDateTime: RSDLocalDateTime[] | null;
+	readonly valueLocalTime: RSDLocalTime[] | null;
+	readonly valueOffsetDateTime: RSDOffsetDateTime[] | null;
+	readonly valueZonedDateTime: RSDZonedDateTime[] | null;
 };
 `.trim();
 
 const SimpleRecord_Basic_List_Optional_Null_Result = `
 export type SimpleRecord_Basic_List_Optional_Null = {
-	readonly valueBoolean?: boolean[] | null;
-	readonly valueShort?: number[] | null;
-	readonly valueInt?: number[] | null;
-	readonly valueLong?: number[] | null;
-	readonly valueFloat?: number[] | null;
-	readonly valueDouble?: number[] | null;
-	readonly valueString?: string[] | null;
-	readonly valueLocalDate?: string[] | null;
-	readonly valueLocalDateTime?: string[] | null;
-	readonly valueLocalTime?: string[] | null;
-	readonly valueOffsetDateTime?: string[] | null;
-	readonly valueZonedDateTime?: string[] | null;
+	readonly valueBoolean?: RSDBoolean[] | null;
+	readonly valueShort?: RSDShort[] | null;
+	readonly valueInt?: RSDInt[] | null;
+	readonly valueLong?: RSDLong[] | null;
+	readonly valueFloat?: RSDFloat[] | null;
+	readonly valueDouble?: RSDDouble[] | null;
+	readonly valueString?: RSDString[] | null;
+	readonly valueLocalDate?: RSDLocalDate[] | null;
+	readonly valueLocalDateTime?: RSDLocalDateTime[] | null;
+	readonly valueLocalTime?: RSDLocalTime[] | null;
+	readonly valueOffsetDateTime?: RSDOffsetDateTime[] | null;
+	readonly valueZonedDateTime?: RSDZonedDateTime[] | null;
 };
 `.trim();
 
@@ -243,9 +243,9 @@ export type RecordWithUnions = {
 
 const MixinRecord_Result = `
 export type MixinRecord = {
-	readonly sample: string;
-	readonly mValueString: string;
-	readonly mValueString2: string;
+	readonly sample: RSDString;
+	readonly mValueString: RSDString;
+	readonly mValueString2: RSDString;
 	readonly myUnion: Union;
 	readonly myRecord: SimpleRecord;
 };
@@ -339,169 +339,169 @@ describe('RecordType', () => {
 const SimpleRecord_KeyVersion_Typeguard_Result = `
 export function isSimpleRecord_KeyVersion(value: unknown): value is SimpleRecord_KeyVersion {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString)
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString)
 }
 `.trim();
 
 const SimpleRecord_KeyVersion_Int_Int_Typeguard_Result = `
 export function isSimpleRecord_KeyVersion_Int_Int(value: unknown): value is SimpleRecord_KeyVersion_Int_Int {
 	return isRecord(value) &&
-		checkProp(value, 'key', isNumber) &&
-		checkProp(value, 'version', isNumber)
+		checkProp(value, 'key', isRSDInt) &&
+		checkProp(value, 'version', isRSDInt)
 }
 `.trim();
 
 const SimpleRecord_Typeguard_Result = `
 export function isSimpleRecord(value: unknown): value is SimpleRecord {
 	return isRecord(value) &&
-		checkProp(value, 'key', isString) &&
-		checkProp(value, 'version', isString) &&
-		checkProp(value, 'value', isString);
+		checkProp(value, 'key', isRSDString) &&
+		checkProp(value, 'version', isRSDString) &&
+		checkProp(value, 'value', isRSDString);
 }
 `.trim();
 
 const SimpleRecord_Basic_Typeguard_Result = `
 export function isSimpleRecord_Basic(value: unknown): value is SimpleRecord_Basic {
 	return isRecord(value) &&
-		checkProp(value, 'valueBoolean', isBoolean) &&
-		checkProp(value, 'valueShort', isNumber) &&
-		checkProp(value, 'valueInt', isNumber) &&
-		checkProp(value, 'valueLong', isNumber) &&
-		checkProp(value, 'valueFloat', isNumber) &&
-		checkProp(value, 'valueDouble', isNumber) &&
-		checkProp(value, 'valueString', isString) &&
-		checkProp(value, 'valueLocalDate', isString) &&
-		checkProp(value, 'valueLocalDateTime', isString) &&
-		checkProp(value, 'valueLocalTime', isString) &&
-		checkProp(value, 'valueOffsetDateTime', isString) &&
-		checkProp(value, 'valueZonedDateTime', isString);
+		checkProp(value, 'valueBoolean', isRSDBoolean) &&
+		checkProp(value, 'valueShort', isRSDShort) &&
+		checkProp(value, 'valueInt', isRSDInt) &&
+		checkProp(value, 'valueLong', isRSDLong) &&
+		checkProp(value, 'valueFloat', isRSDFloat) &&
+		checkProp(value, 'valueDouble', isRSDDouble) &&
+		checkProp(value, 'valueString', isRSDString) &&
+		checkProp(value, 'valueLocalDate', isRSDLocalDate) &&
+		checkProp(value, 'valueLocalDateTime', isRSDLocalDateTime) &&
+		checkProp(value, 'valueLocalTime', isRSDLocalTime) &&
+		checkProp(value, 'valueOffsetDateTime', isRSDOffsetDateTime) &&
+		checkProp(value, 'valueZonedDateTime', isRSDZonedDateTime);
 }
 `.trim();
 
 const SimpleRecord_Basic_Optional_Typeguard_Result = `
 export function isSimpleRecord_Basic_Optional(value: unknown): value is SimpleRecord_Basic_Optional {
 	return isRecord(value) &&
-		checkOptProp(value, 'valueBoolean', isBoolean) &&
-		checkOptProp(value, 'valueShort', isNumber) &&
-		checkOptProp(value, 'valueInt', isNumber) &&
-		checkOptProp(value, 'valueLong', isNumber) &&
-		checkOptProp(value, 'valueFloat', isNumber) &&
-		checkOptProp(value, 'valueDouble', isNumber) &&
-		checkOptProp(value, 'valueString', isString) &&
-		checkOptProp(value, 'valueLocalDate', isString) &&
-		checkOptProp(value, 'valueLocalDateTime', isString) &&
-		checkOptProp(value, 'valueLocalTime', isString) &&
-		checkOptProp(value, 'valueOffsetDateTime', isString) &&
-		checkOptProp(value, 'valueZonedDateTime', isString);
+		checkOptProp(value, 'valueBoolean', isRSDBoolean) &&
+		checkOptProp(value, 'valueShort', isRSDShort) &&
+		checkOptProp(value, 'valueInt', isRSDInt) &&
+		checkOptProp(value, 'valueLong', isRSDLong) &&
+		checkOptProp(value, 'valueFloat', isRSDFloat) &&
+		checkOptProp(value, 'valueDouble', isRSDDouble) &&
+		checkOptProp(value, 'valueString', isRSDString) &&
+		checkOptProp(value, 'valueLocalDate', isRSDLocalDate) &&
+		checkOptProp(value, 'valueLocalDateTime', isRSDLocalDateTime) &&
+		checkOptProp(value, 'valueLocalTime', isRSDLocalTime) &&
+		checkOptProp(value, 'valueOffsetDateTime', isRSDOffsetDateTime) &&
+		checkOptProp(value, 'valueZonedDateTime', isRSDZonedDateTime);
 }
 `.trim();
 
 const SimpleRecord_Basic_Null_Typeguard_Result = `
 export function isSimpleRecord_Basic_Null(value: unknown): value is SimpleRecord_Basic_Null {
 	return isRecord(value) &&
-		(checkProp(value, 'valueBoolean', isNull) || checkProp(value, 'valueBoolean', isBoolean)) &&
-		(checkProp(value, 'valueShort', isNull) || checkProp(value, 'valueShort', isNumber)) &&
-		(checkProp(value, 'valueInt', isNull) || checkProp(value, 'valueInt', isNumber)) &&
-		(checkProp(value, 'valueLong', isNull) || checkProp(value, 'valueLong', isNumber)) &&
-		(checkProp(value, 'valueFloat', isNull) || checkProp(value, 'valueFloat', isNumber)) &&
-		(checkProp(value, 'valueDouble', isNull) || checkProp(value, 'valueDouble', isNumber)) &&
-		(checkProp(value, 'valueString', isNull) || checkProp(value, 'valueString', isString)) &&
-		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', isString)) &&
-		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', isString)) &&
-		(checkProp(value, 'valueLocalTime', isNull) || checkProp(value, 'valueLocalTime', isString)) &&
-		(checkProp(value, 'valueOffsetDateTime', isNull) || checkProp(value, 'valueOffsetDateTime', isString)) &&
-		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', isString));
+		(checkProp(value, 'valueBoolean', isNull) || checkProp(value, 'valueBoolean', isRSDBoolean)) &&
+		(checkProp(value, 'valueShort', isNull) || checkProp(value, 'valueShort', isRSDShort)) &&
+		(checkProp(value, 'valueInt', isNull) || checkProp(value, 'valueInt', isRSDInt)) &&
+		(checkProp(value, 'valueLong', isNull) || checkProp(value, 'valueLong', isRSDLong)) &&
+		(checkProp(value, 'valueFloat', isNull) || checkProp(value, 'valueFloat', isRSDFloat)) &&
+		(checkProp(value, 'valueDouble', isNull) || checkProp(value, 'valueDouble', isRSDDouble)) &&
+		(checkProp(value, 'valueString', isNull) || checkProp(value, 'valueString', isRSDString)) &&
+		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', isRSDLocalDate)) &&
+		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', isRSDLocalDateTime)) &&
+		(checkProp(value, 'valueLocalTime', isNull) || checkProp(value, 'valueLocalTime', isRSDLocalTime)) &&
+		(checkProp(value, 'valueOffsetDateTime', isNull) || checkProp(value, 'valueOffsetDateTime', isRSDOffsetDateTime)) &&
+		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', isRSDZonedDateTime));
 }
 `.trim();
 
 const SimpleRecord_Basic_Optional_Null_Typeguard_Result = `
 export function isSimpleRecord_Basic_Optional_Null(value: unknown): value is SimpleRecord_Basic_Optional_Null {
 	return isRecord(value) &&
-		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isBoolean)) &&
-		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isNumber)) &&
-		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isNumber)) &&
-		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isNumber)) &&
-		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isNumber)) &&
-		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isNumber)) &&
-		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isString)) &&
-		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isString)) &&
-		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isString)) &&
-		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', isString)) &&
-		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', isString)) &&
-		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isString));
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', isRSDBoolean)) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', isRSDShort)) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', isRSDInt)) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', isRSDLong)) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', isRSDFloat)) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', isRSDDouble)) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', isRSDString)) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', isRSDLocalDate)) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', isRSDLocalDateTime)) &&
+		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', isRSDLocalTime)) &&
+		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', isRSDOffsetDateTime)) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', isRSDZonedDateTime));
 }
 `.trim();
 
 const SimpleRecord_Basic_List_Typeguard_Result = `
 export function isSimpleRecord_Basic_List(value: unknown): value is SimpleRecord_Basic_List {
 	return isRecord(value) &&
-		checkProp(value, 'valueBoolean', createTypedArrayGuard(isBoolean)) &&
-		checkProp(value, 'valueShort', createTypedArrayGuard(isNumber)) &&
-		checkProp(value, 'valueInt', createTypedArrayGuard(isNumber)) &&
-		checkProp(value, 'valueLong', createTypedArrayGuard(isNumber)) &&
-		checkProp(value, 'valueFloat', createTypedArrayGuard(isNumber)) &&
-		checkProp(value, 'valueDouble', createTypedArrayGuard(isNumber)) &&
-		checkProp(value, 'valueString', createTypedArrayGuard(isString)) &&
-		checkProp(value, 'valueLocalDate', createTypedArrayGuard(isString)) &&
-		checkProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString)) &&
-		checkProp(value, 'valueLocalTime', createTypedArrayGuard(isString)) &&
-		checkProp(value, 'valueOffsetDateTime', createTypedArrayGuard(isString)) &&
-		checkProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString));
+		checkProp(value, 'valueBoolean', createTypedArrayGuard(isRSDBoolean)) &&
+		checkProp(value, 'valueShort', createTypedArrayGuard(isRSDShort)) &&
+		checkProp(value, 'valueInt', createTypedArrayGuard(isRSDInt)) &&
+		checkProp(value, 'valueLong', createTypedArrayGuard(isRSDLong)) &&
+		checkProp(value, 'valueFloat', createTypedArrayGuard(isRSDFloat)) &&
+		checkProp(value, 'valueDouble', createTypedArrayGuard(isRSDDouble)) &&
+		checkProp(value, 'valueString', createTypedArrayGuard(isRSDString)) &&
+		checkProp(value, 'valueLocalDate', createTypedArrayGuard(isRSDLocalDate)) &&
+		checkProp(value, 'valueLocalDateTime', createTypedArrayGuard(isRSDLocalDateTime)) &&
+		checkProp(value, 'valueLocalTime', createTypedArrayGuard(isRSDLocalTime)) &&
+		checkProp(value, 'valueOffsetDateTime', createTypedArrayGuard(isRSDOffsetDateTime)) &&
+		checkProp(value, 'valueZonedDateTime', createTypedArrayGuard(isRSDZonedDateTime));
 }
 `.trim();
 
 const SimpleRecord_Basic_List_Optional_Typeguard_Result = `
 export function isSimpleRecord_Basic_List_Optional(value: unknown): value is SimpleRecord_Basic_List_Optional {
 	return isRecord(value) &&
-		checkOptProp(value, 'valueBoolean', createTypedArrayGuard(isBoolean)) &&
-		checkOptProp(value, 'valueShort', createTypedArrayGuard(isNumber)) &&
-		checkOptProp(value, 'valueInt', createTypedArrayGuard(isNumber)) &&
-		checkOptProp(value, 'valueLong', createTypedArrayGuard(isNumber)) &&
-		checkOptProp(value, 'valueFloat', createTypedArrayGuard(isNumber)) &&
-		checkOptProp(value, 'valueDouble', createTypedArrayGuard(isNumber)) &&
-		checkOptProp(value, 'valueString', createTypedArrayGuard(isString)) &&
-		checkOptProp(value, 'valueLocalDate', createTypedArrayGuard(isString)) &&
-		checkOptProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString)) &&
-		checkOptProp(value, 'valueLocalTime', createTypedArrayGuard(isString)) &&
-		checkOptProp(value, 'valueOffsetDateTime', createTypedArrayGuard(isString)) &&
-		checkOptProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString));
+		checkOptProp(value, 'valueBoolean', createTypedArrayGuard(isRSDBoolean)) &&
+		checkOptProp(value, 'valueShort', createTypedArrayGuard(isRSDShort)) &&
+		checkOptProp(value, 'valueInt', createTypedArrayGuard(isRSDInt)) &&
+		checkOptProp(value, 'valueLong', createTypedArrayGuard(isRSDLong)) &&
+		checkOptProp(value, 'valueFloat', createTypedArrayGuard(isRSDFloat)) &&
+		checkOptProp(value, 'valueDouble', createTypedArrayGuard(isRSDDouble)) &&
+		checkOptProp(value, 'valueString', createTypedArrayGuard(isRSDString)) &&
+		checkOptProp(value, 'valueLocalDate', createTypedArrayGuard(isRSDLocalDate)) &&
+		checkOptProp(value, 'valueLocalDateTime', createTypedArrayGuard(isRSDLocalDateTime)) &&
+		checkOptProp(value, 'valueLocalTime', createTypedArrayGuard(isRSDLocalTime)) &&
+		checkOptProp(value, 'valueOffsetDateTime', createTypedArrayGuard(isRSDOffsetDateTime)) &&
+		checkOptProp(value, 'valueZonedDateTime', createTypedArrayGuard(isRSDZonedDateTime));
 }
 `.trim();
 
 const SimpleRecord_Basic_List_Null_Typeguard_Result = `
 export function isSimpleRecord_Basic_List_Null(value: unknown): value is SimpleRecord_Basic_List_Null {
 	return isRecord(value) &&
-		(checkProp(value, 'valueBoolean', isNull) || checkProp(value, 'valueBoolean', createTypedArrayGuard(isBoolean))) &&
-		(checkProp(value, 'valueShort', isNull) || checkProp(value, 'valueShort', createTypedArrayGuard(isNumber))) &&
-		(checkProp(value, 'valueInt', isNull) || checkProp(value, 'valueInt', createTypedArrayGuard(isNumber))) &&
-		(checkProp(value, 'valueLong', isNull) || checkProp(value, 'valueLong', createTypedArrayGuard(isNumber))) &&
-		(checkProp(value, 'valueFloat', isNull) || checkProp(value, 'valueFloat', createTypedArrayGuard(isNumber))) &&
-		(checkProp(value, 'valueDouble', isNull) || checkProp(value, 'valueDouble', createTypedArrayGuard(isNumber))) &&
-		(checkProp(value, 'valueString', isNull) || checkProp(value, 'valueString', createTypedArrayGuard(isString))) &&
-		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', createTypedArrayGuard(isString))) &&
-		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString))) &&
-		(checkProp(value, 'valueLocalTime', isNull) || checkProp(value, 'valueLocalTime', createTypedArrayGuard(isString))) &&
-		(checkProp(value, 'valueOffsetDateTime', isNull) || checkProp(value, 'valueOffsetDateTime', createTypedArrayGuard(isString))) &&
-		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString)));
+		(checkProp(value, 'valueBoolean', isNull) || checkProp(value, 'valueBoolean', createTypedArrayGuard(isRSDBoolean))) &&
+		(checkProp(value, 'valueShort', isNull) || checkProp(value, 'valueShort', createTypedArrayGuard(isRSDShort))) &&
+		(checkProp(value, 'valueInt', isNull) || checkProp(value, 'valueInt', createTypedArrayGuard(isRSDInt))) &&
+		(checkProp(value, 'valueLong', isNull) || checkProp(value, 'valueLong', createTypedArrayGuard(isRSDLong))) &&
+		(checkProp(value, 'valueFloat', isNull) || checkProp(value, 'valueFloat', createTypedArrayGuard(isRSDFloat))) &&
+		(checkProp(value, 'valueDouble', isNull) || checkProp(value, 'valueDouble', createTypedArrayGuard(isRSDDouble))) &&
+		(checkProp(value, 'valueString', isNull) || checkProp(value, 'valueString', createTypedArrayGuard(isRSDString))) &&
+		(checkProp(value, 'valueLocalDate', isNull) || checkProp(value, 'valueLocalDate', createTypedArrayGuard(isRSDLocalDate))) &&
+		(checkProp(value, 'valueLocalDateTime', isNull) || checkProp(value, 'valueLocalDateTime', createTypedArrayGuard(isRSDLocalDateTime))) &&
+		(checkProp(value, 'valueLocalTime', isNull) || checkProp(value, 'valueLocalTime', createTypedArrayGuard(isRSDLocalTime))) &&
+		(checkProp(value, 'valueOffsetDateTime', isNull) || checkProp(value, 'valueOffsetDateTime', createTypedArrayGuard(isRSDOffsetDateTime))) &&
+		(checkProp(value, 'valueZonedDateTime', isNull) || checkProp(value, 'valueZonedDateTime', createTypedArrayGuard(isRSDZonedDateTime)));
 }
 `.trim();
 
 const SimpleRecord_Basic_List_Optional_Null_Typeguard_Result = `
 export function isSimpleRecord_Basic_List_Optional_Null(value: unknown): value is SimpleRecord_Basic_List_Optional_Null {
 	return isRecord(value) &&
-		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', createTypedArrayGuard(isBoolean))) &&
-		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', createTypedArrayGuard(isNumber))) &&
-		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', createTypedArrayGuard(isNumber))) &&
-		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', createTypedArrayGuard(isNumber))) &&
-		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', createTypedArrayGuard(isNumber))) &&
-		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', createTypedArrayGuard(isNumber))) &&
-		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createTypedArrayGuard(isString))) &&
-		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createTypedArrayGuard(isString))) &&
-		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createTypedArrayGuard(isString))) &&
-		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', createTypedArrayGuard(isString))) &&
-		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', createTypedArrayGuard(isString))) &&
-		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createTypedArrayGuard(isString)));
+		(checkOptProp(value, 'valueBoolean', isNull) || checkOptProp(value, 'valueBoolean', createTypedArrayGuard(isRSDBoolean))) &&
+		(checkOptProp(value, 'valueShort', isNull) || checkOptProp(value, 'valueShort', createTypedArrayGuard(isRSDShort))) &&
+		(checkOptProp(value, 'valueInt', isNull) || checkOptProp(value, 'valueInt', createTypedArrayGuard(isRSDInt))) &&
+		(checkOptProp(value, 'valueLong', isNull) || checkOptProp(value, 'valueLong', createTypedArrayGuard(isRSDLong))) &&
+		(checkOptProp(value, 'valueFloat', isNull) || checkOptProp(value, 'valueFloat', createTypedArrayGuard(isRSDFloat))) &&
+		(checkOptProp(value, 'valueDouble', isNull) || checkOptProp(value, 'valueDouble', createTypedArrayGuard(isRSDDouble))) &&
+		(checkOptProp(value, 'valueString', isNull) || checkOptProp(value, 'valueString', createTypedArrayGuard(isRSDString))) &&
+		(checkOptProp(value, 'valueLocalDate', isNull) || checkOptProp(value, 'valueLocalDate', createTypedArrayGuard(isRSDLocalDate))) &&
+		(checkOptProp(value, 'valueLocalDateTime', isNull) || checkOptProp(value, 'valueLocalDateTime', createTypedArrayGuard(isRSDLocalDateTime))) &&
+		(checkOptProp(value, 'valueLocalTime', isNull) || checkOptProp(value, 'valueLocalTime', createTypedArrayGuard(isRSDLocalTime))) &&
+		(checkOptProp(value, 'valueOffsetDateTime', isNull) || checkOptProp(value, 'valueOffsetDateTime', createTypedArrayGuard(isRSDOffsetDateTime))) &&
+		(checkOptProp(value, 'valueZonedDateTime', isNull) || checkOptProp(value, 'valueZonedDateTime', createTypedArrayGuard(isRSDZonedDateTime)));
 }
 `.trim();
 
@@ -694,11 +694,11 @@ export function SimpleRecord_BasicFromJSON($value: Record<string, unknown>): Sim
 	const valueFloat = propValue('valueFloat', $value, isNumber);
 	const valueDouble = propValue('valueDouble', $value, isNumber);
 	const valueString = propValue('valueString', $value, isString);
-	const valueLocalDate = propValue('valueLocalDate', $value, isString);
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString);
-	const valueLocalTime = propValue('valueLocalTime', $value, isString);
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString);
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString);
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON);
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON);
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON);
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, RSDOffsetDateTimeFromJSON);
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, RSDZonedDateTimeFromJSON);
 	return {
 		valueBoolean,
 		valueShort,
@@ -724,11 +724,11 @@ export function SimpleRecord_Basic_OptionalFromJSON($value: Record<string, unkno
 	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional');
 	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional');
 	const valueString = propValue('valueString', $value, isString, 'optional');
-	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional');
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional');
-	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional');
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, RSDOffsetDateTimeFromJSON, 'optional');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, RSDZonedDateTimeFromJSON, 'optional');
 	return {
 		valueBoolean,
 		valueShort,
@@ -754,11 +754,11 @@ export function SimpleRecord_Basic_NullFromJSON($value: Record<string, unknown>)
 	const valueFloat = propValue('valueFloat', $value, isNumber, 'null');
 	const valueDouble = propValue('valueDouble', $value, isNumber, 'null');
 	const valueString = propValue('valueString', $value, isString, 'null');
-	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'null');
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'null');
-	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'null');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'null');
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, RSDOffsetDateTimeFromJSON, 'null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, RSDZonedDateTimeFromJSON, 'null');
 	return {
 		valueBoolean,
 		valueShort,
@@ -784,11 +784,11 @@ export function SimpleRecord_Basic_Optional_NullFromJSON($value: Record<string, 
 	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
 	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
 	const valueString = propValue('valueString', $value, isString, 'optional_null');
-	const valueLocalDate = propValue('valueLocalDate', $value, isString, 'optional_null');
-	const valueLocalDateTime = propValue('valueLocalDateTime', $value, isString, 'optional_null');
-	const valueLocalTime = propValue('valueLocalTime', $value, isString, 'optional_null');
-	const valueOffsetDateTime = propValue('valueOffsetDateTime', $value, isString, 'optional_null');
-	const valueZonedDateTime = propValue('valueZonedDateTime', $value, isString, 'optional_null');
+	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional_null');
+	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional_null');
+	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional_null');
+	const valueOffsetDateTime = propMappedValue('valueOffsetDateTime', $value, isString, RSDOffsetDateTimeFromJSON, 'optional_null');
+	const valueZonedDateTime = propMappedValue('valueZonedDateTime', $value, isString, RSDZonedDateTimeFromJSON, 'optional_null');
 	return {
 		valueBoolean,
 		valueShort,
@@ -814,11 +814,11 @@ export function SimpleRecord_Basic_ListFromJSON($value: Record<string, unknown>)
 	const valueFloat = propListValue('valueFloat', $value, isNumber);
 	const valueDouble = propListValue('valueDouble', $value, isNumber);
 	const valueString = propListValue('valueString', $value, isString);
-	const valueLocalDate = propListValue('valueLocalDate', $value, isString);
-	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString);
-	const valueLocalTime = propListValue('valueLocalTime', $value, isString);
-	const valueOffsetDateTime = propListValue('valueOffsetDateTime', $value, isString);
-	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString);
+	const valueLocalDate = propMappedListValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON);
+	const valueLocalDateTime = propMappedListValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON);
+	const valueLocalTime = propMappedListValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON);
+	const valueOffsetDateTime = propMappedListValue('valueOffsetDateTime', $value, isString, RSDOffsetDateTimeFromJSON);
+	const valueZonedDateTime = propMappedListValue('valueZonedDateTime', $value, isString, RSDZonedDateTimeFromJSON);
 	return {
 		valueBoolean,
 		valueShort,
@@ -845,11 +845,11 @@ export function SimpleRecord_Basic_List_OptionalFromJSON($value: Record<string, 
 	const valueFloat = propListValue('valueFloat', $value, isNumber, 'optional');
 	const valueDouble = propListValue('valueDouble', $value, isNumber, 'optional');
 	const valueString = propListValue('valueString', $value, isString, 'optional');
-	const valueLocalDate = propListValue('valueLocalDate', $value, isString, 'optional');
-	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString, 'optional');
-	const valueLocalTime = propListValue('valueLocalTime', $value, isString, 'optional');
-	const valueOffsetDateTime = propListValue('valueOffsetDateTime', $value, isString, 'optional');
-	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString, 'optional');
+	const valueLocalDate = propMappedListValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional');
+	const valueLocalDateTime = propMappedListValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional');
+	const valueLocalTime = propMappedListValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional');
+	const valueOffsetDateTime = propMappedListValue('valueOffsetDateTime', $value, isString, RSDOffsetDateTimeFromJSON, 'optional');
+	const valueZonedDateTime = propMappedListValue('valueZonedDateTime', $value, isString, RSDZonedDateTimeFromJSON, 'optional');
 	return {
 		valueBoolean,
 		valueShort,
@@ -876,11 +876,11 @@ export function SimpleRecord_Basic_List_NullFromJSON($value: Record<string, unkn
 	const valueFloat = propListValue('valueFloat', $value, isNumber, 'null');
 	const valueDouble = propListValue('valueDouble', $value, isNumber, 'null');
 	const valueString = propListValue('valueString', $value, isString, 'null');
-	const valueLocalDate = propListValue('valueLocalDate', $value, isString, 'null');
-	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString, 'null');
-	const valueLocalTime = propListValue('valueLocalTime', $value, isString, 'null');
-	const valueOffsetDateTime = propListValue('valueOffsetDateTime', $value, isString, 'null');
-	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString, 'null');
+	const valueLocalDate = propMappedListValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'null');
+	const valueLocalDateTime = propMappedListValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'null');
+	const valueLocalTime = propMappedListValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'null');
+	const valueOffsetDateTime = propMappedListValue('valueOffsetDateTime', $value, isString, RSDOffsetDateTimeFromJSON, 'null');
+	const valueZonedDateTime = propMappedListValue('valueZonedDateTime', $value, isString, RSDZonedDateTimeFromJSON, 'null');
 	return {
 		valueBoolean,
 		valueShort,
@@ -907,11 +907,11 @@ export function SimpleRecord_Basic_List_Optional_NullFromJSON($value: Record<str
 	const valueFloat = propListValue('valueFloat', $value, isNumber, 'optional_null');
 	const valueDouble = propListValue('valueDouble', $value, isNumber, 'optional_null');
 	const valueString = propListValue('valueString', $value, isString, 'optional_null');
-	const valueLocalDate = propListValue('valueLocalDate', $value, isString, 'optional_null');
-	const valueLocalDateTime = propListValue('valueLocalDateTime', $value, isString, 'optional_null');
-	const valueLocalTime = propListValue('valueLocalTime', $value, isString, 'optional_null');
-	const valueOffsetDateTime = propListValue('valueOffsetDateTime', $value, isString, 'optional_null');
-	const valueZonedDateTime = propListValue('valueZonedDateTime', $value, isString, 'optional_null');
+	const valueLocalDate = propMappedListValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional_null');
+	const valueLocalDateTime = propMappedListValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional_null');
+	const valueLocalTime = propMappedListValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional_null');
+	const valueOffsetDateTime = propMappedListValue('valueOffsetDateTime', $value, isString, RSDOffsetDateTimeFromJSON, 'optional_null');
+	const valueZonedDateTime = propMappedListValue('valueZonedDateTime', $value, isString, RSDZonedDateTimeFromJSON, 'optional_null');
 	return {
 		valueBoolean,
 		valueShort,
@@ -1165,11 +1165,11 @@ export function SimpleRecord_BasicToJSON($value: SimpleRecord_Basic): Record<str
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = RSDLocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = RSDLocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = RSDLocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = RSDOffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = RSDZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		valueBoolean,
@@ -1197,11 +1197,11 @@ export function SimpleRecord_Basic_OptionalToJSON($value: SimpleRecord_Basic_Opt
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) ? undefined : RSDLocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) ? undefined : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isUndefined($value.valueLocalTime) ? undefined : RSDLocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) ? undefined : RSDOffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) ? undefined : RSDZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		valueBoolean,
@@ -1229,11 +1229,11 @@ export function SimpleRecord_Basic_NullToJSON($value: SimpleRecord_Basic_Null): 
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isNull($value.valueLocalDate) ? null : RSDLocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isNull($value.valueLocalDateTime) ? null : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isNull($value.valueLocalTime) ? null : RSDLocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isNull($value.valueOffsetDateTime) ? null : RSDOffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isNull($value.valueZonedDateTime) ? null : RSDZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		valueBoolean,
@@ -1261,11 +1261,11 @@ export function SimpleRecord_Basic_Optional_NullToJSON($value: SimpleRecord_Basi
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : RSDLocalDateToJSON($value.valueLocalDate);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : RSDLocalTimeToJSON($value.valueLocalTime);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : RSDOffsetDateTimeToJSON($value.valueOffsetDateTime);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : RSDZonedDateTimeToJSON($value.valueZonedDateTime);
 
 	return {
 		valueBoolean,
@@ -1293,11 +1293,11 @@ export function SimpleRecord_Basic_ListToJSON($value: SimpleRecord_Basic_List): 
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = $value.valueLocalDate.map(RSDLocalDateToJSON);
+	const valueLocalDateTime = $value.valueLocalDateTime.map(RSDLocalDateTimeToJSON);
+	const valueLocalTime = $value.valueLocalTime.map(RSDLocalTimeToJSON);
+	const valueOffsetDateTime = $value.valueOffsetDateTime.map(RSDOffsetDateTimeToJSON);
+	const valueZonedDateTime = $value.valueZonedDateTime.map(RSDZonedDateTimeToJSON);
 
 	return {
 		valueBoolean,
@@ -1325,11 +1325,11 @@ export function SimpleRecord_Basic_List_OptionalToJSON($value: SimpleRecord_Basi
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) ? undefined : $value.valueLocalDate.map(RSDLocalDateToJSON);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) ? undefined : $value.valueLocalDateTime.map(RSDLocalDateTimeToJSON);
+	const valueLocalTime = isUndefined($value.valueLocalTime) ? undefined : $value.valueLocalTime.map(RSDLocalTimeToJSON);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) ? undefined : $value.valueOffsetDateTime.map(RSDOffsetDateTimeToJSON);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) ? undefined : $value.valueZonedDateTime.map(RSDZonedDateTimeToJSON);
 
 	return {
 		valueBoolean,
@@ -1357,11 +1357,11 @@ export function SimpleRecord_Basic_List_NullToJSON($value: SimpleRecord_Basic_Li
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isNull($value.valueLocalDate) ? null : $value.valueLocalDate.map(RSDLocalDateToJSON);
+	const valueLocalDateTime = isNull($value.valueLocalDateTime) ? null : $value.valueLocalDateTime.map(RSDLocalDateTimeToJSON);
+	const valueLocalTime = isNull($value.valueLocalTime) ? null : $value.valueLocalTime.map(RSDLocalTimeToJSON);
+	const valueOffsetDateTime = isNull($value.valueOffsetDateTime) ? null : $value.valueOffsetDateTime.map(RSDOffsetDateTimeToJSON);
+	const valueZonedDateTime = isNull($value.valueZonedDateTime) ? null : $value.valueZonedDateTime.map(RSDZonedDateTimeToJSON);
 
 	return {
 		valueBoolean,
@@ -1389,11 +1389,11 @@ export function SimpleRecord_Basic_List_Optional_NullToJSON($value: SimpleRecord
 	const valueFloat = $value.valueFloat;
 	const valueDouble = $value.valueDouble;
 	const valueString = $value.valueString;
-	const valueLocalDate = $value.valueLocalDate;
-	const valueLocalDateTime = $value.valueLocalDateTime;
-	const valueLocalTime = $value.valueLocalTime;
-	const valueOffsetDateTime = $value.valueOffsetDateTime;
-	const valueZonedDateTime = $value.valueZonedDateTime;
+	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : $value.valueLocalDate.map(RSDLocalDateToJSON);
+	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : $value.valueLocalDateTime.map(RSDLocalDateTimeToJSON);
+	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : $value.valueLocalTime.map(RSDLocalTimeToJSON);
+	const valueOffsetDateTime = isUndefined($value.valueOffsetDateTime) || isNull($value.valueOffsetDateTime) ? $value.valueOffsetDateTime : $value.valueOffsetDateTime.map(RSDOffsetDateTimeToJSON);
+	const valueZonedDateTime = isUndefined($value.valueZonedDateTime) || isNull($value.valueZonedDateTime) ? $value.valueZonedDateTime : $value.valueZonedDateTime.map(RSDZonedDateTimeToJSON);
 
 	return {
 		valueBoolean,

@@ -8,7 +8,7 @@ import {
 	MReturnType,
 } from '../model.js';
 import {
-	builtinToJSType,
+	builtinToType,
 	generateCompilationUnit,
 	TypescriptClientAPIGeneratorConfig,
 	TypescriptImportCollector,
@@ -70,7 +70,7 @@ function toResultType(
 
 	let type: string;
 	if (isMBuiltinType(result.type)) {
-		type = builtinToJSType(result.type);
+		type = builtinToType(result.type, fqn, './model/');
 	} else if (result.variant === 'scalar') {
 		type = fqn(`${result.type}:./model/Scalars.ts`, true);
 	} else if (isMInlineEnumType(result.type)) {
@@ -110,7 +110,7 @@ function toParameter(
 ) {
 	let type: string;
 	if (isMBuiltinType(parameter.type)) {
-		type = builtinToJSType(parameter.type);
+		type = builtinToType(parameter.type, fqn, './model/');
 	} else if (parameter.variant === 'scalar') {
 		type = fqn(`${parameter.type}:./model/Scalars.ts`, true);
 	} else if (isMInlineEnumType(parameter.type)) {

@@ -19,7 +19,7 @@ const Simple: PatchableRecord_Basic_List_Optional = {
 	valueInt: [1, 2],
 	valueLong: [1, 2],
 	valueString: ['A', 'B'],
-	valueFloat: [1.1, 2.2],
+	valueFloat: [1.5, 2.5],
 	valueLocalDate: ['2020-01-01', '2020-12-31'],
 	valueLocalDateTime: ['2020-01-01T10:00:00', '2020-12-31T23:59:59'],
 	valueLocalTime: ['10:00:00', '23:59:59'],
