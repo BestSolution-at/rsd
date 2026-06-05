@@ -37,5 +37,10 @@ function generateIndexContent(model: MResolvedRSDModel, allowImportingTsExtensio
 			node.append(`export * from './Scalars.js'`, NL);
 		}
 	}
+	if (allowImportingTsExtensions) {
+		node.append("export * from './Builtins.ts'", NL);
+	} else {
+		node.append("export * from './Builtins.js'", NL);
+	}
 	return node;
 }
