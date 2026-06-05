@@ -18,7 +18,7 @@ const Simple: PatchableRecord_Basic_Optional_Null = {
 	valueShort: 1,
 	valueInt: 1,
 	valueLong: 1,
-	valueFloat: 1.1,
+	valueFloat: 1.5,
 	valueDouble: 1.1,
 	valueString: 'value',
 	valueLocalDate: '2024-01-01',

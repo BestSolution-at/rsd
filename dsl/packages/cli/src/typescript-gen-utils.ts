@@ -151,14 +151,14 @@ export function builtinTypeGuard(
 	} else if (type === 'double') {
 		return fqn(`isRSDDouble:${relativePath}Builtins.ts`, false);
 	} else if (type === 'local-date-time') {
-		return fqn(`isLocalDateTime:${relativePath}Builtins.ts`, false);
+		return fqn(`isRSDLocalDateTime:${relativePath}Builtins.ts`, false);
 	} else if (type === 'local-date') {
-		return fqn(`isLocalDate:${relativePath}Builtins.ts`, false);
+		return fqn(`isRSDLocalDate:${relativePath}Builtins.ts`, false);
 	} else if (type === 'local-time') {
-		return fqn(`isLocalTime:${relativePath}Builtins.ts`, false);
+		return fqn(`isRSDLocalTime:${relativePath}Builtins.ts`, false);
 	} else if (type === 'offset-date-time') {
-		return fqn(`isOffsetDateTime:${relativePath}Builtins.ts`, false);
+		return fqn(`isRSDOffsetDateTime:${relativePath}Builtins.ts`, false);
 	} else {
-		return fqn(`isZonedDateTime:${relativePath}Builtins.ts`, false);
+		return fqn(`isRSDZonedDateTime:${relativePath}Builtins.ts`, false);
 	}
 }

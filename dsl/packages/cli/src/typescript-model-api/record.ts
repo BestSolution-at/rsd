@@ -324,14 +324,14 @@ export function RecordTypeguard(
 				}
 
 				if (isMKeyProperty(p) || isMRevisionProperty(p)) {
-					const guard = builtinFromJsonTypeGuard(p.type, fqn);
+					const guard = builtinTypeGuard(p.type, fqn, './');
 					const checkProp = fqn('checkProp:../_type-utils.ts', false);
 					andBlock.append(`${checkProp}(value, '${p.name}', ${guard})`);
 				} else {
 					let guard: string;
 
 					if (isMBuiltinType(p.type)) {
-						guard = builtinFromJsonTypeGuard(p.type, fqn);
+						guard = builtinTypeGuard(p.type, fqn, './');
 					} else if (isMInlineEnumType(p.type)) {
 						guard = `is${t.name}_${toFirstUpper(p.name)}`;
 					} else if (p.variant === 'scalar') {
@@ -905,15 +905,15 @@ function builtinFromJSON(
 	defaultValue: () => string,
 ): string {
 	if (type === 'local-date-time') {
-		return fqn('LocalDateTimeFromJSON:./Builtins.ts', false);
+		return fqn('RSDLocalDateTimeFromJSON:./Builtins.ts', false);
 	} else if (type === 'local-date') {
-		return fqn('LocalDateFromJSON:./Builtins.ts', false);
+		return fqn('RSDLocalDateFromJSON:./Builtins.ts', false);
 	} else if (type === 'local-time') {
-		return fqn('LocalTimeFromJSON:./Builtins.ts', false);
+		return fqn('RSDLocalTimeFromJSON:./Builtins.ts', false);
 	} else if (type === 'offset-date-time') {
-		return fqn('OffsetDateTimeFromJSON:./Builtins.ts', false);
+		return fqn('RSDOffsetDateTimeFromJSON:./Builtins.ts', false);
 	} else if (type === 'zoned-date-time') {
-		return fqn('ZonedDateTimeFromJSON:./Builtins.ts', false);
+		return fqn('RSDZonedDateTimeFromJSON:./Builtins.ts', false);
 	}
 	return defaultValue();
 }
@@ -924,15 +924,15 @@ function builtinToJSON(
 	defaultValue: () => string,
 ): string {
 	if (type === 'local-date-time') {
-		return fqn('LocalDateTimeToJSON:./Builtins.ts', false);
+		return fqn('RSDLocalDateTimeToJSON:./Builtins.ts', false);
 	} else if (type === 'local-date') {
-		return fqn('LocalDateToJSON:./Builtins.ts', false);
+		return fqn('RSDLocalDateToJSON:./Builtins.ts', false);
 	} else if (type === 'local-time') {
-		return fqn('LocalTimeToJSON:./Builtins.ts', false);
+		return fqn('RSDLocalTimeToJSON:./Builtins.ts', false);
 	} else if (type === 'offset-date-time') {
-		return fqn('OffsetDateTimeToJSON:./Builtins.ts', false);
+		return fqn('RSDOffsetDateTimeToJSON:./Builtins.ts', false);
 	} else if (type === 'zoned-date-time') {
-		return fqn('ZonedDateTimeToJSON:./Builtins.ts', false);
+		return fqn('RSDZonedDateTimeToJSON:./Builtins.ts', false);
 	}
 	return defaultValue();
 }
