@@ -4,57 +4,57 @@ import { toNodeTree } from '../util.js';
 export function generateBuiltinContent(): CompositeGeneratorNode {
 	return toNodeTree(`
 export type RSDZonedDateTime = string;
-export function ZonedDateTimeFromJSON(value: string): RSDZonedDateTime {
+export function RSDZonedDateTimeFromJSON(value: string): RSDZonedDateTime {
     return value;
 }
-export function ZonedDateTimeToJSON(value: RSDZonedDateTime): string {
+export function RSDZonedDateTimeToJSON(value: RSDZonedDateTime): string {
     return value;
 }
-export function isZonedDateTime(value: unknown): value is RSDZonedDateTime {
+export function isRSDZonedDateTime(value: unknown): value is RSDZonedDateTime {
     return typeof value === 'string';
 }
 
 export type RSDLocalDateTime = string;
-export function LocalDateTimeFromJSON(value: string): RSDLocalDateTime {
+export function RSDLocalDateTimeFromJSON(value: string): RSDLocalDateTime {
     return value;
 }
-export function LocalDateTimeToJSON(value: RSDLocalDateTime): string {
+export function RSDLocalDateTimeToJSON(value: RSDLocalDateTime): string {
     return value;
 }
-export function isLocalDateTime(value: unknown): value is RSDLocalDateTime {
+export function isRSDLocalDateTime(value: unknown): value is RSDLocalDateTime {
     return typeof value === 'string';
 }
 
 export type RSDLocalDate = string;
-export function LocalDateFromJSON(value: string): RSDLocalDate {
+export function RSDLocalDateFromJSON(value: string): RSDLocalDate {
     return value;
 }
-export function LocalDateToJSON(value: RSDLocalDate): string {
+export function RSDLocalDateToJSON(value: RSDLocalDate): string {
     return value;
 }
-export function isLocalDate(value: unknown): value is RSDLocalDate {
+export function isRSDLocalDate(value: unknown): value is RSDLocalDate {
     return typeof value === 'string';
 }
 
 export type RSDLocalTime = string;
-export function LocalTimeFromJSON(value: string): RSDLocalTime {
+export function RSDLocalTimeFromJSON(value: string): RSDLocalTime {
     return value;
 }
-export function LocalTimeToJSON(value: RSDLocalTime): string {
+export function RSDLocalTimeToJSON(value: RSDLocalTime): string {
     return value;
 }
-export function isLocalTime(value: unknown): value is RSDLocalTime {
+export function isRSDLocalTime(value: unknown): value is RSDLocalTime {
     return typeof value === 'string';
 }
 
 export type RSDOffsetDateTime = string;
-export function OffsetDateTimeFromJSON(value: string): RSDOffsetDateTime {
+export function RSDOffsetDateTimeFromJSON(value: string): RSDOffsetDateTime {
     return value;
 }
-export function OffsetDateTimeToJSON(value: RSDOffsetDateTime): string {
+export function RSDOffsetDateTimeToJSON(value: RSDOffsetDateTime): string {
     return value;
 }
-export function isOffsetDateTime(value: unknown): value is RSDOffsetDateTime {
+export function isRSDOffsetDateTime(value: unknown): value is RSDOffsetDateTime {
     return typeof value === 'string';
 }
 
@@ -85,7 +85,8 @@ export function isRSDFloat(value: unknown): value is RSDFloat {
     return typeof value === 'number'
         && !Number.isNaN(value)
         && Number.isFinite(value)
-        && Math.fround(value) === value;
+        && value >= -3.4028235e+38
+        && value <= 3.4028235e+38;
 }
 
 export type RSDDouble = number;
