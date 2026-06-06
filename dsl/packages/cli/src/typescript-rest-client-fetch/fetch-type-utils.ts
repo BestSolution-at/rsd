@@ -119,18 +119,21 @@ function generateFetchTypeUtilsContent(
 	result.indent(mBody => {
 		if (encodings.length > 1) {
 			mBody.append('switch (type) {', NL);
-			encodings
-				.filter((_, idx) => idx > 0)
-				.forEach(enc => {
-					mBody.append(`case '${enc}':`, NL);
-					mBody.indent(casBody => {
-						casBody.append(`return ${encodingPlugins[enc].encodingFunctionName}(value);`, NL);
+			mBody.indent(switchBody => {
+				encodings
+					.filter((_, idx) => idx > 0)
+					.forEach(enc => {
+						switchBody.append(`case '${enc}':`, NL);
+						switchBody.indent(casBody => {
+							casBody.append(`return ${encodingPlugins[enc].encodingFunctionName}(value);`, NL);
+						});
 					});
+				switchBody.append('default:', NL);
+				switchBody.indent(casBody => {
+					casBody.append(`return ${encodingPlugins[encodings[0]].encodingFunctionName}(value);`, NL);
 				});
-			mBody.append('default:', NL);
-			mBody.indent(casBody => {
-				casBody.append(`return ${encodingPlugins[encodings[0]].encodingFunctionName}(value);`, NL);
 			});
+
 			mBody.append('}', NL);
 		} else {
 			mBody.append(`return ${encodingPlugins[encodings[0]].encodingFunctionName}(value);`, NL);
@@ -187,7 +190,7 @@ function generateJsonEncodeValueFunction() {
 
 function generateMsgPackEncodeValueFunction(fqn: (t: string, typeOnly: boolean) => string) {
 	return toNodeTree(`
-		const encoder = new ${fqn('Encoder:@msgpack/msgpack', false)}({ ignoreUndefined: true });
+		const encoder = new ${fqn('Encoder:@msgpack/msgpack', false)}({ ignoreUndefined: true, useBigInt64: true });
 		function encodeMsgPackBody(body: unknown): Uint8Array {
 			if (body === undefined) {
 				return new Uint8Array();
@@ -210,7 +213,7 @@ function generateJsonDecodeResponseFunction() {
 
 function generateMsgPackDecodeResponseFunction(fqn: (t: string, typeOnly: boolean) => string) {
 	return toNodeTree(`
-		const decoder = new ${fqn('Decoder:@msgpack/msgpack', false)}();
+		const decoder = new ${fqn('Decoder:@msgpack/msgpack', false)}({ useBigInt64: true });
 		async function decodeMsgPackBody<T>(response: Response, guard: (value: unknown) => value is T): Promise<T> {
 			const arrayBuffer = await response.arrayBuffer();
 			const data = decoder.decode(arrayBuffer);
