@@ -25,7 +25,6 @@ import {
 	TypescriptImportCollector,
 } from '../typescript-gen-utils.js';
 import { toFirstUpper } from '../util.js';
-import { isBuiltinType } from 'remote-service-description-language';
 
 export function generateService(s: MResolvedService, config: TypescriptFetchClientGeneratorConfig) {
 	const collector = new TypescriptImportCollector(config, `${s.name}ServiceFetchImpl.ts`);
@@ -579,7 +578,7 @@ function generateRemoteInvoke(
 						}
 					} else {
 						if (typeof p.type === 'string' && (isMBuiltinType(p.type) || p.variant === 'scalar')) {
-							const toJSON = isBuiltinType(p.type)
+							const toJSON = isMBuiltinType(p.type)
 								? builtinToJSON(p.type, fqn, '../model/')
 								: `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
 							if (p.array) {
