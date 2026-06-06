@@ -121,7 +121,7 @@ async function decodeJsonBody<T>(response: Response, guard: (value: unknown) => 
 					}
 				}
 			} else {
-				throw new Error('Expected reviver function to provide key, value and context parameter');
+				console.warn('Unable to determine if number value is a BigInt due to missing context, returning as number:', v);
 			}
 		}
 
