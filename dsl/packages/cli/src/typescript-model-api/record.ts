@@ -34,7 +34,7 @@ export function generateRecordContent(t: MResolvedRecordType, fqn: (t: string, t
 	);
 	allProps
 		.filter(p => isMInlineEnumType(p.type))
-		.forEach(p => node.append(generateInlineTypeguard(t, p, p.type as MInlineEnumType)));
+		.forEach(p => node.append(generateInlineMethods(t, p, p.type as MInlineEnumType)));
 	node.appendNewLineIf(!node.isEmpty());
 	node.append(RecordType(t, allProps, fqn), NL);
 	node.append(RecordTypeguard(t, allProps, fqn), NL);
@@ -89,10 +89,17 @@ function InlineEnumType(propName: string, type: MInlineEnumType) {
 	]);
 }
 
+function generateInlineMethods(t: MResolvedRecordType, prop: MBaseProperty, type: MInlineEnumType) {
+	const node = new CompositeGeneratorNode();
+	node.append(NL, generateInlineTypeguard(t, prop, type), NL);
+	node.append(generateInlineToJSON(t, prop), NL);
+	node.append(generateInlineFromJSON(t, prop), NL);
+	return node;
+}
+
 function generateInlineTypeguard(t: MResolvedRecordType, prop: MBaseProperty, type: MInlineEnumType) {
 	const node = new CompositeGeneratorNode();
 	node.append(
-		NL,
 		`export function is${t.name}_${toFirstUpper(prop.name)}(value: unknown): value is ${toFirstUpper(prop.name)}Enum {`,
 		NL,
 	);
@@ -106,6 +113,38 @@ function generateInlineTypeguard(t: MResolvedRecordType, prop: MBaseProperty, ty
 				.join(' || '),
 		);
 		mBody.append(';', NL);
+	});
+	node.append('}', NL);
+	return node;
+}
+
+function generateInlineToJSON(t: MResolvedRecordType, prop: MBaseProperty) {
+	const node = new CompositeGeneratorNode();
+	node.append(
+		`export function ${t.name}_${toFirstUpper(prop.name)}ToJSON(value: ${toFirstUpper(prop.name)}Enum): string {`,
+		NL,
+	);
+	node.indent(mBody => {
+		mBody.append('return value;', NL);
+	});
+	node.append('}', NL);
+	return node;
+}
+
+function generateInlineFromJSON(t: MResolvedRecordType, prop: MBaseProperty) {
+	const node = new CompositeGeneratorNode();
+	node.append(
+		`export function ${t.name}_${toFirstUpper(prop.name)}FromJSON(value: string): ${toFirstUpper(prop.name)}Enum {`,
+		NL,
+	);
+	node.indent(mBody => {
+		const guardName = `is${t.name}_${toFirstUpper(prop.name)}`;
+		mBody.append(`if (!${guardName}(value)) {`, NL);
+		mBody.indent(cBody => {
+			cBody.append(`throw new Error('Invalid value for ${toFirstUpper(prop.name)}');`, NL);
+		});
+		mBody.append('}', NL);
+		mBody.append('return value;', NL);
 	});
 	node.append('}', NL);
 	return node;
@@ -146,31 +185,6 @@ export function FromJSON(
 				const mapper = builtinFromJSON(p.type, fqn, './');
 				const guard = builtinFromJsonTypeGuard(p.type, fqn);
 				fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${mapper});`, NL);
-			} else if (p.variant === 'inline-enum') {
-				let guard: string;
-
-				if (isMInlineEnumType(p.type)) {
-					guard = `is${t.name}_${toFirstUpper(p.name)}`;
-				} else {
-					guard = 'err';
-				}
-
-				let allow = '';
-				if (p.optional && p.nullable) {
-					allow = ", 'optional_null'";
-				} else if (p.optional) {
-					allow = ", 'optional'";
-				} else if (p.nullable) {
-					allow = ", 'null'";
-				}
-
-				if (p.array) {
-					const propListValue = fqn('propListValue:../_type-utils.ts', false);
-					fBody.append(`const ${p.name} = ${propListValue}('${p.name}', $value, ${guard}`, allow, ');', NL);
-				} else {
-					const propValue = fqn('propValue:../_type-utils.ts', false);
-					fBody.append(`const ${p.name} = ${propValue}('${p.name}', $value, ${guard}`, allow, ');', NL);
-				}
 			} else {
 				let allow = '';
 				if (p.optional && p.nullable) {
@@ -192,6 +206,9 @@ export function FromJSON(
 				} else if (p.variant === 'enum') {
 					guard = fqn('isString:../_type-utils.ts', false);
 					fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
+				} else if (isMInlineEnumType(p.type)) {
+					guard = `is${t.name}_${toFirstUpper(p.name)}`;
+					fromJSON = `${t.name}_${toFirstUpper(p.name)}FromJSON`;
 				} else {
 					guard = fqn('isRecord:../_type-utils.ts', false);
 					fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
@@ -255,8 +272,6 @@ export function ToJSON(
 			if (isMKeyProperty(p) || isMRevisionProperty(p)) {
 				const ToJSON = builtinToJSON(p.type, fqn, './');
 				mBody.append(`const ${p.name} = ${ToJSON}($value.${p.name});`, NL);
-			} else if (p.variant === 'inline-enum' || p.variant === 'scalar') {
-				mBody.append(`const ${p.name} = $value.${p.name};`, NL);
 			} else {
 				mBody.append(`const ${p.name} = `);
 
@@ -266,6 +281,10 @@ export function ToJSON(
 					ToJSON = builtinToJSON(p.type, fqn, './');
 				} else if (p.variant === 'enum') {
 					ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
+				} else if (isMInlineEnumType(p.type)) {
+					ToJSON = `${t.name}_${toFirstUpper(p.name)}ToJSON`;
+				} else if (p.variant === 'scalar') {
+					ToJSON = fqn(`${p.type}ToJSON:./Scalars.ts`, false);
 				} else {
 					ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
 				}
@@ -627,8 +646,10 @@ export function FromJSONPatch(
 							fromJSON = fqn(`${p.type}FromJSON:./Scalars.ts`, false);
 						} else if (p.variant === 'enum') {
 							fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
+						} else if (isMInlineEnumType(p.type)) {
+							fromJSON = `${t.name}_${toFirstUpper(p.name)}FromJSON`;
 						} else {
-							fromJSON = fqn('noopMap:../_type-utils.ts', false);
+							throw new Error('Unsupported type');
 						}
 						const isListReplace = fqn('isListReplace:../_type-utils.ts', false);
 						const ListMergeAddRemoveFromJSON = fqn('ListMergeAddRemoveFromJSON:../_type-utils.ts', false);
@@ -646,6 +667,8 @@ export function FromJSONPatch(
 							fromJSON = builtinFromJSON(p.type, fqn, './');
 						} else if (p.variant === 'scalar') {
 							fromJSON = fqn(`${p.type}FromJSON:./Scalars.ts`, false);
+						} else if (isMInlineEnumType(p.type)) {
+							fromJSON = `${t.name}_${toFirstUpper(p.name)}FromJSON`;
 						} else if (p.variant === 'enum') {
 							fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
 						}
@@ -753,8 +776,19 @@ export function ToJSONPatch(
 			.filter(isMResolvedProperty)
 			.filter(p => !p.readonly)
 			.forEach(p => {
-				if (p.variant === 'builtin' && isMBuiltinType(p.type)) {
-					const toJSON = builtinToJSON(p.type, fqn, './');
+				if (p.variant === 'builtin' || p.variant === 'inline-enum' || p.variant === 'enum' || p.variant === 'scalar') {
+					let toJSON: string;
+
+					if (isMBuiltinType(p.type)) {
+						toJSON = builtinToJSON(p.type, fqn, './');
+					} else if (p.variant === 'inline-enum') {
+						toJSON = `${t.name}_${toFirstUpper(p.name)}ToJSON`;
+					} else if (p.variant === 'scalar') {
+						toJSON = fqn(`${p.type}ToJSON:./Scalars.ts`, false);
+					} else {
+						toJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
+					}
+
 					if (toJSON) {
 						mBody.append(`const ${p.name} = `);
 						if (p.optional || p.nullable) {
@@ -769,7 +803,18 @@ export function ToJSONPatch(
 							const isListReplace = fqn('isListReplace:../_type-utils.ts', false);
 							const ListReplaceToJSON = fqn('ListReplaceToJSON:../_type-utils.ts', false);
 							const ListMergeAddRemoveFromJSON = fqn('ListMergeAddRemoveToJSON:../_type-utils.ts', false);
-							const guard = builtinTypeGuard(p.type, fqn, './');
+							let guard: string;
+
+							if (isMBuiltinType(p.type)) {
+								guard = builtinTypeGuard(p.type, fqn, './');
+							} else if (isMInlineEnumType(p.type)) {
+								guard = `is${t.name}_${toFirstUpper(p.name)}`;
+							} else if (p.variant === 'scalar') {
+								guard = fqn(`is${p.type}:./Scalars.ts`, false);
+							} else {
+								guard = fqn(`is${p.type}:./${p.type}.ts`, false);
+							}
+
 							mBody.append(
 								`${isListReplace}($value.${p.name}, ${guard}) ? ${ListReplaceToJSON}($value.${p.name}, ${toJSON}) : ${ListMergeAddRemoveFromJSON}($value.${p.name}, ${toJSON}, ${toJSON});`,
 								NL,
@@ -780,8 +825,6 @@ export function ToJSONPatch(
 					} else {
 						mBody.append(`const ${p.name} = $value.${p.name};`, NL);
 					}
-				} else if (p.variant === 'inline-enum' || p.variant === 'enum' || p.variant === 'scalar') {
-					mBody.append(`const ${p.name} = $value.${p.name};`, NL);
 				} else {
 					const ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
 					mBody.append(`const ${p.name} = `);

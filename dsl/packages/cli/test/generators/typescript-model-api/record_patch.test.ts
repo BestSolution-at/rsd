@@ -1454,13 +1454,13 @@ const FromJson_PatchableEnumInlineRecord = `
 export function PatchableEnumInlineRecordPatchFromJSON($value: Record<string, unknown>): PatchableEnumInlineRecordPatch {
 	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
 	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
-	const value = propValue('value', $value, isPatchableEnumInlineRecord_Value, 'optional');
-	const value_Null = propValue('value_Null', $value, isPatchableEnumInlineRecord_Value_Null, 'optional_null');
-	const value_Opt = propValue('value_Opt', $value, isPatchableEnumInlineRecord_Value_Opt, 'optional_null');
-	const value_Opt_Null = propValue('value_Opt_Null', $value, isPatchableEnumInlineRecord_Value_Opt_Null, 'optional_null');
-	const list = propMappedValue('list', $value, isRecord, v => isListReplace(v, isPatchableEnumInlineRecord_List) ? ListReplaceFromJSON(v, isPatchableEnumInlineRecord_List, noopMap) : ListMergeAddRemoveFromJSON(v, isPatchableEnumInlineRecord_List, noopMap, isPatchableEnumInlineRecord_List, noopMap), 'optional');
-	const list_Null = propMappedValue('list_Null', $value, isRecord, v => isListReplace(v, isPatchableEnumInlineRecord_List_Null) ? ListReplaceFromJSON(v, isPatchableEnumInlineRecord_List_Null, noopMap) : ListMergeAddRemoveFromJSON(v, isPatchableEnumInlineRecord_List_Null, noopMap, isPatchableEnumInlineRecord_List_Null, noopMap), 'optional_null');
-	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => isListReplace(v, isPatchableEnumInlineRecord_List_Opt_Null) ? ListReplaceFromJSON(v, isPatchableEnumInlineRecord_List_Opt_Null, noopMap) : ListMergeAddRemoveFromJSON(v, isPatchableEnumInlineRecord_List_Opt_Null, noopMap, isPatchableEnumInlineRecord_List_Opt_Null, noopMap), 'optional_null');
+	const value = propMappedValue('value', $value, isPatchableEnumInlineRecord_Value, PatchableEnumInlineRecord_ValueFromJSON, 'optional');
+	const value_Null = propMappedValue('value_Null', $value, isPatchableEnumInlineRecord_Value_Null, PatchableEnumInlineRecord_Value_NullFromJSON, 'optional_null');
+	const value_Opt = propMappedValue('value_Opt', $value, isPatchableEnumInlineRecord_Value_Opt, PatchableEnumInlineRecord_Value_OptFromJSON, 'optional_null');
+	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isPatchableEnumInlineRecord_Value_Opt_Null, PatchableEnumInlineRecord_Value_Opt_NullFromJSON, 'optional_null');
+	const list = propMappedValue('list', $value, isRecord, v => isListReplace(v, isPatchableEnumInlineRecord_List) ? ListReplaceFromJSON(v, isPatchableEnumInlineRecord_List, PatchableEnumInlineRecord_ListFromJSON) : ListMergeAddRemoveFromJSON(v, isPatchableEnumInlineRecord_List, PatchableEnumInlineRecord_ListFromJSON, isPatchableEnumInlineRecord_List, PatchableEnumInlineRecord_ListFromJSON), 'optional');
+	const list_Null = propMappedValue('list_Null', $value, isRecord, v => isListReplace(v, isPatchableEnumInlineRecord_List_Null) ? ListReplaceFromJSON(v, isPatchableEnumInlineRecord_List_Null, PatchableEnumInlineRecord_List_NullFromJSON) : ListMergeAddRemoveFromJSON(v, isPatchableEnumInlineRecord_List_Null, PatchableEnumInlineRecord_List_NullFromJSON, isPatchableEnumInlineRecord_List_Null, PatchableEnumInlineRecord_List_NullFromJSON), 'optional_null');
+	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => isListReplace(v, isPatchableEnumInlineRecord_List_Opt_Null) ? ListReplaceFromJSON(v, isPatchableEnumInlineRecord_List_Opt_Null, PatchableEnumInlineRecord_List_Opt_NullFromJSON) : ListMergeAddRemoveFromJSON(v, isPatchableEnumInlineRecord_List_Opt_Null, PatchableEnumInlineRecord_List_Opt_NullFromJSON, isPatchableEnumInlineRecord_List_Opt_Null, PatchableEnumInlineRecord_List_Opt_NullFromJSON), 'optional_null');
 	return {
 		key,
 		version,
@@ -1927,14 +1927,14 @@ const ToJson_PatchableEnumRecord = `
 export function PatchableEnumRecordPatchToJSON($value: PatchableEnumRecordPatch): Record<string, unknown> {
 	const key = RSDStringToJSON($value.key);
 	const version = RSDStringToJSON($value.version);
-	const value = $value.value;
-	const value_Null = $value.value_Null;
-	const value_Opt = $value.value_Opt;
-	const value_Opt_Null = $value.value_Opt_Null;
-	const list = $value.list;
-	const list_Null = $value.list_Null;
-	const list_Opt = $value.list_Opt;
-	const list_Opt_Null = $value.list_Opt_Null;
+	const value = isUndefined($value.value) ? undefined : SampleEnumToJSON($value.value);
+	const value_Null = isUndefined($value.value_Null) || isNull($value.value_Null) ? $value.value_Null : SampleEnumToJSON($value.value_Null);
+	const value_Opt = isUndefined($value.value_Opt) || isNull($value.value_Opt) ? $value.value_Opt : SampleEnumToJSON($value.value_Opt);
+	const value_Opt_Null = isUndefined($value.value_Opt_Null) || isNull($value.value_Opt_Null) ? $value.value_Opt_Null : SampleEnumToJSON($value.value_Opt_Null);
+	const list = isUndefined($value.list) ? undefined : isListReplace($value.list, isSampleEnum) ? ListReplaceToJSON($value.list, SampleEnumToJSON) : ListMergeAddRemoveToJSON($value.list, SampleEnumToJSON, SampleEnumToJSON);
+	const list_Null = isUndefined($value.list_Null) || isNull($value.list_Null) ? $value.list_Null : isListReplace($value.list_Null, isSampleEnum) ? ListReplaceToJSON($value.list_Null, SampleEnumToJSON) : ListMergeAddRemoveToJSON($value.list_Null, SampleEnumToJSON, SampleEnumToJSON);
+	const list_Opt = isUndefined($value.list_Opt) || isNull($value.list_Opt) ? $value.list_Opt : isListReplace($value.list_Opt, isSampleEnum) ? ListReplaceToJSON($value.list_Opt, SampleEnumToJSON) : ListMergeAddRemoveToJSON($value.list_Opt, SampleEnumToJSON, SampleEnumToJSON);
+	const list_Opt_Null = isUndefined($value.list_Opt_Null) || isNull($value.list_Opt_Null) ? $value.list_Opt_Null : isListReplace($value.list_Opt_Null, isSampleEnum) ? ListReplaceToJSON($value.list_Opt_Null, SampleEnumToJSON) : ListMergeAddRemoveToJSON($value.list_Opt_Null, SampleEnumToJSON, SampleEnumToJSON);
 
 	return {
 		key,
@@ -1955,13 +1955,13 @@ const ToJson_PatchableEnumInlineRecord = `
 export function PatchableEnumInlineRecordPatchToJSON($value: PatchableEnumInlineRecordPatch): Record<string, unknown> {
 	const key = RSDStringToJSON($value.key);
 	const version = RSDStringToJSON($value.version);
-	const value = $value.value;
-	const value_Null = $value.value_Null;
-	const value_Opt = $value.value_Opt;
-	const value_Opt_Null = $value.value_Opt_Null;
-	const list = $value.list;
-	const list_Null = $value.list_Null;
-	const list_Opt_Null = $value.list_Opt_Null;
+	const value = isUndefined($value.value) ? undefined : PatchableEnumInlineRecord_ValueToJSON($value.value);
+	const value_Null = isUndefined($value.value_Null) || isNull($value.value_Null) ? $value.value_Null : PatchableEnumInlineRecord_Value_NullToJSON($value.value_Null);
+	const value_Opt = isUndefined($value.value_Opt) || isNull($value.value_Opt) ? $value.value_Opt : PatchableEnumInlineRecord_Value_OptToJSON($value.value_Opt);
+	const value_Opt_Null = isUndefined($value.value_Opt_Null) || isNull($value.value_Opt_Null) ? $value.value_Opt_Null : PatchableEnumInlineRecord_Value_Opt_NullToJSON($value.value_Opt_Null);
+	const list = isUndefined($value.list) ? undefined : isListReplace($value.list, isPatchableEnumInlineRecord_List) ? ListReplaceToJSON($value.list, PatchableEnumInlineRecord_ListToJSON) : ListMergeAddRemoveToJSON($value.list, PatchableEnumInlineRecord_ListToJSON, PatchableEnumInlineRecord_ListToJSON);
+	const list_Null = isUndefined($value.list_Null) || isNull($value.list_Null) ? $value.list_Null : isListReplace($value.list_Null, isPatchableEnumInlineRecord_List_Null) ? ListReplaceToJSON($value.list_Null, PatchableEnumInlineRecord_List_NullToJSON) : ListMergeAddRemoveToJSON($value.list_Null, PatchableEnumInlineRecord_List_NullToJSON, PatchableEnumInlineRecord_List_NullToJSON);
+	const list_Opt_Null = isUndefined($value.list_Opt_Null) || isNull($value.list_Opt_Null) ? $value.list_Opt_Null : isListReplace($value.list_Opt_Null, isPatchableEnumInlineRecord_List_Opt_Null) ? ListReplaceToJSON($value.list_Opt_Null, PatchableEnumInlineRecord_List_Opt_NullToJSON) : ListMergeAddRemoveToJSON($value.list_Opt_Null, PatchableEnumInlineRecord_List_Opt_NullToJSON, PatchableEnumInlineRecord_List_Opt_NullToJSON);
 
 	return {
 		key,
@@ -1981,14 +1981,14 @@ const ToJson_PatchableScalarRecord = `
 export function PatchableScalarRecordPatchToJSON($value: PatchableScalarRecordPatch): Record<string, unknown> {
 	const key = RSDStringToJSON($value.key);
 	const version = RSDStringToJSON($value.version);
-	const value = $value.value;
-	const value_Null = $value.value_Null;
-	const value_Opt = $value.value_Opt;
-	const value_Opt_Null = $value.value_Opt_Null;
-	const list = $value.list;
-	const list_Null = $value.list_Null;
-	const list_Opt = $value.list_Opt;
-	const list_Opt_Null = $value.list_Opt_Null;
+	const value = isUndefined($value.value) ? undefined : ZoneIdToJSON($value.value);
+	const value_Null = isUndefined($value.value_Null) || isNull($value.value_Null) ? $value.value_Null : ZoneIdToJSON($value.value_Null);
+	const value_Opt = isUndefined($value.value_Opt) || isNull($value.value_Opt) ? $value.value_Opt : ZoneIdToJSON($value.value_Opt);
+	const value_Opt_Null = isUndefined($value.value_Opt_Null) || isNull($value.value_Opt_Null) ? $value.value_Opt_Null : ZoneIdToJSON($value.value_Opt_Null);
+	const list = isUndefined($value.list) ? undefined : isListReplace($value.list, isZoneId) ? ListReplaceToJSON($value.list, ZoneIdToJSON) : ListMergeAddRemoveToJSON($value.list, ZoneIdToJSON, ZoneIdToJSON);
+	const list_Null = isUndefined($value.list_Null) || isNull($value.list_Null) ? $value.list_Null : isListReplace($value.list_Null, isZoneId) ? ListReplaceToJSON($value.list_Null, ZoneIdToJSON) : ListMergeAddRemoveToJSON($value.list_Null, ZoneIdToJSON, ZoneIdToJSON);
+	const list_Opt = isUndefined($value.list_Opt) || isNull($value.list_Opt) ? $value.list_Opt : isListReplace($value.list_Opt, isZoneId) ? ListReplaceToJSON($value.list_Opt, ZoneIdToJSON) : ListMergeAddRemoveToJSON($value.list_Opt, ZoneIdToJSON, ZoneIdToJSON);
+	const list_Opt_Null = isUndefined($value.list_Opt_Null) || isNull($value.list_Opt_Null) ? $value.list_Opt_Null : isListReplace($value.list_Opt_Null, isZoneId) ? ListReplaceToJSON($value.list_Opt_Null, ZoneIdToJSON) : ListMergeAddRemoveToJSON($value.list_Opt_Null, ZoneIdToJSON, ZoneIdToJSON);
 
 	return {
 		key,
