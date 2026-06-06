@@ -17,7 +17,7 @@ const Simple: PatchableRecord_Basic_List_Null = {
 	valueBoolean: [true, false],
 	valueDouble: [1.1, 2.2],
 	valueInt: [1, 2],
-	valueLong: [1, 2],
+	valueLong: [BigInt(1), BigInt(2)],
 	valueString: ['A', 'B'],
 	valueFloat: [1.5, 2.5],
 	valueLocalDate: ['2020-01-01', '2020-12-31'],
@@ -34,7 +34,7 @@ const Simple_Json = {
 	valueBoolean: [true, false],
 	valueDouble: [1.1, 2.2],
 	valueInt: [1, 2],
-	valueLong: ['1', '2'],
+	valueLong: [1, 2],
 	valueString: ['A', 'B'],
 	valueFloat: [1.5, 2.5],
 	valueLocalDate: ['2020-01-01', '2020-12-31'],
@@ -130,7 +130,7 @@ const SimplePatchReplace: PatchableRecord_Basic_List_NullPatch = {
 	},
 	valueLong: {
 		'@type': 'replace',
-		elements: [1, 2],
+		elements: [BigInt(1), BigInt(2)],
 	},
 	valueString: {
 		'@type': 'replace',
@@ -183,7 +183,7 @@ const SimplePatchReplace_Json = {
 	},
 	valueLong: {
 		'@type': 'replace',
-		elements: ['1', '2'],
+		elements: [1, 2],
 	},
 	valueString: {
 		'@type': 'replace',
@@ -239,8 +239,8 @@ const SimplePatchMerge: PatchableRecord_Basic_List_NullPatch = {
 	},
 	valueLong: {
 		'@type': 'merge',
-		additions: [1],
-		removals: [2],
+		additions: [BigInt(1)],
+		removals: [BigInt(2)],
 	},
 	valueString: {
 		'@type': 'merge',
@@ -304,8 +304,8 @@ const SimplePatchMerge_Json = {
 	},
 	valueLong: {
 		'@type': 'merge',
-		additions: ['1'],
-		removals: ['2'],
+		additions: [1],
+		removals: [2],
 	},
 	valueString: {
 		'@type': 'merge',

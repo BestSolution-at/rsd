@@ -690,7 +690,7 @@ export function SimpleRecord_BasicFromJSON($value: Record<string, unknown>): Sim
 	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON);
 	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON);
 	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON);
-	const valueLong = propMappedValue('valueLong', $value, isString, RSDLongFromJSON);
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON);
 	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON);
 	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON);
 	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON);
@@ -720,7 +720,7 @@ export function SimpleRecord_Basic_OptionalFromJSON($value: Record<string, unkno
 	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional');
 	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional');
 	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional');
-	const valueLong = propMappedValue('valueLong', $value, isString, RSDLongFromJSON, 'optional');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional');
 	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional');
 	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional');
 	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'optional');
@@ -750,7 +750,7 @@ export function SimpleRecord_Basic_NullFromJSON($value: Record<string, unknown>)
 	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'null');
 	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'null');
 	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'null');
-	const valueLong = propMappedValue('valueLong', $value, isString, RSDLongFromJSON, 'null');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'null');
 	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'null');
 	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'null');
 	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'null');
@@ -780,7 +780,7 @@ export function SimpleRecord_Basic_Optional_NullFromJSON($value: Record<string, 
 	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional_null');
 	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional_null');
 	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional_null');
-	const valueLong = propMappedValue('valueLong', $value, isString, RSDLongFromJSON, 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional_null');
 	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional_null');
 	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional_null');
 	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'optional_null');
@@ -810,7 +810,7 @@ export function SimpleRecord_Basic_ListFromJSON($value: Record<string, unknown>)
 	const valueBoolean = propMappedListValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON);
 	const valueShort = propMappedListValue('valueShort', $value, isNumber, RSDShortFromJSON);
 	const valueInt = propMappedListValue('valueInt', $value, isNumber, RSDIntFromJSON);
-	const valueLong = propMappedListValue('valueLong', $value, isString, RSDLongFromJSON);
+	const valueLong = propMappedListValue('valueLong', $value, isNumeric, RSDLongFromJSON);
 	const valueFloat = propMappedListValue('valueFloat', $value, isNumber, RSDFloatFromJSON);
 	const valueDouble = propMappedListValue('valueDouble', $value, isNumber, RSDDoubleFromJSON);
 	const valueString = propMappedListValue('valueString', $value, isString, RSDStringFromJSON);
@@ -841,7 +841,7 @@ export function SimpleRecord_Basic_List_OptionalFromJSON($value: Record<string, 
 	const valueBoolean = propMappedListValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional');
 	const valueShort = propMappedListValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional');
 	const valueInt = propMappedListValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional');
-	const valueLong = propMappedListValue('valueLong', $value, isString, RSDLongFromJSON, 'optional');
+	const valueLong = propMappedListValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional');
 	const valueFloat = propMappedListValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional');
 	const valueDouble = propMappedListValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional');
 	const valueString = propMappedListValue('valueString', $value, isString, RSDStringFromJSON, 'optional');
@@ -872,7 +872,7 @@ export function SimpleRecord_Basic_List_NullFromJSON($value: Record<string, unkn
 	const valueBoolean = propMappedListValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'null');
 	const valueShort = propMappedListValue('valueShort', $value, isNumber, RSDShortFromJSON, 'null');
 	const valueInt = propMappedListValue('valueInt', $value, isNumber, RSDIntFromJSON, 'null');
-	const valueLong = propMappedListValue('valueLong', $value, isString, RSDLongFromJSON, 'null');
+	const valueLong = propMappedListValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'null');
 	const valueFloat = propMappedListValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'null');
 	const valueDouble = propMappedListValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'null');
 	const valueString = propMappedListValue('valueString', $value, isString, RSDStringFromJSON, 'null');
@@ -903,7 +903,7 @@ export function SimpleRecord_Basic_List_Optional_NullFromJSON($value: Record<str
 	const valueBoolean = propMappedListValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional_null');
 	const valueShort = propMappedListValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional_null');
 	const valueInt = propMappedListValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional_null');
-	const valueLong = propMappedListValue('valueLong', $value, isString, RSDLongFromJSON, 'optional_null');
+	const valueLong = propMappedListValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional_null');
 	const valueFloat = propMappedListValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional_null');
 	const valueDouble = propMappedListValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional_null');
 	const valueString = propMappedListValue('valueString', $value, isString, RSDStringFromJSON, 'optional_null');

@@ -3,6 +3,7 @@ import { ListBodyParameterTypesService } from '../../test-specs/gen-out/client/t
 import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { ListBodyParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/ListBodyParameterTypesApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
+import { RSDLong, RSDLongFromJSON } from '../../test-specs/gen-out/client/typescript-client/src/model/Builtins.js';
 
 export function createOpenAPIListBodyParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -231,14 +232,14 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 	}
 
 	async listLongBodyParam(
-		bodyLong: number[],
-	): Promise<api.result.Result<number[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		bodyLong: RSDLong[],
+	): Promise<api.result.Result<RSDLong[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.listBodyParameterTypesListLongBodyParamRaw({
-				requestBody: bodyLong,
+				requestBody: bodyLong.map(Number),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()).map(RSDLongFromJSON));
 			}
 			return api.result.ERR(toRSDError(response));
 		} catch (error) {
@@ -247,11 +248,11 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 	}
 
 	async listLongBodyParamOpt(
-		bodyLong?: number[],
+		bodyLong?: RSDLong[],
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.listBodyParameterTypesListLongBodyParamOptRaw({
-				requestBody: bodyLong,
+				requestBody: bodyLong?.map(Number),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -263,11 +264,11 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 	}
 
 	async listLongBodyParamNil(
-		bodyLong: number[] | null,
+		bodyLong: RSDLong[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.listBodyParameterTypesListLongBodyParamNilRaw({
-				requestBody: bodyLong,
+				requestBody: bodyLong ? bodyLong.map(Number) : bodyLong,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -279,11 +280,11 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 	}
 
 	async listLongBodyParamOptNil(
-		bodyLong?: number[] | null,
+		bodyLong?: RSDLong[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.listBodyParameterTypesListLongBodyParamOptNilRaw({
-				requestBody: bodyLong,
+				requestBody: bodyLong === undefined ? undefined : bodyLong === null ? null : bodyLong.map(Number),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());

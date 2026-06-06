@@ -54,16 +54,21 @@ export function isRSDOffsetDateTime(value: unknown): value is RSDOffsetDateTime 
     return typeof value === 'string';
 }
 
-export type RSDLong = number;
+export type RSDLong = bigint;
 export function isRSDLong(value: unknown): value is RSDLong {
-    return typeof value === 'number' 
-        && Number.isInteger(value);
+    return typeof value === 'bigint';
 }
-export function RSDLongFromJSON(value: string): RSDLong {
-    return parseInt(value, 10);
+export function RSDLongFromJSON(value: bigint | number): RSDLong {
+    if(typeof value === 'bigint') {
+        return value;
+    }
+    return BigInt(value);
 }
-export function RSDLongToJSON(value: RSDLong): string {
-    return value.toString();
+export function RSDLongToJSON(value: RSDLong): bigint | number {
+    if(Number.MIN_SAFE_INTEGER <= value && value <= Number.MAX_SAFE_INTEGER) {
+        return Number(value);
+    }
+    return value;
 }
 
 export type RSDInt = number;

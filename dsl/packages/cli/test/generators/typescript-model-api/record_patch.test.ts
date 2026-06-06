@@ -1151,7 +1151,7 @@ export function PatchableRecord_BasicPatchFromJSON($value: Record<string, unknow
 	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional');
 	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional');
 	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional');
-	const valueLong = propMappedValue('valueLong', $value, isString, RSDLongFromJSON, 'optional');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional');
 	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional');
 	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional');
 	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'optional');
@@ -1186,7 +1186,7 @@ export function PatchableRecord_Basic_OptionalPatchFromJSON($value: Record<strin
 	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional_null');
 	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional_null');
 	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional_null');
-	const valueLong = propMappedValue('valueLong', $value, isString, RSDLongFromJSON, 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional_null');
 	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional_null');
 	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional_null');
 	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'optional_null');
@@ -1221,7 +1221,7 @@ export function PatchableRecord_Basic_NullPatchFromJSON($value: Record<string, u
 	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional_null');
 	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional_null');
 	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional_null');
-	const valueLong = propMappedValue('valueLong', $value, isString, RSDLongFromJSON, 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional_null');
 	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional_null');
 	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional_null');
 	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'optional_null');
@@ -1256,7 +1256,7 @@ export function PatchableRecord_Basic_Optional_NullPatchFromJSON($value: Record<
 	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional_null');
 	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional_null');
 	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional_null');
-	const valueLong = propMappedValue('valueLong', $value, isString, RSDLongFromJSON, 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional_null');
 	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional_null');
 	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional_null');
 	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'optional_null');
@@ -1291,7 +1291,7 @@ export function PatchableRecord_Basic_ListPatchFromJSON($value: Record<string, u
 	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => isListReplace(v, isBoolean) ? ListReplaceFromJSON(v, isBoolean, RSDBooleanFromJSON) : ListMergeAddRemoveFromJSON(v, isBoolean, RSDBooleanFromJSON, isBoolean, RSDBooleanFromJSON), 'optional');
 	const valueShort = propMappedValue('valueShort', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDShortFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDShortFromJSON, isNumber, RSDShortFromJSON), 'optional');
 	const valueInt = propMappedValue('valueInt', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDIntFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDIntFromJSON, isNumber, RSDIntFromJSON), 'optional');
-	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLongFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLongFromJSON, isString, RSDLongFromJSON), 'optional');
+	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isNumeric) ? ListReplaceFromJSON(v, isNumeric, RSDLongFromJSON) : ListMergeAddRemoveFromJSON(v, isNumeric, RSDLongFromJSON, isNumeric, RSDLongFromJSON), 'optional');
 	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDFloatFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDFloatFromJSON, isNumber, RSDFloatFromJSON), 'optional');
 	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDDoubleFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDDoubleFromJSON, isNumber, RSDDoubleFromJSON), 'optional');
 	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDStringFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDStringFromJSON, isString, RSDStringFromJSON), 'optional');
@@ -1326,7 +1326,7 @@ export function PatchableRecord_Basic_List_OptionalPatchFromJSON($value: Record<
 	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => isListReplace(v, isBoolean) ? ListReplaceFromJSON(v, isBoolean, RSDBooleanFromJSON) : ListMergeAddRemoveFromJSON(v, isBoolean, RSDBooleanFromJSON, isBoolean, RSDBooleanFromJSON), 'optional_null');
 	const valueShort = propMappedValue('valueShort', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDShortFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDShortFromJSON, isNumber, RSDShortFromJSON), 'optional_null');
 	const valueInt = propMappedValue('valueInt', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDIntFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDIntFromJSON, isNumber, RSDIntFromJSON), 'optional_null');
-	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLongFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLongFromJSON, isString, RSDLongFromJSON), 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isNumeric) ? ListReplaceFromJSON(v, isNumeric, RSDLongFromJSON) : ListMergeAddRemoveFromJSON(v, isNumeric, RSDLongFromJSON, isNumeric, RSDLongFromJSON), 'optional_null');
 	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDFloatFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDFloatFromJSON, isNumber, RSDFloatFromJSON), 'optional_null');
 	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDDoubleFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDDoubleFromJSON, isNumber, RSDDoubleFromJSON), 'optional_null');
 	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDStringFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDStringFromJSON, isString, RSDStringFromJSON), 'optional_null');
@@ -1360,7 +1360,7 @@ export function PatchableRecord_Basic_List_NullPatchFromJSON($value: Record<stri
 	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => isListReplace(v, isBoolean) ? ListReplaceFromJSON(v, isBoolean, RSDBooleanFromJSON) : ListMergeAddRemoveFromJSON(v, isBoolean, RSDBooleanFromJSON, isBoolean, RSDBooleanFromJSON), 'optional_null');
 	const valueShort = propMappedValue('valueShort', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDShortFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDShortFromJSON, isNumber, RSDShortFromJSON), 'optional_null');
 	const valueInt = propMappedValue('valueInt', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDIntFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDIntFromJSON, isNumber, RSDIntFromJSON), 'optional_null');
-	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLongFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLongFromJSON, isString, RSDLongFromJSON), 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isNumeric) ? ListReplaceFromJSON(v, isNumeric, RSDLongFromJSON) : ListMergeAddRemoveFromJSON(v, isNumeric, RSDLongFromJSON, isNumeric, RSDLongFromJSON), 'optional_null');
 	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDFloatFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDFloatFromJSON, isNumber, RSDFloatFromJSON), 'optional_null');
 	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDDoubleFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDDoubleFromJSON, isNumber, RSDDoubleFromJSON), 'optional_null');
 	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDStringFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDStringFromJSON, isString, RSDStringFromJSON), 'optional_null');
@@ -1395,7 +1395,7 @@ export function PatchableRecord_Basic_List_Optional_NullPatchFromJSON($value: Re
 	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => isListReplace(v, isBoolean) ? ListReplaceFromJSON(v, isBoolean, RSDBooleanFromJSON) : ListMergeAddRemoveFromJSON(v, isBoolean, RSDBooleanFromJSON, isBoolean, RSDBooleanFromJSON), 'optional_null');
 	const valueShort = propMappedValue('valueShort', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDShortFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDShortFromJSON, isNumber, RSDShortFromJSON), 'optional_null');
 	const valueInt = propMappedValue('valueInt', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDIntFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDIntFromJSON, isNumber, RSDIntFromJSON), 'optional_null');
-	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLongFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLongFromJSON, isString, RSDLongFromJSON), 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isNumeric) ? ListReplaceFromJSON(v, isNumeric, RSDLongFromJSON) : ListMergeAddRemoveFromJSON(v, isNumeric, RSDLongFromJSON, isNumeric, RSDLongFromJSON), 'optional_null');
 	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDFloatFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDFloatFromJSON, isNumber, RSDFloatFromJSON), 'optional_null');
 	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDDoubleFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDDoubleFromJSON, isNumber, RSDDoubleFromJSON), 'optional_null');
 	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDStringFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDStringFromJSON, isString, RSDStringFromJSON), 'optional_null');

@@ -130,9 +130,9 @@ describe('SingleHeaderParameterTypesService', () => {
 
 	describe('simpleLongHeaderParam', () => {
 		test.each([json, msgpack, openApi])('success - 1234567890123 with $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleLongHeaderParam(1234567890123);
+			const [result, error] = await service.simpleLongHeaderParam(1234567890123n);
 			expect(error).toBeNull();
-			expect(result).toBe(1234567890123);
+			expect(result).toBe(1234567890123n);
 		});
 	});
 	describe('simpleLongHeaderParamOpt', () => {

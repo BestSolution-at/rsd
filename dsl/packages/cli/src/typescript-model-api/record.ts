@@ -898,6 +898,8 @@ function builtinFromJsonTypeGuard(type: MBuiltinType, fqn: (v: string, typeOnly:
 		return fqn('isBoolean:../_type-utils.ts', false);
 	} else if (type === 'double' || type === 'float' || type === 'int' || type === 'short') {
 		return fqn('isNumber:../_type-utils.ts', false);
+	} else if (type === 'long') {
+		return fqn('isNumeric:../_type-utils.ts', false);
 	} else {
 		return fqn('isString:../_type-utils.ts', false);
 	}

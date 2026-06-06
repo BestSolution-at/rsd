@@ -4,6 +4,7 @@ import { UnionFromJSON } from '../../test-specs/gen-out/client/typescript-client
 import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { SampleServiceApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/SampleServiceApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
+import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/Builtins.js';
 
 export function createOpenAPISampleServiceService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -74,11 +75,11 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-	async getLong(): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
+	async getLong(): Promise<api.result.Result<RSDLong, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.sampleServiceGetLongRaw();
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(BigInt(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {

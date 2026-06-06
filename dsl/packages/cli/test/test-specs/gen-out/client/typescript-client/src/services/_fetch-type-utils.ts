@@ -63,10 +63,10 @@ export function decodeAsciiString(text: string): string {
 
 export function encodeValue(type: ContentTypeEncodings, value: unknown) {
 	switch (type) {
-	case 'application/vnd.msgpack':
-		return encodeMsgPackBody(value);
-	default:
-		return encodeJsonBody(value);
+		case 'application/vnd.msgpack':
+			return encodeMsgPackBody(value);
+		default:
+			return encodeJsonBody(value);
 	}
 }
 
@@ -77,7 +77,7 @@ function encodeJsonBody(body: unknown): string {
 	return JSON.stringify(body);
 }
 
-const encoder = new Encoder({ ignoreUndefined: true });
+const encoder = new Encoder({ ignoreUndefined: true, useBigInt64: true });
 function encodeMsgPackBody(body: unknown): Uint8Array {
 	if (body === undefined) {
 		return new Uint8Array();
@@ -105,7 +105,7 @@ async function decodeJsonBody<T>(response: Response, guard: (value: unknown) => 
 	return data;
 }
 
-const decoder = new Decoder();
+const decoder = new Decoder({ useBigInt64: true });
 async function decodeMsgPackBody<T>(response: Response, guard: (value: unknown) => value is T): Promise<T> {
 	const arrayBuffer = await response.arrayBuffer();
 	const data = decoder.decode(arrayBuffer);
@@ -114,4 +114,3 @@ async function decodeMsgPackBody<T>(response: Response, guard: (value: unknown) 
 	}
 	return data;
 }
-

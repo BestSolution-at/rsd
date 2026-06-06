@@ -1,12 +1,13 @@
 import { describe, expect, test } from 'vitest';
 import {
 	isSimpleRecord_Basic,
+	SimpleRecord_Basic,
 	SimpleRecord_BasicFromJSON,
 	SimpleRecord_BasicToJSON,
 } from '../../test-specs/gen-out/client/typescript-client/src/model/SimpleRecord_Basic.js';
 import { addFooProperty, invalidateProperty, removeProperty } from './utils.js';
 
-const Simple = {
+const Simple: SimpleRecord_Basic = {
 	valueBoolean: true,
 	valueDouble: 1.5,
 	valueFloat: 1.5,
@@ -15,7 +16,7 @@ const Simple = {
 	valueLocalDateTime: '2025-01-01T10:00:00',
 	valueLocalTime: '10:00:00',
 	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
-	valueLong: 1,
+	valueLong: BigInt(1),
 	valueShort: 1,
 	valueString: 'Foo',
 	valueZonedDateTime: '2025-01-01T10:00:00Z',
@@ -30,7 +31,7 @@ const Simple_Json = {
 	valueLocalDateTime: '2025-01-01T10:00:00',
 	valueLocalTime: '10:00:00',
 	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
-	valueLong: '1',
+	valueLong: 1,
 	valueShort: 1,
 	valueString: 'Foo',
 	valueZonedDateTime: '2025-01-01T10:00:00Z',

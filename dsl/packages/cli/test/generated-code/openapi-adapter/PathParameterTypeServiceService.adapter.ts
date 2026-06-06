@@ -3,6 +3,7 @@ import { PathParameterTypeServiceService } from '../../test-specs/gen-out/client
 import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { PathParameterTypeServiceApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/PathParameterTypeServiceApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
+import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/Builtins.js';
 
 export function createOpenAPIPathParameterTypeServiceService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -82,12 +83,14 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 	}
 
 	async simpleLongPathParam(
-		pathLong: number,
-	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		pathLong: RSDLong,
+	): Promise<api.result.Result<RSDLong, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.pathParameterTypeServiceSimpleLongPathParamRaw({ pathLong });
+			const response = await this.deletegate.pathParameterTypeServiceSimpleLongPathParamRaw({
+				pathLong: Number(pathLong),
+			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(BigInt(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {

@@ -150,7 +150,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getLong();
 			expect(error).toBeNull();
-			expect(result).toBe(1234567890123);
+			expect(result).toBe(1234567890123n);
 		});
 		test('fail - invalid data', async () => {
 			const [result, error] = await serviceFailInvalid.getLong();
