@@ -622,9 +622,9 @@ export function FromJSONPatch(
 					if (isMBuiltinType(p.type)) {
 						guard = builtinFromJsonTypeGuard(p.type, fqn);
 					} else if (isMInlineEnumType(p.type)) {
-						guard = `is${t.name}_${toFirstUpper(p.name)}`;
+						guard = fqn('isString:../_type-utils.ts', false);
 					} else if (p.variant === 'enum') {
-						guard = fqn(`is${p.type}:./${p.type}.ts`, false);
+						guard = fqn('isString:../_type-utils.ts', false);
 					} else if (p.variant === 'scalar') {
 						guard = fqn('isString:../_type-utils.ts', false);
 					} else {

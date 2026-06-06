@@ -234,13 +234,13 @@ export function isPatchableEnumInlineRecordPatch(value: unknown): value is Patch
 export function PatchableEnumInlineRecordPatchFromJSON($value: Record<string, unknown>): PatchableEnumInlineRecordPatch {
 	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
 	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
-	const value = propMappedValue('value', $value, isPatchableEnumInlineRecord_Value, PatchableEnumInlineRecord_ValueFromJSON, 'optional');
-	const value_Null = propMappedValue('value_Null', $value, isPatchableEnumInlineRecord_Value_Null, PatchableEnumInlineRecord_Value_NullFromJSON, 'optional_null');
-	const value_Opt = propMappedValue('value_Opt', $value, isPatchableEnumInlineRecord_Value_Opt, PatchableEnumInlineRecord_Value_OptFromJSON, 'optional_null');
-	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isPatchableEnumInlineRecord_Value_Opt_Null, PatchableEnumInlineRecord_Value_Opt_NullFromJSON, 'optional_null');
-	const list = propMappedValue('list', $value, isRecord, v => isListReplace(v, isPatchableEnumInlineRecord_List) ? ListReplaceFromJSON(v, isPatchableEnumInlineRecord_List, PatchableEnumInlineRecord_ListFromJSON) : ListMergeAddRemoveFromJSON(v, isPatchableEnumInlineRecord_List, PatchableEnumInlineRecord_ListFromJSON, isPatchableEnumInlineRecord_List, PatchableEnumInlineRecord_ListFromJSON), 'optional');
-	const list_Null = propMappedValue('list_Null', $value, isRecord, v => isListReplace(v, isPatchableEnumInlineRecord_List_Null) ? ListReplaceFromJSON(v, isPatchableEnumInlineRecord_List_Null, PatchableEnumInlineRecord_List_NullFromJSON) : ListMergeAddRemoveFromJSON(v, isPatchableEnumInlineRecord_List_Null, PatchableEnumInlineRecord_List_NullFromJSON, isPatchableEnumInlineRecord_List_Null, PatchableEnumInlineRecord_List_NullFromJSON), 'optional_null');
-	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => isListReplace(v, isPatchableEnumInlineRecord_List_Opt_Null) ? ListReplaceFromJSON(v, isPatchableEnumInlineRecord_List_Opt_Null, PatchableEnumInlineRecord_List_Opt_NullFromJSON) : ListMergeAddRemoveFromJSON(v, isPatchableEnumInlineRecord_List_Opt_Null, PatchableEnumInlineRecord_List_Opt_NullFromJSON, isPatchableEnumInlineRecord_List_Opt_Null, PatchableEnumInlineRecord_List_Opt_NullFromJSON), 'optional_null');
+	const value = propMappedValue('value', $value, isString, PatchableEnumInlineRecord_ValueFromJSON, 'optional');
+	const value_Null = propMappedValue('value_Null', $value, isString, PatchableEnumInlineRecord_Value_NullFromJSON, 'optional_null');
+	const value_Opt = propMappedValue('value_Opt', $value, isString, PatchableEnumInlineRecord_Value_OptFromJSON, 'optional_null');
+	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isString, PatchableEnumInlineRecord_Value_Opt_NullFromJSON, 'optional_null');
+	const list = propMappedValue('list', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, PatchableEnumInlineRecord_ListFromJSON) : ListMergeAddRemoveFromJSON(v, isString, PatchableEnumInlineRecord_ListFromJSON, isString, PatchableEnumInlineRecord_ListFromJSON), 'optional');
+	const list_Null = propMappedValue('list_Null', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, PatchableEnumInlineRecord_List_NullFromJSON) : ListMergeAddRemoveFromJSON(v, isString, PatchableEnumInlineRecord_List_NullFromJSON, isString, PatchableEnumInlineRecord_List_NullFromJSON), 'optional_null');
+	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, PatchableEnumInlineRecord_List_Opt_NullFromJSON) : ListMergeAddRemoveFromJSON(v, isString, PatchableEnumInlineRecord_List_Opt_NullFromJSON, isString, PatchableEnumInlineRecord_List_Opt_NullFromJSON), 'optional_null');
 	return {
 		key,
 		version,
