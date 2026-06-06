@@ -162,3 +162,79 @@ export function builtinTypeGuard(
 		return fqn(`isRSDZonedDateTime:${relativePath}Builtins.ts`, false);
 	}
 }
+
+export function builtinFromJsonTypeGuard(type: MBuiltinType, fqn: (v: string, typeOnly: boolean) => string) {
+	if (type === 'boolean') {
+		return fqn('isBoolean:../_type-utils.ts', false);
+	} else if (type === 'double' || type === 'float' || type === 'int' || type === 'short') {
+		return fqn('isNumber:../_type-utils.ts', false);
+	} else if (type === 'long') {
+		return fqn('isNumeric:../_type-utils.ts', false);
+	} else {
+		return fqn('isString:../_type-utils.ts', false);
+	}
+}
+
+export function builtinFromJSON(
+	type: MBuiltinType,
+	fqn: (v: string, typeOnly: boolean) => string,
+	relativePath: string,
+): string {
+	if (type === 'local-date-time') {
+		return fqn(`RSDLocalDateTimeFromJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'local-date') {
+		return fqn(`RSDLocalDateFromJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'local-time') {
+		return fqn(`RSDLocalTimeFromJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'offset-date-time') {
+		return fqn(`RSDOffsetDateTimeFromJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'zoned-date-time') {
+		return fqn(`RSDZonedDateTimeFromJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'long') {
+		return fqn(`RSDLongFromJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'double') {
+		return fqn(`RSDDoubleFromJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'float') {
+		return fqn(`RSDFloatFromJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'int') {
+		return fqn(`RSDIntFromJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'short') {
+		return fqn(`RSDShortFromJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'boolean') {
+		return fqn(`RSDBooleanFromJSON:${relativePath}Builtins.ts`, false);
+	} else {
+		return fqn(`RSDStringFromJSON:${relativePath}Builtins.ts`, false);
+	}
+}
+
+export function builtinToJSON(
+	type: MBuiltinType,
+	fqn: (v: string, typeOnly: boolean) => string,
+	relativePath: string,
+): string {
+	if (type === 'local-date-time') {
+		return fqn(`RSDLocalDateTimeToJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'local-date') {
+		return fqn(`RSDLocalDateToJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'local-time') {
+		return fqn(`RSDLocalTimeToJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'offset-date-time') {
+		return fqn(`RSDOffsetDateTimeToJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'zoned-date-time') {
+		return fqn(`RSDZonedDateTimeToJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'long') {
+		return fqn(`RSDLongToJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'double') {
+		return fqn(`RSDDoubleToJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'float') {
+		return fqn(`RSDFloatToJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'int') {
+		return fqn(`RSDIntToJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'short') {
+		return fqn(`RSDShortToJSON:${relativePath}Builtins.ts`, false);
+	} else if (type === 'boolean') {
+		return fqn(`RSDBooleanToJSON:${relativePath}Builtins.ts`, false);
+	} else {
+		return fqn(`RSDStringToJSON:${relativePath}Builtins.ts`, false);
+	}
+}
