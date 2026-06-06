@@ -931,14 +931,14 @@ export function SimpleRecord_Basic_List_Optional_NullFromJSON($value: Record<str
 
 const From_Json_EnumRecord = `
 export function EnumRecordFromJSON($value: Record<string, unknown>): EnumRecord {
-	const value = propValue('value', $value, isSampleEnum);
-	const value_Null = propValue('value_Null', $value, isSampleEnum, 'null');
-	const value_Opt = propValue('value_Opt', $value, isSampleEnum, 'optional');
-	const value_Opt_Null = propValue('value_Opt_Null', $value, isSampleEnum, 'optional_null');
-	const list = propListValue('list', $value, isSampleEnum);
-	const list_Null = propListValue('list_Null', $value, isSampleEnum, 'null');
-	const list_Opt = propListValue('list_Opt', $value, isSampleEnum, 'optional');
-	const list_Opt_Null = propListValue('list_Opt_Null', $value, isSampleEnum, 'optional_null');
+	const value = propMappedValue('value', $value, isString, SampleEnumFromJSON);
+	const value_Null = propMappedValue('value_Null', $value, isString, SampleEnumFromJSON, 'null');
+	const value_Opt = propMappedValue('value_Opt', $value, isString, SampleEnumFromJSON, 'optional');
+	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isString, SampleEnumFromJSON, 'optional_null');
+	const list = propMappedListValue('list', $value, isString, SampleEnumFromJSON);
+	const list_Null = propMappedListValue('list_Null', $value, isString, SampleEnumFromJSON, 'null');
+	const list_Opt = propMappedListValue('list_Opt', $value, isString, SampleEnumFromJSON, 'optional');
+	const list_Opt_Null = propMappedListValue('list_Opt_Null', $value, isString, SampleEnumFromJSON, 'optional_null');
 	return {
 		value,
 		value_Null,
@@ -954,13 +954,13 @@ export function EnumRecordFromJSON($value: Record<string, unknown>): EnumRecord 
 
 const From_Json_EnumInlineRecord = `
 export function EnumInlineRecordFromJSON($value: Record<string, unknown>): EnumInlineRecord {
-	const value = propValue('value', $value, isEnumInlineRecord_Value);
-	const value_Null = propValue('value_Null', $value, isEnumInlineRecord_Value_Null, 'null');
-	const value_Opt = propValue('value_Opt', $value, isEnumInlineRecord_Value_Opt, 'optional');
-	const value_Opt_Null = propValue('value_Opt_Null', $value, isEnumInlineRecord_Value_Opt_Null, 'optional_null');
-	const list = propListValue('list', $value, isEnumInlineRecord_List);
-	const list_Null = propListValue('list_Null', $value, isEnumInlineRecord_List_Null, 'null');
-	const list_Opt_Null = propListValue('list_Opt_Null', $value, isEnumInlineRecord_List_Opt_Null, 'optional_null');
+	const value = propMappedValue('value', $value, isEnumInlineRecord_Value, EnumInlineRecord_ValueFromJSON);
+	const value_Null = propMappedValue('value_Null', $value, isEnumInlineRecord_Value_Null, EnumInlineRecord_Value_NullFromJSON, 'null');
+	const value_Opt = propMappedValue('value_Opt', $value, isEnumInlineRecord_Value_Opt, EnumInlineRecord_Value_OptFromJSON, 'optional');
+	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isEnumInlineRecord_Value_Opt_Null, EnumInlineRecord_Value_Opt_NullFromJSON, 'optional_null');
+	const list = propMappedListValue('list', $value, isEnumInlineRecord_List, EnumInlineRecord_ListFromJSON);
+	const list_Null = propMappedListValue('list_Null', $value, isEnumInlineRecord_List_Null, EnumInlineRecord_List_NullFromJSON, 'null');
+	const list_Opt_Null = propMappedListValue('list_Opt_Null', $value, isEnumInlineRecord_List_Opt_Null, EnumInlineRecord_List_Opt_NullFromJSON, 'optional_null');
 	return {
 		value,
 		value_Null,
@@ -1414,14 +1414,14 @@ export function SimpleRecord_Basic_List_Optional_NullToJSON($value: SimpleRecord
 
 const ToJson_EnumRecord = `
 export function EnumRecordToJSON($value: EnumRecord): Record<string, unknown> {
-	const value = $value.value;
-	const value_Null = $value.value_Null;
-	const value_Opt = $value.value_Opt;
-	const value_Opt_Null = $value.value_Opt_Null;
-	const list = $value.list;
-	const list_Null = $value.list_Null;
-	const list_Opt = $value.list_Opt;
-	const list_Opt_Null = $value.list_Opt_Null;
+	const value = SampleEnumToJSON($value.value);
+	const value_Null = isNull($value.value_Null) ? null : SampleEnumToJSON($value.value_Null);
+	const value_Opt = isUndefined($value.value_Opt) ? undefined : SampleEnumToJSON($value.value_Opt);
+	const value_Opt_Null = isUndefined($value.value_Opt_Null) || isNull($value.value_Opt_Null) ? $value.value_Opt_Null : SampleEnumToJSON($value.value_Opt_Null);
+	const list = $value.list.map(SampleEnumToJSON);
+	const list_Null = isNull($value.list_Null) ? null : $value.list_Null.map(SampleEnumToJSON);
+	const list_Opt = isUndefined($value.list_Opt) ? undefined : $value.list_Opt.map(SampleEnumToJSON);
+	const list_Opt_Null = isUndefined($value.list_Opt_Null) || isNull($value.list_Opt_Null) ? $value.list_Opt_Null : $value.list_Opt_Null.map(SampleEnumToJSON);
 
 	return {
 		value,
@@ -1438,13 +1438,13 @@ export function EnumRecordToJSON($value: EnumRecord): Record<string, unknown> {
 
 const ToJson_EnumInlineRecord = `
 export function EnumInlineRecordToJSON($value: EnumInlineRecord): Record<string, unknown> {
-	const value = $value.value;
-	const value_Null = $value.value_Null;
-	const value_Opt = $value.value_Opt;
-	const value_Opt_Null = $value.value_Opt_Null;
-	const list = $value.list;
-	const list_Null = $value.list_Null;
-	const list_Opt_Null = $value.list_Opt_Null;
+	const value = EnumInlineRecord_ValueToJSON($value.value);
+	const value_Null = isNull($value.value_Null) ? null : EnumInlineRecord_Value_NullToJSON($value.value_Null);
+	const value_Opt = isUndefined($value.value_Opt) ? undefined : EnumInlineRecord_Value_OptToJSON($value.value_Opt);
+	const value_Opt_Null = isUndefined($value.value_Opt_Null) || isNull($value.value_Opt_Null) ? $value.value_Opt_Null : EnumInlineRecord_Value_Opt_NullToJSON($value.value_Opt_Null);
+	const list = $value.list.map(EnumInlineRecord_ListToJSON);
+	const list_Null = isNull($value.list_Null) ? null : $value.list_Null.map(EnumInlineRecord_List_NullToJSON);
+	const list_Opt_Null = isUndefined($value.list_Opt_Null) || isNull($value.list_Opt_Null) ? $value.list_Opt_Null : $value.list_Opt_Null.map(EnumInlineRecord_List_Opt_NullToJSON);
 
 	return {
 		value,
@@ -1460,14 +1460,14 @@ export function EnumInlineRecordToJSON($value: EnumInlineRecord): Record<string,
 
 const ToJson_ScalarRecord = `
 export function ScalarRecordToJSON($value: ScalarRecord): Record<string, unknown> {
-	const value = $value.value;
-	const value_Null = $value.value_Null;
-	const value_Opt = $value.value_Opt;
-	const value_Opt_Null = $value.value_Opt_Null;
-	const list = $value.list;
-	const list_Null = $value.list_Null;
-	const list_Opt = $value.list_Opt;
-	const list_Opt_Null = $value.list_Opt_Null;
+	const value = ZoneIdToJSON($value.value);
+	const value_Null = isNull($value.value_Null) ? null : ZoneIdToJSON($value.value_Null);
+	const value_Opt = isUndefined($value.value_Opt) ? undefined : ZoneIdToJSON($value.value_Opt);
+	const value_Opt_Null = isUndefined($value.value_Opt_Null) || isNull($value.value_Opt_Null) ? $value.value_Opt_Null : ZoneIdToJSON($value.value_Opt_Null);
+	const list = $value.list.map(ZoneIdToJSON);
+	const list_Null = isNull($value.list_Null) ? null : $value.list_Null.map(ZoneIdToJSON);
+	const list_Opt = isUndefined($value.list_Opt) ? undefined : $value.list_Opt.map(ZoneIdToJSON);
+	const list_Opt_Null = isUndefined($value.list_Opt_Null) || isNull($value.list_Opt_Null) ? $value.list_Opt_Null : $value.list_Opt_Null.map(ZoneIdToJSON);
 
 	return {
 		value,

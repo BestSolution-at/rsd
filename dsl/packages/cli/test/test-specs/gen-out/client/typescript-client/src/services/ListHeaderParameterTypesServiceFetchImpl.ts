@@ -8,6 +8,29 @@ function isListInlineEnumHeaderParamResult(value: unknown): value is 'A' | 'B' {
 	return value === 'A' || value === 'B';
 }
 
+function ListInlineEnumHeaderParamResultFromJSON(value: string): 'A' | 'B' {
+	if(!isListInlineEnumHeaderParamResult(value)) {
+		throw new Error('Invalid value for ListInlineEnumHeaderParamResult');
+	}
+	return value;
+}
+
+function ListInlineEnumHeaderParam_HeaderValueToJSON(value: 'A' | 'B'): string {
+	return value;
+}
+
+function ListInlineEnumHeaderParamOpt_HeaderValueToJSON(value: 'A' | 'B'): string {
+	return value;
+}
+
+function ListInlineEnumHeaderParamNil_HeaderValueToJSON(value: 'C' | 'D'): string {
+	return value;
+}
+
+function ListInlineEnumHeaderParamOptNil_HeaderValueToJSON(value: 'C' | 'D'): string {
+	return value;
+}
+
 export function createListHeaderParameterTypesService(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService {
 	return {
 		listBooleanHeaderParam: fnListBooleanHeaderParam(props),
@@ -135,8 +158,8 @@ function fnListBooleanHeaderParamOpt(props: ServiceProps<api.service.ErrorType>)
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listBooleanHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -174,8 +197,8 @@ function fnListBooleanHeaderParamNil(props: ServiceProps<api.service.ErrorType>)
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listBooleanHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -213,8 +236,8 @@ function fnListBooleanHeaderParamOptNil(props: ServiceProps<api.service.ErrorTyp
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listBooleanHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -285,8 +308,8 @@ function fnListShortHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): 
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listShortHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -324,8 +347,8 @@ function fnListShortHeaderParamNil(props: ServiceProps<api.service.ErrorType>): 
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listShortHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -363,8 +386,8 @@ function fnListShortHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listShortHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -435,8 +458,8 @@ function fnListIntHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): ap
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listIntHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -474,8 +497,8 @@ function fnListIntHeaderParamNil(props: ServiceProps<api.service.ErrorType>): ap
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listIntHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -513,8 +536,8 @@ function fnListIntHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listIntHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -585,8 +608,8 @@ function fnListLongHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): a
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLongHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -624,8 +647,8 @@ function fnListLongHeaderParamNil(props: ServiceProps<api.service.ErrorType>): a
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLongHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -663,8 +686,8 @@ function fnListLongHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>)
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLongHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -735,8 +758,8 @@ function fnListFloatHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): 
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listFloatHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -774,8 +797,8 @@ function fnListFloatHeaderParamNil(props: ServiceProps<api.service.ErrorType>): 
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listFloatHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -813,8 +836,8 @@ function fnListFloatHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listFloatHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -885,8 +908,8 @@ function fnListDoubleHeaderParamOpt(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listDoubleHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -924,8 +947,8 @@ function fnListDoubleHeaderParamNil(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listDoubleHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -963,8 +986,8 @@ function fnListDoubleHeaderParamOptNil(props: ServiceProps<api.service.ErrorType
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listDoubleHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1035,8 +1058,8 @@ function fnListStringHeaderParamOpt(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listStringHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1074,8 +1097,8 @@ function fnListStringHeaderParamNil(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listStringHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1113,8 +1136,8 @@ function fnListStringHeaderParamOptNil(props: ServiceProps<api.service.ErrorType
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listStringHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1185,8 +1208,8 @@ function fnListLocalDateHeaderParamOpt(props: ServiceProps<api.service.ErrorType
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDateHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1224,8 +1247,8 @@ function fnListLocalDateHeaderParamNil(props: ServiceProps<api.service.ErrorType
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDateHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1263,8 +1286,8 @@ function fnListLocalDateHeaderParamOptNil(props: ServiceProps<api.service.ErrorT
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDateHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1335,8 +1358,8 @@ function fnListLocalDateTimeHeaderParamOpt(props: ServiceProps<api.service.Error
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDateTimeHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1374,8 +1397,8 @@ function fnListLocalDateTimeHeaderParamNil(props: ServiceProps<api.service.Error
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDateTimeHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1413,8 +1436,8 @@ function fnListLocalDateTimeHeaderParamOptNil(props: ServiceProps<api.service.Er
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDateTimeHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1485,8 +1508,8 @@ function fnListLocalTimeHeaderParamOpt(props: ServiceProps<api.service.ErrorType
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalTimeHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1524,8 +1547,8 @@ function fnListLocalTimeHeaderParamNil(props: ServiceProps<api.service.ErrorType
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalTimeHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1563,8 +1586,8 @@ function fnListLocalTimeHeaderParamOptNil(props: ServiceProps<api.service.ErrorT
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalTimeHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1635,8 +1658,8 @@ function fnListOffsetDateTimeHeaderParamOpt(props: ServiceProps<api.service.Erro
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listOffsetDateTimeHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1674,8 +1697,8 @@ function fnListOffsetDateTimeHeaderParamNil(props: ServiceProps<api.service.Erro
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listOffsetDateTimeHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1713,8 +1736,8 @@ function fnListOffsetDateTimeHeaderParamOptNil(props: ServiceProps<api.service.E
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listOffsetDateTimeHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1785,8 +1808,8 @@ function fnListZonedDateTimeHeaderParamOpt(props: ServiceProps<api.service.Error
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listZonedDateTimeHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1824,8 +1847,8 @@ function fnListZonedDateTimeHeaderParamNil(props: ServiceProps<api.service.Error
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listZonedDateTimeHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1863,8 +1886,8 @@ function fnListZonedDateTimeHeaderParamOptNil(props: ServiceProps<api.service.Er
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listZonedDateTimeHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1935,8 +1958,8 @@ function fnListScalarHeaderParamOpt(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listScalarHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1974,8 +1997,8 @@ function fnListScalarHeaderParamNil(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listScalarHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2013,8 +2036,8 @@ function fnListScalarHeaderParamOptNil(props: ServiceProps<api.service.ErrorType
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listScalarHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2048,8 +2071,8 @@ function fnListEnumHeaderParam(props: ServiceProps<api.service.ErrorType>): api.
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isSampleEnum));
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				const $result = $data.map(api.model.SampleEnumFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listEnumHeaderParam', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2085,8 +2108,8 @@ function fnListEnumHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): a
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listEnumHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2124,8 +2147,8 @@ function fnListEnumHeaderParamNil(props: ServiceProps<api.service.ErrorType>): a
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listEnumHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2163,8 +2186,8 @@ function fnListEnumHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>)
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listEnumHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2198,8 +2221,8 @@ function fnListInlineEnumHeaderParam(props: ServiceProps<api.service.ErrorType>)
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, isListInlineEnumHeaderParamResult));
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				const $result = $data.map(ListInlineEnumHeaderParamResultFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listInlineEnumHeaderParam', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2235,8 +2258,8 @@ function fnListInlineEnumHeaderParamOpt(props: ServiceProps<api.service.ErrorTyp
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listInlineEnumHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2274,8 +2297,8 @@ function fnListInlineEnumHeaderParamNil(props: ServiceProps<api.service.ErrorTyp
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listInlineEnumHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2313,8 +2336,8 @@ function fnListInlineEnumHeaderParamOptNil(props: ServiceProps<api.service.Error
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listInlineEnumHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2403,8 +2426,8 @@ function fnListMultiHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): 
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isNilResult));
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				const $result = $data.map(api.model.NilResultFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listMultiHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2457,8 +2480,8 @@ function fnListMultiHeaderParamNil(props: ServiceProps<api.service.ErrorType>): 
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isNilResult));
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				const $result = $data.map(api.model.NilResultFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listMultiHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2511,8 +2534,8 @@ function fnListMultiHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isNilResult));
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				const $result = $data.map(api.model.NilResultFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listMultiHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2585,8 +2608,8 @@ function fnListRecordHeaderParamOpt(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listRecordHeaderParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2625,8 +2648,8 @@ function fnListRecordHeaderParamNil(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listRecordHeaderParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2665,8 +2688,8 @@ function fnListRecordHeaderParamOptNil(props: ServiceProps<api.service.ErrorType
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listRecordHeaderParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;

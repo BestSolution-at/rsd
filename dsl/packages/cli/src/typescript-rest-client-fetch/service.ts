@@ -36,6 +36,74 @@ export function generateService(s: MResolvedService, config: TypescriptFetchClie
 	};
 }
 
+function generateReturnInlineEnumFunctions(o: MResolvedOperation) {
+	const node = new CompositeGeneratorNode();
+	node.append(generateReturnInlineEnumTypeGuard(o));
+	node.append(generateInlineReturnFromJSON(o));
+	return node;
+}
+
+function generateReturnInlineEnumTypeGuard(o: MResolvedOperation) {
+	const node = new CompositeGeneratorNode();
+	const type = o.resultType?.type as MInlineEnumType;
+	node.append(
+		`function is${toFirstUpper(o.name)}Result(value: unknown): value is ${type.entries.map(e => `'${e.name}'`).join(' | ')} {`,
+		NL,
+	);
+	node.indent(body => {
+		body.append('return ');
+		body.append(
+			type.entries
+				.map(e => {
+					return `value === '${e.name}'`;
+				})
+				.join(' || '),
+		);
+		body.append(';', NL);
+	});
+	node.append('}', NL, NL);
+	return node;
+}
+
+function generateInlineReturnFromJSON(o: MResolvedOperation) {
+	const node = new CompositeGeneratorNode();
+	const type = o.resultType?.type as MInlineEnumType;
+	node.append(
+		`function ${toFirstUpper(o.name)}ResultFromJSON(value: string): ${type.entries.map(e => `'${e.name}'`).join(' | ')} {`,
+		NL,
+	);
+	node.indent(body => {
+		body.append(`if(!is${toFirstUpper(o.name)}Result(value)) {`, NL);
+		body.indent(inner => {
+			inner.append(`throw new Error('Invalid value for ${toFirstUpper(o.name)}Result');`, NL);
+		});
+		body.append('}', NL);
+		body.append('return value;', NL);
+	});
+	node.append('}', NL, NL);
+	return node;
+}
+
+function generateOperationParameterInlineEnumFunctions(o: MResolvedOperation, p: MParameter) {
+	const node = new CompositeGeneratorNode();
+	node.append(generateOperationParameterInlineEnumToJSON(o, p));
+	return node;
+}
+
+function generateOperationParameterInlineEnumToJSON(o: MResolvedOperation, p: MParameter) {
+	const node = new CompositeGeneratorNode();
+	const type = p.type as MInlineEnumType;
+	node.append(
+		`function ${toFirstUpper(o.name)}_${toFirstUpper(p.name)}ToJSON(value: ${type.entries.map(e => `'${e.name}'`).join(' | ')}): string {`,
+		NL,
+	);
+	node.indent(body => {
+		body.append('return value;', NL);
+	});
+	node.append('}', NL, NL);
+	return node;
+}
+
 function generateServiceContent(
 	s: MResolvedService,
 	config: TypescriptFetchClientGeneratorConfig,
@@ -49,23 +117,16 @@ function generateServiceContent(
 	s.operations
 		.filter(o => o.resultType?.variant === 'inline-enum')
 		.forEach(o => {
-			const type = o.resultType?.type as MInlineEnumType;
-			node.append(
-				`function is${toFirstUpper(o.name)}Result(value: unknown): value is ${type.entries.map(e => `'${e.name}'`).join(' | ')} {`,
-				NL,
-			);
-			node.indent(body => {
-				body.append('return ');
-				body.append(
-					type.entries
-						.map(e => {
-							return `value === '${e.name}'`;
-						})
-						.join(' || '),
-				);
-				body.append(';', NL);
-			});
-			node.append('}', NL, NL);
+			node.append(generateReturnInlineEnumFunctions(o));
+		});
+	s.operations
+		.filter(o => o.parameters.some(p => isMInlineEnumType(p.type)))
+		.forEach(o => {
+			o.parameters
+				.filter(p => isMInlineEnumType(p.type))
+				.forEach(p => {
+					node.append(generateOperationParameterInlineEnumFunctions(o, p));
+				});
 		});
 	node.append(`export function create${s.name}Service(props: ${ServiceProps}<${ErrorType}>): ${Service} {`, NL);
 	node.indent(mBody => {
@@ -512,44 +573,37 @@ function generateRemoteInvoke(
 					}
 				}
 			} else {
-				if (
-					typeof bodyParams[0].type === 'string' &&
-					(isMBuiltinType(bodyParams[0].type) || bodyParams[0].variant === 'scalar')
-				) {
-					const toJSON = isMBuiltinType(bodyParams[0].type)
-						? builtinToJSON(bodyParams[0].type, fqn, '../model/')
-						: `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${bodyParams[0].type}ToJSON`;
+				let toJSON: string;
 
-					if (bodyParams[0].array) {
-						if (bodyParams[0].nullable || bodyParams[0].optional) {
-							node.append(
-								`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name} ? ${bodyParams[0].name}.map(${toJSON}) : ${bodyParams[0].name});`,
-								NL,
-							);
-						} else {
-							node.append(
-								`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name}.map(${toJSON}));`,
-								NL,
-							);
-						}
+				if (isMBuiltinType(bodyParams[0].type)) {
+					toJSON = builtinToJSON(bodyParams[0].type, fqn, '../model/');
+				} else if (isMInlineEnumType(bodyParams[0].type)) {
+					toJSON = `${toFirstUpper(o.name)}_${toFirstUpper(bodyParams[0].name)}ToJSON`;
+				} else {
+					toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${bodyParams[0].type}ToJSON`;
+				}
+
+				if (bodyParams[0].array) {
+					if (bodyParams[0].nullable || bodyParams[0].optional) {
+						node.append(
+							`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name} ? ${bodyParams[0].name}.map(${toJSON}) : ${bodyParams[0].name});`,
+							NL,
+						);
 					} else {
-						if (bodyParams[0].nullable || bodyParams[0].optional) {
-							node.append(
-								`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name} ? ${toJSON}(${bodyParams[0].name}) : ${bodyParams[0].name});`,
-								NL,
-							);
-						} else {
-							node.append(
-								`const $body = ${encodeValue}(${encodingType}(props), ${toJSON}(${bodyParams[0].name}));`,
-								NL,
-							);
-						}
+						node.append(
+							`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name}.map(${toJSON}));`,
+							NL,
+						);
 					}
 				} else {
-					node.append(
-						`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name}); // Add conversion`,
-						NL,
-					);
+					if (bodyParams[0].nullable || bodyParams[0].optional) {
+						node.append(
+							`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name} ? ${toJSON}(${bodyParams[0].name}) : ${bodyParams[0].name});`,
+							NL,
+						);
+					} else {
+						node.append(`const $body = ${encodeValue}(${encodingType}(props), ${toJSON}(${bodyParams[0].name}));`, NL);
+					}
 				}
 			}
 		} else {
@@ -577,25 +631,27 @@ function generateRemoteInvoke(
 							}
 						}
 					} else {
-						if (typeof p.type === 'string' && (isMBuiltinType(p.type) || p.variant === 'scalar')) {
-							const toJSON = isMBuiltinType(p.type)
-								? builtinToJSON(p.type, fqn, '../model/')
-								: `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
-							if (p.array) {
-								if (p.nullable || p.optional) {
-									struct.append(`${p.name}: ${p.name} ? ${p.name}.map(${toJSON}) : ${p.name},`, NL);
-								} else {
-									struct.append(`${p.name}: ${p.name}.map(${toJSON}),`, NL);
-								}
+						let toJSON: string;
+
+						if (isMBuiltinType(p.type)) {
+							toJSON = builtinToJSON(p.type, fqn, '../model/');
+						} else if (isMInlineEnumType(p.type)) {
+							toJSON = `${toFirstUpper(o.name)}_${toFirstUpper(p.name)}ToJSON`;
+						} else {
+							toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
+						}
+						if (p.array) {
+							if (p.nullable || p.optional) {
+								struct.append(`${p.name}: ${p.name} ? ${p.name}.map(${toJSON}) : ${p.name},`, NL);
 							} else {
-								if (p.nullable || p.optional) {
-									struct.append(`${p.name}: ${p.name} ? ${toJSON}(${p.name}) : ${p.name},`, NL);
-								} else {
-									struct.append(`${p.name}: ${toJSON}(${p.name}),`, NL);
-								}
+								struct.append(`${p.name}: ${p.name}.map(${toJSON}),`, NL);
 							}
 						} else {
-							struct.append(`${p.name}, // Add conversion`, NL);
+							if (p.nullable || p.optional) {
+								struct.append(`${p.name}: ${p.name} ? ${toJSON}(${p.name}) : ${p.name},`, NL);
+							} else {
+								struct.append(`${p.name}: ${toJSON}(${p.name}),`, NL);
+							}
 						}
 					}
 				});
@@ -746,14 +802,18 @@ function handleOkResult(
 					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
 					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
 					node.append(`const $result = $data.map(${fromJSON});`, NL);
+				} else if (o.resultType.variant === 'enum') {
+					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
+					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
+					node.append(`const $result = $data.map(${fromJSON});`, NL);
 				} else if (o.resultType.variant === 'inline-enum') {
-					const guard = `is${toFirstUpper(o.name)}Result`;
+					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+					const fromJSON = `${toFirstUpper(o.name)}ResultFromJSON`;
 					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
-					node.append(`const $result = $data; // Conversion to be done`, NL);
+					node.append(`const $result = $data.map(${fromJSON});`, NL);
 				} else {
-					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
-					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
-					node.append(`const $result = $data; // Conversion to be done`, NL);
+					throw new Error(`Unsupported result type ${o.resultType.variant}`); // To be implemented
 				}
 			} else {
 				if (isMBuiltinType(o.resultType.type)) {
@@ -766,14 +826,18 @@ function handleOkResult(
 					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
 					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
 					node.append(`const $result = ${fromJSON}($data);`, NL);
+				} else if (o.resultType.variant === 'enum') {
+					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
+					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
+					node.append(`const $result = ${fromJSON}($data);`, NL);
 				} else if (o.resultType.variant === 'inline-enum') {
-					const guard = `is${toFirstUpper(o.name)}Result`;
+					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
 					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
-					node.append(`const $result = $data; // Conversion to be done`, NL);
+					const fromJSON = `${toFirstUpper(o.name)}ResultFromJSON`;
+					node.append(`const $result = ${fromJSON}($data);`, NL);
 				} else {
-					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
-					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
-					node.append(`const $result = $data; // Conversion to be done`, NL);
+					throw new Error(`Unsupported result type ${o.resultType.variant}`); // To be implemented
 				}
 			}
 			node.append(`return ${safeExecute}(${OK}($result), () => onSuccess?.('${o.name}', $result));`, NL);
