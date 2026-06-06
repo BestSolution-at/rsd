@@ -156,6 +156,14 @@ describe('SingleBodyParameterTypesServiceFetchImpl', () => {
 			expect(error).toBeNull();
 			expect(result).toBe(1234567890123n);
 		});
+		test.each([json, msgpack /*, openapi*/])(
+			'success - 9223372036854775807 (max 64bitlong) with $encoding',
+			async ({ service }) => {
+				const [result, error] = await service.simpleLongBodyParam(9223372036854775807n);
+				expect(error).toBeNull();
+				expect(result).toBe(9223372036854775807n);
+			},
+		);
 	});
 	describe('simpleLongBodyParamOpt', () => {
 		test.each([json, msgpack, openapi])('success - undefined with $encoding', async ({ service }) => {

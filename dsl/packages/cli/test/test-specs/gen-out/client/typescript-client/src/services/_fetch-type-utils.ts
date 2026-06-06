@@ -74,7 +74,17 @@ function encodeJsonBody(body: unknown): string {
 	if (body === undefined) {
 		return '';
 	}
-	return JSON.stringify(body);
+	return JSON.stringify(body, (_, v: unknown) => {
+		if (typeof v === 'bigint') {
+			if ('rawJSON' in JSON && typeof JSON.rawJSON === 'function') {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
+				return JSON.rawJSON(String(v));
+			} else {
+				throw new Error('BigInt values are not supported in JSON encoding without JSON.rawJSON function');
+			}
+		}
+		return v;
+	});
 }
 
 const encoder = new Encoder({ ignoreUndefined: true, useBigInt64: true });
@@ -98,7 +108,25 @@ export function decodeResponse<T>(response: Response, guard: (value: unknown) =>
 }
 
 async function decodeJsonBody<T>(response: Response, guard: (value: unknown) => value is T): Promise<T> {
-	const data = await response.json();
+	const text = await response.text();
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+	const data = JSON.parse(text, (_, v: unknown, ...args: unknown[]) => {
+		if (typeof v === 'number') {
+			const context = args[0];
+			if (context && typeof context === 'object' && 'source' in context && typeof context.source === 'string') {
+				if (context.source.length > 15 && !context.source.includes('.')) {
+					const bigintValue = BigInt(context.source);
+					if (bigintValue > Number.MAX_SAFE_INTEGER || bigintValue < Number.MIN_SAFE_INTEGER) {
+						return bigintValue;
+					}
+				}
+			} else {
+				throw new Error('Expected reviver function to provide key, value and context parameter');
+			}
+		}
+
+		return v;
+	});
 	if (!guard(data)) {
 		throw new Error('Invalid result');
 	}
