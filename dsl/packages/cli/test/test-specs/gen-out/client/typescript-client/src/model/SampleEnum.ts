@@ -4,3 +4,12 @@ export type SampleEnum = 'A' | 'B';
 export function isSampleEnum(value: unknown) {
 	return value === 'A' || value === 'B';
 }
+export function SampleEnumFromJSON(value: string): SampleEnum {
+	if (!isSampleEnum(value)) {
+		throw new Error('Invalid value for SampleEnum');
+	}
+	return value;
+}
+export function SampleEnumToJSON(value: SampleEnum): string {
+	return value;
+}

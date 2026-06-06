@@ -516,8 +516,8 @@ function fnListEnumQueryParam(props: ServiceProps<api.service.ErrorType>): api.s
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isSampleEnum));
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				const $result = $data.map(api.model.SampleEnumFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listEnumQueryParam', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;

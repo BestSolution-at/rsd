@@ -93,8 +93,8 @@ function fnSimpleBooleanQueryParamOpt(props: ServiceProps<api.service.ErrorType>
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleBooleanQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -163,8 +163,8 @@ function fnSimpleShortQueryParamOpt(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleShortQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -233,8 +233,8 @@ function fnSimpleIntQueryParamOpt(props: ServiceProps<api.service.ErrorType>): a
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleIntQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -303,8 +303,8 @@ function fnSimpleLongQueryParamOpt(props: ServiceProps<api.service.ErrorType>): 
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleLongQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -373,8 +373,8 @@ function fnSimpleFloatQueryParamOpt(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleFloatQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -443,8 +443,8 @@ function fnSimpleDoubleQueryParamOpt(props: ServiceProps<api.service.ErrorType>)
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleDoubleQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -513,8 +513,8 @@ function fnSimpleStringQueryParamOpt(props: ServiceProps<api.service.ErrorType>)
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleStringQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -583,8 +583,8 @@ function fnSimpleLocalDateQueryParamOpt(props: ServiceProps<api.service.ErrorTyp
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleLocalDateQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -653,8 +653,8 @@ function fnSimpleLocalDateTimeQueryParamOpt(props: ServiceProps<api.service.Erro
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleLocalDateTimeQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -723,8 +723,8 @@ function fnSimpleLocalTimeQueryParamOpt(props: ServiceProps<api.service.ErrorTyp
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleLocalTimeQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -793,8 +793,8 @@ function fnSimpleOffsetDateTimeQueryParamOpt(props: ServiceProps<api.service.Err
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleOffsetDateTimeQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -863,8 +863,8 @@ function fnSimpleZonedDateTimeQueryParamOpt(props: ServiceProps<api.service.Erro
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleZonedDateTimeQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -933,8 +933,8 @@ function fnSimpleScalarQueryParamOpt(props: ServiceProps<api.service.ErrorType>)
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleScalarQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -967,8 +967,8 @@ function fnSimpleEnumQueryParam(props: ServiceProps<api.service.ErrorType>): api
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isSampleEnum);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.SampleEnumFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleEnumQueryParam', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1003,8 +1003,8 @@ function fnSimpleEnumQueryParamOpt(props: ServiceProps<api.service.ErrorType>): 
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleEnumQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1149,8 +1149,8 @@ function fnRecordQueryParamOpt(props: ServiceProps<api.service.ErrorType>): api.
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('recordQueryParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;

@@ -514,7 +514,7 @@ function generateRemoteInvoke(
 			} else {
 				if (
 					typeof bodyParams[0].type === 'string' &&
-					(isMBuiltinType(bodyParams[0].type) || bodyParams[0].variant === 'scalar')
+					(isMBuiltinType(bodyParams[0].type) || bodyParams[0].variant === 'scalar' || bodyParams[0].variant === 'enum')
 				) {
 					const toJSON = isMBuiltinType(bodyParams[0].type)
 						? builtinToJSON(bodyParams[0].type, fqn, '../model/')
@@ -577,7 +577,10 @@ function generateRemoteInvoke(
 							}
 						}
 					} else {
-						if (typeof p.type === 'string' && (isMBuiltinType(p.type) || p.variant === 'scalar')) {
+						if (
+							typeof p.type === 'string' &&
+							(isMBuiltinType(p.type) || p.variant === 'scalar' || p.variant === 'enum')
+						) {
 							const toJSON = isMBuiltinType(p.type)
 								? builtinToJSON(p.type, fqn, '../model/')
 								: `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
@@ -746,6 +749,11 @@ function handleOkResult(
 					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
 					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
 					node.append(`const $result = $data.map(${fromJSON});`, NL);
+				} else if (o.resultType.variant === 'enum') {
+					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
+					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
+					node.append(`const $result = $data.map(${fromJSON});`, NL);
 				} else if (o.resultType.variant === 'inline-enum') {
 					const guard = `is${toFirstUpper(o.name)}Result`;
 					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
@@ -762,6 +770,11 @@ function handleOkResult(
 					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
 					node.append(`const $result = ${fromJSON}($data);`, NL);
 				} else if (o.resultType.variant === 'scalar') {
+					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
+					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
+					node.append(`const $result = ${fromJSON}($data);`, NL);
+				} else if (o.resultType.variant === 'enum') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
 					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
 					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);

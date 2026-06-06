@@ -146,13 +146,11 @@ export function FromJSON(
 				const mapper = builtinFromJSON(p.type, fqn, './');
 				const guard = builtinFromJsonTypeGuard(p.type, fqn);
 				fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${mapper});`, NL);
-			} else if (p.variant === 'inline-enum' || p.variant === 'enum') {
+			} else if (p.variant === 'inline-enum') {
 				let guard: string;
 
 				if (isMInlineEnumType(p.type)) {
 					guard = `is${t.name}_${toFirstUpper(p.name)}`;
-				} else if (p.variant === 'enum') {
-					guard = fqn(`is${p.type}:./${p.type}.ts`, false);
 				} else {
 					guard = 'err';
 				}
@@ -191,6 +189,9 @@ export function FromJSON(
 				} else if (p.variant === 'scalar') {
 					guard = fqn('isString:../_type-utils.ts', false);
 					fromJSON = fqn(`${p.type}FromJSON:./Scalars.ts`, false);
+				} else if (p.variant === 'enum') {
+					guard = fqn('isString:../_type-utils.ts', false);
+					fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
 				} else {
 					guard = fqn('isRecord:../_type-utils.ts', false);
 					fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
@@ -254,7 +255,7 @@ export function ToJSON(
 			if (isMKeyProperty(p) || isMRevisionProperty(p)) {
 				const ToJSON = builtinToJSON(p.type, fqn, './');
 				mBody.append(`const ${p.name} = ${ToJSON}($value.${p.name});`, NL);
-			} else if (p.variant === 'inline-enum' || p.variant === 'enum' || p.variant === 'scalar') {
+			} else if (p.variant === 'inline-enum' || p.variant === 'scalar') {
 				mBody.append(`const ${p.name} = $value.${p.name};`, NL);
 			} else {
 				mBody.append(`const ${p.name} = `);
@@ -263,6 +264,8 @@ export function ToJSON(
 
 				if (isMBuiltinType(p.type)) {
 					ToJSON = builtinToJSON(p.type, fqn, './');
+				} else if (p.variant === 'enum') {
+					ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
 				} else {
 					ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
 				}
@@ -622,6 +625,8 @@ export function FromJSONPatch(
 							fromJSON = builtinFromJSON(p.type, fqn, './');
 						} else if (p.variant === 'scalar') {
 							fromJSON = fqn(`${p.type}FromJSON:./Scalars.ts`, false);
+						} else if (p.variant === 'enum') {
+							fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
 						} else {
 							fromJSON = fqn('noopMap:../_type-utils.ts', false);
 						}
@@ -641,6 +646,8 @@ export function FromJSONPatch(
 							fromJSON = builtinFromJSON(p.type, fqn, './');
 						} else if (p.variant === 'scalar') {
 							fromJSON = fqn(`${p.type}FromJSON:./Scalars.ts`, false);
+						} else if (p.variant === 'enum') {
+							fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
 						}
 						if (fromJSON) {
 							const propValue = fqn('propMappedValue:../_type-utils.ts', false);

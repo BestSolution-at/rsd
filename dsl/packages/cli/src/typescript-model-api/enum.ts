@@ -17,5 +17,20 @@ export function generateEnumContent(t: MResolvedEnumType) {
 		mBody.append(';', NL);
 	});
 	node.append('}', NL);
+	node.append(`export function ${t.name}FromJSON(value: string): ${t.name} {`, NL);
+	node.indent(mBody => {
+		mBody.append(`if (!is${t.name}(value)) {`, NL);
+		mBody.indent(casBody => {
+			casBody.append(`throw new Error('Invalid value for ${t.name}');`, NL);
+		});
+		mBody.append('}', NL);
+		mBody.append('return value;', NL);
+	});
+	node.append('}', NL);
+	node.append(`export function ${t.name}ToJSON(value: ${t.name}): string {`, NL);
+	node.indent(mBody => {
+		mBody.append('return value;', NL);
+	});
+	node.append('}', NL);
 	return node;
 }

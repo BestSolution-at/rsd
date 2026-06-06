@@ -464,8 +464,8 @@ function fnGetEnum(props: ServiceProps<api.service.ErrorType>): api.service.Samp
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isSampleEnum);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.SampleEnumFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getEnum', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;

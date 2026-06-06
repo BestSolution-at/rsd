@@ -4,3 +4,12 @@ export type NilResult = 'UNDEFINED' | 'NULL' | 'DEFINED';
 export function isNilResult(value: unknown) {
 	return value === 'UNDEFINED' || value === 'NULL' || value === 'DEFINED';
 }
+export function NilResultFromJSON(value: string): NilResult {
+	if (!isNilResult(value)) {
+		throw new Error('Invalid value for NilResult');
+	}
+	return value;
+}
+export function NilResultToJSON(value: NilResult): string {
+	return value;
+}

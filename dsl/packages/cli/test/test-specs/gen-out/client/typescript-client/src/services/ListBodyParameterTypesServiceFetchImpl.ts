@@ -127,8 +127,8 @@ function fnListBooleanBodyParamOpt(props: ServiceProps<api.service.ErrorType>): 
 			const $body = encodeValue(encodingType(props), bodyBoolean ? bodyBoolean.map(RSDBooleanToJSON) : bodyBoolean);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listBooleanBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -159,8 +159,8 @@ function fnListBooleanBodyParamNil(props: ServiceProps<api.service.ErrorType>): 
 			const $body = encodeValue(encodingType(props), bodyBoolean ? bodyBoolean.map(RSDBooleanToJSON) : bodyBoolean);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listBooleanBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -191,8 +191,8 @@ function fnListBooleanBodyParamOptNil(props: ServiceProps<api.service.ErrorType>
 			const $body = encodeValue(encodingType(props), bodyBoolean ? bodyBoolean.map(RSDBooleanToJSON) : bodyBoolean);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listBooleanBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -255,8 +255,8 @@ function fnListShortBodyParamOpt(props: ServiceProps<api.service.ErrorType>): ap
 			const $body = encodeValue(encodingType(props), bodyShort ? bodyShort.map(RSDShortToJSON) : bodyShort);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listShortBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -287,8 +287,8 @@ function fnListShortBodyParamNil(props: ServiceProps<api.service.ErrorType>): ap
 			const $body = encodeValue(encodingType(props), bodyShort ? bodyShort.map(RSDShortToJSON) : bodyShort);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listShortBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -319,8 +319,8 @@ function fnListShortBodyParamOptNil(props: ServiceProps<api.service.ErrorType>):
 			const $body = encodeValue(encodingType(props), bodyShort ? bodyShort.map(RSDShortToJSON) : bodyShort);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listShortBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -383,8 +383,8 @@ function fnListIntBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.
 			const $body = encodeValue(encodingType(props), bodyInt ? bodyInt.map(RSDIntToJSON) : bodyInt);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listIntBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -415,8 +415,8 @@ function fnListIntBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.
 			const $body = encodeValue(encodingType(props), bodyInt ? bodyInt.map(RSDIntToJSON) : bodyInt);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listIntBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -447,8 +447,8 @@ function fnListIntBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): a
 			const $body = encodeValue(encodingType(props), bodyInt ? bodyInt.map(RSDIntToJSON) : bodyInt);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listIntBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -511,8 +511,8 @@ function fnListLongBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api
 			const $body = encodeValue(encodingType(props), bodyLong ? bodyLong.map(RSDLongToJSON) : bodyLong);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLongBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -543,8 +543,8 @@ function fnListLongBodyParamNil(props: ServiceProps<api.service.ErrorType>): api
 			const $body = encodeValue(encodingType(props), bodyLong ? bodyLong.map(RSDLongToJSON) : bodyLong);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLongBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -575,8 +575,8 @@ function fnListLongBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): 
 			const $body = encodeValue(encodingType(props), bodyLong ? bodyLong.map(RSDLongToJSON) : bodyLong);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLongBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -639,8 +639,8 @@ function fnListFloatBodyParamOpt(props: ServiceProps<api.service.ErrorType>): ap
 			const $body = encodeValue(encodingType(props), bodyFloat ? bodyFloat.map(RSDFloatToJSON) : bodyFloat);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listFloatBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -671,8 +671,8 @@ function fnListFloatBodyParamNil(props: ServiceProps<api.service.ErrorType>): ap
 			const $body = encodeValue(encodingType(props), bodyFloat ? bodyFloat.map(RSDFloatToJSON) : bodyFloat);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listFloatBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -703,8 +703,8 @@ function fnListFloatBodyParamOptNil(props: ServiceProps<api.service.ErrorType>):
 			const $body = encodeValue(encodingType(props), bodyFloat ? bodyFloat.map(RSDFloatToJSON) : bodyFloat);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listFloatBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -767,8 +767,8 @@ function fnListDoubleBodyParamOpt(props: ServiceProps<api.service.ErrorType>): a
 			const $body = encodeValue(encodingType(props), bodyDouble ? bodyDouble.map(RSDDoubleToJSON) : bodyDouble);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listDoubleBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -799,8 +799,8 @@ function fnListDoubleBodyParamNil(props: ServiceProps<api.service.ErrorType>): a
 			const $body = encodeValue(encodingType(props), bodyDouble ? bodyDouble.map(RSDDoubleToJSON) : bodyDouble);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listDoubleBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -831,8 +831,8 @@ function fnListDoubleBodyParamOptNil(props: ServiceProps<api.service.ErrorType>)
 			const $body = encodeValue(encodingType(props), bodyDouble ? bodyDouble.map(RSDDoubleToJSON) : bodyDouble);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listDoubleBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -895,8 +895,8 @@ function fnListStringBodyParamOpt(props: ServiceProps<api.service.ErrorType>): a
 			const $body = encodeValue(encodingType(props), bodyString ? bodyString.map(RSDStringToJSON) : bodyString);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listStringBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -927,8 +927,8 @@ function fnListStringBodyParamNil(props: ServiceProps<api.service.ErrorType>): a
 			const $body = encodeValue(encodingType(props), bodyString ? bodyString.map(RSDStringToJSON) : bodyString);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listStringBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -959,8 +959,8 @@ function fnListStringBodyParamOptNil(props: ServiceProps<api.service.ErrorType>)
 			const $body = encodeValue(encodingType(props), bodyString ? bodyString.map(RSDStringToJSON) : bodyString);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listStringBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1023,8 +1023,8 @@ function fnListLocalDateBodyParamOpt(props: ServiceProps<api.service.ErrorType>)
 			const $body = encodeValue(encodingType(props), bodyLocalDate ? bodyLocalDate.map(RSDLocalDateToJSON) : bodyLocalDate);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDateBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1055,8 +1055,8 @@ function fnListLocalDateBodyParamNil(props: ServiceProps<api.service.ErrorType>)
 			const $body = encodeValue(encodingType(props), bodyLocalDate ? bodyLocalDate.map(RSDLocalDateToJSON) : bodyLocalDate);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDateBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1087,8 +1087,8 @@ function fnListLocalDateBodyParamOptNil(props: ServiceProps<api.service.ErrorTyp
 			const $body = encodeValue(encodingType(props), bodyLocalDate ? bodyLocalDate.map(RSDLocalDateToJSON) : bodyLocalDate);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDateBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1151,8 +1151,8 @@ function fnListLocalDateTimeBodyParamOpt(props: ServiceProps<api.service.ErrorTy
 			const $body = encodeValue(encodingType(props), bodyLocalDateTime ? bodyLocalDateTime.map(RSDLocalDateTimeToJSON) : bodyLocalDateTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDateTimeBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1183,8 +1183,8 @@ function fnListLocalDateTimeBodyParamNil(props: ServiceProps<api.service.ErrorTy
 			const $body = encodeValue(encodingType(props), bodyLocalDateTime ? bodyLocalDateTime.map(RSDLocalDateTimeToJSON) : bodyLocalDateTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDateTimeBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1215,8 +1215,8 @@ function fnListLocalDateTimeBodyParamOptNil(props: ServiceProps<api.service.Erro
 			const $body = encodeValue(encodingType(props), bodyLocalDateTime ? bodyLocalDateTime.map(RSDLocalDateTimeToJSON) : bodyLocalDateTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDateTimeBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1279,8 +1279,8 @@ function fnListLocalTimeBodyParamOpt(props: ServiceProps<api.service.ErrorType>)
 			const $body = encodeValue(encodingType(props), bodyLocalTime ? bodyLocalTime.map(RSDLocalTimeToJSON) : bodyLocalTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalTimeBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1311,8 +1311,8 @@ function fnListLocalTimeBodyParamNil(props: ServiceProps<api.service.ErrorType>)
 			const $body = encodeValue(encodingType(props), bodyLocalTime ? bodyLocalTime.map(RSDLocalTimeToJSON) : bodyLocalTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalTimeBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1343,8 +1343,8 @@ function fnListLocalTimeBodyParamOptNil(props: ServiceProps<api.service.ErrorTyp
 			const $body = encodeValue(encodingType(props), bodyLocalTime ? bodyLocalTime.map(RSDLocalTimeToJSON) : bodyLocalTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalTimeBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1407,8 +1407,8 @@ function fnListOffsetDateTimeBodyParamOpt(props: ServiceProps<api.service.ErrorT
 			const $body = encodeValue(encodingType(props), bodyOffsetDateTime ? bodyOffsetDateTime.map(RSDOffsetDateTimeToJSON) : bodyOffsetDateTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listOffsetDateTimeBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1439,8 +1439,8 @@ function fnListOffsetDateTimeBodyParamNil(props: ServiceProps<api.service.ErrorT
 			const $body = encodeValue(encodingType(props), bodyOffsetDateTime ? bodyOffsetDateTime.map(RSDOffsetDateTimeToJSON) : bodyOffsetDateTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listOffsetDateTimeBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1471,8 +1471,8 @@ function fnListOffsetDateTimeBodyParamOptNil(props: ServiceProps<api.service.Err
 			const $body = encodeValue(encodingType(props), bodyOffsetDateTime ? bodyOffsetDateTime.map(RSDOffsetDateTimeToJSON) : bodyOffsetDateTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listOffsetDateTimeBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1535,8 +1535,8 @@ function fnListZonedDateTimeBodyParamOpt(props: ServiceProps<api.service.ErrorTy
 			const $body = encodeValue(encodingType(props), bodyZonedDateTime ? bodyZonedDateTime.map(RSDZonedDateTimeToJSON) : bodyZonedDateTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listZonedDateTimeBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1567,8 +1567,8 @@ function fnListZonedDateTimeBodyParamNil(props: ServiceProps<api.service.ErrorTy
 			const $body = encodeValue(encodingType(props), bodyZonedDateTime ? bodyZonedDateTime.map(RSDZonedDateTimeToJSON) : bodyZonedDateTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listZonedDateTimeBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1599,8 +1599,8 @@ function fnListZonedDateTimeBodyParamOptNil(props: ServiceProps<api.service.Erro
 			const $body = encodeValue(encodingType(props), bodyZonedDateTime ? bodyZonedDateTime.map(RSDZonedDateTimeToJSON) : bodyZonedDateTime);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listZonedDateTimeBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1663,8 +1663,8 @@ function fnListScalarBodyParamOpt(props: ServiceProps<api.service.ErrorType>): a
 			const $body = encodeValue(encodingType(props), bodyScalar ? bodyScalar.map(api.model.ZoneIdToJSON) : bodyScalar);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listScalarBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1695,8 +1695,8 @@ function fnListScalarBodyParamNil(props: ServiceProps<api.service.ErrorType>): a
 			const $body = encodeValue(encodingType(props), bodyScalar ? bodyScalar.map(api.model.ZoneIdToJSON) : bodyScalar);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listScalarBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1727,8 +1727,8 @@ function fnListScalarBodyParamOptNil(props: ServiceProps<api.service.ErrorType>)
 			const $body = encodeValue(encodingType(props), bodyScalar ? bodyScalar.map(api.model.ZoneIdToJSON) : bodyScalar);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listScalarBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1756,11 +1756,11 @@ function fnListEnumBodyParam(props: ServiceProps<api.service.ErrorType>): api.se
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listEnumBodyParam`;
-			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyEnum.map(api.model.SampleEnumToJSON));
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isSampleEnum));
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				const $result = $data.map(api.model.SampleEnumFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listEnumBodyParam', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1788,11 +1788,11 @@ function fnListEnumBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listEnumBodyParamOpt`;
-			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyEnum ? bodyEnum.map(api.model.SampleEnumToJSON) : bodyEnum);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listEnumBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1820,11 +1820,11 @@ function fnListEnumBodyParamNil(props: ServiceProps<api.service.ErrorType>): api
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listEnumBodyParamNil`;
-			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyEnum ? bodyEnum.map(api.model.SampleEnumToJSON) : bodyEnum);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listEnumBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1852,11 +1852,11 @@ function fnListEnumBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): 
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listEnumBodyParamOptNil`;
-			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyEnum ? bodyEnum.map(api.model.SampleEnumToJSON) : bodyEnum);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listEnumBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1919,8 +1919,8 @@ function fnListInlineEnumBodyParamOpt(props: ServiceProps<api.service.ErrorType>
 			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listInlineEnumBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1951,8 +1951,8 @@ function fnListInlineEnumBodyParamNil(props: ServiceProps<api.service.ErrorType>
 			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listInlineEnumBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1983,8 +1983,8 @@ function fnListInlineEnumBodyParamOptNil(props: ServiceProps<api.service.ErrorTy
 			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listInlineEnumBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2055,8 +2055,8 @@ function fnListMultiBodyParamOpt(props: ServiceProps<api.service.ErrorType>): ap
 			});
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isNilResult));
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				const $result = $data.map(api.model.NilResultFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listMultiBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2091,8 +2091,8 @@ function fnListMultiBodyParamNil(props: ServiceProps<api.service.ErrorType>): ap
 			});
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isNilResult));
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				const $result = $data.map(api.model.NilResultFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listMultiBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2127,8 +2127,8 @@ function fnListMultiBodyParamOptNil(props: ServiceProps<api.service.ErrorType>):
 			});
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.model.isNilResult));
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				const $result = $data.map(api.model.NilResultFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listMultiBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2191,8 +2191,8 @@ function fnListRecordBodyParamOpt(props: ServiceProps<api.service.ErrorType>): a
 			const $body = encodeValue(encodingType(props), bodyRecord ? bodyRecord.map(api.model.SimpleRecordToJSON) : bodyRecord);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listRecordBodyParamOpt', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2223,8 +2223,8 @@ function fnListRecordBodyParamNil(props: ServiceProps<api.service.ErrorType>): a
 			const $body = encodeValue(encodingType(props), bodyRecord ? bodyRecord.map(api.model.SimpleRecordToJSON) : bodyRecord);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listRecordBodyParamNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -2255,8 +2255,8 @@ function fnListRecordBodyParamOptNil(props: ServiceProps<api.service.ErrorType>)
 			const $body = encodeValue(encodingType(props), bodyRecord ? bodyRecord.map(api.model.SimpleRecordToJSON) : bodyRecord);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, api.model.isNilResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.NilResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listRecordBodyParamOptNil', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;

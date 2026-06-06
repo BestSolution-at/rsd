@@ -1427,14 +1427,14 @@ const FromJson_PatchableEnumRecord = `
 export function PatchableEnumRecordPatchFromJSON($value: Record<string, unknown>): PatchableEnumRecordPatch {
 	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
 	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
-	const value = propValue('value', $value, isSampleEnum, 'optional');
-	const value_Null = propValue('value_Null', $value, isSampleEnum, 'optional_null');
-	const value_Opt = propValue('value_Opt', $value, isSampleEnum, 'optional_null');
-	const value_Opt_Null = propValue('value_Opt_Null', $value, isSampleEnum, 'optional_null');
-	const list = propMappedValue('list', $value, isRecord, v => isListReplace(v, isSampleEnum) ? ListReplaceFromJSON(v, isSampleEnum, noopMap) : ListMergeAddRemoveFromJSON(v, isSampleEnum, noopMap, isSampleEnum, noopMap), 'optional');
-	const list_Null = propMappedValue('list_Null', $value, isRecord, v => isListReplace(v, isSampleEnum) ? ListReplaceFromJSON(v, isSampleEnum, noopMap) : ListMergeAddRemoveFromJSON(v, isSampleEnum, noopMap, isSampleEnum, noopMap), 'optional_null');
-	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => isListReplace(v, isSampleEnum) ? ListReplaceFromJSON(v, isSampleEnum, noopMap) : ListMergeAddRemoveFromJSON(v, isSampleEnum, noopMap, isSampleEnum, noopMap), 'optional_null');
-	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => isListReplace(v, isSampleEnum) ? ListReplaceFromJSON(v, isSampleEnum, noopMap) : ListMergeAddRemoveFromJSON(v, isSampleEnum, noopMap, isSampleEnum, noopMap), 'optional_null');
+	const value = propMappedValue('value', $value, isSampleEnum, SampleEnumFromJSON, 'optional');
+	const value_Null = propMappedValue('value_Null', $value, isSampleEnum, SampleEnumFromJSON, 'optional_null');
+	const value_Opt = propMappedValue('value_Opt', $value, isSampleEnum, SampleEnumFromJSON, 'optional_null');
+	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isSampleEnum, SampleEnumFromJSON, 'optional_null');
+	const list = propMappedValue('list', $value, isRecord, v => isListReplace(v, isSampleEnum) ? ListReplaceFromJSON(v, isSampleEnum, SampleEnumFromJSON) : ListMergeAddRemoveFromJSON(v, isSampleEnum, SampleEnumFromJSON, isSampleEnum, SampleEnumFromJSON), 'optional');
+	const list_Null = propMappedValue('list_Null', $value, isRecord, v => isListReplace(v, isSampleEnum) ? ListReplaceFromJSON(v, isSampleEnum, SampleEnumFromJSON) : ListMergeAddRemoveFromJSON(v, isSampleEnum, SampleEnumFromJSON, isSampleEnum, SampleEnumFromJSON), 'optional_null');
+	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => isListReplace(v, isSampleEnum) ? ListReplaceFromJSON(v, isSampleEnum, SampleEnumFromJSON) : ListMergeAddRemoveFromJSON(v, isSampleEnum, SampleEnumFromJSON, isSampleEnum, SampleEnumFromJSON), 'optional_null');
+	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => isListReplace(v, isSampleEnum) ? ListReplaceFromJSON(v, isSampleEnum, SampleEnumFromJSON) : ListMergeAddRemoveFromJSON(v, isSampleEnum, SampleEnumFromJSON, isSampleEnum, SampleEnumFromJSON), 'optional_null');
 	return {
 		key,
 		version,
