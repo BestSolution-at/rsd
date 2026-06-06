@@ -8,6 +8,29 @@ function isSimpleInlineEnumHeaderParamResult(value: unknown): value is 'A' | 'B'
 	return value === 'A' || value === 'B';
 }
 
+function SimpleInlineEnumHeaderParamResultFromJSON(value: string): 'A' | 'B' {
+	if(!isSimpleInlineEnumHeaderParamResult(value)) {
+		throw new Error('Invalid value for SimpleInlineEnumHeaderParamResult');
+	}
+	return value;
+}
+
+function SimpleInlineEnumHeaderParam_HeaderValueToJSON(value: 'A' | 'B'): string {
+	return value;
+}
+
+function SimpleInlineEnumHeaderParamOpt_HeaderValueToJSON(value: 'A' | 'B'): string {
+	return value;
+}
+
+function SimpleInlineEnumHeaderParamNil_HeaderValueToJSON(value: 'C' | 'D'): string {
+	return value;
+}
+
+function SimpleInlineEnumHeaderParamOptNil_HeaderValueToJSON(value: 'C' | 'D'): string {
+	return value;
+}
+
 export function createHeaderParameterTypesService(props: ServiceProps<api.service.ErrorType>): api.service.HeaderParameterTypesService {
 	return {
 		simpleBooleanHeaderParam: fnSimpleBooleanHeaderParam(props),
@@ -2085,8 +2108,8 @@ function fnSimpleInlineEnumHeaderParam(props: ServiceProps<api.service.ErrorType
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, isSimpleInlineEnumHeaderParamResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = SimpleInlineEnumHeaderParamResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleInlineEnumHeaderParam', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;

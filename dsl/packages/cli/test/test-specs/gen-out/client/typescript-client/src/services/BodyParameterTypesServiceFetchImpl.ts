@@ -8,6 +8,29 @@ function isSimpleInlineEnumBodyParamResult(value: unknown): value is 'A' | 'B' {
 	return value === 'A' || value === 'B';
 }
 
+function SimpleInlineEnumBodyParamResultFromJSON(value: string): 'A' | 'B' {
+	if(!isSimpleInlineEnumBodyParamResult(value)) {
+		throw new Error('Invalid value for SimpleInlineEnumBodyParamResult');
+	}
+	return value;
+}
+
+function SimpleInlineEnumBodyParam_BodyEnumToJSON(value: 'A' | 'B'): string {
+	return value;
+}
+
+function SimpleInlineEnumBodyParamOpt_BodyEnumToJSON(value: 'A' | 'B'): string {
+	return value;
+}
+
+function SimpleInlineEnumBodyParamNil_BodyEnumToJSON(value: 'C' | 'D'): string {
+	return value;
+}
+
+function SimpleInlineEnumBodyParamOptNil_BodyEnumToJSON(value: 'C' | 'D'): string {
+	return value;
+}
+
 export function createBodyParameterTypesService(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService {
 	return {
 		simpleBooleanBodyParam: fnSimpleBooleanBodyParam(props),
@@ -1893,11 +1916,11 @@ function fnSimpleInlineEnumBodyParam(props: ServiceProps<api.service.ErrorType>)
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleInlineEnumBodyParam`;
-			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
+			const $body = encodeValue(encodingType(props), SimpleInlineEnumBodyParam_BodyEnumToJSON(bodyEnum));
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, isSimpleInlineEnumBodyParamResult);
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = SimpleInlineEnumBodyParamResultFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleInlineEnumBodyParam', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1925,7 +1948,7 @@ function fnSimpleInlineEnumBodyParamOpt(props: ServiceProps<api.service.ErrorTyp
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleInlineEnumBodyParamOpt`;
-			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyEnum ? SimpleInlineEnumBodyParamOpt_BodyEnumToJSON(bodyEnum) : bodyEnum);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isString);
@@ -1957,7 +1980,7 @@ function fnSimpleInlineEnumBodyParamNil(props: ServiceProps<api.service.ErrorTyp
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleInlineEnumBodyParamNil`;
-			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyEnum ? SimpleInlineEnumBodyParamNil_BodyEnumToJSON(bodyEnum) : bodyEnum);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isString);
@@ -1989,7 +2012,7 @@ function fnSimpleInlineEnumBodyParamOptNil(props: ServiceProps<api.service.Error
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleInlineEnumBodyParamOptNil`;
-			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyEnum ? SimpleInlineEnumBodyParamOptNil_BodyEnumToJSON(bodyEnum) : bodyEnum);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isString);

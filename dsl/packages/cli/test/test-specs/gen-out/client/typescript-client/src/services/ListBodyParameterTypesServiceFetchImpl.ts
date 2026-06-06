@@ -8,6 +8,29 @@ function isListInlineEnumBodyParamResult(value: unknown): value is 'A' | 'B' {
 	return value === 'A' || value === 'B';
 }
 
+function ListInlineEnumBodyParamResultFromJSON(value: string): 'A' | 'B' {
+	if(!isListInlineEnumBodyParamResult(value)) {
+		throw new Error('Invalid value for ListInlineEnumBodyParamResult');
+	}
+	return value;
+}
+
+function ListInlineEnumBodyParam_BodyEnumToJSON(value: 'A' | 'B'): string {
+	return value;
+}
+
+function ListInlineEnumBodyParamOpt_BodyEnumToJSON(value: 'A' | 'B'): string {
+	return value;
+}
+
+function ListInlineEnumBodyParamNil_BodyEnumToJSON(value: 'C' | 'D'): string {
+	return value;
+}
+
+function ListInlineEnumBodyParamOptNil_BodyEnumToJSON(value: 'C' | 'D'): string {
+	return value;
+}
+
 export function createListBodyParameterTypesService(props: ServiceProps<api.service.ErrorType>): api.service.ListBodyParameterTypesService {
 	return {
 		listBooleanBodyParam: fnListBooleanBodyParam(props),
@@ -1884,11 +1907,11 @@ function fnListInlineEnumBodyParam(props: ServiceProps<api.service.ErrorType>): 
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listInlineEnumBodyParam`;
-			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyEnum.map(ListInlineEnumBodyParam_BodyEnumToJSON));
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, isListInlineEnumBodyParamResult));
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				const $result = $data.map(ListInlineEnumBodyParamResultFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listInlineEnumBodyParam', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1916,7 +1939,7 @@ function fnListInlineEnumBodyParamOpt(props: ServiceProps<api.service.ErrorType>
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listInlineEnumBodyParamOpt`;
-			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyEnum ? bodyEnum.map(ListInlineEnumBodyParamOpt_BodyEnumToJSON) : bodyEnum);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isString);
@@ -1948,7 +1971,7 @@ function fnListInlineEnumBodyParamNil(props: ServiceProps<api.service.ErrorType>
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listInlineEnumBodyParamNil`;
-			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyEnum ? bodyEnum.map(ListInlineEnumBodyParamNil_BodyEnumToJSON) : bodyEnum);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isString);
@@ -1980,7 +2003,7 @@ function fnListInlineEnumBodyParamOptNil(props: ServiceProps<api.service.ErrorTy
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listInlineEnumBodyParamOptNil`;
-			const $body = encodeValue(encodingType(props), bodyEnum); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyEnum ? bodyEnum.map(ListInlineEnumBodyParamOptNil_BodyEnumToJSON) : bodyEnum);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isString);

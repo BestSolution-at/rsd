@@ -8,6 +8,29 @@ function isListInlineEnumHeaderParamResult(value: unknown): value is 'A' | 'B' {
 	return value === 'A' || value === 'B';
 }
 
+function ListInlineEnumHeaderParamResultFromJSON(value: string): 'A' | 'B' {
+	if(!isListInlineEnumHeaderParamResult(value)) {
+		throw new Error('Invalid value for ListInlineEnumHeaderParamResult');
+	}
+	return value;
+}
+
+function ListInlineEnumHeaderParam_HeaderValueToJSON(value: 'A' | 'B'): string {
+	return value;
+}
+
+function ListInlineEnumHeaderParamOpt_HeaderValueToJSON(value: 'A' | 'B'): string {
+	return value;
+}
+
+function ListInlineEnumHeaderParamNil_HeaderValueToJSON(value: 'C' | 'D'): string {
+	return value;
+}
+
+function ListInlineEnumHeaderParamOptNil_HeaderValueToJSON(value: 'C' | 'D'): string {
+	return value;
+}
+
 export function createListHeaderParameterTypesService(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService {
 	return {
 		listBooleanHeaderParam: fnListBooleanHeaderParam(props),
@@ -2198,8 +2221,8 @@ function fnListInlineEnumHeaderParam(props: ServiceProps<api.service.ErrorType>)
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, isListInlineEnumHeaderParamResult));
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				const $result = $data.map(ListInlineEnumHeaderParamResultFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listInlineEnumHeaderParam', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;

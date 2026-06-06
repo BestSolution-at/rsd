@@ -8,6 +8,17 @@ function isListInlineEnumQueryParamResult(value: unknown): value is 'A' | 'B' {
 	return value === 'A' || value === 'B';
 }
 
+function ListInlineEnumQueryParamResultFromJSON(value: string): 'A' | 'B' {
+	if(!isListInlineEnumQueryParamResult(value)) {
+		throw new Error('Invalid value for ListInlineEnumQueryParamResult');
+	}
+	return value;
+}
+
+function ListInlineEnumQueryParam_QueryValueToJSON(value: 'A' | 'B'): string {
+	return value;
+}
+
 export function createListQueryParameterTypesService(props: ServiceProps<api.service.ErrorType>): api.service.ListQueryParameterTypesService {
 	return {
 		listBooleanQueryParam: fnListBooleanQueryParam(props),
@@ -552,8 +563,8 @@ function fnListInlineEnumQueryParam(props: ServiceProps<api.service.ErrorType>):
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, isListInlineEnumQueryParamResult));
-				const $result = $data; // Conversion to be done
+				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
+				const $result = $data.map(ListInlineEnumQueryParamResultFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listInlineEnumQueryParam', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
