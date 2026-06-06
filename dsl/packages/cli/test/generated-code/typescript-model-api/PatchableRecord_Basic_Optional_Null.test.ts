@@ -17,6 +17,23 @@ const Simple: PatchableRecord_Basic_Optional_Null = {
 	valueBoolean: true,
 	valueShort: 1,
 	valueInt: 1,
+	valueLong: BigInt(1),
+	valueFloat: 1.5,
+	valueDouble: 1.1,
+	valueString: 'value',
+	valueLocalDate: '2024-01-01',
+	valueLocalDateTime: '2024-01-01T12:00:00',
+	valueLocalTime: '2024-01-01T12:00:00',
+	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+	valueZonedDateTime: '2024-01-01T12:00:00Z',
+};
+
+const Simple_Json = {
+	key: 'key',
+	version: 'version',
+	valueBoolean: true,
+	valueShort: 1,
+	valueInt: 1,
 	valueLong: 1,
 	valueFloat: 1.5,
 	valueDouble: 1.1,
@@ -64,15 +81,15 @@ const SimpleNull: PatchableRecord_Basic_Optional_Null = {
 
 describe('PatchableRecord_Basic_Optional_NullFromJSON', () => {
 	test('simple', () => {
-		expect(PatchableRecord_Basic_Optional_NullFromJSON(Simple)).toStrictEqual(Simple);
+		expect(PatchableRecord_Basic_Optional_NullFromJSON(Simple_Json)).toStrictEqual(Simple);
 		expect(PatchableRecord_Basic_Optional_NullFromJSON(SimpleMinimal)).toStrictEqual(SimpleMinimal);
 		expect(PatchableRecord_Basic_Optional_NullFromJSON(SimpleNull)).toStrictEqual(SimpleNull);
 	});
 	test('remove-unknown', () => {
-		expect(PatchableRecord_Basic_Optional_NullFromJSON(addFooProperty(Simple))).toStrictEqual(Simple);
+		expect(PatchableRecord_Basic_Optional_NullFromJSON(addFooProperty(Simple_Json))).toStrictEqual(Simple);
 	});
-	test.each(Object.keys(Simple))('invalid prop $0', data => {
-		expect(() => PatchableRecord_Basic_Optional_NullFromJSON(invalidateProperty(Simple, data))).toThrow();
+	test.each(Object.keys(Simple_Json))('invalid prop $0', data => {
+		expect(() => PatchableRecord_Basic_Optional_NullFromJSON(invalidateProperty(Simple_Json, data))).toThrow();
 		expect(() => PatchableRecord_Basic_Optional_NullFromJSON(invalidateProperty(SimpleMinimal, data))).toThrow();
 		expect(() => PatchableRecord_Basic_Optional_NullFromJSON(invalidateProperty(SimpleNull, data))).toThrow();
 	});
@@ -96,7 +113,7 @@ describe('isPatchableRecord_Basic_Optional_Null', () => {
 
 describe('PatchableRecord_Basic_Optional_NullToJSON', () => {
 	test('simple', () => {
-		expect(PatchableRecord_Basic_Optional_NullToJSON(Simple)).toStrictEqual(Simple);
+		expect(PatchableRecord_Basic_Optional_NullToJSON(Simple)).toStrictEqual(Simple_Json);
 		expect(PatchableRecord_Basic_Optional_NullToJSON(Simple)).not.toBe(Simple);
 
 		expect(PatchableRecord_Basic_Optional_NullToJSON(SimpleMinimal)).toStrictEqual(SimpleMinimal);
@@ -106,13 +123,30 @@ describe('PatchableRecord_Basic_Optional_NullToJSON', () => {
 		expect(PatchableRecord_Basic_Optional_NullToJSON(SimpleNull)).not.toBe(SimpleNull);
 	});
 	test('additional props', () => {
-		expect(PatchableRecord_Basic_Optional_NullToJSON(addFooProperty(Simple))).toStrictEqual(Simple);
+		expect(PatchableRecord_Basic_Optional_NullToJSON(addFooProperty(Simple))).toStrictEqual(Simple_Json);
 		expect(PatchableRecord_Basic_Optional_NullToJSON(addFooProperty(SimpleMinimal))).toStrictEqual(SimpleMinimal);
 		expect(PatchableRecord_Basic_Optional_NullToJSON(addFooProperty(SimpleNull))).toStrictEqual(SimpleNull);
 	});
 });
 
 const SimplePatch: PatchableRecord_Basic_Optional_NullPatch = {
+	key: 'key',
+	version: 'version',
+	valueBoolean: true,
+	valueShort: 1,
+	valueInt: 1,
+	valueLong: BigInt(1),
+	valueFloat: 1.1,
+	valueDouble: 1.1,
+	valueString: 'value',
+	valueLocalDate: '2024-01-01',
+	valueLocalDateTime: '2024-01-01T12:00:00',
+	valueLocalTime: '2024-01-01T12:00:00',
+	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+	valueZonedDateTime: '2024-01-01T12:00:00Z',
+};
+
+const SimplePatch_Json = {
 	key: 'key',
 	version: 'version',
 	valueBoolean: true,
@@ -165,12 +199,14 @@ const SimplePatchNull: PatchableRecord_Basic_Optional_NullPatch = {
 
 describe('PatchableRecord_Basic_Optional_NullPatchFromJSON', () => {
 	test('simple', () => {
-		expect(PatchableRecord_Basic_Optional_NullPatchFromJSON(SimplePatch)).toStrictEqual(SimplePatch);
+		expect(PatchableRecord_Basic_Optional_NullPatchFromJSON(SimplePatch_Json)).toStrictEqual(SimplePatch);
 		expect(PatchableRecord_Basic_Optional_NullPatchFromJSON(SimplePatchMinimal)).toStrictEqual(SimplePatchMinimal);
 		expect(PatchableRecord_Basic_Optional_NullPatchFromJSON(SimplePatchNull)).toStrictEqual(SimplePatchNull);
 	});
 	test('remove-unknown', () => {
-		expect(PatchableRecord_Basic_Optional_NullPatchFromJSON(addFooProperty(SimplePatch))).toStrictEqual(SimplePatch);
+		expect(PatchableRecord_Basic_Optional_NullPatchFromJSON(addFooProperty(SimplePatch_Json))).toStrictEqual(
+			SimplePatch,
+		);
 		expect(PatchableRecord_Basic_Optional_NullPatchFromJSON(addFooProperty(SimplePatchMinimal))).toStrictEqual(
 			SimplePatchMinimal,
 		);
@@ -179,15 +215,17 @@ describe('PatchableRecord_Basic_Optional_NullPatchFromJSON', () => {
 		);
 	});
 	test('missing key-prop', () => {
-		const { withOut } = removeProperty(SimplePatch, 'key');
+		const { withOut } = removeProperty(SimplePatch_Json, 'key');
 		expect(() => PatchableRecord_Basic_Optional_NullPatchFromJSON(withOut)).toThrow();
 	});
 	test('missing version-prop', () => {
-		const { withOut } = removeProperty(SimplePatch, 'version');
+		const { withOut } = removeProperty(SimplePatch_Json, 'version');
 		expect(() => PatchableRecord_Basic_Optional_NullPatchFromJSON(withOut)).toThrow();
 	});
-	test.each(Object.keys(Simple))('invalid prop $0', data => {
-		expect(() => PatchableRecord_Basic_Optional_NullPatchFromJSON(invalidateProperty(SimplePatch, data))).toThrow();
+	test.each(Object.keys(SimplePatch_Json))('invalid prop $0', data => {
+		expect(() =>
+			PatchableRecord_Basic_Optional_NullPatchFromJSON(invalidateProperty(SimplePatch_Json, data)),
+		).toThrow();
 		expect(() =>
 			PatchableRecord_Basic_Optional_NullPatchFromJSON(invalidateProperty(SimplePatchMinimal, data)),
 		).toThrow();
@@ -219,7 +257,7 @@ describe('isPatchableRecord_Basic_Optional_NullPatch', () => {
 });
 describe('PatchableRecord_Basic_Optional_NullPatchToJSON', () => {
 	test('simple', () => {
-		expect(PatchableRecord_Basic_Optional_NullPatchToJSON(SimplePatch)).toStrictEqual(SimplePatch);
+		expect(PatchableRecord_Basic_Optional_NullPatchToJSON(SimplePatch)).toStrictEqual(SimplePatch_Json);
 		expect(PatchableRecord_Basic_Optional_NullPatchToJSON(SimplePatch)).not.toBe(SimplePatch);
 
 		expect(PatchableRecord_Basic_Optional_NullPatchToJSON(SimplePatchMinimal)).toStrictEqual(SimplePatchMinimal);
@@ -229,7 +267,7 @@ describe('PatchableRecord_Basic_Optional_NullPatchToJSON', () => {
 		expect(PatchableRecord_Basic_Optional_NullPatchToJSON(SimplePatchNull)).not.toBe(SimplePatchNull);
 	});
 	test('additional props', () => {
-		expect(PatchableRecord_Basic_Optional_NullPatchToJSON(addFooProperty(SimplePatch))).toStrictEqual(SimplePatch);
+		expect(PatchableRecord_Basic_Optional_NullPatchToJSON(addFooProperty(SimplePatch))).toStrictEqual(SimplePatch_Json);
 		expect(PatchableRecord_Basic_Optional_NullPatchToJSON(addFooProperty(SimplePatchMinimal))).toStrictEqual(
 			SimplePatchMinimal,
 		);

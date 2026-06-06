@@ -172,9 +172,9 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 
 	describe('listLongHeaderParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLongHeaderParam([1000, 2000, 3000]);
+			const [result, error] = await service.listLongHeaderParam([1000n, 2000n, 3000n]);
 			expect(error).toBeNull();
-			expect(result).toEqual([1000, 2000, 3000]);
+			expect(result).toEqual([1000n, 2000n, 3000n]);
 		});
 	});
 	describe('listLongHeaderParamOpt', () => {
@@ -184,7 +184,7 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(result).toEqual('UNDEFINED');
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLongHeaderParamOpt([4000, 5000]);
+			const [result, error] = await service.listLongHeaderParamOpt([4000n, 5000n]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
 		});
@@ -196,7 +196,7 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(result).toEqual('NULL');
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLongHeaderParamNil([6000, 7000]);
+			const [result, error] = await service.listLongHeaderParamNil([6000n, 7000n]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
 		});
@@ -213,7 +213,7 @@ describe('ListHeaderParameterTypesServiceFetchImpl', () => {
 			expect(result).toBe('NULL');
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLongHeaderParamOptNil([8000, 9000]);
+			const [result, error] = await service.listLongHeaderParamOptNil([8000n, 9000n]);
 			expect(error).toBeNull();
 			expect(result).toBe('DEFINED');
 		});

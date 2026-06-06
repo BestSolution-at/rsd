@@ -112,7 +112,7 @@ describe('ListSampleServiceServiceImpl', () => {
 		test.each([json, msgpack, openAPI])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listLong();
 			expect(error).toBeNull();
-			expect(result).toStrictEqual([1234567890123, 2345678901234, 3456789012345]);
+			expect(result).toStrictEqual([1234567890123n, 2345678901234n, 3456789012345n]);
 		});
 		test.each([jsonInvalid, msgpackInvalid, openAPIInvalid])('fail - $encoding - invalid data', async ({ service }) => {
 			const [result, error] = await service.listLong();

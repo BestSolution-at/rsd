@@ -6,6 +6,7 @@ import {
 } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { ListHeaderParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/index.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
+import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/Builtins.js';
 
 export function createOpenAPIListHeaderParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -251,14 +252,14 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLongHeaderParam(
-		headerValue: number[],
-	): Promise<api.result.Result<number[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		headerValue: RSDLong[],
+	): Promise<api.result.Result<RSDLong[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLongHeaderParamRaw({
-				headerValue,
+				headerValue: headerValue.map(Number),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()).map(BigInt));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -268,11 +269,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLongHeaderParamOpt(
-		headerValue?: number[],
+		headerValue?: RSDLong[],
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLongHeaderParamOptRaw({
-				headerValue,
+				headerValue: headerValue?.map(Number),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -285,11 +286,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLongHeaderParamNil(
-		headerValue: number[] | null,
+		headerValue: RSDLong[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLongHeaderParamNilRaw({
-				headerValue,
+				headerValue: headerValue?.map(Number) ?? null,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -302,11 +303,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLongHeaderParamOptNil(
-		headerValue?: number[] | null,
+		headerValue?: RSDLong[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLongHeaderParamOptNilRaw({
-				headerValue,
+				headerValue: headerValue === null ? null : headerValue?.map(Number),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());

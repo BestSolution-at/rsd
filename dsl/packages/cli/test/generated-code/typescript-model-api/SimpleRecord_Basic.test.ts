@@ -1,12 +1,28 @@
 import { describe, expect, test } from 'vitest';
 import {
 	isSimpleRecord_Basic,
+	SimpleRecord_Basic,
 	SimpleRecord_BasicFromJSON,
 	SimpleRecord_BasicToJSON,
 } from '../../test-specs/gen-out/client/typescript-client/src/model/SimpleRecord_Basic.js';
 import { addFooProperty, invalidateProperty, removeProperty } from './utils.js';
 
-const Simple = {
+const Simple: SimpleRecord_Basic = {
+	valueBoolean: true,
+	valueDouble: 1.5,
+	valueFloat: 1.5,
+	valueInt: 1,
+	valueLocalDate: '2025-01-01',
+	valueLocalDateTime: '2025-01-01T10:00:00',
+	valueLocalTime: '10:00:00',
+	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+	valueLong: BigInt(1),
+	valueShort: 1,
+	valueString: 'Foo',
+	valueZonedDateTime: '2025-01-01T10:00:00Z',
+};
+
+const Simple_Json = {
 	valueBoolean: true,
 	valueDouble: 1.5,
 	valueFloat: 1.5,
@@ -23,21 +39,21 @@ const Simple = {
 
 describe('SimpleRecord_BasicFromJSON', () => {
 	test('simple', () => {
-		expect(SimpleRecord_BasicFromJSON(Simple)).toStrictEqual(Simple);
-		expect(SimpleRecord_BasicFromJSON(Simple)).not.toBe(Simple);
+		expect(SimpleRecord_BasicFromJSON(Simple_Json)).toStrictEqual(Simple);
+		expect(SimpleRecord_BasicFromJSON(Simple_Json)).not.toBe(Simple);
 	});
 	test('remove-unknown', () => {
-		expect(SimpleRecord_BasicFromJSON(addFooProperty(Simple))).toStrictEqual(Simple);
+		expect(SimpleRecord_BasicFromJSON(addFooProperty(Simple_Json))).toStrictEqual(Simple);
 	});
 	test('empty object', () => {
 		expect(() => SimpleRecord_BasicFromJSON({})).toThrow();
 	});
 	test.each(Object.keys(Simple))('missing prop $0', data => {
-		const { withOut } = removeProperty(Simple, data);
+		const { withOut } = removeProperty(Simple_Json, data);
 		expect(() => SimpleRecord_BasicFromJSON(withOut)).toThrow();
 	});
 	test.each(Object.keys(Simple))('invalid prop $0', data => {
-		expect(() => SimpleRecord_BasicFromJSON(invalidateProperty(Simple, data))).toThrow();
+		expect(() => SimpleRecord_BasicFromJSON(invalidateProperty(Simple_Json, data))).toThrow();
 	});
 });
 describe('isSimpleRecord_Basic', () => {
@@ -60,10 +76,10 @@ describe('isSimpleRecord_Basic', () => {
 });
 describe('SimpleRecord_BasicToJSON', () => {
 	test('simple', () => {
-		expect(SimpleRecord_BasicToJSON(Simple)).toStrictEqual(Simple);
+		expect(SimpleRecord_BasicToJSON(Simple)).toStrictEqual(Simple_Json);
 		expect(SimpleRecord_BasicToJSON(Simple)).not.toBe(Simple);
 	});
 	test('additional props', () => {
-		expect(SimpleRecord_BasicToJSON(addFooProperty(Simple))).toStrictEqual(Simple);
+		expect(SimpleRecord_BasicToJSON(addFooProperty(Simple))).toStrictEqual(Simple_Json);
 	});
 });

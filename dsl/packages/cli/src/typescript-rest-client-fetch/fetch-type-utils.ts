@@ -119,18 +119,21 @@ function generateFetchTypeUtilsContent(
 	result.indent(mBody => {
 		if (encodings.length > 1) {
 			mBody.append('switch (type) {', NL);
-			encodings
-				.filter((_, idx) => idx > 0)
-				.forEach(enc => {
-					mBody.append(`case '${enc}':`, NL);
-					mBody.indent(casBody => {
-						casBody.append(`return ${encodingPlugins[enc].encodingFunctionName}(value);`, NL);
+			mBody.indent(switchBody => {
+				encodings
+					.filter((_, idx) => idx > 0)
+					.forEach(enc => {
+						switchBody.append(`case '${enc}':`, NL);
+						switchBody.indent(casBody => {
+							casBody.append(`return ${encodingPlugins[enc].encodingFunctionName}(value);`, NL);
+						});
 					});
+				switchBody.append('default:', NL);
+				switchBody.indent(casBody => {
+					casBody.append(`return ${encodingPlugins[encodings[0]].encodingFunctionName}(value);`, NL);
 				});
-			mBody.append('default:', NL);
-			mBody.indent(casBody => {
-				casBody.append(`return ${encodingPlugins[encodings[0]].encodingFunctionName}(value);`, NL);
 			});
+
 			mBody.append('}', NL);
 		} else {
 			mBody.append(`return ${encodingPlugins[encodings[0]].encodingFunctionName}(value);`, NL);
@@ -181,13 +184,23 @@ function generateJsonEncodeValueFunction() {
 			if (body === undefined) {
 				return '';
 			}
-			return JSON.stringify(body);
+			return JSON.stringify(body, (_, v: unknown) => {
+				if (typeof v === 'bigint') {
+					if ('rawJSON' in JSON && typeof JSON.rawJSON === 'function') {
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
+						return JSON.rawJSON(String(v));
+					} else {
+						throw new Error('BigInt values are not supported in JSON encoding without JSON.rawJSON function');
+					}
+				}
+				return v;
+			});
 		}`);
 }
 
 function generateMsgPackEncodeValueFunction(fqn: (t: string, typeOnly: boolean) => string) {
 	return toNodeTree(`
-		const encoder = new ${fqn('Encoder:@msgpack/msgpack', false)}({ ignoreUndefined: true });
+		const encoder = new ${fqn('Encoder:@msgpack/msgpack', false)}({ ignoreUndefined: true, useBigInt64: true });
 		function encodeMsgPackBody(body: unknown): Uint8Array {
 			if (body === undefined) {
 				return new Uint8Array();
@@ -196,11 +209,28 @@ function generateMsgPackEncodeValueFunction(fqn: (t: string, typeOnly: boolean) 
 		}`);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function generateJsonDecodeResponseFunction() {
 	return toNodeTree(`
 		async function decodeJsonBody<T>(response: Response, guard: (value: unknown) => value is T): Promise<T> {
-			const data = await response.json();
+			const text = await response.text();
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			const data = JSON.parse(text, (_, v: unknown, ...args: unknown[]) => {
+				if (typeof v === 'number') {
+					const context = args[0];
+					if (context && typeof context === 'object' && 'source' in context && typeof context.source === 'string') {
+						if (context.source.length > 15 && !context.source.includes('.')) {
+							const bigintValue = BigInt(context.source);
+							if (bigintValue > Number.MAX_SAFE_INTEGER || bigintValue < Number.MIN_SAFE_INTEGER) {
+								return bigintValue;
+							}
+						}
+					} else {
+						console.warn('Unable to determine if number value is a BigInt due to missing context, returning as number:', v);
+					}
+				}
+
+				return v;
+			});
 			if (!guard(data)) {
 				throw new Error('Invalid result');
 			}
@@ -210,7 +240,7 @@ function generateJsonDecodeResponseFunction() {
 
 function generateMsgPackDecodeResponseFunction(fqn: (t: string, typeOnly: boolean) => string) {
 	return toNodeTree(`
-		const decoder = new ${fqn('Decoder:@msgpack/msgpack', false)}();
+		const decoder = new ${fqn('Decoder:@msgpack/msgpack', false)}({ useBigInt64: true });
 		async function decodeMsgPackBody<T>(response: Response, guard: (value: unknown) => value is T): Promise<T> {
 			const arrayBuffer = await response.arrayBuffer();
 			const data = decoder.decode(arrayBuffer);

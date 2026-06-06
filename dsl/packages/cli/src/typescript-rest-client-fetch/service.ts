@@ -15,6 +15,9 @@ import {
 	MService,
 } from '../model.js';
 import {
+	builtinFromJSON,
+	builtinFromJsonTypeGuard,
+	builtinToJSON,
 	builtinToType,
 	builtinTypeGuard,
 	generateCompilationUnit,
@@ -147,8 +150,8 @@ function stringHeaderQueryCode(
 			if (p.meta?.rest?.source === 'header' && (p.type === 'string' || p.variant === 'scalar')) {
 				const encodeAsciiString = fqn('encodeAsciiString:./_fetch-type-utils.ts', false);
 				if (p.variant === 'scalar') {
-					const toString = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToString`;
-					mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}(${toString}($entry)));`, NL);
+					const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
+					mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}(${toJSON}($entry)));`, NL);
 				} else {
 					mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}($entry));`, NL);
 				}
@@ -161,8 +164,8 @@ function stringHeaderQueryCode(
 		if (p.meta?.rest?.source === 'header' && (p.type === 'string' || p.variant === 'scalar')) {
 			const encodeAsciiString = fqn('encodeAsciiString:./_fetch-type-utils.ts', false);
 			if (p.variant === 'scalar') {
-				const toString = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToString`;
-				node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${toString}(${p.name})));`, NL);
+				const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
+				node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${toJSON}(${p.name})));`, NL);
 			} else {
 				node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${p.name}));`, NL);
 			}
@@ -479,46 +482,80 @@ function generateRemoteInvoke(
 			});
 			node.append('}', NL);
 		} else if (bodyParams.length === 1) {
+			const encodeValue = fqn('encodeValue:./_fetch-type-utils.ts', false);
+			const encodingType = fqn('encodingType:./_fetch-type-utils.ts', false);
 			if (bodyParams[0].variant === 'record' || bodyParams[0].variant === 'union') {
 				const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${
 					bodyParams[0].type + (bodyParams[0].patch ? 'Patch' : '')
 				}ToJSON`;
+
 				if (bodyParams[0].array) {
 					if (bodyParams[0].nullable || bodyParams[0].optional) {
 						node.append(
-							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${bodyParams[0].name} ? ${bodyParams[0].name}.map(${toJSON}) : ${bodyParams[0].name});`,
+							`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name} ? ${bodyParams[0].name}.map(${toJSON}) : ${bodyParams[0].name});`,
 							NL,
 						);
 					} else {
 						node.append(
-							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${bodyParams[0].name}.map(${toJSON}));`,
+							`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name}.map(${toJSON}));`,
 							NL,
 						);
 					}
 				} else {
 					if (bodyParams[0].nullable || bodyParams[0].optional) {
 						node.append(
-							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${bodyParams[0].name} ? ${toJSON}(${bodyParams[0].name}) : ${bodyParams[0].name});`,
+							`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name} ? ${toJSON}(${bodyParams[0].name}) : ${bodyParams[0].name});`,
 							NL,
 						);
 					} else {
-						node.append(
-							`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${toJSON}(${bodyParams[0].name}));`,
-							NL,
-						);
+						node.append(`const $body = ${encodeValue}(${encodingType}(props), ${toJSON}(${bodyParams[0].name}));`, NL);
 					}
 				}
 			} else {
-				node.append(
-					`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), ${bodyParams[0].name});`,
-					NL,
-				);
+				if (
+					typeof bodyParams[0].type === 'string' &&
+					(isMBuiltinType(bodyParams[0].type) || bodyParams[0].variant === 'scalar')
+				) {
+					const toJSON = isMBuiltinType(bodyParams[0].type)
+						? builtinToJSON(bodyParams[0].type, fqn, '../model/')
+						: `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${bodyParams[0].type}ToJSON`;
+
+					if (bodyParams[0].array) {
+						if (bodyParams[0].nullable || bodyParams[0].optional) {
+							node.append(
+								`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name} ? ${bodyParams[0].name}.map(${toJSON}) : ${bodyParams[0].name});`,
+								NL,
+							);
+						} else {
+							node.append(
+								`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name}.map(${toJSON}));`,
+								NL,
+							);
+						}
+					} else {
+						if (bodyParams[0].nullable || bodyParams[0].optional) {
+							node.append(
+								`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name} ? ${toJSON}(${bodyParams[0].name}) : ${bodyParams[0].name});`,
+								NL,
+							);
+						} else {
+							node.append(
+								`const $body = ${encodeValue}(${encodingType}(props), ${toJSON}(${bodyParams[0].name}));`,
+								NL,
+							);
+						}
+					}
+				} else {
+					node.append(
+						`const $body = ${encodeValue}(${encodingType}(props), ${bodyParams[0].name}); // Add conversion`,
+						NL,
+					);
+				}
 			}
 		} else {
-			node.append(
-				`const $body = ${fqn('encodeValue:./_fetch-type-utils.ts', false)}(${fqn('encodingType:./_fetch-type-utils.ts', false)}(props), {`,
-				NL,
-			);
+			const encodeValue = fqn('encodeValue:./_fetch-type-utils.ts', false);
+			const encodingType = fqn('encodingType:./_fetch-type-utils.ts', false);
+			node.append(`const $body = ${encodeValue}(${encodingType}(props), {`, NL);
 			node.indent(struct => {
 				bodyParams.forEach(p => {
 					if (p.variant === 'record' || p.variant === 'union') {
@@ -540,7 +577,26 @@ function generateRemoteInvoke(
 							}
 						}
 					} else {
-						struct.append(`${p.name},`, NL);
+						if (typeof p.type === 'string' && (isMBuiltinType(p.type) || p.variant === 'scalar')) {
+							const toJSON = isMBuiltinType(p.type)
+								? builtinToJSON(p.type, fqn, '../model/')
+								: `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
+							if (p.array) {
+								if (p.nullable || p.optional) {
+									struct.append(`${p.name}: ${p.name} ? ${p.name}.map(${toJSON}) : ${p.name},`, NL);
+								} else {
+									struct.append(`${p.name}: ${p.name}.map(${toJSON}),`, NL);
+								}
+							} else {
+								if (p.nullable || p.optional) {
+									struct.append(`${p.name}: ${p.name} ? ${toJSON}(${p.name}) : ${p.name},`, NL);
+								} else {
+									struct.append(`${p.name}: ${toJSON}(${p.name}),`, NL);
+								}
+							}
+						} else {
+							struct.append(`${p.name}, // Add conversion`, NL);
+						}
 					}
 				});
 			});
@@ -681,34 +737,46 @@ function handleOkResult(
 			if (o.resultType.array) {
 				const isTypedArrayGuard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isTypedArray`;
 				if (isMBuiltinType(o.resultType.type)) {
-					const guard = builtinTypeGuard(o.resultType.type, fqn, '../model/');
+					const guard = builtinFromJsonTypeGuard(o.resultType.type, fqn);
+					const fromJSON = builtinFromJSON(o.resultType.type, fqn, '../model/');
 					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
+					node.append(`const $result = $data.map(${fromJSON});`, NL);
 				} else if (o.resultType.variant === 'scalar') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
 					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
+					node.append(`const $result = $data.map(${fromJSON});`, NL);
 				} else if (o.resultType.variant === 'inline-enum') {
 					const guard = `is${toFirstUpper(o.name)}Result`;
 					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
+					node.append(`const $result = $data; // Conversion to be done`, NL);
 				} else {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
 					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
+					node.append(`const $result = $data; // Conversion to be done`, NL);
 				}
 			} else {
 				if (isMBuiltinType(o.resultType.type)) {
-					const guard = builtinTypeGuard(o.resultType.type, fqn, '../model/');
+					const guard = builtinFromJsonTypeGuard(o.resultType.type, fqn);
+					const fromJSON = builtinFromJSON(o.resultType.type, fqn, '../model/');
 					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
+					node.append(`const $result = ${fromJSON}($data);`, NL);
 				} else if (o.resultType.variant === 'scalar') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
 					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
+					node.append(`const $result = ${fromJSON}($data);`, NL);
 				} else if (o.resultType.variant === 'inline-enum') {
 					const guard = `is${toFirstUpper(o.name)}Result`;
 					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
+					node.append(`const $result = $data; // Conversion to be done`, NL);
 				} else {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.model.is${o.resultType.type}`;
 					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
+					node.append(`const $result = $data; // Conversion to be done`, NL);
 				}
 			}
-			node.append(`return ${safeExecute}(${OK}($data), () => onSuccess?.('${o.name}', $data));`, NL);
+			node.append(`return ${safeExecute}(${OK}($result), () => onSuccess?.('${o.name}', $result));`, NL);
 		} else {
 			const fromJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${o.resultType.type}FromJSON`;
 			const decodeResponse = fqn('decodeResponse:./_fetch-type-utils.ts', false);

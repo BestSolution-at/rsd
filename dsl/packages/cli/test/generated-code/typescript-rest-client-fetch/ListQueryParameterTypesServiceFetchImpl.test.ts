@@ -43,9 +43,9 @@ describe('ListQueryParameterTypesServiceFetchImpl', () => {
 	});
 	describe('listLongQueryParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLongQueryParam([1000, 2000, 3000]);
+			const [result, error] = await service.listLongQueryParam([1000n, 2000n, 3000n]);
 			expect(error).toBeNull();
-			expect(result).toEqual([1000, 2000, 3000]);
+			expect(result).toEqual([1000n, 2000n, 3000n]);
 		});
 	});
 	describe('listFloatQueryParam', () => {

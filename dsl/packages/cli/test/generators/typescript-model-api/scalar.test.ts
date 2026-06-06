@@ -9,10 +9,10 @@ function scalar(name: string): MResolvedScalarType {
 
 const ZoneId_Result = `
 export type ZoneId = string;
-export function ZoneIdFromString(value: string): ZoneId {
+export function ZoneIdFromJSON(value: string): ZoneId {
 	return value;
 }
-export function ZoneIdToString(value: ZoneId): string {
+export function ZoneIdToJSON(value: ZoneId): string {
 	return value;
 }
 export function isZoneId(value: unknown): value is ZoneId {
@@ -22,10 +22,10 @@ export function isZoneId(value: unknown): value is ZoneId {
 
 const MultipleScalars_Result = `
 export type ZoneId = string;
-export function ZoneIdFromString(value: string): ZoneId {
+export function ZoneIdFromJSON(value: string): ZoneId {
 	return value;
 }
-export function ZoneIdToString(value: ZoneId): string {
+export function ZoneIdToJSON(value: ZoneId): string {
 	return value;
 }
 export function isZoneId(value: unknown): value is ZoneId {
@@ -33,10 +33,10 @@ export function isZoneId(value: unknown): value is ZoneId {
 }
 
 export type LocalDate = string;
-export function LocalDateFromString(value: string): LocalDate {
+export function LocalDateFromJSON(value: string): LocalDate {
 	return value;
 }
-export function LocalDateToString(value: LocalDate): string {
+export function LocalDateToJSON(value: LocalDate): string {
 	return value;
 }
 export function isLocalDate(value: unknown): value is LocalDate {

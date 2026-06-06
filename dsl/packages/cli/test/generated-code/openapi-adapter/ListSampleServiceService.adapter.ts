@@ -2,6 +2,7 @@ import { api } from '../../test-specs/gen-out/client/typescript-client/src/index
 import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { ListSampleServiceApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/ListSampleServiceApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
+import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/Builtins.js';
 
 export function createOpenAPIListSampleServiceService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -99,11 +100,11 @@ class ListSampleServiceServiceImpl implements api.service.ListSampleServiceServi
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-	async listLong(): Promise<api.result.Result<number[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+	async listLong(): Promise<api.result.Result<RSDLong[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listSampleServiceListLongRaw();
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()).map(BigInt));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}

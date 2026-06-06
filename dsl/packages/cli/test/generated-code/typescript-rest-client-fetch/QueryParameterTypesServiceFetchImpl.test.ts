@@ -91,14 +91,14 @@ describe('SingleQueryParameterTypesService', () => {
 	});
 	describe('simpleLongQueryParam', () => {
 		test.each([json, msgpack, openapi])('success - 1234567890123 - $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleLongQueryParam(1234567890123);
+			const [result, error] = await service.simpleLongQueryParam(1234567890123n);
 			expect(error).toBeNull();
-			expect(result).toBe(1234567890123);
+			expect(result).toBe(1234567890123n);
 		});
 	});
 	describe('simpleLongQueryParamOpt', () => {
 		test.each([json, msgpack, openapi])('success - 1234567890123 - $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleLongQueryParamOpt(1234567890123);
+			const [result, error] = await service.simpleLongQueryParamOpt(1234567890123n);
 			expect(error).toBeNull();
 			expect(result).toBe('DEFINED');
 		});

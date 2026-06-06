@@ -54,10 +54,21 @@ export function isRSDOffsetDateTime(value: unknown): value is RSDOffsetDateTime 
     return typeof value === 'string';
 }
 
-export type RSDLong = number;
+export type RSDLong = bigint;
 export function isRSDLong(value: unknown): value is RSDLong {
-    return typeof value === 'number' 
-        && Number.isInteger(value);
+    return typeof value === 'bigint';
+}
+export function RSDLongFromJSON(value: bigint | number): RSDLong {
+    if(typeof value === 'bigint') {
+        return value;
+    }
+    return BigInt(value);
+}
+export function RSDLongToJSON(value: RSDLong): bigint | number {
+    if(Number.MIN_SAFE_INTEGER <= value && value <= Number.MAX_SAFE_INTEGER) {
+        return Number(value);
+    }
+    return value;
 }
 
 export type RSDInt = number;
@@ -67,6 +78,12 @@ export function isRSDInt(value: unknown): value is RSDInt {
         && value >= -2147483648
         && value <= 2147483647;
 }
+export function RSDIntFromJSON(value: number): RSDInt {
+    return value;
+}
+export function RSDIntToJSON(value: RSDInt): number {
+    return value;
+}
 
 export type RSDShort = number;
 export function isRSDShort(value: unknown): value is RSDShort {
@@ -74,6 +91,12 @@ export function isRSDShort(value: unknown): value is RSDShort {
         && Number.isInteger(value)
         && value >= -32768
         && value <= 32767;
+}
+export function RSDShortFromJSON(value: number): RSDShort {
+    return value;
+}
+export function RSDShortToJSON(value: RSDShort): number {
+    return value;
 }
 
 export type RSDFloat = number;
@@ -84,6 +107,12 @@ export function isRSDFloat(value: unknown): value is RSDFloat {
         && value >= -3.4028235e+38
         && value <= 3.4028235e+38;
 }
+export function RSDFloatFromJSON(value: number): RSDFloat {
+    return value;
+}
+export function RSDFloatToJSON(value: RSDFloat): number {
+    return value;
+}
 
 export type RSDDouble = number;
 export function isRSDDouble(value: unknown): value is RSDDouble {
@@ -91,13 +120,31 @@ export function isRSDDouble(value: unknown): value is RSDDouble {
         && !Number.isNaN(value)
         && Number.isFinite(value);
 }
+export function RSDDoubleFromJSON(value: number): RSDDouble {
+    return value;
+}
+export function RSDDoubleToJSON(value: RSDDouble): number {
+    return value;
+}
 
 export type RSDString = string;
 export function isRSDString(value: unknown): value is RSDString {
     return typeof value === 'string';
 }
+export function RSDStringFromJSON(value: string): RSDString {
+    return value;
+}
+export function RSDStringToJSON(value: RSDString): string {
+    return value;
+}
 
 export type RSDBoolean = boolean;
 export function isRSDBoolean(value: unknown): value is RSDBoolean {
     return typeof value === 'boolean';
+}
+export function RSDBooleanFromJSON(value: boolean): RSDBoolean {
+    return value;
+}
+export function RSDBooleanToJSON(value: RSDBoolean): boolean {
+    return value;
 }

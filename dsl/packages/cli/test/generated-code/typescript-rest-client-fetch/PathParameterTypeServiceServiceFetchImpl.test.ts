@@ -52,9 +52,9 @@ describe('SinglePathParameterTypeServiceServiceFetchImpl', () => {
 
 	describe('simpleLongPathParam', () => {
 		test.each([json, msgpack, openapi])('success - $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleLongPathParam(1234567890123);
+			const [result, error] = await service.simpleLongPathParam(1234567890123n);
 			expect(error).toBeNull();
-			expect(result).toBe(1234567890123);
+			expect(result).toBe(1234567890123n);
 		});
 	});
 

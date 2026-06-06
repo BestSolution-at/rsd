@@ -22,6 +22,23 @@ const Simple: PatchableRecord_Basic = {
 	valueLocalDateTime: '2020-01-02T03:04:05',
 	valueLocalTime: '2020-01-02T03:04:05',
 	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+	valueLong: BigInt(1),
+	valueShort: 1,
+	valueString: 'value',
+	valueZonedDateTime: '2020-01-02T03:04:05Z',
+};
+
+const Simple_Json = {
+	key: 'key',
+	version: 'version',
+	valueBoolean: true,
+	valueDouble: 0.1,
+	valueFloat: 0.5,
+	valueInt: 1,
+	valueLocalDate: '2020-01-02',
+	valueLocalDateTime: '2020-01-02T03:04:05',
+	valueLocalTime: '2020-01-02T03:04:05',
+	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
 	valueLong: 1,
 	valueShort: 1,
 	valueString: 'value',
@@ -30,20 +47,20 @@ const Simple: PatchableRecord_Basic = {
 
 describe('PatchableRecord_BasicFromJSON', () => {
 	test('simple', () => {
-		expect(PatchableRecord_BasicFromJSON(Simple)).toStrictEqual(Simple);
+		expect(PatchableRecord_BasicFromJSON(Simple_Json)).toStrictEqual(Simple);
 	});
 	test('remove-unknown', () => {
-		expect(PatchableRecord_BasicFromJSON(addFooProperty(Simple))).toStrictEqual(Simple);
+		expect(PatchableRecord_BasicFromJSON(addFooProperty(Simple_Json))).toStrictEqual(Simple);
 	});
 	test.each(Object.keys(Simple).filter(v => !v.toLowerCase().includes('opt')))('missing prop $0', data => {
-		const { withOut } = removeProperty(Simple, data);
+		const { withOut } = removeProperty(Simple_Json, data);
 		expect(() => PatchableRecord_BasicFromJSON(withOut)).toThrow();
 	});
 	test.each(Object.keys(Simple))('invalid prop $0', data => {
-		expect(() => PatchableRecord_BasicFromJSON(invalidateProperty(Simple, data))).toThrow();
+		expect(() => PatchableRecord_BasicFromJSON(invalidateProperty(Simple_Json, data))).toThrow();
 	});
 	test.each(Object.keys(Simple).filter(p => p.includes('list')))('invalid prop $0', data => {
-		expect(() => PatchableRecord_BasicFromJSON(invalidateArrayProperty(Simple, data))).toThrow();
+		expect(() => PatchableRecord_BasicFromJSON(invalidateArrayProperty(Simple_Json, data))).toThrow();
 	});
 });
 
@@ -65,15 +82,32 @@ describe('isPatchableRecord_Basic', () => {
 
 describe('PatchableRecord_BasicToJSON', () => {
 	test('simple', () => {
-		expect(PatchableRecord_BasicToJSON(Simple)).toStrictEqual(Simple);
+		expect(PatchableRecord_BasicToJSON(Simple)).toStrictEqual(Simple_Json);
 		expect(PatchableRecord_BasicToJSON(Simple)).not.toBe(Simple);
 	});
 	test('additional props', () => {
-		expect(PatchableRecord_BasicToJSON(addFooProperty(Simple))).toStrictEqual(Simple);
+		expect(PatchableRecord_BasicToJSON(addFooProperty(Simple))).toStrictEqual(Simple_Json);
 	});
 });
 
 const SimplePatch: PatchableRecord_BasicPatch = {
+	key: 'key',
+	version: 'version',
+	valueBoolean: true,
+	valueDouble: 0.1,
+	valueFloat: 0.1,
+	valueInt: 1,
+	valueLocalDate: '2020-01-02',
+	valueLocalDateTime: '2020-01-02T03:04:05',
+	valueLocalTime: '2020-01-02T03:04:05',
+	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+	valueLong: BigInt(1),
+	valueShort: 1,
+	valueString: 'value',
+	valueZonedDateTime: '2020-01-02T03:04:05Z',
+};
+
+const SimplePatch_Json = {
 	key: 'key',
 	version: 'version',
 	valueBoolean: true,
@@ -109,23 +143,23 @@ const SimplePatchMinimal: PatchableRecord_BasicPatch = {
 
 describe('PatchableRecord_BasicPatchFromJSON', () => {
 	test('simple', () => {
-		expect(PatchableRecord_BasicPatchFromJSON(SimplePatch)).toStrictEqual(SimplePatch);
+		expect(PatchableRecord_BasicPatchFromJSON(SimplePatch_Json)).toStrictEqual(SimplePatch);
 		expect(PatchableRecord_BasicPatchFromJSON(SimplePatchMinimal)).toStrictEqual(SimplePatchMinimal);
 	});
 	test('remove-unknown', () => {
-		expect(PatchableRecord_BasicPatchFromJSON(addFooProperty(SimplePatch))).toStrictEqual(SimplePatch);
+		expect(PatchableRecord_BasicPatchFromJSON(addFooProperty(SimplePatch_Json))).toStrictEqual(SimplePatch);
 		expect(PatchableRecord_BasicPatchFromJSON(addFooProperty(SimplePatchMinimal))).toStrictEqual(SimplePatchMinimal);
 	});
 	test('missing key-prop', () => {
-		const { withOut } = removeProperty(SimplePatch, 'key');
+		const { withOut } = removeProperty(SimplePatch_Json, 'key');
 		expect(() => PatchableRecord_BasicPatchFromJSON(withOut)).toThrow();
 	});
 	test('missing version-prop', () => {
-		const { withOut } = removeProperty(SimplePatch, 'version');
+		const { withOut } = removeProperty(SimplePatch_Json, 'version');
 		expect(() => PatchableRecord_BasicPatchFromJSON(withOut)).toThrow();
 	});
 	test.each(Object.keys(Simple))('invalid prop $0', data => {
-		expect(() => PatchableRecord_BasicPatchFromJSON(invalidateProperty(SimplePatch, data))).toThrow();
+		expect(() => PatchableRecord_BasicPatchFromJSON(invalidateProperty(SimplePatch_Json, data))).toThrow();
 		expect(() => PatchableRecord_BasicPatchFromJSON(invalidateProperty(SimplePatchMinimal, data))).toThrow();
 	});
 });
@@ -152,14 +186,14 @@ describe('isPatchableRecord_BasicPatch', () => {
 });
 describe('PatchableRecord_BasicPatchToJSON', () => {
 	test('simple', () => {
-		expect(PatchableRecord_BasicPatchToJSON(SimplePatch)).toStrictEqual(SimplePatch);
+		expect(PatchableRecord_BasicPatchToJSON(SimplePatch)).toStrictEqual(SimplePatch_Json);
 		expect(PatchableRecord_BasicPatchToJSON(SimplePatch)).not.toBe(SimplePatch);
 
 		expect(PatchableRecord_BasicPatchToJSON(SimplePatchMinimal)).toStrictEqual(SimplePatchMinimal);
 		expect(PatchableRecord_BasicPatchToJSON(SimplePatchMinimal)).not.toBe(SimplePatchMinimal);
 	});
 	test('additional props', () => {
-		expect(PatchableRecord_BasicPatchToJSON(addFooProperty(SimplePatch))).toStrictEqual(SimplePatch);
+		expect(PatchableRecord_BasicPatchToJSON(addFooProperty(SimplePatch))).toStrictEqual(SimplePatch_Json);
 		expect(PatchableRecord_BasicPatchToJSON(addFooProperty(SimplePatchMinimal))).toStrictEqual(SimplePatchMinimal);
 	});
 });

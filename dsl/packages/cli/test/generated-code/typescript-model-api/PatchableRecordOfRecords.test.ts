@@ -26,6 +26,211 @@ const Simple: PatchableRecordOfRecords = {
 		valueLocalDateTime: '2020-01-01T00:00:00',
 		valueLocalTime: '2020-01-01T00:00:00',
 		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	value_Null: {
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	value_Opt: {
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	value_Opt_Null: {
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	list: [
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+	],
+	list_Null: [
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+	],
+	list_Opt: [
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+	],
+	list_Opt_Null: [
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+	],
+};
+
+const Simple_Json = {
+	key: 'key',
+	version: 'version',
+	value: {
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
 		valueLong: 0,
 		valueShort: 0,
 		valueZonedDateTime: '2020-01-01T00:00:00Z',
@@ -231,6 +436,115 @@ const SimpleMinimal: PatchableRecordOfRecords = {
 		valueLocalDateTime: '2020-01-01T00:00:00',
 		valueLocalTime: '2020-01-01T00:00:00',
 		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	value_Null: {
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	value_Opt: undefined,
+	value_Opt_Null: undefined,
+	list: [
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+	],
+	list_Null: [
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+	],
+	list_Opt: undefined,
+	list_Opt_Null: undefined,
+};
+
+const SimpleMinimal_Json = {
+	key: 'key',
+	version: 'version',
+	value: {
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
 		valueLong: 0,
 		valueShort: 0,
 		valueZonedDateTime: '2020-01-01T00:00:00Z',
@@ -340,6 +654,67 @@ const SimpleNull: PatchableRecordOfRecords = {
 		valueLocalDateTime: '2020-01-01T00:00:00',
 		valueLocalTime: '2020-01-01T00:00:00',
 		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	value_Null: null,
+	value_Opt: undefined,
+	value_Opt_Null: null,
+	list: [
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+		{
+			key: 'key',
+			version: 'version',
+			valueBoolean: true,
+			valueDouble: 0,
+			valueInt: 0,
+			valueString: 'value',
+			valueFloat: 0,
+			valueLocalDate: '2020-01-01',
+			valueLocalDateTime: '2020-01-01T00:00:00',
+			valueLocalTime: '2020-01-01T00:00:00',
+			valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+			valueLong: BigInt(0),
+			valueShort: 0,
+			valueZonedDateTime: '2020-01-01T00:00:00Z',
+		},
+	],
+	list_Null: null,
+	list_Opt: undefined,
+	list_Opt_Null: null,
+};
+
+const SimpleNull_Json = {
+	key: 'key',
+	version: 'version',
+	value: {
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
 		valueLong: 0,
 		valueShort: 0,
 		valueZonedDateTime: '2020-01-01T00:00:00Z',
@@ -388,24 +763,24 @@ const SimpleNull: PatchableRecordOfRecords = {
 
 describe('PatchableScalarRecordFromJSON', () => {
 	test('simple', () => {
-		expect(PatchableRecordOfRecordsFromJSON(Simple)).toStrictEqual(Simple);
-		expect(PatchableRecordOfRecordsFromJSON(SimpleMinimal)).toStrictEqual(SimpleMinimal);
-		expect(PatchableRecordOfRecordsFromJSON(SimpleNull)).toStrictEqual(SimpleNull);
+		expect(PatchableRecordOfRecordsFromJSON(Simple_Json)).toStrictEqual(Simple);
+		expect(PatchableRecordOfRecordsFromJSON(SimpleMinimal_Json)).toStrictEqual(SimpleMinimal);
+		expect(PatchableRecordOfRecordsFromJSON(SimpleNull_Json)).toStrictEqual(SimpleNull);
 	});
 	test('remove-unknown', () => {
-		expect(PatchableRecordOfRecordsFromJSON(addFooProperty(Simple))).toStrictEqual(Simple);
+		expect(PatchableRecordOfRecordsFromJSON(addFooProperty(Simple_Json))).toStrictEqual(Simple);
 	});
 	test.each(Object.keys(Simple).filter(v => !v.toLowerCase().includes('opt')))('missing prop $0', data => {
-		const { withOut } = removeProperty(Simple, data);
+		const { withOut } = removeProperty(Simple_Json, data);
 		expect(() => PatchableRecordOfRecordsFromJSON(withOut)).toThrow();
 	});
 	test.each(Object.keys(Simple))('invalid prop $0', data => {
-		expect(() => PatchableRecordOfRecordsFromJSON(invalidateProperty(Simple, data))).toThrow();
-		expect(() => PatchableRecordOfRecordsFromJSON(invalidateProperty(SimpleMinimal, data))).toThrow();
-		expect(() => PatchableRecordOfRecordsFromJSON(invalidateProperty(SimpleNull, data))).toThrow();
+		expect(() => PatchableRecordOfRecordsFromJSON(invalidateProperty(Simple_Json, data))).toThrow();
+		expect(() => PatchableRecordOfRecordsFromJSON(invalidateProperty(SimpleMinimal_Json, data))).toThrow();
+		expect(() => PatchableRecordOfRecordsFromJSON(invalidateProperty(SimpleNull_Json, data))).toThrow();
 	});
 	test.each(Object.keys(Simple).filter(p => p.includes('list')))('invalid prop $0', data => {
-		expect(() => PatchableRecordOfRecordsFromJSON(invalidateArrayProperty(Simple, data))).toThrow();
+		expect(() => PatchableRecordOfRecordsFromJSON(invalidateArrayProperty(Simple_Json, data))).toThrow();
 	});
 });
 
@@ -431,21 +806,178 @@ describe('isPatchableRecordOfRecords', () => {
 
 describe('PatchableRecordOfRecordsToJSON', () => {
 	test('simple', () => {
-		expect(PatchableRecordOfRecordsToJSON(Simple)).toStrictEqual(Simple);
+		expect(PatchableRecordOfRecordsToJSON(Simple)).toStrictEqual(Simple_Json);
 		expect(PatchableRecordOfRecordsToJSON(Simple)).not.toBe(Simple);
 
-		expect(PatchableRecordOfRecordsToJSON(SimpleMinimal)).toStrictEqual(SimpleMinimal);
+		expect(PatchableRecordOfRecordsToJSON(SimpleMinimal)).toStrictEqual(SimpleMinimal_Json);
 		expect(PatchableRecordOfRecordsToJSON(SimpleMinimal)).not.toBe(SimpleMinimal);
 
-		expect(PatchableRecordOfRecordsToJSON(SimpleNull)).toStrictEqual(SimpleNull);
+		expect(PatchableRecordOfRecordsToJSON(SimpleNull)).toStrictEqual(SimpleNull_Json);
 		expect(PatchableRecordOfRecordsToJSON(SimpleNull)).not.toBe(SimpleNull);
 	});
 	test('additional props', () => {
-		expect(PatchableRecordOfRecordsToJSON(addFooProperty(Simple))).toStrictEqual(Simple);
+		expect(PatchableRecordOfRecordsToJSON(addFooProperty(Simple))).toStrictEqual(Simple_Json);
 	});
 });
 
 const SimplePatchReplace: PatchableRecordOfRecordsPatch = {
+	key: 'key',
+	version: 'version',
+	value: {
+		'@type': 'replace',
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	value_Null: {
+		'@type': 'replace',
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	value_Opt: {
+		'@type': 'replace',
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	value_Opt_Null: {
+		'@type': 'replace',
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	list: {
+		'@type': 'replace',
+		elements: [
+			{
+				key: 'key',
+				version: 'version',
+				valueBoolean: true,
+				valueDouble: 0,
+				valueInt: 0,
+				valueString: 'value',
+				valueFloat: 0,
+				valueLocalDate: '2020-01-01',
+				valueLocalDateTime: '2020-01-01T00:00:00',
+				valueLocalTime: '2020-01-01T00:00:00',
+				valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+				valueLong: BigInt(0),
+				valueShort: 0,
+				valueZonedDateTime: '2020-01-01T00:00:00Z',
+			},
+		],
+	},
+	list_Null: {
+		'@type': 'replace',
+		elements: [
+			{
+				key: 'key',
+				version: 'version',
+				valueBoolean: true,
+				valueDouble: 0,
+				valueInt: 0,
+				valueString: 'value',
+				valueFloat: 0,
+				valueLocalDate: '2020-01-01',
+				valueLocalDateTime: '2020-01-01T00:00:00',
+				valueLocalTime: '2020-01-01T00:00:00',
+				valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+				valueLong: BigInt(0),
+				valueShort: 0,
+				valueZonedDateTime: '2020-01-01T00:00:00Z',
+			},
+		],
+	},
+	list_Opt: {
+		'@type': 'replace',
+		elements: [
+			{
+				key: 'key',
+				version: 'version',
+				valueBoolean: true,
+				valueDouble: 0,
+				valueInt: 0,
+				valueString: 'value',
+				valueFloat: 0,
+				valueLocalDate: '2020-01-01',
+				valueLocalDateTime: '2020-01-01T00:00:00',
+				valueLocalTime: '2020-01-01T00:00:00',
+				valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+				valueLong: BigInt(0),
+				valueShort: 0,
+				valueZonedDateTime: '2020-01-01T00:00:00Z',
+			},
+		],
+	},
+	list_Opt_Null: {
+		'@type': 'replace',
+		elements: [
+			{
+				key: 'key',
+				version: 'version',
+				valueBoolean: true,
+				valueDouble: 0,
+				valueInt: 0,
+				valueString: 'value',
+				valueFloat: 0,
+				valueLocalDate: '2020-01-01',
+				valueLocalDateTime: '2020-01-01T00:00:00',
+				valueLocalTime: '2020-01-01T00:00:00',
+				valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+				valueLong: BigInt(0),
+				valueShort: 0,
+				valueZonedDateTime: '2020-01-01T00:00:00Z',
+			},
+		],
+	},
+};
+
+const SimplePatchReplace_Json = {
 	key: 'key',
 	version: 'version',
 	value: {
@@ -603,6 +1135,239 @@ const SimplePatchReplace: PatchableRecordOfRecordsPatch = {
 };
 
 const SimplePatchMerge: PatchableRecordOfRecordsPatch = {
+	key: 'key',
+	version: 'version',
+	value: {
+		'@type': 'merge',
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	value_Null: {
+		'@type': 'merge',
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	value_Opt: {
+		'@type': 'merge',
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	value_Opt_Null: {
+		'@type': 'merge',
+		key: 'key',
+		version: 'version',
+		valueBoolean: true,
+		valueDouble: 0,
+		valueInt: 0,
+		valueString: 'value',
+		valueFloat: 0,
+		valueLocalDate: '2020-01-01',
+		valueLocalDateTime: '2020-01-01T00:00:00',
+		valueLocalTime: '2020-01-01T00:00:00',
+		valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+		valueLong: BigInt(0),
+		valueShort: 0,
+		valueZonedDateTime: '2020-01-01T00:00:00Z',
+	},
+	list: {
+		'@type': 'merge',
+		additions: [
+			{
+				key: 'key',
+				version: 'version',
+				valueBoolean: true,
+				valueDouble: 0,
+				valueInt: 0,
+				valueString: 'value',
+				valueFloat: 0,
+				valueLocalDate: '2020-01-01',
+				valueLocalDateTime: '2020-01-01T00:00:00',
+				valueLocalTime: '2020-01-01T00:00:00',
+				valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+				valueLong: BigInt(0),
+				valueShort: 0,
+				valueZonedDateTime: '2020-01-01T00:00:00Z',
+			},
+		],
+		updates: [
+			{
+				key: 'key',
+				version: 'version',
+				valueBoolean: true,
+				valueDouble: 0,
+				valueInt: 0,
+				valueString: 'value',
+				valueFloat: 0,
+				valueLocalDate: '2020-01-01',
+				valueLocalDateTime: '2020-01-01T00:00:00',
+				valueLocalTime: '2020-01-01T00:00:00',
+				valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+				valueLong: BigInt(0),
+				valueShort: 0,
+				valueZonedDateTime: '2020-01-01T00:00:00Z',
+			},
+		],
+		removals: ['key-to-remove'],
+	},
+	list_Null: {
+		'@type': 'merge',
+		additions: [
+			{
+				key: 'key',
+				version: 'version',
+				valueBoolean: true,
+				valueDouble: 0,
+				valueInt: 0,
+				valueString: 'value',
+				valueFloat: 0,
+				valueLocalDate: '2020-01-01',
+				valueLocalDateTime: '2020-01-01T00:00:00',
+				valueLocalTime: '2020-01-01T00:00:00',
+				valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+				valueLong: BigInt(0),
+				valueShort: 0,
+				valueZonedDateTime: '2020-01-01T00:00:00Z',
+			},
+		],
+		updates: [
+			{
+				key: 'key',
+				version: 'version',
+				valueBoolean: true,
+				valueDouble: 0,
+				valueInt: 0,
+				valueString: 'value',
+				valueFloat: 0,
+				valueLocalDate: '2020-01-01',
+				valueLocalDateTime: '2020-01-01T00:00:00',
+				valueLocalTime: '2020-01-01T00:00:00',
+				valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+				valueLong: BigInt(0),
+				valueShort: 0,
+				valueZonedDateTime: '2020-01-01T00:00:00Z',
+			},
+		],
+		removals: ['key-to-remove'],
+	},
+	list_Opt: {
+		'@type': 'merge',
+		additions: [
+			{
+				key: 'key',
+				version: 'version',
+				valueBoolean: true,
+				valueDouble: 0,
+				valueInt: 0,
+				valueString: 'value',
+				valueFloat: 0,
+				valueLocalDate: '2020-01-01',
+				valueLocalDateTime: '2020-01-01T00:00:00',
+				valueLocalTime: '2020-01-01T00:00:00',
+				valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+				valueLong: BigInt(0),
+				valueShort: 0,
+				valueZonedDateTime: '2020-01-01T00:00:00Z',
+			},
+		],
+		updates: [
+			{
+				key: 'key',
+				version: 'version',
+				valueBoolean: true,
+				valueDouble: 0,
+				valueInt: 0,
+				valueString: 'value',
+				valueFloat: 0,
+				valueLocalDate: '2020-01-01',
+				valueLocalDateTime: '2020-01-01T00:00:00',
+				valueLocalTime: '2020-01-01T00:00:00',
+				valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+				valueLong: BigInt(0),
+				valueShort: 0,
+				valueZonedDateTime: '2020-01-01T00:00:00Z',
+			},
+		],
+		removals: ['key-to-remove'],
+	},
+	list_Opt_Null: {
+		'@type': 'merge',
+		additions: [
+			{
+				key: 'key',
+				version: 'version',
+				valueBoolean: true,
+				valueDouble: 0,
+				valueInt: 0,
+				valueString: 'value',
+				valueFloat: 0,
+				valueLocalDate: '2020-01-01',
+				valueLocalDateTime: '2020-01-01T00:00:00',
+				valueLocalTime: '2020-01-01T00:00:00',
+				valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+				valueLong: BigInt(0),
+				valueShort: 0,
+				valueZonedDateTime: '2020-01-01T00:00:00Z',
+			},
+		],
+		updates: [
+			{
+				key: 'key',
+				version: 'version',
+				valueBoolean: true,
+				valueDouble: 0,
+				valueInt: 0,
+				valueString: 'value',
+				valueFloat: 0,
+				valueLocalDate: '2020-01-01',
+				valueLocalDateTime: '2020-01-01T00:00:00',
+				valueLocalTime: '2020-01-01T00:00:00',
+				valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+				valueLong: BigInt(0),
+				valueShort: 0,
+				valueZonedDateTime: '2020-01-01T00:00:00Z',
+			},
+		],
+		removals: ['key-to-remove'],
+	},
+};
+
+const SimplePatchMerge_Json = {
 	key: 'key',
 	version: 'version',
 	value: {
@@ -863,29 +1628,33 @@ const SimplePatchNull: PatchableRecordOfRecordsPatch = {
 
 describe('PatchableRecordOfRecordsPatchFromJSON', () => {
 	test('simple', () => {
-		expect(PatchableRecordOfRecordsPatchFromJSON(SimplePatchReplace)).toStrictEqual(SimplePatchReplace);
-		expect(PatchableRecordOfRecordsPatchFromJSON(SimplePatchMerge)).toStrictEqual(SimplePatchMerge);
+		expect(PatchableRecordOfRecordsPatchFromJSON(SimplePatchReplace_Json)).toStrictEqual(SimplePatchReplace);
+		expect(PatchableRecordOfRecordsPatchFromJSON(SimplePatchMerge_Json)).toStrictEqual(SimplePatchMerge);
 		expect(PatchableRecordOfRecordsPatchFromJSON(SimplePatchMinimal)).toStrictEqual(SimplePatchMinimal);
 		expect(PatchableRecordOfRecordsPatchFromJSON(SimplePatchNull)).toStrictEqual(SimplePatchNull);
 	});
 	test('remove-unknown', () => {
-		expect(PatchableRecordOfRecordsPatchFromJSON(addFooProperty(SimplePatchReplace))).toStrictEqual(SimplePatchReplace);
-		expect(PatchableRecordOfRecordsPatchFromJSON(addFooProperty(SimplePatchMerge))).toStrictEqual(SimplePatchMerge);
+		expect(PatchableRecordOfRecordsPatchFromJSON(addFooProperty(SimplePatchReplace_Json))).toStrictEqual(
+			SimplePatchReplace,
+		);
+		expect(PatchableRecordOfRecordsPatchFromJSON(addFooProperty(SimplePatchMerge_Json))).toStrictEqual(
+			SimplePatchMerge,
+		);
 		expect(PatchableRecordOfRecordsPatchFromJSON(addFooProperty(SimplePatchMinimal))).toStrictEqual(SimplePatchMinimal);
 		expect(PatchableRecordOfRecordsPatchFromJSON(addFooProperty(SimplePatchNull))).toStrictEqual(SimplePatchNull);
 	});
 	test('missing key-prop', () => {
-		const { withOut } = removeProperty(SimplePatchReplace, 'key');
+		const { withOut } = removeProperty(SimplePatchReplace_Json, 'key');
 		expect(() => PatchableRecordOfRecordsPatchFromJSON(withOut)).toThrow();
 	});
 	test('missing version-prop', () => {
-		const { withOut } = removeProperty(SimplePatchReplace, 'version');
+		const { withOut } = removeProperty(SimplePatchReplace_Json, 'version');
 		expect(() => PatchableRecordOfRecordsPatchFromJSON(withOut)).toThrow();
 	});
 
 	test.each(Object.keys(Simple))('invalid prop $0', data => {
-		expect(() => PatchableRecordOfRecordsPatchFromJSON(invalidateProperty(SimplePatchReplace, data))).toThrow();
-		expect(() => PatchableRecordOfRecordsPatchFromJSON(invalidateProperty(SimplePatchMerge, data))).toThrow();
+		expect(() => PatchableRecordOfRecordsPatchFromJSON(invalidateProperty(SimplePatchReplace_Json, data))).toThrow();
+		expect(() => PatchableRecordOfRecordsPatchFromJSON(invalidateProperty(SimplePatchMerge_Json, data))).toThrow();
 		expect(() => PatchableRecordOfRecordsPatchFromJSON(invalidateProperty(SimplePatchMinimal, data))).toThrow();
 		expect(() => PatchableRecordOfRecordsPatchFromJSON(invalidateProperty(SimplePatchNull, data))).toThrow();
 	});
@@ -917,18 +1686,20 @@ describe('isPatchableRecordOfRecordsPatch', () => {
 });
 describe('PatchableRecordOfRecordsPatchToJSON', () => {
 	test('simple', () => {
-		expect(PatchableRecordOfRecordsPatchToJSON(SimplePatchReplace)).toStrictEqual(SimplePatchReplace);
+		expect(PatchableRecordOfRecordsPatchToJSON(SimplePatchReplace)).toStrictEqual(SimplePatchReplace_Json);
 		expect(PatchableRecordOfRecordsPatchToJSON(SimplePatchReplace)).not.toBe(SimplePatchReplace);
 
-		expect(PatchableRecordOfRecordsPatchToJSON(SimplePatchMerge)).toStrictEqual(SimplePatchMerge);
+		expect(PatchableRecordOfRecordsPatchToJSON(SimplePatchMerge)).toStrictEqual(SimplePatchMerge_Json);
 		expect(PatchableRecordOfRecordsPatchToJSON(SimplePatchMerge)).not.toBe(SimplePatchMerge);
 
 		expect(PatchableRecordOfRecordsPatchToJSON(SimplePatchMinimal)).toStrictEqual(SimplePatchMinimal);
 		expect(PatchableRecordOfRecordsPatchToJSON(SimplePatchMinimal)).not.toBe(SimplePatchMinimal);
 	});
 	test('additional props', () => {
-		expect(PatchableRecordOfRecordsPatchToJSON(addFooProperty(SimplePatchReplace))).toStrictEqual(SimplePatchReplace);
-		expect(PatchableRecordOfRecordsPatchToJSON(addFooProperty(SimplePatchMerge))).toStrictEqual(SimplePatchMerge);
+		expect(PatchableRecordOfRecordsPatchToJSON(addFooProperty(SimplePatchReplace))).toStrictEqual(
+			SimplePatchReplace_Json,
+		);
+		expect(PatchableRecordOfRecordsPatchToJSON(addFooProperty(SimplePatchMerge))).toStrictEqual(SimplePatchMerge_Json);
 		expect(PatchableRecordOfRecordsPatchToJSON(addFooProperty(SimplePatchMinimal))).toStrictEqual(SimplePatchMinimal);
 	});
 });

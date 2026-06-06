@@ -1133,9 +1133,9 @@ describe('ValueChangeTypeGuard', () => {
 
 const FromJson_PatchableRecord = `
 export function PatchableRecordPatchFromJSON($value: Record<string, unknown>): PatchableRecordPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
-	const value = propValue('value', $value, isString, 'optional');
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
+	const value = propMappedValue('value', $value, isString, RSDStringFromJSON, 'optional');
 	return {
 		key,
 		version,
@@ -1146,15 +1146,15 @@ export function PatchableRecordPatchFromJSON($value: Record<string, unknown>): P
 
 const FromJson_PatchableRecord_Basic = `
 export function PatchableRecord_BasicPatchFromJSON($value: Record<string, unknown>): PatchableRecord_BasicPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
-	const valueBoolean = propValue('valueBoolean', $value, isBoolean, 'optional');
-	const valueShort = propValue('valueShort', $value, isNumber, 'optional');
-	const valueInt = propValue('valueInt', $value, isNumber, 'optional');
-	const valueLong = propValue('valueLong', $value, isNumber, 'optional');
-	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional');
-	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional');
-	const valueString = propValue('valueString', $value, isString, 'optional');
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
+	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional');
+	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional');
+	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional');
+	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional');
+	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional');
+	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'optional');
 	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional');
 	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional');
 	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional');
@@ -1181,15 +1181,15 @@ export function PatchableRecord_BasicPatchFromJSON($value: Record<string, unknow
 
 const FromJson_PatchableRecord_Basic_Optional = `
 export function PatchableRecord_Basic_OptionalPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_OptionalPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
-	const valueBoolean = propValue('valueBoolean', $value, isBoolean, 'optional_null');
-	const valueShort = propValue('valueShort', $value, isNumber, 'optional_null');
-	const valueInt = propValue('valueInt', $value, isNumber, 'optional_null');
-	const valueLong = propValue('valueLong', $value, isNumber, 'optional_null');
-	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
-	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
-	const valueString = propValue('valueString', $value, isString, 'optional_null');
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
+	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional_null');
+	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional_null');
+	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional_null');
+	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional_null');
+	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional_null');
+	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'optional_null');
 	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional_null');
 	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional_null');
 	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional_null');
@@ -1216,15 +1216,15 @@ export function PatchableRecord_Basic_OptionalPatchFromJSON($value: Record<strin
 
 const FromJson_PatchableRecord_Basic_Null = `
 export function PatchableRecord_Basic_NullPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_NullPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
-	const valueBoolean = propValue('valueBoolean', $value, isBoolean, 'optional_null');
-	const valueShort = propValue('valueShort', $value, isNumber, 'optional_null');
-	const valueInt = propValue('valueInt', $value, isNumber, 'optional_null');
-	const valueLong = propValue('valueLong', $value, isNumber, 'optional_null');
-	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
-	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
-	const valueString = propValue('valueString', $value, isString, 'optional_null');
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
+	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional_null');
+	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional_null');
+	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional_null');
+	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional_null');
+	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional_null');
+	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'optional_null');
 	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional_null');
 	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional_null');
 	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional_null');
@@ -1251,15 +1251,15 @@ export function PatchableRecord_Basic_NullPatchFromJSON($value: Record<string, u
 
 const FromJson_PatchableRecord_Basic_Optional_Null = `
 export function PatchableRecord_Basic_Optional_NullPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_Optional_NullPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
-	const valueBoolean = propValue('valueBoolean', $value, isBoolean, 'optional_null');
-	const valueShort = propValue('valueShort', $value, isNumber, 'optional_null');
-	const valueInt = propValue('valueInt', $value, isNumber, 'optional_null');
-	const valueLong = propValue('valueLong', $value, isNumber, 'optional_null');
-	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
-	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
-	const valueString = propValue('valueString', $value, isString, 'optional_null');
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
+	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional_null');
+	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional_null');
+	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional_null');
+	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional_null');
+	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional_null');
+	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'optional_null');
 	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional_null');
 	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional_null');
 	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional_null');
@@ -1286,15 +1286,15 @@ export function PatchableRecord_Basic_Optional_NullPatchFromJSON($value: Record<
 
 const FromJson_PatchableRecord_Basic_List = `
 export function PatchableRecord_Basic_ListPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_ListPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
-	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => isListReplace(v, isBoolean) ? ListReplaceFromJSON(v, isBoolean, noopMap) : ListMergeAddRemoveFromJSON(v, isBoolean, noopMap, isBoolean, noopMap), 'optional');
-	const valueShort = propMappedValue('valueShort', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
-	const valueInt = propMappedValue('valueInt', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
-	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
-	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
-	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional');
-	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
+	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => isListReplace(v, isBoolean) ? ListReplaceFromJSON(v, isBoolean, RSDBooleanFromJSON) : ListMergeAddRemoveFromJSON(v, isBoolean, RSDBooleanFromJSON, isBoolean, RSDBooleanFromJSON), 'optional');
+	const valueShort = propMappedValue('valueShort', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDShortFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDShortFromJSON, isNumber, RSDShortFromJSON), 'optional');
+	const valueInt = propMappedValue('valueInt', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDIntFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDIntFromJSON, isNumber, RSDIntFromJSON), 'optional');
+	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isNumeric) ? ListReplaceFromJSON(v, isNumeric, RSDLongFromJSON) : ListMergeAddRemoveFromJSON(v, isNumeric, RSDLongFromJSON, isNumeric, RSDLongFromJSON), 'optional');
+	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDFloatFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDFloatFromJSON, isNumber, RSDFloatFromJSON), 'optional');
+	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDDoubleFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDDoubleFromJSON, isNumber, RSDDoubleFromJSON), 'optional');
+	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDStringFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDStringFromJSON, isString, RSDStringFromJSON), 'optional');
 	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateFromJSON, isString, RSDLocalDateFromJSON), 'optional');
 	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateTimeFromJSON, isString, RSDLocalDateTimeFromJSON), 'optional');
 	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalTimeFromJSON, isString, RSDLocalTimeFromJSON), 'optional');
@@ -1321,15 +1321,15 @@ export function PatchableRecord_Basic_ListPatchFromJSON($value: Record<string, u
 
 const FromJson_PatchableRecord_Basic_List_Optional = `
 export function PatchableRecord_Basic_List_OptionalPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_List_OptionalPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
-	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => isListReplace(v, isBoolean) ? ListReplaceFromJSON(v, isBoolean, noopMap) : ListMergeAddRemoveFromJSON(v, isBoolean, noopMap, isBoolean, noopMap), 'optional_null');
-	const valueShort = propMappedValue('valueShort', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueInt = propMappedValue('valueInt', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
+	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => isListReplace(v, isBoolean) ? ListReplaceFromJSON(v, isBoolean, RSDBooleanFromJSON) : ListMergeAddRemoveFromJSON(v, isBoolean, RSDBooleanFromJSON, isBoolean, RSDBooleanFromJSON), 'optional_null');
+	const valueShort = propMappedValue('valueShort', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDShortFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDShortFromJSON, isNumber, RSDShortFromJSON), 'optional_null');
+	const valueInt = propMappedValue('valueInt', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDIntFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDIntFromJSON, isNumber, RSDIntFromJSON), 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isNumeric) ? ListReplaceFromJSON(v, isNumeric, RSDLongFromJSON) : ListMergeAddRemoveFromJSON(v, isNumeric, RSDLongFromJSON, isNumeric, RSDLongFromJSON), 'optional_null');
+	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDFloatFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDFloatFromJSON, isNumber, RSDFloatFromJSON), 'optional_null');
+	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDDoubleFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDDoubleFromJSON, isNumber, RSDDoubleFromJSON), 'optional_null');
+	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDStringFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDStringFromJSON, isString, RSDStringFromJSON), 'optional_null');
 	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateFromJSON, isString, RSDLocalDateFromJSON), 'optional_null');
 	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateTimeFromJSON, isString, RSDLocalDateTimeFromJSON), 'optional_null');
 	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalTimeFromJSON, isString, RSDLocalTimeFromJSON), 'optional_null');
@@ -1355,15 +1355,15 @@ export function PatchableRecord_Basic_List_OptionalPatchFromJSON($value: Record<
 
 const FromJson_PatchableRecord_Basic_List_Null = `
 export function PatchableRecord_Basic_List_NullPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_List_NullPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
-	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => isListReplace(v, isBoolean) ? ListReplaceFromJSON(v, isBoolean, noopMap) : ListMergeAddRemoveFromJSON(v, isBoolean, noopMap, isBoolean, noopMap), 'optional_null');
-	const valueShort = propMappedValue('valueShort', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueInt = propMappedValue('valueInt', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
+	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => isListReplace(v, isBoolean) ? ListReplaceFromJSON(v, isBoolean, RSDBooleanFromJSON) : ListMergeAddRemoveFromJSON(v, isBoolean, RSDBooleanFromJSON, isBoolean, RSDBooleanFromJSON), 'optional_null');
+	const valueShort = propMappedValue('valueShort', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDShortFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDShortFromJSON, isNumber, RSDShortFromJSON), 'optional_null');
+	const valueInt = propMappedValue('valueInt', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDIntFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDIntFromJSON, isNumber, RSDIntFromJSON), 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isNumeric) ? ListReplaceFromJSON(v, isNumeric, RSDLongFromJSON) : ListMergeAddRemoveFromJSON(v, isNumeric, RSDLongFromJSON, isNumeric, RSDLongFromJSON), 'optional_null');
+	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDFloatFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDFloatFromJSON, isNumber, RSDFloatFromJSON), 'optional_null');
+	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDDoubleFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDDoubleFromJSON, isNumber, RSDDoubleFromJSON), 'optional_null');
+	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDStringFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDStringFromJSON, isString, RSDStringFromJSON), 'optional_null');
 	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateFromJSON, isString, RSDLocalDateFromJSON), 'optional_null');
 	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateTimeFromJSON, isString, RSDLocalDateTimeFromJSON), 'optional_null');
 	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalTimeFromJSON, isString, RSDLocalTimeFromJSON), 'optional_null');
@@ -1390,15 +1390,15 @@ export function PatchableRecord_Basic_List_NullPatchFromJSON($value: Record<stri
 
 const FromJson_PatchableRecord_Basic_List_Optional_Null = `
 export function PatchableRecord_Basic_List_Optional_NullPatchFromJSON($value: Record<string, unknown>): PatchableRecord_Basic_List_Optional_NullPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
-	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => isListReplace(v, isBoolean) ? ListReplaceFromJSON(v, isBoolean, noopMap) : ListMergeAddRemoveFromJSON(v, isBoolean, noopMap, isBoolean, noopMap), 'optional_null');
-	const valueShort = propMappedValue('valueShort', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueInt = propMappedValue('valueInt', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, noopMap) : ListMergeAddRemoveFromJSON(v, isNumber, noopMap, isNumber, noopMap), 'optional_null');
-	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
+	const valueBoolean = propMappedValue('valueBoolean', $value, isRecord, v => isListReplace(v, isBoolean) ? ListReplaceFromJSON(v, isBoolean, RSDBooleanFromJSON) : ListMergeAddRemoveFromJSON(v, isBoolean, RSDBooleanFromJSON, isBoolean, RSDBooleanFromJSON), 'optional_null');
+	const valueShort = propMappedValue('valueShort', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDShortFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDShortFromJSON, isNumber, RSDShortFromJSON), 'optional_null');
+	const valueInt = propMappedValue('valueInt', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDIntFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDIntFromJSON, isNumber, RSDIntFromJSON), 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isRecord, v => isListReplace(v, isNumeric) ? ListReplaceFromJSON(v, isNumeric, RSDLongFromJSON) : ListMergeAddRemoveFromJSON(v, isNumeric, RSDLongFromJSON, isNumeric, RSDLongFromJSON), 'optional_null');
+	const valueFloat = propMappedValue('valueFloat', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDFloatFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDFloatFromJSON, isNumber, RSDFloatFromJSON), 'optional_null');
+	const valueDouble = propMappedValue('valueDouble', $value, isRecord, v => isListReplace(v, isNumber) ? ListReplaceFromJSON(v, isNumber, RSDDoubleFromJSON) : ListMergeAddRemoveFromJSON(v, isNumber, RSDDoubleFromJSON, isNumber, RSDDoubleFromJSON), 'optional_null');
+	const valueString = propMappedValue('valueString', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDStringFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDStringFromJSON, isString, RSDStringFromJSON), 'optional_null');
 	const valueLocalDate = propMappedValue('valueLocalDate', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateFromJSON, isString, RSDLocalDateFromJSON), 'optional_null');
 	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalDateTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalDateTimeFromJSON, isString, RSDLocalDateTimeFromJSON), 'optional_null');
 	const valueLocalTime = propMappedValue('valueLocalTime', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, RSDLocalTimeFromJSON) : ListMergeAddRemoveFromJSON(v, isString, RSDLocalTimeFromJSON, isString, RSDLocalTimeFromJSON), 'optional_null');
@@ -1425,8 +1425,8 @@ export function PatchableRecord_Basic_List_Optional_NullPatchFromJSON($value: Re
 
 const FromJson_PatchableEnumRecord = `
 export function PatchableEnumRecordPatchFromJSON($value: Record<string, unknown>): PatchableEnumRecordPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
 	const value = propValue('value', $value, isSampleEnum, 'optional');
 	const value_Null = propValue('value_Null', $value, isSampleEnum, 'optional_null');
 	const value_Opt = propValue('value_Opt', $value, isSampleEnum, 'optional_null');
@@ -1452,8 +1452,8 @@ export function PatchableEnumRecordPatchFromJSON($value: Record<string, unknown>
 
 const FromJson_PatchableEnumInlineRecord = `
 export function PatchableEnumInlineRecordPatchFromJSON($value: Record<string, unknown>): PatchableEnumInlineRecordPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
 	const value = propValue('value', $value, isPatchableEnumInlineRecord_Value, 'optional');
 	const value_Null = propValue('value_Null', $value, isPatchableEnumInlineRecord_Value_Null, 'optional_null');
 	const value_Opt = propValue('value_Opt', $value, isPatchableEnumInlineRecord_Value_Opt, 'optional_null');
@@ -1477,16 +1477,16 @@ export function PatchableEnumInlineRecordPatchFromJSON($value: Record<string, un
 
 const FromJson_PatchableScalarRecord = `
 export function PatchableScalarRecordPatchFromJSON($value: Record<string, unknown>): PatchableScalarRecordPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
-	const value = propValue('value', $value, isString, 'optional');
-	const value_Null = propValue('value_Null', $value, isString, 'optional_null');
-	const value_Opt = propValue('value_Opt', $value, isString, 'optional_null');
-	const value_Opt_Null = propValue('value_Opt_Null', $value, isString, 'optional_null');
-	const list = propMappedValue('list', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
-	const list_Null = propMappedValue('list_Null', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
+	const value = propMappedValue('value', $value, isString, ZoneIdFromJSON, 'optional');
+	const value_Null = propMappedValue('value_Null', $value, isString, ZoneIdFromJSON, 'optional_null');
+	const value_Opt = propMappedValue('value_Opt', $value, isString, ZoneIdFromJSON, 'optional_null');
+	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isString, ZoneIdFromJSON, 'optional_null');
+	const list = propMappedValue('list', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, ZoneIdFromJSON) : ListMergeAddRemoveFromJSON(v, isString, ZoneIdFromJSON, isString, ZoneIdFromJSON), 'optional');
+	const list_Null = propMappedValue('list_Null', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, ZoneIdFromJSON) : ListMergeAddRemoveFromJSON(v, isString, ZoneIdFromJSON, isString, ZoneIdFromJSON), 'optional_null');
+	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, ZoneIdFromJSON) : ListMergeAddRemoveFromJSON(v, isString, ZoneIdFromJSON, isString, ZoneIdFromJSON), 'optional_null');
+	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, ZoneIdFromJSON) : ListMergeAddRemoveFromJSON(v, isString, ZoneIdFromJSON, isString, ZoneIdFromJSON), 'optional_null');
 	return {
 		key,
 		version,
@@ -1504,8 +1504,8 @@ export function PatchableScalarRecordPatchFromJSON($value: Record<string, unknow
 
 const FromJson_PatchableRecordOfRecords = `
 export function PatchableRecordOfRecordsPatchFromJSON($value: Record<string, unknown>): PatchableRecordOfRecordsPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
 	const value = propMappedValue('value', $value, isRecord, v => ReplaceOrMergeFromJSON(v, PatchableRecord_BasicFromJSON, PatchableRecord_BasicPatchFromJSON), 'optional');
 	const value_Null = propMappedValue('value_Null', $value, isRecord, v => ReplaceOrMergeFromJSON(v, PatchableRecord_BasicFromJSON, PatchableRecord_BasicPatchFromJSON), 'optional_null');
 	const value_Opt = propMappedValue('value_Opt', $value, isRecord, v => ReplaceOrMergeFromJSON(v, PatchableRecord_BasicFromJSON, PatchableRecord_BasicPatchFromJSON), 'optional_null');
@@ -1531,8 +1531,8 @@ export function PatchableRecordOfRecordsPatchFromJSON($value: Record<string, unk
 
 const FromJson_PatchableRecordWithUnion = `
 export function PatchableRecordWithUnionPatchFromJSON($value: Record<string, unknown>): PatchableRecordWithUnionPatch {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
 	const value = propMappedValue('value', $value, isRecord, PatchableUnionOrPatchFromJSON, 'optional');
 	const value_Null = propMappedValue('value_Null', $value, isRecord, PatchableUnionOrPatchFromJSON, 'optional_null');
 	const value_Opt = propMappedValue('value_Opt', $value, isRecord, PatchableUnionOrPatchFromJSON, 'optional_null');
@@ -1626,9 +1626,9 @@ describe('FromJSONPatch', () => {
 
 const ToJson_PatchableRecord = `
 export function PatchableRecordPatchToJSON($value: PatchableRecordPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
-	const value = $value.value;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
+	const value = isUndefined($value.value) ? undefined : RSDStringToJSON($value.value);
 
 	return {
 		key,
@@ -1640,15 +1640,15 @@ export function PatchableRecordPatchToJSON($value: PatchableRecordPatch): Record
 
 const ToJson_PatchableRecord_Basic = `
 export function PatchableRecord_BasicPatchToJSON($value: PatchableRecord_BasicPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
+	const valueBoolean = isUndefined($value.valueBoolean) ? undefined : RSDBooleanToJSON($value.valueBoolean);
+	const valueShort = isUndefined($value.valueShort) ? undefined : RSDShortToJSON($value.valueShort);
+	const valueInt = isUndefined($value.valueInt) ? undefined : RSDIntToJSON($value.valueInt);
+	const valueLong = isUndefined($value.valueLong) ? undefined : RSDLongToJSON($value.valueLong);
+	const valueFloat = isUndefined($value.valueFloat) ? undefined : RSDFloatToJSON($value.valueFloat);
+	const valueDouble = isUndefined($value.valueDouble) ? undefined : RSDDoubleToJSON($value.valueDouble);
+	const valueString = isUndefined($value.valueString) ? undefined : RSDStringToJSON($value.valueString);
 	const valueLocalDate = isUndefined($value.valueLocalDate) ? undefined : RSDLocalDateToJSON($value.valueLocalDate);
 	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) ? undefined : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
 	const valueLocalTime = isUndefined($value.valueLocalTime) ? undefined : RSDLocalTimeToJSON($value.valueLocalTime);
@@ -1676,15 +1676,15 @@ export function PatchableRecord_BasicPatchToJSON($value: PatchableRecord_BasicPa
 
 const ToJson_PatchableRecord_Basic_Optional = `
 export function PatchableRecord_Basic_OptionalPatchToJSON($value: PatchableRecord_Basic_OptionalPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
+	const valueBoolean = isUndefined($value.valueBoolean) || isNull($value.valueBoolean) ? $value.valueBoolean : RSDBooleanToJSON($value.valueBoolean);
+	const valueShort = isUndefined($value.valueShort) || isNull($value.valueShort) ? $value.valueShort : RSDShortToJSON($value.valueShort);
+	const valueInt = isUndefined($value.valueInt) || isNull($value.valueInt) ? $value.valueInt : RSDIntToJSON($value.valueInt);
+	const valueLong = isUndefined($value.valueLong) || isNull($value.valueLong) ? $value.valueLong : RSDLongToJSON($value.valueLong);
+	const valueFloat = isUndefined($value.valueFloat) || isNull($value.valueFloat) ? $value.valueFloat : RSDFloatToJSON($value.valueFloat);
+	const valueDouble = isUndefined($value.valueDouble) || isNull($value.valueDouble) ? $value.valueDouble : RSDDoubleToJSON($value.valueDouble);
+	const valueString = isUndefined($value.valueString) || isNull($value.valueString) ? $value.valueString : RSDStringToJSON($value.valueString);
 	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : RSDLocalDateToJSON($value.valueLocalDate);
 	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
 	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : RSDLocalTimeToJSON($value.valueLocalTime);
@@ -1712,15 +1712,15 @@ export function PatchableRecord_Basic_OptionalPatchToJSON($value: PatchableRecor
 
 const ToJson_PatchableRecord_Basic_Null = `
 export function PatchableRecord_Basic_NullPatchToJSON($value: PatchableRecord_Basic_NullPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
+	const valueBoolean = isUndefined($value.valueBoolean) || isNull($value.valueBoolean) ? $value.valueBoolean : RSDBooleanToJSON($value.valueBoolean);
+	const valueShort = isUndefined($value.valueShort) || isNull($value.valueShort) ? $value.valueShort : RSDShortToJSON($value.valueShort);
+	const valueInt = isUndefined($value.valueInt) || isNull($value.valueInt) ? $value.valueInt : RSDIntToJSON($value.valueInt);
+	const valueLong = isUndefined($value.valueLong) || isNull($value.valueLong) ? $value.valueLong : RSDLongToJSON($value.valueLong);
+	const valueFloat = isUndefined($value.valueFloat) || isNull($value.valueFloat) ? $value.valueFloat : RSDFloatToJSON($value.valueFloat);
+	const valueDouble = isUndefined($value.valueDouble) || isNull($value.valueDouble) ? $value.valueDouble : RSDDoubleToJSON($value.valueDouble);
+	const valueString = isUndefined($value.valueString) || isNull($value.valueString) ? $value.valueString : RSDStringToJSON($value.valueString);
 	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : RSDLocalDateToJSON($value.valueLocalDate);
 	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
 	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : RSDLocalTimeToJSON($value.valueLocalTime);
@@ -1748,15 +1748,15 @@ export function PatchableRecord_Basic_NullPatchToJSON($value: PatchableRecord_Ba
 
 const ToJson_PatchableRecord_Basic_Optional_Null = `
 export function PatchableRecord_Basic_Optional_NullPatchToJSON($value: PatchableRecord_Basic_Optional_NullPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
+	const valueBoolean = isUndefined($value.valueBoolean) || isNull($value.valueBoolean) ? $value.valueBoolean : RSDBooleanToJSON($value.valueBoolean);
+	const valueShort = isUndefined($value.valueShort) || isNull($value.valueShort) ? $value.valueShort : RSDShortToJSON($value.valueShort);
+	const valueInt = isUndefined($value.valueInt) || isNull($value.valueInt) ? $value.valueInt : RSDIntToJSON($value.valueInt);
+	const valueLong = isUndefined($value.valueLong) || isNull($value.valueLong) ? $value.valueLong : RSDLongToJSON($value.valueLong);
+	const valueFloat = isUndefined($value.valueFloat) || isNull($value.valueFloat) ? $value.valueFloat : RSDFloatToJSON($value.valueFloat);
+	const valueDouble = isUndefined($value.valueDouble) || isNull($value.valueDouble) ? $value.valueDouble : RSDDoubleToJSON($value.valueDouble);
+	const valueString = isUndefined($value.valueString) || isNull($value.valueString) ? $value.valueString : RSDStringToJSON($value.valueString);
 	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : RSDLocalDateToJSON($value.valueLocalDate);
 	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
 	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : RSDLocalTimeToJSON($value.valueLocalTime);
@@ -1783,15 +1783,15 @@ export function PatchableRecord_Basic_Optional_NullPatchToJSON($value: Patchable
 
 const ToJson_PatchableRecord_Basic_List = `
 export function PatchableRecord_Basic_ListPatchToJSON($value: PatchableRecord_Basic_ListPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
+	const valueBoolean = isUndefined($value.valueBoolean) ? undefined : isListReplace($value.valueBoolean, isRSDBoolean) ? ListReplaceToJSON($value.valueBoolean, RSDBooleanToJSON) : ListMergeAddRemoveToJSON($value.valueBoolean, RSDBooleanToJSON, RSDBooleanToJSON);
+	const valueShort = isUndefined($value.valueShort) ? undefined : isListReplace($value.valueShort, isRSDShort) ? ListReplaceToJSON($value.valueShort, RSDShortToJSON) : ListMergeAddRemoveToJSON($value.valueShort, RSDShortToJSON, RSDShortToJSON);
+	const valueInt = isUndefined($value.valueInt) ? undefined : isListReplace($value.valueInt, isRSDInt) ? ListReplaceToJSON($value.valueInt, RSDIntToJSON) : ListMergeAddRemoveToJSON($value.valueInt, RSDIntToJSON, RSDIntToJSON);
+	const valueLong = isUndefined($value.valueLong) ? undefined : isListReplace($value.valueLong, isRSDLong) ? ListReplaceToJSON($value.valueLong, RSDLongToJSON) : ListMergeAddRemoveToJSON($value.valueLong, RSDLongToJSON, RSDLongToJSON);
+	const valueFloat = isUndefined($value.valueFloat) ? undefined : isListReplace($value.valueFloat, isRSDFloat) ? ListReplaceToJSON($value.valueFloat, RSDFloatToJSON) : ListMergeAddRemoveToJSON($value.valueFloat, RSDFloatToJSON, RSDFloatToJSON);
+	const valueDouble = isUndefined($value.valueDouble) ? undefined : isListReplace($value.valueDouble, isRSDDouble) ? ListReplaceToJSON($value.valueDouble, RSDDoubleToJSON) : ListMergeAddRemoveToJSON($value.valueDouble, RSDDoubleToJSON, RSDDoubleToJSON);
+	const valueString = isUndefined($value.valueString) ? undefined : isListReplace($value.valueString, isRSDString) ? ListReplaceToJSON($value.valueString, RSDStringToJSON) : ListMergeAddRemoveToJSON($value.valueString, RSDStringToJSON, RSDStringToJSON);
 	const valueLocalDate = isUndefined($value.valueLocalDate) ? undefined : isListReplace($value.valueLocalDate, isRSDLocalDate) ? ListReplaceToJSON($value.valueLocalDate, RSDLocalDateToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDate, RSDLocalDateToJSON, RSDLocalDateToJSON);
 	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) ? undefined : isListReplace($value.valueLocalDateTime, isRSDLocalDateTime) ? ListReplaceToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON, RSDLocalDateTimeToJSON);
 	const valueLocalTime = isUndefined($value.valueLocalTime) ? undefined : isListReplace($value.valueLocalTime, isRSDLocalTime) ? ListReplaceToJSON($value.valueLocalTime, RSDLocalTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalTime, RSDLocalTimeToJSON, RSDLocalTimeToJSON);
@@ -1818,15 +1818,15 @@ export function PatchableRecord_Basic_ListPatchToJSON($value: PatchableRecord_Ba
 
 const ToJson_PatchableRecord_Basic_List_Optional = `
 export function PatchableRecord_Basic_List_OptionalPatchToJSON($value: PatchableRecord_Basic_List_OptionalPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
+	const valueBoolean = isUndefined($value.valueBoolean) || isNull($value.valueBoolean) ? $value.valueBoolean : isListReplace($value.valueBoolean, isRSDBoolean) ? ListReplaceToJSON($value.valueBoolean, RSDBooleanToJSON) : ListMergeAddRemoveToJSON($value.valueBoolean, RSDBooleanToJSON, RSDBooleanToJSON);
+	const valueShort = isUndefined($value.valueShort) || isNull($value.valueShort) ? $value.valueShort : isListReplace($value.valueShort, isRSDShort) ? ListReplaceToJSON($value.valueShort, RSDShortToJSON) : ListMergeAddRemoveToJSON($value.valueShort, RSDShortToJSON, RSDShortToJSON);
+	const valueInt = isUndefined($value.valueInt) || isNull($value.valueInt) ? $value.valueInt : isListReplace($value.valueInt, isRSDInt) ? ListReplaceToJSON($value.valueInt, RSDIntToJSON) : ListMergeAddRemoveToJSON($value.valueInt, RSDIntToJSON, RSDIntToJSON);
+	const valueLong = isUndefined($value.valueLong) || isNull($value.valueLong) ? $value.valueLong : isListReplace($value.valueLong, isRSDLong) ? ListReplaceToJSON($value.valueLong, RSDLongToJSON) : ListMergeAddRemoveToJSON($value.valueLong, RSDLongToJSON, RSDLongToJSON);
+	const valueFloat = isUndefined($value.valueFloat) || isNull($value.valueFloat) ? $value.valueFloat : isListReplace($value.valueFloat, isRSDFloat) ? ListReplaceToJSON($value.valueFloat, RSDFloatToJSON) : ListMergeAddRemoveToJSON($value.valueFloat, RSDFloatToJSON, RSDFloatToJSON);
+	const valueDouble = isUndefined($value.valueDouble) || isNull($value.valueDouble) ? $value.valueDouble : isListReplace($value.valueDouble, isRSDDouble) ? ListReplaceToJSON($value.valueDouble, RSDDoubleToJSON) : ListMergeAddRemoveToJSON($value.valueDouble, RSDDoubleToJSON, RSDDoubleToJSON);
+	const valueString = isUndefined($value.valueString) || isNull($value.valueString) ? $value.valueString : isListReplace($value.valueString, isRSDString) ? ListReplaceToJSON($value.valueString, RSDStringToJSON) : ListMergeAddRemoveToJSON($value.valueString, RSDStringToJSON, RSDStringToJSON);
 	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : isListReplace($value.valueLocalDate, isRSDLocalDate) ? ListReplaceToJSON($value.valueLocalDate, RSDLocalDateToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDate, RSDLocalDateToJSON, RSDLocalDateToJSON);
 	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : isListReplace($value.valueLocalDateTime, isRSDLocalDateTime) ? ListReplaceToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON, RSDLocalDateTimeToJSON);
 	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : isListReplace($value.valueLocalTime, isRSDLocalTime) ? ListReplaceToJSON($value.valueLocalTime, RSDLocalTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalTime, RSDLocalTimeToJSON, RSDLocalTimeToJSON);
@@ -1854,15 +1854,15 @@ export function PatchableRecord_Basic_List_OptionalPatchToJSON($value: Patchable
 
 const ToJson_PatchableRecord_Basic_List_Null = `
 export function PatchableRecord_Basic_List_NullPatchToJSON($value: PatchableRecord_Basic_List_NullPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
+	const valueBoolean = isUndefined($value.valueBoolean) || isNull($value.valueBoolean) ? $value.valueBoolean : isListReplace($value.valueBoolean, isRSDBoolean) ? ListReplaceToJSON($value.valueBoolean, RSDBooleanToJSON) : ListMergeAddRemoveToJSON($value.valueBoolean, RSDBooleanToJSON, RSDBooleanToJSON);
+	const valueShort = isUndefined($value.valueShort) || isNull($value.valueShort) ? $value.valueShort : isListReplace($value.valueShort, isRSDShort) ? ListReplaceToJSON($value.valueShort, RSDShortToJSON) : ListMergeAddRemoveToJSON($value.valueShort, RSDShortToJSON, RSDShortToJSON);
+	const valueInt = isUndefined($value.valueInt) || isNull($value.valueInt) ? $value.valueInt : isListReplace($value.valueInt, isRSDInt) ? ListReplaceToJSON($value.valueInt, RSDIntToJSON) : ListMergeAddRemoveToJSON($value.valueInt, RSDIntToJSON, RSDIntToJSON);
+	const valueLong = isUndefined($value.valueLong) || isNull($value.valueLong) ? $value.valueLong : isListReplace($value.valueLong, isRSDLong) ? ListReplaceToJSON($value.valueLong, RSDLongToJSON) : ListMergeAddRemoveToJSON($value.valueLong, RSDLongToJSON, RSDLongToJSON);
+	const valueFloat = isUndefined($value.valueFloat) || isNull($value.valueFloat) ? $value.valueFloat : isListReplace($value.valueFloat, isRSDFloat) ? ListReplaceToJSON($value.valueFloat, RSDFloatToJSON) : ListMergeAddRemoveToJSON($value.valueFloat, RSDFloatToJSON, RSDFloatToJSON);
+	const valueDouble = isUndefined($value.valueDouble) || isNull($value.valueDouble) ? $value.valueDouble : isListReplace($value.valueDouble, isRSDDouble) ? ListReplaceToJSON($value.valueDouble, RSDDoubleToJSON) : ListMergeAddRemoveToJSON($value.valueDouble, RSDDoubleToJSON, RSDDoubleToJSON);
+	const valueString = isUndefined($value.valueString) || isNull($value.valueString) ? $value.valueString : isListReplace($value.valueString, isRSDString) ? ListReplaceToJSON($value.valueString, RSDStringToJSON) : ListMergeAddRemoveToJSON($value.valueString, RSDStringToJSON, RSDStringToJSON);
 	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : isListReplace($value.valueLocalDate, isRSDLocalDate) ? ListReplaceToJSON($value.valueLocalDate, RSDLocalDateToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDate, RSDLocalDateToJSON, RSDLocalDateToJSON);
 	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : isListReplace($value.valueLocalDateTime, isRSDLocalDateTime) ? ListReplaceToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON, RSDLocalDateTimeToJSON);
 	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : isListReplace($value.valueLocalTime, isRSDLocalTime) ? ListReplaceToJSON($value.valueLocalTime, RSDLocalTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalTime, RSDLocalTimeToJSON, RSDLocalTimeToJSON);
@@ -1890,15 +1890,15 @@ export function PatchableRecord_Basic_List_NullPatchToJSON($value: PatchableReco
 
 const ToJson_PatchableRecord_Basic_List_Optional_Null = `
 export function PatchableRecord_Basic_List_Optional_NullPatchToJSON($value: PatchableRecord_Basic_List_Optional_NullPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
+	const valueBoolean = isUndefined($value.valueBoolean) || isNull($value.valueBoolean) ? $value.valueBoolean : isListReplace($value.valueBoolean, isRSDBoolean) ? ListReplaceToJSON($value.valueBoolean, RSDBooleanToJSON) : ListMergeAddRemoveToJSON($value.valueBoolean, RSDBooleanToJSON, RSDBooleanToJSON);
+	const valueShort = isUndefined($value.valueShort) || isNull($value.valueShort) ? $value.valueShort : isListReplace($value.valueShort, isRSDShort) ? ListReplaceToJSON($value.valueShort, RSDShortToJSON) : ListMergeAddRemoveToJSON($value.valueShort, RSDShortToJSON, RSDShortToJSON);
+	const valueInt = isUndefined($value.valueInt) || isNull($value.valueInt) ? $value.valueInt : isListReplace($value.valueInt, isRSDInt) ? ListReplaceToJSON($value.valueInt, RSDIntToJSON) : ListMergeAddRemoveToJSON($value.valueInt, RSDIntToJSON, RSDIntToJSON);
+	const valueLong = isUndefined($value.valueLong) || isNull($value.valueLong) ? $value.valueLong : isListReplace($value.valueLong, isRSDLong) ? ListReplaceToJSON($value.valueLong, RSDLongToJSON) : ListMergeAddRemoveToJSON($value.valueLong, RSDLongToJSON, RSDLongToJSON);
+	const valueFloat = isUndefined($value.valueFloat) || isNull($value.valueFloat) ? $value.valueFloat : isListReplace($value.valueFloat, isRSDFloat) ? ListReplaceToJSON($value.valueFloat, RSDFloatToJSON) : ListMergeAddRemoveToJSON($value.valueFloat, RSDFloatToJSON, RSDFloatToJSON);
+	const valueDouble = isUndefined($value.valueDouble) || isNull($value.valueDouble) ? $value.valueDouble : isListReplace($value.valueDouble, isRSDDouble) ? ListReplaceToJSON($value.valueDouble, RSDDoubleToJSON) : ListMergeAddRemoveToJSON($value.valueDouble, RSDDoubleToJSON, RSDDoubleToJSON);
+	const valueString = isUndefined($value.valueString) || isNull($value.valueString) ? $value.valueString : isListReplace($value.valueString, isRSDString) ? ListReplaceToJSON($value.valueString, RSDStringToJSON) : ListMergeAddRemoveToJSON($value.valueString, RSDStringToJSON, RSDStringToJSON);
 	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : isListReplace($value.valueLocalDate, isRSDLocalDate) ? ListReplaceToJSON($value.valueLocalDate, RSDLocalDateToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDate, RSDLocalDateToJSON, RSDLocalDateToJSON);
 	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : isListReplace($value.valueLocalDateTime, isRSDLocalDateTime) ? ListReplaceToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalDateTime, RSDLocalDateTimeToJSON, RSDLocalDateTimeToJSON);
 	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : isListReplace($value.valueLocalTime, isRSDLocalTime) ? ListReplaceToJSON($value.valueLocalTime, RSDLocalTimeToJSON) : ListMergeAddRemoveToJSON($value.valueLocalTime, RSDLocalTimeToJSON, RSDLocalTimeToJSON);
@@ -1925,8 +1925,8 @@ export function PatchableRecord_Basic_List_Optional_NullPatchToJSON($value: Patc
 
 const ToJson_PatchableEnumRecord = `
 export function PatchableEnumRecordPatchToJSON($value: PatchableEnumRecordPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
 	const value = $value.value;
 	const value_Null = $value.value_Null;
 	const value_Opt = $value.value_Opt;
@@ -1953,8 +1953,8 @@ export function PatchableEnumRecordPatchToJSON($value: PatchableEnumRecordPatch)
 
 const ToJson_PatchableEnumInlineRecord = `
 export function PatchableEnumInlineRecordPatchToJSON($value: PatchableEnumInlineRecordPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
 	const value = $value.value;
 	const value_Null = $value.value_Null;
 	const value_Opt = $value.value_Opt;
@@ -1979,8 +1979,8 @@ export function PatchableEnumInlineRecordPatchToJSON($value: PatchableEnumInline
 
 const ToJson_PatchableScalarRecord = `
 export function PatchableScalarRecordPatchToJSON($value: PatchableScalarRecordPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
 	const value = $value.value;
 	const value_Null = $value.value_Null;
 	const value_Opt = $value.value_Opt;
@@ -2007,8 +2007,8 @@ export function PatchableScalarRecordPatchToJSON($value: PatchableScalarRecordPa
 
 const ToJson_PatchableRecordOfRecords = `
 export function PatchableRecordOfRecordsPatchToJSON($value: PatchableRecordOfRecordsPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
 	const value = isUndefined($value.value) ? undefined : ReplaceOrMergeToJSON($value.value, PatchableRecord_BasicToJSON, PatchableRecord_BasicPatchToJSON);
 	const value_Null = isUndefined($value.value_Null) || isNull($value.value_Null) ? $value.value_Null : ReplaceOrMergeToJSON($value.value_Null, PatchableRecord_BasicToJSON, PatchableRecord_BasicPatchToJSON);
 	const value_Opt = isUndefined($value.value_Opt) || isNull($value.value_Opt) ? $value.value_Opt : ReplaceOrMergeToJSON($value.value_Opt, PatchableRecord_BasicToJSON, PatchableRecord_BasicPatchToJSON);
@@ -2035,8 +2035,8 @@ export function PatchableRecordOfRecordsPatchToJSON($value: PatchableRecordOfRec
 
 const ToJson_PatchableRecordWithUnion = `
 export function PatchableRecordWithUnionPatchToJSON($value: PatchableRecordWithUnionPatch): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
 	const value = isUndefined($value.value) ? undefined : PatchableUnionOrPatchToJSON($value.value);
 	const value_Null = isUndefined($value.value_Null) || isNull($value.value_Null) ? $value.value_Null : PatchableUnionOrPatchToJSON($value.value_Null);
 	const value_Opt = isUndefined($value.value_Opt) || isNull($value.value_Opt) ? $value.value_Opt : PatchableUnionOrPatchToJSON($value.value_Opt);

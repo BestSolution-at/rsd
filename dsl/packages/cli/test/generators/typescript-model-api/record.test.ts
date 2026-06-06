@@ -652,9 +652,9 @@ describe('RecordTypeguard', () => {
 
 const From_Json_SimpleRecord = `
 export function SimpleRecordFromJSON($value: Record<string, unknown>): SimpleRecord {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
-	const value = propValue('value', $value, isString);
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
+	const value = propMappedValue('value', $value, isString, RSDStringFromJSON);
 	return {
 		key,
 		version,
@@ -665,8 +665,8 @@ export function SimpleRecordFromJSON($value: Record<string, unknown>): SimpleRec
 
 const From_Json_SimpleRecord_KeyVersion = `
 export function SimpleRecord_KeyVersionFromJSON($value: Record<string, unknown>): SimpleRecord_KeyVersion {
-	const key = propValue('key', $value, isString);
-	const version = propValue('version', $value, isString);
+	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
+	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
 	return {
 		key,
 		version,
@@ -676,8 +676,8 @@ export function SimpleRecord_KeyVersionFromJSON($value: Record<string, unknown>)
 
 const From_Json_SimpleRecord_KeyVersion_Int_Int = `
 export function SimpleRecord_KeyVersion_Int_IntFromJSON($value: Record<string, unknown>): SimpleRecord_KeyVersion_Int_Int {
-	const key = propValue('key', $value, isNumber);
-	const version = propValue('version', $value, isNumber);
+	const key = propMappedValue('key', $value, isNumber, RSDIntFromJSON);
+	const version = propMappedValue('version', $value, isNumber, RSDIntFromJSON);
 	return {
 		key,
 		version,
@@ -687,13 +687,13 @@ export function SimpleRecord_KeyVersion_Int_IntFromJSON($value: Record<string, u
 
 const From_Json_SimpleRecord_Basic = `
 export function SimpleRecord_BasicFromJSON($value: Record<string, unknown>): SimpleRecord_Basic {
-	const valueBoolean = propValue('valueBoolean', $value, isBoolean);
-	const valueShort = propValue('valueShort', $value, isNumber);
-	const valueInt = propValue('valueInt', $value, isNumber);
-	const valueLong = propValue('valueLong', $value, isNumber);
-	const valueFloat = propValue('valueFloat', $value, isNumber);
-	const valueDouble = propValue('valueDouble', $value, isNumber);
-	const valueString = propValue('valueString', $value, isString);
+	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON);
+	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON);
+	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON);
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON);
+	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON);
+	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON);
+	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON);
 	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON);
 	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON);
 	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON);
@@ -717,13 +717,13 @@ export function SimpleRecord_BasicFromJSON($value: Record<string, unknown>): Sim
 
 const From_Json_SimpleRecord_Basic_Optional = `
 export function SimpleRecord_Basic_OptionalFromJSON($value: Record<string, unknown>): SimpleRecord_Basic_Optional {
-	const valueBoolean = propValue('valueBoolean', $value, isBoolean, 'optional');
-	const valueShort = propValue('valueShort', $value, isNumber, 'optional');
-	const valueInt = propValue('valueInt', $value, isNumber, 'optional');
-	const valueLong = propValue('valueLong', $value, isNumber, 'optional');
-	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional');
-	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional');
-	const valueString = propValue('valueString', $value, isString, 'optional');
+	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional');
+	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional');
+	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional');
+	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional');
+	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional');
+	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'optional');
 	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional');
 	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional');
 	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional');
@@ -747,13 +747,13 @@ export function SimpleRecord_Basic_OptionalFromJSON($value: Record<string, unkno
 
 const From_Json_SimpleRecord_Basic_Null = `
 export function SimpleRecord_Basic_NullFromJSON($value: Record<string, unknown>): SimpleRecord_Basic_Null {
-	const valueBoolean = propValue('valueBoolean', $value, isBoolean, 'null');
-	const valueShort = propValue('valueShort', $value, isNumber, 'null');
-	const valueInt = propValue('valueInt', $value, isNumber, 'null');
-	const valueLong = propValue('valueLong', $value, isNumber, 'null');
-	const valueFloat = propValue('valueFloat', $value, isNumber, 'null');
-	const valueDouble = propValue('valueDouble', $value, isNumber, 'null');
-	const valueString = propValue('valueString', $value, isString, 'null');
+	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'null');
+	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'null');
+	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'null');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'null');
+	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'null');
+	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'null');
+	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'null');
 	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'null');
 	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'null');
 	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'null');
@@ -777,13 +777,13 @@ export function SimpleRecord_Basic_NullFromJSON($value: Record<string, unknown>)
 
 const From_Json_SimpleRecord_Basic_Optional_Null = `
 export function SimpleRecord_Basic_Optional_NullFromJSON($value: Record<string, unknown>): SimpleRecord_Basic_Optional_Null {
-	const valueBoolean = propValue('valueBoolean', $value, isBoolean, 'optional_null');
-	const valueShort = propValue('valueShort', $value, isNumber, 'optional_null');
-	const valueInt = propValue('valueInt', $value, isNumber, 'optional_null');
-	const valueLong = propValue('valueLong', $value, isNumber, 'optional_null');
-	const valueFloat = propValue('valueFloat', $value, isNumber, 'optional_null');
-	const valueDouble = propValue('valueDouble', $value, isNumber, 'optional_null');
-	const valueString = propValue('valueString', $value, isString, 'optional_null');
+	const valueBoolean = propMappedValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional_null');
+	const valueShort = propMappedValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional_null');
+	const valueInt = propMappedValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional_null');
+	const valueLong = propMappedValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional_null');
+	const valueFloat = propMappedValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional_null');
+	const valueDouble = propMappedValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional_null');
+	const valueString = propMappedValue('valueString', $value, isString, RSDStringFromJSON, 'optional_null');
 	const valueLocalDate = propMappedValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional_null');
 	const valueLocalDateTime = propMappedValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional_null');
 	const valueLocalTime = propMappedValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional_null');
@@ -807,13 +807,13 @@ export function SimpleRecord_Basic_Optional_NullFromJSON($value: Record<string, 
 
 const From_Json_SimpleRecord_Basic_List = `
 export function SimpleRecord_Basic_ListFromJSON($value: Record<string, unknown>): SimpleRecord_Basic_List {
-	const valueBoolean = propListValue('valueBoolean', $value, isBoolean);
-	const valueShort = propListValue('valueShort', $value, isNumber);
-	const valueInt = propListValue('valueInt', $value, isNumber);
-	const valueLong = propListValue('valueLong', $value, isNumber);
-	const valueFloat = propListValue('valueFloat', $value, isNumber);
-	const valueDouble = propListValue('valueDouble', $value, isNumber);
-	const valueString = propListValue('valueString', $value, isString);
+	const valueBoolean = propMappedListValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON);
+	const valueShort = propMappedListValue('valueShort', $value, isNumber, RSDShortFromJSON);
+	const valueInt = propMappedListValue('valueInt', $value, isNumber, RSDIntFromJSON);
+	const valueLong = propMappedListValue('valueLong', $value, isNumeric, RSDLongFromJSON);
+	const valueFloat = propMappedListValue('valueFloat', $value, isNumber, RSDFloatFromJSON);
+	const valueDouble = propMappedListValue('valueDouble', $value, isNumber, RSDDoubleFromJSON);
+	const valueString = propMappedListValue('valueString', $value, isString, RSDStringFromJSON);
 	const valueLocalDate = propMappedListValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON);
 	const valueLocalDateTime = propMappedListValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON);
 	const valueLocalTime = propMappedListValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON);
@@ -838,13 +838,13 @@ export function SimpleRecord_Basic_ListFromJSON($value: Record<string, unknown>)
 
 const From_Json_SimpleRecord_Basic_List_Optional = `
 export function SimpleRecord_Basic_List_OptionalFromJSON($value: Record<string, unknown>): SimpleRecord_Basic_List_Optional {
-	const valueBoolean = propListValue('valueBoolean', $value, isBoolean, 'optional');
-	const valueShort = propListValue('valueShort', $value, isNumber, 'optional');
-	const valueInt = propListValue('valueInt', $value, isNumber, 'optional');
-	const valueLong = propListValue('valueLong', $value, isNumber, 'optional');
-	const valueFloat = propListValue('valueFloat', $value, isNumber, 'optional');
-	const valueDouble = propListValue('valueDouble', $value, isNumber, 'optional');
-	const valueString = propListValue('valueString', $value, isString, 'optional');
+	const valueBoolean = propMappedListValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional');
+	const valueShort = propMappedListValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional');
+	const valueInt = propMappedListValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional');
+	const valueLong = propMappedListValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional');
+	const valueFloat = propMappedListValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional');
+	const valueDouble = propMappedListValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional');
+	const valueString = propMappedListValue('valueString', $value, isString, RSDStringFromJSON, 'optional');
 	const valueLocalDate = propMappedListValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional');
 	const valueLocalDateTime = propMappedListValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional');
 	const valueLocalTime = propMappedListValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional');
@@ -869,13 +869,13 @@ export function SimpleRecord_Basic_List_OptionalFromJSON($value: Record<string, 
 
 const From_Json_SimpleRecord_Basic_List_Null = `
 export function SimpleRecord_Basic_List_NullFromJSON($value: Record<string, unknown>): SimpleRecord_Basic_List_Null {
-	const valueBoolean = propListValue('valueBoolean', $value, isBoolean, 'null');
-	const valueShort = propListValue('valueShort', $value, isNumber, 'null');
-	const valueInt = propListValue('valueInt', $value, isNumber, 'null');
-	const valueLong = propListValue('valueLong', $value, isNumber, 'null');
-	const valueFloat = propListValue('valueFloat', $value, isNumber, 'null');
-	const valueDouble = propListValue('valueDouble', $value, isNumber, 'null');
-	const valueString = propListValue('valueString', $value, isString, 'null');
+	const valueBoolean = propMappedListValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'null');
+	const valueShort = propMappedListValue('valueShort', $value, isNumber, RSDShortFromJSON, 'null');
+	const valueInt = propMappedListValue('valueInt', $value, isNumber, RSDIntFromJSON, 'null');
+	const valueLong = propMappedListValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'null');
+	const valueFloat = propMappedListValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'null');
+	const valueDouble = propMappedListValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'null');
+	const valueString = propMappedListValue('valueString', $value, isString, RSDStringFromJSON, 'null');
 	const valueLocalDate = propMappedListValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'null');
 	const valueLocalDateTime = propMappedListValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'null');
 	const valueLocalTime = propMappedListValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'null');
@@ -900,13 +900,13 @@ export function SimpleRecord_Basic_List_NullFromJSON($value: Record<string, unkn
 
 const From_Json_SimpleRecord_Basic_List_Optional_Null = `
 export function SimpleRecord_Basic_List_Optional_NullFromJSON($value: Record<string, unknown>): SimpleRecord_Basic_List_Optional_Null {
-	const valueBoolean = propListValue('valueBoolean', $value, isBoolean, 'optional_null');
-	const valueShort = propListValue('valueShort', $value, isNumber, 'optional_null');
-	const valueInt = propListValue('valueInt', $value, isNumber, 'optional_null');
-	const valueLong = propListValue('valueLong', $value, isNumber, 'optional_null');
-	const valueFloat = propListValue('valueFloat', $value, isNumber, 'optional_null');
-	const valueDouble = propListValue('valueDouble', $value, isNumber, 'optional_null');
-	const valueString = propListValue('valueString', $value, isString, 'optional_null');
+	const valueBoolean = propMappedListValue('valueBoolean', $value, isBoolean, RSDBooleanFromJSON, 'optional_null');
+	const valueShort = propMappedListValue('valueShort', $value, isNumber, RSDShortFromJSON, 'optional_null');
+	const valueInt = propMappedListValue('valueInt', $value, isNumber, RSDIntFromJSON, 'optional_null');
+	const valueLong = propMappedListValue('valueLong', $value, isNumeric, RSDLongFromJSON, 'optional_null');
+	const valueFloat = propMappedListValue('valueFloat', $value, isNumber, RSDFloatFromJSON, 'optional_null');
+	const valueDouble = propMappedListValue('valueDouble', $value, isNumber, RSDDoubleFromJSON, 'optional_null');
+	const valueString = propMappedListValue('valueString', $value, isString, RSDStringFromJSON, 'optional_null');
 	const valueLocalDate = propMappedListValue('valueLocalDate', $value, isString, RSDLocalDateFromJSON, 'optional_null');
 	const valueLocalDateTime = propMappedListValue('valueLocalDateTime', $value, isString, RSDLocalDateTimeFromJSON, 'optional_null');
 	const valueLocalTime = propMappedListValue('valueLocalTime', $value, isString, RSDLocalTimeFromJSON, 'optional_null');
@@ -975,14 +975,14 @@ export function EnumInlineRecordFromJSON($value: Record<string, unknown>): EnumI
 
 const From_Json_ScalarRecord = `
 export function ScalarRecordFromJSON($value: Record<string, unknown>): ScalarRecord {
-	const value = propValue('value', $value, isString);
-	const value_Null = propValue('value_Null', $value, isString, 'null');
-	const value_Opt = propValue('value_Opt', $value, isString, 'optional');
-	const value_Opt_Null = propValue('value_Opt_Null', $value, isString, 'optional_null');
-	const list = propListValue('list', $value, isString);
-	const list_Null = propListValue('list_Null', $value, isString, 'null');
-	const list_Opt = propListValue('list_Opt', $value, isString, 'optional');
-	const list_Opt_Null = propListValue('list_Opt_Null', $value, isString, 'optional_null');
+	const value = propMappedValue('value', $value, isString, ZoneIdFromJSON);
+	const value_Null = propMappedValue('value_Null', $value, isString, ZoneIdFromJSON, 'null');
+	const value_Opt = propMappedValue('value_Opt', $value, isString, ZoneIdFromJSON, 'optional');
+	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isString, ZoneIdFromJSON, 'optional_null');
+	const list = propMappedListValue('list', $value, isString, ZoneIdFromJSON);
+	const list_Null = propMappedListValue('list_Null', $value, isString, ZoneIdFromJSON, 'null');
+	const list_Opt = propMappedListValue('list_Opt', $value, isString, ZoneIdFromJSON, 'optional');
+	const list_Opt_Null = propMappedListValue('list_Opt_Null', $value, isString, ZoneIdFromJSON, 'optional_null');
 	return {
 		value,
 		value_Null,
@@ -1120,8 +1120,8 @@ describe('FromJSON', () => {
 
 const ToJson_SimpleRecord_KeyVersion = `
 export function SimpleRecord_KeyVersionToJSON($value: SimpleRecord_KeyVersion): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
 
 	return {
 		key,
@@ -1132,8 +1132,8 @@ export function SimpleRecord_KeyVersionToJSON($value: SimpleRecord_KeyVersion): 
 
 const ToJson_SimpleRecord_KeyVersion_Int_Int = `
 export function SimpleRecord_KeyVersion_Int_IntToJSON($value: SimpleRecord_KeyVersion_Int_Int): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
+	const key = RSDIntToJSON($value.key);
+	const version = RSDIntToJSON($value.version);
 
 	return {
 		key,
@@ -1144,9 +1144,9 @@ export function SimpleRecord_KeyVersion_Int_IntToJSON($value: SimpleRecord_KeyVe
 
 const ToJson_SimpleRecord = `
 export function SimpleRecordToJSON($value: SimpleRecord): Record<string, unknown> {
-	const key = $value.key;
-	const version = $value.version;
-	const value = $value.value;
+	const key = RSDStringToJSON($value.key);
+	const version = RSDStringToJSON($value.version);
+	const value = RSDStringToJSON($value.value);
 
 	return {
 		key,
@@ -1158,13 +1158,13 @@ export function SimpleRecordToJSON($value: SimpleRecord): Record<string, unknown
 
 const ToJson_SimpleRecord_Basic = `
 export function SimpleRecord_BasicToJSON($value: SimpleRecord_Basic): Record<string, unknown> {
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const valueBoolean = RSDBooleanToJSON($value.valueBoolean);
+	const valueShort = RSDShortToJSON($value.valueShort);
+	const valueInt = RSDIntToJSON($value.valueInt);
+	const valueLong = RSDLongToJSON($value.valueLong);
+	const valueFloat = RSDFloatToJSON($value.valueFloat);
+	const valueDouble = RSDDoubleToJSON($value.valueDouble);
+	const valueString = RSDStringToJSON($value.valueString);
 	const valueLocalDate = RSDLocalDateToJSON($value.valueLocalDate);
 	const valueLocalDateTime = RSDLocalDateTimeToJSON($value.valueLocalDateTime);
 	const valueLocalTime = RSDLocalTimeToJSON($value.valueLocalTime);
@@ -1190,13 +1190,13 @@ export function SimpleRecord_BasicToJSON($value: SimpleRecord_Basic): Record<str
 
 const ToJson_SimpleRecord_Basic_Optional = `
 export function SimpleRecord_Basic_OptionalToJSON($value: SimpleRecord_Basic_Optional): Record<string, unknown> {
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const valueBoolean = isUndefined($value.valueBoolean) ? undefined : RSDBooleanToJSON($value.valueBoolean);
+	const valueShort = isUndefined($value.valueShort) ? undefined : RSDShortToJSON($value.valueShort);
+	const valueInt = isUndefined($value.valueInt) ? undefined : RSDIntToJSON($value.valueInt);
+	const valueLong = isUndefined($value.valueLong) ? undefined : RSDLongToJSON($value.valueLong);
+	const valueFloat = isUndefined($value.valueFloat) ? undefined : RSDFloatToJSON($value.valueFloat);
+	const valueDouble = isUndefined($value.valueDouble) ? undefined : RSDDoubleToJSON($value.valueDouble);
+	const valueString = isUndefined($value.valueString) ? undefined : RSDStringToJSON($value.valueString);
 	const valueLocalDate = isUndefined($value.valueLocalDate) ? undefined : RSDLocalDateToJSON($value.valueLocalDate);
 	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) ? undefined : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
 	const valueLocalTime = isUndefined($value.valueLocalTime) ? undefined : RSDLocalTimeToJSON($value.valueLocalTime);
@@ -1222,13 +1222,13 @@ export function SimpleRecord_Basic_OptionalToJSON($value: SimpleRecord_Basic_Opt
 
 const ToJson_SimpleRecord_Basic_Null = `
 export function SimpleRecord_Basic_NullToJSON($value: SimpleRecord_Basic_Null): Record<string, unknown> {
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const valueBoolean = isNull($value.valueBoolean) ? null : RSDBooleanToJSON($value.valueBoolean);
+	const valueShort = isNull($value.valueShort) ? null : RSDShortToJSON($value.valueShort);
+	const valueInt = isNull($value.valueInt) ? null : RSDIntToJSON($value.valueInt);
+	const valueLong = isNull($value.valueLong) ? null : RSDLongToJSON($value.valueLong);
+	const valueFloat = isNull($value.valueFloat) ? null : RSDFloatToJSON($value.valueFloat);
+	const valueDouble = isNull($value.valueDouble) ? null : RSDDoubleToJSON($value.valueDouble);
+	const valueString = isNull($value.valueString) ? null : RSDStringToJSON($value.valueString);
 	const valueLocalDate = isNull($value.valueLocalDate) ? null : RSDLocalDateToJSON($value.valueLocalDate);
 	const valueLocalDateTime = isNull($value.valueLocalDateTime) ? null : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
 	const valueLocalTime = isNull($value.valueLocalTime) ? null : RSDLocalTimeToJSON($value.valueLocalTime);
@@ -1254,13 +1254,13 @@ export function SimpleRecord_Basic_NullToJSON($value: SimpleRecord_Basic_Null): 
 
 const ToJson_SimpleRecord_Basic_Optional_Null = `
 export function SimpleRecord_Basic_Optional_NullToJSON($value: SimpleRecord_Basic_Optional_Null): Record<string, unknown> {
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const valueBoolean = isUndefined($value.valueBoolean) || isNull($value.valueBoolean) ? $value.valueBoolean : RSDBooleanToJSON($value.valueBoolean);
+	const valueShort = isUndefined($value.valueShort) || isNull($value.valueShort) ? $value.valueShort : RSDShortToJSON($value.valueShort);
+	const valueInt = isUndefined($value.valueInt) || isNull($value.valueInt) ? $value.valueInt : RSDIntToJSON($value.valueInt);
+	const valueLong = isUndefined($value.valueLong) || isNull($value.valueLong) ? $value.valueLong : RSDLongToJSON($value.valueLong);
+	const valueFloat = isUndefined($value.valueFloat) || isNull($value.valueFloat) ? $value.valueFloat : RSDFloatToJSON($value.valueFloat);
+	const valueDouble = isUndefined($value.valueDouble) || isNull($value.valueDouble) ? $value.valueDouble : RSDDoubleToJSON($value.valueDouble);
+	const valueString = isUndefined($value.valueString) || isNull($value.valueString) ? $value.valueString : RSDStringToJSON($value.valueString);
 	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : RSDLocalDateToJSON($value.valueLocalDate);
 	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : RSDLocalDateTimeToJSON($value.valueLocalDateTime);
 	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : RSDLocalTimeToJSON($value.valueLocalTime);
@@ -1286,13 +1286,13 @@ export function SimpleRecord_Basic_Optional_NullToJSON($value: SimpleRecord_Basi
 
 const ToJson_SimpleRecord_Basic_List = `
 export function SimpleRecord_Basic_ListToJSON($value: SimpleRecord_Basic_List): Record<string, unknown> {
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const valueBoolean = $value.valueBoolean.map(RSDBooleanToJSON);
+	const valueShort = $value.valueShort.map(RSDShortToJSON);
+	const valueInt = $value.valueInt.map(RSDIntToJSON);
+	const valueLong = $value.valueLong.map(RSDLongToJSON);
+	const valueFloat = $value.valueFloat.map(RSDFloatToJSON);
+	const valueDouble = $value.valueDouble.map(RSDDoubleToJSON);
+	const valueString = $value.valueString.map(RSDStringToJSON);
 	const valueLocalDate = $value.valueLocalDate.map(RSDLocalDateToJSON);
 	const valueLocalDateTime = $value.valueLocalDateTime.map(RSDLocalDateTimeToJSON);
 	const valueLocalTime = $value.valueLocalTime.map(RSDLocalTimeToJSON);
@@ -1318,13 +1318,13 @@ export function SimpleRecord_Basic_ListToJSON($value: SimpleRecord_Basic_List): 
 
 const ToJson_SimpleRecord_Basic_List_Optional = `
 export function SimpleRecord_Basic_List_OptionalToJSON($value: SimpleRecord_Basic_List_Optional): Record<string, unknown> {
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const valueBoolean = isUndefined($value.valueBoolean) ? undefined : $value.valueBoolean.map(RSDBooleanToJSON);
+	const valueShort = isUndefined($value.valueShort) ? undefined : $value.valueShort.map(RSDShortToJSON);
+	const valueInt = isUndefined($value.valueInt) ? undefined : $value.valueInt.map(RSDIntToJSON);
+	const valueLong = isUndefined($value.valueLong) ? undefined : $value.valueLong.map(RSDLongToJSON);
+	const valueFloat = isUndefined($value.valueFloat) ? undefined : $value.valueFloat.map(RSDFloatToJSON);
+	const valueDouble = isUndefined($value.valueDouble) ? undefined : $value.valueDouble.map(RSDDoubleToJSON);
+	const valueString = isUndefined($value.valueString) ? undefined : $value.valueString.map(RSDStringToJSON);
 	const valueLocalDate = isUndefined($value.valueLocalDate) ? undefined : $value.valueLocalDate.map(RSDLocalDateToJSON);
 	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) ? undefined : $value.valueLocalDateTime.map(RSDLocalDateTimeToJSON);
 	const valueLocalTime = isUndefined($value.valueLocalTime) ? undefined : $value.valueLocalTime.map(RSDLocalTimeToJSON);
@@ -1350,13 +1350,13 @@ export function SimpleRecord_Basic_List_OptionalToJSON($value: SimpleRecord_Basi
 
 const ToJson_SimpleRecord_Basic_List_Null = `
 export function SimpleRecord_Basic_List_NullToJSON($value: SimpleRecord_Basic_List_Null): Record<string, unknown> {
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const valueBoolean = isNull($value.valueBoolean) ? null : $value.valueBoolean.map(RSDBooleanToJSON);
+	const valueShort = isNull($value.valueShort) ? null : $value.valueShort.map(RSDShortToJSON);
+	const valueInt = isNull($value.valueInt) ? null : $value.valueInt.map(RSDIntToJSON);
+	const valueLong = isNull($value.valueLong) ? null : $value.valueLong.map(RSDLongToJSON);
+	const valueFloat = isNull($value.valueFloat) ? null : $value.valueFloat.map(RSDFloatToJSON);
+	const valueDouble = isNull($value.valueDouble) ? null : $value.valueDouble.map(RSDDoubleToJSON);
+	const valueString = isNull($value.valueString) ? null : $value.valueString.map(RSDStringToJSON);
 	const valueLocalDate = isNull($value.valueLocalDate) ? null : $value.valueLocalDate.map(RSDLocalDateToJSON);
 	const valueLocalDateTime = isNull($value.valueLocalDateTime) ? null : $value.valueLocalDateTime.map(RSDLocalDateTimeToJSON);
 	const valueLocalTime = isNull($value.valueLocalTime) ? null : $value.valueLocalTime.map(RSDLocalTimeToJSON);
@@ -1382,13 +1382,13 @@ export function SimpleRecord_Basic_List_NullToJSON($value: SimpleRecord_Basic_Li
 
 const ToJson_SimpleRecord_Basic_List_Optional_Null = `
 export function SimpleRecord_Basic_List_Optional_NullToJSON($value: SimpleRecord_Basic_List_Optional_Null): Record<string, unknown> {
-	const valueBoolean = $value.valueBoolean;
-	const valueShort = $value.valueShort;
-	const valueInt = $value.valueInt;
-	const valueLong = $value.valueLong;
-	const valueFloat = $value.valueFloat;
-	const valueDouble = $value.valueDouble;
-	const valueString = $value.valueString;
+	const valueBoolean = isUndefined($value.valueBoolean) || isNull($value.valueBoolean) ? $value.valueBoolean : $value.valueBoolean.map(RSDBooleanToJSON);
+	const valueShort = isUndefined($value.valueShort) || isNull($value.valueShort) ? $value.valueShort : $value.valueShort.map(RSDShortToJSON);
+	const valueInt = isUndefined($value.valueInt) || isNull($value.valueInt) ? $value.valueInt : $value.valueInt.map(RSDIntToJSON);
+	const valueLong = isUndefined($value.valueLong) || isNull($value.valueLong) ? $value.valueLong : $value.valueLong.map(RSDLongToJSON);
+	const valueFloat = isUndefined($value.valueFloat) || isNull($value.valueFloat) ? $value.valueFloat : $value.valueFloat.map(RSDFloatToJSON);
+	const valueDouble = isUndefined($value.valueDouble) || isNull($value.valueDouble) ? $value.valueDouble : $value.valueDouble.map(RSDDoubleToJSON);
+	const valueString = isUndefined($value.valueString) || isNull($value.valueString) ? $value.valueString : $value.valueString.map(RSDStringToJSON);
 	const valueLocalDate = isUndefined($value.valueLocalDate) || isNull($value.valueLocalDate) ? $value.valueLocalDate : $value.valueLocalDate.map(RSDLocalDateToJSON);
 	const valueLocalDateTime = isUndefined($value.valueLocalDateTime) || isNull($value.valueLocalDateTime) ? $value.valueLocalDateTime : $value.valueLocalDateTime.map(RSDLocalDateTimeToJSON);
 	const valueLocalTime = isUndefined($value.valueLocalTime) || isNull($value.valueLocalTime) ? $value.valueLocalTime : $value.valueLocalTime.map(RSDLocalTimeToJSON);

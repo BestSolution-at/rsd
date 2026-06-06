@@ -46,6 +46,14 @@ function generateTypeUtilsContent() {
 		export function isNumber(value: unknown): value is number {
 			return typeof value === 'number';
 		}
+		
+		export function isBigInt(value: unknown): value is bigint {
+			return typeof value === 'bigint';
+		}
+
+		export function isNumeric(value: unknown): value is number | bigint {
+			return isBigInt(value) || isNumber(value);
+		}
 
 		export function isArray(value: unknown): value is unknown[] {
 			return isNotNull(value) && isDefined(value) && Array.isArray(value);

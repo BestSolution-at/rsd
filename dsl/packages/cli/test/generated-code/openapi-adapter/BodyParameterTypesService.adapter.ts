@@ -2,6 +2,7 @@ import { api } from '../../test-specs/gen-out/client/typescript-client/src/index
 import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { BodyParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/BodyParameterTypesApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/index.js';
+import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/Builtins.js';
 
 export function createOpenAPIBodyParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -216,12 +217,12 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	}
 
 	async simpleLongBodyParam(
-		bodyLong: number,
-	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		bodyLong: RSDLong,
+	): Promise<api.result.Result<RSDLong, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamRaw({ body: bodyLong });
+			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamRaw({ body: Number(bodyLong) });
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(BigInt(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -230,10 +231,12 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	}
 
 	async simpleLongBodyParamOpt(
-		bodyLong?: number,
+		bodyLong?: RSDLong,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamOptRaw({ body: bodyLong });
+			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamOptRaw({
+				body: bodyLong !== undefined ? Number(bodyLong) : undefined,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -244,10 +247,12 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	}
 
 	async simpleLongBodyParamNil(
-		bodyLong: number | null,
+		bodyLong: RSDLong | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamNilRaw({ body: bodyLong });
+			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamNilRaw({
+				body: bodyLong !== null ? Number(bodyLong) : null,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -258,10 +263,12 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	}
 
 	async simpleLongBodyParamOptNil(
-		bodyLong?: number | null,
+		bodyLong?: RSDLong | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamOptNilRaw({ body: bodyLong });
+			const response = await this.deletegate.bodyParameterTypesSimpleLongBodyParamOptNilRaw({
+				body: bodyLong !== undefined ? (bodyLong !== null ? Number(bodyLong) : null) : undefined,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}

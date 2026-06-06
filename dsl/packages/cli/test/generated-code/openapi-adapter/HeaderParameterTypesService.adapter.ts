@@ -6,6 +6,7 @@ import {
 } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { HeaderParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/HeaderParameterTypesApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
+import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/Builtins.js';
 
 export function createOpenAPIHeaderParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -223,12 +224,14 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLongHeaderParam(
-		headerValue: number,
-	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		headerValue: RSDLong,
+	): Promise<api.result.Result<RSDLong, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.headerParameterTypesSimpleLongHeaderParamRaw({ headerValue });
+			const response = await this.deletegate.headerParameterTypesSimpleLongHeaderParamRaw({
+				headerValue: Number(headerValue),
+			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(BigInt(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error) {
@@ -237,10 +240,12 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLongHeaderParamOpt(
-		headerValue?: number,
+		headerValue?: RSDLong,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.headerParameterTypesSimpleLongHeaderParamOptRaw({ headerValue });
+			const response = await this.deletegate.headerParameterTypesSimpleLongHeaderParamOptRaw({
+				headerValue: headerValue ? Number(headerValue) : undefined,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -251,7 +256,7 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLongHeaderParamNil(
-		headerValue: number | null,
+		headerValue: RSDLong | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLongHeaderParamNilRaw({
@@ -267,7 +272,7 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLongHeaderParamOptNil(
-		headerValue?: number | null,
+		headerValue?: RSDLong | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLongHeaderParamOptNilRaw({

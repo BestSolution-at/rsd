@@ -5,6 +5,7 @@ import {
 } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { ListQueryParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/index.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
+import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/Builtins.js';
 
 export function createOpenAPIListQueryParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -96,14 +97,14 @@ class ListQueryParameterTypesServiceImpl implements api.service.ListQueryParamet
 	}
 
 	async listLongQueryParam(
-		queryValue: number[],
-	): Promise<api.result.Result<number[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		queryValue: RSDLong[],
+	): Promise<api.result.Result<RSDLong[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listQueryParameterTypesListLongQueryParamRaw({
-				queryValue,
+				queryValue: queryValue.map(Number),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()).map(BigInt));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}

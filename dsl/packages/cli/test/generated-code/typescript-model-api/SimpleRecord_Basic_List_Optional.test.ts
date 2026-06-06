@@ -17,6 +17,21 @@ const Simple: SimpleRecord_Basic_List_Optional = {
 	valueLocalDateTime: ['2020-01-01T10:00:00', '2020-02-01T10:00:00'],
 	valueLocalTime: ['2020-01-01T10:00:00', '2020-02-01T10:00:00'],
 	valueOffsetDateTime: ['2025-01-01T10:00:00+01:00'],
+	valueLong: [BigInt(0), BigInt(1)],
+	valueString: ['a', 'b'],
+	valueZonedDateTime: ['2025-01-01T10:00:00Z', '2025-02-01T10:00:00Z'],
+};
+
+const Simple_Json = {
+	valueBoolean: [true, false],
+	valueShort: [0, 1],
+	valueDouble: [1.5, 2.5],
+	valueFloat: [1.5, 2.5],
+	valueInt: [0, 1],
+	valueLocalDate: ['2020-01-01', '2020-02-01'],
+	valueLocalDateTime: ['2020-01-01T10:00:00', '2020-02-01T10:00:00'],
+	valueLocalTime: ['2020-01-01T10:00:00', '2020-02-01T10:00:00'],
+	valueOffsetDateTime: ['2025-01-01T10:00:00+01:00'],
 	valueLong: [0, 1],
 	valueString: ['a', 'b'],
 	valueZonedDateTime: ['2025-01-01T10:00:00Z', '2025-02-01T10:00:00Z'],
@@ -39,29 +54,30 @@ const SimpleEmpty: SimpleRecord_Basic_List_Optional = {
 
 describe('SimpleRecord_Basic_List_OptionalFromJSON', () => {
 	test('simple', () => {
-		expect(SimpleRecord_Basic_List_OptionalFromJSON(Simple)).toStrictEqual(Simple);
-		expect(SimpleRecord_Basic_List_OptionalFromJSON(Simple)).not.toBe(Simple);
+		expect(SimpleRecord_Basic_List_OptionalFromJSON(Simple_Json)).toStrictEqual(Simple);
+		expect(SimpleRecord_Basic_List_OptionalFromJSON(Simple_Json)).not.toBe(Simple);
 
 		expect(SimpleRecord_Basic_List_OptionalFromJSON(SimpleEmpty)).toStrictEqual(SimpleEmpty);
 		expect(SimpleRecord_Basic_List_OptionalFromJSON({})).toStrictEqual(SimpleEmpty);
 		expect(SimpleRecord_Basic_List_OptionalFromJSON(SimpleEmpty)).not.toBe(SimpleEmpty);
 	});
 	test('remove-unknown', () => {
-		expect(SimpleRecord_Basic_List_OptionalFromJSON(addFooProperty(Simple))).toStrictEqual(Simple);
+		expect(SimpleRecord_Basic_List_OptionalFromJSON(addFooProperty(Simple_Json))).toStrictEqual(Simple);
 	});
 	test('empty object', () => {
 		expect(SimpleRecord_Basic_List_OptionalFromJSON({})).toStrictEqual(SimpleEmpty);
 	});
 	test.each(Object.keys(Simple))('missing prop $0', data => {
-		const { withOut, withUndefined } = removeProperty(Simple, data);
+		const { withOut } = removeProperty(Simple_Json, data);
+		const { withUndefined } = removeProperty(Simple, data);
 		expect(SimpleRecord_Basic_List_OptionalFromJSON(withOut)).toStrictEqual(withUndefined);
 	});
 	test.each(Object.keys(Simple))('invalid prop $0', data => {
-		expect(() => SimpleRecord_Basic_List_OptionalFromJSON(invalidateProperty(Simple, data))).toThrow();
+		expect(() => SimpleRecord_Basic_List_OptionalFromJSON(invalidateProperty(Simple_Json, data))).toThrow();
 		expect(() => SimpleRecord_Basic_List_OptionalFromJSON(invalidateProperty(SimpleEmpty, data))).toThrow();
 		expect(() => SimpleRecord_Basic_List_OptionalFromJSON(invalidateProperty({}, data))).toThrow();
 
-		expect(() => SimpleRecord_Basic_List_OptionalFromJSON(invalidateArrayProperty(Simple, data))).toThrow();
+		expect(() => SimpleRecord_Basic_List_OptionalFromJSON(invalidateArrayProperty(Simple_Json, data))).toThrow();
 	});
 });
 describe('isSimpleRecord_Basic_List_Optional', () => {
@@ -87,7 +103,7 @@ describe('isSimpleRecord_Basic_List_Optional', () => {
 });
 describe('SimpleRecord_Basic_List_OptionalToJSON', () => {
 	test('simple', () => {
-		expect(SimpleRecord_Basic_List_OptionalToJSON(Simple)).toStrictEqual(Simple);
+		expect(SimpleRecord_Basic_List_OptionalToJSON(Simple)).toStrictEqual(Simple_Json);
 		expect(SimpleRecord_Basic_List_OptionalToJSON(Simple)).not.toBe(Simple);
 
 		expect(SimpleRecord_Basic_List_OptionalToJSON(SimpleEmpty)).toStrictEqual(SimpleEmpty);
@@ -97,6 +113,6 @@ describe('SimpleRecord_Basic_List_OptionalToJSON', () => {
 		expect(SimpleRecord_Basic_List_OptionalToJSON({})).not.toBe(SimpleEmpty);
 	});
 	test('additional props', () => {
-		expect(SimpleRecord_Basic_List_OptionalToJSON(addFooProperty(Simple))).toStrictEqual(Simple);
+		expect(SimpleRecord_Basic_List_OptionalToJSON(addFooProperty(Simple))).toStrictEqual(Simple_Json);
 	});
 });

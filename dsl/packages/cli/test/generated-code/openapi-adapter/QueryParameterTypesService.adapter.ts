@@ -5,6 +5,7 @@ import {
 } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { QueryParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/QueryParameterTypesApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
+import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/Builtins.js';
 
 export function createOpenAPIQueryParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -126,12 +127,14 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	}
 
 	async simpleLongQueryParam(
-		queryValue: number,
-	): Promise<api.result.Result<number, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		queryValue: RSDLong,
+	): Promise<api.result.Result<RSDLong, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.queryParameterTypesSimpleLongQueryParamRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleLongQueryParamRaw({
+				queryValue: Number(queryValue),
+			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(BigInt(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -140,10 +143,12 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	}
 
 	async simpleLongQueryParamOpt(
-		queryValue?: number,
+		queryValue?: RSDLong,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.queryParameterTypesSimpleLongQueryParamOptRaw({ queryValue });
+			const response = await this.deletegate.queryParameterTypesSimpleLongQueryParamOptRaw({
+				queryValue: queryValue !== undefined ? Number(queryValue) : undefined,
+			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
