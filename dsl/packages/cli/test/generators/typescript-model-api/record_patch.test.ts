@@ -1479,14 +1479,14 @@ const FromJson_PatchableScalarRecord = `
 export function PatchableScalarRecordPatchFromJSON($value: Record<string, unknown>): PatchableScalarRecordPatch {
 	const key = propMappedValue('key', $value, isString, RSDStringFromJSON);
 	const version = propMappedValue('version', $value, isString, RSDStringFromJSON);
-	const value = propValue('value', $value, isString, 'optional');
-	const value_Null = propValue('value_Null', $value, isString, 'optional_null');
-	const value_Opt = propValue('value_Opt', $value, isString, 'optional_null');
-	const value_Opt_Null = propValue('value_Opt_Null', $value, isString, 'optional_null');
-	const list = propMappedValue('list', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional');
-	const list_Null = propMappedValue('list_Null', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
-	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, noopMap) : ListMergeAddRemoveFromJSON(v, isString, noopMap, isString, noopMap), 'optional_null');
+	const value = propMappedValue('value', $value, isString, ZoneIdFromJSON, 'optional');
+	const value_Null = propMappedValue('value_Null', $value, isString, ZoneIdFromJSON, 'optional_null');
+	const value_Opt = propMappedValue('value_Opt', $value, isString, ZoneIdFromJSON, 'optional_null');
+	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isString, ZoneIdFromJSON, 'optional_null');
+	const list = propMappedValue('list', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, ZoneIdFromJSON) : ListMergeAddRemoveFromJSON(v, isString, ZoneIdFromJSON, isString, ZoneIdFromJSON), 'optional');
+	const list_Null = propMappedValue('list_Null', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, ZoneIdFromJSON) : ListMergeAddRemoveFromJSON(v, isString, ZoneIdFromJSON, isString, ZoneIdFromJSON), 'optional_null');
+	const list_Opt = propMappedValue('list_Opt', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, ZoneIdFromJSON) : ListMergeAddRemoveFromJSON(v, isString, ZoneIdFromJSON, isString, ZoneIdFromJSON), 'optional_null');
+	const list_Opt_Null = propMappedValue('list_Opt_Null', $value, isRecord, v => isListReplace(v, isString) ? ListReplaceFromJSON(v, isString, ZoneIdFromJSON) : ListMergeAddRemoveFromJSON(v, isString, ZoneIdFromJSON, isString, ZoneIdFromJSON), 'optional_null');
 	return {
 		key,
 		version,

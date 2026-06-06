@@ -146,15 +146,13 @@ export function FromJSON(
 				const mapper = builtinFromJSON(p.type, fqn, './');
 				const guard = builtinFromJsonTypeGuard(p.type, fqn);
 				fBody.append(`const ${p.name} = ${propMappedValue}('${p.name}', $value, ${guard}, ${mapper});`, NL);
-			} else if (p.variant === 'inline-enum' || p.variant === 'enum' || p.variant === 'scalar') {
+			} else if (p.variant === 'inline-enum' || p.variant === 'enum') {
 				let guard: string;
 
 				if (isMInlineEnumType(p.type)) {
 					guard = `is${t.name}_${toFirstUpper(p.name)}`;
 				} else if (p.variant === 'enum') {
 					guard = fqn(`is${p.type}:./${p.type}.ts`, false);
-				} else if (p.variant === 'scalar') {
-					guard = fqn('isString:../_type-utils.ts', false);
 				} else {
 					guard = 'err';
 				}
@@ -190,6 +188,9 @@ export function FromJSON(
 				if (isMBuiltinType(p.type)) {
 					guard = builtinFromJsonTypeGuard(p.type, fqn);
 					fromJSON = builtinFromJSON(p.type, fqn, './');
+				} else if (p.variant === 'scalar') {
+					guard = fqn('isString:../_type-utils.ts', false);
+					fromJSON = fqn(`${p.type}FromJSON:./Scalars.ts`, false);
 				} else {
 					guard = fqn('isRecord:../_type-utils.ts', false);
 					fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
@@ -619,6 +620,8 @@ export function FromJSONPatch(
 						let fromJSON: string;
 						if (isMBuiltinType(p.type)) {
 							fromJSON = builtinFromJSON(p.type, fqn, './');
+						} else if (p.variant === 'scalar') {
+							fromJSON = fqn(`${p.type}FromJSON:./Scalars.ts`, false);
 						} else {
 							fromJSON = fqn('noopMap:../_type-utils.ts', false);
 						}
@@ -636,6 +639,8 @@ export function FromJSONPatch(
 						let fromJSON = '';
 						if (isMBuiltinType(p.type)) {
 							fromJSON = builtinFromJSON(p.type, fqn, './');
+						} else if (p.variant === 'scalar') {
+							fromJSON = fqn(`${p.type}FromJSON:./Scalars.ts`, false);
 						}
 						if (fromJSON) {
 							const propValue = fqn('propMappedValue:../_type-utils.ts', false);

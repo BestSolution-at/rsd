@@ -975,14 +975,14 @@ export function EnumInlineRecordFromJSON($value: Record<string, unknown>): EnumI
 
 const From_Json_ScalarRecord = `
 export function ScalarRecordFromJSON($value: Record<string, unknown>): ScalarRecord {
-	const value = propValue('value', $value, isString);
-	const value_Null = propValue('value_Null', $value, isString, 'null');
-	const value_Opt = propValue('value_Opt', $value, isString, 'optional');
-	const value_Opt_Null = propValue('value_Opt_Null', $value, isString, 'optional_null');
-	const list = propListValue('list', $value, isString);
-	const list_Null = propListValue('list_Null', $value, isString, 'null');
-	const list_Opt = propListValue('list_Opt', $value, isString, 'optional');
-	const list_Opt_Null = propListValue('list_Opt_Null', $value, isString, 'optional_null');
+	const value = propMappedValue('value', $value, isString, ZoneIdFromJSON);
+	const value_Null = propMappedValue('value_Null', $value, isString, ZoneIdFromJSON, 'null');
+	const value_Opt = propMappedValue('value_Opt', $value, isString, ZoneIdFromJSON, 'optional');
+	const value_Opt_Null = propMappedValue('value_Opt_Null', $value, isString, ZoneIdFromJSON, 'optional_null');
+	const list = propMappedListValue('list', $value, isString, ZoneIdFromJSON);
+	const list_Null = propMappedListValue('list_Null', $value, isString, ZoneIdFromJSON, 'null');
+	const list_Opt = propMappedListValue('list_Opt', $value, isString, ZoneIdFromJSON, 'optional');
+	const list_Opt_Null = propMappedListValue('list_Opt_Null', $value, isString, ZoneIdFromJSON, 'optional_null');
 	return {
 		value,
 		value_Null,
