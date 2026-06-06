@@ -1628,11 +1628,11 @@ function fnListScalarBodyParam(props: ServiceProps<api.service.ErrorType>): api.
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listScalarBodyParam`;
-			const $body = encodeValue(encodingType(props), bodyScalar); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyScalar.map(api.model.ZoneIdToJSON));
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
-				const $result = $data;  // Conversion to be done
+				const $result = $data.map(api.model.ZoneIdFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listScalarBodyParam', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1660,7 +1660,7 @@ function fnListScalarBodyParamOpt(props: ServiceProps<api.service.ErrorType>): a
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listScalarBodyParamOpt`;
-			const $body = encodeValue(encodingType(props), bodyScalar); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyScalar ? bodyScalar.map(api.model.ZoneIdToJSON) : bodyScalar);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.model.isNilResult);
@@ -1692,7 +1692,7 @@ function fnListScalarBodyParamNil(props: ServiceProps<api.service.ErrorType>): a
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listScalarBodyParamNil`;
-			const $body = encodeValue(encodingType(props), bodyScalar); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyScalar ? bodyScalar.map(api.model.ZoneIdToJSON) : bodyScalar);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.model.isNilResult);
@@ -1724,7 +1724,7 @@ function fnListScalarBodyParamOptNil(props: ServiceProps<api.service.ErrorType>)
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listbodyparametertypes/listScalarBodyParamOptNil`;
-			const $body = encodeValue(encodingType(props), bodyScalar); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyScalar ? bodyScalar.map(api.model.ZoneIdToJSON) : bodyScalar);
 			const $response = await fetchAPI($path, { ...$init, method: 'PUT', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.model.isNilResult);

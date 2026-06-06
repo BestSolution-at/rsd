@@ -1637,11 +1637,11 @@ function fnSimpleScalarBodyParam(props: ServiceProps<api.service.ErrorType>): ap
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleScalarBodyParam`;
-			const $body = encodeValue(encodingType(props), bodyScalar); // Add conversion
+			const $body = encodeValue(encodingType(props), api.model.ZoneIdToJSON(bodyScalar));
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isString);
-				const $result = $data; // Conversion to be done
+				const $result = api.model.ZoneIdFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleScalarBodyParam', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
@@ -1669,7 +1669,7 @@ function fnSimpleScalarBodyParamOpt(props: ServiceProps<api.service.ErrorType>):
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleScalarBodyParamOpt`;
-			const $body = encodeValue(encodingType(props), bodyScalar); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyScalar ? api.model.ZoneIdToJSON(bodyScalar) : bodyScalar);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.model.isNilResult);
@@ -1701,7 +1701,7 @@ function fnSimpleScalarBodyParamNil(props: ServiceProps<api.service.ErrorType>):
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleScalarBodyParamNil`;
-			const $body = encodeValue(encodingType(props), bodyScalar); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyScalar ? api.model.ZoneIdToJSON(bodyScalar) : bodyScalar);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.model.isNilResult);
@@ -1733,7 +1733,7 @@ function fnSimpleScalarBodyParamOptNil(props: ServiceProps<api.service.ErrorType
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/bodyparametertypes/simpleScalarBodyParamOptNil`;
-			const $body = encodeValue(encodingType(props), bodyScalar); // Add conversion
+			const $body = encodeValue(encodingType(props), bodyScalar ? api.model.ZoneIdToJSON(bodyScalar) : bodyScalar);
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.model.isNilResult);

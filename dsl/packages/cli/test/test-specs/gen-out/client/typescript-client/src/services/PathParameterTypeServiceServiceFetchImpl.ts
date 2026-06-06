@@ -423,7 +423,7 @@ function fnSimpleScalarPathParam(props: ServiceProps<api.service.ErrorType>): ap
 
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, api.utils.isString);
-				const $result = $data; // Conversion to be done
+				const $result = api.model.ZoneIdFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleScalarPathParam', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;

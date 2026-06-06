@@ -424,7 +424,7 @@ function fnListScalar(props: ServiceProps<api.service.ErrorType>): api.service.L
 
 			if ($response.status === 200) {
 				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isString));
-				const $result = $data;  // Conversion to be done
+				const $result = $data.map(api.model.ZoneIdFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listScalar', $result));
 			}
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;

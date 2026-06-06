@@ -25,6 +25,7 @@ import {
 	TypescriptImportCollector,
 } from '../typescript-gen-utils.js';
 import { toFirstUpper } from '../util.js';
+import { isBuiltinType } from 'remote-service-description-language';
 
 export function generateService(s: MResolvedService, config: TypescriptFetchClientGeneratorConfig) {
 	const collector = new TypescriptImportCollector(config, `${s.name}ServiceFetchImpl.ts`);
@@ -512,8 +513,14 @@ function generateRemoteInvoke(
 					}
 				}
 			} else {
-				if (isMBuiltinType(bodyParams[0].type)) {
-					const toJSON = builtinToJSON(bodyParams[0].type, fqn, '../model/');
+				if (
+					typeof bodyParams[0].type === 'string' &&
+					(isMBuiltinType(bodyParams[0].type) || bodyParams[0].variant === 'scalar')
+				) {
+					const toJSON = isMBuiltinType(bodyParams[0].type)
+						? builtinToJSON(bodyParams[0].type, fqn, '../model/')
+						: `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${bodyParams[0].type}ToJSON`;
+
 					if (bodyParams[0].array) {
 						if (bodyParams[0].nullable || bodyParams[0].optional) {
 							node.append(
@@ -571,8 +578,10 @@ function generateRemoteInvoke(
 							}
 						}
 					} else {
-						if (isMBuiltinType(p.type)) {
-							const toJSON = builtinToJSON(p.type, fqn, '../model/');
+						if (typeof p.type === 'string' && (isMBuiltinType(p.type) || p.variant === 'scalar')) {
+							const toJSON = isBuiltinType(p.type)
+								? builtinToJSON(p.type, fqn, '../model/')
+								: `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
 							if (p.array) {
 								if (p.nullable || p.optional) {
 									struct.append(`${p.name}: ${p.name} ? ${p.name}.map(${toJSON}) : ${p.name},`, NL);
@@ -735,8 +744,9 @@ function handleOkResult(
 					node.append(`const $result = $data.map(${fromJSON});`, NL);
 				} else if (o.resultType.variant === 'scalar') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
 					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
-					node.append(`const $result = $data;  // Conversion to be done`, NL);
+					node.append(`const $result = $data.map(${fromJSON});`, NL);
 				} else if (o.resultType.variant === 'inline-enum') {
 					const guard = `is${toFirstUpper(o.name)}Result`;
 					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
@@ -754,8 +764,9 @@ function handleOkResult(
 					node.append(`const $result = ${fromJSON}($data);`, NL);
 				} else if (o.resultType.variant === 'scalar') {
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
+					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
 					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
-					node.append(`const $result = $data; // Conversion to be done`, NL);
+					node.append(`const $result = ${fromJSON}($data);`, NL);
 				} else if (o.resultType.variant === 'inline-enum') {
 					const guard = `is${toFirstUpper(o.name)}Result`;
 					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
