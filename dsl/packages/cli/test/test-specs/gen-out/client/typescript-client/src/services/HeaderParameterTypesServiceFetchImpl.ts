@@ -1794,7 +1794,7 @@ function fnSimpleScalarHeaderParam(props: ServiceProps<api.service.ErrorType>): 
 			const $headers = new Headers($init.headers ?? {});
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
-			$headers.append('headerValue', encodeAsciiString(api.model.ZoneIdToString(headerValue)));
+			$headers.append('headerValue', encodeAsciiString(api.model.ZoneIdToJSON(headerValue)));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/headerparametertypes/simpleScalarHeaderParam`;
@@ -1828,7 +1828,7 @@ function fnSimpleScalarHeaderParamOpt(props: ServiceProps<api.service.ErrorType>
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined) {
-				$headers.append('headerValue', encodeAsciiString(api.model.ZoneIdToString(headerValue)));
+				$headers.append('headerValue', encodeAsciiString(api.model.ZoneIdToJSON(headerValue)));
 			}
 			$init.headers = $headers;
 
@@ -1863,7 +1863,7 @@ function fnSimpleScalarHeaderParamNil(props: ServiceProps<api.service.ErrorType>
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== null) {
-				$headers.append('headerValue', encodeAsciiString(api.model.ZoneIdToString(headerValue)));
+				$headers.append('headerValue', encodeAsciiString(api.model.ZoneIdToJSON(headerValue)));
 			} else {
 				$headers.append('headerValue', 'null');
 			}
@@ -1900,7 +1900,7 @@ function fnSimpleScalarHeaderParamOptNil(props: ServiceProps<api.service.ErrorTy
 			$headers.append('Accept', encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			if (headerValue !== undefined && headerValue !== null) {
-				$headers.append('headerValue', encodeAsciiString(api.model.ZoneIdToString(headerValue)));
+				$headers.append('headerValue', encodeAsciiString(api.model.ZoneIdToJSON(headerValue)));
 			} else if (headerValue === null) {
 				$headers.append('headerValue', 'null');
 			}

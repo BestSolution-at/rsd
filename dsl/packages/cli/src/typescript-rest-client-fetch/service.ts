@@ -150,8 +150,8 @@ function stringHeaderQueryCode(
 			if (p.meta?.rest?.source === 'header' && (p.type === 'string' || p.variant === 'scalar')) {
 				const encodeAsciiString = fqn('encodeAsciiString:./_fetch-type-utils.ts', false);
 				if (p.variant === 'scalar') {
-					const toString = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToString`;
-					mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}(${toString}($entry)));`, NL);
+					const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
+					mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}(${toJSON}($entry)));`, NL);
 				} else {
 					mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}($entry));`, NL);
 				}
@@ -164,8 +164,8 @@ function stringHeaderQueryCode(
 		if (p.meta?.rest?.source === 'header' && (p.type === 'string' || p.variant === 'scalar')) {
 			const encodeAsciiString = fqn('encodeAsciiString:./_fetch-type-utils.ts', false);
 			if (p.variant === 'scalar') {
-				const toString = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToString`;
-				node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${toString}(${p.name})));`, NL);
+				const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
+				node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${toJSON}(${p.name})));`, NL);
 			} else {
 				node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${p.name}));`, NL);
 			}

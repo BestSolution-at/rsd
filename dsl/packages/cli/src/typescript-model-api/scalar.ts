@@ -5,12 +5,12 @@ export function generateScalarsContent(scalars: MResolvedScalarType[]): Composit
 	const node = new CompositeGeneratorNode();
 	scalars.forEach(scalar => {
 		node.append(`export type ${scalar.name} = string;`, NL);
-		node.append(`export function ${scalar.name}FromString(value: string): ${scalar.name} {`, NL);
+		node.append(`export function ${scalar.name}FromJSON(value: string): ${scalar.name} {`, NL);
 		node.indent(mBody => {
 			mBody.append(`return value;`, NL);
 		});
 		node.append('}', NL);
-		node.append(`export function ${scalar.name}ToString(value: ${scalar.name}): string {`, NL);
+		node.append(`export function ${scalar.name}ToJSON(value: ${scalar.name}): string {`, NL);
 		node.indent(mBody => {
 			mBody.append(`return value;`, NL);
 		});
