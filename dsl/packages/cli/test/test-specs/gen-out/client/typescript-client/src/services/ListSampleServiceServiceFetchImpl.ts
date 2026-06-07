@@ -2,7 +2,7 @@
 import { decodeResponse, encodingType, safeExecute, type ServiceProps } from './_fetch-type-utils.js';
 import { api } from '../index.js';
 import { isBoolean, isNumber, isNumeric, isString } from '../_type-utils.js';
-import { RSDBooleanFromJSON, RSDDoubleFromJSON, RSDFloatFromJSON, RSDIntFromJSON, RSDLocalDateFromJSON, RSDLocalDateTimeFromJSON, RSDLocalTimeFromJSON, RSDLongFromJSON, RSDOffsetDateTimeFromJSON, RSDShortFromJSON, RSDStringFromJSON, RSDZonedDateTimeFromJSON } from '../model/Builtins.js';
+import { RSDBooleanFromJSON, RSDDoubleFromJSON, RSDFloatFromJSON, RSDIntFromJSON, RSDLocalDateFromJSON, RSDLocalDateTimeFromJSON, RSDLocalTimeFromJSON, RSDLongFromJSON, RSDOffsetDateTimeFromJSON, RSDShortFromJSON, RSDStringFromJSON, RSDZonedDateTimeFromJSON } from '../model/_Builtins.js';
 
 export function createListSampleServiceService(props: ServiceProps<api.service.ErrorType>): api.service.ListSampleServiceService {
 	return {

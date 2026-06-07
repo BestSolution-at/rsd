@@ -2,7 +2,7 @@
 import { decodeResponse, encodeAsciiString, encodeBase64, encodeValue, encodingType, safeExecute, type ServiceProps } from './_fetch-type-utils.js';
 import { api } from '../index.js';
 import { isNumber, isString } from '../_type-utils.js';
-import { type RSDInt, RSDIntFromJSON, type RSDString, RSDStringFromJSON } from '../model/Builtins.js';
+import { type RSDInt, RSDIntFromJSON, type RSDString, RSDStringFromJSON } from '../model/_Builtins.js';
 
 export function createBinaryTypesService(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService {
 	return {
