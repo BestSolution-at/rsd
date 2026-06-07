@@ -2,7 +2,7 @@ import { api } from '../../test-specs/gen-out/client/typescript-client/src/index
 import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { BodyParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/BodyParameterTypesApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/index.js';
-import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/Builtins.js';
+import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 export function createOpenAPIBodyParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,

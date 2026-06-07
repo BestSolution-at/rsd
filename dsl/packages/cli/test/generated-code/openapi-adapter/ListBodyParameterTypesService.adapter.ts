@@ -3,7 +3,7 @@ import { ListBodyParameterTypesService } from '../../test-specs/gen-out/client/t
 import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { ListBodyParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/ListBodyParameterTypesApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
-import { RSDLong, RSDLongFromJSON } from '../../test-specs/gen-out/client/typescript-client/src/model/Builtins.js';
+import { RSDLong, RSDLongFromJSON } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 export function createOpenAPIListBodyParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
