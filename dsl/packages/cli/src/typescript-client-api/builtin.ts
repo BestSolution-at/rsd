@@ -8,10 +8,10 @@ import {
 import { generateBuiltinContent } from '../typescript-model-api/builtin.js';
 
 export function generateBuiltin(config: TypescriptClientAPIGeneratorConfig): Artifact[] {
-	const collector = new TypescriptImportCollector(config, 'Builtins.ts');
+	const collector = new TypescriptImportCollector(config, '_Builtins.ts');
 	return [
 		{
-			name: `Builtins.ts`,
+			name: `_Builtins.ts`,
 			content: toString(generateCompilationUnit(collector, generateBuiltinContent()), '\t'),
 			path: `${config.targetFolder}/model`,
 		},

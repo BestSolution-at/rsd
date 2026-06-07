@@ -202,7 +202,7 @@ export function FromJSON(
 					fromJSON = builtinFromJSON(p.type, fqn, './');
 				} else if (p.variant === 'scalar') {
 					guard = fqn('isString:../_type-utils.ts', false);
-					fromJSON = fqn(`${p.type}FromJSON:./Scalars.ts`, false);
+					fromJSON = fqn(`${p.type}FromJSON:./_Scalars.ts`, false);
 				} else if (p.variant === 'enum') {
 					guard = fqn('isString:../_type-utils.ts', false);
 					fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
@@ -284,7 +284,7 @@ export function ToJSON(
 				} else if (isMInlineEnumType(p.type)) {
 					ToJSON = `${t.name}_${toFirstUpper(p.name)}ToJSON`;
 				} else if (p.variant === 'scalar') {
-					ToJSON = fqn(`${p.type}ToJSON:./Scalars.ts`, false);
+					ToJSON = fqn(`${p.type}ToJSON:./_Scalars.ts`, false);
 				} else {
 					ToJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
 				}
@@ -365,7 +365,7 @@ export function RecordTypeguard(
 					} else if (isMInlineEnumType(p.type)) {
 						guard = `is${t.name}_${toFirstUpper(p.name)}`;
 					} else if (p.variant === 'scalar') {
-						guard = fqn(`is${p.type}:./Scalars.ts`, false);
+						guard = fqn(`is${p.type}:./_Scalars.ts`, false);
 					} else {
 						guard = fqn(`is${p.type}:./${p.type}.ts`, false);
 					}
@@ -471,7 +471,7 @@ export function ListChangeTypes(prop: MResolvedPropery, fqn: (t: string, typeOnl
 	if (isMBuiltinType(prop.type)) {
 		type = builtinToType(prop.type, fqn, './');
 	} else if (prop.variant === 'scalar') {
-		type = fqn(`${prop.type}:./Scalars.ts`, true);
+		type = fqn(`${prop.type}:./_Scalars.ts`, true);
 	} else if (isMInlineEnumType(prop.type)) {
 		type = toFirstUpper(prop.name) + 'Enum';
 	} else if (prop.variant === 'enum' || prop.variant === 'record' || prop.variant === 'union') {
@@ -545,7 +545,7 @@ export function RecordTypeguardPatch(
 					} else if (isMInlineEnumType(p.type)) {
 						guard = `is${t.name}_${toFirstUpper(p.name)}`;
 					} else if (p.variant === 'scalar') {
-						guard = fqn(`is${p.type}:./Scalars.ts`, false);
+						guard = fqn(`is${p.type}:./_Scalars.ts`, false);
 					} else if (p.variant === 'enum') {
 						guard = fqn(`is${p.type}:./${p.type}.ts`, false);
 					} else if (p.variant === 'union') {
@@ -643,7 +643,7 @@ export function FromJSONPatch(
 						if (isMBuiltinType(p.type)) {
 							fromJSON = builtinFromJSON(p.type, fqn, './');
 						} else if (p.variant === 'scalar') {
-							fromJSON = fqn(`${p.type}FromJSON:./Scalars.ts`, false);
+							fromJSON = fqn(`${p.type}FromJSON:./_Scalars.ts`, false);
 						} else if (p.variant === 'enum') {
 							fromJSON = fqn(`${p.type}FromJSON:./${p.type}.ts`, false);
 						} else if (isMInlineEnumType(p.type)) {
@@ -666,7 +666,7 @@ export function FromJSONPatch(
 						if (isMBuiltinType(p.type)) {
 							fromJSON = builtinFromJSON(p.type, fqn, './');
 						} else if (p.variant === 'scalar') {
-							fromJSON = fqn(`${p.type}FromJSON:./Scalars.ts`, false);
+							fromJSON = fqn(`${p.type}FromJSON:./_Scalars.ts`, false);
 						} else if (isMInlineEnumType(p.type)) {
 							fromJSON = `${t.name}_${toFirstUpper(p.name)}FromJSON`;
 						} else if (p.variant === 'enum') {
@@ -784,7 +784,7 @@ export function ToJSONPatch(
 					} else if (p.variant === 'inline-enum') {
 						toJSON = `${t.name}_${toFirstUpper(p.name)}ToJSON`;
 					} else if (p.variant === 'scalar') {
-						toJSON = fqn(`${p.type}ToJSON:./Scalars.ts`, false);
+						toJSON = fqn(`${p.type}ToJSON:./_Scalars.ts`, false);
 					} else {
 						toJSON = fqn(`${p.type}ToJSON:./${p.type}.ts`, false);
 					}
@@ -810,7 +810,7 @@ export function ToJSONPatch(
 							} else if (isMInlineEnumType(p.type)) {
 								guard = `is${t.name}_${toFirstUpper(p.name)}`;
 							} else if (p.variant === 'scalar') {
-								guard = fqn(`is${p.type}:./Scalars.ts`, false);
+								guard = fqn(`is${p.type}:./_Scalars.ts`, false);
 							} else {
 								guard = fqn(`is${p.type}:./${p.type}.ts`, false);
 							}
@@ -900,7 +900,7 @@ function generateProperty(prop: MResolvedBaseProperty, fqn: (t: string, typeOnly
 		if (isMBuiltinType(prop.type)) {
 			type = builtinToType(prop.type, fqn, './');
 		} else if (prop.variant === 'scalar') {
-			type = fqn(`${prop.type}:./Scalars.ts`, true);
+			type = fqn(`${prop.type}:./_Scalars.ts`, true);
 		} else if (isMInlineEnumType(prop.type)) {
 			type = toFirstUpper(prop.name) + 'Enum';
 		} else if (prop.variant === 'enum' || prop.variant === 'record' || prop.variant === 'union') {
@@ -929,7 +929,7 @@ function generatePatchProperty(prop: MResolvedPropery, fqn: (t: string, typeOnly
 	} else if (isMBuiltinType(prop.type)) {
 		type = builtinToType(prop.type, fqn, './');
 	} else if (prop.variant === 'scalar') {
-		type = fqn(`${prop.type}:./Scalars.ts`, true);
+		type = fqn(`${prop.type}:./_Scalars.ts`, true);
 	} else if (isMInlineEnumType(prop.type)) {
 		type = toFirstUpper(prop.name) + 'Enum';
 	} else if (prop.variant === 'enum') {
