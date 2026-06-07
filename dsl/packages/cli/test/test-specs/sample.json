@@ -38,6 +38,11 @@
       "doc": ""
     },
     {
+      "@type": "ScalarType",
+      "name": "Range",
+      "doc": ""
+    },
+    {
       "@type": "RecordType",
       "name": "SimpleRecord_KeyVersion",
       "patchable": false,

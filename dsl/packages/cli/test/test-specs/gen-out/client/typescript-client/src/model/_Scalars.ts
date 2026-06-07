@@ -10,3 +10,14 @@ export function isZoneId(value: unknown): value is ZoneId {
 	return typeof value === 'string';
 }
 
+export type Range = string;
+export function RangeFromJSON(value: string): Range {
+	return value;
+}
+export function RangeToJSON(value: Range): string {
+	return value;
+}
+export function isRange(value: unknown): value is Range {
+	return typeof value === 'string';
+}
+

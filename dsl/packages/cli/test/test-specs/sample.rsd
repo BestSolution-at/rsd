@@ -2,6 +2,7 @@ enum SampleEnum = A | B;
 enum SampleEnumWithCustValue = A = "foo" | B = 1;
 
 scalar ZoneId;
+scalar Range;
 
 record SimpleRecord_KeyVersion {
     @id key: string
