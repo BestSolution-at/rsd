@@ -2,7 +2,7 @@ import { api } from '../../test-specs/gen-out/client/typescript-client/src/index
 import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { ListSampleServiceApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/ListSampleServiceApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
-import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/Builtins.js';
+import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 export function createOpenAPIListSampleServiceService(
 	props: ServiceProps<api.service.ErrorType>,

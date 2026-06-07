@@ -72,7 +72,7 @@ function toResultType(
 	if (isMBuiltinType(result.type)) {
 		type = builtinToType(result.type, fqn, './model/');
 	} else if (result.variant === 'scalar') {
-		type = fqn(`${result.type}:./model/Scalars.ts`, true);
+		type = fqn(`${result.type}:./model/_Scalars.ts`, true);
 	} else if (isMInlineEnumType(result.type)) {
 		type = result.type.entries.map(e => `'${e.name}'`).join(' | ');
 		if (result.array) {
@@ -112,7 +112,7 @@ function toParameter(
 	if (isMBuiltinType(parameter.type)) {
 		type = builtinToType(parameter.type, fqn, './model/');
 	} else if (parameter.variant === 'scalar') {
-		type = fqn(`${parameter.type}:./model/Scalars.ts`, true);
+		type = fqn(`${parameter.type}:./model/_Scalars.ts`, true);
 	} else if (isMInlineEnumType(parameter.type)) {
 		type = parameter.type.entries.map(e => `'${e.name}'`).join(' | ');
 		if (parameter.array) {

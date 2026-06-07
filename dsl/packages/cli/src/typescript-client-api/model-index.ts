@@ -32,15 +32,15 @@ function generateIndexContent(model: MResolvedRSDModel, allowImportingTsExtensio
 	});
 	if (model.elements.some(isMScalarType)) {
 		if (allowImportingTsExtensions) {
-			node.append(`export * from './Scalars.ts'`, NL);
+			node.append(`export * from './_Scalars.ts'`, NL);
 		} else {
-			node.append(`export * from './Scalars.js'`, NL);
+			node.append(`export * from './_Scalars.js'`, NL);
 		}
 	}
 	if (allowImportingTsExtensions) {
-		node.append("export * from './Builtins.ts'", NL);
+		node.append("export * from './_Builtins.ts'", NL);
 	} else {
-		node.append("export * from './Builtins.js'", NL);
+		node.append("export * from './_Builtins.js'", NL);
 	}
 	return node;
 }

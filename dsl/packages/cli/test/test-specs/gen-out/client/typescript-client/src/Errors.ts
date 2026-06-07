@@ -2,7 +2,7 @@
 import type { RSDError } from './_result-utils.js';
 import { checkProp, isNumber, isRecord, isString } from './_type-utils.js';
 import { type ErrorData, isErrorData } from './model/ErrorData.js';
-import { isRSDBoolean, isRSDInt, type RSDBoolean, type RSDInt } from './model/Builtins.js';
+import { isRSDBoolean, isRSDInt, type RSDBoolean, type RSDInt } from './model/_Builtins.js';
 import { isSampleEnum, type SampleEnum } from './model/SampleEnum.js';
 import { isUnion, type Union } from './model/Union.js';
 

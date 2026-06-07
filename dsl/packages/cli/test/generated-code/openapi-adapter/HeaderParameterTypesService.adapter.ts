@@ -6,7 +6,7 @@ import {
 } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { HeaderParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/HeaderParameterTypesApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
-import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/Builtins.js';
+import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 export function createOpenAPIHeaderParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
