@@ -14,10 +14,11 @@ export function generateScalar(model: MResolvedRSDModel, config: TypescriptClien
 		return [];
 	}
 	const collector = new TypescriptImportCollector(config, '_Scalars.ts');
+	const fqn = collector.importType.bind(collector);
 	return [
 		{
 			name: `_Scalars.ts`,
-			content: toString(generateCompilationUnit(collector, generateScalarsContent(scalars)), '\t'),
+			content: toString(generateCompilationUnit(collector, generateScalarsContent(scalars, config, fqn)), '\t'),
 			path: `${config.targetFolder}/model`,
 		},
 	];

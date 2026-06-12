@@ -16326,6 +16326,57 @@
           "list_Null"
         ]
       },
+      "ScalarRecord_Substitution": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "value_Null": {
+            "type": "string",
+            "nullable": true
+          },
+          "value_Opt": {
+            "type": "string"
+          },
+          "value_Opt_Null": {
+            "type": "string",
+            "nullable": true
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "list_Null": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "list_Opt": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "list_Opt_Null": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "value",
+          "value_Null",
+          "list",
+          "list_Null"
+        ]
+      },
       "RecordOfRecords": {
         "type": "object",
         "properties": {

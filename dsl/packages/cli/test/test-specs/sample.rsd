@@ -2,6 +2,7 @@ enum SampleEnum = A | B;
 enum SampleEnumWithCustValue = A = "foo" | B = 1;
 
 scalar ZoneId;
+scalar Range;
 
 record SimpleRecord_KeyVersion {
     @id key: string
@@ -175,6 +176,19 @@ record ScalarRecord {
 	list_Opt?: ZoneId[]
 	list_Opt_Null?: ZoneId[]?
 }
+
+record ScalarRecord_Substitution {
+	value: Range
+	value_Null: Range?
+	value_Opt?: Range
+	value_Opt_Null?: Range?
+	
+	list: Range[]
+	list_Null: Range[]?
+	list_Opt?: Range[]
+	list_Opt_Null?: Range[]?
+}
+
 
 record RecordOfRecords {
 	value: SimpleRecord_Basic

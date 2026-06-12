@@ -38,6 +38,11 @@
       "doc": ""
     },
     {
+      "@type": "ScalarType",
+      "name": "Range",
+      "doc": ""
+    },
+    {
       "@type": "RecordType",
       "name": "SimpleRecord_KeyVersion",
       "patchable": false,
@@ -1598,6 +1603,103 @@
           "nullable": true,
           "variant": "scalar",
           "type": "ZoneId",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "ScalarRecord_Substitution",
+      "patchable": false,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "value",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "scalar",
+          "type": "Range",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Null",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "scalar",
+          "type": "Range",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "scalar",
+          "type": "Range",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "value_Opt_Null",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "scalar",
+          "type": "Range",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "scalar",
+          "type": "Range",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Null",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "scalar",
+          "type": "Range",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Opt",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "scalar",
+          "type": "Range",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "list_Opt_Null",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "scalar",
+          "type": "Range",
           "doc": ""
         }
       ],
