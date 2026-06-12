@@ -54,6 +54,7 @@ import dev.rsdlang.sample.server.rest.model.PatchableUnionDataImpl;
 import dev.rsdlang.sample.server.rest.model.PatchableUnionPatchImpl;
 import dev.rsdlang.sample.server.rest.model.RecordOfRecordsDataImpl;
 import dev.rsdlang.sample.server.rest.model.RecordWithUnionsDataImpl;
+import dev.rsdlang.sample.server.rest.model.ScalarRecord_SubstitutionDataImpl;
 import dev.rsdlang.sample.server.rest.model.ScalarRecordDataImpl;
 import dev.rsdlang.sample.server.rest.model.SimpleRecord_Basic_List_NullDataImpl;
 import dev.rsdlang.sample.server.rest.model.SimpleRecord_Basic_List_Optional_NullDataImpl;
@@ -102,6 +103,7 @@ import dev.rsdlang.sample.server.service.model.RecordWithUnions;
 import dev.rsdlang.sample.server.service.model.RSDBlob;
 import dev.rsdlang.sample.server.service.model.RSDFile;
 import dev.rsdlang.sample.server.service.model.ScalarRecord;
+import dev.rsdlang.sample.server.service.model.ScalarRecord_Substitution;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
 import dev.rsdlang.sample.server.service.model.SimpleRecord_Basic;
 import dev.rsdlang.sample.server.service.model.SimpleRecord_Basic_List;
@@ -164,6 +166,9 @@ public class RestBuilderFactory implements BuilderFactory {
 		}
 		if (type == ScalarRecord.DataBuilder.class) {
 			return type.cast(ScalarRecordDataImpl.builder());
+		}
+		if (type == ScalarRecord_Substitution.DataBuilder.class) {
+			return type.cast(ScalarRecord_SubstitutionDataImpl.builder());
 		}
 		if (type == RecordOfRecords.DataBuilder.class) {
 			return type.cast(RecordOfRecordsDataImpl.builder());
@@ -339,6 +344,9 @@ public class RestBuilderFactory implements BuilderFactory {
 		}
 		if (type == ScalarRecord.Data.class) {
 			return type.cast(ScalarRecordDataImpl.of(data));
+		}
+		if (type == ScalarRecord_Substitution.Data.class) {
+			return type.cast(ScalarRecord_SubstitutionDataImpl.of(data));
 		}
 		if (type == RecordOfRecords.Data.class) {
 			return type.cast(RecordOfRecordsDataImpl.of(data));
