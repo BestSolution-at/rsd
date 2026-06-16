@@ -3152,7 +3152,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", ServiceUtils.encodeAsciiString(Objects.toString(headerValue)));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3235,7 +3235,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", ServiceUtils.encodeAsciiString(Objects.toString(headerValue)));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3280,7 +3280,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", ServiceUtils.encodeAsciiString(Objects.toString(headerValue)));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3363,7 +3363,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", ServiceUtils.encodeAsciiString(Objects.toString(headerValue)));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3410,7 +3410,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", Objects.toString(headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3493,7 +3493,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", Objects.toString(headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3538,7 +3538,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", Objects.toString(headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3621,7 +3621,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", Objects.toString(headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3668,7 +3668,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", Objects.toString(headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3751,7 +3751,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", Objects.toString(headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3796,7 +3796,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", Objects.toString(headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3879,7 +3879,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.format("%s", headerValue));
+		$headerParams.put("headerValue", Objects.toString(headerValue));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);

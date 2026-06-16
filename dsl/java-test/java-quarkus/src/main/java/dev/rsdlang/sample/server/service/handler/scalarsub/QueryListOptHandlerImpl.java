@@ -1,0 +1,24 @@
+package dev.rsdlang.sample.server.service.handler.scalarsub;
+
+import java.util.List;
+import java.util.Optional;
+
+import dev.rsdlang.sample.server.MyRange;
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import dev.rsdlang.sample.server.service.impl.ScalarSubstition_ServiceServiceImpl;
+import dev.rsdlang.sample.server.service.model.NilResult;
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+public class QueryListOptHandlerImpl implements ScalarSubstition_ServiceServiceImpl.QueryListOptHandler {
+
+    @Override
+    public NilResult queryListOpt(BuilderFactory _factory, Optional<List<MyRange>> range) {
+        System.err.println("========> queryListOpt: " + range);
+        if (range.isPresent()) {
+            return NilResult.DEFINED;
+        }
+        return NilResult.UNDEFINED;
+    }
+
+}

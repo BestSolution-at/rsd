@@ -3261,7 +3261,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString(Objects.toString($v))).toList()));
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3345,7 +3345,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString(Objects.toString($v))).toList()));
 		}
 		var $headers = ServiceUtils.toHeaders($headerParams);
 
@@ -3392,7 +3392,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString(Objects.toString($v))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -3479,7 +3479,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString(Objects.toString($v))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}

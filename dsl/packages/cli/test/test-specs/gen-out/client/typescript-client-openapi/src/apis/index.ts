@@ -10,3 +10,4 @@ export * from './ListSampleServiceApi.js';
 export * from './PathParameterTypeServiceApi.js';
 export * from './QueryParameterTypesApi.js';
 export * from './SampleServiceApi.js';
+export * from './ScalarSubstitionServiceApi.js';

@@ -475,7 +475,7 @@ function fnListZonedDateTimeQueryParam(props: ServiceProps<api.service.ErrorType
 function fnListScalarQueryParam(props: ServiceProps<api.service.ErrorType>): api.service.ListQueryParameterTypesService['listScalarQueryParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (queryValue: string[]) => {
+	return async (queryValue: api.model.ZoneId[]) => {
 		try {
 			const $init = (await preFetch?.('listScalarQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -485,7 +485,7 @@ function fnListScalarQueryParam(props: ServiceProps<api.service.ErrorType>): api
 
 			const $param = new URLSearchParams();
 			queryValue.forEach($entry => {
-				$param.append('queryValue', $entry);
+				$param.append('queryValue', api.model.ZoneIdToJSON($entry));
 			});
 			const $path = `${baseUrl}/api/listqueryparametertypes/listScalarQueryParam?${$param.toString()}`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });

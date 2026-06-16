@@ -1651,7 +1651,7 @@ function fnSimpleZonedDateTimeBodyParamOptNil(props: ServiceProps<api.service.Er
 function fnSimpleScalarBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleScalarBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (bodyScalar: string) => {
+	return async (bodyScalar: api.model.ZoneId) => {
 		try {
 			const $init = (await preFetch?.('simpleScalarBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -1683,7 +1683,7 @@ function fnSimpleScalarBodyParam(props: ServiceProps<api.service.ErrorType>): ap
 function fnSimpleScalarBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleScalarBodyParamOpt'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (bodyScalar?: string) => {
+	return async (bodyScalar?: api.model.ZoneId) => {
 		try {
 			const $init = (await preFetch?.('simpleScalarBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -1715,7 +1715,7 @@ function fnSimpleScalarBodyParamOpt(props: ServiceProps<api.service.ErrorType>):
 function fnSimpleScalarBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleScalarBodyParamNil'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (bodyScalar: string | null) => {
+	return async (bodyScalar: api.model.ZoneId | null) => {
 		try {
 			const $init = (await preFetch?.('simpleScalarBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -1747,7 +1747,7 @@ function fnSimpleScalarBodyParamNil(props: ServiceProps<api.service.ErrorType>):
 function fnSimpleScalarBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['simpleScalarBodyParamOptNil'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (bodyScalar?: string | null) => {
+	return async (bodyScalar?: api.model.ZoneId | null) => {
 		try {
 			const $init = (await preFetch?.('simpleScalarBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});

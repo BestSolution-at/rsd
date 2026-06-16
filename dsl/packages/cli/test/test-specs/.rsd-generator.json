@@ -3,7 +3,16 @@
     "generators": [
         {
             "name": "typescript-client-api",
-            "targetFolder": "./gen-out/client/typescript-client/src"
+            "targetFolder": "./gen-out/client/typescript-client/src",
+            "nativeScalarTypeSubstitutes": {
+                "Range": {
+                    "import": "../../../../../tsrange.ts",
+                    "type": "TsRange",
+                    "fromJson": "fromString",
+                    "toJson": "toString",
+                    "guard": "isRange"
+                }
+            }
         },
         {
             "name": "typescript-rest-client-fetch",
@@ -18,8 +27,7 @@
             "rootPackageName": "dev.rsdlang.sample.client",
             "nativeTypeSubstitues": {
                 "ZoneId": "java.time.ZoneId",
-                "DayOfWeek": "java.time.DayOfWeek",
-                "Month": "java.time.Month"
+                "Range": "dev.rsdlang.sample.client.MyRange"
             }
         },
 				{
@@ -27,7 +35,8 @@
             "targetFolder": "../../../../java-test/java-client/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.client",
             "nativeTypeSubstitues": {
-                "ZoneId": "java.time.ZoneId"
+                "ZoneId": "java.time.ZoneId",
+                "Range": "dev.rsdlang.sample.client.MyRange"
             },
             "contentTypeEncodings": ["application/json", "application/vnd.msgpack"]
         },
@@ -36,7 +45,8 @@
             "targetFolder": "../../../../java-test/java-quarkus/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.server",
             "nativeTypeSubstitues": {
-                "ZoneId": "java.time.ZoneId"
+                "ZoneId": "java.time.ZoneId",
+                "Range": "dev.rsdlang.sample.server.MyRange"
             }
         },
         {
@@ -44,7 +54,8 @@
             "targetFolder": "../../../../java-test/java-quarkus/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.server",
             "nativeTypeSubstitues": {
-                "ZoneId": "java.time.ZoneId"
+                "ZoneId": "java.time.ZoneId",
+                "Range": "dev.rsdlang.sample.server.MyRange"
             },
             "contentTypeEncodings": ["application/json", "application/vnd.msgpack"]
         },

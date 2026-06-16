@@ -12,7 +12,8 @@ public class RSDException extends RuntimeException {
 		SampleErrorBoolean,
 		SampleErrorEnum,
 		SampleErrorScalar,
-		SampleErrorUnion;
+		SampleErrorUnion,
+		SampleErrorScalarSub;
 	}
 
 	public final Type type;

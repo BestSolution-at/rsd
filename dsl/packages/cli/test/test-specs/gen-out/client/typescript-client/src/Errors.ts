@@ -4,11 +4,12 @@ import { checkProp, isNumber, isRecord, isString } from './_type-utils.js';
 import { type ErrorData, isErrorData } from './model/ErrorData.js';
 import { isRSDBoolean, isRSDInt, type RSDBoolean, type RSDInt } from './model/_Builtins.js';
 import { isSampleEnum, type SampleEnum } from './model/SampleEnum.js';
+import type { Range, ZoneId } from './model/_Scalars.js';
 import { isUnion, type Union } from './model/Union.js';
 
-const errorTypes = new Set(['_Native', '_Status', 'SampleError', 'SampleError2', 'SampleErrorWithValue', 'SampleErrorInt', 'SampleErrorBoolean', 'SampleErrorEnum', 'SampleErrorScalar', 'SampleErrorUnion']);
+const errorTypes = new Set(['_Native', '_Status', 'SampleError', 'SampleError2', 'SampleErrorWithValue', 'SampleErrorInt', 'SampleErrorBoolean', 'SampleErrorEnum', 'SampleErrorScalar', 'SampleErrorUnion', 'SampleErrorScalarSub']);
 
-export type ErrorType = '_Native' | '_Status' | 'SampleError' | 'SampleError2' | 'SampleErrorWithValue' | 'SampleErrorInt' | 'SampleErrorBoolean' | 'SampleErrorEnum' | 'SampleErrorScalar' | 'SampleErrorUnion';
+export type ErrorType = '_Native' | '_Status' | 'SampleError' | 'SampleError2' | 'SampleErrorWithValue' | 'SampleErrorInt' | 'SampleErrorBoolean' | 'SampleErrorEnum' | 'SampleErrorScalar' | 'SampleErrorUnion' | 'SampleErrorScalarSub';
 
 export function isKnownRSDError(value: unknown): value is RSDError<ErrorType> {
 	return (
@@ -33,8 +34,9 @@ export type SampleErrorWithValueError = RSDError<'SampleErrorWithValue'> & { dat
 export type SampleErrorIntError = RSDError<'SampleErrorInt'> & { data: RSDInt };
 export type SampleErrorBooleanError = RSDError<'SampleErrorBoolean'> & { data: RSDBoolean };
 export type SampleErrorEnumError = RSDError<'SampleErrorEnum'> & { data: SampleEnum };
-export type SampleErrorScalarError = RSDError<'SampleErrorScalar'> & { data: string };
+export type SampleErrorScalarError = RSDError<'SampleErrorScalar'> & { data: ZoneId };
 export type SampleErrorUnionError = RSDError<'SampleErrorUnion'> & { data: Union };
+export type SampleErrorScalarSubError = RSDError<'SampleErrorScalarSub'> & { data: Range };
 
 export function isNativeError(value: unknown): value is NativeRSDError {
 	return (
@@ -108,5 +110,12 @@ export function isSampleErrorUnionError(value: unknown): value is SampleErrorUni
 		isRecord(value) &&
 		checkProp(value, '_type', v => v === 'SampleErrorUnion') &&
 		checkProp(value, 'data', isUnion)
+	);
+}
+export function isSampleErrorScalarSubError(value: unknown): value is SampleErrorScalarSubError {
+	return (
+		isRecord(value) &&
+		checkProp(value, '_type', v => v === 'SampleErrorScalarSub') &&
+		checkProp(value, 'data', isString)
 	);
 }

@@ -216,6 +216,9 @@ function stringHeaderQueryCode(
 				} else {
 					mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}($entry));`, NL);
 				}
+			} else if (p.variant === 'scalar') {
+				const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
+				mBody.append(`${target}.append('${p.name}', ${toJSON}($entry));`, NL);
 			} else {
 				mBody.append(`${target}.append('${p.name}', $entry);`, NL);
 			}
@@ -230,6 +233,9 @@ function stringHeaderQueryCode(
 			} else {
 				node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${p.name}));`, NL);
 			}
+		} else if (p.variant === 'scalar') {
+			const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
+			node.append(`${target}.append('${p.name}', ${toJSON}(${p.name}));`, NL);
 		} else {
 			node.append(`${target}.append('${p.name}', ${p.name});`, NL);
 		}
@@ -719,7 +725,9 @@ function handleErrorResult(
 			node.append(`const $result = ${fromJSON}($data);`, NL);
 		} else if (isMScalarType(err.resolvedContentType)) {
 			const isString = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-			node.append(`const $result = await ${decodeResponse}($response, ${isString});`, NL);
+			const fromJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${err.resolvedContentType.name}FromJSON`;
+			node.append(`const $data = await ${decodeResponse}($response, ${isString});`, NL);
+			node.append(`const $result = ${fromJSON}($data);`, NL);
 		} else if (isMEnumType(err.resolvedContentType)) {
 			const typeName = err.resolvedContentType.name;
 			const typeguard = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.is${typeName}`;
@@ -881,7 +889,7 @@ function toParameter(
 	if (isMBuiltinType(parameter.type)) {
 		type = builtinToType(parameter.type, fqn, '../model/');
 	} else if (parameter.variant === 'scalar') {
-		type = 'string';
+		type = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${parameter.type}`;
 	} else if (isMInlineEnumType(parameter.type)) {
 		type = parameter.type.entries.map(e => `'${e.name}'`).join(' | ');
 		if (parameter.array) {

@@ -5,12 +5,23 @@ import { MBuiltinType } from './model.js';
 export type TypescriptClientAPIGeneratorConfig = ArtifactGeneratorConfig & {
 	targetFolder: string;
 	allowImportingTsExtensions?: boolean;
+	nativeScalarTypeSubstitutes?: TypescriptNativeScalarTypeSubstitues;
 };
 
 export function isTypescriptClientAPIGeneratorConfig(
 	config: ArtifactGeneratorConfig,
 ): config is TypescriptClientAPIGeneratorConfig {
-	return 'targetFolder' in config && typeof config.targetFolder === 'string';
+	if (!('targetFolder' in config) || typeof config.targetFolder !== 'string') {
+		return false;
+	}
+	if (
+		'nativeScalarTypeSubstitutes' in config &&
+		!isTypescriptNativeScalarTypeSubstitues(config.nativeScalarTypeSubstitutes)
+	) {
+		return false;
+	}
+
+	return true;
 }
 
 export type TypescriptFetchClientGeneratorConfig = ArtifactGeneratorConfig & {
@@ -31,8 +42,41 @@ export function isTypescriptFetchClientGeneratorConfig(
 	);
 }
 
+export type TypescriptNativeScalarTypeSubstitues = Record<string, TypescriptNativeScalarTypeSubstitue>;
+export type TypescriptNativeScalarTypeSubstitue = {
+	import: string;
+	fromJson: string;
+	toJson: string;
+	guard: string;
+	type: string;
+};
+
+export function isTypescriptNativeScalarTypeSubstitues(value: unknown): value is TypescriptNativeScalarTypeSubstitues {
+	if (typeof value !== 'object' || value === null) {
+		return false;
+	}
+	return Object.values(value).every(v => isTypescriptNativeScalarTypeSubstitue(v));
+}
+
+export function isTypescriptNativeScalarTypeSubstitue(value: unknown): value is TypescriptNativeScalarTypeSubstitue {
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		'import' in value &&
+		typeof value.import === 'string' &&
+		'fromJson' in value &&
+		typeof value.fromJson === 'string' &&
+		'toJson' in value &&
+		typeof value.toJson === 'string' &&
+		'guard' in value &&
+		typeof value.guard === 'string' &&
+		'type' in value &&
+		typeof value.type === 'string'
+	);
+}
+
 export class TypescriptImportCollector {
-	private aliasCount = 0;
+	private aliasCount = 1;
 	private readonly fqnTypes = new Map<string, string>();
 	private readonly importTypes = new Map<string, Set<string>>();
 	private readonly typeOnlyTypes = new Set<string>();
@@ -79,9 +123,19 @@ export class TypescriptImportCollector {
 		let resultType = type;
 		if (this.fqnTypes.get(type) == null) {
 			this.fqnTypes.set(type, path);
+
+			if (type.startsWith('#')) {
+				const localType = type.substring(1);
+				resultType = localType + '_';
+				type = localType + ' as ' + resultType;
+			}
 		} else if (path !== this.fqnTypes.get(type)) {
-			resultType = `${type}${(this.aliasCount++).toFixed()}`;
-			type = type + ' as ' + resultType;
+			let localType = type;
+			if (type.startsWith('#')) {
+				localType = type.substring(1);
+			}
+			resultType = `${localType}${(this.aliasCount++).toFixed()}`;
+			type = localType + ' as ' + resultType;
 		}
 
 		const types = this.importTypes.get(path) ?? new Set();
