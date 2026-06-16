@@ -825,7 +825,8 @@ function fnGetSimpleErrorScalar(props: ServiceProps<api.service.ErrorType>): api
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorScalar', api.result.Void));
 			} else if ($response.status === 400) {
-				const $result = await decodeResponse($response, api.utils.isString);
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.ZoneIdFromJSON($data);
 				const err = {
 					_type: 'SampleErrorScalar',
 					data: $result,

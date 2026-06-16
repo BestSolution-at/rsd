@@ -962,7 +962,8 @@ function fnFail(props: ServiceProps<api.service.ErrorType>): api.service.ScalarS
 			if ($response.status === 200) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('fail', api.result.Void));
 			} else if ($response.status === 400) {
-				const $result = await decodeResponse($response, api.utils.isString);
+				const $data = await decodeResponse($response, api.utils.isString);
+				const $result = api.model.RangeFromJSON($data);
 				const err = {
 					_type: 'SampleErrorScalarSub',
 					data: $result,

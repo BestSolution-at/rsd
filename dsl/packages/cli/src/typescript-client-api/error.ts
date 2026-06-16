@@ -75,7 +75,8 @@ function generateErrorsContent(errors: readonly MResolvedError[], fqn: (t: strin
 				const importedType = fqn(`${typeName}:./model/${typeName}.ts`, true);
 				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: ${importedType} };`, NL);
 			} else if (isMScalarType(e.resolvedContentType)) {
-				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: string };`, NL);
+				const type = fqn(`${e.resolvedContentType.name}:./model/_Scalars.ts`, true);
+				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: ${type} };`, NL);
 			} else {
 				const type = builtinToType(e.resolvedContentType, fqn, './model/');
 				node.append(`export type ${e.name}Error = ${RSDError}<'${e.name}'> & { data: ${type} };`, NL);

@@ -4,6 +4,7 @@ import { checkProp, isNumber, isRecord, isString } from './_type-utils.js';
 import { type ErrorData, isErrorData } from './model/ErrorData.js';
 import { isRSDBoolean, isRSDInt, type RSDBoolean, type RSDInt } from './model/_Builtins.js';
 import { isSampleEnum, type SampleEnum } from './model/SampleEnum.js';
+import type { Range, ZoneId } from './model/_Scalars.js';
 import { isUnion, type Union } from './model/Union.js';
 
 const errorTypes = new Set(['_Native', '_Status', 'SampleError', 'SampleError2', 'SampleErrorWithValue', 'SampleErrorInt', 'SampleErrorBoolean', 'SampleErrorEnum', 'SampleErrorScalar', 'SampleErrorUnion', 'SampleErrorScalarSub']);
@@ -33,9 +34,9 @@ export type SampleErrorWithValueError = RSDError<'SampleErrorWithValue'> & { dat
 export type SampleErrorIntError = RSDError<'SampleErrorInt'> & { data: RSDInt };
 export type SampleErrorBooleanError = RSDError<'SampleErrorBoolean'> & { data: RSDBoolean };
 export type SampleErrorEnumError = RSDError<'SampleErrorEnum'> & { data: SampleEnum };
-export type SampleErrorScalarError = RSDError<'SampleErrorScalar'> & { data: string };
+export type SampleErrorScalarError = RSDError<'SampleErrorScalar'> & { data: ZoneId };
 export type SampleErrorUnionError = RSDError<'SampleErrorUnion'> & { data: Union };
-export type SampleErrorScalarSubError = RSDError<'SampleErrorScalarSub'> & { data: string };
+export type SampleErrorScalarSubError = RSDError<'SampleErrorScalarSub'> & { data: Range };
 
 export function isNativeError(value: unknown): value is NativeRSDError {
 	return (

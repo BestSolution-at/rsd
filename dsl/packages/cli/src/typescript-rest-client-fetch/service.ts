@@ -725,7 +725,9 @@ function handleErrorResult(
 			node.append(`const $result = ${fromJSON}($data);`, NL);
 		} else if (isMScalarType(err.resolvedContentType)) {
 			const isString = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-			node.append(`const $result = await ${decodeResponse}($response, ${isString});`, NL);
+			const fromJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${err.resolvedContentType.name}FromJSON`;
+			node.append(`const $data = await ${decodeResponse}($response, ${isString});`, NL);
+			node.append(`const $result = ${fromJSON}($data);`, NL);
 		} else if (isMEnumType(err.resolvedContentType)) {
 			const typeName = err.resolvedContentType.name;
 			const typeguard = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.is${typeName}`;
