@@ -5,24 +5,24 @@ scalar ZoneId;
 scalar Range;
 
 record SimpleRecord_KeyVersion {
-    @id key: string
-    @rev version: string
+	@id key: string
+	@rev version: string
 }
 
 record SimpleRecord_KeyVersion_Int_Int {
-    @id key: int
-    @rev version: int
+	@id key: int
+	@rev version: int
 }
 
 record SimpleRecord {
-    @id key: string
-    @rev version: string
+	@id key: string
+	@rev version: string
 
 	value: string
 }
 
 record SimpleRecord_Basic {
-    valueBoolean: boolean
+	valueBoolean: boolean
 	valueShort: short
 	valueInt: int
 	valueLong: long
@@ -37,7 +37,7 @@ record SimpleRecord_Basic {
 }
 
 record SimpleRecord_Basic_Optional {
-    valueBoolean?: boolean
+	valueBoolean?: boolean
 	valueShort?: short
 	valueInt?: int
 	valueLong?: long
@@ -52,7 +52,7 @@ record SimpleRecord_Basic_Optional {
 }
 
 record SimpleRecord_Basic_Null {
-    valueBoolean: boolean?
+	valueBoolean: boolean?
 	valueShort: short?
 	valueInt: int?
 	valueLong: long?
@@ -67,7 +67,7 @@ record SimpleRecord_Basic_Null {
 }
 
 record SimpleRecord_Basic_Optional_Null {
-    valueBoolean?: boolean?
+	valueBoolean?: boolean?
 	valueShort?: short?
 	valueInt?: int?
 	valueLong?: long?
@@ -249,75 +249,75 @@ patchable record PatchableRecord {
 }
 
 patchable record PatchableRecord_Basic {
-    @id key: string
-    @rev version: string
+	@id key: string
+	@rev version: string
 
-    valueBoolean: boolean
-		valueShort: short
-		valueInt: int
-		valueLong: long
-		valueFloat: float
-		valueDouble: double
-		valueString: string
-		valueLocalDate: local-date
-		valueLocalDateTime: local-date-time
-		valueLocalTime: local-time
-		valueOffsetDateTime: offset-date-time
-		valueZonedDateTime: zoned-date-time
+	valueBoolean: boolean
+	valueShort: short
+	valueInt: int
+	valueLong: long
+	valueFloat: float
+	valueDouble: double
+	valueString: string
+	valueLocalDate: local-date
+	valueLocalDateTime: local-date-time
+	valueLocalTime: local-time
+	valueOffsetDateTime: offset-date-time
+	valueZonedDateTime: zoned-date-time
 }
 
 patchable record PatchableRecord_Basic_Optional {
-    @id key: string
-    @rev version: string
+	@id key: string
+	@rev version: string
 
-    valueBoolean?: boolean
-		valueShort?: short
-		valueInt?: int
-		valueLong?: long
-		valueFloat?: float
-		valueDouble?: double
-		valueString?: string
-		valueLocalDate?: local-date
-		valueLocalDateTime?: local-date-time
-		valueLocalTime?: local-time
-		valueOffsetDateTime?: offset-date-time
-		valueZonedDateTime?: zoned-date-time
+	valueBoolean?: boolean
+	valueShort?: short
+	valueInt?: int
+	valueLong?: long
+	valueFloat?: float
+	valueDouble?: double
+	valueString?: string
+	valueLocalDate?: local-date
+	valueLocalDateTime?: local-date-time
+	valueLocalTime?: local-time
+	valueOffsetDateTime?: offset-date-time
+	valueZonedDateTime?: zoned-date-time
 }
 
 patchable record PatchableRecord_Basic_Null {
-    @id key: string
-    @rev version: string
+	@id key: string
+	@rev version: string
 
-    valueBoolean: boolean?
-		valueShort: short?
-		valueInt: int?
-		valueLong: long?
-		valueFloat: float?
-		valueDouble: double?
-		valueString: string?
-		valueLocalDate: local-date?
-		valueLocalDateTime: local-date-time?
-		valueLocalTime: local-time?
-		valueOffsetDateTime: offset-date-time?
-		valueZonedDateTime: zoned-date-time?
+	valueBoolean: boolean?
+	valueShort: short?
+	valueInt: int?
+	valueLong: long?
+	valueFloat: float?
+	valueDouble: double?
+	valueString: string?
+	valueLocalDate: local-date?
+	valueLocalDateTime: local-date-time?
+	valueLocalTime: local-time?
+	valueOffsetDateTime: offset-date-time?
+	valueZonedDateTime: zoned-date-time?
 }
 
 patchable record PatchableRecord_Basic_Optional_Null {
-    @id key: string
-    @rev version: string
+	@id key: string
+	@rev version: string
 
-    valueBoolean?: boolean?
-		valueShort?: short?
-		valueInt?: int?
-		valueLong?: long?
-		valueFloat?: float?
-		valueDouble?: double?
-		valueString?: string?
-		valueLocalDate?: local-date?
-		valueLocalDateTime?: local-date-time?
-		valueLocalTime?: local-time?
-		valueOffsetDateTime?: offset-date-time?
-		valueZonedDateTime?: zoned-date-time?
+	valueBoolean?: boolean?
+	valueShort?: short?
+	valueInt?: int?
+	valueLong?: long?
+	valueFloat?: float?
+	valueDouble?: double?
+	valueString?: string?
+	valueLocalDate?: local-date?
+	valueLocalDateTime?: local-date-time?
+	valueLocalTime?: local-time?
+	valueOffsetDateTime?: offset-date-time?
+	valueZonedDateTime?: zoned-date-time?
 }
 
 patchable record PatchableRecord_Basic_List {
@@ -430,7 +430,7 @@ patchable record PatchableScalarRecord {
 	value_Null: ZoneId?
 	value_Opt?: ZoneId
 	value_Opt_Null?: ZoneId?
-	
+
 	list: ZoneId[]
 	list_Null: ZoneId[]?
 	list_Opt?: ZoneId[]
@@ -445,7 +445,7 @@ patchable record PatchableScalarRecord_Substitution {
 	value_Null: Range?
 	value_Opt?: Range
 	value_Opt_Null?: Range?
-	
+
 	list: Range[]
 	list_Null: Range[]?
 	list_Opt?: Range[]
@@ -519,12 +519,12 @@ mixin RecordMixin {
 }
 
 record MixinRecord {
-    include SimpleMixin
-		include SimpleMixin2
-		include UnionMixin
-		include RecordMixin
+	include SimpleMixin
+	include SimpleMixin2
+	include UnionMixin
+	include RecordMixin
 
-    sample: string
+	sample: string
 }
 
 record UploadMixedResult {
@@ -571,54 +571,54 @@ error SampleErrorUnion = Union;
 error SampleErrorScalarSub = Range;
 
 service SampleService {
-		operation getBoolean(): boolean;
-		operation getShort(): short;
-		operation getInt(): int;
-		operation getLong(): long;
-		operation getFloat(): float;
-		operation getDouble(): double;
-		operation getString(): string;
-		operation getLocalDate(): local-date;
-		operation getLocalDateTime(): local-date-time;
-		operation getLocalTime(): local-time;
-		operation getOffsetDateTime(): offset-date-time;
-		operation getZonedDateTime(): zoned-date-time;
-		operation getScalar(): ZoneId;
-		operation getEnum(): SampleEnum;
+	operation getBoolean(): boolean;
+	operation getShort(): short;
+	operation getInt(): int;
+	operation getLong(): long;
+	operation getFloat(): float;
+	operation getDouble(): double;
+	operation getString(): string;
+	operation getLocalDate(): local-date;
+	operation getLocalDateTime(): local-date-time;
+	operation getLocalTime(): local-time;
+	operation getOffsetDateTime(): offset-date-time;
+	operation getZonedDateTime(): zoned-date-time;
+	operation getScalar(): ZoneId;
+	operation getEnum(): SampleEnum;
 
-		operation voidOperation();
-		operation errorOperation() throws SampleError;
-		operation multiErrorOperation() throws SampleError SampleError2;
-		
-		operation getSimpleRecord(key: string): SimpleRecord;
-		operation getSimpleRecordWithError(key: string): SimpleRecord throws SampleError;
-		
-		operation getSimpleErrorWithValue() throws SampleErrorWithValue;
-		operation getSimpleErrorInt() throws SampleErrorInt;
-		operation getSimpleErrorBoolean() throws SampleErrorBoolean;
-		operation getSimpleErrorEnum() throws SampleErrorEnum;
-		operation getSimpleErrorScalar() throws SampleErrorScalar;
-		operation getSimpleErrorUnion() throws SampleErrorUnion;
+	operation voidOperation();
+	operation errorOperation() throws SampleError;
+	operation multiErrorOperation() throws SampleError SampleError2;
+	
+	operation getSimpleRecord(key: string): SimpleRecord;
+	operation getSimpleRecordWithError(key: string): SimpleRecord throws SampleError;
+	
+	operation getSimpleErrorWithValue() throws SampleErrorWithValue;
+	operation getSimpleErrorInt() throws SampleErrorInt;
+	operation getSimpleErrorBoolean() throws SampleErrorBoolean;
+	operation getSimpleErrorEnum() throws SampleErrorEnum;
+	operation getSimpleErrorScalar() throws SampleErrorScalar;
+	operation getSimpleErrorUnion() throws SampleErrorUnion;
 }
 
 service ListSampleService {
-		operation listBoolean(): boolean[];
-		operation listShort(): short[];
-		operation listInt(): int[];
-		operation listLong(): long[];
-		operation listFloat(): float[];
-		operation listDouble(): double[];
-		operation listString(): string[];
-		operation listLocalDate(): local-date[];
-		operation listLocalDateTime(): local-date-time[];
-		operation listLocalTime(): local-time[];
-		operation listOffsetDateTime(): offset-date-time[];
-		operation listZonedDateTime(): zoned-date-time[];
-		operation listScalar(): ZoneId[];
-		operation listEnum(): SampleEnum[];
+	operation listBoolean(): boolean[];
+	operation listShort(): short[];
+	operation listInt(): int[];
+	operation listLong(): long[];
+	operation listFloat(): float[];
+	operation listDouble(): double[];
+	operation listString(): string[];
+	operation listLocalDate(): local-date[];
+	operation listLocalDateTime(): local-date-time[];
+	operation listLocalTime(): local-time[];
+	operation listOffsetDateTime(): offset-date-time[];
+	operation listZonedDateTime(): zoned-date-time[];
+	operation listScalar(): ZoneId[];
+	operation listEnum(): SampleEnum[];
 
-		operation listSimpleRecord(): SimpleRecord[];
-		operation listSimpleRecordWithError(): SimpleRecord[] throws SampleError;
+	operation listSimpleRecord(): SimpleRecord[];
+	operation listSimpleRecordWithError(): SimpleRecord[] throws SampleError;
 }
 
 // Optional and Nil variants of Path Params do not make sense
