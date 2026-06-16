@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { createScalarSubstition_ServiceService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
 import { isSampleErrorScalarSubError } from '../../test-specs/gen-out/client/typescript-client/src/Errors.js';
+import { createOpenAPIScalarSubstition_ServiceService } from '../openapi-adapter/ScalarSubstition_ServiceService.adapter.js';
 
 const jsonService = createScalarSubstition_ServiceService({
 	baseUrl: 'http://localhost:3000',
@@ -11,14 +12,18 @@ const msgpackService = createScalarSubstition_ServiceService({
 	encoding: 'application/vnd.msgpack',
 });
 
-/*const openApiService = createOpenAPISampleServiceService({
+const openApiService = createOpenAPIScalarSubstition_ServiceService({
 	baseUrl: 'http://localhost:3000',
 });
-*/
 
 const json = {
 	encoding: 'application/json' as const,
 	service: jsonService,
+};
+
+const jsonOpenApi = {
+	encoding: 'application/json via openAPI' as const,
+	service: openApiService,
 };
 
 const msgpack = {
@@ -28,7 +33,7 @@ const msgpack = {
 
 describe('ScalarSubstition_ServiceService', () => {
 	describe('get', () => {
-		test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 			const [result, error] = await service.get();
 			expect(error).toBeNull();
 			expect(result).toBeDefined();
@@ -37,7 +42,7 @@ describe('ScalarSubstition_ServiceService', () => {
 		});
 	});
 	describe('list', () => {
-		test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 			const [result, error] = await service.list();
 			expect(error).toBeNull();
 			expect(result).toBeDefined();
@@ -47,7 +52,7 @@ describe('ScalarSubstition_ServiceService', () => {
 		});
 	});
 	describe('post', () => {
-		test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 			const [result, error] = await service.post({ start: 1, end: 2 });
 			expect(error).toBeNull();
 			expect(result).toBeDefined();
@@ -57,14 +62,14 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('postOpt', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postOpt({ start: 1, end: 2 });
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('undefined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postOpt();
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
@@ -73,14 +78,14 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('postNull', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postNull({ start: 1, end: 2 });
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('null', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack /*, jsonOpenApi*/])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postNull(null);
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
@@ -89,21 +94,21 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('postOptNull', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postOptNull({ start: 1, end: 2 });
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('null', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postOptNull(null);
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('undefined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postOptNull();
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
@@ -111,7 +116,7 @@ describe('ScalarSubstition_ServiceService', () => {
 		});
 	});
 	describe('postList', () => {
-		test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 			const [result, error] = await service.postList([{ start: 1, end: 2 }]);
 			expect(error).toBeNull();
 			expect(result).toBeDefined();
@@ -122,14 +127,14 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('postListOpt', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postListOpt([{ start: 1, end: 2 }]);
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('undefined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postListOpt();
 				expect(error).toBeNull();
 				expect(result).toBe('UNDEFINED');
@@ -138,14 +143,14 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('postListNull', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postListNull([{ start: 1, end: 2 }]);
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('null', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack /*, jsonOpenApi*/])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postListNull(null);
 				expect(error).toBeNull();
 				expect(result).toBe('NULL');
@@ -154,21 +159,21 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('postListOptNull', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postListOptNull([{ start: 1, end: 2 }]);
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('null', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postListOptNull(null);
 				expect(error).toBeNull();
 				expect(result).toBe('NULL');
 			});
 		});
 		describe('undefined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack /*, jsonOpenApi*/])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.postListOptNull();
 				expect(error).toBeNull();
 				expect(result).toBe('UNDEFINED');
@@ -176,7 +181,7 @@ describe('ScalarSubstition_ServiceService', () => {
 		});
 	});
 	describe('query', () => {
-		test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 			const [result, error] = await service.query({ start: 1, end: 2 });
 			expect(error).toBeNull();
 			expect(result).toBeDefined();
@@ -186,14 +191,14 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('queryOpt', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryOpt({ start: 1, end: 2 });
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('undefined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryOpt();
 				expect(error).toBeNull();
 				expect(result).toBe('UNDEFINED');
@@ -202,14 +207,14 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('queryNull', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryNull({ start: 1, end: 2 });
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		/*describe('null', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryNull(null);
 				expect(error).toBeNull();
 				expect(result).toBe('NULL');
@@ -218,21 +223,21 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('queryOptNull', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryOptNull({ start: 1, end: 2 });
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		/*escribe('null', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryOptNull(null);
 				expect(error).toBeNull();
 				expect(result).toBe('NULL');
 			});
 		});*/
 		describe('undefined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryOptNull();
 				expect(error).toBeNull();
 				expect(result).toBe('UNDEFINED');
@@ -240,7 +245,7 @@ describe('ScalarSubstition_ServiceService', () => {
 		});
 	});
 	describe('queryList', () => {
-		test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 			const [result, error] = await service.queryList([{ start: 1, end: 2 }]);
 			expect(error).toBeNull();
 			expect(result).toBeDefined();
@@ -251,14 +256,14 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('queryListOpt', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryListOpt([{ start: 1, end: 2 }]);
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		/*describe('undefined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryListOpt();
 				expect(error).toBeNull();
 				expect(result).toBe('UNDEFINED');
@@ -267,14 +272,14 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('queryListNull', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryListNull([{ start: 1, end: 2 }]);
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		/*describe('null', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryListNull(null);
 				expect(error).toBeNull();
 				expect(result).toBe('NULL');
@@ -283,21 +288,21 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('queryListOptNull', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryListOptNull([{ start: 1, end: 2 }]);
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		/*describe('undefined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryListOptNull();
 				expect(error).toBeNull();
 				expect(result).toBe('UNDEFINED');
 			});
 		});
 		describe('null', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.queryListOptNull(null);
 				expect(error).toBeNull();
 				expect(result).toBe('NULL');
@@ -305,7 +310,7 @@ describe('ScalarSubstition_ServiceService', () => {
 		});*/
 	});
 	describe('header', () => {
-		test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 			const [result, error] = await service.header({ start: 1, end: 2 });
 			expect(error).toBeNull();
 			expect(result).toBeDefined();
@@ -315,14 +320,14 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('headerOpt', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerOpt({ start: 1, end: 2 });
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('undefined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerOpt();
 				expect(error).toBeNull();
 				expect(result).toBe('UNDEFINED');
@@ -331,14 +336,14 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('headerNull', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerNull({ start: 1, end: 2 });
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('null', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack /*, jsonOpenApi*/])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerNull(null);
 				expect(error).toBeNull();
 				expect(result).toBe('NULL');
@@ -347,21 +352,21 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('headerOptNull', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerOptNull({ start: 1, end: 2 });
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('null', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack /*, jsonOpenApi*/])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerOptNull(null);
 				expect(error).toBeNull();
 				expect(result).toBe('NULL');
 			});
 		});
 		describe('undefined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerOptNull();
 				expect(error).toBeNull();
 				expect(result).toBe('UNDEFINED');
@@ -369,7 +374,7 @@ describe('ScalarSubstition_ServiceService', () => {
 		});
 	});
 	describe('headerList', () => {
-		test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+		test.each([json, msgpack /*, jsonOpenApi*/])('ssucess with $encoding', async ({ service }) => {
 			const [result, error] = await service.headerList([{ start: 1, end: 2 }]);
 			expect(error).toBeNull();
 			expect(result).toBeDefined();
@@ -380,14 +385,14 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('headerListOpt', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack /*, jsonOpenApi*/])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerListOpt([{ start: 1, end: 2 }]);
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('undefined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack /*, jsonOpenApi*/])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerListOpt();
 				expect(error).toBeNull();
 				expect(result).toBe('UNDEFINED');
@@ -396,14 +401,14 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('headerListNull', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack /*, jsonOpenApi*/])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerListNull([{ start: 1, end: 2 }]);
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('null', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack /*, jsonOpenApi*/])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerListNull(null);
 				expect(error).toBeNull();
 				expect(result).toBe('NULL');
@@ -412,21 +417,21 @@ describe('ScalarSubstition_ServiceService', () => {
 	});
 	describe('headerListOptNull', () => {
 		describe('defined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack /*, jsonOpenApi*/])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerListOptNull([{ start: 1, end: 2 }]);
 				expect(error).toBeNull();
 				expect(result).toBeDefined();
 			});
 		});
 		describe('null', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack /*, jsonOpenApi*/])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerListOptNull(null);
 				expect(error).toBeNull();
 				expect(result).toBe('NULL');
 			});
 		});
 		describe('undefined', () => {
-			test.each([json, msgpack])('ssucess with $encoding', async ({ service }) => {
+			test.each([json, msgpack, jsonOpenApi])('ssucess with $encoding', async ({ service }) => {
 				const [result, error] = await service.headerListOptNull();
 				expect(error).toBeNull();
 				expect(result).toBe('UNDEFINED');
@@ -434,7 +439,7 @@ describe('ScalarSubstition_ServiceService', () => {
 		});
 	});
 	describe('fail', () => {
-		test.each([json, msgpack])('fail with $encoding', async ({ service }) => {
+		test.each([json, msgpack, jsonOpenApi])('fail with $encoding', async ({ service }) => {
 			const [result, error] = await service.fail();
 			expect(result).toBeUndefined();
 			expect(error).toBeDefined();
