@@ -21854,6 +21854,339 @@
           "removals"
         ]
       },
+      "PatchableScalarRecord_Substitution": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "value_Null": {
+            "type": "string",
+            "nullable": true
+          },
+          "value_Opt": {
+            "type": "string"
+          },
+          "value_Opt_Null": {
+            "type": "string",
+            "nullable": true
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "list_Null": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "list_Opt": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "list_Opt_Null": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "key",
+          "version",
+          "value",
+          "value_Null",
+          "list",
+          "list_Null"
+        ]
+      },
+      "PatchableScalarRecord_SubstitutionPatch": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "value_Null": {
+            "type": "string",
+            "nullable": true
+          },
+          "value_Opt": {
+            "type": "string",
+            "nullable": true
+          },
+          "value_Opt_Null": {
+            "type": "string",
+            "nullable": true
+          },
+          "list": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PatchableScalarRecord_Substitution_listPatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/PatchableScalarRecord_Substitution_listPatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/PatchableScalarRecord_Substitution_listPatchReplace",
+                "merge": "#/components/schemas/PatchableScalarRecord_Substitution_listPatchMerge"
+              }
+            }
+          },
+          "list_Null": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PatchableScalarRecord_Substitution_list_NullPatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/PatchableScalarRecord_Substitution_list_NullPatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/PatchableScalarRecord_Substitution_list_NullPatchReplace",
+                "merge": "#/components/schemas/PatchableScalarRecord_Substitution_list_NullPatchMerge"
+              }
+            }
+          },
+          "list_Opt": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PatchableScalarRecord_Substitution_list_OptPatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/PatchableScalarRecord_Substitution_list_OptPatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/PatchableScalarRecord_Substitution_list_OptPatchReplace",
+                "merge": "#/components/schemas/PatchableScalarRecord_Substitution_list_OptPatchMerge"
+              }
+            }
+          },
+          "list_Opt_Null": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PatchableScalarRecord_Substitution_list_Opt_NullPatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/PatchableScalarRecord_Substitution_list_Opt_NullPatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/PatchableScalarRecord_Substitution_list_Opt_NullPatchReplace",
+                "merge": "#/components/schemas/PatchableScalarRecord_Substitution_list_Opt_NullPatchMerge"
+              }
+            }
+          }
+        },
+        "required": [
+          "key",
+          "version"
+        ]
+      },
+      "PatchableScalarRecord_Substitution_listPatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "PatchableScalarRecord_Substitution_listPatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
+      "PatchableScalarRecord_Substitution_list_NullPatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "PatchableScalarRecord_Substitution_list_NullPatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
+      "PatchableScalarRecord_Substitution_list_OptPatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "PatchableScalarRecord_Substitution_list_OptPatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
+      "PatchableScalarRecord_Substitution_list_Opt_NullPatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "PatchableScalarRecord_Substitution_list_Opt_NullPatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
       "PatchableRecordOfRecords": {
         "type": "object",
         "properties": {

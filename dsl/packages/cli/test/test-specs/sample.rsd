@@ -437,6 +437,21 @@ patchable record PatchableScalarRecord {
 	list_Opt_Null?: ZoneId[]?
 }
 
+patchable record PatchableScalarRecord_Substitution {
+	@id key: string
+	@rev version: string
+
+	value: Range
+	value_Null: Range?
+	value_Opt?: Range
+	value_Opt_Null?: Range?
+	
+	list: Range[]
+	list_Null: Range[]?
+	list_Opt?: Range[]
+	list_Opt_Null?: Range[]?
+}
+
 patchable record PatchableRecordOfRecords {
 	@id key: string
 	@rev version: string

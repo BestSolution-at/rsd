@@ -51,6 +51,8 @@ import dev.rsdlang.sample.client.impl.model.json.PatchableRecordOfRecordsPatchIm
 import dev.rsdlang.sample.client.impl.model.json.PatchableRecordPatchImpl;
 import dev.rsdlang.sample.client.impl.model.json.PatchableRecordWithUnionDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.PatchableRecordWithUnionPatchImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableScalarRecord_SubstitutionDataImpl;
+import dev.rsdlang.sample.client.impl.model.json.PatchableScalarRecord_SubstitutionPatchImpl;
 import dev.rsdlang.sample.client.impl.model.json.PatchableScalarRecordDataImpl;
 import dev.rsdlang.sample.client.impl.model.json.PatchableScalarRecordPatchImpl;
 import dev.rsdlang.sample.client.impl.model.json.PatchableUnionADataImpl;
@@ -112,6 +114,7 @@ import dev.rsdlang.sample.client.model.PatchableRecord_Basic_Optional_Null;
 import dev.rsdlang.sample.client.model.PatchableRecordOfRecords;
 import dev.rsdlang.sample.client.model.PatchableRecordWithUnion;
 import dev.rsdlang.sample.client.model.PatchableScalarRecord;
+import dev.rsdlang.sample.client.model.PatchableScalarRecord_Substitution;
 import dev.rsdlang.sample.client.model.PatchableUnionA;
 import dev.rsdlang.sample.client.model.PatchableUnionB;
 import dev.rsdlang.sample.client.model.RecordOfRecords;
@@ -253,6 +256,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		registerBuilderCreator(PatchableEnumRecord.DataBuilder.class, PatchableEnumRecordDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(PatchableEnumInlineRecord.DataBuilder.class, PatchableEnumInlineRecordDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(PatchableScalarRecord.DataBuilder.class, PatchableScalarRecordDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableScalarRecord_Substitution.DataBuilder.class, PatchableScalarRecord_SubstitutionDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(PatchableRecordOfRecords.DataBuilder.class, PatchableRecordOfRecordsDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(PatchableRecordWithUnion.DataBuilder.class, PatchableRecordWithUnionDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(PatchableUnionA.DataBuilder.class, PatchableUnionADataImpl.DataBuilderImpl::new);
@@ -274,6 +278,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		registerBuilderCreator(PatchableEnumRecord.PatchBuilder.class, PatchableEnumRecordPatchImpl.PatchBuilderImpl::new);
 		registerBuilderCreator(PatchableEnumInlineRecord.PatchBuilder.class, PatchableEnumInlineRecordPatchImpl.PatchBuilderImpl::new);
 		registerBuilderCreator(PatchableScalarRecord.PatchBuilder.class, PatchableScalarRecordPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableScalarRecord_Substitution.PatchBuilder.class, PatchableScalarRecord_SubstitutionPatchImpl.PatchBuilderImpl::new);
 		registerBuilderCreator(PatchableRecordOfRecords.PatchBuilder.class, PatchableRecordOfRecordsPatchImpl.PatchBuilderImpl::new);
 		registerBuilderCreator(PatchableRecordWithUnion.PatchBuilder.class, PatchableRecordWithUnionPatchImpl.PatchBuilderImpl::new);
 		registerBuilderCreator(PatchableUnionA.PatchBuilder.class, PatchableUnionAPatchImpl.PatchBuilderImpl::new);

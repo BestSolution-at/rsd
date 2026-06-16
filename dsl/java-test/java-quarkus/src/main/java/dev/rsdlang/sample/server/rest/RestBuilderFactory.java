@@ -44,6 +44,8 @@ import dev.rsdlang.sample.server.rest.model.PatchableRecordOfRecordsPatchImpl;
 import dev.rsdlang.sample.server.rest.model.PatchableRecordPatchImpl;
 import dev.rsdlang.sample.server.rest.model.PatchableRecordWithUnionDataImpl;
 import dev.rsdlang.sample.server.rest.model.PatchableRecordWithUnionPatchImpl;
+import dev.rsdlang.sample.server.rest.model.PatchableScalarRecord_SubstitutionDataImpl;
+import dev.rsdlang.sample.server.rest.model.PatchableScalarRecord_SubstitutionPatchImpl;
 import dev.rsdlang.sample.server.rest.model.PatchableScalarRecordDataImpl;
 import dev.rsdlang.sample.server.rest.model.PatchableScalarRecordPatchImpl;
 import dev.rsdlang.sample.server.rest.model.PatchableUnionADataImpl;
@@ -95,6 +97,7 @@ import dev.rsdlang.sample.server.service.model.PatchableRecord_Basic_Optional_Nu
 import dev.rsdlang.sample.server.service.model.PatchableRecordOfRecords;
 import dev.rsdlang.sample.server.service.model.PatchableRecordWithUnion;
 import dev.rsdlang.sample.server.service.model.PatchableScalarRecord;
+import dev.rsdlang.sample.server.service.model.PatchableScalarRecord_Substitution;
 import dev.rsdlang.sample.server.service.model.PatchableUnion;
 import dev.rsdlang.sample.server.service.model.PatchableUnionA;
 import dev.rsdlang.sample.server.service.model.PatchableUnionB;
@@ -262,6 +265,12 @@ public class RestBuilderFactory implements BuilderFactory {
 		}
 		if (type == PatchableScalarRecord.PatchBuilder.class) {
 			return type.cast(PatchableScalarRecordPatchImpl.builder());
+		}
+		if (type == PatchableScalarRecord_Substitution.DataBuilder.class) {
+			return type.cast(PatchableScalarRecord_SubstitutionDataImpl.builder());
+		}
+		if (type == PatchableScalarRecord_Substitution.PatchBuilder.class) {
+			return type.cast(PatchableScalarRecord_SubstitutionPatchImpl.builder());
 		}
 		if (type == PatchableRecordOfRecords.DataBuilder.class) {
 			return type.cast(PatchableRecordOfRecordsDataImpl.builder());
@@ -440,6 +449,12 @@ public class RestBuilderFactory implements BuilderFactory {
 		}
 		if (type == PatchableScalarRecord.Patch.class) {
 			return type.cast(PatchableScalarRecordPatchImpl.of(data));
+		}
+		if (type == PatchableScalarRecord_Substitution.Data.class) {
+			return type.cast(PatchableScalarRecord_SubstitutionDataImpl.of(data));
+		}
+		if (type == PatchableScalarRecord_Substitution.Patch.class) {
+			return type.cast(PatchableScalarRecord_SubstitutionPatchImpl.of(data));
 		}
 		if (type == PatchableRecordOfRecords.Data.class) {
 			return type.cast(PatchableRecordOfRecordsDataImpl.of(data));
