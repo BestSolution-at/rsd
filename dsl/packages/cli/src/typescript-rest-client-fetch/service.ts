@@ -216,6 +216,9 @@ function stringHeaderQueryCode(
 				} else {
 					mBody.append(`${target}.append('${p.name}', ${encodeAsciiString}($entry));`, NL);
 				}
+			} else if (p.variant === 'scalar') {
+				const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
+				mBody.append(`${target}.append('${p.name}', ${toJSON}($entry));`, NL);
 			} else {
 				mBody.append(`${target}.append('${p.name}', $entry);`, NL);
 			}
@@ -230,6 +233,9 @@ function stringHeaderQueryCode(
 			} else {
 				node.append(`${target}.append('${p.name}', ${encodeAsciiString}(${p.name}));`, NL);
 			}
+		} else if (p.variant === 'scalar') {
+			const toJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${p.type}ToJSON`;
+			node.append(`${target}.append('${p.name}', ${toJSON}(${p.name}));`, NL);
 		} else {
 			node.append(`${target}.append('${p.name}', ${p.name});`, NL);
 		}
@@ -881,7 +887,7 @@ function toParameter(
 	if (isMBuiltinType(parameter.type)) {
 		type = builtinToType(parameter.type, fqn, '../model/');
 	} else if (parameter.variant === 'scalar') {
-		type = 'string';
+		type = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${parameter.type}`;
 	} else if (isMInlineEnumType(parameter.type)) {
 		type = parameter.type.entries.map(e => `'${e.name}'`).join(' | ');
 		if (parameter.array) {

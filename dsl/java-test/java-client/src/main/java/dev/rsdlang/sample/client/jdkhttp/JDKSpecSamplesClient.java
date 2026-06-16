@@ -88,6 +88,7 @@ import dev.rsdlang.sample.client.jdkhttp.impl.ListSampleServiceServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.PathParameterTypeServiceServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.QueryParameterTypesServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.SampleServiceServiceImpl;
+import dev.rsdlang.sample.client.jdkhttp.impl.ScalarSubstition_ServiceServiceImpl;
 import dev.rsdlang.sample.client.ListBodyParameterTypesService;
 import dev.rsdlang.sample.client.ListHeaderParameterTypesService;
 import dev.rsdlang.sample.client.ListQueryParameterTypesService;
@@ -142,6 +143,7 @@ import dev.rsdlang.sample.client.PathParameterTypeServiceService;
 import dev.rsdlang.sample.client.QueryParameterTypesService;
 import dev.rsdlang.sample.client.RSDException;
 import dev.rsdlang.sample.client.SampleServiceService;
+import dev.rsdlang.sample.client.ScalarSubstition_ServiceService;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class JDKSpecSamplesClient implements SpecSamplesClient {
@@ -294,6 +296,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		registerServiceCreator(ListQueryParameterTypesService.class, ListQueryParameterTypesServiceImpl::new);
 		registerServiceCreator(ListHeaderParameterTypesService.class, ListHeaderParameterTypesServiceImpl::new);
 		registerServiceCreator(BinaryTypesService.class, BinaryTypesServiceImpl::new);
+		registerServiceCreator(ScalarSubstition_ServiceService.class, ScalarSubstition_ServiceServiceImpl::new);
 	}
 
 	private static void registerBuilderCreator(Class<?> clazz, Supplier<Object> constructor) {

@@ -922,3 +922,59 @@ resource BinaryTypes at '/api/binarytypes' {
 	POST singleBodyAddition at 'singleBodyAddition'
 	POST twoBinariesAddition at 'twoBinariesAddition'
 }
+
+resource ScalarSubstition_Service at '/api/scalarsubstitution' {
+	GET get at 'get'
+	GET list at 'list'
+
+	POST post at 'post'
+	POST postOpt at 'postOpt'
+	POST postNull at 'postNull'
+	POST postOptNull at 'postOptNull'
+
+	POST postList at 'postList'
+	POST postListOpt at 'postListOpt'
+	POST postListNull at 'postListNull'
+	POST postListOptNull at 'postListOptNull'
+
+	GET query at 'query'
+		query-param range
+	GET queryOpt at 'queryOpt'
+		query-param range
+	GET queryNull at 'queryNull'
+		query-param range
+	GET queryOptNull at 'queryOptNull'
+		query-param range
+
+	GET queryList at 'queryList'
+		query-param range
+	GET queryListOpt at 'queryListOpt'
+		query-param range
+	GET queryListNull at 'queryListNull'
+		query-param range
+	GET queryListOptNull at 'queryListOptNull'
+		query-param range
+
+	GET header at 'header'
+		header-param range
+	GET headerOpt at 'headerOpt'
+		header-param range
+	GET headerNull at 'headerNull'
+		header-param range
+	GET headerOptNull at 'headerOptNull'
+		header-param range
+
+	GET headerList at 'headerList'
+		header-param range
+	GET headerListOpt at 'headerListOpt'
+		header-param range
+	GET headerListNull at 'headerListNull'
+		header-param range
+	GET headerListOptNull at 'headerListOptNull'
+		header-param range
+
+	POST fail at 'fail' => {
+		200
+		400: SampleErrorScalarSub
+	}
+}

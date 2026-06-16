@@ -21044,6 +21044,1005 @@
           "path": "/api/binarytypes"
         }
       }
+    },
+    {
+      "@type": "Service",
+      "name": "ScalarSubstition_Service",
+      "doc": "",
+      "operations": [
+        {
+          "@type": "Operation",
+          "name": "get",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "scalar",
+            "type": "Range",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "get",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "list",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "scalar",
+            "type": "Range",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "list",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "post",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "scalar",
+            "type": "Range",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "post",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postOptNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postOptNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postList",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "scalar",
+            "type": "Range",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postList",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postListOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postListOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postListNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postListNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postListOptNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postListOptNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "query",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "scalar",
+            "type": "Range",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "query",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryOptNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryOptNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryList",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "scalar",
+            "type": "Range",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryList",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryListOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryListOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryListNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryListNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryListOptNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryListOptNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "header",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "scalar",
+            "type": "Range",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "header",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerOptNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerOptNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerList",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "scalar",
+            "type": "Range",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerList",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerListOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerListOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerListNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerListNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerListOptNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "range",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "range",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerListOptNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "fail",
+          "doc": "",
+          "parameters": [],
+          "errors": [
+            "SampleErrorScalarSub"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleErrorScalarSub",
+              "doc": ""
+            }
+          ],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "fail",
+              "results": [
+                {
+                  "statusCode": 200
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleErrorScalarSub"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "meta": {
+        "rest": {
+          "path": "/api/scalarsubstitution"
+        }
+      }
     }
   ],
   "errors": [
@@ -21084,6 +22083,11 @@
       "@type": "Error",
       "name": "SampleErrorUnion",
       "contentType": "Union"
+    },
+    {
+      "@type": "Error",
+      "name": "SampleErrorScalarSub",
+      "contentType": "Range"
     }
   ]
 }

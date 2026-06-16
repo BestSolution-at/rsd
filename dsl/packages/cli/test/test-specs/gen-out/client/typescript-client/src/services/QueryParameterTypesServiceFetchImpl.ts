@@ -883,7 +883,7 @@ function fnSimpleZonedDateTimeQueryParamOpt(props: ServiceProps<api.service.Erro
 function fnSimpleScalarQueryParam(props: ServiceProps<api.service.ErrorType>): api.service.QueryParameterTypesService['simpleScalarQueryParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (queryValue: string) => {
+	return async (queryValue: api.model.ZoneId) => {
 		try {
 			const $init = (await preFetch?.('simpleScalarQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -892,7 +892,7 @@ function fnSimpleScalarQueryParam(props: ServiceProps<api.service.ErrorType>): a
 			$init.headers = $headers;
 
 			const $param = new URLSearchParams();
-			$param.append('queryValue', queryValue);
+			$param.append('queryValue', api.model.ZoneIdToJSON(queryValue));
 			const $path = `${baseUrl}/api/queryparametertypes/simpleScalarQueryParam?${$param.toString()}`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
@@ -917,7 +917,7 @@ function fnSimpleScalarQueryParam(props: ServiceProps<api.service.ErrorType>): a
 function fnSimpleScalarQueryParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.QueryParameterTypesService['simpleScalarQueryParamOpt'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (queryValue?: string) => {
+	return async (queryValue?: api.model.ZoneId) => {
 		try {
 			const $init = (await preFetch?.('simpleScalarQueryParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -927,7 +927,7 @@ function fnSimpleScalarQueryParamOpt(props: ServiceProps<api.service.ErrorType>)
 
 			const $param = new URLSearchParams();
 			if (queryValue !== undefined) {
-				$param.append('queryValue', queryValue);
+				$param.append('queryValue', api.model.ZoneIdToJSON(queryValue));
 			}
 			const $path = `${baseUrl}/api/queryparametertypes/simpleScalarQueryParamOpt?${$param.toString()}`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });

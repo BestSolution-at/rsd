@@ -410,7 +410,7 @@ function fnSimpleZonedDateTimePathParam(props: ServiceProps<api.service.ErrorTyp
 function fnSimpleScalarPathParam(props: ServiceProps<api.service.ErrorType>): api.service.PathParameterTypeServiceService['simpleScalarPathParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (pathScalar: string) => {
+	return async (pathScalar: api.model.ZoneId) => {
 		try {
 			const $init = (await preFetch?.('simpleScalarPathParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});

@@ -269,8 +269,16 @@ function appendHeaderParams(
 		const restName = p.meta?.rest?.name ?? p.name.toLowerCase();
 		if (p.array) {
 			if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum' || p.variant === 'scalar') {
-				const toString =
-					p.type === 'string' ? '$v -> ServiceUtils.encodeAsciiString($v)' : `${fqn('java.util.Objects')}::toString`;
+				let toString: string;
+				if (p.type === 'string') {
+					toString = '$v -> ServiceUtils.encodeAsciiString($v)';
+				} else if (p.variant === 'scalar') {
+					const Objects = fqn('java.util.Objects');
+					toString = `$v -> ServiceUtils.encodeAsciiString(${Objects}.toString($v))`;
+				} else {
+					const Objects = fqn('java.util.Objects');
+					toString = `${Objects}::toString`;
+				}
 				const codeBlock = `$headerParams.put("${restName}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
 				appendWithNullGuard(
 					methodBody,
@@ -334,8 +342,15 @@ function appendHeaderParams(
 				);
 			} else if (p.variant === 'stream') {
 				methodBody.append('throw new UnsupportedOperationException("Stream headers are not supported yet");', NL);
+			} else if (p.variant === 'scalar') {
+				const Objects = fqn('java.util.Objects');
+				methodBody.append(
+					`$headerParams.put("${restName}", ServiceUtils.encodeAsciiString(${Objects}.toString(${p.name})));`,
+					NL,
+				);
 			} else {
-				methodBody.append(`$headerParams.put("${restName}", String.format("%s", ${p.name}));`, NL);
+				const Objects = fqn('java.util.Objects');
+				methodBody.append(`$headerParams.put("${restName}", ${Objects}.toString(${p.name}));`, NL);
 			}
 		}
 	});

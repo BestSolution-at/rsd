@@ -568,6 +568,7 @@ error SampleErrorBoolean = boolean;
 error SampleErrorEnum = SampleEnum;
 error SampleErrorScalar = ZoneId;
 error SampleErrorUnion = Union;
+error SampleErrorScalarSub = Range;
 
 service SampleService {
 		operation getBoolean(): boolean;
@@ -1852,4 +1853,41 @@ service BinaryTypes {
 	
 	operation downloadFile(): file throws SampleErrorWithValue;
 	operation downloadBlob(): blob throws SampleErrorWithValue;
+}
+
+service ScalarSubstition_Service {
+	operation get(): Range;
+	operation list(): Range[];
+
+	operation post(range: Range): Range;
+	operation postOpt(range?: Range): NilResult;
+	operation postNull(range: Range?): NilResult;
+	operation postOptNull(range?: Range?): NilResult;
+
+	operation postList(range: Range[]): Range[];
+	operation postListOpt(range?: Range[]): NilResult;
+	operation postListNull(range: Range[]?): NilResult;
+	operation postListOptNull(range?: Range[]?): NilResult;
+
+	operation query(range: Range): Range;
+	operation queryOpt(range?: Range): NilResult;
+	operation queryNull(range: Range?): NilResult;
+	operation queryOptNull(range?: Range?): NilResult;
+
+	operation queryList(range: Range[]): Range[];
+	operation queryListOpt(range?: Range[]): NilResult;
+	operation queryListNull(range: Range[]?): NilResult;
+	operation queryListOptNull(range?: Range[]?): NilResult;
+
+	operation header(range: Range): Range;
+	operation headerOpt(range?: Range): NilResult;
+	operation headerNull(range: Range?): NilResult;
+	operation headerOptNull(range?: Range?): NilResult;
+
+	operation headerList(range: Range[]): Range[];
+	operation headerListOpt(range?: Range[]): NilResult;
+	operation headerListNull(range: Range[]?): NilResult;
+	operation headerListOptNull(range?: Range[]?): NilResult;
+
+	operation fail() throws SampleErrorScalarSub;
 }

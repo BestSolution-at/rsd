@@ -44,6 +44,10 @@
     {
       "name": "BinaryTypes",
       "description": ""
+    },
+    {
+      "name": "ScalarSubstition_Service",
+      "description": ""
     }
   ],
   "paths": {
@@ -15388,6 +15392,903 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ErrorData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/get": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/list": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/post": {
+      "post": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_post",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/postOpt": {
+      "post": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_postOpt",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/postNull": {
+      "post": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_postNull",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/postOptNull": {
+      "post": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_postOptNull",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/postList": {
+      "post": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_postList",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/postListOpt": {
+      "post": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_postListOpt",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/postListNull": {
+      "post": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_postListNull",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/postListOptNull": {
+      "post": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_postListOptNull",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/query": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_query",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/queryOpt": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_queryOpt",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/queryNull": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_queryNull",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/queryOptNull": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_queryOptNull",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/queryList": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_queryList",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/queryListOpt": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_queryListOpt",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/queryListNull": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_queryListNull",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/queryListOptNull": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_queryListOptNull",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/header": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_header",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/headerOpt": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_headerOpt",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/headerNull": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_headerNull",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/headerOptNull": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_headerOptNull",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/headerList": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_headerList",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/headerListOpt": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_headerListOpt",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/headerListNull": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_headerListNull",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/headerListOptNull": {
+      "get": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_headerListOptNull",
+        "parameters": [
+          {
+            "name": "range",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/scalarsubstitution/fail": {
+      "post": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_fail",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "success"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }

@@ -1811,7 +1811,7 @@ function fnSimpleZonedDateTimeHeaderParamOptNil(props: ServiceProps<api.service.
 function fnSimpleScalarHeaderParam(props: ServiceProps<api.service.ErrorType>): api.service.HeaderParameterTypesService['simpleScalarHeaderParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (headerValue: string) => {
+	return async (headerValue: api.model.ZoneId) => {
 		try {
 			const $init = (await preFetch?.('simpleScalarHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -1844,7 +1844,7 @@ function fnSimpleScalarHeaderParam(props: ServiceProps<api.service.ErrorType>): 
 function fnSimpleScalarHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.HeaderParameterTypesService['simpleScalarHeaderParamOpt'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (headerValue?: string) => {
+	return async (headerValue?: api.model.ZoneId) => {
 		try {
 			const $init = (await preFetch?.('simpleScalarHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -1879,7 +1879,7 @@ function fnSimpleScalarHeaderParamOpt(props: ServiceProps<api.service.ErrorType>
 function fnSimpleScalarHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.HeaderParameterTypesService['simpleScalarHeaderParamNil'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (headerValue: string | null) => {
+	return async (headerValue: api.model.ZoneId | null) => {
 		try {
 			const $init = (await preFetch?.('simpleScalarHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -1916,7 +1916,7 @@ function fnSimpleScalarHeaderParamNil(props: ServiceProps<api.service.ErrorType>
 function fnSimpleScalarHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.HeaderParameterTypesService['simpleScalarHeaderParamOptNil'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (headerValue?: string | null) => {
+	return async (headerValue?: api.model.ZoneId | null) => {
 		try {
 			const $init = (await preFetch?.('simpleScalarHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
