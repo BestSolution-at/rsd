@@ -4,7 +4,7 @@
         {
             "name": "typescript-client-api",
             "targetFolder": "./gen-out/client/typescript-client/src",
-            "nativeScalarTypeSubstitues": {
+            "nativeScalarTypeSubstitutes": {
                 "Range": {
                     "import": "../../../../../tsrange.ts",
                     "type": "TsRange",

@@ -9,7 +9,7 @@ export function generateScalarsContent(
 ): CompositeGeneratorNode {
 	const node = new CompositeGeneratorNode();
 	scalars.forEach(scalar => {
-		const substitute = config.nativeScalarTypeSubstitues?.[scalar.name];
+		const substitute = config.nativeScalarTypeSubstitutes?.[scalar.name];
 		if (substitute) {
 			const type = fqn(`#${substitute.type}:${substitute.import}`, true);
 			node.append(`export type ${scalar.name} = ${type};`, NL);

@@ -5,7 +5,7 @@ import { MBuiltinType } from './model.js';
 export type TypescriptClientAPIGeneratorConfig = ArtifactGeneratorConfig & {
 	targetFolder: string;
 	allowImportingTsExtensions?: boolean;
-	nativeScalarTypeSubstitues?: TypescriptNativeScalarTypeSubstitues;
+	nativeScalarTypeSubstitutes?: TypescriptNativeScalarTypeSubstitues;
 };
 
 export function isTypescriptClientAPIGeneratorConfig(
@@ -15,8 +15,8 @@ export function isTypescriptClientAPIGeneratorConfig(
 		return false;
 	}
 	if (
-		!('nativeScalarTypeSubstitues' in config) ||
-		!isTypescriptNativeScalarTypeSubstitues(config.nativeScalarTypeSubstitues)
+		'nativeScalarTypeSubstitutes' in config &&
+		!isTypescriptNativeScalarTypeSubstitues(config.nativeScalarTypeSubstitutes)
 	) {
 		return false;
 	}
