@@ -15,7 +15,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Produces;
 
-import dev.rsdlang.sample.server.rest.model._JsonUtils;
+import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
 import dev.rsdlang.sample.server.rest.model.BodyParameterTypesMultiBodyParamDataImpl;
 import dev.rsdlang.sample.server.rest.model.BodyParameterTypesMultiBodyParamFirstDataImpl;
 import dev.rsdlang.sample.server.rest.model.BodyParameterTypesMultiBodyParamNilDataImpl;

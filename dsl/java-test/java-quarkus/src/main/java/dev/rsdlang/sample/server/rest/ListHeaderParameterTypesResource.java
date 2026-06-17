@@ -13,7 +13,7 @@ import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 
-import dev.rsdlang.sample.server.rest.model._JsonUtils;
+import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
 import dev.rsdlang.sample.server.service.ListHeaderParameterTypesService;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;

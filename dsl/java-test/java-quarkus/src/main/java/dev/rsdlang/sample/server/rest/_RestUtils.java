@@ -26,8 +26,8 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.StreamingOutput;
 import jakarta.ws.rs.WebApplicationException;
 
-import dev.rsdlang.sample.server.rest.model._JsonUtils;
-import dev.rsdlang.sample.server.rest.model._NillableImpl;
+import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
+import dev.rsdlang.sample.server.impl.model.json._NillableImpl;
 import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.RSDBlob;
 import dev.rsdlang.sample.server.service.model.RSDFile;

@@ -6,6 +6,9 @@ import java.util.OptionalInt;
 
 import jakarta.json.JsonObject;
 
+import dev.rsdlang.sample.server.impl.model.json._BaseDataImpl;
+import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
+import dev.rsdlang.sample.server.impl.model.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
 
 public class BodyParameterTypesMultiBodyParamOptDataImpl extends _BaseDataImpl {
