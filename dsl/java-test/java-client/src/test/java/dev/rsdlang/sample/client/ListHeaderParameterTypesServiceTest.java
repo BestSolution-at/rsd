@@ -6,7 +6,6 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -24,6 +23,7 @@ import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncodin
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class ListHeaderParameterTypesServiceTest {
 
@@ -548,7 +548,8 @@ public class ListHeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listOffsetDateTimeHeaderParam(ListHeaderParameterTypesService service) {
-		var times = List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"), OffsetDateTime.parse("2021-02-02T11:30:00+01:00"));
+		var times = List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"),
+				OffsetDateTime.parse("2021-02-02T11:30:00+01:00"));
 		assertEquals(times, service.listOffsetDateTimeHeaderParam(times));
 	}
 
@@ -561,7 +562,8 @@ public class ListHeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listOffsetDateTimeHeaderParamOpt_defined(ListHeaderParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.listOffsetDateTimeHeaderParamOpt(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
+		assertEquals(NilResult.DEFINED,
+				service.listOffsetDateTimeHeaderParamOpt(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
 	}
 
 	@ParameterizedTest
@@ -573,7 +575,8 @@ public class ListHeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listOffsetDateTimeHeaderParamNil_defined(ListHeaderParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.listOffsetDateTimeHeaderParamNil(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
+		assertEquals(NilResult.DEFINED,
+				service.listOffsetDateTimeHeaderParamNil(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
 	}
 
 	@ParameterizedTest
@@ -591,7 +594,8 @@ public class ListHeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listOffsetDateTimeHeaderParamOptNil_defined(ListHeaderParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.listOffsetDateTimeHeaderParamOptNil(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
+		assertEquals(NilResult.DEFINED, service
+				.listOffsetDateTimeHeaderParamOptNil(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
 	}
 
 	// --- ZonedDateTime ---
@@ -704,7 +708,8 @@ public class ListHeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listEnumHeaderParam(ListHeaderParameterTypesService service) {
-		assertEquals(List.of(SampleEnum.A, SampleEnum.B), service.listEnumHeaderParam(List.of(SampleEnum.A, SampleEnum.B)));
+		assertEquals(List.of(SampleEnum.A, SampleEnum.B),
+				service.listEnumHeaderParam(List.of(SampleEnum.A, SampleEnum.B)));
 	}
 
 	@ParameterizedTest

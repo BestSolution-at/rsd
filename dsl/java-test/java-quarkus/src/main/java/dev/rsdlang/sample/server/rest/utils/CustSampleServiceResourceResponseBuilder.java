@@ -4,12 +4,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 import dev.rsdlang.sample.server.Headers;
 import dev.rsdlang.sample.server.rest.SampleServiceResourceResponseBuilder;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
+import dev.rsdlang.sample.server.service.model.ZoneId;
 import dev.rsdlang.sample.server.service.model.SimpleRecord.Data;
 import jakarta.annotation.Priority;
 import jakarta.enterprise.inject.Alternative;

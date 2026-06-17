@@ -6,7 +6,6 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.OffsetDateTime;
 
@@ -25,6 +24,7 @@ import dev.rsdlang.sample.client.model.PatchableRecord;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.UnionA;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class BodyParameterTypesServiceTest {
 
@@ -457,7 +457,8 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateTimeBodyParamOpt_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleLocalDateTimeBodyParamOpt(LocalDateTime.parse("2020-01-01T10:00")));
+		assertEquals(NilResult.DEFINED,
+				service.simpleLocalDateTimeBodyParamOpt(LocalDateTime.parse("2020-01-01T10:00")));
 	}
 
 	@ParameterizedTest
@@ -469,7 +470,8 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateTimeBodyParamNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleLocalDateTimeBodyParamNil(LocalDateTime.parse("2020-01-01T10:00")));
+		assertEquals(NilResult.DEFINED,
+				service.simpleLocalDateTimeBodyParamNil(LocalDateTime.parse("2020-01-01T10:00")));
 	}
 
 	@ParameterizedTest
@@ -559,7 +561,8 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeBodyParamOpt_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleOffsetDateTimeBodyParamOpt(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
+		assertEquals(NilResult.DEFINED,
+				service.simpleOffsetDateTimeBodyParamOpt(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
 	}
 
 	@ParameterizedTest
@@ -571,7 +574,8 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeBodyParamNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleOffsetDateTimeBodyParamNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
+		assertEquals(NilResult.DEFINED,
+				service.simpleOffsetDateTimeBodyParamNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
 	}
 
 	@ParameterizedTest
@@ -589,7 +593,8 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeBodyParamOptNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleOffsetDateTimeBodyParamOptNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
+		assertEquals(NilResult.DEFINED,
+				service.simpleOffsetDateTimeBodyParamOptNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
 	}
 
 	// --- ZonedDateTime ---
@@ -998,7 +1003,8 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void patchableRecordBodyParam(BodyParameterTypesService service) {
-		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v").build();
+		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v")
+				.build();
 		var result = service.patchableRecordBodyParam(patch);
 		assertEquals("k", result.key());
 		assertEquals("1", result.version());
@@ -1016,7 +1022,8 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void patchableRecordBodyParamOpt_defined(BodyParameterTypesService service) {
-		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v").build();
+		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v")
+				.build();
 		var result = service.patchableRecordBodyParamOpt(patch);
 		assertEquals("k", result.key());
 		assertEquals("v", result.value());
@@ -1033,7 +1040,8 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void patchableRecordBodyParamNil_defined(BodyParameterTypesService service) {
-		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v").build();
+		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v")
+				.build();
 		var result = service.patchableRecordBodyParamNil(patch);
 		assertEquals("k", result.key());
 		assertEquals("v", result.value());
@@ -1058,7 +1066,8 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void patchableRecordBodyParamOptNil_defined(BodyParameterTypesService service) {
-		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v").build();
+		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v")
+				.build();
 		var result = service.patchableRecordBodyParamOptNil(patch);
 		assertEquals("k", result.key());
 		assertEquals("v", result.value());

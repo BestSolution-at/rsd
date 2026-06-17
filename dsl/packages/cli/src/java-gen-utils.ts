@@ -274,7 +274,13 @@ export function computeParameterAPIType(
 	} else if (isMInlineEnumType(parameter.type)) {
 		type = toFirstUpper(methodName) + '_' + toFirstUpper(parameter.name) + '_Param$';
 	} else {
-		if (parameter.variant === 'enum' || parameter.variant === 'scalar') {
+		if (parameter.variant === 'scalar') {
+			if (nativeTypeSubstitues !== undefined && parameter.type in nativeTypeSubstitues) {
+				type = fqn(nativeTypeSubstitues[parameter.type]);
+			} else {
+				type = fqn(`${basePackageName}.${parameter.type}`);
+			}
+		} else if (parameter.variant === 'enum') {
 			if (nativeTypeSubstitues !== undefined && parameter.type in nativeTypeSubstitues) {
 				type = fqn(nativeTypeSubstitues[parameter.type]);
 			} else {
@@ -322,7 +328,13 @@ export function computeAPIType(
 			type = toFirstUpper(property.name) + '$';
 		}
 	} else {
-		if (property.variant === 'enum' || property.variant === 'scalar') {
+		if (property.variant === 'scalar') {
+			if (nativeTypeSubstitues !== undefined && property.type in nativeTypeSubstitues) {
+				type = fqn(nativeTypeSubstitues[property.type]);
+			} else {
+				type = fqn(`${basePackageName}.${property.type}`);
+			}
+		} else if (property.variant === 'enum') {
 			if (nativeTypeSubstitues !== undefined && property.type in nativeTypeSubstitues) {
 				type = fqn(nativeTypeSubstitues[property.type]);
 			} else {
@@ -438,7 +450,7 @@ export function toAPIType(
 		if (nativeTypeSubstitues !== undefined && type.name in nativeTypeSubstitues) {
 			return fqn(nativeTypeSubstitues[type.name]);
 		}
-		return 'String';
+		return fqn(`${basePackageName}.${type.name}`);
 	} else {
 		return fqn(`${basePackageName}.${type.name}`) + '.Data';
 	}

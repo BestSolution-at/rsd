@@ -81,7 +81,7 @@ describe('generateScalarsContent', () => {
 	test('native scalar type substitute', () => {
 		const config = {
 			...SIMPLE_CONFIG,
-			nativeScalarTypeSubstitues: {
+			nativeScalarTypeSubstitutes: {
 				ZoneId: {
 					type: 'ZoneId',
 					import: 'foo.ts',

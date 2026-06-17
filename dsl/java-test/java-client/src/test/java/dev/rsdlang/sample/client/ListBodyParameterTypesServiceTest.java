@@ -6,7 +6,6 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -24,6 +23,7 @@ import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncodin
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class ListBodyParameterTypesServiceTest {
 
@@ -547,7 +547,8 @@ public class ListBodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listOffsetDateTimeBodyParam(ListBodyParameterTypesService service) {
-		var times = List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"), OffsetDateTime.parse("2021-02-02T11:30:00+01:00"));
+		var times = List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"),
+				OffsetDateTime.parse("2021-02-02T11:30:00+01:00"));
 		assertEquals(times, service.listOffsetDateTimeBodyParam(times));
 	}
 
@@ -560,7 +561,8 @@ public class ListBodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listOffsetDateTimeBodyParamOpt_defined(ListBodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.listOffsetDateTimeBodyParamOpt(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
+		assertEquals(NilResult.DEFINED,
+				service.listOffsetDateTimeBodyParamOpt(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
 	}
 
 	@ParameterizedTest
@@ -572,7 +574,8 @@ public class ListBodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listOffsetDateTimeBodyParamNil_defined(ListBodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.listOffsetDateTimeBodyParamNil(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
+		assertEquals(NilResult.DEFINED,
+				service.listOffsetDateTimeBodyParamNil(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
 	}
 
 	@ParameterizedTest
@@ -590,7 +593,8 @@ public class ListBodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listOffsetDateTimeBodyParamOptNil_defined(ListBodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.listOffsetDateTimeBodyParamOptNil(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
+		assertEquals(NilResult.DEFINED,
+				service.listOffsetDateTimeBodyParamOptNil(List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))));
 	}
 
 	// --- ZonedDateTime ---
@@ -703,7 +707,8 @@ public class ListBodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listEnumBodyParam(ListBodyParameterTypesService service) {
-		assertEquals(List.of(SampleEnum.A, SampleEnum.B), service.listEnumBodyParam(List.of(SampleEnum.A, SampleEnum.B)));
+		assertEquals(List.of(SampleEnum.A, SampleEnum.B),
+				service.listEnumBodyParam(List.of(SampleEnum.A, SampleEnum.B)));
 	}
 
 	@ParameterizedTest
@@ -873,7 +878,8 @@ public class ListBodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamOptNil_allNull(ListBodyParameterTypesService service) {
 		assertEquals(List.of(NilResult.NULL, NilResult.NULL, NilResult.NULL),
-				service.listMultiBodyParamOptNil((List<String>) null, (List<Integer>) null, (List<SimpleRecord.Data>) null));
+				service.listMultiBodyParamOptNil((List<String>) null, (List<Integer>) null,
+						(List<SimpleRecord.Data>) null));
 	}
 
 	@ParameterizedTest

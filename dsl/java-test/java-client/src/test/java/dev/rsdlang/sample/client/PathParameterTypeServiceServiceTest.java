@@ -6,7 +6,6 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.OffsetDateTime;
 
@@ -15,6 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.SampleEnum;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class PathParameterTypeServiceServiceTest {
 

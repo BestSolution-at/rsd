@@ -2,7 +2,6 @@
 package dev.rsdlang.sample.server.rest;
 
 import java.io.InputStream;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -27,6 +26,7 @@ import dev.rsdlang.sample.server.service.model.PatchableRecord;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
 import dev.rsdlang.sample.server.service.model.Union;
+import dev.rsdlang.sample.server.service.model.ZoneId;
 
 @ApplicationScoped
 @Path("/api/bodyparametertypes")

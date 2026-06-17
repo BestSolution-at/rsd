@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
-import java.time.ZoneId;
 
 import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
@@ -15,6 +14,7 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 import dev.rsdlang.sample.server.rest.model._JsonUtils;
 import dev.rsdlang.sample.server.service.model.SampleEnum;
 import dev.rsdlang.sample.server.service.model.SimpleRecord;
+import dev.rsdlang.sample.server.service.model.ZoneId;
 
 @Singleton
 public class SampleServiceResourceResponseBuilder {

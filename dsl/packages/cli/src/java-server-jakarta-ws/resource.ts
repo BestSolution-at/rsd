@@ -913,7 +913,12 @@ function scalarParameter(
 	contentTypeText: string,
 ) {
 	const type = p.type;
-	const t = resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, false);
+	let t: string;
+	if (artifactConfig.nativeTypeSubstitues && type in artifactConfig.nativeTypeSubstitues) {
+		t = resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, false);
+	} else {
+		t = fqn(`${artifactConfig.rootPackageName}.service.model.${type}`);
+	}
 	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {

@@ -998,10 +998,16 @@ function toResultType(
 		rvType = fqn(`${modelPkg}.${type.type}`) + '.Data';
 	} else if (type.variant === 'enum') {
 		rvType = fqn(`${modelPkg}.${type.type}`);
-	} else if (typeof type.type === 'string') {
-		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, type.array);
-	} else {
+	} else if (type.variant === 'inline-enum') {
 		rvType = toFirstUpper(methodName) + '_Result$';
+	} else if (type.variant === 'scalar') {
+		if (artifactConfig.nativeTypeSubstitues !== undefined && type.type in artifactConfig.nativeTypeSubstitues) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitues[type.type]);
+		} else {
+			rvType = fqn(`${modelPkg}.${type.type}`);
+		}
+	} else {
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, type.array);
 	}
 
 	if (type.array && !noArray) {

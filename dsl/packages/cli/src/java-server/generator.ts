@@ -4,6 +4,7 @@ import {
 	isMEnumType,
 	isMMixinType,
 	isMRecordType,
+	isMScalarType,
 	isMUnionType,
 	MResolvedRSDModel,
 	MResolvedUserType,
@@ -21,6 +22,7 @@ import { generateService } from './service.js';
 import { generateServiceImpl } from './service-impl.js';
 import { generateStreamDTO } from './stream-dto.js';
 import { generateEnum } from './enum.js';
+import { generateScalar } from './scalar.js';
 
 export function generate(
 	model: MResolvedRSDModel,
@@ -63,6 +65,8 @@ function generateType(
 		return generateUnion(t, artifactConfig);
 	} else if (isMMixinType(t)) {
 		return generateMixin(t, artifactConfig);
+	} else if (isMScalarType(t)) {
+		return generateScalar(t, artifactConfig);
 	}
 	return undefined;
 }
