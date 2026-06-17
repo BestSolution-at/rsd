@@ -122,7 +122,7 @@ function toResponse(
 	packageName: string,
 	fqn: (type: string) => string,
 ) {
-	fqn(`${packageName}.model._JsonUtils`);
+	fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
 	fqn(`${artifactConfig.rootPackageName}.service.RSDException`);
 	fqn('jakarta.ws.rs.core.Response');
 	fqn('jakarta.ws.rs.core.MediaType');
@@ -163,7 +163,7 @@ function parseFunctions(artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn:
 	fqn('java.io.InputStream');
 	fqn('java.io.ByteArrayInputStream');
 	fqn(`${artifactConfig.rootPackageName}.service.model._Base`);
-	fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`);
+	fqn(`${artifactConfig.rootPackageName}.impl.model.json._NillableImpl`);
 	return toNodeTree(`
 private static final Pattern SPLIT_COMMA_PATTERN = Pattern.compile(",");
 private static final Pattern UNESCAPE_PATTERN = Pattern.compile("\\\\\\\\u([0-9a-fA-F]{4})");

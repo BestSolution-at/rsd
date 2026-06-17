@@ -15,7 +15,7 @@ export function generateRecord(
 	model: MResolvedRSDModel,
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 ): Artifact[] {
-	const packageName = `${artifactConfig.rootPackageName}.rest.model`;
+	const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
 
 	const result: Artifact[] = [];
 	{

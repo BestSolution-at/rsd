@@ -208,7 +208,7 @@ function _generateResource(
 				cBody.append(`public ${fqn('jakarta.ws.rs.core.Response')} ${o.name}(${params.join(', ')}) {`, NL);
 				cBody.indent(mBody => {
 					if (o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
-						const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
+						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
 						const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
 						mBody.append(
 							`var $payloadJson = ${_JsonUtils}.parseValue($_payload.filePath(), $_payload.contentType(), ${_JsonUtils}.TypeInfo.value(${Type}.class)).asJsonObject();`,
@@ -229,7 +229,7 @@ function _generateResource(
 									if (p.optional && p.nullable) {
 										const type = `${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)}>`;
 										mBody.append(
-											`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? _NillableImpl.<${type}>nill() : _NillableImpl.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
+											`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? _NillableImpl.<${type}>nill() : _NillableImpl.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.impl.model.json._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
 											NL,
 										);
 									} else if (p.optional || p.nullable) {
@@ -245,7 +245,7 @@ function _generateResource(
 									}
 								} else {
 									if (p.optional && p.nullable) {
-										const nillType = fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`);
+										const nillType = fqn(`${artifactConfig.rootPackageName}.impl.model.json._NillableImpl`);
 										const type = fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`);
 										mBody.append(
 											`var ${p.name} = _${p.name} == null ? ($is${toFirstUpper(p.name)}Null ? ${nillType}.<${type}>nill() : ${nillType}.<${type}>undefined()) : ${nillType}.of(builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName()));`,
@@ -268,7 +268,7 @@ function _generateResource(
 									if (p.optional && p.nullable) {
 										const type = `${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)}>`;
 										mBody.append(
-											`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? _NillableImpl.<${type}>nill() : _NillableImpl.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
+											`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? _NillableImpl.<${type}>nill() : _NillableImpl.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.impl.model.json._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
 											NL,
 										);
 									} else if (p.optional || p.nullable) {
@@ -284,7 +284,7 @@ function _generateResource(
 									}
 								} else {
 									if (p.optional && p.nullable) {
-										const nillType = fqn(`${artifactConfig.rootPackageName}.rest.model._NillableImpl`);
+										const nillType = fqn(`${artifactConfig.rootPackageName}.impl.model.json._NillableImpl`);
 										const type = fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`);
 										mBody.append(
 											`var ${p.name} = _${p.name} == null ? ($is${toFirstUpper(p.name)}Null ? ${nillType}.<${type}>nill() : ${nillType}.<${type}>undefined()) : ${nillType}.of(builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType()));`,
@@ -319,11 +319,13 @@ function _generateResource(
 									),
 								);
 							} else if (p.variant === 'builtin') {
-								mBody.append(builtinParameter(p, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
+								mBody.append(builtinParameter(p, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
 							} else if (p.variant === 'enum') {
 								mBody.append(enumParameter(p, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
 							} else if (p.variant === 'inline-enum') {
-								mBody.append(inlineEnumParameter(p, o, Service, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
+								mBody.append(
+									inlineEnumParameter(p, o, Service, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`),
+								);
 							} else {
 								mBody.append(scalarParameter(p, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
 							}
@@ -469,14 +471,25 @@ function generateResourceMethod(
 					),
 				);
 			} else if (p.variant === 'builtin') {
-				mBody.append(builtinParameter(p, fqn, packageName, p.meta?.rest?.source === undefined, contentTypeText));
+				mBody.append(
+					builtinParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined, contentTypeText),
+				);
 			} else if (p.variant === 'enum') {
 				mBody.append(
 					enumParameter(p, artifactConfig, fqn, packageName, p.meta?.rest?.source === undefined, contentTypeText),
 				);
 			} else if (p.variant === 'inline-enum') {
 				mBody.append(
-					inlineEnumParameter(p, o, Service, fqn, packageName, p.meta?.rest?.source === undefined, contentTypeText),
+					inlineEnumParameter(
+						p,
+						o,
+						Service,
+						artifactConfig,
+						fqn,
+						packageName,
+						p.meta?.rest?.source === undefined,
+						contentTypeText,
+					),
 				);
 			} else if (p.variant === 'scalar') {
 				mBody.append(
@@ -485,7 +498,7 @@ function generateResourceMethod(
 			}
 		});
 		if (multiBody) {
-			const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
+			const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
 			const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
 			mBody.append(`var dto = ${_JsonUtils}.parseObject(data, ${contentTypeText}, ${Type}::new, ${Type}.class);`, NL);
 		}
@@ -528,7 +541,7 @@ function enumParameter(
 	contentTypeText: string,
 ) {
 	const t = fqn(`${artifactConfig.rootPackageName}.service.model.${p.type}`);
-	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
+	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
@@ -584,12 +597,13 @@ function enumParameter(
 
 function builtinParameter(
 	p: MParameterNoneInlineEnumType,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	fqn: (type: string) => string,
 	packageName: string,
 	asJSON: boolean,
 	contentTypeText: string,
 ) {
-	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
+	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
@@ -706,7 +720,7 @@ function recordUnionParameter(
 		fqn,
 		true,
 	);
-	const _JsonUtils = fqn(`${packageName}.model._JsonUtils`);
+	const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
@@ -856,13 +870,14 @@ function inlineEnumParameter(
 	p: MParameterInlineEnumType,
 	o: MOperation,
 	Service: string,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	fqn: (type: string) => string,
 	packageName: string,
 	asJSON: boolean,
 	contentTypeText: string,
 ) {
 	const t = `${Service}.` + toFirstUpper(o.name) + '_' + toFirstUpper(p.name) + '_Param$';
-	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
+	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
@@ -919,7 +934,7 @@ function scalarParameter(
 	} else {
 		t = fqn(`${artifactConfig.rootPackageName}.service.model.${type}`);
 	}
-	const _Util = asJSON ? fqn(`${packageName}.model._JsonUtils`) : '_RestUtils';
+	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
@@ -1097,9 +1112,10 @@ function generateServiceData(
 	const fqn = importCollector.importType.bind(importCollector);
 
 	const JsonObject = fqn('jakarta.json.JsonObject');
+	const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BaseDataImpl`);
 
 	const node = new CompositeGeneratorNode();
-	node.append(`public class ${s.name}${toFirstUpper(o.name)}DataImpl extends _BaseDataImpl {`, NL);
+	node.append(`public class ${s.name}${toFirstUpper(o.name)}DataImpl extends ${_BaseDataImpl} {`, NL);
 	node.indent(classBody => {
 		classBody.append(`public ${s.name}${toFirstUpper(o.name)}DataImpl(${JsonObject} data) {`, NL);
 		classBody.indent(methodBody => {
@@ -1130,6 +1146,7 @@ function generateServiceData(
 					methodBody.append(
 						generateParameterContent(
 							p,
+							artifactConfig,
 							artifactConfig.nativeTypeSubstitues,
 							`${artifactConfig.rootPackageName}.service.model`,
 							fqn,
@@ -1152,6 +1169,7 @@ function generateServiceData(
 
 function generateParameterContent(
 	prop: MParameter,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	nativeTypeSubstitues: Record<string, string> | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
@@ -1159,6 +1177,8 @@ function generateParameterContent(
 ) {
 	let mapper: string;
 	const array = prop.array;
+
+	const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
 
 	if (isMBuiltinType(prop.type)) {
 		if (array) {
@@ -1180,92 +1200,94 @@ function generateParameterContent(
 		const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, o.name);
 		if (array) {
 			if (prop.optional && prop.nullable) {
-				mapper = `_JsonUtils.mapNilLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+				mapper = `${_JsonUtils}.mapNilLiterals(data, "${prop.name}", ${Type}::valueOf)`;
 			} else if (prop.optional) {
-				mapper = `_JsonUtils.mapOptLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+				mapper = `${_JsonUtils}.mapOptLiterals(data, "${prop.name}", ${Type}::valueOf)`;
 			} else if (prop.nullable) {
-				mapper = `_JsonUtils.mapNullLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+				mapper = `${_JsonUtils}.mapNullLiterals(data, "${prop.name}", ${Type}::valueOf)`;
 			} else {
-				mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::valueOf)`;
+				mapper = `${_JsonUtils}.mapLiterals(data, "${prop.name}", ${Type}::valueOf)`;
 			}
 		} else {
 			if (prop.optional && prop.nullable) {
-				mapper = `_JsonUtils.mapNilLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+				mapper = `${_JsonUtils}.mapNilLiteral(data, "${prop.name}", ${Type}::valueOf)`;
 			} else if (prop.optional) {
-				mapper = `_JsonUtils.mapOptLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+				mapper = `${_JsonUtils}.mapOptLiteral(data, "${prop.name}", ${Type}::valueOf)`;
 			} else if (prop.nullable) {
-				mapper = `_JsonUtils.mapNullLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+				mapper = `${_JsonUtils}.mapNullLiteral(data, "${prop.name}", ${Type}::valueOf)`;
 			} else {
-				mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::valueOf)`;
+				mapper = `${_JsonUtils}.mapLiteral(data, "${prop.name}", ${Type}::valueOf)`;
 			}
 		}
 	} else {
 		if (prop.variant === 'enum') {
 			if (array) {
 				if (prop.optional && prop.nullable) {
-					mapper = `_JsonUtils.mapNilLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapNilLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
 				} else if (prop.optional) {
-					mapper = `_JsonUtils.mapOptLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapOptLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
 				} else if (prop.nullable) {
-					mapper = `_JsonUtils.mapNullLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapNullLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
 				} else {
-					mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
 				}
 			} else {
 				if (prop.optional && prop.nullable) {
-					mapper = `_JsonUtils.mapNilLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapNilLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
 				} else if (prop.optional) {
-					mapper = `_JsonUtils.mapOptLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapOptLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
 				} else if (prop.nullable) {
-					mapper = `_JsonUtils.mapNullLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapNullLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
 				} else {
-					mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
 				}
 			}
 		} else if (prop.variant === 'scalar') {
 			const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
 			if (array) {
 				if (prop.optional && prop.nullable) {
-					mapper = `_JsonUtils.mapNilLiterals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapNilLiterals(data, "${prop.name}", ${Type}::of)`;
 				} else if (prop.optional) {
-					mapper = `_JsonUtils.mapOptLiterals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapOptLiterals(data, "${prop.name}", ${Type}::of)`;
 				} else if (prop.nullable) {
-					mapper = `_JsonUtils.mapNullLiterals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapNullLiterals(data, "${prop.name}", ${Type}::of)`;
 				} else {
-					mapper = `_JsonUtils.mapLiterals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapLiterals(data, "${prop.name}", ${Type}::of)`;
 				}
 			} else {
 				if (prop.optional && prop.nullable) {
-					mapper = `_JsonUtils.mapNilLiteral(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapNilLiteral(data, "${prop.name}", ${Type}::of)`;
 				} else if (prop.optional) {
-					mapper = `_JsonUtils.mapOptLiteral(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapOptLiteral(data, "${prop.name}", ${Type}::of)`;
 				} else if (prop.nullable) {
-					mapper = `_JsonUtils.mapNullLiteral(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapNullLiteral(data, "${prop.name}", ${Type}::of)`;
 				} else {
-					mapper = `_JsonUtils.mapLiteral(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapLiteral(data, "${prop.name}", ${Type}::of)`;
 				}
 			}
 		} else {
-			const type = prop.patch ? `${prop.type}PatchImpl` : `${prop.type}DataImpl`;
+			const type = fqn(
+				`${artifactConfig.rootPackageName}.impl.model.json.${prop.patch ? `${prop.type}PatchImpl` : `${prop.type}DataImpl`}`,
+			);
 			if (array) {
 				if (prop.optional && prop.nullable) {
-					mapper = `_JsonUtils.mapNilObjects(data, "${prop.name}", ${type}::of)`;
+					mapper = `${_JsonUtils}.mapNilObjects(data, "${prop.name}", ${type}::of)`;
 				} else if (prop.optional) {
-					mapper = `_JsonUtils.mapOptObjects(data, "${prop.name}", ${type}::of)`;
+					mapper = `${_JsonUtils}.mapOptObjects(data, "${prop.name}", ${type}::of)`;
 				} else if (prop.nullable) {
-					mapper = `_JsonUtils.mapNullObjects(data, "${prop.name}", ${type}::of)`;
+					mapper = `${_JsonUtils}.mapNullObjects(data, "${prop.name}", ${type}::of)`;
 				} else {
-					mapper = `_JsonUtils.mapObjects(data, "${prop.name}", ${type}::of)`;
+					mapper = `${_JsonUtils}.mapObjects(data, "${prop.name}", ${type}::of)`;
 				}
 			} else {
 				if (prop.nullable && prop.optional) {
-					mapper = `_JsonUtils.mapNilObject(data, "${prop.name}", ${type}::of)`;
+					mapper = `${_JsonUtils}.mapNilObject(data, "${prop.name}", ${type}::of)`;
 				} else if (prop.optional) {
-					mapper = `_JsonUtils.mapOptObject(data, "${prop.name}", ${type}::of)`;
+					mapper = `${_JsonUtils}.mapOptObject(data, "${prop.name}", ${type}::of)`;
 				} else if (prop.nullable) {
-					mapper = `_JsonUtils.mapNullObject(data, "${prop.name}", ${type}::of)`;
+					mapper = `${_JsonUtils}.mapNullObject(data, "${prop.name}", ${type}::of)`;
 				} else {
-					mapper = `_JsonUtils.mapObject(data, "${prop.name}", ${type}::of)`;
+					mapper = `${_JsonUtils}.mapObject(data, "${prop.name}", ${type}::of)`;
 				}
 			}
 		}

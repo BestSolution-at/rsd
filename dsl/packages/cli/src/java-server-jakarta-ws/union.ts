@@ -12,7 +12,7 @@ import { generateUnionContent } from '../java-model-json/union.js';
 import { generateUnionPatchContent } from '../java-model-json/union-patch.js';
 
 export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact[] {
-	const packageName = `${artifactConfig.rootPackageName}.rest.model`;
+	const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
 
 	const result: Artifact[] = [];
 	{
