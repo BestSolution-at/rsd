@@ -8,8 +8,10 @@ public record ${t.name}(String value) {
         return new ${t.name}(value);
     }
 
+    @Override
     public String toString() {
         return value;
     }
-}`);
+}
+`);
 }

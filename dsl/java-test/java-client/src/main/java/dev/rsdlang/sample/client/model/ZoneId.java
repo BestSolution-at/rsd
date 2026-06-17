@@ -6,6 +6,7 @@ public record ZoneId(String value) {
         return new ZoneId(value);
     }
 
+    @Override
     public String toString() {
         return value;
     }
