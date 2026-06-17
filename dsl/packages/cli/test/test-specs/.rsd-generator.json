@@ -26,7 +26,6 @@
             "targetFolder": "../../../../java-test/java-client/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.client",
             "nativeTypeSubstitues": {
-                "ZoneId": "java.time.ZoneId",
                 "Range": "dev.rsdlang.sample.client.MyRange"
             }
         },
@@ -35,7 +34,6 @@
             "targetFolder": "../../../../java-test/java-client/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.client",
             "nativeTypeSubstitues": {
-                "ZoneId": "java.time.ZoneId",
                 "Range": "dev.rsdlang.sample.client.MyRange"
             },
             "contentTypeEncodings": ["application/json", "application/vnd.msgpack"]
@@ -45,7 +43,6 @@
             "targetFolder": "../../../../java-test/java-quarkus/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.server",
             "nativeTypeSubstitues": {
-                "ZoneId": "java.time.ZoneId",
                 "Range": "dev.rsdlang.sample.server.MyRange"
             }
         },
@@ -54,7 +51,6 @@
             "targetFolder": "../../../../java-test/java-quarkus/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.server",
             "nativeTypeSubstitues": {
-                "ZoneId": "java.time.ZoneId",
                 "Range": "dev.rsdlang.sample.server.MyRange"
             },
             "contentTypeEncodings": ["application/json", "application/vnd.msgpack"]

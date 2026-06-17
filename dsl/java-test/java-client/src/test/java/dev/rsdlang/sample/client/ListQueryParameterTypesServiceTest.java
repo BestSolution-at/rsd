@@ -6,7 +6,6 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -20,6 +19,7 @@ import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncoding;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class ListQueryParameterTypesServiceTest {
 
@@ -122,7 +122,8 @@ public class ListQueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listOffsetDateTimeQueryParam(ListQueryParameterTypesService service) {
-		var times = List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"), OffsetDateTime.parse("2021-02-02T11:30:00+01:00"));
+		var times = List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"),
+				OffsetDateTime.parse("2021-02-02T11:30:00+01:00"));
 		assertEquals(times, service.listOffsetDateTimeQueryParam(times));
 	}
 
@@ -149,7 +150,8 @@ public class ListQueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listEnumQueryParam(ListQueryParameterTypesService service) {
-		assertEquals(List.of(SampleEnum.A, SampleEnum.B), service.listEnumQueryParam(List.of(SampleEnum.A, SampleEnum.B)));
+		assertEquals(List.of(SampleEnum.A, SampleEnum.B),
+				service.listEnumQueryParam(List.of(SampleEnum.A, SampleEnum.B)));
 	}
 
 	// --- Inline Enum ---

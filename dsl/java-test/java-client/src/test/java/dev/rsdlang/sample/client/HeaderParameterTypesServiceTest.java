@@ -6,7 +6,6 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -24,6 +23,7 @@ import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncodin
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class HeaderParameterTypesServiceTest {
 
@@ -564,7 +564,8 @@ public class HeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeHeaderParamOpt_defined(HeaderParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleOffsetDateTimeHeaderParamOpt(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
+		assertEquals(NilResult.DEFINED,
+				service.simpleOffsetDateTimeHeaderParamOpt(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
 	}
 
 	@ParameterizedTest
@@ -576,7 +577,8 @@ public class HeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeHeaderParamNil_defined(HeaderParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleOffsetDateTimeHeaderParamNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
+		assertEquals(NilResult.DEFINED,
+				service.simpleOffsetDateTimeHeaderParamNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
 	}
 
 	@ParameterizedTest
@@ -594,7 +596,8 @@ public class HeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeHeaderParamOptNil_defined(HeaderParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleOffsetDateTimeHeaderParamOptNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
+		assertEquals(NilResult.DEFINED,
+				service.simpleOffsetDateTimeHeaderParamOptNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
 	}
 
 	// --- ZonedDateTime ---

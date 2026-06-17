@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,6 +18,7 @@ import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListQueryParameterTypesService;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.ZoneId;
 import dev.rsdlang.sample.client.RSDException;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 

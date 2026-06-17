@@ -1,9 +1,8 @@
 package dev.rsdlang.sample.server.service.handler.query;
 
-import java.time.ZoneId;
-
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.QueryParameterTypesServiceImpl;
+import dev.rsdlang.sample.server.service.model.ZoneId;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

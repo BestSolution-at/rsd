@@ -6,7 +6,6 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.OffsetDateTime;
 
@@ -17,6 +16,7 @@ import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class QueryParameterTypesServiceTest {
 
@@ -260,7 +260,8 @@ public class QueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeQueryParamOpt_defined(QueryParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleOffsetDateTimeQueryParamOpt(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
+		assertEquals(NilResult.DEFINED,
+				service.simpleOffsetDateTimeQueryParamOpt(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
 	}
 
 	// --- ZonedDateTime ---

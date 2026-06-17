@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
-import java.time.ZoneId;
 import java.util.Objects;
 
 import jakarta.json.Json;
@@ -33,6 +32,7 @@ import dev.rsdlang.sample.client.model.PatchableRecord;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.Union;
+import dev.rsdlang.sample.client.model.ZoneId;
 import dev.rsdlang.sample.client.RSDException;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 

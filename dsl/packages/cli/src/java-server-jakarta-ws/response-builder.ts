@@ -161,11 +161,17 @@ function toResultType(
 		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
 	} else if (type.variant === 'enum') {
 		rvType = fqn(`${dtoPkg}.${type.type}`);
-	} else if (typeof type.type === 'string') {
-		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, type.array);
-	} else {
+	} else if (type.variant === 'inline-enum') {
 		const Service = fqn(`${artifactConfig.rootPackageName}.service.${serviceName}Service`);
 		rvType = Service + '.' + toFirstUpper(methodName) + '_Result$';
+	} else if (type.variant === 'scalar') {
+		if (artifactConfig.nativeTypeSubstitues !== undefined && type.type in artifactConfig.nativeTypeSubstitues) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitues[type.type]);
+		} else {
+			rvType = fqn(`${dtoPkg}.${type.type}`);
+		}
+	} else {
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, type.array);
 	}
 
 	if (type.array) {

@@ -7,6 +7,7 @@ import {
 	isMEnumType,
 	isMMixinType,
 	isMRecordType,
+	isMScalarType,
 	isMUnionType,
 } from '../model.js';
 import { isDefined } from '../util.js';
@@ -24,6 +25,7 @@ import { generateError } from './error.js';
 import { generateMixin } from './mixin.js';
 import { generateRSDException } from './rsd-exception.js';
 import { generateStreamDTO } from './stream-dto.js';
+import { generateScalar } from './scalar.js';
 
 function generate(
 	model: MResolvedRSDModel,
@@ -64,6 +66,8 @@ function generateType(t: MResolvedUserType, artifactConfig: JavaClientAPIGenerat
 		return generateUnion(t, artifactConfig);
 	} else if (isMMixinType(t)) {
 		return generateMixin(t, artifactConfig);
+	} else if (isMScalarType(t)) {
+		return generateScalar(t, artifactConfig);
 	}
 	return undefined;
 }
