@@ -19,8 +19,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.QueryParam;
 
-import dev.rsdlang.sample.server.rest.model._JsonUtils;
-import dev.rsdlang.sample.server.rest.model._NillableImpl;
+import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
+import dev.rsdlang.sample.server.impl.model.json._NillableImpl;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesSingleBodyAdditionDataImpl;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesUploadMixedDataImpl;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesUploadMixedNilDataImpl;

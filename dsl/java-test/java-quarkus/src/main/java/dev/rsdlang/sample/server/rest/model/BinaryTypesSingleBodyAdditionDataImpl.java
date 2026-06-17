@@ -3,6 +3,9 @@ package dev.rsdlang.sample.server.rest.model;
 
 import jakarta.json.JsonObject;
 
+import dev.rsdlang.sample.server.impl.model.json._BaseDataImpl;
+import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
+
 public class BinaryTypesSingleBodyAdditionDataImpl extends _BaseDataImpl {
 	public BinaryTypesSingleBodyAdditionDataImpl(JsonObject data) {
 		super(data);

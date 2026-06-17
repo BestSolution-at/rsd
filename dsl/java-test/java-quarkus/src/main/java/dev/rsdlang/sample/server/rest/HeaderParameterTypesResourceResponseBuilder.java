@@ -16,7 +16,7 @@ import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
-import dev.rsdlang.sample.server.rest.model._JsonUtils;
+import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
 import dev.rsdlang.sample.server.service.HeaderParameterTypesService;
 import dev.rsdlang.sample.server.service.model._Base;
 import dev.rsdlang.sample.server.service.model.NilResult;

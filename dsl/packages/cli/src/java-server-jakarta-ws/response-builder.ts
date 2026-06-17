@@ -70,7 +70,7 @@ function generateContent(
 							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
 						}
 					} else {
-						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.rest.model._JsonUtils`);
+						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
 						const content = toNodeTree(`
 							return ${Response}.status(${code.toFixed()})
 								.type($contentType)

@@ -66,7 +66,7 @@ function generateDTOBuilderFactoryContent(
 				NL,
 			);
 			body.indent(mBody => {
-				const BlobImpl = fqn(`${artifactConfig.rootPackageName}.rest.model._BlobImpl`);
+				const BlobImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BlobImpl`);
 				mBody.append(`return ${BlobImpl}.of(file, mimeType);`, NL);
 			});
 			body.append('}', NL);
@@ -77,7 +77,7 @@ function generateDTOBuilderFactoryContent(
 				NL,
 			);
 			body.indent(mBody => {
-				const StreamBlobImpl = fqn(`${artifactConfig.rootPackageName}.rest.model._StreamBlobImpl`);
+				const StreamBlobImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._StreamBlobImpl`);
 				mBody.append(`return ${StreamBlobImpl}.of(stream, mimeType);`, NL);
 			});
 			body.append('}', NL);
@@ -91,7 +91,7 @@ function generateDTOBuilderFactoryContent(
 					NL,
 				);
 				body.indent(mBody => {
-					const FileImpl = fqn(`${artifactConfig.rootPackageName}.rest.model._FileImpl`);
+					const FileImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._FileImpl`);
 					mBody.append(`return ${FileImpl}.of(file, mimeType, filename);`, NL);
 				});
 				body.append('}', NL);
@@ -103,7 +103,7 @@ function generateDTOBuilderFactoryContent(
 					NL,
 				);
 				body.indent(mBody => {
-					const StreamFileImpl = fqn(`${artifactConfig.rootPackageName}.rest.model._StreamFileImpl`);
+					const StreamFileImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._StreamFileImpl`);
 					mBody.append(`return ${StreamFileImpl}.of(data, mimeType, filename);`, NL);
 				});
 				body.append('}', NL);
@@ -123,14 +123,14 @@ function generateBuilderMethodBody(
 	const mBody = new CompositeGeneratorNode();
 	model.elements.filter(isMResolvedRecordType).forEach(t => {
 		const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${t.name}`);
-		const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${t.name}DataImpl`);
+		const ImplType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${t.name}DataImpl`);
 		mBody.append(`if (type == ${InterfaceType}.DataBuilder.class) {`, NL);
 		mBody.indent(block => {
 			block.append(`return type.cast(${ImplType}.builder());`, NL);
 		});
 		mBody.append('}', NL);
 		if (t.patchable) {
-			const PatchImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${t.name}PatchImpl`);
+			const PatchImplType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${t.name}PatchImpl`);
 			mBody.append(`if (type == ${InterfaceType}.PatchBuilder.class) {`, NL);
 			mBody.indent(block => {
 				block.append(`return type.cast(${PatchImplType}.builder());`, NL);
@@ -153,7 +153,7 @@ function generateOfMethodBody(
 		//.filter(t => t.resolved.unions.length !== 1)
 		.forEach(t => {
 			const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${t.name}`);
-			const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${t.name}DataImpl`);
+			const ImplType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${t.name}DataImpl`);
 			mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
 			mBody.indent(block => {
 				block.append(`return type.cast(${ImplType}.of(data));`, NL);
@@ -161,7 +161,7 @@ function generateOfMethodBody(
 			mBody.append('}', NL);
 			if (t.patchable) {
 				const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${t.name}`);
-				const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${t.name}PatchImpl`);
+				const ImplType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${t.name}PatchImpl`);
 				mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
 				mBody.indent(block => {
 					block.append(`return type.cast(${ImplType}.of(data));`, NL);
@@ -171,7 +171,7 @@ function generateOfMethodBody(
 		});
 	model.elements.filter(isMResolvedUnionType).forEach(u => {
 		const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${u.name}`);
-		const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${u.name}DataImpl`);
+		const ImplType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${u.name}DataImpl`);
 		mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
 		mBody.indent(block => {
 			block.append(`return type.cast(${ImplType}.of(data));`, NL);
@@ -179,7 +179,7 @@ function generateOfMethodBody(
 		mBody.append('}', NL);
 		if (u.resolved.records.find(r => r.patchable)) {
 			const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${u.name}`);
-			const ImplType = fqn(`${artifactConfig.rootPackageName}.rest.model.${u.name}PatchImpl`);
+			const ImplType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${u.name}PatchImpl`);
 			mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
 			mBody.indent(block => {
 				block.append(`return type.cast(${ImplType}.of(data));`, NL);
