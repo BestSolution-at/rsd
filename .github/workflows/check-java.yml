@@ -29,9 +29,9 @@ jobs:
         cache: maven
     - name: Compile client with Maven
       run: |
-        cd java-test/java-client
+        cd dsl/java-test/java-client
         mvn compile
     - name: Compile quarkus with Maven
       run: |
-        cd java-test/java-quarkus
+        cd dsl/java-test/java-quarkus
         mvn compile
