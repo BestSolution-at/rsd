@@ -14,7 +14,6 @@ public class QueryListOptHandlerImpl implements ScalarSubstition_ServiceServiceI
 
     @Override
     public NilResult queryListOpt(BuilderFactory _factory, Optional<List<MyRange>> range) {
-        System.err.println("========> queryListOpt: " + range);
         if (range.isPresent()) {
             return NilResult.DEFINED;
         }
