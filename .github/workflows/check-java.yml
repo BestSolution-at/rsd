@@ -39,5 +39,5 @@ jobs:
       run: |
         cd dsl/java-test/java-client
         java -Dquarkus.http.port=3000 -jar ../java-quarkus/target/quarkus-app/quarkus-run.jar &
-        mvn package
+        mvn test
         
