@@ -182,13 +182,11 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 			if (baseURI == null) {
 				throw new IllegalStateException("baseURI must be set");
 			}
-			if (httpClient == null) {
-				httpClient = HttpClient.newHttpClient();
-			}
+			var client = (httpClient != null) ? httpClient : HttpClient.newHttpClient();
 			if (contentTypeEncoding == null) {
 				contentTypeEncoding = ContentTypeEncoding.APPLICATION_JSON;
 			}
-			return new JDKSpecSamplesClient(baseURI, httpClient, contentTypeEncoding);
+			return new JDKSpecSamplesClient(baseURI, client, contentTypeEncoding);
 		}
 	}
 

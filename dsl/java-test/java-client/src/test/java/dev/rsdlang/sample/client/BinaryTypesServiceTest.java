@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -27,6 +28,12 @@ public class BinaryTypesServiceTest {
 		var baseBuilder = JDKSpecSamplesClient.builder().baseURI(URI.create("http://localhost:3000"));
 		JSON = baseBuilder.build();
 		MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
+	}
+
+	@AfterAll
+	static void tearDown() {
+		((JDKSpecSamplesClient) JSON).httpClient().close();
+		((JDKSpecSamplesClient) MSGPACK).httpClient().close();
 	}
 
 	static BinaryTypesService[] serviceProvider() {
