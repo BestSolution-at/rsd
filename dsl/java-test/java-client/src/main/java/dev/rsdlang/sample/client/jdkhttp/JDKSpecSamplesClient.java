@@ -146,7 +146,7 @@ import dev.rsdlang.sample.client.SampleServiceService;
 import dev.rsdlang.sample.client.ScalarSubstition_ServiceService;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
-public class JDKSpecSamplesClient implements SpecSamplesClient {
+public class JDKSpecSamplesClient implements SpecSamplesClient, AutoCloseable {
 	public enum ContentTypeEncoding {
 		APPLICATION_JSON("application/json"),
 		APPLICATION_VND_MSGPACK("application/vnd.msgpack");
@@ -160,7 +160,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 
 	public static class Builder {
 		private URI baseURI;
-		private HttpClient httpClient;
+		private Supplier<HttpClient> httpClientSupplier;
 		private ContentTypeEncoding contentTypeEncoding;
 
 		public Builder baseURI(URI baseURI) {
@@ -169,7 +169,11 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		}
 
 		public Builder httpClient(HttpClient httpClient) {
-			this.httpClient = httpClient;
+			return httpClientSupplier(() -> httpClient);
+		}
+
+		public Builder httpClientSupplier(Supplier<HttpClient> httpClientSupplier) {
+			this.httpClientSupplier = httpClientSupplier;
 			return this;
 		}
 
@@ -182,11 +186,21 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 			if (baseURI == null) {
 				throw new IllegalStateException("baseURI must be set");
 			}
-			var client = (httpClient != null) ? httpClient : HttpClient.newHttpClient();
-			if (contentTypeEncoding == null) {
-				contentTypeEncoding = ContentTypeEncoding.APPLICATION_JSON;
+			var contentType = contentTypeEncoding == null ? ContentTypeEncoding.APPLICATION_JSON : contentTypeEncoding;
+			if (httpClientSupplier == null) {
+				var client = HttpClient.newBuilder().build();
+				return new JDKSpecSamplesClient(baseURI, new InternalClientSupplier(), contentType);
 			}
-			return new JDKSpecSamplesClient(baseURI, client, contentTypeEncoding);
+			return new JDKSpecSamplesClient(baseURI, httpClientSupplier, contentType);
+		}
+	}
+
+	static class InternalClientSupplier implements Supplier<HttpClient> {
+		private final HttpClient client = HttpClient.newBuilder().build();
+
+		@Override
+		public HttpClient get() {
+			return client;
 		}
 	}
 
@@ -222,21 +236,31 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 	private static Map<Class<?>, BiFunction<JDKSpecSamplesClient, LifecycleHook, Object>> SERVICE_CREATOR_MAP = new HashMap<>();
 
 	static {
-		registerBuilderCreator(SimpleRecord_KeyVersion.DataBuilder.class, SimpleRecord_KeyVersionDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_KeyVersion_Int_Int.DataBuilder.class, SimpleRecord_KeyVersion_Int_IntDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_KeyVersion.DataBuilder.class,
+				SimpleRecord_KeyVersionDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_KeyVersion_Int_Int.DataBuilder.class,
+				SimpleRecord_KeyVersion_Int_IntDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(SimpleRecord.DataBuilder.class, SimpleRecordDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(SimpleRecord_Basic.DataBuilder.class, SimpleRecord_BasicDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_Optional.DataBuilder.class, SimpleRecord_Basic_OptionalDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_Null.DataBuilder.class, SimpleRecord_Basic_NullDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_Optional_Null.DataBuilder.class, SimpleRecord_Basic_Optional_NullDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_List.DataBuilder.class, SimpleRecord_Basic_ListDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_List_Optional.DataBuilder.class, SimpleRecord_Basic_List_OptionalDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_List_Null.DataBuilder.class, SimpleRecord_Basic_List_NullDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(SimpleRecord_Basic_List_Optional_Null.DataBuilder.class, SimpleRecord_Basic_List_Optional_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_Optional.DataBuilder.class,
+				SimpleRecord_Basic_OptionalDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_Null.DataBuilder.class,
+				SimpleRecord_Basic_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_Optional_Null.DataBuilder.class,
+				SimpleRecord_Basic_Optional_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_List.DataBuilder.class,
+				SimpleRecord_Basic_ListDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_List_Optional.DataBuilder.class,
+				SimpleRecord_Basic_List_OptionalDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_List_Null.DataBuilder.class,
+				SimpleRecord_Basic_List_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(SimpleRecord_Basic_List_Optional_Null.DataBuilder.class,
+				SimpleRecord_Basic_List_Optional_NullDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(EnumRecord.DataBuilder.class, EnumRecordDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(EnumInlineRecord.DataBuilder.class, EnumInlineRecordDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(ScalarRecord.DataBuilder.class, ScalarRecordDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(ScalarRecord_Substitution.DataBuilder.class, ScalarRecord_SubstitutionDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(ScalarRecord_Substitution.DataBuilder.class,
+				ScalarRecord_SubstitutionDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(RecordOfRecords.DataBuilder.class, RecordOfRecordsDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(RecordWithUnions.DataBuilder.class, RecordWithUnionsDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(UnionA.DataBuilder.class, UnionADataImpl.DataBuilderImpl::new);
@@ -245,20 +269,33 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		registerBuilderCreator(CyclicNodeA.DataBuilder.class, CyclicNodeADataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(CyclicNodeB.DataBuilder.class, CyclicNodeBDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(PatchableRecord.DataBuilder.class, PatchableRecordDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic.DataBuilder.class, PatchableRecord_BasicDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_Optional.DataBuilder.class, PatchableRecord_Basic_OptionalDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_Null.DataBuilder.class, PatchableRecord_Basic_NullDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_Optional_Null.DataBuilder.class, PatchableRecord_Basic_Optional_NullDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List.DataBuilder.class, PatchableRecord_Basic_ListDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List_Optional.DataBuilder.class, PatchableRecord_Basic_List_OptionalDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List_Null.DataBuilder.class, PatchableRecord_Basic_List_NullDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List_Optional_Null.DataBuilder.class, PatchableRecord_Basic_List_Optional_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic.DataBuilder.class,
+				PatchableRecord_BasicDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_Optional.DataBuilder.class,
+				PatchableRecord_Basic_OptionalDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_Null.DataBuilder.class,
+				PatchableRecord_Basic_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_Optional_Null.DataBuilder.class,
+				PatchableRecord_Basic_Optional_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List.DataBuilder.class,
+				PatchableRecord_Basic_ListDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List_Optional.DataBuilder.class,
+				PatchableRecord_Basic_List_OptionalDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List_Null.DataBuilder.class,
+				PatchableRecord_Basic_List_NullDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List_Optional_Null.DataBuilder.class,
+				PatchableRecord_Basic_List_Optional_NullDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(PatchableEnumRecord.DataBuilder.class, PatchableEnumRecordDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableEnumInlineRecord.DataBuilder.class, PatchableEnumInlineRecordDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableScalarRecord.DataBuilder.class, PatchableScalarRecordDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableScalarRecord_Substitution.DataBuilder.class, PatchableScalarRecord_SubstitutionDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecordOfRecords.DataBuilder.class, PatchableRecordOfRecordsDataImpl.DataBuilderImpl::new);
-		registerBuilderCreator(PatchableRecordWithUnion.DataBuilder.class, PatchableRecordWithUnionDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableEnumInlineRecord.DataBuilder.class,
+				PatchableEnumInlineRecordDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableScalarRecord.DataBuilder.class,
+				PatchableScalarRecordDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableScalarRecord_Substitution.DataBuilder.class,
+				PatchableScalarRecord_SubstitutionDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecordOfRecords.DataBuilder.class,
+				PatchableRecordOfRecordsDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(PatchableRecordWithUnion.DataBuilder.class,
+				PatchableRecordWithUnionDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(PatchableUnionA.DataBuilder.class, PatchableUnionADataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(PatchableUnionB.DataBuilder.class, PatchableUnionBDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(MixinRecord.DataBuilder.class, MixinRecordDataImpl.DataBuilderImpl::new);
@@ -267,20 +304,34 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		registerBuilderCreator(ErrorData.DataBuilder.class, ErrorDataDataImpl.DataBuilderImpl::new);
 
 		registerBuilderCreator(PatchableRecord.PatchBuilder.class, PatchableRecordPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic.PatchBuilder.class, PatchableRecord_BasicPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_Optional.PatchBuilder.class, PatchableRecord_Basic_OptionalPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_Null.PatchBuilder.class, PatchableRecord_Basic_NullPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_Optional_Null.PatchBuilder.class, PatchableRecord_Basic_Optional_NullPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List.PatchBuilder.class, PatchableRecord_Basic_ListPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List_Optional.PatchBuilder.class, PatchableRecord_Basic_List_OptionalPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List_Null.PatchBuilder.class, PatchableRecord_Basic_List_NullPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecord_Basic_List_Optional_Null.PatchBuilder.class, PatchableRecord_Basic_List_Optional_NullPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableEnumRecord.PatchBuilder.class, PatchableEnumRecordPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableEnumInlineRecord.PatchBuilder.class, PatchableEnumInlineRecordPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableScalarRecord.PatchBuilder.class, PatchableScalarRecordPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableScalarRecord_Substitution.PatchBuilder.class, PatchableScalarRecord_SubstitutionPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecordOfRecords.PatchBuilder.class, PatchableRecordOfRecordsPatchImpl.PatchBuilderImpl::new);
-		registerBuilderCreator(PatchableRecordWithUnion.PatchBuilder.class, PatchableRecordWithUnionPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic.PatchBuilder.class,
+				PatchableRecord_BasicPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_Optional.PatchBuilder.class,
+				PatchableRecord_Basic_OptionalPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_Null.PatchBuilder.class,
+				PatchableRecord_Basic_NullPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_Optional_Null.PatchBuilder.class,
+				PatchableRecord_Basic_Optional_NullPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List.PatchBuilder.class,
+				PatchableRecord_Basic_ListPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List_Optional.PatchBuilder.class,
+				PatchableRecord_Basic_List_OptionalPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List_Null.PatchBuilder.class,
+				PatchableRecord_Basic_List_NullPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecord_Basic_List_Optional_Null.PatchBuilder.class,
+				PatchableRecord_Basic_List_Optional_NullPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableEnumRecord.PatchBuilder.class,
+				PatchableEnumRecordPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableEnumInlineRecord.PatchBuilder.class,
+				PatchableEnumInlineRecordPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableScalarRecord.PatchBuilder.class,
+				PatchableScalarRecordPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableScalarRecord_Substitution.PatchBuilder.class,
+				PatchableScalarRecord_SubstitutionPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecordOfRecords.PatchBuilder.class,
+				PatchableRecordOfRecordsPatchImpl.PatchBuilderImpl::new);
+		registerBuilderCreator(PatchableRecordWithUnion.PatchBuilder.class,
+				PatchableRecordWithUnionPatchImpl.PatchBuilderImpl::new);
 		registerBuilderCreator(PatchableUnionA.PatchBuilder.class, PatchableUnionAPatchImpl.PatchBuilderImpl::new);
 		registerBuilderCreator(PatchableUnionB.PatchBuilder.class, PatchableUnionBPatchImpl.PatchBuilderImpl::new);
 
@@ -301,17 +352,19 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		BUILDER_CREATOR_MAP.put(clazz, constructor);
 	}
 
-	private static void registerServiceCreator(Class<?> clazz, BiFunction<JDKSpecSamplesClient, LifecycleHook, Object> constructor) {
+	private static void registerServiceCreator(Class<?> clazz,
+			BiFunction<JDKSpecSamplesClient, LifecycleHook, Object> constructor) {
 		SERVICE_CREATOR_MAP.put(clazz, constructor);
 	}
 
 	private final URI baseURI;
-	private final HttpClient httpClient;
+	private final Supplier<HttpClient> httpClientSupplier;
 	private final ContentTypeEncoding contentTypeEncoding;
 
-	JDKSpecSamplesClient(URI baseURI, HttpClient httpClient, ContentTypeEncoding contentTypeEncoding) {
+	JDKSpecSamplesClient(URI baseURI, Supplier<HttpClient> httpClientSupplier,
+			ContentTypeEncoding contentTypeEncoding) {
 		this.baseURI = baseURI;
-		this.httpClient = httpClient;
+		this.httpClientSupplier = httpClientSupplier;
 		this.contentTypeEncoding = contentTypeEncoding;
 	}
 
@@ -320,7 +373,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 	}
 
 	public HttpClient httpClient() {
-		return this.httpClient;
+		return this.httpClientSupplier.get();
 	}
 
 	public URI baseURI() {
@@ -396,5 +449,13 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 
 	public RSDFile createFile(Path file, String mimeType, String filename) {
 		return _FileImpl.of(file, mimeType, filename);
+	}
+
+	@Override
+	public void close() {
+		if (this.httpClientSupplier instanceof InternalClientSupplier) {
+			var client = this.httpClientSupplier.get();
+			client.close();
+		}
 	}
 }

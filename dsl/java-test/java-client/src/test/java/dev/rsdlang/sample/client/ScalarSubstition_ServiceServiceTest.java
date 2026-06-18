@@ -28,8 +28,8 @@ public class ScalarSubstition_ServiceServiceTest {
 
     @AfterAll
     static void tearDown() {
-        ((JDKSpecSamplesClient) JSON).httpClient().close();
-        ((JDKSpecSamplesClient) MSGPACK).httpClient().close();
+        ((JDKSpecSamplesClient) JSON).close();
+        ((JDKSpecSamplesClient) MSGPACK).close();
     }
 
     static ScalarSubstition_ServiceService[] serviceProvider() {
