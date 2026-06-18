@@ -11,6 +11,8 @@ import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.OffsetDateTime;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -20,11 +22,23 @@ import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.ZoneId;
 
 public class SampleServiceServiceTest {
-	static SampleServiceService[] serviceProvider() {
-		var baseBuilder = JDKSpecSamplesClient.builder().baseURI(URI.create("http://localhost:3000"));
-		var JSON = baseBuilder.build();
-		var MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
+	private static SpecSamplesClient JSON;
+	private static SpecSamplesClient MSGPACK;
 
+	@BeforeAll
+	static void setUp() {
+		var baseBuilder = JDKSpecSamplesClient.builder().baseURI(URI.create("http://localhost:3000"));
+		JSON = baseBuilder.build();
+		MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
+	}
+
+	@AfterAll
+	static void tearDown() {
+		((JDKSpecSamplesClient) JSON).httpClient().close();
+		((JDKSpecSamplesClient) MSGPACK).httpClient().close();
+	}
+
+	static SampleServiceService[] serviceProvider() {
 		return new SampleServiceService[] {
 				JSON.service(SampleServiceService.class),
 				MSGPACK.service(SampleServiceService.class),

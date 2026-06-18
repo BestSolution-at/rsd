@@ -87,13 +87,11 @@ export function generateClient(
 					if (baseURI == null) {
 						throw new IllegalStateException("baseURI must be set");
 					}
-					if (httpClient == null) {
-						httpClient = HttpClient.newHttpClient();
-					}
+					var client = (httpClient != null) ? httpClient : HttpClient.newHttpClient();
 					if (contentTypeEncoding == null) {
 						contentTypeEncoding = ContentTypeEncoding.${toEnumLiteral(contentEncodings[0])};
 					}
-					return new JDK${toCamelCaseIdentifier(generatorConfig.name)}Client(baseURI, httpClient, contentTypeEncoding);
+					return new JDK${toCamelCaseIdentifier(generatorConfig.name)}Client(baseURI, client, contentTypeEncoding);
 				}
 			}
 

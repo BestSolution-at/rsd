@@ -9,10 +9,13 @@ import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.OffsetDateTime;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncoding;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
@@ -20,11 +23,26 @@ import dev.rsdlang.sample.client.model.ZoneId;
 
 public class QueryParameterTypesServiceTest {
 
-	private static final SpecSamplesClient CLIENT = JDKSpecSamplesClient.create(URI.create("http://localhost:3000"));
+	private static SpecSamplesClient JSON;
+	private static SpecSamplesClient MSGPACK;
+
+	@BeforeAll
+	static void setUp() {
+		var baseBuilder = JDKSpecSamplesClient.builder().baseURI(URI.create("http://localhost:3000"));
+		JSON = baseBuilder.build();
+		MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
+	}
+
+	@AfterAll
+	static void tearDown() {
+		((JDKSpecSamplesClient) JSON).httpClient().close();
+		((JDKSpecSamplesClient) MSGPACK).httpClient().close();
+	}
 
 	static QueryParameterTypesService[] serviceProvider() {
 		return new QueryParameterTypesService[] {
-				CLIENT.service(QueryParameterTypesService.class),
+				JSON.service(QueryParameterTypesService.class),
+				MSGPACK.service(QueryParameterTypesService.class),
 		};
 	}
 
@@ -358,7 +376,7 @@ public class QueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordQueryParam(QueryParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = JSON.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		var result = service.recordQueryParam(record);
 		assertEquals("k", result.key());
 		assertEquals("1", result.version());
@@ -374,7 +392,7 @@ public class QueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordQueryParamOpt_defined(QueryParameterTypesService service) {
-		var record = CLIENT.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		var record = JSON.builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		assertEquals(NilResult.DEFINED, service.recordQueryParamOpt(record));
 	}
 

@@ -40,9 +40,8 @@ function generateJsonDecodeValueFunction(fqn: (t: string) => string): CompositeG
 	const StandardCharsets = fqn('java.nio.charset.StandardCharsets');
 	return toNodeTree(`
 private static ${JsonValue} decodeJsonValue(${InputStream} stream) {
-	try (var reader = ${Json}.createReader(new ${InputStreamReader}(stream, ${StandardCharsets}.UTF_8))) {
-		return reader.readValue();
-	}
+	var reader = ${Json}.createReader(new ${InputStreamReader}(stream, ${StandardCharsets}.UTF_8));
+	return reader.readValue();
 }`);
 }
 
@@ -71,9 +70,9 @@ private static byte[] encodeJsonValue(Object data) {
 }
 
 private static void encodeJsonValue(${OutputStream} stream, Object data) {
-	try (var generator = ${Json}.createGenerator(stream)) {
-		encodeJsonValue(generator, data);
-	}
+	var generator = ${Json}.createGenerator(stream);
+	encodeJsonValue(generator, data);
+	generator.flush();
 }
 
 private static void encodeJsonValue(${JsonGenerator} generator, Object data) {
@@ -124,9 +123,9 @@ function generateMsgPackDecodeValueFunction(fqn: (t: string) => string): Composi
 	return toNodeTree(`
 private static ${JsonValue} decodeMsgPackValue(${InputStream} stream) {
 	try {
+		var unpacker = ${MessagePack}.newDefaultUnpacker(stream);
 		var msgpackJson = ${MsgpackJson}.builder()
 				.build();
-		var unpacker = ${MessagePack}.newDefaultUnpacker(stream);
 		return msgpackJson.decode(unpacker);
 	} catch (${MessagePackException} e) {
 		throw new ${JsonException}(e.getMessage(), e);
@@ -155,12 +154,11 @@ private static byte[] encodeMsgPackValue(Object data) {
 		var msgpackJson = MsgpackJson.builder()
 				.build();
 		var value = createJsonValue(data);
-		var packer = MessagePack.newDefaultBufferPacker();
-		encodeMsgPackValue(msgpackJson, packer, value);
-		packer.flush();
-		var result = packer.toByteArray();
-		packer.close();
-		return result;
+		try (var packer = MessagePack.newDefaultBufferPacker()) {
+			encodeMsgPackValue(msgpackJson, packer, value);
+			packer.flush();
+			return packer.toByteArray();
+		}
 	} catch (IOException e) {
 		throw new IllegalStateException(e);
 	}
@@ -177,7 +175,6 @@ private static void encodeMsgPackValue(OutputStream stream, Object data) {
 	} catch (IOException e) {
 		throw new IllegalStateException(e);
 	}
-
 }
 
 private static void encodeMsgPackValue(MsgpackJson generator, MessagePacker packer, Object data) throws IOException {

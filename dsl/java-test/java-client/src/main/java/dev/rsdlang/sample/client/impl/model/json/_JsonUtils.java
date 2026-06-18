@@ -995,9 +995,9 @@ public class _JsonUtils {
 	}
 
 	private static void encodeJsonValue(OutputStream stream, Object data) {
-		try (var generator = Json.createGenerator(stream)) {
-			encodeJsonValue(generator, data);
-		}
+		var generator = Json.createGenerator(stream);
+		encodeJsonValue(generator, data);
+		generator.flush();
 	}
 
 	private static void encodeJsonValue(JsonGenerator generator, Object data) {
@@ -1050,12 +1050,11 @@ public class _JsonUtils {
 			var msgpackJson = MsgpackJson.builder()
 					.build();
 			var value = createJsonValue(data);
-			var packer = MessagePack.newDefaultBufferPacker();
-			encodeMsgPackValue(msgpackJson, packer, value);
-			packer.flush();
-			var result = packer.toByteArray();
-			packer.close();
-			return result;
+			try (var packer = MessagePack.newDefaultBufferPacker()) {
+				encodeMsgPackValue(msgpackJson, packer, value);
+				packer.flush();
+				return packer.toByteArray();
+			}
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1072,7 +1071,6 @@ public class _JsonUtils {
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
-
 	}
 
 	private static void encodeMsgPackValue(MsgpackJson generator, MessagePacker packer, Object data) throws IOException {
@@ -2190,16 +2188,15 @@ public class _JsonUtils {
 	}
 
 	private static JsonValue decodeJsonValue(InputStream stream) {
-		try (var reader = Json.createReader(new InputStreamReader(stream, StandardCharsets.UTF_8))) {
-			return reader.readValue();
-		}
+		var reader = Json.createReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+		return reader.readValue();
 	}
 
 	private static JsonValue decodeMsgPackValue(InputStream stream) {
 		try {
+			var unpacker = MessagePack.newDefaultUnpacker(stream);
 			var msgpackJson = MsgpackJson.builder()
 					.build();
-			var unpacker = MessagePack.newDefaultUnpacker(stream);
 			return msgpackJson.decode(unpacker);
 		} catch (MessagePackException e) {
 			throw new JsonException(e.getMessage(), e);
