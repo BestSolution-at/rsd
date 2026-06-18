@@ -165,7 +165,6 @@ public class RSDFormDataPublisherBuilder {
 				publishers.add(part.content());
 				publishers.add(BodyPublishers.ofByteArray(CR_LF));
 			}
-			System.err.println("BOUNDARY: %s".formatted(boundary) + " PARTS: " + parts.size());
 			publishers.add(BodyPublishers.ofByteArrays(endBoundaryBytes()));
 		}
 
