@@ -230,7 +230,8 @@ public class _JsonUtils {
 		return Optional.empty();
 	}
 
-	public static <T> _Base.Nillable<T> mapNilLiteral(JsonObject object, String property, Function<String, T> converter) {
+	public static <T> _Base.Nillable<T> mapNilLiteral(JsonObject object, String property,
+			Function<String, T> converter) {
 		if (object.containsKey(property)) {
 			if (object.isNull(property)) {
 				return _NillableImpl.nill();
@@ -246,7 +247,8 @@ public class _JsonUtils {
 				JsonString::getString).map(mapper).toList();
 	}
 
-	public static <T> Optional<List<T>> mapNullLiterals(JsonObject object, String property, Function<String, T> mapper) {
+	public static <T> Optional<List<T>> mapNullLiterals(JsonObject object, String property,
+			Function<String, T> mapper) {
 		return mapToNullStream(object, property, JsonString.class,
 				JsonString::getString).map(s -> s.map(mapper)).map(Stream::toList);
 	}
@@ -369,16 +371,19 @@ public class _JsonUtils {
 	// ----------------
 
 	public static Optional<List<Short>> mapNullShorts(JsonObject object, String property) {
-		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().shortValue()).map(Stream::toList);
+		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().shortValue())
+				.map(Stream::toList);
 	}
 
 	public static _Base.Nillable<List<Short>> mapNilShorts(JsonObject object,
 			String property) {
-		return mapToNilStream(object, property, JsonNumber.class, v -> v.numberValue().shortValue()).map(Stream::toList);
+		return mapToNilStream(object, property, JsonNumber.class, v -> v.numberValue().shortValue())
+				.map(Stream::toList);
 	}
 
 	public static Optional<List<Short>> mapOptShorts(JsonObject object, String property) {
-		return mapToOptStream(object, property, JsonNumber.class, v -> v.numberValue().shortValue()).map(Stream::toList);
+		return mapToOptStream(object, property, JsonNumber.class, v -> v.numberValue().shortValue())
+				.map(Stream::toList);
 	}
 
 	public static List<Short> mapShorts(JsonObject object, String property) {
@@ -465,7 +470,8 @@ public class _JsonUtils {
 
 	// ----------------
 	public static Optional<List<Long>> mapNullLongs(JsonObject object, String property) {
-		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().longValue()).map(Stream::toList);
+		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().longValue())
+				.map(Stream::toList);
 	}
 
 	public static _Base.Nillable<List<Long>> mapNilLongs(JsonObject object,
@@ -511,16 +517,19 @@ public class _JsonUtils {
 
 	// ----------------
 	public static Optional<List<Float>> mapNullFloats(JsonObject object, String property) {
-		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().floatValue()).map(Stream::toList);
+		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().floatValue())
+				.map(Stream::toList);
 	}
 
 	public static _Base.Nillable<List<Float>> mapNilFloats(JsonObject object,
 			String property) {
-		return mapToNilStream(object, property, JsonNumber.class, v -> v.numberValue().floatValue()).map(Stream::toList);
+		return mapToNilStream(object, property, JsonNumber.class, v -> v.numberValue().floatValue())
+				.map(Stream::toList);
 	}
 
 	public static Optional<List<Float>> mapOptFloats(JsonObject object, String property) {
-		return mapToOptStream(object, property, JsonNumber.class, v -> v.numberValue().floatValue()).map(Stream::toList);
+		return mapToOptStream(object, property, JsonNumber.class, v -> v.numberValue().floatValue())
+				.map(Stream::toList);
 	}
 
 	public static List<Float> mapFloats(JsonObject object, String property) {
@@ -1073,7 +1082,8 @@ public class _JsonUtils {
 		}
 	}
 
-	private static void encodeMsgPackValue(MsgpackJson generator, MessagePacker packer, Object data) throws IOException {
+	private static void encodeMsgPackValue(MsgpackJson generator, MessagePacker packer, Object data)
+			throws IOException {
 		generator.encode(packer, createJsonValue(data));
 	}
 
@@ -1118,23 +1128,26 @@ public class _JsonUtils {
 	}
 
 	private static StreamState streamState(InputStream inputStream) {
-		try {
-			if (inputStream.available() > 0) {
-				return StreamState.NON_EMPTY;
-			} else if (inputStream.markSupported()) {
-				inputStream.mark(1);
-				int read = inputStream.read();
-				inputStream.reset();
-				if (read == -1) {
-					return StreamState.EMPTY;
-				} else {
-					return StreamState.NON_EMPTY;
-				}
-			}
-			return StreamState.UNKNOWN;
-		} catch (IOException e) {
-			throw new IllegalStateException(e);
-		}
+		/*
+		 * try {
+		 * if (inputStream.available() > 0) {
+		 * return StreamState.NON_EMPTY;
+		 * } else if (inputStream.markSupported()) {
+		 * inputStream.mark(1);
+		 * int read = inputStream.read();
+		 * inputStream.reset();
+		 * if (read == -1) {
+		 * return StreamState.EMPTY;
+		 * } else {
+		 * return StreamState.NON_EMPTY;
+		 * }
+		 * }
+		 * return StreamState.UNKNOWN;
+		 * } catch (IOException e) {
+		 * throw new IllegalStateException(e);
+		 * }
+		 */
+		return StreamState.UNKNOWN;
 	}
 
 	private static <T> Optional<T> parseOptStream(InputStream inputStream, Function<InputStream, Optional<T>> parser) {
@@ -1157,7 +1170,8 @@ public class _JsonUtils {
 		}
 	}
 
-	private static <T> _Base.Nillable<T> parseNilStream(InputStream inputStream, Function<InputStream, _Base.Nillable<T>> parser) {
+	private static <T> _Base.Nillable<T> parseNilStream(InputStream inputStream,
+			Function<InputStream, _Base.Nillable<T>> parser) {
 		var state = streamState(inputStream);
 		if (state == StreamState.EMPTY) {
 			try {
@@ -1178,9 +1192,9 @@ public class _JsonUtils {
 	}
 
 	private static <T> List<T> parseListStream(
-			InputStream inputStream, 
+			InputStream inputStream,
 			String contentType,
-			Function<JsonValue, T> mapper, 
+			Function<JsonValue, T> mapper,
 			TypeInfo<?> typeInfo) {
 		var value = decodeValue(inputStream, contentType, typeInfo);
 		if (value.getValueType() != JsonValue.ValueType.ARRAY) {
@@ -1190,15 +1204,15 @@ public class _JsonUtils {
 	}
 
 	private static <T> List<T> parseListStream(
-			InputStream inputStream, 
+			InputStream inputStream,
 			String contentType,
-			Function<JsonValue, T> mapper, 
+			Function<JsonValue, T> mapper,
 			Class<?> type) {
 		return parseListStream(inputStream, contentType, mapper, TypeInfo.list(type));
 	}
 
 	private static <T> Optional<List<T>> parseOptListStream(
-			InputStream inputStream, 
+			InputStream inputStream,
 			String contentType,
 			Function<JsonValue, T> mapper,
 			Class<?> type) {
@@ -1208,7 +1222,7 @@ public class _JsonUtils {
 	}
 
 	private static <T> Optional<List<T>> parseNullListStream(
-			InputStream inputStream, 
+			InputStream inputStream,
 			String contentType,
 			Function<JsonValue, T> mapper,
 			Class<?> type) {
@@ -1222,7 +1236,7 @@ public class _JsonUtils {
 	}
 
 	private static <T> _Base.Nillable<List<T>> parseNilListStream(
-			InputStream inputStream, 
+			InputStream inputStream,
 			String contentType,
 			Function<JsonValue, T> mapper,
 			Class<?> type) {
@@ -2086,10 +2100,10 @@ public class _JsonUtils {
 
 	// ----------------
 	public static <T> T parseObject(
-		InputStream inputStream, 
-		String contentType, 
-		Function<JsonObject, T> parser, 
-		Class<T> type) {
+			InputStream inputStream,
+			String contentType,
+			Function<JsonObject, T> parser,
+			Class<T> type) {
 		var value = decodeValue(inputStream, contentType, TypeInfo.value(type));
 		if (value.getValueType() != JsonValue.ValueType.OBJECT) {
 			throw new IllegalArgumentException("Expected object value, but got: " + value);
@@ -2098,7 +2112,7 @@ public class _JsonUtils {
 	}
 
 	public static <T> Optional<T> parseOptObject(
-			InputStream inputStream, 
+			InputStream inputStream,
 			String contentType,
 			Function<JsonObject, T> parser,
 			Class<T> type) {
@@ -2112,7 +2126,7 @@ public class _JsonUtils {
 	}
 
 	public static <T> Optional<T> parseNullObject(
-			InputStream inputStream, 
+			InputStream inputStream,
 			String contentType,
 			Function<JsonObject, T> parser,
 			Class<T> type) {
@@ -2126,7 +2140,7 @@ public class _JsonUtils {
 	}
 
 	public static <T> _Base.Nillable<T> parseNilObject(
-			InputStream inputStream, 
+			InputStream inputStream,
 			String contentType,
 			Function<JsonObject, T> parser,
 			Class<T> type) {
@@ -2142,8 +2156,8 @@ public class _JsonUtils {
 	}
 
 	public static <T> List<T> parseObjects(
-			InputStream inputStream, 
-			String contentType, 
+			InputStream inputStream,
+			String contentType,
 			Function<JsonObject, T> parser,
 			Class<T> type) {
 		return parseListStream(inputStream, contentType, v -> {
@@ -2155,9 +2169,9 @@ public class _JsonUtils {
 	}
 
 	public static <T> Optional<List<T>> parseOptObjects(
-			InputStream inputStream, 
+			InputStream inputStream,
 			String contentType,
-			Function<JsonObject, T> parser, 
+			Function<JsonObject, T> parser,
 			Class<T> type) {
 		return parseOptListStream(inputStream, contentType, v -> {
 			if (v.getValueType() != JsonValue.ValueType.OBJECT) {
@@ -2168,9 +2182,9 @@ public class _JsonUtils {
 	}
 
 	public static <T> Optional<List<T>> parseNullObjects(
-			InputStream inputStream, 
+			InputStream inputStream,
 			String contentType,
-			Function<JsonObject, T> parser, 
+			Function<JsonObject, T> parser,
 			Class<T> type) {
 		return parseNullListStream(inputStream, contentType, v -> {
 			if (v.getValueType() != JsonValue.ValueType.OBJECT) {
@@ -2181,9 +2195,9 @@ public class _JsonUtils {
 	}
 
 	public static <T> _Base.Nillable<List<T>> parseNilObjects(
-			InputStream inputStream, 
+			InputStream inputStream,
 			String contentType,
-			Function<JsonObject, T> parser, 
+			Function<JsonObject, T> parser,
 			Class<T> type) {
 		return parseNilListStream(inputStream, contentType, v -> {
 			if (v.getValueType() != JsonValue.ValueType.OBJECT) {
