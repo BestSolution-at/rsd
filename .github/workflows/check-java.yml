@@ -39,16 +39,16 @@ jobs:
       run: |
         cd dsl/java-test/java-client
         mvn compile
-#    - name: Run java tests
-#      run: |
-#        cd dsl/java-test/java-client
-#        java -Dquarkus.http.port=3000 -jar ../java-quarkus/target/quarkus-app/quarkus-run.jar &
-#        sleep 10
-#        mvn test
-    - name: Run node tests
+    - name: Run java tests
       run: |
-        cd dsl
-        npm ci
-        java -Dquarkus.http.port=3000 -jar ./java-test/java-quarkus/target/quarkus-app/quarkus-run.jar &
+        cd dsl/java-test/java-client
+        java -Dquarkus.http.port=3000 -jar ../java-quarkus/target/quarkus-app/quarkus-run.jar &
         sleep 10
-        npm run test
+        mvn test
+#    - name: Run node tests
+#      run: |
+#        cd dsl
+#        npm ci
+#        java -Dquarkus.http.port=3000 -jar ./java-test/java-quarkus/target/quarkus-app/quarkus-run.jar &
+#        sleep 10
+#        npm run test
