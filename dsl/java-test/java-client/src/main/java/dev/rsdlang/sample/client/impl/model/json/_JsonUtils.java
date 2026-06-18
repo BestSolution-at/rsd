@@ -1142,6 +1142,11 @@ public class _JsonUtils {
 	private static <T> Optional<T> parseOptStream(InputStream inputStream, Function<InputStream, Optional<T>> parser) {
 		var state = streamState(inputStream);
 		if (state == StreamState.EMPTY) {
+			try {
+				inputStream.close();
+			} catch (IOException e) {
+				throw new IllegalStateException(e);
+			}
 			return Optional.empty();
 		} else if (state == StreamState.UNKNOWN) {
 			try {
@@ -1157,6 +1162,11 @@ public class _JsonUtils {
 	private static <T> _Base.Nillable<T> parseNilStream(InputStream inputStream, Function<InputStream, _Base.Nillable<T>> parser) {
 		var state = streamState(inputStream);
 		if (state == StreamState.EMPTY) {
+			try {
+				inputStream.close();
+			} catch (IOException e) {
+				throw new IllegalStateException(e);
+			}
 			return _NillableImpl.undefined();
 		} else if (state == StreamState.UNKNOWN) {
 			try {
@@ -1421,6 +1431,11 @@ public class _JsonUtils {
 	public static OptionalInt parseOptInt(InputStream inputStream, String contentType) {
 		var state = streamState(inputStream);
 		if (state == StreamState.EMPTY) {
+			try {
+				inputStream.close();
+			} catch (IOException e) {
+				throw new IllegalStateException(e);
+			}
 			return OptionalInt.empty();
 		} else if (state == StreamState.UNKNOWN) {
 			try {
@@ -1503,6 +1518,11 @@ public class _JsonUtils {
 	public static OptionalLong parseOptLong(InputStream inputStream, String contentType) {
 		var state = streamState(inputStream);
 		if (state == StreamState.EMPTY) {
+			try {
+				inputStream.close();
+			} catch (IOException e) {
+				throw new IllegalStateException(e);
+			}
 			return OptionalLong.empty();
 		} else if (state == StreamState.UNKNOWN) {
 			try {
@@ -1585,6 +1605,11 @@ public class _JsonUtils {
 	public static OptionalDouble parseOptDouble(InputStream inputStream, String contentType) {
 		var state = streamState(inputStream);
 		if (state == StreamState.EMPTY) {
+			try {
+				inputStream.close();
+			} catch (IOException e) {
+				throw new IllegalStateException(e);
+			}
 			return OptionalDouble.empty();
 		} else if (state == StreamState.UNKNOWN) {
 			try {
