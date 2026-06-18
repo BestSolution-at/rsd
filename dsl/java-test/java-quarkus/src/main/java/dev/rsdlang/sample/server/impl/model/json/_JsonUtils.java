@@ -1050,12 +1050,11 @@ public class _JsonUtils {
 			var msgpackJson = MsgpackJson.builder()
 					.build();
 			var value = createJsonValue(data);
-			var packer = MessagePack.newDefaultBufferPacker();
-			encodeMsgPackValue(msgpackJson, packer, value);
-			packer.flush();
-			var result = packer.toByteArray();
-			packer.close();
-			return result;
+			try (var packer = MessagePack.newDefaultBufferPacker()) {
+				encodeMsgPackValue(msgpackJson, packer, value);
+				packer.flush();
+				return packer.toByteArray();
+			}
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
@@ -1066,13 +1065,13 @@ public class _JsonUtils {
 			var msgpackJson = MsgpackJson.builder()
 					.build();
 			var value = createJsonValue(data);
-			var packer = MessagePack.newDefaultPacker(stream);
-			encodeMsgPackValue(msgpackJson, packer, value);
-			packer.flush();
+			try (var packer = MessagePack.newDefaultPacker(stream)) {
+				encodeMsgPackValue(msgpackJson, packer, value);
+				packer.flush();
+			}
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
-
 	}
 
 	private static void encodeMsgPackValue(MsgpackJson generator, MessagePacker packer, Object data) throws IOException {
