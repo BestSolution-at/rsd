@@ -71,9 +71,9 @@ private static byte[] encodeJsonValue(Object data) {
 }
 
 private static void encodeJsonValue(${OutputStream} stream, Object data) {
-	try (var generator = ${Json}.createGenerator(stream)) {
-		encodeJsonValue(generator, data);
-	}
+	var generator = ${Json}.createGenerator(stream);
+	encodeJsonValue(generator, data);
+	generator.flush();
 }
 
 private static void encodeJsonValue(${JsonGenerator} generator, Object data) {
@@ -169,10 +169,9 @@ private static void encodeMsgPackValue(OutputStream stream, Object data) {
 		var msgpackJson = MsgpackJson.builder()
 				.build();
 		var value = createJsonValue(data);
-		try (var packer = MessagePack.newDefaultPacker(stream)) {
-			encodeMsgPackValue(msgpackJson, packer, value);
-			packer.flush();
-		}
+		var packer = MessagePack.newDefaultPacker(stream);
+		encodeMsgPackValue(msgpackJson, packer, value);
+		packer.flush();
 	} catch (IOException e) {
 		throw new IllegalStateException(e);
 	}
