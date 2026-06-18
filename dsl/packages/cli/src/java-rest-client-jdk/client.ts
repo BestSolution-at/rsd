@@ -94,9 +94,8 @@ export function generateClient(
 					if (baseURI == null) {
 						throw new IllegalStateException("baseURI must be set");
 					}
-					var contentType = contentTypeEncoding == null ? ContentTypeEncoding.APPLICATION_JSON : contentTypeEncoding;
+					var contentType = contentTypeEncoding == null ? ContentTypeEncoding.${toEnumLiteral(contentEncodings[0])} : contentTypeEncoding;
 					if (httpClientSupplier == null) {
-						var client = HttpClient.newBuilder().build();
 						return new JDK${toCamelCaseIdentifier(generatorConfig.name)}Client(baseURI, new InternalClientSupplier(), contentType);
 					}
 					return new JDK${toCamelCaseIdentifier(generatorConfig.name)}Client(baseURI, httpClientSupplier, contentType);
@@ -374,6 +373,12 @@ export function generateClient(
 			if (this.httpClientSupplier instanceof InternalClientSupplier) {
 				var client = this.httpClientSupplier.get();
 				client.close();
+			} else if (this.httpClientSupplier instanceof AutoCloseable closeable) {
+			 	try {
+					closeable.close();
+				} catch (Exception e) {
+					throw new IllegalStateException(e);
+				}
 			}
 		}`);
 	content.indent(clBody => {
