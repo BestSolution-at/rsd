@@ -1,0 +1,43 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Test generated Java Code
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 25
+      uses: actions/setup-java@v4
+      with:
+        java-version: '25'
+        distribution: 'temurin'
+        cache: maven
+    - name: Compile quarkus with Maven
+      run: |
+        cd dsl/java-test/java-quarkus
+        mvn package
+    - name: Compile client with Maven
+      run: |
+        cd dsl/java-test/java-client
+        mvn compile
+    - name: Run tests
+      run: |
+        cd dsl/java-test/java-client
+        java -Dquarkus.http.port=3000 -jar ../java-quarkus/target/quarkus-app/quarkus-run.jar &
+        mvn package
+        
