@@ -27,11 +27,17 @@ jobs:
         java-version: '25'
         distribution: 'temurin'
         cache: maven
+    - name: Compile quarkus with Maven
+      run: |
+        cd dsl/java-test/java-quarkus
+        mvn package
     - name: Compile client with Maven
       run: |
         cd dsl/java-test/java-client
         mvn compile
-    - name: Compile quarkus with Maven
+    - name: Run tests
       run: |
-        cd dsl/java-test/java-quarkus
-        mvn compile
+        cd dsl/java-test/java-client
+        java -Dquarkus.http.port=3000 -jar ../java-quarkus/target/quarkus-app/quarkus-run.jar
+        mvn package
+        
