@@ -123,10 +123,9 @@ function generateMsgPackDecodeValueFunction(fqn: (t: string) => string): Composi
 	const JsonException = fqn('jakarta.json.JsonException');
 	return toNodeTree(`
 private static ${JsonValue} decodeMsgPackValue(${InputStream} stream) {
-	try {
+	try (var unpacker = ${MessagePack}.newDefaultUnpacker(stream)) {
 		var msgpackJson = ${MsgpackJson}.builder()
 				.build();
-		var unpacker = ${MessagePack}.newDefaultUnpacker(stream);
 		return msgpackJson.decode(unpacker);
 	} catch (${MessagePackException} e) {
 		throw new ${JsonException}(e.getMessage(), e);
