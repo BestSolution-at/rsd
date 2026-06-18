@@ -10,6 +10,7 @@ import java.time.ZonedDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -26,11 +27,17 @@ import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.ZoneId;
 
 public class HeaderParameterTypesServiceTest {
+	private static SpecSamplesClient JSON;
+	private static SpecSamplesClient MSGPACK;
+
+	@BeforeAll
+	static void setUp() {
+		var baseBuilder = JDKSpecSamplesClient.builder().baseURI(URI.create("http://localhost:3000"));
+		JSON = baseBuilder.build();
+		MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
+	}
 
 	static HeaderParameterTypesService[] serviceProvider() {
-		var baseBuilder = JDKSpecSamplesClient.builder().baseURI(URI.create("http://localhost:3000"));
-		var JSON = baseBuilder.build();
-		var MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
 		return new HeaderParameterTypesService[] {
 				JSON.service(HeaderParameterTypesService.class),
 				MSGPACK.service(HeaderParameterTypesService.class),

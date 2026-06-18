@@ -6,6 +6,7 @@ import java.util.List;
 
 import java.net.URI;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -14,11 +15,17 @@ import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncodin
 import dev.rsdlang.sample.client.model.NilResult;
 
 public class ScalarSubstition_ServiceServiceTest {
-    static ScalarSubstition_ServiceService[] serviceProvider() {
-        var baseBuilder = JDKSpecSamplesClient.builder().baseURI(URI.create("http://localhost:3000"));
-        var JSON = baseBuilder.build();
-        var MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
+    private static SpecSamplesClient JSON;
+    private static SpecSamplesClient MSGPACK;
 
+    @BeforeAll
+    static void setUp() {
+        var baseBuilder = JDKSpecSamplesClient.builder().baseURI(URI.create("http://localhost:3000"));
+        JSON = baseBuilder.build();
+        MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
+    }
+
+    static ScalarSubstition_ServiceService[] serviceProvider() {
         return new ScalarSubstition_ServiceService[] {
                 JSON.service(ScalarSubstition_ServiceService.class),
                 MSGPACK.service(ScalarSubstition_ServiceService.class),

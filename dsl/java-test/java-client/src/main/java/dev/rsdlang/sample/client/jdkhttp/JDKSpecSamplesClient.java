@@ -188,7 +188,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 			if (contentTypeEncoding == null) {
 				contentTypeEncoding = ContentTypeEncoding.APPLICATION_JSON;
 			}
-			return new JDKSpecSamplesClient(baseURI, () -> HttpClient.newHttpClient(), contentTypeEncoding);
+			return new JDKSpecSamplesClient(baseURI, httpClient, contentTypeEncoding);
 		}
 	}
 
@@ -346,10 +346,10 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 	}
 
 	private final URI baseURI;
-	private final Supplier<HttpClient> httpClient;
+	private final HttpClient httpClient;
 	private final ContentTypeEncoding contentTypeEncoding;
 
-	JDKSpecSamplesClient(URI baseURI, Supplier<HttpClient> httpClient, ContentTypeEncoding contentTypeEncoding) {
+	JDKSpecSamplesClient(URI baseURI, HttpClient httpClient, ContentTypeEncoding contentTypeEncoding) {
 		this.baseURI = baseURI;
 		this.httpClient = httpClient;
 		this.contentTypeEncoding = contentTypeEncoding;
@@ -360,7 +360,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 	}
 
 	public HttpClient httpClient() {
-		return this.httpClient.get();
+		return this.httpClient;
 	}
 
 	public URI baseURI() {
