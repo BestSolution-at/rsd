@@ -87,115 +87,227 @@ public class ServiceUtils {
 	}
 
 	public static <T> T mapObject(HttpResponse<InputStream> response, Function<JsonObject, T> factory, Class<T> type) {
-		return _JsonUtils.parseObject(response.body(), contentType(response), factory, type);
+		try (var body = response.body()) {
+			return _JsonUtils.parseObject(body, contentType(response), factory, type);
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static String mapString(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseString(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseString(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static boolean mapBoolean(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseBoolean(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseBoolean(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static short mapShort(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseShort(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseShort(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static int mapInt(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseInt(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseInt(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static long mapLong(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseLong(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseLong(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static double mapDouble(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseDouble(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseDouble(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static float mapFloat(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseFloat(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseFloat(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static <T> T mapLiteral(HttpResponse<InputStream> response, Function<String, T> factory) {
-		return _JsonUtils.parseLiteral(response.body(), contentType(response), factory);
+		try (var body = response.body()) {
+			return _JsonUtils.parseLiteral(body, contentType(response), factory);
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static LocalDate mapLocalDate(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseLocalDate(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseLocalDate(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static LocalDateTime mapLocalDateTime(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseLocalDateTime(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseLocalDateTime(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static ZonedDateTime mapZonedDateTime(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseZonedDateTime(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseZonedDateTime(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static LocalTime mapLocalTime(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseLocalTime(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseLocalTime(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static OffsetDateTime mapOffsetDateTime(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseOffsetDateTime(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseOffsetDateTime(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static <T> List<T> mapObjects(HttpResponse<InputStream> response, Function<JsonObject, T> factory, Class<T> type) {
-		return _JsonUtils.parseObjects(response.body(), contentType(response), factory, type);
+		try (var body = response.body()) {
+			return _JsonUtils.parseObjects(body, contentType(response), factory, type);
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static List<String> mapStrings(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseStrings(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseStrings(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static List<Boolean> mapBooleans(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseBooleans(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseBooleans(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static List<Short> mapShorts(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseShorts(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseShorts(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static List<Integer> mapInts(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseInts(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseInts(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static List<Long> mapLongs(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseLongs(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseLongs(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static List<Double> mapDoubles(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseDoubles(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseDoubles(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static List<Float> mapFloats(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseFloats(response.body(), contentType(response));
+		try (var body = response.body()) {
+			return _JsonUtils.parseFloats(body, contentType(response));
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static <T> List<T> mapLiterals(HttpResponse<InputStream> response, Function<String, T> factory) {
-		return _JsonUtils.parseLiterals(response.body(), contentType(response), factory);
+		try (var body = response.body()) {
+			return _JsonUtils.parseLiterals(body, contentType(response), factory);
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static List<LocalDate> mapLocalDates(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseLiterals(response.body(), contentType(response), LocalDate::parse);
+		try (var body = response.body()) {
+			return _JsonUtils.parseLiterals(body, contentType(response), LocalDate::parse);
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static List<LocalDateTime> mapLocalDateTimes(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseLiterals(response.body(), contentType(response), LocalDateTime::parse);
+		try (var body = response.body()) {
+			return _JsonUtils.parseLiterals(body, contentType(response), LocalDateTime::parse);
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static List<ZonedDateTime> mapZonedDateTimes(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseLiterals(response.body(), contentType(response), ZonedDateTime::parse);
+		try (var body = response.body()) {
+			return _JsonUtils.parseLiterals(body, contentType(response), ZonedDateTime::parse);
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static List<LocalTime> mapLocalTimes(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseLiterals(response.body(), contentType(response), LocalTime::parse);
+		try (var body = response.body()) {
+			return _JsonUtils.parseLiterals(body, contentType(response), LocalTime::parse);
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static List<OffsetDateTime> mapOffsetDateTimes(HttpResponse<InputStream> response) {
-		return _JsonUtils.parseLiterals(response.body(), contentType(response), OffsetDateTime::parse);
+		try (var body = response.body()) {
+			return _JsonUtils.parseLiterals(body, contentType(response), OffsetDateTime::parse);
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	public static byte[] ofBoolean(
