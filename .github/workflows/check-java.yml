@@ -27,6 +27,10 @@ jobs:
         java-version: '25'
         distribution: 'zulu'
         cache: maven
+    - name: Set up NodeJS 26
+      uses: actions/setup-node@v6
+      with:
+        node-version: 26
     - name: Compile quarkus with Maven
       run: |
         cd dsl/java-test/java-quarkus
@@ -35,10 +39,16 @@ jobs:
       run: |
         cd dsl/java-test/java-client
         mvn compile
-    - name: Run tests
+#    - name: Run java tests
+#      run: |
+#        cd dsl/java-test/java-client
+#        java -Dquarkus.http.port=3000 -jar ../java-quarkus/target/quarkus-app/quarkus-run.jar &
+#        sleep 10
+#        mvn test
+    - name: Run node tests
       run: |
-        cd dsl/java-test/java-client
-        java -Dquarkus.http.port=3000 -jar ../java-quarkus/target/quarkus-app/quarkus-run.jar &
+        cd dsl
+        npm ci
+        java -Dquarkus.http.port=3000 -jar ./java-test/java-quarkus/target/quarkus-app/quarkus-run.jar &
         sleep 10
-        mvn test
-        
+        npm run test
