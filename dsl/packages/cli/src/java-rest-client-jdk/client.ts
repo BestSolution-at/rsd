@@ -103,7 +103,7 @@ export function generateClient(
 			}
 
 			static class InternalClientSupplier implements Supplier<HttpClient> {
-				private final HttpClient client = HttpClient.newBuilder().build();
+				private final HttpClient client = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build();
 
 				@Override
 				public HttpClient get() {
