@@ -1,11 +1,9 @@
 import { CompositeGeneratorNode } from 'langium/generate';
 import { JavaRestClientJDKGeneratorConfig } from '../java-gen-utils.js';
 import { toNodeTree } from '../util.js';
-import { MResolvedRSDModel } from '../model.js';
 
 export function generateBaseUtilsContent(
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
-	model: MResolvedRSDModel,
 	fqn: (type: string) => string,
 ): CompositeGeneratorNode {
 	fqn('java.net.URLEncoder');

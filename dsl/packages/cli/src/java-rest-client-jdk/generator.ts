@@ -39,7 +39,7 @@ export function generate(
 	result.push(...generateStreamImpls(artifactConfig, model));
 	result.push(...generateChangeSupport(artifactConfig));
 	result.push(...generateFormDataPublisherBuilder(artifactConfig, model));
-	result.push(generateBaseUtils(artifactConfig, model));
+	result.push(generateBaseUtils(artifactConfig));
 
 	return result;
 }

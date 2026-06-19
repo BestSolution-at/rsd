@@ -7,17 +7,13 @@ import {
 	toPath,
 } from '../java-gen-utils.js';
 import { generateBaseUtilsContent } from '../java-base/base-utils.js';
-import { MResolvedRSDModel } from '../model.js';
 
-export function generateBaseUtils(
-	artifactConfig: JavaRestClientJDKGeneratorConfig,
-	model: MResolvedRSDModel,
-): Artifact {
+export function generateBaseUtils(artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact {
 	const packageName = `${artifactConfig.rootPackageName}.jdkhttp.impl`;
 
 	const importCollector = new JavaImportsCollector(packageName);
 	const fqn = importCollector.importType.bind(importCollector);
-	const node = generateBaseUtilsContent(artifactConfig, model, fqn);
+	const node = generateBaseUtilsContent(artifactConfig, fqn);
 	return {
 		name: 'BaseUtils.java',
 		content: toString(generateCompilationUnit(packageName, importCollector, node), '\t'),
