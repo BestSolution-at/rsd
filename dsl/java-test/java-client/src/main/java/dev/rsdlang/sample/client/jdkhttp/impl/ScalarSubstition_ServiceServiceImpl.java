@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-import dev.rsdlang.sample.client.impl.model.json._JsonUtils;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.MyRange;
 import dev.rsdlang.sample.client.RSDException;

@@ -14,9 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-import dev.rsdlang.sample.client.impl.model.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListHeaderParameterTypesService;
+import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;

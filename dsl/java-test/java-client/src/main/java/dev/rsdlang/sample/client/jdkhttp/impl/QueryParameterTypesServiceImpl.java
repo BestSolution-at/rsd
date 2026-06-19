@@ -12,8 +12,8 @@ import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
-import dev.rsdlang.sample.client.impl.model.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;

@@ -20,8 +20,8 @@ export function generateBaseUtilsContent(
 	fqn('java.util.Base64');
 	fqn('java.util.HexFormat');
 
-	fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
-	fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils.TypeInfo`);
+	fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+	fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils.TypeInfo`);
 	fqn(`${artifactConfig.rootPackageName}.model._Base`);
 
 	const compilationContent = toNodeTree(`

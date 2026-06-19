@@ -152,7 +152,7 @@ export function generateClient(
 		clBody.indent(staticBody => {
 			m.elements.filter(isMResolvedRecordType).forEach(e => {
 				const type = fqn(`${basePackage}.model.${e.name}`);
-				const implType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${e.name}DataImpl`);
+				const implType = fqn(`${artifactConfig.rootPackageName}.model.impl.json.${e.name}DataImpl`);
 				staticBody.append(`registerBuilderCreator(${type}.DataBuilder.class, ${implType}.DataBuilderImpl::new);`, NL);
 			});
 
@@ -161,7 +161,7 @@ export function generateClient(
 				.filter(t => t.patchable)
 				.forEach((e, idx) => {
 					const type = fqn(`${basePackage}.model.${e.name}`);
-					const implType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${e.name}PatchImpl`);
+					const implType = fqn(`${artifactConfig.rootPackageName}.model.impl.json.${e.name}PatchImpl`);
 					if (idx === 0) {
 						staticBody.append(NL);
 					}
@@ -343,7 +343,7 @@ export function generateClient(
 			);
 			clBody.indent(mBody => {
 				mBody.append(
-					`return ${fqn(`${artifactConfig.rootPackageName}.impl.model.json._BlobImpl`)}.of(file, mimeType);`,
+					`return ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._BlobImpl`)}.of(file, mimeType);`,
 					NL,
 				);
 			});
@@ -358,7 +358,7 @@ export function generateClient(
 				);
 				clBody.indent(mBody => {
 					mBody.append(
-						`return ${fqn(`${artifactConfig.rootPackageName}.impl.model.json._FileImpl`)}.of(file, mimeType, filename);`,
+						`return ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._FileImpl`)}.of(file, mimeType, filename);`,
 						NL,
 					);
 				});

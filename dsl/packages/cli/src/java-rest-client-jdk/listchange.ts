@@ -9,7 +9,7 @@ import {
 import { generateChangeSupportContent } from '../java-model-json/listchange-impl.js';
 
 export function generateChangeSupport(artifactConfig: JavaRestClientJDKGeneratorConfig): Artifact[] {
-	const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
+	const packageName = `${artifactConfig.rootPackageName}.model.impl.json`;
 	const rv: Artifact[] = [];
 
 	{
