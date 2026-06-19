@@ -146,7 +146,7 @@ import dev.rsdlang.sample.client.SampleServiceService;
 import dev.rsdlang.sample.client.ScalarSubstition_ServiceService;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
-public class JDKSpecSamplesClient implements SpecSamplesClient {
+public class JDKSpecSamplesClient implements SpecSamplesClient, AutoCloseable {
 	public enum ContentTypeEncoding {
 		APPLICATION_JSON("application/json"),
 		APPLICATION_VND_MSGPACK("application/vnd.msgpack");
@@ -160,7 +160,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 
 	public static class Builder {
 		private URI baseURI;
-		private HttpClient httpClient;
+		private Supplier<HttpClient> httpClientSupplier;
 		private ContentTypeEncoding contentTypeEncoding;
 
 		public Builder baseURI(URI baseURI) {
@@ -169,7 +169,11 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		}
 
 		public Builder httpClient(HttpClient httpClient) {
-			this.httpClient = httpClient;
+			return httpClientSupplier(() -> httpClient);
+		}
+
+		public Builder httpClientSupplier(Supplier<HttpClient> httpClientSupplier) {
+			this.httpClientSupplier = httpClientSupplier;
 			return this;
 		}
 
@@ -182,11 +186,20 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 			if (baseURI == null) {
 				throw new IllegalStateException("baseURI must be set");
 			}
-			var client = (httpClient != null) ? httpClient : HttpClient.newHttpClient();
-			if (contentTypeEncoding == null) {
-				contentTypeEncoding = ContentTypeEncoding.APPLICATION_JSON;
+			var contentType = contentTypeEncoding == null ? ContentTypeEncoding.APPLICATION_JSON : contentTypeEncoding;
+			if (httpClientSupplier == null) {
+				return new JDKSpecSamplesClient(baseURI, new InternalClientSupplier(), contentType);
 			}
-			return new JDKSpecSamplesClient(baseURI, client, contentTypeEncoding);
+			return new JDKSpecSamplesClient(baseURI, httpClientSupplier, contentType);
+		}
+	}
+
+	static class InternalClientSupplier implements Supplier<HttpClient> {
+		private final HttpClient client = HttpClient.newBuilder().build();
+
+		@Override
+		public HttpClient get() {
+			return client;
 		}
 	}
 
@@ -306,12 +319,12 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 	}
 
 	private final URI baseURI;
-	private final HttpClient httpClient;
+	private final Supplier<HttpClient> httpClientSupplier;
 	private final ContentTypeEncoding contentTypeEncoding;
 
-	JDKSpecSamplesClient(URI baseURI, HttpClient httpClient, ContentTypeEncoding contentTypeEncoding) {
+	JDKSpecSamplesClient(URI baseURI, Supplier<HttpClient> httpClientSupplier, ContentTypeEncoding contentTypeEncoding) {
 		this.baseURI = baseURI;
-		this.httpClient = httpClient;
+		this.httpClientSupplier = httpClientSupplier;
 		this.contentTypeEncoding = contentTypeEncoding;
 	}
 
@@ -320,7 +333,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 	}
 
 	public HttpClient httpClient() {
-		return this.httpClient;
+		return this.httpClientSupplier.get();
 	}
 
 	public URI baseURI() {
@@ -396,5 +409,19 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 
 	public RSDFile createFile(Path file, String mimeType, String filename) {
 		return _FileImpl.of(file, mimeType, filename);
+	}
+
+	@Override
+	public void close() {
+		if (this.httpClientSupplier instanceof InternalClientSupplier) {
+			var client = this.httpClientSupplier.get();
+			client.close();
+		} else if (this.httpClientSupplier instanceof AutoCloseable closeable) {
+		 	try {
+				closeable.close();
+			} catch (Exception e) {
+				throw new IllegalStateException(e);
+			}
+		}
 	}
 }

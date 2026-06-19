@@ -39,7 +39,10 @@ export function generateClient(
 	const Optional = fqn('java.util.Optional');
 
 	const content = new CompositeGeneratorNode();
-	content.append(`public class JDK${toCamelCaseIdentifier(generatorConfig.name)}Client implements ${Client} {`, NL);
+	content.append(
+		`public class JDK${toCamelCaseIdentifier(generatorConfig.name)}Client implements ${Client}, AutoCloseable {`,
+		NL,
+	);
 	content.indent(classBody => {
 		const contentEncodings =
 			artifactConfig.contentTypeEncodings === undefined || artifactConfig.contentTypeEncodings.length === 0
@@ -65,7 +68,7 @@ export function generateClient(
 		const builder = toNodeTree(`
 			public static class Builder {
 				private URI baseURI;
-				private HttpClient httpClient;
+				private Supplier<HttpClient> httpClientSupplier;
 				private ContentTypeEncoding contentTypeEncoding;
 
 				public Builder baseURI(URI baseURI) {
@@ -74,7 +77,11 @@ export function generateClient(
 				}
 
 				public Builder httpClient(HttpClient httpClient) {
-					this.httpClient = httpClient;
+					return httpClientSupplier(() -> httpClient);
+				}
+
+				public Builder httpClientSupplier(Supplier<HttpClient> httpClientSupplier) {
+					this.httpClientSupplier = httpClientSupplier;
 					return this;
 				}
 
@@ -87,11 +94,20 @@ export function generateClient(
 					if (baseURI == null) {
 						throw new IllegalStateException("baseURI must be set");
 					}
-					var client = (httpClient != null) ? httpClient : HttpClient.newHttpClient();
-					if (contentTypeEncoding == null) {
-						contentTypeEncoding = ContentTypeEncoding.${toEnumLiteral(contentEncodings[0])};
+					var contentType = contentTypeEncoding == null ? ContentTypeEncoding.${toEnumLiteral(contentEncodings[0])} : contentTypeEncoding;
+					if (httpClientSupplier == null) {
+						return new JDK${toCamelCaseIdentifier(generatorConfig.name)}Client(baseURI, new InternalClientSupplier(), contentType);
 					}
-					return new JDK${toCamelCaseIdentifier(generatorConfig.name)}Client(baseURI, client, contentTypeEncoding);
+					return new JDK${toCamelCaseIdentifier(generatorConfig.name)}Client(baseURI, httpClientSupplier, contentType);
+				}
+			}
+
+			static class InternalClientSupplier implements Supplier<HttpClient> {
+				private final HttpClient client = HttpClient.newBuilder().build();
+
+				@Override
+				public HttpClient get() {
+					return client;
 				}
 			}
 
@@ -181,18 +197,18 @@ export function generateClient(
 		clBody.append('}', NL);
 		clBody.appendNewLine();
 		clBody.append(`private final ${URI} baseURI;`, NL);
-		clBody.append(`private final ${HttpClient} httpClient;`, NL);
+		clBody.append(`private final ${Supplier}<${HttpClient}> httpClientSupplier;`, NL);
 		clBody.append(`private final ContentTypeEncoding contentTypeEncoding;`, NL);
 		clBody.appendNewLine();
 		clBody.append(
 			`JDK${toCamelCaseIdentifier(
 				generatorConfig.name,
-			)}Client(${URI} baseURI, ${HttpClient} httpClient, ContentTypeEncoding contentTypeEncoding) {`,
+			)}Client(${URI} baseURI, ${Supplier}<${HttpClient}> httpClientSupplier, ContentTypeEncoding contentTypeEncoding) {`,
 			NL,
 		);
 		clBody.indent(initBlock => {
 			initBlock.append('this.baseURI = baseURI;', NL);
-			initBlock.append('this.httpClient = httpClient;', NL);
+			initBlock.append('this.httpClientSupplier = httpClientSupplier;', NL);
 			initBlock.append('this.contentTypeEncoding = contentTypeEncoding;', NL);
 		});
 		clBody.append('}', NL);
@@ -203,7 +219,7 @@ export function generateClient(
 		}
 		
 		public HttpClient httpClient() {
-			return this.httpClient;
+			return this.httpClientSupplier.get();
 		}
 				
 		public URI baseURI() {
@@ -351,6 +367,24 @@ export function generateClient(
 		}
 	});
 
+	const autoClose = toNodeTree(`
+		@Override
+		public void close() {
+			if (this.httpClientSupplier instanceof InternalClientSupplier) {
+				var client = this.httpClientSupplier.get();
+				client.close();
+			} else if (this.httpClientSupplier instanceof AutoCloseable closeable) {
+			 	try {
+					closeable.close();
+				} catch (Exception e) {
+					throw new IllegalStateException(e);
+				}
+			}
+		}`);
+	content.indent(clBody => {
+		clBody.appendNewLine();
+		clBody.append(autoClose, NL);
+	});
 	content.append('}', NL);
 
 	return {

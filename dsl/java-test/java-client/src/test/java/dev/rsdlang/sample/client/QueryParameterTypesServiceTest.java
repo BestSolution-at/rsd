@@ -35,8 +35,8 @@ public class QueryParameterTypesServiceTest {
 
 	@AfterAll
 	static void tearDown() {
-		((JDKSpecSamplesClient) JSON).httpClient().close();
-		((JDKSpecSamplesClient) MSGPACK).httpClient().close();
+		((JDKSpecSamplesClient) JSON).close();
+		((JDKSpecSamplesClient) MSGPACK).close();
 	}
 
 	static QueryParameterTypesService[] serviceProvider() {
